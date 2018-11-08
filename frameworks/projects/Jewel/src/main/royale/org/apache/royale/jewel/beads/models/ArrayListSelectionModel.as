@@ -35,7 +35,7 @@ package org.apache.royale.jewel.beads.models
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class ArrayListSelectionModel extends EventDispatcher implements ISelectionModel, IRollOverModel
+	public class ArrayListSelectionModel extends EventDispatcher implements IJewelSelectionModel, IRollOverModel
 	{
         /**
          *  Constructor.
@@ -47,6 +47,11 @@ package org.apache.royale.jewel.beads.models
          */
 		public function ArrayListSelectionModel()
 		{
+		}
+
+		private var _dispatchChangeOnDataChange:Boolean;
+		public function set dispatchChangeOnDataProviderChange(value:Boolean):void{
+            _dispatchChangeOnDataChange = true;
 		}
 
 		private var _strand:IStrand;
@@ -62,6 +67,14 @@ package org.apache.royale.jewel.beads.models
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+		}
+
+        private var _processingInteractiveChange:Boolean = false;
+        public function setProcessingInteractiveChange(value:Boolean):void{
+            _processingInteractiveChange = value;
+        }
+        protected function get processingInteractiveChange():Boolean{
+			return _processingInteractiveChange;
 		}
 
 		private var _dataProvider:IArrayList;
@@ -88,12 +101,39 @@ package org.apache.royale.jewel.beads.models
             if (value == _dataProvider) return;
 
             _dataProvider = value as IArrayList;
-			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
-				_selectedIndex = -1;
-            
-			_selectedItem = _selectedIndex == -1 ? null : _dataProvider.getItemAt(_selectedIndex);
-			
-			dispatchEvent(new Event("dataProviderChanged"));
+            var itemChanged:Boolean;
+            const oldIndex:int = _selectedIndex;
+            if (_dataProvider) {
+                if (_selectedItem) {
+                    _selectedIndex = _dataProvider.getItemIndex(_selectedItem);
+
+                    if (_selectedIndex == -1) {
+                        _selectedItem = null;
+                        itemChanged = true;
+                    }
+                } else {
+                    if (_selectedIndex != -1) {
+                        if (_selectedIndex < _dataProvider.length) {
+                            _selectedItem = _dataProvider.getItemAt(_selectedIndex);
+                            itemChanged = true;
+                        } else {
+                            _selectedIndex = -1;
+                        }
+                    }
+                }
+            } else {
+                itemChanged = _selectedItem != null;
+                _selectedItem = null;
+                _selectedIndex = -1;
+            }
+
+            dispatchEvent(new Event("dataProviderChanged"));
+            if (itemChanged)
+                dispatchEvent(new Event("selectedItemChanged"));
+            if (oldIndex != _selectedIndex)
+                dispatchEvent(new Event("selectedIndexChanged"));
+			if (_dispatchChangeOnDataChange && (itemChanged || oldIndex != _selectedIndex))
+                dispatchEvent(new Event("change"));
 		}
 
 		private var _selectedIndex:int = -1;
@@ -142,11 +182,26 @@ package org.apache.royale.jewel.beads.models
          */
 		public function set selectedIndex(value:int):void
 		{
+            if (!_dataProvider) {
+                _selectedIndex = value;
+                return;
+            }
             if (value == _selectedIndex) return;
 
-			_selectedIndex = value;
-			_selectedItem = (value == -1 || _dataProvider == null) ? null : (value < _dataProvider.length) ? _dataProvider.getItemAt(value) : null;
-			dispatchEvent(new Event("selectedIndexChanged"));
+            const oldItem:Object = _selectedItem;
+            _selectedIndex = value < _dataProvider.length ? value : _dataProvider.length - 1;
+            if (_selectedIndex != -1) {
+                _selectedItem = _dataProvider.getItemAt(_selectedIndex);
+            } else {
+                _selectedItem = null;
+            }
+
+            if ( oldItem != _selectedItem)
+                dispatchEvent(new Event("selectedItemChanged"));
+            dispatchEvent(new Event("selectedIndexChanged"));
+            if (!_processingInteractiveChange) {
+                dispatchEvent(new Event("change"));
+            }
 		}
 
         /**
@@ -194,19 +249,17 @@ package org.apache.royale.jewel.beads.models
 		public function set selectedItem(value:Object):void
 		{
             if (value == _selectedItem) return;
+            _selectedItem = value;
+            if (_dataProvider) {
+                const indexChanged:Boolean = _selectedIndex != (_selectedIndex = _dataProvider.getItemIndex(value));
 
-			_selectedItem = value;
-			var n:int = _dataProvider.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				if (_dataProvider.getItemAt(i) == value)
-				{
-					_selectedIndex = i;
-					break;
-				}
-			}
-			dispatchEvent(new Event("selectedItemChanged"));
-			dispatchEvent(new Event("selectedIndexChanged"));
+                dispatchEvent(new Event("selectedItemChanged"));
+                if (indexChanged)
+                    dispatchEvent(new Event("selectedIndexChanged"));
+                if (!_processingInteractiveChange) {
+                    dispatchEvent(new Event("change"));
+                }
+            }
 		}
 
 		private var _selectedString:String;

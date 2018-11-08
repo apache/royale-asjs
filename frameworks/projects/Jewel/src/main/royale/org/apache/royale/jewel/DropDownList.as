@@ -316,13 +316,13 @@ package org.apache.royale.jewel
             var ddModel:IDropDownListModel = model as IDropDownListModel;
             if (ddModel) {
                 index -= ddModel.offset;
-                ddModel.processingInteractiveChange = true;
+                ddModel.setProcessingInteractiveChange(true);
             }
 
             model.selectedIndex = index;
 
             if (ddModel)
-                ddModel.processingInteractiveChange = false;
+                ddModel.setProcessingInteractiveChange(false);
         }
     }
 }

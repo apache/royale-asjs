@@ -22,19 +22,19 @@ limitations under the License.
 				  xmlns:js="library://ns.apache.org/royale/basic"
 				  xmlns:html="library://ns.apache.org/royale/html"
 				  xmlns:models="models.*">
-    
+
 	<fx:Script>
 		<![CDATA[
 			import vos.IconListVO;
 			import org.apache.royale.collections.ArrayList;
 
-            private function watchmenComboBoxSelectedItem(event:Event):void {
+           /* private function watchmenComboBoxSelectedItem(event:Event):void {
 				watchmenComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem;
-            }
-            
-            private function avengersComboBoxSelectedItem(event:Event):void {
+            }*/
+
+            /*private function avengersComboBoxSelectedItem(event:Event):void {
 				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.label;
-            }
+            }*/
 
 			private function onValueChange(event:Event):void
 			{
@@ -47,7 +47,7 @@ limitations under the License.
 			}
 
 			private function describeItem(item:*):String {
-				const intro:String = "<strong>DropDownList selectedItem:</strong> ";
+				const intro:String = "<strong>ComboBox selectedItem:</strong> ";
 				var evaluated:String;
 				if (item is String) {
 					evaluated = 'String value: \'' + item + '\'';
@@ -75,9 +75,9 @@ limitations under the License.
 	<j:model>
         <models:ListsModel id="listModel"/>
 	</j:model>
-	
+
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
 					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
@@ -90,7 +90,7 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:ComboBox id="watchmenComboBox" dataProvider="{listModel.watchmen}" change="watchmenComboBoxSelectedItem(event)">
+						<j:ComboBox id="watchmenComboBox" dataProvider="{listModel.watchmen}">
 							<j:beads>
 								<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
 							</j:beads>
@@ -110,7 +110,7 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="watchmenComboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
+						<j:Label id="watchmenComboBoxResult" html="{describeItem(watchmenComboBox.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -127,7 +127,8 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:ComboBox id="avengersComboBox" width="140" labelField="label" dataProvider="{listModel.avengers}" change="avengersComboBoxSelectedItem(event)">
+						<j:ComboBox id="avengersComboBox" width="140" labelField="label"
+									dataProvider="{listModel.avengers}">
 							<j:beads>
 								<j:ComboBoxTextPrompt prompt="Avengers Team..."/>
 							</j:beads>
@@ -146,7 +147,7 @@ limitations under the License.
 								tabletNumerator="1" tabletDenominator="3"
 								phoneNumerator="1" phoneDenominator="1"
 								itemsVerticalAlign="itemsCentered" width="290">
-						<j:Label id="avengersComboBoxResult" html="&lt;strong>ComboBox selectedItem:&lt;/strong> "/>
+						<j:Label id="avengersComboBoxResult" html="{describeItem(avengersComboBox.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
@@ -154,7 +155,7 @@ limitations under the License.
 	</j:Grid>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
 					tabletNumerator="1" tabletDenominator="1"
 					phoneNumerator="1" phoneDenominator="1">
@@ -166,12 +167,12 @@ limitations under the License.
 					<j:ComboBox id="cmb" labelField="label" dataProvider="{listModel.avengers}"/>
 					<j:Label text="Width: {cmb.width}px"/>
 				</j:HGroup>
-				
+
 				<j:Slider id="slider_w" width="250" value="200" minimum="100" maximum="400" valueChange="onValueChange(event)"/>
 
 			</j:Card>
 		</j:GridCell>
-	
+
 	</j:Grid>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
@@ -187,7 +188,7 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
-	
+
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1"
 					tabletNumerator="1" tabletDenominator="1"

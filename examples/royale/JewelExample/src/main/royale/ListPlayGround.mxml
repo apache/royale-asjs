@@ -22,7 +22,7 @@ limitations under the License.
 		xmlns:js="library://ns.apache.org/royale/basic"
 		xmlns:html="library://ns.apache.org/royale/html"
 		xmlns:models="models.*">
-    
+
     <fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
@@ -57,14 +57,14 @@ limitations under the License.
 					new IconListVO("Label", "label"),
 					new IconListVO("RadioButton", "radio_button_checked"),
 					new IconListVO("Text", "subject"),
-					new IconListVO("TextInput", "text_fields")            
+					new IconListVO("TextInput", "text_fields")
 				]);
 			}
 
 			private function addItem():void
 			{
 				var iconListVO:IconListVO = new IconListVO("New Item", MaterialIconType.CLOSE);
-				
+
 				(iconList.dataProvider as ArrayList).addItem(iconListVO);
 				// listModel.iconListData.addItem(iconListVO); // to test things are adding to right place
 			}
@@ -91,7 +91,7 @@ limitations under the License.
 			}
 
 			private function describeItem(item:*):String {
-				const intro:String = "<strong>DropDownList selectedItem:</strong> ";
+				const intro:String = "<strong>List selectedItem:</strong> ";
 				var evaluated:String;
 				if (item is String) {
 					evaluated = 'String value: \'' + item + '\'';
@@ -191,8 +191,8 @@ limitations under the License.
 					phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel List (Horizontal)"/>
-				<j:List id="alist" percentWidth="100" height="100">  
-				<j:beads>  
+				<j:List id="alist" percentWidth="100" height="100">
+				<j:beads>
 					<j:HorizontalLayout itemsExpand="true" />
 				</j:beads>
 				<j:dataProvider>

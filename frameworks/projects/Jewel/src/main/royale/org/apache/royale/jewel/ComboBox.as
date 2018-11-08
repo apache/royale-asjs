@@ -23,8 +23,11 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.Event;
+
 	//--------------------------------------
     //  Events
     //--------------------------------------
@@ -39,18 +42,18 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
-	
+
 	/**
 	 *  The ComboBox class is a component that displays an input field and
 	 *  pop-up List with selections. Selecting an item from the pop-up List
 	 *  places that item into the input field of the ComboBox. The ComboBox
 	 *  uses the following bead types:
-	 * 
+	 *
 	 *  org.apache.royale.core.IBeadModel: the data model, which includes the dataProvider, selectedItem, and
 	 *  so forth.
 	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the component.
 	 *  org.apache.royale.core.IBeadController: the bead that handles input and output.
-	 * 
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -69,8 +72,9 @@ package org.apache.royale.jewel
 		public function ComboBox()
 		{
 			super();
-            
+
             typeNames = "jewel combobox";
+            addEventListener('beadsAdded', setupModelChangeListener);
 		}
 
 		/**
@@ -94,7 +98,7 @@ package org.apache.royale.jewel
 		{
             IDataProviderModel(model).labelField = value;
 		}
-		
+
 		/**
 		 *  The data for display by the ComboBox.
 		 *
@@ -115,7 +119,7 @@ package org.apache.royale.jewel
 		{
 			IDataProviderModel(model).dataProvider = value;
 		}
-		
+
         [Bindable("change")]
 		/**
 		 *  The index of the currently selected item. Changing this item changes
@@ -138,7 +142,7 @@ package org.apache.royale.jewel
 		{
 			ISelectionModel(model).selectedIndex = value;
 		}
-		
+
         [Bindable("change")]
 		/**
 		 *  The item currently selected. Changing this value also
@@ -158,7 +162,7 @@ package org.apache.royale.jewel
 		{
 			ISelectionModel(model).selectedItem = value;
 		}
-		
+
 		/**
 		 *  The presentation model for the list.
 		 *
@@ -177,5 +181,24 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
+
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+         */
+        private function setupModelChangeListener():void{
+            removeEventListener('beadsAdded', setupModelChangeListener);
+            IEventDispatcher(model).addEventListener('change', modelChangeDispatcher);
+            IJewelSelectionModel(model).dispatchChangeOnDataProviderChange = true;
+        }
+
+        private var respondingToProgrammaticChange:Boolean;
+
+        private function modelChangeDispatcher(event:Event):void{
+            //handles re-dispatching for programmatic changes
+            respondingToProgrammaticChange = true;
+            dispatchEvent(new Event("change"));
+            respondingToProgrammaticChange = false;
+        }
 	}
 }

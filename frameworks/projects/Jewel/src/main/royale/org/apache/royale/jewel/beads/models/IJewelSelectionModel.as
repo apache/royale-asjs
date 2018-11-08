@@ -18,18 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
+
+    import org.apache.royale.core.ISelectionModel;
+
     /**
-     *  The IDropDownListModel interface is a marker interface
+     *  The IJewelSelectionModel interface is a simple extension to core ISelectionModel
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public interface IDropDownListModel
+    public interface IJewelSelectionModel extends ISelectionModel
     {
-
-        function get offset():int;
-        function setProcessingInteractiveChange(value:Boolean):void;
+        function set dispatchChangeOnDataProviderChange(value:Boolean):void
     }
 }
