@@ -4294,12 +4294,11 @@ COMPILE::JS
      */
     public function get cornerRadius():Object
     {
-        trace("cornerRadius not implemented");
-        return 0;
+        return getStyle("borderRadius");
     }
     public function set cornerRadius(value:Object):void
     {
-        trace("cornerRadius not implemented");
+        setStyle("borderRadius", value);
     }
 	[Inspectable(category="General")]
 	

@@ -291,44 +291,7 @@ public class SkinnableComponent extends UIComponent
             dataGroupProperties.dataProvider = value;
         dispatchEvent(new Event("dataProviderChanged")); */
     }
-	//----------------------------------
-    //  layout copied from SkinnableDataContainer
-    //----------------------------------
-    
-    [Inspectable(category="General")]
-    
-    /**
-     *  @copy spark.components.supportClasses.GroupBase#layout
-     *
-     *  @default VerticalLayout
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */     
-    public function get layout():Object
-    {
-        /* return (dataGroup) 
-            ? dataGroup.layout 
-            : dataGroupProperties.layout; */
-			return null;
-    }
 
-    /**
-     *  @private
-     */
-    public function set layout(value:Object):void
-    { //value:LayoutBase)
-       /*  if (dataGroup)
-        {
-            dataGroup.layout = value;
-            dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
-                                                     LAYOUT_PROPERTY_FLAG, true);
-        }
-        else
-            dataGroupProperties.layout = value; */
-    }
 	//----------------------------------
     //  itemRenderer copied from SkinnableDataContainer
     //----------------------------------
