@@ -153,6 +153,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
+		protected var itemsHorizontalAlignInitialized:Boolean;
 		private var _itemsHorizontalAlign:String;
 		/**
 		 *  Distribute all items horizontally
@@ -181,10 +182,12 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					setHostClassList(_itemsHorizontalAlign, value);
 					_itemsHorizontalAlign = value;
+					itemsHorizontalAlignInitialized = true;
 				}
 			}
         }
 
+		protected var itemsVerticalAlignInitialized:Boolean;
         private var _itemsVerticalAlign:String;
 		/**
 		 *  Distribute all items vertically
@@ -212,6 +215,7 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					setHostClassList(_itemsVerticalAlign, value);
 					_itemsVerticalAlign = value;
+					itemsVerticalAlignInitialized = true;
 				}
 			}
         }

@@ -254,6 +254,14 @@ package org.apache.royale.jewel.beads.layouts
 						if(!gapInitialized)
 							gap = Number(cssValue);
 						break;
+					case "itemsVerticalAlign":
+						if(!itemsVerticalAlignInitialized)
+							itemsVerticalAlign = cssValue;
+						break;
+					case "itemsHorizontalAlign":
+						if(!itemsHorizontalAlignInitialized)
+							itemsHorizontalAlign = cssValue;
+						break;
 					default:
 						break;
 				}	
