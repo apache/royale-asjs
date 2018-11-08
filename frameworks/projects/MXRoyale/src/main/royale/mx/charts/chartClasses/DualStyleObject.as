@@ -279,6 +279,24 @@ public class DualStyleObject extends UIComponent
          
     }
      */
+
+    override public function getStyle(styleProp:String):*
+    {
+        var value:*;
+        if (internalStyleName != null)
+        {
+            var internalClassSelector:CSSStyleDeclaration;
+            internalClassSelector =
+                styleManager.getStyleDeclaration("." + internalStyleName);
+            value = internalClassSelector.getStyle(styleProp);
+        }
+        if (value === undefined)
+        {
+            value = super.getStyle(styleProp)
+        }
+        return value;
+    }
+
 }
 
 }
