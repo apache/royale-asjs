@@ -181,7 +181,7 @@ package mx.display
 		{
 		} 
 		
-        private var thickness:int;
+        private var thickness:Number = 0.5;
         private var color:uint = 0;
         private var alpha:Number = 1.0;
         
@@ -193,7 +193,7 @@ package mx.display
             }
             COMPILE::JS
             {
-                this.thickness = thickness;
+                this.thickness = thickness == 0 ? 0.5 : thickness;
                 this.color = color;
                 this.alpha = alpha;
             }
