@@ -57,51 +57,54 @@ limitations under the License.
 				<j:FormValidator trigger="{btn}" triggerEvent="click" requiredFieldError="There are invalid data, please check it."/>
 			</j:beads>
 			
-			<html:H4 text="Your name"/>
-			<j:TextInput>
-				<j:beads>
-					<j:TextPrompt prompt="Name"/>
-					<j:StringValidator required="3" autoTrim="true" requiredFieldError="Need more than 3 characters"/>
-				</j:beads>
-			</j:TextInput>
-			
-			<html:H4 text="Your born date"/>
-			<j:DateField>
-				<j:beads>
-					<j:DateValidator requiredFieldError="The value is not a valid date"/>
-				</j:beads>
-			</j:DateField>
+			<j:FormHeading label="Form with validation example"/>
 
-			<html:H4 text="Your Favorite Avenger"/>
-			<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
-				<j:beads>
-					<j:SelectedItemNullValidator requiredFieldError="You must to select one value from the list"/>
-				</j:beads>
-			</j:ComboBox>
-
-			<html:H4 text="Favorite movies (at least 2)"/>
-			<j:VGroup gap="3">
-				<j:beads>
-					<j:CheckBoxValidator required="2" requiredFieldError="Please choose at least 2 movies"/>
-				</j:beads>
-
-				<j:CheckBox text="The Godfather"/>
-				<j:CheckBox text="Scent of a woman"/>
-				<j:CheckBox text="Star Wars"/>
-				<j:CheckBox text="The Shawshank Redemption"/>
-			</j:VGroup>
-
-			<html:H4 text="Verification code: {randomCode}"/>
-			<j:HGroup gap="3">
+			<j:FormItem label="Your name" required="true">
 				<j:TextInput>
 					<j:beads>
-						<j:TextPrompt prompt="Enter Verification Code"/>
-						<j:StringValidator validateFunction="{customValidate}"/>
+						<j:TextPrompt prompt="Name"/>
+						<j:StringValidator required="3" autoTrim="true" requiredFieldError="Need more than 3 characters"/>
 					</j:beads>
 				</j:TextInput>
+			</j:FormItem>
 
-				<j:Button id="btn" text="send" emphasis="primary"/>
-			</j:HGroup>
+			<j:FormItem label="Your born date" required="true">
+				<j:DateField>
+					<j:beads>
+						<j:DateValidator requiredFieldError="The value is not a valid date"/>
+					</j:beads>
+				</j:DateField>
+			</j:FormItem>
+
+			<j:FormItem label="Your Favorite Avenger" required="true">
+				<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+					<j:beads>
+						<j:SelectedItemNullValidator requiredFieldError="You must to select one value from the list"/>
+					</j:beads>
+				</j:ComboBox>
+			</j:FormItem>
+
+			<j:FormItem label="Favorite movies (at least 2)" required="true">
+					<j:beads>
+						<j:CheckBoxValidator required="2" requiredFieldError="Please choose at least 2 movies"/>
+					</j:beads>
+					<j:CheckBox text="The Godfather"/>
+					<j:CheckBox text="Scent of a woman"/>
+					<j:CheckBox text="Star Wars"/>
+					<j:CheckBox text="The Shawshank Redemption"/>
+			</j:FormItem>
+
+			<j:FormItem label="Verification code: {randomCode}" required="true">
+				<j:HGroup gap="3">
+					<j:TextInput>
+						<j:beads>
+							<j:TextPrompt prompt="Enter Verification Code"/>
+							<j:StringValidator validateFunction="{customValidate}"/>
+						</j:beads>
+					</j:TextInput>
+					<j:Button id="btn" text="send" emphasis="primary"/>
+				</j:HGroup>
+			</j:FormItem>
 		</j:Form>
 	</j:Card>
 </j:SectionContent>

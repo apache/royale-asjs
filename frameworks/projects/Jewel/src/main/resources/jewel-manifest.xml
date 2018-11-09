@@ -68,6 +68,8 @@
     <component id="ToolTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel" />
     
     <component id="Form" class="org.apache.royale.jewel.Form"/>
+    <component id="FormItem" class="org.apache.royale.jewel.FormItem"/>
+    <component id="FormHeading" class="org.apache.royale.jewel.FormHeading"/>
     <component id="ErrorTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel"/>
 	<component id="Snackbar" class="org.apache.royale.jewel.Snackbar"/>
 
