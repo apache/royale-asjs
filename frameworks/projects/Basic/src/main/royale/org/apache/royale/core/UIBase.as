@@ -1416,6 +1416,10 @@ package org.apache.royale.core
                 
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
+
+                // add an event listener if the style dispatches events (e.g. BindableCSSStyles)
+                var styleAsEventDispatcher : IEventDispatcher = style as IEventDispatcher;
+                if (styleAsEventDispatcher) styleAsEventDispatcher.addEventListener(ValueChangeEvent.VALUE_CHANGE, styleChangeHandler);
             }
             
 			if (isNaN(_explicitWidth) && isNaN(_percentWidth)) 
