@@ -40,7 +40,7 @@ package org.apache.royale.events
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function ValueEvent(type:String, value:Object = null, bubbles:Boolean=false,
+		public function ValueEvent(type:String, value:* = null, bubbles:Boolean=false,
                                     cancelable:Boolean=false)
 		{
 			super(type, bubbles, cancelable);
@@ -56,7 +56,7 @@ package org.apache.royale.events
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public var value:Object;
+		public var value:*;
 
 		/**
 		 * Create a copy/clone of the ValueEvent object.
