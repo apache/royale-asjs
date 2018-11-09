@@ -32,6 +32,10 @@ package
         import org.apache.royale.net.URLBinaryUploader; URLBinaryUploader;
         import org.apache.royale.net.events.ResultEvent; ResultEvent;
         import org.apache.royale.net.events.FaultEvent; FaultEvent;
+        COMPILE::JS
+        {
+            import org.apache.royale.net.events.HTTPStatusEvent; HTTPStatusEvent;
+        }
         
         import org.apache.royale.net.remoting.messages.AcknowledgeMessage; AcknowledgeMessage;
         import org.apache.royale.net.remoting.messages.AcknowledgeMessageExt;

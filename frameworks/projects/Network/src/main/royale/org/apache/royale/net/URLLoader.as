@@ -27,6 +27,10 @@ package org.apache.royale.net
         import flash.net.URLRequest;
         import flash.net.URLRequestHeader;
     }
+    COMPILE::JS
+    {
+        import org.apache.royale.net.events.HTTPStatusEvent;
+    }
     
     import org.apache.royale.events.DetailEvent;
     import org.apache.royale.events.Event;
@@ -266,9 +270,16 @@ package org.apache.royale.net
             var element:XMLHttpRequest = this.element as XMLHttpRequest;
             if (element.readyState == 2) {
                 dispatchEvent(HTTPConstants.RESPONSE_STATUS);
-                dispatchEvent(HTTPConstants.STATUS);
+                dispatchEvent( new HTTPStatusEvent(element.status) );
             } else if (element.readyState == 4) {
-                dispatchEvent(HTTPConstants.COMPLETE);
+                if (element.status >= 400) // client error or server error
+                {
+                    dispatchEvent(HTTPConstants.IO_ERROR);
+                }
+                else
+                {
+                    dispatchEvent(HTTPConstants.COMPLETE);
+                }
             }
         }
         
