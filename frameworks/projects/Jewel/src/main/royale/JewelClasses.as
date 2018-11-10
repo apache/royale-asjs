@@ -38,6 +38,7 @@ package
         import org.apache.royale.jewel.beads.models.ComboBoxModel; ComboBoxModel;
 		import org.apache.royale.jewel.beads.models.SnackbarModel; SnackbarModel;
 		import org.apache.royale.jewel.beads.models.DropDownListModel; DropDownListModel;
+        import org.apache.royale.jewel.beads.models.FormItemModel; FormItemModel;
 
         import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
@@ -66,6 +67,8 @@ package
         import org.apache.royale.jewel.beads.views.ComboBoxView; ComboBoxView;
         import org.apache.royale.jewel.beads.views.ComboBoxPopUpView; ComboBoxPopUpView;
 		import org.apache.royale.jewel.beads.views.SnackbarView; SnackbarView;
+        import org.apache.royale.jewel.beads.views.FormItemView; FormItemView;
+        import org.apache.royale.jewel.beads.views.FormHeadingView; FormHeadingView;
 
         
         COMPILE::SWF
@@ -96,6 +99,7 @@ package
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;
         import org.apache.royale.jewel.supportClasses.list.DataGroup; DataGroup;
+        import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy; FormItemLayoutProxy;
         
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 
