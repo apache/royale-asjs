@@ -399,6 +399,36 @@ j|Card {
   border: 1px solid #0f88d1;
 }
 
+.jewel.formheading {
+  color: #1198e9;
+  font-size: 1.4em !important;
+}
+.jewel.formheading .jewel.label.spacerLabel {
+  width: 160px;
+}
+.jewel.formheading .jewel.label.requiredSpacerLabel {
+  width: 10px;
+}
+
+j|FormHeading {
+  gap: 3;
+  itemsVerticalAlign: itemsCentered;
+}
+
+.jewel.formitem .jewel.label.formlabel {
+  width: 160px;
+}
+.jewel.formitem .jewel.label.required {
+  color: #EC1C24;
+  font-size: 1.6em !important;
+  width: 10px;
+}
+
+j|FormItem {
+  gap: 3;
+  itemsVerticalAlign: itemsCentered;
+}
+
 .fonticon.dark {
   color: #676767;
 }

@@ -24,13 +24,13 @@
 .jewel.formitem
 
     .jewel.label.formlabel
+        width: 160px
         
     .jewel.label.required
-
+        color: $error-color
+        font-size: 1.6em !important
+        width: 10px
 
 j|FormItem
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.FormItemView")
-    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.FormItemModel")
-    IFormItemContentArea: ClassReference("org.apache.royale.jewel.Group")
-    IFormItemLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+    gap: 3
+    itemsVerticalAlign: itemsCentered

@@ -17,20 +17,19 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel FormItem
+// Jewel FormHeading
 
-// FormItem variables
+// FormHeading variables
 
-.jewel.formitem
+.jewel.formheading
+    color: darken($primary-color, 10%)
+    font-size: 1.4em !important
 
-    .jewel.label.formlabel
-        
-    .jewel.label.required
+    .jewel.label.spacerLabel
+        width: 160px
+    .jewel.label.requiredSpacerLabel
+        width: 10px
 
-
-j|FormItem
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.FormItemView")
-    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.FormItemModel")
-    IFormItemContentArea: ClassReference("org.apache.royale.jewel.Group")
-    IFormItemLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+j|FormHeading
+    gap: 3
+    itemsVerticalAlign: itemsCentered
