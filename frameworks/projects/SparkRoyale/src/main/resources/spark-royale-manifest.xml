@@ -110,5 +110,4 @@
 	<component id="ButtonBar" class="spark.components.ButtonBar"/>
 	<component id="SkinnablePopUpContainer" class="spark.components.SkinnablePopUpContainer"/>
 	
-    
 </componentPackage>
