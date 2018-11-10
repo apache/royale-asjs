@@ -61,7 +61,7 @@ public dynamic class RemoteObject extends AbstractService
         super(destination);
 
         concurrency = Concurrency.MULTIPLE;
-        makeObjectsBindable = true;
+        makeObjectsBindable = false; // change this for now since Royale tries to create ObejctProxy that still is not implemented and make things fail. This can be reverted when ObjectProxy works
         showBusyCursor = false;
     }
     
