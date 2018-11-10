@@ -146,7 +146,7 @@ public class MenuEvent extends ListEvent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const ITEM_CLICK:String = "itemClick";
+    public static const ITEM_CLICK:String = "itemClick";
 
     /**
      *  The MenuEvent.MENU_HIDE event type constant indicates that

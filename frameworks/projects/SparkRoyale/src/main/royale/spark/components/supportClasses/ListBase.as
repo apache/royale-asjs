@@ -196,7 +196,7 @@ public class ListBase  extends SkinnableComponent
      *  @private
      *  Static constant representing no item in focus. 
      */
-   // private static const NO_CARET:int = -1;
+   private static const NO_CARET:int = -1;
     
     /**
      *  @private
@@ -424,9 +424,9 @@ public class ListBase  extends SkinnableComponent
     /**
      *  @private
      */
-    /* mx_internal var _caretIndex:Number = NO_CARET; 
+    mx_internal var _caretIndex:Number = NO_CARET; 
     
-    [Bindable("caretChange")] */
+    [Bindable("caretChange")]
 
     /**
      *  Item that is currently in focus. 
@@ -438,10 +438,10 @@ public class ListBase  extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get caretIndex():Number
+    public function get caretIndex():Number
     {
         return _caretIndex;
-    } */
+    }
     
     /**
      *  @private
@@ -1332,12 +1332,12 @@ public class ListBase  extends SkinnableComponent
     *  @playerversion AIR 3.4
     *  @productversion Royale 0.9.4
     */
-    /* public function findRowIndices(field:String, values:Array, patternType:String = RegExPatterns.EXACT):Array
+    public function findRowIndices(field:String, values:Array, patternType:String = RegExPatterns.EXACT):Array
     {
         var currentObject:Object = null;
         var regexList:Array = [];
         var matchedIndices:Array = [];
-        var dataProviderTotal:uint = 0;
+        /*var dataProviderTotal:uint = 0;
         var valuesTotal:uint = 0;
         var loopingDataProviderIndex:uint = 0;
         var loopingValuesIndex:uint = 0;
@@ -1378,11 +1378,11 @@ public class ListBase  extends SkinnableComponent
                 }
             }
 
-        }
+        }*/
 
 
         return matchedIndices;
-    } */
+    } 
 
 
     /**
@@ -1585,8 +1585,8 @@ public class ListBase  extends SkinnableComponent
      *  caret property to true as well as updating the backing variable. 
      * 
      */
-    /* mx_internal function setCurrentCaretIndex(value:Number):void
-    {
+    mx_internal function setCurrentCaretIndex(value:Number):void
+    {/*
         if (value == caretIndex)
             return;
         
@@ -1603,9 +1603,9 @@ public class ListBase  extends SkinnableComponent
             
             const validIndex:Boolean = dataProvider && (_caretIndex >= 0) && (_caretIndex < dataProvider.length);
             caretItem = (validIndex) ? dataProvider.getItemAt(_caretIndex) : undefined;
-        }
+        }*/
     }
-     */
+    
     /**
      *  @private
      *  The selection validation and commitment workhorse method. 

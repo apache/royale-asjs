@@ -1189,7 +1189,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    //public static const STATE_CHANGE_COMPLETE:String = "stateChangeComplete";
+    public static const STATE_CHANGE_COMPLETE:String = "stateChangeComplete";
     
     /**
      *  The <code>FlexEvent.STATE_CHANGE_INTERRUPTED</code> constant defines the value of the
@@ -1341,7 +1341,7 @@ public class FlexEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const UPDATE_COMPLETE:String = "updateComplete";
+    public static const UPDATE_COMPLETE:String = "updateComplete";
 
     /**
      *  The <code>FlexEvent.URL_CHANGED</code> constant defines the value of the

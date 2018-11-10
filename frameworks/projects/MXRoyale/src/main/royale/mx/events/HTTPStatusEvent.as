@@ -39,6 +39,8 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class HTTPStatusEvent extends flash.events.HTTPStatusEvent
 {
+	public static const HTTP_STATUS:String = "httpStatus";
+	
 	public function HTTPStatusEvent(type:String, bubbles:Boolean = false, 
 	 cancelable:Boolean = false, status:int = 0)
 	{
