@@ -1031,6 +1031,10 @@ package org.apache.royale.core
         {
             if (_style !== value)
             {
+                // if the old style was a bead, remove our reference from it
+                var styleAsBead : IBead = _style as IBead;
+                if (styleAsBead) styleAsBead.strand = null;
+
                 if (value is String)
                 {
                     _style = ValuesManager.valuesImpl.parseStyles(value as String);
@@ -1047,6 +1051,10 @@ package org.apache.royale.core
 						ValuesManager.valuesImpl.applyStyles(this, _style);
 				}
                 dispatchEvent(new Event("stylesChanged"));
+
+                // if the new style is a bead, add it so it can update us in the future
+                styleAsBead = _style as IBead;
+                if (styleAsBead) styleAsBead.strand = this;
             }
         }
         
@@ -1416,10 +1424,6 @@ package org.apache.royale.core
                 
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);
-
-                // add an event listener if the style dispatches events (e.g. BindableCSSStyles)
-                var styleAsEventDispatcher : IEventDispatcher = style as IEventDispatcher;
-                if (styleAsEventDispatcher) styleAsEventDispatcher.addEventListener(ValueChangeEvent.VALUE_CHANGE, styleChangeHandler);
             }
             
 			if (isNaN(_explicitWidth) && isNaN(_percentWidth)) 
@@ -1588,17 +1592,6 @@ package org.apache.royale.core
         public function set alpha(value:Number):void
         {
             positioner.style.opacity = value;
-        }
-
-        /**
-         * @param value The event containing new style properties.
-         */
-        COMPILE::JS
-        protected function styleChangeHandler(value:ValueChangeEvent):void
-        {
-            var newStyle:Object = {};
-            newStyle[value.propertyName] = value.newValue;
-            ValuesManager.valuesImpl.applyStyles(this, newStyle);
         }
 
         /**
