@@ -18,10 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.datefield
 {
-    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IDateControlConfigBead;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.jewel.beads.models.DateChooserModel;
 
     /**
@@ -34,7 +32,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class SpanishDateComponentConfig implements IBead
+	public class SpanishDateComponentConfig implements IDateControlConfigBead
 	{
         /**
 		 *  constructor.
@@ -62,20 +60,6 @@ package org.apache.royale.jewel.beads.controls.datefield
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener("beadsAdded", configureDateControl);
-		}	
-        /**
-		 *  change model variables to use spanish ones
-		 *   
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		private function configureDateControl(event:Event):void
-        {
-			IEventDispatcher(_strand).removeEventListener("beadsAdded", configureDateControl);
 
 			var model:DateChooserModel = _strand.getBeadByType(DateChooserModel) as DateChooserModel;
             model.dayNames = ['D', 'L', 'M', 'X', 'J', 'V', 'S'];
