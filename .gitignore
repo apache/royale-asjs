@@ -89,24 +89,6 @@ frameworks/themes/Halo/Halo.swc
 frameworks/themes/Spark/spark.css
 ide/flashbuilder/flashbuilder-config.xml
 
-#Files from AIR and Flash installtion
-AIR SDK*
-airsdk.xml
-bin/adl
-bin/adt
-frameworks/projects/air/*
-include/FlashRuntimeExtensions.h
-runtimes/air-captive/mac
-runtimes/air/android/*
-runtimes/air/mac/*
-samples/descriptor-sample.xml
-samples/badge/*
-samples/icons/*
-templates/air/*
-templates/extensions/*
-templates/sdk/*
-
-
 #Visual Studio files
 *.[Oo]bj
 *.user
