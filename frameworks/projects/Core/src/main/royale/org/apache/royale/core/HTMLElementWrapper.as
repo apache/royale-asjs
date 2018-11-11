@@ -41,6 +41,7 @@ package org.apache.royale.core
         import org.apache.royale.events.utils.EventUtils;
         import org.apache.royale.events.utils.KeyboardEventConverter;
         import org.apache.royale.events.utils.MouseEventConverter;
+        import org.apache.royale.events.utils.FocusEventConverter;
     }
 
     COMPILE::SWF
@@ -79,6 +80,9 @@ package org.apache.royale.core
                     break;
                 case "MouseEvent":
                     e = MouseEventConverter.convert(nativeEvent);
+                    break;
+                case "FocusEvent":
+                    e = FocusEventConverter.convert(nativeEvent);
                     break;
                 default:
                     e = new org.apache.royale.events.BrowserEvent();

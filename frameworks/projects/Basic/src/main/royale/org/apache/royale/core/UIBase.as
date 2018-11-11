@@ -171,6 +171,30 @@ package org.apache.royale.core
 	 *  @productversion Royale 0.0
 	 */
 	[Event(name="beadsAdded", type="org.apache.royale.events.Event")]
+
+    /**
+     *  Set a different class for focusIn events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.4
+     */
+    [Event(name="focusIn", type="org.apache.royale.events.FocusEvent")]
+    
+    /**
+     *  Set a different class for focusOut events so that
+     *  there aren't dependencies on the flash classes
+     *  on the JS side.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.4
+     */
+    [Event(name="focusOut", type="org.apache.royale.events.FocusEvent")]
 	
     /**
      *  The UIBase class is the base class for most composite user interface
