@@ -162,6 +162,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.events.EventDispatcher; EventDispatcher;
     import org.apache.royale.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.royale.events.MouseEvent; MouseEvent;
+	import org.apache.royale.events.FocusEvent; FocusEvent;
 	import org.apache.royale.events.KeyboardEvent; KeyboardEvent;
 	import org.apache.royale.events.utils.KeyboardEventConverter; KeyboardEventConverter;
 	import org.apache.royale.events.utils.MouseEventConverter; MouseEventConverter;
