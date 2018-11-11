@@ -22,7 +22,7 @@ package spark.modules
 	// import flash.events.Event;
 	import org.apache.royale.events.Event;
 	
-	import mx.core.ContainerCreationPolicy;
+	// import mx.core.ContainerCreationPolicy;
 	import mx.modules.IModule;
 	import spark.components.SkinnableContainer;
 	
