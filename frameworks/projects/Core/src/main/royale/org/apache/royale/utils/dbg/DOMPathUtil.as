@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.dbg
 {
+    COMPILE::SWF {
     import flash.utils.Dictionary;
     import flash.utils.getQualifiedClassName;
-    
+    }
     import org.apache.royale.core.IChild;
 
 	/**
