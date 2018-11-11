@@ -54,6 +54,7 @@ package org.apache.royale.events
 
 		/**
 		 * @type {KeyboardEvent}
+         * @royalesuppresspublicvarwarning
 		 */
         COMPILE::JS
 		public var nativeEvent:Object;
