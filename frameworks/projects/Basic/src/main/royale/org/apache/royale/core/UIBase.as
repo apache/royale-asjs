@@ -27,19 +27,19 @@ package org.apache.royale.core
         import org.apache.royale.events.utils.MouseEventConverter;
     }
 	
-    import org.apache.royale.core.IId;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.events.ValueChangeEvent;
-	import org.apache.royale.utils.StringUtil;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-
     COMPILE::JS
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
     }
+
+    import org.apache.royale.core.IId;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.FocusEvent;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ValueChangeEvent;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
+
 	
 	/**
 	 *  Set a different class for click events so that

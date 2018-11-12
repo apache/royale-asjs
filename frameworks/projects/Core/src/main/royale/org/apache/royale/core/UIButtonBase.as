@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    COMPILE::SWF
+    {
 	import flash.display.DisplayObject;
 	import flash.display.SimpleButton;
+    }
 	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;

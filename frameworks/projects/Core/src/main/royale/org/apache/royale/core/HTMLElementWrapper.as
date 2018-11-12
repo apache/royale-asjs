@@ -27,17 +27,18 @@ package org.apache.royale.core
         
     COMPILE::JS
     {
-        import org.apache.royale.events.Event;        
-        import org.apache.royale.events.BrowserEvent;
-        import org.apache.royale.events.IBrowserEvent;
-        import org.apache.royale.events.ElementEvents;
-        import org.apache.royale.events.EventDispatcher;
         import goog.events;
+        import goog.events.BrowserEvent;
         import goog.events.EventTarget;
-        import org.apache.royale.events.utils.EventUtils;
+
+        import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.events.ElementEvents;
+        import org.apache.royale.events.Event;
+        import org.apache.royale.events.EventDispatcher;
+        import org.apache.royale.events.IBrowserEvent;
         import org.apache.royale.events.KeyboardEvent;
         import org.apache.royale.events.MouseEvent;
-        import goog.events.BrowserEvent;
+        import org.apache.royale.events.utils.EventUtils;
         import org.apache.royale.events.utils.KeyboardEventConverter;
         import org.apache.royale.events.utils.MouseEventConverter;
     }

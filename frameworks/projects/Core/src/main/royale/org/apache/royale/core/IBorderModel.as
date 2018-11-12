@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    import flash.geom.Rectangle;
+    COMPILE::SWF {
+        import flash.geom.Rectangle;
+    }
 
     /**
      *  The IBorderModel interface is the basic interface for a data model for

@@ -718,32 +718,13 @@ j|DropDownList {
   }
 }
 .jewel.formheading {
-  color: #3CADF1;
-  font-size: 1.4em !important;
   line-height: 2em;
-}
-.jewel.formheading .jewel.label.spacerLabel {
-  width: 160px;
-}
-.jewel.formheading .jewel.label.requiredSpacerLabel {
-  width: 10px;
 }
 
 j|FormHeading {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.FormHeadingView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
-  gap: 3;
-  itemsVerticalAlign: itemsCentered;
-}
-
-.jewel.formitem .jewel.label.formlabel {
-  width: 160px;
-}
-.jewel.formitem .jewel.label.required {
-  color: red;
-  font-size: 1.6em !important;
-  width: 10px;
 }
 
 j|FormItem {
@@ -752,8 +733,6 @@ j|FormItem {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.FormItemModel");
   IFormItemContentArea: ClassReference("org.apache.royale.jewel.Group");
   IFormItemLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
-  gap: 3;
-  itemsVerticalAlign: itemsCentered;
 }
 
 .fonticon {

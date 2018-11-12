@@ -54,9 +54,10 @@ package org.apache.royale.events
 
 		/**
 		 * @type {KeyboardEvent}
+         * @royalesuppresspublicvarwarning
 		 */
         COMPILE::JS
-		private var nativeEvent:Object;
+		public var nativeEvent:Object;
 
         COMPILE::JS
 		public function wrapEvent(event:goog.events.BrowserEvent):void

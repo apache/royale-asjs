@@ -18,43 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-
-    COMPILE::SWF
-    {
-	import flash.display.DisplayObject;
-    import flash.display.Shape;            
-    }
-
-	COMPILE::SWF
-	public class WrappedShape extends Shape implements IRoyaleElement, IRenderedObject
+	/**
+	 *  The IDateControlConfigBead interface should be implemented by any bead that
+	 *  provides a locale configuration for date controls like DateField and DateChooser
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	public interface IDateControlConfigBead extends IBead
 	{
-        private var _royale_wrapper:Object;
-        
-        //--------------------------------------
-        //   Property
-        //--------------------------------------
-        
-        /**
-         *  A pointer back to the instance that wrapped this element.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function get royale_wrapper():Object
-        {
-            return _royale_wrapper;
-        }
-        public function set royale_wrapper(value:Object):void
-        {
-            _royale_wrapper = value;
-        }
-		
-		public function get $displayObject():DisplayObject
-		{
-			return this;
-		}
-
 	}
 }
