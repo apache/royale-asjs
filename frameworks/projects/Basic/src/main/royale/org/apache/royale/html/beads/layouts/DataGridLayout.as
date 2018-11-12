@@ -154,6 +154,7 @@ package org.apache.royale.html.beads.layouts
 			}
 			COMPILE::JS {
 				(header as UIBase).percentWidth = 100;
+				listArea.element.style.position = "absolute";
 			}
 			// header's height is set in CSS
 			

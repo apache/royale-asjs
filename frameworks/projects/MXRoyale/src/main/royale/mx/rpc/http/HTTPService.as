@@ -116,7 +116,7 @@ package mx.rpc.http
 			
 			operation = new HTTPOperation(this);
 			
-			operation.makeObjectsBindable = true;
+			operation.makeObjectsBindable = false; // change this for now since Royale tries to create ObejctProxy that still is not implemented and make things fail. This can be reverted when ObjectProxy works
 			
 			operation._rootURL = rootURL;
 			

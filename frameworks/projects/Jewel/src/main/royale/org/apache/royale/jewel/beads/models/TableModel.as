@@ -19,10 +19,10 @@
 package org.apache.royale.jewel.beads.models
 {
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.beads.models.ArrayListSelectionModel;
+	import org.apache.royale.jewel.beads.models.TableArrayListSelectionModel;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 	
-	public class TableModel extends ArrayListSelectionModel
+	public class TableModel extends TableArrayListSelectionModel
 	{
 		public function TableModel()
 		{

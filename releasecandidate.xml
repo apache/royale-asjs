@@ -76,7 +76,11 @@
         <available file="${basedir}/build.properties"
             type="file"
             property="found.build.properties" value="true" />
-        
+
+        <available file="${basedir}/royale-asjs/build.properties"
+            type="file"
+            property="found.build.properties" value="true" />
+
         <fail message="This script should be copied into an empty folder and run from there.  Run the maven-branch target to create release branches or run the 'maven' target to start creating an release candidate, then start with an empty folder again and run the 'main' target to complete the release candidate."
             if="found.build.properties"/>
     </target>

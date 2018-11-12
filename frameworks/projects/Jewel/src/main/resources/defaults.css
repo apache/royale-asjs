@@ -717,6 +717,24 @@ j|DropDownList {
     IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList");
   }
 }
+.jewel.formheading {
+  line-height: 2em;
+}
+
+j|FormHeading {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.FormHeadingView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
+}
+
+j|FormItem {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.FormItemView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.FormItemModel");
+  IFormItemContentArea: ClassReference("org.apache.royale.jewel.Group");
+  IFormItemLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+}
+
 .fonticon {
   cursor: default;
 }

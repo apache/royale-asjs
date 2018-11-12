@@ -1997,7 +1997,7 @@ import org.apache.royale.events.Event;
 use namespace mx_internal;
     
 [DefaultProperty("content")]
-[Event("change")]
+[Event(name="change")]
 
 class CartesianDataChild extends EventDispatcher
 {

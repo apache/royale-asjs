@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    COMPILE::SWF {
 	import flash.display.Stage;
     import flash.events.Event;
-	
+    }
     import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 

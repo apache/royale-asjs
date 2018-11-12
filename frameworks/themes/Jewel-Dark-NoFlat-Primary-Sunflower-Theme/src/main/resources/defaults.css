@@ -400,6 +400,36 @@ j|Card {
   border: 1px solid #e28f08;
 }
 
+.jewel.formheading {
+  color: #f69d0e;
+  font-size: 1.4em !important;
+}
+.jewel.formheading .jewel.label.spacerLabel {
+  width: 160px;
+}
+.jewel.formheading .jewel.label.requiredSpacerLabel {
+  width: 10px;
+}
+
+j|FormHeading {
+  gap: 3;
+  itemsVerticalAlign: itemsCentered;
+}
+
+.jewel.formitem .jewel.label.formlabel {
+  width: 160px;
+}
+.jewel.formitem .jewel.label.required {
+  color: #EC1C24;
+  font-size: 1.6em !important;
+  width: 10px;
+}
+
+j|FormItem {
+  gap: 3;
+  itemsVerticalAlign: itemsCentered;
+}
+
 .fonticon.dark {
   color: #676767;
 }
@@ -661,6 +691,22 @@ j|Card {
     border-radius: 0px;
   }
 }
+.jewel.tabbarbutton {
+  margin: 0;
+  padding: 0 16px;
+  font-family: "Lato", sans-serif;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+.jewel.tabbarbutton.hovered:hover {
+  background: #737373 !important;
+}
+.jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
+  color: #FFFFFF;
+  background: #f9bb58 !important;
+}
+
 .jewel.simpletable {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
