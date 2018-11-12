@@ -1031,16 +1031,15 @@ package org.apache.royale.core
         {
             if (_style !== value)
             {
-                // if the old style was a bead, remove our reference from it
-                var styleAsBead : IBead = _style as IBead;
-                if (styleAsBead) styleAsBead.strand = null;
-
                 if (value is String)
                 {
+                    // parse the string into a simple object that contains style properties
                     _style = ValuesManager.valuesImpl.parseStyles(value as String);
                 }
                 else
+                {
                     _style = value;
+                }
                 if (!isNaN(_y))
                     _style.top = _y;
                 if (!isNaN(_x))
@@ -1052,9 +1051,9 @@ package org.apache.royale.core
 				}
                 dispatchEvent(new Event("stylesChanged"));
 
-                // if the new style is a bead, add it so it can update us in the future
-                styleAsBead = _style as IBead;
-                if (styleAsBead) styleAsBead.strand = this;
+                // if the new style is an IStyleObject, set the reference back to us to get updates
+                var styleObject : IStyleObject = _style as IStyleObject;
+                if (styleObject) styleObject.object = this;
             }
         }
         

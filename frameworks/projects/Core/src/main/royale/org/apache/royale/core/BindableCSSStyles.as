@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStyleableObject
+	import org.apache.royale.core.IStyleObject;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.ValueChangeEvent;
@@ -29,11 +30,10 @@ package org.apache.royale.core
      *  properties supported by SimpleCSSValuesImpl but
      *  dispatch change events when modified
      *  
-     *  The class is a bead but should be added to a UI
-     *  object via the <code>style</code> property rather
-     *  than within the beads list. The reference to the
-     *  strand is used to update its CSS style value when
-     *  any of the styles are modified.
+     *  The class implements IStyleObject which means the
+     *  host object sets a reference onto this one, allowing
+     *  us to reapply the styles to the host component when
+     *  the style is changed.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -41,7 +41,7 @@ package org.apache.royale.core
      *  @productversion Royale 0.0
      */
     [Bindable]
-	public class BindableCSSStyles extends EventDispatcher implements IBead
+	public class BindableCSSStyles extends EventDispatcher implements IStyleObject
 	{
         /**
          *  Constructor.
@@ -59,16 +59,16 @@ package org.apache.royale.core
         /**
          * @private
          */
-        private var _strand : IStrand;
+        private var _hostObject : IStyleableObject;
 
         /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  Sets the strand reference so that we can updates the HTML element
-         *  styles on this if our properties are changed in the future.
+         *  @copy org.apache.royale.core.IStyleObject#object
+         *  Sets the host object's reference so that we can update the HTML
+         *  element styles on this if our properties are changed in the future.
          */
-        public function set strand(value:IStrand):void
+        public function set object(value:IStyleableObject):void
         {
-            _strand = value;
+            _hostObject = value;
             COMPILE::JS
             {
                 // listen to ourselves in case one of the styles is changed programmatically
@@ -77,18 +77,29 @@ package org.apache.royale.core
         }
 
         /**
-         * Handles a single style value being updated, and applies this to the strand
+         * Handles a single style value being updated, and applies this to the host object
          * @param value The event containing new style properties.
          */
         COMPILE::JS
         protected function styleChangeHandler(value:ValueChangeEvent):void
         {
-            var uiObject : IUIBase = _strand as IUIBase;
-            if (uiObject)
+            // ensure that we are still assigned to this styleable object; if a different object
+            // has been set then we don't want to update it any more and can remove the listener
+            if (!_hostObject || (this != _hostObject.style))
             {
-                var newStyle:Object = {};
-                newStyle[value.propertyName] = value.newValue;
-                ValuesManager.valuesImpl.applyStyles(uiObject, newStyle);
+                this.removeEventListener(ValueChangeEvent.VALUE_CHANGE, styleChangeHandler);
+                _hostObject = null;
+            }
+            else
+            {
+                // apply the new style based on what just changed
+                var uiObject : IUIBase = _hostObject as IUIBase;
+                if (uiObject)
+                {
+                    var newStyle:Object = {};
+                    newStyle[value.propertyName] = value.newValue;
+                    ValuesManager.valuesImpl.applyStyles(uiObject, newStyle);
+                }
             }
         }
 
