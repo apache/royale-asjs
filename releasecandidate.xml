@@ -859,6 +859,8 @@
     </target>
     
     <target name="ant-artifacts">
+        <property name="ROYALE_COMPILER_REPO" value="${basedir}/royale-compiler" />
+        <property name="ROYALE_TYPEDEFS_HOME" value="${basedir}/royale-typedefs" />
 		<ant dir="${basedir}/royale-asjs" target="release" />
 		<ant dir="${basedir}/royale-asjs" target="create-SHA-512" />
         <ant dir="${basedir}/royale-asjs" target="create-SHA-512-jsonly" />
