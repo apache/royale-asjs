@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils
 {
-    COMPILE::SWF {
     import flash.display.DisplayObject;
     import flash.display.Graphics;
-    }
+
     import org.apache.royale.core.ValuesManager;
 
 	/**

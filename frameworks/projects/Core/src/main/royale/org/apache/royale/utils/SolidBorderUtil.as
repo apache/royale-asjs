@@ -18,9 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils
 {
-    COMPILE::SWF {
-    import flash.display.Graphics;
-    }
+import flash.display.Graphics;
+
     
 /**
  *  The SolidBorderUtil class is a utility class that draws a solid color
