@@ -1033,10 +1033,13 @@ package org.apache.royale.core
             {
                 if (value is String)
                 {
+                    // parse the string into a simple object that contains style properties
                     _style = ValuesManager.valuesImpl.parseStyles(value as String);
                 }
                 else
+                {
                     _style = value;
+                }
                 if (!isNaN(_y))
                     _style.top = _y;
                 if (!isNaN(_x))
@@ -1047,6 +1050,10 @@ package org.apache.royale.core
 						ValuesManager.valuesImpl.applyStyles(this, _style);
 				}
                 dispatchEvent(new Event("stylesChanged"));
+
+                // if the new style is an IStyleObject, set the reference back to us to get updates
+                var styleObject : IStyleObject = _style as IStyleObject;
+                if (styleObject) styleObject.object = this;
             }
         }
         
@@ -1584,17 +1591,6 @@ package org.apache.royale.core
         public function set alpha(value:Number):void
         {
             positioner.style.opacity = value;
-        }
-
-        /**
-         * @param value The event containing new style properties.
-         */
-        COMPILE::JS
-        protected function styleChangeHandler(value:ValueChangeEvent):void
-        {
-            var newStyle:Object = {};
-            newStyle[value.propertyName] = value.newValue;
-            ValuesManager.valuesImpl.applyStyles(this, newStyle);
         }
 
         /**
