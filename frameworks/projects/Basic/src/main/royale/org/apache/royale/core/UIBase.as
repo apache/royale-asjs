@@ -34,8 +34,8 @@ package org.apache.royale.core
     }
 
     import org.apache.royale.core.IId;
+    import org.apache.royale.core.IStyleObject;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.FocusEvent;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.utils.loadBeadFromValuesManager;

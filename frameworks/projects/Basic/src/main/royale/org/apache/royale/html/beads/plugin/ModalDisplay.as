@@ -124,7 +124,12 @@ package org.apache.royale.html.beads.plugin
       parent.popUpParent.addElement(host);
       COMPILE::SWF
       {
-        var parentComp:IUIBase = parent as IUIBase;
+        var parentComp:Object = parent;
+        if(!isNaN(_maxWidth))
+          host.width = _maxWidth;
+        if(host.width > parentComp.width)
+          host.width = parentComp.width;
+
         host.x = (parentComp.width - host.width) / 2;
         switch(_position){
           case "top":
