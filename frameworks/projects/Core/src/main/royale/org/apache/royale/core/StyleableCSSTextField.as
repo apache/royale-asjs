@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {   
-    COMPILE::SWF {
     import flash.display.DisplayObjectContainer;
     import flash.text.Font;
-    }
+    
     import org.apache.royale.core.IStyleableObject;
     import org.apache.royale.events.Event;
 		
