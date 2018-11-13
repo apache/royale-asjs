@@ -27,11 +27,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-express</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
   </parent>
 
   <artifactId>DataGridExample-Express</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.4</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Express: DataGridExample</name>

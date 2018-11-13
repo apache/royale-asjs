@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-maven-archetypes</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
   </parent>
 
   <artifactId>royale-simple-application-pure-js-archetype</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.4</version>
   <packaging>jar</packaging>
 
   <name>Apache Royale: Framework: Archetypes: Simple Royale Pure-JS Application</name>

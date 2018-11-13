@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-blog</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
   </parent>
 
   <artifactId>BE0002_Using_Jewel_Alert_Control</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.4</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0002: Using Jewel Alert Control</name>
@@ -60,21 +60,21 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Topaz-Theme</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -82,7 +82,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Sapphire-Theme</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -90,7 +90,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Red-Theme</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>swc</type>
       <scope>theme</scope>
     </dependency>
