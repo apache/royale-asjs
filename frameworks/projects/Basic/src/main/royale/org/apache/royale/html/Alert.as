@@ -21,7 +21,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IAlertModel;
 	import org.apache.royale.core.IPopUp;
 
-    [Event(name="close", type="org.apache.royale.events.CloseEvent")]
+  [Event(name="close", type="org.apache.royale.events.CloseEvent")]
 	/**
 	 *  The Alert class is a component that displays a message and one or more buttons
 	 *  in a view that pops up over all other controls and views. The Alert component
@@ -93,28 +93,27 @@ package org.apache.royale.html
 		public function Alert()
 		{
 			super();
-			
 			typeNames = "Alert";
 		}
 
-         // note: only passing parent to this function as I don't see a way to identify
-         // the 'application' or top level view without supplying a place to start to
-         // look for it.
-         /**
-          *  This static method is a convenience function to quickly create and display an Alert. The
-          *  text and parent paramters are required, the others will default.
-          *
-          *  @param String message The message content of the Alert.
-          *  @param Object parent The object that hosts the pop-up.
-          *  @param String title An optional title for the Alert.
-          *  @param uint flags Identifies which buttons to display in the alert.
-          *
-          *  @langversion 3.0
-          *  @playerversion Flash 10.2
-          *  @playerversion AIR 2.6
-          *  @productversion Royale 0.0
-          */
-        static public function show( message:String, parent:Object, title:String="", flags:uint=Alert.OK ) : Alert
+		// note: only passing parent to this function as I don't see a way to identify
+		// the 'application' or top level view without supplying a place to start to
+		// look for it.
+		/**
+		*  This static method is a convenience function to quickly create and display an Alert. The
+		*  text and parent paramters are required, the others will default.
+		*
+		*  @param String message The message content of the Alert.
+		*  @param Object parent The object that hosts the pop-up.
+		*  @param String title An optional title for the Alert.
+		*  @param uint flags Identifies which buttons to display in the alert.
+		*
+		*  @langversion 3.0
+		*  @playerversion Flash 10.2
+		*  @playerversion AIR 2.6
+		*  @productversion Royale 0.0
+		*/
+    static public function show( message:String, parent:Object, title:String="", flags:uint=Alert.OK ) : Alert
 		{
 			var alert:Alert = new Alert();
 			alert.message = message;
@@ -123,14 +122,14 @@ package org.apache.royale.html
 			
 			alert.show(parent);
             
-            COMPILE::JS
-            {
-                alert.positioner.style.margin = 'auto';
-                alert.positioner.style.left = "50%";
-                alert.positioner.style.top = "50%";
-                alert.positioner.style.width = "200px";
-            }
-            return alert;
+			COMPILE::JS
+			{
+				alert.positioner.style.margin = 'auto';
+				alert.positioner.style.left = "50%";
+				alert.positioner.style.top = "50%";
+				alert.positioner.style.width = "200px";
+			}
+			return alert;
 		}
 		
 		/**
@@ -188,9 +187,9 @@ package org.apache.royale.html
 		 *  The buttons to display on the Alert as bit-mask values.
 		 *
 		 *  Alert.YES
-         *  Alert.NO
-         *  Alert.OK
-         *  Alert.CANCEL
+		 *  Alert.NO
+		 *  Alert.OK
+		 *  Alert.CANCEL
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
