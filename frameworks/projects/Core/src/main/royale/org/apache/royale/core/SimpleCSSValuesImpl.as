@@ -223,7 +223,7 @@ package org.apache.royale.core
                 {
 					if (!conditionCombiners)
 					{
-						conditionCombiners = {};
+						_conditionCombiners = {};
 						conditionCombiners["class"] = ".";
 						conditionCombiners["id"] = "#";
 						conditionCombiners["pseudo"] = ':';    
