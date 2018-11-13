@@ -1402,6 +1402,7 @@ package org.apache.royale.core
             }
         }
         
+        private var onceAdded:Boolean;
         /**
          *  The method called when added to a parent.  This is a good
          *  time to set up beads.
@@ -1415,6 +1416,9 @@ package org.apache.royale.core
          */
         public function addedToParent():void
         {
+            if(onceAdded)
+                return;
+            onceAdded = true;
             var c:Class;
 			
             COMPILE::JS
