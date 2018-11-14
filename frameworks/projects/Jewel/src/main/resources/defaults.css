@@ -1007,7 +1007,6 @@ j|Label {
 .layout.grid {
   flex-flow: row wrap;
   width: 100%;
-  height: 100%;
 }
 .layout.grid > * {
   flex: 0 0 auto;
@@ -3134,6 +3133,7 @@ j|Spinner {
 .jewel.section {
   display: none;
   flex-flow: column nowrap;
+  height: 100%;
 }
 .jewel.section.is-active {
   display: flex;
