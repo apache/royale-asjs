@@ -144,6 +144,7 @@ limitations under the License.
         <local:TabBarPlayGround id="tabbar_panel"/>
         <local:ViewStatesPlayGround id="viewstates_panel"/>
         <local:LayoutsPlayGround id="layouts_panel"/>
+        <local:WizardPlayGround id="wizards_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->

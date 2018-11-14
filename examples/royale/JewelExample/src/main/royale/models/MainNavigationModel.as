@@ -56,7 +56,8 @@ package models
             new NavigationLinkVO("Grid", "grid_panel", MaterialIconType.GRID_ON),
             new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_LIST),
             new NavigationLinkVO("TabBar", "tabbar_panel", MaterialIconType.TAB),
-            new NavigationLinkVO("Card", "card_panel", MaterialIconType.WEB_ASSET)
+            new NavigationLinkVO("Card", "card_panel", MaterialIconType.WEB_ASSET),
+            new NavigationLinkVO("Wizard", "wizards_panel", MaterialIconType.MOVIE_FILTER)
             // new NavigationLinkVO("Tabs", "tabs_panel")
         ]);
 
