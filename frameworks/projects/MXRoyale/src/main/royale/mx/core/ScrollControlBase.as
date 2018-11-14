@@ -239,7 +239,7 @@ public class ScrollControlBase extends UIComponent
      *  @private
      */
 //    mx_internal var _maxVerticalScrollPosition:Number;
-//    mx_internal var _maxHorizontalScrollPosition:Number;
+    mx_internal var _maxHorizontalScrollPosition:Number;
 
     /**
      *  @private
@@ -261,7 +261,7 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    protected var scrollAreaChanged:Boolean;
+    protected var scrollAreaChanged:Boolean;
 
     /**
      *  @private

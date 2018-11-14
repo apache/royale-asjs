@@ -71,6 +71,8 @@ internal class SparkRoyaleClasses
 	import spark.components.FormItem; FormItem;
 	import spark.core.IDisplayText; IDisplayText;
 	import spark.events.PopUpEvent; PopUpEvent;
+	import spark.modules.Module; Module;
+	import spark.components.SkinnablePopUpContainer; SkinnablePopUpContainer;
 	
 }
 

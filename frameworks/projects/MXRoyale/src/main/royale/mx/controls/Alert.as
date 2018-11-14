@@ -286,7 +286,7 @@ public class Alert extends Panel
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static var buttonWidth:Number = 65;
+    public static var buttonWidth:Number = 65;
     
     //----------------------------------
     //  cancelLabel

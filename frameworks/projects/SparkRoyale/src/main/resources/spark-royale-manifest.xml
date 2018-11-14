@@ -106,5 +106,8 @@
 	<component id="Parallel" class="mx.effects.Parallel" lookupOnly="true"/>
 	<component id="BasicLayout" class="spark.layouts.BasicLayout"/>
 	<component id="FormLayout" class="spark.layouts.FormLayout"/>
-    
+	<component id="TabBar" class="spark.components.TabBar"/>
+	<component id="ButtonBar" class="spark.components.ButtonBar"/>
+	<component id="SkinnablePopUpContainer" class="spark.components.SkinnablePopUpContainer"/>
+	
 </componentPackage>
