@@ -30,7 +30,26 @@ limitations under the License.
 				//alert.height = 150;
 				//alert.addEventListener("close", onShowAlertAction);
 			}
-			
+			private var modal:MXMLModal;
+			private function showMXMLModal():void{
+				if(!modal)
+				{
+					modal = new MXMLModal();
+					// beads declared via MXML are not added until it's added to parent,
+					// so we first need to add the element.
+					this.addElement(modal);
+				}
+				modal.modal.show(this);
+			}
+			private var asModal:ASModal;
+			private function showASModal():void{
+				if(!asModal){
+					asModal = new ASModal();
+					// We added the beads in the constructor,
+					// so there's no need to add it before show call show()
+				}
+				asModal.modal.show(this);
+			}
 			/*private function onShowAlertAction(event:CloseEvent):void
 			{
 				alertStatus.text = "Alert status: " + event.detail;
@@ -42,8 +61,12 @@ limitations under the License.
     </js:valuesImpl>
     <js:initialView>
         <js:View>
-        		<js:TextButton text="Show Alert" click="onBtnShowAlert(event)" 
-						   width="100" height="30"/>
+        		<js:TextButton text="Show Alert" click="onBtnShowAlert(event)"
+						   width="150" height="30"/>
+        		<js:TextButton text="Show MXMLModal" click="showMXMLModal()"
+						  x="160" width="150" height="30"/>
+        		<js:TextButton text="Show ASModal" click="showASModal()"
+						  x="320" width="150" height="30"/>
 			<js:Label id="alertStatus" width="150" height="30" text="Alert status: " y="35"/>
         </js:View>
     </js:initialView>

@@ -28,11 +28,11 @@ package org.apache.royale.core
     }
 	
     import org.apache.royale.core.IId;
+    import org.apache.royale.core.IStyleObject;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
-	import org.apache.royale.utils.StringUtil;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     COMPILE::JS
@@ -40,7 +40,7 @@ package org.apache.royale.core
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
     }
-	
+
 	/**
 	 *  Set a different class for click events so that
 	 *  there aren't dependencies on the flash classes
@@ -1402,6 +1402,7 @@ package org.apache.royale.core
             }
         }
         
+        private var onceAdded:Boolean;
         /**
          *  The method called when added to a parent.  This is a good
          *  time to set up beads.
@@ -1415,6 +1416,9 @@ package org.apache.royale.core
          */
         public function addedToParent():void
         {
+            if(onceAdded)
+                return;
+            onceAdded = true;
             var c:Class;
 			
             COMPILE::JS
