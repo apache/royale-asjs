@@ -169,7 +169,11 @@
     <component id="RemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllItemRendererForArrayListData" />
     
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
-    
+
+    <component id="Wizard" class="org.apache.royale.jewel.Wizard"/>
+    <component id="WizardContent" class="org.apache.royale.jewel.WizardContent"/>
+    <component id="WizardPage" class="org.apache.royale.jewel.WizardPage"/>
+    <component id="WizardStep" class="org.apache.royale.jewel.beads.models.WizardStep"/>
 
      <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
 

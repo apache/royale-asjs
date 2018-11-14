@@ -3664,6 +3664,34 @@ j|TopAppBarTitle {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
+.jewel .wizard {
+  width: 100%;
+}
+.jewel .next {
+  flex: 1 1 0;
+}
+.jewel .previous {
+  flex: 1 1 0;
+}
+.jewel .wizardcontent {
+  flex-grow: 100;
+}
+
+j|Wizard {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.WizardView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.WizardController");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.WizardModel");
+  IWizardLayout: ClassReference("org.apache.royale.jewel.beads.layouts.WizardLayout");
+  IWizardContentArea: ClassReference("org.apache.royale.jewel.WizardContent");
+}
+
+j|WizardContent {
+  IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
 .jewel.main {
   width: 100%;
   min-height: 100%;

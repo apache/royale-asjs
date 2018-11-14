@@ -104,6 +104,17 @@ package
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
+
+        import org.apache.royale.jewel.beads.views.WizardView; WizardView;
+        
+        import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy; WizardLayoutProxy;
+
+        import org.apache.royale.jewel.beads.controllers.WizardController; WizardController;
+
+        import org.apache.royale.jewel.beads.models.WizardModel; WizardModel;
+        import org.apache.royale.jewel.beads.models.WizardStep; WizardStep;
+
+        import org.apache.royale.jewel.beads.layouts.WizardLayout; WizardLayout;
     }
 
 }
