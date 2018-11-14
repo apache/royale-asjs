@@ -51,7 +51,7 @@ package org.apache.royale.jewel.beads.models
 
 		private var _dispatchChangeOnDataChange:Boolean;
 		public function set dispatchChangeOnDataProviderChange(value:Boolean):void{
-            _dispatchChangeOnDataChange = true;
+            _dispatchChangeOnDataChange = value;
 		}
 
 		private var _strand:IStrand;
