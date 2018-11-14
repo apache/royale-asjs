@@ -55,8 +55,8 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
-    <royale.compiler.version>0.9.4-SNAPSHOT</royale.compiler.version>
-    <royale.typedefs.version>0.9.4-SNAPSHOT</royale.typedefs.version>
+    <royale.compiler.version>0.9.4</royale.compiler.version>
+    <royale.typedefs.version>0.9.4</royale.typedefs.version>
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
     <royale.debug>true</royale.debug>
