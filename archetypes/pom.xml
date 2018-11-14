@@ -34,7 +34,7 @@
   <description>Maven archetypes for creating royale maven projects</description>
 
   <properties>
-    <royale.framework.version>0.9.4-SNAPSHOT</royale.framework.version>
+    <royale.framework.version>0.9.4</royale.framework.version>
   </properties>
   
   <modules>
