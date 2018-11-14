@@ -23,10 +23,10 @@
 	<parent>
 		<groupId>org.apache.royale.manualtests</groupId>
 		<artifactId>manualtests</artifactId>
-		<version>0.9.4-SNAPSHOT</version>
+		<version>0.9.4</version>
 	</parent>
 	<artifactId>UnitTests</artifactId>
-	<version>0.9.4-SNAPSHOT</version>
+	<version>0.9.4</version>
 	<packaging>swf</packaging>
 	<name>Apache Royale: ManualTests: UnitTests</name>
 	
@@ -155,14 +155,14 @@
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.4-SNAPSHOT</version>
+			<version>0.9.4</version>
 			<type>swc</type>
 			<classifier>swf</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.4-SNAPSHOT</version>
+			<version>0.9.4</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>

@@ -23,13 +23,13 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <groupId>org.apache.royale.framework.distribution</groupId>
   <artifactId>compiler-swfdump</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.4</version>
 
   <build>
     <plugins>

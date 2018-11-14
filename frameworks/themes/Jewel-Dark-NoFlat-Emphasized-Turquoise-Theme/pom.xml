@@ -23,12 +23,12 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>themes</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
   </parent>
 
   <!-- copied from light version which compiles just fine -->
   <artifactId>Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.4</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Themes: Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</name>

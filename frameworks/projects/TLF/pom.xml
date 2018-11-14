@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
   </parent>
 
   <artifactId>TLF</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.4</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: TLF</name>
@@ -82,35 +82,35 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Text</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Text</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Reflection</artifactId>
-        <version>0.9.4-SNAPSHOT</version>
+        <version>0.9.4</version>
         <type>swc</type>
         <classifier>swf</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Reflection</artifactId>
-        <version>0.9.4-SNAPSHOT</version>
+        <version>0.9.4</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>XML</artifactId>
-        <version>0.9.4-SNAPSHOT</version>
+        <version>0.9.4</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>

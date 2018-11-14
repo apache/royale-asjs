@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.4</version>
   </parent>
 
   <artifactId>examples-integrationtests</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.4</version>
   <packaging>jar</packaging>
 
   <name>Apache Royale: Examples: Integrationtests</name>
@@ -239,145 +239,145 @@
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>ASDoc</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>ChartExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>CreateJSExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataBindingExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataBindingExample_as</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataBindingExample_Flat</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>DataGridExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>DateControlsExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>DesktopMap</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RoyaleStore</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RoyaleStore_jquery</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RoyaleTeamPage_MDL</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RoyaleWebsiteStatsViewer</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>HelloWorld</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>ListExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>MapSearch</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>MobileMap</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>MobileStocks</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>MobileTrader</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>StorageExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>StyleExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>TeamPage</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>TodoListSampleApp</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>TreeExample</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
 
