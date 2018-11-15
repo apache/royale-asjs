@@ -130,12 +130,12 @@ package mx.controls.beads
 			
 			layoutControl();
 			
-            UIBase(value).$addChild(upSprite);
-            UIBase(value).$addChild(downSprite);
-            UIBase(value).$addChild(overSprite);
-            UIBase(value).$addChild(upAndSelectedSprite);
-            UIBase(value).$addChild(downAndSelectedSprite);
-            UIBase(value).$addChild(overAndSelectedSprite);
+            UIBase(value).$sprite_addChild(upSprite);
+            UIBase(value).$sprite_addChild(downSprite);
+            UIBase(value).$sprite_addChild(overSprite);
+            UIBase(value).$sprite_addChild(upAndSelectedSprite);
+            UIBase(value).$sprite_addChild(downAndSelectedSprite);
+            UIBase(value).$sprite_addChild(overAndSelectedSprite);
             host = Sprite(value);
             host.mouseEnabled = true;
             host.buttonMode = true;

@@ -1321,7 +1321,7 @@ package mx.charts
          *  so you can count on it to reflect what is happening at the player level.
          */
         COMPILE::JS
-        mx_internal final function get $numChildren():int
+        mx_internal final function get $sprite_numChildren():int
         {
             return super.numChildren;
         }
@@ -2870,7 +2870,7 @@ package mx.charts
             if (contentPane)
                 contentPane.addChildAt(child, index);
             else
-                $addChildAt(child, _firstChildIndex + index);
+                $uibase_addChildAt(child, _firstChildIndex + index);
             
             childAdded(child);
             
@@ -2937,7 +2937,7 @@ package mx.charts
             if (contentPane)
                 contentPane.removeChild(child);
             else
-                $removeChild(child);
+                $uibase_removeChild(child);
             
             childRemoved(child);
             
@@ -4852,7 +4852,7 @@ package mx.charts
                 _firstChildIndex++;
             
             super.addingChild(child);
-            $addChild(child);
+            $uibase_addChild(child);
             super.childAdded(child);
             
             dispatchEvent(new Event("childrenChanged"));
@@ -4880,7 +4880,7 @@ package mx.charts
             }
             
             super.addingChild(child);
-            $addChildAt(child, index);
+            $uibase_addChildAt(child, index);
             super.childAdded(child);
             
             dispatchEvent(new Event("childrenChanged"));
@@ -4912,7 +4912,7 @@ package mx.charts
             var child:IUIComponent = super.getChildAt(index);
             
             super.removingChild(child);
-            $removeChildAt(index);
+            $uibase_removeChildAt(index);
             super.childRemoved(child);
             
             if (_firstChildIndex < index &&
@@ -6687,7 +6687,7 @@ class LegendRawChildrenList implements IChildList
      */
     public function get numChildren():int
     {
-        return owner.$numChildren;
+        return owner.$sprite_numChildren;
     }
     
     //--------------------------------------------------------------------------

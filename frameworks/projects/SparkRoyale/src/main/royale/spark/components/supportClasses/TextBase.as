@@ -970,7 +970,7 @@ public class TextBase extends UIComponent
             // Add new TextLine accounting for our background Shape.
             COMPILE::SWF
             {
-                $addChildAt(textLine as IUIComponent, 1);
+                $uibase_addChildAt(textLine as IUIComponent, 1);
             }
             COMPILE::JS
             {
@@ -1000,7 +1000,7 @@ public class TextBase extends UIComponent
             {
                 COMPILE::SWF
                 {
-                    UIComponent(textLine.parent).$removeChild(textLine as IUIComponent);                        
+                    UIComponent(textLine.parent).$uibase_removeChild(textLine as IUIComponent);                        
                 }
                 COMPILE::JS
                 {

@@ -343,7 +343,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     [SWFOverride(returns="flash.display.DisplayObjectContainer")]
     override public function get parent():IParent
     {
-        var p:* = $parent;
+        var p:* = $sprite_parent;
         return p;
     }
     }

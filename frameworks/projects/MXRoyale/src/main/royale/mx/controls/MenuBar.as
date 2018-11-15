@@ -941,7 +941,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
         var arr:Array = [];
         COMPILE::SWF
         {
-            var itemHolder:UIBase = $getChildAt(0) as UIBase;
+            var itemHolder:UIBase = $sprite_getChildAt(0) as UIBase;
         }
         COMPILE::JS
         {

@@ -26,7 +26,6 @@ import flash.display.BlendMode;
 import flash.display.DisplayObject;
 import flash.display.DisplayObjectContainer;
 import flash.display.GradientType;
-import flash.display.Graphics;
 import flash.display.InteractiveObject;
 import flash.display.Loader;
 import flash.display.Shader;
@@ -40,6 +39,10 @@ import flash.events.IEventDispatcher;
 
 import mx.controls.beads.ToolTipBead;
 import mx.core.mx_internal;
+COMPILE::SWF
+{
+import flash.display.Graphics;
+}
 import mx.display.Graphics;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
@@ -602,18 +605,40 @@ public class UIComponent extends UIBase
 	//----------------------------------
     //  graphics copied from Sprite
     //----------------------------------
-		private var _graphics:Graphics;
+		private var _graphics:mx.display.Graphics;
 
-        [SWFOverride(returns="flash.display.Graphics"))]
-        COMPILE::SWF 
-        { override }
+        COMPILE::SWF
+        override public function get graphics():flash.display.Graphics
+        {
+            // in SWF, beads that are compiled against UIBase
+            // outside of the emulation components will call
+            // this expecting flash.display.Graphics.
+            // Calls from within the emulation components should
+            // resolve to royalegraphics below.
+            // this override for SWF must be here in order
+            // for the compiler to know which calls to map to
+            // royalegraphics.  Emulation Components should resolve
+            // calls to UIComponent.graphics and non-Emulation
+            // Components should resolve to Sprite.graphics
+            return super.graphics;        
+        }
+        
+        COMPILE::JS
 		public function get graphics():Graphics
 		{
             if (_graphics == null)
                 _graphics = new mx.display.Graphics(this);
 			return _graphics;
 		}
-        
+
+        // the compiler will resolve access to graphics with royalegraphics
+        public function get royalegraphics():mx.display.Graphics
+        {
+            if (_graphics == null)
+                _graphics = new mx.display.Graphics(this);
+            return _graphics;
+        }            
+            
     COMPILE::JS{
 	private var _mask:UIComponent;
 		 public function set mask(value:UIComponent):void
@@ -3087,13 +3112,12 @@ COMPILE::JS
         return addElement(child) as IUIComponent;
     }
     
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
-    COMPILE::SWF 
-    { override }
-    public function $addChild(child:IUIComponent):IUIComponent
+    
+    public function $uibase_addChild(child:IUIComponent):IUIComponent
     {
         // this should avoid calls to addingChild/childAdded
-        return super.addElement(child) as IUIComponent;
+        var ret:IUIComponent = super.addElement(child) as IUIComponent;
+        return ret;
     }
 
     /**
@@ -3109,16 +3133,16 @@ COMPILE::JS
         return addElementAt(child, index) as IUIComponent;
     }
     
-    [SWFOverride(params="flash.display.DisplayObject,int", altparams="mx.core.UIComponent,int", returns="flash.display.DisplayObject"))]
-    COMPILE::SWF 
-    { override }
-    public function $addChildAt(child:IUIComponent,
+    public function $uibase_addChildAt(child:IUIComponent,
                                index:int):IUIComponent
     {
+        var ret:IUIComponent;
         // this should avoid calls to addingChild/childAdded
         if (index >= super.numElements)
-            return super.addElement(child) as IUIComponent;
-        return super.addElementAt(child, index) as IUIComponent;
+            ret = super.addElement(child) as IUIComponent;
+        else
+            ret = super.addElementAt(child, index) as IUIComponent;
+        return ret;
     }
 
     /**
@@ -3133,13 +3157,11 @@ COMPILE::JS
         return removeElement(child) as IUIComponent;
     }
     
-    [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent", returns="flash.display.DisplayObject"))]
-    COMPILE::SWF 
-    { override }
-    public function $removeChild(child:IUIComponent):IUIComponent
+    public function $uibase_removeChild(child:IUIComponent):IUIComponent
     {
         // this should probably call the removingChild/childRemoved
-        return super.removeElement(child) as IUIComponent;
+        var ret:IUIComponent = super.removeElement(child) as IUIComponent;
+        return ret;
     }
     
     COMPILE::JS
@@ -3160,12 +3182,10 @@ COMPILE::JS
         return removeElement(getElementAt(index)) as IUIComponent;
     }
     
-    [SWFOverride(returns="flash.display.DisplayObject"))]
-    COMPILE::SWF 
-    { override }
-    public function $removeChildAt(index:int):IUIComponent
+    public function $uibase_removeChildAt(index:int):IUIComponent
     {
-        return super.removeElement(getElementAt(index)) as IUIComponent;
+        var ret:IUIComponent = super.removeElement(getElementAt(index)) as IUIComponent;
+        return ret;
     }
 
     /**

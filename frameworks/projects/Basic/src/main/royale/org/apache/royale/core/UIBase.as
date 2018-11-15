@@ -1249,13 +1249,13 @@ package org.apache.royale.core
                 if (c is IUIBase)
                 {
                     if (c is IRenderedObject)
-                        $addChild(IRenderedObject(c).$displayObject);
+                        $sprite_addChild(IRenderedObject(c).$displayObject);
                     else
-                        $addChild(c as DisplayObject);                        
+                        $sprite_addChild(c as DisplayObject);                        
                     IUIBase(c).addedToParent();
                 }
                 else
-                    $addChild(c as DisplayObject);
+                    $sprite_addChild(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1280,13 +1280,13 @@ package org.apache.royale.core
                 if (c is IUIBase)
                 {
                     if (c is IRenderedObject)
-                        $addChildAt(IUIBase(c).$displayObject, index);
+                        $sprite_addChildAt(IUIBase(c).$displayObject, index);
                     else
-                        $addChildAt(c as DisplayObject, index);
+                        $sprite_addChildAt(c as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
                 else
-                    $addChildAt(c as DisplayObject, index);
+                    $sprite_addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS
             {
@@ -1314,7 +1314,7 @@ package org.apache.royale.core
         {
             COMPILE::SWF
             {
-                return $getChildAt(index) as IChild;
+                return $sprite_getChildAt(index) as IChild;
             }
             COMPILE::JS
             {
@@ -1340,9 +1340,9 @@ package org.apache.royale.core
             COMPILE::SWF
             {
                 if (c is IRenderedObject)
-                    return $getChildIndex(IRenderedObject(c).$displayObject);
+                    return $sprite_getChildIndex(IRenderedObject(c).$displayObject);
                 else
-                    return $getChildIndex(c as DisplayObject);
+                    return $sprite_getChildIndex(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1371,9 +1371,9 @@ package org.apache.royale.core
             COMPILE::SWF
             {
                 if (c is IRenderedObject)
-                    $removeChild(IRenderedObject(c).$displayObject);
+                    $sprite_removeChild(IRenderedObject(c).$displayObject);
                 else
-                    $removeChild(c as DisplayObject);
+                    $sprite_removeChild(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1393,7 +1393,7 @@ package org.apache.royale.core
         {
             COMPILE::SWF
             {
-                return $numChildren;
+                return $sprite_numChildren;
             }
             COMPILE::JS
             {
@@ -1640,52 +1640,52 @@ package org.apache.royale.core
         }
         
         COMPILE::SWF
-        public function $addChild(child:DisplayObject):DisplayObject
+        public function $sprite_addChild(child:DisplayObject):DisplayObject
         {
             return super.addChild(child);
         }
         COMPILE::SWF
-        public function $addChildAt(child:DisplayObject, index:int):DisplayObject
+        public function $sprite_addChildAt(child:DisplayObject, index:int):DisplayObject
         {
             return super.addChildAt(child, index);
         }
         COMPILE::SWF
-        public function $removeChildAt(index:int):DisplayObject
+        public function $sprite_removeChildAt(index:int):DisplayObject
         {
             return super.removeChildAt(index);
         }
         COMPILE::SWF
-        public function $removeChild(child:DisplayObject):DisplayObject
+        public function $sprite_removeChild(child:DisplayObject):DisplayObject
         {
             return super.removeChild(child);
         }
         COMPILE::SWF
-        public function $getChildAt(index:int):DisplayObject
+        public function $sprite_getChildAt(index:int):DisplayObject
         {
             return super.getChildAt(index);
         }
         COMPILE::SWF
-        public function $setChildIndex(index:int):void
+        public function $sprite_setChildIndex(index:int):void
         {
             super.setChildIndex(index);
         }
         COMPILE::SWF
-        public function $getChildIndex(child:DisplayObject):int
+        public function $sprite_getChildIndex(child:DisplayObject):int
         {
             return super.getChildIndex(child);
         }
         COMPILE::SWF
-        public function $getChildByName(name:String):DisplayObject
+        public function $sprite_getChildByName(name:String):DisplayObject
         {
             return super.getChildByName(name);
         }
         COMPILE::SWF
-        public function get $numChildren():int
+        public function get $sprite_numChildren():int
         {
             return super.numChildren;
         }
         COMPILE::SWF
-        public function get $parent():DisplayObjectContainer
+        public function get $sprite_parent():DisplayObjectContainer
         {
             return super.parent;
         }
