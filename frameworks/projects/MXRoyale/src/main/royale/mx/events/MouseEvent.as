@@ -84,7 +84,6 @@ public class MouseEvent extends org.apache.royale.events.MouseEvent
 		}
 		public function updateAfterEvent():void
 		{
-			super.updateAfterEvent();
 		}
 	}
 	

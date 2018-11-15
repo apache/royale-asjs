@@ -3505,7 +3505,7 @@ package mx.charts
                     null :
                     changedStyles;
                 
-                super.notifyStyleChangeInChildren(styleProp, true);
+                //super.notifyStyleChangeInChildren(styleProp, true);
                 
                 changedStyles = null;
             }
@@ -5004,7 +5004,7 @@ package mx.charts
          */
         mx_internal function rawChildren_getObjectsUnderPoint(pt:Point):Array
         {
-            return super.getObjectsUnderPoint(pt);
+            return null; //super.getObjectsUnderPoint(pt);
         }
         
         /**

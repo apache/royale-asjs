@@ -1132,9 +1132,9 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      */
      /* override */ protected function partRemoved(partName:String, instance:Object):void
     {
-        super.partRemoved(partName, instance);
+         /* super.partRemoved(partName, instance);
 
-       /*  if (instance == contentGroup)
+         if (instance == contentGroup)
         {
             contentGroup.removeEventListener(
                 ElementExistenceEvent.ELEMENT_ADD, contentGroup_elementAddedHandler);

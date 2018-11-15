@@ -165,7 +165,7 @@ public class SparkSkin extends Skin
 	
     /*override*/ public function beginHighlightBitmapCapture():Boolean
     {
-        var needRedraw:Boolean = super.beginHighlightBitmapCapture();
+        var needRedraw:Boolean// = super.beginHighlightBitmapCapture();
 
         // If we have a mostly-transparent content background, temporarily bump
         // up the contentBackgroundAlpha so the captured bitmap includes an opaque
@@ -190,7 +190,7 @@ public class SparkSkin extends Skin
 	
     /*override*/ public function endHighlightBitmapCapture():Boolean
     {
-        var needRedraw:Boolean = super.endHighlightBitmapCapture();
+        var needRedraw:Boolean// = super.endHighlightBitmapCapture();
 
         /*if (!isNaN(oldContentBackgroundAlpha))
         {
