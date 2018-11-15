@@ -1613,7 +1613,8 @@ COMPILE::JS
             var child:IFlexModule = getChildAt(i) as IFlexModule;
             if (!child)
                 continue;
-            
+            if (child == this)
+                continue;  // in the browser, some child HTMLElements reference the main component
             if (child.moduleFactory == null || child.moduleFactory == _moduleFactory)
             {
                 child.moduleFactory = factory;
