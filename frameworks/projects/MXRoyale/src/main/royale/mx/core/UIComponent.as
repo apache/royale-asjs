@@ -3531,6 +3531,11 @@ COMPILE::JS
     { override }
     public function localToGlobal(value:Point):Point
     {
+        COMPILE::SWF
+        {
+            var o:Object = super.localToGlobal(value);
+            return new org.apache.royale.geom.Point(o.x, o.y);
+        }
         return PointUtils.localToGlobal(value, this);
     }
     
@@ -3547,6 +3552,11 @@ COMPILE::JS
     { override }
     public function globalToLocal(value:Point):Point
     {
+        COMPILE::SWF
+        {
+            var o:Object = super.globalToLocal(value);
+            return new org.apache.royale.geom.Point(o.x, o.y);
+        }
         return PointUtils.globalToLocal(value, this);
     }
     
