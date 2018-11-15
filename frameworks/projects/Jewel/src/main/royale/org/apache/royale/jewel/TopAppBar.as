@@ -184,13 +184,13 @@ package org.apache.royale.jewel
                 if (c is IUIBase)
                 {
                     if (c is IRenderedObject)
-                        $addChild(IRenderedObject(c).$displayObject);
+                        $sprite_addChild(IRenderedObject(c).$displayObject);
                     else
-                        $addChild(c as DisplayObject);                        
+                        $sprite_addChild(c as DisplayObject);                        
                     IUIBase(c).addedToParent();
                 }
                 else
-                    $addChild(c as DisplayObject);
+                    $sprite_addChild(c as DisplayObject);
             }
             COMPILE::JS
             {
