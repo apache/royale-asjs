@@ -838,7 +838,6 @@ limitations under the License.
                 <exclude name=".DS_Store"/>
                 <exclude name="**/.DS_Store"/>
                 <exclude name=".git/**"/>
-                <exclude name=".mvn/**"/>
                 <exclude name="in/**"/>
                 <exclude name="out/**"/>
                 <exclude name="**/out/**"/>
