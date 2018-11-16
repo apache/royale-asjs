@@ -927,4 +927,9 @@ a:active {
   padding-right: 0;
 }
 
+j|Wizard {
+  gap: 3;
+  itemsVerticalAlign: itemsCentered;
+}
+
 /*# sourceMappingURL=defaults.css.map */
