@@ -33,11 +33,10 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.jewel.FormItem;
     import org.apache.royale.jewel.Label;
-    import org.apache.royale.jewel.beads.models.FormItemModel;
-    import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.layouts.VerticalLayout;
-    import org.apache.royale.utils.string.contains;
+    import org.apache.royale.jewel.beads.models.FormItemModel;
+    import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy;
     
 
     /**
@@ -121,6 +120,8 @@ package org.apache.royale.jewel.beads.views
             formItem = value as FormItem;
 
             model = _strand.getBeadByType(FormItemModel) as FormItemModel;
+			model.addEventListener("textChange", textChangeHandler);
+			model.addEventListener("htmlChange", textChangeHandler);
 
             // Look for a layout and/or viewport bead on the formItem's beads list. If one
 			// is found, pull it off so it will not be added permanently
@@ -204,6 +205,14 @@ package org.apache.royale.jewel.beads.views
 			if(labelText != null)
 				l.text = labelText;
 			return l;
+		}
+
+		/**
+		 * 
+		 */
+		public function textChangeHandler(event:Event):void
+		{
+			textLabel.text = model.text;
 		}
 
         protected function setupContentAreaLayout():void

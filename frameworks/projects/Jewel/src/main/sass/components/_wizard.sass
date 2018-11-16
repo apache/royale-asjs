@@ -23,21 +23,23 @@
 
 .jewel
     .wizard
-        width: 100%
+        
     .next
         flex: 1 1 0
     .previous
         flex: 1 1 0
     .wizardcontent
+        height: 100%
         flex-grow: 100
 
 j|Wizard
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.WizardView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.WizardController")
-    // IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.WizardLayout")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.WizardModel")
-    IWizardLayout: ClassReference("org.apache.royale.jewel.beads.layouts.WizardLayout")
     IWizardContentArea: ClassReference("org.apache.royale.jewel.WizardContent")
+    gap: 3
+    itemsVerticalAlign: itemsCentered
 
 // j|WizardNavigator
 //     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView")

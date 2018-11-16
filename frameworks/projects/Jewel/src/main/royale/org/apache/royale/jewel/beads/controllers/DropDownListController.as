@@ -118,7 +118,6 @@ package org.apache.royale.jewel.beads.controllers
             model.selectedIndex = event.index;
 			model.selectedItem = event.data;
             view.host.dispatchEvent(new Event(Event.CHANGE));
-            trace(model, model.selectedIndex, model.selectedItem, view.host);
         }
 		
         // private function clickHandler(event:org.apache.royale.events.MouseEvent):void

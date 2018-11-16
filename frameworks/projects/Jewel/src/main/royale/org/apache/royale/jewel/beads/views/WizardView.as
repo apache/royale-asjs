@@ -36,7 +36,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.IconButton;
 	import org.apache.royale.jewel.Wizard;
-	import org.apache.royale.jewel.beads.layouts.WizardLayout;
 	import org.apache.royale.jewel.beads.models.WizardModel;
 	import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy;
 
@@ -237,8 +236,8 @@ package org.apache.royale.jewel.beads.views
 
 			if (previousButton == null) {
 				previousButton = createButton("previous", Button.SECONDARY);
-				previousButton.className = "previous";
 			}
+			previousButton.className = "previous";
 			if (previousButton != null && previousButton.parent == null) {
 				(_strand as IContainerBaseStrandChildrenHost).$addElement(previousButton);
 			}
@@ -249,8 +248,8 @@ package org.apache.royale.jewel.beads.views
 
 			if (nextButton == null) {
 				nextButton = createButton("next", Button.SECONDARY);
-				nextButton.className = "next";
 			}
+			nextButton.className = "next";
 			if (nextButton != null && nextButton.parent == null) {
 				(_strand as IContainerBaseStrandChildrenHost).$addElement(nextButton);
 			}
@@ -329,9 +328,9 @@ package org.apache.royale.jewel.beads.views
             // }
             
 			// Now give the Wizard its own layout
-			var layoutBead:WizardLayout = new WizardLayout();
-			layoutBead.itemsVerticalAlign = "itemsCentered";
-			_strand.addBead(layoutBead);
+			// var layoutBead:WizardLayout = new WizardLayout();
+			// layoutBead.itemsVerticalAlign = "itemsCentered";
+			// _strand.addBead(layoutBead);
 		}
 
 		private var _wizardLayoutProxy:WizardLayoutProxy;

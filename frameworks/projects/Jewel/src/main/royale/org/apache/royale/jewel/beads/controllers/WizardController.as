@@ -26,8 +26,8 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.Wizard;
 	import org.apache.royale.jewel.WizardPage;
 	import org.apache.royale.jewel.beads.models.WizardModel;
-	import org.apache.royale.jewel.beads.views.WizardView;
 	import org.apache.royale.jewel.beads.models.WizardStep;
+	import org.apache.royale.jewel.beads.views.WizardView;
 	
     /**
      *  The WizardController class is the controller for
@@ -142,7 +142,6 @@ package org.apache.royale.jewel.beads.controllers
         {
             if(model.currentStep.page.validate())
             {
-                trace("next:", model.currentStep.autoSkip);
                 var stepToGo:WizardStep = findStep(model.currentStep, false);
                 wizard.dispatchEvent(new Event("goToNextStep"));
                 model.currentStep = stepToGo;
