@@ -51,6 +51,7 @@
             <includeClass>CollectionsClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
+          <additionalCompilerOptions>-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
