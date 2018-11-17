@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.models
 {
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ITextModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	
@@ -32,7 +33,7 @@ package org.apache.royale.jewel.beads.models
 	 *  @productversion Royale 0.9.4
 	 */
 	[Bindable]
-	public class WizardModel extends EventDispatcher implements IBeadModel
+	public class WizardModel extends EventDispatcher implements IBeadModel, ITextModel
 	{
 		/**
 		 *  constructor.
@@ -62,32 +63,55 @@ package org.apache.royale.jewel.beads.models
 			_strand = value;
 		}
 		
-        private var _title:String;
-		
+        private var _text:String;
 		/**
 		 *  The title string for the org.apache.royale.jewel.Wizard.
 		 * 
-		 *  @copy org.apache.royale.core.ITitleBarModel#title
+		 *  @copy org.apache.royale.jewel.beads.models.WizardModel#title
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get title():String
+		[Bindable(event="textChange")]
+		public function get text():String
 		{
-			return _title;
+			return _text;
 		}
-		public function set title(value:String):void
+		public function set text(value:String):void
 		{
-			if(value != _title) {
-				_title = value;
-				dispatchEvent(new Event('titleChange'));
+			if(value != _text) {
+				_text = value;
+				dispatchEvent(new Event('textChange'));
+			}
+		}
+
+		private var _html:String;
+		/**
+		 *  The HTML string for the title.
+		 * 
+		 *  @copy org.apache.royale.jewel.beads.models.WizardModel#html
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		[Bindable(event="htmlChange")]
+		public function get html():String
+		{
+			return _html;
+		}
+		public function set html(value:String):void
+		{
+			if( value != _html ) {
+				_html = value;
+				dispatchEvent( new Event('htmlChange') );
 			}
 		}
 		
 		private var _currentStep:WizardStep;
-		
 		/**
 		 *  the current step or page visualized in this wizard
 		 * 
@@ -96,6 +120,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable(event="currentStepChange")]
 		public function get currentStep():WizardStep
 		{
 			return _currentStep;

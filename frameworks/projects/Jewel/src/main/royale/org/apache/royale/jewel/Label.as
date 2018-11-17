@@ -18,16 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.ITextModel;
-	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.StyledUIBase;
 
     /**
      *  Dispatched when the user clicks on a Label.

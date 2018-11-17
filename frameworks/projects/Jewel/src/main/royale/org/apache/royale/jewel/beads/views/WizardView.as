@@ -21,20 +21,20 @@ package org.apache.royale.jewel.beads.views
 	COMPILE::SWF {
 		import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	}
-	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IViewport;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.jewel.Button;
+	import org.apache.royale.jewel.HGroup;
 	import org.apache.royale.jewel.IconButton;
+	import org.apache.royale.jewel.Label;
+	import org.apache.royale.jewel.VGroup;
 	import org.apache.royale.jewel.Wizard;
 	import org.apache.royale.jewel.beads.models.WizardModel;
 	import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy;
@@ -83,11 +83,11 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function get previousButton():IconButton
+        public function get previousButton():UIBase
         {
         	return wizard.previousButton;
         }
-        public function set previousButton(value:IconButton):void
+        public function set previousButton(value:UIBase):void
         {
         	wizard.previousButton = value;
         }
@@ -100,17 +100,16 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function get nextButton():IconButton
+        public function get nextButton():UIBase
         {
         	return wizard.nextButton;
         }
-        public function set nextButton(value:IconButton):void
+        public function set nextButton(value:UIBase):void
         {
         	wizard.nextButton = value;
         }
 
-		// private var _titleBar:UIBase;
-
+		private var _titleLabel:UIBase;
 		/**
 		 *  The org.apache.royale.jewel.TitleBar component of the
 		 *  org.apache.royale.jewel.Wizard.
@@ -120,18 +119,17 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		// public function get titleBar():UIBase
-		// {
-		// 	return _titleBar;
-		// }
-
+		public function get titleLabel():UIBase
+		{
+			return _titleLabel;
+		}
         /**
          *  @private
          */
-        // public function set titleBar(value:UIBase):void
-        // {
-        //     _titleBar = value;
-        // }
+        public function set titleLabel(value:UIBase):void
+        {
+            _titleLabel = value;
+        }
 
 		private var _contentArea:UIBase;
 		/**
@@ -171,57 +169,30 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
             wizard = value as Wizard;
-
+			
 			model = _strand.getBeadByType(WizardModel) as WizardModel;
 			model.addEventListener("currentStepChange", handleStepChange);
 
-			// Look for a layout and/or viewport bead on the wizard's beads list. If one
-			// is found, pull it off so it will not be added permanently
-			// to the strand.
-            var beads:Array = wizard.beads;
-            var transferLayoutBead:IBeadLayout;
-            var transferViewportBead:IViewport;
-			if (wizard.beads != null) {
-				for(var i:int=wizard.beads.length-1; i >= 0; i--) {
-					if (wizard.beads[i] is IBeadLayout) {
-						transferLayoutBead = wizard.beads[i] as IBeadLayout;
-						wizard.beads.splice(i, 1);
-					}
-					else if (wizard.beads[i] is IViewport) {
-						transferViewportBead = wizard.beads[i] as IViewport
-						wizard.beads.splice(i, 1);
-					}
-				}
+			trace("wizard.model.text:" + wizard.model.text);
+            if (!_titleLabel) {
+                _titleLabel = new Label();
+				(_titleLabel as Label).text = wizard.model.text;
 			}
+			//_titleLabel.id = "wizardTitle";
+			titleLabel.className = "wizardTitle";
+			// replace the Label's model with the Wizard's model (it implements ITextModel) so that
+			// any changes to values in the Wizard's model that correspond values in the Label will
+			// be picked up automatically by the Title Label.
+			titleLabel.model = wizard.model;
 
-            // if (!_titleBar) {
-            //     _titleBar = new TitleBar();
-			// }
-			// _titleBar.id = "wizardTitleBar";
-			// _titleBar.addEventListener("close", handleClose);
-			// replace the TitleBar's model with the Wizard's model (it implements ITitleBarModel) so that
-			// any changes to values in the Wizard's model that correspond values in the TitleBar will
-			// be picked up automatically by the TitleBar.
-			// titleBar.model = wizard.model;
-			// if (titleBar.parent == null) {
-			// 	(_strand as IContainerBaseStrandChildrenHost).$addElement(titleBar);
-			// }
+			model.addEventListener("textChange", textChangeHandler);
+			model.addEventListener("htmlChange", textChangeHandler);
 			
 			if (!_contentArea) {
                 var cls:Class = ValuesManager.valuesImpl.getValue(_strand, "iWizardContentArea");
 				_contentArea = new cls() as UIBase;
 				// _contentArea.id = "content";
-
-				// add the layout bead to the content area.
-				if (transferLayoutBead) 
-                    _contentArea.addBead(transferLayoutBead);
-                else
-                    setupContentAreaLayout();
-                
-				// add the viewport bead to the content area.
-				if (transferViewportBead) 
-					_contentArea.addBead(transferViewportBead);
-
+				setupContentAreaLayout();
 			}
 
 			COMPILE::SWF {
@@ -232,31 +203,53 @@ package org.apache.royale.jewel.beads.views
                 IEventDispatcher(value).addEventListener("initComplete", handleInitComplete);
 			}
 
-            // super.strand = value;
+			// adds an vgroup so we can arrange vertically the title and then the rest of content 
+			var vg:VGroup = new VGroup();
+			vg.className = "jewel wizard main"
+			vg.gap = 3;
+			(_strand as IContainerBaseStrandChildrenHost).$addElement(vg);
 
+			// add title 
+            if (titleLabel.parent == null) {
+				vg.addElement(titleLabel);
+			}
+
+			var g:HGroup = new HGroup();
+			g.className = "precontent";
+			g.gap = 3;
+			g.itemsHorizontalAlign = "itemsCentered";
+			// add the group that holds buttons and content 
+            if (g.parent == null) {
+				vg.addElement(g);
+				//g.addBead(_strand.getBeadByType(IBeadLayout));
+			}
+			
+			// add previous button
 			if (previousButton == null) {
-				previousButton = createButton("previous", Button.SECONDARY);
+				previousButton = createButton("previous", Button.SECONDARY) as UIBase;
 			}
-			previousButton.className = "previous";
+			previousButton.className = "jewel wizard previous";
 			if (previousButton != null && previousButton.parent == null) {
-				(_strand as IContainerBaseStrandChildrenHost).$addElement(previousButton);
+				g.addElement(previousButton);
 			}
 
+			// add content
 			if (contentArea.parent == null) {
-				(_strand as IContainerBaseStrandChildrenHost).$addElement(contentArea as IChild);
+				g.addElement(contentArea);
 			}
 
+			// add next button
 			if (nextButton == null) {
-				nextButton = createButton("next", Button.SECONDARY);
+				nextButton = createButton("next", Button.SECONDARY) as UIBase;
 			}
-			nextButton.className = "next";
+			nextButton.className = "jewel wizard next";
 			if (nextButton != null && nextButton.parent == null) {
-				(_strand as IContainerBaseStrandChildrenHost).$addElement(nextButton);
+				g.addElement(nextButton);
 			}
 
             setupLayout();
         }
-        
+
 		/**
 		 * 
 		 */
@@ -269,6 +262,14 @@ package org.apache.royale.jewel.beads.views
 				b.emphasis = emphasis;
 
 			return b;
+		}
+
+		/**
+		 * 
+		 */
+		public function textChangeHandler(event:Event):void
+		{
+			(titleLabel as Label).text = model.text;
 		}
 
 		/**
@@ -297,8 +298,8 @@ package org.apache.royale.jewel.beads.views
         protected function setupLayout():void
         {
             // COMPILE::JS {
-            //     _titleBar.element.style["flex-grow"] = "0";
-            //     _titleBar.element.style["order"] = "1";
+            //     _titleLabel.element.style["flex-grow"] = "0";
+            //     _titleLabel.element.style["order"] = "1";
             // }
                 
             COMPILE::SWF {
@@ -312,13 +313,13 @@ package org.apache.royale.jewel.beads.views
             }
                 
             // COMPILE::SWF {
-            //     _titleBar.percentWidth = 100;
+            //     _titleLabel.percentWidth = 100;
                 
-            //     if (_titleBar.style == null) {
-            //         _titleBar.style = new SimpleCSSStylesWithFlex();
+            //     if (_titleLabel.style == null) {
+            //         _titleLabel.style = new SimpleCSSStylesWithFlex();
             //     }
-            //     _titleBar.style.flexGrow = 0;
-            //     _titleBar.style.order = 1;
+            //     _titleLabel.style.flexGrow = 0;
+            //     _titleLabel.style.order = 1;
             // }
             
             // COMPILE::JS {
@@ -364,7 +365,7 @@ package org.apache.royale.jewel.beads.views
 		protected function handleSizeChange(event:Event):void
 		{
 			COMPILE::JS {
-				// _titleBar.percentWidth = 100;
+				// _titleLabel.percentWidth = 100;
 				_contentArea.percentWidth = 100;
 			}
 

@@ -20,6 +20,7 @@ package org.apache.royale.jewel
 {
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+    import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.WizardModel;
     import org.apache.royale.jewel.beads.models.WizardStep;
@@ -45,6 +46,16 @@ package org.apache.royale.jewel
 	 *  @productversion Royale 0.9.4
 	 */
     [Event(name="goToNextStep", type="org.apache.royale.events.Event")]
+	
+	/**
+	 *  Indicates a change of step
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.4
+	 */
+    [Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
 	 * 
@@ -72,14 +83,56 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 * @royalesuppresspublicvarwarning
+		 *  The string to display in the org.apache.royale.jewel.TitleBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
 		 */
-        public var previousButton:IconButton = null;
+		public function get title():String
+		{
+			return WizardModel(model).text;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
+		 */
+		public function set title(value:String):void
+		{
+			WizardModel(model).text = value;
+		}
+		
+		/**
+		 *  The HTML string to display in the org.apache.royale.jewel.TitleBar.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
+		 */
+		public function get htmlTitle():String
+		{
+			return WizardModel(model).html;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
+		 */
+		public function set htmlTitle(value:String):void
+		{
+			WizardModel(model).html = value;
+		}
 
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-        public var nextButton:IconButton = null;
+        public var previousButton:UIBase = null;
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+        public var nextButton:UIBase = null;
 
 		/**
 		 * the pages of the wizard

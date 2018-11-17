@@ -23,10 +23,23 @@
 
 .jewel
     .wizard
-        
-    .next
+        .main
 
-    .previous
+    &.label
+        &.wizardTitle
+            color: $primary-color
+            font-size: 2em !important
+
+    .precontent
+
+    &.next, &.previous
+        min-width: 44px
+        &:hover
+            background: rgba(0, 0, 0, 0.1)
+            border-radius: 5px
+        .jewel.button
+            width: calc(100% - 10px)
+
     
     .wizardcontent
 

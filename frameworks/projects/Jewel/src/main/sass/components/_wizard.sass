@@ -23,11 +23,27 @@
 
 .jewel
     .wizard
-        
-    .next
-        flex: 1 1 0
-    .previous
-        flex: 1 1 0
+        .main
+            align-items: center
+            width: 100%
+            height: 100%
+    &.label
+        &.wizardTitle
+            
+
+    .precontent
+        width: 100%
+        flex: 1 0
+
+    &.next, &.previous
+        height: 100%
+        align-items: center
+        justify-content: center
+        cursor: pointer
+        &:hover
+            
+        .jewel.button
+
     .wizardcontent
         height: 100%
         flex-grow: 100

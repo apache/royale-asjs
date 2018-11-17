@@ -50,7 +50,6 @@ package org.apache.royale.jewel.beads.models
 		}
 
         private var _name:String;
-		
 		/**
 		 *  the name of the step
 		 * 
@@ -71,7 +70,6 @@ package org.apache.royale.jewel.beads.models
 		}
         
 		private var _previousStep:String = null;
-		
 		/**
 		 *  the previous step to go
 		 * 
@@ -94,7 +92,6 @@ package org.apache.royale.jewel.beads.models
 		}
         
 		private var _nextStep:String = null;
-		
 		/**
 		 *  the next step to go
 		 * 
@@ -117,7 +114,6 @@ package org.apache.royale.jewel.beads.models
 		}
 		
 		private var _page:WizardPage;
-		
 		/**
 		 *  the page associated with this data
 		 * 
@@ -137,8 +133,27 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 		
-		private var _initialPage:Boolean;
+		private var _stepLabel:String;
+		/**
+		 *  the label for this step
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get stepLabel():String
+		{
+			return _stepLabel;
+		}
+		public function set stepLabel(value:String):void
+		{
+			if(value != _stepLabel) {
+				_stepLabel = value;
+			}
+		}
 		
+		private var _initialPage:Boolean;
 		/**
 		 *  the initial page to show in the wizard
 		 * 
