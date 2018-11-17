@@ -547,7 +547,7 @@ public class AMFBinaryData implements IDataInput, IDataOutput
                 accs.push(t);
                 count++;
             }
-            if (!c.constructor.superClass_)
+            if (!c.constructor.superClass_ || !c.constructor.superClass_.ROYALE_CLASS_INFO)
                 break;
             classInfo = c.constructor.superClass_.ROYALE_CLASS_INFO;
             reflectionInfo = c.constructor.superClass_.ROYALE_REFLECTION_INFO();
