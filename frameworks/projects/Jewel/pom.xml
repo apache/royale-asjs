@@ -64,6 +64,7 @@
           <includeLookupOnly>true</includeLookupOnly>
           <!--<allowSubclassOverrides>true</allowSubclassOverrides>-->
           <skipExtern>true</skipExtern>
+          <additionalCompilerOptions>-source-map=true</additionalCompilerOptions>
           <!--<additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>-->
         </configuration>
       </plugin>
