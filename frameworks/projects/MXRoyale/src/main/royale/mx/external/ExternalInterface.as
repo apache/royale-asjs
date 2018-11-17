@@ -157,6 +157,7 @@ package mx.external
          *
          * @param functionName The name of the JavaScript function to call.
          * @param ... args The arguments to pass to the JavaScript function in the browser.
+         * @royaleignorecoercion Function
          */
         public static function call(functionName:String, ... args):*
         {
@@ -167,11 +168,19 @@ package mx.external
             }
             COMPILE::JS
             {
-                // find a function with the name...
-                var fnc : Function = window[functionName];
+                // find a function with the name... which may be in dot.notation
+                var arrFunctionName : Array = functionName.split(".");
+                var parentObj : Object = null;
+                var functionObj : Object = window;
+                while (functionObj && arrFunctionName.length)
+                {
+                    parentObj = functionObj;
+                    functionObj = parentObj[ arrFunctionName.shift() ];
+                }
+                var fnc : Function = functionObj as Function;
                 if (fnc)
                 {
-                    return fnc.apply(null, args);
+                    return fnc.apply(parentObj, args);
                 }
                 return null;
             }
