@@ -25,7 +25,19 @@ limitations under the License.
 
 	<fx:Script>
 		<![CDATA[
+			import org.apache.royale.events.Event;
 			import org.apache.royale.jewel.Button;
+			
+			public function stepHandler(event:Event):void
+			{
+				// var w:Wizard = event.target as Wizard
+				// w.title = w.currentStep.stepLabel;
+			}
+
+			public function getStepLabel(step:WizardStep):String
+			{
+				return step.stepLabel;
+			}
 		]]>
 	</fx:Script>
 
@@ -34,51 +46,57 @@ limitations under the License.
     </j:beads>
 	
 	<j:Card width="600">
-		<html:H3 text="Wizard Example"/>
-
-		<j:Wizard id="wizard" width="100%" height="400">
+		<j:Wizard id="wizard" width="100%" height="500" 
+				  title="{getStepLabel(wizard.currentStep)}" 
+				  change="stepHandler(event)">
+			
 			<j:previousButton>
-				<j:IconButton emphasis="{Button.SECONDARY}">
-					<j:icon>
-						<js:FontIcon text="{MaterialIconType.ARROW_BACK_IOS}" material="true"/>
-					</j:icon>
-				</j:IconButton>
+				<j:Group>
+					<j:IconButton emphasis="{Button.SECONDARY}">
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+				</j:Group>
 			</j:previousButton>
 
 			<j:nextButton>
-				<j:IconButton emphasis="{Button.SECONDARY}">
-					<j:icon>
-						<js:FontIcon text="{MaterialIconType.ARROW_FORWARD_IOS}" material="true"/>
-					</j:icon>
-				</j:IconButton>
+				<j:Group>
+					<j:IconButton emphasis="{Button.SECONDARY}">
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+				</j:Group>
 			</j:nextButton>
 
 			<j:WizardPage id="page1">
 				<views:step>
-					<j:WizardStep name="page1" nextStep="page2" initialPage="true"/>
+					<j:WizardStep name="page1" nextStep="page2" initialPage="true" stepLabel="Page 1"/>
 				</views:step>
 				
-				<components:FormExample label="Page 1"/>
+				<components:FormExample label="Form Example in Page 1"/>
 
 			</j:WizardPage>
 			
 			<j:WizardPage id="page2">
 				<views:step>
-					<j:WizardStep name="page2" previousStep="page1" nextStep="page3"/>
+					<j:WizardStep id="sl" name="page2" previousStep="page1" nextStep="page3" stepLabel="Page 2"/>
 				</views:step>
 				
 				<j:Group>
 					<j:beads>
 						<j:VerticalCenteredLayout gap="9"/>
 					</j:beads>
-					<html:H1 text="Page 2"/>
+					<html:H1 text="{sl.stepLabel}"/>
+					<j:CheckBox text="autoSkip next page?" change="sl.autoSkip = event.target.selected"/>
 				</j:Group>
 
 			</j:WizardPage>
 			
 			<j:WizardPage id="page3">
 				<views:step>
-					<j:WizardStep name="page3" previousStep="page2" nextStep="page4"/>
+					<j:WizardStep name="page3" previousStep="page2" nextStep="page4" stepLabel="Page 3"/>
 				</views:step>
 				
 				<j:Group>
@@ -92,7 +110,7 @@ limitations under the License.
 			
 			<j:WizardPage id="page4">
 				<views:step>
-					<j:WizardStep name="page4" previousStep="page3" nextStep="page5"/>
+					<j:WizardStep name="page4" previousStep="page3" nextStep="page5" stepLabel="Page 4"/>
 				</views:step>
 				
 				<j:Group>
@@ -106,7 +124,7 @@ limitations under the License.
 			
 			<j:WizardPage id="page5">
 				<views:step>
-					<j:WizardStep name="page5" previousStep="page4"/>
+					<j:WizardStep name="page5" previousStep="page4" stepLabel="Page 5"/>
 				</views:step>
 				
 				<j:Group>
