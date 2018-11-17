@@ -927,6 +927,21 @@ a:active {
   padding-right: 0;
 }
 
+.jewel.label.wizardTitle {
+  color: #EC1C24;
+  font-size: 2em !important;
+}
+.jewel.next, .jewel.previous {
+  min-width: 44px;
+}
+.jewel.next:hover, .jewel.previous:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.jewel.next .jewel.button, .jewel.previous .jewel.button {
+  width: calc(100% - 10px);
+}
+
 j|Wizard {
   gap: 3;
   itemsVerticalAlign: itemsCentered;
