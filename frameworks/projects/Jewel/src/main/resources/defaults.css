@@ -3681,8 +3681,6 @@ j|Wizard {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.WizardModel");
   IWizardContentArea: ClassReference("org.apache.royale.jewel.WizardContent");
-  gap: 3;
-  itemsVerticalAlign: itemsCentered;
 }
 
 j|WizardContent {
