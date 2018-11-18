@@ -54,7 +54,7 @@ limitations under the License.
 				<j:Group>
 					<j:IconButton emphasis="{Button.SECONDARY}">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}" material="true"/>
+							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}" material="true" size="48"/>
 						</j:icon>
 					</j:IconButton>
 				</j:Group>
@@ -64,7 +64,7 @@ limitations under the License.
 				<j:Group>
 					<j:IconButton emphasis="{Button.SECONDARY}">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}" material="true"/>
+							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}" material="true" size="48"/>
 						</j:icon>
 					</j:IconButton>
 				</j:Group>

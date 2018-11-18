@@ -39,9 +39,9 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
     
-    <js:FontIcon text="{tabButton.icon}" material="true" visible="{tabButton.icon != null}"/>
+    <js:FontIcon text="{tabButton ? tabButton.icon : ''}" material="true" visible="{tabButton ? tabButton.icon != null : false}"/>
 
-    <html:Span text="{tabButton.label}"/>
+    <html:Span text="{tabButton ? tabButton.label : ''}"/>
     
 </j:TabBarButtonItemRenderer>
 
