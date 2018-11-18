@@ -646,7 +646,7 @@
             <arg value="-m" />
             <arg value="update other poms to next version" />
         </exec>
-        <echo>run git show in royale-asjs to double-check the last commit then run git-push</echo>
+        <echo>run git show in royale-typedefs to double-check the last commit then run git-push</echo>
     </target>
 
     <target name="maven.prepare.typedefs">
@@ -833,6 +833,7 @@
     </target>
 
     <target name="make_branches" depends="check-empty-folder,use_develop_branch,maven.branch.compiler,maven.branch.typedefs, maven.branch.framework">
+        <echo>Don't forget to 'git push' royale-typedefs and royale-asjs</echo>
     </target>
 
     <target name="get-maven-source-artifacts" >
