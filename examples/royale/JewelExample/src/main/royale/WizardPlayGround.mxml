@@ -27,12 +27,6 @@ limitations under the License.
 		<![CDATA[
 			import org.apache.royale.events.Event;
 			import org.apache.royale.jewel.Button;
-			
-			public function stepHandler(event:Event):void
-			{
-				// var w:Wizard = event.target as Wizard
-				// w.title = w.currentStep.stepLabel;
-			}
 
 			public function getStepLabel(step:WizardStep):String
 			{
@@ -46,10 +40,7 @@ limitations under the License.
     </j:beads>
 	
 	<j:Card width="600">
-		<j:Wizard id="wizard" width="100%" height="500" 
-				  title="{getStepLabel(wizard.currentStep)}" 
-				  change="stepHandler(event)">
-			
+		<j:Wizard id="wizard" width="100%" height="500" title="{getStepLabel(wizard.currentStep)}">
 			<j:previousButton>
 				<j:Group>
 					<j:IconButton emphasis="{Button.SECONDARY}">
