@@ -32,13 +32,13 @@
     
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
         <mkdir dir="${basedir}/bin/js-debug/assets" />
-        <copy todir="${basedir}/bin/js-debug/assets" >
+        <copy todir="${basedir}/bin/js-debug/assets" failonerror="false">
             <fileset dir="${basedir}/src/main/resources/assets">
                 <include name="**" />
             </fileset>
         </copy>
         <mkdir dir="${basedir}/bin/js-release/assets" />
-        <copy todir="${basedir}/bin/js-release/assets" >
+        <copy todir="${basedir}/bin/js-release/assets" failonerror="false">
             <fileset dir="${basedir}/src/main/resources/assets">
                 <include name="**" />
             </fileset>

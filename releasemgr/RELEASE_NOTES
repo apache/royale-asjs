@@ -1,3 +1,11 @@
+Apache Royale 0.9.4
+===================
+
+This release contains:
+-A new component set called Jewel.
+-Components that will eventually emulate popular Apache Flex APIs, including RemoteObject.
+-A version of Tour De Flex partially migrated to Apache Royale.
+
 Apache Royale 0.9.2
 ===================
 

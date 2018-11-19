@@ -7,3 +7,16 @@ The Apache Software Foundation (http://www.apache.org/).
 The Initial Developer of some parts of the framework, which are copied from, derived from, or
 inspired by Adobe Flex (via Apache Flex), is Adobe Systems Incorporated (http://www.adobe.com/).
 Copyright 2003 - 2012 Adobe Systems Incorporated. All Rights Reserved.
+
+The Initial Developer of the examples/mxroyale/tourdeflexmodules, 
+is Adobe Systems Incorporated (http://www.adobe.com/).
+Copyright 2009 - 2013 Adobe Systems Incorporated. All Rights Reserved.
+
+The ping sound effect (ping.mp3) in 
+examples/mxroyale/tourdeflexmodules/src/mx/effects/assets
+was created by CameronMusic. The original file can be found here:
+http://www.freesound.org/people/cameronmusic/sounds/138420/
+
+The text used in the summaries of each version of Apache Flex
+in examples/mxroyale/tourdeflexmodules can be found here:
+http://en.wikipedia.org/wiki/Apache_Flex
