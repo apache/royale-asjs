@@ -35,3 +35,7 @@ svg|BinaryImage
 	IBinaryImageLoader: ClassReference("org.apache.royale.html.beads.BinaryImageLoader");
 }
 
+svg|DropShadowFilter
+{
+	Filter: ClassReference("org.apache.royale.svg.Filter");
+}

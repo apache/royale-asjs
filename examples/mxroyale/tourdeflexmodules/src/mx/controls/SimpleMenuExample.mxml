@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the Menu control. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+        <![CDATA[
+       
+            import mx.controls.Menu;
+            import mx.events.MenuEvent;
+            import mx.controls.Alert;           
+            import flash.geom.Point;
+
+            private var point1:Point = new Point();
+            private var myMenu:Menu;
+   
+            // Create and display the Menu control.
+            private function showMenu():void {
+                myMenu= Menu.createMenu(panel, myMenuData, false);
+                myMenu.labelField="@label"
+                myMenu.addEventListener("itemClick", menuHandler);
+                
+                // Calculate position of Menu in Application's coordinates. 
+                point1.x=mybutton.x;
+                point1.y=mybutton.y;                
+                point1=mybutton.localToGlobal(point1);
+
+                myMenu.show(point1.x + 25, point1.y + 25);
+            }
+       
+            // Event handler for the Menu control's change event.
+            private function menuHandler(event:MenuEvent):void  {
+                Alert.show("Label: " + event.item.@label, "Clicked menu item");
+            }    
+        ]]>
+    </fx:Script>
+
+	<fx:Declarations>
+	    <fx:XML id="myMenuData">
+	        <root>
+	            <menuitem label="MenuItem 1" eventName="copy"/>
+	            <menuitem label="MenuItem 2" eventName="paste"/>
+	        </root>
+	    </fx:XML>
+	</fx:Declarations>	
+
+    <mx:Panel id="panel" title="Menu Control Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Label width="100%"
+           text="Click the button to open the Menu control."/>
+
+        <mx:Button id="mybutton" label="Open Menu" click="showMenu()"/>
+
+    </mx:Panel>
+</mx:Module>          

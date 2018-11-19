@@ -154,6 +154,18 @@ public class MustellaResultsParser {
 				else if (s.startsWith("Avertissement"))
 				{
 				}
+                else if (s.contains("not implemented"))
+                {
+                }
+                else if (s.contains("runid.properties"))
+                {
+                }
+                else if (s.contains("Security sandbox"))
+                {
+                }
+                else if (s.contains("Security Sandbox"))
+                {
+                }
 				else if (s.trim().equals(""))
 				{
 				}

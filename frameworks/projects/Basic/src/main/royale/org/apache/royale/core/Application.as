@@ -18,11 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.core.IParent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.utils.MXMLDataInterpreter;
-	import org.apache.royale.utils.Timer;
+    import org.apache.royale.utils.Timer;
 
     COMPILE::SWF {
         import flash.display.DisplayObject;
@@ -104,7 +105,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IRenderedObject
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IPopUpHostParent, IRenderedObject
     {
         /**
          *  Constructor.
@@ -134,6 +135,8 @@ package org.apache.royale.core
 				element.className = 'Application';			
 			}
         }
+        
+        protected var instanceParent:IParent = null;
 
         COMPILE::SWF
         private function initHandler(event:flash.events.Event):void
@@ -178,7 +181,7 @@ package org.apache.royale.core
         protected function initialize():void
         {
 
-            MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
+            MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
 
             dispatchEvent(new org.apache.royale.events.Event("initialize"));
 
@@ -319,6 +322,19 @@ package org.apache.royale.core
         }
 
         /**
+         *  Application can host popups but they will be in the layout, if any
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get popUpParent():IPopUpHostParent
+        {
+            return this;
+        }
+        
+        /**
          *  An array of data that describes the MXML attributes
          *  and tags in an MXML document.  This data is usually
          *  decoded by an MXMLDataInterpreter
@@ -356,6 +372,21 @@ package org.apache.royale.core
          */
     	public function generateMXMLAttributes(data:Array):void
         {
+            // move the initialView to be the last thing to be
+            // the last thing instantiated so all other properties
+            // are set up first.  This more closely mimics the
+            // Flex timing
+            var propCount:int = data[0];
+            var n:int = data.length;
+            for (var i:int = 1; i < n; i += 3)
+            {
+                if (data[i] == "initialView")
+                {
+                    var initialViewArray:Array = data.splice(i, 3);
+                    var offset:int = (propCount - 1) * 3 + 1;
+                    data.splice(offset, 0, initialViewArray[0], initialViewArray[1], initialViewArray[2]);
+                }
+            }
 			MXMLDataInterpreter.generateMXMLProperties(this, data);
         }
 
@@ -644,24 +675,25 @@ package org.apache.royale.core
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IBead
+         * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		protected function initialize():void
 		{
-			MXMLDataInterpreter.generateMXMLInstances(this, null, MXMLDescriptor);
+			MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
 			
 			dispatchEvent('initialize');
 			
-			initialView.applicationModel = model;
-			addElement(initialView);
-			
 			if (initialView)
 			{
+                initialView.applicationModel = model;
+                addElement(initialView);
+                
 				var baseView:UIBase = initialView as UIBase;
 				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
 					this.element.style.height = window.innerHeight.toString() + 'px';
 					this.element.style.width = window.innerWidth.toString() + 'px';
-					this.initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+					this.initialView.dispatchEvent(new Event("sizeChanged")); // kick off layout if % sizes
 				}
 				
 				dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
@@ -691,5 +723,11 @@ package org.apache.royale.core
             // Setting this directly doesn't do anything
         }
 
+        /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
+        }
     }
 }

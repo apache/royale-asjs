@@ -22,8 +22,18 @@
 <componentPackage>
 	<component id="TransformBead" class="org.apache.royale.svg.TransformBead" />
 	<component id="ClipBead" class="org.apache.royale.svg.ClipBead" />
+	<component id="DropShadowFilter" class="org.apache.royale.svg.DropShadowFilter" />
+	<component id="Filter" class="org.apache.royale.svg.Filter" />
+	<component id="OffsetFilterElement" class="org.apache.royale.svg.OffsetFilterElement" />
+	<component id="ColorMatrixFilterElement" class="org.apache.royale.svg.ColorMatrixFilterElement" />
+	<component id="SpreadFilterElement" class="org.apache.royale.svg.SpreadFilterElement" />
+	<component id="BlurFilterElement" class="org.apache.royale.svg.BlurFilterElement" />
+	<component id="InvertFilterElement" class="org.apache.royale.svg.InvertFilterElement" />
+	<component id="FullAlphaFilterElement" class="org.apache.royale.svg.FullAlphaFilterElement" />
+	<component id="CompositeFilterElement" class="org.apache.royale.svg.CompositeFilterElement" />
+	<component id="BlendFilterElement" class="org.apache.royale.svg.BlendFilterElement" />
 	<component id="MaskBead" class="org.apache.royale.svg.MaskBead" />
 	<component id="DisableClipBead" class="org.apache.royale.svg.DisableClipBead" />
 	<component id="LinearGradient" class="org.apache.royale.svg.LinearGradient" />
-	
+	<component id="SuperimposeFilter" class="org.apache.royale.svg.SuperimposeFilter" />
 </componentPackage>

@@ -26,16 +26,18 @@ package org.apache.royale.net
     import org.apache.royale.net.events.ResultEvent;
     import org.apache.royale.net.remoting.Operation;
     import org.apache.royale.net.remoting.amf.AMFNetConnection;
-    import org.apache.royale.reflection.getClassByAlias;
-    import org.apache.royale.reflection.registerClassAlias;
+    import org.apache.royale.net.remoting.messages.ErrorMessage;
 
 	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
 	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
+	/**
+	 * This is the RemoteObject that has a similar behaviour that Flex RemoteObject
+	 * and can be use with BlazeDS, LCDS or CF backends
+	 */
 	public class RemoteObject extends EventDispatcher implements IBead
 	{
 		private var _endPoint:String;
 		private var _destination:String;
-		private var _source:String;
         
         /**
          *  @private
@@ -45,14 +47,22 @@ package org.apache.royale.net
          */
         public var nc:AMFNetConnection = new AMFNetConnection();
 		
-		/** 
+		/**
+		 * @private
+		 * A channel specific override to determine whether small messages should
+		 * be used. If set to false, small messages will not be used even if they
+		 * are supported by an endpoint.
 		 * 
-		 * <inject_html>
-		 * <script src="https://rawgit.com/emilkm/amfjs/master/amf.js"></script>
-		 * </inject_html>
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var enableSmallMessages:Boolean = true;
+
+		/** 
+		 * constructor
 		 */ 
 		public function RemoteObject()
 		{
+            nc.errorClass = ErrorMessage;
 		}
 		
         private var _strand:IStrand;
@@ -78,15 +88,6 @@ package org.apache.royale.net
 		public function get destination():String
 		{
 			return _destination;	
-		}
-		
-		public function set source(value:String):void
-		{
-			_source = value;	
-		}
-		public function get source():String
-		{
-			return _source;	
 		}
 		
 		public function send(operation:String, params:Array):void

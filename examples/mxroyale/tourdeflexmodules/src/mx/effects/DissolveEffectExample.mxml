@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the Dissolve effect. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+
+	<fx:Declarations>
+	    <mx:Dissolve id="dissolveOut" duration="1000" alphaFrom="1.0" alphaTo="0.0"/>
+	    <mx:Dissolve id="dissolveIn" duration="1000" alphaFrom="0.0" alphaTo="1.0"/>
+	</fx:Declarations>
+	
+    <mx:Panel title="Dissolve Effect Example" layout="horizontal"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:VBox height="100%">
+            <mx:Label text="Apache Flex"  
+                fontSize="14"
+                visible="{cb1.selected}"
+                hideEffect="{dissolveOut}" showEffect="{dissolveIn}"/>
+            
+            <mx:Image source="@Embed(source='assets/ApacheFlexLogo.png')"
+				width="50%" height="50%"
+                visible="{cb1.selected}"
+                hideEffect="{dissolveOut}" showEffect="{dissolveIn}"/>
+        </mx:VBox>
+            
+        <mx:VBox height="100%" width="100%">
+            <mx:Text width="100%" 
+                text="Use the Dissolve effect to show or hide the text, image, and button."/>
+            
+                <mx:Spacer height="100%"/>
+            
+                <mx:Button label="Purchase" 
+                    visible="{cb1.selected}"
+                    hideEffect="{dissolveOut}" showEffect="{dissolveIn}"/>            
+        </mx:VBox>
+
+        <mx:ControlBar>
+            <mx:CheckBox id="cb1" label="visible" selected="true"/>
+        </mx:ControlBar>
+    </mx:Panel>
+</mx:Module>

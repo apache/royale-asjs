@@ -20,6 +20,7 @@ package org.apache.royale.html
 {
 	import org.apache.royale.core.IPanelModel;
 	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 	import org.apache.royale.html.beads.PanelView;
 	import org.apache.royale.events.Event;
 
@@ -40,8 +41,8 @@ package org.apache.royale.html
 	 *  org.apache.royale.core.IBeadModel: the data model for the Panel that includes the title and whether
 	 *  or not to display the close button.
 	 *  org.apache.royale.core.IBeadView: creates the parts of the Panel.
-	 *  org.apache.royale.core.IBorderBead: if present, draws a border around the Panel.
-	 *  org.apache.royale.core.IBackgroundBead: if present, provides a colored background for the Panel.
+	 *  org.apache.royale.html.beads.IBorderBead: if present, draws a border around the Panel.
+	 *  org.apache.royale.html.beads.IBackgroundBead: if present, provides a colored background for the Panel.
 	 *  
      *  @toplevel
 	 *  @see PanelWithControlBar
@@ -52,7 +53,7 @@ package org.apache.royale.html
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class Panel extends Group
+	public class Panel extends Group implements IContainerBaseStrandChildrenHost
 	{
 		/**
 		 *  constructor.
@@ -74,28 +75,62 @@ package org.apache.royale.html
 			super.addElement(c, dispatchEvent);
 		}
 		
-		public function get $numElements():Number
+        /**
+         * @private
+         * @suppress {undefinedNames}
+         * Support strandChildren.
+         */
+        public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+        {
+            super.addElementAt(c, index, dispatchEvent);
+        }
+        
+		public function get $numElements():int
 		{
 			return super.numElements;
 		}
 		
-		public function $getElementAt(index:Number):IChild
+		public function $getElementAt(index:int):IChild
 		{
 			return super.getElementAt(index);
 		}
 		
+        /**
+         * @private
+         * @suppress {undefinedNames}
+         * Support strandChildren.
+         */
+        public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+            super.removeElement(c, dispatchEvent);
+        }
+        
+        /**
+         * @private
+         * @suppress {undefinedNames}
+         * Support strandChildren.
+         */
+        public function $getElementIndex(c:IChild):int
+        {
+            return super.getElementIndex(c);
+        }
+        
 		/**
 		 *  The string to display in the org.apache.royale.html.TitleBar.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IPanelModel
 		 */
 		public function get title():String
 		{
 			return IPanelModel(model).title;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
+		 */
 		public function set title(value:String):void
 		{
 			IPanelModel(model).title = value;
@@ -107,12 +142,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IPanelModel
 		 */
 		public function get htmlTitle():String
 		{
 			return IPanelModel(model).htmlTitle;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
+		 */
 		public function set htmlTitle(value:String):void
 		{
 			IPanelModel(model).htmlTitle = value;
@@ -120,11 +159,15 @@ package org.apache.royale.html
 		
 		/**
 		 * Whether or not to show a Close button in the org.apache.royale.html.TitleBar.
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
 		 */
 		public function get showCloseButton():Boolean
 		{
 			return IPanelModel(model).showCloseButton;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IPanelModel
+		 */
 		public function set showCloseButton(value:Boolean):void
 		{
 			IPanelModel(model).showCloseButton = value;

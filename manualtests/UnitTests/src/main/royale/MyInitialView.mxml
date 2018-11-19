@@ -53,7 +53,7 @@ limitations under the License.
 		public function runTests():void {
 			var label:Label;
 			var groups:Array = TestClasses.testClasses;
-			var spaces:String = PLATFORM == "JS" ? "&nbsp;&nbsp;&nbsp;" : "   ";
+			var spaces:String = PLATFORM == "JS" ? "\u00A0\u00A0\u00A0" : "   ";
 			while (groups.length) {
 				var testGroupClass:Class = groups.shift() as Class;
 				var td:TypeDefinition = describeType(testGroupClass);
@@ -136,11 +136,11 @@ limitations under the License.
 				if (result.warning != null) {
 					message =  spaces + result.warning +newline +message;
 				}
-				if (PLATFORM == "JS") {
-					message = escapeForHtml(message);
-					var jsSpaces:String = spaces.split(" ").join("&nbsp;");
-					message = message.split(spaces).join(jsSpaces);
-				}
+				// if (PLATFORM == "JS") {
+				// 	message = escapeForHtml(message);
+				// 	var jsSpaces:String = spaces.split(" ").join("&nbsp;");
+				// 	message = message.split(spaces).join(jsSpaces);
+				// }
 
 				label.text = message;
 

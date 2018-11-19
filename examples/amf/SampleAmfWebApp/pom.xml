@@ -21,13 +21,15 @@
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
-    <artifactId>examples-amf-server</artifactId>
-    <version>0.9.2</version>
+    <artifactId>examples-amf-webapps</artifactId>
+    <version>0.9.4</version>
   </parent>
   
-  <artifactId>sampleamfwebapp</artifactId>
-  <version>0.9.2</version>
+  <artifactId>SampleAmfWebApp</artifactId>
+  <version>0.9.4</version>
   <packaging>war</packaging>
+
+  <name>Apache Royale: Examples: AMF Web Apps: SampleAmfWebApp</name>
 
   <properties>
     <java.version>1.7</java.version>
@@ -75,11 +77,34 @@
           <overlays>
             <overlay>
               <groupId>org.apache.royale.examples</groupId>
-              <artifactId>RemoteObjectAMFTest</artifactId>
+              <!-- <artifactId>RemoteObjectAMFTest</artifactId> -->
+              <artifactId>RemoteObjectAMFTest-MXRoyale</artifactId>
+              <targetPath>public</targetPath>
             </overlay>
           </overlays>
         </configuration>
       </plugin>
+
+      <!-- Test create javadocs -->
+      <!-- <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+              <noqualifier>all</noqualifier>
+              <reportOutputDirectory>${basedir}/javadoc</reportOutputDirectory>
+              <destDir>javadoc</destDir>
+          </configuration>
+          <executions>
+            <execution>
+                <id>attach-javadocs</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+              </execution>
+          </executions>
+      </plugin>  -->
     </plugins>
   </build>
 
@@ -87,7 +112,7 @@
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
-      <version>5.0.2.RELEASE</version>
+      <version>4.3.2.RELEASE</version>
     </dependency>
 
     <!--
@@ -100,10 +125,17 @@
       <version>4.7.3</version>
     </dependency>
 
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RemoteObjectAMFTest</artifactId>
-      <version>0.9.2</version>
+      <version>0.9.4-SNAPSHOT</version>
+      <type>war</type>
+    </dependency> -->
+    
+    <dependency>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RemoteObjectAMFTest-MXRoyale</artifactId>
+      <version>0.9.4</version>
       <type>war</type>
     </dependency>
 

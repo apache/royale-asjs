@@ -252,15 +252,45 @@ public class MyInitialView extends View
 
     }
 
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var symbolTI:TextInput;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var output:Label;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var field:Label;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var list:DropDownList;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var radio1:RadioButton;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var radio2:RadioButton;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var radio3:RadioButton;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var radio4:RadioButton;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var showAllData:CheckBox;
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var ta:TextArea;
 
     private function tb_clickHandler(event:MouseEvent):void

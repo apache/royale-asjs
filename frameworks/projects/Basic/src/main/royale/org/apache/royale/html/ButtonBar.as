@@ -59,19 +59,43 @@ package org.apache.royale.html
 			super();
 		}
 		
+		/**
+		 *  @see org.apache.royale.html.beads.models.ButtonBarModel#buttonWidths
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 */
 		public function get buttonWidths():Array
 		{
 			return ButtonBarModel(model).buttonWidths;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 */
 		public function set buttonWidths(value:Array):void
 		{
 			ButtonBarModel(model).buttonWidths = value;
 		}
 		
+		/**
+		 *  @see org.apache.royale.html.beads.models.ButtonBarModel#widthType
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 */
 		public function get widthType():Number
 		{
 			return ButtonBarModel(model).widthType;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
+		 */
 		public function set widthType(value:Number):void
 		{
 			ButtonBarModel(model).widthType = value;

@@ -84,7 +84,8 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IImageModel
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -145,6 +146,10 @@ package org.apache.royale.core
 		
         COMPILE::JS
         private var _sizeHandlerSet:Boolean;
+
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         COMPILE::JS
 		public function setupLoader():void
         {
@@ -169,12 +174,18 @@ package org.apache.royale.core
 			var hostSprite:Sprite = (host as IRenderedObject).$displayObject as Sprite;
 			
 			if (bitmap) {
-				hostSprite.removeChild(bitmap);
+                if ("$removeChild" in hostSprite)
+                    hostSprite["$removeChild"](bitmap);
+                else
+    				hostSprite.removeChild(bitmap);
 			}
 			
 			bitmap = Bitmap(LoaderInfo(event.target).content);
 			
-			hostSprite.addChild(bitmap);
+            if ("$addChild" in hostSprite)
+                hostSprite["$addChild"](bitmap);
+            else
+    			hostSprite.addChild(bitmap);
 			
             if (host.isWidthSizedToContent())
             {
@@ -211,6 +222,9 @@ package org.apache.royale.core
 			}
 		}
         
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
+         */
         COMPILE::JS
         protected function loadHandler(event:Object):void
         {
@@ -221,6 +235,7 @@ package org.apache.royale.core
         
         /**
          * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion org.apache.royale.core.IUIBase
          */
         COMPILE::JS
         protected function sizeChangedHandler(event:Object):void
@@ -235,8 +250,13 @@ package org.apache.royale.core
             var rs:String = s.right;
             if (typeof(rs) === 'string' && rs.length > 0)
                 r = parseFloat(rs.substring(0, rs.length - 2));
+            var w:Number = NaN;
+            var ws:String = s.width;
+            if (typeof(ws) === 'string' && ws.length > 0)
+                w = parseFloat(ws.substring(0, ws.length - 2));
             if (!isNaN(l) &&
-                !isNaN(r)) {
+                !isNaN(r) && 
+                !isNaN(w)) {
                 // if just using size constraints and image will not shrink or grow
                 var computedWidth:Number = (host.positioner.offsetParent as HTMLElement).offsetWidth -
                     l - r;
@@ -250,8 +270,13 @@ package org.apache.royale.core
             var bs:String = s.right;
             if (typeof(bs) === 'string' && bs.length > 0)
                 b = parseFloat(bs.substring(0, bs.length - 2));
+            var h:Number = NaN;
+            var hs:String = s.height;
+            if (typeof(hs) === 'string' && hs.length > 0)
+                h = parseFloat(hs.substring(0, hs.length - 2));
             if (!isNaN(t) &&
-                !isNaN(b)) {
+                !isNaN(b) &&
+                !isNaN(h)) {
                 // if just using size constraints and image will not shrink or grow
                 var computedHeight:Number = (host.positioner.offsetParent as HTMLElement).offsetHeight -
                     t - b;

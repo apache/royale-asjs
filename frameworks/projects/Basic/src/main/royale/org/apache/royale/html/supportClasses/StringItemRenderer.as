@@ -28,9 +28,12 @@ package org.apache.royale.html.supportClasses
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+    	import org.apache.royale.html.util.addElementToWrapper;
     }
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.ITextItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer; 
+	import org.apache.royale.html.util.getLabelFromData;
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()
@@ -114,7 +117,7 @@ package org.apache.royale.html.supportClasses
             }
             COMPILE::JS
             {
-                return this.element.innerHTML;
+                return this.element.textContent;
             }
 		}
 
@@ -126,7 +129,7 @@ package org.apache.royale.html.supportClasses
             }
             COMPILE::JS
             {
-                this.element.innerHTML = value;
+                this.element.textContent = value;
             }
 		}
 
@@ -138,22 +141,22 @@ package org.apache.royale.html.supportClasses
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion String
 		 */
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-            var text:String;
-			if (value is String) text = value as String;
-			else if (labelField) text = String(value[labelField]);
-			else if (dataField) text = String(value[dataField]);
-			else text = String(value);
-
-            this.text = text;
+            text = dataToString(value);
 		}
 
-        COMPILE::JS
-        private var backgroundView:WrappedHTMLElement;
+        protected function dataToString(value:Object):String
+        {
+            return getLabelFromData(this,value);
+        }
+        
+        // COMPILE::JS
+        // private var backgroundView:WrappedHTMLElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -161,11 +164,11 @@ package org.apache.royale.html.supportClasses
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            element = document.createElement('span') as WrappedHTMLElement;
+			return addElementToWrapper(this,'span');
             // itemRenderers should provide something for the background to handle
             // the selection and highlight
-            backgroundView = element;
-            return element;
+            // backgroundView = element;
+            // return element;
         }
 
 	}

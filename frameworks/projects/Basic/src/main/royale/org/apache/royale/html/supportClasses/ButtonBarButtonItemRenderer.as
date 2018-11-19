@@ -26,6 +26,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.html.supportClasses.UIItemRendererBase;
 
 	/**
 	 *  The ButtonBarButtonItemRenderer class handles the display of each item for the 

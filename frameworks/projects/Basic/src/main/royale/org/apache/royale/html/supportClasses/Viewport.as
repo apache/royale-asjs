@@ -20,11 +20,9 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IContentView;
-	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IViewport;
-	import org.apache.royale.core.IViewportModel;
 	import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -35,7 +33,6 @@ package org.apache.royale.html.supportClasses
 	COMPILE::SWF
 	{
 		import flash.geom.Rectangle;
-		import org.apache.royale.html.beads.models.ScrollBarModel;
 	}
 
     /**
@@ -91,6 +88,7 @@ package org.apache.royale.html.supportClasses
 		
 		/**
 		 * @royaleignorecoercion Class
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		COMPILE::JS
 		public function set strand(value:IStrand):void

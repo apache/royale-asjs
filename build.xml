@@ -150,7 +150,7 @@
     </target>
     
     <target name="release"
-        depends="block-flat-fonts,source-release,binary-release,rat-check"
+        depends="block-flat-fonts,check-compiler-home,check-typedefs-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache Royale."/>
         
     <target name="release-jenkins" 
@@ -444,6 +444,9 @@ limitations under the License.
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="js" />
         </ant>
+	<ant dir="${basedir}/frameworks" target="create-config">
+		<property name="configname" value="ace" />
+	</ant>
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="jquery" />
         </ant>
@@ -553,6 +556,7 @@ limitations under the License.
     
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads.">
         <delete dir="${basedir}/mustella/tests/basicTests/bin"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin"/>
         <delete dir="${basedir}/bin" failonerror="false">
             <include name="**"/>
             <exclude name=".gitignore"/>
@@ -582,7 +586,7 @@ limitations under the License.
         <delete dir="${basedir}/marmotinni/java/lib"/>
     </target>
 
-    <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean"
+    <target name="clean" depends="examples-clean,frameworks-clean,package-clean,checkintests-clean,mxtests-clean"
         description="Full clean excluding thirdparty downloads">
         
         <delete file="${basedir}/royale-sdk-description.xml" failonerror="false"/>
@@ -626,7 +630,7 @@ limitations under the License.
     <target name="player-clean">
         <delete dir="${basedir}/in/player" failonerror="false" includeEmptyDirs="true"/>
     </target>
-
+    
     <!--
         Build Examples
     -->
@@ -776,20 +780,20 @@ limitations under the License.
     </target>
 
     <target name="stage-compiler" >
-        <echo file="${basedir}/../royale-compiler/env.properties">env.ASJS_HOME=${basedir}</echo>
+        <echo file="${ROYALE_COMPILER_REPO}/env.properties">env.ASJS_HOME=${basedir}</echo>
         <!-- windows needs backslashes escaped -->
-        <replaceregexp file="${basedir}/../royale-compiler/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
-        <ant dir="${basedir}/../royale-compiler" target="wipe-all" />
-        <ant dir="${basedir}/../royale-compiler" target="stage-all" >
+        <replaceregexp file="${ROYALE_COMPILER_REPO}/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="wipe-all" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="stage-all" >
             <property name="staging-dir" value="${basedir}/temp/royale-compiler" />
         </ant>
     </target>
     
     <target name="stage-typedefs" >
-        <ant dir="${basedir}/../royale-typedefs" target="wipe" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" target="wipe" />
         <mkdir dir="${staging-dir}/../royale-typedefs"/>
         <copy todir="${staging-dir}/../royale-typedefs" includeEmptyDirs="false" >
-            <fileset dir="${basedir}/../royale-typedefs" includes="**" />
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}" includes="**" />
         </copy>
     </target>
     
@@ -872,6 +876,8 @@ limitations under the License.
         <fix-config-file file="${staging-dir}/frameworks/js-config-template.xml" version="${build.version}" />
         <echo message="Updating config file jquery-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/jquery-config-template.xml" version="${build.version}" />
+        <echo message="Updating config file ace-config.xml with version ${build.version}"/>
+        <fix-config-file file="${staging-dir}/frameworks/ace-config-template.xml" version="${build.version}" />
         <echo message="Updating config file createjs-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/createjs-config-template.xml" version="${build.version}" />
         <echo message="Updating config file node-config.xml with version ${build.version}"/>
@@ -964,6 +970,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -977,6 +984,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -989,6 +997,7 @@ limitations under the License.
                 <include name="createjs-config.xml"/>
                 <include name="flex-config.xml"/>
                 <include name="jquery-config.xml"/>
+                <include name="ace-config.xml"/>
                 <include name="js-config.xml"/>
                 <include name="node-config.xml"/>
                 <include name="royale-config.xml"/>
@@ -1045,6 +1054,7 @@ limitations under the License.
     <target name="tweak-for-jsonly" unless="env.AIR_HOME" description="do a few more things so the JSOnly package works">
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
         tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" />
+        <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
     </target>
     
     <!--
@@ -1489,7 +1499,7 @@ limitations under the License.
         </mxmlc>
          -->
         <!-- run the component smoke -->
-        <echo message="launching player and swf"/>
+        <echo message="launching player and swf ${flash.player} ${basedir}/mustella/tests/basicTests/BasicTestsApp.swf"/>
         <exec executable="${flash.player}" dir="${basedir}/mustella/tests/basicTests" failonerror="true">
             <arg value="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf"/>
         </exec>
@@ -1505,6 +1515,185 @@ limitations under the License.
             </classpath>
         </java>
     </target>
+    
+    <!--
+    	MX and Spark emulation tests
+    -->
+    
+    <target name="runmxtests" depends="mxtests-clean,mxtests-mustella" description="Tests MX and Spark emulation code" />
+    
+    <target name="mxtests-clean">
+        <delete file="${basedir}/mustella/tests/mxtests/BasicTests.swf" failonerror="false"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
+    </target>
+    
+    <target name="mxtests-mustella" depends="mustella-setup,mxtests" if="env.AIR_HOME" />
+    
+    <target name="mxtests-compile-java" depends="basictests-compile-java" />
+    
+    <target name="mxtests" depends="load-task,mxtests-compile-java" description="run MX tests using mustella"  if="env.AIR_HOME">
+        <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
+        <property name="ROYALE_HOME" value="${basedir}" />
+        <mxmlc fork="true" debug="true"
+               closure-lib="${env.GOOG_HOME}"
+               file="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <library-path dir="${ROYALE_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </library-path>
+            <js-external-library-path dir="${basedir}">
+                <include name="js/libs/js.swc"/>
+            </js-external-library-path>
+            <js-library-path dir="${basedir}" >
+                <include name="frameworks/js/libs"/>
+            </js-library-path>
+            <js-library-path dir="${ROYALE_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </js-library-path>
+            <arg value="-sdk-js-lib=${ROYALE_HOME}/mustella/js" />
+            <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+        </mxmlc>
+        <!-- compile supporting swfs for basic tests
+        <mkdir dir="${basedir}/mustella/tests/mxtests/basicTests/fonts" />
+        <copy todir="${basedir}/mustella/tests/mxtests/basicTests/fonts" failonerror="false">
+            <fileset dir="${ROYALE_HOME}/frameworks/fonts">
+                <include name="**/*.swf" />
+            </fileset>
+        </copy>
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/basicLoader.as">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/spark/views/StyleManagerModuleTest.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+        <mxmlc fork="true"
+               file="${basedir}/frameworks/tests/basicTests/spark/views/HelloWorld.mxml"
+                     static-rsls="false"
+                     remove-unused-rsls="true" >
+            <jvmarg line="${mxmlc.jvm.args}"/>
+        </mxmlc>
+         -->
+        <!-- run the component smoke -->
+        <echo message="launching player and swf ${flash.player} ${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf"/>
+        <exec executable="${flash.player}" dir="${basedir}/mustella/tests/mxtests/basicTests" failonerror="true">
+            <arg value="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.swf"/>
+        </exec>
+        <!-- halt if there was an error -->
+        <antcall target="mustellaresultsparser"/>
+    </target>
+
+    <target name="mxtests-marmotinni" depends="marmotinni-setup,mxtests-js"/>
+
+    <target name="mxtests-js" depends="mxtests-compile-js,mxtests-compile-java,mxtests-run-js" />
+
+    <target name="mxtests-run-js" >
+        <property name="profile_arg" value="dummy=false" />
+        <echo>url=file://${basedir}/mustella/tests/mxtests/bin/js-debug/index.html</echo>
+        <java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
+            <!--<arg value="browser=chrome" />-->
+            <arg value="url=file://${basedir}/mustella/tests/mxtests/basicTests/bin/js-debug/index.html" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/CheckBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/RadioButtonTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextInputTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/TextAreaTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ComboBoxTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ListAndDataGridTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/NumericStepperTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/DateFieldTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/MenuBarTestScript.mxml" />
+            <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/spark/scripts/ButtonTestScript.mxml" />
+            <arg value="showSteps=true" />
+            <arg value="showScripts=true" />
+            <arg value="${profile_arg}" />
+            <classpath>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.10.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-el-1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-io-2.4.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.4.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.17.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.5.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.4.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.5.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-jmx-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-security-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-server-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlet-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlets-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-util-9.2.3.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-4.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-4.1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jsp-api-2.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-4.12.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.22.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.2.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xercesImpl-2.11.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
+            </classpath>
+        </java>
+        
+    </target>
+
+    <target name="mxtests-compile-js" depends="load-task" unless="env.AIR_HOME">
+        <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+        <property name="ROYALE_COMPILER_HOME" value="${ROYALE_HOME}/js"/>
+        <property name="GOOG_HOME" value="${env.GOOG_HOME}"/>
+        <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
+        <echo message="GOOG_HOME: ${GOOG_HOME}"/>
+        <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" />
+        <mxmlc fork="true" debug="true"
+            closure-lib="${env.GOOG_HOME}"
+            file="${basedir}/mustella/tests/mxtests/BasicTestsApp.mxml">
+            <jvmarg line="${mxmlc.jvm.args}"/>
+            <targets>JSRoyale</targets>
+            <library-path dir="${ROYALE_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </library-path>
+            <js-external-library-path dir="${basedir}">
+                <include name="js/libs/js.swc"/>
+            </js-external-library-path>
+            <js-library-path dir="${basedir}" >
+                <include name="frameworks/js/libs"/>
+            </js-library-path>
+            <js-library-path dir="${ROYALE_HOME}" append="true">
+                <include name="mustella/mustella.swc"/>
+            </js-library-path>
+            <arg value="-sdk-js-lib=${ROYALE_HOME}/mustella/js" />
+        </mxmlc>
+    </target>
 
 	<!--
 	    Run the Apache Rat audit tool against the source in the source kit.
@@ -1512,7 +1701,7 @@ limitations under the License.
 	    
 	    To check a subset of files run with -Drat.dir=<dir>.
 	    
-	    You need to place apache-rat-tasks-0.8.jar and apache-rat-0.8.jar in the 
+	    You need to place apache-rat-tasks-0.8.jar and apache-rat-0.8.jar in the
 	    anttask.classpath in order to do this.  If the jar isn't found, the report
 	    will not be generated.
 	--> 
@@ -1620,16 +1809,16 @@ limitations under the License.
 	
 	<target name="create-SHA-512" >
 		<echo message="Generating SHA-512 hashes for release artifacts"/>
-		<checksum algorithm="SHA-512" file="${basedir}/out/${binary.kit}.tar.gz" forceOverwrite="yes"/>
-		<checksum algorithm="SHA-512" file="${basedir}/out/${binary.kit}.zip" forceOverwrite="yes"/>
-		<checksum algorithm="SHA-512" file="${basedir}/out/${source.kit}.tar.gz" forceOverwrite="yes"/>
-		<checksum algorithm="SHA-512" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${binary.kit}.tar.gz" forceOverwrite="yes" fileext=".sha512"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${binary.kit}.zip" forceOverwrite="yes" fileext=".sha512"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${source.kit}.tar.gz" forceOverwrite="yes" fileext=".sha512"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${source.kit}.zip" forceOverwrite="yes" fileext=".sha512"/>
 	</target>
 
     <target name="create-SHA-512-jsonly" if="env.AIR_HOME" >
         <echo message="Generating SHA-512 hashes for release artifacts"/>
-        <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.tar.gz" forceOverwrite="yes"/>
-        <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.zip" forceOverwrite="yes"/>
+        <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.tar.gz" forceOverwrite="yes" fileext=".sha512"/>
+        <checksum algorithm="SHA-512" file="${basedir}/out/${binary-js.kit}.zip" forceOverwrite="yes" fileext=".sha512"/>
     </target>
 
     <target name="sign-jsonly" if="env.AIR_HOME" >
@@ -1686,7 +1875,7 @@ limitations under the License.
         
 	<target name="doc-create-SHA-512" >
 		<echo message="Generating SHA-512 hashes for doc artifacts"/>
-		<checksum algorithm="SHA-512" file="${basedir}/out/${kit.prefix}-asdocs.zip" forceOverwrite="yes"/>
+		<checksum algorithm="SHA-512" file="${basedir}/out/${kit.prefix}-asdocs.zip" forceOverwrite="yes" fileext=".sha512"/>
 	</target>
 	
     <target name="doc-sign" >
@@ -1781,9 +1970,16 @@ limitations under the License.
     </target>
 
     <target name="check-royale-compiler">
+        <available file="${ROYALE_COMPILER_REPO}"
+        type="dir"
+        property="royale-compiler-exists"/>
         <available file="${base.folder.name}/royale-compiler"
         type="dir"
         property="royale-compiler-exists"/>
+        <available file="${base.folder.name}/royale-compiler"
+        type="dir"
+        property="ROYALE_COMPILER_REPO"
+        value="${base.folder.name}/royale-compiler"/>
     </target>
 
     <target name="clone-royale-compiler" depends="check-royale-compiler" unless="royale-compiler-exists">
@@ -1793,6 +1989,7 @@ limitations under the License.
             <arg value="https://github.com/apache/royale-compiler.git" />
             <arg value="royale-compiler" />
         </exec>
+        <property name="ROYALE_COMPILER_REPO" value="${base.folder.name}/royale-compiler" />
         <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-compiler">
             <arg value="checkout" />
             <arg value="develop" />
@@ -1800,9 +1997,16 @@ limitations under the License.
     </target>
 
     <target name="check-royale-typedefs">
+        <available file="${ROYALE_TYPEDEFS_HOME}"
+        type="dir"
+        property="royale-typedefs-exists"/>
         <available file="${base.folder.name}/royale-typedefs"
         type="dir"
         property="royale-typedefs-exists"/>
+        <available file="${base.folder.name}/royale-typedefs"
+        type="dir"
+        property="ROYALE_TYPEDEFS_HOME"
+        value="${base.folder.name}/royale-typedefs"/>
     </target>
 
     <target name="clone-royale-typedefs" depends="check-royale-typedefs" unless="royale-typedefs-exists">
@@ -1812,18 +2016,19 @@ limitations under the License.
             <arg value="https://github.com/apache/royale-typedefs.git" />
             <arg value="royale-typedefs" />
         </exec>
+        <property name="ROYALE_TYPEDEFS_HOME" value="${base.folder.name}/royale-typedefs" />
         <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-typedefs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
     </target>
 
-    <target name="build-all" depends="check-playerglobal-home,check-air-home">
+    <target name="build-all" depends="check-playerglobal-home,check-air-home,check-royale-compiler,check-royale-typedefs">
         <property name="font.donot.ask" value="set" />
         <antcall target="ask-before-build-all" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/royale-compiler" />
-        <ant dir="${base.folder.name}/royale-typedefs" />
+        <ant dir="${ROYALE_COMPILER_REPO}" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" />
     </target>
     <target name="ask-before-build-all" unless="release.target">
         <input

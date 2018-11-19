@@ -31,6 +31,7 @@ package org.apache.royale.html.supportClasses
 		public function TreeItemRenderer()
 		{
 			super();
+            typeNames += " TreeItemRenderer";
 		}
 		
 		/**
@@ -51,8 +52,8 @@ package org.apache.royale.html.supportClasses
 			var extraSpace:String = " ";
 			
 			COMPILE::JS {
-				indentSpace = "&nbsp;&nbsp;&nbsp;&nbsp;";
-				extraSpace = "&nbsp;";
+				indentSpace = "\u00a0\u00a0\u00a0\u00a0";
+				extraSpace = "\u00a0";
 			}
 				
 			var indent:String = "";

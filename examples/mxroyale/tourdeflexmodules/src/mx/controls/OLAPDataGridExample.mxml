@@ -1,0 +1,208 @@
+<?xml version="1.0"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%"
+				creationComplete="creationCompleteHandler()">
+
+     <fx:Script>
+      <![CDATA[
+        import mx.rpc.AsyncResponder;
+        import mx.rpc.AsyncToken;
+        import mx.olap.OLAPQuery;
+        import mx.olap.OLAPSet;
+        import mx.olap.IOLAPQuery;
+        import mx.olap.IOLAPQueryAxis;
+        import mx.olap.IOLAPCube;
+        import mx.olap.OLAPResult;
+        import mx.events.CubeEvent;
+        import mx.controls.Alert;
+        import mx.collections.ArrayCollection;
+        
+        
+        [Bindable]
+        private var flatData:ArrayCollection = new ArrayCollection(
+        [
+         {customer:"AAA", product:"Flex SDK", quarter:"Q1", revenue:210, cost:25},
+         {customer:"AAA", product:"Flex JS", quarter:"Q2", revenue:210, cost:25},
+         {customer:"AAA", product:"Falcon", quarter:"Q3", revenue:250, cost:125},
+         {customer:"AAA", product:"Falcon JX", quarter:"Q4", revenue:430, cost:75},
+
+         {customer:"BBB", product:"Flex SDK", quarter:"Q2", revenue:125, cost:20},
+         {customer:"BBB", product:"Flex JS", quarter:"Q3", revenue:210, cost:20},
+         {customer:"BBB", product:"Falcon", quarter:"Q4", revenue:320, cost:120},
+         {customer:"BBB", product:"Falcon JX", quarter:"Q1", revenue:280, cost:70},
+
+         {customer:"CCC", product:"Flex SDK", quarter:"Q3", revenue:375, cost:120},
+         {customer:"CCC", product:"Flex JS", quarter:"Q4", revenue:430, cost:120},
+         {customer:"CCC", product:"Falcon", quarter:"Q1", revenue:470, cost:220},
+         {customer:"CCC", product:"Falcon JX", quarter:"Q2", revenue:570, cost:170},
+    
+         {customer:"AAA", product:"Flex SDK", quarter:"Q4", revenue:215, cost:90},
+         {customer:"AAA", product:"Flex JS", quarter:"Q1", revenue:210, cost:90},
+         {customer:"AAA", product:"Falcon", quarter:"Q2", revenue:175, cost:190},
+         {customer:"AAA", product:"Falcon JX", quarter:"Q3", revenue:670, cost:75},
+    
+         {customer:"BBB", product:"Flex SDK", quarter:"Q1", revenue:175, cost:20},
+         {customer:"BBB", product:"Flex JS", quarter:"Q2", revenue:210, cost:20},
+         {customer:"BBB", product:"Falcon",quarter:"Q3", revenue:120, cost:120},
+         {customer:"BBB", product:"Falcon JX", quarter:"Q4", revenue:310, cost:70},
+    
+         {customer:"CCC", product:"Flex SDK", quarter:"Q1", revenue:385, cost:120},
+         {customer:"CCC", product:"Flex JS", quarter:"Q2", revenue:340, cost:120},
+         {customer:"CCC", product:"Falcon", quarter:"Q3", revenue:470, cost:220},
+         {customer:"CCC", product:"Falcon JX", quarter:"Q4", revenue:270, cost:170},
+    
+         {customer:"AAA", product:"Flex SDK", quarter:"Q1", revenue:100, cost:25},
+         {customer:"AAA", product:"Flex JS", quarter:"Q2", revenue:150, cost:25},
+         {customer:"AAA", product:"Falcon", quarter:"Q3", revenue:200, cost:125},
+         {customer:"AAA", product:"Falcon JX", quarter:"Q4", revenue:300, cost:75},
+    
+         {customer:"BBB", product:"Flex SDK", quarter:"Q2", revenue:175, cost:20},
+         {customer:"BBB", product:"Flex JS", quarter:"Q3", revenue:100, cost:20},
+         {customer:"BBB", product:"Falcon", quarter:"Q4", revenue:270, cost:120},
+         {customer:"BBB", product:"Falcon JX", quarter:"Q1", revenue:370, cost:70},
+    
+         {customer:"CCC", product:"Flex SDK", quarter:"Q3", revenue:410, cost:120},
+         {customer:"CCC", product:"Flex JS", quarter:"Q4", revenue:300, cost:320},
+         {customer:"CCC", product:"Falcon", quarter:"Q1", revenue:510, cost:220},
+         {customer:"CCC", product:"Falcon JX", quarter:"Q2", revenue:620, cost:170},
+    
+         {customer:"AAA", product:"Flex SDK", quarter:"Q4", revenue:215, cost:90},
+         {customer:"AAA", product:"Flex JS", quarter:"Q1", revenue:210, cost:90},
+         {customer:"AAA", product:"Falcon", quarter:"Q2", revenue:175, cost:190},
+         {customer:"AAA", product:"Falcon JX", quarter:"Q3", revenue:420, cost:75},
+    
+         {customer:"BBB", product:"Flex SDK", quarter:"Q1", revenue:240, cost:20},
+         {customer:"BBB", product:"Flex JS", quarter:"Q2", revenue:100, cost:20},
+         {customer:"BBB", product:"Falcon", quarter:"Q3", revenue:270, cost:120},
+         {customer:"BBB", product:"Falcon JX", quarter:"Q4", revenue:370, cost:70},
+    
+         {customer:"CCC", product:"Flex SDK", quarter:"Q1", revenue:375, cost:120},
+         {customer:"CCC", product:"Flex JS", quarter:"Q2", revenue:420, cost:120},
+         {customer:"CCC", product:"Falcon", quarter:"Q3", revenue:680, cost:220},
+         {customer:"CCC", product:"Falcon JX", quarter:"Q4", revenue:570, cost:170}         
+        ]);
+    
+        private function creationCompleteHandler():void {
+            // You must initialize the cube before you 
+            // can execute a query on it.
+            myMXMLCube.refresh();
+        }
+
+        // Create the OLAP query.
+        private function getQuery(cube:IOLAPCube):IOLAPQuery {
+            // Create an instance of OLAPQuery to represent the query. 
+            var query:OLAPQuery = new OLAPQuery;
+            
+            // Get the row axis from the query instance.
+            var rowQueryAxis:IOLAPQueryAxis = 
+                query.getAxis(OLAPQuery.ROW_AXIS);
+            // Create an OLAPSet instance to configure the axis.
+            var productSet:OLAPSet = new OLAPSet;
+            // Add the Product to the row to aggregate data 
+            // by the Product dimension.
+            productSet.addElements(
+                cube.findDimension("ProductDim").findAttribute("Product").children);
+            // Add the OLAPSet instance to the axis.
+            rowQueryAxis.addSet(productSet);
+            
+            // Get the column axis from the query instance, and configure it
+            // to aggregate the columns by the Quarter dimension. 
+            var colQueryAxis:IOLAPQueryAxis = 
+                query.getAxis(OLAPQuery.COLUMN_AXIS);         
+            var quarterSet:OLAPSet= new OLAPSet;
+            quarterSet.addElements(
+                cube.findDimension("QuarterDim").findAttribute("Quarter").children);
+            colQueryAxis.addSet(quarterSet);
+            
+            return query;       
+        }
+
+        // Event handler to execute the OLAP query 
+        // after the cube completes initialization.
+        private function runQuery(event:CubeEvent):void {
+            // Get cube.
+            var cube:IOLAPCube = IOLAPCube(event.currentTarget);
+            // Create a query instance.
+            var query:IOLAPQuery = getQuery(cube);
+            // Execute the query.
+            var token:AsyncToken = cube.execute(query);
+            // Setup handlers for the query results.
+            token.addResponder(new AsyncResponder(showResult, showFault));
+        }
+
+        // Handle a query fault.
+        private function showFault(result:Object, token:Object):void {
+            Alert.show("Error in query.");
+        }
+
+        // Handle a successful query by passing the query results to 
+        // the OLAPDataGrid control..
+        private function showResult(result:Object, token:Object):void {
+            if (!result) {
+                Alert.show("No results from query.");
+                return;
+            }
+            myOLAPDG.dataProvider= result as OLAPResult;            
+        }        
+      ]]>
+    </fx:Script>
+
+	<fx:Declarations>
+	    <mx:OLAPCube name="FlatSchemaCube" 
+	        dataProvider="{flatData}" 
+	        id="myMXMLCube"
+	        complete="runQuery(event)">
+	         
+	        <mx:OLAPDimension name="CustomerDim">
+	            <mx:OLAPAttribute name="Customer" dataField="customer"/>
+	            <mx:OLAPHierarchy name="CustomerHier" hasAll="true">
+	                <mx:OLAPLevel attributeName="Customer"/>
+	            </mx:OLAPHierarchy>
+	        </mx:OLAPDimension>
+	        
+	        <mx:OLAPDimension name="ProductDim">
+	            <mx:OLAPAttribute name="Product" dataField="product"/>
+	            <mx:OLAPHierarchy name="ProductHier" hasAll="true">
+	                <mx:OLAPLevel attributeName="Product"/>
+	            </mx:OLAPHierarchy>
+	        </mx:OLAPDimension>
+	    
+	        <mx:OLAPDimension name="QuarterDim">
+	            <mx:OLAPAttribute name="Quarter" dataField="quarter"/>
+	            <mx:OLAPHierarchy name="QuarterHier" hasAll="true">
+	                <mx:OLAPLevel attributeName="Quarter"/>
+	            </mx:OLAPHierarchy> 
+	        </mx:OLAPDimension>
+	        
+	        <mx:OLAPMeasure name="Revenue" 
+	            dataField="revenue" 
+	            aggregator="SUM"/>
+	    </mx:OLAPCube>
+    </fx:Declarations>
+		
+    <mx:Panel title="OLAPCube Control Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:OLAPDataGrid id="myOLAPDG" width="100%" height="100%"/>
+		
+    </mx:Panel>
+</mx:Module>

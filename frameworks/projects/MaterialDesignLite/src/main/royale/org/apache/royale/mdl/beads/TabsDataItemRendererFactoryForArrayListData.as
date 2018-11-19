@@ -20,17 +20,17 @@ package org.apache.royale.mdl.beads
 {
     import org.apache.royale.collections.IArrayList;
     import org.apache.royale.core.IItemRendererParent;
-    import org.apache.royale.core.IList;
     import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.IStrandWithModelView;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
-
+    import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.DataItemRendererFactoryForArrayList;
+    import org.apache.royale.html.beads.IListView;
     import org.apache.royale.html.supportClasses.DataItemRenderer;
     import org.apache.royale.mdl.beads.models.ITabModel;
     import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
-    import org.apache.royale.events.Event;
 
     /**
      *  The TabsDataItemRendererFactoryForArrayListData class reads an
@@ -67,14 +67,23 @@ package org.apache.royale.mdl.beads
             super.initComplete(event);
         }
 
+        /**
+         * @royaleignorecoercion org.apache.royale.core.UIBase
+         * @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         * @royaleignorecoercion org.apache.royale.html.beads.IListView
+         * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+         * @royaleignorecoercion org.apache.royale.mdl.supportClasses.ITabItemRenderer
+         */
         override protected function dataProviderChangeHandler(event:Event):void
         {
             var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
             if (!dp)
                 return;
 
-            var list:IList = _strand as IList;
-            var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererParent = view.dataGroup;
 
             dataGroup.removeAllItemRenderers();
 
@@ -87,7 +96,7 @@ package org.apache.royale.mdl.beads
                 ir.tabIdField = tabsIdField;
                 var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-                dataGroup.addItemRenderer(ir);
+                dataGroup.addItemRenderer(ir, false);
 
                 if (presentationModel) {
                     var style:SimpleCSSStyles = new SimpleCSSStyles();
@@ -97,15 +106,13 @@ package org.apache.royale.mdl.beads
                     UIBase(ir).percentWidth = 100;
                 }
 
-                var data:Object = dp.getItemAt(i);
-                ir.index = i;
                 ir.labelField = labelField;
                 if (dataItemRenderer)
                 {
                     dataItemRenderer.dataField = dataField;
                 }
 
-                setData(ir, data, i);
+                setData(ir, dp.getItemAt(i), i);
             }
 
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));

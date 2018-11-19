@@ -1,0 +1,180 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel ComboBox
+
+// ComboBox variables
+$combobox-button-width: 2.8em
+$combobox-button-size: 22px
+$combobox-input-width: 13.7em
+$combobox-button-xoffset: calc(50% - #{$combobox-button-size/2})
+$combobox-button-yoffset: calc(50% - #{$combobox-button-size/2})
+
+
+.jewel.combobox
+    display: inline-flex
+
+    .jewel.textinput
+        // width: $combobox-input-width
+        display: block // this makes the combobox adapts to the right size in IE11
+            
+    .jewel.button
+        // width: $combobox-button-width
+        &::before
+            margin: 0
+            padding: 0
+            
+            line-height: $combobox-button-size
+            
+        &::after
+            content: ' '
+            position: absolute
+
+            width: $combobox-button-size
+            height: $combobox-button-size
+
+            left: $combobox-button-xoffset
+            top: $combobox-button-yoffset
+
+j|ComboBox
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ComboBoxModel")
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxView")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ComboBoxController")
+    IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp")
+
+
+// ComboBoxPopUp variables
+$combobox-popup-margin-offset: 10px
+$combobox-popup-overlay-color: #000 !default
+$combobox-popup-overlay-opacity: .65 !default
+$combobox-item-min-heigh: 34px
+    
+.combobox-popup
+    position: fixed
+    pointer-events: none
+
+    bottom: 0
+    left: 0
+
+    width: 100%
+    height: 100%
+
+    overflow: hidden
+    contain: strict
+
+    z-index: 5
+
+    color: rgba(0, 0, 0, 0.8)
+
+    &::before
+        position: absolute
+        display: block
+
+        top: 0
+        left: 0
+
+        width: 100%
+        height: 100%
+
+        content: ""
+        opacity: 0
+
+        background-color: rgba($combobox-popup-overlay-color, $combobox-popup-overlay-opacity)
+        will-change: opacity
+        transition: animation-standard(opacity, .4s)
+
+
+    .jewel.list
+        position: relative
+        transform: translate(-50%, 100%)
+        transition: none
+        will-change: transform, opacity
+
+        bottom: auto
+        top: calc(100% - #{$combobox-popup-margin-offset})
+        left: 50%
+        touch-action: none
+        box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
+
+        // width: $combobox-input-width + $combobox-button-width
+        max-height: $combobox-item-min-heigh * 5
+        opacity: 0
+
+    &.open
+        pointer-events: auto
+
+        &::before
+            opacity: 1
+
+        .jewel.list
+            transform: translate(-50%, -100%)
+            transition: animation-standard(transform, .4s), animation-standard(opacity, .4s)
+            opacity: 1
+
+@media (max-width: $tablet)
+    .combobox-popup
+        .jewel.list
+            width: 98% !important
+
+@media (min-width: $tablet) and (max-width: $desktop)
+    .combobox-popup
+        .jewel.list
+            width: 70% !important
+
+@media (max-width: $desktop)
+    .combobox-popup
+        .jewel.list
+            max-height: ( $combobox-item-min-heigh + 14 ) * 5 !important
+    .jewel.item
+        height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
+
+@media (min-width: $desktop)
+    .combobox-popup
+        &::before
+            background-color: rgba($combobox-popup-overlay-color, 0)
+        .jewel.list
+            // transform: translate(0px, -200px)
+            transform: none
+            transition: none
+            box-shadow: none !important
+
+            .jewel.item
+                height: 0
+                overflow: hidden
+                transition: height 200ms ease-in
+
+        &.open
+            .jewel.list
+                transform: none
+                top: auto
+                left: auto
+
+                .jewel.item
+                    height: $combobox-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
+
+
+// this is a StyledUIBase with a List inside
+j|ComboBoxPopUp
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView")
+
+
+// @media -royale-swf
+//     j|ComboBoxPopUp
+//         IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
+	

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  ~ Licensed to the Apache Software Foundation (ASF) under one or more
+  ~     contributor license agreements.  See the NOTICE file distributed with
+  ~     this work for additional information regarding copyright ownership.
+  ~     The ASF licenses this file to You under the Apache License, Version 2.0
+  ~     (the "License"); you may not use this file except in compliance with
+  ~     the License.  You may obtain a copy of the License at
+  ~
+  ~         http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~     Unless required by applicable law or agreed to in writing, software
+  ~     distributed under the License is distributed on an "AS IS" BASIS,
+  ~     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~     See the License for the specific language governing permissions and
+  ~     limitations under the License.
+  -->
+
+<compTree>
+	<node label="3rd Party Components">
+		<node label="Ardisia">
+			<node thirdParty="true" label="Ardisia Component Library" app="http://www.ardisialabs.com/tourDeFlex/tour-de-flex.jpg" src="" link="http://www.ardisialabs.com/tour-de-flex" />
+		</node>
+		<node label="Flexicious">
+			<node thirdParty="true" label="Dashboard Framework" app="http://www.flexicious.com/dashboard.jpg" src="" link="http://www.flexicious.com/Home/Dashboard"/>
+			<node thirdParty="true" label="Ultimate DataGrid" app="http://www.flexicious.com/ultimate.jpg" src="" link="http://www.flexicious.com/Home/Ultimate" />
+			<node thirdParty="true" label="Classic DataGrid" app="http://www.flexicious.com/classic.jpg" src="" link="http://www.flexicious.com/Home/DemoFlex4"/>
+		</node>
+	</node>
+</compTree>

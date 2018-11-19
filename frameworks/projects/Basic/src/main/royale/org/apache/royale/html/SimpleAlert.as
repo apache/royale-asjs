@@ -33,8 +33,8 @@ package org.apache.royale.html
 	 *  org.apache.royale.core.IBeadModel: the data model, which includes the message.
 	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the Alert.
 	 *  org.apache.royale.core.IBeadController: the bead responsible for handling input events.
-	 *  org.apache.royale.core.IBorderBead: a bead, if present, that draws a border around the control.
-	 *  org.apache.royale.core.IBackgroundBead: a bead, if present, that creates a solid-color background.
+	 *  org.apache.royale.html.beads.IBorderBead: a bead, if present, that draws a border around the control.
+	 *  org.apache.royale.html.beads.IBackgroundBead: a bead, if present, that creates a solid-color background.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -64,12 +64,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IAlertModel
 		 */
 		private function get message():String
 		{
 			return IAlertModel(model).message;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IAlertModel
+		 */
 		private function set message(value:String):void
 		{
 			IAlertModel(model).message = value;
@@ -81,12 +85,16 @@ package org.apache.royale.html
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IAlertModel
 		 */
 		private function get htmlMessage():String
 		{
 			return IAlertModel(model).htmlMessage;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IAlertModel
+		 */
 		private function set htmlMessage(value:String):void
 		{
 			IAlertModel(model).htmlMessage = value;

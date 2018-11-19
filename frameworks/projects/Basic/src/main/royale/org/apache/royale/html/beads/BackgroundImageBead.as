@@ -30,6 +30,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+
+	import org.apache.royale.html.beads.IBackgroundBead;
 	
 	/**
 	 *  The BackgroundImageBead is used to render an image as the background to any component
@@ -94,7 +96,7 @@ package org.apache.royale.html.beads
 					
 					bitmap = Bitmap(LoaderInfo(e.target).content);
 					
-					host.addChildAt(bitmap,0);
+					host.$addChildAt(bitmap,0);
 					
 					if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
 						host.setWidth(loader.content.width);

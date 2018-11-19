@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<!-- Custom skins used for this example are shown in the source tabs for reference -->
+	<s:Panel width="100%" height="100%" title="Button Skinned With Icon" 
+			 >
+		<s:HGroup width="100%" left="35" top="15">
+			<s:VGroup width="50%">
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Button with Icon Only Skin"/>
+					<s:Button skinClass="skins.CloseButtonSkin" width="16" height="16"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Button with Icon And Drop Shadow Skin"/>
+					<s:Button skinClass="skins.AddButtonSkin" width="20" height="20"/>
+				</s:HGroup>
+				<s:HGroup verticalAlign="middle">
+					<s:Label text="Rounded Corner Button with Icon And Text Skin"/>
+					<s:Button skinClass="skins.IconTextButtonSkin" label="Add" width="53" />	
+				</s:HGroup>
+			</s:VGroup>
+			<s:Label width="50%" text="Buttons can be skinned to contain an icon and to include or not include the text label. Check the source for the 3 skin classes that handle the different combinations." 
+						  verticalAlign="middle"/>
+			
+		</s:HGroup>
+	</s:Panel>
+	
+</s:Module>

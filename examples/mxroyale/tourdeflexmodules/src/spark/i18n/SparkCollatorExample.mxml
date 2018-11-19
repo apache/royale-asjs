@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.apache.org/royale/spark"
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   width="100%" height="100%" creationComplete="matchRB_clickHandler()">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			private var _locales:ArrayCollection = new ArrayCollection(['en-US','de-DE','ja-JP','ru-RU','zh-CN','fr-FR']);
+			[Bindable]
+			private var _strArrColl:ArrayCollection = new ArrayCollection(['ö','Ö','A','a.bc','a','Ä','côte','ä','Ａ','ア','ァ','あ','中','abc','WO','ａ','ae','Æ','côté','coté','Ô','OE','Œ','ぁ','wo']);
+			[Bindable]
+			private var _resultArrColl:ArrayCollection = new ArrayCollection();
+			[Bindable]
+			private var _collatorInstance:*;
+			
+			protected function sortRB_clickHandler():void
+			{
+				//create sortingCollator instance
+				_collatorInstance = new SortingCollator();
+				_collatorInstance = sortingCollator;
+				
+				sortStr();
+			}
+			
+			protected function matchRB_clickHandler():void
+			{
+				//create sortingCollator instance
+				_collatorInstance = new MatchingCollator();
+				_collatorInstance = matchingCollator;
+				
+				sortStr();
+			}
+			
+			private function sortStr():void 
+			{
+				//sort strings in original arrayCollection
+				_strArrColl.source.sort(_collatorInstance.compare);
+				_strArrColl.refresh();
+				
+				//format above sorted array to let those strings which with same value show in one line within the list
+				_resultArrColl.source = showResult(_strArrColl.source);
+				_resultArrColl.refresh();
+			}
+			
+			//function that make strings with same value show in the same line
+			private function showResult(arr:Array):Array 
+			{
+				var indexVal:String = arr[0];
+				//the array used to put same strings into one element
+				var reVal:Array = new Array();
+				var j:int = 0;
+				
+				reVal[j]='';
+				
+				for(var i:int = 0; i<arr.length; i++)
+				{
+					if(_collatorInstance.compare(arr[i],indexVal) == 0)
+					{
+						reVal[j] += ' ' + arr[i];
+					}
+					else
+					{
+						indexVal = arr[i];
+						j++;
+						reVal[j]='';
+						i--;
+					}
+				}
+				return reVal;
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:SortingCollator id="sortingCollator"/>
+		<s:MatchingCollator id="matchingCollator"/>
+	</fx:Declarations>
+	
+	<s:Panel title="Spark Collator" width="100%" height="100%">
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" />
+		</s:layout>
+		
+		<s:Form id="myForm" height="100%" width="100%">
+			<s:Label text="Customize Collator options and find out the string sorting results: "/>
+			<s:Spacer height="15"/>
+			
+			<s:FormItem label="Collator Type:" toolTip="Please select a Collator type first!">
+				<s:HGroup>
+					<s:RadioButton id="sortRB" groupName="collatorType" label="SortingCollator" click="sortRB_clickHandler()"/>
+					<s:RadioButton id="matchRB" groupName="collatorType" label="MatchingCollator" selected="true" click="matchRB_clickHandler()"/>
+				</s:HGroup>
+			</s:FormItem>
+			<s:FormItem label="Locale:">
+				<s:ComboBox id="localeCB" dataProvider="{_locales}" selectedIndex="0" 
+							change="_collatorInstance.setStyle('locale',localeCB.selectedItem); sortStr()"/>
+			</s:FormItem>
+			<s:FormItem label="Collator Options:" toolTip="Customize below options to see the sorting result.">
+				<s:CheckBox id="ignCaseCB" label="ignoreCase" selected="{_collatorInstance.ignoreCase}" 
+							change="_collatorInstance.ignoreCase = ignCaseCB.selected; sortStr()"/>
+				<s:CheckBox id="ignDiacriticsCB" label="ignoreDiacritics" selected="{_collatorInstance.ignoreDiacritics}" 
+							change="_collatorInstance.ignoreDiacritics = ignDiacriticsCB.selected; sortStr()"/>
+				<s:CheckBox id="ignSymbolsCB" label="ignoreSymbols" selected="{_collatorInstance.ignoreSymbols}" 
+							change="_collatorInstance.ignoreSymbols = ignSymbolsCB.selected; sortStr()"/>
+				<s:CheckBox id="ignKanaTypeCB" label="ignoreKanaType" selected="{_collatorInstance.ignoreKanaType}" 
+							change="_collatorInstance.ignoreKanaType = ignKanaTypeCB.selected; sortStr()"/>
+				<s:CheckBox id="ignCharacterWidthCB" label="ignoreCharacterWidth" selected="{_collatorInstance.ignoreCharacterWidth}" 
+							change="_collatorInstance.ignoreCharacterWidth = ignCharacterWidthCB.selected; sortStr()"/>
+			</s:FormItem>
+			<s:Label text="============================================================================"/>
+			<s:HGroup>
+				<s:FormItem label="Sorting Result:">
+					<s:List id="sCltResult" dataProvider="{_resultArrColl}" toolTip="Strings that are equal will show within one line."/>
+				</s:FormItem>
+			</s:HGroup>
+		</s:Form>
+		
+	</s:Panel>	
+</s:Module>

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Group 
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:s="library://ns.adobe.com/flex/spark"
+    xmlns:mx="library://ns.adobe.com/flex/mx">
+
+    <fx:Script>
+    <![CDATA[
+    
+        import mx.collections.*;
+        import mx.controls.*;
+        import mx.events.*;
+        import mx.managers.*;
+    	
+        import spark.components.DataGrid;
+        import spark.components.gridClasses.GridColumn;
+    ]]>
+    </fx:Script>
+
+    <fx:Declarations>
+        <s:ArrayCollection id="dp">
+            <fx:Object country="USA" firstName="Jerry" lastName="Altinegra" position="FW" club="Club16" number="00"/>
+            <fx:Object country="USA" firstName="Carl" lastName="Bocadore" position="DF" club="Club13" number="01"/>
+            <fx:Object country="USA" firstName="Tom" lastName="How" position="GK" club="Club5" number="02"/>
+            <fx:Object country="USA" firstName="Calvin" lastName="Dempley" position="MF" club="Club6" number="03"/>
+            <fx:Object country="USA" firstName="Robert" lastName="Findsey" position="FW" club="Club12" number="04"/>
+            <fx:Object country="USA" firstName="Herz" lastName="Gomvan" position="FW" club="Club11" number="05"/>
+            <fx:Object country="USA" firstName="Lon" lastName="Donovez" position="MF" club="Club8" number="06"/>
+            <fx:Object country="USA" firstName="Oger" lastName="Once" position="DF" club="Club9" number="07"/>
+            <fx:Object country="USA" firstName="Benson" lastName="Feller" position="MF" club="Club0" number="08"/>
+            <fx:Object country="USA" firstName="Ed" lastName="Bundle" position="FW" club="Club8" number="09"/>
+            <fx:Object country="USA" firstName="Mivel" lastName="Brady" position="MF" club="Club4" number="10"/>
+            <fx:Object country="USA" firstName="Stere" lastName="Cherry" position="DF" club="Club7" number="11"/>
+            <fx:Object country="USA" firstName="Jack" lastName="Demit" position="DF" club="Club15" number="12"/>
+            <fx:Object country="USA" firstName="Jerry" lastName="Altinegra" position="FW" club="Club16" number="13"/>
+            <fx:Object country="ENG" firstName="Robin" lastName="Grain" position="GK" club="Club3" number="14"/>
+            <fx:Object country="ENG" firstName="Joseph" lastName="Hartman" position="GK" club="Club10" number="15"/>
+            <fx:Object country="ENG" firstName="Gran" lastName="Johnsen" position="DF" club="Club9" number="16"/>
+            <fx:Object country="ENG" firstName="Ashton" lastName="Colvin" position="DF" club="Club2" number="17"/>
+            <fx:Object country="ENG" firstName="Mim" lastName="Dawon" position="DF" club="Club14" number="18"/>
+            <fx:Object country="ENG" firstName="Jon" lastName="Terren" position="DF" club="Club2" number="19"/>
+            <fx:Object country="ENG" firstName="Steven" lastName="Warren" position="DF" club="Club1" number="20"/>
+            <fx:Object country="ENG" firstName="Mark" lastName="Upton" position="DF" club="Club17" number="21"/>
+            <fx:Object country="ENG" firstName="James" lastName="Carrer" position="DF" club="Club10" number="22"/>
+            <fx:Object country="ENG" firstName="Len" lastName="Kingman" position="DF" club="Club14" number="23"/>		
+        </s:ArrayCollection>
+        
+        <fx:Object id="obj1" country="ENG" firstName="len" lastName="Kingman" position="DF" club="Club14" number="23"/>
+        <fx:Object id="obj2" country="USA" firstName="Jack" lastName="Demit" position="DF" club="Club15" number="12"/>
+        
+        <s:ArrayCollection id="columns">
+            <s:GridColumn id="col1" dataField="country" />
+            <s:GridColumn id="col2" dataField="firstName" visible="false" />
+            <s:GridColumn id="col3" dataField="lastName" />
+            <s:GridColumn id="col5" dataField="club" />
+            <s:GridColumn id="col6" dataField="number" />
+        </s:ArrayCollection>
+        
+        <s:GridColumn id="col4" dataField="position"/>
+    </fx:Declarations>
+
+	<s:DataGrid id="testdg" />
+
+</s:Group>

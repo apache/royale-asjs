@@ -1,0 +1,47 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Firefox needs colors inside inline SVGs to be encoded changing # for %23, i.e: #FF0000 needs to be %23FF0000
+// @function encodecolor($string)
+//     @if type-of($string) == 'color'
+//         $string: unquote('#{str-slice('' + $string, 2)}')
+//     @return '%23' + $string
+
+// Function to encode a SVG to use as inline data in CSS
+// This makes SVGs work in IE11, Chrome, Firefox, Safari,...
+// It procudces a shorter result than base64
+@function encodeSVG($svgImage)
+    $svgImage: replace-text($svgImage, '<', '%3C')
+    $svgImage: replace-text($svgImage, '>', '%3E')
+    $svgImage: replace-text($svgImage, '&', '%26')
+    $svgImage: replace-text($svgImage, '#', '%23')
+    // $svgImage: replace-text($svgImage, '"', "'")
+    @return url("data:image/svg+xml,#{$svgImage}")
+    
+@function replace-text($string, $search, $replace: '')
+    $index: str-index($string, $search)
+    @if $index
+        @return str-slice($string, 1, $index - 1) + $replace + replace-text(str-slice($string, $index + str-length($search)), $search, $replace)
+    @return $string
+
+
+//$animation-curve-timing-function: cubic-bezier(.3, 0, .1, 2) !default
+@function animation-standard($name, $duration, $delay: 0ms)
+    @return $name $duration $delay //$animation-curve-timing-function
+

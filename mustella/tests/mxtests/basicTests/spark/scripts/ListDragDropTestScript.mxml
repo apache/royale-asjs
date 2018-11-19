@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml"
+			xmlns="*"
+			testSWF="main.mxml">
+
+        <!-- this set of lines form a template that must be in each unit test -->
+        <mx:Script>
+            <![CDATA[
+                  public static function init(o:DisplayObject):void {}
+            ]]>
+        </mx:Script>
+        <mx:Metadata>
+            <![CDATA[
+               [Mixin]
+            ]]>
+        </mx:Metadata>
+        <!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+		<![CDATA[
+		import spark.layouts.*;
+		import mx.managers.DragManager;
+		import mx.core.mx_internal;
+		use namespace mx_internal;
+		]]>
+	</mx:Script>
+	
+	<testCases>
+		<TestCase testID="SetupListDragDropTest" keywords="[DragDrop, List]" description="Spark ListDND checkin test 1.">
+			<body>
+				<SetProperty target="" propertyName="currentState" value="sparkListDragDropTest" waitEvent="updateComplete" />
+			</body>
+		</TestCase>
+
+		<TestCase testID="1_SparkListDND1_copy" keywords="[DragDrop, List]" description="drag copy">
+			<body>
+				<ResetComponent target="sparkListDragDropTests.dragFrom" className="spark.components.List" waitEvent="updateComplete" />
+				<ResetComponent target="sparkListDragDropTests.l2"       className="spark.components.List" waitEvent="updateComplete" />
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.dragFrom.dataGroup"/>
+
+				<SetProperty target="sparkListDragDropTests.l2" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.l2.dataGroup"/>
+
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="7" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="7" />
+
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="labelField" value="lastName"
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.dragFrom"/>
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="labelField" value="firstName" 
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.l2"/>
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="selectedIndex" value="1" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.l2" 	  propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="dropEnabled" value="true" />
+
+				<DispatchMouseEvent type="mouseOver" buttonDown="false" target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="10" localY="70" />
+				<DispatchMouseEvent type="mouseDown" buttonDown="true"	target="sparkListDragDropTests.dragFrom.dataGroup"         
+									localX="10" localY="70" />
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="50" localY="72" />
+
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.l2"  
+									localX="15" localY="10" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="updateComplete"/>
+				<DispatchMouseEvent target="sparkListDragDropTests.l2"             type="mouseMove" buttonDown="true"
+									localX="50" localY="30" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="sparkListDragDropTests.l2"             type="mouseUp"                      
+									localX="50" localY="30" waitTarget="sparkListDragDropTests.dragFrom" waitEvent="dragComplete" />
+
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="7" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="8" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.l2.dataProvider.getItemAt(1).firstName" value="Ron" />
+			</body>
+		</TestCase>
+
+		<TestCase testID="2_SparkListDND_move" keywords="[DragDrop, List]" description="drag move">
+			<body>
+				<ResetComponent target="sparkListDragDropTests.dragFrom" className="spark.components.List" waitEvent="updateComplete" />
+				<ResetComponent target="sparkListDragDropTests.l2"       className="spark.components.List" waitEvent="updateComplete" />
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.dragFrom.dataGroup"/>
+				
+				<SetProperty target="sparkListDragDropTests.l2" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.l2.dataGroup"/>
+				
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="7" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="7" />
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="labelField" value="lastName"
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.dragFrom"/>
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="labelField" value="firstName" 
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.l2"/>
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="selectedIndex" value="1" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dragMoveEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.l2" 	  propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="dropEnabled" value="true" />
+				
+				<DispatchMouseEvent type="mouseOver" buttonDown="false" target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="10" localY="70" />
+				<DispatchMouseEvent type="mouseDown" buttonDown="true"	target="sparkListDragDropTests.dragFrom.dataGroup"         
+									localX="10" localY="70" />
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="50" localY="72" />
+				
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.l2"  
+									localX="15" localY="10" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="updateComplete"/>
+				<DispatchMouseEvent target="sparkListDragDropTests.l2"             type="mouseMove" buttonDown="true"
+									localX="50" localY="30" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="sparkListDragDropTests.l2"             type="mouseUp"                      
+									localX="50" localY="30" waitTarget="sparkListDragDropTests.dragFrom" waitEvent="dragComplete" />
+
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="6" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="8" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.l2.dataProvider.getItemAt(1).firstName" value="Ron" />
+			</body>
+		</TestCase>
+
+		<TestCase testID="3_SparkListDND_move" keywords="[DragDrop, List]" description="drag move">
+			<body>
+				<ResetComponent target="sparkListDragDropTests.dragFrom" className="spark.components.List" waitEvent="updateComplete" />
+				<ResetComponent target="sparkListDragDropTests.l2"       className="spark.components.List" waitEvent="updateComplete" />
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.dragFrom.dataGroup"/>
+				
+				<SetProperty target="sparkListDragDropTests.l2" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.l2.dataGroup"/>
+				
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="7" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="7" />
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="labelField" value="lastName"
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.dragFrom"/>
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="labelField" value="firstName" 
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.l2"/>
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="selectedIndex" value="1" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dragMoveEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="allowMultipleSelection" value="true" />
+				<SetProperty target="sparkListDragDropTests.l2" 	  propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="dropEnabled" value="true" />
+				
+				<DispatchMouseEvent type="mouseOver" buttonDown="false" target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="10" localY="70" />
+				<DispatchMouseEvent type="mouseDown" buttonDown="true"	target="sparkListDragDropTests.dragFrom.dataGroup"         
+									localX="10" localY="70" />
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="50" localY="72" />
+				
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.l2"  
+									localX="15" localY="10" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="updateComplete"/>
+				<DispatchMouseEvent target="sparkListDragDropTests.l2"             type="mouseMove" buttonDown="true"
+									localX="50" localY="30" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="sparkListDragDropTests.l2"             type="mouseUp"                      
+									localX="50" localY="30" waitTarget="sparkListDragDropTests.dragFrom" waitEvent="dragComplete" />
+
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="6" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="8" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.l2.dataProvider.getItemAt(1).firstName" value="Ron" />
+			</body>
+		</TestCase>
+
+		<TestCase testID="4_SparkListDND_reorder" keywords="[DragDrop, List]" description="drag move">
+			<body>
+				<ResetComponent target="sparkListDragDropTests.dragFrom" className="spark.components.List" waitEvent="updateComplete" />
+				<ResetComponent target="sparkListDragDropTests.l2"       className="spark.components.List" waitEvent="updateComplete" />
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.dragFrom.dataGroup"/>
+				
+				<SetProperty target="sparkListDragDropTests.l2" propertyName="dataProvider"
+							 valueExpression="value=application.sparkListDragDropTests.createPlayersAC()" 
+							 waitEvent="updateComplete" 
+							 waitTarget="sparkListDragDropTests.l2.dataGroup"/>
+				
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="7" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="7" />
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="labelField" value="lastName"
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.dragFrom"/>
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="labelField" value="firstName" 
+							 waitEvent="updateComplete" waitTarget="sparkListDragDropTests.l2"/>
+				
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="selectedIndex" value="1" waitEvent="updateComplete" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dragMoveEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="dropEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.dragFrom" propertyName="allowMultipleSelection" value="true"/>
+				<SetProperty target="sparkListDragDropTests.l2" 	  propertyName="dragEnabled" value="true" />
+				<SetProperty target="sparkListDragDropTests.l2"       propertyName="dropEnabled" value="true" />
+				
+				<DispatchMouseEvent type="mouseOver" buttonDown="false" target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="10" localY="70" />
+				<DispatchMouseEvent type="mouseDown" buttonDown="true"	ctrlKey="true" target="sparkListDragDropTests.dragFrom.dataGroup"         
+									localX="10" localY="70" />
+
+				<DispatchMouseEvent type="mouseDown" buttonDown="true"	ctrlKey="true" target="sparkListDragDropTests.dragFrom.dataGroup"         
+									localX="10" localY="90" />
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.dragFrom.dataGroup"
+									localX="50" localY="72" />
+				
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"	target="sparkListDragDropTests.l2"  
+									localX="15" localY="10" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="updateComplete"/>
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"  target="sparkListDragDropTests.l2"             
+									localX="50" localY="30" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+
+				<DispatchMouseEvent type="mouseMove" buttonDown="true"  target="sparkListDragDropTests.dragFrom"             
+									localX="50" localY="70" waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent type="mouseUp" 						target="sparkListDragDropTests.dragFrom"                                  
+									localX="50" localY="70" waitTarget="sparkListDragDropTests.dragFrom" waitEvent="dragComplete" />
+
+				<AssertPropertyValue target="sparkListDragDropTests.dragFrom.dataGroup" propertyName="numElements" value="7" />
+				<AssertPropertyValue target="sparkListDragDropTests.l2.dataGroup" propertyName="numElements" value="7" />
+
+				<AssertMethodValue method="value=application.sparkListDragDropTests.dragFrom.dataProvider.getItemAt(0).lastName" value="Brown" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.dragFrom.dataProvider.getItemAt(1).lastName" value="Brady" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.dragFrom.dataProvider.getItemAt(2).lastName" value="Left" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.dragFrom.dataProvider.getItemAt(3).lastName" value="Gore" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.dragFrom.dataProvider.getItemAt(4).lastName" value="OName" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.dragFrom.dataProvider.getItemAt(5).lastName" value="VName" />
+				<AssertMethodValue method="value=application.sparkListDragDropTests.dragFrom.dataProvider.getItemAt(6).lastName" value="Boone" />
+
+			</body>
+		</TestCase>
+
+	</testCases>
+</UnitTester>

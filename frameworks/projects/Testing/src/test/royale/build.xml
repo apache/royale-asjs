@@ -26,7 +26,7 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="FLEX_HOME" value="${env.FLEX_HOME}"/>
-    <property name="FALCON_HOME" value="${env.FALCON_HOME}"/>
+    <property name="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}"/>
     <property name="target.name" value="Core-${release.version}.swc" />
 
     <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
@@ -89,13 +89,13 @@
     </target>
     
     <path id="lib.path">
-      <fileset dir="${FALCONJX_HOME}/lib" includes="falcon-royaleTasks.jar"/>
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="falcon-royaleTasks.jar"/>
     </path>
 
     <target name="compile" description="Compiles FlexUnitApplication.swf">
         <echo message="Compiling FlexUnitRoyaleApplication.swf"/>
         <echo message="FLEX_HOME: ${FLEX_HOME}"/>
-        <echo message="FALCON_HOME: ${FALCON_HOME}"/>
+        <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="FLEXUNIT_HOME: ${FLEXUNIT_HOME}"/>
         <echo message="playerglobal.version: ${playerglobal.version}"/>
 

@@ -21,9 +21,9 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IViewportModel;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.core.layout.EdgeData;
 	
     /**
      * @copy org.apache.royale.core.IViewportModel

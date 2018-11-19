@@ -18,18 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	import org.apache.royale.states.State;
-
 	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.ILayoutHost;
-    import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.states.State;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -68,7 +66,8 @@ package org.apache.royale.html
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IParent
          */
         override public function set strand(value:IStrand):void
         {

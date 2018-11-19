@@ -19,8 +19,6 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
@@ -32,12 +30,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	COMPILE::SWF {
 		import org.apache.royale.geom.Size;
-		import org.apache.royale.geom.Rectangle;
 	}
 
 	/**
@@ -78,6 +74,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutView
 		 */
 		public function get contentView():ILayoutView
 		{
@@ -129,6 +126,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 */
 		protected function handleInitComplete(event:Event):void
 		{

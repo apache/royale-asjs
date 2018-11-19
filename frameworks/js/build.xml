@@ -100,6 +100,12 @@
         <antcall target="Text"/>
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
+        <antcall target="Icons" />
+        <antcall target="Jewel"/>
+        <antcall target="MXRoyale"/>
+        <antcall target="SparkRoyale"/>
+        <antcall target="Ace"/>
+        <antcall target="RoyaleSite"/>
     </target>
     
     <target name="other.locales" description ="Builds resource SWCs for all locales">
@@ -149,6 +155,12 @@
         <ant dir="${basedir}/projects/TextJS" target="clean"/>
         <ant dir="${basedir}/projects/TLFJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
+        <ant dir="${basedir}/projects/IconsJS" target="clean"/>
+        <ant dir="${basedir}/projects/JewelJS" target="clean"/>
+        <ant dir="${basedir}/projects/MXRoyaleJS" target="clean"/>
+        <ant dir="${basedir}/projects/SparkRoyaleJS" target="clean"/>
+        <ant dir="${basedir}/projects/AceJS" target="clean"/>
+        <ant dir="${basedir}/projects/RoyaleSiteJS" target="clean"/>
 
         <delete dir="${basedir}/libs"/>
         <delete dir="${basedir}/generated-sources"/>
@@ -237,17 +249,45 @@
     <target name="Storage" description="Clean build of StorageJS.swc">
         <ant dir="${basedir}/projects/StorageJS"/>
     </target>
+
     <target name="XML" description="Clean build of XMLJS.swc">
         <ant dir="${basedir}/projects/XMLJS"/>
     </target>
+
     <target name="Testing" description="Clean build of TestingJS.swc">
         <ant dir="${basedir}/projects/TestingJS"/>
     </target>
+
     <target name="Text" description="Clean build of TextJS.swc">
         <ant dir="${basedir}/projects/TextJS"/>
     </target>
+
     <target name="TLF" description="Clean build of TLFJS.swc">
         <ant dir="${basedir}/projects/TLFJS"/>
+    </target>
+
+    <target name="Icons" description="Clean build of IconsJS.swc">
+        <ant dir="${basedir}/projects/IconsJS"/>
+    </target>
+
+    <target name="Jewel" description="Clean build of JewelJS.swc">
+        <ant dir="${basedir}/projects/JewelJS"/>
+    </target>
+
+    <target name="MXRoyale" description="Clean build of MXRoyaleJS.swc">
+        <ant dir="${basedir}/projects/MXRoyaleJS"/>
+    </target>
+
+    <target name="SparkRoyale" description="Clean build of SparkRoyaleJS.swc">
+        <ant dir="${basedir}/projects/SparkRoyaleJS"/>
+    </target>
+    
+    <target name="Ace" description="Clean build of AceJS.swc">
+        <ant dir="${basedir}/projects/AceJS"/>
+    </target>
+    
+    <target name="RoyaleSite" description="Clean build of RoyaleSiteJS.swc">
+        <ant dir="${basedir}/projects/RoyaleSiteJS"/>
     </target>
 
 </project>

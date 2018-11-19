@@ -66,6 +66,9 @@
             <param name="file" value="${pixelbender.bin.zip}" />
             <param name="dest" value="${download.dir}/${pixelbender.bin.zip}" />
         </antcall>
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="${pixelbender.bin.zip}" />
+        </antcall>
         
         <unzip src="${download.dir}/${pixelbender.bin.zip}" dest="${ROYALE_HOME}/frameworks/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/">
             <patternset>
@@ -100,8 +103,12 @@
             <param name="file" value="${flexunit.bin.zip}" />
             <param name="dest" value="${download.dir}/${flexunit.bin.zip}" />
         </antcall>
+        <antcall target="get-from-cache-if-needed" >
+            <param name="filename" value="${flexunit.bin.zip}" />
+        </antcall>
         
         <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${ROYALE_HOME}/in/flexunit" />
+        <delete file="${ROYALE_HOME}/in/flexunit/flexunit/flexunit-4.2.0-20140410-flex_4.12.0.swc"/>
     </target>
 
     <target name="flexunit-clean" description="Deletes flexunit files.">
@@ -377,20 +384,28 @@
         </antcall>
     </target>
     <target name="download_using_mirror" if="usingmirror">
-        <get src="${server}/${folder}/${file}?asjson=true" verbose="true" dest="${basedir}/mirror.json" />
+        <get src="${server}/${folder}/${file}?asjson=true" verbose="true" dest="${basedir}/mirror.json" ignoreerrors="true" />
+        <antcall target="use_mirror" />
+    </target>
+    <target name="download_using_get" unless="usingmirror">
+        <get src="${server}/${folder}/${file}" dest="${dest}" ignoreerrors="true" />
+    </target>
+    <target name="check_mirror_json">
+        <condition property="mirror.json.exists" value="true">
+            <available file="${basedir}/mirror.json" />
+        </condition>
+    </target>
+    <target name="use_mirror" depends="check_mirror_json" if="mirror.json.exists">
         <replace file="${basedir}/mirror.json">
             <replacefilter token="&quot;"
             value="" />
             <replacefilter token=": "
             value="=" />
         </replace>
-        <property file="${basedir}/mirror.json" />
-        <delete file="${basedir}/mirror.json" />
+	<property file="${basedir}/mirror.json" />
+        <delete file="${basedir}/mirror.json" failonerror="false"/>
         <echo>Using mirror: ${preferred}</echo>
-        <get src="${preferred}${folder}/${file}" dest="${dest}" />
-    </target>
-    <target name="download_using_get" unless="usingmirror">
-        <get src="${server}/${folder}/${file}" dest="${dest}" />
+        <get src="${preferred}${folder}/${file}" dest="${dest}" ignoreerrors="true" />
     </target>
 
 </project>

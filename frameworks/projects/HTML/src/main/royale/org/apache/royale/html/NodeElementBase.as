@@ -18,13 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-    import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.Group;
 
     public class NodeElementBase extends Group
     {
         public function NodeElementBase()
         {
             super();
+
+            typeNames = "";
         }
 
         COMPILE::SWF

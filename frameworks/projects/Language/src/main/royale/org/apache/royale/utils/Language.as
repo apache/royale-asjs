@@ -74,7 +74,7 @@ package org.apache.royale.utils
 
 			itIs = Language.is(leftOperand, rightOperand);
 
-			if (!itIs && coercion)
+			if (!itIs && coercion && leftOperand)
 			{
 				message = 'Type Coercion failed';
 
@@ -135,15 +135,24 @@ package org.apache.royale.utils
                 return true;
             if (rightOperand === Object)
                 return true; // every value is an Object in ActionScript except null and undefined (caught above)
-            
-			if (typeof leftOperand === 'string')
+            // A little faster to only call typeof once
+			var theType:String = typeof leftOperand;
+			//TODO This is actually incorrect for 'constructed' strings
+			// The correct way is using Object.prototype.toString.call(leftOperand) == '[object String]'
+			// But this is about 50 times slower than typeof
+			// "is String" should probably be pulled out into a separate function
+			// which is called directly by the compiler to deal with it in the most performant manner.
+			// Another (possibly better) option would be to have the compiler throw an error
+			// if new is used with String, Number or Boolean. If 'new' is not allowed, the typeof check is enough.
+			if (theType === 'string')
 				return rightOperand === String;
 
-			if (typeof leftOperand === 'number')
+			if (theType === 'number')
 				return rightOperand === Number;
 
-            if (typeof leftOperand === 'boolean')
+            if (theType === 'boolean')
                 return rightOperand === Boolean;
+			//TODO add optimization to compiler to convert 'is Array' directly to Array.isArray
             if (rightOperand === Array)
                 return Array.isArray(leftOperand);
 
@@ -158,8 +167,7 @@ package org.apache.royale.utils
 				}
 			}
 
-			superClass = leftOperand.constructor;
-            superClass = superClass.superClass_;
+			superClass = leftOperand.constructor.superClass_;
 
 			if (superClass)
 			{
@@ -172,8 +180,7 @@ package org.apache.royale.utils
 							return true;
 						}
 					}
-					superClass = superClass.constructor;
-                    superClass = superClass.superClass_;
+					superClass = superClass.constructor.superClass_;
 				}
 			}
 
@@ -219,13 +226,13 @@ package org.apache.royale.utils
         {
             return isClass(classDef) ? classDef : null;
         }
-        
+        /**
+		 * @royaledebug
+		 */
 		static public function trace(...rest):void
 		{
 			var theConsole:*;
 
-			if (!goog.DEBUG) return;
-			
 			theConsole = goog.global.console;
 
 			if (theConsole === undefined)
@@ -283,6 +290,63 @@ package org.apache.royale.utils
             return boundMethod;
         };
 
+        /**
+         * @param	arr
+         * @param	names
+         * @param	opt
+         */
+        public static function sort(arr:Array,...args):void{
+            var compareFunction:Function = null;
+            var opt:int = 0;
+            if (args.length == 1)
+            {
+                if (typeof args[0] === "function")
+                    compareFunction = args[0];
+                else
+                    opt = args[0];
+            }
+            else if (args.length == 2)
+            {
+                compareFunction = args[0];
+                opt = args[1];
+            }
+                
+            muler = (Array.DESCENDING & opt) > 0?-1: 1;
+            if (compareFunction)
+                arr.sort(compareFunction);
+            else if (opt & Array.NUMERIC){
+                arr.sort(compareAsNumber);
+            }else if (opt & Array.CASEINSENSITIVE){
+                arr.sort(compareAsStringCaseinsensitive);
+            }else{
+                arr.sort(compareAsString);
+            }
+        }
+        
+        private static function compareAsStringCaseinsensitive(a:Object, b:Object):int{
+            var v:int = (a||zeroStr).toString().toLowerCase().localeCompare((b||zeroStr).toString().toLowerCase());
+            if (v != 0){
+                return v*muler;
+            }
+            return 0;
+        }
+        private static function compareAsString(a:Object, b:Object):int{
+            var v:int = (a||zeroStr).toString().localeCompare((b||zeroStr).toString());
+            if (v != 0){
+                return v*muler;
+            }
+        return 0;
+        }
+        
+        private static function compareAsNumber(a:Object, b:Object):int{
+            if (a>b){
+                return muler;
+            }else if (a<b){
+                    return -muler;
+            }
+            return 0;
+        }
+        
 		/**
 		 * @param	arr
 		 * @param	names

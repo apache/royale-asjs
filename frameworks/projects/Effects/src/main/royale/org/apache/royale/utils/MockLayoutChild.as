@@ -138,6 +138,27 @@ package org.apache.royale.utils
 		{
 			_explicitWidth = value;
 		}
+		private var _measuredWidth:Number;
+		public function get measuredWidth():Number
+		{
+			return _measuredWidth;
+		}
+
+		public function set measuredWidth(value:Number):void
+		{
+			_measuredWidth = value;
+
+		}
+		private var _measuredHeight:Number;
+		public function get measuredHeight():Number
+		{
+			return _measuredHeight;
+		}
+
+		public function set measuredHeight(value:Number):void
+		{
+			_measuredHeight = value;
+		}
 
 		public function isWidthSizedToContent():Boolean
 		{

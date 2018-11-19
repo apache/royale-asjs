@@ -200,7 +200,7 @@ package org.apache.royale.svg
                     rect.setAttribute('rx', radiusX);
                     rect.setAttribute('ry', radiusY);
                 }
-                element.appendChild(rect);
+                addElementToSurface(rect);
             }
 
         }
@@ -239,7 +239,7 @@ package org.apache.royale.svg
                 ellipse.setAttribute('cy', y + height / 2);
                 ellipse.setAttribute('rx', width / 2);
                 ellipse.setAttribute('ry', height / 2);
-                element.appendChild(ellipse);
+                addElementToSurface(ellipse);
             }
         }
 
@@ -276,7 +276,7 @@ package org.apache.royale.svg
                 circle.setAttribute('cy', y);
                 circle.setAttribute('rx', radius);
                 circle.setAttribute('ry', radius);
-                element.appendChild(circle);
+                addElementToSurface(circle);
 
             }
         }
@@ -332,7 +332,7 @@ package org.apache.royale.svg
                 path.style.top = "0px";
                 path.setAttribute('style', style);
                 path.setAttribute('d', data);
-                element.appendChild(path);
+                addElementToSurface(path);
             }
         }
 
@@ -550,7 +550,7 @@ package org.apache.royale.svg
                 text.setAttribute('y', y + 15);
                 var textNode:Text = document.createTextNode(value) as Text;
                 text.appendChild(textNode as Node);
-                element.appendChild(text);
+                addElementToSurface(text);
                 return text;
             }
         }
@@ -584,6 +584,15 @@ package org.apache.royale.svg
 
 
         }
+
+		/*
+               *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		*/
+		COMPILE::JS
+		protected function addElementToSurface(e:WrappedHTMLElement):void
+		{
+			element.appendChild(e);
+		}
 
     }
 }

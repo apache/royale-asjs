@@ -97,5 +97,11 @@ function handleInstallComplete(event)
 
 FlashPlayerGlobal.install = function()
 {
-    FlashPlayerGlobal.promptForFlashPlayerGlobal();
+    if(process.env.ACCEPT_ALL_ROYALE_LICENSES === 'true')
+    {
+        FlashPlayerGlobal.downloadFlashPlayerGlobal();
+    }
+    else {
+        FlashPlayerGlobal.promptForFlashPlayerGlobal();
+    }
 };

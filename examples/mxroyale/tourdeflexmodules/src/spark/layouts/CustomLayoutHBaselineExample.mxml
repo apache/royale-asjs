@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<!-- http://evtimmy.com/2010/02/extending-horizontallayout-to-support-baseline-align-to-text/ -->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx" 
+			   xmlns:local="*">
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function update(event:Event):void
+			{
+				globalBaseline.top = theLayout.actualBaseline;
+				checkBoxBaseline.top = checkBox.y + checkBox.baselinePosition;
+				labelBaseline.top = label.y + label.baselinePosition;
+				labelBaseline.left = label.x;
+				buttonBaseline.top = button.y + button.baselinePosition; 
+				buttonBaseline.left = button.x;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Panel width="100%" height="100%" title="CustomLayout with HBaselineLayout">
+		
+		<!-- Controls -->
+		<s:HGroup left="14" top="5">
+			<s:VGroup>
+				<s:CheckBox label="Checkbox" id="showCheckBox" selected="true"/>
+				<s:CheckBox label="Label" id="showLabel" selected="true"/>
+				<s:CheckBox label="Button " id="showButton" selected="true"/>
+				<s:CheckBox label="Layout " id="showLayout" selected="true"/>
+			</s:VGroup>
+			
+			<s:TileGroup requestedColumnCount="2">
+				<s:CheckBox id="baseline1Check" label="Offset Checkbox baseline" selected="true"/>
+				<s:HSlider id="baseline1Slider" minimum="-100" maximum="100" enabled="{baseline1Check.selected}" width="160"/>
+				<s:CheckBox id="baseline2Check" label="Offset Label baseline" selected="true"/>
+				<s:HSlider id="baseline2Slider" minimum="-100" maximum="100" enabled="{baseline2Check.selected}" width="160"/>
+				<s:CheckBox id="baseline3Check" label="Offset Button baseline" selected="true"/>
+				<s:HSlider id="baseline3Slider" minimum="-100" maximum="100" enabled="{baseline3Check.selected}" width="160"/>
+				<s:CheckBox id="baseline4Check" label="Offset Layout baseline"/>
+				<s:HSlider id="baseline4Slider" minimum="-100" maximum="100" enabled="{baseline4Check.selected}" width="160" value="15"/>
+				<s:CheckBox id="buttonHeightCheck" label="Override Button height" selected="true"/>
+				<s:HSlider id="buttonHeightSlider" minimum="21" maximum="150" enabled="{buttonHeightCheck.selected}" width="160" value="21"/>
+			</s:TileGroup>
+		</s:HGroup>
+		
+		
+		<s:Group id="container" updateComplete="update(event)" top="138" horizontalCenter="0">
+			<s:layout>
+				<local:HBaselineLayout id="theLayout" verticalAlign="baseline"
+									   globalBaseline="{baseline4Check.selected ? baseline4Slider.value : NaN}"/>
+			</s:layout>
+			<s:CheckBox id="checkBox" label="One check box" move="update(event)"
+						baseline="{baseline1Check.selected ? baseline1Slider.value : 0}"/>
+			<s:Label id="label" text="...and some random text..." move="update(event)"
+					 baseline="{baseline2Check.selected ? baseline2Slider.value : 0}"/>
+			<s:Button id="button" label="and a Button!" move="update(event)"
+					  height="{buttonHeightCheck.selected ? buttonHeightSlider.value : 21}"
+					  baseline="{baseline3Check.selected ? baseline3Slider.value : 0}"/>
+			<!-- visual guides for the baselines -->
+			<s:Group includeInLayout="false">
+				<s:Line width="{container.width}" id="globalBaseline" top="{theLayout.actualBaseline}"
+						visible="{showLayout.selected}">
+					<s:stroke>
+						<s:SolidColorStroke color="0x00FF00" weight="2"/>
+					</s:stroke>
+				</s:Line>
+				
+				<s:Line width="{checkBox.width-1}" id="checkBoxBaseline"
+						visible="{showCheckBox.selected}">
+					<s:stroke>
+						<s:SolidColorStroke color="0xFF0000" alpha="0.5" weight="2"/>
+					</s:stroke>
+				</s:Line>
+				
+				<s:Line width="{label.width-1}" id="labelBaseline"
+						visible="{showLabel.selected}">
+					<s:stroke>
+						<s:SolidColorStroke color="0x0000FF" alpha="0.5" weight="2"/>
+					</s:stroke>
+				</s:Line>
+				
+				<s:Line width="{button.width-1}" id="buttonBaseline"
+						visible="{showButton.selected}">
+					<s:stroke>
+						<s:SolidColorStroke color="0xFF00FF" alpha="0.5" weight="2"/>
+					</s:stroke>
+				</s:Line>
+			</s:Group>
+		</s:Group>
+		<s:Label right="14" top="7" color="0x323232" width="200"
+				 text="This sample shows how you can create a custom layout to extend the HorizontalLayout to provide
+				 baseline alignment functionality."/>
+	</s:Panel>
+	
+</s:Module>

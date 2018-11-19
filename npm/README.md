@@ -8,7 +8,9 @@ The **Apache Royale** NPM packages are distributed under the Apache-Royale NPM o
 The package: `@apache-royale/royale-js` supports only the JS/HTML output.  
 The package: `@apache-royale/royale-js-swf` supports both JS/HTML and SWF/AIR output.  
 
-**For End Users**
+##For End Users
+
+**Manual installs**
 
 To install these packages, users need to run the following commands:
 
@@ -17,7 +19,13 @@ npm install @apache-royale/royale-js -g
 npm install @apache-royale/royale-js-swf -g
 ```
 
-**For Release Managers:**
+**Automated installs**
+
+Set the environment variable: `ACCEPT_ALL_ROYALE_LICENSES=true` to accept all the licenses prompted 
+by the npm installer script.  This lets you use the installer in a automated environment without 
+interactive prompts. 
+
+##For Release Managers
 
 To setup the publish scripts, first run:
 

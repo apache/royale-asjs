@@ -1,0 +1,81 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel SnackBar
+
+// SnackBar variables
+$snackbar-border-radius: $border-radius
+$snackbar-default-color: #2C3E50
+$snackbar-action-color: $action-color
+$snackbar-popup-margin-offset: 10px
+
+.jewel.snackbar
+	will-change: transform
+	transform: translate(0, 100%)
+	transition: animation-standard(transform, .4s)
+
+	&.open
+		transform: translate(0)
+		transition: animation-standard(transform, .4s)
+
+	&.primary
+		.jewel.snackbar-content
+			@if $flat
+				background: $primary-color
+				border: 0px solid
+			@else
+				background: linear-gradient(lighten($primary-color, 5%), darken($primary-color, 5%))
+				border: 1px solid darken($primary-color, 15%)
+				box-shadow: inset 0 1px 0 lighten($primary-color, 20%)
+				border-bottom: none
+			
+			// +jewel-bg-border("normal", $primary-color, $snackbar-border-radius) --> we want only rounded corners on top corners
+		
+		.jewel.snackbar-message
+			color: $font-theme-color
+
+		.jewel.snackbar-action
+			color: $yellow
+		
+			&:hover
+				@if $flat
+					background: darken($primary-color, 5%)
+					border: none
+				@else
+					background: linear-gradient($primary-color, darken($primary-color, 10%))
+				// +jewel-bg-border("hover", $primary-color)
+				// @if $flat == false
+				// 	border: none
+
+.jewel.snackbar-content
+	background: $snackbar-default-color
+	border-radius: $snackbar-border-radius $snackbar-border-radius 0px 0px
+
+.jewel.snackbar-message
+	color: $font-theme-color
+
+.jewel.snackbar-action
+	color: $snackbar-action-color
+
+	&:hover
+		background-color: #3C4E60
+
+@media (max-width: $desktop)
+	.jewel.snackbar-content
+		border-radius: 0px

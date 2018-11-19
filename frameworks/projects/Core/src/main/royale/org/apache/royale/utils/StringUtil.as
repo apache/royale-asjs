@@ -92,7 +92,7 @@ package org.apache.royale.utils
 			var args:Array;
 			if (len === 1 && rest[0] is Array)
 			{
-				args = rest[0] as Array;
+				args = rest[0];
 				len = args.length;
 			}
 			else
@@ -331,6 +331,30 @@ package org.apache.royale.utils
 			}
 			
 			return allowIt;
+		}
+
+		/**
+         *  Removes word from a String and return the new result string
+         *
+         *  @param str The String to be modified. 
+         *  @param wordToSeach The word string to search and remove from str
+         *
+         *  @return <code>String</code> the string without the word
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+        public static function removeWord(str:String, wordToSeach:String):String
+		{
+			var pos:Number;
+			while(str.search(wordToSeach) > -1)
+			{
+				pos = str.search(wordToSeach);
+				str = str.substring(0, pos) + str.substring(pos + wordToSeach.length, str.length);
+			}
+			return str;
 		}
 	}
 }

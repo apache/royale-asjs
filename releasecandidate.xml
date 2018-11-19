@@ -76,7 +76,11 @@
         <available file="${basedir}/build.properties"
             type="file"
             property="found.build.properties" value="true" />
-        
+
+        <available file="${basedir}/royale-asjs/build.properties"
+            type="file"
+            property="found.build.properties" value="true" />
+
         <fail message="This script should be copied into an empty folder and run from there.  Run the maven-branch target to create release branches or run the 'maven' target to start creating an release candidate, then start with an empty folder again and run the 'main' target to complete the release candidate."
             if="found.build.properties"/>
     </target>
@@ -208,6 +212,14 @@
         <isset property="isWindows" />
     </condition>
     <property name="mvn" value="mvn" />
+    <condition property="npm" value="npm.cmd">
+        <isset property="isWindows" />
+    </condition>
+    <property name="npm" value="npm" />
+    <condition property="node" value="node.exe">
+        <isset property="isWindows" />
+    </condition>
+    <property name="node" value="node" />
     
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
@@ -243,6 +255,20 @@
         <typedef resource="org/apache/rat/anttasks/antlib.xml"
         uri="antlib:org.apache.rat.anttasks"
         classpathref="anttask.classpath"/>
+    </target>
+
+    <target name="maven-release-plugin" description="build maven release plugin from sources in order to get it to use maven scm 1.10.0">
+        <mkdir dir="${basedir}/maven-release-plugin" />
+        <mkdir dir="${basedir}/temp" />
+        <get src="https://github.com/apache/maven-release/archive/master.zip" dest="${basedir}/temp/master.zip" />
+        <unzip src="${basedir}/temp/master.zip"
+            dest="${basedir}/maven-release-plugin">
+          <cutdirsmapper dirs="1"/>
+        </unzip>
+        <exec executable="${mvn}" dir="${basedir}/maven-release-plugin" failonerror="true" >
+            <arg value="clean" />
+            <arg value="install" />
+        </exec>
     </target>
 
     <target name="check-royale-asjs">
@@ -460,7 +486,7 @@
             <arg value="status" />
         </exec>
         <condition property="utils.modification.exists">
-            <contains string="${git.status.utils}" substring="modified:" />
+		<matches string="${git.status.utils}" pattern="modified:\s*(compiler-jburg-types/pom.xml|compiler-build-tools/pom.xml|pom.xml)" />
         </condition>
         <antcall target="git-commit-and-push-utils-if-modified" />
     </target>
@@ -1347,17 +1373,17 @@ ${my.name}
         <fail message="The svn.dist.release property is not set to the working copy for https://dist.apache.org/repos/dist/release."
         unless="dist.release"/>
         
-        <exec executable="npm" dir="${asjs}/npm/release-scripts" failonerror="true">
+        <exec executable="${npm}" dir="${asjs}/npm/release-scripts" failonerror="true">
             <arg value="install" />
         </exec>
-        <exec executable="node" dir="${asjs}/npm/release-scripts" failonerror="true">
+        <exec executable="${node}" dir="${asjs}/npm/release-scripts" failonerror="true">
             <arg value="publish.js" />
             <arg value="--type=js-only" />
             <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js.tar.gz" />
             <arg value="--username=apache-royale-owner" />
             <arg value="--password=${npm.password}" />
         </exec>
-        <exec executable="node" dir="${asjs}/npm/release-scripts" failonerror="true">
+        <exec executable="${node}" dir="${asjs}/npm/release-scripts" failonerror="true">
             <arg value="publish.js" />
             <arg value="--type=js-swf" />
             <arg value="--pathToTarball=${dist.release}/royale/${release.version}/binaries/apache-royale-${release.version}-bin-js-swf.tar.gz" />

@@ -56,7 +56,7 @@ limitations under the License.
 		</js:beads>
 	</js:Tree>
 	
-	<js:TreeGrid x="450" y="30" width="500" height="500" rowHeight="40">
+	<js:TreeGrid id="treeGrid" x="450" y="30" width="500" height="500" rowHeight="40">
 		<js:beads>
 			<js:ConstantBinding
 				sourceID="applicationModel"

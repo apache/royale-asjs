@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the DateField control. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+      <![CDATA[
+
+         // Event handler for the DateField change event.
+         private function dateChanged(date:Date):void {
+            if (date == null)
+                selection.text = "Date selected: ";                
+            else
+                selection.text = "Date selected: " + date.getFullYear().toString() + 
+                    '/' + (date.getMonth()+1).toString() + '/' + date.getDate();
+         }
+      ]]>
+    </fx:Script>
+ 
+	<fx:Declarations>
+ 		<mx:DateFormatter id="df"/>
+	</fx:Declarations>
+
+    <mx:Panel title="DateField Control Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Label width="100%" 
+            text="Select a date in the DateField control. Select it again to clear it."/>
+
+        <mx:Label text="Basic DateField:"/>
+        <mx:DateField id="dateField1" yearNavigationEnabled="true" 
+            change="dateChanged(DateField(event.target).selectedDate)" />
+        <mx:Label id="selection"  text="Date selected:" />
+
+        <mx:Label text="Disable dates on or before June 1, 2006."/>
+        <mx:DateField id="dateField2" yearNavigationEnabled="true" 
+            disabledRanges="{[ {rangeEnd: new Date(2006, 5, 1)} ]}" />
+        <mx:Label  text="Date selected: {df.format(dateField2.selectedDate)}"/>
+
+    </mx:Panel>
+</mx:Module>

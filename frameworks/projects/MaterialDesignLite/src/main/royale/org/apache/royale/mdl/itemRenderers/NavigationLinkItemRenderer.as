@@ -24,7 +24,7 @@ package org.apache.royale.mdl.itemRenderers
 		import org.apache.royale.html.util.addElementToWrapper;
     }
 
-	import org.apache.royale.html.supportClasses.MXMLItemRenderer;
+	import org.apache.royale.html.supportClasses.MXMLItemRenderer;;
     
 	/**
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a MDL NavigationLink List Component.
@@ -109,13 +109,21 @@ package org.apache.royale.mdl.itemRenderers
 
 			if(value == null) return;
 
-			if(value.label !== undefined) {
+			if (labelField)
+			{
+                label = String(value[labelField]);
+            }
+			else if(value.label !== undefined)
+			{
                 label = String(value.label);
-			} else {
+			}
+			else
+			{
 				label = String(value);
 			}
 			
-            if(value.href !== undefined) {
+            if(value.href !== undefined)
+			{
                 href = String(value.href);
 			}
 

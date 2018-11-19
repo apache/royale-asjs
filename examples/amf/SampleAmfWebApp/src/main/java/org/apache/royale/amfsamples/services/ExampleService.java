@@ -21,8 +21,16 @@ package org.apache.royale.amfsamples.services;
 
 import org.apache.royale.amfsamples.valueobjects.ServerCustomType;
 import org.apache.royale.amfsamples.valueobjects.Product;
+import org.apache.royale.amfsamples.valueobjects.Taxonomy;
+import org.apache.royale.amfsamples.valueobjects.Zone;
 import org.springframework.flex.remoting.RemotingDestination;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 @Service("exampleService")
 @RemotingDestination
@@ -46,6 +54,17 @@ public class ExampleService {
         return customTypes;
     }
 
+    public Zone getSomeZone()
+    {
+        System.out.println("getSomeZone called");
+
+        Zone zone =  new Zone();
+        zone.setId(1);
+        zone.setName("Europe");
+
+        return zone;
+    }
+
     public Product getSomeProduct()
     {
         System.out.println("getSomeProduct called");
@@ -53,6 +72,55 @@ public class ExampleService {
         Product product = new Product();
         product.setName("Some product");
         product.setDescription("This product is only a test typed value object to test AMF strong types");
+        
+        Taxonomy taxonomy = new Taxonomy();
+        taxonomy.setType("a type");
+        taxonomy.setDescription("a taxonomy for this product");
+
+        product.setTaxonomy(taxonomy);
+
+        Set<Zone> zones = new HashSet<Zone>();
+        
+        Zone zone1 =  new Zone();
+        zone1.setId(1);
+        zone1.setName("Europe");
+        zones.add(zone1);
+
+        Zone zone2 =  new Zone();
+        zone2.setId(2);
+        zone2.setName("USA");
+        zones.add(zone2);
+
+        Zone zone3 =  new Zone();
+        zone3.setId(3);
+        zone3.setName("Asia");
+        zones.add(zone3);
+        
+
+        /*Object[] zones = new Object[3];
+        for (int i = 0; i < zones.length; i++)
+        {
+            Zone zone = new Zone();
+            zone.setId(i);
+            if (i == 0)
+                zone.setName("Europa");
+            else if (i == 1)
+                zone.setName("USA");
+            else if (i == 2)
+                zone.setName("Asia");
+            zones[i] = zone;
+        }*/
+
+        product.setZones(zones);
+        
+        List<CharSequence> list = new ArrayList<CharSequence>();
+        list.add("A");
+        list.add("B");
+        list.add("A");
+        list.add("C");
+        list.add("C");
+        list.add("B");
+        product.setFlavors(new HashSet<CharSequence>(list));
 
         return product;
     }

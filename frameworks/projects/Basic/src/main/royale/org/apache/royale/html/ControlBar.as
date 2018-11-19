@@ -40,8 +40,8 @@ package org.apache.royale.html
 	 *
 	 *  org.apache.royale.core.IBeadModel: the data model for the component.
 	 *  org.apache.royale.core.IMeasurementBead: helps determine the overlay size of the ControlBar for layout.
-	 *  org.apache.royale.core.IBorderBead: if present, displays a border around the component.
-	 *  org.apache.royale.core.IBackgroundBead: if present, displays a solid background below the ControlBar.
+	 *  org.apache.royale.html.beads.IBorderBead: if present, displays a border around the component.
+	 *  org.apache.royale.html.beads.IBackgroundBead: if present, displays a solid background below the ControlBar.
 	 *
      *  @toplevel
 	 *  @langversion 3.0

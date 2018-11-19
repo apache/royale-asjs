@@ -24,6 +24,8 @@
     <component id="Application" class="org.apache.royale.core.Application"/>
     <component id="AirApplication" class="org.apache.royale.core.AirApplication"/>
     <component id="View" class="org.apache.royale.core.View"/>
+    <component id="Container" class="org.apache.royale.html.Container"/>
+    <component id="Border" class="org.apache.royale.html.supportClasses.Border"/>
     <component id="Button" class="org.apache.royale.html.Button"/>
     <component id="CloseButton" class="org.apache.royale.html.CloseButton"/>
     <component id="ButtonBar" class="org.apache.royale.html.ButtonBar"/>
@@ -43,6 +45,7 @@
     <component id="HTMLText" class="org.apache.royale.html.HTMLText"/>
     <component id="DataContainer" class="org.apache.royale.html.DataContainer"/>
     <component id="List" class="org.apache.royale.html.List"/>
+    <component id="DynamicList" class="org.apache.royale.html.DynamicList"/>
     <component id="PopUpList" class="org.apache.royale.html.PopUpList"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
@@ -60,18 +63,23 @@
     <component id="VContainer" class="org.apache.royale.html.VContainer"/>
     <component id="Panel" class="org.apache.royale.html.Panel"/>
     <component id="PanelView" class="org.apache.royale.html.beads.PanelView"/>
+    <component id="PanelTitleBar" class="org.apache.royale.html.PanelTitleBar"/>
+    <component id="PanelContent" class="org.apache.royale.html.supportClasses.PanelContent"/>
     <component id="ImageView" class="org.apache.royale.html.beads.ImageView"/>
     <component id="PanelWithControlBar" class="org.apache.royale.html.PanelWithControlBar"/>
     <component id="PanelWithControlBarView" class="org.apache.royale.html.beads.PanelWithControlBarView"/>
     <component id="ControlBar" class="org.apache.royale.html.ControlBar"/>
     <component id="RangeStepper" class="org.apache.royale.html.RangeStepper" />
     <component id="TitleBar" class="org.apache.royale.html.TitleBar"/>
+    <component id="TitleBarTitle" class="org.apache.royale.html.beads.TitleBarTitle"/>
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
+    <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
+    <component id="LayoutChangeNotifier" class="org.apache.royale.html.beads.layouts.LayoutChangeNotifier"/>
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
     <component id="VirtualListView" class="org.apache.royale.html.beads.VirtualListView"/>
     <component id="VirtualListVerticalLayout" class="org.apache.royale.html.beads.layouts.VirtualListVerticalLayout"/>
@@ -87,17 +95,29 @@
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
+    <component id="StyleInheritanceBead" class="org.apache.royale.html.beads.StyleInheritanceBead"/>
+    <component id="HideComboPopupOnMouseDownBead" class="org.apache.royale.html.beads.HideComboPopupOnMouseDownBead"/>
+    <component id="StyleInheritanceWithObserverBead" class="org.apache.royale.html.beads.StyleInheritanceWithObserverBead"/>
+    <component id="CrossBrowserFireListenerOverrideBead" class="org.apache.royale.html.beads.CrossBrowserFireListenerOverrideBead" />
     <component id="AccessibilityAltBead" class="org.apache.royale.html.beads.AccessibilityAltBead" />
     <component id="DataGridColumnChangePropagator" class="org.apache.royale.html.beads.DataGridColumnChangePropagator" />
     <component id="DataGridColumnForceChangePropagator" class="org.apache.royale.html.beads.DataGridColumnForceChangePropagator" />
     <component id="SingleSelectionContainerBead" class="org.apache.royale.html.beads.SingleSelectionContainerBead" />
     <!--<component id="MultilineTextFieldView" class="org.apache.royale.html.beads.MultilineTextFieldView"/>-->
+    <component id="VerticalAlignChildren" class="org.apache.royale.html.beads.VerticalAlignChildren"/>
+    <component id="ApplicationParameters" class="org.apache.royale.html.beads.ApplicationParametersBead"/>
+    <component id="ApplicationParametersCaseInsensitive" class="org.apache.royale.html.beads.ApplicationParametersCaseInsensitiveBead"/>
+    <component id="IEEventAdapter" class="org.apache.royale.html.beads.IEEventAdapterBead"/>
 
     <component id="SimpleAlert" class="org.apache.royale.html.SimpleAlert"/>
     <component id="Alert" class="org.apache.royale.html.Alert"/>
     <component id="Spinner" class="org.apache.royale.html.Spinner"/>
+    <component id="SpinnerButton" class="org.apache.royale.html.supportClasses.SpinnerButton"/>
     <component id="Slider" class="org.apache.royale.html.Slider"/>
     <component id="NumericStepper" class="org.apache.royale.html.NumericStepper" />
+    <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
+    <component id="MXMLBeadView" class="org.apache.royale.html.MXMLBeadView"/>
+    <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
     <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
     <component id="AccordionItemRenderer" class="org.apache.royale.html.supportClasses.AccordionItemRenderer"/>
@@ -105,6 +125,7 @@
     <component id="DispatchInputFinishedBead" class="org.apache.royale.html.beads.DispatchInputFinishedBead"/>
     <component id="DispatchKeyboardEventBead" class="org.apache.royale.html.beads.DispatchKeyboardEventBead"/>
     <component id="TreeItemRenderer" class="org.apache.royale.html.supportClasses.TreeItemRenderer"/>
+    <component id="TreeXMLItemRenderer" class="org.apache.royale.html.supportClasses.TreeXMLItemRenderer"/>
     <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
     <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.html.supportClasses.DateItemRenderer"/>
@@ -130,7 +151,7 @@
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />
     <component id="PasswordInputRemovableBead" class="org.apache.royale.html.accessories.PasswordInputRemovableBead" />
     <component id="TextPromptBead" class="org.apache.royale.html.accessories.TextPromptBead" />
-    <component id="TextOverflow" class="org.apache.royale.html.beads.TextOverflow" />
+    <component id="EllipsisOverflow" class="org.apache.royale.html.beads.EllipsisOverflow" />
     <component id="HRule" class="org.apache.royale.html.HRule" />
     <component id="VRule" class="org.apache.royale.html.VRule" />
     <component id="Spacer" class="org.apache.royale.html.Spacer" />
@@ -139,17 +160,19 @@
     <!--
      <component id="ImageAndTextButtonView" class="org.apache.royale.html.beads.ImageAndTextButtonView" />
      -->
+    <component id="Viewport" class="org.apache.royale.html.supportClasses.Viewport" />
     <component id="ScrollingViewport" class="org.apache.royale.html.supportClasses.ScrollingViewport" />
     <component id="HScrollViewport" class="org.apache.royale.html.supportClasses.HScrollViewport" />
     <component id="VScrollViewport" class="org.apache.royale.html.supportClasses.VScrollViewport" />
     <component id="ClippingViewport" class="org.apache.royale.html.supportClasses.Viewport" lookupOnly="true" />
-    <component id="Viewport" class="org.apache.royale.html.supportClasses.Viewport" />
     <component id="OverflowViewport" class="org.apache.royale.html.supportClasses.OverflowViewport" />
+    <component id="InfiniteVScroller" class="org.apache.royale.html.beads.InfiniteVScroller" />
 
-    <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel" />
     <component id="ArrayListSelectionModel" class="org.apache.royale.html.beads.models.ArrayListSelectionModel" />
 
     <component id="DataGrid" class="org.apache.royale.html.DataGrid"/>
+    <component id="DynamicDataGrid" class="org.apache.royale.html.DynamicDataGrid"/>
+    <component id="DataGridListArea" class="org.apache.royale.html.beads.DataGridListArea"/>
     <component id="DataProviderChangeNotifier" class="org.apache.royale.html.beads.DataProviderChangeNotifier"/>
     <component id="EasyDataProviderChangeNotifier" class="org.apache.royale.html.beads.EasyDataProviderChangeNotifier"/>
     <component id="DataProviderCollectionChangeNotifier" class="org.apache.royale.html.beads.DataProviderCollectionChangeNotifier"/>
@@ -159,6 +182,7 @@
     <component id="DataGridColumn" class="org.apache.royale.html.supportClasses.DataGridColumn"/>
     <component id="DataGridLinesBead" class="org.apache.royale.html.beads.DataGridLinesBead"/>
     <component id="DataGridColumnList" class="org.apache.royale.html.supportClasses.DataGridColumnList"/>
+    <component id="DynamicDataGridColumnList" class="org.apache.royale.html.supportClasses.DynamicDataGridColumnList"/>
     <component id="DataGridPercentageView" class="org.apache.royale.html.beads.DataGridPercentageView" />
     <component id="DataGridCollectionViewModel" class="org.apache.royale.html.beads.models.DataGridCollectionViewModel" />
 
@@ -180,11 +204,12 @@
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
     <component id="DateChooserHeader" class="org.apache.royale.html.supportClasses.DateChooserHeader" />
     <component id="DateField" class="org.apache.royale.html.DateField"/>
+    <component id="DateFieldDateChooser" class="org.apache.royale.html.supportClasses.DateFieldDateChooser"/>
     <component id="VerticalColumnLayout" class="org.apache.royale.html.beads.layouts.VerticalColumnLayout" />
 
     <component id="ToolTipBead" class="org.apache.royale.html.accessories.ToolTipBead" />
-
-    <component id="LayoutChangeNotifier" class="org.apache.royale.html.beads.layouts.LayoutChangeNotifier"/>
+    <component id="AdaptiveToolTipBead" class="org.apache.royale.html.accessories.AdaptiveToolTipBead" />
+    
     <component id="LayoutOnShow" class="org.apache.royale.html.beads.layouts.LayoutOnShow"/>
     <component id="ImageButton" class="org.apache.royale.html.ImageButton"/>
     <component id="FlexibleFirstChildHorizontalLayout" class="org.apache.royale.html.beads.layouts.FlexibleFirstChildHorizontalLayout"/>
@@ -192,11 +217,8 @@
     <component id="OneFlexibleChildHorizontalLayout" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayout"/>
     <component id="OneFlexibleChildVerticalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildVerticalLayoutForOverflow"/>
     <component id="OneFlexibleChildHorizontalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayoutForOverflow"/>
-    <component id="MXMLBeadView" class="org.apache.royale.html.MXMLBeadView"/>
 
     <component id="SubAppLoader" class="org.apache.royale.html.SubAppLoader" />
-
-    <component id="Border" class="org.apache.royale.html.supportClasses.Border"/>
 
     <component id="WebBrowser" class="org.apache.royale.html.WebBrowser" />
     
@@ -209,6 +231,7 @@
     <component id="UIModuleLoader" class="org.apache.royale.html.UIModuleLoader"/>
     
     <component id="TreeGrid" class="org.apache.royale.html.TreeGrid" />
+    <component id="TreeGridListArea" class="org.apache.royale.html.beads.TreeGridListArea"/>
     <component id="TreeGridColumn" class="org.apache.royale.html.supportClasses.TreeGridColumn" />
 
     <component id="HashChangeNotifierBead" class="org.apache.royale.routing.HashChangeNotifierBead" />
@@ -222,5 +245,7 @@
     <component id="MenuItemRenderer" class="org.apache.royale.html.supportClasses.MenuItemRenderer"/>
     <component id="MenuBarItemRenderer" class="org.apache.royale.html.supportClasses.MenuBarItemRenderer"/>
     <component id="CascadingMenuItemRenderer" class="org.apache.royale.html.supportClasses.CascadingMenuItemRenderer" />
+
+    <component id="CascadingMenuFactory" class="org.apache.royale.html.beads.CascadingMenuFactory" />
 
 </componentPackage>

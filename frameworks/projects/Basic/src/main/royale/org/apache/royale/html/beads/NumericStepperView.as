@@ -45,7 +45,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class NumericStepperView extends BeadViewBase implements IBeadView
 	{
@@ -55,15 +55,15 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function NumericStepperView()
 		{
 		}
 		
-		private var label:Label;
-		private var input:TextInput;
-		private var spinner:Spinner;
+		protected var label:Label;
+        protected var input:TextInput;
+        protected var spinner:Spinner;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -71,7 +71,11 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IBead
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -81,7 +85,7 @@ package org.apache.royale.html.beads
 			input = new TextInput();
             input.className = "NumericStepperInput";
             input.typeNames = "NumericStepperInput";
-			IParent(value).addElement(input);
+			(value as IParent).addElement(input);
 			COMPILE::JS
 			{
 	            input.positioner.style.display = 'inline-block';
@@ -89,13 +93,18 @@ package org.apache.royale.html.beads
 			}
 			// add a spinner
 			spinner = new Spinner();
-			spinner.addBead( UIBase(value).model as IBead );
-			IParent(value).addElement(spinner);
-			spinner.height = input.height;
-			spinner.width = input.height/2;
+			spinner.addBead( (value as UIBase).model as IBead );
+			(value as IParent).addElement(spinner);
+			// delay this until the resize event in JS
+			COMPILE::SWF
+			{
+				spinner.height = input.height;
+				spinner.width = input.height/2;
+			}
 			COMPILE::JS
 			{
 	            spinner.positioner.style.display = 'inline-block';
+                spinner.positioner.style.position = '';
 			}
 			
 			// listen for changes to the text input field which will reset the
@@ -140,33 +149,44 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		private function sizeChangeHandler(event:Event) : void
 		{
+			// first reads
+			var widthToContent:Boolean = (_strand as UIBase).isWidthSizedToContent();
+			var inputWidth:Number = input.width;
+			var inputHeight:Number = input.height;
+			var strandWidth:Number;
+			if (!widthToContent)
+			{
+				strandWidth = (_strand as UIBase).width;
+			}
 			COMPILE::JS
 			{
-				spinner.height = input.height;
-				spinner.width = input.height/2;
+				spinner.height = inputHeight;
+				spinner.width = inputHeight/2;
 			}
 			
 			input.x = 0;
 			input.y = 0;
-			if (!UIBase(_strand).isWidthSizedToContent())
-				input.width = UIBase(_strand).width-spinner.width-2;
+			if (!widthToContent)
+				input.width = strandWidth - spinner.width - 2;
 			
 			COMPILE::SWF
 			{
-				spinner.x = input.width;
+				spinner.x = inputWidth;
 				spinner.y = 0;
 			}
 		}
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function spinnerValueChanged(event:ValueChangeEvent) : void
 		{
-			input.text = String(spinner.value);
+			input.text = "" + spinner.value;
 			
 			var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", event.oldValue, event.newValue);
 			IEventDispatcher(_strand).dispatchEvent(newEvent);
@@ -189,6 +209,8 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.IRangeModel
 		 */
 		private function modelChangeHandler( event:Event ) : void
 		{
@@ -202,7 +224,8 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IParentIUIBase
 		 */
 		public function get contentView():IParentIUIBase
 		{
@@ -211,6 +234,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		public function get resizableView():IUIBase
 		{

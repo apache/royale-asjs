@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IAlertModel;
 	import org.apache.royale.core.IBead;
@@ -46,6 +47,8 @@ package org.apache.royale.html.beads
         import org.apache.royale.core.ValuesManager;
         import org.apache.royale.utils.loadBeadFromValuesManager;
         import org.apache.royale.core.IMeasurementBead;
+		import org.apache.royale.html.beads.IBackgroundBead;
+		import org.apache.royale.html.beads.IBorderBead;
 	}
 	
 	/**

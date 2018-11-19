@@ -21,12 +21,15 @@ package org.apache.royale.mdl
 	import org.apache.royale.html.Group;
 	import org.apache.royale.mdl.Application;
 	import org.apache.royale.core.IPopUp;
+	import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+      import org.apache.royale.core.WrappedHTMLElement;
+			import org.apache.royale.html.util.addElementToWrapper;
     }
+
+     [Event(name="close", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The MDL Dialog class creates modal windows for dedicated user input.
@@ -126,6 +129,7 @@ package org.apache.royale.mdl
 		public function showModal():void
 		{
 			prepareDialog();
+			_open = true;
 
 			COMPILE::JS
 			{
@@ -147,6 +151,7 @@ package org.apache.royale.mdl
 		public function show():void
 		{
 			prepareDialog();
+			_open = true;
 
 			COMPILE::JS
 			{
@@ -164,10 +169,37 @@ package org.apache.royale.mdl
 		 */
 		public function close():void
 		{
+			_open = false;
 			COMPILE::JS
 			{
 				dialog.close();
 			}
+			dispatchEvent(new Event("close"));
+		}
+		
+		private var _open:Boolean;
+		/**
+		 *  Indicates whether the dialog is open.
+		 *  see https://developer.mozilla.org/en-US/docs/Web/API/HTMLDialogElement/open
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.3
+		 */
+		public function get open():Boolean
+		{
+			return _open;
+		}
+		
+		override public function get visible():Boolean{
+			return _open;
+		}
+		override public function set visible(value:Boolean):void{
+			if(value)
+				show();
+			else
+				close();
 		}
 	}
 }

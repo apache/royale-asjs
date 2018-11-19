@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:mx="library://ns.apache.org/royale/mx"
+               xmlns:local="*"
+               initialize="iniApp(event)">
+
+    <fx:Style source="../../main/resources/styles.css"/>
+
+    <fx:Script>
+		<![CDATA[
+            import valueObjects.ClientValueObject;
+            import valueObjects.Product;
+            import valueObjects.Zone;
+            import mx.rpc.events.FaultEvent;
+            import mx.rpc.events.ResultEvent;
+            import mx.rpc.remoting.Operation;
+            import mx.rpc.AsyncToken;
+            import mx.rpc.Responder;
+
+			private function onFault(evt:FaultEvent):void
+			{
+                trace("[onFault]", evt);				
+			}
+
+            // Test AsyncToken - Responder
+            private function sendEcho(evt:MouseEvent):void
+			{
+                var responder:Responder = new Responder(onEchoResult, onFault);
+                var token:AsyncToken = serviceResp.echo(nameResp_txt.text);
+                token.addResponder(responder);
+                trace(token);
+            }
+            private function onEchoResult(event:ResultEvent):void
+			{
+                trace("[onEchoResult]", event);
+                result_txt.text = event.result as String;
+            }
+            
+            // Test CompressedRemoteObject
+			private function iniApp(evt:Event):void
+			{
+                // trace("init CompressedRemoteObject.includePackages");
+                // CompressedRemoteObject.includePackages = ["valueObjects."];
+            }
+
+            // private function compressedSendEcho(evt:MouseEvent):void
+			// {
+            //     var responder:Responder = new Responder(onCompressEchoResult, onFault);
+            //     var token:AsyncToken = compressedService.echo(nameCompress_txt.text);
+            //     token.addResponder(responder);
+            //     trace(token);
+            // }
+            // private function onCompressEchoResult(event:ResultEvent):void
+			// {
+            //     trace("[onCompressEchoResult]", event);
+            //     resultCompress_txt.text = event.result as String;
+            // }
+		]]>
+	</fx:Script>
+
+    <fx:Declarations>
+        <mx:RemoteObject id="service" fault="onFault(event)"
+                         endpoint="http://localhost:8080/messagebroker/websocket-amf"
+                         destination="exampleService">
+            <mx:method name="echo">
+                <mx:arguments>
+                    <symbol>{name_txt.text}</symbol>
+                </mx:arguments>
+            </mx:method>
+            <mx:method name="getObjectArray1">
+            </mx:method>
+            <mx:method name="getSomeProduct">
+            </mx:method>
+        </mx:RemoteObject>
+        <mx:RemoteObject id="serviceResp" fault="onFault(event)"
+                         endpoint="http://localhost:8080/messagebroker/websocket-amf"
+                         destination="exampleService"/>
+        <!-- <mx:CompressedRemoteObject id="compressedService" fault="onFault(event)"
+                         endpoint="http://localhost:8080/messagebroker/websocket-amf"
+                         destination="compressedService"/> -->
+    </fx:Declarations>
+    
+    <mx:beads>
+        <js:ClassAliasBead />
+    </mx:beads>
+
+    <mx:Label text="RemoteObject AMF Test"/>
+
+    <mx:VBox width="400">
+        <mx:HBox>
+            <mx:VBox>
+                <mx:Label text="Name to send via AMF"/>
+                <mx:TextInput id="name_txt"/>                
+            </mx:VBox>
+            <mx:Button label="Send to Name" click="service.echo()"/>        
+        </mx:HBox>        
+        <mx:Label text="{(service.echo as Operation).lastResult}"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:HBox>
+            <mx:VBox>
+                <mx:Label text="Name to send via AMF (With Responder)"/>
+                <mx:TextInput id="nameResp_txt"/>                
+            </mx:VBox>
+            <mx:Button label="Send to Name (With Responder)" click="sendEcho(event)"/>        
+        </mx:HBox>        
+        <mx:Label id="result_txt"/>
+    </mx:VBox>
+    <!-- <mx:VBox width="400">
+        <mx:HBox>
+            <mx:VBox>
+                <mx:Label text="Name to send via AMF (With Compression)"/>
+                <mx:TextInput id="nameCompress_txt"/>                
+            </mx:VBox>
+            <mx:Button label="Send to Name (With Compression)" click="compressedSendEcho(event)"/>
+        </mx:HBox>        
+        <mx:Label id="resultCompress_txt"/>
+    </mx:VBox> -->
+    <mx:VBox width="400">
+        <mx:Button label="Get Array Of Objects" click="service.getObjectArray1()"/>
+        <mx:List id="list" labelField="id" width="100%" height="200" 
+                 dataProvider="{(service.getObjectArray1 as Operation).lastResult}" />
+        <mx:Label text="{list.selectedItem}"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="Get Some Product" click="service.getSomeProduct()"/>
+        <mx:Label text="{((service.getSomeProduct as Operation).lastResult as Product).name}"/>
+    </mx:VBox>
+</mx:Application>

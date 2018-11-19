@@ -22,6 +22,8 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.svg.Rect;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.util.getLabelFromData;
 
 	/**
 	 * The CascadingMenuItemRenderer is the itemRenderer class for the elements of a CascadingMenu.
@@ -94,18 +96,13 @@ package org.apache.royale.html.supportClasses
 				}
 			}
 			else {
-				var text:String;
-				if (value is String) text = value as String;
-				else if (labelField) text = String(value[labelField]);
-				else if (dataField) text = String(value[dataField]);
-				else text = String(value);
 				
 				if (label == null) {
 					label = new Label();
 					addElement(label);
 				}
 				
-				label.text = text;
+				label.text = getLabelFromData(this,value);
 				
 				if (value.hasOwnProperty("menu")) {
 					if (submenuIndicator == null) {

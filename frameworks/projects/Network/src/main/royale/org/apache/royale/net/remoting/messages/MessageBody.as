@@ -17,116 +17,112 @@
 /***
  * AMF JavaScript library by Emil Malinov https://github.com/emilkm/amfjs
  */
-
 package org.apache.royale.net.remoting.messages
 {
-
-COMPILE::SWF
-{
-import flash.utils.IDataInput;
-import flash.utils.IDataOutput;
-}
-
-[RemoteClass(alias="flex.messaging.io.amf.MessageBody")]
-
-/**
- *  The MessageBody for an ActionMessage
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion BlazeDS 4
- *  @productversion LCDS 3 
- * 
- *  @royalesuppresspublicvarwarning
- */
-public class MessageBody
-{
-    //--------------------------------------------------------------------------
-    //
-    // Constructor
-    // 
-    //--------------------------------------------------------------------------
-    
-    /**
-     *  Constructs an instance of a MessageBody
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public function MessageBody()
+    COMPILE::SWF
     {
-        super();
+    import flash.utils.IDataInput;
+    import flash.utils.IDataOutput;
     }
 
-    //--------------------------------------------------------------------------
-    //
-    // Variables
-    // 
-    //--------------------------------------------------------------------------   
+    [RemoteClass(alias="flex.messaging.io.amf.MessageBody")]
 
     /**
-     *  The target URI.
+     *  The MessageBody for an ActionMessage
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
+     * 
+     *  @royalesuppresspublicvarwarning
      */
-    public var targetURI:String = "null";
-
-    /**
-     *  The response URI.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public var responseURI:String = "/1";
-    
-    //--------------------------------------------------------------------------
-    //
-    // Properties
-    // 
-    //--------------------------------------------------------------------------
-    
-    //----------------------------------
-    //  data
-    //----------------------------------
-    
-    /**
-     *  @private
-     */
-    private var _data:Object;
-    
-    /**
-     *  The data to be sent.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
-     */
-    public function get data():Object
+    public class MessageBody
     {
-        return _data;
+        //--------------------------------------------------------------------------
+        //
+        // Constructor
+        // 
+        //--------------------------------------------------------------------------
+        
+        /**
+         *  Constructs an instance of a MessageBody
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public function MessageBody()
+        {
+            super();
+        }
+
+        //--------------------------------------------------------------------------
+        //
+        // Variables
+        // 
+        //--------------------------------------------------------------------------   
+
+        /**
+         *  The target URI.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public var targetURI:String = "null";
+
+        /**
+         *  The response URI.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public var responseURI:String = "/1";
+        
+        //--------------------------------------------------------------------------
+        //
+        // Properties
+        // 
+        //--------------------------------------------------------------------------
+        
+        //----------------------------------
+        //  data
+        //----------------------------------
+        
+        /**
+         *  @private
+         */
+        private var _data:Object;
+        
+        /**
+         *  The data to be sent.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion BlazeDS 4
+         *  @productversion LCDS 3 
+         */
+        public function get data():Object
+        {
+            return _data;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set data(value:Object):void
+        {
+            _data = value;
+        }  
     }
-    
-    /**
-     *  @private
-     */
-    public function set data(value:Object):void
-    {
-        _data = value;
-    }   
-      
-}
-
 }

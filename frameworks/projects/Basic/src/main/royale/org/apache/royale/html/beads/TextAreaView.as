@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.html.beads.TextFieldViewBase;
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.IEventDispatcher;
@@ -29,9 +30,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IParent;
     import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.html.beads.models.ScrollBarModel;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.VScrollBar;
+	import org.apache.royale.html.beads.models.ScrollBarModel;
 
     /**
      *  The TextAreaView class is the default view for

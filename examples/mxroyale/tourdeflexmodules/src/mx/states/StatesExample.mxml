@@ -1,0 +1,59 @@
+<?xml version="1.0" ?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Simple example to demonstrate the States class. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+    <!-- Define one view state, in addition to the base state.-->
+    <mx:states>
+		<mx:State name="default" />
+        <mx:State name="register" />
+    </mx:states>
+
+    <!-- Define a Panel container that defines the login form.-->
+    <mx:Panel title="Login" title.register="Register" id="loginPanel" 
+        		horizontalScrollPolicy="off" verticalScrollPolicy="off"	
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Text width="100%"
+            text="Click the 'Need to Register?' link to change state. Click the 'Return to Login' link to return to the base state."/>
+
+        <mx:Form id="loginForm">
+            <mx:FormItem label="Username:">
+                <mx:TextInput/>
+            </mx:FormItem>
+            <mx:FormItem label="Password:">
+                <mx:TextInput/>
+            </mx:FormItem>
+			<mx:FormItem id="confirm" label="Confirm:" includeIn="register">
+            	<mx:TextInput/>
+             </mx:FormItem>
+        </mx:Form>
+        <mx:ControlBar>
+            <mx:LinkButton id="registerLink"  label="Need to Register?"
+                click="currentState='register'" excludeFrom="register"/>
+			<mx:LinkButton id="loginLink" label="Return to Login" click="currentState='default'"
+				includeIn="register" />
+            <mx:Spacer width="100%" id="spacer1"/>
+            <mx:Button label="Login" label.register="register" color.register="blue" id="loginButton" />
+        </mx:ControlBar>
+    </mx:Panel>
+</mx:Module>

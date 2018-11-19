@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-
 	/**
 	 *  The AlternatingBackgroundColorStringItemRenderer class displays data in string form using the data's toString()
 	 *  function and alternates between two background colors.  This is the most simple implementation for immutable lists

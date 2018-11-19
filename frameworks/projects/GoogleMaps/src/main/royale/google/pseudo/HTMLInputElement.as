@@ -19,7 +19,6 @@
 
 // used to quiet errors in asdoc
 package google.pseudo {
-public class HTMLInputElement extends Object {
+    public class HTMLInputElement{
+    }
 }
-}
-

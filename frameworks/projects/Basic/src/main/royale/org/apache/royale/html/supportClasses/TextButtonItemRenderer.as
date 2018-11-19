@@ -27,6 +27,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.html.util.getLabelFromData;
 
 	COMPILE::JS
 	{
@@ -76,23 +77,17 @@ package org.apache.royale.html.supportClasses
 			updateButtonLabelFromData();
 		}
 
-		private function updateButtonLabelFromData():void
+		/**
+		 * @royaleignorecoercion String
+		 */
+		protected function updateButtonLabelFromData():void
 		{
 			var valueAsString:String;
 
 			if (data == null) return;
-
-			if (data is String) {
-				valueAsString = data as String;
-			}
-			else if (labelField != null) {
-				valueAsString = String(data[labelField]);
-			}
-			else if (data.hasOwnProperty("label")) {
-				valueAsString = String(data["label"]);
-			}
-			else if (data.hasOwnProperty("title")) {
-				valueAsString = String(data["title"]);
+			valueAsString = getLabelFromData(this,data);
+			if (!valueAsString && data.hasOwnProperty("title")) {
+				valueAsString = "" + data["title"];
 			}
 
 			if (valueAsString) text = valueAsString;
@@ -195,6 +190,52 @@ package org.apache.royale.html.supportClasses
 			_index = value;
 		}
 
+		private var _selectable:Boolean = true;
+		/**
+         *  <code>true</code> if the item renderer is can be selected
+         *  false otherwise. Use to configure a renderer to be non 
+         *  selectable.
+         *  
+         *  Defaults to true
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get selectable():Boolean
+		{
+			return _selectable;
+		}
+
+		public function set selectable(value:Boolean):void
+		{
+			_selectable = value;	
+		}
+
+		private var _hoverable:Boolean = true;
+		/**
+         *  <code>true</code> if the item renderer is can be hovered
+         *  false otherwise. Use to configure a renderer to be non 
+         *  hoverable.
+         *  
+         *  Defaults to true
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get hoverable():Boolean
+		{
+			return _hoverable;
+		}
+
+		public function set hoverable(value:Boolean):void
+		{
+			_hoverable = value;	
+		}
+		
 		private var _hovered:Boolean;
 
 		/**

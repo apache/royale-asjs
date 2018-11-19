@@ -237,7 +237,7 @@ DateField {
   position: absolute;
   z-index: 1000;
   padding: 0;
-  margin-top: 9px;
+  margin-top: 0px;
   font-size: 14px;
   background-color: #f3f4f5;
   border: none;
@@ -603,7 +603,8 @@ DropDownList
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
 	IBeadView: ClassReference("org.apache.royale.flat.beads.DropDownListView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DropDownListController");
-	IPopUp: ClassReference("org.apache.royale.flat.supportClasses.DropDownListList");
+    IPopUp: ClassReference("org.apache.royale.flat.supportClasses.DropDownListList");
+    border-style: none;
 }
 
 DropDownListList

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
-	import org.apache.royale.collections.TreeData;
+	import org.apache.royale.collections.ITreeData;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -66,21 +66,20 @@ package org.apache.royale.html.beads.controllers
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
-			var treeData:TreeData = listModel.dataProvider as TreeData;
+			var treeData:ITreeData = listModel.dataProvider as ITreeData;
 			if (treeData == null) return;
 			
 			var node:Object = event.data;
 			
-			// clear any previous selections
-			listModel.selectedIndex = -1;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
-			
-			if (treeData.isOpen(node)) {
-				treeData.closeNode(node);
-			} else {
-				treeData.openNode(node);
-			}
-			
+            if (treeData.hasChildren(node))
+            {
+    			if (treeData.isOpen(node)) {
+    				treeData.closeNode(node);
+    			} else {
+    				treeData.openNode(node);
+    			}
+            }
+            
 			// reset the selection
 			listModel.selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));

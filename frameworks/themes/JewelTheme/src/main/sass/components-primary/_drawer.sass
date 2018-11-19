@@ -1,0 +1,106 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+$drawer-width-offset: 54px
+$drawer-max-width: 280px
+$drawer-header-padding: 16px
+$drawer-transition-close-time: 250ms
+$drawer-transition-open-time: 300ms
+$drawer-transition-close: animation-standard(transform, $drawer-transition-close-time)
+$drawer-transition-open: animation-standard(transform, $drawer-transition-open-time)
+$drawer-overlay-color: #000 !default
+$drawer-overlay-opacity: .65 !default
+
+$drawer-fixed-width: 240px
+
+.jewel.drawer
+
+    &.float
+        color: rgba(0, 0, 0, 0.8)
+        
+        &::before
+            background-color: rgba($drawer-overlay-color, $drawer-overlay-opacity)
+            will-change: opacity
+            transition: animation-standard(opacity, .4s)
+
+
+        .drawermain
+            box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7)
+            transform: translateX(-104%)
+            will-change: transform
+            width: calc(100% - #{$drawer-width-offset})
+            max-width: $drawer-max-width
+            background-color: lighten($default-color, 20%)
+            transition: $drawer-transition-close
+
+        &.open        
+            .drawermain
+                transform: none
+                transition: $drawer-transition-open
+
+    &.fixed
+
+        .drawermain
+            width: $drawer-fixed-width
+            transform: translateX(-104%)
+            // transform: translateX(-100%) translateX(-20px)
+            will-change: transform
+            //max-width: $drawer-max-width
+            transition: $drawer-transition-close
+        
+            background-color: lighten($default-color, 20%)
+            border-left: 0
+            border-right: 1px solid $default-color
+
+        &.open
+            width: auto //$drawer-fixed-width
+            
+            .drawermain
+                transition: $drawer-transition-open
+
+    // &.permanent
+
+// DrawerHeader
+.jewel.drawerheader
+    @if $flat
+        background: $primary-color
+        border: 0px solid
+    @else
+        background: linear-gradient(lighten($primary-color, 5%), darken($primary-color, 5%))
+        border-bottom: 1px solid darken($primary-color, 20%)
+    
+    color: $font-theme-color
+    padding: $drawer-header-padding
+
+    // &::before 
+    //     padding-top: 9 / 16 * 100%
+
+    div
+        padding: $drawer-header-padding
+
+// DrawerContent
+.jewel.drawercontent
+
+
+
+j|Drawer
+
+j|DrawerHeader
+
+j|DrawerContent

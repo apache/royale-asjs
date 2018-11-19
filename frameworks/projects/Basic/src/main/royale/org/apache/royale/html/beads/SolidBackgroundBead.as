@@ -30,6 +30,9 @@ package org.apache.royale.html.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
 
+    import org.apache.royale.html.beads.IBackgroundBead;
+    
+
     /**
      *  The SolidBackgroundBead class draws a solid filled background.
      *  The color and opacity can be specified in CSS.

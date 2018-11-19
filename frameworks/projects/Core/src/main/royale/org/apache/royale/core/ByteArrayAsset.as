@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import flash.utils.ByteArray;
+	COMPILE::SWF
+    {
+        import flash.utils.ByteArray;
+    }
 	
     /**
      *  The ByteArrayAsset represents an arbitrary sequence of byte data
@@ -29,6 +32,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
+    COMPILE::SWF
 	public class ByteArrayAsset extends ByteArray
 	{
 		

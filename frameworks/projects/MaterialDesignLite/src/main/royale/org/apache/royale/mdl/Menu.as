@@ -60,12 +60,16 @@ package org.apache.royale.mdl
 		{
 			super();
 
+            currentMenuPosition = "mdl-menu--bottom-left";
+
             COMPILE::JS
             {
                 _classList = new CSSClassList();
+                _classList.add(currentMenuPosition);
             }
 
             typeNames = "mdl-menu mdl-js-menu";
+
 			addEventListener("beadsAdded", addUpgradeBead);
         }
 
@@ -85,7 +89,7 @@ package org.apache.royale.mdl
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          */
-        private var currentMenuPosition:String = "";
+        private var currentMenuPosition:String;
 
 
         /**
@@ -98,6 +102,7 @@ package org.apache.royale.mdl
         }
 
         private var _bottom:Boolean = true;
+
 		/**
 		 *  Position the menu relative to the associated button.
          *  Used in conjunction with "left"
@@ -114,21 +119,21 @@ package org.apache.royale.mdl
 		}
 		public function set bottom(value:Boolean):void
 		{
-			_bottom = value;
-
-            var newMenuPosition:String;
-
-            if(currentMenuPosition == "")
+            if (_bottom != value)
             {
-                currentMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className += currentMenuPosition;
-            } else
-            {
-                newMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className = className.replace( "/(?:^|\s)" + currentMenuPosition + "(?!\S)/g" , newMenuPosition);
+                _bottom = value;
+
+                COMPILE::JS
+                {
+                    _classList.remove(currentMenuPosition);
+
+                    currentMenuPosition = "mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+
+                    _classList.add(currentMenuPosition);
+
+                    setClassName(computeFinalClassNames());
+                }
             }
-
-            currentMenuPosition = newMenuPosition;
 		}
 
         private var _left:Boolean = true;
@@ -149,22 +154,21 @@ package org.apache.royale.mdl
 
 		public function set left(value:Boolean):void
 		{
-			_left = value;
-
-            var newMenuPosition:String;
-
-            if(currentMenuPosition == "")
+            if (_left != value)
             {
-                currentMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className += currentMenuPosition;
-            }
-			else
-            {
-                newMenuPosition = " mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
-                className = className.replace( "/(?:^|\s)" + currentMenuPosition + "(?!\S)/g" , newMenuPosition);
-            }
+                _left = value;
 
-            currentMenuPosition = newMenuPosition;
+                COMPILE::JS
+                {
+                    _classList.remove(currentMenuPosition);
+
+                    currentMenuPosition = "mdl-menu--" + (_bottom ? "bottom" : "top") + "-" + (_left ? "left" : "right");
+
+                    _classList.add(currentMenuPosition);
+
+                    setClassName(computeFinalClassNames());
+                }
+            }
 		}
 
         private var _dataMdlFor:String;
@@ -225,5 +229,13 @@ package org.apache.royale.mdl
         {
             return _classList.compute() + super.computeFinalClassNames();
         }
+		
+		public function toggle():void
+		{
+			COMPILE::JS
+			{
+				element["MaterialMenu"]["toggle"]();
+			}
+		}
     }
 }

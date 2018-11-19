@@ -115,7 +115,14 @@ public class UIDUtil
 
         UIDBuffer.writeByte(DASH);
 
-        var time:uint = new Date().getTime(); // extract last 8 digits
+        COMPILE::JS
+        {
+            var time:uint = Math.floor(new Date().getTime()/1000); // extract last 8 digits
+        }
+        COMPILE::SWF
+        {
+            var time:uint = new Date().getTime(); // extract last 8 digits
+        }
         var timeString:String = time.toString(16).toUpperCase();
         // 0xFFFFFFFF milliseconds ~= 3 days, so timeString may have between 1 and 8 digits, hence we need to pad with 0s to 8 digits
         for (i = 8; i > timeString.length; i--)
@@ -128,7 +135,7 @@ public class UIDUtil
         }
         UIDBuffer.position = 0;
 
-        return UIDBuffer.readUTFBytes(UIDBuffer.length);
+        return UIDBuffer.toString();//UIDBuffer.readUTFBytes(UIDBuffer.length);
     }
 
     /**
@@ -162,7 +169,7 @@ public class UIDUtil
                 UIDBuffer.writeByte(ALPHA_CHAR_CODES[(b & 0xF0) >>> 4]);
                 UIDBuffer.writeByte(ALPHA_CHAR_CODES[(b & 0x0F)]);
             }
-            return UIDBuffer.readUTFBytes(UIDBuffer.length);
+            return UIDBuffer.readUTFBytes(UIDBuffer.length);//UIDBuffer.toString(); ??
         }
 
         return null;

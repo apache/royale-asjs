@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Main application to demonstrate TitleWindow layout container. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+        <![CDATA[
+       
+            import mx.managers.PopUpManager;
+            import mx.containers.TitleWindow;
+             import org.apache.royale.geom.Point;
+            import org.apache.royale.utils.PointUtils;
+
+            private var point1:Point = new Point();
+      
+            // Open the TitleWindow container.
+            // Cast the return value of the createPopUp() method
+            // to SimpleTitleWindowExample, the name of the 
+            // component containing the TitleWindow container.
+            private function showWindow():void {
+                var login:SimpleTitleWindowExample=SimpleTitleWindowExample(PopUpManager.createPopUp( this, SimpleTitleWindowExample , true));
+
+                // Calculate position of TitleWindow in Application's coordinates.
+                // Position it 25 pixels down and to the right of the Button control.
+                point1.x=0;
+                point1.y=0;                
+                point1=PointUtils.localToGlobal(point1, myButton);
+                login.x=point1.x+25;
+                login.y=point1.y+25;
+             
+                // Pass a reference to the TextInput control
+                // to the TitleWindow container so that the 
+                // TitleWindow container can return data to the main application.
+                login.loginName=returnedName;
+            }
+        ]]>
+    </fx:Script>
+
+    <mx:Panel title="TitleWindow Container Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Button id="myButton" label="Click to open the TitleWindow container" 
+            click="showWindow()"/>
+        
+        <mx:Text id="returnedName" text="" width="100%"/>
+
+    </mx:Panel>
+</mx:Module>

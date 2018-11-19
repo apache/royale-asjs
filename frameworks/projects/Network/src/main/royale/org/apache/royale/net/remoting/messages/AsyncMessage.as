@@ -20,17 +20,17 @@
 package org.apache.royale.net.remoting.messages
 {
 
-COMPILE::SWF
-{
-import flash.utils.ByteArray;
-import flash.utils.IDataInput;
-import flash.utils.IDataOutput;
-}
+import org.apache.royale.net.utils.IDataInput;
+import org.apache.royale.net.utils.IDataOutput;
+import org.apache.royale.utils.BinaryData;
+import org.apache.royale.utils.UIDUtil;
 
 [RemoteClass(alias="flex.messaging.messages.AsyncMessage")]
 
 /**
  *  AsyncMessage is the base class for all asynchronous messages.
+ *  Note: readExternal and writeExternal methods compile but are not tested and maybe not work
+ *  but is an initial work
  *  
  *  @langversion 3.0
  *  @playerversion Flash 9
@@ -38,7 +38,7 @@ import flash.utils.IDataOutput;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3 
  */
-public class AsyncMessage extends AbstractMessage // implements ISmallMessage
+public class AsyncMessage extends AbstractMessage implements ISmallMessage
 {
     //--------------------------------------------------------------------------
     //
@@ -64,10 +64,8 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
     // 
     //--------------------------------------------------------------------------
 
-    /*
     private static const CORRELATION_ID_FLAG:uint = 1;
     private static const CORRELATION_ID_BYTES_FLAG:uint = 2;
-    */
     
     //--------------------------------------------------------------------------
     //
@@ -98,7 +96,7 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
     {
         super();
 
-        //correlationId = "";
+        correlationId = "";
         if (body != null)
             this.body = body;
             
@@ -119,16 +117,12 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
     /**
      * @private
      */
-    /*
     private var _correlationId:String;
-    */
     
     /**
      * @private
      */
-    /*
-    private var correlationIdBytes:ByteArray;
-    */
+    private var correlationIdBytes:BinaryData;
     
     /**
      *  Provides access to the correlation id of the message.
@@ -144,23 +138,19 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    /*
     public function get correlationId():String
     {
         return _correlationId;
     }
-    */
     
     /**
      * @private
      */
-    /*
     public function set correlationId(value:String):void
     {
         _correlationId = value;
         correlationIdBytes = null;
     }
-    */
 
     //--------------------------------------------------------------------------
     //
@@ -171,7 +161,6 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
     /**
      * @private
      */
-    /*
     public function getSmallMessage():IMessage
     {
         // If it is a subclass, it will need to override this itself if it wants to use
@@ -181,12 +170,10 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
             return new AsyncMessageExt(this);
         return null;
     }
-    */
     
     /**
      * @private
      */
-    /*
     override public function readExternal(input:IDataInput):void
     {
         super.readExternal(input);
@@ -204,8 +191,8 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
 
                 if ((flags & CORRELATION_ID_BYTES_FLAG) != 0)
                 {
-                    correlationIdBytes = input.readObject() as ByteArray;
-                    correlationId = RPCUIDUtil.fromByteArray(correlationIdBytes);
+                    correlationIdBytes = input.readObject() as BinaryData;
+                    correlationId = UIDUtil.fromBinary(correlationIdBytes);
                 }
 
                 reservedPosition = 2;
@@ -225,18 +212,15 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
             }
         }
     }
-    */
 
     /**
      * @private
      */
-    /*
     override public function writeExternal(output:IDataOutput):void
     {
         super.writeExternal(output);
-
         if (correlationIdBytes == null)
-            correlationIdBytes = RPCUIDUtil.toByteArray(_correlationId);
+            correlationIdBytes = UIDUtil.toBinary(_correlationId);
 
         var flags:uint = 0;
 
@@ -254,7 +238,6 @@ public class AsyncMessage extends AbstractMessage // implements ISmallMessage
         if (correlationIdBytes != null)
             output.writeObject(correlationIdBytes);
     }
-    */
     
     /**
      *  @private

@@ -18,6 +18,9 @@
 
 package org.apache.royale.graphics
 {
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.geom.Rectangle;
+
     COMPILE::SWF
     {
         import flash.display.Graphics;
@@ -25,10 +28,12 @@ package org.apache.royale.graphics
     public interface IStroke
     {
         COMPILE::SWF
-        function apply(s:Graphics):void;
+        function apply(s:Graphics, targetBounds:Rectangle = null, targetOrigin:Point = null):void;
         
         COMPILE::JS
         function get weight():Number;
+        COMPILE::JS
+        function set weight(value:Number):void;
         
         COMPILE::JS
         function addStrokeAttrib(s:IGraphicShape):String;

@@ -138,7 +138,13 @@ package
 						outArr[i] = "&lt;";
 						break;
 					case "&":
-						outArr[i] = "&amp;";
+						if(arr[i+1] == "#")
+							outArr[i] = "&";
+						else
+							outArr[i] = "&amp;";
+						break;
+					case '"':
+						outArr[i] = "&quot;";
 						break;
 					case "\u000A":
 						outArr[i] = "&#xA;";
@@ -173,7 +179,10 @@ package
 						outArr[i] = "&gt;";
 						break;
 					case "&":
-						outArr[i] = "&amp;";
+						if(arr[i+1] == "#")
+							outArr[i] = "&";
+						else
+							outArr[i] = "&amp;";
 						break;
 					default:
 						outArr[i] = arr[i];
@@ -355,6 +364,33 @@ package
 			}
 		}
 
+        /**
+         *  mimics the top-level XML function
+         *  @royaleignorecoercion XMLList
+         */
+        public static function conversion(xml:*):XML
+        {
+            if (xml == null)
+            {
+                // throw TypeError
+                return null;
+            }
+            else if (xml.ROYALE_CLASS_INFO != null)
+            {
+                var className:String = xml.ROYALE_CLASS_INFO.names[0].name;
+                if (className == "XML")
+                    return xml;
+                else if (className == "XMLList")
+                {
+                    var xmlList:XMLList = xml as XMLList;
+                    if (xmlList.length() == 1)
+                        return xmlList[0];
+                    // throw TypeError
+                    return null;
+                }
+            }
+            return new XML(xml);
+        }
 
 		public function XML(xml:* = null)
 		{
@@ -384,12 +420,15 @@ package
 			);
 			
 		}
+		private static var xmlRegEx:RegExp = /&(?![\w]+;)/g;
+		private static var parser:DOMParser;
 		private static var errorNS:String;
 		private function parseXMLStr(xml:String):void
 		{
 			//escape ampersands
-			xml = xml.replace(/&(?![\w]+;)/g,"&amp;");
-			var parser:DOMParser = new DOMParser();
+			xml = xml.replace(xmlRegEx,"&amp;");
+			if(!parser)
+				parser = new DOMParser();
 			if(errorNS == null)
 			{
 				// get error namespace. It's different in different browsers.
@@ -484,6 +523,10 @@ package
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 				getAttributes().push(child);
+            else if (child.nodeKind() == "comment" && XML.ignoreComments)
+            {
+                // don't add child
+            }
 			else				
 				getChildren().push(child);
 			
@@ -1364,7 +1407,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function localName():Object
+		public function localName():String
 		{
 			return name().localName;
 		}
@@ -1377,7 +1420,7 @@ package
 		 * @return 
 		 * 
 		 */
-		public function name():Object
+		public function name():QName
 		{
 			if(!_name)
 				_name = getQName("","","",false);

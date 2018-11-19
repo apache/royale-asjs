@@ -26,16 +26,43 @@ package {
  */
 internal class CoreClasses
 {
+	import org.apache.royale.core.IId; IId;
+	import org.apache.royale.core.HTMLElementWrapper; HTMLElementWrapper;
+	import org.apache.royale.utils.IClassSelectorListSupport; IClassSelectorListSupport;
+	import org.apache.royale.core.LayoutBase; LayoutBase;
+	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;
+	import org.apache.royale.core.ApplicationBase; ApplicationBase;
+	import org.apache.royale.core.IList; IList;
+	import org.apache.royale.core.IIcon; IIcon;
+	import org.apache.royale.core.IIconSupport; IIconSupport;
+	import org.apache.royale.html.beads.IListView; IListView;
+	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
+import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
+	import org.apache.royale.html.beads.IDropDownListView; IDropDownListView;
+
+	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
+	import org.apache.royale.events.ItemClickedEvent; ItemClickedEvent;
+	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
+	import org.apache.royale.events.ItemRendererEvent; ItemRendererEvent;
+
+	import org.apache.royale.html.beads.IBackgroundBead; IBackgroundBead;
+	import org.apache.royale.html.beads.IBorderBead; IBorderBead;
+
     import org.apache.royale.core.BeadViewBase; BeadViewBase;
     import org.apache.royale.core.ImageViewBase; ImageViewBase;
     import org.apache.royale.core.BrowserWindow; BrowserWindow;
+
+	import org.apache.royale.core.layout.ILayoutStyleProperties; ILayoutStyleProperties;
+
 	COMPILE::SWF
 	{
+		import org.apache.royale.core.UIButtonBase; UIButtonBase;
+		import org.apache.royale.core.CSSTextField; CSSTextField;
+		import org.apache.royale.html.beads.ITextFieldView; ITextFieldView;
 		// import Promise; Promise;
 		import org.apache.royale.core.ApplicationFactory; ApplicationFactory;
 		import org.apache.royale.core.CSSShape; CSSShape;
 		import org.apache.royale.core.CSSSprite; CSSSprite;
-		import org.apache.royale.core.CSSTextField; CSSTextField;
 	    import org.apache.royale.core.StyleableCSSTextField; StyleableCSSTextField;
 		import org.apache.royale.core.WrappedMovieClip; WrappedMovieClip;
 		import org.apache.royale.core.WrappedShape; WrappedShape;
@@ -76,6 +103,7 @@ internal class CoreClasses
     import org.apache.royale.core.IDocument; IDocument;
 	import org.apache.royale.core.IDragInitiator; IDragInitiator;
     import org.apache.royale.core.IFormatBead; IFormatBead;
+    import org.apache.royale.core.IDateControlConfigBead; IDateControlConfigBead;
     import org.apache.royale.core.IImage; IImage;
     import org.apache.royale.core.IImageModel; IImageModel;
     import org.apache.royale.core.IItemRendererProvider; IItemRendererProvider;
@@ -103,8 +131,9 @@ internal class CoreClasses
     import org.apache.royale.core.ISelectable; ISelectable;
     import org.apache.royale.core.ISelectionModel; ISelectionModel;
     import org.apache.royale.core.IStrand; IStrand;
-	import org.apache.royale.core.IStrandPrivate; IStrandPrivate;
+	import org.apache.royale.core.IContainerBaseStrandChildrenHost; IContainerBaseStrandChildrenHost;
     import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
+    import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
     import org.apache.royale.core.ITextModel; ITextModel;
     import org.apache.royale.core.ITitleBarModel; ITitleBarModel;
     import org.apache.royale.core.IToggleButtonModel; IToggleButtonModel;
@@ -113,6 +142,9 @@ internal class CoreClasses
 	import org.apache.royale.core.IViewport; IViewport;
     import org.apache.royale.core.IScrollingViewport; IScrollingViewport;
 	import org.apache.royale.core.IViewportModel; IViewportModel;
+
+	import org.apache.royale.core.IApplicationView; IApplicationView;
+
 	COMPILE::SWF
 	{
 		import org.apache.royale.core.IViewportScroller; IViewportScroller;
@@ -130,6 +162,7 @@ internal class CoreClasses
     import org.apache.royale.events.EventDispatcher; EventDispatcher;
     import org.apache.royale.events.IEventDispatcher; IEventDispatcher;
 	import org.apache.royale.events.MouseEvent; MouseEvent;
+	import org.apache.royale.events.FocusEvent; FocusEvent;
 	import org.apache.royale.events.KeyboardEvent; KeyboardEvent;
 	import org.apache.royale.events.utils.KeyboardEventConverter; KeyboardEventConverter;
 	import org.apache.royale.events.utils.MouseEventConverter; MouseEventConverter;
@@ -179,6 +212,7 @@ internal class CoreClasses
 	import org.apache.royale.utils.JXON; JXON;
 	import org.apache.royale.utils.MD5; MD5;
 	import org.apache.royale.utils.OSUtils; OSUtils;
+    import org.apache.royale.utils.LocaleUtils; LocaleUtils;
 	import org.apache.royale.utils.PointUtils; PointUtils;
     import org.apache.royale.utils.StringPadder; StringPadder;
 	import org.apache.royale.utils.StringTrimmer; StringTrimmer;
@@ -202,6 +236,8 @@ internal class CoreClasses
     import org.apache.royale.states.SetProperty; SetProperty;
     import org.apache.royale.states.State; State;
 
+    import org.apache.royale.core.IMenuBarModel; IMenuBarModel;
+    
     import org.apache.royale.core.IDataGridModel; IDataGridModel;
     import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.royale.core.IDateChooserModel; IDateChooserModel;
@@ -222,6 +258,11 @@ internal class CoreClasses
 	{
 		import org.apache.royale.core.WrappedHTMLElement ;WrappedHTMLElement;
 	    import org.apache.royale.core.IRoyaleElement; IRoyaleElement;
+		import org.apache.royale.utils.object.defineGetter; defineGetter;
+		import org.apache.royale.utils.object.defineSimpleGetter; defineSimpleGetter;
+		import org.apache.royale.utils.object.defineProperty; defineProperty;
+		import org.apache.royale.utils.object.defineSimpleProperty; defineSimpleProperty;
+		import org.apache.royale.utils.js.loadJavascript; loadJavascript;
 	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
@@ -231,10 +272,12 @@ internal class CoreClasses
 	import org.apache.royale.debugging.notNull; notNull;
 	import org.apache.royale.debugging.throwError; throwError;
 
+	import org.apache.royale.utils.measureComponent; measureComponent;
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 
+	import org.apache.royale.utils.string.Base64; Base64;
 	import org.apache.royale.utils.string.contains; contains;
 	import org.apache.royale.utils.string.isWhitespace; isWhitespace;
 	import org.apache.royale.utils.string.trim; trim;
@@ -248,6 +291,10 @@ internal class CoreClasses
 	import org.apache.royale.utils.date.addSeconds; addSeconds;
 	import org.apache.royale.utils.date.addYears; addYears;
 
+	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
+
+    import org.apache.royale.core.TextLineMetrics; TextLineMetrics;
+    import org.apache.royale.utils.ClassSelectorList; ClassSelectorList;
 }
 
 }

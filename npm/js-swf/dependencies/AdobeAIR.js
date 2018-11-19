@@ -96,5 +96,11 @@ function extract()
 
 AdobeAIR.install = function()
 {
-    promptForAdobeAIR();
+    if(process.env.ACCEPT_ALL_ROYALE_LICENSES === 'true')
+    {
+        downloadAdobeAIR();
+    }
+    else {
+        promptForAdobeAIR();
+    }
 };

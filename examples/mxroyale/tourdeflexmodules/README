@@ -1,0 +1,80 @@
+
+  The Apache Flex Tour De Flex component explorer provides a sample set of working
+  Apache Flex examples.
+	 
+  This application is based on work donated by Adobe and their component explorer and is
+  expected to be updated over time.
+  
+  
+==========================================================================================
+Initial Setup Required
+==========================================================================================            
+  
+    The environment variable FLEX_HOME needs to be set to the absolute path of the Apache
+    Flex SDK. If you prefer you can set this in env.properties.
+  
+==========================================================================================
+How to build Tour De Flex using ant (no IDE is required)
+==========================================================================================
+
+1.  On Linux or Mac un tar/gzip the source distribution:
+	    tar -zxvf apache-flex-tour-de-flex-component-explorer-1.2.tar.gz
+	Or if on windows unzip 
+		apache-flex-tour-de-flex-component-explorer-1.2.zip
+
+2.  In the base directory, run:
+        ant compile
+        
+3. To optionally create a release source package, run:
+ 		ant package
+
+4. Open explorer.html in your browser of choice. 
+
+Note Some browsers (such as Chrome) may not be able to view local content without further
+configuration.
+
+5. To remove all of the compiled swfs:
+ 		ant clean
+ 		
+==========================================================================================
+Some other useful ant targets
+========================================================================================== 		
+	
+There are several other useful ant targets. Note that compile-shell is required if you want
+changes to explorer.xml to take effect.
+
+	 compile-shell     compile explorer shell
+	 compile-mx        compile mx examples
+	 compile-spark     compile first set of spark examples
+	 compile-spark2    compile second set of spark examples
+	 compile-spark3    compile third set of spark examples
+ 	 compile-apache    compile apache examples
+ 	 compile-squiggly  compile apache squiggly examples
+	 package-tar       tar up all source files
+	 package-zip       zip up all source files
+
+==========================================================================================
+Compiling a single example
+==========================================================================================
+
+Most of the examples can be compiled by hand with mxmlc. For example:
+
+	mxmlc ./src/spark/controls/ListExample.mxml 
+ 		
+==========================================================================================
+How to check the code out of Git
+==========================================================================================
+
+1.  Check out the the code from the Apache Flex utilities project
+	 git clone https://git-wip-us.apache.org/repos/asf/flex-utilities.git flex-utilities
+	 cd flex-utilities
+	 git checkout develop 
+
+2.  Change directory to:
+	cd TourDeFlex/TourDeFlex3
+
+
+Thanks for using Apache Flex.  Enjoy!
+
+       The Apache Flex Project
+       <http://flex.apache.org>	

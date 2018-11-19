@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<UnitTester xmlns:mx="http://www.adobe.com/2006/mxml" xmlns="*" testSWF="main.mxml">
+
+	<!-- this set of lines form a template that must be in each unit test -->
+	<mx:Script>
+	<![CDATA[
+	public static function init(o:DisplayObject):void
+	{
+	}
+	]]>
+	</mx:Script>
+	<mx:Metadata>
+	<![CDATA[
+		[Mixin]
+	]]>
+	</mx:Metadata>
+	<!-- end of set of lines that must be in each unit test -->
+
+	<mx:Script>
+	<![CDATA[
+	]]>
+	</mx:Script>
+
+	<testCases>
+<!--
+-->
+		<TestCase testID="ButtonTest1">
+			<body>
+				<DispatchMouseEvent target="testButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testButton" localX="10" localY="10" />
+				<AssertPropertyValue target="testLabel" propertyName="text" value="This is a test" />
+			</body>
+		</TestCase>
+		<TestCase testID="CheckBoxTest1">
+			<body>
+				<DispatchMouseEvent target="testCheckBox" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testCheckBox" localX="10" localY="10" />
+				<AssertPropertyValue target="testCheckBox" propertyName="selected" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="RadioButtonTest1">
+			<body>
+				<DispatchMouseEvent target="testRadio1" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testRadio1" localX="10" localY="10" />
+				<AssertPropertyValue target="testRadio1" propertyName="selected" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="RadioButtonTest2">
+			<body>
+				<DispatchMouseEvent target="testRadio2" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testRadio2" localX="10" localY="10" />
+				<AssertPropertyValue target="testRadio1" propertyName="selected" value="false" />
+				<AssertPropertyValue target="testRadio2" propertyName="selected" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="TextInputTest1">
+			<body>
+				<DispatchMouseClickEvent target="testTextInput" localX="10" localY="10" />
+				<DispatchKeyEvent char="This is another test." />
+				<AssertPropertyValue target="testTextInput" propertyName="text" value="This is another test." />
+				<AssertPropertyValue target="testTextInput.getChildAt(1)" propertyName="text" value="This is another test." />
+			</body>
+		</TestCase>
+		<TestCase testID="TextAreaTest1">
+			<body>
+				<SetProperty target="testTextArea" propertyName="text"
+					value="This is a TextArea and it contains lots of text which should word wrap and eventually cause scrollbars to appear.  The validation will test for the scrollbar properties" />
+				<AssertEvent target="testTextArea" eventName="updateComplete" eventClass="mx.events::FlexEvent" numExpectedEvents="1" />
+				<AssertPropertyValue target="testTextArea" propertyName="numChildren" value="4" />
+				<AssertPropertyValue target="testTextArea.getChildAt(3)" propertyName="className" value="VScrollBar" />
+			</body>
+		</TestCase>
+		<TestCase testID="ComboBoxTest1">
+			<body>
+				<DispatchMouseEvent target="testCombo" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testCombo" localX="10" localY="10" />
+				<AssertEvent target="testCombo" eventName="open" eventClass="mx.events::DropdownEvent" />
+				<AssertPropertyValue target="testCombo.dropdown" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="ComboBoxTest2">
+			<body>
+				<DispatchMouseEvent target="testCombo.dropdown" type="mouseOver" localX="10" localY="30" />
+				<DispatchMouseClickEvent target="testCombo.dropdown" localX="10" localY="30" />
+				<AssertEvent target="testCombo" eventName="close" eventClass="mx.events::DropdownEvent" />
+				<AssertPropertyValue target="testCombo" propertyName="text" value="Barney" />
+			</body>
+		</TestCase>
+		<TestCase testID="ColorPickerTest1">
+			<body>
+				<DispatchMouseEvent target="testColorPicker" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testColorPicker" localX="10" localY="10" />
+				<AssertEvent target="testColorPicker" eventName="open" eventClass="mx.events::DropdownEvent" />
+				<AssertPropertyValue target="testColorPicker.mx_internal:dropdown" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="ColorPickerTest2">
+			<body>
+				<DispatchMouseEvent target="testColorPicker.mx_internal:dropdown" type="mouseMove" localX="87" localY="77" />
+				<DispatchMouseEvent target="testColorPicker.mx_internal:dropdown" type="mouseOver" localX="87" localY="77" />
+				<DispatchMouseClickEvent target="testColorPicker.mx_internal:dropdown" localX="87" localY="77" />
+				<AssertEvent target="testColorPicker" eventName="close" eventClass="mx.events::DropdownEvent" />
+				<AssertPropertyValue target="testColorPicker" propertyName="selectedColor" value="0x00FFCC" />
+				<AssertPixelValue target="testColorPicker" x="10" y="10" value="0x00FFCC" />
+			</body>
+		</TestCase>
+		<TestCase testID="NumericStepperTest1">
+			<body>
+				<DispatchMouseEvent target="testNumStep.mx_internal:nextButton" type="mouseOver" localX="2" localY="2" />
+				<DispatchMouseClickEvent target="testNumStep.mx_internal:nextButton" localX="2" localY="2" />
+				<AssertEvent target="testNumStep" eventName="change" eventClass="mx.events::NumericStepperEvent" />
+				<AssertPropertyValue target="testNumStep" propertyName="value" value="1" />
+			</body>
+			<cleanup>
+				<DispatchMouseEvent target="testNumStep.mx_internal:nextButton" type="mouseOut" localX="2" localY="2" />
+			</cleanup>
+		</TestCase>
+		<TestCase testID="NumericStepperTest2">
+			<body>
+				<DispatchMouseEvent target="testNumStep.mx_internal:nextButton" type="mouseOver" localX="2" localY="2" />
+				<DispatchMouseClickEvent target="testNumStep.mx_internal:nextButton" localX="2" localY="2" />
+				<AssertEvent target="testNumStep" eventName="change" eventClass="mx.events::NumericStepperEvent" />
+				<AssertPropertyValue target="testNumStep" propertyName="value" value="2" />
+			</body>
+			<cleanup>
+				<DispatchMouseEvent target="testNumStep.mx_internal:nextButton" type="mouseOut" localX="2" localY="2" />
+			</cleanup>
+		</TestCase>
+		<TestCase testID="NumericStepperTest3">
+			<body>
+				<DispatchMouseEvent target="testNumStep.mx_internal:prevButton" type="mouseOver" localX="2" localY="2" />
+				<DispatchMouseClickEvent target="testNumStep.mx_internal:prevButton" localX="2" localY="2" />
+				<AssertEvent target="testNumStep" eventName="change" eventClass="mx.events::NumericStepperEvent" />
+				<AssertPropertyValue target="testNumStep" propertyName="value" value="1" />
+			</body>
+			<cleanup>
+				<DispatchMouseEvent target="testNumStep.mx_internal:prevButton" type="mouseOut" localX="2" localY="2" />
+			</cleanup>
+		</TestCase>
+		<TestCase testID="DateFieldTest1">
+			<setup>
+				<SetProperty target="testDateField" propertyName="selectedDate" valueExpression="value = new Date(2005, 4, 1)" />
+			</setup>
+			<body>
+				<DispatchMouseEvent target="testDateField" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testDateField" localX="10" localY="10" />
+				<AssertEvent target="testDateField" eventName="open" eventClass="mx.events::DropdownEvent" />
+				<AssertPropertyValue target="testDateField.dropdown" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="DateFieldTest2">
+			<body>
+				<DispatchMouseEvent target="testDateField.dropdown" type="mouseOver" localX="89" localY="67" />
+				<DispatchMouseClickEvent target="testDateField.dropdown" localX="89" localY="67" />
+				<AssertEvent target="testDateField" eventName="close" eventClass="mx.events::DropdownEvent" />
+				<AssertPropertyValue target="testDateField" propertyName="selectedDate" valueExpression="value = new Date(2005, 4, 4)" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest1">
+			<body>
+				<DispatchMouseEvent target="testMenuButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testMenuButton" localX="10" localY="10" />
+				<AssertEvent target="testMenu.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="testMenu" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest2">
+			<body>
+				<DispatchMouseEvent target="testMenu" type="mouseOver" localX="20" localY="10" />
+				<AssertEvent target="testMenu" eventName="menuShow" eventClass="mx.events::MenuEvent" />
+				<AssertEvent target="testMenu.mx_internal:subMenus.0.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="testMenu.mx_internal:subMenus.0" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest3">
+			<body>
+				<DispatchMouseEvent target="testMenu" type="mouseOver" localX="20" localY="30" />
+				<AssertEvent target="testMenu" eventName="menuHide" eventClass="mx.events::MenuEvent" />
+				<AssertPropertyValue target="testMenu.mx_internal:subMenus.0" propertyName="visible" value="false" />
+				<AssertEvent target="testMenu" eventName="menuShow" eventClass="mx.events::MenuEvent" />
+				<AssertEvent target="testMenu.mx_internal:subMenus.1.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="testMenu.mx_internal:subMenus.1" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuTest4">
+			<body>
+				<DispatchMouseEvent target="testMenu.mx_internal:subMenus.1" type="mouseOver" localX="20" localY="10" />
+				<DispatchMouseEvent target="testMenu.mx_internal:subMenus.1" type="mouseDown" localX="20" localY="10" />
+				<DispatchMouseEvent target="testMenu.mx_internal:subMenus.1" type="mouseUp" localX="20" localY="10" />
+				<AssertEvent target="testMenu" eventName="itemClick" eventClass="mx.events::MenuEvent" />
+				<AssertEventPropertyValue propertyName="label" value="Copy" />
+				<AssertEvent target="testMenu" eventName="menuHide" eventClass="mx.events::MenuEvent" />
+				<AssertPropertyValue target="testMenuLabel" propertyName="text" value="Copy" />
+				<AssertPropertyValue target="testMenu" propertyName="visible" value="false" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuBarTest1">
+			<body>
+				<DispatchMouseEvent target="testMenuBar.menuBarItems.0" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testMenuBar.menuBarItems.0" localX="10" localY="10" />
+				<AssertEvent target="testMenuBar" eventName="menuShow" eventClass="mx.events::MenuEvent" />
+				<AssertEvent target="testMenuBar.menus.0.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="testMenuBar.menus.0" propertyName="visible" value="true" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuBarTest2">
+			<body>
+				<DispatchMouseEvent target="testMenuBar.menuBarItems.0" type="mouseOut" localX="10" localY="10" />
+				<DispatchMouseEvent target="testMenuBar.menuBarItems.1" type="mouseOver" localX="10" localY="10" />
+				<AssertEvent target="testMenuBar" eventName="menuHide" eventClass="mx.events::MenuEvent" />
+				<AssertEvent target="testMenuBar" eventName="menuShow" eventClass="mx.events::MenuEvent" />
+				<AssertEvent target="testMenuBar.menus.1.mx_internal:popupTween" eventName="tweenEnd" eventClass="mx.events::TweenEvent" />
+				<AssertPropertyValue target="testMenuBar.menus.1" propertyName="visible" value="true" />
+				<AssertPropertyValue target="testMenuBar.menus.0" propertyName="visible" value="false" />
+			</body>
+		</TestCase>
+		<TestCase testID="MenuBarTest3">
+			<body>
+				<DispatchMouseEvent target="testMenuBar.menus.1" type="mouseOver" localX="20" localY="30" />
+				<DispatchMouseEvent target="testMenuBar.menus.1" type="mouseDown" localX="20" localY="30" />
+				<DispatchMouseEvent target="testMenuBar.menus.1" type="mouseUp" localX="20" localY="30" />
+				<AssertEvent target="testMenuBar" eventName="itemClick" eventClass="mx.events::MenuEvent" />
+				<AssertEventPropertyValue propertyName="label" value="Paste" />
+				<AssertEvent target="testMenuBar" eventName="menuHide" eventClass="mx.events::MenuEvent" />
+				<AssertPropertyValue target="testMenuLabel" propertyName="text" value="Paste" />
+				<AssertPropertyValue target="testMenuBar.menus.1" propertyName="visible" value="false" />
+			</body>
+		</TestCase>
+		<TestCase testID="TabFocusTest1">
+			<body>
+				<DispatchMouseEvent target="testButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="testButton" localX="10" localY="10" />
+				<AssertPropertyValue target="stage" propertyName="focus" valueExpression="value=application.testButton" />
+			</body>
+		</TestCase>
+		<TestCase testID="TabFocusTest2">
+			<body>
+				<DispatchKeyEvent key="TAB" />
+				<AssertPropertyValue target="stage" propertyName="focus" valueExpression="value=application.testCheckBox" />
+			</body>
+		</TestCase>
+		<TestCase testID="TabFocusTest3">
+			<body>
+				<DispatchKeyEvent key="TAB" />
+				<AssertPropertyValue target="stage" propertyName="focus" valueExpression="value=application.testRadio2" />
+			</body>
+		</TestCase>
+		<TestCase testID="ListTest1">
+			<body>
+				<DispatchMouseEvent target="testList" type="mouseOver" localX="10" localY="55" />
+				<DispatchMouseClickEvent target="testList" localX="10" localY="55" waitEvent="change" waitTarget="testList" />
+				<AssertPropertyValue target="testList" propertyName="selectedIndex" value="2" />
+			</body>
+		</TestCase>
+		<TestCase testID="DragDropTest1">
+			<body>
+				<DispatchMouseEvent target="testList" type="mouseOver" localX="10" localY="55" />
+				<DispatchMouseEvent target="testList" type="mouseDown" localX="10" localY="55" buttonDown="true" />
+ 				<DispatchMouseEvent target="testList" type="mouseMove" buttonDown="true" localX="2" localY="55" waitTarget="testList" waitEvent="dragStart" />
+ 				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="430" stageY="130"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="430" stageY="230"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="430" stageY="270"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="430" stageY="300"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="430" stageY="330"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="430" stageY="360"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="430" stageY="390"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="470" stageY="410" waitTarget="testDataGrid" waitEvent="dragEnter" />
+ 				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="470" stageY="430"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="470" stageY="450"
+									waitTarget="mx.managers::DragManager.mx_internal:dragProxy" waitEvent="move"/>
+ 				<DispatchMouseEvent target="stage" type="mouseMove" buttonDown="true" stageX="480" stageY="450" />
+ 				<DispatchMouseEvent target="stage" type="mouseUp" stageX="480" stageY="450" waitTarget="testDataGrid" waitEvent="dragDrop" />
+				<AssertEvent target="testList" eventName="dragComplete" eventClass="mx.events::DragEvent" />
+				<AssertPropertyValue target="testDataGrid.dataProvider" propertyName="length" value="7" />
+			</body>
+		</TestCase>
+		<TestCase testID="TreeTest1">
+			<body>
+				<DispatchMouseEvent target="addNodeButton" type="mouseOver" localX="10" localY="10" />
+				<DispatchMouseClickEvent target="addNodeButton"  localX="10" localY="10" waitEvent="updateComplete" waitTarget="testTree" />
+				<AssertPropertyValue target="testTree.dataProvider" propertyName="length" value="6" />
+			</body>
+		</TestCase>
+		<TestCase testID="TreeTest2">
+			<body>
+				<DispatchMouseEvent target="testTree" type="mouseOver" localX="10" localY="56" />
+				<DispatchMouseClickEvent target="testTree" localX="10" localY="56" />
+				<AssertEvent target="testTree" eventName="itemOpen" eventClass="mx.events::TreeEvent" />
+				<AssertPropertyValue target="testTree.mx_internal:wrappedCollection" propertyName="length" value="8" />
+			</body>
+		</TestCase>
+		<TestCase testID="ImageTest1">
+			<body>
+				<AssertPropertyValue target="testImage" propertyName="measuredWidth" value="143" />
+				<AssertPropertyValue target="testImage" propertyName="measuredHeight" value="43" />
+			</body>
+		</TestCase>
+		<TestCase testID="LoaderTest1">
+			<body>
+				<AssertPixelValue target="testLoader" x="10" y="10" value="0x0066CC" />
+			</body>
+		</TestCase>
+		<TestCase testID="TextTest1">
+			<body>
+				<AssertPropertyValue target="testText.getChildAt(0)" propertyName="length" value="86" />
+			</body>
+		</TestCase>
+		<TestCase testID="SliderTest1">
+			<body>
+				<DispatchMouseEvent target="testSlider" type="mouseOver" localX="3" localY="24" />
+				<DispatchMouseEvent target="testSlider" type="mouseDown" localX="3" localY="24" />
+				<DispatchMouseEvent target="testSlider" type="mouseMove" localX="13" localY="24" />
+				<DispatchMouseEvent target="testSlider" type="mouseMove" localX="23" localY="24" />
+				<DispatchMouseEvent target="testSlider" type="mouseMove" localX="33" localY="24" />
+				<DispatchMouseEvent target="testSlider" type="mouseUp" localX="33" localY="24" />
+				<AssertPropertyValue target="testImage" propertyName="alpha" value="0.21875" />
+				<AssertPixelValue target="testImage" x="58" y="27" value="0xC8C8C8" />
+				<AssertPropertyValue target="testProgress" propertyName="value" value="21" />
+			</body>
+		</TestCase>
+	</testCases>
+</UnitTester>

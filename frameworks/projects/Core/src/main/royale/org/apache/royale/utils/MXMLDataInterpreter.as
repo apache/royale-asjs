@@ -18,21 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils
 {
-
-COMPILE::SWF
-{
-    import flash.display.DisplayObject;
-}
-
+    
 import org.apache.royale.core.IBead;
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IDocument;
 import org.apache.royale.core.IMXMLDocument;
 import org.apache.royale.core.IParent;
-import org.apache.royale.core.IStrand;
-import org.apache.royale.events.Event;
-import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.core.IChild;        
+import org.apache.royale.core.IStrand;        
 
 COMPILE::JS
 {
@@ -77,7 +70,9 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion Array
+     *  @royaleignorecoercion String
      */
     public static function generateMXMLObject(document:Object, data:Array):Object
     {
@@ -167,8 +162,13 @@ public class MXMLDataInterpreter
     }
     
     /**
-     * @royaleignorecoercion Function 
-     * @royaleignorecoercion org.apache.royale.core.IChild 
+     * @royaleignorecoercion Array
+     * @royaleignorecoercion Function
+     * @royaleignorecoercion String
+     * @royaleignorecoercion org.apache.royale.core.IChild
+     * @royaleignorecoercion org.apache.royale.core.IParent
+     * @royaleignorecoercion org.apache.royale.core.IStrand
+     * @royaleignorecoercion org.apache.royale.core.IBead
      */
     private static function initializeStrandBasedObject(document:Object, parent:IParent, comp:Object, data:Array, i:int):int
     {
@@ -289,6 +289,12 @@ public class MXMLDataInterpreter
             }
         }
         
+        if (id)
+            document[id] = comp;
+        
+        if (comp is IDocument)
+            comp.setDocument(document, id);
+        
         var children:Array = data[i++];
         if (children && comp is IMXMLDocument)
         {
@@ -313,12 +319,6 @@ public class MXMLDataInterpreter
             }
         }
         
-        if (id)
-            document[id] = comp;
-        
-        if (comp is IDocument)
-            comp.setDocument(document, id);
-                
         return i;
     }
     
@@ -333,7 +333,8 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion org.apache.royale.core.IContainer
      */
     public static function generateMXMLInstances(document:Object, parent:IParent, data:Array):void
     {
@@ -359,8 +360,10 @@ public class MXMLDataInterpreter
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion Array
      *  @royaleignorecoercion Function
+     *  @royaleignorecoercion String
      */
     public static function generateMXMLProperties(host:Object, data:Array):void
     {

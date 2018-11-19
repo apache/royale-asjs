@@ -48,7 +48,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ViewBase extends GroupBase implements IPopUpHost, IApplicationView
+	public class ViewBase extends GroupBase implements IPopUpHost, IPopUpHostParent, IApplicationView
 	{
         /**
          *  Constructor.
@@ -91,6 +91,26 @@ package org.apache.royale.core
         {
             _applicationModel = value;
             dispatchEvent(new Event("modelChanged"));
+        }
+
+        /**
+         *  ViewBase can host popups but they will be in the layout, if any
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get popUpParent():IPopUpHostParent
+        {
+            return this;
+        }
+        
+        /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
         }
 
     }

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
+			   xmlns:s="library://ns.apache.org/royale/spark"
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   width="100%" height="100%">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			[Bindable]
+			private var locales:ArrayCollection = new ArrayCollection(['en-US','de-DE','ja-JP','ru-RU','ar-SA','zh-CN','fr-FR']);
+			[Bindable]
+			private var groupPatternArrColl:ArrayCollection = new ArrayCollection(['3;*', '1;*', '3;2;*', '3;2;1;*','2;1']);
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<s:NumberFormatter id="nf"  locale="{localeCB.selectedItem}"/>
+		<s:NumberFormatter id="nf_default" locale="{localeCB.selectedItem}"/>
+	</fx:Declarations>
+
+	<s:Panel title="Spark NumberFormatter" width="100%" height="100%">
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" />
+		</s:layout>
+		
+		<s:Form height="100%" width="100%">
+			<s:Label text="Select a locale to see the property value and formatted Number: "/>
+			<s:Spacer height="15"/>
+			
+			<s:FormItem label="Locale:">
+				<s:ComboBox id="localeCB" dataProvider="{locales}" selectedIndex="0"/>
+			</s:FormItem>
+			<s:FormItem label="Input a number to format:">
+				<s:TextInput id="inputTI" text="12345"/>
+			</s:FormItem>
+			<s:FormItem label="Fraction Digits: (default: {nf_default.fractionalDigits})">
+				<s:NumericStepper id="fdNS" maximum="10" minimum="0" change="nf.fractionalDigits = fdNS.value"/>
+			</s:FormItem>
+			<s:FormItem label="Decimal Separator: (default: {nf_default.decimalSeparator})">
+				<s:TextInput id="dsTI" change="nf.decimalSeparator = dsTI.text"/>
+			</s:FormItem>
+			<s:FormItem label="Grouping Pattern: (default: {nf_default.groupingPattern})">
+				<s:ComboBox id="gpCB" dataProvider="{groupPatternArrColl}" change="nf.groupingPattern = gpCB.selectedItem"/>
+			</s:FormItem>
+			<s:FormItem label="Grouping Separator: (default: {nf_default.groupingSeparator})">
+				<s:TextInput id="gsTI" change="nf.groupingSeparator = gsTI.text"/>
+			</s:FormItem>
+			<s:FormItem label="Negative Number Format: (default: {nf_default.negativeNumberFormat})">
+				<s:NumericStepper id="ncfNS" minimum="0" maximum="4" change="nf.negativeNumberFormat = ncfNS.value"/>
+			</s:FormItem>
+			<s:Label text="==================================================================="/>
+			<s:FormItem label="Formatted Number is:">
+				<s:Label id="resultL" text="{nf.format(inputTI.text)}"/>
+			</s:FormItem>
+		</s:Form>
+		
+	</s:Panel>
+</s:Module>

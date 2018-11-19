@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
+	import org.apache.royale.html.beads.models.ArraySelectionModel;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.events.Event;

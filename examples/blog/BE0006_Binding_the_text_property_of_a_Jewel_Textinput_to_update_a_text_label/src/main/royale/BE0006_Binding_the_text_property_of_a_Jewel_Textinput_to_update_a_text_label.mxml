@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:js="library://ns.apache.org/royale/basic">
+    
+    <fx:Style source="../../main/resources/styles.css"/>
+
+    <fx:Script>
+		<![CDATA[
+            private function textChanged(event:Event):void
+			{
+				result.text = "The textinput text value is: " + textinput.text;
+			}
+		]]>
+	</fx:Script>
+
+    <j:beads>
+		<js:ApplicationDataBinding />
+	</j:beads>
+
+    <j:initialView>
+        <j:View>
+            <j:beads>
+                <j:VerticalLayout gap="3"/>
+            </j:beads>
+
+            <j:Label text="Binding the text property of a Jewel TextInput to update a text Label"/>
+
+            <j:TextInput id="textinput" change="textChanged(event)">
+                <j:beads>
+                    <j:TextPrompt prompt="Using change event"/>
+                </j:beads>
+            </j:TextInput>
+
+            <j:Label id="result" text="The textinput text value is: "/>
+
+            <j:TextInput id="databinding_ti">
+                <j:beads>
+                    <j:TextPrompt prompt="Using databinding"/>
+                </j:beads>
+            </j:TextInput>
+
+            <j:Label text="The textinput text value is: {databinding_ti.text}"/>
+        </j:View>
+    </j:initialView>
+
+</j:Application>

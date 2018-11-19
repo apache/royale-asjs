@@ -25,7 +25,6 @@ package org.apache.royale.mobile.beads
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.ContainerView;
 	import org.apache.royale.html.beads.layouts.HorizontalLayout;
 	import org.apache.royale.mobile.IViewManager;
 	import org.apache.royale.mobile.IViewManagerView;

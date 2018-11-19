@@ -32,8 +32,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.PointUtils;
+    import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.html.DateChooser;
+	import org.apache.royale.html.supportClasses.IDateChooser;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TextInput;
 	COMPILE::SWF
@@ -157,7 +158,7 @@ package org.apache.royale.html.beads
 			_textInput.text = formatter.formattedString;
 		}
 
-		private var _popUp:DateChooser;
+		private var _popUp:IDateChooser;
 
 		/**
 		 *  The pop-up component that holds the selection list.
@@ -167,7 +168,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get popUp():DateChooser
+		public function get popUp():IDateChooser
 		{
 			return _popUp;
 		}
@@ -186,19 +187,26 @@ package org.apache.royale.html.beads
 		{
 			return _popUpVisible;
 		}
+		private var _showingPopup:Boolean;
 		public function set popUpVisible(value:Boolean):void
 		{
+			// prevent resursive calls
+			// setting _popUp.selectedDate below triggers a change event
+			// which tries to close the popup causing a recursive call.
+			// There might be a better way to resolve this problem, but this works for now...
+			if(_showingPopup)
+				return;
+
 			if (value != _popUpVisible)
 			{
+				_showingPopup = true;
 				_popUpVisible = value;
 				if (value)
 				{
 					if (!_popUp)
-					{
-						_popUp = new DateChooser();
-						_popUp.width = 210;
-						_popUp.height = 230;
-					}
+                    {
+                        _popUp = ValuesManager.valuesImpl.newInstance(_strand, "iPopUp") as IDateChooser;
+                    }
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
@@ -213,13 +221,14 @@ package org.apache.royale.html.beads
 						_popUp.element.style.position = "absolute";
 					}
 
-					host.addElement(_popUp);
+					host.popUpParent.addElement(_popUp);
 				}
 				else
 				{
 					UIUtils.removePopUp(_popUp);
 				}
 			}
+			_showingPopup = false;
 		}
 
 		/**

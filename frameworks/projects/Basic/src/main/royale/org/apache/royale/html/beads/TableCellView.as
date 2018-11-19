@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-    
+    import org.apache.royale.html.beads.GroupView;
 	
 	/**
 	 *  The TableCellView class is the view bead for TableCell. It has no function

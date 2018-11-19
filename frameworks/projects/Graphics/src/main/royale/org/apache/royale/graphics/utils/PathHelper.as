@@ -590,7 +590,7 @@ import flash.geom.Rectangle;
  *  @playerversion AIR 1.5
  *  @productversion Royale 1.0.0
  */
-class PathSegment extends Object
+class PathSegment
 {
 	
 	//--------------------------------------------------------------------------

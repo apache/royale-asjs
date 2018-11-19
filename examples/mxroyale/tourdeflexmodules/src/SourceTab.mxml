@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<mx:VBox xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:mx="library://ns.apache.org/royale/mx"
+		 width="100%" height="100%"
+         creationComplete="getSource()">
+
+    <fx:Script>
+        <![CDATA[
+        import org.apache.royale.core.BrowserWindow;
+
+        import mx.rpc.events.ResultEvent;
+        import mx.rpc.events.FaultEvent;
+        import mx.controls.Alert;
+
+		public var app:String;
+        public var src:String;
+			
+        public function set source(file:String):void
+        {
+            label = file.substring(file.lastIndexOf("/")+1);
+            src = file;
+        }
+
+        private function getSource():void
+        {
+            srv.url = src;
+            srv.send();
+			ta.verticalScrollPosition = 18; // at end of header
+        }
+
+        private function resultHandler(event:ResultEvent):void
+        {
+            var str:String = String(event.result);
+            var r:RegExp = new RegExp("\r\n", "gs");
+            str = str.replace(r, "\r");
+            ta.text = str;
+        }
+
+        private function faultHandler(event:FaultEvent):void
+        {
+            Alert.show("Error loading source file");
+        }
+			
+        /* shouldn't be needed in browser since you can select elements
+		private function copyCode():void
+        {
+        	System.setClipboard(ta.text);
+        }
+		
+		private function copyLink():void
+        {
+			var linkText:String = "http://flex.apache.org/tourdeflex/?app=" + app;
+			
+        	System.setClipboard(linkText);
+        }
+		*/
+            
+		private function viewInGitHub():void
+		{
+			var gitHubLink:String = "https://github.com/apache/flex-utilities/tree/master/TourDeFlex/TourDeFlex3/src/" + srv.url;
+			BrowserWindow.open(gitHubLink, "_blank");
+		}
+
+        ]]>
+    </fx:Script>
+
+	<fx:Declarations>
+    	<mx:HTTPService id="srv" useProxy="false" resultFormat="text" result="resultHandler(event)" fault="faultHandler(event)"/>
+	</fx:Declarations>
+	
+    <mx:TextArea id="ta" color="#0000A0" fontFamily="Courier" editable="false" wordWrap="false" width="100%" height="100%"/>
+	<mx:HBox width="100%" paddingBottom="5" paddingRight="20">
+		<mx:Spacer width="100%" />
+        <!--
+		<mx:Button label="Copy" click="copyCode()" />
+		<mx:Button label="Copy Link" click="copyLink()" />
+        -->
+		<mx:Button label="GitHub" click="viewInGitHub()" />
+	</mx:HBox>
+</mx:VBox>

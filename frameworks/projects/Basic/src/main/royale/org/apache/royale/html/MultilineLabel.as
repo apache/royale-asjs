@@ -55,7 +55,7 @@ package org.apache.royale.html
 		}
         
         /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -63,7 +63,7 @@ package org.apache.royale.html
 			addElementToWrapper(this,'div');
 			textNode = document.createTextNode(text) as Text;
             element.appendChild(textNode);
-			element.style.whiteSpace = 'normal'; // was nowrap on safari?
+			element.style.whiteSpace = 'pre-wrap'; // was nowrap on safari?
             return element;
         }        
 						

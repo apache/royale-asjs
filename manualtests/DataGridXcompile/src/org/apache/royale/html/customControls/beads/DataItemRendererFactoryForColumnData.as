@@ -28,7 +28,7 @@ package org.apache.royale.html.customControls.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.core.DataItemRenderer;
 	import org.apache.royale.html.beads.IListView;
 	
 	public class DataItemRendererFactoryForColumnData implements IBead, IDataProviderItemRendererMapper

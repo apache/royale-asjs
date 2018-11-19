@@ -81,7 +81,9 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -100,23 +102,25 @@ COMPILE::JS {
 				Button(_decrement).x = 0;
 				Button(_decrement).y = Button(_increment).height;
 
-				UIBase(_strand).addChild(_decrement);
-				UIBase(_strand).addChild(_increment);
+				UIBase(_strand).$addChild(_decrement);
+				UIBase(_strand).$addChild(_increment);
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 			}
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);
 			IEventDispatcher(value).addEventListener("heightChanged",sizeChangeHandler);
 			COMPILE::JS {
 				var host:UIBase = value as UIBase;
+				// depending on the surrounding layout, the element can be offset without this.
+				host.element.style.position = "absolute";
 
 				_increment = new SpinnerButton();
 				_increment.text = '\u25B2';
 				_increment.positioner.style.display = 'block';
-				host.addElement(_increment);
 
 				_decrement = new SpinnerButton();
 				_decrement.text = '\u25BC';
 				_decrement.positioner.style.display = 'block';
+				host.addElement(_increment);
 				host.addElement(_decrement);
 
 // add this in CSS!
@@ -181,6 +185,7 @@ COMPILE::JS {
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		private function sizeChangeHandler( event:Event ) : void
 		{

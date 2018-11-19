@@ -21,20 +21,15 @@ package org.apache.royale.core
 COMPILE::SWF
 {
 	import flash.display.DisplayObject;
-    import flash.display.DisplayObjectContainer;
+	import flash.display.DisplayObjectContainer;
 	import flash.display.SimpleButton;
 }
 
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IMeasurementBead;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.events.utils.MouseEventConverter;
-	import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	
     //--------------------------------------
     //  Events
@@ -120,6 +115,9 @@ COMPILE::SWF
             return _model;
         }
         
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IBead
+         */
         [Bindable("modelChanged")]
         public function set model(value:Object):void
         {
@@ -135,6 +133,7 @@ COMPILE::SWF
         
         /**
          * @param bead The new bead.
+         * @royaleignorecoercion org.apache.royale.core.IBeadModel
          */
         override public function addBead(bead:IBead):void
         {

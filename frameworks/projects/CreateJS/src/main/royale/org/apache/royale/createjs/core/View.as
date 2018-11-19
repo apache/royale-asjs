@@ -23,6 +23,7 @@ package org.apache.royale.createjs.core
 	import org.apache.royale.core.IApplicationView;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.ValuesManager;
@@ -78,7 +79,7 @@ package org.apache.royale.createjs.core
 	[DefaultProperty("mxmlContent")]
 	
 	COMPILE::JS
-	public class View extends UIBase implements IPopUpHost, IApplicationView, IContainer
+	public class View extends UIBase implements IPopUpHost, IApplicationView, IContainer, IPopUpHostParent
 	{
 		private var _applicationModel:Object;
 		
@@ -327,5 +328,25 @@ package org.apache.royale.createjs.core
 		{
 			_transitions = value;   
 		}
+        
+        /**
+         *  ViewBase can host popups but they will be in the layout, if any
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get popUpParent():IPopUpHostParent
+        {
+            return this;
+        }
+        
+		/**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
+        }
 	}
 }

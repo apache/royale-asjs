@@ -38,6 +38,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.SolidBorderUtil;
 	import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.html.beads.IDropDownListView;
     
     /**
      *  The DropDownListView class is the default view for
@@ -290,12 +291,12 @@ package org.apache.royale.html.beads
                 if (value)
                 {
 					host = UIUtils.findPopUpHost(_strand as IUIBase);
-                    IPopUpHost(host).addElement(popUp as IChild);
+                    IPopUpHost(host).popUpParent.addElement(popUp as IChild);
                 }
                 else
                 {
                     host = UIUtils.findPopUpHost(_strand as IUIBase);
-                    IPopUpHost(host).removeElement(popUp as IChild);
+                    IPopUpHost(host).popUpParent.removeElement(popUp as IChild);
                 }
             }
         }

@@ -562,6 +562,53 @@ package flexUnitTests.core
 			}
 		}
 
+		[Test]
+		public function testReadOddBytes():void
+		{
+			var ba:BinaryData = new BinaryData();
+			for (var i:int=0;i<50;i++) ba.writeByte(i);
+			ba.endian = Endian.BIG_ENDIAN;
+			ba.position=0;
+			Assert.assertEquals("BinaryData readByte: should be 0", 0, ba.readByte());
+			Assert.assertEquals("BinaryData readShort: should be 258", 258, ba.readShort());
+			Assert.assertEquals("BinaryData readInt: should be 50595078", 50595078, ba.readInt());
+			ba.endian = Endian.LITTLE_ENDIAN;
+			ba.position=0;
+			Assert.assertEquals("BinaryData readByte: should be 0", 0, ba.readByte());
+			Assert.assertEquals("BinaryData readShort: should be 513", 513, ba.readShort());
+			Assert.assertEquals("BinaryData readInt: should be 100992003", 100992003, ba.readInt());
+
+			ba = new BinaryData();
+			ba.writeByte(25);
+			ba.writeShort(65535);
+			ba.writeUnsignedInt(4294967295);
+			ba.position = 0;
+			Assert.assertEquals("BinaryData readByte: should be 25", 25, ba.readByte());
+			Assert.assertEquals("BinaryData readUnsignedShort: should be 65535", 65535, ba.readUnsignedShort());
+			Assert.assertEquals("BinaryData readInt: should be 4294967295", 4294967295, ba.readUnsignedInt());
+
+			ba = new BinaryData();
+			ba.writeByte(-25);
+			ba.writeShort(-1029);
+			ba.writeInt(-131072);
+			ba.writeFloat(12345.2);
+			ba.writeDouble(3.1415927410);
+			ba.position = 0;
+			Assert.assertEquals("BinaryData readByte: should be -25", -25, ba.readByte());
+			Assert.assertEquals("BinaryData readShort: should be -1029", -1029, ba.readShort());
+			Assert.assertEquals("BinaryData readInt: should be -131072", -131072, ba.readInt());
+			Assert.assertEquals("BinaryData readFloat: should be 12345.2", 12345.2, Math.round(ba.readFloat() * 100)/100);
+			Assert.assertEquals("BinaryData readDouble: should be 3.1415927410", 3.1415927410, ba.readDouble());
+			ba = new BinaryData()
+			ba.writeFloat(12345.2);
+			ba.position = 0;
+			Assert.assertEquals("BinaryData readFloat: should be 12345.2", 12345.2, Math.round(ba.readFloat() * 100)/100);
+			ba.position = 0;
+			ba.writeDouble(3.1415927410);
+			ba.position = 0;
+			Assert.assertEquals("BinaryData readDouble: should be 3.1415927410", 3.1415927410, ba.readDouble());
+		}
+
 
 	}
 }

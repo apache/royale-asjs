@@ -15,6 +15,11 @@
 *.ipr
 *.iws
 
+# VSCode conf files
+**/.vscode/**
+*.code-workspace
+
+
 # building
 target/
 [Bb]uild/
@@ -36,6 +41,7 @@ examples/FlexJSTest_again/html-template
 examples/FlexJSTest_again/bin
 rat.report
 mustella/tests/basicTests/bin
+mustella/tests/mxtests/basicTests/bin
 asdoc-output
 
 #Apache Flex Projects
@@ -139,10 +145,15 @@ _ReSharper*/
 #VF2JS generated files
 vf2js/frameworks/js/
 
-#FlexJS generated files
-frameworks/js/FlexJS/generated-sources
-manualtests/FlexJSTest_SVG/bin
+#Royale generated files
+frameworks/js/Royale/generated-sources
+manualtests/RoyaleTest_SVG/bin
+*.css.map
 
 #npm
 node_modules
 npm/cli/test
+
+frameworks/projects/MXRoyale/.vscode
+.gitignore
+.gitignore

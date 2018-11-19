@@ -43,7 +43,7 @@ package org.apache.royale.html.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataGridColumnList extends List
+	public class DataGridColumnList extends List implements IDataGridColumnList
 	{
         /**
          *  Constructor.
@@ -56,7 +56,7 @@ package org.apache.royale.html.supportClasses
 		public function DataGridColumnList()
 		{
 			super();
-			className = "DataGridColumnList";
+			typeNames = "DataGridColumnList";
 		}
 		
         /**

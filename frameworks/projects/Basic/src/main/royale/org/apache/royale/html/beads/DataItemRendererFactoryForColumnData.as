@@ -131,19 +131,17 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
-			
-			dataGroup.removeAllItemRenderers();
-						
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
 			if (view == null) return;
-						
+
+			var dataGroup:IItemRendererParent = view.dataGroup;
+			dataGroup.removeAllItemRenderers();
+
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
 				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
-				dataGroup.addItemRenderer(tf);
+				dataGroup.addItemRenderer(tf, false);
 				tf.index = i;
 				tf.labelField = view.column.dataField;
 				tf.data = dp[i];

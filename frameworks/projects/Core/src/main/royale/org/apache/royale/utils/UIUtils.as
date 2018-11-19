@@ -21,6 +21,7 @@ package org.apache.royale.utils
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
+    import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.core.IUIBase;
 
 	/**
@@ -74,11 +75,23 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleemitcoercion org.apache.royale.core.IUIBase
+		 *  @royaleemitcoercion org.apache.royale.core.IPopUpHost
 		 */
 		public static function findPopUpHost(start:IUIBase):IPopUpHost
 		{
-			while( start != null && !(start is IPopUpHost) && start is IChild ) {
+            if (start.parent is IPopUpHostParent)
+                return (start.parent as IPopUpHostParent).popUpHost;
+            
+			while( start && !(start is IPopUpHost) ) {
+				// start.parent will be undefined in js if it's not an IChild and return null
+				COMPILE::SWF
+				{
+					if(!(start is IChild))
+						return null;
+				}
 				start = IChild(start).parent as IUIBase;
 			}
 			
@@ -94,15 +107,13 @@ package org.apache.royale.utils
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IPopUpHostParent
 		 */
 		public static function removePopUp(popUp:IChild):void
 		{
-			var start:IParent = popUp.parent;
-			while( start != null && !(start is IPopUpHost) && start is IChild ) {
-				start = IChild(start).parent;
-			}
-			(start as IPopUpHost).removeElement(popUp);
+			(popUp.parent as IPopUpHostParent).popUpHost.popUpParent.removeElement(popUp);
 		}
 	}
 }

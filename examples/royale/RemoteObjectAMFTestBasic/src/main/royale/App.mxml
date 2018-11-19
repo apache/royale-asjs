@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:local="*">
+
+    <fx:Style source="../../main/resources/styles.css"/>
+
+    <fx:Script>
+		<![CDATA[
+			import org.apache.royale.net.events.FaultEvent;
+			import org.apache.royale.net.events.ResultEvent;
+            import valueObjects.ClientValueObject;
+            import valueObjects.Product;
+            import valueObjects.Zone;
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.net.remoting.messages.RoyaleClient;
+
+            protected function sendName():void
+			{
+                service.send("echo", [name_txt.text]);
+			}
+
+            protected function sendNameSimple():void
+			{
+                simpleService.send("echo", [nameSimple_txt.text]);
+			}
+			
+			private function onResult(evt:ResultEvent):void
+			{
+				trace("[Client:" + RoyaleClient.getInstance().id + "] Result= " + evt.data);
+
+                var zone:Zone;
+
+				if (evt.data is String)
+					received.text = "Received: " + evt.data;
+                else if (evt.data is Zone)
+                {
+                    zone = evt.data as Zone;
+                    received3.text = "Received: zone " + zone.id + " is '" + zone.name + "'";
+                }
+				else if (evt.data is Product)
+                {
+                    var product:Product = evt.data as Product;
+                    received3.text = "Received: product name is '" + product.name + "', product description is '" + product.description + "'. product taxonomy type is '" + product.taxonomy.type + "' and product taxonomy description is '" + product.taxonomy.description + "' zones: " ;
+
+                    var len:int = product.zones.length;
+                    var index:int;
+                    for(index = 0; index < len; index++)
+                    {
+                        zone = product.zones[index];
+                        received3.text += "[" + zone.id + ", " + zone.name + "], ";
+                    }
+
+                    received3.text += " flavors: ";
+
+                    len = product.flavors.length;
+                    for(index = 0; index < len; index++)
+                    {
+                        received3.text += "[" + product.flavors[index] + "], ";
+                    }
+                } else
+              	{
+                    var arr:ArrayList = new ArrayList(evt.data as Array);
+                    list.dataProvider = arr;
+				}
+			}
+			
+            private function onResultSimple(evt:ResultEvent):void
+			{
+				if (evt.data is String)
+					receivedSimple.text = "Received Simple: " + evt.data;
+            }
+
+			private function onFault(evt:FaultEvent):void
+			{
+                trace("[Client:" + RoyaleClient.getInstance().id + "] Fault= " + evt.message);
+				for(var key:String in evt["message"])
+				{
+					var element:Object = evt["message"][key];
+					trace(key + ", " + element);					
+				}
+				//trace("Fault = " + evt.message);
+			}
+
+			protected function getVOs():void
+			{
+                service.send("getObjectArray1", []);
+			}
+
+            protected function getSomeZone():void
+			{
+                service.send("getSomeZone", []);
+			}
+            
+            protected function getSomeProduct():void
+			{
+                service.send("getSomeProduct", []);
+			}
+
+            protected function reportChange():void
+            {
+                var vo:ClientValueObject = list.selectedItem as ClientValueObject;
+                received2.text = "Selected: " + vo.id;
+            }
+			
+            protected function getSomeCompressedProduct():void
+			{
+                compressedService.send("getSomeCompressedProduct", []);
+			}
+		]]>
+	</fx:Script>
+
+    <js:beads>
+        <js:ClassAliasBead />
+        <!-- use this with BlazeDS, LCDS, CF -->
+        <js:RemoteObject id="service" result="onResult(event)" fault="onFault(event)"
+                         endPoint = "http://localhost:8080/messagebroker/websocket-amf"
+                         destination = "exampleService"/>
+        <js:CompressedRemoteObject id="compressedService" result="onResult(event)" fault="onFault(event)"
+                         endPoint = "http://localhost:8080/messagebroker/websocket-amf"
+                         destination = "compressedService"/>
+        <!-- use this wih AMFPHP or oother basic implementations -->
+        <js:SimpleRemoteObject id="simpleService" result="onResultSimple(event)" fault="onFault(event)"
+                         endPoint = "http://localhost:8080/messagebroker/websocket-amf"
+                         destination = "exampleService"/>
+    </js:beads>
+
+    <js:initialView>
+        <js:View>
+            <js:beads>
+                <js:VerticalLayout/>
+            </js:beads>
+
+            <html:H3 text="RemoteObject AMF Test"/>
+
+            <js:Panel width="400">
+                <js:Group>
+                    <js:beads>
+                        <js:HorizontalLayout/>
+                    </js:beads>
+                    <js:TextInput id="name_txt">
+                        <j:beads>
+                            <js:TextPromptBead prompt="Name to send via AMF"/>
+                        </j:beads>
+                    </js:TextInput>
+                    <js:TextButton text="Send to Name"  click="sendName()"/>
+                </js:Group>
+
+                <js:Label id="received" text="Received:"/>
+            </js:Panel>
+
+            <js:Panel width="400">
+                <js:Group>
+                    <js:beads>
+                        <j:HorizontalLayout/>
+                    </js:beads>
+                    <js:TextInput id="nameSimple_txt">
+                        <j:beads>
+                            <j:TextPrompt prompt="Name via Simple RO"/>
+                        </j:beads>
+                    </j:TextInput>
+                    <js:Button text="Send SimpleRO" click="sendNameSimple()"/>
+                </js:Group>
+
+                <js:Label id="receivedSimple" text="Received Simple:"/>
+            </js:Panel>
+
+            <js:Panel width="400">
+                <js:TextButton text="Get Array of ValueObjects" click="getVOs()" width="100%"/>
+                <jx:List id="list" labelField="id" width="100%" height="200" 
+                            change="reportChange()"/>
+                <jx:Label id="received2" text="Selected:"/>
+            </js:Panel>
+            
+            <js:Panel width="400">
+                <j:TextButton text="Get Some Product" click="getSomeProduct()"/>
+                <j:TextButton text="Get Some Compressed Product" click="getSomeCompressedProduct()"/>
+                <js:Label id="received3" text="Received:"/>
+            </js:Panel>
+
+        </js:View>
+    </js:initialView>
+    
+</js:Application>

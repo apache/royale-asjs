@@ -1,0 +1,37 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<svg viewBox="0 0 22 22" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <rect x="0" y="0" width="22" height="22" fill-opacity="0"/>
+  <polygon fill="#{$primary-color}" points="3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625"/>
+</svg>
+
+
+<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#777777' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '></path></g></g></svg>
+
+
+<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#777777' fill-rule='nonzero'></path></g></g></svg>
+
+
+<svg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><rect x='0' y='0' width='22' height='22'></rect><path d='M18.3333333,2.75 L17.4166667,2.75 L17.4166667,0.916666667 L15.5833333,0.916666667 L15.5833333,2.75 L6.41666667,2.75 L6.41666667,0.916666667 L4.58333333,0.916666667 L4.58333333,2.75 L3.66666667,2.75 C2.65833333,2.75 1.83333333,3.575 1.83333333,4.58333333 L1.83333333,19.25 C1.83333333,20.2583333 2.65833333,21.0833333 3.66666667,21.0833333 L18.3333333,21.0833333 C19.3416667,21.0833333 20.1666667,20.2583333 20.1666667,19.25 L20.1666667,4.58333333 C20.1666667,3.575 19.3416667,2.75 18.3333333,2.75 Z M18.3333333,19.25 L3.66666667,19.25 L3.66666667,7.33333333 L18.3333333,7.33333333 L18.3333333,19.25 Z' fill='#000000' fill-rule='nonzero'></path></g></svg>
+
+
+<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#000000' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>
+
+
+<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#000000' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>

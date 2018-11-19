@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
+	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel;
 	import org.apache.royale.collections.HierarchicalData;
 	import org.apache.royale.collections.TreeData;
 	import org.apache.royale.events.CollectionEvent;

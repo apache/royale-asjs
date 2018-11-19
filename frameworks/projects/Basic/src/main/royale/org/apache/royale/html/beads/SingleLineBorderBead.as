@@ -29,6 +29,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.utils.CSSBorderUtils;
+	import org.apache.royale.html.beads.IBorderBead;
 
     /**
      *  The SingleLineBorderBead class draws a single line solid border.

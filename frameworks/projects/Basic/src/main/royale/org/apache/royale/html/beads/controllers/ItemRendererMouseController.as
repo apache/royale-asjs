@@ -43,7 +43,7 @@ COMPILE::JS {
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 *  @royaleignoreimport goog.events.Event
 	 */
 	public class ItemRendererMouseController implements IBeadController
@@ -54,7 +54,7 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function ItemRendererMouseController()
 		{
@@ -69,7 +69,9 @@ COMPILE::JS {
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -89,7 +91,8 @@ COMPILE::JS {
 				goog.events.listen(element, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
 				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
 				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
-				goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
+				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseClick);
+                goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
 			}
 		}
 		
@@ -106,6 +109,9 @@ COMPILE::JS {
 			}
 		}
 		
+		/**
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
 		COMPILE::JS
 		protected function handleMouseOver(event:BrowserEvent):void
 		{
@@ -128,6 +134,9 @@ COMPILE::JS {
 			}
 		}
 		
+		/**
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
 		COMPILE::JS
 		protected function handleMouseOut(event:BrowserEvent):void
 		{
@@ -148,12 +157,20 @@ COMPILE::JS {
 			if (target)
 			{
                 target.down = true;
+                
+                var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
+                newEvent.data = target.data;
+                newEvent.multipleSelection = event.shiftKey;
+                newEvent.index = target.index;
+                
+                target.dispatchEvent(newEvent);
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 		}
 		
 		/**
 		 * @private
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseDown(event:BrowserEvent):void
@@ -163,6 +180,13 @@ COMPILE::JS {
 			{
 				target.down = true;
 				target.hovered = false;
+
+				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
+				newEvent.data = target.data;
+				newEvent.multipleSelection = event.shiftKey;
+				newEvent.index = target.index;
+
+				target.dispatchEvent(newEvent);
 			}
 		}
 		
@@ -188,11 +212,11 @@ COMPILE::JS {
 		
 		/**
 		 * @private
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		COMPILE::JS
-		protected function handleMouseUp(event:BrowserEvent):void
+		protected function handleMouseClick(event:BrowserEvent):void
 		{
-			event.stopImmediatePropagation();
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
@@ -204,6 +228,25 @@ COMPILE::JS {
 				target.dispatchEvent(newEvent);
 			}
 		}
-	
+
+		/**
+		 * @private
+		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
+		COMPILE::JS
+		protected function handleMouseUp(event:BrowserEvent):void
+		{
+			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			if (target)
+			{
+				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseUp");
+				newEvent.data = target.data;
+				newEvent.multipleSelection = event.shiftKey;
+				newEvent.index = target.index;
+
+				target.dispatchEvent(newEvent);
+			}
+		}
+
 	}
 }

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+			   creationComplete="init()">
+	
+	<fx:Script>
+		<![CDATA[
+			
+			private var time:Timer;
+			private var count:int = 0;
+			
+			private function init():void{
+				time = new Timer(1000,0);
+				time.addEventListener(TimerEvent.TIMER,timeHandler);
+				time.start();
+				
+			}
+			
+			private function timeHandler(ev:TimerEvent):void{
+				count ++;
+				dynamicText.text = String(count);
+			}
+			
+			private function filterHandler(ev:MouseEvent):void{
+				var filterArr:Array = [];
+				
+				blurBox.selected ? filterArr.push(blur): null;
+				glowBox.selected ? filterArr.push(glow): null;
+				shadowBox.selected? filterArr.push(dropShadow): null;
+				bevelBox.selected ? filterArr.push(bevel): null;
+				
+				textSample.filters = filterArr;
+				dynamicText.filters = filterArr;
+			}
+		]]>
+	</fx:Script>
+
+	<fx:Declarations>
+		<!--filters-->
+		<s:GlowFilter id="glow" blurX="12" blurY="12" color="#88AEF7" quality="2" strength="1"/>
+		<s:BlurFilter id="blur" blurX="4" blurY="4" quality="2" />
+		<s:DropShadowFilter id="dropShadow" alpha="0.35" blurX="6" blurY="6" distance="6" color="#000000" angle="90" />
+		<s:BevelFilter id="bevel" angle="45" blurX="0.5" blurY="0.5" distance="4" strength="0.7" highlightAlpha="0.7" shadowAlpha="0.7"  />
+	</fx:Declarations>
+	
+	<s:Panel title="Filters Samples"
+			 width="100%" height="100%">
+		
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="center" 
+							  paddingLeft="10" paddingRight="10" 
+							  paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:Label id="textSample" text="SAMPLE TEXT" color="0x000000" 
+				 fontWeight="bold" fontSize="40" filters="{[bevel]}" />
+		
+		<s:HGroup width="100%" horizontalAlign="center">
+			<s:CheckBox id="blurBox" label="Blur" click="filterHandler(event)" />
+			<s:CheckBox id="glowBox" label="Glow" click="filterHandler(event)" />
+			<s:CheckBox id="shadowBox" label="Drop Shadow" click="filterHandler(event)" />
+			<s:CheckBox id="bevelBox" label="Bevel" selected="true" click="filterHandler(event)" />
+		</s:HGroup>
+		
+		<s:Label id="dynamicText" text="0" fontSize="18" filters="{[bevel]}" />
+		
+	</s:Panel>
+	
+</s:Module>

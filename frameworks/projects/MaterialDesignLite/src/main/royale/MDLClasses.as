@@ -40,6 +40,10 @@ package
 		import org.apache.royale.mdl.beads.UpgradeChildren; UpgradeChildren;
 		import org.apache.royale.mdl.beads.controllers.DropDownListController; DropDownListController;
 
+		COMPILE::JS
+		{
+			import org.apache.royale.mdl.utils.getMdlContainerParent; getMdlContainerParent;
+		}
 		COMPILE::SWF
 		{
 			import org.apache.royale.mdl.beads.views.SliderThumbView; org.apache.royale.mdl.beads.views.SliderThumbView;

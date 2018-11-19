@@ -90,6 +90,7 @@ package org.apache.royale.flat
         public function DropDownList()
         {
             super();
+            typeNames = "DropDownList";
             model = new ArraySelectionModel();
         }
 

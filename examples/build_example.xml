@@ -184,6 +184,7 @@
             output="${basedir}/bin-release/${example}.swf">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <arg line="${optional_arg}" />
+            <arg value="-js-dynamic-access-unknown-members=true"/>
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="${playerglobal_arg}" />
         </mxmlc>

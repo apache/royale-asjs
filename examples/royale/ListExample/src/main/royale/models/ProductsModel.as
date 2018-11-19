@@ -40,6 +40,11 @@ package models
 		{
 			return _states;
 		}
+
+		public function set states(a:ArrayList):void
+		{
+			_states = a;
+		}
         
         public var _bigArray:Array;
         

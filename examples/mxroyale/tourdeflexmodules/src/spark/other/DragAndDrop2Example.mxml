@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.managers.DragManager;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:ArrayList id="arr1">
+			<fx:String>Orange</fx:String>
+			<fx:String>Apple</fx:String>
+			<fx:String>Pear</fx:String>
+			<fx:String>Banana</fx:String>
+		</s:ArrayList>
+	</fx:Declarations>
+	
+	<s:Panel title="Drag and Drop Samples" width="100%" height="100%">
+
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10" />
+		</s:layout>
+	
+		<s:Panel title="Fruit" width="100%" height="100%">
+			
+			<s:layout>
+				<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+			</s:layout>
+			
+			<s:List height="100%" dragEnabled="true" color="0x000000" dataProvider="{arr1}" />
+			
+		</s:Panel>
+		
+		<s:Panel id="fruitDetails" title="drag fruit here" width="100%" height="100%">
+			
+			<s:layout>
+				<s:VerticalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+			</s:layout>
+			
+			<s:dragEnter>
+				if (event.dragSource.hasFormat('itemsByIndex'))
+				{
+					var dropTarget:Panel = event.currentTarget as Panel;
+					DragManager.acceptDragDrop(dropTarget);
+				}
+			</s:dragEnter>
+
+			<s:dragDrop>
+				var data:Object = event.dragSource.dataForFormat('itemsByIndex');
+				var p:Panel = new Panel();
+				p.title = new String(data);
+				p.percentWidth = 100;
+				p.percentHeight = 25;
+				p.setStyle("color","black");
+				fruitDetails.addElement(p);
+			</s:dragDrop>
+			
+		</s:Panel>
+	</s:Panel>
+	
+</s:Module>

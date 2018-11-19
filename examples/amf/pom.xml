@@ -23,17 +23,62 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples</artifactId>
-    <version>0.9.2</version>
+    <version>0.9.4</version>
   </parent>
 
-  <artifactId>examples-amf-server</artifactId>
-  <version>0.9.2</version>
+  <artifactId>examples-amf-webapps</artifactId>
+  <version>0.9.4</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: AMF Server</name>
+  <name>Apache Royale: Examples: AMF Web Apps</name>
+
+  <properties combine.self="override">
+    
+  </properties>
 
   <modules>
     <module>SampleAmfWebApp</module>
   </modules>
 
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <resources combine.self="override">
+
+    </resources>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <inherited>false</inherited>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+          <configuration combine.self="override">
+            
+          </configuration>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+    <plugins>
+      <!-- Makes it possible to run the example directly by running 'mvn tomcat7:run' -->
+      <plugin>
+        <inherited>false</inherited>
+        <groupId>org.apache.tomcat.maven</groupId>
+        <artifactId>tomcat7-maven-plugin</artifactId>
+        <version>2.2</version>
+        <configuration combine.self="override">
+          
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+    
+  <profiles>
+    <profile>
+      <id>release</id>
+
+      <properties combine.self="override">
+        
+      </properties>
+    </profile>
+  </profiles>
 </project>

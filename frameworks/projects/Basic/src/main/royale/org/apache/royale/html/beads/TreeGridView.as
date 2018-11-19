@@ -23,11 +23,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
-	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.beads.GroupView;
+	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Container;
@@ -40,10 +41,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.layouts.TreeGridLayout;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel;
-	import org.apache.royale.html.supportClasses.DataGridColumn;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
-	import org.apache.royale.html.supportClasses.TreeGridColumn;
-	import org.apache.royale.html.supportClasses.Viewport;
 	
 	/**
 	 * The TreeGridView class is responsible for creating the sub-components of the TreeGrid:
@@ -109,6 +107,9 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion Class
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.IBeadLayout
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -136,13 +137,19 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IBeadModel
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
+		 * @royaleignorecoercion org.apache.royale.html.TreeGrid
+         * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
 		protected function finishSetup(event:Event):void
 		{
 			var host:TreeGrid = _strand as TreeGrid;
 			
 			// see if there is a presentation model already in place. if not, add one.
-			var presentationModel:IDataGridPresentationModel = host.presentationModel;
+			var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
 			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
 			IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
@@ -154,9 +161,8 @@ package org.apache.royale.html.beads
 			_header.labelField = "label";
 			sharedModel.headerModel = _header.model as IBeadModel;
 			
-			_listArea = new Container();
+			_listArea = new TreeGridListArea();
 			_listArea.percentWidth = 100;
-			_listArea.className = "opt_org-apache.royale-html-TreeGrid_ListArea";
 				
 			createColumns();
 			
@@ -168,7 +174,7 @@ package org.apache.royale.html.beads
 			}
 				
 			for(var i:int=0; i < sharedModel.columns.length; i++) {
-				var dgc:DataGridColumn = sharedModel.columns[i] as DataGridColumn;
+				var dgc:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
 				var colWidth:Number = dgc.columnWidth - marginBorderOffset;
 				buttonWidths.push(colWidth);
 				
@@ -215,6 +221,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
 		private function handleSelectedIndexChanged(event:Event):void
 		{
@@ -230,6 +237,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
 		private function handleColumnListChange(event:Event):void
 		{
@@ -248,41 +256,35 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion Class
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
+         * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
 		private function createColumns():void
 		{
 			var host:TreeGrid = _strand as TreeGrid;
-			
-			// get the name of the class to use for the columns
-			var columnClassName:String = ValuesManager.valuesImpl.getValue(host, "columnClassName") as String;
-			if (columnClassName == null) {
-				columnClassName = "TreeGridColumn";
-			}
-			
-			var presentationModel:IDataGridPresentationModel = host.presentationModel;
+						
+			var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
 			
 			_lists = new Array();
 			
 			for (var i:int=0; i < sharedModel.columns.length; i++) {
 				var columnDef:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
-				var useClassName:String = columnClassName;
-				if (columnDef.className != null) useClassName = columnDef.className;
+				var columnClassName:String = columnDef.className;
+				var useClassName:String = columnClassName ? " " + columnClassName : "";
 				
 				var column:List = columnDef.createColumn() as List;
 				
 				if (i == 0)
-				{
-					column.className = "first "+useClassName;
-				}
+					column.className = "first" + useClassName;
+
 				else if (i == sharedModel.columns.length-1)
-				{
-					column.className = "last "+useClassName;
-				}
+					column.className = "last" + useClassName;
+
 				else
-				{
-					column.className = "middle "+useClassName;
-				}
+					column.className = "middle" + useClassName;
 				
 				// For the TreeGrid, the List columns must use this
 				// model and itemRenderer factory to be compatible 
@@ -291,7 +293,7 @@ package org.apache.royale.html.beads
 					column.model = new SingleSelectionCollectionViewModel();
 					column.addBead(new DataItemRendererFactoryForCollectionView());
 				}
-				
+
 				column.id = "treeGridColumn" + String(i);
 				column.dataProvider = sharedModel.dataProvider;
 				column.labelField = columnDef.dataField;

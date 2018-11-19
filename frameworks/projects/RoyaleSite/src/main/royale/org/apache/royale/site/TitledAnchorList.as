@@ -114,7 +114,7 @@ package org.apache.royale.site
          * @royaleignorecoercion HTMLLIElement
          */
         COMPILE::JS
-		protected function addedToParent():void
+		override public function addedToParent():void
 		{
 			super.addedToParent();
             var li:HTMLLIElement = document.createElement("li") as HTMLLIElement;

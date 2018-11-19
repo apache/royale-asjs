@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mobile.beads
 {
+	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IStrand;
@@ -28,7 +29,6 @@ package org.apache.royale.mobile.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.Container;
 	import org.apache.royale.html.beads.layouts.HorizontalLayout;
-	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.mobile.IViewManagerView;
 	import org.apache.royale.mobile.chrome.NavigationBar;
 	import org.apache.royale.mobile.models.ViewManagerModel;

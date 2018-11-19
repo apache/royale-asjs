@@ -93,7 +93,14 @@ public class DataBindingExample extends Application
         addBead(new ViewSourceContextMenuOption());
     }
 
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var service:HTTPService;
+    
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var collection:LazyCollection;
 
     private function initializeHandler(event:Event):void

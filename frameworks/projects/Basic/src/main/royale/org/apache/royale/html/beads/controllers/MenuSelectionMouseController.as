@@ -19,11 +19,14 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IMenu;
+	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.models.MenuModel;
@@ -83,6 +86,25 @@ package org.apache.royale.html.beads.controllers
 				window.addEventListener('mouseup', hideMenu_internal, false);
 			}
 		}
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
+		override protected function handleItemAdded(event:ItemAddedEvent):void
+		{
+			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
+		}
+		
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
+		override protected function handleItemRemoved(event:ItemRemovedEvent):void
+		{
+			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
+		}
 		
 		/**
 		 * Listen for selections made on the component and translate them into change events.
@@ -100,6 +122,7 @@ package org.apache.royale.html.beads.controllers
 			
 			list.model.selectedItem = node;
 			menuDispatcher.dispatchEvent(new Event("change"));
+            hideOpenMenus();
 		}
 		
 		/**
@@ -126,6 +149,8 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		protected function hideOpenMenus():void
 		{
@@ -136,7 +161,9 @@ package org.apache.royale.html.beads.controllers
 				if (menu.parent != null) {
 					var controller:MenuSelectionMouseController = menu.getBeadByType(MenuSelectionMouseController) as MenuSelectionMouseController;
 					controller.removeClickOutHandler(menu);
-					menu.parent.removeElement(menu);
+                    var host:IPopUpHost = UIUtils.findPopUpHost(menu as IUIBase);
+					if(host)
+						host.popUpParent.removeElement(menu);
 				}
 			}
 			MenuModel.clearMenuList();
@@ -161,6 +188,8 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function removeClickOutHandler(menu:Object):void
 		{
@@ -188,12 +217,29 @@ package org.apache.royale.html.beads.controllers
 		}
 
 		/**
+         * @royaleignorecoercion HTMLElement
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @private
 		 */
 		COMPILE::JS
 		protected function hideMenu_internal(event:BrowserEvent):void
 		{			
-			event.stopImmediatePropagation();
+            var menu:IMenu = _strand as IMenu;
+			var menuElem:HTMLElement = (_strand as IUIBase).element as HTMLElement;
+			var menuBarElement:HTMLElement;
+            if (menu.parentMenuBar)
+            {
+                menuBarElement = (menu.parentMenuBar as IUIBase).element as HTMLElement;
+			}
+			var target:HTMLElement = event.target as HTMLElement;
+			while (target != null)
+			{
+				var comp:IUIBase = target["royale_wrapper"];
+				if(comp && (comp is IMenu || comp == menu.parentMenuBar) ) return;
+				// if (target == menuElem || (menuBarElement && target == menuBarElement) ) return;
+				target = target.parentNode as HTMLElement;
+			}
+            
 			hideOpenMenus();
 		}
 	}

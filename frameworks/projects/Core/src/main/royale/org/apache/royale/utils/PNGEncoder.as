@@ -19,10 +19,10 @@
 
 package org.apache.royale.utils
 {
-
-import flash.display.BitmapData;
-import flash.utils.ByteArray;
-
+    COMPILE::SWF {
+    import flash.display.BitmapData;
+    import flash.utils.ByteArray;
+    }
 /**
  *  The PNGEncoder class converts raw bitmap images into encoded
  *  images using Portable Network Graphics (PNG) lossless compression.

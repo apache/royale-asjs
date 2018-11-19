@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<!-- Sample derived from: http://help.adobe.com/en_US/Flex/4.0/UsingSDK/WS02f7d8d4857b1677-165a04e1126951a2d98-7ff8.html --> 
+<s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.apache.org/royale/spark" 
+			   xmlns:mx="library://ns.apache.org/royale/mx"> 
+	
+	<fx:Script> 
+		<![CDATA[ 
+			import flashx.textLayout.conversion.TextConverter; 
+			
+			XML.ignoreWhitespace = false; 
+		]]> 
+	</fx:Script> 
+	<fx:Style>
+		@namespace "library://ns.apache.org/royale/spark";
+		Label { 
+			baseColor: #000000; 
+			fontFamily: "Verdana";
+			fontSize: "12";
+			advancedAntiAliasing: true;
+		}
+	</fx:Style>
+	<fx:Declarations> 
+		<!-- Define a String to use with HTML and plain text format. --> 
+		<fx:String id="htmlTextAsHTML"><![CDATA[<p>Text containing <b>HTML</b> markup</p>]]></fx:String> 
+		
+		<!-- Define an XML object to use with TLF format. --> 
+		<fx:XML id="tfTextAsTextFlow"> 
+			<TextFlow xmlns="http://ns.adobe.com/textLayout/2008"> 
+				<p>Text Using  <span fontWeight="bold">Text Layout Framework</span> Markup</p> 
+			</TextFlow> 
+		</fx:XML> 
+	</fx:Declarations> 
+	
+	<s:Panel title="Text Import Format Types Sample" width="100%" height="100%">
+		
+		<s:layout>
+			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		
+		<s:Label verticalAlign="justify" width="200" text="This example shows how you can use different format types for importing text
+and what the result will be in the Flex 4 component shown."/>
+		<s:VGroup>
+			<s:TextArea id="txt1" width="200" height="50"
+						textFlow="{TextConverter.importToFlow(htmlTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}" 
+						horizontalCenter="0" verticalCenter="0" /> 
+			
+				<s:Label text="Same marked up text with plain format specified:"/>
+				<s:TextArea id="txt2" height="50" width="200"
+							textFlow="{TextConverter.importToFlow(htmlTextAsHTML, TextConverter.PLAIN_TEXT_FORMAT)}" 
+							horizontalCenter="0" verticalCenter="0" /> 
+			
+			<s:TextArea id="txt3" width="200" height="50"
+						textFlow="{TextConverter.importToFlow(tfTextAsTextFlow, TextConverter.TEXT_LAYOUT_FORMAT)}" 
+						horizontalCenter="0" verticalCenter="0" /> 
+		</s:VGroup>
+		
+	</s:Panel>
+	
+</s:Module>

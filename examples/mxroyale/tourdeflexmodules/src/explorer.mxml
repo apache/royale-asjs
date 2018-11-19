@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<mx:Application xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx" xmlns:explorer="*"
+				pageTitle="{TITLE}" layout="vertical" width="100%" height="100%"
+				paddingBottom="2" paddingTop="2" paddingLeft="2" paddingRight="2"
+			    initialize="init()" creationComplete="checkParameters()">
+
+     <fx:Script>
+        <![CDATA[
+		import mx.core.FlexGlobals;
+        import org.apache.royale.core.BrowserWindow;
+        import org.apache.royale.events.MouseEvent;
+        import org.apache.royale.net.URLLoader;
+        import org.apache.royale.net.URLRequest;
+
+		static protected const VERSION:String = "1.2";	
+		static protected const TITLE:String = "Tour De Flex Component Explorer";
+		static protected const FULL_TITLE:String = "Apache Flex® Tour De Flex Component Explorer " + VERSION;
+
+		[Embed(source="explorer.xml", mimeType="text/plain")]
+		private var XMLData:String;
+			
+		[Bindable]
+		protected var noExamples:int = 0;
+			
+		private function init():void
+		{
+			var data:XML = new XML(XMLData);
+			
+            explorerTree = XML(data.node);
+            compLibTree.dataProvider = explorerTree;
+			
+			noExamples = (explorerTree..node.(hasOwnProperty("@app") && @app.length() > 0)).length();
+			
+			var loader:URLLoader = new URLLoader();
+			var request:URLRequest = new URLRequest("3rdparty.xml");
+			loader.addEventListener(Event.COMPLETE, load3rdParty);
+			loader.load(request);
+		}
+			
+		protected function load3rdParty(event:Event):void
+		{
+		  var loader:URLLoader = URLLoader(event.target);
+		  var newNode:XML = new XML(loader.data);
+		  
+		  if (newNode..node.length() > 0) {
+			  explorerTree.appendChild(newNode.node);
+              compLibTree.dataProvider = explorerTree;
+			  noExamples += (newNode..node.(hasOwnProperty("@app") && @app.length() > 0)).length();
+		  }
+		}
+					
+		protected function checkParameters():void
+		{		
+			var parameters:Object = FlexGlobals.topLevelApplication.parameters;
+			
+			if (parameters.hasOwnProperty("app")) {
+				var application:String = parameters.app;
+				var source:String = explorerTree..node.(hasOwnProperty("@app") && @app == application).@src;
+				loadApp(application, source, false);
+				openNode(application);
+			}
+            else if (parameters.hasOwnProperty("module")) {
+                var module:String = parameters.module;
+                var moduleSource:String = explorerTree..node.(hasOwnProperty("@module") && @module == application).@src;
+                loadModule(module, moduleSource, false);
+                openModuleNode(module);
+            }
+			else {
+				loadModule("Welcome", null, false);
+			}
+		}
+
+        private function treeChanged(event:Event):void
+        {
+            var nodeApp:String = compLibTree.selectedItem.@app;
+            var nodeModule:String = compLibTree.selectedItem.@module;
+			var link:String = compLibTree.selectedItem.hasOwnProperty("@link") ? compLibTree.selectedItem.@link : "";
+			var thirdParty:Boolean = compLibTree.selectedItem.hasOwnProperty("@thirdParty")
+				&& compLibTree.selectedItem.@thirdParty == "true";
+			
+            if (nodeApp != null && nodeApp != "")
+            {
+				loadApp(nodeApp, compLibTree.selectedItem.@src, thirdParty, link);
+            }
+            else if (nodeModule != null && nodeModule != "")
+            {
+                loadModule(nodeModule, compLibTree.selectedItem.@src, thirdParty, link);
+            }
+            else
+            {
+                compLibTree.expandItem(compLibTree.selectedItem, true, true);
+            }
+        }
+			
+		private function loadApp(application:String, source:String, thirdParty:Boolean, link:String=""):void
+		{
+			if (application.indexOf(".swf") > 0) {
+				swfLoader.loadApp(application);
+			}
+			else if(application.indexOf(".jpg") > 0 || application.indexOf(".png") > 0)
+			{
+				swfLoader.loadApp(application,link);
+			}
+			else {
+				swfLoader.loadApp(application + ".swf");
+			}
+			if (thirdParty) {
+				vs.thirdPartyWarning();
+			}
+			else {
+            	vs.loadSource(application, source);
+			}
+		}
+            
+        private function loadModule(application:String, source:String, thirdParty:Boolean, link:String=""):void
+        {
+            if (application.indexOf(".swf") > 0) {
+                swfLoader.loadModule(application);
+            }
+            else {
+                swfLoader.loadModule(application + ".swf");
+            }
+            if (thirdParty) {
+                vs.thirdPartyWarning();
+            }
+            else {
+                vs.loadSource(application, source);
+            }
+        }
+			
+		private function gotoHome(event:MouseEvent):void
+		{
+			BrowserWindow.open("http://flex.apache.org/download-tourdeflex.html");
+		}
+		
+		private function openNode(application:String):void
+		{
+			var node:XML = explorerTree..node.(hasOwnProperty("@app") && @app == application)[0];
+			var parent:XML;
+			var nodes:Array = [];
+			 
+			if (!node) {
+				return;
+			}
+			
+			parent = node.parent();
+			 
+			while (parent != null) {
+			    if (!compLibTree.isItemOpen(parent)) {
+			        nodes.push(parent);
+			    }
+			    parent = parent.parent();
+			}
+			 
+			for each (var expand:XML in nodes) {
+			    compLibTree.expandItem(expand, true);
+			}
+			 
+			compLibTree.selectedIndex = compLibTree.getItemIndex(node);
+			compLibTree.scrollToIndex(explorerTree.selectedIndex);
+		}
+            
+        private function openModuleNode(application:String):void
+        {
+            var node:XML = explorerTree..node.(hasOwnProperty("@module") && @module == application)[0];
+            var parent:XML;
+            var nodes:Array = [];
+            
+            if (!node) {
+                return;
+            }
+            
+            parent = node.parent();
+            
+            while (parent != null) {
+                if (!compLibTree.isItemOpen(parent)) {
+                    nodes.push(parent);
+                }
+                parent = parent.parent();
+            }
+            
+            for each (var expand:XML in nodes) {
+                compLibTree.expandItem(expand, true);
+            }
+            
+            compLibTree.selectedIndex = compLibTree.getItemIndex(node);
+            compLibTree.scrollToIndex(explorerTree.selectedIndex);
+        }
+	
+		]]>
+    </fx:Script>
+
+	<fx:Declarations>
+    	<fx:XML id="explorerTree"/>
+	</fx:Declarations>
+	
+	<mx:HBox width="100%">
+		<mx:Image source="./mx/controls/assets/ApacheFlexIcon.png" useHandCursor="true" buttonMode="true" click="gotoHome(event)" />
+		<mx:Label text="{FULL_TITLE}" fontSize="20" fontWeight="bold" />
+		<mx:Spacer width="100%" />
+		<mx:Label text="{noExamples} examples" />
+	</mx:HBox>
+    <mx:HDividedBox width="100%" height="100%">
+        <mx:Panel width="30%" height="100%" title="{TITLE}" dropShadowVisible="false">
+            <mx:Tree id="compLibTree" width="100%" height="100%" showRoot="false" labelField="@label" borderStyle="none"
+                     change="treeChanged(event)"/>
+        </mx:Panel>
+        <mx:VDividedBox width="100%" height="100%">
+            <explorer:loaderPanel id="swfLoader" width="100%" height="50%"/>
+            <mx:VBox width="100%" height="50%" backgroundColor="#FFFFFF">
+                <explorer:viewsource id="vs" width="100%" height="100%"/>
+            </mx:VBox>
+        </mx:VDividedBox>
+    </mx:HDividedBox>
+	<mx:HBox width="100%">
+		<mx:Label fontSize="9" width="100%" text="Copyright © 2014 The Apache Software Foundation, Licensed under the Apache License, Version 2.0. Apache Flex is trademark of The Apache Software Foundation." />
+	</mx:HBox>
+</mx:Application>

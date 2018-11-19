@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.charts.core
 {
-	import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.geom.Point;
 

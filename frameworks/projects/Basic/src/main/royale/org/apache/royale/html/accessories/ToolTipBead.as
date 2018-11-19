@@ -37,7 +37,7 @@ package org.apache.royale.html.accessories
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9
 	 */
 	public class ToolTipBead implements IBead
 	{
@@ -47,7 +47,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function ToolTipBead()
 		{
@@ -60,8 +60,8 @@ package org.apache.royale.html.accessories
 		public static const MIDDLE:int = 10004;
 
 		private var _toolTip:String;
-		private var tt:ToolTip;
-		private var host:IPopUpHost;
+		protected var tt:ToolTip;
+		protected var host:IPopUpHost;
 		private var _xPos:int = RIGHT;
 		private var _yPos:int = BOTTOM;
 
@@ -71,7 +71,7 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
 		 */
 		public function get toolTip():String
 		{
@@ -95,7 +95,10 @@ package org.apache.royale.html.accessories
 		{
 			_xPos = pos;
 		}
-
+		public function get xPos():int
+		{
+			return _xPos;
+		}
 		/**
 		 *  Sets the tooltip y relative position to one of
 		 *  TOP, MIDDLE or BOTTOM.
@@ -109,8 +112,12 @@ package org.apache.royale.html.accessories
 		{
 			_yPos = pos;
 		}
+		public function get yPos():int
+		{
+			return _yPos;
+		}
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 
 		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -118,7 +125,8 @@ package org.apache.royale.html.accessories
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -129,29 +137,33 @@ package org.apache.royale.html.accessories
 
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function rollOverHandler(event:MouseEvent):void
 		{
 			if (!toolTip || tt)
 				return;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 
-            var comp:IUIBase = _strand as IUIBase
-            host = UIUtils.findPopUpHost(comp);
-			if (tt) host.removeElement(tt);
+			var comp:IUIBase = _strand as IUIBase
+			host = UIUtils.findPopUpHost(comp);
+			if (tt)
+				host.popUpParent.removeElement(tt);
 
-            tt = new ToolTip();
-            tt.text = toolTip;
-            var pt:Point = determinePosition(event, event.target);
-            tt.x = pt.x;
-            tt.y = pt.y;
-            host.addElement(tt, false); // don't trigger a layout
+			tt = new ToolTip();
+			tt.text = toolTip;
+			var pt:Point = determinePosition(event, event.target);
+			tt.x = pt.x;
+			tt.y = pt.y;
+			host.popUpParent.addElement(tt, false); // don't trigger a layout
 		}
 
 		/**
 		 * @private
 		 * Determines the position of the toolTip.
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		protected function determinePosition(event:MouseEvent, base:Object):Point
 		{
@@ -188,12 +200,15 @@ package org.apache.royale.html.accessories
 
         /**
          * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
          */
-        private function rollOutHandler(event:MouseEvent):void
+        protected function rollOutHandler(event:MouseEvent):void
         {
+			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			
 			var comp:IUIBase = _strand as IUIBase;
             if (tt) {
-                host.removeElement(tt);
+                host.popUpParent.removeElement(tt);
 				tt = null;
 			}
         }

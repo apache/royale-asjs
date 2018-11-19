@@ -29,6 +29,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IRangeModel;
+    import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
@@ -71,6 +72,9 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+         * 
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         * 
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -100,12 +104,14 @@ package org.apache.royale.html.beads
 			COMPILE::JS {
 				_track = new Button();
 				_track.className = "SliderTrack";
-				host.addElement(_track);
+				_track.style = {"position": "absolute", "padding" : 0};
+				(host as IParent).addElement(_track);
 				
 				_thumb = new TextButton();
 				_thumb.className = "SliderThumb";
+				_thumb.style = {"position" : "absolute", "padding" : 0};
 				_thumb.text = '\u29BF';
-				host.addElement(_thumb);
+                (host as IParent).addElement(_thumb);
 			}
 			
 			rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
@@ -150,14 +156,6 @@ package org.apache.royale.html.beads
 		public function get thumb():IUIBase
 		{
 			return _thumb;
-		}
-		
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 */
-		private function get host():UIBase
-		{
-			return _strand as UIBase;
 		}
 		
 		/**

@@ -149,7 +149,7 @@ package org.apache.royale.mdl
         {
             if (materialProgress && !_indeterminate)
             {
-                materialProgress.setProgress(value);
+                materialProgress["setProgress"](value);
             }
         }
 
@@ -160,7 +160,7 @@ package org.apache.royale.mdl
         {
             if (materialProgress && !_indeterminate)
             {
-                materialProgress.setBuffer(value);
+                materialProgress["setBuffer"](value);
             }
         }
 
@@ -171,7 +171,7 @@ package org.apache.royale.mdl
         {
             if (!event.currentTarget) return;
 
-            materialProgress = event.currentTarget.MaterialProgress;
+            materialProgress = event.currentTarget["MaterialProgress"];
 
             setCurrentProgress(_currentProgress);
             setCurrentBuffer(_currentBuffer);

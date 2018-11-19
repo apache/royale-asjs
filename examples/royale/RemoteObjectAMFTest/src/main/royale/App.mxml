@@ -17,9 +17,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns:js="library://ns.apache.org/royale/basic"
-                 xmlns:local="*">
+<j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:j="library://ns.apache.org/royale/jewel"
+               xmlns:html="library://ns.apache.org/royale/html"
+               xmlns:local="*">
+
+    <fx:Style source="../../main/resources/styles.css"/>
 
     <fx:Script>
 		<![CDATA[
@@ -27,31 +31,75 @@ limitations under the License.
 			import org.apache.royale.net.events.ResultEvent;
             import valueObjects.ClientValueObject;
             import valueObjects.Product;
-			
-			protected function sendName():void
+            import valueObjects.Zone;
+            import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.net.remoting.messages.RoyaleClient;
+
+            protected function sendName():void
 			{
                 service.send("echo", [name_txt.text]);
+			}
+
+            protected function sendNameSimple():void
+			{
+                simpleService.send("echo", [nameSimple_txt.text]);
 			}
 			
 			private function onResult(evt:ResultEvent):void
 			{
-				trace("Result=" + evt.data);
+				trace("[Client:" + RoyaleClient.getInstance().id + "] Result= " + evt.data);
+
+                var zone:Zone;
+
 				if (evt.data is String)
 					received.text = "Received: " + evt.data;
+                else if (evt.data is Zone)
+                {
+                    zone = evt.data as Zone;
+                    received3.text = "Received: zone " + zone.id + " is '" + zone.name + "'";
+                }
 				else if (evt.data is Product)
                 {
                     var product:Product = evt.data as Product;
-                    received.text = "Received: product name is '" + product.name + "' and product description is '" + product.description + "'" ;
+                    received3.text = "Received: product name is '" + product.name + "', product description is '" + product.description + "'. product taxonomy type is '" + product.taxonomy.type + "' and product taxonomy description is '" + product.taxonomy.description + "' zones: " ;
+
+                    var len:int = product.zones.length;
+                    var index:int;
+                    for(index = 0; index < len; index++)
+                    {
+                        zone = product.zones[index];
+                        received3.text += "[" + zone.id + ", " + zone.name + "], ";
+                    }
+
+                    received3.text += " flavors: ";
+
+                    len = product.flavors.length;
+                    for(index = 0; index < len; index++)
+                    {
+                        received3.text += "[" + product.flavors[index] + "], ";
+                    }
                 } else
               	{
-                    var arr:Array = evt.data as Array;
+                    var arr:ArrayList = new ArrayList(evt.data as Array);
                     list.dataProvider = arr;
 				}
 			}
 			
+            private function onResultSimple(evt:ResultEvent):void
+			{
+				if (evt.data is String)
+					receivedSimple.text = "Received Simple: " + evt.data;
+            }
+
 			private function onFault(evt:FaultEvent):void
 			{
-				trace("Fault=" + evt.message);
+                trace("[Client:" + RoyaleClient.getInstance().id + "] Fault= " + evt.message);
+				for(var key:String in evt["message"])
+				{
+					var element:Object = evt["message"][key];
+					trace(key + ", " + element);					
+				}
+				//trace("Fault = " + evt.message);
 			}
 
 			protected function getVOs():void
@@ -59,6 +107,11 @@ limitations under the License.
                 service.send("getObjectArray1", []);
 			}
 
+            protected function getSomeZone():void
+			{
+                service.send("getSomeZone", []);
+			}
+            
             protected function getSomeProduct():void
 			{
                 service.send("getSomeProduct", []);
@@ -67,36 +120,85 @@ limitations under the License.
             protected function reportChange():void
             {
                 var vo:ClientValueObject = list.selectedItem as ClientValueObject;
-                received.text = "selected " + vo.id;
+                received2.text = "Selected: " + vo.id;
             }
 			
+            protected function getSomeCompressedProduct():void
+			{
+                compressedService.send("getSomeCompressedProduct", []);
+			}
 		]]>
 	</fx:Script>
 
-    <js:beads>
+    <j:beads>
         <js:ClassAliasBead />
+        <!-- use this with BlazeDS, LCDS, CF -->
         <js:RemoteObject id="service" result="onResult(event)" fault="onFault(event)"
                          endPoint = "http://localhost:8080/messagebroker/websocket-amf"
-                         destination = "exampleService"
-                         source = "exampleService"/>
-    </js:beads>
+                         destination = "exampleService"/>
+        <js:CompressedRemoteObject id="compressedService" result="onResult(event)" fault="onFault(event)"
+                         endPoint = "http://localhost:8080/messagebroker/websocket-amf"
+                         destination = "compressedService"/>
+        <!-- use this wih AMFPHP or oother basic implementations -->
+        <js:SimpleRemoteObject id="simpleService" result="onResultSimple(event)" fault="onFault(event)"
+                         endPoint = "http://localhost:8080/messagebroker/websocket-amf"
+                         destination = "exampleService"/>
+    </j:beads>
 
-    <js:initialView>
-        <js:View>
+    <j:initialView>
+        <j:View>
             <js:beads>
-                <js:VerticalLayout />
+                <j:VerticalLayout gap="10"/>
             </js:beads>
-            <js:Label text="Text to be sent via AMF RemoteObject..." />
-            <js:TextInput id="name_txt" />
-            <js:TextButton text="Send Name to AMF" click="sendName()"/>
-			<js:Label id="received" width="300"/>
-            <js:TextButton text="Get Array of ValueObjects" click="getVOs()"/>
-            <js:List id="list" labelField="id" width="100" height="100" change="reportChange()"/>
-            <js:TextButton text="Get Some Product" click="getSomeProduct()"/>
-        </js:View>
-    </js:initialView>
 
-    <js:valuesImpl>
-        <js:SimpleCSSValuesImpl />
-    </js:valuesImpl>
-</js:Application>
+            <html:H3 text="RemoteObject AMF Test"/>
+
+            <j:Card width="400">
+                <j:Group>
+                    <j:beads>
+                        <j:HorizontalLayout gap="10"/>
+                    </j:beads>
+                    <j:TextInput id="name_txt">
+                        <j:beads>
+                            <j:TextPrompt prompt="Name to send via AMF"/>
+                        </j:beads>
+                    </j:TextInput>
+                    <j:Button text="Send to Name" emphasis="primary"  click="sendName()"/>
+                </j:Group>
+
+                <j:Label id="received" text="Received:"/>
+            </j:Card>
+
+            <j:Card width="400">
+                <j:Group>
+                    <j:beads>
+                        <j:HorizontalLayout gap="10"/>
+                    </j:beads>
+                    <j:TextInput id="nameSimple_txt">
+                        <j:beads>
+                            <j:TextPrompt prompt="Name via Simple RO"/>
+                        </j:beads>
+                    </j:TextInput>
+                    <j:Button text="Send SimpleRO" click="sendNameSimple()"/>
+                </j:Group>
+
+                <j:Label id="receivedSimple" text="Received Simple:"/>
+            </j:Card>
+
+            <j:Card width="400">
+                <j:Button text="Get Array of ValueObjects" emphasis="emphasized" click="getVOs()" width="100%"/>
+                <j:List id="list" labelField="id" width="100%" height="200" 
+                            change="reportChange()"/>
+                <j:Label id="received2" text="Selected:"/>
+            </j:Card>
+            
+            <j:Card width="400">
+                <j:Button text="Get Some Product" emphasis="primary" click="getSomeProduct()"/>
+                <j:Button text="Get Some Compressed Product" emphasis="emphasized" click="getSomeCompressedProduct()"/>
+                <j:Label id="received3" text="Received:" multiline="true"/>
+            </j:Card>
+
+        </j:View>
+    </j:initialView>
+    
+</j:Application>

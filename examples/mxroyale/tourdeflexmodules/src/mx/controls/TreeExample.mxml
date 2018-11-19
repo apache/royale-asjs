@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Licensed to the Apache Software Foundation (ASF) under one or more
+      contributor license agreements.  See the NOTICE file distributed with
+      this work for additional information regarding copyright ownership.
+      The ASF licenses this file to You under the Apache License, Version 2.0
+      (the "License"); you may not use this file except in compliance with
+      the License.  You may obtain a copy of the License at
+
+          http://www.apache.org/licenses/LICENSE-2.0
+
+      Unless required by applicable law or agreed to in writing, software
+      distributed under the License is distributed on an "AS IS" BASIS,
+      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+      See the License for the specific language governing permissions and
+      limitations under the License.
+  -->
+
+<!-- Tree control example. -->
+<mx:Module xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:mx="library://ns.apache.org/royale/mx"
+				paddingBottom="0" paddingTop="0" paddingLeft="0" paddingRight="0"
+				height="100%" width="100%">
+
+     <fx:Script>
+        <![CDATA[
+
+            [Bindable]
+            public var selectedNode:XML;
+
+            // Event handler for the Tree control change event.
+            public function treeChanged(event:Event):void {
+                selectedNode=Tree(event.target).selectedItem as XML;
+            }
+        ]]>
+    </fx:Script>
+
+	<fx:Declarations>
+	    <fx:XMLList id="treeData">
+		    <node label="Mail Box">
+		        <node label="Inbox">
+		            <node label="Marketing"/>
+		            <node label="Product Management"/>
+		            <node label="Personal"/>
+		        </node>
+		        <node label="Outbox">
+		            <node label="Professional"/>
+		            <node label="Personal"/>
+		        </node>
+		        <node label="Spam"/>
+		        <node label="Sent"/>
+			</node>	
+	    </fx:XMLList>
+	</fx:Declarations>
+
+    <mx:Panel title="Tree Control Example"
+				paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
+				height="100%" width="100%">
+
+        <mx:Label width="100%" 
+            text="Select a node in the Tree control."/>
+
+        <mx:HDividedBox width="100%" height="100%">
+            <mx:Tree id="myTree" width="50%" height="100%" labelField="@label"
+                showRoot="false" dataProvider="{treeData}" change="treeChanged(event)"/>
+            <mx:TextArea height="100%" width="50%"
+                text="Selected Item: {selectedNode.@label}"/>
+        </mx:HDividedBox>
+        
+    </mx:Panel>
+</mx:Module>

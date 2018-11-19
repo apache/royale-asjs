@@ -34,6 +34,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.layouts.HorizontalLayout;
+	import org.apache.royale.html.beads.layouts.HorizontalFlexLayout;
 	import org.apache.royale.html.beads.layouts.TileLayout;
 	import org.apache.royale.html.beads.models.DateChooserModel;
 	import org.apache.royale.html.supportClasses.DateHeaderButton;
@@ -134,9 +135,9 @@ package org.apache.royale.html.beads
 			// HEADER BUTTONS
 			
 			monthButtonsContainer = new Group();
+			monthButtonsContainer.addBead(new HorizontalFlexLayout());
 			monthButtonsContainer.height = controlHeight;
 			monthButtonsContainer.id = "dateChooserMonthButtons";
-			monthButtonsContainer.className = "opt_org-apache.royale-html-DateChooser_MonthButtons";
 			monthButtonsContainer.style = new SimpleCSSStylesWithFlex();
 			monthButtonsContainer.style.flexGrow = 0;
 			COMPILE::JS {

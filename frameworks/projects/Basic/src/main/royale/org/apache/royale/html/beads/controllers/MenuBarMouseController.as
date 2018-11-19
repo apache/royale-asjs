@@ -26,10 +26,12 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.ItemAddedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.Menu;
 	import org.apache.royale.html.MenuBar;
-	import org.apache.royale.html.beads.models.MenuBarModel;
+	import org.apache.royale.core.IMenuBarModel;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -57,7 +59,7 @@ package org.apache.royale.html.beads.controllers
 			super();
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 * @copy org.apache.royale.core.IBead#strand
@@ -71,6 +73,25 @@ package org.apache.royale.html.beads.controllers
 		{
 			_strand = value;
 			super.strand = value;
+		}
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
+		override protected function handleItemAdded(event:ItemAddedEvent):void
+		{
+			IEventDispatcher(event.item).addEventListener("itemMouseDown", selectedHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
+		}
+		
+        /**
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         */
+		override protected function handleItemRemoved(event:ItemRemovedEvent):void
+		{
+			IEventDispatcher(event.item).removeEventListener("itemMouseDown", selectedHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
+			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
 		
 		/**
@@ -89,17 +110,21 @@ package org.apache.royale.html.beads.controllers
 			host.dispatchEvent(new Event("hideMenus"));
 			
 			var component:IUIBase = event.target as IUIBase;
-			var mbar:MenuBar = _strand as MenuBar;
 			
-			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", mbar) as IFactory;
+			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", _strand) as IFactory;
 			var menu:IMenu = menuFactory.newInstance() as IMenu;
 			
-			var model:MenuBarModel = _strand.getBeadByType(IBeadModel) as MenuBarModel;
+			var model:IMenuBarModel = _strand.getBeadByType(IBeadModel) as IMenuBarModel;
 			
 			menu.dataProvider = event.data[model.submenuField];
 			menu.labelField = model.labelField;
 			menu.submenuField = model.submenuField;
 			menu.parentMenuBar = _strand as IEventDispatcher;
+            showMenu(menu, component);
+        }
+        
+        protected function showMenu(menu:IMenu, component:IUIBase):void
+        {
 			menu.show(component, 0, component.height);
 		}
 	}

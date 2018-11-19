@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
 	import flash.text.StyleSheet;
 	
 	import org.apache.royale.core.CSSTextField;
@@ -44,6 +42,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
+    COMPILE::SWF
 	public class TextFieldViewBase implements IBeadView, ITextFieldView
 	{
         /**
@@ -95,7 +94,7 @@ package org.apache.royale.html.beads
             IEventDispatcher(_strand).addEventListener("widthChanged", widthChangeHandler);
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangeHandler);
             IEventDispatcher(_strand).addEventListener("sizeChanged", sizeChangeHandler);
-			DisplayObjectContainer(value).addChild(_textField);
+			UIBase(value).$addChild(_textField);
 
             var ilc:ILayoutChild = host as ILayoutChild;
             autoHeight = ilc.isHeightSizedToContent();
@@ -403,10 +402,10 @@ package org.apache.royale.html.beads
             }
             
             if (autoWidth) {
-                (host as UIBase).setWidth(textField.textWidth, true);
+                (host as UIBase).setWidth(textField.textWidth + 4, true);
             }
             if (autoHeight) {
-                (host as UIBase).setHeight(textField.textHeight, true);
+                (host as UIBase).setHeight(textField.textHeight + 4, true);
             }
         }
     }

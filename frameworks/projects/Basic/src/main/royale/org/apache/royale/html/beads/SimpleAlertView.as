@@ -37,6 +37,8 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.Label;
     import org.apache.royale.html.TextButton;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.html.beads.IBackgroundBead;
+	import org.apache.royale.html.beads.IBorderBead;
 	
 	/**
 	 *  The SimpleAlertView class creates the visual elements of the 
@@ -63,14 +65,6 @@ package org.apache.royale.html.beads
 		
 		private var messageLabel:Label;
 		private var okButton:TextButton;
-
-		/**
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 */
-		private function get host():UIBase
-		{
-			return _strand as UIBase;
-		}
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -113,11 +107,11 @@ package org.apache.royale.html.beads
             messageLabel = new Label();
 			messageLabel.text = model.message;
 			messageLabel.html = model.htmlMessage;
-			host.addElement(messageLabel);
+            (host as IParent).addElement(messageLabel);
 			
 			okButton = new TextButton();
 			okButton.text = model.okLabel;
-			host.addElement(okButton);
+            (host as IParent).addElement(okButton);
 			okButton.addEventListener("click",handleOK);
 			
 			handleMessageChange(null);

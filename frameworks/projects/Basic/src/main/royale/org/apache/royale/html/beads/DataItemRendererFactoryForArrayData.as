@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -36,7 +37,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
 	
-	import org.apache.royale.core.IList;
+    import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IParentIUIBase;
@@ -55,7 +56,7 @@ package org.apache.royale.html.beads
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.8
      */
 	public class DataItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
 	{
@@ -65,7 +66,7 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
          */
 		public function DataItemRendererFactoryForArrayData(target:Object=null)
 		{
@@ -86,7 +87,8 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		public function set strand(value:IStrand):void
 		{
@@ -96,6 +98,9 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
+		 * @royaleignorecoercion org.apache.royale.html.beads.DataFieldProviderBead
 		 */
 		private function finishSetup(event:Event):void
 		{			
@@ -126,7 +131,8 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
          */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
@@ -151,7 +157,15 @@ package org.apache.royale.html.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+		 *  @royaleignorecoercion Array
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */		
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -159,8 +173,8 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var list:IList = _strand as IList;
-			var dataGroup:IItemRendererParent = list.dataGroup;
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererParent = view.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
 			
@@ -172,7 +186,7 @@ package org.apache.royale.html.beads
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
                 var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-				dataGroup.addItemRenderer(ir);
+				dataGroup.addItemRenderer(ir, false);
 				ir.index = i;
 				ir.labelField = labelField;
                 if (dataItemRenderer)

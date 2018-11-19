@@ -26,7 +26,7 @@ limitations under the License.
  @productversion Royale 0.0
 -->
 <js:MXMLBeadView xmlns:fx="http://ns.adobe.com/mxml/2009"
-                     xmlns:js="library://ns.apache.org/royale/basic">
+                 xmlns:js="library://ns.apache.org/royale/basic">
 				  
     <fx:Script>
         <![CDATA[
@@ -47,11 +47,7 @@ limitations under the License.
         <js:LayoutChangeNotifier watchedProperty="{titleLabel.text}" />
     </js:beads>
 
-    <js:Label id="titleLabel" text="{ITitleBarModel(model).title}" className="TitleBarTitle" >
-        <js:style>
-            <js:SimpleCSSStyles fontWeight="inherit" marginRight="5" marginLeft="5" />
-        </js:style>
-    </js:Label>
+    <js:TitleBarTitle id="titleLabel" text="{ITitleBarModel(model).title}"/>
     <js:CloseButton id="closeButton" click="clickHandler()" className="TitleBarCloseButton"
                     visible="{ITitleBarModel(model).showCloseButton}"/>
     

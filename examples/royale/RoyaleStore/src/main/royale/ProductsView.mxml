@@ -80,7 +80,7 @@ limitations under the License.
         <productsView:Grip id="filterGrip" gripIcon="assets/icon_magnifier.png" 
             gripTip="Show filter panel" click="currentState = 'showFilter'"/>
     
-        <productsView:ProductFilterPanel x="{filterGrip.width}" y="0" id="filterPanel" width="265" height="100%"
+        <productsView:ProductFilterPanel y="0" id="filterPanel" width="265" height="100%"
             filter="catalogPanel.filter(event.filter, event.live)"
             compare="catalogPanel.compare(filterPanel.productList.getProducts())"
             initComplete="if (catalog) filterPanel.filter.count = catalog.length"/>

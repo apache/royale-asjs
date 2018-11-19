@@ -22,12 +22,12 @@ package org.apache.royale.core
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.states.State;
-	import org.apache.royale.utils.MXMLDataInterpreter;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     COMPILE::JS
@@ -151,6 +151,7 @@ package org.apache.royale.core
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 */
 		public function getLayoutHost():ILayoutHost
 		{
