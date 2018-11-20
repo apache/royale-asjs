@@ -46,6 +46,7 @@ package mx.events
 		{
 			super(type, bubbles, cancelable,status);
 		}
+		
 	}
 	
 	/**
@@ -64,6 +65,7 @@ package mx.events
 	{
 		/*  include "../core/Version.as"; */
 		public static const HTTP_STATUS:String = "httpStatus";
+		private var m_status:int;
 		
 		//--------------------------------------------------------------------------
 		//
@@ -98,11 +100,13 @@ package mx.events
 										cancelable:Boolean = false, status:int = 0)
 		{
 			super(type, bubbles, cancelable);
+			this.m_status = status;
 		}
 		
-		
-		
-		
+		public function get status() : int
+		{
+			return this.m_status;
+		}		
 		
 	}
 	
