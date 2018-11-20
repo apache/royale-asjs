@@ -27,14 +27,14 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
-            import valueObjects.ClientValueObject;
-            import valueObjects.Product;
-            import valueObjects.Zone;
+            import mx.rpc.AsyncToken;
+            import mx.rpc.Responder;
             import mx.rpc.events.FaultEvent;
             import mx.rpc.events.ResultEvent;
             import mx.rpc.remoting.Operation;
-            import mx.rpc.AsyncToken;
-            import mx.rpc.Responder;
+
+            import valueObjects.ClientValueObject;
+            import valueObjects.Product;
 
 			private function onFault(evt:FaultEvent):void
 			{
@@ -74,6 +74,100 @@ limitations under the License.
             //     trace("[onCompressEchoResult]", event);
             //     resultCompress_txt.text = event.result as String;
             // }
+
+            /**
+             * create a complex object in royale and send to java
+             */
+            public function sendClientVO(event:MouseEvent):void
+            {
+                trace("sendClientVO called");
+
+                var clientVO:ClientValueObject = new ClientValueObject();
+                clientVO.id = String(Math.random()*100);
+
+                var r:Responder = new Responder(sendClientVOResult, onFault);
+                var t:AsyncToken = serviceResp.sendClientVO(clientVO);
+                t.addResponder(r);
+                trace("the token: ", t);
+            }
+
+            private function sendClientVOResult(event:ResultEvent):void
+			{
+                trace("[sendClientVOResult]", event);
+                result2_txt.text = event.result as String;
+            }
+
+            /**
+             * create a complex object in royale and send to java
+             */
+            public function sendSomeProduct(event:MouseEvent):void
+            {
+                trace("sendSomeProduct called");
+
+                var product:Product = new Product();
+                product.name = "Some royale product";
+                product.description = "This product is only a test typed value object to test AMF strong types";
+                
+                // var taxonomy:Taxonomy = new Taxonomy();
+                // taxonomy.type = "a type";
+                // taxonomy.description = "a taxonomy for this product";
+
+                // product.taxonomy = taxonomy;
+
+                // Set<Zone> zones = new HashSet<Zone>();
+                
+                // Zone zone1 =  new Zone();
+                // zone1.setId(1);
+                // zone1.setName("Europe");
+                // zones.add(zone1);
+
+                // Zone zone2 =  new Zone();
+                // zone2.setId(2);
+                // zone2.setName("USA");
+                // zones.add(zone2);
+
+                // Zone zone3 =  new Zone();
+                // zone3.setId(3);
+                // zone3.setName("Asia");
+                // zones.add(zone3);
+                
+
+                /*Object[] zones = new Object[3];
+                for (int i = 0; i < zones.length; i++)
+                {
+                    Zone zone = new Zone();
+                    zone.setId(i);
+                    if (i == 0)
+                        zone.setName("Europa");
+                    else if (i == 1)
+                        zone.setName("USA");
+                    else if (i == 2)
+                        zone.setName("Asia");
+                    zones[i] = zone;
+                }*/
+
+                // product.setZones(zones);
+                
+                // List<CharSequence> list = new ArrayList<CharSequence>();
+                // list.add("A");
+                // list.add("B");
+                // list.add("A");
+                // list.add("C");
+                // list.add("C");
+                // list.add("B");
+                // product.setFlavors(new HashSet<CharSequence>(list));
+
+                var r:Responder = new Responder(onSendSomeProductResult, onFault);
+                var t:AsyncToken = serviceResp.sendSomeProduct(product);
+                t.addResponder(r);
+                trace("the token: ", t);
+            }
+
+            private function onSendSomeProductResult(event:ResultEvent):void
+			{
+                trace("[onSendSomeProductResult]", event);
+                result3_txt.text = event.result as String;
+            }
 		]]>
 	</fx:Script>
 
@@ -144,5 +238,15 @@ limitations under the License.
     <mx:VBox width="400">
         <mx:Button label="Get Some Product" click="service.getSomeProduct()"/>
         <mx:Label text="{((service.getSomeProduct as Operation).lastResult as Product).name}"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="Send client vo to java" click="sendClientVO(event)"/>        
+        <!-- <mx:Label text="{(service.sendSomeProduct as Operation).lastResult as String}"/> -->
+        <mx:Label id="result2_txt"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="Send complex object to java" click="sendSomeProduct(event)"/>        
+        <!-- <mx:Label text="{(service.sendSomeProduct as Operation).lastResult as String}"/> -->
+        <mx:Label id="result3_txt"/>
     </mx:VBox>
 </mx:Application>
