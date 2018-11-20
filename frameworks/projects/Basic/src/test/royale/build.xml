@@ -52,13 +52,13 @@
         type="dir"
         property="FLEXUNIT_LIBPATH1"
         value="-swf-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc" />
-    <property name="FLEXUNIT_LIBPATH1" value="-swf-library-path+=${FLEXUNIT_HOME}/flexunit" />
+    <property name="FLEXUNIT_LIBPATH1" value="-swf-library-path+=${FLEXUNIT_HOME}/flexunit/flexunit-4.2.0-20140410-as3_4.12.0.swc" />
 
     <available file="${FLEXUNIT_HOME}/FlexUnit4CIListener/target"
         type="dir"
         property="FLEXUNIT_LIBPATH2"
         value="-swf-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
-    <property name="FLEXUNIT_LIBPATH2" value="-define+=CONFIG::dummy,false" />
+    <property name="FLEXUNIT_LIBPATH2" value="-swf-library-path+=${FLEXUNIT_HOME}/flexunit/flexunit-cilistener-4.2.0-20140410-4.12.0.swc" />
 
     <available file="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target"
         type="dir"
@@ -91,6 +91,8 @@
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="FLEXUNIT_HOME: ${FLEXUNIT_HOME}"/>
+        <echo message="FLEXUNIT_LIBPATH1: ${FLEXUNIT_LIBPATH1}"/>
+        <echo message="FLEXUNIT_LIBPATH2: ${FLEXUNIT_LIBPATH2}"/>
         <echo message="playerglobal.version: ${playerglobal.version}"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
