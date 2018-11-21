@@ -1116,11 +1116,11 @@ package
 
 		public function getAttributeArray():Array
 		{
-			return _attributes ? _attributes.slice() : [];
+			return _attributes ? _attributes : [];
 		}
 		public function getChildrenArray():Array
 		{
-			return _children ? _children.slice() : [];
+			return _children ? _children : [];
 		}
 
 		public function getIndexOf(elem:XML):int
