@@ -37,6 +37,15 @@ package mx.rpc.remoting
      */
     public class CompressedRemoteObject extends RemoteObject
     {
+        /**
+         * disable the compression if true
+         * 
+         * defaults to false
+         * 
+         * @royalesuppresspublicvarwarning
+         */
+        public static var disableCompression:Boolean;
+        
         [ArrayElementType("String")]
         /**
          * @royalesuppresspublicvarwarning
@@ -144,7 +153,7 @@ package mx.rpc.remoting
         private function deserializeResult(result:*, operation:AbstractOperation):* // NO PMD
         {
             COMPILE::SWF{
-            if (result is ByteArray) {
+            if (!disableCompression && result is ByteArray) {
                 var byteArray:ByteArray = result as ByteArray;
                 byteArray.uncompress();
                 return byteArray.readObject();
@@ -155,7 +164,7 @@ package mx.rpc.remoting
 
             COMPILE::JS
             {
-            if (result is Array)
+            if (!disableCompression && result is Array)
             {
                 // --- Transform the number array into a bytearray
                 var bytearray:Uint8Array = new Uint8Array(result);
@@ -163,6 +172,7 @@ package mx.rpc.remoting
                 var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray));
                 // --- store the inflated data object in result
                 result = data.readObject();
+
                 return result;
             }
             else

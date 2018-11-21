@@ -47,16 +47,27 @@ package org.apache.royale.net
             super();
         }
 
+        /**
+         * disable the compression if true
+         * 
+         * defaults to false
+         * 
+         * @royalesuppresspublicvarwarning
+         */
+        public static var disableCompression:Boolean;
+
         override public function resultHandler(param:Object):void
 		{
             COMPILE::JS
             {
-                // --- Transform the number array into a bytearray
-                var bytearray:Uint8Array = new Uint8Array(param.body);
+                if(!disableCompression) {
+                    // --- Transform the number array into a bytearray
+                    var bytearray:Uint8Array = new Uint8Array(param.body);
 
-                // --- uncompress the bytearray to get the real object (tree) and create the AMFBinaryData with it
-                var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray));
-                param.body = data.readObject();
+                    // --- uncompress the bytearray to get the real object (tree) and create the AMFBinaryData with it
+                    var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray));
+                    param.body = data.readObject();
+                }
                 // --- dispatch the ResultEvent like in the standard RemoteObject with the inflated result object
     		    dispatchEvent(new ResultEvent(ResultEvent.RESULT, param.body));
             }
@@ -64,9 +75,14 @@ package org.apache.royale.net
             COMPILE::SWF
             {
                 // --- SWF not tested
-                var byteArray:ByteArray = param.body as ByteArray;
-                byteArray.uncompress();
-                dispatchEvent(new ResultEvent(ResultEvent.RESULT, byteArray.readObject()));
+                if(!disableCompression) {
+                    var byteArray:ByteArray = param.body as ByteArray;
+                    byteArray.uncompress();
+                    dispatchEvent(new ResultEvent(ResultEvent.RESULT, byteArray.readObject()));
+                } else
+                {
+                    dispatchEvent(new ResultEvent(ResultEvent.RESULT, param.body));
+                }
             }
 		}
     }
