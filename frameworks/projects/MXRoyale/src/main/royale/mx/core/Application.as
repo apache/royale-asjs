@@ -54,13 +54,17 @@ import flash.display.StageQuality;
 import flash.display.StageScaleMode;
 import flash.system.ApplicationDomain;
 import flash.utils.getQualifiedClassName;
-import org.apache.royale.events.utils.MouseEventConverter;
 }
 
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
+import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
+
+COMPILE::JS {
+    import org.apache.royale.core.HTMLElementWrapper;
+}
 
 import org.apache.royale.binding.ApplicationDataBinding;
 import org.apache.royale.binding.ContainerDataBinding;
@@ -605,6 +609,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
+        HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        
         initManagers();
         
 //		if (initialView)

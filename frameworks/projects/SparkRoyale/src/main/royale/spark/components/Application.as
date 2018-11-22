@@ -63,7 +63,12 @@ COMPILE::SWF {
 
 import mx.core.mx_internal;
 import mx.core.FlexGlobals;
+import mx.events.utils.MouseEventConverter;
 import mx.managers.ISystemManager;
+
+COMPILE::JS {
+    import org.apache.royale.core.HTMLElementWrapper;
+}
 
 import org.apache.royale.binding.ApplicationDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
@@ -314,6 +319,11 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         
         this.valuesImpl = new AllCSSValuesImpl();
         addBead(new ApplicationDataBinding());
+        
+        COMPILE::JS
+        {
+            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        }
     }
 
     
