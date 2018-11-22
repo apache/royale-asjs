@@ -90,7 +90,7 @@
    			<mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="true"
             	output="${basedir}/bin-debug/@{folder}@{example}.swf"
                 fork="true" failonerror="true">
-				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
+				<load-config filename="${ROYALE_HOME}/frameworks/flex-config.xml"/>
                 <arg value="-module-output=@{folder}" />
                 <arg value="+playerglobal.version=${playerglobal.version}" />
                 <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
@@ -113,7 +113,7 @@
    				<locale>el_GR</locale>
    				<locale>de_CH</locale>
    				<locale>pt_PT</locale>
-				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
+				<load-config filename="${ROYALE_HOME}/frameworks/flex-config.xml"/>
 			</mxmlc>
 		</sequential>
 	</macrodef>
