@@ -71,22 +71,20 @@ package org.apache.royale.core
 		{
             var e:IBrowserEvent;
             var nativeEvent:Object = eventObject.getBrowserEvent();
-            switch(nativeEvent.constructor.name)
-            {
-                case "KeyboardEvent":
-                    e = KeyboardEventConverter.convert(nativeEvent);
-                    break;
-                case "MouseEvent":
-                    e = MouseEventConverter.convert(nativeEvent);
-                    break;
-                default:
-                    e = new org.apache.royale.events.BrowserEvent();
-                    break;
-            }
+            var converter:Object = converterMap[nativeEvent.constructor.name];
+            if (converter)
+                e = converter["convert"](nativeEvent);
+            else
+                e = new org.apache.royale.events.BrowserEvent();
 
 			e.wrapEvent(eventObject);
 			return HTMLElementWrapper.googFireListener(listener, e);
 		}
+        
+        /**
+         * @royalesuppresspublicvarwarning
+         */
+        static public var converterMap:Object = {};
 
         /**
          * Static initializer
@@ -95,6 +93,8 @@ package org.apache.royale.core
 		{
 			HTMLElementWrapper.googFireListener = goog.events.fireListener;
 			goog.events.fireListener = HTMLElementWrapper.fireListenerOverride;
+            converterMap["KeyboardEvent"] = KeyboardEventConverter;
+            converterMap["MouseEvent"] = MouseEventConverter;
 			return true;
 		}
 
