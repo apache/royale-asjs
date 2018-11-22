@@ -86,6 +86,18 @@ import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
 /**
+ *  Set a different class for click events so that
+ *  there aren't dependencies on the flash classes
+ *  on the JS side.
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+[Event(name="click", type="mx.events.MouseEvent")]
+
+/**
  *  Dispatched when the component has finished its construction
  *  and has all initialization properties set.
  *
