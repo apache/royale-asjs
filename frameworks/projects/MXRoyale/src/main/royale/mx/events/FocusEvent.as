@@ -42,6 +42,8 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class FocusEvent extends flash.events.FocusEvent
 {
+    public static const FOCUS_IN:String = "focusIn";
+    public static const FOCUS_OUT:String = "focusOut";
 	public function FocusEvent(type:String, bubbles:Boolean = false,
                               cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none")
     {
