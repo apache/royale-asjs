@@ -39,6 +39,7 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class KeyboardEvent extends flash.events.KeyboardEvent
 {
+
 	public function KeyboardEvent(type:String, bubbles:Boolean = true, cancelable:Boolean = false, 
 	charCodeValue:uint = 0, keyCodeValue:uint = 0, keyLocationValue:uint = 0, 
 	ctrlKeyValue:Boolean = false, altKeyValue:Boolean = false, 
@@ -50,6 +51,14 @@ public class KeyboardEvent extends flash.events.KeyboardEvent
 	
 	
 	public static const KEY_DOWN:String = platformConstant1("keyDown");
+	public static const HOME:uint = platformConstant(36); 
+	public static const BACKSPACE:uint = platformConstant(8);
+	public static const LEFT:uint = platformConstant(37);
+	public static const RIGHT:uint = platformConstant(39);
+	public static const DELETE:uint = platformConstant(46);
+	public static const END:uint = platformConstant(35);
+	public static const KEY_UP:String = platformConstant1("keyUp");
+	
 	public function get KEY_DOWN():String
 	{
 		return "keyDown";
