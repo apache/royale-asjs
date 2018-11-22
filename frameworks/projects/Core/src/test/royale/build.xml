@@ -51,14 +51,14 @@
     <available file="${FLEXUNIT_HOME}/FlexUnit4/target"
         type="dir"
         property="FLEXUNIT_LIBPATH1"
-        value="-swf-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc" />
-    <property name="FLEXUNIT_LIBPATH1" value="-swf-library-path+=${FLEXUNIT_HOME}/flexunit/flexunit-4.2.0-20140410-as3_4.12.0.swc" />
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc" />
+    <property name="FLEXUNIT_LIBPATH1" value="-library-path+=${FLEXUNIT_HOME}/flexunit/flexunit-4.2.0-20140410-as3_4.12.0.swc" />
 
     <available file="${FLEXUNIT_HOME}/FlexUnit4CIListener/target"
         type="dir"
         property="FLEXUNIT_LIBPATH2"
-        value="-swf-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
-    <property name="FLEXUNIT_LIBPATH2" value="-swf-library-path+=${FLEXUNIT_HOME}/flexunit/flexunit-cilistener-4.2.0-20140410-4.12.0.swc" />
+        value="-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
+    <property name="FLEXUNIT_LIBPATH2" value="-library-path+=${FLEXUNIT_HOME}/flexunit/flexunit-cilistener-4.2.0-20140410-4.12.0.swc" />
 
     <available file="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target"
         type="dir"
@@ -121,7 +121,6 @@
             <arg value="-compiler.targets=SWF" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-swf-library-path+=${ROYALE_HOME}/frameworks/libs" />
             <arg value="${FLEXUNIT_LIBPATH1}" />
             <arg value="${FLEXUNIT_LIBPATH2}" />
         </mxmlc>
