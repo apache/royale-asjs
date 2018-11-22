@@ -191,7 +191,8 @@ internal class MXRoyaleClasses
 	import mx.events.TreeEvent; TreeEvent;
 	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
-	
+	import mx.events.NumericStepperEvent; NumericStepperEvent;
+
 
 	COMPILE::JS
     {
