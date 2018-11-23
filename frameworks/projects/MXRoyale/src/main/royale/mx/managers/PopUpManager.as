@@ -24,6 +24,16 @@ package mx.managers
 //import mx.core.IFlexModuleFactory;
 //import mx.core.Singleton;
 import mx.core.IFlexDisplayObject;
+import mx.core.IUIComponent;
+import mx.core.FlexGlobals;
+
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.html.beads.plugin.IModalDisplay;
+import org.apache.royale.utils.UIUtils;
+
 
 /**
  *  The PopUpManager singleton class creates new top-level windows and
@@ -129,7 +139,9 @@ public class PopUpManager
                                        childList:String = null,
                                        moduleFactory:Object = null):Object //IFlexModuleFactory = null):IFlexDisplayObject
     {   
-		return null; //impl.createPopUp(parent, className, modal, childList, moduleFactory);
+		var instance:IUIComponent = new className() as IUIComponent;
+        addPopUp(instance, parent, modal);
+        return instance;
     }
     
     /**
@@ -184,7 +196,15 @@ public class PopUpManager
                     childList:String = null,
                     moduleFactory:Object = null):void //IFlexModuleFactory = null):void
     {
-		//impl.addPopUp(window, parent, modal, childList, moduleFactory);
+        var popUpHost:IPopUpHost = UIUtils.findPopUpHost(parent as IUIBase);
+        if (modal)
+        {
+            var appStrand:IStrand = FlexGlobals.topLevelApplication as IStrand;
+            var modalBead:IModalDisplay = appStrand.getBeadByType(IModalDisplay) as IModalDisplay;
+            if (modalBead)
+                modalBead.show(popUpHost);
+        }
+        popUpHost.popUpParent.addElement(window as IUIComponent);
     }
 	
     /**
@@ -223,7 +243,7 @@ public class PopUpManager
 	
     public static function removePopUp(popUp:IFlexDisplayObject):void
     {
-		//impl.removePopUp(popUp);
+		UIUtils.removePopUp(popUp as IChild)
     }
 } // class
 } // package
