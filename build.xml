@@ -1318,7 +1318,7 @@ limitations under the License.
             file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <targets>JSRoyale</targets>
-            <library-path dir="${ROYALE_HOME}" append="true">
+            <library-path dir="${ROYALE_HOME}">
                 <include name="mustella/mustella.swc"/>
             </library-path>
             <js-external-library-path dir="${basedir}">
