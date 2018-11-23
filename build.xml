@@ -1533,7 +1533,7 @@ limitations under the License.
     <target name="mxtests" depends="load-task,mxtests-compile-java" description="run MX tests using mustella"  if="env.AIR_HOME">
         <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
-        <mxmlc fork="true" debug="true"
+        <mxmlc fork="true" debug="true" configname="flex"
                closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
@@ -1673,7 +1673,7 @@ limitations under the License.
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" />
-        <mxmlc fork="true" debug="true"
+        <mxmlc fork="true" debug="true" configname="flex"
             closure-lib="${env.GOOG_HOME}"
             file="${basedir}/mustella/tests/mxtests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
