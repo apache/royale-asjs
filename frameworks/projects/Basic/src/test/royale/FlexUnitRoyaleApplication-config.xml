@@ -31,6 +31,10 @@
             <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}/playerglobal.swc</path-element>
         </external-library-path>
         
+        <js-external-library-path>
+            <path-element>../../../../../../js/libs/js.swc</path-element>
+        </js-external-library-path>
+        
         <library-path>
             <path-element>../../../../../libs/Basic.swc</path-element>
             <path-element>../../../../../libs/Binding.swc</path-element>
@@ -39,6 +43,15 @@
             <path-element>../../../../../libs/Collections.swc</path-element>
             <path-element>../../../../../libs/Testing.swc</path-element>
         </library-path>
+        
+        <js-library-path>
+            <path-element>../../../../../js/libs/BasicJS.swc</path-element>
+            <path-element>../../../../../js/libs/BindingJS.swc</path-element>
+            <path-element>../../../../../js/libs/CoreJS.swc</path-element>
+            <path-element>../../../../../js/libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../js/libs/CollectionsJS.swc</path-element>
+            <path-element>../../../../../js/libs/TestingJS.swc</path-element>
+        </js-library-path>
         
         <allow-subclass-overrides>true</allow-subclass-overrides>
         
