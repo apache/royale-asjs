@@ -70,6 +70,19 @@ Basic|DataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer");
 }
 
+Alert
+{
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IBeadView:  ClassReference("mx.controls.beads.AlertView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.AlertController");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
+
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+}
+
 Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
@@ -635,6 +648,12 @@ charts|DataTip
 {
 	/* Global style declaration for Flash only.  This will effectively be the same
 	   as the browser defaults */
+	
+	Alert
+	{
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+	}
 	
 	Button
 	{
