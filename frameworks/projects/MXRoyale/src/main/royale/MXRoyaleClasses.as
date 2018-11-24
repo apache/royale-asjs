@@ -155,6 +155,9 @@ internal class MXRoyaleClasses
 	import mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
 	import mx.formatters.Formatter; Formatter;
 	import mx.formatters.IFormatter; IFormatter;
+	import mx.formatters.NumberBase; NumberBase;
+	import mx.formatters.NumberBaseRoundType; NumberBaseRoundType;
+	import mx.formatters.CurrencyFormatter; CurrencyFormatter;
 	import mx.events.CalendarLayoutChangeEvent; CalendarLayoutChangeEvent;
 	import mx.net.SharedObject; SharedObject;
 	import mx.modules.ModuleManager; ModuleManager;
