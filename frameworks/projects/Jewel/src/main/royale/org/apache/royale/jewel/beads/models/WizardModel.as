@@ -132,5 +132,51 @@ package org.apache.royale.jewel.beads.models
 				dispatchEvent(new Event('currentStepChange'));
 			}
 		}
+
+		private var _showPreviousButton:Boolean = true;
+		/**
+		 *  show/hide wizard navigator previous button in the wizard
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		[Bindable(event="showPreviousButtonChange")]
+		public function get showPreviousButton():Boolean
+		{
+			return _showPreviousButton;
+		}
+		public function set showPreviousButton(value:Boolean):void
+		{
+			if(value != _showPreviousButton)
+			{
+				_showPreviousButton=value;
+				dispatchEvent(new Event("showPreviousButtonChange"));
+			}
+		}
+		
+		private var _showNextButton:Boolean = true;
+		/**
+		 *  show/hide wizard navigator next button in the wizard
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		[Bindable(event="showNextButtonChange")]
+		public function get showNextButton():Boolean
+		{
+			return _showNextButton;
+		}
+		public function set showNextButton(value:Boolean):void
+		{
+			if(value != _showNextButton)
+			{
+				_showNextButton=value;
+				dispatchEvent(new Event("showNextButtonChange"));
+			}
+		}
 	}
 }

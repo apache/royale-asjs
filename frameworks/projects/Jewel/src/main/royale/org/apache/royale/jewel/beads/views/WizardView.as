@@ -36,6 +36,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.Label;
 	import org.apache.royale.jewel.VGroup;
 	import org.apache.royale.jewel.Wizard;
+	import org.apache.royale.jewel.WizardPage;
 	import org.apache.royale.jewel.beads.models.WizardModel;
 	import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy;
 
@@ -172,9 +173,10 @@ package org.apache.royale.jewel.beads.views
 			
 			model = _strand.getBeadByType(WizardModel) as WizardModel;
 			model.addEventListener("currentStepChange", handleStepChange);
+			model.addEventListener("showPreviousButtonChange", handleStepChange);
+			model.addEventListener("showNextButtonChange", handleStepChange);
 
-			trace("wizard.model.text:" + wizard.model.text);
-            if (!_titleLabel) {
+			if (!_titleLabel) {
                 _titleLabel = new Label();
 				(_titleLabel as Label).text = wizard.model.text;
 			}
@@ -281,13 +283,29 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		/**
+		 * 
+		 */
+		public function showPreviousButtonChangeHandler(event:Event):void
+		{
+			model.showPreviousButton = (event.target as WizardPage).showPreviousButton;
+		}
+
+		/**
+		 * 
+		 */
+		public function showNextButtonChangeHandler(event:Event):void
+		{
+			model.showNextButton = (event.target as WizardPage).showNextButton;
+		}
+
+		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
 		 */
 		protected function stepChangeAction():void
 		{
-			previousButton.visible = (model.currentStep.previousStep != null);
-			nextButton.visible = (model.currentStep.nextStep != null);
+			previousButton.visible = model.showPreviousButton && model.currentStep.previousStep != null;
+			nextButton.visible = model.showNextButton && model.currentStep.nextStep != null;
 		}
 		
         protected function setupContentAreaLayout():void

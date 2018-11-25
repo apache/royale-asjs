@@ -21,6 +21,7 @@ package org.apache.royale.jewel
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.WizardModel;
     import org.apache.royale.jewel.beads.models.WizardStep;
+    import org.apache.royale.jewel.beads.views.WizardView;
 
 	/**
 	 *  Dispatched When the wizard reach to this page
@@ -68,16 +69,6 @@ package org.apache.royale.jewel
 		 */
         public var initialized:Boolean;
 
-		/**
-		 * @royalesuppresspublicvarwarning
-		 */
-        // public var previousButton:Button;
-
-		/**
-		 * @royalesuppresspublicvarwarning
-		 */
-        // public var nextButton:Button;
-
 		private var _step:WizardStep;
 		/**
 		 *  the step data of this page
@@ -117,6 +108,8 @@ package org.apache.royale.jewel
 		{
 			wizard.addEventListener("goToPreviousStep", goToPreviousStepHandler);
 			wizard.addEventListener("goToNextStep", goToNextStepHandler);
+			addEventListener("showPreviousButtonChange", WizardView(wizard.view).showPreviousButtonChangeHandler);
+			addEventListener("showNextButtonChange",  WizardView(wizard.view).showNextButtonChangeHandler);
 		}
 
 		/**
@@ -141,6 +134,8 @@ package org.apache.royale.jewel
 			}
 			if(model.currentStep.previousStep == step.name)
 			{
+				model.showPreviousButton = showPreviousButton;
+				model.showNextButton = showNextButton;
 				dispatchEvent(new Event("enterPage"));
 				enterPage();
 			}
@@ -167,6 +162,8 @@ package org.apache.royale.jewel
 			}
 			if(model.currentStep.nextStep == step.name)
 			{
+				model.showPreviousButton = showPreviousButton;
+				model.showNextButton = showNextButton;
 				dispatchEvent(new Event("enterPage"));
 				enterPage();
 			}
@@ -178,6 +175,36 @@ package org.apache.royale.jewel
 		public function enterPage():void
 		{
 			// trace("enterPage", step.name);
+		}
+
+		private var _showPreviousButton:Boolean = true;
+		/**
+		 * show/hide wizard navigator previous button in the wizard for this page
+		 */
+		public function get showPreviousButton():Boolean
+		{
+			return  _showPreviousButton;
+		}
+		public function set showPreviousButton(value:Boolean):void
+		{
+			_showPreviousButton = value;
+			
+			dispatchEvent(new Event("showPreviousButtonChange"));
+		}
+
+		private var _showNextButton:Boolean = true;
+		/**
+		 * show/hide wizard navigator next button in the wizard for this page
+		 */
+		public function get showNextButton():Boolean
+		{
+			return _showNextButton;
+		}
+		public function set showNextButton(value:Boolean):void
+		{
+			_showNextButton = value;
+
+			dispatchEvent(new Event("showNextButtonChange"));
 		}
     }
 }

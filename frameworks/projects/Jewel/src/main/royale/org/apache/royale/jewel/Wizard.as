@@ -170,11 +170,13 @@ package org.apache.royale.jewel
 		 */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
+			var page:WizardPage = c as WizardPage;
+			page.model = model;
+			
 			var wizardView:WizardView = view as WizardView;
-			wizardView.contentArea.addElement(c, dispatchEvent);
+			wizardView.contentArea.addElement(page, dispatchEvent);
 			wizardView.contentArea.dispatchEvent(new Event("layoutNeeded"));
 
-			var page:WizardPage = c as WizardPage;
 			page.step.page = c as WizardPage;
 			page.addWizardListeners(this);
 		}
@@ -186,11 +188,13 @@ package org.apache.royale.jewel
 		 */
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
+			var page:WizardPage = c as WizardPage;
+			page.model = model;
+
 			var wizardView:WizardView = view as WizardView;
-			wizardView.contentArea.addElementAt(c, index, dispatchEvent);
+			wizardView.contentArea.addElementAt(page, index, dispatchEvent);
 			wizardView.contentArea.dispatchEvent(new Event("layoutNeeded"));
 			
-			var page:WizardPage = c as WizardPage;
 			page.step.page = c as WizardPage;
 			page.addWizardListeners(this);
 		}

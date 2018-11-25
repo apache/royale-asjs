@@ -109,6 +109,8 @@ limitations under the License.
 						<j:VerticalCenteredLayout gap="9"/>
 					</j:beads>
 					<html:H1 text="Page 4"/>
+					<j:CheckBox text="show next button?" selected="true" change="page4.showNextButton = event.target.selected"/>
+					<j:CheckBox text="show previous button?" selected="true" change="page4.showPreviousButton = event.target.selected"/>
 				</j:Group>
 
 			</j:WizardPage>
