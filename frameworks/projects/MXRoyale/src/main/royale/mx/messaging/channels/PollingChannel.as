@@ -845,8 +845,12 @@ class PollCommandMessageResponder extends MessageResponder
             if (msg.body != null)
             {
                 var messageList:Array = msg.body as Array;
-                for each (var message:IMessage in messageList)
+                var l:uint = messageList.length;
+                var i:uint = 0;
+                for (;i<l;i++)
+                // for each (var message:IMessage in messageList)
                 {
+                    var message:IMessage = messageList[i];
                     if (Log.isDebug())
                     {
                         _log.debug("'{0}' channel got message\n{1}\n", channel.id, message.toString());
