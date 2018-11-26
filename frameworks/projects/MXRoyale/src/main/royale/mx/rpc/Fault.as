@@ -31,6 +31,15 @@ package mx.rpc
  */
 public class Fault extends Error
 {
+
+
+
+ COMPILE::JS{
+   public function getStackTrace():String
+   {
+       return null;
+   }
+ }
     /**
      * Creates a new Fault object.
      *
