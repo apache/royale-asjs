@@ -624,7 +624,7 @@ limitations under the License.
 
     <target name="checkintests-clean">
         <delete file="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf" failonerror="false"/>
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/mustella/tests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="player-clean">
