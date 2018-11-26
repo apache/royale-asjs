@@ -129,7 +129,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="focusIn", type="= mx.events.FocusEvent")]
+[Event(name="focusIn", type=" mx.events.FocusEvent")]
 
 /**
  *  Dispatched when the component has finished its construction
