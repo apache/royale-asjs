@@ -100,12 +100,12 @@ package mx.events
 										cancelable:Boolean = false, status:int = 0)
 		{
 			super(type, bubbles, cancelable);
-			this.m_status = status;
+			m_status = status;
 		}
 		
 		public function get status() : int
 		{
-			return this.m_status;
+			return m_status;
 		}		
 		
 	}
