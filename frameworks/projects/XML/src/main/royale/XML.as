@@ -904,10 +904,6 @@ package
 
 		private function deleteChildAt(idx:int):void
 		{
-			if(idx < 0)
-				return;
-			if(idx >= childrenLength())
-				return;
 			var child:XML = _children[idx];
 			child._parent = null;
 			_children.splice(idx,1);
@@ -1569,7 +1565,10 @@ package
 						deleteChildAt(i+1);
 					}
 					if(!child.s())
+                    {
 						deleteChildAt(i);
+                        continue; //don't set last child if we removed it
+                    }
 				}
 				lastChild = child;
 			}
