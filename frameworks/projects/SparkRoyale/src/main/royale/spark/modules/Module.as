@@ -26,7 +26,7 @@ package spark.modules
 	import mx.modules.IModule;
 	import spark.components.SkinnableContainer;
 	
-	[Frame(factoryClass="mx.core.FlexModuleFactory")]
+//	[Frame(factoryClass="mx.core.FlexModuleFactory")]
 	
 	//--------------------------------------
 	//  Other metadata

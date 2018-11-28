@@ -74,8 +74,8 @@
 	<component id="Image" class="spark.components.Image"/>
 	<component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
 	<component id="TileLayout" class="spark.layouts.TileLayout"/>
+    <component id="Module" class="spark.modules.Module" />
 
-    <component id="Module" class="mx.modules.Module" lookupOnly="true"/>
     <component id="ArrayCollection" class="mx.collections.ArrayCollection" lookupOnly="true"/>
 
     <!-- Text Layout Framework (TLF) -->
