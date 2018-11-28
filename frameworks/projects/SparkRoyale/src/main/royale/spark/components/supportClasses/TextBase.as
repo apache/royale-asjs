@@ -588,7 +588,7 @@ public class TextBase extends UIComponent
          textNode = document.createTextNode(_text) as window.Text;
          element.appendChild(textNode);
          
-         element.style.whiteSpace = "nowrap";
+         //element.style.whiteSpace = "nowrap"; spark Label is multiline?
          element.style.display = "inline-block";
          
          return element;
