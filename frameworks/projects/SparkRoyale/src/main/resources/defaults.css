@@ -84,9 +84,9 @@ NumericStepper
 }
 Panel
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.PanelModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.PanelView");
-	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
+	IBeadView: ClassReference("spark.components.beads.PanelView");
+	IPanelContentArea: ClassReference("spark.components.Group");	
 	
 	background-color: #FFFFFF;
 	border: 1px solid #333333
@@ -108,6 +108,14 @@ SkinnableContainer
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+TextArea
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
 }
 
 /* -------------------------------------------------------

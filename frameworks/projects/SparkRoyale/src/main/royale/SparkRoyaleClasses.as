@@ -73,6 +73,8 @@ internal class SparkRoyaleClasses
 	import spark.events.PopUpEvent; PopUpEvent;
 	import spark.modules.Module; Module;
 	import spark.components.SkinnablePopUpContainer; SkinnablePopUpContainer;
+    
+    import spark.components.beads.PanelView; PanelView;
 	
 }
 
