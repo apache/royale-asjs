@@ -1698,7 +1698,7 @@ public class Label extends TextBase
         element.style.whiteSpace = "nowrap";
         var mw:Number = super.measuredWidth;
         element.style.whiteSpace = oldValue;
-        return mw;
+        return mw + 1;
     }
     
     COMPILE::JS
