@@ -337,6 +337,7 @@ package spark.components
 		public function TextArea()
 		{
 			super();
+            typeNames += " TextArea";
 		}
 		
 		//--------------------------------------------------------------------------
