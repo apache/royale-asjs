@@ -185,6 +185,7 @@ public class Timer extends EventDispatcher
         _currentCount++;
         if (repeatCount > 0 && currentCount >= repeatCount) {
             stop();
+            dispatchEvent(new Event('timerComplete'));
         }
         
         dispatchEvent(new Event('timer'));
