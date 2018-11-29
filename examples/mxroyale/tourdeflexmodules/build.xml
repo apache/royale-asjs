@@ -324,11 +324,11 @@
 		<compile-mxml folder="/spark/controls/" example="MenuExample"/>
          -->
 		<compile-mxml folder="/spark/controls/" example="RichEditableTextExample"/>
+        <compile-mxml folder="/spark/controls/" example="ImageExample"/>
         <!--
 		<compile-mxml folder="/spark/controls/" example="DateChooserExample"/>
 		<compile-mxml folder="/spark/controls/" example="DateFieldExample"/>
 		<compile-mxml folder="/spark/controls/" example="FormExample"/>
-		<compile-mxml folder="/spark/controls/" example="ImageExample"/>
 		<compile-mxml folder="/spark/controls/" example="LinkBarExample"/>
 		<compile-mxml folder="/spark/controls/" example="LinkButtonExample"/>
 		<compile-mxml folder="/spark/controls/" example="OLAPDataGridExample"/>
