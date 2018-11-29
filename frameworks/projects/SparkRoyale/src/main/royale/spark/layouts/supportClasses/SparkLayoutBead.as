@@ -28,8 +28,9 @@ import mx.core.mx_internal;
 import spark.components.supportClasses.GroupBase;
 import spark.core.NavigationUnit;
 
-import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.LayoutBase;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
@@ -101,7 +102,8 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
     override public function set strand(value:IStrand):void
     {
         _strand = value;
-        _target = value as GroupBase;
+        var host:UIBase = value as UIBase;
+        _target = (host.view as ILayoutHost).contentView as GroupBase;
         super.strand = value;
         
     }

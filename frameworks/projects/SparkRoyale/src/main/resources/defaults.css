@@ -104,10 +104,11 @@ Panel .TitleBar
 
 SkinnableContainer
 {
-	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
+	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
+	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IContentView: ClassReference("spark.components.Group");
 }
 
 TextArea
