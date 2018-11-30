@@ -20,6 +20,8 @@
 package mx.core
 {
 
+import org.apache.royale.core.IFactory;
+
 /**
  *  The IFactory interface defines the interface that factory classes
  *  such as ClassFactory must implement.
@@ -38,26 +40,9 @@ package mx.core
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public interface IFactory
+public interface IFactory extends org.apache.royale.core.IFactory
 {
-	//--------------------------------------------------------------------------
-	//
-	//  Methods
-	//
-	//--------------------------------------------------------------------------
 
-	/**
-	 *  Creates an instance of some class (determined by the class that
-	 *  implements IFactory).
-	 *
-	 *  @return The newly created instance.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
-	 */
-	function newInstance():*;
 }
 
 }
