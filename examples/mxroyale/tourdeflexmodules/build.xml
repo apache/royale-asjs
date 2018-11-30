@@ -359,12 +359,10 @@
 		<compile-mxml folder="/spark/layouts/" example="CustomLayoutFlickrWheelExample"/>
 		<compile-mxml folder="/spark/layouts/" example="CustomLayoutFlowExample"/>
 		<compile-mxml folder="/spark/layouts/" example="CustomLayoutHBaselineExample"/>
-         -->
 		
 		<compile-mxml folder="/spark/itemRenderers/" example="ItemRenderer1Example"/>
 		<compile-mxml folder="/spark/itemRenderers/" example="ItemRenderer2Example"/>
 		
-        <!--
 		<compile-mxml folder="/spark/fxg/" example="BitmapImageExample"/>
 		<compile-mxml folder="/spark/fxg/" example="EclipseExample"/>
 		<compile-mxml folder="/spark/fxg/" example="LineExample"/>
