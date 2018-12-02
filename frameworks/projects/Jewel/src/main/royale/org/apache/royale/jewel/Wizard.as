@@ -86,11 +86,11 @@ package org.apache.royale.jewel
 		 */
 		public function showPage(stepName:String):void
 		{
-			if(currentStep.name != stepName)
-			{
-				currentStep = findStepByName(stepName);
-			}
-			content.showContent(currentStep.name);
+			// if(currentStep.name != stepName)
+			// {
+			// 	currentStep = findStepByName(stepName);
+			// }
+			content.showContent(stepName);
 		}
 
 		public function findStepByName(name:String):WizardStep
