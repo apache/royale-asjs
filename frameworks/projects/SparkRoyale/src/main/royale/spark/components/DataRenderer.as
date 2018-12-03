@@ -19,6 +19,7 @@
 
 package spark.components { 
     
+import org.apache.royale.events.Event;
 import mx.core.IDataRenderer;
 import mx.events.FlexEvent;
 //import org.apache.royale.events.EventDispatcher;
@@ -83,6 +84,25 @@ public class DataRenderer extends Group implements IDataRenderer
         super();
     }
     
+    private var _itemRendererParent:Object;
+    
+    /**
+     * The parent container for the itemRenderer instance.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get itemRendererParent():Object
+    {
+        return _itemRendererParent;
+    }
+    public function set itemRendererParent(value:Object):void
+    {
+        _itemRendererParent = value;
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -131,6 +151,63 @@ public class DataRenderer extends Group implements IDataRenderer
 
         if (hasEventListener(FlexEvent.DATA_CHANGE))
             dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+        callLater(runLayout);
     }
+    
+    public function runLayout():void
+    {
+        dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    private var _listData:Object;
+    
+    [Bindable("__NoChangeEvent__")]
+    /**
+     *  Additional data about the list structure the itemRenderer may
+     *  find useful.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get listData():Object
+    {
+        return _listData;
+    }
+    public function set listData(value:Object):void
+    {
+        _listData = value;
+    }
+    
+    private var _labelField:String = "label";
+    
+    /**
+     * The name of the field within the data to use as a label. Some itemRenderers use this field to
+     * identify the value they should show while other itemRenderers ignore this if they are showing
+     * complex information.
+     */
+    public function get labelField():String
+    {
+        return _labelField;
+    }
+    public function set labelField(value:String):void
+    {
+        _labelField = value;
+    }
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        COMPILE::JS
+        {
+            // UIComponent defaults everything to absolute positioning, but
+            // item renderers are likely to be positioned by the virtual layout
+            // and thus need to use default positioning.
+            element.style.position = "static";
+        }
+        
+    }
+
 }
 }
