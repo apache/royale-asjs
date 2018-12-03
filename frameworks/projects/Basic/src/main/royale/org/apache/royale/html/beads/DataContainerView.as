@@ -121,14 +121,7 @@ package org.apache.royale.html.beads
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// trace("DataContainerView: dataProviderChangeHandler");
-            COMPILE::JS
-            {
-    			performLayout(event);
-            }
-            COMPILE::SWF
-            {
-                host.dispatchEvent(new Event("layoutNeeded"));                
-            }
+            host.dispatchEvent(new Event("layoutNeeded"));                
 		}
         
         /**
