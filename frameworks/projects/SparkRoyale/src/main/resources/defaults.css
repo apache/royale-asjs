@@ -78,6 +78,13 @@ DataGroup
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+DropDownList
+{
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
+	IBeadView: ClassReference("spark.components.beads.DropDownListView");
+	IBeadController: ClassReference("spark.components.beads.controllers.DropDownListController");
+}
+
 List
 {
 	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
