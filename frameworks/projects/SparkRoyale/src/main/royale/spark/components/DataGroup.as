@@ -428,10 +428,11 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
     /**
      *  @private
      *  Sync the typicalLayoutElement var with this group's layout.
-     */    
+     */ 
+    /*
 	override public function set layout(value:Object):void
     {
-        /* var oldLayout:LayoutBase = layout;
+        var oldLayout:LayoutBase = layout;
         if (value == oldLayout)
             return; 
         
@@ -453,8 +454,8 @@ public class DataGroup extends GroupBase implements IItemRendererProvider, IStra
             else
                 typicalLayoutElement = value.typicalLayoutElement;
             value.addEventListener("useVirtualLayoutChanged", layout_useVirtualLayoutChangedHandler);
-        } */
-    }
+        }
+    }*/
     
     /**
      *  @private
