@@ -41,7 +41,16 @@ import spark.events.ListEvent;
 import spark.events.RendererExistenceEvent;
 import spark.layouts.supportClasses.LayoutBase;
 import spark.utils.LabelUtil;*/
+import mx.collections.IList;
+import mx.core.IFactory;
 import mx.core.mx_internal;
+
+import spark.components.DataGroup;
+import spark.components.SkinnableContainer;
+import spark.components.beads.SkinnableContainerView;
+
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.ItemRendererClassFactory;
 
 use namespace mx_internal;   //ListBase and List share selection properties that are mx_internal
 
@@ -166,7 +175,7 @@ use namespace mx_internal;   //ListBase and List share selection properties that
  *  @productversion Royale 0.9.4
  *  @royalesuppresspublicvarwarning
  */
-public class ListBase  extends SkinnableComponent
+public class ListBase  extends SkinnableContainer
 { //extends SkinnableDataContainer implements IDataProviderEnhance
     //include "../../core/Version.as";
 
@@ -441,6 +450,83 @@ public class ListBase  extends SkinnableComponent
     public function get caretIndex():Number
     {
         return _caretIndex;
+    }
+    
+    //----------------------------------
+    //  dataProvider copied from SkinnableDataContainer
+    //----------------------------------    
+    
+    /**
+     *  @copy spark.components.DataGroup#dataProvider
+     *
+     *  @see #itemRenderer
+     *  @see #itemRendererFunction
+     *  @see mx.collections.IList
+     *  @see mx.collections.ArrayCollection
+     *  @see mx.collections.ArrayList
+     *  @see mx.collections.XMLListCollection
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     * 
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     */
+    [Bindable("dataProviderChanged")]
+    [Inspectable(category="Data")]
+    
+    public function get dataProvider():IList
+    {       
+        return ((view as SkinnableContainerView).contentView as DataGroup).dataProvider;
+    }
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     */
+    public function set dataProvider(value:IList):void
+    {
+        ((view as SkinnableContainerView).contentView as DataGroup).dataProvider = value;
+    }
+    
+    //----------------------------------
+    //  itemRenderer copied from SkinnableDataContainer
+    //----------------------------------
+    
+    [Inspectable(category="Data")]
+    
+    /**
+     *  @copy spark.components.DataGroup#itemRenderer
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     * 
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     */
+    public function get itemRenderer():IFactory
+    {
+        return ((view as SkinnableContainerView).contentView as DataGroup).itemRenderer;
+    }
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     */
+    public function set itemRenderer(value:IFactory):void
+    {
+        ((view as SkinnableContainerView).contentView as DataGroup).itemRenderer = value;
+        // the ItemRendererFactory was already put on the DataGroup's strand and
+        // determined which factory to use so we have to set it up later here.
+        var factory:ItemRendererClassFactory = ((view as SkinnableContainerView).contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
+        factory.createFunction = factory.createFromClass;
+        factory.itemRendererFactory = value;
     }
     
     /**
@@ -2071,6 +2157,40 @@ public class ListBase  extends SkinnableComponent
         }
             
     } */
+    
+    
+    /**
+     *  @private
+     *  @royaleignorecoercion spark.components.DataGroup
+     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     */
+    override public function addedToParent():void
+    {
+        if (!getBeadByType(IBeadLayout))
+            addBead(new ListBaseLayout());
+        super.addedToParent();
+        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        ((view as SkinnableContainerView).contentView as DataGroup).setActualSize(w, h);
+    }
 }
 
 }
+
+import spark.components.supportClasses.ListBase;
+import org.apache.royale.core.LayoutBase;
+
+// this disables any layouts from trying to layout the inner DataGroup.
+class ListBaseLayout extends LayoutBase
+{
+    override public function layout():Boolean
+    {
+        var list:ListBase = host as ListBase;
+        return false;
+    }
+}
+
