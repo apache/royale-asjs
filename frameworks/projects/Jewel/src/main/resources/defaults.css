@@ -354,7 +354,6 @@ j|ComboBox {
   bottom: auto;
   top: calc(100% - 10px);
   left: 50%;
-  touch-action: none;
   box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
   max-height: 170px;
   opacity: 0;
