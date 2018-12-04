@@ -81,6 +81,7 @@
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
     <component id="LayoutChangeNotifier" class="org.apache.royale.html.beads.layouts.LayoutChangeNotifier"/>
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
+    <component id="VirtualDataContainerView" class="org.apache.royale.html.beads.VirtualDataContainerView"/>
     <component id="VirtualListView" class="org.apache.royale.html.beads.VirtualListView"/>
     <component id="VirtualListVerticalLayout" class="org.apache.royale.html.beads.layouts.VirtualListVerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>

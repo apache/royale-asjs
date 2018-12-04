@@ -42,6 +42,10 @@ limitations under the License.
 			{
 				dateFieldDefault.selectedDate = new Date();
 			}
+			private function dateFieldToNull():void
+			{
+				dateFieldDefault.selectedDate = null;
+			}
 			
 			// -- DateChooser Spanish
 
@@ -124,6 +128,7 @@ limitations under the License.
 						</j:beads>
 					</j:DateField>
 					<j:Button text="Select today" click="dateFieldToToday()" emphasis="primary"/>	
+					<j:Button text="Date to null" click="dateFieldToNull()" />	
 				</j:HGroup>
 				<j:Label id="dateFieldDefaultSelectedDate" multiline="true" html="&lt;strong>DateField selected date:&lt;/strong> "/>
 			</j:Card>

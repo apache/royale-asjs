@@ -324,11 +324,11 @@
 		<compile-mxml folder="/spark/controls/" example="MenuExample"/>
          -->
 		<compile-mxml folder="/spark/controls/" example="RichEditableTextExample"/>
+        <compile-mxml folder="/spark/controls/" example="ImageExample"/>
         <!--
 		<compile-mxml folder="/spark/controls/" example="DateChooserExample"/>
 		<compile-mxml folder="/spark/controls/" example="DateFieldExample"/>
 		<compile-mxml folder="/spark/controls/" example="FormExample"/>
-		<compile-mxml folder="/spark/controls/" example="ImageExample"/>
 		<compile-mxml folder="/spark/controls/" example="LinkBarExample"/>
 		<compile-mxml folder="/spark/controls/" example="LinkButtonExample"/>
 		<compile-mxml folder="/spark/controls/" example="OLAPDataGridExample"/>
@@ -359,12 +359,10 @@
 		<compile-mxml folder="/spark/layouts/" example="CustomLayoutFlickrWheelExample"/>
 		<compile-mxml folder="/spark/layouts/" example="CustomLayoutFlowExample"/>
 		<compile-mxml folder="/spark/layouts/" example="CustomLayoutHBaselineExample"/>
-         -->
 		
 		<compile-mxml folder="/spark/itemRenderers/" example="ItemRenderer1Example"/>
 		<compile-mxml folder="/spark/itemRenderers/" example="ItemRenderer2Example"/>
 		
-        <!--
 		<compile-mxml folder="/spark/fxg/" example="BitmapImageExample"/>
 		<compile-mxml folder="/spark/fxg/" example="EclipseExample"/>
 		<compile-mxml folder="/spark/fxg/" example="LineExample"/>

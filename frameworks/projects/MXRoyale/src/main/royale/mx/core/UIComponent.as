@@ -112,7 +112,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="show", type="= mx.events.FlexEvent")]
+[Event(name="show", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when the component has finished its construction
@@ -129,7 +129,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="focusIn", type=" mx.events.FocusEvent")]
+[Event(name="focusIn", type="mx.events.FocusEvent")]
 
 /**
  *  Dispatched when the component has finished its construction
@@ -146,7 +146,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Event(name="valid", type="= mx.events.FlexEvent")]
+[Event(name="valid", type="mx.events.FlexEvent")]
 
 /**
  *  Dispatched when the component has finished its construction
@@ -1972,9 +1972,15 @@ COMPILE::JS
 			if (isNaN(_measuredWidth)) 
             {
                 var oldWidth:Object;
+                var oldLeft:String;
+                var oldRight:String;
                 oldWidth = this.positioner.style.width;
+                oldLeft = this.positioner.style.left;
+                oldRight = this.positioner.style.right;
                 if (oldWidth.length)
                     this.positioner.style.width = "";
+                if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
+                    this.positioner.style.left = "";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
@@ -1988,6 +1994,8 @@ COMPILE::JS
                 }
                 if (oldWidth.length)
                     this.positioner.style.width = oldWidth;
+                if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
+                    this.positioner.style.left = oldLeft;
                 return mw;
 			}
 		}
@@ -2037,9 +2045,15 @@ COMPILE::JS
             if (isNaN(_measuredHeight))
             {
                 var oldHeight:Object;
-        		oldHeight = this.positioner.style.height;
+                var oldTop:String;
+                var oldBottom:String;
+                oldTop = this.positioner.style.top;
+                oldBottom = this.positioner.style.bottom;
+                oldHeight = this.positioner.style.height;
                 if (oldHeight.length)
                     this.positioner.style.height = "";
+                if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
+                    this.positioner.style.top = "";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && numChildren > 0)
                 {
@@ -2052,6 +2066,8 @@ COMPILE::JS
                 }
                 if (oldHeight.length)
                     this.positioner.style.height = oldHeight;
+                if (oldTop.length && oldBottom.length) // if both are set, this also dictates width
+                    this.positioner.style.top = oldTop;
                 return mh;
             }
 		}
@@ -4274,11 +4290,11 @@ COMPILE::JS
      */
     public function get horizontalCenter():Object
     {
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "horizontalCenter");
     }
     public function set horizontalCenter(value:Object):void
     {
-        trace("horizontalCenter not implemented");
+        setStyle("horizontalCenter", value);
     }
 
     [Inspectable(category="General")]
@@ -4303,11 +4319,11 @@ COMPILE::JS
      */
     public function get verticalCenter():Object
     {
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "verticalCenter");
     }
     public function set verticalCenter(value:Object):void
     {
-        trace("verticalCenter not implemented");
+        setStyle("verticalCenter", value);
     }
 	
     [Inspectable(category="General")]
@@ -4403,12 +4419,11 @@ COMPILE::JS
      */
     public function get textAlign():Object
     {
-        trace("textAlign not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "textAlign");
     }
     public function set textAlign(value:Object):void
     {
-        trace("textAlign not implemented");
+        setStyle("textAlign", value);
     }
 	[Inspectable(category="General")]
 	

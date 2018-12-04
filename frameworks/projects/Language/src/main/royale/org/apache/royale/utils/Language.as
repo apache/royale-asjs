@@ -291,9 +291,9 @@ package org.apache.royale.utils
         };
 
         /**
-         * @param	arr
-         * @param	names
-         * @param	opt
+         * @param arr
+         * @param names
+         * @param opt
          */
         public static function sort(arr:Array,...args):void{
             var compareFunction:Function = null;
@@ -348,9 +348,9 @@ package org.apache.royale.utils
         }
         
 		/**
-		 * @param	arr
-		 * @param	names
-		 * @param	opt
+		 * @param arr
+		 * @param names
+		 * @param opt
 		 */
 		public static function sortOn(arr:Array,names:Object,opt:Object=0):void{
 			if (names is Array){

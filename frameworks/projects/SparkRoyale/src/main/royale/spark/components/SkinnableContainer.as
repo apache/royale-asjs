@@ -401,6 +401,7 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
     public function SkinnableContainer()
     {
         super();
+        typeNames = "SkinnableContainer";
     }
     
     /**
@@ -1017,9 +1018,8 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
         
         super.addedToParent();		
         
-        // disabled for now to see if we can use spark LayoutBase instead
         // Load the layout bead if it hasn't already been loaded.
-        //loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+        loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
         
         dispatchEvent(new Event("initComplete"));
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
@@ -1295,42 +1295,7 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      //  element/child handlers
      //
      //--------------------------------------------------------------------------
-     
-     
-     /**
-      * @private
-      */
-     COMPILE::JS
-     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-     {
-         super.addElement(c, dispatchEvent);
-         if (dispatchEvent)
-             this.dispatchEvent(new ValueEvent("childrenAdded", c));
-     }
-     
-     /**
-      * @private
-      */
-     COMPILE::JS
-     override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
-     {
-         super.addElementAt(c, index, dispatchEvent);
-         if (dispatchEvent)
-             this.dispatchEvent(new ValueEvent("childrenAdded", c));
-     }
-     
-     /**
-      * @private
-      */
-     COMPILE::JS
-     override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
-     {
-         super.removeElement(c, dispatchEvent);
-         //TODO This should possibly be ultimately refactored to be more PAYG
-         if (dispatchEvent)
-             this.dispatchEvent(new ValueEvent("childrenRemoved", c));
-     }
-     
+         
      /*
      * The following functions are for the SWF-side only and re-direct element functions
      * to the content area, enabling scrolling and clipping which are provided automatically
@@ -1340,10 +1305,14 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      /**
       * @private
       */
-     COMPILE::SWF
      override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
      {
          var contentView:IParent = getLayoutHost().contentView as IParent;
+         if (c == contentView)
+         {
+             super.addElement(c); // ContainerView uses addElement to add inner contentView
+             return;
+         }
          contentView.addElement(c, dispatchEvent);
          if (dispatchEvent)
              this.dispatchEvent(new ValueEvent("childrenAdded", c));
@@ -1352,7 +1321,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      /**
       * @private
       */
-     COMPILE::SWF
      override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
      {
          var contentView:IParent = getLayoutHost().contentView as IParent;
@@ -1364,7 +1332,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      /**
       * @private
       */
-     COMPILE::SWF
      override public function getElementIndex(c:IChild):int
      {
          var layoutHost:ILayoutHost = view as ILayoutHost;
@@ -1375,7 +1342,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      /**
       * @private
       */
-     COMPILE::SWF
      override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
      {
          var layoutHost:ILayoutHost = view as ILayoutHost;
@@ -1389,10 +1355,10 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      /**
       * @private
       */
-     COMPILE::SWF
      override public function get numElements():int
      {
          var layoutHost:ILayoutHost = view as ILayoutHost;
+         if (!layoutHost) return 0; // view is null when called in addingChild from MXMLDataInterpreter before children are added
          var contentView:IParent = layoutHost.contentView as IParent;
          return contentView.numElements;
      }
@@ -1400,7 +1366,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      /**
       * @private
       */
-     COMPILE::SWF
      override public function getElementAt(index:int):IChild
      {
          var layoutHost:ILayoutHost = view as ILayoutHost;

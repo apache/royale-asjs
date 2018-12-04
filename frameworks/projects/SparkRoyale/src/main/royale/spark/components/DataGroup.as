@@ -49,7 +49,12 @@ import mx.collections.IList;
  import mx.core.mx_internal;
 use namespace mx_internal;  // for mx_internal property contentChangeDelta
 
+import org.apache.royale.core.IBead;
 import org.apache.royale.core.ISelectionModel;
+import org.apache.royale.core.IItemRendererProvider;
+import org.apache.royale.core.IStrandWithPresentationModel;
+import org.apache.royale.core.IListPresentationModel;
+import org.apache.royale.html.beads.models.ListPresentationModel;
 
 /**
  *  Dispatched when a renderer is added to this dataGroup.
@@ -164,7 +169,7 @@ import org.apache.royale.core.ISelectionModel;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class DataGroup extends GroupBase 
+public class DataGroup extends GroupBase implements IItemRendererProvider, IStrandWithPresentationModel
 { //implements IItemRendererOwner
     /**
      *  Constructor.
@@ -177,8 +182,28 @@ public class DataGroup extends GroupBase
     public function DataGroup()
     {
         super();
+        typeNames = "DataGroup";
         
        // _rendererUpdateDelegate = this;
+    }
+    
+    /**
+     *  The presentation model for the list.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+     */
+    public function get presentationModel():IBead
+    {
+        var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
+        if (presModel == null) {
+            presModel = new ListPresentationModel();
+            addBead(presModel);
+        }
+        return presModel;
     }
     
     /**
@@ -403,10 +428,11 @@ public class DataGroup extends GroupBase
     /**
      *  @private
      *  Sync the typicalLayoutElement var with this group's layout.
-     */    
+     */ 
+    /*
 	override public function set layout(value:Object):void
     {
-        /* var oldLayout:LayoutBase = layout;
+        var oldLayout:LayoutBase = layout;
         if (value == oldLayout)
             return; 
         
@@ -428,8 +454,8 @@ public class DataGroup extends GroupBase
             else
                 typicalLayoutElement = value.typicalLayoutElement;
             value.addEventListener("useVirtualLayoutChanged", layout_useVirtualLayoutChangedHandler);
-        } */
-    }
+        }
+    }*/
     
     /**
      *  @private

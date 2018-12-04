@@ -40,7 +40,7 @@
 				// create a collection of random flights
 				for (var i:int = 0; i < nItems; i++){
 					var temp:Object = new Object();
-					var random:int = Math.random() * 5;
+					var random:int = Math.floor(Math.random() * 5);
 					
 					temp.start = sources[random];
 					temp.end = destinations[random];

@@ -25,26 +25,26 @@ package org.apache.royale.jewel.beads.views
 		import flash.utils.setTimeout;
     }
     import org.apache.royale.core.BeadViewBase;
-    import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IDateChooserModel;
     import org.apache.royale.core.IFormatBead;
     import org.apache.royale.core.IPopUpHost;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
     import org.apache.royale.jewel.Button;
     import org.apache.royale.jewel.DateChooser;
+    import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.TextInput;
     import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
     import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	import org.apache.royale.jewel.Table;
-	import org.apache.royale.jewel.beads.views.DateChooserView;
+    import org.apache.royale.jewel.beads.views.DateChooserView;
     import org.apache.royale.utils.UIUtils;
 
 	/**
@@ -150,12 +150,14 @@ package org.apache.royale.jewel.beads.views
 			getHost().addEventListener("initComplete",handleInitComplete);
 		}
 
+		private var model:IDateChooserModel;
+
 		private function handleInitComplete(event:Event):void
 		{
 			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
 			formatter.addEventListener("formatChanged",handleFormatChanged);
 
-			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
 		
@@ -220,8 +222,7 @@ package org.apache.royale.jewel.beads.views
 					
 					_popUp.className = "datechooser-popup";
 					_popUp.addEventListener("initComplete", handlePopUpInitComplete);
-
-					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+					
 					_popUp.selectedDate = model.selectedDate;
 					_popUp.model.dayNames = model.dayNames;
 					_popUp.model.monthNames = model.monthNames;
@@ -276,6 +277,11 @@ package org.apache.royale.jewel.beads.views
 		private function selectionChangeHandler(event:Event = null):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
+
+			if(model.selectedDate == null)
+			{
+				textInput.text = "";
+			}
 		}
 
 		private var daysTable:Table;

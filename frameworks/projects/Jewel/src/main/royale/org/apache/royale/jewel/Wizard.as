@@ -77,9 +77,35 @@ package org.apache.royale.jewel
             typeNames = "jewel wizard";
 		}
 
-		public function showPage(id:String):void
+		/**
+		 * show a page by id, but does not update currentStep
+		 * 
+		 * @param steName, that is the "id" of the content (the WizardPage) to activate
+		 * 
+		 * @see org.apache.royale.jewel.WizardContent.showContent
+		 */
+		public function showPage(stepName:String):void
 		{
-			content.showContent(id);
+			// if(currentStep.name != stepName)
+			// {
+			// 	currentStep = findStepByName(stepName);
+			// }
+			content.showContent(stepName);
+		}
+
+		public function findStepByName(name:String):WizardStep
+		{
+			var n:int = numElements;
+            for (var i:int = 0; i < n; i++)
+            {
+                var page:WizardPage = getElementAt(i) as WizardPage;
+                if(page.step.name == name)
+                {
+                    return page.step;
+                }
+            }
+            
+            return null;
 		}
 
 		/**
