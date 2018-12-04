@@ -138,6 +138,7 @@ public class DropDownList extends DropDownListBase
     public function DropDownList()
     {
         super();
+        typeNames += " DropDownList";
     }
     
     //--------------------------------------------------------------------------
