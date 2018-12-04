@@ -1556,7 +1556,6 @@ public class UIComponent extends UIBase
     public function get systemManager():ISystemManager
     {
         // TODO
-        trace("systemManager not implemented");
         return _systemManager;
     }
 
@@ -1566,7 +1565,6 @@ public class UIComponent extends UIBase
     public function set systemManager(value:ISystemManager):void
     {
         // TODO
-        trace("systemManager not implemented");
         _systemManager = value;
     }
     
@@ -5384,6 +5382,22 @@ COMPILE::JS
         super.removeElement(c, dispatchEvent);
         childRemoved(c as IUIBase);
     }
+    
+    /**
+     *  @copy org.apache.royale.core.IUIBase#topMostEventDispatcher
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     */
+    override public function get topMostEventDispatcher():IEventDispatcher
+    {
+        return FlexGlobals.topLevelApplication.parent as IEventDispatcher;
+    }
+
 }
 
 }
