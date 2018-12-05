@@ -49,57 +49,6 @@ package org.apache.royale.jewel.beads.validators
 			super.requiredFieldError = null;
 		}
 
-		private var _trigger:IEventDispatcher;
-
-		public function get trigger():IEventDispatcher
-		{
-			return _trigger;
-		}
-
-		/**
-		 * Specifies the component generating the event that triggers the validator.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function set trigger(value:IEventDispatcher):void
-		{
-			if (_triggerEvent) {
-				if (_trigger)
-					_trigger.removeEventListener(_triggerEvent, validate);
-
-				if (value)
-					value.addEventListener(_triggerEvent, validate);
-			}
-			_trigger = value;
-		}
-		private var _triggerEvent:String;
-
-		public function get triggerEvent():String
-		{
-			return _triggerEvent;
-		}
-		/**
-		 * Specifies the event that triggers the validation.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function set triggerEvent(value:String):void
-		{
-			if (_trigger) {
-				if (_triggerEvent)
-					_trigger.removeEventListener(_triggerEvent, validate);
-				if (value)
-					_trigger.addEventListener(value, validate);
-			}
-			_triggerEvent = value;
-		}
-
 		private var _isError:Boolean;
 
 		/**

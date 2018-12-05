@@ -63,7 +63,7 @@ package org.apache.royale.jewel.beads.validators
 			super.strand = value;
 			COMPILE::JS
 			{
-				hostComponent.addEventListener(Event.CHANGE, validate, false);
+				hostComponent.addEventListener(triggerEvent, validate);
 				updateHost();
 			}
 		}
@@ -143,8 +143,8 @@ package org.apache.royale.jewel.beads.validators
 			if (hostComponent)
             {
                 (_maxLength > 0) ?
-				hostComponent.element.setAttribute('maxlength', _maxLength) :
-				hostComponent.element.removeAttribute('maxlength');
+					hostComponent.element.setAttribute('maxlength', _maxLength) :
+					hostComponent.element.removeAttribute('maxlength');
             }
 		}		
 	}

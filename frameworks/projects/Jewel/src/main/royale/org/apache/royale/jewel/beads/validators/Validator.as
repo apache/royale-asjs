@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.validators
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel;
 	import org.apache.royale.utils.PointUtils;
@@ -65,6 +66,57 @@ package org.apache.royale.jewel.beads.validators
 
 		protected var hostComponent:UIBase;
 
+		private var _trigger:IEventDispatcher;
+		/**
+		 * Specifies the component generating the event that triggers the validator.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get trigger():IEventDispatcher
+		{
+			return _trigger;
+		}
+		public function set trigger(value:IEventDispatcher):void
+		{
+			if (_triggerEvent) {
+				if (_trigger)
+					_trigger.removeEventListener(_triggerEvent, validate);
+
+				if (value)
+					value.addEventListener(_triggerEvent, validate);
+			}
+			_trigger = value;
+		}
+
+		private var _triggerEvent:String = Event.CHANGE;
+		/**
+		 * Specifies the event that triggers the validation.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		[Bindable(event="triggerEventChanged")]
+		public function get triggerEvent():String
+		{
+			return _triggerEvent;
+		}
+		public function set triggerEvent(value:String):void
+		{
+			if (_trigger) {
+				if (_triggerEvent)
+					_trigger.removeEventListener(_triggerEvent, validate);
+				if (value)
+					_trigger.addEventListener(value, validate);
+			}
+			_triggerEvent = value;
+			hostComponent.dispatchEvent(new Event("triggerEventChanged"));
+		}
+
 		COMPILE::JS
 		protected var hostClassList:DOMTokenList;
 
@@ -80,6 +132,7 @@ package org.apache.royale.jewel.beads.validators
 		public function set strand(value:IStrand):void
 		{
 			hostComponent = value as UIBase;
+			_trigger = hostComponent;
 			COMPILE::JS
 			{
 				hostClassList = hostComponent.positioner.classList;

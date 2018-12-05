@@ -59,7 +59,7 @@ package org.apache.royale.jewel.beads.validators
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			hostComponent.addEventListener(Event.CHANGE, validate, false);
+			hostComponent.addEventListener(triggerEvent, validate, false);
 		}
 
         /**
