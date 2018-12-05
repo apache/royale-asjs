@@ -114,7 +114,10 @@ package org.apache.royale.jewel.beads.validators
 					_trigger.addEventListener(value, validate);
 			}
 			_triggerEvent = value;
-			hostComponent.dispatchEvent(new Event("triggerEventChanged"));
+			if(hostComponent != null)
+			{
+				hostComponent.dispatchEvent(new Event("triggerEventChanged"));
+			}
 		}
 
 		COMPILE::JS
