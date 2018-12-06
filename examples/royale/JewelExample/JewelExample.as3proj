@@ -19,24 +19,27 @@
 -->
 <project>
   <output>
-    <movie disabled="False"/>
     <movie path="bin-debug/App.swf"/>
-    <movie version="11"/>
-    <movie input=""/>
     <movie width="800"/>
-    <movie height="600"/>
     <movie fps="60"/>
-    <movie background="#FFFFFF"/>
+    <movie height="600"/>
     <movie platform="Flash Player"/>
+    <movie version="11"/>
+    <movie disabled="False"/>
+    <movie background="#FFFFFF"/>
+    <movie input=""/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
   <classpaths>
     <class path="src/main/royale"/>
   </classpaths>
   <moonshineResourcePaths></moonshineResourcePaths>
+  <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
+    <option strict="True"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
+    <option locale=""/>
     <option showUnusedTypeSelectorWarnings="True"/>
     <option useResourceBundleMetadata="True"/>
     <option benchmark="False"/>
@@ -47,17 +50,26 @@
     <option loadConfig=""/>
     <option linkReport=""/>
     <option optimize="False"/>
-    <option locale=""/>
-    <option showActionScriptWarnings="True"/>
-    <option additional=""/>
-    <option showBindingWarnings="True"/>
-    <option compilerConstants=""/>
-    <option showDeprecationWarnings="True"/>
-    <option antBuildPath="build/build.xml"/>
     <option staticLinkRSL="False"/>
+    <option antBuildPath="build/build.xml"/>
     <option customSDK=""/>
-    <option strict="True"/>
+    <option showBindingWarnings="True"/>
+    <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/jewel-example-index-template.html -js-dynamic-access-unknown-members=true"/>
+    <option showDeprecationWarnings="True"/>
+    <option showActionScriptWarnings="True"/>
+    <option compilerConstants=""/>
   </build>
+  <mavenBuild>
+    <option commandLine=""/>
+    <option mavenBuildPath=""/>
+    <option settingsFilePath=""/>
+    <actions>
+      <action action="install" actionName="Build"/>
+      <action action="clean" actionName="Clean"/>
+      <action action="clean install" actionName="Clean and Build"/>
+      <action action="war:exploded" actionName="Exploded"/>
+    </actions>
+  </mavenBuild>
   <includeLibraries></includeLibraries>
   <libraryPaths></libraryPaths>
   <externalLibraryPaths></externalLibraryPaths>
@@ -73,18 +85,23 @@
   <hiddenPaths></hiddenPaths>
   <preBuildCommand>null</preBuildCommand>
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
+  <trustSVNCertificate>False</trustSVNCertificate>
   <options>
+    <option visualEditorExportPath=""/>
+    <option testMovie=""/>
     <option testMovieCommand=""/>
+    <option isPrimeFacesVisualEditor="False"/>
     <option showHiddenPaths="False"/>
     <option defaultBuildTargets=""/>
-    <option testMovie=""/>
+    <option isExportedToExistingSource="False"/>
   </options>
   <moonshineRunCustomization>
-    <option launchMethod="Simulator"/>
-    <option urlToLaunch=""/>
     <option targetPlatform="2"/>
+    <option urlToLaunch=""/>
     <option projectType="2"/>
+    <option customUrlToLaunch=""/>
     <option deviceSimulator="null"/>
+    <option launchMethod="Simulator"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
