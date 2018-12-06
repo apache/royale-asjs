@@ -4,7 +4,13 @@
         "debug": true,
         "targets": ["SWF","JSRoyale"],
         // "theme": "${royalelib}/themes/JewelTheme/src/main/resources/styles.css",
-        "source-map": true
+        "source-map": true,
+        "library-path": [
+            "${royalelib}/js/libs/MXRoyaleJS.swc"
+        ],
+        "js-library-path": [
+            "${royalelib}/js/libs/MXRoyaleJS.swc"
+        ]
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
