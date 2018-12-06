@@ -312,8 +312,9 @@ package org.apache.royale.events
 		
 		/**
 		 * @type {MouseEvent}
+		 * @royalesuppresspublicvarwarning
 		 */
-		private var nativeEvent:Object;
+		public var nativeEvent:Object;
 
 		public function wrapEvent(event:goog.events.BrowserEvent):void
         {
