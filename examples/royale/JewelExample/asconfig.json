@@ -8,7 +8,7 @@
         "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
     },
     "copySourcePathAssets": true,
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
+    "additionalOptions": "-js-dynamic-access-unknown-members=true",
     "files":
     [
         "src/main/royale/App.mxml"
