@@ -80,7 +80,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 			COMPILE::JS
 			{
                 var host:UIBase = _strand as UIBase;
-                host.element.addEventListener("keypress", dateInputMask, false);
+                host.element.addEventListener("keyup", dateInputMask, false);
 			}
 		}
 		
