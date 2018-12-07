@@ -55,7 +55,7 @@ ComboBox
 GroupBase
 {
 	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
-	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+	IBeadView: ClassReference("spark.components.beads.GroupView");
 }
 
 Image
