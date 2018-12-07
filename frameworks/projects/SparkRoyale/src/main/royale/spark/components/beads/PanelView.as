@@ -125,8 +125,14 @@ class PanelLayout extends LayoutBase
         var panel:Panel = host as Panel;
         var titleBar:UIComponent = panel.$getElementAt(0) as UIComponent;
         var content:UIComponent = panel.$getElementAt(1) as UIComponent;
-        titleBar.setActualSize(panel.width - 2, titleBar.getExplicitOrMeasuredHeight());
-        content.setActualSize(panel.width - 2, panel.height - titleBar.height - 2);
+        var w:Number = panel.width;
+        var h:Number = panel.height;
+        if (panel.isWidthSizedToContent())
+            w = content.width + 2;
+        if (panel.isHeightSizedToContent())
+            h = content.height + 2 + titleBar.getExplicitOrMeasuredHeight();
+        titleBar.setActualSize(w - 2, titleBar.getExplicitOrMeasuredHeight());
+        content.setActualSize(w - 2, h - titleBar.height - 2);
         content.move(0, titleBar.height);
         return false;
     }
