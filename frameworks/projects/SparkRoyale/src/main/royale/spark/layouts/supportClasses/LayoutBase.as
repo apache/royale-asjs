@@ -2155,7 +2155,14 @@ public class LayoutBase extends org.apache.royale.core.LayoutBase implements IEv
         if (n == 0)
             return false;
         
-        updateDisplayList(target.width, target.height);
+        var w:Number = target.width;
+        var h:Number = target.height;
+        if (target.isHeightSizedToContent())
+            h = target.measuredHeight;
+        if (target.isWidthSizedToContent())
+            w = target.measuredWidth;
+        
+        updateDisplayList(w, h);
         
         // update the target's actual size if needed.
         if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
