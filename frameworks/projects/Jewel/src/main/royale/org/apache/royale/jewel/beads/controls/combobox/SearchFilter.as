@@ -70,6 +70,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		/**
 		 * the filter function to use to filter entries in the combobox popup list
 		 */
+		[Bindable]
 		public var filterFunction:Function = defaultFilterFunction;
         
 		/**
