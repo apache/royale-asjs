@@ -639,12 +639,11 @@ public class Container extends UIComponent
      */
     public function get backgroundColor():Object
     {
-        trace("backgroundColor not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "backgroundColor");
     }
     public function set backgroundColor(value:Object):void
     {
-        trace("backgroundColor not implemented");
+        setStyle("backgroundColor", value);
     }
     
     //----------------------------------

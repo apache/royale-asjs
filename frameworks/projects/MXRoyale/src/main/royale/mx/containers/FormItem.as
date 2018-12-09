@@ -28,6 +28,7 @@ import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
 
 import mx.containers.beads.BoxLayout;
+import mx.containers.beads.FormItemView;
 import mx.containers.utilityClasses.Flex;
 import mx.controls.FormItemLabel;
 import mx.controls.Label;
@@ -241,7 +242,8 @@ public class FormItem extends Container
     public function FormItem()
     {
         super();
-
+        typeNames += " FormItem";
+        
         /*
         _horizontalScrollPolicy = ScrollPolicy.OFF;
         _verticalScrollPolicy = ScrollPolicy.OFF;
@@ -249,6 +251,8 @@ public class FormItem extends Container
         
         verticalLayoutObject.target = this;
         verticalLayoutObject.direction = BoxDirection.VERTICAL;
+        
+        addBead(verticalLayoutObject);
     }
 
     //--------------------------------------------------------------------------
@@ -339,7 +343,7 @@ public class FormItem extends Container
         invalidateProperties();
         invalidateSize();
         invalidateDisplayList();
-
+        
         // Changing the label could affect the overall form label width
         // so we need to invalidate our parent's size here too
        if (parent is Form)
@@ -529,6 +533,7 @@ public class FormItem extends Container
             strandChildren.addElement(labelObj);
             dispatchEvent(new Event("itemLabelChanged"));
         }
+        commitProperties();
     }
     
     /**
@@ -1455,6 +1460,100 @@ public class FormItem extends Container
         return 0;
     }
     
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        measure();
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var containerView:FormItemView = view as FormItemView;
+        if (c == containerView.contentArea)
+        {
+            super.addElement(c, dispatchEvent);
+            return;
+        }
+        containerView.contentArea.addElement(c, dispatchEvent);
+        containerView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        var containerView:FormItemView = view as FormItemView;
+        containerView.contentArea.addElementAt(c, index, dispatchEvent);
+        containerView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function getElementIndex(c:IChild):int
+    {
+        var containerView:FormItemView = view as FormItemView;
+        return containerView.contentArea.getElementIndex(c);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var containerView:FormItemView = view as FormItemView;
+        containerView.contentArea.removeElement(c, dispatchEvent);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function get numElements():int
+    {
+        var containerView:FormItemView = view as FormItemView;
+        return containerView.contentArea.numElements;
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function getElementAt(index:int):IChild
+    {
+        var containerView:FormItemView = view as FormItemView;
+        return containerView.contentArea.getElementAt(index);
+    }
+
 }
 
+}
+
+import mx.core.UIComponent;
+import mx.containers.FormItem;
+import org.apache.royale.core.LayoutBase;
+
+// this blocks other layout beads from doing things
+class FormItemLayout extends LayoutBase
+{
+    override public function layout():Boolean
+    {
+        // don't do anything
+        return false;
+    }
 }

@@ -334,6 +334,20 @@ public class FormHeading extends UIComponent
 
 		return labelWidth;
 	}
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        measure();
+    }
+        
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+
 }
 
 }

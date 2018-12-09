@@ -20,6 +20,7 @@
 @namespace "library://ns.apache.org/royale/mx";
 @namespace charts "mx.charts.chartClasses.*";
 @namespace core "mx.core.*";
+@namespace containerBeads "mx.containers.beads.*";
 
 .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
@@ -145,6 +146,18 @@ DateField {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateFieldMouseController");
 	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
 	IPopUp: ClassReference("mx.controls.dateFieldClasses.DateFieldDateChooser");
+}
+
+FormItem
+{
+	IBeadView: ClassReference("mx.containers.beads.FormItemView");
+	IContentView: ClassReference("mx.containers.beads.FormItemContainer");
+	indicatorGap: 0px;
+}
+
+containerBeads|FormItemContainer
+{
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
 Image
