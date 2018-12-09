@@ -366,7 +366,9 @@
 					<node label="Border" module="spark/containers/BorderExample"/>
                      -->
 					<node label="DataGroup" module="spark/controls/DataGroupExample" />
+                    <!--
 					<node label="Form" module="spark/controls/FormExample" />
+                     -->
 					<node label="HGroup" module="spark/containers/SampleHGroup" />
 					<node label="Group" module="spark/containers/GroupExample"/>
 					<node label="Panel" module="spark/containers/PanelExample"/>
