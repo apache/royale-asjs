@@ -50,6 +50,8 @@ import mx.events.PropertyChangeEvent;
 //import mx.managers.HistoryManager;
 //import mx.managers.IHistoryManagerClient;
 
+import org.apache.royale.core.IChild;
+
 use namespace mx_internal;
 
 //--------------------------------------
@@ -724,6 +726,12 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
         // child, if no value has yet been proposed.
         proposedSelectedIndex = value;
         invalidateProperties();
+        if (parent)
+        {
+            commitProperties();
+            measure();
+            updateDisplayList(width, height);
+        }
 
         // Set a flag which will cause the HistoryManager to save state
         // the next time measure() is called.
@@ -1426,30 +1434,39 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
         }
     }
   
-
     /**
      *  @private
      */
-    override public function addChildAt(item:IUIComponent, index:int):IUIComponent
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         addingChildren = true;
-        var obj:IUIComponent = super.addChildAt(item, index);
-        internalDispatchEvent(CollectionEventKind.ADD, obj, index);
-        childAddHandler(item);
+        super.addElement(c, dispatchEvent);
+        internalDispatchEvent(CollectionEventKind.ADD, c, numElements);
+        childAddHandler(c as IUIComponent);
         addingChildren = false;
-        return obj;
+    }
+    
+    /**
+     *  @private
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        addingChildren = true;
+        super.addElementAt(c, index, dispatchEvent);
+        internalDispatchEvent(CollectionEventKind.ADD, c, index);
+        childAddHandler(c as IUIComponent);
+        addingChildren = false;
     }
 
     /**
      *  @private
      */
-    override public function removeChild(item:IUIComponent):IUIComponent
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
     {
-        var index:int = getChildIndex(item);
-        var obj:IUIComponent = super.removeChild(item);
-        internalDispatchEvent(CollectionEventKind.REMOVE, obj, index);
-        childRemoveHandler(item, index);
-        return obj;
+        var index:int = getElementIndex(c);
+        super.removeElement(c, dispatchEvent);
+        internalDispatchEvent(CollectionEventKind.REMOVE, c, index);
+        childRemoveHandler(c as IUIComponent, index);
     }
 
     /**
@@ -1644,7 +1661,19 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
         return result;
     }
     
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        measure();
+    }
     
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+
 }
 
 }
