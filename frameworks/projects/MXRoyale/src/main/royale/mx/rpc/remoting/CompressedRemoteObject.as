@@ -39,13 +39,13 @@ package mx.rpc.remoting
     {
         /**
          * disable the compression if true
-         * 
+         *
          * defaults to false
-         * 
+         *
          * @royalesuppresspublicvarwarning
          */
         public static var disableCompression:Boolean;
-        
+
         [ArrayElementType("String")]
         /**
          * @royalesuppresspublicvarwarning
@@ -113,24 +113,28 @@ package mx.rpc.remoting
                 } else if (parameter is IList && IList(parameter).length > 0) {
                     parameter = parameter[0];
                 }
-                var parameterClassName:String = getQualifiedClassName(parameter).replace("::", ".");
-                var included:Boolean;
-                if (includePackages && includePackages.length > 0) {
-                    //var lastDotIndex:int = parameterClassName.lastIndexOf(".");
-                    //var packageName:String = lastDotIndex != -1 ? parameterClassName.slice(0, lastDotIndex) : "";
-					for each (var includePackage:String in includePackages) {
-						if (parameterClassName.indexOf(includePackage) >= 0) {
-							included = true;
-							break;
-						}
-					}
+                var parameterClassName:String = getQualifiedClassName(parameter);
+                if (parameterClassName) {
+                    parameterClassName = parameterClassName.replace("::", ".");
+                    var included:Boolean;
+                    if (includePackages && includePackages.length > 0) {
+                        //var lastDotIndex:int = parameterClassName.lastIndexOf(".");
+                        //var packageName:String = lastDotIndex != -1 ? parameterClassName.slice(0, lastDotIndex) : "";
+                        for each (var includePackage:String in includePackages) {
+                            if (parameterClassName.indexOf(includePackage) >= 0) {
+                                included = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!included && includeClasses && includeClasses.length > 0) {
+                        included = includeClasses.indexOf(parameterClassName) != -1;
+                    }
+                    if (included && excludeClasses && excludeClasses.length > 0) {
+                        included = excludeClasses.indexOf(parameterClassName) == -1;
+                    }
                 }
-                if (!included && includeClasses && includeClasses.length > 0) {
-                    included = includeClasses.indexOf(parameterClassName) != -1;
-                }
-                if (included && excludeClasses && excludeClasses.length > 0) {
-                    included = excludeClasses.indexOf(parameterClassName) == -1;
-                }
+
                 // if (included) {
                 //     COMPILE::SWF{
                 //     var byteArray:ByteArray = new ByteArray();
