@@ -119,6 +119,7 @@
     
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
     
+    <component id="DispatchChangeOnStartup" class="org.apache.royale.jewel.beads.controls.DispatchChangeOnStartup"/>
     <component id="DropDownListTextPrompt" class="org.apache.royale.jewel.beads.controls.dropdownlist.DropDownListTextPrompt"/>
     <component id="ComboBoxTextPrompt" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"/>
     <component id="SearchFilter" class="org.apache.royale.jewel.beads.controls.combobox.SearchFilter"/>
