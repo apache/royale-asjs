@@ -29,7 +29,7 @@ limitations under the License.
     
     <j:Image src="assets/apache-royale-logo.svg" height="300"/>
     
-    <html:H1 text="Welcome to Apache Royale Jewel">
+    <html:H1 text="Welcome to Apache Royale Tour de Jewel Component Explorer v.0.9.4">
         <html:beads>
             <j:TextAlign align="center"/>
         </html:beads>
@@ -37,7 +37,7 @@ limitations under the License.
 
     <j:Label width="400" 
              multiline="true"
-             html="Jewel is a themeizable set of user interface components for Apache Royale to quickly build Front-end Applications with AS3 &amp; MXML.&lt;br>Check &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a>">
+             html="Jewel is a themeizable and responsive set of user interface components for Apache Royale to quickly build Front-end Applications with AS3 &amp; MXML.&lt;br>Check &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a>">
         <j:beads>
             <j:SizeControl size="large"/>
             <j:TextAlign align="center"/>
@@ -46,7 +46,7 @@ limitations under the License.
 
     <j:Label width="400" 
              multiline="true"
-             text="Browser support: Chrome, Firefox, IE11 &amp; Edge, Safari, Opera. Mobile: iOS, Android &amp; Windows">
+             text="Browser support: Chrome (v.44+), Firefox (v.34+), IE 11 &amp; Edge 15+, Safari (v.11.1+), Opera. Mobile: iOS (v.11.0), Android (v.5.0) &amp; Windows Mobile">
         <j:beads>
             <j:SizeControl size="small"/>
             <j:TextAlign align="center"/>

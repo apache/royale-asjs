@@ -96,7 +96,7 @@ limitations under the License.
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
                 </j:IconButton>
-                <j:TopAppBarTitle text="Apache Royale Jewel UI Set Theme Showcase"/>
+                <j:TopAppBarTitle text="Apache Royale Tour de Jewel"/>
             </j:TopAppBarSection>
             <j:TopAppBarSection alignRight="true">
                 <!-- <j:IconButton click="drawer.fixed = !drawer.fixed">
