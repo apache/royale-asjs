@@ -76,7 +76,7 @@ package org.apache.royale.reflection.beads
             _strand = value;
             var app:IFlexInfo = value as IFlexInfo;
             var info:Object = app.info();
-            var map:Object = info.remoteClassAliases;
+            var map:Object = info['remoteClassAliases'];
             if (map)
             {
                 for (var cn:String in map)
