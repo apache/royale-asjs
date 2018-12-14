@@ -20,8 +20,10 @@ package org.apache.royale.jewel.beads.controls.combobox
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
@@ -49,6 +51,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 		}
 
+		private var _textInput:TextInputBase;
+
 
 		private var _strand:IStrand;
 
@@ -65,6 +69,18 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 			_strand = value;
 			IEventDispatcher(_strand).addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+            IEventDispatcher(_strand).addEventListener('beadsAdded', onBeadsAdded);
+		}
+
+		protected function onBeadsAdded(event:Event):void{
+            COMPILE::JS{
+                if ('view' in _strand && _strand['view'] is IComboBoxView) {
+                    _textInput = IComboBoxView(_strand['view']).textinput as TextInputBase;
+                    if (_textInput) {
+                        _textInput.element.addEventListener( 'focus', onInputFocus);
+                    }
+                }
+            }
 		}
 
 		/**
@@ -72,7 +88,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		 */
 		[Bindable]
 		public var filterFunction:Function = defaultFilterFunction;
-        
+
 		/**
 		 * default filter function just filters substrings
 		 * you can use other advanced methods like levenshtein distance
@@ -82,25 +98,66 @@ package org.apache.royale.jewel.beads.controls.combobox
 			return text.toUpperCase().indexOf(filterText) > -1;
 		}
 
+		COMPILE::JS
+		protected function onInputFocus(event:Event):void{
+            var popUpVisible:Boolean =  IComboBoxView(_strand['view']).popUpVisible;
+            if (!popUpVisible) {
+                //force popup ?:
+                IComboBoxView(_strand['view']).popUpVisible = true;
+
+                //or avoid ?:
+                //return;
+            }
+            applyFilter(_textInput);
+		}
+
         protected function keyUpHandler(event:KeyboardEvent):void
 		{
-			var filterText:String = (event.target as TextInputBase).text.toUpperCase();
-			
-			// the internal list in the combobox popup
-			var list:List = event.target.parent.view.popup.view.list;
-
-			var ir:ListItemRenderer;
-			var numElements:int = list.numElements;
-			for (var i:int = 0; i < numElements; i++)
-			{
-				ir = list.getElementAt(i) as ListItemRenderer;
-				if(filterFunction(ir.text, filterText))
-				{
-					ir.visible = true;
-				} else {
-					ir.visible = false;
-				}
+			const inputBase:TextInputBase = event.target as TextInputBase;
+			//keyup can include other things like tab navigation
+            IComboBoxView
+			if (!inputBase) {
+				//if (popUpVisible)  event.target.parent.view.popUpVisible = false;
+				return;
 			}
+            var popUpVisible:Boolean =  event.target.parent.view.popUpVisible;
+            if (!popUpVisible) {
+                //force popup ?:
+                event.target.parent.view.popUpVisible = true;
+
+                //or avoid ?:
+                //return;
+            }
+            applyFilter(inputBase);
         }
+
+        protected function applyFilter(input:TextInputBase):void{
+            var filterText:String = input.text.toUpperCase();
+
+            // the internal list in the combobox popup
+            var list:List =  Object(input).parent.view.popup.view.list;
+
+            var ir:ListItemRenderer;
+            var numElements:int = list.numElements;
+            var count:uint = 0;
+            var lastActive:ListItemRenderer;
+            for (var i:int = 0; i < numElements; i++)
+            {
+                ir = list.getElementAt(i) as ListItemRenderer;
+                if (filterFunction(ir.text, filterText))
+                {
+                    ir.visible = true;
+                    lastActive = ir;
+                    count++;
+                } else {
+                    ir.visible = false;
+                }
+            }
+            if (count == 1) {
+                //select lastActive if there is only one that matches?
+
+            }
+		}
+
 	}
 }
