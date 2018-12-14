@@ -120,7 +120,7 @@ limitations under the License.
 	</fx:Script>
 
     <services:GitHubService id="service"
-            sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/JewelExample/src/main/royale/AlertPlayGround.mxml"
+            sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/TourDeJewel/src/main/royale/AlertPlayGround.mxml"
             dataReady="dataReadyHandler(event)"/>
 
     <j:TabBar id="tabbar" className="tabBarIconItemRenderer" change="changeHandler(event)">

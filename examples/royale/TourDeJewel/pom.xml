@@ -26,11 +26,11 @@
     <version>0.9.6-SNAPSHOT</version>
   </parent>
 
-  <artifactId>JewelExample</artifactId>
+  <artifactId>TourDeJewel</artifactId>
   <version>0.9.6-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: JewelExample</name>
+  <name>Apache Royale: Examples: Royale: TourDeJewel</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>

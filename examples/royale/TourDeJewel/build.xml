@@ -19,7 +19,7 @@
 -->
 
 
-<project name="JewelExample" default="main" basedir=".">
+<project name="TourDeJewel" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="App" />
     

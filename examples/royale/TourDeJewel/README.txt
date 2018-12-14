@@ -19,8 +19,13 @@
 
 DESCRIPTION
 
-The JewelExample is demo app that showcase Jewel UI Set in Apache Royale
+Tour De Jewel is a Component Explorer for Apache Royale Jewel UI Set
 
-It now has lots of components and use cases and continue growing as new things are developed to see all is working
+Jewel is a new UI component set, created with design and responsiveness in mind. 
+Apache Royale provides themes to use with Jewel out of the box. 
+Jewel themes support up to 12 colors, light/dark, and flat/normal modes.
+
+This App shows all Jewel components and different use cases and is still in development
+as we continue make it grow and improve.
 
 
