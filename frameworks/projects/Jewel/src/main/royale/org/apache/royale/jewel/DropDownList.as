@@ -83,7 +83,6 @@ package org.apache.royale.jewel
 		{
             super();
             typeNames = "jewel dropdownlist";
-            addEventListener('initComplete', setupModelChangeListener);
 		}
 
         protected var _dropDown:Select;
@@ -288,29 +287,11 @@ package org.apache.royale.jewel
         }
 
         /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
-         */
-        private function setupModelChangeListener(event:Event):void{
-            removeEventListener('initComplete', setupModelChangeListener);
-            IEventDispatcher(model).addEventListener('change', modelChangeDispatcher);
-        }
-
-        private var respondingToProgrammaticChange:Boolean;
-
-        private function modelChangeDispatcher(event:Event):void{
-            //handles re-dispatching for programmatic changes
-            respondingToProgrammaticChange = true;
-            dispatchEvent(new Event("change"));
-            respondingToProgrammaticChange = false;
-        }
-
-        /**
          * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         protected function changeHandler(event:Event):void
         {
-            if (respondingToProgrammaticChange) return;
             var index:int = (element as HTMLSelectElement).selectedIndex;
 
             var ddModel:IDropDownListModel = model as IDropDownListModel;

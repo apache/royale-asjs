@@ -132,8 +132,6 @@ package org.apache.royale.jewel.beads.models
                 dispatchEvent(new Event("selectedItemChanged"));
             if (oldIndex != _selectedIndex)
                 dispatchEvent(new Event("selectedIndexChanged"));
-			if (_dispatchChangeOnDataChange && (itemChanged || oldIndex != _selectedIndex))
-                dispatchEvent(new Event("change"));
 		}
 
 		private var _selectedIndex:int = -1;
@@ -199,9 +197,6 @@ package org.apache.royale.jewel.beads.models
             if ( oldItem != _selectedItem)
                 dispatchEvent(new Event("selectedItemChanged"));
             dispatchEvent(new Event("selectedIndexChanged"));
-            if (!_processingInteractiveChange) {
-                dispatchEvent(new Event("change"));
-            }
 		}
 
         /**

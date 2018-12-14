@@ -85,7 +85,6 @@ package org.apache.royale.jewel
 		{
 			super();
             typeNames = "jewel list";
-            addEventListener('initComplete', setupModelChangeListener);
 		}
 
 		/**
@@ -233,25 +232,5 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
-
-
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.IJewelSelectionModel
-         */
-        private function setupModelChangeListener(event:Event):void{
-            removeEventListener('initComplete', setupModelChangeListener);
-            IEventDispatcher(model).addEventListener('change', modelChangeDispatcher);
-			IJewelSelectionModel(model).dispatchChangeOnDataProviderChange = true;
-        }
-
-        private var respondingToProgrammaticChange:Boolean;
-
-        private function modelChangeDispatcher(event:Event):void{
-            //handles re-dispatching for programmatic changes
-            respondingToProgrammaticChange = true;
-            dispatchEvent(new Event("change"));
-            respondingToProgrammaticChange = false;
-        }
    	}
 }
