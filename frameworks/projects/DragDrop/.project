@@ -31,7 +31,7 @@ limitations under the License.
 		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>com.adobe.royalebuilder.project.royalelibnature</nature>
-		<nature>com.adobe.royalebuilder.project.actionscriptnature</nature>
+		<nature>com.adobe.flexbuilder.project.flexlibnature</nature>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
 </projectDescription>
