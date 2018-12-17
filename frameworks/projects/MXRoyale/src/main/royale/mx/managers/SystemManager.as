@@ -2952,7 +2952,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             var n:int = mixinList.length;
             for (var i:int = 0; i < n; ++i)
             {
-                mixinList[i].init(this);
+                mixinList[i]['init'](this);
             }
         }
         if (!SystemManagerGlobals.info)
