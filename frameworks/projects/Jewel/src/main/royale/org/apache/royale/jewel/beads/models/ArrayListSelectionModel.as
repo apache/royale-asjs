@@ -251,9 +251,6 @@ package org.apache.royale.jewel.beads.models
                 dispatchEvent(new Event("selectedItemChanged"));
                 if (indexChanged)
                     dispatchEvent(new Event("selectedIndexChanged"));
-                if (!_processingInteractiveChange) {
-                    dispatchEvent(new Event("change"));
-                }
             }
 		}
 

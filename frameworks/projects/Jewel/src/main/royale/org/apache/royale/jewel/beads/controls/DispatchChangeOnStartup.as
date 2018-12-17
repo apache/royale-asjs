@@ -63,7 +63,7 @@ package org.apache.royale.jewel.beads.controls
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener('beadsAdded', adjustModel);
+			IEventDispatcher(_strand).addEventListener('beadsAdded', onBeadsAdded);
 		}
 
 
@@ -76,14 +76,14 @@ package org.apache.royale.jewel.beads.controls
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		private function adjustModel(event:Event):void
+		private function onBeadsAdded(event:Event):void
 		{
-			IEventDispatcher(_strand).removeEventListener('beadsAdded', adjustModel);
+			IEventDispatcher(_strand).removeEventListener('beadsAdded', onBeadsAdded);
 			const model:IJewelSelectionModel = _strand.getBeadByType(IJewelSelectionModel) as IJewelSelectionModel;
 			if (model) {
-				model.dispatchChangeOnDataProviderChange = true;
 				IEventDispatcher(model).addEventListener('dataProviderChanged', onChange);
-				IEventDispatcher(model).addEventListener('change', onChange);
+				IEventDispatcher(model).addEventListener('selectedItemChanged', onChange);
+                IEventDispatcher(model).addEventListener('selectedIndexChanged', onChange);
 			} else {
 				//for now
 				throw new Error('DispatchChangeOnStartup bead is not yet compatible with the component it is being applied to');
@@ -102,9 +102,11 @@ package org.apache.royale.jewel.beads.controls
 				return;
 			}
 			const model:IJewelSelectionModel = _strand.getBeadByType(IJewelSelectionModel) as IJewelSelectionModel;
-			model.dispatchChangeOnDataProviderChange = false;
 			IEventDispatcher(model).removeEventListener('dataProviderChanged', onChange);
-			IEventDispatcher(model).removeEventListener('change', onChange);
+            IEventDispatcher(model).removeEventListener('selectedItemChanged', onChange);
+            IEventDispatcher(model).removeEventListener('selectedIndexChanged', onChange);
+
+            IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 		}
 	}
 }
