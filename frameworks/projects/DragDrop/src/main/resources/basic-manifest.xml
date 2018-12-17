@@ -25,6 +25,7 @@
 	<component id="SingleSelectionDragSourceBead" class="org.apache.royale.html.beads.SingleSelectionDragSourceBead" />
 	<component id="SingleSelectionDropIndicatorBead" class="org.apache.royale.html.beads.SingleSelectionDropIndicatorBead"/>
 	<component id="SingleSelectionDropTargetBead" class="org.apache.royale.html.beads.SingleSelectionDropTargetBead" />
+	<component id="SensitiveSingleSelectionDropTargetBead" class="org.apache.royale.html.beads.SensitiveSingleSelectionDropTargetBead" />
     <component id="DragMouseController" class="org.apache.royale.html.beads.controllers.DragMouseController" />
     <component id="DropMouseController" class="org.apache.royale.html.beads.controllers.DropMouseController" />
     	
