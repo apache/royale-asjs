@@ -25,7 +25,7 @@ limitations under the License.
 	</projects>
 	<buildSpec>
 		<buildCommand>
-			<name>com.adobe.royalebuilder.project.royalebuilder</name>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
 			<arguments>
 			</arguments>
 		</buildCommand>
