@@ -3067,6 +3067,91 @@ j|Spinner {
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SpinnerMouseController");
 }
 
+.jewel.popup {
+  display: inline-flex;
+}
+
+.popup-content {
+  position: fixed;
+  pointer-events: none;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  contain: strict;
+  z-index: 5;
+  color: rgba(0, 0, 0, 0.8);
+}
+.popup-content::before {
+  position: absolute;
+  display: block;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  content: "";
+  opacity: 0;
+  background-color: rgba(0, 0, 0, 0.65);
+  will-change: opacity;
+  transition: opacity 0.4s 0ms;
+}
+.popup-content .jewel.popupcontent {
+  position: relative;
+  transform: translate(-50%, 100%);
+  transition: none;
+  will-change: transform, opacity;
+  bottom: auto;
+  top: calc(100% - 10px);
+  left: 50%;
+  touch-action: none;
+  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
+  opacity: 0;
+}
+.popup-content.open {
+  pointer-events: auto;
+}
+.popup-content.open::before {
+  opacity: 1;
+}
+.popup-content.open .jewel.popupcontent {
+  transform: translate(-50%, -100%);
+  transition: transform 0.4s 0ms, opacity 0.4s 0ms;
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .popup-content .jewel.popupcontent {
+    width: calc(100% - 20px);
+  }
+}
+@media (min-width: 768px) and (max-width: 992px) {
+  .popup-content .jewel.popupcontent {
+    width: calc(100% - 300px);
+  }
+}
+@media (min-width: 992px) {
+  .popup-content::before {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .popup-content .jewel.popupcontent {
+    transform: none;
+    transition: none;
+    box-shadow: none !important;
+  }
+  .popup-content.open .jewel.popupcontent {
+    transform: none;
+    top: auto;
+    left: auto;
+  }
+}
+j|PopUp {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.PopUpView");
+  IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.PopUpModel");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.PopUpMouseController");
+  IPopUp: ClassReference("org.apache.royale.core.StyledUIBase");
+}
+
 .jewel.radiobutton {
   display: inline-flex;
   position: relative;
