@@ -338,7 +338,7 @@ package org.apache.royale.html.beads
 			} else if (dataProviderModel.dataProvider is ArrayList)
 			{
 				var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
-				dataList.addItem(dragSource);
+				dataList.addItemAt(dragSource, targetIndex);
 			}
 
 			// Let the dragInitiator know the drop has been completed.
