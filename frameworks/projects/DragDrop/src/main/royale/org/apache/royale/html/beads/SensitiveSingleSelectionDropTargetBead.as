@@ -140,6 +140,7 @@ package org.apache.royale.html.beads
 		private var _dropIndicator:UIBase;
 		private var targetIndex:int = -1;
 		private var indicatorVisible:Boolean = false;
+		private var isEndOfList:Boolean = false;
 
 		private var _strand:IStrand;
 
@@ -255,7 +256,7 @@ package org.apache.royale.html.beads
 				if (localY >= 0 && localY <= ir.height)
 				{
 					calculatedIndex = i;
-					if (localY > ir.height / 2 && i < itemRendererParent.numItemRenderers - 1)
+					if (localY > ir.height / 2)
 					{
 						calculatedIndex++;
 					}
@@ -264,15 +265,20 @@ package org.apache.royale.html.beads
 			}
 			if (targetIndex != calculatedIndex && calculatedIndex != -1 && indicatorParent && (targetIndex != calculatedIndex || !indicatorVisible)) {
 				targetIndex = calculatedIndex;
-				var lastItemVisited:IUIBase = itemRendererParent.getItemRendererAt(targetIndex) as IUIBase;
+				// in case we're at the end of the list, we want to choose the last renderer
+				// but we also want to drop the source after the least renderer, not before it
+				isEndOfList = calculatedIndex == itemRendererParent.numItemRenderers;
+				// calculated index may have been increased beyond bounds
+				var lastItemVisitedIndex:int = !isEndOfList ? calculatedIndex : calculatedIndex - 1;
+				var lastItemVisited:IUIBase = itemRendererParent.getItemRendererAt(lastItemVisitedIndex) as IUIBase;
+				
 				var di:UIBase = getDropIndicator(lastItemVisited, (dropDirection == "horizontal") ? indicatorParent.width : 4,
 					(dropDirection == "horizontal") ? 4 : indicatorParent.height);
-				indicatorVisible = true;
-				displayDropIndicator(lastItemVisited);
-				
 				if (indicatorParent != null) {
 					indicatorParent.addElement(di);
 				}
+				displayDropIndicator(lastItemVisited, isEndOfList);
+				indicatorVisible = true;
 			}
 		}
 		
@@ -324,18 +330,17 @@ package org.apache.royale.html.beads
 
 			var dragSource:Object = DragEvent.dragSource;
 			var calculatedTargetIndex:int = targetIndex;
-			if (itemRendererParent.numItemRenderers != calculatedTargetIndex + 1)
+
+			// dragging somewhere higher on the list, fix items jumping down before it's dropped
+			for (var i:int = 0; i < calculatedTargetIndex; i++)
 			{
-				// dragging somewhere higher on the list, fix items jumping down before it's dropped
-				for (var i:int = 0; i < calculatedTargetIndex; i++)
+				if (itemRendererParent.getItemRendererAt(i).data == dragSource)
 				{
-					if (itemRendererParent.getItemRendererAt(i).data == dragSource)
-					{
-						calculatedTargetIndex--;
-						break;
-					}
+					calculatedTargetIndex--;
+					break;
 				}
 			}
+			
 			if (DragEvent.dragInitiator) {
 				DragEvent.dragInitiator.acceptingDrop(_strand, "object");
 			}
@@ -369,7 +374,7 @@ package org.apache.royale.html.beads
 		}
 
 		COMPILE::SWF
-		private function displayDropIndicator(item:IUIBase):void
+		private function displayDropIndicator(item:IUIBase, isEndOfList:Boolean=false):void
 		{
 			var pt0:Point;
 			var pt1:Point;
@@ -392,14 +397,13 @@ package org.apache.royale.html.beads
 		}
 
 		COMPILE::JS
-		private function displayDropIndicator(item:IUIBase):void
+		private function displayDropIndicator(item:IUIBase, isEndOfList:Boolean=false):void
 		{
-			trace("displayDropIndicator: " + (item as IRenderedObject).element.innerText);
 			if (dropDirection == "horizontal") {
 				_dropIndicator.x = 0;
-				_dropIndicator.y = item.y;
+				_dropIndicator.y = item.y + (isEndOfList ? item.height : 0);
 			} else {
-				_dropIndicator.x = item.x;
+				_dropIndicator.x = item.x + (isEndOfList ? item.width : 0);
 				_dropIndicator.y = 0;
 			}
 		}
