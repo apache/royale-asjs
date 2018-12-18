@@ -3601,6 +3601,7 @@ j|TextInput {
   appearance: none;
   margin: 0;
   padding: 0.72em 1.12em;
+  resize: none;
   max-width: 100%;
   flex: 1 0 auto;
   outline: none;
