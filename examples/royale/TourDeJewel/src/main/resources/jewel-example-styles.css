@@ -87,3 +87,8 @@
     border-radius: 10px;
     border: 0px solid;
 }
+
+.somePopUpContent
+{
+    IPopUp: ClassReference("components.SomePopUpContent")
+}
