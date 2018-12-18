@@ -321,24 +321,36 @@ package org.apache.royale.html.beads
 				return;
 			}
 
+
+			var dragSource:Object = DragEvent.dragSource;
+			var calculatedTargetIndex:int = targetIndex;
+			if (itemRendererParent.numItemRenderers != calculatedTargetIndex + 1)
+			{
+				// dragging somewhere higher on the list, fix items jumping down before it's dropped
+				for (var i:int = 0; i < calculatedTargetIndex; i++)
+				{
+					if (itemRendererParent.getItemRendererAt(i).data == dragSource)
+					{
+						calculatedTargetIndex--;
+						break;
+					}
+				}
+			}
 			if (DragEvent.dragInitiator) {
 				DragEvent.dragInitiator.acceptingDrop(_strand, "object");
 			}
 
-			var dragSource:Object = DragEvent.dragSource;
-			var sourceIndex:int = 0;
-
 			var dataProviderModel:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			if (dataProviderModel.dataProvider is Array) {
 				var dataArray:Array = dataProviderModel.dataProvider as Array;
-				dataArray.splice(targetIndex, 0, dragSource);
+				dataArray.splice(calculatedTargetIndex, 0, dragSource);
 
 				var newArray:Array = dataArray.slice()
 				dataProviderModel.dataProvider = newArray;
 			} else if (dataProviderModel.dataProvider is ArrayList)
 			{
 				var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
-				dataList.addItemAt(dragSource, targetIndex);
+				dataList.addItemAt(dragSource, calculatedTargetIndex);
 			}
 
 			// Let the dragInitiator know the drop has been completed.
@@ -347,7 +359,7 @@ package org.apache.royale.html.beads
 			}
 			
 			if (dataProviderModel is ISelectionModel) {
-				(dataProviderModel as ISelectionModel).selectedIndex = targetIndex;
+				(dataProviderModel as ISelectionModel).selectedIndex = calculatedTargetIndex;
 			}
 
 			// is this event necessary? isn't "complete" enough?
