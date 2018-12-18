@@ -72,8 +72,10 @@ package org.apache.royale.jewel.beads.views
 
 		public function get content():UIBase
 		{
-			if(!_content)
+			if(!_content){
 				_content = loadBeadFromValuesManager(UIBase, "iPopUp", _strand) as UIBase;
+				_content.className="jewel popupcontent";
+			}
 
             return _content;
 		}
@@ -194,7 +196,7 @@ package org.apache.royale.jewel.beads.views
 				//cancelAnimationFrame(rq);
 			}
 		}
-		
+
 		/**
 		 *  When set to "auto" this resize handler monitors the width of the app window
 		 *  and switch between fixed and float modes.
