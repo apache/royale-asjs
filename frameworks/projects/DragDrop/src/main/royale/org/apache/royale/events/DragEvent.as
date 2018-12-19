@@ -374,10 +374,8 @@ package org.apache.royale.events
                 de.delta = event.delta;
                 de.relatedObject = event.target as InteractiveObject;
 				
-				var localPoint:Point = new Point(event.screenX, event.screenY);
-				var clientPoint:Point = PointUtils.localToGlobal(localPoint, event.target);
-				de.clientX = clientPoint.x;
-				de.clientY = clientPoint.y;
+				de.clientX = event.clientX;
+				de.clientY = event.clientY;
 				
                 return de;                    
             }
@@ -390,10 +388,8 @@ package org.apache.royale.events
 				de.shiftKey = event.shiftKey;
 				de.relatedObject = event.target;
 				
-				var localPoint:Point = new Point(event.screenX, event.screenY);
-				var clientPoint:Point = PointUtils.localToGlobal(localPoint, event.target);
-				de.clientX = clientPoint.x;
-				de.clientY = clientPoint.y;
+				de.clientX = event.clientX;
+				de.clientY = event.clientY;
 				
 				return de;
             }
