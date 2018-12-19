@@ -48,7 +48,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="enter", type="org.apache.royale.events.Event")]
 
@@ -58,7 +58,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="exit", type="org.apache.royale.events.Event")]
 
@@ -70,7 +70,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="over", type="org.apache.royale.events.Event")]
 
@@ -83,7 +83,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="drop", type="org.apache.royale.events.Event")]
 
@@ -94,21 +94,21 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="complete", type="org.apache.royale.events.Event")]
 
 	/**
-	 *  The SingleSelectionDropTargetBead enables items to be dropped onto single-selection List
-	 *  components. This bead can be used with SingleSelectionDragSourceBead to enable the re-arrangement
-	 *  of rows within the same list.
+	 *  The SensitiveSingleSelectionDropTargetBead enables items to be dropped onto single-selection List
+	 *  components. When the pointing device is in the first half of an item renderer it assumes the item is to be dropped on that item renderer.
+	 *  If it is on the second half it assumes the drop target is the next item renderer.
      *
 	 *  @see org.apache.royale.html.beads.SingleSelectionDropIndicatorBead
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
+	 *  @productversion Royale 0.9.6
 	 */
 	public class SensitiveSingleSelectionDropTargetBead extends EventDispatcher implements IBead
 	{
@@ -118,7 +118,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.6
 		 */
 		public function SensitiveSingleSelectionDropTargetBead()
 		{
@@ -159,7 +159,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get dropDirection():String
 		{
