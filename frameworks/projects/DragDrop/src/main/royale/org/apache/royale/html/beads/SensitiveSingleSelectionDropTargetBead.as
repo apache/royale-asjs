@@ -149,6 +149,7 @@ package org.apache.royale.html.beads
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_OVER, handleDragOver);
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
+			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
 		}
 
 		private var _dropDirection: String = "horizontal";
@@ -223,20 +224,9 @@ package org.apache.royale.html.beads
 			var pt2:Point;
 
 			_dropController.acceptDragDrop(event.relatedObject as IUIBase, DropType.COPY);
-			listenToMouseMove();
 		}
 		
-		private function listenToMouseMove():void
-		{
-			(_strand as IEventDispatcher).addEventListener(MouseEvent.MOUSE_MOVE, checkForNextItemRenderer);
-		}
-
-		private function stopListeningToMouseMove():void
-		{
-			(_strand as IEventDispatcher).addEventListener(MouseEvent.MOUSE_MOVE, checkForNextItemRenderer);
-		}
-		
-		private function checkForNextItemRenderer(e:MouseEvent):void
+		private function checkForNextItemRenderer(e:DragEvent):void
 		{
 			var changeMade:Boolean = true;
 			var calculatedIndex:int = -1;
@@ -287,7 +277,6 @@ package org.apache.royale.html.beads
 				}
 				indicatorVisible = false;
 			}
-			stopListeningToMouseMove();
 		}
 
 		/**
@@ -301,6 +290,14 @@ package org.apache.royale.html.beads
 			if (event.defaultPrevented) {
 				return;
 			}
+		}
+
+		/**
+		 * @private
+		 */
+		private function handleDragMove(event:DragEvent):void
+		{
+			checkForNextItemRenderer(event);
 		}
 
 		/**
