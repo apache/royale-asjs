@@ -18,19 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // TODO:yishayw rename this class
-// TODO:yishayw move some of the logic to the controller
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.DropType;
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -39,13 +34,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.controllers.DropMouseController;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.utils.UIUtils;
 
 
 	/**
