@@ -29,7 +29,7 @@
     <property name="FLEX_HOME" value="${ROYALE_HOME}"/>
 	
     <property name="config_arg" value="flex" />
-    <property name="optional_arg" value="-source-path+=${basedir}/locale/tr_TR" />
+    <property name="optional_arg" value="-source-path+=${basedir}/locale/{locale}" />
     <property name="theme_arg" value="-locale=tr_TR" />
     
     <include file="${basedir}/../build_example.xml" />
