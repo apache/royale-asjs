@@ -72,6 +72,7 @@
     <component id="FormHeading" class="org.apache.royale.jewel.FormHeading"/>
     <component id="ErrorTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel"/>
 	<component id="Snackbar" class="org.apache.royale.jewel.Snackbar"/>
+	<component id="PopUp" class="org.apache.royale.jewel.PopUp"/>
 
     <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
     <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>

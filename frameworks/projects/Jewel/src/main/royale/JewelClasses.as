@@ -41,7 +41,9 @@ package
         import org.apache.royale.jewel.beads.models.FormItemModel; FormItemModel;
         import org.apache.royale.jewel.beads.models.WizardModel; WizardModel;
         import org.apache.royale.jewel.beads.models.WizardStep; WizardStep;
+        import org.apache.royale.jewel.beads.models.PopUpModel; PopUpModel;
 
+        import org.apache.royale.jewel.beads.controllers.PopUpMouseController; PopUpMouseController;
         import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;
         import org.apache.royale.jewel.beads.controllers.SliderMouseController; SliderMouseController;
         import org.apache.royale.jewel.beads.controllers.DateChooserMouseController; DateChooserMouseController;
@@ -55,6 +57,7 @@ package
 		import org.apache.royale.jewel.beads.controllers.DropDownListController; DropDownListController;
         import org.apache.royale.jewel.beads.controllers.WizardController; WizardController;
         
+        import org.apache.royale.jewel.beads.views.PopUpView; PopUpView;
         import org.apache.royale.jewel.beads.views.ImageView; ImageView;
         import org.apache.royale.jewel.beads.views.SpinnerView; SpinnerView;
         import org.apache.royale.jewel.beads.views.NumericStepperView; NumericStepperView;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
 
 Licensed to the Apache Software Foundation (ASF) under one or more
@@ -17,24 +17,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<projectDescription>
-	<name>HTML</name>
-	<comment></comment>
-	<projects>
-		<project>Binding</project>
-		<project>Collections</project>
-		<project>Core</project>
-		<project>Graphics</project>
-	</projects>
-	<buildSpec>
-		<buildCommand>
-			<name>com.adobe.flexbuilder.project.flexbuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-	</buildSpec>
-	<natures>
-		<nature>com.adobe.flexbuilder.project.flexlibnature</nature>
-		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
-	</natures>
-</projectDescription>
+<j:Card xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:j="library://ns.apache.org/royale/jewel"
+		xmlns:js="library://ns.apache.org/royale/basic"
+		xmlns:html="library://ns.apache.org/royale/html"
+        width="500" height="400">
+
+    <j:TextInput text="Hi"/>
+    <j:Button text="Some" emphasis="primary"/>
+    
+</j:Card>
