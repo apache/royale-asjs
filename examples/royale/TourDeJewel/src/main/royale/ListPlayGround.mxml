@@ -109,6 +109,12 @@ limitations under the License.
 				}
 				return intro + evaluated;
 			}
+
+			public function describeIconItem(iconObject:Object):String{
+				const iconVO:IconListVO = iconObject as IconListVO;
+				if (!iconVO) return '[Nothing Selected]';
+				return 'label:\'' + iconVO.label + '\', icon:\'' + iconVO.icon + '\'';
+			}
 		]]>
 	</fx:Script>
 
@@ -165,6 +171,9 @@ limitations under the License.
 						<j:Button text="Remove first item" click="removeItemAt()"/>
 						<j:Button text="Update first item" click="updateFirstItem()"/>
 						<j:Button text="Remove all data" click="removeAllData()"/>
+						<j:Label  html="{'Selected Index: ' + iconList.selectedIndex}"/>
+						<j:Label  html="Selected Item description:"/>
+						<j:Label  html="{describeIconItem(iconList.selectedItem)}"/>
 					</j:VGroup>
 				</j:HGroup>
 			</j:Card>

@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.models
 {
 
     import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.events.IEventDispatcher
 
     /**
      *  The IJewelSelectionModel interface is a simple extension to core ISelectionModel
@@ -31,6 +32,6 @@ package org.apache.royale.jewel.beads.models
      */
     public interface IJewelSelectionModel extends ISelectionModel
     {
-        function set dispatchChangeOnDataProviderChange(value:Boolean):void
+        function set dispatcher(value:IEventDispatcher):void;
     }
 }

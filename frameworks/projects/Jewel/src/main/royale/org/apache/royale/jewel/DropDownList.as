@@ -179,7 +179,7 @@ package org.apache.royale.jewel
         //     }
         // }
 
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
         /**
          *  The index of the currently selected item. Changing this value
 		 *  also changes the selectedItem property.
@@ -216,7 +216,7 @@ package org.apache.royale.jewel
             }
         }
 
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
         /**
          *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
@@ -297,13 +297,9 @@ package org.apache.royale.jewel
             var ddModel:IDropDownListModel = model as IDropDownListModel;
             if (ddModel) {
                 index -= ddModel.offset;
-                ddModel.setProcessingInteractiveChange(true);
             }
 
             model.selectedIndex = index;
-
-            if (ddModel)
-                ddModel.setProcessingInteractiveChange(false);
         }
     }
 }

@@ -22,11 +22,11 @@ package org.apache.royale.jewel.beads.models
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.events.Event;
-			
+
 	/**
-	 *  The ComboBoxModel class bead extends org.apache.royale.jewel.beads.models.ArrayListSelectionModel 
+	 *  The ComboBoxModel class bead extends org.apache.royale.jewel.beads.models.ArrayListSelectionModel
 	 *  and adds the text being displayed by the org.apache.royale.jewel.ComboBox's input field.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -36,7 +36,7 @@ package org.apache.royale.jewel.beads.models
 	{
 		/**
 		 *  constructor.
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -47,12 +47,12 @@ package org.apache.royale.jewel.beads.models
 		}
 
 		private var _text:String;
-		
+
 		/**
 		 *  The string to display in the org.apache.royale.html.ComboBox input field.
-		 * 
+		 *
 		 *  @copy org.apache.royale.core.IComboBoxModel#text
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -62,23 +62,23 @@ package org.apache.royale.jewel.beads.models
 		{
 			return _text;
 		}
-		
+
 		public function set text(value:String):void
 		{
 			if (value != _text)
 			{
 				_text = value;
-				dispatchEvent(new Event("textChange"));
+				dispatchChange("textChange");
 			}
 		}
-		
+
 		private var _html:String;
-		
+
 		/**
 		 *  The HTML string to display in the org.apache.royale.html.ComboBox input field.
-		 * 
+		 *
 		 *  @copy org.apache.royale.core.IComboBoxModel#html
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -88,13 +88,13 @@ package org.apache.royale.jewel.beads.models
 		{
 			return _html;
 		}
-		
+
 		public function set html(value:String):void
 		{
 			if (value != _html)
 			{
 				_html = value;
-				dispatchEvent(new Event("htmlChange"));
+                dispatchChange("htmlChange");
 			}
 		}
 	}

@@ -24,9 +24,6 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.Event;
 
 	COMPILE::JS
 	{
@@ -140,7 +137,7 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-		[Bindable("change")]
+		[Bindable("selectionChanged")]
         public function get selectedIndex():int
 		{
 			return ISelectionModel(model).selectedIndex;
@@ -201,7 +198,7 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-		[Bindable("change")]
+        [Bindable("selectionChanged")]
 		public function get selectedItem():Object
 		{
 			return ISelectionModel(model).selectedItem;
@@ -232,5 +229,7 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
+
+
    	}
 }

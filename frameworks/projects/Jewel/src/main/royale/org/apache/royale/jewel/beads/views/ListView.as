@@ -89,7 +89,7 @@ package org.apache.royale.jewel.beads.views
 		override protected function handleInitComplete(event:Event):void
 		{
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			IEventDispatcher(_strand).addEventListener("itemsCreated", itemsCreatedHandler);
 
@@ -187,7 +187,7 @@ package org.apache.royale.jewel.beads.views
 			super.handleInitComplete(event);
 
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 		}
 
@@ -220,7 +220,7 @@ package org.apache.royale.jewel.beads.views
 			ir = dataGroup.getItemRendererAt(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = true;
-			
+
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
 		}
 	}
