@@ -30,7 +30,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.beads.IListView;
-import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 
 /**
      *  The ListSingleSelectionMouseController class is a controller for
@@ -101,6 +101,7 @@ import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.IJewelSelectionModel
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          *  @royaleignorecoercion org.apache.royale.core.IListView
          */
@@ -111,8 +112,10 @@ import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 			listView = value.getBeadByType(IListView) as IListView;
 			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
-			if (listModel is IJewelSelectionModel) {
-                IJewelSelectionModel(listModel).dispatcher  = IEventDispatcher(value);
+
+            //if the list is composed as part of another component, with a shared model (e.g. ComboBox) then it should not be the primary dispatcher
+			if (listModel is IJewelSelectionModel && !(IJewelSelectionModel(listModel).hasDispatcher)) {
+                 IJewelSelectionModel(listModel).dispatcher = IEventDispatcher(value);
 			}
             else {
 				IEventDispatcher(listModel).addEventListener('selectionChanged', modelChangeHandler);

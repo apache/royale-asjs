@@ -56,27 +56,33 @@ package org.apache.royale.jewel.beads.models
 
 		//IJewelSelectionModel
 		private var _dispatcher:IEventDispatcher;
-        private function getDispatcher():IEventDispatcher {
-			if (!_dispatcher) _dispatcher = new EventDispatcher(this) as IEventDispatcher;
+        public function get dispatcher():IEventDispatcher {
+			if (!_dispatcher) {
+				_dispatcher = new EventDispatcher(this) as IEventDispatcher;
+            }
 			return _dispatcher;
 		}
         public function set dispatcher(value:IEventDispatcher):void{
 			_dispatcher = value;
 		}
 
+		public function get hasDispatcher():Boolean{
+			return !!_dispatcher;
+		}
+
 		//IEventDispatcher JS
 		COMPILE::JS
 		public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void{
-			getDispatcher().addEventListener(type, handler, opt_capture, opt_handlerScope);
+            dispatcher.addEventListener(type, handler, opt_capture, opt_handlerScope);
 		}
 		COMPILE::JS
 		public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void{
-			getDispatcher().removeEventListener(type, handler, opt_capture, opt_handlerScope);
+            dispatcher.removeEventListener(type, handler, opt_capture, opt_handlerScope);
 		}
 
 		COMPILE::JS
 		public function dispatchEvent(event:Object):Boolean{
-			return getDispatcher().dispatchEvent(event);
+			return dispatcher.dispatchEvent(event);
 		}
 
 
@@ -84,26 +90,26 @@ package org.apache.royale.jewel.beads.models
         //IEventDispatcher SWF
 		COMPILE::SWF
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
-			getDispatcher().addEventListener(type, listener, useCapture, priority, useWeakReference);
+            dispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
 		COMPILE::SWF
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void{
-			getDispatcher().removeEventListener(type, listener, useCapture);
+            dispatcher.removeEventListener(type, listener, useCapture);
 		}
 
 		COMPILE::SWF
 		public function dispatchEvent(event:flash.events.Event):Boolean{
-			return getDispatcher().dispatchEvent(event);
+			return dispatcher.dispatchEvent(event);
 		}
 
         COMPILE::SWF
         public function willTrigger(type:String):Boolean{
-            return getDispatcher().willTrigger(type);
+            return dispatcher.willTrigger(type);
         }
 
 		//IEventDispatcher (shared)
         public function hasEventListener(type:String):Boolean{
-            return getDispatcher().hasEventListener(type);
+            return dispatcher.hasEventListener(type);
         }
 
         /**

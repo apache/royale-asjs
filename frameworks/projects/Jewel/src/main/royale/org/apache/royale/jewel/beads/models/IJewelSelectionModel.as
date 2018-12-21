@@ -32,6 +32,8 @@ package org.apache.royale.jewel.beads.models
      */
     public interface IJewelSelectionModel extends ISelectionModel
     {
+        function get dispatcher():IEventDispatcher;
         function set dispatcher(value:IEventDispatcher):void;
+        function get hasDispatcher():Boolean;
     }
 }
