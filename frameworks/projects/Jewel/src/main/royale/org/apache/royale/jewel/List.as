@@ -84,6 +84,7 @@ package org.apache.royale.jewel
             typeNames = "jewel list";
 		}
 
+        [Bindable("labelFieldChanged")]
 		/**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -106,6 +107,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+        [Bindable("dataProviderChanged")]
 		/**
 		 *  The data being display by the List.
 		 *
@@ -150,6 +152,7 @@ package org.apache.royale.jewel
 			ISelectionModel(model).selectedIndex = value;
 		}
 
+        [Bindable("rollOverIndexChanged")]
 		/**
 		 *  The index of the item currently below the pointer.
 		 *

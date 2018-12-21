@@ -97,6 +97,7 @@ package org.apache.royale.jewel
             _dropDown = value;
         }
 
+        [Bindable("labelFieldChanged")]
         /**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -119,6 +120,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+        [Bindable("dataProviderChanged")]
         /**
 		 *  The data being display by the List.
 		 *

@@ -72,6 +72,7 @@ package org.apache.royale.jewel
             typeNames = "jewel combobox";
 		}
 
+        [Bindable("labelFieldChanged")]
 		/**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -94,6 +95,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+        [Bindable("dataProviderChanged")]
 		/**
 		 *  The data for display by the ComboBox.
 		 *
