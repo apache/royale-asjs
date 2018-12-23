@@ -117,7 +117,7 @@ limitations under the License.
             		var c:int = hash.indexOf(delimiter);
                     if (c == -1)
                     {
-                        c == hash.indexOf("$");
+                        c = hash.indexOf("$");
                         if (c != -1)
                             delimiter = "$";
                     }
