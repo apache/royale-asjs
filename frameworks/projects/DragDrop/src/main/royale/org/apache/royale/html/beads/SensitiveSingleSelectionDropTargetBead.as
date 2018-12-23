@@ -18,19 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // TODO:yishayw rename this class
-// TODO:yishayw move some of the logic to the controller
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.DropType;
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -39,13 +34,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.geom.Point;
-	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.html.beads.controllers.DropMouseController;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.PointUtils;
-	import org.apache.royale.utils.UIUtils;
 
 
 	/**
@@ -57,7 +48,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="enter", type="org.apache.royale.events.Event")]
 
@@ -67,7 +58,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="exit", type="org.apache.royale.events.Event")]
 
@@ -79,7 +70,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="over", type="org.apache.royale.events.Event")]
 
@@ -92,7 +83,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="drop", type="org.apache.royale.events.Event")]
 
@@ -103,21 +94,21 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="complete", type="org.apache.royale.events.Event")]
 
 	/**
-	 *  The SingleSelectionDropTargetBead enables items to be dropped onto single-selection List
-	 *  components. This bead can be used with SingleSelectionDragSourceBead to enable the re-arrangement
-	 *  of rows within the same list.
+	 *  The SensitiveSingleSelectionDropTargetBead enables items to be dropped onto single-selection List
+	 *  components. When the pointing device is in the first half of an item renderer it assumes the item is to be dropped on that item renderer.
+	 *  If it is on the second half it assumes the drop target is the next item renderer.
      *
 	 *  @see org.apache.royale.html.beads.SingleSelectionDropIndicatorBead
      *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
+	 *  @productversion Royale 0.9.6
 	 */
 	public class SensitiveSingleSelectionDropTargetBead extends EventDispatcher implements IBead
 	{
@@ -127,7 +118,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.6
 		 */
 		public function SensitiveSingleSelectionDropTargetBead()
 		{
@@ -158,6 +149,7 @@ package org.apache.royale.html.beads
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_OVER, handleDragOver);
 			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
+			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
 		}
 
 		private var _dropDirection: String = "horizontal";
@@ -168,7 +160,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get dropDirection():String
 		{
@@ -232,20 +224,9 @@ package org.apache.royale.html.beads
 			var pt2:Point;
 
 			_dropController.acceptDragDrop(event.relatedObject as IUIBase, DropType.COPY);
-			listenToMouseMove();
 		}
 		
-		private function listenToMouseMove():void
-		{
-			(_strand as IEventDispatcher).addEventListener(MouseEvent.MOUSE_MOVE, checkForNextItemRenderer);
-		}
-
-		private function stopListeningToMouseMove():void
-		{
-			(_strand as IEventDispatcher).addEventListener(MouseEvent.MOUSE_MOVE, checkForNextItemRenderer);
-		}
-		
-		private function checkForNextItemRenderer(e:MouseEvent):void
+		private function checkForNextItemRenderer(e:DragEvent):void
 		{
 			var changeMade:Boolean = true;
 			var calculatedIndex:int = -1;
@@ -296,7 +277,6 @@ package org.apache.royale.html.beads
 				}
 				indicatorVisible = false;
 			}
-			stopListeningToMouseMove();
 		}
 
 		/**
@@ -310,6 +290,14 @@ package org.apache.royale.html.beads
 			if (event.defaultPrevented) {
 				return;
 			}
+		}
+
+		/**
+		 * @private
+		 */
+		private function handleDragMove(event:DragEvent):void
+		{
+			checkForNextItemRenderer(event);
 		}
 
 		/**
