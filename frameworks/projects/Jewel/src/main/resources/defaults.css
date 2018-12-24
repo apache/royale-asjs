@@ -3131,12 +3131,11 @@ j|Spinner {
 }
 @media (min-width: 992px) {
   .popup-content .jewel.popupcontent {
-    transform: none;
-    transition: none;
+    transform: translate(0px, -10%);
     box-shadow: none !important;
   }
   .popup-content.open .jewel.popupcontent {
-    transform: none;
+    transform: translate(0px, 0px);
     margin: auto;
     top: 0;
     bottom: 0;

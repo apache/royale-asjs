@@ -103,14 +103,13 @@ $popup-content-overlay-opacity: .65 !default
         // &::before
             // background-color: rgba($popup-content-overlay-color, 0)
         .jewel.popupcontent
-            // transform: translate(0px, -200px)
-            transform: none
-            transition: none
+            transform: translate(0px, -10%)
+            // transition: none
             box-shadow: none !important
 
         &.open
             .jewel.popupcontent
-                transform: none
+                transform: translate(0px, 0px)
                 margin: auto
                 top: 0
                 bottom: 0
