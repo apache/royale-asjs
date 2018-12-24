@@ -19,14 +19,10 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.Event;
 
 	//--------------------------------------
     //  Events
@@ -74,9 +70,9 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "jewel combobox";
-            addEventListener('beadsAdded', setupModelChangeListener);
 		}
 
+        [Bindable("labelFieldChanged")]
 		/**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -99,6 +95,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+        [Bindable("dataProviderChanged")]
 		/**
 		 *  The data for display by the ComboBox.
 		 *
@@ -120,7 +117,7 @@ package org.apache.royale.jewel
 			IDataProviderModel(model).dataProvider = value;
 		}
 
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
 		/**
 		 *  The index of the currently selected item. Changing this item changes
 		 *  the selectedItem value.
@@ -143,7 +140,7 @@ package org.apache.royale.jewel
 			ISelectionModel(model).selectedIndex = value;
 		}
 
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
 		/**
 		 *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
@@ -182,23 +179,5 @@ package org.apache.royale.jewel
 			return presModel;
 		}
 
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
-		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-         */
-        private function setupModelChangeListener():void{
-            removeEventListener('beadsAdded', setupModelChangeListener);
-            IEventDispatcher(model).addEventListener('change', modelChangeDispatcher);
-            IJewelSelectionModel(model).dispatchChangeOnDataProviderChange = true;
-        }
-
-        private var respondingToProgrammaticChange:Boolean;
-
-        private function modelChangeDispatcher(event:Event):void{
-            //handles re-dispatching for programmatic changes
-            respondingToProgrammaticChange = true;
-            dispatchEvent(new Event("change"));
-            respondingToProgrammaticChange = false;
-        }
 	}
 }

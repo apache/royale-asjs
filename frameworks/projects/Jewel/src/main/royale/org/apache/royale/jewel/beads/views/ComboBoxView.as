@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	COMPILE::SWF
+import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+
+COMPILE::SWF
 	{
 		import flash.utils.setTimeout;
     }
@@ -138,8 +140,14 @@ package org.apache.royale.jewel.beads.views
 			host.addElement(_button);
 
 			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-			model.addEventListener("selectedIndexChanged", handleItemChange);
-			model.addEventListener("selectedItemChanged", handleItemChange);
+
+			if (model is IJewelSelectionModel) {
+				//do this here as well as in the controller,
+				//to cover possible variation in the order of bead instantiation
+				//this avoids the need to redispatch new event clones at the component level in the controller
+                IJewelSelectionModel(model).dispatcher = IEventDispatcher(value);
+			}
+			model.addEventListener("selectionChanged", handleItemChange);
 			model.addEventListener("dataProviderChanged", itemChangeAction);
 
 			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);

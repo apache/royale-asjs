@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
-	COMPILE::SWF
+import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+
+COMPILE::SWF
 	{
 		import flash.utils.setTimeout;
     }
@@ -83,6 +85,13 @@ package org.apache.royale.jewel.beads.controllers
 			} else {
 				IEventDispatcher(_strand).addEventListener("viewChanged", finishSetup);
 			}
+			if (model is IJewelSelectionModel) {
+                IJewelSelectionModel(model).dispatcher = IEventDispatcher(value);
+			}
+			else {
+                IEventDispatcher(model).addEventListener('dataProviderChanged', modelChangeHandler);
+				IEventDispatcher(model).addEventListener('selectionChanged', modelChangeHandler);
+            }
 		}
 
 		/**
@@ -124,6 +133,11 @@ package org.apache.royale.jewel.beads.controllers
 			list = (popup.view as ComboBoxPopUpView).list;
 			list.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			list.addEventListener(Event.CHANGE, changeHandler);
+            if (model is IJewelSelectionModel) {
+				//don't let the pop-up's list take over as primary dispatcher
+				//it needs to stay with the ComboBox (for selection bindings to work)
+                IJewelSelectionModel(model).dispatcher = IEventDispatcher(_strand);
+            }
 		}
 
 		private var popup:ComboBoxPopUp;
@@ -180,5 +194,9 @@ package org.apache.royale.jewel.beads.controllers
 
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
 		}
+
+        protected function modelChangeHandler(event:Event):void{
+            IEventDispatcher(_strand).dispatchEvent(new Event(event.type));
+        }
 	}
 }

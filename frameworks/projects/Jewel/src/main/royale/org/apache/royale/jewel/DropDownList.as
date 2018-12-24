@@ -83,7 +83,6 @@ package org.apache.royale.jewel
 		{
             super();
             typeNames = "jewel dropdownlist";
-            addEventListener('initComplete', setupModelChangeListener);
 		}
 
         protected var _dropDown:Select;
@@ -98,6 +97,7 @@ package org.apache.royale.jewel
             _dropDown = value;
         }
 
+        [Bindable("labelFieldChanged")]
         /**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -120,6 +120,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+        [Bindable("dataProviderChanged")]
         /**
 		 *  The data being display by the List.
 		 *
@@ -180,7 +181,7 @@ package org.apache.royale.jewel
         //     }
         // }
 
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
         /**
          *  The index of the currently selected item. Changing this value
 		 *  also changes the selectedItem property.
@@ -217,7 +218,7 @@ package org.apache.royale.jewel
             }
         }
 
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
         /**
          *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
@@ -288,41 +289,19 @@ package org.apache.royale.jewel
         }
 
         /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
-         */
-        private function setupModelChangeListener(event:Event):void{
-            removeEventListener('initComplete', setupModelChangeListener);
-            IEventDispatcher(model).addEventListener('change', modelChangeDispatcher);
-        }
-
-        private var respondingToProgrammaticChange:Boolean;
-
-        private function modelChangeDispatcher(event:Event):void{
-            //handles re-dispatching for programmatic changes
-            respondingToProgrammaticChange = true;
-            dispatchEvent(new Event("change"));
-            respondingToProgrammaticChange = false;
-        }
-
-        /**
          * @royaleignorecoercion HTMLSelectElement
          */
         COMPILE::JS
         protected function changeHandler(event:Event):void
         {
-            if (respondingToProgrammaticChange) return;
             var index:int = (element as HTMLSelectElement).selectedIndex;
 
             var ddModel:IDropDownListModel = model as IDropDownListModel;
             if (ddModel) {
                 index -= ddModel.offset;
-                ddModel.setProcessingInteractiveChange(true);
             }
 
             model.selectedIndex = index;
-
-            if (ddModel)
-                ddModel.setProcessingInteractiveChange(false);
         }
     }
 }

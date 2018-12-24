@@ -101,7 +101,7 @@ COMPILE::JS
 		override protected function handleInitComplete(event:Event):void
 		{
 			model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			model.addEventListener("selectionChanged", selectionChangeHandler);
 
 			super.handleInitComplete(event);
 		}

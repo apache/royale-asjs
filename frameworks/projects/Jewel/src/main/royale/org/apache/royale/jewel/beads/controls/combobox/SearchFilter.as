@@ -115,7 +115,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 			const inputBase:TextInputBase = event.target as TextInputBase;
 			//keyup can include other things like tab navigation
-            IComboBoxView
+
 			if (!inputBase) {
 				//if (popUpVisible)  event.target.parent.view.popUpVisible = false;
 				return;
@@ -153,10 +153,10 @@ package org.apache.royale.jewel.beads.controls.combobox
                     ir.visible = false;
                 }
             }
-            if (count == 1) {
+           /* if (count == 1) {
                 //select lastActive if there is only one that matches?
 
-            }
+            }*/
 		}
 
 	}

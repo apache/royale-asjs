@@ -22,11 +22,11 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.core.ISelectionModel;
 
 	/**
 	 *  The DispatchChangeOnStartup bead class is a specialty bead that can be used
-	 *  with components that implements IJewelSelectionModel and uses dataProvider 
+	 *  with components that implements ISelectionModel and uses dataProvider
 	 *  to dispatch a CHANGE event when the component is initialized
 	 *
 	 *  @langversion 3.0
@@ -63,12 +63,12 @@ package org.apache.royale.jewel.beads.controls
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener('beadsAdded', adjustModel);
+			IEventDispatcher(_strand).addEventListener('beadsAdded', listenToModel);
 		}
 
-
 		/**
-		 *  adjust the way the model behaves for dispatching change events
+		 *  listen for the startup selectionChanged Event that occurs when dataprovider is assigned
+		 *  and there is a preselected index, fire a change event
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -76,35 +76,20 @@ package org.apache.royale.jewel.beads.controls
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		private function adjustModel(event:Event):void
+		private function listenToModel(event:Event):void
 		{
-			IEventDispatcher(_strand).removeEventListener('beadsAdded', adjustModel);
-			const model:IJewelSelectionModel = _strand.getBeadByType(IJewelSelectionModel) as IJewelSelectionModel;
+			IEventDispatcher(_strand).removeEventListener('beadsAdded', listenToModel);
+			const model:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			if (model) {
-				model.dispatchChangeOnDataProviderChange = true;
-				IEventDispatcher(model).addEventListener('dataProviderChanged', onChange);
-				IEventDispatcher(model).addEventListener('change', onChange);
-			} else {
-				//for now
-				throw new Error('DispatchChangeOnStartup bead is not yet compatible with the component it is being applied to');
+				IEventDispatcher(model).addEventListener('selectionChanged', onChange);
 			}
 		}
 
-		private var _sawDataProviderChange:Boolean;
 		private function onChange(event:Event):void{
-			if (event.type == 'dataProviderChanged') {
-				_sawDataProviderChange = true;
-				return;
-			}
-			//event here is normal change event
-			if (!_sawDataProviderChange) {
-				//wait for a change event after dataProviderChange? needs review, maybe not
-				return;
-			}
-			const model:IJewelSelectionModel = _strand.getBeadByType(IJewelSelectionModel) as IJewelSelectionModel;
-			model.dispatchChangeOnDataProviderChange = false;
-			IEventDispatcher(model).removeEventListener('dataProviderChanged', onChange);
-			IEventDispatcher(model).removeEventListener('change', onChange);
+			const model:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
+			IEventDispatcher(model).removeEventListener('selectionChanged', onChange);
+			IEventDispatcher(_strand).dispatchEvent(new Event('change'));
+
 		}
 	}
 }
