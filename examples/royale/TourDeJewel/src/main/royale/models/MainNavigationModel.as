@@ -42,7 +42,7 @@ package models
             new NavigationLinkVO("Forms & Validation", "form_validation_panel", MaterialIconType.ASSIGNMENT_TURNED_IN),
             new NavigationLinkVO("DropDownList", "dropdownlist_panel", MaterialIconType.CREDIT_CARD),
             new NavigationLinkVO("Snackbar", "snackbar_panel", MaterialIconType.VIDEO_LABEL),
-            new NavigationLinkVO("PopUpView", "popupview_panel", MaterialIconType.VIDEO_LABEL)
+            new NavigationLinkVO("PopUpView", "popupview_panel", MaterialIconType.FLIP_TO_FRONT)
             // new NavigationLinkVO("Menu", "menus_panel"),
             // new NavigationLinkVO("Loading", "loading_panel")
         ]);
