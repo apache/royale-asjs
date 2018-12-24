@@ -42,7 +42,7 @@ $popup-content-overlay-opacity: .65 !default
 
     z-index: 5
 
-    color: rgba(0, 0, 0, 0.8)
+    // color: rgba(0, 0, 0, 0.8)
 
     &::before
         position: absolute
@@ -55,7 +55,7 @@ $popup-content-overlay-opacity: .65 !default
         height: 100%
 
         content: ""
-        opacity: 0
+        // opacity: 0
 
         background-color: rgba($popup-content-overlay-color, $popup-content-overlay-opacity)
         will-change: opacity
@@ -100,8 +100,8 @@ $popup-content-overlay-opacity: .65 !default
 
 @media (min-width: $desktop)
     .popup-content
-        &::before
-            background-color: rgba($popup-content-overlay-color, 0)
+        // &::before
+            // background-color: rgba($popup-content-overlay-color, 0)
         .jewel.popupcontent
             // transform: translate(0px, -200px)
             transform: none
@@ -111,8 +111,12 @@ $popup-content-overlay-opacity: .65 !default
         &.open
             .jewel.popupcontent
                 transform: none
-                top: auto
-                left: auto
+                margin: auto
+                top: 0
+                bottom: 0
+                left: 0
+                right: 0
+                position: absolute
 
 
 

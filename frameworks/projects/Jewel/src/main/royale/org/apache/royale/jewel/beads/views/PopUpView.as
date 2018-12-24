@@ -162,12 +162,12 @@ package org.apache.royale.jewel.beads.views
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					setTimeout(prepareForPopUp,  300);
 
-					COMPILE::JS
-					{
-					window.addEventListener('resize', autoResizeHandler, false);
-					}
+					// COMPILE::JS
+					// {
+					// window.addEventListener('resize', autoResizeHandler, false);
+					// }
 
-					autoResizeHandler();
+					// autoResizeHandler();
 				}
 				else
 				{
@@ -175,7 +175,7 @@ package org.apache.royale.jewel.beads.views
 					COMPILE::JS
 					{
 					document.body.classList.remove("viewport");
-					window.removeEventListener('resize', autoResizeHandler, false);
+					// window.removeEventListener('resize', autoResizeHandler, false);
 					}
 					//_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
 					_popUp = null;
@@ -209,29 +209,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		private function autoResizeHandler(event:Event = null):void
-        {
-			COMPILE::JS
-			{
-				var outerWidth:Number = document.body.getBoundingClientRect().width;
-				// handle potential scrolls offsets
-				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
-				
-				var internalComponent:UIBase = content as UIBase;
-				// Desktop width size
-				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
-				{
-					var origin:Point = new Point(0, top);//_button.y + _button.height - top);
-					var relocated:Point = positionInsideBoundingClientRect(_strand, internalComponent, origin);
-					internalComponent.x = relocated.x;
-					internalComponent.y = relocated.y;
-				}
-				else
-				{
-					internalComponent.positioner.style.left = '50%';
-					internalComponent.positioner.style.top = 'calc(100% - 10px)';
-				}
-			}
-		}
+		// 
+		
 	}
 }

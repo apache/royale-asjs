@@ -3081,7 +3081,6 @@ j|Spinner {
   overflow: hidden;
   contain: strict;
   z-index: 5;
-  color: rgba(0, 0, 0, 0.8);
 }
 .popup-content::before {
   position: absolute;
@@ -3091,7 +3090,6 @@ j|Spinner {
   width: 100%;
   height: 100%;
   content: "";
-  opacity: 0;
   background-color: rgba(0, 0, 0, 0.65);
   will-change: opacity;
   transition: opacity 0.4s 0ms;
@@ -3132,9 +3130,6 @@ j|Spinner {
   }
 }
 @media (min-width: 992px) {
-  .popup-content::before {
-    background-color: rgba(0, 0, 0, 0);
-  }
   .popup-content .jewel.popupcontent {
     transform: none;
     transition: none;
@@ -3142,8 +3137,12 @@ j|Spinner {
   }
   .popup-content.open .jewel.popupcontent {
     transform: none;
-    top: auto;
-    left: auto;
+    margin: auto;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    position: absolute;
   }
 }
 j|PopUp {
