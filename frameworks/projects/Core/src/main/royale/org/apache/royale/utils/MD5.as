@@ -230,7 +230,7 @@ package org.apache.royale.utils
 		/*
 		* Calculate the HMAC-MD5, of a key and some data (raw strings)
 		*/
-		private static function rstrHMACMD5 (key:String, data):String
+		private static function rstrHMACMD5 (key:String, data:String):String
 		{
 			var i:int;
 			var bkey:Array = rstr2binl(key);

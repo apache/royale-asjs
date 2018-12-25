@@ -807,7 +807,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::JS
-    protected function setBufferSize(newSize):void
+    protected function setBufferSize(newSize:uint):void
     {
         var n:uint = _len;
         if (n != newSize) {

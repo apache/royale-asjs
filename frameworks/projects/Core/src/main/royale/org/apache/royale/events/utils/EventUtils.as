@@ -52,7 +52,7 @@ package org.apache.royale.events.utils
            return customEvent;
        }
 
-       public static function createMouseEvent(type:String, bubbles:Boolean = false, cancelable = false,
+       public static function createMouseEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false,
                                                params:Object = null):Object
        {
            var mouseEvent:Object = null;

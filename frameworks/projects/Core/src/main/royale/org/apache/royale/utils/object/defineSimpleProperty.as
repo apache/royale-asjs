@@ -34,7 +34,7 @@ package org.apache.royale.utils.object
 			"get" : function ():Object {
 				return this[privateProp];
 			},
-			"set" : function (val):void {
+			"set" : function (val:*):void {
 				this[privateProp] = val;
 			}
 		});
