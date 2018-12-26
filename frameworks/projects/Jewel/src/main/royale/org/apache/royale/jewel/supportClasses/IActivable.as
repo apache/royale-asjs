@@ -41,5 +41,16 @@ package org.apache.royale.jewel.supportClasses
          */
         function get isActive():Boolean;
         function set isActive(value:Boolean):void;
+        
+        /**
+         *  activableName is the name od this activable content
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        function get activableName():String;
+        function set activableName(value:String):void;
     }
 }

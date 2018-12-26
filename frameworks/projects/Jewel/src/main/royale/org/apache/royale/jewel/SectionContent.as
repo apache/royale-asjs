@@ -87,5 +87,28 @@ package org.apache.royale.jewel
                 toggleClass("is-active", _isActive);
             }
 		}
+		
+		private var _activableName:String;
+
+        /**
+         *  activableName is the name od this activable content
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+		public function get activableName():String
+		{
+            return _activableName;
+		}
+
+		public function set activableName(value:String):void
+		{
+            if (_activableName != value)
+            {
+                _activableName = value;
+            }
+		}
 	}
 }
