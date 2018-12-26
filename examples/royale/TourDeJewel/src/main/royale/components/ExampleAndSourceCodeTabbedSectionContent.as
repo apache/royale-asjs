@@ -53,7 +53,7 @@ package components
             super();
 
             exampleTab = new SectionContent();
-            exampleTab.activableName = "exampleTab";
+            exampleTab.name = "exampleTab";
             exampleTab.isActive = true;
             contentArea = exampleTab;
 
@@ -61,20 +61,27 @@ package components
 		}
 
         private var service:GitHubService;
-
-        private var sourceCodeUrlPrefix:String = "https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/TourDeJewel/src/main/royale/";
-        public var sourceCodeUrl:String;
-
         private var tabbar:TabBar;
         private var tabBarNavigation:ArrayList;
-
         private var tabcontent:TabBarContent;
-
         private var exampleTab:SectionContent;
         private var sourceCodeTab:SectionContent;
-
         private var sourceCodeMXMLText:Code;
 
+        private var sourceCodeUrlPrefix:String = "https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/TourDeJewel/src/main/royale/";
+        
+        private var _sourceCodeUrl:String;
+        /**
+         * sourceCodeUrl, the name of the resource in the project that hangs from "src/main/royale"
+         */
+        public function get sourceCodeUrl():String
+        {
+        	return _sourceCodeUrl;
+        }
+        public function set sourceCodeUrl(value:String):void
+        {
+        	_sourceCodeUrl = value;
+        }
 
         private function initCompleteHandler(event:Event):void
         {
@@ -90,7 +97,7 @@ package components
             $addElement(tabbar);
             
             sourceCodeTab = new SectionContent();
-            sourceCodeTab.activableName = "sourceCodeTab";
+            sourceCodeTab.name = "sourceCodeTab";
             var pre:Pre = new Pre();
             sourceCodeMXMLText = new Code();
             sourceCodeMXMLText.className = "xml codeExample";

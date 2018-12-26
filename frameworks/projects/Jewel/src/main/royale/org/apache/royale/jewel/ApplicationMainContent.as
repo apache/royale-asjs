@@ -85,14 +85,14 @@ package org.apache.royale.jewel
 		/**
 		 *  shows a concrete content and hides the rest
 		 * 
-		 *  @param activableName, the activableName of the container to show
+		 *  @param name, the name of the container to show
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function showContent(activableName:String):void
+        public function showContent(name:String):void
         {
 			try
 			{
@@ -100,7 +100,7 @@ package org.apache.royale.jewel
 				{
 					var content:IActivable = getElementAt(i) as IActivable;
 					
-					if(content.activableName == activableName)
+					if(content.name == name)
 					{
 						content.isActive = true;
 					}

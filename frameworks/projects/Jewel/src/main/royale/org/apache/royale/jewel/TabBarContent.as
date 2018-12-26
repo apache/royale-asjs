@@ -63,7 +63,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function showContent(activableName:String):void
+        public function showContent(name:String):void
         {
 			try
 			{
@@ -71,7 +71,7 @@ package org.apache.royale.jewel
 				{
 					var content:IActivable = getElementAt(i) as IActivable;
 					
-					if(content.activableName == activableName)
+					if(content.name == name)
 					{
 						content.isActive = true;
 					}

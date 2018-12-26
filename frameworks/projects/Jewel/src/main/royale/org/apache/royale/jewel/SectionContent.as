@@ -88,26 +88,43 @@ package org.apache.royale.jewel
             }
 		}
 		
-		private var _activableName:String;
+        private var _name:String;
 
         /**
-         *  activableName is the name od this activable content
+         *  name is the name od this activable content
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function get activableName():String
+        COMPILE::SWF
+		override public function get name():String
 		{
-            return _activableName;
+            return _name;
 		}
 
-		public function set activableName(value:String):void
+        COMPILE::SWF
+		override public function set name(value:String):void
 		{
-            if (_activableName != value)
+            if (_name != value)
             {
-                _activableName = value;
+                _name = value;
+            }
+		}
+
+        COMPILE::JS
+        public function get name():String
+		{
+            return _name;
+		}
+
+        COMPILE::JS
+		public function set name(value:String):void
+		{
+            if (_name != value)
+            {
+                _name = value;
             }
 		}
 	}
