@@ -199,7 +199,7 @@ package org.apache.royale.storage.providers
 								_target.dispatchEvent(newEvent);
 							};
 							
-							var blob:Blob = new Blob([text], { type: 'text/plain' });
+							var blob:Blob = new Blob([text], { type: 'text/plain' } as BlobPropertyBag);
 							fileWriter.write(blob);
 						}, function(e):void {
 							var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");

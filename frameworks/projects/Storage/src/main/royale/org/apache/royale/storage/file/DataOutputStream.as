@@ -117,7 +117,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 	public function writeText(text:String):void
 	{
 		COMPILE::JS {
-			var blob:Blob = new Blob([text], { type: 'text/plain' });
+			var blob:Blob = new Blob([text], { type: 'text/plain' } as BlobPropertyBag);
 			_fileWriter.write(blob);
 		}
 		COMPILE::SWF {
