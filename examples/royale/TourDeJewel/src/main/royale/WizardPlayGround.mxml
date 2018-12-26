@@ -61,7 +61,7 @@ limitations under the License.
 				</j:Group>
 			</j:nextButton>
 
-			<j:WizardPage id="page1">
+			<j:WizardPage activableName="page1">
 				<views:step>
 					<j:WizardStep name="page1" nextStep="page2" initialPage="true" stepLabel="Page 1"/>
 				</views:step>
@@ -70,7 +70,7 @@ limitations under the License.
 
 			</j:WizardPage>
 			
-			<j:WizardPage id="page2">
+			<j:WizardPage activableName="page2">
 				<views:step>
 					<j:WizardStep id="sl" name="page2" previousStep="page1" nextStep="page3" stepLabel="Page 2"/>
 				</views:step>
@@ -85,7 +85,7 @@ limitations under the License.
 
 			</j:WizardPage>
 			
-			<j:WizardPage id="page3">
+			<j:WizardPage activableName="page3">
 				<views:step>
 					<j:WizardStep name="page3" previousStep="page2" nextStep="page4" stepLabel="Page 3"/>
 				</views:step>
@@ -99,7 +99,7 @@ limitations under the License.
 
 			</j:WizardPage>
 			
-			<j:WizardPage id="page4">
+			<j:WizardPage localId="page4" activableName="page4">
 				<views:step>
 					<j:WizardStep name="page4" previousStep="page3" nextStep="page5" stepLabel="Page 4"/>
 				</views:step>
@@ -115,7 +115,7 @@ limitations under the License.
 
 			</j:WizardPage>
 			
-			<j:WizardPage id="page5">
+			<j:WizardPage activableName="page5">
 				<views:step>
 					<j:WizardStep name="page5" previousStep="page4" stepLabel="Page 5"/>
 				</views:step>

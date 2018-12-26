@@ -66,16 +66,16 @@ limitations under the License.
 					</j:beads>
 				</j:TabBar>
 				<j:TabBarContent id="tabcontent">
-					<j:SectionContent id="tab1" isActive="true">
+					<j:SectionContent activableName="tab1" isActive="true">
 						<j:Label text="Tab 1"/>
 					</j:SectionContent>
-					<j:SectionContent id="tab2">
+					<j:SectionContent activableName="tab2">
 						<j:Label text="Tab 2"/>
 					</j:SectionContent>
-					<j:SectionContent id="tab3">
+					<j:SectionContent activableName="tab3">
 						<j:Label text="Tab 3"/>
 					</j:SectionContent>
-					<j:SectionContent id="tab4">
+					<j:SectionContent activableName="tab4">
 						<j:Label text="Tab 4"/>
 					</j:SectionContent>
 				</j:TabBarContent>

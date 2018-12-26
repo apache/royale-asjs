@@ -120,32 +120,32 @@ limitations under the License.
     </j:TopAppBar>
 
     <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
-        <local:WelcomeSection id="welcome_panel" isActive="true"/>
-        <local:AlertPlayGround id="alert_panel"/>
-        <local:ButtonPlayGround id="button_panel"/>
-        <local:ImagePlayGround id="image_panel"/>
-        <local:NumericStepperPlayGround id="numericstepper_panel"/>
-        <local:DateComponentsPlayGround id="datecomponents_panel"/>
-        <local:ComboBoxPlayGround id="combobox_panel"/>
-        <local:CheckBoxPlayGround id="checkbox_panel"/>
-        <local:MiscelaneaPlayGound id="miscelanea_panel"/>
-        <local:HeadingsAndText id="text_panel"/>
-        <local:LabelPlayGround id="label_panel"/>
-        <local:ListPlayGround id="list_panel"/>
-        <local:RadioButtonPlayGround id="radiobutton_panel"/>
-        <local:SliderPlayGround id="slider_panel"/>
-        <local:TextInputPlayGround id="textinput_panel"/>
-        <local:GridPlayGround id="grid_panel"/>
-        <local:CardPlayGround id="card_panel"/>
-        <local:TablePlayGround id="tables_panel"/>
-        <local:FormsValidationPlayGround id="form_validation_panel"/>
-        <local:DropDownListPlayGround id="dropdownlist_panel"/>
-        <local:SnackbarPlayGround id="snackbar_panel"/>
-        <local:TabBarPlayGround id="tabbar_panel"/>
-        <local:ViewStatesPlayGround id="viewstates_panel"/>
-        <local:LayoutsPlayGround id="layouts_panel"/>
-        <local:WizardPlayGround id="wizards_panel"/>
-        <local:PopUpViewPlayGround id="popupview_panel"/>
+        <local:WelcomeSection activableName="welcome_panel" isActive="true"/>
+        <local:AlertPlayGround activableName="alert_panel"/>
+        <local:ButtonPlayGround activableName="button_panel"/>
+        <local:ImagePlayGround activableName="image_panel"/>
+        <local:NumericStepperPlayGround activableName="numericstepper_panel"/>
+        <local:DateComponentsPlayGround activableName="datecomponents_panel"/>
+        <local:ComboBoxPlayGround activableName="combobox_panel"/>
+        <local:CheckBoxPlayGround activableName="checkbox_panel"/>
+        <local:MiscelaneaPlayGound activableName="miscelanea_panel"/>
+        <local:HeadingsAndText activableName="text_panel"/>
+        <local:LabelPlayGround activableName="label_panel"/>
+        <local:ListPlayGround activableName="list_panel"/>
+        <local:RadioButtonPlayGround activableName="radiobutton_panel"/>
+        <local:SliderPlayGround activableName="slider_panel"/>
+        <local:TextInputPlayGround activableName="textinput_panel"/>
+        <local:GridPlayGround activableName="grid_panel"/>
+        <local:CardPlayGround activableName="card_panel"/>
+        <local:TablePlayGround activableName="tables_panel"/>
+        <local:FormsValidationPlayGround activableName="form_validation_panel"/>
+        <local:DropDownListPlayGround activableName="dropdownlist_panel"/>
+        <local:SnackbarPlayGround activableName="snackbar_panel"/>
+        <local:TabBarPlayGround activableName="tabbar_panel"/>
+        <local:ViewStatesPlayGround activableName="viewstates_panel"/>
+        <local:LayoutsPlayGround activableName="layouts_panel"/>
+        <local:WizardPlayGround activableName="wizards_panel"/>
+        <local:PopUpViewPlayGround activableName="popupview_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->
