@@ -17,11 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:j="library://ns.apache.org/royale/jewel"
-				xmlns:html="library://ns.apache.org/royale/html"
-				xmlns:js="library://ns.apache.org/royale/basic">
-
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
+											xmlns:j="library://ns.apache.org/royale/jewel"
+											xmlns:html="library://ns.apache.org/royale/html"
+											xmlns:js="library://ns.apache.org/royale/basic"
+											xmlns:c="components.*" 
+                                            sourceCodeUrl="ButtonPlayGround.mxml">
 	<fx:Script>
 		<![CDATA[      
             private function clickHandler(event:MouseEvent):void {
@@ -125,4 +126,4 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 
-</j:SectionContent>
+</c:ExampleAndSourceCodeTabbedSectionContent>

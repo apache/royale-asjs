@@ -17,11 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-				xmlns:j="library://ns.apache.org/royale/jewel"
-				xmlns:js="library://ns.apache.org/royale/basic"
-				xmlns:html="library://ns.apache.org/royale/html">
-
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
+											xmlns:j="library://ns.apache.org/royale/jewel"
+											xmlns:html="library://ns.apache.org/royale/html"
+											xmlns:js="library://ns.apache.org/royale/basic"
+											xmlns:c="components.*"
+                                            sourceCodeUrl="DateComponentsPlayGround.mxml">
 	<fx:Script>
         <![CDATA[
             [Bindable]
@@ -32,7 +33,6 @@ limitations under the License.
     <j:beads>
         <js:ContainerDataBinding/>
     </j:beads>
-
 
 	<html:H3 text="Grids"/>
 	<j:CheckBox text="Turn Gap on/off" change="useGap = !useGap;" selected="true"/>
@@ -607,4 +607,4 @@ limitations under the License.
 	</j:Grid>
 
 	
-</j:SectionContent>
+</c:ExampleAndSourceCodeTabbedSectionContent>
