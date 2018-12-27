@@ -72,6 +72,53 @@ package org.apache.royale.html.elements
                 element.setAttribute('href', value);
             }
 		}
+        
+		private var _target:String = "_self";
+        /**
+         *  the target attribute. Defaults to "_self"
+		 *  Other options "_blank", "_parent", "_top"
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+		public function get target():String
+		{
+            return _target;   
+		}
+		public function set target(value:String):void
+		{
+            _target = value;
+            
+            COMPILE::JS
+            {
+                element.setAttribute('target', value);
+            }
+		}
+		
+		private var _rel:String = "";
+        /**
+         *  The rel attribute specifies the relationship between the current document and the linked document.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+		public function get rel():String
+		{
+            return _rel;   
+		}
+		public function set rel(value:String):void
+		{
+            _rel = value;
+            
+            COMPILE::JS
+            {
+                element.setAttribute('rel', value);
+            }
+		}
 		
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
