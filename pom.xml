@@ -77,23 +77,10 @@
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
-    <!-- <site>
+    <site>
       <id>apache.website</id>
       <url>scm:git:https://git-wip-us.apache.org/repos/asf/royale-asjs.git</url>
-    </site> -->
-    <repository>
-            <id>sgc</id>
-            <url>http://maven.codeoscopic.com/content/repositories/sgc</url>
-        </repository>
-        <snapshotRepository>
-            <id>sgc-snaps</id>
-            <url>http://maven.codeoscopic.com/content/repositories/sgc-snaps</url>
-            <uniqueVersion>true</uniqueVersion>
-        </snapshotRepository>
-        <site>
-            <id>sgc-site</id>
-            <url>dav:http://dav.codeoscopic.com/private/sites/sgc</url>
-        </site>
+    </site>
   </distributionManagement>
 
   <issueManagement>
