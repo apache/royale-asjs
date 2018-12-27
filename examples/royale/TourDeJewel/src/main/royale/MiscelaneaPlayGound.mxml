@@ -17,39 +17,45 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:SectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:j="library://ns.apache.org/royale/jewel"
-		xmlns:js="library://ns.apache.org/royale/basic"
-		xmlns:html="library://ns.apache.org/royale/html">
-
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
+											xmlns:j="library://ns.apache.org/royale/jewel"
+											xmlns:html="library://ns.apache.org/royale/html"
+											xmlns:js="library://ns.apache.org/royale/basic"
+											xmlns:c="components.*"
+                                            sourceCodeUrl="MiscelaneaPlayGound.mxml">
     <j:beads>
         <js:ContainerDataBinding/>
-        <j:HorizontalCenteredLayout gap="3"/>
     </j:beads>
-	
-    <j:Card width="350">
-        <html:H3 text="Jewel Icons Sizes"/>
-        
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="18"/>
-        <j:Label text="18px"/>
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="24"/>
-        <j:Label text="24px (default)"/>
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="36"/>
-        <j:Label text="36px"/>
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="48"/>
-        <j:Label text="48px"/>
-    </j:Card>
-    <j:Card width="350">
-        <html:H3 text="Jewel Icons Dark / Light"/>
-        
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" dark="true"/>
-        <j:Label text="dark"/>
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" dark="true" inactive="true"/>
-        <j:Label text="dark - inactive"/>
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" light="true"/>
-        <j:Label text="light"/>
-        <js:FontIcon text="{MaterialIconType.FACE}" material="true" light="true" inactive="true"/>
-        <j:Label text="light - inactive"/>
-    </j:Card>
 
-</j:SectionContent>
+    <j:Group>
+        <j:beads>
+            <j:HorizontalCenteredLayout gap="3"/>
+        </j:beads>
+        
+        <j:Card width="350">
+            <html:H3 text="Jewel Icons Sizes"/>
+            
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="18"/>
+            <j:Label text="18px"/>
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="24"/>
+            <j:Label text="24px (default)"/>
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="36"/>
+            <j:Label text="36px"/>
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="48"/>
+            <j:Label text="48px"/>
+        </j:Card>
+        <j:Card width="350">
+            <html:H3 text="Jewel Icons Dark / Light"/>
+            
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" dark="true"/>
+            <j:Label text="dark"/>
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" dark="true" inactive="true"/>
+            <j:Label text="dark - inactive"/>
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" light="true"/>
+            <j:Label text="light"/>
+            <js:FontIcon text="{MaterialIconType.FACE}" material="true" light="true" inactive="true"/>
+            <j:Label text="light - inactive"/>
+        </j:Card>
+    </j:Group>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>
