@@ -108,7 +108,10 @@ package
 		public function toString():String
 		{
 			var uriVal:String = _uri ? _uri : "*";
-			return uriVal + "::" + _localName;
+            uriVal = uriVal.replace(/:/g, "_");
+            uriVal = uriVal.replace(/\./g, "_");
+            uriVal = uriVal.replace(/\//g, "$");
+			return uriVal + "__" + _localName;
 		}
 
 		COMPILE::JS
