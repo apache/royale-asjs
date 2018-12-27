@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*"
-                                            sourceCodeUrl="NumericStepperPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="NumericStepperPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[      
             private function valueChangeHandler(event:Event):void {
@@ -38,7 +38,7 @@ limitations under the License.
 			<j:NumericStepper id="numericStepper" valueChange="valueChangeHandler(event)"/>
 			<j:Label id="result" text="Default NumericStepper: "/>
 		</j:HGroup>
-		
+
 		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 			<j:NumericStepper value="30"/>
 			<j:Label text="NumericStepper value='30'"/>

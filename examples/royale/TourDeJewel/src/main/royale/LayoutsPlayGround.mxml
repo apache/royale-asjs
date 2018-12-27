@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*"
-                                            sourceCodeUrl="LayoutsPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="LayoutsPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[      
             private function clickHandler(event:MouseEvent):void {
@@ -31,18 +31,16 @@ limitations under the License.
 
 		]]>
 	</fx:Script>
-	
+
 	<!-- <j:beads>
         <js:ContainerDataBinding/>
     </j:beads> -->
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel BasicLayout (width200, height:200px)"/>
-				
+
 				<j:Group width="200" height="200" className="wrapper">
 					<j:Button text="Origin" emphasis="primary"/>
 					<j:Button text="x:30,y:30" emphasis="secondary" x="30" y="30"/>
@@ -52,9 +50,7 @@ limitations under the License.
 
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Jewel HorizontalLayout"/>
 
@@ -64,16 +60,14 @@ limitations under the License.
 					<j:Button text="Z" emphasis="emphasized"/>
 					<j:Button text="0" />
 				</j:HGroup>
-				
+
 				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Jewel VerticalLayout"/>
-		
+
 				<j:VGroup id="vg" gap="3" className="wrapper">
 					<j:Button text="X" emphasis="primary"/>
 					<j:Button text="Y" emphasis="secondary"/>
@@ -86,12 +80,10 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel HorizontalCenteredLayout (width200, height:200px)"/>
-				
+
 				<j:Group width="200" height="200" className="wrapper">
 					<j:beads>
 						<j:HorizontalCenteredLayout id="hcl" gap="3"/>
@@ -106,13 +98,11 @@ limitations under the License.
 
 			</j:Card>
 		</j:GridCell>
-		
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel VerticalCenteredLayout (width200, height:200px)"/>
-				
+
 				<j:Group width="200" height="200" className="wrapper">
 					<j:beads>
 						<j:VerticalCenteredLayout id="vcl" gap="3"/>
@@ -130,12 +120,10 @@ limitations under the License.
 	</j:Grid>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel HorizontalFlowLayout"/>
-				
+
 				<j:Group className="wrapper">
 					<j:beads>
 						<j:HorizontalFlowLayout id="hfl" gap="3"/>
@@ -150,13 +138,11 @@ limitations under the License.
 
 			</j:Card>
 		</j:GridCell>
-		
-		<j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel VerticalFlowLayout"/>
-				
+
 				<j:Group className="wrapper" height="200">
 					<j:beads>
 						<j:VerticalFlowLayout id="vfl" gap="3"/>
@@ -172,9 +158,7 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 
-		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Jewel HGroup"/>
 
@@ -188,10 +172,8 @@ limitations under the License.
 				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell> -->
-		
-		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3"
-					tabletNumerator="1" tabletDenominator="3"
-					phoneNumerator="1" phoneDenominator="1">
+
+		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Jewel VGroup"/>
 		

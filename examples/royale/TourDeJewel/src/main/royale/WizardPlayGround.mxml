@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*"
-                                            sourceCodeUrl="WizardPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="WizardPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.events.Event;
@@ -36,9 +36,9 @@ limitations under the License.
 	</fx:Script>
 
 	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
-	
+		<js:ContainerDataBinding/>
+	</j:beads>
+
 	<j:Card width="600">
 		<j:Wizard id="wizard" width="100%" height="500" title="{getStepLabel(wizard.currentStep)}">
 			<j:previousButton>
@@ -65,16 +65,16 @@ limitations under the License.
 				<views:step>
 					<j:WizardStep name="page1" nextStep="page2" initialPage="true" stepLabel="Page 1"/>
 				</views:step>
-				
+
 				<c:FormExample label="Form Example in Page 1"/>
 
 			</j:WizardPage>
-			
+
 			<j:WizardPage name="page2">
 				<views:step>
 					<j:WizardStep id="sl" name="page2" previousStep="page1" nextStep="page3" stepLabel="Page 2"/>
 				</views:step>
-				
+
 				<j:Group>
 					<j:beads>
 						<j:VerticalCenteredLayout gap="9"/>
@@ -84,12 +84,12 @@ limitations under the License.
 				</j:Group>
 
 			</j:WizardPage>
-			
+
 			<j:WizardPage name="page3">
 				<views:step>
 					<j:WizardStep name="page3" previousStep="page2" nextStep="page4" stepLabel="Page 3"/>
 				</views:step>
-				
+
 				<j:Group>
 					<j:beads>
 						<j:VerticalCenteredLayout gap="9"/>
@@ -98,12 +98,12 @@ limitations under the License.
 				</j:Group>
 
 			</j:WizardPage>
-			
+
 			<j:WizardPage localId="page4" name="page4">
 				<views:step>
 					<j:WizardStep name="page4" previousStep="page3" nextStep="page5" stepLabel="Page 4"/>
 				</views:step>
-				
+
 				<j:Group>
 					<j:beads>
 						<j:VerticalCenteredLayout gap="9"/>
@@ -114,12 +114,12 @@ limitations under the License.
 				</j:Group>
 
 			</j:WizardPage>
-			
+
 			<j:WizardPage name="page5">
 				<views:step>
 					<j:WizardStep name="page5" previousStep="page4" stepLabel="Page 5"/>
 				</views:step>
-				
+
 				<j:Group>
 					<j:beads>
 						<j:VerticalCenteredLayout gap="9"/>

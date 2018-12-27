@@ -17,13 +17,13 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*" 
-											xmlns:models="models.*"
-                                            sourceCodeUrl="ComboBoxPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" 
+	xmlns:models="models.*" sourceCodeUrl="ComboBoxPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[
 			import vos.IconListVO;
@@ -74,23 +74,18 @@ limitations under the License.
 	</j:beads>
 
 	<j:model>
-        <models:ListsModel id="listModel"/>
+		<models:ListsModel id="listModel"/>
 	</j:model>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
 				<html:H3 text="Jewel ComboBox (String Collection)"/>
 
 				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
-					<j:GridCell desktopNumerator="1" desktopDenominator="3"
-								tabletNumerator="1" tabletDenominator="3"
-								phoneNumerator="1" phoneDenominator="1"
-								itemsVerticalAlign="itemsCentered" width="290">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
 						<j:ComboBox id="watchmenComboBox" dataProvider="{listModel.watchmen}">
 							<j:beads>
 								<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
@@ -98,56 +93,38 @@ limitations under the License.
 						</j:ComboBox>
 						<j:Button text="Assign new data" click="assignNewData()"/>
 					</j:GridCell>
-					<j:GridCell desktopNumerator="1" desktopDenominator="3"
-								tabletNumerator="1" tabletDenominator="3"
-								phoneNumerator="1" phoneDenominator="1"
-								itemsVerticalAlign="itemsCentered" width="290">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
 						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 							<j:Label text="Select Index: "/>
 							<j:NumericStepper valueChange="watchmenComboBox.selectedIndex = event.target.value" minimum="0" maximum="5"/>
 						</j:HGroup>
 					</j:GridCell>
-					<j:GridCell desktopNumerator="1" desktopDenominator="3"
-								tabletNumerator="1" tabletDenominator="3"
-								phoneNumerator="1" phoneDenominator="1"
-								itemsVerticalAlign="itemsCentered" width="290">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
 						<j:Label id="watchmenComboBoxResult" html="{describeItem(watchmenComboBox.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
 			</j:Card>
 		</j:GridCell>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ComboBox (Object Collection)"/>
 
 				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
-					<j:GridCell desktopNumerator="1" desktopDenominator="3"
-								tabletNumerator="1" tabletDenominator="3"
-								phoneNumerator="1" phoneDenominator="1"
-								itemsVerticalAlign="itemsCentered" width="290">
-						<j:ComboBox id="avengersComboBox" width="140" labelField="label"
-									dataProvider="{listModel.avengers}">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
+						<j:ComboBox id="avengersComboBox" width="140" labelField="label" dataProvider="{listModel.avengers}">
 							<j:beads>
 								<j:ComboBoxTextPrompt prompt="Avengers Team..."/>
 							</j:beads>
 						</j:ComboBox>
 					</j:GridCell>
-					<j:GridCell desktopNumerator="1" desktopDenominator="3"
-								tabletNumerator="1" tabletDenominator="3"
-								phoneNumerator="1" phoneDenominator="1"
-								itemsVerticalAlign="itemsCentered" width="290">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
 						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 							<j:Label text="Select Index: "/>
 							<j:NumericStepper valueChange="avengersComboBox.selectedIndex = event.target.value" minimum="0" maximum="8"/>
 						</j:HGroup>
 					</j:GridCell>
-					<j:GridCell desktopNumerator="1" desktopDenominator="3"
-								tabletNumerator="1" tabletDenominator="3"
-								phoneNumerator="1" phoneDenominator="1"
-								itemsVerticalAlign="itemsCentered" width="290">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
 						<j:Label id="avengersComboBoxResult" html="{describeItem(avengersComboBox.selectedItem)}"/>
 					</j:GridCell>
 				</j:Grid>
@@ -157,9 +134,7 @@ limitations under the License.
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
 				<html:H3 text="Jewel ComboBox Resize"/>
@@ -177,9 +152,7 @@ limitations under the License.
 	</j:Grid>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ComboBox selectedIndex: {cmb1.selectedIndex}"/>
 
@@ -191,9 +164,7 @@ limitations under the License.
 	</j:Grid>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ComboBox selectedItem"/>
 
@@ -208,9 +179,7 @@ limitations under the License.
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
 				<html:H3 text="Jewel ComboBox with Search Filter"/>

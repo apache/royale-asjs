@@ -17,14 +17,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                    xmlns:j="library://ns.apache.org/royale/jewel"
-                    xmlns:js="library://ns.apache.org/royale/basic"
-                    xmlns:html="library://ns.apache.org/royale/html"
-                    xmlns="http://www.w3.org/1999/xhtml">
+<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns="http://www.w3.org/1999/xhtml">
 
     <fx:Script>
-		<![CDATA[
+        <![CDATA[
 			import vos.IconListVO;
 			import org.apache.royale.jewel.List;
 			import org.apache.royale.collections.ArrayList;
@@ -41,15 +41,15 @@ limitations under the License.
                 (list.dataProvider as ArrayList).removeItemAt(index);
             }
 		]]>
-	</fx:Script>
+    </fx:Script>
 
     <j:beads>
         <js:ItemRendererDataBinding />
     </j:beads>
-    
+
     <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>
 
     <html:Span text="{iconList ? iconList.label : ''}"/>
-    
+
 </j:ListItemRenderer>
 

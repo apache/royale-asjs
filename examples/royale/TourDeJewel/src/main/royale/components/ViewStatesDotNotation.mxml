@@ -17,19 +17,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:GridCell xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:j="library://ns.apache.org/royale/jewel"
-		xmlns:js="library://ns.apache.org/royale/basic"
-		xmlns:html="library://ns.apache.org/royale/html"
-        desktopNumerator="1" desktopDenominator="2"
-		tabletNumerator="1" tabletDenominator="2"
-		phoneNumerator="1" phoneDenominator="1">
+<j:GridCell xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:html="library://ns.apache.org/royale/html" 
+    desktopNumerator="1" desktopDenominator="2" 
+    tabletNumerator="1" tabletDenominator="2" 
+    phoneNumerator="1" phoneDenominator="1">
 
     <j:states>
         <js:State name="login"/>
         <js:State name="loggedIn"/>
     </j:states>
-    
+
     <j:beads>
         <js:SimpleStatesImpl/>
     </j:beads>

@@ -19,7 +19,10 @@
 package components
 {
     import org.apache.royale.collections.ArrayList;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
     import org.apache.royale.events.Event;
+    import org.apache.royale.html.elements.A;
     import org.apache.royale.html.elements.Code;
     import org.apache.royale.html.elements.Pre;
     import org.apache.royale.jewel.SectionContent;
@@ -31,14 +34,7 @@ package components
     import utils.HighlightCode;
 
     import vos.TabBarButtonVO;
-    import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.utils.MXMLDataInterpreter;
-    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
-    import org.apache.royale.core.IChild;
-    import org.apache.royale.html.elements.A;
-
-    [DefaultProperty("mxmlContent")]
-
+    
     public class ExampleAndSourceCodeTabbedSectionContent extends SectionContent implements IContainerBaseStrandChildrenHost 
 	{
         /**

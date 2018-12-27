@@ -17,15 +17,14 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:Form xmlns:fx="http://ns.adobe.com/mxml/2009"
-        xmlns:j="library://ns.apache.org/royale/jewel"
-        xmlns:js="library://ns.apache.org/royale/basic"
-        xmlns:html="library://ns.apache.org/royale/html"
-        xmlns:models="models.*"
-        valid="doSubmit(event)">
+<j:Form xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns:models="models.*" valid="doSubmit(event)">
 
     <fx:Script>
-		<![CDATA[
+        <![CDATA[
 			import org.apache.royale.jewel.Alert;
 			import org.apache.royale.utils.StringPadder;
 
@@ -48,17 +47,17 @@ limitations under the License.
              */
             public var label:String = "";
 		]]>
-	</fx:Script>
+    </fx:Script>
 
     <j:beads>
         <j:FormValidator trigger="{btn}" triggerEvent="click" requiredFieldError="There are invalid data, please check it."/>
         <js:ContainerDataBinding/>
     </j:beads>
 
-	<j:model>
+    <j:model>
         <models:ListsModel id="listModel"/>
-	</j:model>
-    
+    </j:model>
+
     <j:FormHeading initComplete="event.target.label = label"/>
 
     <j:FormItem label="Your name" required="true">

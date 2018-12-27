@@ -17,16 +17,15 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:TableItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                     xmlns:j="library://ns.apache.org/royale/jewel"
-                     xmlns:js="library://ns.apache.org/royale/basic"
-                     xmlns:html="library://ns.apache.org/royale/html"
-                     xmlns="http://www.w3.org/1999/xhtml"
-                     hoverable="false"
-                     selectable="false">
-    
+<j:TableItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:js="library://ns.apache.org/royale/basic" 
+    xmlns:html="library://ns.apache.org/royale/html" 
+    xmlns="http://www.w3.org/1999/xhtml"
+    hoverable="false" selectable="false">
+
     <fx:Script>
-		<![CDATA[
+        <![CDATA[
             import org.apache.royale.jewel.Table;
             import org.apache.royale.collections.ArrayList;
             
@@ -36,17 +35,17 @@ limitations under the License.
                 (table.dataProvider as ArrayList).removeItemAt(rowIndex);
             }
         ]]>
-	</fx:Script>
+    </fx:Script>
 
     <mdl:beads>
         <js:ItemRendererDataBinding/>
     </mdl:beads>
-    
+
     <j:IconButton emphasis="primary" width="24" height="24" style="padding: 0px; border-radius: 50%" click="clickCloseButton()">
         <j:icon>
             <js:FontIcon text="{MaterialIconType.CLOSE}" material="true" size="18"/>
         </j:icon>
     </j:IconButton>
-    
+
 </j:TableItemRenderer>
 

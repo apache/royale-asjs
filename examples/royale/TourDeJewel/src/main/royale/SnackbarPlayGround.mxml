@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*"
-                                            sourceCodeUrl="SnackbarPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="SnackbarPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.jewel.Snackbar;
@@ -45,48 +45,37 @@ limitations under the License.
 		]]>
 	</fx:Script>
 	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel Snackbar"/>
-				
+
 				<!-- Alert 1-->
-				<j:Label text="Click the button below to display a simple Snackbar"
-						multiline="true"/>
+				<j:Label text="Click the button below to display a simple Snackbar" multiline="true"/>
 				<j:Button text="Click Me" click="Snackbar.show('This is an Snackbar component example that shows a message')"/>
 
 				<!-- Alert 2-->
-				<j:Label text="Click the button below to display an Snackbar and capture the action pressed by the user."
-						multiline="true"/>
+				<j:Label text="Click the button below to display an Snackbar and capture the action pressed by the user." multiline="true"/>
 				<j:Button text="Click Me" click="clickHandler(event)"/>
 
 				<j:Label id="status"/>
-				
+
 				<!-- Alert 3 (Long Message)-->
-				<j:Label text="This is long message example just for demonstration. Do not use long message and 'DISMISS' action in Snackbar, because it automatically disappear after a timeout."
-						multiline="true"/>
+				<j:Label text="This is long message example just for demonstration. Do not use long message and 'DISMISS' action in Snackbar, because it automatically disappear after a timeout." multiline="true"/>
 				<j:Button text="Click Me" click="clickHandler2(event)"/>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Snackbar with emphasis"/>
-				<j:Label text="Click the button below to display Snackbar with different emphasis"
-						multiline="true"/>
+				<j:Label text="Click the button below to display Snackbar with different emphasis" multiline="true"/>
 				<j:VGroup gap="8">
 					<j:Button text="Default" id="button" click="Snackbar.show('This is Default')"/>
-					<j:Button text="Primary" emphasis="{Button.PRIMARY}"
-							click="{Snackbar.show('This is Primary').emphasis = Button.PRIMARY}"/>
-					<j:Button text="Secondary" emphasis="{Button.SECONDARY}"
-							click="{Snackbar.show('Secondary with ACTION',4000,'ACTION').emphasis = Button.SECONDARY}"/>
-					<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"
-							click="{Snackbar.show('This is Emphasized with some message').emphasis = Button.EMPHASIZED}"/>
+					<j:Button text="Primary" emphasis="{Button.PRIMARY}" click="{Snackbar.show('This is Primary').emphasis = Button.PRIMARY}"/>
+					<j:Button text="Secondary" emphasis="{Button.SECONDARY}" click="{Snackbar.show('Secondary with ACTION',4000,'ACTION').emphasis = Button.SECONDARY}"/>
+					<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}" click="{Snackbar.show('This is Emphasized with some message').emphasis = Button.EMPHASIZED}"/>
 				</j:VGroup>
 			</j:Card>
 		</j:GridCell>

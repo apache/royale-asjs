@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*"
-                                            sourceCodeUrl="TextInputPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="TextInputPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[
             private function onValueChange(event:Event):void
@@ -40,14 +40,11 @@ limitations under the License.
 	</fx:Script>
 
 	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2"
-					desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel TextInput"/>
 
@@ -84,7 +81,7 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 				</j:TextInput>
-				
+
 				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
 					<j:TextInput id="textinput">
 						<j:beads>
@@ -129,11 +126,8 @@ limitations under the License.
 				</j:VGroup>
 			</j:Card>
 		</j:GridCell>
-		
-		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2"
-					desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
-					phoneNumerator="1" phoneDenominator="1">
+
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card width="100%">
 				<html:H4 text="TextInput Sizes"/>
 				<j:TextInput>
@@ -142,14 +136,14 @@ limitations under the License.
 						<j:SizeControl size="xsmall"/>
 					</j:beads>
 				</j:TextInput>
-				
+
 				<j:TextInput>
 					<j:beads>
 						<j:TextPrompt prompt="Size small"/>
 						<j:SizeControl size="small"/>
 					</j:beads>
 				</j:TextInput>
-				
+
 				<j:TextInput>
 					<j:beads>
 						<j:TextPrompt prompt="Size normal"/>
@@ -171,10 +165,7 @@ limitations under the License.
 				</j:TextInput>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1"
-					desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="2"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card width="100%">
 				<html:H4 text="Jewel TextArea"/>
 
@@ -197,10 +188,7 @@ limitations under the License.
 	</j:Grid>
 
 	<j:Grid gap="true">
-		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1"
-					desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel IconTextInput"/>
 
@@ -212,7 +200,7 @@ limitations under the License.
 
 				<j:IconTextInput rightPosition="true">
 					<j:beads>
-						<j:TextPrompt prompt="Search..."/>						
+						<j:TextPrompt prompt="Search..."/>
 					</j:beads>
 					<j:icon>
 						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
@@ -241,7 +229,7 @@ limitations under the License.
 
 				<j:IconTextInput text="Searching something">
 					<j:beads>
-						<j:SizeControl size="xlarge"/>						
+						<j:SizeControl size="xlarge"/>
 					</j:beads>
 					<j:icon>
 						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
@@ -250,10 +238,7 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 
-		<!-- <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2"
-					desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<!-- <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 
 			</j:Card>

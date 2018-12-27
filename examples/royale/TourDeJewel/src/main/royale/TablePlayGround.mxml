@@ -17,25 +17,23 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*"
-											xmlns:models="models.*"
-                                            sourceCodeUrl="TablePlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" 
+	xmlns:models="models.*" sourceCodeUrl="TablePlayGround.mxml">
+	
 	<j:model>
-        <models:TablesModel id="tablesModel"/>
+		<models:TablesModel id="tablesModel"/>
 	</j:model>
 
 	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel SimpleTable"/>
 
@@ -87,7 +85,7 @@ limitations under the License.
 							<j:TableCell>
 								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
 							</j:TableCell>
-							
+
 							<j:TableCell>
 								<j:Label text="More centered text">
 									<j:beads>
@@ -111,7 +109,7 @@ limitations under the License.
 								<j:Label text="More text 2" />
 							</j:TableCell>
 							<j:TableCell>
-								<j:Label text="More centered text 2" >
+								<j:Label text="More centered text 2">
 									<j:beads>
 										<j:TextAlign align="center"/>
 									</j:beads>
@@ -141,7 +139,7 @@ limitations under the License.
 								</j:VGroup>
 							</j:TableCell>
 							<j:TableCell>
-								<j:Label text="More centered text 3" >
+								<j:Label text="More centered text 3">
 									<j:beads>
 										<j:TextAlign align="center"/>
 									</j:beads>
@@ -162,7 +160,7 @@ limitations under the License.
 								<j:HGroup gap="3" itemsHorizontalAlign="itemsRight">
 									<j:IconTextInput rightPosition="true">
 										<j:beads>
-											<j:TextPrompt prompt="Search..."/>						
+											<j:TextPrompt prompt="Search..."/>
 										</j:beads>
 										<j:icon>
 											<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
@@ -178,9 +176,7 @@ limitations under the License.
 
 		</j:GridCell>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1"
-					tabletNumerator="1" tabletDenominator="1"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
 				<html:H3 text="Jewel Table (This component is still in development)"/>

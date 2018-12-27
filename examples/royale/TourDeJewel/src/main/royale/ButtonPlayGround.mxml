@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*" 
-                                            sourceCodeUrl="ButtonPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="ButtonPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[      
             private function clickHandler(event:MouseEvent):void {
@@ -37,18 +37,16 @@ limitations under the License.
 			}
 		]]>
 	</fx:Script>
-	
+
 	<j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel Button"/>
-				
+
 				<j:Button text="Default" id="button" click="clickHandler(event)"/>
 				<j:Button text="Button With More Text"/>
 				<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
@@ -61,12 +59,10 @@ limitations under the License.
 				</j:Button>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Button Sizes"/>
-		
+
 				<j:Button text="xsmall">
 					<j:beads>
 						<j:SizeControl size="{SizeControl.XSMALL}"/>
@@ -91,12 +87,10 @@ limitations under the License.
 		</j:GridCell>
 	</j:Grid>
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Button with Icons"/>
-				
+
 				<j:IconButton text="print" emphasis="primary">
 					<j:icon>
 						<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
@@ -109,12 +103,10 @@ limitations under the License.
 				</j:IconButton>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="2"
-					tabletNumerator="1" tabletDenominator="2"
-					phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Button size"/>
-				
+
 				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
 					<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{Button.PRIMARY}"/>
 					<j:Button text="check layout"/>

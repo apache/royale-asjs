@@ -17,12 +17,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
-											xmlns:j="library://ns.apache.org/royale/jewel"
-											xmlns:html="library://ns.apache.org/royale/html"
-											xmlns:js="library://ns.apache.org/royale/basic"
-											xmlns:c="components.*"
-                                            sourceCodeUrl="LabelPlayGround.mxml">
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="LabelPlayGround.mxml">
+	
 	<fx:Script>
 		<![CDATA[
         import org.apache.royale.events.MouseEvent;
@@ -33,17 +33,16 @@ limitations under the License.
         }
     	]]>
 	</fx:Script>
-	
+
 	<j:Card width="350">
 		<html:H3 text="Jewel Label"/>
-		
+
 		<j:Label id="label" text="This is a Label" click="labelClick(event)" className="cursor-pointer">
 			<j:beads>
 				<j:ToolTip toolTip="This Label is clickable!"/>
 			</j:beads>
 		</j:Label>
 
-		<j:Label text="This is a multiline label with more text that wraps if container has set a width"
-				multiline="true"/>
+		<j:Label text="This is a multiline label with more text that wraps if container has set a width" multiline="true"/>
 	</j:Card>
 </c:ExampleAndSourceCodeTabbedSectionContent>
