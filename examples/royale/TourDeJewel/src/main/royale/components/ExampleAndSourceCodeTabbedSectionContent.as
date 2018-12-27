@@ -35,6 +35,7 @@ package components
     import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.core.IContainerBaseStrandChildrenHost;
     import org.apache.royale.core.IChild;
+    import org.apache.royale.html.elements.A;
 
     [DefaultProperty("mxmlContent")]
 
@@ -69,6 +70,7 @@ package components
         private var sourceCodeMXMLText:Code;
 
         private var sourceCodeUrlPrefix:String = "https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/TourDeJewel/src/main/royale/";
+        private var sourceCodeUrlWebPrefix:String = "https://github.com/apache/royale-asjs/blob/develop/examples/royale/TourDeJewel/src/main/royale/";
         
         private var _sourceCodeUrl:String;
         /**
@@ -98,6 +100,12 @@ package components
             
             sourceCodeTab = new SectionContent();
             sourceCodeTab.name = "sourceCodeTab";
+            var link:A = new A();
+            link.href = sourceCodeUrlWebPrefix + sourceCodeUrl;
+            link.text = "Source code in GitHub";
+            link.target = "_blank";
+            link.rel = "noreferrer noopener"
+            sourceCodeTab.addElement(link);
             var pre:Pre = new Pre();
             sourceCodeMXMLText = new Code();
             sourceCodeMXMLText.className = "xml codeExample";
