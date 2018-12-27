@@ -153,11 +153,11 @@ package mx.controls.listClasses
                 cursor = dp.createCursor();
             }
             
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererParent = view.dataGroup;
             ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
             var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
             
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
             dataGroup.addItemRendererAt(ir, elementIndex);
             ir.index = index;
             ir.labelField = labelField;
