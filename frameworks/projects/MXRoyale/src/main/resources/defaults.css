@@ -50,10 +50,10 @@ global {
  * -------------------------------------------------------
  */
 
-Basic|MenuItemRenderer
+Basic|Menu
 {
-	height: 16px;
-	margin-top: 4px;
+	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 }
 
 Basic|ComboBoxList
@@ -184,7 +184,7 @@ MenuBar {
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 	IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.MenuBarItemRenderer");			
+	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");			
 	IBeadController: ClassReference("mx.controls.beads.controllers.MenuBarMouseController");
 	IMenuFactory: ClassReference("org.apache.royale.html.beads.MenuFactory");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");

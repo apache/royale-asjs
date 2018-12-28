@@ -71,7 +71,7 @@ package mx.controls.beads.models
             dispatchEvent(new Event("submenuFieldChanged"));
         }
 
-        private var _showRoot:Boolean;
+        private var _showRoot:Boolean = true;
 		
         /**
          *  showRoot
@@ -92,10 +92,12 @@ package mx.controls.beads.models
         
         override public function get dataProvider():Object
         {
-            if (!showRoot)
-                return super.dataProvider.children; // TODO: needs to use descriptor
+            var dp:Object = super.dataProvider;
             
-            return super.dataProvider;
+            if (!showRoot && dp != null)
+                return dp.children; // TODO: needs to use descriptor
+            
+            return dp;
         }
 	}
 }
