@@ -413,6 +413,19 @@ public class TextInput extends UIComponent implements ITextInput
     //--------------------------------------------------------------------------
     
     //----------------------------------
+    //  contentBackgroundColor
+    //----------------------------------
+	
+    public function get contentBackgroundColor():uint
+    {
+        return 0xFFFFFF;
+    }
+	
+    public function set contentBackgroundColor(value:uint) :void
+    {
+    }
+	
+    //----------------------------------
     //  borderVisible
     //----------------------------------
 	
