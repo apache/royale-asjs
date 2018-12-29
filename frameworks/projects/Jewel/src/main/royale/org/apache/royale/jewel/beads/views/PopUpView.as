@@ -20,39 +20,30 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-		//import org.apache.royale.jewel.beads.views.TextInputView;
-		import flash.text.TextFieldType;
 		import flash.utils.setTimeout;
     }
 	
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IChild;
     import org.apache.royale.core.IPopUpHost;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
-	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
-    import org.apache.royale.utils.UIUtils;
     import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.jewel.PopUp;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.utils.UIUtils;
     import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.core.IPopUp;
-    import org.apache.royale.core.IChild;
+    import org.apache.royale.jewel.PopUp;
 
 	/**
-	 * The PopUpView class is a bead for DateField that creates the
-	 * input and button controls. This class also handles the pop-up
-	 * mechanics.
+	 *  The PopUpView class is a bead for PopUp that creates the dialog
+	 *  that holds the real component. This class also handles the pop-up
+	 *  mechanics.
 	 *
 	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.6
 	 */
 	public class PopUpView extends BeadViewBase implements IBeadView
 	{
@@ -62,34 +53,35 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function PopUpView()
 		{
 		}
 
-		private var _content:UIBase;
-
+		/**
+		 * the content to be instantiated inside the popup.
+		 * Instead of setup this property, it can be declared through
+		 * CSS using IPopUP royale bead css selector.
+		 * 
+		 * this property is a proxy from the one in the strand
+		 */
 		public function get content():UIBase
 		{
-			if(!_content){
-				_content = loadBeadFromValuesManager(UIBase, "iPopUp", _strand) as UIBase;
-				_content.className="jewel popupcontent";
+			if(!getHost().content){
+				getHost().content = loadBeadFromValuesManager(UIBase, "iPopUp", _strand) as UIBase;
 			}
+			getHost().content.className="jewel popupcontent";
 
-            return _content;
+            return getHost().content;
 		}
-		// public function set content(value:IPopUp):void
-		// {
-		// 	_content = value;
-		// }
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		protected function getHost():UIBase
+		protected function getHost():PopUp
 		{
-			return _strand as UIBase;
+			return _strand as PopUp;
 		}
 
 		/**
@@ -98,7 +90,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		override public function set strand(value:IStrand):void
 		{
@@ -112,7 +104,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get popUp():StyledUIBase
 		{
@@ -127,7 +119,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get popUpVisible():Boolean
 		{
@@ -148,17 +140,16 @@ package org.apache.royale.jewel.beads.views
 				_popUpVisible = value;
 				if (value)
 				{
+					//create the backdrop
 					_popUp = new StyledUIBase();
 					_popUp.className = "popup-content";
 					_popUp.addElement(content as IChild);
-					//_popUp.addEventListener("initComplete", handlePopUpInitComplete);
+					// _popUp.addEventListener("initComplete", handlePopUpInitComplete);
 					
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
 					host.popUpParent.addElement(_popUp);
-					// viewBead.popUp is StyledUIBase that fills 100% of browser window-> We want "iPopUp content" inside
-					// daysTable = (popUp.view as DateChooserView).daysTable;
-					//PopUp(_strand).content = (popUp.view as PopUpView).content
-
+					// viewBead.popUp is StyledUIBase that fills 100% of browser window, then we display the "iPopUp content" inside
+					
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					setTimeout(prepareForPopUp,  300);
 
@@ -186,6 +177,7 @@ package org.apache.royale.jewel.beads.views
 
 		// COMPILE::JS
 		// private var rq:int;
+
 		private function prepareForPopUp():void
         {
 			_popUp.addClass("open");
@@ -196,20 +188,5 @@ package org.apache.royale.jewel.beads.views
 				//cancelAnimationFrame(rq);
 			}
 		}
-
-		/**
-		 *  When set to "auto" this resize handler monitors the width of the app window
-		 *  and switch between fixed and float modes.
-		 * 
-		 *  Note:This could be done with media queries, but since it handles open/close
-		 *  maybe this is the right way
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		// 
-		
 	}
 }

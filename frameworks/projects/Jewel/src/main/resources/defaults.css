@@ -3095,6 +3095,10 @@ j|Spinner {
   transition: opacity 0.4s 0ms;
 }
 .popup-content .jewel.popupcontent {
+  display: inline-flex;
+  border: 0px;
+  border-radius: 10px;
+  padding: 20px;
   background: white;
   position: relative;
   transform: translate(-50%, 100%);
@@ -3131,17 +3135,14 @@ j|Spinner {
 }
 @media (min-width: 992px) {
   .popup-content .jewel.popupcontent {
-    transform: translate(0px, -10%);
+    transform: translate(-50%, -60%);
     box-shadow: none !important;
   }
   .popup-content.open .jewel.popupcontent {
-    transform: translate(0px, 0px);
-    margin: auto;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
   }
 }
 j|PopUp {

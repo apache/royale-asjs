@@ -139,7 +139,7 @@ limitations under the License.
         <local:ViewStatesPlayGround name="viewstates_panel"/>
         <local:LayoutsPlayGround name="layouts_panel"/>
         <local:WizardPlayGround name="wizards_panel"/>
-        <local:PopUpViewPlayGround name="popupview_panel"/>
+        <local:PopUpPlayGround name="popup_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->

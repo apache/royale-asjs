@@ -40,13 +40,22 @@ limitations under the License.
 
 				<!-- PopUp 1-->
 				<j:Label text="Click the button below to display the PopUp"/>
-				<j:Button text="show popup" emphasis="primary" click="popup.show()"/>
-				<j:PopUp id="popup" className="somePopUpContent"/>
+				<j:Button text="show popup" emphasis="primary" click="popup1.open()"/>
+				<j:PopUp id="popup1" className="somePopUpContent"/>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
+				<html:H3 text="Jewel PopUp"/>
 
+				<!-- PopUp 2-->
+				<j:Label text="Click the button below to display the PopUp"/>
+				<j:Button text="show popup" emphasis="primary" click="popup2.open()"/>
+				<j:PopUp id="popup2">
+					<j:content>
+						<c:FormExample label="Form example in a PopUp"/>
+					</j:content>
+				</j:PopUp>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

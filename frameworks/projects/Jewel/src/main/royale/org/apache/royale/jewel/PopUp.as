@@ -25,25 +25,37 @@ package org.apache.royale.jewel
     }
 	import org.apache.royale.core.IPopUp;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.events.Event;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
 
-	
 	/**
-	 * The change event is dispatched when the selectedDate is changed.
+	 * The openPopUp event is dispatched when the we want to open the popup
 	 */
-	[Event(name="change", type="org.apache.royale.events.Event")]
+	[Event(name="openPopUp", type="org.apache.royale.events.Event")]
 	
 	/**
-	 * The PopUp class provides an input field where a date can be entered
-	 * and a pop-up calendar control for picking a date as an alternative to
-	 * the text field.
+	 * The closePopUp event is dispatched when the we want to close the popup
+	 */
+	[Event(name="closePopUp", type="org.apache.royale.events.Event")]
+	
+	/**
+	 *  Indicates that the initialization of the list is complete.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.4
+	 */
+	[Event(name="initComplete", type="org.apache.royale.events.Event")]
+	
+	/**
+	 *  The PopUp class is a component that can popup another component declared as IPopUp
 	 *  
      *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.6
 	 */
 	public class PopUp extends StyledUIBase implements IPopUp
 	{
@@ -53,30 +65,46 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function PopUp()
 		{
 			super();
 			
-			typeNames = "jewel popup";//layout itemsCenter
+			typeNames = "jewel popup";
 		}
 
-		public function show():void
+		/**
+		 * open the popup content
+		 */
+		public function open():void
 		{
-			dispatchEvent(new Event("showPopUp"));
+			dispatchEvent(new Event("openPopUp"));
+		}
+		
+		/**
+		 * close the popup content
+		 */
+		public function close():void
+		{
+			dispatchEvent(new Event("closePopUp"));
 		}
 
-		// private var _content:UIBase;
+		private var _content:UIBase;
 
-		// public function get content():UIBase
-		// {
-		// 	return _content;
-		// }
-		// public function set content(value:UIBase):void
-		// {
-		// 	_content = value;
-		// }
+		/**
+		 * the content to be instantiated inside the popup.
+		 * Instead of setup this property, it can be declared through
+		 * CSS using IPopUP royale bead css selector.
+		 */
+		public function get content():UIBase
+		{
+			return _content;
+		}
+		public function set content(value:UIBase):void
+		{
+			_content = value;
+		}
 		
 		/**
 		 * The method called when added to a parent. The PopUp class uses
@@ -85,7 +113,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		override public function addedToParent():void
 		{

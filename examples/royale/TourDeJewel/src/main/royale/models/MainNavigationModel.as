@@ -37,7 +37,7 @@ package models
             new NavigationLinkVO("Label", "label_panel", MaterialIconType.LABEL),
             new NavigationLinkVO("List", "list_panel", MaterialIconType.LIST_ALT),
             new NavigationLinkVO("NumericStepper", "numericstepper_panel", MaterialIconType.UNFOLD_MORE),
-            new NavigationLinkVO("PopUp", "popupview_panel", MaterialIconType.FLIP_TO_FRONT),
+            new NavigationLinkVO("PopUp", "popup_panel", MaterialIconType.FLIP_TO_FRONT),
             new NavigationLinkVO("RadioButton", "radiobutton_panel", MaterialIconType.RADIO_BUTTON_CHECKED),
             new NavigationLinkVO("Slider", "slider_panel", MaterialIconType.STORAGE),
             new NavigationLinkVO("Snackbar", "snackbar_panel", MaterialIconType.VIDEO_LABEL),
@@ -57,7 +57,7 @@ package models
             new NavigationLinkVO("Grid", "grid_panel", MaterialIconType.GRID_ON),
             new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_LIST),
             new NavigationLinkVO("TabBar", "tabbar_panel", MaterialIconType.TAB),
-            new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.FLIP_TO_FRONT),
+            new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.CHORME_READER_MODE),
             new NavigationLinkVO("Wizard", "wizards_panel", MaterialIconType.MOVIE_FILTER)
             // new NavigationLinkVO("Tabs", "tabs_panel")
         ]);

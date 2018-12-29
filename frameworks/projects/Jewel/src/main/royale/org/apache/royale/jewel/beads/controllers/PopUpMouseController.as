@@ -19,14 +19,10 @@
 package org.apache.royale.jewel.beads.controllers
 {	
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.jewel.Table;
-	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.views.PopUpView;
 	
 	/**
@@ -37,7 +33,7 @@ package org.apache.royale.jewel.beads.controllers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.6
 	 */
 	public class PopUpMouseController implements IBeadController
 	{
@@ -47,7 +43,7 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function PopUpMouseController()
 		{
@@ -63,122 +59,40 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
 			viewBead = _strand.getBeadByType(PopUpView) as PopUpView;			
-			IEventDispatcher(_strand).addEventListener("showPopUp", showPopUpHandler);
+			IEventDispatcher(_strand).addEventListener("openPopUp", openPopUpHandler);
+			IEventDispatcher(_strand).addEventListener("closePopUp", closePopUpHandler);
 		}
 		
 		/**
 		 * @private
 		 */
-		private function showPopUpHandler(event:MouseEvent):void
+		private function openPopUpHandler(event:MouseEvent):void
 		{
-            // event.stopImmediatePropagation();
-            
-			viewBead.popUpVisible = true;
-			//IEventDispatcher(viewBead.popUp).addEventListener(Event.CHANGE, changeHandler);
-            // removeDismissHandler();
-            
-            // use a timer to delay the installation of the event handler, otherwise
-            // the event handler is called immediately and will dismiss the popup.
-            // var t:Timer = new Timer(0.25, 1);
-            // t.addEventListener("timer", addDismissHandler);
-            // t.start();
-
-			// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-			//daysTable = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
-
+            viewBead.popUpVisible = true;
+			
 			IEventDispatcher(viewBead.content).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
+			IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, closePopUpHandler);
+			viewBead.content.addEventListener("closePopUp", closePopUpHandler);
         }
-
+		
 		protected function handleControlMouseDown(event:MouseEvent):void
 		{
 			event.stopImmediatePropagation();
 		}
         
-		protected function removePopUpWhenClickOutside(event:MouseEvent = null):void
+		protected function closePopUpHandler(event:MouseEvent = null):void
 		{
+			viewBead.content.removeEventListener("closePopUp", closePopUpHandler);
 			IEventDispatcher(viewBead.content).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
-			// IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
+			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, closePopUpHandler);
 			viewBead.popUpVisible = false;
 		}
-	
-		/**
-		 * @private
-		 */
-		private function changeHandler(event:Event):void
-		{
-			event.stopImmediatePropagation();
-			IEventDispatcher(viewBead.content).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
-			// IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
-            
-			// model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
-
-			viewBead.popUpVisible = false;
-			// IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
-
-            // removeDismissHandler();
-		}
-        
-		/**
-         * @private
-         */
-        // private function addDismissHandler(event:Event):void
-        // {
-        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-        //     if (host) {
-        //         host.addEventListener(MouseEvent.CLICK, dismissHandler);
-        //     }
-        // }
-        
-        /**
-         * @private
-         */
-        // private function removeDismissHandler():void
-        // {
-        //     var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
-        //     if (host) {
-        //         host.removeEventListener(MouseEvent.CLICK, dismissHandler);
-        //     }
-		// }
-
-        /**
-         * @private
-         */
-        // private function dismissHandler(event:MouseEvent):void
-        // {
-        //     var popup:IUIBase = IUIBase(viewBead.popUp);
-            
-        //     COMPILE::SWF {
-        //         var before:IUIBase = event.targetBeforeBubbling["royale_wrapper"] as IUIBase;
-        //         if (before) {
-        //             while (before != null) {
-        //                 if (before == popup) return;
-        //                 before = before.parent as IUIBase;
-        //             }
-        //         }
-        //     }
-
-		// 	COMPILE::JS {
-		// 		var before:IUIBase = event.target as IUIBase;
-		// 		if (before) {
-		// 			while (before != null) {
-		// 				if (before == popup) return;
-		// 				before = before.parent as IUIBase;
-		// 			}
-		// 		}
-		// 	}
-			
-		// 	viewBead.popUpVisible = false;
-        //     // removeDismissHandler();
-        // }
 	}
 }
