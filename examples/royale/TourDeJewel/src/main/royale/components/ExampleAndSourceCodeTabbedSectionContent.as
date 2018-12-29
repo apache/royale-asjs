@@ -51,7 +51,7 @@ package components
 
             exampleTab = new SectionContent();
             exampleTab.name = "exampleTab";
-            exampleTab.isActive = true;
+            exampleTab.isSelected = true;
             contentArea = exampleTab;
 
             addEventListener("initComplete", initCompleteHandler);
@@ -122,7 +122,7 @@ package components
         {
             var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
             tabcontent.showContent(item.href);
-            if(sourceCodeTab.isActive && sourceCodeMXMLText.text == "")
+            if(sourceCodeTab.isSelected && sourceCodeMXMLText.text == "")
             {
                 service.getContent();
             }

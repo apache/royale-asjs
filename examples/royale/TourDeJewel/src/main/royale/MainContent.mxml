@@ -114,7 +114,7 @@ limitations under the License.
     </j:TopAppBar>
 
     <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
-        <local:WelcomeSection name="welcome_panel" isActive="true"/>
+        <local:WelcomeSection name="welcome_panel" isSelected="true"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>
         <local:ImagePlayGround name="image_panel"/>

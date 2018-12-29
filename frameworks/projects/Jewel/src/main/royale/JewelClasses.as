@@ -95,7 +95,7 @@ package
         import org.apache.royale.jewel.supportClasses.ResponsiveSizes; ResponsiveSizes;
 
         import org.apache.royale.jewel.supportClasses.INavigationRenderer; INavigationRenderer;
-        import org.apache.royale.jewel.supportClasses.IActivable; IActivable;
+        import org.apache.royale.jewel.supportClasses.ISelectableContent; ISelectableContent;
         import org.apache.royale.jewel.supportClasses.textinput.ITextInput; ITextInput;
 
         import org.apache.royale.jewel.supportClasses.Viewport; Viewport;

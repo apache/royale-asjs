@@ -18,32 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses
 {
-    import org.apache.royale.core.IId;
-
     /**
-     *  IActivable is the interface a container implements to mark
-     *  as the current active container 
+     *  ISelectableContent is the interface a container implements to mark
+     *  as the current selected content 
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public interface IActivable extends IId
+    public interface ISelectableContent
     {
         /**
-         *  isActive checks if this object is the active one
+         *  isSelected checks if this content is the selected one
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        function get isActive():Boolean;
-        function set isActive(value:Boolean):void;
+        function get isSelected():Boolean;
+        function set isSelected(value:Boolean):void;
         
         /**
-         *  name is the name od this activable content
+         *  name is the name of the content that can be selected
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2

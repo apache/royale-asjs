@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.supportClasses.IActivable;
+	import org.apache.royale.jewel.supportClasses.ISelectableContent;
 
     COMPILE::JS
     {
@@ -27,8 +27,8 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The ApplicationMainContent class is a Container component capable of parenting
-	 *  the other organized content that implements IActivable interface
+	 *  The TabBarContent class is a Container component capable of parenting
+	 *  the other organized content that implements ISelectableContent interface
 	 *  (i.e, a SectionContent)
 	 *
 	 *  @langversion 3.0
@@ -69,21 +69,21 @@ package org.apache.royale.jewel
 			{
 				for (var i:int = 0; i < numElements; i++)
 				{
-					var content:IActivable = getElementAt(i) as IActivable;
+					var content:ISelectableContent = getElementAt(i) as ISelectableContent;
 					
 					if(content.name == name)
 					{
-						content.isActive = true;
+						content.isSelected = true;
 					}
 					else
 					{
-						content.isActive = false;
+						content.isSelected = false;
 					}
 				}
 			}
 			catch (error:Error)
 			{
-				throw new Error ("One or more content in TabBarContent is not implementing IActivable interface.");	
+				throw new Error ("One or more content in TabBarContent is not implementing ISelectableContent interface.");	
 			}
         }
 

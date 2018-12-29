@@ -3219,7 +3219,7 @@ j|PopUp {
   flex-flow: column nowrap;
   height: 100%;
 }
-.jewel.section.is-active {
+.jewel.section.is-selected {
   display: flex;
 }
 

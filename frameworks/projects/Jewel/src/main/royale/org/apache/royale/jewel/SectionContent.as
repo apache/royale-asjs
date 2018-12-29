@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.supportClasses.IActivable;
+    import org.apache.royale.jewel.supportClasses.ISelectableContent;
     
     COMPILE::JS
     {
@@ -36,7 +36,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class SectionContent extends Group implements IActivable
+	public class SectionContent extends Group implements ISelectableContent
 	{
 		/**
 		 *  constructor.
@@ -62,7 +62,7 @@ package org.apache.royale.jewel
 			return addElementToWrapper(this,'section');
         }
 
-		private var _isActive:Boolean;
+		private var _isSelected:Boolean;
 
         /**
          *  a boolean flag to indicate if the container is active or not
@@ -73,18 +73,18 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function get isActive():Boolean
+		public function get isSelected():Boolean
 		{
-            return _isActive;
+            return _isSelected;
 		}
 
-		public function set isActive(value:Boolean):void
+		public function set isSelected(value:Boolean):void
 		{
-            if (_isActive != value)
+            if (_isSelected != value)
             {
-                _isActive = value;
+                _isSelected = value;
 
-                toggleClass("is-active", _isActive);
+                toggleClass("is-selected", _isSelected);
             }
 		}
 		
