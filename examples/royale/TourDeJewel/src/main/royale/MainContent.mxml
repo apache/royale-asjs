@@ -31,7 +31,7 @@ limitations under the License.
             private function changeHandler(event:Event):void
             {
                 var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
-                main.showContent(item.href);
+                main.selectedContent = item.href;
                 if(!drawer.fixed)
                     drawer.close();
             }
@@ -44,7 +44,7 @@ limitations under the License.
 
             private function goToHome():void
             {
-                main.showContent("welcome_panel");
+                main.selectedContent = "welcome_panel";
             }
         ]]>
     </fx:Script>
@@ -113,8 +113,8 @@ limitations under the License.
         </j:TopAppBarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent">
-        <local:WelcomeSection name="welcome_panel" isSelected="true"/>
+    <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent" selectedContent = "welcome_panel">
+        <local:WelcomeSection name="welcome_panel"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>
         <local:ImagePlayGround name="image_panel"/>

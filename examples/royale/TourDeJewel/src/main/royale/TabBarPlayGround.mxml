@@ -31,7 +31,7 @@ limitations under the License.
             private function changeHandler(event:Event):void
             {
                 var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
-                tabcontent.showContent(item.href);
+                tabcontent.selectedContent = item.href;
             }
 
             private var _tabBarNavigation:ArrayList = new ArrayList([
@@ -62,8 +62,8 @@ limitations under the License.
 						<js:ConstantBinding sourcePropertyName="tabBarNavigation" destinationPropertyName="dataProvider"/>
 					</j:beads>
 				</j:TabBar>
-				<j:TabBarContent id="tabcontent">
-					<j:SectionContent name="tab1" isSelected="true">
+				<j:TabBarContent id="tabcontent" selectedContent="tab1">
+					<j:SectionContent name="tab1">
 						<j:Label text="Tab 1"/>
 					</j:SectionContent>
 					<j:SectionContent name="tab2">

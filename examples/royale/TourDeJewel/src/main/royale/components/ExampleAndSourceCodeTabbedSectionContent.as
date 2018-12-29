@@ -51,7 +51,6 @@ package components
 
             exampleTab = new SectionContent();
             exampleTab.name = "exampleTab";
-            exampleTab.isSelected = true;
             contentArea = exampleTab;
 
             addEventListener("initComplete", initCompleteHandler);
@@ -111,6 +110,7 @@ package components
             tabcontent = new TabBarContent();
             tabcontent.addElement(exampleTab);
             tabcontent.addElement(sourceCodeTab);
+            tabcontent.selectedContent = "exampleTab";
             $addElement(tabcontent);
             
             service = new GitHubService();
@@ -121,7 +121,7 @@ package components
         private function changeHandler(event:Event):void
         {
             var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
-            tabcontent.showContent(item.href);
+            tabcontent.selectedContent = item.href;
             if(sourceCodeTab.isSelected && sourceCodeMXMLText.text == "")
             {
                 service.getContent();

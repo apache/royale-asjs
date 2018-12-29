@@ -53,6 +53,7 @@ package org.apache.royale.jewel
             typeNames = "jewel tabbarcontent";
 		}
 
+		private var _selectedContent:String;
 		/**
 		 *  shows a concrete content and hides the rest
 		 * 
@@ -63,15 +64,29 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function showContent(name:String):void
+		public function get selectedContent():String
         {
+			return _selectedContent;
+		}
+        public function set selectedContent(name:String):void
+        {
+			if(_selectedContent != name)
+			{
+				_selectedContent = name;
+
+				selectContent();
+			}
+		}
+
+		public function selectContent():void
+		{
 			try
 			{
 				for (var i:int = 0; i < numElements; i++)
 				{
 					var content:ISelectableContent = getElementAt(i) as ISelectableContent;
 					
-					if(content.name == name)
+					if(content.name == _selectedContent)
 					{
 						content.isSelected = true;
 					}
@@ -95,5 +110,20 @@ package org.apache.royale.jewel
         {
 			return addElementToWrapper(this, 'div');
         }
+
+		/**
+		 *  The method called when added to a parent.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			selectContent();
+		}
 	}
 }

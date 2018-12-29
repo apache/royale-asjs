@@ -82,15 +82,11 @@ package org.apache.royale.jewel
 		 * 
 		 * @param steName, that is the "id" of the content (the WizardPage) to activate
 		 * 
-		 * @see org.apache.royale.jewel.WizardContent.showContent
+		 * @see org.apache.royale.jewel.WizardContent.selectedContent
 		 */
 		public function showPage(stepName:String):void
 		{
-			// if(currentStep.name != stepName)
-			// {
-			// 	currentStep = findStepByName(stepName);
-			// }
-			content.showContent(stepName);
+			content.selectedContent = stepName;
 		}
 
 		public function findStepByName(name:String):WizardStep
