@@ -101,8 +101,7 @@ package org.apache.royale.utils
 		/**
 		 *  Removes the given component from the IPopUpHost. 
 		 * 
-		 *  @param start A component to start the search.
-		 *  @return A component that implements IPopUpHost or null.
+		 *  @param popUp the component that popups
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
