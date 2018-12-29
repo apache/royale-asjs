@@ -33,6 +33,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.utils.UIUtils;
     import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.jewel.PopUp;
+    import org.apache.royale.jewel.supportClasses.popup.PopUpContent;
 
 	/**
 	 *  The PopUpView class is a bead for PopUp that creates the dialog
@@ -68,7 +69,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get content():UIBase
 		{
-			if(!getHost().content){
+			if(!getHost().content) {
 				getHost().content = loadBeadFromValuesManager(UIBase, "iPopUp", _strand) as UIBase;
 			}
 			getHost().content.className="jewel popupcontent";
@@ -97,7 +98,7 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 		}
 		
-		private var _popUp:StyledUIBase;
+		private var _popUp:PopUpContent;
 		/**
 		 *  The pop-up component that will hold the real content
 		 *
@@ -106,7 +107,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function get popUp():StyledUIBase
+		public function get popUp():PopUpContent
 		{
 			return _popUp;
 		}
@@ -141,8 +142,7 @@ package org.apache.royale.jewel.beads.views
 				if (value)
 				{
 					//create the backdrop
-					_popUp = new StyledUIBase();
-					_popUp.className = "popup-content";
+					_popUp = new PopUpContent();
 					_popUp.addElement(content as IChild);
 					// _popUp.addEventListener("initComplete", handlePopUpInitComplete);
 					

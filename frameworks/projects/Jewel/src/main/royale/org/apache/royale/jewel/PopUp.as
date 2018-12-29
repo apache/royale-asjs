@@ -27,6 +27,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IPopUpHostParent;
 
 	/**
 	 * The openPopUp event is dispatched when the we want to open the popup
@@ -49,6 +51,12 @@ package org.apache.royale.jewel
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 	
 	/**
+	 * The default property uses when additional MXML content appears within an element's
+	 * definition in an MXML file.
+	 */
+	[DefaultProperty("content")]
+
+	/**
 	 *  The PopUp class is a component that can popup another component declared as IPopUp
 	 *  
      *  @toplevel
@@ -57,7 +65,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class PopUp extends StyledUIBase implements IPopUp
+	public class PopUp extends StyledUIBase implements IPopUpHost, IPopUpHostParent
 	{
 		/**
 		 *  constructor.
@@ -73,6 +81,26 @@ package org.apache.royale.jewel
 			
 			typeNames = "jewel popup";
 		}
+
+		/**
+         *  Form can host error tips but they will be in the layout, if any
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get popUpParent():IPopUpHostParent
+        {
+            return this;
+        }
+
+        /**
+         */
+        public function get popUpHost():IPopUpHost
+        {
+            return this;
+        }
 
 		/**
 		 * open the popup content

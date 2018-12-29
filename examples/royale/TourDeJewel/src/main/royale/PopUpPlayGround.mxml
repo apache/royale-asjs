@@ -21,7 +21,7 @@ limitations under the License.
 	xmlns:j="library://ns.apache.org/royale/jewel" 
 	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
-	xmlns:c="components.*" sourceCodeUrl="PopUpViewPlayGround.mxml">
+	xmlns:c="components.*" sourceCodeUrl="PopUpPlayGround.mxml">
 	
 	<fx:Script>
 		<![CDATA[
@@ -52,9 +52,7 @@ limitations under the License.
 				<j:Label text="Click the button below to display the PopUp"/>
 				<j:Button text="show popup" emphasis="primary" click="popup2.open()"/>
 				<j:PopUp id="popup2">
-					<j:content>
-						<c:FormExample label="Form example in a PopUp"/>
-					</j:content>
+					<c:FormExample label="Form example in a PopUp"/>
 				</j:PopUp>
 			</j:Card>
 		</j:GridCell>

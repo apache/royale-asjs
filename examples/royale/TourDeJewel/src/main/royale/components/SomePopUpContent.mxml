@@ -31,6 +31,7 @@ limitations under the License.
 
     <j:Label text="This content is set up from a CSS bead (IPopUp)"/>
     <j:TextInput text="Hi"/>
+    <j:DateField/>
     <j:Button text="Close me!" emphasis="primary" click="dispatchEvent(new Event('closePopUp', true))"/>
 
 </j:VGroup>
