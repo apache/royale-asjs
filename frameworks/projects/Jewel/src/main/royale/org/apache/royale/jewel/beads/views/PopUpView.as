@@ -146,8 +146,7 @@ package org.apache.royale.jewel.beads.views
 					_popUp.addElement(content as IChild);
 					// _popUp.addEventListener("initComplete", handlePopUpInitComplete);
 					
-					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
-					host.popUpParent.addElement(_popUp);
+					UIUtils.addPopUp(_popUp, getHost());
 					// viewBead.popUp is StyledUIBase that fills 100% of browser window, then we display the "iPopUp content" inside
 					
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
