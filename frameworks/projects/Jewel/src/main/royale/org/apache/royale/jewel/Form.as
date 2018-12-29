@@ -58,7 +58,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-    public class Form extends Group implements IPopUpHost, IPopUpHostParent {
+    public class Form extends Group {
         
         /**
 		 *  constructor.
@@ -73,25 +73,6 @@ package org.apache.royale.jewel
 			super();
             typeNames = "jewel form";
 		}
-        /**
-         *  Form can host error tips but they will be in the layout, if any
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        public function get popUpParent():IPopUpHostParent
-        {
-            return this;
-        }
-
-        /**
-         */
-        public function get popUpHost():IPopUpHost
-        {
-            return this;
-        }
 
         /**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
