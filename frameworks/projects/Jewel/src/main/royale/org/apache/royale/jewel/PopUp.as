@@ -102,6 +102,17 @@ package org.apache.royale.jewel
             return this;
         }
 
+		private var _modal:Boolean;
+
+		public function get modal():Boolean
+		{
+			return _modal;
+		}
+		public function set modal(value:Boolean):void
+		{
+			_modal = value;
+		}
+
 		/**
 		 * open the popup content
 		 */

@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.beads.views.PopUpView;
+	import org.apache.royale.jewel.PopUp;
 	
 	/**
 	 * The PopUpMouseController class is responsible for monitoring
@@ -77,8 +78,11 @@ package org.apache.royale.jewel.beads.controllers
 		{
             viewBead.popUpVisible = true;
 			
-			IEventDispatcher(viewBead.content).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, closePopUpHandler);
+			if(!PopUp(_strand).modal)
+			{
+				IEventDispatcher(viewBead.content).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+				IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, closePopUpHandler);
+			}
 			viewBead.content.addEventListener("closePopUp", closePopUpHandler);
         }
 		
@@ -90,8 +94,11 @@ package org.apache.royale.jewel.beads.controllers
 		protected function closePopUpHandler(event:MouseEvent = null):void
 		{
 			viewBead.content.removeEventListener("closePopUp", closePopUpHandler);
-			IEventDispatcher(viewBead.content).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
-			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, closePopUpHandler);
+			if(!PopUp(_strand).modal)
+			{
+				IEventDispatcher(viewBead.content).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+				IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, closePopUpHandler);
+			}
 			viewBead.popUpVisible = false;
 		}
 	}
