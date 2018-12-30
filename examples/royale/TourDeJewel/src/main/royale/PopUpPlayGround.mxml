@@ -36,7 +36,7 @@ limitations under the License.
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel PopUp"/>
+				<html:H3 text="Jewel PopUp (Modal)"/>
 
 				<!-- PopUp 1-->
 				<j:Label text="Click the button below to display a Modal PopUp"/>
@@ -46,7 +46,7 @@ limitations under the License.
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel PopUp"/>
+				<html:H3 text="Jewel PopUp (Non Modal)"/>
 
 				<!-- PopUp 2-->
 				<j:Label text="Click the button below to display a non modal PopUp"/>
