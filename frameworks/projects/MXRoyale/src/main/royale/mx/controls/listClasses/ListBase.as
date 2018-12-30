@@ -754,7 +754,7 @@ use namespace mx_internal;
             return _strandChildren;
         }
         
-        public function scrollToIndex(index):void
+        public function scrollToIndex(index:int):void
         {
 
             trace("ListBase:scrollToIndex not implemented");
