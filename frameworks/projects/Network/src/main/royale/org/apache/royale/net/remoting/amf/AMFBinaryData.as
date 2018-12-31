@@ -291,7 +291,7 @@ public class AMFBinaryData implements IDataInput, IDataOutput
         this.write((v >>> 0) & 255);
     };
     
-    public function writeUInt32(v):void
+    public function writeUInt32(v:uint):void
     {
         v < 0 && (v = -(v ^ UINT_MAX_VALUE) - 1);
         v &= UINT_MAX_VALUE;
@@ -377,7 +377,7 @@ public class AMFBinaryData implements IDataInput, IDataOutput
         }
     };
     
-    private function stringByReference(v):uint
+    private function stringByReference(v:String):uint
     {
         var ref:uint = this.strings[v];
         if (ref) 
@@ -387,7 +387,7 @@ public class AMFBinaryData implements IDataInput, IDataOutput
         return ref;
     };
     
-    public function objectByReference(v):uint
+    public function objectByReference(v:Object):uint
     {
         var ref:uint = 0;
         var found:Boolean = false;
