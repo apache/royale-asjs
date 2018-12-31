@@ -98,11 +98,12 @@ limitations under the License.
 	
 	<js:List id="dynamicList" x="300" y="40" width="200" height="300" className="DynamicList">
 		<js:beads>
+			<js:ArrayListSelectionModel/>
+			<js:DataItemRendererFactoryForArrayList/>
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="states"
 				destinationPropertyName="dataProvider" />
-			<js:InfiniteVScroller scrollEnd="onScrollEnd()"/>
 		</js:beads>
 	</js:List>
 	
