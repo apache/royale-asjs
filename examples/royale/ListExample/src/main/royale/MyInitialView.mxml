@@ -162,7 +162,6 @@ limitations under the License.
             <js:VirtualDataItemRendererFactoryForArrayData />
             <js:VirtualListVerticalLayout />
             <js:VirtualListView />
-	    <js:InfiniteVScroller scrollEnd="onScrollEnd()"/>
         </js:beads>
     </js:List>
     
