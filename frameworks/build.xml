@@ -211,7 +211,10 @@
             </fileset>
         </delete> 
         <!-- Delete empty folders -->
-        <delete dir="${basedir}/libs"/>
+        <delete dir="${basedir}/libs" failonerror="false">
+            <include name="*.swc"/>
+        </delete>
+        <!-- <delete dir="${basedir}/libs"/> -->
         <delete dir="${basedir}/locale">
             <exclude name="**/metadata.properties"/>
         </delete>
