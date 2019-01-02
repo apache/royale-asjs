@@ -105,7 +105,7 @@ package
 		}
 
 		COMPILE::JS
-		public function toString():String
+		public function objectAccessFormat():String
 		{
 			var uriVal:String = _uri ? _uri : "*";
             uriVal = uriVal.replace(/:/g, "_");
