@@ -5246,6 +5246,12 @@ COMPILE::JS
             else if (parent is IFlexModule && IFlexModule(parent).moduleFactory != null)
                 IFlexModule(child).moduleFactory = IFlexModule(parent).moduleFactory;
         }
+        
+        // Flex didn't propagate SystemManager because it was derivable from a root property
+        // which we don't have in the browser.
+        if (child is IUIComponent)
+            IUIComponent(child).systemManager = systemManager;
+        
         /*
         
         // Set the font context in non-UIComponent children.
