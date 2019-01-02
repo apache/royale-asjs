@@ -95,7 +95,9 @@ package mx.controls.beads.models
             var dp:Object = super.dataProvider;
             
             if (!showRoot && dp != null)
-                return dp.children; // TODO: needs to use descriptor
+            {
+                return dp.getItemAt(0).children; // TODO: needs to use descriptor
+            }
             
             return dp;
         }

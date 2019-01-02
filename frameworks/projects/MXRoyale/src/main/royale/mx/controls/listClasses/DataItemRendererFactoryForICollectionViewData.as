@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.listClasses
 {
+    import mx.collections.ArrayCollection;
 	import mx.collections.ICollectionView;
-    import mx.collections.IViewCursor;
-    import mx.collections.ICollectionView;
+	import mx.collections.IViewCursor;
 	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
@@ -35,13 +35,13 @@ package mx.controls.listClasses
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
-    import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
+	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
 	import org.apache.royale.html.supportClasses.TreeListData;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -75,7 +75,6 @@ package mx.controls.listClasses
         
         /**
          * @private
-         * @royaleignorecoercion mx.collections.ICollectionView
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
          * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -86,7 +85,16 @@ package mx.controls.listClasses
                 return;
             var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
             if (!dp)
-                return;
+            {
+                // temporary until descriptor is used in MenuBarModel
+                var obj:Object = dataProviderModel.dataProvider;
+                if (obj is Array)
+                {
+                    dp = new ArrayCollection(obj as Array);
+                }
+                else
+                    return;
+            }
             
             // listen for individual items being added in the future.
             var dped:IEventDispatcher = dp as IEventDispatcher;
