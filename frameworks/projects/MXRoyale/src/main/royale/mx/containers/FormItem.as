@@ -347,7 +347,10 @@ public class FormItem extends Container
         // Changing the label could affect the overall form label width
         // so we need to invalidate our parent's size here too
        if (parent is Form)
+       {
             Form(parent).invalidateLabelWidth();
+            commitProperties();
+       }
 
         dispatchEvent(new Event("labelChanged"));
     }
