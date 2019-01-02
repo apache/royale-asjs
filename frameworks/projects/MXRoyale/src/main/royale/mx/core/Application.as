@@ -66,7 +66,6 @@ COMPILE::JS {
     import org.apache.royale.core.HTMLElementWrapper;
 }
 
-import org.apache.royale.binding.ApplicationDataBinding;
 import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IBead;
@@ -309,7 +308,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         typeNames += " Application";
 		
 		this.valuesImpl = new AllCSSValuesImpl();
-		addBead(new ApplicationDataBinding());
+		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
 		addBead(new ApplicationLayout());
 
         instanceParent = this;

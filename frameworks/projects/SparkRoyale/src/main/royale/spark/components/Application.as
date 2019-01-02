@@ -70,7 +70,7 @@ COMPILE::JS {
     import org.apache.royale.core.HTMLElementWrapper;
 }
 
-import org.apache.royale.binding.ApplicationDataBinding;
+import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IFlexInfo;
 import org.apache.royale.core.IParent;
@@ -318,7 +318,7 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         initResizeBehavior(); */
         
         this.valuesImpl = new AllCSSValuesImpl();
-        addBead(new ApplicationDataBinding());
+        addBead(new ContainerDataBinding());
         
         COMPILE::JS
         {
