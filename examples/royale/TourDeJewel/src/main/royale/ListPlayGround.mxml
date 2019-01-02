@@ -168,6 +168,13 @@ limitations under the License.
 						<j:Label html="{'Selected Index: ' + iconList.selectedIndex}"/>
 						<j:Label html="Selected Item description:"/>
 						<j:Label html="{describeIconItem(iconList.selectedItem)}"/>
+						<j:TextInput>
+							<j:beads>
+								<j:TextPrompt prompt="filter list..."/>
+								<j:SearchFilterForList list="{iconList}"/>
+													<!-- property="label" defaults to label so it's not needed -->
+							</j:beads>
+						</j:TextInput>
 						<!-- example below for dataProvider binding -->
 						<!--<j:List labelField="label" dataProvider="{iconList.dataProvider}" selectedIndex="3" width="120" height="200" />-->
 					</j:VGroup>
