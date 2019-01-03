@@ -172,7 +172,7 @@ limitations under the License.
 							<j:beads>
 								<j:TextPrompt prompt="filter list..."/>
 								<j:SearchFilterForList list="{iconList}"/>
-													<!-- property="label" defaults to label so it's not needed -->
+													<!-- filterProperty="label" defaults to label so it's not needed -->
 							</j:beads>
 						</j:TextInput>
 						<!-- example below for dataProvider binding -->

@@ -352,16 +352,7 @@ package org.apache.royale.jewel
 			{
                 if(input.checked == value)
                     return;
-                var instance:Object = element['JewelCheckbox'];
-                if(instance)
-                {
-                    if(value)
-                        instance["check"]();
-                    else
-                        instance["uncheck"]();
-                }
-                else
-                    input.checked = value;
+                input.checked = value;
                 dispatchEvent(new Event(Event.CHANGE));
             }
         }
