@@ -49,7 +49,7 @@ limitations under the License.
 
     <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>
 
-    <html:Span text="{iconList ? iconList.label : ''}"/>
+    <html:Span text="{text}"/>
 
 </j:ListItemRenderer>
 

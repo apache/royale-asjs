@@ -150,7 +150,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel List With ItemRenderer"/>
 				<j:HGroup gap="3">
-					<j:List id="iconList" width="200" height="300" className="iconListItemRenderer">
+					<j:List id="iconList" width="200" height="300" className="iconListItemRenderer" labelField="label">
 						<j:beads>
 							<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
 							<j:AddListItemRendererForArrayListData/>
@@ -172,7 +172,6 @@ limitations under the License.
 							<j:beads>
 								<j:TextPrompt prompt="filter list..."/>
 								<j:SearchFilterForList list="{iconList}"/>
-													<!-- filterProperty="label" defaults to label so it's not needed -->
 							</j:beads>
 						</j:TextInput>
 						<!-- example below for dataProvider binding -->

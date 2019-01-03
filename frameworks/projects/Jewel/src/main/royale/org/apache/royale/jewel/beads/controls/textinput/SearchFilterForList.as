@@ -57,12 +57,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		public var list:List;
 
 		/**
-		 * the property of the data object in each row (ItemRenderer) to filter
-		 */
-		[Bindable]
-		public var filterProperty:String = "label";
-
-		/**
 		 * the filter function to use to filter entries in the list
 		 */
 		[Bindable]
@@ -133,7 +127,7 @@ package org.apache.royale.jewel.beads.controls.textinput
             for (var i:int = 0; i < numElements; i++)
             {
                 ir = list.getElementAt(i) as ListItemRenderer;
-                if (filterFunction(ir.data[filterProperty], filterText))
+                if (filterFunction(ir.text, filterText))
                 {
                     ir.visible = true;
                     lastActive = ir;

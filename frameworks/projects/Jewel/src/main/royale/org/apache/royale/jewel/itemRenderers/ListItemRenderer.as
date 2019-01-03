@@ -61,6 +61,7 @@ package org.apache.royale.jewel.itemRenderers
 
 		private var _text:String = "";
 
+		[Bindable(event="textChange")]
         /**
          *  The text of the renderer
          *  
@@ -76,14 +77,16 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set text(value:String):void
 		{
-            _text = value;
-			
-			COMPILE::JS
-			{
-			if(textNode != null)
-			{
-				textNode.nodeValue = _text;
-			}	
+            if(value != _text) {
+				_text = value;
+				COMPILE::JS
+				{
+				if(textNode != null)
+				{
+					textNode.nodeValue = _text;
+				}
+				}
+				dispatchEvent(new Event('textChange'));
 			}
 		}
 
