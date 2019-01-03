@@ -17,10 +17,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
-	xmlns:j="library://ns.apache.org/royale/jewel" 
-	xmlns:html="library://ns.apache.org/royale/html" 
-	xmlns:js="library://ns.apache.org/royale/basic" 
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:j="library://ns.apache.org/royale/jewel"
+	xmlns:html="library://ns.apache.org/royale/html"
+	xmlns:js="library://ns.apache.org/royale/basic"
 	xmlns:c="components.*" sourceCodeUrl="PopUpPlayGround.mxml">
 
 	<fx:Script>
@@ -34,7 +34,6 @@ limitations under the License.
 		public function closePopUpHandler(event:Event):void
 		{
 			trace("[closePopUp] ", event.target, popup1.content);
-			check1.selected = false;
 		}
 		]]>
 	</fx:Script>
@@ -50,10 +49,10 @@ limitations under the License.
 
 				<!-- PopUp 1-->
 				<j:Label text="Click the button below to display a Modal PopUp"/>
-				<j:CheckBox localId="check1" text="open/close the popup: {popup1.open}" selected="{popup1.open}"/>
-				<j:PopUp id="popup1" className="somePopUpContent" modal="true" 
-							open="{check1.selected}" 
-							openPopUp="openPopUpHandler(event)" 
+				<j:CheckBox localId="check1" selected="{popup1.open}" text="open/close the popup: {popup1.open}" />
+				<j:PopUp id="popup1" className="somePopUpContent" modal="true"
+							open="{check1.selected}"
+							openPopUp="openPopUpHandler(event)"
 							closePopUp="closePopUpHandler(event)" />
 			</j:Card>
 		</j:GridCell>
