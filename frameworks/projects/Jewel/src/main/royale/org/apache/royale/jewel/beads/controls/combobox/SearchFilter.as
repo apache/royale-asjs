@@ -18,14 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
-	import org.apache.royale.jewel.List;
-	import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
+	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
 	/**
@@ -37,7 +32,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.5
 	 */
-	public class SearchFilter implements IBead
+	public class SearchFilter extends SearchFilterForList
 	{
 		/**
 		 *  constructor.
@@ -51,55 +46,35 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 		}
 
-		private var _textInput:TextInputBase;
-
-
-		private var _strand:IStrand;
-
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.5
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
-		 */
-		public function set strand(value:IStrand):void
+		override protected function keyUpLogic(input:Object):void
 		{
-			_strand = value;
-			IEventDispatcher(_strand).addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
-            IEventDispatcher(_strand).addEventListener('beadsAdded', onBeadsAdded);
+			var popUpVisible:Boolean =  input.parent.view.popUpVisible;
+            if (!popUpVisible) {
+                //force popup ?:
+                input.parent.view.popUpVisible = true;
+                
+				//or avoid ?:
+                //return;
+            }
+			
+			// fill "list" with the internal list in the combobox popup
+			list = input.parent.view.popup.view.list;
+			
+			applyFilter(input.parent.view.textinput.text.toUpperCase());
 		}
 
-		protected function onBeadsAdded(event:Event):void{
-            COMPILE::JS{
-                if ('view' in _strand && _strand['view'] is IComboBoxView) {
-                    _textInput = IComboBoxView(_strand['view']).textinput as TextInputBase;
-                    if (_textInput) {
+		override protected function onBeadsAdded(event:Event):void{
+            if ('view' in _strand && _strand['view'] is IComboBoxView) {
+                var _textInput:TextInputBase = IComboBoxView(_strand['view']).textinput as TextInputBase;
+                if (_textInput) {
+					COMPILE::JS {
                         _textInput.element.addEventListener( 'focus', onInputFocus);
                     }
-                }
+            	}
             }
 		}
 
-		/**
-		 * the filter function to use to filter entries in the combobox popup list
-		 */
-		[Bindable]
-		public var filterFunction:Function = defaultFilterFunction;
-
-		/**
-		 * default filter function just filters substrings
-		 * you can use other advanced methods like levenshtein distance
-		 */
-		protected function defaultFilterFunction(text:String, filterText:String):Boolean
-		{
-			return text.toUpperCase().indexOf(filterText) > -1;
-		}
-
-		COMPILE::JS
-		protected function onInputFocus(event:Event):void{
+		override protected function onInputFocus(event:Event):void{
             var popUpVisible:Boolean =  IComboBoxView(_strand['view']).popUpVisible;
             if (!popUpVisible) {
                 //force popup ?:
@@ -108,56 +83,8 @@ package org.apache.royale.jewel.beads.controls.combobox
                 //or avoid ?:
                 //return;
             }
-            applyFilter(_textInput);
+			
+			applyFilter(IComboBoxView(_strand['view']).textinput.text.toUpperCase());
 		}
-
-        protected function keyUpHandler(event:KeyboardEvent):void
-		{
-			const inputBase:TextInputBase = event.target as TextInputBase;
-			//keyup can include other things like tab navigation
-
-			if (!inputBase) {
-				//if (popUpVisible)  event.target.parent.view.popUpVisible = false;
-				return;
-			}
-            var popUpVisible:Boolean =  event.target.parent.view.popUpVisible;
-            if (!popUpVisible) {
-                //force popup ?:
-                event.target.parent.view.popUpVisible = true;
-
-                //or avoid ?:
-                //return;
-            }
-            applyFilter(inputBase);
-        }
-
-        protected function applyFilter(input:TextInputBase):void{
-            var filterText:String = input.text.toUpperCase();
-
-            // the internal list in the combobox popup
-            var list:List =  Object(input).parent.view.popup.view.list;
-
-            var ir:ListItemRenderer;
-            var numElements:int = list.numElements;
-            var count:uint = 0;
-            var lastActive:ListItemRenderer;
-            for (var i:int = 0; i < numElements; i++)
-            {
-                ir = list.getElementAt(i) as ListItemRenderer;
-                if (filterFunction(ir.text, filterText))
-                {
-                    ir.visible = true;
-                    lastActive = ir;
-                    count++;
-                } else {
-                    ir.visible = false;
-                }
-            }
-           /* if (count == 1) {
-                //select lastActive if there is only one that matches?
-
-            }*/
-		}
-
 	}
 }

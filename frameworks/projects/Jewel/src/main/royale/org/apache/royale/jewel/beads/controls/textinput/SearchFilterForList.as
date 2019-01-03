@@ -34,7 +34,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.5
+	 *  @productversion Royale 0.9.6
 	 */
 	public class SearchFilterForList implements IBead
 	{
@@ -44,22 +44,38 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.5
+		 *  @productversion Royale 0.9.6
 		 */
 		public function SearchFilterForList()
 		{
 		}
 
-		private var _textInput:TextInputBase;
-		private var _strand:IStrand;
+		/**
+		 * the list to filter
+		 */
+		[Bindable]
+		public var list:List;
 
+		/**
+		 * the property of the data object in each row (ItemRenderer) to filter
+		 */
+		[Bindable]
+		public var filterProperty:String = "label";
+
+		/**
+		 * the filter function to use to filter entries in the list
+		 */
+		[Bindable]
+		public var filterFunction:Function = defaultFilterFunction;
+		
+		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.5
+		 *  @productversion Royale 0.9.6
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
 		 */
 		public function set strand(value:IStrand):void
@@ -69,17 +85,35 @@ package org.apache.royale.jewel.beads.controls.textinput
             IEventDispatcher(_strand).addEventListener('beadsAdded', onBeadsAdded);
 		}
 
+		protected function keyUpHandler(event:KeyboardEvent):void
+		{
+			const inputBase:TextInputBase = event.target as TextInputBase;
+			//keyup can include other things like tab navigation
+
+			if (!inputBase) {
+				//if (popUpVisible)  event.target.parent.view.popUpVisible = false;
+				return;
+			}
+            
+			keyUpLogic(inputBase);
+        }
+
+		protected function keyUpLogic(input:Object):void
+		{
+			applyFilter(input.text.toUpperCase());
+		}
+
 		protected function onBeadsAdded(event:Event):void{
+			var input:TextInputBase = TextInputBase(_strand);
             COMPILE::JS{
-                TextInputBase(_strand).element.addEventListener('focus', onInputFocus);
+                input.element.addEventListener('focus', onInputFocus);
             }
 		}
 
-		/**
-		 * the filter function to use to filter entries in the combobox popup list
-		 */
-		[Bindable]
-		public var filterFunction:Function = defaultFilterFunction;
+		protected function onInputFocus(event:Event):void
+		{
+			applyFilter(TextInputBase(_strand).text.toUpperCase());
+		}
 
 		/**
 		 * default filter function just filters substrings
@@ -90,33 +124,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 			return text.toUpperCase().indexOf(filterText) > -1;
 		}
 
-		COMPILE::JS
-		protected function onInputFocus(event:Event):void{
-            applyFilter(_textInput);
-		}
-
-        protected function keyUpHandler(event:KeyboardEvent):void
+        protected function applyFilter(filterText:String):void
 		{
-			const inputBase:TextInputBase = event.target as TextInputBase;
-			//keyup can include other things like tab navigation
-
-			if (!inputBase) {
-				//if (popUpVisible)  event.target.parent.view.popUpVisible = false;
-				return;
-			}
-            
-            applyFilter(inputBase);
-        }
-
-		[Bindable]
-		public var list:List;
-
-		[Bindable]
-		public var property:String = "label";
-
-        protected function applyFilter(input:TextInputBase):void{
-            var filterText:String = TextInputBase(_strand).text.toUpperCase();
-
             var ir:ListItemRenderer;
             var numElements:int = list.numElements;
             var count:uint = 0;
@@ -124,7 +133,7 @@ package org.apache.royale.jewel.beads.controls.textinput
             for (var i:int = 0; i < numElements; i++)
             {
                 ir = list.getElementAt(i) as ListItemRenderer;
-                if (filterFunction(ir.data[property], filterText))
+                if (filterFunction(ir.data[filterProperty], filterText))
                 {
                     ir.visible = true;
                     lastActive = ir;
@@ -133,6 +142,9 @@ package org.apache.royale.jewel.beads.controls.textinput
                     ir.visible = false;
                 }
             }
+			/* if (count == 1) {
+				//select lastActive if there is only one that matches?
+			}*/
 		}
 
 	}
