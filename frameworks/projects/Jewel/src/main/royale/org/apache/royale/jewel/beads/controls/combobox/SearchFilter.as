@@ -48,7 +48,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 		override protected function keyUpLogic(input:Object):void
 		{
-			var popUpVisible:Boolean =  input.parent.view.popUpVisible;
+			var popUpVisible:Boolean = input.parent.view.popUpVisible;
             if (!popUpVisible) {
                 //force popup ?:
                 input.parent.view.popUpVisible = true;
@@ -84,6 +84,9 @@ package org.apache.royale.jewel.beads.controls.combobox
                 //return;
             }
 			
+			// fill "list" with the internal list in the combobox popup
+			list = event.target.royale_wrapper.parent.view.popup.view.list;
+
 			applyFilter(IComboBoxView(_strand['view']).textinput.text.toUpperCase());
 		}
 	}
