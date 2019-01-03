@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.collections
 {
-	import org.apache.royale.collections.CollectionUtils;
 
 	public class CollectionUtils
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -43,7 +42,7 @@ package org.apache.royale.collections
 		 * @param value Any kind of object to perform the comparison
 		 *
 		 * @return an <code>int</code> that represents the index of the object in the collection
-		 * 
+		 *
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
@@ -78,7 +77,7 @@ package org.apache.royale.collections
 		 * @param value Any kind of object to perform the comparison
 		 *
 		 * @return The object if exists in the collection
-		 * 
+		 *
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
@@ -107,13 +106,13 @@ package org.apache.royale.collections
 		 * The comparation is based on 'id'
 		 * Supports nulls in property object and returns -1
 		 * For use with List components in bindinds with "selectedIndex"
-		 * 
+		 *
 		 * @param collection a <code>ICollectionView</code> dataprovider where we need to look for
 		 * @param obj an <code>Object</code> with a subproperty used for comparation
 		 * @param property the <code>String</code> name of the subproperty. This could be and Obejct with an id or directly a propertyId
 		 *
 		 * @return the index if was found, -1 if the object is null or not found
-		 * 
+		 *
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
