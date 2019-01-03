@@ -90,5 +90,5 @@
 
 .somePopUpContent
 {
-    IPopUp: ClassReference("components.SomePopUpContent")
+    IPopUpContent: ClassReference("components.SomePopUpContent")
 }

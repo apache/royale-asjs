@@ -3149,7 +3149,7 @@ j|PopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.PopUpView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.PopUpModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.PopUpMouseController");
-  IPopUp: ClassReference("org.apache.royale.core.StyledUIBase");
+  IPopUpContent: ClassReference("org.apache.royale.core.StyledUIBase");
 }
 
 .jewel.radiobutton {

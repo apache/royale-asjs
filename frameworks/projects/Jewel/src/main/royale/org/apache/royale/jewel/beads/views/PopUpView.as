@@ -26,14 +26,11 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IChild;
-    import org.apache.royale.core.IPopUpHost;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.utils.UIUtils;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.jewel.PopUp;
     import org.apache.royale.jewel.supportClasses.popup.PopUpContent;
+    import org.apache.royale.utils.UIUtils;
 
 	/**
 	 *  The PopUpView class is a bead for PopUp that creates the dialog
@@ -69,11 +66,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get content():UIBase
 		{
-			if(!getHost().content) {
-				getHost().content = loadBeadFromValuesManager(UIBase, "iPopUp", _strand) as UIBase;
-			}
-			getHost().content.className="jewel popupcontent";
-
             return getHost().content;
 		}
 		
@@ -144,14 +136,11 @@ package org.apache.royale.jewel.beads.views
 					//create the backdrop
 					_popUp = new PopUpContent();
 					_popUp.addElement(content as IChild);
-					// _popUp.addEventListener("initComplete", handlePopUpInitComplete);
-					
 					UIUtils.addPopUp(_popUp, getHost());
 					// viewBead.popUp is StyledUIBase that fills 100% of browser window, then we display the "iPopUp content" inside
 					
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					setTimeout(prepareForPopUp,  300);
-
 					// COMPILE::JS
 					// {
 					// window.addEventListener('resize', autoResizeHandler, false);
@@ -167,7 +156,6 @@ package org.apache.royale.jewel.beads.views
 					document.body.classList.remove("viewport");
 					// window.removeEventListener('resize', autoResizeHandler, false);
 					}
-					//_popUp.removeEventListener("initComplete", handlePopUpInitComplete);
 					_popUp = null;
 				}
 			}

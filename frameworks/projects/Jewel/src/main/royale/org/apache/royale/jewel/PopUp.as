@@ -23,12 +23,12 @@ package org.apache.royale.jewel
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.core.IPopUp;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.core.IPopUpHostParent;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 * The openPopUp event is dispatched when the we want to open the popup
@@ -39,16 +39,6 @@ package org.apache.royale.jewel
 	 * The closePopUp event is dispatched when the we want to close the popup
 	 */
 	[Event(name="closePopUp", type="org.apache.royale.events.Event")]
-	
-	/**
-	 *  Indicates that the initialization of the list is complete.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
-	 */
-	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 	
 	/**
 	 * The default property uses when additional MXML content appears within an element's
@@ -112,25 +102,30 @@ package org.apache.royale.jewel
 		{
 			_modal = value;
 		}
-
-		/**
-		 * open the popup content
-		 */
-		public function open():void
-		{
-			dispatchEvent(new Event("openPopUp"));
-		}
 		
+		private var _open:Boolean = false;
+
+		[Bindable(event="openPopUp")]
+		[Bindable(event="closePopUp")]
 		/**
-		 * close the popup content
+		 * true, open the popup. close, close
+		 * the popup
 		 */
-		public function close():void
+		public function get open():Boolean
 		{
-			dispatchEvent(new Event("closePopUp"));
+			return _open;
+		}
+		public function set open(value:Boolean):void
+		{
+			if(_open != value)
+			{
+				_open = value;
+				
+				_open ? dispatchEvent(new Event("openPopUp")) : dispatchEvent(new Event("closePopUp"));
+			}
 		}
 
 		private var _content:UIBase;
-
 		/**
 		 * the content to be instantiated inside the popup.
 		 * Instead of setup this property, it can be declared through
@@ -142,12 +137,16 @@ package org.apache.royale.jewel
 		}
 		public function set content(value:UIBase):void
 		{
-			_content = value;
+			if(_content != value)
+			{
+				_content = value;
+				_content.className="jewel popupcontent";
+			}
 		}
 		
 		/**
-		 * The method called when added to a parent. The PopUp class uses
-		 * this opportunity to install additional beads.
+		 *  The method called when added to a parent. The PopUp class uses
+		 *  this opportunity to install the content
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -158,7 +157,10 @@ package org.apache.royale.jewel
 		{
 			super.addedToParent();
 			
-			dispatchEvent(new Event("initComplete"));
+			if(!_content)
+			{
+				content = loadBeadFromValuesManager(UIBase, "iPopUpContent", this) as UIBase;
+			}
 		}
 
 		/**
