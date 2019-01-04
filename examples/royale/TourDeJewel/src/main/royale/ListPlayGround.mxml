@@ -116,6 +116,13 @@ limitations under the License.
 				if (!iconVO) return '[Nothing Selected]';
 				return 'label:\'' + iconVO.label + '\', icon:\'' + iconVO.icon + '\'';
 			}
+
+			// private function traceCollectionLabels():void
+			// {
+			// 	for each (var iconVO:IconListVO in listModel.iconListData) {				
+			// 		trace(iconVO.label);				
+			// 	}
+			// }
 		]]>
 	</fx:Script>
 
@@ -174,6 +181,8 @@ limitations under the License.
 								<j:SearchFilterForList list="{iconList}"/>
 							</j:beads>
 						</j:TextInput>
+						<!-- <j:Button text="Trace Collection Labels" click="traceCollectionLabels()"/> -->
+						
 						<!-- example below for dataProvider binding -->
 						<!--<j:List labelField="label" dataProvider="{iconList.dataProvider}" selectedIndex="3" width="120" height="200" />-->
 					</j:VGroup>
