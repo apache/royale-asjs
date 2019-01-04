@@ -28,14 +28,16 @@ package org.apache.royale.events
     {
         import window.MouseEvent;
 		import goog.events.BrowserEvent;
+        import org.apache.royale.core.HTMLElementWrapper;
 		import org.apache.royale.events.Event;
 		import org.apache.royale.events.utils.EventUtils;
+        import org.apache.royale.events.utils.MouseEventConverter;
     }
     
     import org.apache.royale.core.IRoyaleElement;
+    import org.apache.royale.events.IBrowserEvent;
     import org.apache.royale.geom.Point;
     import org.apache.royale.utils.PointUtils;
-    import org.apache.royale.events.IBrowserEvent;
 
 
 	/**
@@ -730,5 +732,14 @@ package org.apache.royale.events
 			    wrappedEvent.stopPropagation();
 		}
 
+        COMPILE::JS
+        public static function setupConverter():Boolean
+        {
+            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+            return true;
+        }
+        
+        COMPILE::JS
+        public static var initialized:Boolean = setupConverter();
 	}
 }
