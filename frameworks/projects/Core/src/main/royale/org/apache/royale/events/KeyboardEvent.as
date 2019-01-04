@@ -21,9 +21,7 @@ package org.apache.royale.events
     COMPILE::JS
     {
         import goog.events.BrowserEvent;
-        import org.apache.royale.core.HTMLElementWrapper;
 		import org.apache.royale.events.Event;
-        import org.apache.royale.events.utils.KeyboardEventConverter;
     }
     import org.apache.royale.events.IBrowserEvent;
 
@@ -283,16 +281,5 @@ package org.apache.royale.events
         {
             return new KeyboardEvent(type, key, code, shiftKey, altKey, ctrlKey, metaKey, bubbles, cancelable);
         }
-        
-        COMPILE::JS
-        public static function setupConverter():Boolean
-        {
-            HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
-            return true;
-        }
-        
-        COMPILE::JS
-        public static var initialized:Boolean = setupConverter();
-
     }
 }
