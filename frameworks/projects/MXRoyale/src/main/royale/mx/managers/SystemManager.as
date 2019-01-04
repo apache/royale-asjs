@@ -1921,7 +1921,8 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         }
         COMPILE::JS
         {
-            return mainClassName ? new mainClassName() : null
+            if (mainClassName)
+                return new mainClassName();
         }
         return null;
     }
