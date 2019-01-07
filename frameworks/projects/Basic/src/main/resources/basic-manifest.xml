@@ -77,6 +77,7 @@
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>
+    <component id="NoLayout" class="org.apache.royale.html.beads.layouts.NoLayout"/>
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
     <component id="LayoutChangeNotifier" class="org.apache.royale.html.beads.layouts.LayoutChangeNotifier"/>
