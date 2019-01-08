@@ -30,8 +30,8 @@ package org.apache.royale.events
 		import goog.events.BrowserEvent;
         import org.apache.royale.core.HTMLElementWrapper;
 		import org.apache.royale.events.Event;
-		import org.apache.royale.events.utils.EventUtils;
         import org.apache.royale.events.utils.MouseEventConverter;
+        import org.apache.royale.conversions.MouseEventInit;
     }
     
     import org.apache.royale.core.IRoyaleElement;
@@ -683,7 +683,7 @@ package org.apache.royale.events
 		 */
 		private static function makeMouseEvent(type:String, e:window.MouseEvent):window.MouseEvent
 		{
-			var out:window.MouseEvent = EventUtils.createMouseEvent(type, false, false, {
+			var out:window.MouseEvent = MouseEvent.createMouseEvent(type, false, false, {
                     view: e.view, detail: e.detail, screenX: e.screenX, screenY: e.screenY,
 					clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey, altKey: e.altKey,
 				    shiftKey: e.shiftKey, metaKey: e.metaKey, button: e.button, relatedTarget: e.relatedTarget});
@@ -732,14 +732,45 @@ package org.apache.royale.events
 			    wrappedEvent.stopPropagation();
 		}
 
-        COMPILE::JS
         public static function setupConverter():Boolean
         {
             HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
             return true;
         }
         
-        COMPILE::JS
         public static var initialized:Boolean = setupConverter();
+        
+        public static function createMouseEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false,
+                                                params:Object = null):Object
+        {
+            var mouseEvent:Object = null;
+            
+            if (!params)
+                params = {};
+            
+            try
+            {
+                params.bubbles = bubbles;
+                params.cancelable = cancelable;
+                var initObject:MouseEventInit = MouseEventInit(params);
+                mouseEvent = new window.MouseEvent(type, initObject);
+                return mouseEvent;
+            }
+            catch (e:Error)
+            {
+                
+            }
+            
+            if (!mouseEvent)
+            {
+                mouseEvent = document.createEvent('MouseEvent');
+                mouseEvent.initMouseEvent(type, bubbles, cancelable, params.view,
+                    params.detail, params.screenX, params.screenY, params.clientX, params.clientY,
+                    params.ctrlKey, params.altKey, params.shiftKey, params.metaKey, params.button, params.relatedTarget);
+            }
+            
+            return mouseEvent;
+        }
+
 	}
 }

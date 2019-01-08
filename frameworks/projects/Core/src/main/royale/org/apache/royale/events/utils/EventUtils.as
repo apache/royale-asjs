@@ -21,9 +21,7 @@ package org.apache.royale.events.utils
 COMPILE::JS
 {
     import org.apache.royale.conversions.createEventInit;
-    import org.apache.royale.conversions.MouseEventInit;
     import window.Event;
-    import window.MouseEvent;
 }
 
     /**
@@ -58,38 +56,6 @@ COMPILE::JS
            }
 
            return customEvent;
-       }
-
-       public static function createMouseEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false,
-                                               params:Object = null):Object
-       {
-           var mouseEvent:Object = null;
-
-           if (!params)
-               params = {};
-           
-           try
-           {
-               params.bubbles = bubbles;
-               params.cancelable = cancelable;
-               var initObject:MouseEventInit = MouseEventInit(params);
-               mouseEvent = new window.MouseEvent(type, initObject);
-               return mouseEvent;
-           }
-           catch (e:Error)
-           {
-
-           }
-
-           if (!mouseEvent)
-           {
-               mouseEvent = document.createEvent('MouseEvent');
-               mouseEvent.initMouseEvent(type, bubbles, cancelable, params.view,
-                       params.detail, params.screenX, params.screenY, params.clientX, params.clientY,
-                       params.ctrlKey, params.altKey, params.shiftKey, params.metaKey, params.button, params.relatedTarget);
-           }
-
-           return mouseEvent;
        }
     }
 }
