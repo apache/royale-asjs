@@ -27,6 +27,16 @@ package org.apache.royale.events
     }
     import org.apache.royale.events.IBrowserEvent;
 
+    /**
+     *  Keyboard events
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
     public class KeyboardEvent extends Event implements IBrowserEvent
     {
         COMPILE::SWF
