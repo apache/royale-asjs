@@ -22,10 +22,10 @@ COMPILE::SWF
 {
     import flash.utils.describeType;
 }
-    
+
     /**
      *  The equivalent of flash.utils.describeType.
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -49,7 +49,7 @@ COMPILE::SWF
         COMPILE::JS
         {
             var qname:String = getQualifiedClassName(value);
-            return TypeDefinition.getDefinition(qname, value.ROYALE_CLASS_INFO || (value.prototype != null) ? value.prototype.ROYALE_CLASS_INFO : null);
+            return TypeDefinition.getDefinition(qname, value.ROYALE_CLASS_INFO || (value.prototype ? value.prototype.ROYALE_CLASS_INFO : null));
         }
     }
 }
