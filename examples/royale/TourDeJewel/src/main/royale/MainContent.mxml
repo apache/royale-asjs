@@ -92,7 +92,7 @@ limitations under the License.
                 </j:IconButton>
                 <j:TopAppBarTitle text="Apache Royale Tour de Jewel"/>
             </j:TopAppBarSection>
-            <j:TopAppBarSection alignRight="true">
+            <j:TopAppBarSection itemsHorizontalAlign="itemsRight">
                 <!-- <j:IconButton click="drawer.fixed = !drawer.fixed">
                     <j:beads>
                         <j:ToolTip toolTip="Lock(fix) or Unlock the TopBar"/>

@@ -3741,10 +3741,6 @@ j|TopAppBarRow {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
-j|TopAppBarSection {
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
-}
-
 j|TopAppBarTitle {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
