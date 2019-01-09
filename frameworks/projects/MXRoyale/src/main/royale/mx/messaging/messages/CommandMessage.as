@@ -397,6 +397,8 @@ public class CommandMessage extends AsyncMessage
     // 
     //--------------------------------------------------------------------------   
 
+    private var _operation:uint;
+    
     /**
      *  Provides access to the operation/command for the CommandMessage.
      *  Operations indicate how this message should be processed by the remote
@@ -408,7 +410,14 @@ public class CommandMessage extends AsyncMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var operation:uint;
+    public function get operation():uint
+    {
+        return _operation;
+    }
+    public function set operation(value:uint):void
+    {
+        _operation = value;
+    }
 
     //--------------------------------------------------------------------------
     //

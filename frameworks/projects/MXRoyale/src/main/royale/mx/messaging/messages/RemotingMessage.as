@@ -64,6 +64,8 @@ public class RemotingMessage extends AbstractMessage
     // 
     //--------------------------------------------------------------------------    
 
+    private var _operation:String;
+    
     /**
      *  Provides access to the name of the remote method/operation that
      *  should be called.
@@ -74,8 +76,17 @@ public class RemotingMessage extends AbstractMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var operation:String;
+    public function get operation():String
+    {
+        return _operation;
+    }
+    public function set operation(value:String):void
+    {
+        _operation = value;
+    }
 
+    private var _source:String;
+    
     /**
      *  This property is provided for backwards compatibility. The best
      *  practice, however, is to not expose the underlying source of a
@@ -89,7 +100,14 @@ public class RemotingMessage extends AbstractMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var source:String;
+    public function get source():String
+    {
+        return _source;
+    }
+    public function set source(value:String):void
+    {
+        _source = value;
+    }
 }
 
 }
