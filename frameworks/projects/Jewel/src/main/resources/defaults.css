@@ -3681,15 +3681,13 @@ j|TitleBar {
 .jewel.topappbar .topBarAppHeader.fixed {
   transition: box-shadow 200ms linear;
 }
-
-.jewel.topappbarrow {
+.jewel.topappbar .jewel.barrow {
   display: flex;
   position: relative;
   width: 100%;
   height: 64px;
 }
-
-.jewel.topappbarsection {
+.jewel.topappbar .jewel.barsection {
   display: inline-flex;
   flex: 1 1 auto;
   align-items: center;
@@ -3698,11 +3696,11 @@ j|TitleBar {
   justify-content: flex-start;
   order: -1;
 }
-.jewel.topappbarsection.alignRight {
+.jewel.topappbar .jewel.barsection.alignRight {
   justify-content: flex-end;
   order: 1;
 }
-.jewel.topappbarsection button {
+.jewel.topappbar .jewel.barsection button {
   will-change: transform, opacity;
   display: flex;
   position: relative;
@@ -3715,12 +3713,11 @@ j|TitleBar {
   text-decoration: none;
   opacity: 1;
 }
-.jewel.topappbarsection button .fonticon {
+.jewel.topappbar .jewel.barsection button .fonticon {
   margin-left: 0px;
   margin-right: 0px;
 }
-
-.jewel.topappbartitle {
+.jewel.topappbar .jewel.bartitle {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   white-space: nowrap;
@@ -3737,12 +3734,33 @@ j|TopAppBar {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
-j|TopAppBarRow {
+j|BarRow {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
-j|TopAppBarTitle {
+j|BarTitle {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+.jewel.barrow {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 64px;
+}
+
+.jewel.barsection {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  z-index: 1;
+  justify-content: flex-start;
+  order: -1;
+}
+.jewel.barsection.alignRight {
+  justify-content: flex-end;
+  order: 1;
 }
 
 .jewel .wizard .main {

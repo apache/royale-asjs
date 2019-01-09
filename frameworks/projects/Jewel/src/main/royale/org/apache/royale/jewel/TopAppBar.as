@@ -44,7 +44,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TopAppBar extends Group
+	public class TopAppBar extends Bar
 	{
 		/**
 		 *  constructor.
@@ -58,8 +58,13 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel topappbar"
+            typeNames = "jewel topappbar";
 			setListenersForFixed();
+		}
+
+		override protected function get headerClassName():String
+		{
+			return "topBarAppHeader";
 		}
 
 		COMPILE::JS
@@ -144,61 +149,7 @@ package org.apache.royale.jewel
 				setListenersForFixed();
             }
         }
-
-
-		COMPILE::JS
-		private var header:HTMLElement;
-
-		/**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			header = addElementToWrapper(this,'header');
-			header.className = "topBarAppHeader";
-			header.style.top = "0px";
-			
-			var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-			div.appendChild(header);
-
-			positioner = div as WrappedHTMLElement;
-			positioner.royale_wrapper = this;
-
-			return element;
-        }
-
-		/**
-         *  @copy org.apache.royale.core.IParent#addElement()
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-            COMPILE::SWF
-            {
-                if (c is IUIBase)
-                {
-                    if (c is IRenderedObject)
-                        $sprite_addChild(IRenderedObject(c).$displayObject);
-                    else
-                        $sprite_addChild(c as DisplayObject);                        
-                    IUIBase(c).addedToParent();
-                }
-                else
-                    $sprite_addChild(c as DisplayObject);
-            }
-            COMPILE::JS
-            {
-                header.appendChild(c.positioner);
-                (c as IUIBase).addedToParent();
-            }
-		}
-
+		
 		private var _hasDrawer:Boolean;
 
         /**

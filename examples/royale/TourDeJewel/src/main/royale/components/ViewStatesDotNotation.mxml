@@ -35,6 +35,21 @@ limitations under the License.
     </j:beads>
 
     <j:Card visible="true" visible.loggedIn="false">
+        <!-- <j:BarRow>
+            <j:BarSection width="20%">
+                <j:Button localId="previousButton" text="Accesorios Base7" 
+                    click="currentState = 'login'" 
+                    visible.loggedIn="true" visible.login="false"/>
+            </j:BarSection>
+            <j:BarSection width="80%" itemsHorizontalAlign="itemsCenter">
+                <html:H3 text="Selecci\u00f3n de opciones" style="color: #54b7f3"/>
+            </j:BarSection>
+            <j:BarSection width="20%" itemsHorizontalAlign="itemsRight">
+                <j:Button localId="nextButton" text="Otros accesorios" 
+                    click="currentState = 'loggedIn'" 
+                    visible.login="true" visible.loggedIn="false"/>
+            </j:BarSection>
+        </j:BarRow> -->
         <html:H1 text="View States with dot notation"/>
         <j:TextInput text="someuser"/>
         <j:TextInput text="somepass">

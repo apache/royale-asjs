@@ -80,8 +80,8 @@ limitations under the License.
     </j:Drawer>
 
     <j:TopAppBar id="topappbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
-        <j:TopAppBarRow>
-            <j:TopAppBarSection>
+        <j:BarRow>
+            <j:BarSection>
                 <j:IconButton click="drawer.isOpen ? drawer.close() : drawer.open()">
                     <js:beads>
                         <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false"/>
@@ -90,9 +90,12 @@ limitations under the License.
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
                 </j:IconButton>
-                <j:TopAppBarTitle text="Apache Royale Tour de Jewel"/>
-            </j:TopAppBarSection>
-            <j:TopAppBarSection itemsHorizontalAlign="itemsRight">
+                <j:BarTitle text="Apache Royale Tour de Jewel"/>
+            </j:BarSection>
+            <!-- <j:BarSection itemsHorizontalAlign="itemsCenter">
+                <html:H3 text="Hi!" />
+            </j:BarSection> -->
+            <j:BarSection itemsHorizontalAlign="itemsRight">
                 <!-- <j:IconButton click="drawer.fixed = !drawer.fixed">
                     <j:beads>
                         <j:ToolTip toolTip="Lock(fix) or Unlock the TopBar"/>
@@ -109,8 +112,8 @@ limitations under the License.
                         <js:ToggleFontIcon text="{MaterialIconType.LOCK}" selectedText="{MaterialIconType.LOCK_OPEN}" material="true"/>
                     </j:icon>
                 </j:ToggleButton>
-            </j:TopAppBarSection>
-        </j:TopAppBarRow>
+            </j:BarSection>
+        </j:BarRow>
     </j:TopAppBar>
 
     <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent" selectedContent = "welcome_panel">

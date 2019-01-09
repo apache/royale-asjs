@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.topappbar
+package org.apache.royale.jewel.supportClasses.bar
 {
     COMPILE::JS
     {
@@ -26,15 +26,15 @@ package org.apache.royale.jewel.supportClasses.topappbar
 	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The TopAppBarRow class is a container component used with TopAppBar
-	 *  It represent a row. TopAppBar supports more than one row
+	 *  The BarRow class is a container component used with Bar or TopAppBar
+	 *  It represent a row. Bar and TopAppBar supports more than one row
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TopAppBarRow extends Group
+	public class BarRow extends Group
 	{
 		/**
 		 *  constructor.
@@ -44,11 +44,11 @@ package org.apache.royale.jewel.supportClasses.topappbar
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function TopAppBarRow()
+		public function BarRow()
 		{
 			super();
 
-            typeNames = "jewel topappbarrow"
+            typeNames = "jewel barrow"
 		}
 	}
 }

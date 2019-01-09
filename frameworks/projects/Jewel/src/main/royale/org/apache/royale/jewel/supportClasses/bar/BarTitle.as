@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.topappbar
+package org.apache.royale.jewel.supportClasses.bar
 {
     COMPILE::JS
     {
@@ -26,14 +26,15 @@ package org.apache.royale.jewel.supportClasses.topappbar
 	import org.apache.royale.jewel.Group;
 
 	/**
-	 *  The TopAppBarTitle class is the application title
+	 *  The BarTitle class is the title to use with a Bar or TopAppBar.
+	 *  The later use to be the application title
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TopAppBarTitle extends Group
+	public class BarTitle extends Group
 	{
 		/**
 		 *  constructor.
@@ -43,11 +44,11 @@ package org.apache.royale.jewel.supportClasses.topappbar
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function TopAppBarTitle()
+		public function BarTitle()
 		{
 			super();
 
-            typeNames = "jewel topappbartitle"
+            typeNames = "jewel bartitle"
 		}
 
 		COMPILE::JS

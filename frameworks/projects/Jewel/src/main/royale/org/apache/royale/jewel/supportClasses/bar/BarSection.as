@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.topappbar
+package org.apache.royale.jewel.supportClasses.bar
 {
     COMPILE::JS
     {
@@ -26,15 +26,15 @@ package org.apache.royale.jewel.supportClasses.topappbar
 	import org.apache.royale.jewel.HGroup;
 
 	/**
-	 *  The TopAppBarSection class is a container component for items in
-	 *  an TopAppBar row.
+	 *  The BarSection class is a container component for items in
+	 *  an Bar or TopAppBar row.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TopAppBarSection extends HGroup
+	public class BarSection extends HGroup
 	{
 		/**
 		 *  constructor.
@@ -44,11 +44,11 @@ package org.apache.royale.jewel.supportClasses.topappbar
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function TopAppBarSection()
+		public function BarSection()
 		{
 			super();
 
-            typeNames = "jewel topappbarsection"
+            typeNames = "jewel barsection"
 		}
 
 		/**
