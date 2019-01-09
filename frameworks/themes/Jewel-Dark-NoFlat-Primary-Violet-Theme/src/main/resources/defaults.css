@@ -896,11 +896,10 @@ a:active {
 .jewel.topappbar .topBarAppHeader.has-drawer {
   width: calc(100% - 240px);
 }
-
-.jewel.topappbarsection {
+.jewel.topappbar .jewel.barsection {
   padding: 8px 12px;
 }
-.jewel.topappbarsection button {
+.jewel.topappbar .jewel.barsection button {
   background: transparent;
   box-shadow: none;
   border: none;
@@ -909,18 +908,17 @@ a:active {
   color: inherit;
   text-shadow: 0 -1px 0 rgba(19, 8, 27, 0.7);
 }
-.jewel.topappbarsection button:hover, .jewel.topappbarsection button:hover:focus, .jewel.topappbarsection button:active, .jewel.topappbarsection button:active:focus, .jewel.topappbarsection button:focus {
+.jewel.topappbar .jewel.barsection button:hover, .jewel.topappbar .jewel.barsection button:hover:focus, .jewel.topappbar .jewel.barsection button:active, .jewel.topappbar .jewel.barsection button:active:focus, .jewel.topappbar .jewel.barsection button:focus {
   background: transparent;
   box-shadow: none;
   border: none;
 }
-.jewel.topappbarsection button[disabled] {
+.jewel.topappbar .jewel.barsection button[disabled] {
   background: transparent;
   box-shadow: none;
   border: none;
 }
-
-.jewel.topappbartitle {
+.jewel.topappbar .jewel.bartitle {
   font-family: "Lato", sans-serif;
   font-size: 1.4em !important;
   font-weight: 800;
