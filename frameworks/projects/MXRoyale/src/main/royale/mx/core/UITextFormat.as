@@ -50,6 +50,8 @@ import mx.managers.ISystemManager;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class UITextFormat extends TextFormat
 {

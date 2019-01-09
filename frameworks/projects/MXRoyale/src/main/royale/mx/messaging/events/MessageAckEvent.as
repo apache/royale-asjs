@@ -33,6 +33,8 @@ import mx.messaging.messages.IMessage;
  *  @playerversion AIR 1.1
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3 
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class MessageAckEvent extends MessageEvent
 {    

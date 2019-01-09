@@ -41,6 +41,8 @@ package mx.validators
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class RegExpValidationResult extends ValidationResult
 {

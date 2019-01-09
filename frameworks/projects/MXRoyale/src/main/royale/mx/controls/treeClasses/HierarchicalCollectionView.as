@@ -136,15 +136,19 @@ public class HierarchicalCollectionView extends EventDispatcher
 
 	/**
 	 *  @private
+     * 
+     *  @royalesuppresspublicvarwarning
 	 */
-	public var openNodes:Object;
+	public var openNodes:Object; // change to get/set if folks set it from MXML
 
 	/**
 	 *  @private
 	 *  Mapping of UID to parents.  Must be maintained as things get removed/added
 	 *  This map is created as objects are visited
+     * 
+     *  @royalesuppresspublicvarwarning
 	 */
-	public var parentMap:Object;
+	public var parentMap:Object; // change to get/set if folks set it from MXML
 
 	/**
 	 *  @private

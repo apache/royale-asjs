@@ -89,6 +89,8 @@ public class SeriesZoom extends SeriesEffect
     //----------------------------------
     //  horizontalFocus
     //----------------------------------
+    
+    private var _horizontalFocus:String;
 
     [Inspectable(category="General", enumeration="left,center,right")]
 
@@ -125,11 +127,20 @@ public class SeriesZoom extends SeriesEffect
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var horizontalFocus:String;
+    public function get horizontalFocus():String
+    {
+        return _horizontalFocus;
+    }
+    public function set horizontalFocus(value:String):void
+    {
+        _horizontalFocus = value;
+    }
     
     //----------------------------------
     //  relativeTo
     //----------------------------------
+    
+    private var _relativeTo:String = "series";
 
     [Inspectable(category="General", enumeration="series,chart", defaultValue="series")]
 
@@ -157,12 +168,21 @@ public class SeriesZoom extends SeriesEffect
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var relativeTo:String = "series";
+    public function get relativeTo():String
+    {
+        return _relativeTo;
+    }
+    public function set relativeTo(value:String):void
+    {
+        _relativeTo = value;
+    }
 
     //----------------------------------
     //  verticalFocus
     //----------------------------------
 
+    private var _verticalFocus:String;
+    
     [Inspectable(category="General", enumeration="top,center,bottom")]
 
     /**
@@ -181,7 +201,14 @@ public class SeriesZoom extends SeriesEffect
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var verticalFocus:String;
+    public function get verticalFocus():String
+    {
+        return _verticalFocus;
+    }
+    public function set verticalFocus(value:String):void
+    {
+        _verticalFocus = value;
+    }
     
     //--------------------------------------------------------------------------
     //

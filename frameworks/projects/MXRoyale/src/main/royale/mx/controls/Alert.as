@@ -287,6 +287,8 @@ public class Alert extends Panel
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public static var buttonWidth:Number = 65;
     

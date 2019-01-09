@@ -41,7 +41,7 @@ import org.apache.royale.html.beads.IDropDownListView;
 
 /**
  *  @private
- *  The SkinnableContainerView for emulation.
+ *  The DropDownListView for emulation.
  */
 public class DropDownListView extends SkinnableContainerView implements IDropDownListView
 {
@@ -64,6 +64,9 @@ public class DropDownListView extends SkinnableContainerView implements IDropDow
 		super();
 	}
 
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public var label:Button;
     
     private var selectionModel:ISelectionModel;

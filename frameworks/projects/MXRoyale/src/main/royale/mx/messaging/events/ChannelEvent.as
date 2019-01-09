@@ -31,6 +31,8 @@ import mx.messaging.Channel;
  *  @playerversion AIR 1.1
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3 
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class ChannelEvent extends Event
 {

@@ -9409,6 +9409,8 @@ public class AdvancedDataGrid extends AdvancedListBase
     //  sortableColumns copied from AdvancedDataGridBaseEx
     //----------------------------------
 
+    private var _sortableColumns:Boolean = true;
+    
     // [Inspectable(category="General")]
 
     /**
@@ -9443,7 +9445,14 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @productversion Royale 0.9.4
      * 	@royalesuppresspublicvarwarning 
 	 */
-    public var sortableColumns:Boolean = true;
+    public function get sortableColumns():Boolean
+    {
+        return _sortableColumns;
+    }
+    public function set sortableColumns(value:Boolean):void
+    {
+        _sortableColumns = value;
+    }
 	
     //----------------------------------
     //  sortExpertMode copied from AdvancedDataGridBaseEx
@@ -9628,6 +9637,8 @@ public class AdvancedDataGrid extends AdvancedListBase
     //  resizableColumns copied from AdvancedDataGridBaseEx
     //----------------------------------
 
+    private var _resizableColumns:Boolean = true;
+    
    // [Inspectable(category="General")]
 
     /**
@@ -9646,7 +9657,14 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public var resizableColumns:Boolean = true;
+    public function get resizableColumns():Boolean
+    {
+        return _resizableColumns;
+    }
+    public function set resizableColumns(value:Boolean):void
+    {
+        _resizableColumns = value;
+    }
 	    
 	
 	

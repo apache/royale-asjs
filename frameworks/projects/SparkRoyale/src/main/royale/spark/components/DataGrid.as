@@ -774,6 +774,8 @@ package spark.components
  *  @playerversion Flash 10
  *  @playerversion AIR 2.5
  *  @productversion Flex 4.5
+ * 
+ *  @royalesuppresspublicvarwarning
  */  
 public class DataGrid extends SkinnableContainerBase 
     implements IDataProviderEnhance, IFocusManagerComponent, IIMESupport

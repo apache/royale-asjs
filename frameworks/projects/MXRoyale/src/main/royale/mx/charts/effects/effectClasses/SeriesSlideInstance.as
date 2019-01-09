@@ -104,6 +104,8 @@ public class SeriesSlideInstance extends SeriesEffectInstance
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var direction:String = "left";
 

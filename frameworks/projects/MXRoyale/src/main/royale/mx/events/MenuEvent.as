@@ -41,6 +41,8 @@ import mx.controls.listClasses.IListItemRenderer;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class MenuEvent extends ListEvent
 {

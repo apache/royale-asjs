@@ -38,6 +38,8 @@ import mx.core.IUIComponent;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class DragEvent extends MouseEvent
 {

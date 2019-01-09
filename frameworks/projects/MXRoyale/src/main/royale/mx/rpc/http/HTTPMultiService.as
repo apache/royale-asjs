@@ -26,6 +26,7 @@ import mx.logging.Log;
 import mx.messaging.ChannelSet;
 import mx.messaging.channels.DirectHTTPChannel;
 import mx.messaging.config.LoaderConfig;
+import mx.messaging.errors.ArgumentError;
 import mx.messaging.messages.HTTPRequestMessage;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
@@ -33,8 +34,6 @@ import mx.rpc.AbstractService;
 import mx.rpc.events.FaultEvent;
 import mx.rpc.mxml.Concurrency;
 import mx.utils.URLUtil;
-
-import mx.messaging.errors.ArgumentError;
 
 use namespace mx_internal;
 
@@ -197,6 +196,8 @@ public dynamic class HTTPMultiService extends AbstractService
     //  contentType
     //----------------------------------
 
+    private var _contentType:String = AbstractOperation.CONTENT_TYPE_FORM;
+    
     [Inspectable(enumeration="application/x-www-form-urlencoded,application/xml", defaultValue="application/x-www-form-urlencoded", category="General")]
     /**
      *  Type of content for service requests. 
@@ -204,7 +205,14 @@ public dynamic class HTTPMultiService extends AbstractService
      *  like a normal HTTP POST with name-value pairs. <code>application/xml</code> send
      *  requests as XML.
      */
-    public var contentType:String = AbstractOperation.CONTENT_TYPE_FORM;
+    public function get contentType():String
+    {
+        return _contentType;
+    }
+    public function set contentType(value:String):void
+    {
+        _contentType = value;
+    }
 
     //----------------------------------
     //  concurrency
@@ -267,6 +275,8 @@ public dynamic class HTTPMultiService extends AbstractService
     //  headers
     //----------------------------------
 
+    private var _headers:Object = {};
+    
     [Inspectable(defaultValue="undefined", category="General")]
     /**
      *  Custom HTTP headers to be sent to the third party endpoint. If multiple headers need to
@@ -278,12 +288,21 @@ public dynamic class HTTPMultiService extends AbstractService
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var headers:Object = {};
+    public function get headers():Object
+    {
+        return _headers;
+    }
+    public function set headers(value:Object):void
+    {
+        _headers = value;
+    }
 
     //----------------------------------
     //  makeObjectsBindable
     //----------------------------------
 
+    private var _makeObjectsBindable:Boolean = true;
+    
     [Inspectable(defaultValue="true", category="General")]
     /**
      *  When <code>true</code>, the objects returned support data binding to UI controls.
@@ -296,12 +315,21 @@ public dynamic class HTTPMultiService extends AbstractService
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var makeObjectsBindable:Boolean = true;
+    public function get makeObjectsBindable():Boolean
+    {
+        return _makeObjectsBindable;
+    }
+    public function set makeObjectsBindable(value:Boolean):void
+    {
+        _makeObjectsBindable = value;
+    }
 
     //----------------------------------
     //  method
     //----------------------------------
 
+    private var _method:String = HTTPRequestMessage.GET_METHOD;
+    
     [Inspectable(enumeration="GET,get,POST,post,HEAD,head,OPTIONS,options,PUT,put,TRACE,trace,DELETE,delete", defaultValue="GET", category="General")]
     /**
      *  HTTP method for sending the request if a method is not set explicit on the operation. 
@@ -314,7 +342,14 @@ public dynamic class HTTPMultiService extends AbstractService
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var method:String = HTTPRequestMessage.GET_METHOD;
+    public function get method():String
+    {
+        return _method;
+    }
+    public function set method(value:String):void
+    {
+        _method = value;
+    }
 
     //----------------------------------
     //  resultFormat
@@ -398,11 +433,22 @@ public dynamic class HTTPMultiService extends AbstractService
     }
 
     /** Default serializationFilter used by all operations which do not set one explicitly */
-    public var serializationFilter:SerializationFilter;
-
+    private var _serializationFilter:SerializationFilter;
+    
+    public function get serializationFilter():SerializationFilter
+    {
+        return _serializationFilter;
+    }
+    public function set serializationFilter(value:SerializationFilter):void
+    {
+        _serializationFilter = value;
+    }
+    
     //----------------------------------
     //  rootURL
     //----------------------------------
+
+    private var _baseURL:String;
 
     /**
      *  The URL that the HTTPService object should use when computing relative URLs.
@@ -415,7 +461,14 @@ public dynamic class HTTPMultiService extends AbstractService
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var baseURL:String;
+    public function get baseURL():String
+    {
+        return _baseURL;
+    }
+    public function set baseURL(value:String):void
+    {
+        _baseURL = value;
+    }
     
     /**
      *  @private

@@ -447,6 +447,8 @@ public class BubbleSeries extends Series
     //  maxRadius
     //----------------------------------
 
+    private var _maxRadius:Number = 50;
+    
     [Inspectable(category="General")]
     
     /**
@@ -459,12 +461,21 @@ public class BubbleSeries extends Series
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var maxRadius:Number = 50;
+    public function get maxRadius():Number
+    {
+        return _maxRadius;
+    }
+    public function set maxRadius(value:Number):void
+    {
+        _maxRadius = value;
+    }
     
     //----------------------------------
     //  minRadius
     //----------------------------------
 
+    private var _minRadius:Number = 0;
+    
     [Inspectable(category="General")]
     
     /**
@@ -476,7 +487,14 @@ public class BubbleSeries extends Series
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var minRadius:Number = 0;
+    public function get minRadius():Number
+    {
+        return _minRadius;
+    }
+    public function set minRadius(value:Number):void
+    {
+        _minRadius = value;
+    }
 
     //----------------------------------
     //  radiusAxis

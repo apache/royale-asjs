@@ -781,6 +781,7 @@ package mx.charts
         
         /**
          *  @private
+         *  @royalesuppresspublicvarwarning
          */
         public var recursionFlag:Boolean = true;
         
@@ -1462,6 +1463,8 @@ package mx.charts
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
          *  @productversion Flex 3
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var legendItemClass:Class = LegendItem;
         

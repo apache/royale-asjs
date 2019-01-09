@@ -89,6 +89,8 @@ public class NumberBase
 	//  decimalSeparatorFrom
 	//----------------------------------
 
+    private var _decimalSeparatorFrom:String;
+    
 	/**
      *  Decimal separator character to use
 	 *  when parsing an input String.
@@ -100,12 +102,20 @@ public class NumberBase
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var decimalSeparatorFrom:String;
+	public function get decimalSeparatorFrom():String
+    {
+        return _decimalSeparatorFrom;
+    }
+    public function set decimalSeparatorFrom(value:String):void
+    {
+        _decimalSeparatorFrom = value;
+    }
 
 	//----------------------------------
 	//  decimalSeparatorTo
 	//----------------------------------
 
+    private var _decimalSeparatorTo:String;
 	/**
      *  Decimal separator character to use
 	 *  when outputting formatted decimal numbers.
@@ -117,12 +127,21 @@ public class NumberBase
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var decimalSeparatorTo:String;
+	public function get decimalSeparatorTo():String
+    {
+        return _decimalSeparatorTo;
+    }
+    public function set decimalSeparatorTo(value:String):void
+    {
+        _decimalSeparatorTo = value;
+    }
 
 	//----------------------------------
 	//  isValid
 	//----------------------------------
 
+    private var _isValid:Boolean = false;
+    
 	/**
 	 *  If <code>true</code>, the format succeeded,
 	 *  otherwise it is <code>false</code>.
@@ -132,12 +151,21 @@ public class NumberBase
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var isValid:Boolean = false;
+	public function get isValid():Boolean
+    {
+        return _isValid;
+    }
+    public function set isValid(value:Boolean):void
+    {
+        _isValid = value;
+    }
 
 	//----------------------------------
 	//  thousandsSeparatorFrom
 	//----------------------------------
 
+    private var _thousandsSeparatorFrom:String;
+    
 	/**
      *  Character to use as the thousands separator
 	 *  in the input String.
@@ -149,12 +177,21 @@ public class NumberBase
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var thousandsSeparatorFrom:String;
+	public function get thousandsSeparatorFrom():String
+    {
+        return _thousandsSeparatorFrom;
+    }
+    public function set thousandsSeparatorFrom(value:String):void
+    {
+        _thousandsSeparatorFrom = value;
+    }
 
 	//----------------------------------
 	//  thousandsSeparatorTo
 	//----------------------------------
 
+    private var _thousandsSeparatorTo:String;
+    
 	/**
      *  Character to use as the thousands separator
 	 *  in the output String.
@@ -166,7 +203,15 @@ public class NumberBase
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var thousandsSeparatorTo:String;
+	public function get thousandsSeparatorTo():String
+    {
+        return _thousandsSeparatorTo;
+    }
+    
+    public function set thousandsSeparatorTo(value:String):void
+    {
+        _thousandsSeparatorTo = value;
+    }
 
 	//--------------------------------------------------------------------------
 	//
