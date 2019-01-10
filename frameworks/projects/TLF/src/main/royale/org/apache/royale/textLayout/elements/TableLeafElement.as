@@ -39,7 +39,10 @@ package org.apache.royale.textLayout.elements {
 			return "TableLeafElement";
 		}
 
-		/** @private */
+		/** 
+         * @suppress {uselessCode}
+         * @private 
+         */
 		override public function createContentElement():void
 		{
 			// not sure if this makes sense...

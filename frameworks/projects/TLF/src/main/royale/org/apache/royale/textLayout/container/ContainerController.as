@@ -4589,12 +4589,14 @@ package org.apache.royale.textLayout.container
 				var xpos:int = horizontalScrollPosition + xOrigin;
 				var ypos:int = verticalScrollPosition;
 				//Fix bug 2869747 textFlow.flowComposer.getControllerAt(0)
-				if(!_hasScrollRect)
+                CONFIG::debug { 
+                if(!_hasScrollRect)
 				{
 //TODO scrollRect
 //						_container.scrollRect = null;
-						CONFIG::debug { Debugging.traceFTECall(null,_container,"clearContainerScrollRect()"); }
+						Debugging.traceFTECall(null,_container,"clearContainerScrollRect()");
 				}
+                }
 				
 				if (textLength == 0 || xpos == 0 && ypos == 0 && _contentLeft >= xOrigin && _contentTop >= 0 && contentRight <= compositionRight && contentBottom <= compositionBottom)
 				{

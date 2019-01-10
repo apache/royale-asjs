@@ -1749,6 +1749,7 @@ package org.apache.royale.textLayout.compose
 		}
 
 		/** @private 
+         * @suppress {uselessCode}
 		 * 
 		 * ? Get a list of rects of the characters in the given textline? Used to show selection? JF 
 		 */
