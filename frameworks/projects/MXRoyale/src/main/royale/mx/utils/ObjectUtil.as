@@ -754,7 +754,7 @@ public class ObjectUtil
         {
         var n:int;
         var i:int;
-
+        var p:String;
         //if (obj is ObjectProxy)
         //    obj = ObjectProxy(obj).object_proxy::object;
 
@@ -836,7 +836,7 @@ public class ObjectUtil
         }
         else*/ if (isDynamic)
         {
-            for (var p:String in obj)
+            for (p in obj)
             {
                 if (excludeObject[p] != 1)
                 {
@@ -976,7 +976,7 @@ public class ObjectUtil
         {
             var n:int;
             var i:int;
-
+            var p:String;
             //if (obj is ObjectProxy)
             //    obj = ObjectProxy(obj).object_proxy::object;
 
@@ -991,7 +991,6 @@ public class ObjectUtil
             var classAlias:String;
             var isDynamic:Boolean = false;
             var metadataInfo:Object;
-
             var excludeObject:Object = {};
             if (excludes)
             {
@@ -1075,12 +1074,10 @@ public class ObjectUtil
             result["properties"] = propertyNames;
             result["dynamic"] = isDynamic;
 //            result["metadata"] = metadataInfo = recordMetadata(properties);
-
-
             var isArray:Boolean = (obj is Array);
             if (isDynamic)
             {
-                for (var p:String in obj)
+                for (p in obj)
                 {
                     if (excludeObject[p] != 1)
                     {

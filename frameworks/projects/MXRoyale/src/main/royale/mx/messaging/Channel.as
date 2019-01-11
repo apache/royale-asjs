@@ -1467,7 +1467,7 @@ public class Channel extends EventDispatcher implements IMXMLObject
             {                                
                 // Apply exponential backoff.
                 var delay:int = 1000; // 1 second.
-                delay << ++_reliableReconnectAttempts;
+                delay = delay << ++_reliableReconnectAttempts;
                 if (delay < remaining)
                 {
                     new AsyncDispatcher(reconnect, null, delay);

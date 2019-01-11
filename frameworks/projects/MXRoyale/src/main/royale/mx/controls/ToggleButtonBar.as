@@ -223,7 +223,7 @@ public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayo
     public function ToggleButtonBar()
     {
         super();
-        widthType == ButtonBarModel.NATURAL_WIDTHS;
+        widthType = ButtonBarModel.NATURAL_WIDTHS;
     }
 
     /**

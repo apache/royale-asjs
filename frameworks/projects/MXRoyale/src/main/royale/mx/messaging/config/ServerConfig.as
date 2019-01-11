@@ -328,18 +328,14 @@ public class ServerConfig
     {
         var destination:XMLList = xml..destination.(@id == destinationId);
 
-        if (destination.length() > 0)
-        {
-            return destination.properties;
-        }
-        else
+        if (destination.length() == 0)
         {
             var message:String = resourceManager.getString(
                 "messaging", "unknownDestination", [ destinationId ]);
             throw new InvalidDestinationError(message);
         }
 
-        return destination;
+        return destination.properties;
     }
 
     //--------------------------------------------------------------------------

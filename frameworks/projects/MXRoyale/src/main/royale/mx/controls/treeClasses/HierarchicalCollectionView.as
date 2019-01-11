@@ -931,7 +931,7 @@ public class HierarchicalCollectionView extends EventDispatcher
 	            {
                     var p:*;
                     
-                    children == null;
+                    children = null;
 					// lookup doesn't work, must scan instead
                     COMPILE::SWF
                     {
