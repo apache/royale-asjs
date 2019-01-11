@@ -529,7 +529,7 @@ public class Form extends Container
             }
         }
 
-		if (labelWidthSet)
+		if (labelWidthSet && labelWidth > 0)
         	measuredLabelWidth = labelWidth;
 
         return labelWidth;
