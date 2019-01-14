@@ -986,15 +986,24 @@ public class ViewStack extends Container implements /*IHistoryManagerClient,*/ I
                     newHeight = child.explicitHeight;
             }
 
+            COMPILE::JS
+            {
+                // must set visible=true otherwise child has display:none
+                // and measurements of its children will not be correct
+                child.visible = true;
+            }
             // Don't send events for the size/move. The set visible below
             if (child.width != newWidth || child.height != newHeight)
                 child.setActualSize(newWidth, newHeight);
             if (child.x != left || child.y != top)
                 child.move(left, top);
 
-            // Now that the child is properly sized and positioned it
-            // can be shown.
-            child.visible = true;
+            COMPILE::SWF
+            {
+                // Now that the child is properly sized and positioned it
+                // can be shown.
+                child.visible = true;
+            }
         }
     }
 
