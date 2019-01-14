@@ -32,7 +32,7 @@ import mx.core.ContainerCreationPolicy;
 import mx.core.EdgeMetrics;
 import mx.core.IInvalidating;
 import mx.core.INavigatorContent;
-//import mx.core.ISelectableList;
+import mx.core.ISelectableList;
 import mx.core.IUIComponent;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
@@ -251,7 +251,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ViewStack extends Container // implements IHistoryManagerClient, ISelectableList
+public class ViewStack extends Container implements /*IHistoryManagerClient,*/ ISelectableList
 {
 //    include "../core/Version.as";
 
