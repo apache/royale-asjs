@@ -50,7 +50,10 @@ import spark.components.SkinnableContainer;
 import spark.components.beads.SkinnableContainerView;
 
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ItemRendererClassFactory;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 
 use namespace mx_internal;   //ListBase and List share selection properties that are mx_internal
 
@@ -489,7 +492,25 @@ public class ListBase  extends SkinnableContainer
      */
     public function set dataProvider(value:IList):void
     {
+        if (isWidthSizedToContent() || isHeightSizedToContent())
+            ((view as SkinnableContainerView).contentView as DataGroup).addEventListener("itemsCreated", itemsCreatedHandler);
         ((view as SkinnableContainerView).contentView as DataGroup).dataProvider = value;
+    }
+    
+    private function itemsCreatedHandler(event:Event):void
+    {
+        if (parent)
+        {
+            COMPILE::JS
+            {
+                // clear last width/height so elements size to content
+                element.style.width = "";
+                element.style.height = "";
+                ((view as SkinnableContainerView).contentView as DataGroup).element.style.width = "";
+                ((view as SkinnableContainerView).contentView as DataGroup).element.style.height = "";
+            }
+            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
     }
     
     //----------------------------------
@@ -619,7 +640,7 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      */
-    private var _labelField:String = "label";
+    //private var _labelField:String = "label";
     
     /**
      *  @private
@@ -646,7 +667,7 @@ public class ListBase  extends SkinnableContainer
      */
      public function get labelField():String
     {
-        return _labelField;
+         return (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).labelField;
     } 
     
     /**
@@ -654,12 +675,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set labelField(value:String):void
     {
-        if (value == _labelField)
-            return;
-            
-        _labelField = value;
-        //labelFieldOrFunctionChanged = true;
-        //invalidateProperties();
+        (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).labelField = value;
     } 
     
     //----------------------------------

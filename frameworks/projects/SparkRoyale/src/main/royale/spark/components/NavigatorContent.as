@@ -22,8 +22,8 @@ package spark.components
 //import flash.events.Event;
 import org.apache.royale.events.Event;
 /* import mx.core.ContainerCreationPolicy;
-import mx.core.IDeferredContentOwner;
-import mx.core.INavigatorContent */
+import mx.core.IDeferredContentOwner; */
+import mx.core.INavigatorContent;
 
 /**
  *  The NavigatorContent class defines a Spark container that can be used 
@@ -74,9 +74,9 @@ import mx.core.INavigatorContent */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class NavigatorContent extends SkinnableContainer 
+public class NavigatorContent extends SkinnableContainer implements INavigatorContent
 {
- //implements INavigatorContent
+
    // include "../core/Version.as";
     
 
@@ -114,10 +114,10 @@ public class NavigatorContent extends SkinnableContainer
      *  @private
      *  Storage for the icon property.
      */
-    /* private var _icon:Class = null;
+    private var _icon:Class = null;
 
     [Bindable("iconChanged")]
-    [Inspectable(category="General", defaultValue="", format="EmbeddedFile")] */
+    [Inspectable(category="General", defaultValue="", format="EmbeddedFile")]
 
     /**
      *  The Class of the icon displayed by some navigator
@@ -144,20 +144,20 @@ public class NavigatorContent extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get icon():Class
+    public function get icon():Class
     {
         return _icon;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set icon(value:Class):void
+    public function set icon(value:Class):void
     {
         _icon = value;
 
         dispatchEvent(new Event("iconChanged"));
-    } */
+    }
 
     //----------------------------------
     //  label
