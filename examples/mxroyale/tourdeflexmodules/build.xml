@@ -544,7 +544,9 @@
 		<compile-mxml folder="/spark/containers/" relmap="../../" example="BorderExample"/>
 		<compile-mxml folder="/spark/containers/" relmap="../../" example="GroupExample"/>
 		<compile-mxml folder="/spark/containers/" relmap="../../" example="PanelExample"/>
+         -->
 		<compile-mxml folder="/spark/containers/" relmap="../../" example="TabNavigator1Example"/>
+        <!--
 		<compile-mxml folder="/spark/containers/" relmap="../../" example="TabNavigator2Example"/>
 		<compile-mxml folder="/spark/skinning/" relmap="../../" example="ButtonWithIconExample"/>
 		<compile-mxml folder="/spark/skinning/" relmap="../../" example="SkinningApplication1Example"/>
