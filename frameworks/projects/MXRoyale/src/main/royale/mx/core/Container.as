@@ -392,6 +392,45 @@ public class Container extends UIComponent
 		typeNames = "Container";
     }
     
+    //----------------------------------
+    //  defaultButton
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the defaultButton property.
+     */
+    private var _defaultButton:IFlexDisplayObject;
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  The Button control designated as the default button
+     *  for the container.
+     *  When controls in the container have focus, pressing the
+     *  Enter key is the same as clicking this Button control.
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get defaultButton():IFlexDisplayObject
+    {
+        return _defaultButton;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set defaultButton(value:IFlexDisplayObject):void
+    {
+        _defaultButton = value;
+        //ContainerGlobals.focusedContainer = null;
+    }
+    
     
     //----------------------------------
     //  textDecoration
