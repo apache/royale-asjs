@@ -3090,16 +3090,9 @@ j|Spinner {
   width: 100%;
   height: 100%;
   content: "";
-  background-color: rgba(0, 0, 0, 0.65);
-  will-change: opacity;
-  transition: opacity 0.4s 0ms;
 }
 .popup-content .jewel.popupcontent {
   display: inline-flex;
-  border: 0px;
-  border-radius: 10px;
-  padding: 20px;
-  background: white;
   position: relative;
   transform: translate(-50%, 100%);
   transition: none;
@@ -3108,7 +3101,6 @@ j|Spinner {
   top: calc(100% - 10px);
   left: 50%;
   touch-action: none;
-  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
   opacity: 0;
 }
 .popup-content.open {
@@ -3136,7 +3128,6 @@ j|Spinner {
 @media (min-width: 992px) {
   .popup-content .jewel.popupcontent {
     transform: translate(-50%, -60%);
-    box-shadow: none !important;
   }
   .popup-content.open .jewel.popupcontent {
     top: 50%;
