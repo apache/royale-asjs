@@ -55,7 +55,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class PopUp extends StyledUIBase implements IPopUpHost, IPopUpHostParent
+	public class PopUp extends StyledUIBase
 	{
 		/**
 		 *  constructor.
@@ -71,26 +71,6 @@ package org.apache.royale.jewel
 			
 			typeNames = "jewel popup";
 		}
-
-		/**
-         *  Form can host error tips but they will be in the layout, if any
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        public function get popUpParent():IPopUpHostParent
-        {
-            return this;
-        }
-
-        /**
-         */
-        public function get popUpHost():IPopUpHost
-        {
-            return this;
-        }
 
 		private var _modal:Boolean;
 

@@ -292,6 +292,10 @@ package org.apache.royale.jewel.beads.validators
 				_host = UIUtils.findPopUpHost(hostComponent);
 				_host.popUpParent.addElement(_errorTip, false);
 			}
+			COMPILE::JS
+			{
+				hostComponent.element.addEventListener("blur",removeTip);
+			}
 
             _errorTip.text = errorText;
 
@@ -305,7 +309,17 @@ package org.apache.royale.jewel.beads.validators
 					hostClassList.add("errorBorder");
 			}
 		}
-		
+		private function removeTip(ev:Event):void
+		{
+			if(_errorTip){
+				_errorTip.parent.removeElement(_errorTip);
+				_errorTip = null;
+			}
+			COMPILE::JS
+			{
+				hostComponent.element.removeEventListener("blur",removeTip);
+			}
+		}
 
 		/**
 		 *  Determines the position of the errorTip.
