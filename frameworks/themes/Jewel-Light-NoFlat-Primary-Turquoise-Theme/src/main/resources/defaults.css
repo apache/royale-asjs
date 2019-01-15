@@ -399,6 +399,39 @@ j|Card {
   border: 1px solid #1a6b65;
 }
 
+.jewel.footerbar .footerBarAppHeader {
+  background: linear-gradient(#404040, #262626);
+  border-top: 1px solid #595959;
+  border-bottom: 1px solid black;
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+}
+.jewel.footerbar .footerBarAppHeader.has-drawer {
+  width: calc(100% - 240px);
+}
+.jewel.footerbar .jewel.barsection {
+  padding: 8px 12px;
+}
+.jewel.footerbar .jewel.barsection button {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 12px;
+  fill: #FFFFFF;
+  color: inherit;
+  text-shadow: 0 -1px 0 rgba(11, 45, 43, 0.7);
+}
+.jewel.footerbar .jewel.barsection button:hover, .jewel.footerbar .jewel.barsection button:hover:focus, .jewel.footerbar .jewel.barsection button:active, .jewel.footerbar .jewel.barsection button:active:focus, .jewel.footerbar .jewel.barsection button:focus {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.footerbar .jewel.barsection button[disabled] {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
 .jewel.formheading {
   color: #1f7f78;
   font-size: 1.4em !important;
