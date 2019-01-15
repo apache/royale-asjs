@@ -23,6 +23,7 @@
 	<component id="TransformBead" class="org.apache.royale.svg.TransformBead" />
 	<component id="ClipBead" class="org.apache.royale.svg.ClipBead" />
 	<component id="DropShadowFilter" class="org.apache.royale.svg.DropShadowFilter" />
+	<component id="BevelFilter" class="org.apache.royale.svg.BevelFilter" />
 	<component id="Filter" class="org.apache.royale.svg.Filter" />
 	<component id="OffsetFilterElement" class="org.apache.royale.svg.OffsetFilterElement" />
 	<component id="ColorMatrixFilterElement" class="org.apache.royale.svg.ColorMatrixFilterElement" />
