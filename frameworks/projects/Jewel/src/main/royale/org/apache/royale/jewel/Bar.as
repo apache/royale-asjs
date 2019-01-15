@@ -18,20 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.events.Event;
-
 	COMPILE::SWF
     {
+		import flash.display.DisplayObject;
+
 		import org.apache.royale.core.IRenderedObject;
-        import flash.display.DisplayObject;
     }
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IUIBase;
 
 	/**
 	 *  The Bar class is a container component for different items like
