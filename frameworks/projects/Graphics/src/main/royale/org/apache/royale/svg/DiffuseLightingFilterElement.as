@@ -19,116 +19,97 @@
 package org.apache.royale.svg
 {
 	
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.CSSUtils;
+
 	COMPILE::JS 
 	{
 		import org.apache.royale.graphics.utils.addSvgElementToElement;
 	}
 
 	/**
-	 *  The CompositeFilterElement takes two objects and applies Porter/Duff operators
+	 *  The DiffuseLightingFilterElement 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Royale 0.9.5
 	 */
-	public class CompositeFilterElement extends FilterElement
+	public class DiffuseLightingFilterElement extends FilterElement
 	{
-		private var _k4:Number
-		private var _k3:Number
-		private var _k2:Number
-		private var _k1:Number;
-		private var _in2:String;
-		private var _operator:String;
+		
+		private var _surfaceScale:Number;
+		private var _azimuth:Number = 0;
+		private var _lightingColor:uint = 0xFFFFFFFF;
+		private var _elevation:Number = 0;
 
-		public function CompositeFilterElement()
+		public function DiffuseLightingFilterElement()
 		{
 		}
 		
-		
-		/**
-		 * @royaleignorecoercion Element
-		 */
+		/*
+		* @royaleignorecoercion Element
+		*/
 		override public function build():void
 		{
 			COMPILE::JS 
 			{
 				super.build();
-				filterElement.setAttribute("in2", in2);
-				filterElement.setAttribute("k1", k1);
-				filterElement.setAttribute("k2", k2);
-				filterElement.setAttribute("k3", k3);
-				filterElement.setAttribute("k4", k4);
-				filterElement.setAttribute("operator", operator);
+				filterElement.setAttribute("lightingColor", CSSUtils.attributeFromColor(lightingColor));
+				filterElement.setAttribute("surfaceScale", surfaceScale);
+				var distantLight:Element = addSvgElementToElement(filterElement, "feDistantLight") as Element;
+				distantLight.setAttribute("azimuth", "" + azimuth);
+				distantLight.setAttribute("elevation", "" + elevation);
 			}
 		}
-
-		public function get in2():String 
-		{
-			return _in2;
-		}
-		
-		public function set in2(value:String):void 
-		{
-			_in2 = value;
-		}
-
-		public function get operator():String 
-		{
-			return _operator;
-		}
-		
-		public function set operator(value:String):void 
-		{
-			_operator = value;
-		}
-
+			
 		COMPILE::JS
 		override protected function get filterElementType():String
 		{
-			return "feComposite";
+			return "feDiffuseLighting";
 		}
 
 
-		public function get k1():Number 
+		public function get azimuth():Number 
 		{
-			return _k1;
+			return _azimuth;
 		}
 		
-		public function set k1(value:Number):void 
+		public function set azimuth(value:Number):void 
 		{
-			_k1 = value;
+			_azimuth = value;
 		}
 
-		public function get k2():Number 
+		public function get elevation():Number  
 		{
-			return _k2;
+			return _elevation;
 		}
 		
-		public function set k2(value:Number):void 
+		public function set elevation(value:Number ):void 
 		{
-			_k2 = value;
+			_elevation = value;
 		}
 
-		public function get k3():Number 
+		public function get surfaceScale():Number 
 		{
-			return _k3;
+			return _surfaceScale;
 		}
 		
-		public function set k3(value:Number):void 
+		public function set surfaceScale(value:Number):void 
 		{
-			_k3 = value;
+			_surfaceScale = value;
 		}
 
-		public function get k4():Number 
+		public function get lightingColor():uint  
 		{
-			return _k4;
+			return _lightingColor;
 		}
 		
-		public function set k4(value:Number):void 
+		public function set lightingColor(value:uint ):void 
 		{
-			_k4 = value;
+			_lightingColor = value;
 		}
 	}
 }
