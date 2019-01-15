@@ -3687,10 +3687,6 @@ j|TitleBar {
   justify-content: flex-start;
   order: -1;
 }
-.jewel.topappbar .jewel.barsection.alignRight {
-  justify-content: flex-end;
-  order: 1;
-}
 .jewel.topappbar .jewel.barsection button {
   will-change: transform, opacity;
   display: flex;
@@ -3748,10 +3744,6 @@ j|BarTitle {
   z-index: 1;
   justify-content: flex-start;
   order: -1;
-}
-.jewel.barsection.alignRight {
-  justify-content: flex-end;
-  order: 1;
 }
 
 .jewel .wizard .main {
