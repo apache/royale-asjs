@@ -22,6 +22,7 @@ limitations under the License.
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:html="library://ns.apache.org/royale/html" 
     xmlns:models="models.*" 
+    xmlns:c="components.*"
     xmlns:local="*">
 
     <fx:Script>
@@ -84,9 +85,12 @@ limitations under the License.
             <j:BarSection>
                 <j:IconButton>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true"/>
+                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true" click="popup.open = !popup.open"/>
                     </j:icon>
                 </j:IconButton>
+                <j:PopUp localId="popup">
+                    <c:FormExample label="Form example in a PopUp from FooterBar"/>
+                </j:PopUp>
                 <j:IconButton>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
