@@ -50,14 +50,14 @@ limitations under the License.
     </fx:Script>
 
     <j:model>
-        <models:MainNavigationModel id="mainNavigationModel"/>
+        <models:MainNavigationModel localId="mainNavigationModel"/>
     </j:model>
 
     <j:beads>
         <js:ContainerDataBinding/>
     </j:beads>
 
-    <j:Drawer id="drawer">
+    <j:Drawer localId="drawer">
         <j:beads>
             <j:ResponsiveDrawer auto="true"/>
         </j:beads>
@@ -79,7 +79,39 @@ limitations under the License.
         </j:DrawerContent>
     </j:Drawer>
 
-    <j:TopAppBar id="topappbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
+    <j:FooterBar localId="footerbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
+        <j:BarRow>
+            <j:BarSection>
+                <j:IconButton>
+                    <j:icon>
+                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true"/>
+                    </j:icon>
+                </j:IconButton>
+                <j:IconButton>
+                    <j:icon>
+                        <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
+                    </j:icon>
+                </j:IconButton>
+            </j:BarSection>
+            <j:BarSection itemsHorizontalAlign="itemsCenter">
+                <html:H3 text="FooterBar" />
+            </j:BarSection>
+            <j:BarSection itemsHorizontalAlign="itemsRight">
+                <j:IconButton>
+                    <j:icon>
+                        <js:FontIcon text="{MaterialIconType.ADD_ALARM}" material="true"/>
+                    </j:icon>
+                </j:IconButton>
+                <j:IconButton>
+                    <j:icon>
+                        <js:FontIcon text="{MaterialIconType.ANNOUNCEMENT}" material="true"/>
+                    </j:icon>
+                </j:IconButton>
+            </j:BarSection>
+        </j:BarRow>
+    </j:FooterBar>
+
+    <j:TopAppBar localId="topappbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
         <j:BarRow>
             <j:BarSection>
                 <j:IconButton click="drawer.isOpen ? drawer.close() : drawer.open()">
@@ -92,18 +124,15 @@ limitations under the License.
                 </j:IconButton>
                 <j:BarTitle text="Apache Royale Tour de Jewel"/>
             </j:BarSection>
-            <!-- <j:BarSection itemsHorizontalAlign="itemsCenter">
-                <html:H3 text="Hi!" />
-            </j:BarSection> -->
             <j:BarSection itemsHorizontalAlign="itemsRight">
-                <!-- <j:IconButton click="drawer.fixed = !drawer.fixed">
+                <j:ToggleButton click="footerbar.visible = !footerbar.visible">
                     <j:beads>
-                        <j:ToolTip toolTip="Lock(fix) or Unlock the TopBar"/>
+                        <j:ToolTip toolTip="show/hide FooterBar"/>
                     </j:beads>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.VISIBILITY}" material="true"/>
+                        <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" material="true"/>
                     </j:icon>
-                </j:IconButton> -->
+                </j:ToggleButton>
                 <j:ToggleButton click="toggleTopAppBarFixed()">
                     <j:beads>
                         <j:ToolTip toolTip="Lock(fix) or Unlock the TopBar"/>
@@ -116,7 +145,7 @@ limitations under the License.
         </j:BarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent id="main" hasTopAppBar="true" className="mainContent" selectedContent = "welcome_panel">
+    <j:ApplicationMainContent localId="main" hasTopAppBar="true" className="mainContent" selectedContent = "welcome_panel">
         <local:WelcomeSection name="welcome_panel"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>

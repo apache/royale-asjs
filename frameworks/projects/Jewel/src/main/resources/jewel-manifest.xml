@@ -94,6 +94,7 @@
     
     <component id="Bar" class="org.apache.royale.jewel.Bar"/>
     <component id="TopAppBar" class="org.apache.royale.jewel.TopAppBar"/>
+    <component id="FooterBar" class="org.apache.royale.jewel.FooterBar"/>
     <component id="BarRow" class="org.apache.royale.jewel.supportClasses.bar.BarRow"/>
     <component id="BarSection" class="org.apache.royale.jewel.supportClasses.bar.BarSection"/>
     <component id="BarTitle" class="org.apache.royale.jewel.supportClasses.bar.BarTitle"/>

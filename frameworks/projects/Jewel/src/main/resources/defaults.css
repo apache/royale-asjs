@@ -716,6 +716,71 @@ j|DropDownList {
     IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList");
   }
 }
+.jewel.footerbar {
+  display: inline-flex;
+  flex: 1 1 auto;
+}
+.jewel.footerbar .footerBarAppHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+  z-index: 4;
+  position: fixed;
+  bottom: 0px;
+}
+.jewel.footerbar .footerBarAppHeader.fixed {
+  transition: box-shadow 200ms linear;
+}
+.jewel.footerbar .jewel.barrow {
+  display: flex;
+  position: relative;
+  width: 100%;
+  height: 64px;
+}
+.jewel.footerbar .jewel.barsection {
+  display: inline-flex;
+  flex: 1 1 auto;
+  align-items: center;
+  min-width: 0;
+  z-index: 1;
+  justify-content: flex-start;
+  order: -1;
+}
+.jewel.footerbar .jewel.barsection button {
+  will-change: transform, opacity;
+  display: flex;
+  position: relative;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  outline: none;
+  text-decoration: none;
+  opacity: 1;
+}
+.jewel.footerbar .jewel.barsection button .fonticon {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.jewel.footerbar .jewel.bartitle {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  white-space: nowrap;
+  overflow: hidden;
+  z-index: 1;
+  line-height: 2rem;
+  letter-spacing: 0.0125em;
+  text-decoration: inherit;
+  text-transform: inherit;
+  text-overflow: ellipsis;
+}
+
+j|FooterBar {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
 .jewel.formheading {
   line-height: 2em;
 }

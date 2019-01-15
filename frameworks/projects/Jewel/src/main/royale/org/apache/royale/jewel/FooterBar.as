@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.events.Event;
-
 	COMPILE::SWF
     {
 		import flash.display.DisplayObject;
@@ -33,9 +31,9 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The TopAppBar class is a container component for different items like
-	 *  application title, navigation icon, and/or icon buttons.
-	 *  Normaly is located at the top of an application and use to fill all 
+	 *  The FooterBar class is a container component for different items like
+	 *  navigation icons and/or buttons.
+	 *  Normaly is located at the bottom of an application and use to fill all 
 	 *  horizontal availale space. It's responsive as screen size changes
 	 *
 	 *  @langversion 3.0
@@ -43,7 +41,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TopAppBar extends Bar
+	public class FooterBar extends Bar
 	{
 		/**
 		 *  constructor.
@@ -53,17 +51,17 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function TopAppBar()
+		public function FooterBar()
 		{
 			super();
 
-            typeNames = "jewel topappbar";
+            typeNames = "jewel footerbar";
 			setListenersForFixed();
 		}
 
 		override protected function get headerClassName():String
 		{
-			return "topBarAppHeader";
+			return "footerBarAppHeader";
 		}
 
 		COMPILE::JS
@@ -78,12 +76,12 @@ package org.apache.royale.jewel
 			if(_fixed)
 			{
 				header.classList.add("fixed");
-				window.removeEventListener('scroll', scrollHandler, false);
+				// window.removeEventListener('scroll', scrollHandler, false);
 			}
 			else
 			{
 				header.classList.remove("fixed");
-				window.addEventListener('scroll', scrollHandler, false);
+				// window.addEventListener('scroll', scrollHandler, false);
 			}
 			}
 		}
@@ -97,31 +95,31 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		private function scrollHandler(event:Event = null):void
-        {
-			COMPILE::JS
-            {
-				var offset:Number;
-				var currentPosition:Number = Math.max(window.pageYOffset, 0);
-				var diff:Number = currentPosition - lastPosition;
-				lastPosition = currentPosition;
+		// private function scrollHandler(event:Event = null):void
+        // {
+		// 	COMPILE::JS
+        //     {
+		// 		var offset:Number;
+		// 		var currentPosition:Number = Math.max(window.pageYOffset, 0);
+		// 		var diff:Number = currentPosition - lastPosition;
+		// 		lastPosition = currentPosition;
 
-				currentOffset -= diff;
+		// 		currentOffset -= diff;
 				
-				if (currentOffset > 0) {
-					currentOffset = 0;
-				} else if (Math.abs(currentOffset) > header.clientHeight) {
-					currentOffset = -header.clientHeight;
-				}
+		// 		if (currentOffset > 0) {
+		// 			currentOffset = 0;
+		// 		} else if (Math.abs(currentOffset) > header.clientHeight) {
+		// 			currentOffset = -header.clientHeight;
+		// 		}
 
-				offset = currentOffset;
-				if (Math.abs(offset) >= header.clientHeight) {
-					offset = -128;
-				}
+		// 		offset = currentOffset;
+		// 		if (Math.abs(offset) >= header.clientHeight) {
+		// 			offset = -128;
+		// 		}
 				
-				header.style.top = offset + "px";
-			}
-		}
+		// 		header.style.top = offset + "px";
+		// 	}
+		// }
 
 
 		protected var _fixed:Boolean = false;

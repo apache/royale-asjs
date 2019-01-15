@@ -1,0 +1,78 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel FooterBar
+
+// FooterBar variables
+$footer-bar-row-height: 64px
+$footer-bar-section-vertical-padding: 8px
+$footer-bar-section-horizontal-padding: 12px
+$footer-bar-button-padding: 12px
+
+.jewel.footerbar
+
+    .footerBarAppHeader
+        @if $flat
+            background: $footer-color
+            border: 0px solid
+        @else
+            background: linear-gradient(lighten($footer-color, 5%), darken($footer-color, 5%))
+            border-top: 1px solid lighten($footer-color, 15%)
+            border-bottom: 1px solid darken($footer-color, 20%)
+            // box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7)
+        
+        color: $font-theme-color
+
+        @if not $flat //and $text-color == $font-theme-color
+            text:
+                shadow: 0 -1px 0 rgba(darken($footer-color, 30%), .7)
+
+        // this adjust the FooterBar width when there's a drawer to avoid content on the right get lost (overflow the screen)
+        // used by FooterBar
+        // depends on Drawer: $drawer-fixed-width
+        &.has-drawer
+            width: calc(100% - #{$drawer-fixed-width})
+
+
+    .jewel.barrow 
+        
+    .jewel.barsection 
+        padding: $footer-bar-section-vertical-padding $footer-bar-section-horizontal-padding
+        
+        button
+            background: transparent
+            box-shadow: none
+            border: none
+            padding: $footer-bar-button-padding
+            fill: $font-theme-color
+            color: inherit
+            
+            @if not $flat //and $text-color == $font-theme-color
+                text:
+                    shadow: 0 -1px 0 rgba(darken($primary-color, 30%), .7)
+                    
+            &:hover, &:hover:focus, &:active, &:active:focus, &:focus
+                background: transparent
+                box-shadow: none
+                border: none
+
+            &[disabled]
+                background: transparent
+                box-shadow: none
+                border: none
