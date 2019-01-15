@@ -76,6 +76,14 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
         if (n == 0)
             return false;
         
+        if (target != host)
+        {
+            var tlc:UIComponent = host as UIComponent;
+            if (!tlc.isWidthSizedToContent() &&
+                !tlc.isHeightSizedToContent())
+                target.setActualSize(tlc.width, tlc.height);
+        }
+        
         var w:Number = target.width;
         var h:Number = target.height;
         if (target.isHeightSizedToContent())

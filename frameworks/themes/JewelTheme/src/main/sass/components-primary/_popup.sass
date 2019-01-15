@@ -20,8 +20,34 @@
 // Jewel PopUp
 
 // PopUp variables
+$popup-content-overlay-color: #000 !default
+$popup-content-overlay-opacity: .65 !default
 
 .jewel.popup
 
 .popup-content
     
+    &::before
+        
+        background-color: rgba($popup-content-overlay-color, $popup-content-overlay-opacity)
+        will-change: opacity
+        transition: animation-standard(opacity, .4s)
+
+    .jewel.popupcontent
+        border: 0px
+        border-radius: 10px
+        padding: 20px
+        background: white
+        
+        box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
+
+    &.open
+        
+        &::before
+        
+        .jewel.popupcontent
+
+@media (min-width: $desktop)
+    .popup-content
+        .jewel.popupcontent
+            box-shadow: none !important

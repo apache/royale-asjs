@@ -1967,7 +1967,7 @@ COMPILE::JS
             }
 		}
 		COMPILE::JS {
-			if (isNaN(_measuredWidth)) 
+			if (isNaN(_measuredWidth) || _measuredWidth <= 0) 
             {
                 var oldWidth:Object;
                 var oldLeft:String;
@@ -2040,7 +2040,7 @@ COMPILE::JS
             }
 		}
 		COMPILE::JS {
-            if (isNaN(_measuredHeight))
+            if (isNaN(_measuredHeight) || _measuredHeight <= 0)
             {
                 var oldHeight:Object;
                 var oldTop:String;

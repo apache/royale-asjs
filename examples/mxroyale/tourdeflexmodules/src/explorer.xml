@@ -374,7 +374,9 @@
 					<node label="Panel" module="spark/containers/PanelExample"/>
                     <!--
 					<node label="SkinnableDataContainer" module="spark/containers/SkinnableDataContainerExample" />
+                     -->
 					<node label="TabNavigator" module="spark/containers/TabNavigator1Example" />
+                     <!--
 					<node label="TabNavigator" module="spark/containers/TabNavigator2Example" />
                      -->
 					<node label="TileGroup" module="spark/containers/TileGroupExample" />

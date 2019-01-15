@@ -21,8 +21,6 @@
 
 // PopUp variables
 $popup-content-margin-offset: 10px
-$popup-content-overlay-color: #000 !default
-$popup-content-overlay-opacity: .65 !default
 
 .jewel.popup
     display: inline-flex
@@ -42,8 +40,6 @@ $popup-content-overlay-opacity: .65 !default
 
     z-index: 5
 
-    // color: rgba(0, 0, 0, 0.8)
-
     &::before
         position: absolute
         display: block
@@ -55,19 +51,9 @@ $popup-content-overlay-opacity: .65 !default
         height: 100%
 
         content: ""
-        // opacity: 0
-
-        background-color: rgba($popup-content-overlay-color, $popup-content-overlay-opacity)
-        will-change: opacity
-        transition: animation-standard(opacity, .4s)
-
 
     .jewel.popupcontent
         display: inline-flex
-        border: 0px
-        border-radius: 10px
-        padding: 20px
-        background: white
         
         position: relative
         transform: translate(-50%, 100%)
@@ -78,8 +64,7 @@ $popup-content-overlay-opacity: .65 !default
         top: calc(100% - #{$popup-content-margin-offset})
         left: 50%
         touch-action: none
-        box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
-
+        
         opacity: 0
 
     &.open
@@ -105,24 +90,11 @@ $popup-content-overlay-opacity: .65 !default
 
 @media (min-width: $desktop)
     .popup-content
-        // &::before
-            // background-color: rgba($popup-content-overlay-color, 0)
         .jewel.popupcontent
-            // transform: translate(100%, 40%)
             transform: translate(-50%, -60%)
-            // transition: none
-            box-shadow: none !important
-
+            
         &.open
             .jewel.popupcontent
-                //transform: translate(100%, 50%)
-                // margin: auto
-                // top: 0
-                // bottom: 0
-                // left: 0
-                // right: 0
-                // position: absolute
-                // position: absolute
                 top: 50%
                 left: 50%
                 margin-right: -50%
