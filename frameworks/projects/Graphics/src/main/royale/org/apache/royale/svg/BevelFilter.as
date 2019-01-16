@@ -55,6 +55,7 @@ package org.apache.royale.svg
 		{
 			children = [];
 			var blurFilterElement:BlurFilterElement = new BlurFilterElement();
+			blurFilterElement.in = "SourceGraphic";
 			blurFilterElement.stdDeviation = distance;
 			children.push(blurFilterElement);
 			var diffuseLightingFilterElement:DiffuseLightingFilterElement = new DiffuseLightingFilterElement();
@@ -63,6 +64,10 @@ package org.apache.royale.svg
 			diffuseLightingFilterElement.lightingColor = highlightColor;
 			diffuseLightingFilterElement.elevation = altitude;
 			diffuseLightingFilterElement.result = "diffuseResult";
+			if (result)
+			{
+				diffuseLightingFilterElement.result += "_" + result;
+			}
 			children.push(diffuseLightingFilterElement);
 			var cf1:CompositeFilterElement = new CompositeFilterElement();
 			cf1.k1 = 1;
@@ -70,7 +75,7 @@ package org.apache.royale.svg
 			cf1.k3 = 0;
 			cf1.k4 = 0;
 			cf1.operator = "arithmetic";
-			cf1.in2 = "diffuseResult";
+			cf1.in2 = diffuseLightingFilterElement.result;
 			children.push(cf1);
 			var cf2:CompositeFilterElement = new CompositeFilterElement();
 			cf2.k1 = 1;
@@ -79,6 +84,7 @@ package org.apache.royale.svg
 			cf2.k4 = 0;
 			cf2.operator = "arithmetic";
 			cf2.in2 = "SourceGraphic";
+			cf2.result = result;
 			children.push(cf2);
 		}
 
