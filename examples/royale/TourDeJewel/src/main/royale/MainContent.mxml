@@ -149,7 +149,7 @@ limitations under the License.
         </j:BarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent localId="main" hasTopAppBar="true" className="mainContent" selectedContent = "welcome_panel">
+    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainContent" selectedContent = "welcome_panel">
         <local:WelcomeSection name="welcome_panel"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>

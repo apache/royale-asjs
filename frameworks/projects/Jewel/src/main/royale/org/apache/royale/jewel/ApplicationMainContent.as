@@ -81,6 +81,35 @@ package org.apache.royale.jewel
                 }
             }
 		}
+		
+		private var _hasFooterBar:Boolean;
+
+        /**
+         *  a boolean flag to indicate if the container needs to make some room
+		 *  for a FooterBar so content doesn't be hide
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+		public function get hasFooterBar():Boolean
+		{
+            return _hasFooterBar;
+		}
+
+		public function set hasFooterBar(value:Boolean):void
+		{
+            if (_hasFooterBar != value)
+            {
+                _hasFooterBar = value;
+
+                COMPILE::JS
+                {
+                    toggleClass("has-footerbar", _hasFooterBar);
+                }
+            }
+		}
 
 		private var _selectedContent:String;
 		/**
