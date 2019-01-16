@@ -31,8 +31,15 @@ limitations under the License.
         {
         	label.text = "jewel label clicked";
         }
+
+		[Bindable]
+		public var a_string:String = "a Label";
     	]]>
 	</fx:Script>
+
+	<j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
 
 	<j:Card width="350">
 		<html:H3 text="Jewel Label"/>
@@ -44,5 +51,9 @@ limitations under the License.
 		</j:Label>
 
 		<j:Label text="This is a multiline label with more text that wraps if container has set a width" multiline="true"/>
+
+		<j:Label>
+			<j:html><![CDATA[<p>This is <strong><font size='16'>{a_string}</font></strong><br>using inline <u>HTML</u></p>]]></j:html>
+		</j:Label>
 	</j:Card>
 </c:ExampleAndSourceCodeTabbedSectionContent>
