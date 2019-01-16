@@ -89,7 +89,7 @@ limitations under the License.
                     </j:icon>
                 </j:IconButton>
                 <j:PopUp localId="popup">
-                    <c:FormExample label="Form example in a PopUp from FooterBar"/>
+                    <c:FormExample label="Form example in a PopUp from FooterBar" width="615" height="392"/>
                 </j:PopUp>
                 <j:IconButton>
                     <j:icon>
