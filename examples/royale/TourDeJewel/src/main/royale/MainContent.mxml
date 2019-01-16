@@ -22,6 +22,7 @@ limitations under the License.
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:html="library://ns.apache.org/royale/html" 
     xmlns:models="models.*" 
+    xmlns:c="components.*"
     xmlns:local="*">
 
     <fx:Script>
@@ -84,9 +85,12 @@ limitations under the License.
             <j:BarSection>
                 <j:IconButton>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true"/>
+                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true" click="popup.open = !popup.open"/>
                     </j:icon>
                 </j:IconButton>
+                <j:PopUp localId="popup">
+                    <c:FormExample label="Form example in a PopUp from FooterBar" width="615" height="392"/>
+                </j:PopUp>
                 <j:IconButton>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
@@ -145,7 +149,7 @@ limitations under the License.
         </j:BarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent localId="main" hasTopAppBar="true" className="mainContent" selectedContent = "welcome_panel">
+    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainContent" selectedContent = "welcome_panel">
         <local:WelcomeSection name="welcome_panel"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>
