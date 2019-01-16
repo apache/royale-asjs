@@ -30,6 +30,7 @@ package org.apache.royale.svg
 	COMPILE::JS 
 	{
 		import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.createSVG;
 	}
     public class TransformableCompoundGraphic extends CompoundGraphic
     {
@@ -74,7 +75,7 @@ package org.apache.royale.svg
 		override protected function createElement():WrappedHTMLElement
 		{
 			super.createElement();
-			_groupElement = document.createElementNS('http://www.w3.org/2000/svg', 'g') as WrappedHTMLElement;
+			_groupElement = createSVG('g') as WrappedHTMLElement;
 			element.appendChild(_groupElement);
 			return element;
 		}
