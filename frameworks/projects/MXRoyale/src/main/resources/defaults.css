@@ -91,7 +91,7 @@ adg|AdvancedDataGridColumnList {
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadController: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer");

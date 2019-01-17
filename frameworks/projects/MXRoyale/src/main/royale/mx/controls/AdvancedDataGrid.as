@@ -4416,6 +4416,50 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     }
 
     /**
+     *  Open a node
+     *
+     *  @param item Branch node to open.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public function openNode(item:Object):void
+    {
+        IHierarchicalCollectionView(collection).openNode(item);
+        // sent from strand to notify DataGridView    
+        var event:CollectionEvent = new CollectionEvent(
+            CollectionEvent.COLLECTION_CHANGE,
+            false, 
+            true,
+            CollectionEventKind.REFRESH);
+        dispatchEvent(event);
+    }
+
+    /**
+     *  Open a node
+     *
+     *  @param item Branch node to open.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.4
+     */
+    public function closeNode(item:Object):void
+    {
+        IHierarchicalCollectionView(collection).closeNode(item);
+        // sent from strand to notify DataGridView    
+        var event:CollectionEvent = new CollectionEvent(
+            CollectionEvent.COLLECTION_CHANGE,
+            false, 
+            true,
+            CollectionEventKind.REFRESH);
+        dispatchEvent(event);
+    }
+    
+    /**
      *  @private
      */
     /* private function makeMask():DisplayObject
