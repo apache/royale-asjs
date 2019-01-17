@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.beads.controls
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -28,7 +29,6 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.core.IParentIUIBase;
 
 	/**
 	 *  The ToolTip class is a specialty bead that can be used with

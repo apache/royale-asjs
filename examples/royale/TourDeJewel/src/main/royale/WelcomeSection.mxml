@@ -70,9 +70,7 @@ limitations under the License.
                 </j:beads>
             </j:Button>
         </j:HGroup>
-
-        <j:Spacer height="200"/>
-
+        
         <html:Span text="(This search box doesn't implements logic at this time)"/>
     </j:Group>
 </c:ExampleAndSourceCodeTabbedSectionContent>
