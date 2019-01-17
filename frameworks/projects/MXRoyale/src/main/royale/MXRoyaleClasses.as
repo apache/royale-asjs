@@ -74,6 +74,7 @@ internal class MXRoyaleClasses
     import mx.controls.listClasses.VirtualDataItemRendererFactoryForICollectionViewData; VirtualDataItemRendererFactoryForICollectionViewData;
     import mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData; VirtualDataItemRendererFactoryForIListData;
 	import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
+    import mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData; DataItemRendererFactoryForICollectionViewAdvancedDataGridData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
@@ -155,6 +156,8 @@ internal class MXRoyaleClasses
 	import mx.net.FileFilter; FileFilter;
 	import mx.events.ProgressEvent; ProgressEvent;
 	import mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
+    import mx.controls.beads.DataGridView; DataGridView;
 	import mx.formatters.Formatter; Formatter;
 	import mx.formatters.IFormatter; IFormatter;
 	import mx.formatters.NumberBase; NumberBase;

@@ -94,8 +94,8 @@ package mx.collections
  */
 public class Grouping
 {
-/*     include "../core/Version.as";
- */
+//    include "../core/Version.as";
+
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -150,9 +150,9 @@ public class Grouping
      *  @private
      *  Storage for the compareFunction property.
      */
-   /*  private var _compareFunction:Function;
+    private var _compareFunction:Function;
     
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
     
     /**
      *  The method used to compare items when sorting.
@@ -235,18 +235,18 @@ public class Grouping
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get compareFunction():Function
+    public function get compareFunction():Function
     {
         return _compareFunction;
     }
-*/
+
     /**
      *  @private
      */
-   /* public function set compareFunction(value:Function):void
+    public function set compareFunction(value:Function):void
     {
         _compareFunction = value;
-    } */
+    }
 
     //----------------------------------
     //  fields
@@ -326,9 +326,8 @@ public class Grouping
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-/*     public var groupingObjectFunction:Function;
- */
- }
+    public var groupingObjectFunction:Function;
+}
 
 
 }

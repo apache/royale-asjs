@@ -19,16 +19,16 @@
 
 package mx.collections
 {
-import org.apache.royale.events.Event;
-import org.apache.royale.utils.Timer;
 
-/* 
+/*
 import flash.events.TimerEvent;
 import flash.utils.Dictionary;
 import flash.utils.Timer;
 import flash.xml.XMLNode;
- */
-//import mx.collections.errors.ItemPendingError;
+
+import mx.collections.errors.ItemPendingError;
+*/
+    
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
@@ -43,40 +43,35 @@ use namespace mx_internal;
 [DefaultProperty("grouping")]
 
 /**
- *  The GroupingCollection2 class lets you create grouped data from flat data 
+ *  The GroupingCollection class lets you create grouped data from flat data 
  *  for display in the AdvancedDataGrid control.
- *  When you create the instance of the GroupingCollection2 from your flat data, 
+ *  When you create the instance of the GroupingCollection from your flat data, 
  *  you specify the field or fields of the data used to create the hierarchy.
  *
- *  <p><b>Note: </b>In the previous release of Flex, you used the GroupingCollection class 
- *  with the AdvancedDataGrid control. 
- *  The GroupingCollection2 class is new for Flex 4 and provides better performance 
- *  than GroupingCollection.</p>
- *
  *  <p>To populate the AdvancedDataGrid control with grouped data, 
- *  you create an instance of the GroupingCollection2 class from your flat data, 
- *  and then pass that GroupingCollection2 instance to the data provider 
+ *  you create an instance of the GroupingCollection class from your flat data, 
+ *  and then pass that GroupingCollection instance to the data provider 
  *  of the AdvancedDataGrid control. 
  *  To specify the grouping fields of your flat data, 
  *  you pass a Grouping instance to 
- *  the <code>GroupingCollection2.grouping</code> property. 
+ *  the <code>GroupingCollection.grouping</code> property. 
  *  The Grouping instance contains an Array of GroupingField instances, 
  *  one per grouping field. </p>
  *
- *  <p>The following example uses the GroupingCollection2 class to define
+ *  <p>The following example uses the GroupingCollection class to define
  *  two grouping fields: Region and Territory.</p>
  *
  *  <pre>
  *  &lt;mx:AdvancedDataGrid id=&quot;myADG&quot;    
  *    &lt;mx:dataProvider&gt; 
- *      &lt;mx:GroupingCollection2 id=&quot;gc&quot; source=&quot;{dpFlat}&quot;&gt; 
+ *      &lt;mx:GroupingCollection id=&quot;gc&quot; source=&quot;{dpFlat}&quot;&gt; 
  *        &lt;mx:grouping&gt; 
  *          &lt;mx:Grouping&gt; 
  *            &lt;mx:GroupingField name=&quot;Region&quot;/&gt; 
  *            &lt;mx:GroupingField name=&quot;Territory&quot;/&gt; 
  *          &lt;/mx:Grouping&gt; 
  *        &lt;/mx:grouping&gt; 
- *      &lt;/mx:GroupingCollection2&gt; 
+ *      &lt;/mx:GroupingCollection&gt; 
  *    &lt;/mx:dataProvider&gt;  
  *     
  *    &lt;mx:columns&gt; 
@@ -91,33 +86,42 @@ use namespace mx_internal;
  *
  *  @mxml
  *
- *  The <code>&lt;mx.GroupingCollection2&gt;</code> inherits all the tag attributes of its superclass, 
+ *  The <code>&lt;mx.GroupingCollection&gt;</code> inherits all the tag attributes of its superclass, 
  *  and defines the following tag attributes:</p>
  *
  *  <pre>
- *  &lt;mx:GroupingCollection2
+ *  &lt;mx:GroupingCollection
  *  <b>Properties </b>
  *    grouping="<i>No default</i>"
  *    source="<i>No default</i>"
  *    summaries="<i>No default</i>"
  *  /&gt;
  *  </pre>
+ * 
+ *  <p>This Class has been deprecated and replaced by a new Class
+ *  <code>GroupingCollection2</code> which provide faster, 
+ *  improved performance and a new summary calculation mechanism.
+ *  Class <code>SummaryField</code> has also been deprecated and 
+ *  replaced by a new Class <code>SummaryField2</code>.
+ *  Properties <code>operation</code> and <code>summaryFunction</code> are 
+ *  not present in the Class <code>SummaryField2</code>. 
+ *  A new property <code>summaryOperation</code> is introduced in 
+ *  <code>SummaryField2</code>.</p>
  *
  *  @see mx.controls.AdvancedDataGrid
  *  @see mx.collections.Grouping
  *  @see mx.collections.GroupingField
  *  
  *  @langversion 3.0
- *  @playerversion Flash 10
- *  @playerversion AIR 1.5
- *  @productversion Flex 4
- *  @royalesuppresspublicvarwarning
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Flex 3
  */
-public class GroupingCollection2 extends HierarchicalData implements IGroupingCollection2
+//[Deprecated(replacement="GroupingCollection2", since="4.0")]
+
+public class GroupingCollection extends HierarchicalData implements IGroupingCollection
 {
-
-
-    //include "../core/Version.as";
+//    include "../core/Version.as";
     
     //--------------------------------------------------------------------------
     //
@@ -129,20 +133,18 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  Constructor.
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
-    public function GroupingCollection2()
+    public function GroupingCollection()
     {
         super();
         
         newCollection = new ArrayCollection();
         super.source = newCollection;
         
-        /*
-        objectSummaryMap = new Dictionary(false);
-        */
+        //objectSummaryMap = new Dictionary(false);
         objectSummaryMap = {};
         
         parentMap = {};
@@ -163,13 +165,6 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
     
     /**
      *  @private
-     *  
-     *  if true, dispatch collection change events 
-     */
-    private var dispatchCollectionEvents:Boolean = false;
-    
-    /**
-     *  @private
      */
     private var newCollection:ArrayCollection;
     
@@ -184,8 +179,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  the object summary map.
      *  keeps summaries corresponding to different objects
      */
-   // private var objectSummaryMap:Dictionary;
-    private var objectSummaryMap:Object;
+    private var objectSummaryMap:Object; // Dictionary;
     
     /**
      *  @private
@@ -213,6 +207,11 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  @private
      */
     private var hView:ICollectionView;
+    
+    /**
+     *  @private
+     */
+    private var treeCursor:IViewCursor;
     
     /**
      *  @private
@@ -277,6 +276,11 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
     private var summaryPresent:Boolean;
     
     /**
+     *  @private
+     */
+    mx_internal var optimizeSummaries:Boolean = false;
+
+    /**
      *  The timer which is associated with an asynchronous refresh operation.
      *  You can use it to change the timing interval, pause the refresh, 
      *  or perform other actions.
@@ -286,11 +290,11 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
-    protected var timer:Timer;
+    //protected var timer:Timer;
     
     /**
      *  @private
@@ -298,19 +302,6 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  This map is created as objects are visited
      */
     protected var parentMap:Object;
-    
-    /**
-     *  @private
-     *  A Dictionary to maintain summaries
-     */
-    //private var summariesTracker:Dictionary;
-    private var summariesTracker:Object;
-    
-    /**
-     *  @private
-     *  An array to store all the summary fields.
-     */
-    private var summaryFields:Array;
     
     //--------------------------------------------------------------------------
     //
@@ -331,12 +322,12 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  so you must call the <code>refresh()</code> method
      *  after setting this property.
      *
-     *  @see mx.collections.GroupingCollection2#refresh()
+     *  @see mx.collections.GroupingCollection#refresh()
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
     public function get grouping():Grouping
     {
@@ -365,14 +356,14 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *     width="100%" height="100%" 
      *     initialize="gc.refresh();"&gt;        
      *     &lt;mx:dataProvider&gt;
-     *         &lt;mx:GroupingCollection2 id="gc" source="{dpFlat}"&gt;
+     *         &lt;mx:GroupingCollection id="gc" source="{dpFlat}"&gt;
      *             &lt;mx:summaries&gt;
      *                 &lt;mx:SummaryRow summaryPlacement="last"&gt;
      *                     &lt;mx:fields&gt;
-     *                         &lt;mx:SummaryField2 dataField="Actual" 
-     *                             label="Min Actual" summaryOperation="MIN"/&gt;
-     *                         &lt;mx:SummaryField2 dataField="Actual" 
-     *                             label="Max Actual" summaryOperation="MAX"/&gt;
+     *                         &lt;mx:SummaryField dataField="Actual" 
+     *                             label="Min Actual" operation="MIN"/&gt;
+     *                         &lt;mx:SummaryField dataField="Actual" 
+     *                             label="Max Actual" operation="MAX"/&gt;
      *                     &lt;/mx:fields&gt;
      *                   &lt;/mx:SummaryRow&gt;
      *                 &lt;/mx:summaries&gt;
@@ -380,7 +371,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *                 &lt;mx:GroupingField name="Region"/&gt;
      *                 &lt;mx:GroupingField name="Territory"/&gt;
      *             &lt;/mx:Grouping&gt;
-     *         &lt;/mx:GroupingCollection2&gt;
+     *         &lt;/mx:GroupingCollection&gt;
      *     &lt;/mx:dataProvider&gt;        
      *     
      *     &lt;mx:columns&gt;
@@ -395,12 +386,12 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  &lt;/mx:AdvancedDataGrid&gt;</pre>
      *
      *  @see mx.collections.SummaryRow
-     *  @see mx.collections.SummaryField2
+     *  @see mx.collections.SummaryField
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
     public var summaries:Array; 
 
@@ -417,9 +408,9 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
     override public function get source():Object
     {
@@ -455,21 +446,21 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         var uid:String;
         if (children != null)
         {
-            if (children is ICollectionView)
+        	if (children is ICollectionView)
             {
-                var cursor:IViewCursor = ICollectionView(children).createCursor();
-                while (!cursor.afterLast)
-                {                
-                    uid = UIDUtil.getUID(cursor.current);
-                    parentMap[uid] = node;
-                    cursor.moveNext();
-                }
+	            var cursor:IViewCursor = ICollectionView(children).createCursor();
+	            while (!cursor.afterLast)
+	            {                
+	                uid = UIDUtil.getUID(cursor.current);
+	                parentMap[uid] = node;
+	                cursor.moveNext();
+	            }
             }
             else
             {
-                //if the children is not ICollectionView then
-                //it was not introduced by GC. (this happens in the case of XML.) 
-                return null;
+            	//if the children is not ICollectionView then
+            	//it was not introduced by GC. (this happens in the case of XML.) 
+            	return null;
             }
         }
         
@@ -483,9 +474,9 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  @return The object to return.
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
     override public function getRoot():Object
     {
@@ -502,17 +493,13 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  @inheritDoc
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
-    public function refresh(async:Boolean = false, dispatchCollectionEvents:Boolean = false):Boolean
+    public function refresh(async:Boolean = false):Boolean
     {
-        if (!async && _sourceCol == null)
-            async = true;
         this.async = async;
-        this.dispatchCollectionEvents = async ? true : dispatchCollectionEvents;
-        
         var resetEvent:CollectionEvent;
         
         // return if no grouping or groupingFields are supplied
@@ -528,10 +515,6 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         }
         
         super.source = newCollection;
-		
-		// remove the items from the source collection if there are any.
-		newCollection.removeAll();
-		
         
         // dispatch collection change event of kind reset.
         resetEvent =
@@ -540,42 +523,39 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         dispatchEvent(resetEvent);
         
         // reset the parent map
-        parentMap = {};
+        parentMap = {}; 
         
         // reset the object summary map
-        //objectSummaryMap = new Dictionary(false);
-        objectSummaryMap = {};
-        
-        // reset the summaryTracker
-        summariesTracker = null;
+        objectSummaryMap = {}; // new Dictionary(false);
         
         // check if any summary is specified
         summaryPresent = false;
-        prepareSummaryFields();
+        var n:int = grouping.fields.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            if (GroupingField(grouping.fields[i]).summaries)
+            {
+                summaryPresent = true;
+                break;
+            }
+        }
         
         var grouped:Boolean;
         if(source && grouping)
         {
             grouped = makeGroupedCollection();
         }
-        else if (async)
-        {
-            timer = new Timer(1);
-            timer.addEventListener(Timer.TIMER, timerHandler);
-            timer.start();
-        }
-
-       
-        return grouped; 
+        
+        return grouped;
     }
     
     /**
      *  @inheritDoc
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
     public function cancelRefresh():void
     {
@@ -804,9 +784,9 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      *  and <code>undefined</code> if the parent cannot be determined.
      *  
      *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.3
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
     protected function getParent(node:Object):*
     {
@@ -819,229 +799,118 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
     
     /**
      *  @private
-     *  Generate the root level summaries
-     */
+     * 
+     *  generate the root summaries.
+     *  different for flat data and grouped data.
+     * 
+     */  
     private function generateRootSummaries(flatData:Boolean = false):void
     {
         var coll:ICollectionView = super.source as ICollectionView;
         
-        getSummaries(coll, -1);
-    }
-    
-    /**
-     *  @private
-     *  Calculate summaries for a node.
-     */
-    private function getSummariesForRow(node:Object, collection:ICollectionView, depth:int):void
-    {
-        // calculate the summary at the last level
-        var hd:HierarchicalData = new HierarchicalData(collection);
-        hd.childrenField = this.childrenField;
-        var hColl:ICollectionView = new HierarchicalCollectionView(hd, {});
-        var hCursor:IViewCursor = new LeafNodeCursor(HierarchicalCollectionView(hColl), hColl, hd);
+        if (flatData)
+            coll = coll.createCursor().current as ICollectionView;
         
-        // for all summary fields
-        var m:int = summaryFields.length;
-        var i:int = 0;
-        
-        var defaultSummaryCalculator:DefaultSummaryCalculator = new DefaultSummaryCalculator();
-        //var summaryMap:Dictionary = new Dictionary(false);
-        var summaryMap:Object = {};
-        var summaryField:SummaryField2;
-        var summaryCalculator:ISummaryCalculator;
-        
-        for (i = 0; i < m; i++)
+        var summaryObj:Array = [];
+        // computing all the summaries
+        var n:int = summaries.length;
+        for (var i:int = 0; i < n; i++)
         {
-            summaryField = summaryFields[i];
-            
-            if (!(summaryField.summaryOperation is String) &&
-                summaryField.summaryOperation is ISummaryCalculator)
-                summaryCalculator = ISummaryCalculator(summaryField.summaryOperation);
-            else
-                summaryCalculator = defaultSummaryCalculator;
-            
-            summaryMap[summaryField] = summaryCalculator.summaryCalculationBegin(summaryField);
-        }
-        
-        while (!hCursor.afterLast)
-        {
-            for (i = 0; i < m; i++)
+            var summaryRow:SummaryRow = summaries[i];
+            if (coll.length > 0)
             {
-                summaryField = summaryFields[i];
+                summaryObj[i] = 
+                    summaryRow.summaryObjectFunction != null ? summaryRow.summaryObjectFunction() : new SummaryObject();
                 
-                if (!(summaryField.summaryOperation is String) &&
-                    summaryField.summaryOperation is ISummaryCalculator)
-                    summaryCalculator = ISummaryCalculator(summaryField.summaryOperation);
-                else
-                    summaryCalculator = defaultSummaryCalculator;
+                // for all summary fields
+                var m:int = summaryRow.fields.length;
+                for (var j:int = 0; j < m; j++)
+                {
+                    var summaryField:SummaryField = summaryRow.fields[j];
+                    var summary:Number = 0.0;
+                    var label:String = summaryField.label ? summaryField.label : summaryField.dataField;
+                    
+                    var cursor:IViewCursor = coll.createCursor();
+                    // if data is flat then go through each object and calculate summary.
+                    if (flatData)
+                    {
+                        while (!cursor.afterLast)
+                        {
+                            var current:Object = cursor.current;
+                            var temp:Number = current.hasOwnProperty(label) ? current[label] : 0.0;;
+                            
+                            if (summaryField.operation == "SUM" || summaryField.operation == "COUNT")
+                                summary += temp;
+                            else if (summaryField.operation == "MAX")
+                                summary = temp;
+                            else if (summaryField.operation == "MIN")
+                                summary = temp;
+                                
+                            cursor.moveNext();
+                        }
+                    }
+                    else
+                    {
+                        if (!optimizeSummaries)
+                        {
+                            var hd:HierarchicalData = new HierarchicalData(coll);
+                            hd.childrenField = this.childrenField;
+                            var hColl:ICollectionView = new HierarchicalCollectionView(hd, {});
+                            var hCursor:IViewCursor = new LeafNodeCursor(HierarchicalCollectionView(hColl), hColl, hd);
+                            
+                            if (summaryField.summaryFunction != null)
+                            {
+                                summary = summaryField.summaryFunction(
+                                    hCursor, summaryField.dataField, summaryField.operation);
+                            }
+                            else
+                            {
+                                summary = summaryUtil(
+                                    hCursor, summaryField.dataField, summaryField.operation);
+                            }
+                        }
+                        else
+                        {
+                            summary = getSummaryFromCursor(cursor, summaryField.dataField, summaryField.operation);
+                        }
+                    }
+                    
+                    summaryObj[i][label] = summary;
+                }
                 
-                summaryCalculator.calculateSummary(summaryMap[summaryField], summaryField, hCursor.current);
+                if (objectSummaryMap[UIDUtil.getUID(coll)] == undefined)
+                    objectSummaryMap[UIDUtil.getUID(coll)] = [];
+                
+                objectSummaryMap[UIDUtil.getUID(coll)].push(summaryObj[i]);
             }
-            
-            hCursor.moveNext();
         }
-        
-        for (i = 0; i < m; i++)
-        {
-            var summary:Number = 0.0;
-            summaryField = summaryFields[i];
-            
-            if (!(summaryField.summaryOperation is String) &&
-                summaryField.summaryOperation is ISummaryCalculator)
-                summaryCalculator = ISummaryCalculator(summaryField.summaryOperation);
-            else
-                summaryCalculator = defaultSummaryCalculator;
-            
-            summary = summaryCalculator.returnSummary(summaryMap[summaryField], summaryField);
-            
-            populateSummary(node, summaryField, summaryMap[summaryField], summary);
-        }
+        insertRootSummary(summaryObj);
     }
     
     /**
      *  @private
-     *  Store the summary in a dictionary for later use.
-     */
-    private function populateSummary(node:Object, summaryField:SummaryField2, summaryObject:Object, summary:Number):void
-    {
-        var op:String = summaryField.summaryOperation.toString();
-        
-        if (summariesTracker == null)
-            summariesTracker = {}; // new Dictionary(false);
-        
-        if (summariesTracker[UIDUtil.getUID(node)] == undefined)
-            summariesTracker[UIDUtil.getUID(node)] = {}; // new Dictionary(false);
-        if (summariesTracker[UIDUtil.getUID(node)][op] == undefined)
-            summariesTracker[UIDUtil.getUID(node)][op] = {}; // new Dictionary(false);
-        if (summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] == undefined)
-            summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] = {}; // new Dictionary(false);
-        
-        summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] = {summaryObject:summaryObject, value:summary};
-    }
-    
-    /**
-     *  @private
-     *  Get the summary from the dictionary 
-     */
-    private function getSummary(node:Object, summaryField:SummaryField2):Object
-    {
-        var op:String = summaryField.summaryOperation.toString();
-        
-        if (summariesTracker == null || 
-            summariesTracker[UIDUtil.getUID(node)] == undefined ||
-            summariesTracker[UIDUtil.getUID(node)][op] == undefined ||
-            summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] == undefined)
-        return null;
-        
-        return summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField];
-    }
-    
-    /**
-     *  @private
-     *  Calcualte and insert summary for a node
-     */
-    private function getSummaries(node:Object, depth:int):void
+     * 
+     *  calculate the summaries for a given parent,
+     *  populate the objectSummaryMap and
+     *  insert the summary in the collection
+     * 
+     */  
+    private function getSummaries(parent:Object, depth:int):void
     {
         if (depth > grouping.fields.length - 1)
             return;
         
-        var children:ICollectionView = this.getChildren(node) as ArrayCollection;
-        
-        if (node == super.source)
-            children = node as ICollectionView;
+        var children:ICollectionView = this.getChildren(parent) as ArrayCollection;
         
         if (!children || children.length == 0)
             return;
         
-        if (depth == grouping.fields.length - 1)
-        {
-            // calculate actual summaries here
-            getSummariesForRow(node, children, depth);
-        }
-        else
-        {
-            var cursor:IViewCursor = children.createCursor();
-            var isFirst:Boolean = true;
-            
-            var defaultSummaryCalculator:DefaultSummaryCalculator = new DefaultSummaryCalculator();
-            var summaryField:SummaryField2;
-            var summaryMap:Object = {} // Dictionary = new Dictionary(false);
-            var summaryCalculator:ISummaryCalculator;
-            
-            while (!cursor.afterLast)
-            {
-                var current:Object = cursor.current;
-                if (!(current is SummaryObject))
-                {
-                    // for all summary fields
-                    var m:int = summaryFields.length;
-                    var i:int = 0;
-                    
-                    for (i = 0; i < m; i++)
-                    {
-                        summaryField = summaryFields[i];
-                        
-                        if (!(summaryField.summaryOperation is String) &&
-                            summaryField.summaryOperation is ISummaryCalculator)
-                            summaryCalculator = ISummaryCalculator(summaryField.summaryOperation);
-                        else
-                            summaryCalculator = defaultSummaryCalculator;
-                        
-                        var summaryObject:Object = getSummary(current, summaryField);
-                        
-                        if (isFirst)
-                        {
-                            summaryMap[summaryField] = summaryCalculator.summaryOfSummaryCalculationBegin(summaryObject["summaryObject"], summaryField);
-                        }
-                        else
-                        {
-                            summaryCalculator.calculateSummaryOfSummary(summaryMap[summaryField], summaryObject["summaryObject"], summaryField);
-                        }
-                    }
-                }
-                
-                isFirst = false;
-                cursor.moveNext();
-            }
-            
-            // check if there were some items
-            if (!isFirst)
-            {
-                for (i = 0; i < m; i++)
-                {
-                    summaryField = summaryFields[i];
-                    
-                    if (!(summaryField.summaryOperation is String) &&
-                        summaryField.summaryOperation is ISummaryCalculator)
-                        summaryCalculator = ISummaryCalculator(summaryField.summaryOperation);
-                    else
-                        summaryCalculator = defaultSummaryCalculator;
-                    
-                    var summary:Number = summaryCalculator.returnSummaryOfSummary(summaryMap[summaryField], summaryField);
-                    
-                    populateSummary(node, summaryField, summaryMap[summaryField], summary);
-                }
-            }
-        }
-        
-        if (depth == -1)
-            insertSummaries(super.source as ICollectionView, -1, true);
-        else
-            insertSummaries(node, depth);
-    }
-    
-    private function insertSummaries(node:Object, depth:int, rootSummary:Boolean = false):void
-    {
-        var summaries:Array = this.summaries;
-        
-        if (!rootSummary)
-            summaries = grouping.fields[depth].summaries;
-        
+        var summaries:Array = grouping.fields[depth].summaries;
         if (!summaries)
             return;
         
         var summaryObj:Array = [];
-        
+        // computing all the summaries
         var n:int = summaries.length;
         for (var i:int = 0; i < n; i++)
         {
@@ -1054,32 +923,101 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
             var m:int = summaryRow.fields.length;
             for (var j:int = 0; j < m; j++)
             {
-                var summaryField:SummaryField2 = summaryRow.fields[j];
+                var summaryField:SummaryField = summaryRow.fields[j];
                 var summary:Number = 0.0;
                 var label:String = summaryField.label ? summaryField.label : summaryField.dataField;
                 
-                var summaryObject:Object = getSummary(node, summaryField);
-                
-                if (summaryObject != null)
+                // calculate the summary at the last level
+                var calculateSummaries:Boolean = true;
+                if (optimizeSummaries)
                 {
-                    summary = summaryObject["value"];
-                    // populate the summary object
-                    summaryObj[i][label] = summary;
+                    if (depth == grouping.fields.length - 1)
+                    {
+                        calculateSummaries = true;
+                    }
+                    // assume that summary is already present and fetch it from the map
+                    else
+                    {
+                        calculateSummaries = false;
+                        summary = getSummaryFromMap(parent, label, summaryField.operation);
+                    }
+                }
+                if (calculateSummaries)
+                {
+                    var hd:HierarchicalData = new HierarchicalData(children);
+                    hd.childrenField = this.childrenField;
+                    var hColl:ICollectionView = new HierarchicalCollectionView(hd, {});
+                    var hCursor:IViewCursor = new LeafNodeCursor(HierarchicalCollectionView(hColl), hColl, hd);
+                    
+                    if (summaryField.summaryFunction != null)
+                    {
+                        summary = summaryField.summaryFunction(
+                            hCursor, summaryField.dataField, summaryField.operation);
+                    }
+                    else
+                    {
+                        summary = summaryUtil(
+                            hCursor, summaryField.dataField, summaryField.operation);
+                    }
+                }
+                
+                // populate the summary object
+                summaryObj[i][label] = summary;
+            }
+            
+            // populate the object summary map
+            if (objectSummaryMap[UIDUtil.getUID(parent)] == undefined)
+                objectSummaryMap[UIDUtil.getUID(parent)] = [];
+                
+            objectSummaryMap[UIDUtil.getUID(parent)].push(summaryObj[i]);
+        }
+        // insert the summary
+        insertSummary(parent, summaryObj, summaries);
+    }
+    
+    /**
+     *  @private
+     *  
+     *  computes the summary for the parent node.
+     *  will fetch the summaries from the object summary map
+     * 
+     */  
+    private function getSummaryFromMap(parent:Object, label:String, operation:String):Number
+    {
+        var cursor:IViewCursor = ArrayCollection(getChildren(parent)).createCursor();
+        
+        return getSummaryFromCursor(cursor, label, operation);
+    }
+    
+    /**
+     *  @private
+     * 
+     *  calculates the summary by traversing over the iterator.
+     * 
+     */  
+    private function getSummaryFromCursor(cursor:IViewCursor, label:String, operation:String):Number
+    {
+        var result:Number = 0;
+        while (!cursor.afterLast)
+        {
+            var temp:Array = objectSummaryMap[UIDUtil.getUID(cursor.current)];
+            var n:int = temp.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                if (temp[i] && temp[i].hasOwnProperty(label))
+                {
+                    if (operation == "SUM" || operation == "COUNT")
+                        result += temp[i][label];
+                    else if (operation == "MAX")
+                        result = result < temp[i][label] ? temp[i][label] : result;
+                    else if (operation == "MIN")
+                        result = result > temp[i][label] ? temp[i][label] : result;
                 }
             }
-            // populate the object summary map
-            if (objectSummaryMap[UIDUtil.getUID(node)] == undefined)
-                objectSummaryMap[UIDUtil.getUID(node)] = [];
-            
-            objectSummaryMap[UIDUtil.getUID(node)].push(summaryObj[i]);
+                
+            cursor.moveNext();  
         }
-        
-        // insert the summary
-        if (rootSummary)
-            insertRootSummary(summaryObj);
-        else
-            insertSummary(node, summaryObj, summaries);
-        
+        return result;
     }
     
     /**
@@ -1109,6 +1047,9 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
     {
         var coll:ICollectionView = super.source as ICollectionView;
         
+        if (!grouping)
+            coll = coll.createCursor().current as ICollectionView;
+        
         if (!(coll is IList))
             return;
         
@@ -1136,7 +1077,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
      */  
     private function insertSummary(parent:Object, summaryObj:Array, summaries:Array):void
     {
-        var n:int = summaries.length;
+    	var n:int = summaries.length;
         for (var i:int = 0; i < n; i++)
         {
             var summaryRow:SummaryRow = summaries[i];
@@ -1197,23 +1138,24 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         if (!refreshed)
             return refreshed;
         
+        /*
         if (async)
         {
             timer = new Timer(1);
-            timer.addEventListener(Timer.TIMER, timerHandler);
+            timer.addEventListener(TimerEvent.TIMER, timerHandler);
             timer.start();
         }
         else
-        {
+        {*/
             return buildGroups();
-        }
+        /*}*/
+        
         return true;
     }
     
     /**
      *  @private
-     */
-    private function timerHandler(event:Event):void
+    private function timerHandler(event:TimerEvent):void
     {
         if (buildGroups())
         {
@@ -1222,6 +1164,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         }
         
     }
+     */
     
     /**
      *  @private
@@ -1237,17 +1180,18 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
             // initialize the variables
             initialize();
         
-            if (source == null || (source as ICollectionView).length == 0)
+            // remove the items from the source collection if there are any.
+            newCollection.removeAll();
+            
+            if ((source as ICollectionView).length == 0)
                 return false;
             
-            if (dispatchCollectionEvents)
-            {
-                var hierarchicalData:IHierarchicalData = new HierarchicalData(newCollection);
-                HierarchicalData(hierarchicalData).childrenField = childrenField;
-                
-                hView = new HierarchicalCollectionView( 
-                                            hierarchicalData, _openItems);
-            }
+            var hierarchicalData:IHierarchicalData = new HierarchicalData(newCollection);
+            HierarchicalData(hierarchicalData).childrenField = childrenField;
+            
+            hView = new HierarchicalCollectionView( 
+                                        hierarchicalData, _openItems);
+            treeCursor = hView.createCursor();
     
             flatView = source as ICollectionView;
             flatCursor = flatView.createCursor();
@@ -1273,8 +1217,6 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         {
             currentData = flatCursor.current;
             
-            var n:int = 0;
-            
             for (var i:int = 0; i < fieldCount ; ++i)
             {
                 var groupingField:String = gf[i].name;
@@ -1287,13 +1229,6 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
                     {
                         ArrayCollection(currentGroups[fieldCount - 1][childrenField]).source = childrenArray;
                         childrenArray = [];
-                    }
-                    
-                    // calculate summaries for created groups
-                    if (summaryPresent)
-                    {
-                        for (n = currentGroups.length - 1; n >= i; n--)
-                            getSummaries(currentGroups[n], n);
                     }
                     
                     currentGroupLabels.splice(i+1);
@@ -1316,20 +1251,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
                     
                     itemIndex = currentIndices[i-1];
                     // create the group
-                    if (dispatchCollectionEvents)
-                    {
-                        IHierarchicalCollectionView(hView).addChild(currentGroups[i-1], currentGroups[i]);
-                    } else
-                    {
-                        if (i > 0)
-                        {
-                            currentGroups[i-1][childrenField].source.push(currentGroups[i]);
-                        }
-                        else
-                        {
-                            newCollection.source.push(currentGroups[i]);
-                        }
-                    }
+                    IHierarchicalCollectionView(hView).addChild(currentGroups[i-1], currentGroups[i]);
                     currentIndices[i-1] = ++itemIndex;
                 }
                 
@@ -1349,8 +1271,8 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
                 flatCursor.moveNext();
                 currentPosition = flatCursor.bookmark;
                 // return in case of async refresh
-                if (async)
-                    return false;
+                //if (async)
+                //    return false;
                 /*
             }
             catch (e:ItemPendingError)
@@ -1372,16 +1294,11 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
             if (childrenArray && childrenArray.length)
             {
                 ArrayCollection(currentGroups[fieldCount - 1][childrenField]).source = childrenArray;
-                
-                // calculate summaries for created groups
-                if (summaryPresent)
-                {
-                    for (n = fieldCount - 1; n >= 0; n--)
-                        getSummaries(currentGroups[n], n);
-                }
             }
             
-            // calculate root summaries
+            if (summaryPresent)
+            	applyFunctionForParentNodes(super.source as ICollectionView, getSummaries);
+            
             if (source && summaries)
             {
                 if (!super.source)
@@ -1389,14 +1306,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
                 
                 generateRootSummaries(grouping == null);
             }
-            
-			// refresh the collection to reflect the changes
-			// we made while grouping.
-			// This is needed as we made changes directly to
-			// the source of the collection when
-			// dispatchCollectionEvents is false
-			newCollection.refresh();
-			
+        
             // dispatch collection change event of kind refresh.
             var refreshEvent:CollectionEvent =
                     new CollectionEvent(CollectionEvent.COLLECTION_CHANGE);
@@ -1408,58 +1318,6 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         return true;
     }
     
-    /**
-     *  @private
-     *  Get all the summary fields and store them in an Array
-     */
-    private function prepareSummaryFields():void
-    {
-        summaryFields = [];
-        
-        var sr:SummaryRow
-        
-        // for grouping fields summaries
-        if (grouping.fields != null)
-        {
-            for (var i:int = 0; i < grouping.fields.length; i++)
-            {
-                var gf:GroupingField = grouping.fields[i];
-                if (gf.summaries != null)
-                {
-                    for (var j:int = 0; j < gf.summaries.length; j++)
-                    {
-                        sr = gf.summaries[j];
-                        if (sr.fields != null)
-                        {
-                            for (var k:int = 0; k < sr.fields.length; k++)
-                            {
-                                summaryPresent = true;
-                                summaryFields.push(sr.fields[k]);
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        
-        // for root level summaries
-        if (summaries != null)
-        {
-            for (i = 0; i < summaries.length; i++)
-            {
-                sr = summaries[i];
-                if (sr.fields != null)
-                {
-                    for (j = 0; j < sr.fields.length; j++)
-                    {
-                        summaryPresent = true;
-                        summaryFields.push(sr.fields[j]);
-                    }
-                }
-            }
-        }
-    }
-
     /**
      *  @private
      *  
@@ -1475,6 +1333,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         currentPosition = CursorBookmark.FIRST;
         oldSort = null;
         flatCursor = null;
+        treeCursor = null;
     }
     
     /**
@@ -1556,7 +1415,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         // generate the root level summaries
         generateRootSummaries(grouping == null);
     }
-
+    
     /**
      *  @private
      *  
@@ -1621,9 +1480,6 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
                             delete objectSummaryMap[UIDUtil.getUID(parent)];
                         }
                         
-                        if (summariesTracker != null && summariesTracker[UIDUtil.getUID(parent)])
-                            summariesTracker[UIDUtil.getUID(parent)] = {}; // new Dictionary(false);
-                        
                         if (removeItem)
                         {
                             // remove the group if no children is present
@@ -1685,6 +1541,87 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
     /**
      *  @private
      *  
+     *  Default implementation for operations - "SUM", "MIN", "MAX", "COUNT"
+     */ 
+    private function summaryUtil(iterator:IViewCursor, dataField:String, operation:String):Number
+    {
+        if (!iterator)
+            return 0.0;
+        
+        var result:Number = 0;
+        var temp:Number = 0;
+        var once:Boolean;
+        
+        if (operation == "SUM" || operation == "COUNT" || operation == "AVG")
+        {
+            var count:int = 0;
+            while (!iterator.afterLast)
+            {
+                if (iterator.current.hasOwnProperty(dataField))
+                {
+                    count++;
+                    result += Number(iterator.current[dataField]);
+                }
+                
+                iterator.moveNext();
+            }
+            
+            if (operation == "SUM")
+                return result;
+            
+            if (operation == "COUNT")
+                return count;
+            
+            if (operation == "AVG")
+                return result / count;
+        }
+        else if (operation == "MIN")
+        {
+            while (!iterator.afterLast)
+            {
+                temp = iterator.current.hasOwnProperty(dataField) ? iterator.current[dataField] : 0.0;
+                
+                if (!once)
+                {
+                    result = temp;
+                    once = true;
+                }
+                
+                if (temp < result)
+                    result = temp;
+                
+                iterator.moveNext();    
+            }
+            
+            return result;
+        }
+        else if (operation == "MAX")
+        {
+            while (!iterator.afterLast)
+            {
+                temp = iterator.current.hasOwnProperty(dataField) ? iterator.current[dataField] : 0.0;
+                
+                if (!once)
+                {
+                    result = temp;
+                    once = true;
+                }
+                
+                if (temp > result)
+                    result = temp;
+                
+                iterator.moveNext();
+            }
+            
+            return result;
+        }
+        
+        return 0.0;
+    }
+    
+    /**
+     *  @private
+     *  
      *  updates the parent map
      */ 
     private function updateParentMap(parent:Object, node:Object):void
@@ -1710,7 +1647,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         
         if (summaryPresent && parentNodes)
         {
-            var n:int = parentNodes.length;
+        	var n:int = parentNodes.length;
             for (var i:int = n - 1; i >= 0; i--)
             {
                 getSummaries(parentNodes[i], i);
@@ -1743,7 +1680,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         
         if (event.kind == CollectionEventKind.UPDATE)
         {
-            n = event.items.length;
+        	n = event.items.length;
             for (i = 0; i < n; i++)
             {
                 var summaryCalculated:Boolean;
@@ -1775,7 +1712,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         
         if (event.kind == CollectionEventKind.ADD)
         {
-            n = event.items.length;
+        	n = event.items.length;
             for (i = 0; i < n; i++)
             {
                 obj = event.items[i];
@@ -1786,7 +1723,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         
         if (event.kind == CollectionEventKind.REMOVE)
         {
-            n = event.items.length;
+        	n = event.items.length;
             for (i = 0; i < n; i++)
             {
                 obj = event.items[i];
@@ -1797,7 +1734,7 @@ public class GroupingCollection2 extends HierarchicalData implements IGroupingCo
         
         if (event.kind == CollectionEventKind.REPLACE)
         {
-            n = event.items.length;
+        	n = event.items.length;
             for (i = 0; i < n; i++)
             {
                 var oldValue:Object = event.items[i].oldValue;

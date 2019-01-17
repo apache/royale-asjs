@@ -152,12 +152,12 @@ public interface IDropInListItemRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function get listData():BaseListData;
+    function get listData():Object;
     
     /**
      *  @private
      */
-    function set listData(value:BaseListData):void;
+    function set listData(value:Object):void;
 }
 
 }

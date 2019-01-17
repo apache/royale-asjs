@@ -33,7 +33,7 @@ package mx.controls
     import flash.utils.describeType;
     import flash.utils.getDefinitionByName;
     import flash.utils.getQualifiedClassName;
-
+*/
     import mx.collections.ArrayCollection;
     import mx.collections.CursorBookmark;
     import mx.collections.HierarchicalCollectionView;
@@ -45,6 +45,7 @@ package mx.controls
     import mx.collections.IHierarchicalCollectionViewCursor;
     import mx.collections.IHierarchicalData;
     import mx.collections.IViewCursor;
+/*
     import mx.collections.ItemResponder;
     import mx.collections.Sort;
     import mx.collections.SortField;
@@ -82,8 +83,10 @@ package mx.controls
     import mx.effects.Tween;
     import mx.events.AdvancedDataGridEvent;
     import mx.events.AdvancedDataGridEventReason;
+*/
     import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
+/*
     import mx.events.DragEvent;
     import mx.events.FlexEvent;
     import mx.events.IndexChangedEvent;
@@ -100,8 +103,16 @@ package mx.controls
     import mx.styles.IStyleClient;
     import mx.utils.UIDUtil;
  */
+import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.AdvancedListBase;
 import mx.core.mx_internal;
+
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IDataGrid;
+import org.apache.royale.core.IDataGridModel;
+import org.apache.royale.core.IDataGridPresentationModel;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 //--------------------------------------
@@ -595,7 +606,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class AdvancedDataGrid extends AdvancedListBase 
+public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 { //extends  AdvancedDataGridBaseEx
    // include "../core/Version.as";
 
@@ -663,6 +674,9 @@ public class AdvancedDataGrid extends AdvancedListBase
     public function AdvancedDataGrid()
     {
         super();
+        
+        typeNames = "AdvancedDataGrid";
+        
         /* rendererDescriptionMap = new Dictionary(true);
 
         groupItemRenderer = new ClassFactory(AdvancedDataGridGroupItemRenderer);
@@ -990,7 +1004,7 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @private
      *  Storage for the groupLabelField property.
      */
-    // private var groupLabelField:String;
+    public var groupLabelField:String;
 
     /**
      *  @private
@@ -1031,7 +1045,7 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @private
      *  variable to hold the IHierarchicalCollectionView instance provided by the user.
      */
-    // private var hierarchicalCollectionInstance:IHierarchicalCollectionView;
+    private var hierarchicalCollectionInstance:IHierarchicalCollectionView;
 
     /**
      *  @private
@@ -1041,13 +1055,13 @@ public class AdvancedDataGrid extends AdvancedListBase
     /**
      *  @private
      */
-    // private var dataProviderChanged:Boolean = false;
+    private var dataProviderChanged:Boolean = false;
     
     /**
      *  @private
      *  Storage variable for the original dataProvider
      */
-    // mx_internal var _rootModel:IHierarchicalData;
+    mx_internal var _rootModel:IHierarchicalData;
     
     /**
      *  @private
@@ -1083,8 +1097,9 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  
      *  @private
      */
-   /* override public function set dataProvider(value:Object):void
+    override public function set dataProvider(value:Object):void
     {
+        /*
          if (itemEditorInstance)
             endEdit(AdvancedDataGridEventReason.OTHER);
 
@@ -1092,11 +1107,13 @@ public class AdvancedDataGrid extends AdvancedListBase
         {
             clearCellSelectionData();
         }
-
+        */
+        
         if (_rootModel)
             _rootModel.removeEventListener(
                 CollectionEvent.COLLECTION_CHANGE, 
                 collectionChangeHandler);
+        
         if (value is IHierarchicalData)
         {
             _rootModel = value as IHierarchicalData;
@@ -1123,7 +1140,8 @@ public class AdvancedDataGrid extends AdvancedListBase
         //flag for processing in commitProps
         dataProviderChanged = true;
         invalidateProperties(); 
-    }*/
+        commitProperties();
+    }
     
     //----------------------------------
     //  lockedRowCount
@@ -1803,10 +1821,10 @@ public class AdvancedDataGrid extends AdvancedListBase
     /**
      *  @private
      */
-   /*  private var _hierarchicalCollectionView:IHierarchicalCollectionView = 
+    private var _hierarchicalCollectionView:IHierarchicalCollectionView = 
             new HierarchicalCollectionView();
 
-    [Inspectable(category="Data")] */
+    [Inspectable(category="Data")]
 
     /**
      *  The IHierarchicalCollectionView instance used by the control.
@@ -1822,22 +1840,22 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function set hierarchicalCollectionView(value:IHierarchicalCollectionView):void
+    public function set hierarchicalCollectionView(value:IHierarchicalCollectionView):void
     {
         _hierarchicalCollectionView = value;
         
         // set the dataProvider using the new IHierarchicalCollectionView
         dataProviderChanged = true;
         invalidateProperties();
-    } */
+    }
 
     /**
      * @private
      */
-    /* public function get hierarchicalCollectionView():IHierarchicalCollectionView
+    public function get hierarchicalCollectionView():IHierarchicalCollectionView
     {
         return IHierarchicalCollectionView(_hierarchicalCollectionView);
-    } */
+    }
     
     //----------------------------------
     //  displayDisclosureIcon
@@ -2830,7 +2848,7 @@ public class AdvancedDataGrid extends AdvancedListBase
     /**
      *  @private
      */
-    /* override protected function commitProperties():void
+    override protected function commitProperties():void
     {
         if (dataProviderChanged)
         {
@@ -2859,6 +2877,7 @@ public class AdvancedDataGrid extends AdvancedListBase
 		if (_rootModel is IGroupingCollection2 && IGroupingCollection2(_rootModel).grouping)
 			groupLabelField = IGroupingCollection2(_rootModel).grouping.label;
 
+        /*
         if (groupedColumnsChanged || columnsChanged)
         {
             anchorColumnIndex    = -1;
@@ -2912,9 +2931,11 @@ public class AdvancedDataGrid extends AdvancedListBase
             if (displayItemsExpanded)
                 expandAll();
         }
-
+        */
+        
         super.commitProperties();
         
+        /*
         // lockedColumnCount set code should always come after groupedColumns set code
         // and super.commitProperties because in case of column grouping the actual value 
         // of lockedColumnCount is dependent on groupedColumns and visibleHeaderInfos
@@ -2950,7 +2971,8 @@ public class AdvancedDataGrid extends AdvancedListBase
             if (selectedColumnIndex != -1 && _columns[selectedColumnIndex].visible == false)
                 selectedColumnIndex = -1;
         }
-    } */
+        */
+    }
     
     /**
      *  @private
@@ -4286,15 +4308,24 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @private
      *  Utility method to get the depth of the item.
      */
-    /* protected function getDepth(item:Object):int  //private
+    public function getDepth(item:Object):int  //private
     {
         // if data is hierarchical, calculate its depth
         if (_rootModel is IHierarchicalData && collection is IHierarchicalCollectionView)
             return IHierarchicalCollectionView(dataProvider).getNodeDepth(item);
 
         return -1;
-    } */
+    }
 
+    /**
+     *  @private
+     *  Utility method to see if item has children.
+     */
+    public function hasChildren(item:Object):Boolean  //private
+    {
+        return _rootModel.hasChildren(item);
+    }
+    
     /**
      *  Sets the associated icon in the navigation tree for the item.  
      *  Calling this method overrides the
@@ -4378,11 +4409,11 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function isItemOpen(item:Object):Boolean
+    public function isItemOpen(item:Object):Boolean
     {
         var uid:String = itemToUID(item);
         return IHierarchicalCollectionView(collection).openNodes[uid] != null;
-    } */
+    }
 
     /**
      *  @private
@@ -8259,8 +8290,9 @@ public class AdvancedDataGrid extends AdvancedListBase
      *  Creates columns when there are none. Inherited from list.
      *  @param eventObj
      */
-    /* override protected function collectionChangeHandler(event:Event):void
+    override protected function collectionChangeHandler(event:Event):void
     {
+        /*
         if (event is CollectionEvent)
         {   
             var ceEvent:CollectionEvent = CollectionEvent(event);
@@ -8284,10 +8316,11 @@ public class AdvancedDataGrid extends AdvancedListBase
                 if (displayItemsExpanded)
                     expandAll();
             }
-        }
+        }*/
 
         super.collectionChangeHandler(event);
 
+        /*
         if (event is CollectionEvent)
         {
             var ce:CollectionEvent = CollectionEvent(event);
@@ -8303,8 +8336,8 @@ public class AdvancedDataGrid extends AdvancedListBase
                     }
                 }
             }
-        }
-    } */
+        }*/
+    }
     
     /**
      *  @private
@@ -9287,81 +9320,43 @@ public class AdvancedDataGrid extends AdvancedListBase
         finishCellKeySelection();
     }    */
 	
-	//----------------------------------
-    //  columns copied from AdvancedDataGridBaseEx
     //----------------------------------
-
-    /**
-     *  @private
-     */
-    // copied from AdvancedDataGridBase
-    private var _columns:Array;  /* of AdvancedDataGridColumns */
-
+    //  columns
+    //----------------------------------
+    
     [Bindable("columnsChanged")]
-    [Inspectable(category="General", arrayType="mx.controls.advancedDataGridClasses.AdvancedDataGridColumn")]
-
+    [Inspectable(category="General", arrayType="mx.controls.dataGridClasses.DataGridColumn")]
+    
     /**
-     *  An array of AdvancedDataGridColumn objects, one for each column that
-     *  can be displayed. If not explicitly set, the AdvancedDataGrid control 
+     *  An array of DataGridColumn objects, one for each column that
+     *  can be displayed.  If not explicitly set, the DataGrid control 
      *  attempts to examine the first data provider item to determine the
      *  set of properties and display those properties in alphabetic
      *  order.
      *
-     *  <p>If you want to change the set of columns, you must get this Array,
-     *  make modifications to the columns and order of columns in the Array,
-     *  and then assign the new Array to the <code>columns</code> property.  This is because
-     *  the AdvancedDataGrid control returns a copy of the Array of columns, 
-     *  not a reference, and therefore cannot detect changes to the copy.</p>
+     *  <p>If you want to change the set of columns, you must get this array,
+     *  make modifications to the columns and order of columns in the array,
+     *  and then assign the new array to the columns property.  This is because
+     *  the DataGrid control returned a new copy of the array of columns and therefore
+     *  did not notice the changes.</p>
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.4
+     *  @productversion Flex 3
      */
     public function get columns():Array
     {
-        return _columns.slice(0);
+        return IDataGridModel(model).columns;
     }
-
     /**
-     *  @private
+     * @royaleignorecoercion org.apache.royale.core.IDataGridModel
      */
     public function set columns(value:Array):void
     {
-       /*  var n:int;
-        var i:int;
-        
-        // remove the header items
-        purgeHeaderRenderers();
-        
-        n = _columns.length;
-        for (i = 0; i < n; i++)
-        {
-            columnRendererChanged(_columns[i]);
-        }
-        
-        freeItemRenderersTable = new Dictionary(false);
-        itemRendererToFactoryMap = new Dictionary(true);
-        columnMap = {};
-
-        _columns = value.slice(0);
-        columnsInvalid = true;
-        generatedColumns = false;
-
-        n = value.length;
-        for (i = 0; i < n; i++)
-        {
-            var column:AdvancedDataGridColumn = _columns[i];
-            column.owner = this;
-            column.colNum = i;
-        }
-
-        updateSortIndexAndDirection();
-        itemsSizeChanged = true;
-        columnsChanged = true;
-        invalidateDisplayList();
-        dispatchEvent(new Event("columnsChanged")); */
+        IDataGridModel(model).columns = value;
     }
+
 	//----------------------------------
     //  selectionMode  copied from AdvancedDataGridBase
     //----------------------------------
@@ -9666,7 +9661,42 @@ public class AdvancedDataGrid extends AdvancedListBase
         _resizableColumns = value;
     }
 	    
-	
+    /**
+     * @private
+     */
+    private var _presentationModel:IDataGridPresentationModel;
+    
+    /**
+     *  The DataGrid's presentation model
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9
+     *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+     *  @royaleignorecoercion org.apache.royale.core.IBead
+     */
+    public function get presentationModel():IBead
+    {
+        if (_presentationModel == null) {
+            var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
+            if (c) {
+                _presentationModel = new c() as IDataGridPresentationModel;
+                addBead(_presentationModel as IBead);
+            }
+        }
+        
+        return _presentationModel;
+    }
+    /**
+     *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+     *  @royaleignorecoercion org.apache.royale.core.IBead
+     */
+    public function set presentationModel(value:IBead):void
+    {
+        _presentationModel = value as IDataGridPresentationModel;
+    }
+
 	
 }
 

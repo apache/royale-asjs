@@ -203,4 +203,8 @@
 
     <component id="CartesianDataCanvas" class="mx.charts.chartClasses.CartesianDataCanvas"/>
     <component id="PolarDataCanvas" class="mx.charts.chartClasses.PolarDataCanvas"/>
+    
+    <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
+    <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
+
 </componentPackage>
