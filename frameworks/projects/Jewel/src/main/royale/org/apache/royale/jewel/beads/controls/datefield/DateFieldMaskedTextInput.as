@@ -153,7 +153,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 
 		COMPILE::JS
 		/**
-		 * (TODO carlosrovira): this should take into account IFormatBead
+		 * (TODO carlosrovira): this should take into account IFormatter
 		 */
 		private function dateInputMask(event:BrowserEvent):void {
 			if(event.keyCode < 47 || event.keyCode > 57) {

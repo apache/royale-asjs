@@ -27,7 +27,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IDateChooserModel;
-    import org.apache.royale.core.IFormatBead;
+    import org.apache.royale.core.IFormatter;
     import org.apache.royale.core.IPopUpHost;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
@@ -157,9 +157,6 @@ package org.apache.royale.jewel.beads.views
 
 		private function handleInitComplete(event:Event):void
 		{
-			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
-			formatter.addEventListener("formatChanged",handleFormatChanged);
-
 			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
@@ -167,12 +164,6 @@ package org.apache.royale.jewel.beads.views
 		private function handlePopUpInitComplete(event:Event):void
 		{
 			getHost().dispatchEvent(new Event("dateChooserInitComplete"));
-		}
-
-		private function handleFormatChanged(event:Event):void
-		{
-			var formatter:IFormatBead = event.target as IFormatBead;
-			_textInput.text = formatter.formattedString;
 		}
 
 		private var _popUp:DateChooser;
@@ -284,6 +275,12 @@ package org.apache.royale.jewel.beads.views
 			if(model.selectedDate == null)
 			{
 				textInput.text = "";
+			}
+			else
+			{
+				var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter;
+				_textInput.text = formatter.format(model.selectedDate);
+
 			}
 		}
 
