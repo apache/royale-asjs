@@ -44,6 +44,11 @@ $togglebutton-border-radius: 3px
 	&[disabled]
 		+jewel-bg-border("disabled", $togglebutton-color)
 		color: $disabled-font-color
+		text:
+			shadow: unset
+
+	&.selected
+		+jewel-bg-border("selected", $togglebutton-color)
 		
 .jewel.togglebutton.secondary
 	+togglebutton-theme($secondary-color, $font-theme-color)

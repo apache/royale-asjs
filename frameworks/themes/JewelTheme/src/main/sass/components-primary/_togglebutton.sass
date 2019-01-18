@@ -44,9 +44,15 @@ $togglebutton-border-radius: $border-radius
 	&[disabled]
 		+jewel-bg-border("disabled", $togglebutton-color)
 		color: $disabled-font-color
+		text:
+			shadow: unset
+	
+	&.selected
+		+jewel-bg-border("selected", $togglebutton-color)
 
 .jewel.togglebutton
 	+togglebutton-theme($default-color, $default-font-color)
+
 
 	// -- TOGGLEBUTTON LABEL
 	font:
@@ -63,8 +69,6 @@ $togglebutton-border-radius: $border-radius
 	&[disabled]
 		font:
 			weight: $font-weight-normal
-		text:
-			shadow: unset
 	
 	&.icon
 		i

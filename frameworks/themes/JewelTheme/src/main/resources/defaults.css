@@ -163,6 +163,7 @@ div {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
 }
 .jewel.button[disabled] {
   font-weight: 400;
@@ -203,6 +204,7 @@ div {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
 }
 
 .jewel.card {
@@ -936,10 +938,15 @@ a:active {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.selected {
+  background: linear-gradient(silver, #a6a6a6);
+  border: 1px solid #8d8d8d;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 .jewel.togglebutton[disabled] {
   font-weight: 400;
-  text-shadow: unset;
 }
 .jewel.togglebutton.icon i {
   margin-left: 0px;
@@ -976,6 +983,12 @@ a:active {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.primary.selected {
+  background: linear-gradient(#1198e9, #0d79ba);
+  border: 1px solid #0a5a8a;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 
 .jewel.tooltip {
@@ -1087,6 +1100,7 @@ j|Wizard {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
 }
 
 .jewel.snackbar.secondary .jewel.snackbar-content {
@@ -1143,6 +1157,12 @@ a:active {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.secondary.selected {
+  background: linear-gradient(#d64010, #a6320d);
+  border: 1px solid #772409;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 
 .jewel.button.emphasized {
@@ -1171,6 +1191,7 @@ a:active {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
 }
 
 .jewel.snackbar.emphasized .jewel.snackbar-content {
@@ -1215,6 +1236,12 @@ a:active {
   border: 1px solid #d9d9d9;
   box-shadow: none;
   color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.emphasized.selected {
+  background: linear-gradient(#71a02f, #557923);
+  border: 1px solid #395118;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 
 /*# sourceMappingURL=defaults.css.map */
