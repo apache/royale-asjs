@@ -167,7 +167,6 @@ div {
 }
 .jewel.button[disabled] {
   font-weight: 400;
-  text-shadow: unset;
 }
 .jewel.button.icon i {
   margin-left: 0px;
