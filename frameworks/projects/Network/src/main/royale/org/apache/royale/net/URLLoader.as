@@ -175,6 +175,13 @@ package org.apache.royale.net
                     }
                 }
                 */
+				
+				var contentData:String = null;
+				if(request.data != null) {
+					if(request.method == HTTPConstants.POST) {
+						contentData = request.data as String;
+					}
+				}
                 
                 element.open(request.method, request.url, true);
                 // element.timeout = _timeout;
@@ -199,14 +206,12 @@ package org.apache.royale.net
                         HTTPHeader.CONTENT_TYPE, _contentType);
                 }
                 */
-                /*
+                
                 if (contentData) {
                     element.send(contentData);
-                } else {*/
+                } else {
                     element.send();
-                /*
                 }
-                */
             }
             
             dispatchEvent(new Event("postSend"));
