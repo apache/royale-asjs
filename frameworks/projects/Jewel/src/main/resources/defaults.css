@@ -3021,6 +3021,10 @@ j|Label {
   align-content: flex-start;
   -webkit-overflow-scrolling: touch;
 }
+.jewel.list.no-chrome, .jewel.navigation.no-chrome {
+  background: transparent;
+  border: none;
+}
 
 j|List {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
