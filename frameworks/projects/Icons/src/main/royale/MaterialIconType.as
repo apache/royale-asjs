@@ -1079,5 +1079,6 @@ package
         public static const ARROW_BACK_IOS:String = 'arrow_back_ios';
         public static const TRIP_ORIGIN:String = 'trip_origin';
         public static const CHECK_CIRCLE_OUTLINE:String = 'check_circle_outline';
+        public static const WORK_OFF:String = 'work_off';
     }
 }
