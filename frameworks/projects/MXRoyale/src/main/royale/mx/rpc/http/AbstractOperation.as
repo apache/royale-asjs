@@ -856,8 +856,9 @@ package mx.rpc.http
 			}
 			
 			if (ctype == CONTENT_TYPE_XML)
-			{/*
-				if (parameters is String && xmlEncode == null)
+			{
+				paramsToSend = parameters.toXMLString();
+				/*if (parameters is String && xmlEncode == null)
 				{
 				paramsToSend = parameters as String;
 				}
