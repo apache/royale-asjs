@@ -3706,7 +3706,10 @@ j|TitleBar {
   text-decoration: none;
 }
 .jewel.togglebutton[disabled] {
-  cursor: unset;
+  cursor: default;
+}
+.jewel.togglebutton .fonticon {
+  cursor: inherit;
 }
 
 .jewel.tooltip {
