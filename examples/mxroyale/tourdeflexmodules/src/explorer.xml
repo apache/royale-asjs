@@ -231,7 +231,7 @@
 						<node label="SeriesZoom" module="mx/charts/SeriesZoomExample" />
 					</node>
 				</node>
-				<node label="AdancedDataGrid">
+				<node label="AdvancedDataGrid">
 					<node label="AdvancedDataGrid" module="mx/controls/AdvancedDataGridExample" />
 				</node>
                 <!--
