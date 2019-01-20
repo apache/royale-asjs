@@ -72,6 +72,18 @@
       </properties>
     </channel-definition>
   </channels>
+  <validators>
+    <validator class="flex.messaging.validators.ClassDeserializationValidator">
+      <properties>
+        <allow-classes>
+          <class name="org.apache.royale.amfsamples.valueobjects.*"/>
+          <class name="flex.messaging.messages.*"/>
+          <class name="flex.messaging.io.*"/>
+          <class name="flex.messaging.io.amf.*"/>
+        </allow-classes>
+      </properties>
+    </validator>
+  </validators>
 
   <flex-client>
     <!-- Make sure clients are automatically expired -->
