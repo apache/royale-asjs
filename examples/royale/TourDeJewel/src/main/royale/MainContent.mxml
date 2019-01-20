@@ -84,6 +84,9 @@ limitations under the License.
         <j:BarRow>
             <j:BarSection>
                 <j:IconButton>
+                    <j:beads>
+                        <j:Badge text="2"/>
+                    </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true" click="popup.open = !popup.open"/>
                     </j:icon>
@@ -92,6 +95,9 @@ limitations under the License.
                     <c:FormExample label="Form example in a PopUp from FooterBar" width="615" height="392"/>
                 </j:PopUp>
                 <j:IconButton>
+                    <j:beads>
+                        <j:Badge text="5"/>
+                    </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
                     </j:icon>
