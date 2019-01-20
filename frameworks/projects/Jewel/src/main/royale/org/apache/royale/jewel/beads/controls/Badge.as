@@ -81,17 +81,16 @@ package org.apache.royale.jewel.beads.controls
 			host = value as UIBase;
 			COMPILE::JS
 			{
-				if (host)
-				{
-					// host.element.classList.toggle("overlap", _overlap);
-					host.element.classList.add("visible");
-					host.element.classList.add("viewport");
-				}
+				host.element.classList.add("visible");
+				host.element.classList.add("viewport");
 			}
+			badge.toggleClass("overlap", _overlap);
+			badge.visible = text == '' ? false : true;
+			
 			host.addElement(badge);
 		}
 
-		private var _text:String;
+		private var _text:String = '';
 		/**
 		 *  The current value of the Badge that appers inside the circle.
 		 *
@@ -100,6 +99,7 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
+		[Bindable]
 		public function get text():String
 		{
 			return _text;
@@ -109,9 +109,10 @@ package org.apache.royale.jewel.beads.controls
 		{
 			_text = value;
 			badge.text = _text;
+			badge.visible = text == '' ? false : true;
 		}
 
-        // private var _overlap:Boolean = false;
+        private var _overlap:Boolean = true;
         /**
 		 *  A boolean flag to activate "overlap" effect selector.
 		 *  Make the badge overlap with its container
@@ -121,25 +122,19 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-        // public function get overlap():Boolean
-        // {
-        //     return _overlap;
-        // }
+        public function get overlap():Boolean
+        {
+            return _overlap;
+        }
 
-        // public function set overlap(value:Boolean):void
-        // {
-		// 	if (_overlap != value)
-        //     {
-        //         _overlap = value;
+        public function set overlap(value:Boolean):void
+        {
+			if (_overlap != value)
+            {
+                _overlap = value;
 
-		// 		COMPILE::JS
-        //         {
-        //             if (host)
-        //             {
-        //                 host.element.classList.toggle("overlap", _overlap);
-        //             }
-        //         }
-        //     }
-        // }
+				badge.toggleClass("overlap", _overlap);
+            }
+        }
 	}
 }

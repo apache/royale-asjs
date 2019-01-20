@@ -47,6 +47,14 @@ limitations under the License.
             {
                 main.selectedContent = "welcome_panel";
             }
+
+            [Bindable]
+            public var badgeNum:int = 0;
+
+            public function increaseBadge():void
+            {
+                badge.text = ++badgeNum > 0 ? '' + badgeNum : '';
+            }
         ]]>
     </fx:Script>
 
@@ -83,18 +91,15 @@ limitations under the License.
     <j:FooterBar localId="footerbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">
         <j:BarRow>
             <j:BarSection>
-                <j:IconButton>
+                <j:IconButton click="increaseBadge()">
                     <j:beads>
-                        <j:Badge text="2"/>
+                        <j:Badge localId="badge" overlap="false"/>
                     </j:beads>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true" click="popup.open = !popup.open"/>
+                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true"/>
                     </j:icon>
                 </j:IconButton>
-                <j:PopUp localId="popup">
-                    <c:FormExample label="Form example in a PopUp from FooterBar" width="615" height="392"/>
-                </j:PopUp>
-                <j:IconButton>
+                <j:IconButton click="popup.open = !popup.open">
                     <j:beads>
                         <j:Badge text="5"/>
                     </j:beads>
@@ -102,6 +107,9 @@ limitations under the License.
                         <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
                     </j:icon>
                 </j:IconButton>
+                <j:PopUp localId="popup">
+                    <c:FormExample label="Form example in a PopUp from FooterBar" width="615" height="392"/>
+                </j:PopUp>
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsCenter">
                 <html:H3 text="FooterBar" />
