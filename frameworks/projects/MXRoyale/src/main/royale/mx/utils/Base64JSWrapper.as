@@ -37,7 +37,7 @@ package mx.utils
 		{
 			var base64js:Object = window["base64js"];
 			
-			return base64js.fromByteArray(bytes);
+			return base64js["fromByteArray"](bytes);
 			
 		}
 
