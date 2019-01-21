@@ -84,6 +84,8 @@ package org.apache.royale.jewel.beads.controls
 				host.element.classList.add("visible");
 				host.element.classList.add("viewport");
 			}
+			badge.toggleClass("preindex", _preindex);
+			badge.toggleClass("subindex", _subindex);
 			badge.toggleClass("overlap", _overlap);
 			badge.visible = text == '' ? false : true;
 			
@@ -104,7 +106,6 @@ package org.apache.royale.jewel.beads.controls
 		{
 			return _text;
 		}
-
 		public function set text(value:String):void
 		{
 			_text = value;
@@ -112,7 +113,34 @@ package org.apache.royale.jewel.beads.controls
 			badge.visible = text == '' ? false : true;
 		}
 
-        private var _overlap:Boolean = true;
+		private var _emphasis:String;
+		/**
+		 *  The color of this Badge
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function get emphasis():String
+		{
+			return _emphasis;
+		}
+		public function set emphasis(value:String):void
+        {
+            if (_emphasis != value)
+            {
+                if(_emphasis)
+                {
+                    badge.removeClass(_emphasis);
+                }
+                _emphasis = value;
+
+                badge.addClass(_emphasis);
+            }
+        }
+
+        private var _overlap:Boolean = false;
         /**
 		 *  A boolean flag to activate "overlap" effect selector.
 		 *  Make the badge overlap with its container
@@ -126,7 +154,6 @@ package org.apache.royale.jewel.beads.controls
         {
             return _overlap;
         }
-
         public function set overlap(value:Boolean):void
         {
 			if (_overlap != value)
@@ -134,6 +161,54 @@ package org.apache.royale.jewel.beads.controls
                 _overlap = value;
 
 				badge.toggleClass("overlap", _overlap);
+            }
+        }
+        
+		private var _subindex:Boolean = false;
+        /**
+		 *  A boolean flag to activate "subindex" effect selector.
+		 *  Make the badge position subindex instead of default superindex
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+        public function get subindex():Boolean
+        {
+            return _subindex;
+        }
+        public function set subindex(value:Boolean):void
+        {
+			if (_subindex != value)
+            {
+                _subindex = value;
+
+				badge.toggleClass("subindex", _subindex);
+            }
+        }
+
+		private var _preindex:Boolean = false;
+        /**
+		 *  A boolean flag to activate "preindex" effect selector.
+		 *  Make the badge position preindex instead of default postindex
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+        public function get preindex():Boolean
+        {
+            return _preindex;
+        }
+        public function set preindex(value:Boolean):void
+        {
+			if (_preindex != value)
+            {
+                _preindex = value;
+
+				badge.toggleClass("preindex", _preindex);
             }
         }
 	}

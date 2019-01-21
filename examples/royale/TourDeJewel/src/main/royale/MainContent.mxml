@@ -93,7 +93,7 @@ limitations under the License.
             <j:BarSection>
                 <j:IconButton click="increaseBadge()">
                     <j:beads>
-                        <j:Badge localId="badge" overlap="false"/>
+                        <j:Badge localId="badge" overlap="true"/>
                     </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true"/>
@@ -101,7 +101,7 @@ limitations under the License.
                 </j:IconButton>
                 <j:IconButton click="popup.open = !popup.open">
                     <j:beads>
-                        <j:Badge text="5"/>
+                        <j:Badge text="5" emphasis="secondary" subindex="true" overlap="true"/>
                     </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
@@ -116,11 +116,17 @@ limitations under the License.
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsRight">
                 <j:IconButton>
+                    <j:beads>
+                        <j:Badge text="27" emphasis="primary" preindex="true" overlap="true"/>
+                    </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.ADD_ALARM}" material="true"/>
                     </j:icon>
                 </j:IconButton>
                 <j:IconButton>
+                    <j:beads>
+                        <j:Badge text="209" emphasis="emphasized" subindex="true" preindex="true" overlap="true"/>
+                    </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.ANNOUNCEMENT}" material="true"/>
                     </j:icon>

@@ -20,42 +20,18 @@
 // Jewel Badge
 
 // Badge variables
-$badge-size: 2.1em
-$badge-padding: .5em
-// $badge-margin: 0 -1.5em 0 -1.5em
-// $badge-overlap: 1em
+$badge-font-size: .85em 
+$badge-line-height: 1em
+$badge-border-radius: 500em
 
 .jewel.badge
-    z-index: 2
+    border-radius: $badge-border-radius
+    background: $default-color
+    color: $default-font-color
+
+    font-size: $badge-font-size !important
+    line-height: $badge-line-height
     
-    position: absolute
-    top: -1em
-    right: -1em
-
-    text-transform: initial
-
-    // margin: $badge-margin !important
-    padding: $badge-padding
-    
-    min-width: $badge-size
-    // min-height: $badge-size
-    &.overlap
-        top: 0em
-        right: 0em
-
-    &.subindex
-        top: auto
-        bottom: -1em
-        &.overlap
-            top: auto
-            bottom: 0em
-
-    &.preindex
-        left: -1em
-        right: auto
-        &.overlap
-            left: 0em
-            right: auto
-
-    
-j|Badge
+    &.primary
+        background: $primary-color
+        color: $font-theme-color

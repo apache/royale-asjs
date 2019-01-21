@@ -176,21 +176,32 @@ j|Alert {
 
 .jewel.badge {
   z-index: 2;
-  position: relative;
-  top: -1.2em;
-  left: 1.2em;
-  margin: 0 0 0 -1.5em !important;
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  text-transform: initial;
   padding: 0.5em;
-  min-width: 2em;
-  min-height: 2em;
-  font-size: 0.85em !important;
-  line-height: 1em;
-  border-radius: 500em;
-  background: red;
-  color: white;
+  min-width: 2.1em;
 }
 .jewel.badge.overlap {
-  left: 0.7em;
+  top: 0em;
+  right: 0em;
+}
+.jewel.badge.subindex {
+  top: auto;
+  bottom: -1em;
+}
+.jewel.badge.subindex.overlap {
+  top: auto;
+  bottom: 0em;
+}
+.jewel.badge.preindex {
+  left: -1em;
+  right: auto;
+}
+.jewel.badge.preindex.overlap {
+  left: 0em;
+  right: auto;
 }
 
 .jewel.button {

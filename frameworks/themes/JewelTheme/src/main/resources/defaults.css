@@ -135,6 +135,18 @@ div {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.jewel.badge {
+  border-radius: 500em;
+  background: #d9d9d9;
+  color: #808080;
+  font-size: 0.85em !important;
+  line-height: 1em;
+}
+.jewel.badge.primary {
+  background: #3CADF1;
+  color: #FFFFFF;
+}
+
 .jewel.button {
   background: linear-gradient(#e6e6e6, #cccccc);
   border: 1px solid #b3b3b3;
@@ -1073,6 +1085,11 @@ j|Wizard {
   itemsVerticalAlign: itemsCentered;
 }
 
+.jewel.badge.secondary {
+  background: #EF5A2A;
+  color: #FFFFFF;
+}
+
 .jewel.button.secondary {
   background: linear-gradient(#f16c42, #ed4812);
   border: 1px solid #be390e;
@@ -1162,6 +1179,11 @@ a:active {
   background: linear-gradient(#d64010, #a6320d);
   border: 1px solid #772409;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+
+.jewel.badge.emphasized {
+  background: #8CC63C;
+  color: #FFFFFF;
 }
 
 .jewel.button.emphasized {
