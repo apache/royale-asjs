@@ -41,7 +41,7 @@ button, input, textarea {
 }
 
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 j|View {
