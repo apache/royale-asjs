@@ -135,6 +135,18 @@ div {
   background-color: rgba(0, 0, 0, 0.5);
 }
 
+.jewel.badge {
+  border-radius: 500em;
+  background: #595959;
+  color: #FFFFFF;
+  font-size: 0.85em !important;
+  line-height: 1em;
+}
+.jewel.badge.primary {
+  background: #EC1C24;
+  color: #FFFFFF;
+}
+
 .jewel.button {
   background: linear-gradient(#666666, #4c4c4c);
   border: 1px solid #333333;

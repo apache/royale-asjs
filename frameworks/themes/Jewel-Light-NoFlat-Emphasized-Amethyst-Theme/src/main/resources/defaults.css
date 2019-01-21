@@ -76,6 +76,11 @@ div {
   font-size: 1.4em !important;
 }
 
+.jewel.badge.emphasized {
+  background: #C92CC6;
+  color: #FFFFFF;
+}
+
 .jewel.button.emphasized {
   background: linear-gradient(#d43bd1, #b427b1);
   border: 1px solid #8a1e88;

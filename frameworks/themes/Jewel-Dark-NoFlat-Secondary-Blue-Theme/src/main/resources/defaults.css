@@ -76,6 +76,11 @@ div {
   font-size: 1.4em !important;
 }
 
+.jewel.badge.secondary {
+  background: #3CADF1;
+  color: #FFFFFF;
+}
+
 .jewel.button.secondary {
   background: linear-gradient(#54b7f3, #24a3ef);
   border: 1px solid #0f88d1;
