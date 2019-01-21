@@ -58,7 +58,7 @@ package org.apache.royale.jewel.beads.validators
 		public static const LEFT:int = 10002;
 		public static const RIGHT:int = 10003;
 		public static const MIDDLE:int = 10004;
-		
+
 		private var _errorTip:ErrorTipLabel;
 		private var _host:IPopUpHost;
 		private var _xPos:int = LEFT;
@@ -69,7 +69,7 @@ package org.apache.royale.jewel.beads.validators
 		private var _trigger:IEventDispatcher;
 		/**
 		 * Specifies the component generating the event that triggers the validator.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -94,7 +94,7 @@ package org.apache.royale.jewel.beads.validators
 		private var _triggerEvent:String = Event.CHANGE;
 		/**
 		 * Specifies the event that triggers the validation.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -123,7 +123,7 @@ package org.apache.royale.jewel.beads.validators
 		COMPILE::JS
 		protected var hostClassList:DOMTokenList;
 
-		/**                         	
+		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
@@ -143,7 +143,7 @@ package org.apache.royale.jewel.beads.validators
 		}
 		/**
 		 *  Contains true if the field generated a validation failure.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -159,7 +159,7 @@ package org.apache.royale.jewel.beads.validators
 		 *  validateFunction(item:Object):String
 		 *  Where item is the hostComponent object
 		 *  and return the error text, if valid return null
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -172,7 +172,7 @@ package org.apache.royale.jewel.beads.validators
 		}
 		/**
 		 *  set your custom validation logic
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -181,7 +181,7 @@ package org.apache.royale.jewel.beads.validators
 		public function set validateFunction(func:Function):void{
 			_validateFunction = func;
 		}
-		
+
 		private var _required:int;
 
 		public function get required():int {
@@ -190,7 +190,7 @@ package org.apache.royale.jewel.beads.validators
 
 		/**
 		 *  specifies that at least required quantity causes a validation error.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -222,7 +222,7 @@ package org.apache.royale.jewel.beads.validators
 		 *  Performs validation and return the result.
 		 *  When result is false(invalid), errorTip appears on the control.
 		 *  And true(valid), the errorTip will disappear.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -270,11 +270,11 @@ package org.apache.royale.jewel.beads.validators
 		{
 			_yPos = pos;
 		}
-		
+
 
 		/**
 		 *  Create an errorTip that floats a error text over a control
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -305,7 +305,7 @@ package org.apache.royale.jewel.beads.validators
 
 			COMPILE::JS
 			{
-				if (!hostClassList.contains("errorBorder")) 
+				if (!hostClassList.contains("errorBorder"))
 					hostClassList.add("errorBorder");
 			}
 		}
@@ -323,7 +323,7 @@ package org.apache.royale.jewel.beads.validators
 
 		/**
 		 *  Determines the position of the errorTip.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -363,19 +363,19 @@ package org.apache.royale.jewel.beads.validators
 
         /**
          *  Destroy the created errorTip
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
          */
-        protected function destroyErrorTip():void
+        internal function destroyErrorTip():void
         {
             if (_errorTip) {
                 _host.popUpParent.removeElement(_errorTip);
 
 				_errorTip = null;
-				
+
 				COMPILE::JS
 				{
 					if (hostClassList.contains("errorBorder"))

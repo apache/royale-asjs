@@ -29,6 +29,7 @@
 	<component id="ColorMatrixFilterElement" class="org.apache.royale.svg.ColorMatrixFilterElement" />
 	<component id="DiffuseLightingFilterElement" class="org.apache.royale.svg.DiffuseLightingFilterElement" />
 	<component id="SpreadFilterElement" class="org.apache.royale.svg.SpreadFilterElement" />
+	<component id="AdjustBrightnessFilterElement" class="org.apache.royale.svg.AdjustBrightnessFilterElement" />
 	<component id="BlurFilterElement" class="org.apache.royale.svg.BlurFilterElement" />
 	<component id="InvertFilterElement" class="org.apache.royale.svg.InvertFilterElement" />
 	<component id="FullAlphaFilterElement" class="org.apache.royale.svg.FullAlphaFilterElement" />

@@ -41,7 +41,7 @@ button, input, textarea {
 }
 
 .cursor-pointer {
-  cursor: pointer;
+  cursor: pointer !important;
 }
 
 j|View {
@@ -172,6 +172,36 @@ j|Alert {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.AlertModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.AlertController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.AlertView");
+}
+
+.jewel.badge {
+  z-index: 2;
+  position: absolute;
+  top: -1em;
+  right: -1em;
+  text-transform: initial;
+  padding: 0.5em;
+  min-width: 2.1em;
+}
+.jewel.badge.overlap {
+  top: 0em;
+  right: 0em;
+}
+.jewel.badge.subindex {
+  top: auto;
+  bottom: -1em;
+}
+.jewel.badge.subindex.overlap {
+  top: auto;
+  bottom: 0em;
+}
+.jewel.badge.preindex {
+  left: -1em;
+  right: auto;
+}
+.jewel.badge.preindex.overlap {
+  left: 0em;
+  right: auto;
 }
 
 .jewel.button {
@@ -861,6 +891,9 @@ j|Label {
 }
 .viewport.scroll {
   overflow: auto;
+}
+.viewport.visible {
+  overflow: visible;
 }
 
 .layout.basic {
