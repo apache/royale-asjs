@@ -107,8 +107,8 @@ limitations under the License.
                         <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
                     </j:icon>
                 </j:IconButton>
-                <j:PopUp localId="popup">
-                    <c:FormExample label="Form example in a PopUp from FooterBar" width="615" height="392"/>
+                <j:PopUp localId="popup" closePopUp="popupFormContent.formValidator.removeAllErrorTips()">
+                    <c:FormExample localId="popupFormContent" label="Form example in a PopUp from FooterBar" width="615" height="392"/>
                 </j:PopUp>
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsCenter">
