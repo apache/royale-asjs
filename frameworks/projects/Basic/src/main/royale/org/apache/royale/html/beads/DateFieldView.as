@@ -22,7 +22,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDateChooserModel;
-	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
@@ -144,19 +144,12 @@ package org.apache.royale.html.beads
 
 		private function handleInitComplete(event:Event):void
 		{
-			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
-			formatter.addEventListener("formatChanged",handleFormatChanged);
 			_textInput.height = _button.height;
 
 			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
 		}
 
-		private function handleFormatChanged(event:Event):void
-		{
-			var formatter:IFormatBead = event.target as IFormatBead;
-			_textInput.text = formatter.formattedString;
-		}
 
 		private var _popUp:IDateChooser;
 
@@ -237,6 +230,9 @@ package org.apache.royale.html.beads
 		private function selectionChangeHandler(event:Event):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
+			var model:IDateChooserModel = event.target as IDateChooserModel;
+			var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter;
+			_textInput.text = formatter.format(model.selectedDate);
 		}
 	}
 }

@@ -268,7 +268,7 @@ DateField {
 	IBeadView:   ClassReference("org.apache.royale.html.beads.DateFieldView");
 	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateFieldMouseController");
-	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
+	IFormatter: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
 	IPopUp: ClassReference("org.apache.royale.html.supportClasses.DateFieldDateChooser");
 }
 

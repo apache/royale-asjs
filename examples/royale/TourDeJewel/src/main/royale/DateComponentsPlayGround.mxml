@@ -76,7 +76,7 @@ limitations under the License.
 			
 			private function configDateFieldToES():void
 			{
-				dateFieldES.addBead(new DateFormatDDMMYYYY()); // this one removes the default IFormatBead
+				dateFieldES.addBead(new DateFormatDDMMYYYY()); // this one removes the default IFormatter
 
 				dateFieldES.model.dayNames = ['D','L','M','X','J','V','S'];
 				dateFieldES.model.monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Deciembre"];

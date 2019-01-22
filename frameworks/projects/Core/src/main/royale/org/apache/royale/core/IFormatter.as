@@ -21,49 +21,25 @@ package org.apache.royale.core
 	import org.apache.royale.events.IEventDispatcher;
 
 	/**
-	 *  The IFormatBead interface should be implemented by any bead that
-	 *  provides a formatting service. When the bead instance is created it
-	 *  should listen for change events and set its formattedString property
-	 *  for later retrieveal. 
+	 *  The IFormatter interface should be implemented by any bead that
+	 *  provides a formatting service.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.6
 	 */
-	public interface IFormatBead extends IBead, IEventDispatcher
+	public interface IFormatter extends IBead
 	{
 		/**
-		 *  The name of the property for the source to be formatted. 
+		 *  Takes the source object to format and returns the formatted string
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.6
 		 */
-		function get propertyName():String;
-		function set propertyName(value:String):void;
-		
-		/**
-		 *  The name of the event to listen for, indicating that propertyName
-		 *  property has changed. The default event is propertyName+"Changed". 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		function get eventName():String;
-		function set eventName(value:String):void;
-		
-		/**
-		 *  The formatted result. 
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		function get formattedString():String;
+		function format(source:Object):String;
+
 	}
 }

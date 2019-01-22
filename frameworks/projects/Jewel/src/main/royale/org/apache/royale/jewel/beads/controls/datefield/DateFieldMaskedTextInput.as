@@ -33,6 +33,7 @@ package org.apache.royale.jewel.beads.controls.datefield
     import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.IFormatter;
 	
 	/**
 	 *  The DateFieldMaskedTextInput class is a specialty bead that is used
@@ -116,6 +117,18 @@ package org.apache.royale.jewel.beads.controls.datefield
 			var n:Number = Number(value);
 			if (isNaN(n)) event.preventDefault();
 		}
+
+		private var _formatter:IFormatter;
+
+		public function get formatter():IFormatter
+		{
+			return _formatter;
+		}
+
+		public function set formatter(value:IFormatter):void
+		{
+			_formatter = value;
+		}
 		
 		COMPILE::JS
 		private function validateInput(event:BrowserEvent):void
@@ -153,32 +166,10 @@ package org.apache.royale.jewel.beads.controls.datefield
 
 		COMPILE::JS
 		/**
-		 * (TODO carlosrovira): this should take into account IFormatBead
+		 * (TODO carlosrovira): this should take into account IFormatter
 		 */
 		private function dateInputMask(event:BrowserEvent):void {
-			if(event.keyCode < 47 || event.keyCode > 57) {
-				event.preventDefault();
-			}
-			
-			var len:int = event.target.value.length;
-			
-			// If we're at a particular place, let the user type the slash
-			// i.e., 12/12/1212
-			if(len !== 1 || len !== 3) {
-				if(event.keyCode == 47) {
-					event.preventDefault();
-				}
-			}
-			
-			// If they don't add the slash, do it for them...
-			if(len === 2) {
-				event.target.value += '/';
-			}
-
-			// If they don't add the slash, do it for them...
-			if(len === 5) {
-				event.target.value += '/';
-			}
+			event.target.value = formatter.format(event.target.value);
 		}
 	}
 }

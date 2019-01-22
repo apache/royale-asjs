@@ -598,7 +598,7 @@ j|DateField {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DateFieldView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DateFieldMouseController");
-  IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatMMDDYYYY");
+  IFormatter: ClassReference("org.apache.royale.html.accessories.StringDateFormatter");
   IPopUp: ClassReference("org.apache.royale.jewel.DateChooser");
 }
 
