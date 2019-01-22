@@ -122,11 +122,6 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
 			_textInput = new TextInput();
-			_textInput.addBead(new DateFieldMaskedTextInput());
-			
-			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
-			maxNumberCharacters.maxlength = 10;
-			_textInput.addBead(maxNumberCharacters);
 			
 			getHost().addElement(_textInput);
 
@@ -159,6 +154,15 @@ package org.apache.royale.jewel.beads.views
 		{
 			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
+			var mask:DateFieldMaskedTextInput = new DateFieldMaskedTextInput();
+			_textInput.addBead(mask);
+			
+			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
+			maxNumberCharacters.maxlength = 10;
+			_textInput.addBead(maxNumberCharacters);
+			
+			var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter;
+			mask.formatter = formatter;
 		}
 		
 		private function handlePopUpInitComplete(event:Event):void

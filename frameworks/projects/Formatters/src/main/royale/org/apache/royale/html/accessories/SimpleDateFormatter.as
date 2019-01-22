@@ -45,7 +45,7 @@ package org.apache.royale.html.accessories
 		}
 
 		private var _dateFormat:String;
-		private var _separator:String;
+		protected var _separator:String;
 		
 		/**
 		 *  The dateFormat of the date string.
@@ -103,7 +103,7 @@ package org.apache.royale.html.accessories
 				var month:String = String(selectedDate.getMonth()+1);
 				var day:String = String(selectedDate.getDate());
 				var year:String = String(selectedDate.getFullYear());
-				var tokens:Array = _dateFormat.split(_separator);
+				var tokens:Array = dateFormat.split(_separator);
 				var length:int = tokens.length;
 
 				

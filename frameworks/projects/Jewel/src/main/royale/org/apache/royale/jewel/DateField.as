@@ -76,7 +76,7 @@ package org.apache.royale.jewel
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			loadBeadFromValuesManager(IFormatter, "IFormatter", this);
+			loadBeadFromValuesManager(IFormatter, "iFormatter", this);
 			
 			loadBeadFromValuesManager(IDateControlConfigBead, "iDateControlConfigBead", this);
 
