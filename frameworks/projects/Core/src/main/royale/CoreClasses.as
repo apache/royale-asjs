@@ -103,6 +103,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.core.IDocument; IDocument;
 	import org.apache.royale.core.IDragInitiator; IDragInitiator;
     import org.apache.royale.core.IFormatter; IFormatter;
+	import org.apache.royale.core.IDateFormatter; IDateFormatter;
     import org.apache.royale.core.IDateControlConfigBead; IDateControlConfigBead;
     import org.apache.royale.core.IImage; IImage;
     import org.apache.royale.core.IImageModel; IImageModel;

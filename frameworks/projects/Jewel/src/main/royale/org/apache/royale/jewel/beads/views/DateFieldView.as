@@ -46,6 +46,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.views.DateChooserView;
     import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.core.IDateFormatter;
+    import org.apache.royale.jewel.DateField;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -150,6 +152,10 @@ package org.apache.royale.jewel.beads.views
 
 		private var model:IDateChooserModel;
 
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDateFormatter
+		 * @royaleignorecoercion org.apache.royale.jewel.DateField
+		 */
 		private function handleInitComplete(event:Event):void
 		{
 			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
@@ -162,6 +168,10 @@ package org.apache.royale.jewel.beads.views
 			_textInput.addBead(maxNumberCharacters);
 			
 			var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter;
+			var dateFormat:String = (_strand as DateField).dateFormat;
+			if(dateFormat)
+				(formatter as IDateFormatter).dateFormat = dateFormat;
+				
 			mask.formatter = formatter;
 		}
 		

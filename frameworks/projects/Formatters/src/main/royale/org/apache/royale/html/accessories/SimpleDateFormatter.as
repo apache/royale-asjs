@@ -19,6 +19,7 @@
 package org.apache.royale.html.accessories
 {
 	import org.apache.royale.core.FormatBase;
+	import org.apache.royale.core.IDateFormatter;
 	
 	/**
 	 * The DateFormatter class formats the display of a DateField using a dateFormat.
@@ -30,7 +31,7 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class SimpleDateFormatter extends FormatBase
+	public class SimpleDateFormatter extends FormatBase implements IDateFormatter
 	{
 		/**
 		 * constructor.

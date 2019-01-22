@@ -76,7 +76,7 @@ limitations under the License.
 			
 			private function configDateFieldToES():void
 			{
-				dateFieldES.addBead(new DateFormatDDMMYYYY()); // this one removes the default IFormatter
+				dateFieldES.dateFormat = "DD/MM/YYYY";
 
 				dateFieldES.model.dayNames = ['D','L','M','X','J','V','S'];
 				dateFieldES.model.monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Deciembre"];
@@ -117,7 +117,7 @@ limitations under the License.
 				<html:H3 text="Jewel DateField (Default)"/>
 
 				<j:HGroup gap="3">
-					<j:DateField id="dateFieldDefault" change="dateFieldDefaultChanged()">
+					<j:DateField id="dateFieldDefault" change="dateFieldDefaultChanged()" dateFormat="MM/DD/YYYY">
 						<j:beads>
 							<j:DateFieldTextPrompt prompt="MM/DD/YYYY"/>
 						</j:beads>

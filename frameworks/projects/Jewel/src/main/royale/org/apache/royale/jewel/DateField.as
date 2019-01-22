@@ -100,5 +100,24 @@ package org.apache.royale.jewel
 		{
 			IDateChooserModel(model).selectedDate = value;
 		}
+		private var _dateFormat:String;
+
+		/**
+		 *  A Date format using D for Days, M for Months and Y for Year i.e. DD/MM/YYYY
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function get dateFormat():String
+		{
+			return _dateFormat;
+		}
+
+		public function set dateFormat(value:String):void
+		{
+			_dateFormat = value.toUpperCase();
+		}
 	}
 }

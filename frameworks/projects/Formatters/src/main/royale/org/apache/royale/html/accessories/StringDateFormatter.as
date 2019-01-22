@@ -52,7 +52,8 @@ package org.apache.royale.html.accessories
       for (var i:int = 0; i < length; i++) {
         if(!str)
           break;
-        switch (tokens[i]) {
+        var token:String = tokens[i];
+        switch (token) {
           case "YYYY":
             part = str.substr(0,4);
             str = str.substr(4);
@@ -95,8 +96,9 @@ package org.apache.royale.html.accessories
             break;
         }
         // if there's no more left, str is empty and no separator
-        if (str && i <= length - 2) {
-          result += _separator;
+        if (i <= length - 2) {
+          if(token.length == part.length)
+            result += _separator;
         }
       }
 
