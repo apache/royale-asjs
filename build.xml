@@ -577,6 +577,10 @@ limitations under the License.
         <delete file="${ROYALE_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
+        <delete dir="${basedir}" failonerror="false">
+            <include name="**/*.log"/>
+            <include name="**/*.mdmp"/>
+        </delete>
     </target>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
