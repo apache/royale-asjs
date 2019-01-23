@@ -42,6 +42,7 @@ package org.apache.royale.html.accessories
         return super.format(value);
       }
       var str:String = value as String;
+      var lastChar:String = str ? str[str.length-1] : "";
       str = str.replace(/[^0-9]/g,"");
       var result:String = "";
       var tokens:Array = dateFormat.split(_separator);
@@ -76,6 +77,9 @@ package org.apache.royale.html.accessories
             {
               // part is ok. We need to slice the str
               str = str.substr(2);
+              //manually added separator. Add a 0.
+              if(part.length == 1 && lastChar == _separator)
+                part = "0" + part;
             }
             result += part;
             break;
@@ -91,12 +95,15 @@ package org.apache.royale.html.accessories
             {
               // part is ok. We need to slice the str
               str = str.substr(2);
+              //manually added separator. Add a 0.
+              if(part.length == 1 && lastChar == _separator)
+                part = "0" + part;
             }
             result += part;
             break;
         }
         // if there's no more left, str is empty and no separator
-        if (str && i <= length - 2) {
+        if ( (str || lastChar == _separator) && i <= length - 2) {
           result += _separator;
         }
       }
