@@ -96,9 +96,8 @@ package org.apache.royale.html.accessories
             break;
         }
         // if there's no more left, str is empty and no separator
-        if (i <= length - 2) {
-          if(token.length == part.length)
-            result += _separator;
+        if (str && i <= length - 2) {
+          result += _separator;
         }
       }
 
