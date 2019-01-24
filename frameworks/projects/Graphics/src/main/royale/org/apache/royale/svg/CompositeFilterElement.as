@@ -56,10 +56,13 @@ package org.apache.royale.svg
 			{
 				super.build();
 				filterElement.setAttribute("in2", in2);
-				filterElement.setAttribute("k1", k1);
-				filterElement.setAttribute("k2", k2);
-				filterElement.setAttribute("k3", k3);
-				filterElement.setAttribute("k4", k4);
+				if (operator == "arithmetic")
+				{
+					filterElement.setAttribute("k1", k1);
+					filterElement.setAttribute("k2", k2);
+					filterElement.setAttribute("k3", k3);
+					filterElement.setAttribute("k4", k4);
+				}
 				filterElement.setAttribute("operator", operator);
 			}
 		}
