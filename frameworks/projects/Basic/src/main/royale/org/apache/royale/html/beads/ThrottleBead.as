@@ -90,6 +90,8 @@ package org.apache.royale.html.beads
         {
             return _interval;
         }
+
+				[Inspectable(category="General", defaultValue="500")]
         public function set interval(value:Number):void
         {
             _interval = value;

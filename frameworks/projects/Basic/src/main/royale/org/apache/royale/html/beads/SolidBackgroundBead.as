@@ -157,6 +157,7 @@ package org.apache.royale.html.beads
 			return _opacity;
 		}
 		
+    	[Inspectable(category="General", defaultValue="1.0", minValue="0", maxValue="1.0")]
         /**
          *  @private
          */
