@@ -416,7 +416,7 @@ j|ComboBox {
   }
 
   .jewel.item {
-    height: 48px !important;
+    min-height: 48px !important;
   }
 }
 @media (min-width: 992px) {
@@ -439,7 +439,7 @@ j|ComboBox {
     left: auto;
   }
   .combobox-popup.open .jewel.list .jewel.item {
-    height: 34px;
+    min-height: 34px;
   }
 }
 j|ComboBoxPopUp {

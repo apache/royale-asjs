@@ -142,7 +142,7 @@ $combobox-item-min-heigh: 34px
         .jewel.list
             max-height: ( $combobox-item-min-heigh + 14 ) * 5 !important
     .jewel.item
-        height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
+        min-height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
 
 @media (min-width: $desktop)
     .combobox-popup
@@ -166,7 +166,7 @@ $combobox-item-min-heigh: 34px
                 left: auto
 
                 .jewel.item
-                    height: $combobox-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
+                    min-height: $combobox-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
 
 
 // this is a StyledUIBase with a List inside
