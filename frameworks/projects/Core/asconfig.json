@@ -34,6 +34,7 @@
             "src/test/royale/flexUnitTests"
         ],
         "output": "target/Core.swc"
-    }
+    },
+    "additionalOptions": "-allow-abstract-classes"
 }
 

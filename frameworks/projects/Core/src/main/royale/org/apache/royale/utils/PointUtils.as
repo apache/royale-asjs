@@ -37,15 +37,8 @@ package org.apache.royale.utils
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class PointUtils
+	public abstract class PointUtils
 	{
-		/**
-		 * @private
-		 */
-		public function PointUtils()
-		{
-			throw new Error("PointUtils should not be instantiated.");
-		}
 
 		/**
 		 *  Converts a point from global coordinates to local coordinates

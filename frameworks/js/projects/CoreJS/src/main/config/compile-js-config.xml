@@ -74,6 +74,7 @@
         
         <!-- Use of the instanceof operator. -->
         <warn-instance-of-changes>false</warn-instance-of-changes>
+        <allow-abstract-classes>true</allow-abstract-classes>
     </compiler>
     
     <include-file>
