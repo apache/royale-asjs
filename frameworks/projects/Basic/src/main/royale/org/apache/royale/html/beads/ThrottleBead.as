@@ -127,6 +127,9 @@ package org.apache.royale.html.beads
 			}
 		}
 
+		/**
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		private function get host():IEventDispatcher
 		{
 			return _strand as IEventDispatcher;
