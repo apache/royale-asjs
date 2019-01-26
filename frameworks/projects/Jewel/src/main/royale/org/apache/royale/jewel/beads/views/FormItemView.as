@@ -93,12 +93,12 @@ package org.apache.royale.jewel.beads.views
 			_contentArea = value;
 		}
 
-        private var model:FormItemModel;
+        protected var model:FormItemModel;
 
-        private var textLabel:Label;
-        private var textLabelAlign:TextAlign;
+        protected var textLabel:Label;
+        protected var textLabelAlign:TextAlign;
 
-		private var requiredLabel:Label;
+        protected var requiredLabel:Label;
 
 
         /**
