@@ -28,8 +28,15 @@ package org.apache.royale.utils
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public abstract class StringTrimmer
+	public class StringTrimmer
 	{
+		/**
+		 * @private
+		 */
+		public function StringTrimmer()
+		{
+			throw new Error("StringTrimmer should not be instantiated.");
+		}
 		
         /**
          *  Removes all whitespace characters from the beginning and end

@@ -31,8 +31,12 @@ package org.apache.royale.utils
 	 *  @productversion Royale 1.0.0
 	 *  @productversion Royale 0.0
 	 */
-	public abstract class StringUtil
+	public class StringUtil
 	{
+		public function StringUtil()
+		{
+			throw new Error("StringUtil should not be instantiated.");
+		}
 		
 		/**
 		 *  Substitutes "{n}" tokens within the specified string

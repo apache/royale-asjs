@@ -33,8 +33,15 @@ package org.apache.royale.utils
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public abstract class UIUtils
+	public class UIUtils
 	{
+		/**
+		 * @private
+		 */
+		public function UIUtils()
+		{
+			throw new Error("UIUtils should not be instantiated.");
+		}
 		
 		/**
 		 *  Centers the given item relative to another item. Typically the item being centered is

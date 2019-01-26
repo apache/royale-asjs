@@ -30,8 +30,12 @@ package org.apache.royale.utils
 	 *  @productversion Royale 1.0.0
 	 *  @productversion Royale 0.0
 	 */
-	public abstract class ObjectUtil
+	public class ObjectUtil
 	{
+		public function ObjectUtil()
+		{
+			throw new Error("ObjectUtil should not be instantiated.");
+		}
 
         /**
          * Count the properties in an object.
