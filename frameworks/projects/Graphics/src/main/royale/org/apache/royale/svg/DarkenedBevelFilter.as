@@ -45,21 +45,27 @@ package org.apache.royale.svg
 			{
 				lastFilterElement.result += "_" + result;
 			}
+			// Get chunk away from the fringes
 			var offsetFilterElement:OffsetFilterElement = new OffsetFilterElement();
 			offsetFilterElement.height = 4;
 			offsetFilterElement.width = 4;
 			offsetFilterElement.y = 40;
 			offsetFilterElement.x = 40;
 			children.push(offsetFilterElement);
+			// Spread it out
 			var tileFilterElement:TileFilterElement = new TileFilterElement();
 			children.push(tileFilterElement);
+			// Blur it to get as uniform a mask as possible
 			var blurFilterElement:BlurFilterElement = new BlurFilterElement();
 			blurFilterElement.stdDeviation = 5;
 			children.push(blurFilterElement);
+			// Clip it to the size of the source graphic
 			var compositeFilterElement:CompositeFilterElement = new CompositeFilterElement();
 			compositeFilterElement.in2 = "SourceGraphic";
 			compositeFilterElement.operator = "in";
 			children.push(compositeFilterElement);
+			// Get a maks that represents the difference between the original color
+			// and the resultant color
 			var blendFilterElement:BlendFilterElement = new BlendFilterElement();
 			blendFilterElement.result = "difference";
 			if (result)
@@ -67,11 +73,12 @@ package org.apache.royale.svg
 				blendFilterElement.result += "_" + result;
 			}
 			blendFilterElement.in2 = "SourceGraphic";
-			blendFilterElement.mode = "difference";
+			blendFilterElement.mode = blendFilterElement.result;
 			children.push(blendFilterElement);
+			// Subtrace said difference from the original bevel result
 			var blendFilterElement2:BlendFilterElement = new BlendFilterElement();
 			blendFilterElement2.in2 = "difference";
-			blendFilterElement2.in = "FirstBevel";
+			blendFilterElement2.in = lastFilterElement.result;
 			blendFilterElement2.mode = "difference";
 			children.push(blendFilterElement2);
 		}
