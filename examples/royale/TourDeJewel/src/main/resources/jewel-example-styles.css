@@ -92,3 +92,13 @@
 {
     IPopUpContent: ClassReference("components.SomePopUpContent")
 }
+
+.verticalContentFormItem 
+{
+	IFormItemContentArea: ClassReference("org.apache.royale.jewel.VGroup");
+}
+
+.horizontalContentFormItem 
+{
+	IFormItemContentArea: ClassReference("org.apache.royale.jewel.HGroup");
+}

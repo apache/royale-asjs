@@ -124,40 +124,19 @@ package org.apache.royale.jewel.beads.views
 			model.addEventListener("htmlChange", textChangeHandler);
             model.addEventListener("requiredChange", requiredChangeHandler);
 
-            // Look for a layout and/or viewport bead on the formItem's beads list. If one
-			// is found, pull it off so it will not be added permanently
-			// to the strand.
-            var beads:Array = formItem.beads;
-            var transferLayoutBead:IBeadLayout;
-            var transferViewportBead:IViewport;
-			if (formItem.beads != null) {
-				for(var i:int=formItem.beads.length-1; i >= 0; i--) {
-					if (formItem.beads[i] is IBeadLayout) {
-						transferLayoutBead = formItem.beads[i] as IBeadLayout;
-						formItem.beads.splice(i, 1);
-					}
-					else if (formItem.beads[i] is IViewport) {
-						transferViewportBead = formItem.beads[i] as IViewport
-						formItem.beads.splice(i, 1);
-					}
-				}
-			}
-
-            if (!_contentArea) {
+            if (!contentArea)
+            {
                 var cls:Class = ValuesManager.valuesImpl.getValue(_strand, "iFormItemContentArea");
-				_contentArea = new cls() as UIBase;
-				// _contentArea.id = "content";
-
-				// add the layout bead to the content area.
-				if (transferLayoutBead)
-                    _contentArea.addBead(transferLayoutBead);
+                // add the layout bead to the content area.
+                if (cls)
+                {
+                    contentArea = new cls() as UIBase;
+                }
                 else
+                {
                     setupContentAreaLayout();
-
-				// add the viewport bead to the content area.
-				if (transferViewportBead)
-					_contentArea.addBead(transferViewportBead);
-			}
+                }
+            }
 
             COMPILE::SWF {
 				IEventDispatcher(value).addEventListener("widthChanged", handleSizeChange);
@@ -167,34 +146,51 @@ package org.apache.royale.jewel.beads.views
                 IEventDispatcher(value).addEventListener("initComplete", handleInitComplete);
 			}
 
-            // super.strand = value;
-
-            if (textLabel == null) {
-				textLabel = createLabel(model.text);
-				textLabel.multiline = true;
-				textLabel.className = "formlabel";
-			}
-			if (textLabel != null && textLabel.parent == null) {
-				(_strand as IContainerBaseStrandChildrenHost).$addElement(textLabel);
-				textLabelAlign = new TextAlign();
-				textLabelAlign.align = model.labelAlign;
-				textLabel.addBead(textLabelAlign);
-			}
-
-			if (requiredLabel == null) {
-				var ast:String = model.required ? "*" : "";
-				requiredLabel = createLabel(ast);
-				requiredLabel.className = "required";
-			}
-			if (requiredLabel != null && requiredLabel.parent == null) {
-				(_strand as IContainerBaseStrandChildrenHost).$addElement(requiredLabel);
-			}
+            createLabels();
+            addLabels();
 
 			if (contentArea.parent == null) {
 				(_strand as IContainerBaseStrandChildrenHost).$addElement(contentArea as IChild);
 			}
 
             setupLayout();
+        }
+
+        protected function createLabels():void
+        {
+            if (textLabel == null)
+            {
+                textLabel = createLabel(model.text);
+                textLabel.multiline = true;
+                textLabel.className = "formlabel";
+            }
+
+            if (textLabel != null && textLabel.parent == null)
+            {
+                textLabelAlign = new TextAlign();
+                textLabelAlign.align = model.labelAlign;
+                textLabel.addBead(textLabelAlign);
+            }
+
+            if (requiredLabel == null)
+            {
+                var ast:String = model.required ? "*" : "";
+                requiredLabel = createLabel(ast);
+                requiredLabel.className = "required";
+            }
+        }
+
+        protected function addLabels():void
+        {
+            if (textLabel)
+            {
+                (_strand as IContainerBaseStrandChildrenHost).$addElement(textLabel);
+            }
+
+            if (requiredLabel != null && requiredLabel.parent == null)
+            {
+                (_strand as IContainerBaseStrandChildrenHost).$addElement(requiredLabel);
+            }
         }
 
         /**
