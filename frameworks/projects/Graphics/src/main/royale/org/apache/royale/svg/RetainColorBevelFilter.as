@@ -20,7 +20,8 @@ package org.apache.royale.svg
 {
 	
 	/**
-	 *  DarkenedBevelFilter extends BevelFilter to and darkens it somewhat in an attempt to retain the original colors in its the graphics core.
+	 *  RetainColorBevelFilter extends BevelFilter to and darkens it somewhat in an 
+	 *  attempt to retain the original colors in its graphic core.
 	 *  This is an exprimental component designed to emulate PhotoShop's behavior.
 	 *  
 	 *  @langversion 3.0
@@ -28,11 +29,11 @@ package org.apache.royale.svg
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.5
 	 */
-	public class DarkenedBevelFilter extends BevelFilter
+	public class RetainColorBevelFilter extends BevelFilter
 	{
 		
 
-		public function DarkenedBevelFilter()
+		public function RetainColorBevelFilter()
 		{
 		}
 		
