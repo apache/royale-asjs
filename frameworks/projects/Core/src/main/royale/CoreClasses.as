@@ -294,6 +294,8 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.utils.date.addYears; addYears;
 
 	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
+	
+	import org.apache.royale.utils.replaceBead; replaceBead;
 
     import org.apache.royale.core.TextLineMetrics; TextLineMetrics;
     import org.apache.royale.utils.ClassSelectorList; ClassSelectorList;

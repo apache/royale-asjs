@@ -52,7 +52,7 @@
           </includeClasses>
           <skipExtern>true</skipExtern>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <additionalCompilerOptions>-source-map=true</additionalCompilerOptions>
+          <additionalCompilerOptions>-allow-abstract-classes;-source-map=true</additionalCompilerOptions>
         </configuration>
         <!-- As a test, add asdoc generation to the compile step -->
         <executions>

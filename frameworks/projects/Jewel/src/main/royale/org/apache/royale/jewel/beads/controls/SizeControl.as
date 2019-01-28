@@ -67,8 +67,9 @@ package org.apache.royale.jewel.beads.controls
             return _size;
         }
 
-        public function set size(value:String):void
-        {
+		[Inspectable(category="General", enumeration="xsmall,small,large,xlarge")]
+		public function set size(value:String):void
+		{
 			COMPILE::JS
             {
 				_oldSize = _size;

@@ -1591,6 +1591,7 @@ package org.apache.royale.core
             return alpha;
         }
         
+        [Inspectable(category="General", defaultValue="0.5", minValue="0", maxValue="1.0")]
         COMPILE::JS
         public function set alpha(value:Number):void
         {

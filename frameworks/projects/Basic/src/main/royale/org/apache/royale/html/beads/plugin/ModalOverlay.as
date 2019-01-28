@@ -206,7 +206,7 @@ package org.apache.royale.html.beads.plugin
     {
     	return _alpha;
     }
-
+    [Inspectable(category="General", defaultValue="0.5", minValue="0", maxValue="1.0")]
     public function set alpha(value:Number):void
     {
     	_alpha = value;

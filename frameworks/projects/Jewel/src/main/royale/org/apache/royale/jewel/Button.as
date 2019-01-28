@@ -253,6 +253,7 @@ package org.apache.royale.jewel
             return _emphasis;
         }
 
+        [Inspectable(category="General", enumeration="primary,secondary,emphasized")]
         public function set emphasis(value:String):void
         {
             if (_emphasis != value)

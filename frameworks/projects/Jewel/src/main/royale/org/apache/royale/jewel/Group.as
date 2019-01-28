@@ -164,6 +164,7 @@ package org.apache.royale.jewel
             return _layout.itemsHorizontalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsLeft,itemsCenter,itemsRight,itemsSpaceBetween,itemsSpaceAround")]
         public function set itemsHorizontalAlign(value:String):void
         {
 			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsHorizontalAlign);
@@ -195,6 +196,7 @@ package org.apache.royale.jewel
             return _layout.itemsVerticalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCentered,itemsTop,itemsBottom")]
         public function set itemsVerticalAlign(value:String):void
         {
 			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsVerticalAlign);
