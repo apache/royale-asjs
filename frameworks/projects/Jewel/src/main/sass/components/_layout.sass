@@ -46,39 +46,9 @@ $gap-size: 10px !default
 	display: flex
 	//position: relative
 
-	// Vertical Items Align
-	&.itemsSameHeight
-		//align-items: stretch  --> this doen't seems to work as expected
-		> *
-			> *
-				min-height: 100%
-	&.itemsCentered
-		align-items: center !important
-	&.itemsTop
-		align-items: flex-start !important
-	&.itemsBottom
-		align-items: flex-end !important
-
-	// Horizontal Items Align
-	&.itemsLeft
-		justify-content: flex-start !important
-	&.itemsCenter
-		justify-content: center !important
-	&.itemsRight
-		justify-content: flex-end !important
-	&.itemsSpaceBetween
-		justify-content: space-between !important
-	&.itemsSpaceAround
-		justify-content: space-around !important
-
-	&.itemsExpand
-		width: 100%
-		> *
-			flex: 1 0 auto !important
-
 	// Horizontal
 	&.horizontal
-		flex-direction: row !important
+		flex-direction: row
 		flex-wrap: nowrap
 		align-items: flex-start
 	
@@ -105,7 +75,7 @@ $gap-size: 10px !default
 
 	// Vertical
 	&.vertical
-		flex-direction: column !important
+		flex-direction: column
 		flex-wrap: nowrap
 		align-items: flex-start
 
@@ -172,6 +142,37 @@ $gap-size: 10px !default
 						@for $j from 1 through $i
 							.#{$size}-col-#{$j}-#{$i}
 								width: calc(#{percentage($j / $i)} - #{$gap-size})
+
+	&.horizontal, &.vertical, &.grid
+		// Vertical Items Align
+		&.itemsSameHeight
+			//align-items: stretch  --> this doen't seems to work as expected
+			> *
+				> *
+					min-height: 100%
+		&.itemsCentered
+			align-items: center
+		&.itemsTop
+			align-items: flex-start
+		&.itemsBottom
+			align-items: flex-end
+
+		// Horizontal Items Align
+		&.itemsLeft
+			justify-content: flex-start
+		&.itemsCenter
+			justify-content: center
+		&.itemsRight
+			justify-content: flex-end
+		&.itemsSpaceBetween
+			justify-content: space-between
+		&.itemsSpaceAround
+			justify-content: space-around
+			
+		&.itemsExpand
+			width: 100%
+			> *
+				flex: 1 0 auto
 
 	&.table
 		display: table
