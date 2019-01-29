@@ -115,7 +115,9 @@ package org.apache.royale.utils
 			{
 				return null;
 			}
-			return String(value);
+			//toString() leads the compiler to emit type coercion,
+			//and concatenation is generally faster than String()
+			return "" + value;
 		}
 
 		/**
