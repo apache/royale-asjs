@@ -774,7 +774,6 @@ j|DropDownList {
   align-items: center;
   min-width: 0;
   z-index: 1;
-  justify-content: flex-start;
   order: -1;
 }
 .jewel.footerbar .jewel.barsection button {
