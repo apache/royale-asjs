@@ -95,10 +95,10 @@
 
 .verticalContentFormItem 
 {
-	IFormItemContentArea: ClassReference("org.apache.royale.jewel.VGroup");
+	IFormItemContentArea: ClassReference("components.FormVGroup");
 }
 
 .horizontalContentFormItem 
 {
-	IFormItemContentArea: ClassReference("org.apache.royale.jewel.HGroup");
+	IFormItemContentArea: ClassReference("components.FormHGroup");
 }
