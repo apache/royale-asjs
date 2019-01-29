@@ -63,7 +63,7 @@ package org.apache.royale.jewel
 		{
 			super();
 			
-			typeNames = "jewel snackbar layout itemsCenter";
+			typeNames = "jewel snackbar layout";
 		}
 
 		/**

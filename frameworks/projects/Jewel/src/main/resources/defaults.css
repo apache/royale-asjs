@@ -905,41 +905,8 @@ j|Label {
 .layout {
   display: flex;
 }
-.layout.itemsSameHeight > * > * {
-  min-height: 100%;
-}
-.layout.itemsCentered {
-  align-items: center !important;
-}
-.layout.itemsTop {
-  align-items: flex-start !important;
-}
-.layout.itemsBottom {
-  align-items: flex-end !important;
-}
-.layout.itemsLeft {
-  justify-content: flex-start !important;
-}
-.layout.itemsCenter {
-  justify-content: center !important;
-}
-.layout.itemsRight {
-  justify-content: flex-end !important;
-}
-.layout.itemsSpaceBetween {
-  justify-content: space-between !important;
-}
-.layout.itemsSpaceAround {
-  justify-content: space-around !important;
-}
-.layout.itemsExpand {
-  width: 100%;
-}
-.layout.itemsExpand > * {
-  flex: 1 0 auto !important;
-}
 .layout.horizontal {
-  flex-direction: row !important;
+  flex-direction: row;
   flex-wrap: nowrap;
   align-items: flex-start;
 }
@@ -1019,7 +986,7 @@ j|Label {
   margin: 0px 0px 0px 30px;
 }
 .layout.vertical {
-  flex-direction: column !important;
+  flex-direction: column;
   flex-wrap: nowrap;
   align-items: flex-start;
 }
@@ -3000,6 +2967,39 @@ j|Label {
     width: calc(100% - 10px);
   }
 }
+.layout.horizontal.itemsSameHeight > * > *, .layout.vertical.itemsSameHeight > * > *, .layout.grid.itemsSameHeight > * > * {
+  min-height: 100%;
+}
+.layout.horizontal.itemsCentered, .layout.vertical.itemsCentered, .layout.grid.itemsCentered {
+  align-items: center;
+}
+.layout.horizontal.itemsTop, .layout.vertical.itemsTop, .layout.grid.itemsTop {
+  align-items: flex-start;
+}
+.layout.horizontal.itemsBottom, .layout.vertical.itemsBottom, .layout.grid.itemsBottom {
+  align-items: flex-end;
+}
+.layout.horizontal.itemsLeft, .layout.vertical.itemsLeft, .layout.grid.itemsLeft {
+  justify-content: flex-start;
+}
+.layout.horizontal.itemsCenter, .layout.vertical.itemsCenter, .layout.grid.itemsCenter {
+  justify-content: center;
+}
+.layout.horizontal.itemsRight, .layout.vertical.itemsRight, .layout.grid.itemsRight {
+  justify-content: flex-end;
+}
+.layout.horizontal.itemsSpaceBetween, .layout.vertical.itemsSpaceBetween, .layout.grid.itemsSpaceBetween {
+  justify-content: space-between;
+}
+.layout.horizontal.itemsSpaceAround, .layout.vertical.itemsSpaceAround, .layout.grid.itemsSpaceAround {
+  justify-content: space-around;
+}
+.layout.horizontal.itemsExpand, .layout.vertical.itemsExpand, .layout.grid.itemsExpand {
+  width: 100%;
+}
+.layout.horizontal.itemsExpand > *, .layout.vertical.itemsExpand > *, .layout.grid.itemsExpand > * {
+  flex: 1 0 auto;
+}
 .layout.table {
   display: table;
 }
@@ -3423,6 +3423,7 @@ j|Slider {
   position: fixed;
   width: 100%;
   z-index: 5;
+  justify-content: center;
 }
 
 .jewel.snackbar-content {
