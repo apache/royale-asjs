@@ -112,7 +112,9 @@ package org.apache.royale.utils
 		 */
 		static public function string(value:*):String
 		{
-			return value == null ? null : value.toString() as String;
+			if(value == null)
+				return null;
+			return value.toString() as String;
 		}
 
 		/**
