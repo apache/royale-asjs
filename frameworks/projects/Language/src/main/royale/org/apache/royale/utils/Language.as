@@ -106,13 +106,13 @@ package org.apache.royale.utils
 
 		/**
 		 * string()
-		 *
+		 * @royaleignorecoercion String
 		 * @param value The value to be cast.
 		 * @return {string}
 		 */
 		static public function string(value:*):String
 		{
-			return value == null ? null : value.toString();
+			return value == null ? null : value.toString() as String;
 		}
 
 		/**
