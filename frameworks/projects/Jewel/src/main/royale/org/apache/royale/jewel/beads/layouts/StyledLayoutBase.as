@@ -174,6 +174,7 @@ package org.apache.royale.jewel.beads.layouts
             return _itemsHorizontalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsLeft,itemsCenter,itemsRight,itemsSpaceBetween,itemsSpaceAround")]
         public function set itemsHorizontalAlign(value:String):void
         {
 			if (_itemsHorizontalAlign != value)
@@ -207,6 +208,7 @@ package org.apache.royale.jewel.beads.layouts
             return _itemsVerticalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCentered,itemsTop,itemsBottom")]
         public function set itemsVerticalAlign(value:String):void
         {
 			if (_itemsVerticalAlign != value)
