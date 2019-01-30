@@ -34,7 +34,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class BrowserScroller implements IBead
+	public class BrowserScroller extends BeadBase
 	{
         /**
          *  Constructor.
@@ -58,13 +58,16 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public function set strand(value:IStrand):void
+        override public function set strand(value:IStrand):void
         {
             app = value as IInitialViewApplication;
-            app.addEventListener("viewChanged", viewChangedHandler);
+        }
+        override public function listInterests():Array
+        {
+            return ["viewChanged"];
         }
         
-        private function viewChangedHandler(event:Event):void
+        override public function handleNotification(notification:INotification):void
         {
             COMPILE::SWF
             {

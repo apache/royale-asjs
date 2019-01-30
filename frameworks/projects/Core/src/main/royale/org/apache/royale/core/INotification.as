@@ -18,46 +18,47 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.events.EventDispatcher;
-    
     /**
-     *  The BeadViewBase class is the base class for most view beads.
-     *  
+     *  The INotification interface is for notifications sent by IStrands to IBeads
+     * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.6
      */
-	public class BeadViewBase extends BeadBase implements IBeadView
-	{
+    public interface INotification
+    {
+
         /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function BeadViewBase()
-		{
-			super();
-		}
-		
-        /**
-         *  The host component. 
+         * The name of the notification (read only)
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         *  @productversion Royale 0.9.6
          */
-        public function get host():IUIBase
-        {
-            return _strand as IUIBase;
-        }
+        function get name():String;
 
-   }
+        /**
+         * The payload of the notification (if any)
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        function get body():Object;
+        function set body(value:Object):void;
+
+        /**
+         * The IBead who sent the notification (if applicable)
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        function get originator():IBead;
+        function set originator(value:IBead):void;
+    }
 }

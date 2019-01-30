@@ -18,31 +18,48 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    /**
-     *  The IBead interface is the basic interface for plug-ins known as Beads.
-     *  In Royale, the recommended pattern is to break out optional functionality
-     *  into small plug-ins that can be re-used in other components, or replaced with
-     *  different implementations optimized for different things such as size,
-     *  performance, advanced features, debugging, etc.
-     * 
-     *  Beads are told what host component or "strand" they ae attached to.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-	public interface IBead
-	{
+    public class BeadBase implements IBead
+    {
+        public function BeadBase()
+        {
+
+        }
+
         /**
-         *  The host component for this bead.
-         *
+         *  The strand.  Do not modify except
+         *  via the strand setter.  For reading only.
+         * 
+         *  Because Object.defineProperties in JS
+         *  doesn't allow you to just override the setter
+         *  (you have to override the getter as well even
+         *  if it just calls the super getter) it is
+         *  more efficient to expose this variable than
+         *  have all of the layers of simple overrides.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        protected var _strand:IStrand;
+        
+        /**
+         *  Get the strand for this bead
+         * 
+         *  Override this for whatever else you need to do when
+         *  being hooked to the Strand
+         * 
+         *  @copy org.apache.royale.core.IBead#strand
+         *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function set strand(value:IStrand):void;
+        public function set strand(value:IStrand):void
+        {
+            _strand = value;
+        }
 
         /**
          *  Allows an IBead to declare what notifications it wants.
@@ -52,7 +69,10 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        function listInterests():Array;
+        public function listInterests():Array
+        {
+            return [];
+        }
 
         /**
          *  Used by an IStrand to notify the bead.
@@ -61,8 +81,10 @@ package org.apache.royale.core
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
-         */
-        function handleNotification(notification:INotification):void;
-
-	}
+         */        
+        public function handleNotification(notification:INotification):void
+        {
+            // implement in sub-classes
+        }
+    }
 }

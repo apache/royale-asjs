@@ -36,6 +36,9 @@ package org.apache.royale.core
         import goog.events.BrowserEvent;
         import goog.events.EventTarget;
         import org.apache.royale.events.utils.EventUtils;
+        import org.apache.royale.utils.beads.sendLookupNotifications;
+        import org.apache.royale.utils.beads.insertInterests;
+        import org.apache.royale.utils.beads.removeInterests;
     }
 
     COMPILE::SWF
@@ -192,6 +195,7 @@ package org.apache.royale.core
 			}
 
 			bead.strand = this;
+            insertInterests(beadLookup,bead);
 		}
 
         /**
@@ -236,6 +240,7 @@ package org.apache.royale.core
 				if (bead === value)
 				{
 					_beads.splice(i, 1);
+                    removeInterests(beadLookup,bead);
                     bead.strand = null;
 					return bead;
 				}
@@ -322,5 +327,36 @@ package org.apache.royale.core
 			
 			return goog.events.EventTarget.dispatchEventInternal_(source, e, ancestorsTree);
 		}
+        /**
+         * The beadLookup keeps references to beads using their notification interests
+         */
+        protected var beadLookup:Object = {};
+
+        /**
+         *  Sends a notification instance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        public function sendNotification(notification:INotification):void{
+            sendLookupNotifications(beadLookup,notification);
+        }
+
+        /**
+         *  Simplified method for sending notifications.
+         *  Use when body is not significant.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        public function notify(message:String):void{
+            var notification:INotification = new Notification(message);
+            sendNotification(notification);
+        }
+
 	}
 }

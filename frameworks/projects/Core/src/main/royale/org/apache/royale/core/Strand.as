@@ -20,6 +20,9 @@ package org.apache.royale.core
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.utils.beads.sendLookupNotifications;
+	import org.apache.royale.utils.beads.insertInterests;
+	import org.apache.royale.utils.beads.removeInterests;
 
     /**
      *  The Strand class is the base class for non-display object
@@ -30,7 +33,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class Strand extends EventDispatcher implements IStrand
+	public class Strand implements IStrand
 	{
         /**
          *  Constructor.
@@ -78,7 +81,7 @@ package org.apache.royale.core
 			if (_model != value)
 			{
 				addBead(value as IBead);
-				dispatchEvent(new Event("modelChanged"));
+                notify("modelChanged");
 			}
 		}
 		
@@ -101,7 +104,7 @@ package org.apache.royale.core
 			if (_id != value)
 			{
 				_id = value;
-				dispatchEvent(new Event("idChanged"));
+                notify("idChanged");
 			}
 		}
 				
@@ -140,6 +143,7 @@ package org.apache.royale.core
 			if (bead is IBeadModel)
 				_model = bead as IBeadModel;
 			bead.strand = this;
+            insertInterests(beadLookup,bead);
 		}
 		
         /**
@@ -177,11 +181,42 @@ package org.apache.royale.core
 				if (bead == value)
 				{
 					_beads.splice(i, 1);
+                    removeInterests(beadLookup,bead);
 					return bead;
 				}
 			}
 			return null;
 		}
-		        
+
+        /**
+         * The beadLookup keeps references to beads using their notification interests
+         */
+        protected var beadLookup:Object = {};
+
+        /**
+         *  Sends a notification instance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        public function sendNotification(notification:INotification):void{
+            sendLookupNotifications(beadLookup,notification);
+        }
+
+        /**
+         *  Simplified method for sending notifications.
+         *  Use when body is not significant.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        public function notify(message:String):void{
+            var notification:INotification = new Notification(message);
+            sendNotification(notification);
+        }
 	}
 }

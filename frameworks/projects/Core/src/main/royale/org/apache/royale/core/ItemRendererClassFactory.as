@@ -200,5 +200,14 @@ package org.apache.royale.core
         {
             this.document = document;
         }
+
+        public function listInterests():Array
+        {
+            return [];
+        }
+        public function handleNotification(notification:INotification):void
+        {
+            
+        }
 	}
 }

@@ -26,7 +26,7 @@ package org.apache.royale.core
 		import flash.geom.Matrix;
 	}
 	
-	public class TransformBeadBase implements IBead
+	public class TransformBeadBase extends BeadBase
 	{
 		private var _strand:IStrand;
 		
@@ -42,17 +42,23 @@ package org.apache.royale.core
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */		
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			host.addEventListener(TransformModel.CHANGE, changeHandler);
 			var model:ITransformModel = transformModel;
 			if (model && model.matrix)
 			{
 				transform();
 			}
 		}
-		
+		override public function listInterests():Array
+		{
+			return [TransformModel.CHANGE];
+		}
+		override public function handleNotification(notification:INotification):void
+		{
+			transform();
+		}
 		public function get transformModel():ITransformModel
 		{
 			return host.getBeadByType(ITransformModel) as ITransformModel;
@@ -79,10 +85,6 @@ package org.apache.royale.core
 			// implementors should override this
 		}
 		
-		private function changeHandler(e:Event):void
-		{
-			transform();
-		}
 		
 		/**
 		 *  The host component. 

@@ -72,6 +72,27 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function removeBead(bead:IBead):IBead;		
+		function removeBead(bead:IBead):IBead;
+
+        /**
+         *  Sends a notification instance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        function sendNotification(notification:INotification):void;
+
+        /**
+         *  Simplified method for sending notifications.
+         *  Use when body is not significant.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        function notify(message:String):void;
 	}
 }

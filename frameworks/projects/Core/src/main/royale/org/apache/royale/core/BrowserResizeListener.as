@@ -34,7 +34,7 @@ COMPILE::SWF
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	public class BrowserResizeListener implements IBead
+	public class BrowserResizeListener extends BeadBase
 	{
         /**
          *  Constructor.
@@ -97,7 +97,7 @@ COMPILE::SWF
          *  @productversion Royale 0.8
          *  @royaleignorecoercion org.apache.royale.core.IInitialViewApplication
          */
-        public function set strand(value:IStrand):void
+        override public function set strand(value:IStrand):void
         {
             app = value as IInitialViewApplication;
             COMPILE::SWF

@@ -16,52 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package org.apache.royale.utils.beads
 {
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.geom.Matrix;
-	
-	public class TransformModel extends BeadBase implements ITransformModel
-	{
-		
-		public static const CHANGE:String = "transferModelChange";
-		
-		private var _matrix:Matrix;
-		
-		public function TransformModel()
-		{
-		}
-		
-		public function get matrix():Matrix
-		{
-			return _matrix;
-		}
+    import org.apache.royale.core.IBead;
 
-		private function notifyChange():void
-		{
-			_strand.notify(CHANGE);
-		}
-		
-		private function get host():ITransformHost
-		{
-			return _strand as ITransformHost;
-		}
-		
-		public function set matrix(value:Matrix):void
-		{
-			_matrix = value;
-			if (_strand)
-			{
-				notifyChange();
-			}
-		}
-		
-		override public function set strand(value:IStrand):void 
-		{
-			_strand = value;
-			notifyChange();
-		}
-
-	}
+    /**
+     * @royaleignorecoercion String
+     * 
+     */
+    public function insertInterests(lookup:Object,bead:IBead):void
+    {
+        var interests:Array = bead.listInterests();
+        for(var i:int=0;i<interests.length;i++)
+        {
+            var interest:String = interests[i] as String;
+            if(lookup[interest])
+            {
+                lookup[interest].push(bead);
+            }
+            else
+            {
+                lookup[interest] = [bead];
+            }
+        }
+        
+    }
 }

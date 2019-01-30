@@ -37,6 +37,9 @@ package org.apache.royale.core
     
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.beads.sendLookupNotifications;
+    import org.apache.royale.utils.beads.removeInterests;
+    import org.apache.royale.utils.beads.insertInterests;
 
     COMPILE::SWF
     public class ElementWrapper extends EventDispatcher implements IStrand
@@ -80,6 +83,7 @@ package org.apache.royale.core
             
             _beads.push(bead);
             bead.strand = this;
+            insertInterests(beadLookup,bead);
         }
         
         /**
@@ -124,6 +128,7 @@ package org.apache.royale.core
                 if (bead === value)
                 {
                     _beads.splice(i, 1);
+                    removeInterests(beadLookup,bead);
                     
                     return bead;
                 }
@@ -365,5 +370,37 @@ package org.apache.royale.core
             
             return source.dispatchEvent(e);
         }
+
+        /**
+         * The beadLookup keeps references to beads using their notification interests
+         */
+        protected var beadLookup:Object = {};
+
+        /**
+         *  Sends a notification instance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        public function sendNotification(notification:INotification):void{
+            sendLookupNotifications(beadLookup,notification);
+        }
+
+        /**
+         *  Simplified method for sending notifications.
+         *  Use when body is not significant.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        public function notify(message:String):void{
+            var notification:INotification = new Notification(message);
+            sendNotification(notification);
+        }
+
 	}
 }

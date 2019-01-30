@@ -44,7 +44,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class CSSFontFaceBead implements IBead
+	public class CSSFontFaceBead extends BeadBase
 	{
         /**
          *  Constructor.
@@ -57,9 +57,7 @@ package org.apache.royale.core
 		public function CSSFontFaceBead()
 		{
 		}
-		
-        private var _strand:IStrand;
-        
+		        
         /**
          *  @copy org.apache.royale.core.IBead#strand
          *  
@@ -68,7 +66,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-        public function set strand(value:IStrand):void
+        override public function set strand(value:IStrand):void
         {
             _strand = value;
             COMPILE::SWF

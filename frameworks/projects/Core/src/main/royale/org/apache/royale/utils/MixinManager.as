@@ -29,6 +29,7 @@ import org.apache.royale.core.ElementWrapper;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IFlexInfo;
 import org.apache.royale.core.IStrand;
+import org.apache.royale.core.BeadBase;
 
 /**
  *  The MixinManager class is the class that instantiates mixins
@@ -40,7 +41,7 @@ import org.apache.royale.core.IStrand;
  *  @playerversion AIR 2.6
  *  @productversion Royale 0.0
  */
-public class MixinManager implements IBead
+public class MixinManager extends BeadBase
 {
     /**
      *  Constructor.
@@ -54,9 +55,7 @@ public class MixinManager implements IBead
     {
         super();
     }
-    	
-    private var _strand:IStrand;
-    
+    	    
     /**
      *  @copy org.apache.royale.core.IBead#strand
      *  
@@ -68,7 +67,7 @@ public class MixinManager implements IBead
      *  @royaleignorecoercion org.apache.royale.core.IFlexInfo
      *  @royaleignoreimport org.apache.royale.core.IFlexInfo
      */
-    public function set strand(value:IStrand):void
+    override public function set strand(value:IStrand):void
     {
         _strand = value;
         

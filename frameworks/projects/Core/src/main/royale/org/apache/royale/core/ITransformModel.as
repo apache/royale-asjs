@@ -30,7 +30,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface ITransformModel extends IEventDispatcher, IBead
+	public interface ITransformModel extends IBead
 	{
         /**
          *  The matrix of the Transform

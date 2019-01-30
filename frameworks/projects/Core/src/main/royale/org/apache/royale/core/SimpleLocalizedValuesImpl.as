@@ -31,14 +31,13 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class SimpleLocalizedValuesImpl extends EventDispatcher implements ILocalizedValuesImpl
+	public class SimpleLocalizedValuesImpl extends BeadBase implements ILocalizedValuesImpl
 	{
 		public function SimpleLocalizedValuesImpl()
 		{
 			super();
 		}
 		
-		private var mainClass:Object;
 		private var locale:String;
 		
         /**
@@ -71,7 +70,7 @@ package org.apache.royale.core
 				bundle = {};
 				bundles[actualBundleName] = bundle;
 				// go look for the bundle
-				var data:String = mainClass[actualBundleName];
+				var data:String = _strand[actualBundleName];
 				var rows:Array = data.split("\n");
 				var n:int = rows.length;
 				for (var i:int = 0; i < n; i++)
@@ -101,18 +100,6 @@ package org.apache.royale.core
 			locale = value;
 		}
         
-        /**
-         *  @copy org.apache.royale.core.IBead#strand()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function set strand(value:IStrand):void
-        {
-            this.mainClass = value;
-        }
 
     }
 }

@@ -32,6 +32,7 @@ COMPILE::SWF
 import org.apache.royale.core.IInitialViewApplication;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IStrand;
+import org.apache.royale.core.BeadBase;
 
 /**
  *  The ViewSourceContextMenuOption class is a class that 
@@ -44,7 +45,7 @@ import org.apache.royale.core.IStrand;
  *  @playerversion AIR 2.6
  *  @productversion Royale 0.0
  */
-public class ViewSourceContextMenuOption implements IBead
+public class ViewSourceContextMenuOption extends BeadBase
 {
     /**
      *  Constructor.
@@ -57,8 +58,6 @@ public class ViewSourceContextMenuOption implements IBead
     public function ViewSourceContextMenuOption()
     {
     }
-
-	private var _strand:IStrand;
 	
     /**
      *  @copy org.apache.royale.core.UIBase#strand
@@ -68,7 +67,7 @@ public class ViewSourceContextMenuOption implements IBead
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public function set strand(value:IStrand):void
+	override public function set strand(value:IStrand):void
 	{
 		_strand = value;
 		

@@ -41,7 +41,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class EventLoggingBead implements IBead
+	public class EventLoggingBead extends BeadBase
 	{
         /**
          *  Constructor.
@@ -68,7 +68,7 @@ package org.apache.royale.core
 		 *
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
-        public function set strand(value:IStrand):void
+        override public function set strand(value:IStrand):void
         {
             _strand = value;
 			

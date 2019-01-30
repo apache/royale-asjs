@@ -35,7 +35,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
 	 */
-	public class StyleChangeNotifier implements IBead
+	public class StyleChangeNotifier extends BeadBase
 	{
 		private var _strand:IStrand;
 		
@@ -49,7 +49,7 @@ package org.apache.royale.core
 		 *  @royaleignorecoercion org.apache.royale.core.IStyleableObject
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
 			

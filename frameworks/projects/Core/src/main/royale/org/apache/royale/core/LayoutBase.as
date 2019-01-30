@@ -86,13 +86,35 @@ package org.apache.royale.core
             (value as IEventDispatcher).addEventListener("widthChanged", sizeChange);
             (value as IEventDispatcher).addEventListener("heightChanged", sizeChange);
             (value as IEventDispatcher).addEventListener("sizeChanged", sizeChange);
-
             (value as IEventDispatcher).addEventListener("childrenAdded", handleChildrenAdded);
             (value as IEventDispatcher).addEventListener("initComplete", handleInitComplete);
             (value as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 
 		}
 		
+		public function listInterests():Array
+		{
+			return ["widthChanged","heightChanged","sizeChanged","childrenAdded","initComplete","layoutNeeded"];
+		}
+		public function handleNotification(notification:INotification):void{
+			switch(notification.name)
+            {
+                case "widthChanged":
+                case "heightChanged":
+                case "sizeChanged":
+                    handleSizeChange();
+                    break;
+                case "childrenAdded":
+                    handleChildrenAdded();
+                    break;
+                case "initComplete":
+                    handleInitComplete();
+                    break;
+                case "layoutNeeded":
+                    handleLayoutNeeded();
+                    break;
+            }
+		}
         private var lastWidth:Number = -1;
         private var lastHeight:Number = -1;
         
@@ -106,7 +128,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 */
-		protected function handleSizeChange(event:Event):void
+		protected function handleSizeChange():void
 		{
             if (host.width == lastWidth &&
                 host.height == lastHeight) return;
@@ -124,7 +146,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 */
-		protected function handleChildrenAdded(event:Event):void
+		protected function handleChildrenAdded():void
 		{
 			COMPILE::SWF {
 				if (sawInitComplete)
@@ -208,7 +230,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 */
-		protected function handleLayoutNeeded(event:Event):void
+		protected function handleLayoutNeeded():void
 		{
 			performLayout();
 		}
@@ -221,7 +243,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 */
-		protected function handleInitComplete(event:Event):void
+		protected function handleInitComplete():void
 		{
 			sawInitComplete = true;
 			
