@@ -31,7 +31,11 @@ limitations under the License.
 		<html:H3 text="Heading H3"/>
 		<html:H4 text="Heading H4"/>
 
+		<html:Hr width="100%"/>
+
 		<html:Span text="Some span text."/>
+		
+		<html:Hr width="100%"/>
 
 		<j:Label text="Normal text used in a div, texts and fields with single line or multiple lines." multiline="true"/>
 	</j:Card>
