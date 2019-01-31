@@ -419,8 +419,7 @@ j|ComboBox {
   .combobox-popup .jewel.list {
     max-height: 240px !important;
   }
-
-  .jewel.item {
+  .combobox-popup .jewel.list .jewel.item {
     min-height: 48px !important;
   }
 }

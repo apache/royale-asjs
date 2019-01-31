@@ -141,8 +141,9 @@ $combobox-item-min-heigh: 34px
     .combobox-popup
         .jewel.list
             max-height: ( $combobox-item-min-heigh + 14 ) * 5 !important
-    .jewel.item
-        min-height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
+            
+            .jewel.item
+                min-height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
 
 @media (min-width: $desktop)
     .combobox-popup
