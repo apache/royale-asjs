@@ -56,6 +56,10 @@ div {
   font-size: 14px;
 }
 
+hr {
+  background-color: #d9d9d9;
+}
+
 .jewel.xsmall {
   font-size: 0.6em !important;
 }
