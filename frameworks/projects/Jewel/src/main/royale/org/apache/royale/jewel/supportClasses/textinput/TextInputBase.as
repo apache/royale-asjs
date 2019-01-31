@@ -76,6 +76,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @royaleignorecoercion HTMLInputElement
          */
 		[Bindable(event="change")]
+		[Bindable(event="textChange")]
 		public function get text():String
 		{
             COMPILE::SWF
