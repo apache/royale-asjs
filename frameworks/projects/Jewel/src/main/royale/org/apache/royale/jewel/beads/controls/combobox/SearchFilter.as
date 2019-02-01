@@ -87,7 +87,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 			// fill "list" with the internal list in the combobox popup
 			list = event.target.royale_wrapper.parent.view.popup.view.list;
 
-			applyFilter(IComboBoxView(_strand['view']).textinput.text.toUpperCase());
+			//applyFilter(IComboBoxView(_strand['view']).textinput.text.toUpperCase());
 		}
 	}
 }
