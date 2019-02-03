@@ -61,12 +61,12 @@ limitations under the License.
 				</j:Group>
 			</j:nextButton>
 
-			<j:WizardPage name="page1">
+			<j:WizardPage name="page1" exitPage="formaExample.formValidator.removeAllErrorTips()">
 				<views:step>
 					<j:WizardStep name="page1" nextStep="page2" initialPage="true" stepLabel="Page 1"/>
 				</views:step>
 
-				<c:FormExample label="Form Example in Page 1"/>
+				<c:FormExample localId="formaExample" label="Form Example in Page 1"/>
 
 			</j:WizardPage>
 
