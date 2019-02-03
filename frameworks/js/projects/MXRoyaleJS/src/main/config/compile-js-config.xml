@@ -93,6 +93,8 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
+    <export-protected-symbols>true</export-protected-symbols>
+    
     <include-file>
         <name>defaults.css</name>
         <path>../../../../../../projects/MXRoyale/src/main/resources/defaults.css</path>
