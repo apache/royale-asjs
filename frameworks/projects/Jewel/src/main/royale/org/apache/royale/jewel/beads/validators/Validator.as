@@ -285,7 +285,6 @@ package org.apache.royale.jewel.beads.validators
 			if (!errorText)
 				return;
 
-
 			if (_errorTip == null) {
 				_errorTip = new ErrorTipLabel();
 
@@ -373,14 +372,14 @@ package org.apache.royale.jewel.beads.validators
         {
             if (_errorTip) {
                 _host.popUpParent.removeElement(_errorTip);
-
 				_errorTip = null;
-
-				COMPILE::JS
-				{
-					if (hostClassList.contains("errorBorder"))
-						hostClassList.remove("errorBorder");
-				}
+			}
+			COMPILE::JS
+			{
+			if (hostClassList && hostClassList.contains("errorBorder"))
+			{
+				hostClassList.remove("errorBorder");
+			}
 			}
         }
 	}
