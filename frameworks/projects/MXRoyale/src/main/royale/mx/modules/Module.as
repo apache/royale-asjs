@@ -182,6 +182,21 @@ public class Module extends Container implements IModule //extends LayoutContain
             dispatchEvent(new Event("layoutChanged"));*/
         }
     }
+    
+    COMPILE::JS
+    public function _keepcode(obj:Object):Object
+    {
+        // Google Closure will remove code from a module that
+        // it doesn't see anybody use in the module.  But if
+        // there is stuff in the module the loading app uses
+        // we need to add it here in a way that Closure will
+        // think it is used.  Exported/public variables should
+        // be ok, but non-exported stuff needs to be used.
+        if (obj.cssData)
+            return obj.cssData;
+        
+        return obj.ROYALE_CLASS_INFO;
+    }
 
 }
 
