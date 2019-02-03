@@ -313,6 +313,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+The following is relative to the royale-compiler folder:
+
+The following .java files in 
+compiler-jx/src/main/java/com/google/javascript/jscomp
+are derived from the files in the Google Closure Compiler which are available 
+under Apache License 2.0.
+
+RoyaleClosurePassConfig.java
+Files with names ending with WithModuleSupport.java
+
 TourDeFlex Subcomponents:
 
 The examples/mxroyale/tourdeflexmodules includes a number of subcomponents with
