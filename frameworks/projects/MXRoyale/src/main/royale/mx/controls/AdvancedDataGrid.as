@@ -1003,6 +1003,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     /**
      *  @private
      *  Storage for the groupLabelField property.
+     * 	@royalesuppresspublicvarwarning 
      */
     public var groupLabelField:String;
 
@@ -9482,7 +9483,6 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
-     * 	@royalesuppresspublicvarwarning 
 	 */
     public function get sortableColumns():Boolean
     {
