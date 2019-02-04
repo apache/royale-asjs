@@ -58,6 +58,8 @@ import flash.utils.getQualifiedClassName;
 
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
+import mx.events.KeyboardEvent;
+import mx.events.utils.KeyboardEventConverter;
 import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
@@ -616,6 +618,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	public function initializeApplication():void
 	{
         HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+        addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
         
         initManagers();
         
@@ -636,6 +640,12 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
 	}
 	
+    COMPILE::JS
+    public function keyDownForCapsLockHandler(event:KeyboardEvent):void
+    {
+        
+    }
+
 	//--------------------------------------------------------------------------
 	//
 	//  Other overrides
