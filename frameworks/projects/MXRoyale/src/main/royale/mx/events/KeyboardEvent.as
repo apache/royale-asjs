@@ -120,7 +120,7 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
        	 	}
 		 private static function platformConstant1(s:String):String
         	{
-            	return s;
+            	return s.toLowerCase();
         	}
 		public static function get capsLock():Boolean
 	        {

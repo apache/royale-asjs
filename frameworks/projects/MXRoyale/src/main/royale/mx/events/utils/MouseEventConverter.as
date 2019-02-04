@@ -25,6 +25,7 @@ package mx.events.utils
         import org.apache.royale.events.utils.IHandlesOriginalEvent;
     }
     
+    import mx.core.Keyboard;
     import mx.events.MouseEvent;
     import org.apache.royale.events.MouseEvent;
     
@@ -181,6 +182,10 @@ package mx.events.utils
 	{
         public static function convert(nativeEvent:Object):mx.events.MouseEvent
         {
+            if (nativeEvent.hasOwnProperty("getModifierState"))
+            {
+                Keyboard.setCapsLock(nativeEvent["getModifierState"]("CapsLock"));
+            }
             return new mx.events.MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
         }
     }
