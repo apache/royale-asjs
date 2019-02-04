@@ -271,7 +271,11 @@ package org.apache.royale.net.remoting.amf {
 		}
 		
 		public function writeUInt32(v:int):void {
-			v < 0 && (v = -(v ^ UINT_MAX_VALUE) - 1);
+		//	v < 0 && (v = -(v ^ UINT_MAX_VALUE) - 1);
+			//avoid compiler warning after numeric coercion changes:
+			if (v <0) {
+				v = -(v ^ UINT_MAX_VALUE) - 1;
+			}
 			v &= UINT_MAX_VALUE;
 			this.write((v >>> 24) & 255);
 			this.write((v >>> 16) & 255);
