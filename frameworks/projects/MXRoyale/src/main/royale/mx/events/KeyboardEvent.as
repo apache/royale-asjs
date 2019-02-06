@@ -23,10 +23,6 @@ COMPILE::SWF
 {
 import flash.events.KeyboardEvent;  
 }
-COMPILE::JS
-{
-	import goog.events.BrowserEvent;
-}
 /* import mx.events.Event;*/
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
@@ -118,25 +114,18 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 		} 
 		
 		
-		private static function platformConstant(s:uint):uint
-		{
-				return s;
-		}
-		private static function platformConstant1(s:String):String
-		{
-				return s;
-		}
-		private static var _capsLock:Boolean;
+		 private static function platformConstant(s:uint):uint
+        	{
+            	return s;
+       	 	}
+		 private static function platformConstant1(s:String):String
+        	{
+            	return s;
+        	}
 		public static function get capsLock():Boolean
-		{
-			return _capsLock;
-		}
-		override public function wrapEvent(event:goog.events.BrowserEvent):void
-		{
-			super.wrapEvent(event);
-			_capsLock = nativeEvent["getModifierState"]("CapsLock");
-		}
-
+	        {
+	        return true;
+	        }
 	//--------------------------------------------------------------------------
 	//
 	//  Class constants
