@@ -18,9 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    
     import org.apache.royale.core.ClassFactory;
     import org.apache.royale.core.IFactory;
     import org.apache.royale.core.IItemRendererProvider;
+    
     import org.apache.royale.utils.MXMLDataInterpreter;
 
 	[DefaultProperty("mxmlContent")]
@@ -180,7 +182,7 @@ package org.apache.royale.core
         public function createFromClass(parent:IItemRendererParent):IItemRenderer
         {
             var renderer:IItemRenderer = itemRendererFactory.newInstance();
-			renderer.itemRendererParent = (parent as BeadViewBase).host;
+			renderer.itemRendererParent = parent;
             return renderer;
         }
         
