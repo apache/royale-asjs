@@ -157,15 +157,18 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel List With ItemRenderer"/>
 				<j:HGroup gap="3">
-					<j:List id="iconList" width="200" height="300" className="iconListItemRenderer" labelField="label">
-						<j:beads>
-							<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
-							<j:AddListItemRendererForArrayListData/>
-							<j:RemoveListItemRendererForArrayListData/>
-							<j:UpdateListItemRendererForArrayListData/>
-							<j:RemoveAllItemRendererForArrayListData/>
-						</j:beads>
-					</j:List>
+					<j:VGroup gap="3">
+						<j:List id="iconList" width="200" height="300" className="iconListItemRenderer" labelField="label">
+							<j:beads>
+								<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
+								<j:AddListItemRendererForArrayListData/>
+								<j:RemoveListItemRendererForArrayListData/>
+								<j:UpdateListItemRendererForArrayListData/>
+								<j:RemoveAllItemRendererForArrayListData/>
+							</j:beads>
+						</j:List>
+						<j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/>
+					</j:VGroup>
 					<j:VGroup gap="3">
 						<j:Button text="change data" emphasis="{Button.PRIMARY}" click="changeListData()"/>
 						<j:Button text="Add item" click="addItem()"/>

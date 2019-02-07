@@ -866,9 +866,11 @@ j|ImageButton {
   line-height: normal !important;
   overflow: hidden;
   cursor: auto;
+  pointer-events: none;
 }
 .jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;
+  pointer-events: auto;
 }
 .jewel.item .fonticon, .jewel.navigationlink .fonticon, .jewel.tabbarbutton .fonticon {
   cursor: inherit;
@@ -3577,9 +3579,11 @@ j|Table {
   line-height: normal !important;
   overflow: hidden;
   cursor: auto;
+  pointer-events: none;
 }
 .jewel.tableitem.selectable {
   cursor: pointer;
+  pointer-events: auto;
 }
 .jewel.tableitem.with-childs {
   padding: 6px;
