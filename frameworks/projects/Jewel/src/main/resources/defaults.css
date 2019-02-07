@@ -3227,11 +3227,6 @@ j|Spinner {
     width: calc(100% - 20px);
   }
 }
-@media (min-width: 768px) and (max-width: 992px) {
-  .popup-content .jewel.popupcontent {
-    width: calc(100% - 300px);
-  }
-}
 @media (min-width: 992px) {
   .popup-content .jewel.popupcontent {
     transform: translate(-50%, -60%);
