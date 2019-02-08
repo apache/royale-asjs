@@ -27,6 +27,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel;
+	import org.apache.royale.utils.OSUtils;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
 
@@ -127,7 +128,11 @@ package org.apache.royale.jewel.beads.controls
 		{
 			_strand = value;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+			//ToolTip in iOS produces a bad behaviour, used in a button and user has to do a second touch to trigger click event
+			if(OSUtils.getOS() != OSUtils.IOS_OS)
+			{
+            	IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+			}
 		}
 
 		/**
