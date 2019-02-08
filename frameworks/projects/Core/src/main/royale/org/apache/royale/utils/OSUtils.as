@@ -44,6 +44,8 @@ package org.apache.royale.utils
         public static const WIN_OS:String = "Windows";
         public static const LINUX_OS:String = "Linux";
         public static const UNIX_OS:String = "UNIX";
+        public static const ANDROID_OS:String = "Android";
+        public static const IOS_OS:String = "iOS";
         public static const UNKNOWN_OS:String = "Unknown OS";
 
         /**
@@ -71,12 +73,14 @@ package org.apache.royale.utils
             {
                 if(!_osName)
                 {
-                    _osName = "Unknown OS";
+                    _osName = UNKNOWN_OS;
                     var appVersion:String = navigator.appVersion;
-                    if (appVersion.indexOf("Win") != -1) _osName="Windows";
-                    if (appVersion.indexOf("Mac") != -1) _osName="MacOS";
-                    if (appVersion.indexOf("X11") != -1) _osName="UNIX";
-                    if (appVersion.indexOf("Linux") != -1) _osName="Linux";
+                    if (appVersion.indexOf("Win") != -1) _osName = WIN_OS;
+                    if (appVersion.indexOf("Macintosh") != -1) _osName = MAC_OS;
+                    if (appVersion.indexOf("X11") != -1) _osName = UNIX_OS;
+                    if (appVersion.indexOf("Linux") != -1) _osName = LINUX_OS;
+                    if (appVersion.indexOf("iPad") != -1 || appVersion.indexOf("iPhone") != -1 || appVersion.indexOf("iPod") != -1) _osName = IOS_OS;
+                    if (appVersion.indexOf("Android") != -1) _osName = ANDROID_OS;
                 }
                 return _osName;
             }
