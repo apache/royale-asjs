@@ -43,6 +43,7 @@ COMPILE::SWF
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.IOSUtils;
 
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox
@@ -192,12 +193,22 @@ COMPILE::SWF
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
                     // _list.model = _comboPopUp.model;
 
-                    setTimeout(prepareForPopUp,  300);
-
                     COMPILE::JS
                     {
-                        window.addEventListener('resize', autoResizeHandler, false);
+					// Fix temporary: when soft keyboard opens in ios devices browser is not resized, so popup gets under the keyboard
+					// this fixes the issue on iPad for now, but we need some better and more reliable way of doing this
+					if(IOSUtils.getIOSDevice() == IOSUtils.IOS_IPAD)
+					{
+						var fromTop:Number = _textinput.element.getBoundingClientRect().top;
+						if(fromTop < 720)
+						{
+							_comboPopUp.positioner.style["padding-bottom"] =  "310px";
+						}
+					}
+
+					window.addEventListener('resize', autoResizeHandler, false);
                     }
+                    setTimeout(prepareForPopUp,  300);
 
                     autoResizeHandler();
 				}
