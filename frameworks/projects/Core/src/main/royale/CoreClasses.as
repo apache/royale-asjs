@@ -214,6 +214,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.utils.JXON; JXON;
 	import org.apache.royale.utils.MD5; MD5;
 	import org.apache.royale.utils.OSUtils; OSUtils;
+	import org.apache.royale.utils.IOSUtils; IOSUtils;
     import org.apache.royale.utils.LocaleUtils; LocaleUtils;
 	import org.apache.royale.utils.PointUtils; PointUtils;
     import org.apache.royale.utils.StringPadder; StringPadder;

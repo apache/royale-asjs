@@ -20,7 +20,7 @@ package org.apache.royale.utils
 {
 	/**
 	 *  The OSUtils class is an all-static class with methods for
-	 *  getting informatiojn about the host operating system.
+	 *  getting information about the host operating system.
 	 *  You do not create instances of OSUtils;
 	 *  instead you call methods such as 
 	 *  the <code>OSUtils.getOS()</code> method.  
