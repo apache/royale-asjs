@@ -2699,7 +2699,10 @@ package
 			if(str == "")
 				return str;
 			var num:Number = Number(str);
-			return isNaN(num) ? str : num;
+			if("" + num == str){
+				return  num;
+			}
+			return str;
 		}
 
 		////////////////////////////////////////////////////////////////
