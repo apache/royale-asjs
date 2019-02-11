@@ -2759,19 +2759,19 @@ Moved this logic (partially) into the other replace method
 		}
 		public function slice(beginSlice:Number, endSlice:*=undefined):String
 		{
-			return s().slice(beginSlice,endSlice);
+			return s()["slice"](beginSlice,endSlice);
 		}
 		public function split(separator:*=undefined,limit:*=undefined):Array
 		{
-			return s().split(separator,limit);
+			return s()["split"](separator,limit);
 		}
 		public function substr(start:Number, length:*=undefined):String
 		{
-			return s().substr(start,length);
+			return s()["substr"](start,length);
 		}
 		public function substring(indexStart:Number, indexEnd:*=undefined):String
 		{
-			return s().substring(indexStart,indexEnd);
+			return s()["substring"](indexStart,indexEnd);
 		}
 		public function toLocaleLowerCase():String
 		{
@@ -2801,12 +2801,12 @@ Moved this logic (partially) into the other replace method
         */
 		public function toExponential(fractionDigits:*=undefined):Number
 		{
-			return v().toExponential(fractionDigits) as Number;
+			return v()["toExponential"](fractionDigits) as Number;
 		}
         /**
          * @royaleignorecoercion Number
         */
-		public function toFixed(digits:*=undefined):Number
+		public function toFixed(digits:int=0):Number
 		{
 			return v().toFixed(digits) as Number;
 		}
@@ -2815,7 +2815,7 @@ Moved this logic (partially) into the other replace method
         */
 		public function toPrecision(precision:*=undefined):Number
 		{
-			return v().toPrecision(precision) as Number;
+			return v()["toPrecision"](precision) as Number;
 		}
 		private function s():String
 		{
