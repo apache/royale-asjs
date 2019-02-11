@@ -1131,7 +1131,7 @@ package
 		{
 			return isSingle() ? _xmlArray[0].toExponential(fractionDigits) : NaN;
 		}
-		public function toFixed(digits:*=undefined):Number
+		public function toFixed(digits:int=0):Number
 		{
 			return isSingle() ? _xmlArray[0].toFixed(digits) : NaN;
 		}
