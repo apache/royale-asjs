@@ -410,12 +410,7 @@ j|ComboBox {
     width: 98% !important;
   }
 }
-@media (min-width: 768px) and (max-width: 992px) {
-  .combobox-popup .jewel.list {
-    width: 70% !important;
-  }
-}
-@media (max-width: 992px) {
+@media (max-width: 768px) {
   .combobox-popup .jewel.list {
     max-height: 240px !important;
   }
@@ -423,7 +418,7 @@ j|ComboBox {
     min-height: 48px !important;
   }
 }
-@media (min-width: 992px) {
+@media (min-width: 768px) {
   .combobox-popup::before {
     background-color: rgba(0, 0, 0, 0);
   }
