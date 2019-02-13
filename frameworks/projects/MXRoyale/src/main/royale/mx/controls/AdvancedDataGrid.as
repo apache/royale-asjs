@@ -4324,6 +4324,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
     public function hasChildren(item:Object):Boolean  //private
     {
+        if (!_rootModel) return false;
+        
         return _rootModel.hasChildren(item);
     }
     
@@ -4412,6 +4414,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
     public function isItemOpen(item:Object):Boolean
     {
+        if (!(collection is IHierarchicalCollectionView)) return false;
+        
         var uid:String = itemToUID(item);
         return IHierarchicalCollectionView(collection).openNodes[uid] != null;
     }
