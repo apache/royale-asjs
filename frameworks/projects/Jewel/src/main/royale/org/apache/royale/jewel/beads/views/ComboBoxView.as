@@ -18,9 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-
-COMPILE::SWF
+	COMPILE::SWF
 	{
 		import flash.utils.setTimeout;
     }
@@ -35,6 +33,7 @@ COMPILE::SWF
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.TextInput;
@@ -42,8 +41,9 @@ COMPILE::SWF
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
-	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.BrowserInfo;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox
@@ -320,8 +320,34 @@ COMPILE::SWF
 
 					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = positionInsideBoundingClientRect(_strand, _list, origin);
-					_list.x = relocated.x;
-					_list.y = relocated.y;
+					var point:Point = PointUtils.localToGlobal(origin, _strand);
+					
+					// by default list appear below textinput
+
+					// if there's no enough space below, reposition above input
+					if(relocated.y < point.y)
+					{
+						var origin2:Point = new Point(0, button.y - _list.height - top);
+						var relocated2:Point = positionInsideBoundingClientRect(_strand, _list, origin2);
+						_list.y = relocated2.y;
+					
+						//if start to cover input...
+						if(_list.y == 0)
+						{
+							// ... reposition to the left or to right side (so we still can see the input)
+							_list.x = (relocated.x + _list.width + 1 >= outerWidth) ? relocated.x - _list.width : _list.x = relocated.x + _list.width;
+						}
+						else
+						{
+							// otherwise left in the same vertical as input
+							_list.x = relocated.x;
+						}
+					}
+					else
+					{
+						_list.y = relocated.y;
+						_list.x = relocated.x;
+					}
 				}
 				else
 				{
