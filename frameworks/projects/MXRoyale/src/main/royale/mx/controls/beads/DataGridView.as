@@ -62,6 +62,10 @@ package mx.controls.beads
                 // force update of list.adg and refresh renderers
                 handleCollectionChanged(event);
             }
+            else if (host.model.dataProvider == null)
+            {
+                IEventDispatcher(host.model).addEventListener("dataProviderChanged", handleCollectionChanged);
+            }
         }		
         
         private function handleCollectionChanged(event:Event):void
