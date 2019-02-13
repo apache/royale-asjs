@@ -144,6 +144,8 @@ package mx.controls.advancedDataGridClasses
 		 */
 		override protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
+            if (!(_strand as AdvancedDataGridColumnList).adg) return;
+            
 			var depth:int = (_strand as AdvancedDataGridColumnList).adg.getDepth(data);
 			var isOpen:Boolean = (_strand as AdvancedDataGridColumnList).adg.isItemOpen(data);
 			var hasChildren:Boolean = (_strand as AdvancedDataGridColumnList).adg.hasChildren(data);
