@@ -18,15 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.Group;
-	import org.apache.royale.core.IAlertModel;
-	import org.apache.royale.core.IPopUp;
-
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IAlertModel;
+    import org.apache.royale.core.IPopUp;
+    import org.apache.royale.events.CloseEvent;
+    import org.apache.royale.jewel.Group;
 
     [Event(name="close", type="org.apache.royale.events.CloseEvent")]
 	/**
@@ -319,13 +319,10 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function close():void
+		public function close(buttonFlag:uint = 0x000004):void
 		{
-			COMPILE::JS
-			{
-				document.body.classList.remove("viewport");
-				dialog.close();
-			}
+			var closeEvent:CloseEvent = new CloseEvent("close", false, false, buttonFlag);
+			dispatchEvent(closeEvent);
 		}
 	}
 }

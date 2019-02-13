@@ -28,6 +28,10 @@ package org.apache.royale.jewel.beads.views
         import org.apache.royale.html.beads.IBorderBead;
         import org.apache.royale.utils.loadBeadFromValuesManager;
 	}
+	COMPILE::JS
+	{
+    	import org.apache.royale.jewel.ControlBar;	
+	}
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
@@ -43,14 +47,12 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.jewel.Alert;
     import org.apache.royale.jewel.Button;
-    import org.apache.royale.jewel.ControlBar;
     import org.apache.royale.jewel.Group;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.TitleBar;
     import org.apache.royale.jewel.VGroup;
     import org.apache.royale.jewel.beads.layouts.HorizontalLayout;
     import org.apache.royale.jewel.beads.views.AlertTitleBarView;
-
 	
 	/**
 	 *  The AlertView class creates the visual elements of the org.apache.royale.jewel.Alert

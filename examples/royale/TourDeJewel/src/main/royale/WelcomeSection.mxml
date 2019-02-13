@@ -23,6 +23,12 @@ limitations under the License.
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:c="components.*" sourceCodeUrl="WelcomeSection.mxml">
     
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.utils.OSUtils;
+        ]]>
+    </fx:Script>
+
     <j:beads>
         <js:ContainerDataBinding/>
     </j:beads>
@@ -47,7 +53,7 @@ limitations under the License.
             </j:beads>
         </j:Label>
 
-        <j:Label width="400" multiline="true" text="Browser support: Chrome (v.44+), Firefox (v.34+), IE 11 &amp; Edge 15+, Safari (v.11.1+), Opera. Mobile: iOS (v.11.0), Android (v.5.0) &amp; Windows Mobile">
+        <j:Label width="400" multiline="true" html="Browser support: Chrome (v.44+), Firefox (v.34+), IE 11 &amp; Edge 15+, Safari (v.11.1+), Opera. Mobile: iOS (v.11.0), Android (v.5.0) &amp; Windows Mobile.&lt;br>&lt;strong>This OS: {OSUtils.getOS()}&lt;/strong>">
             <j:beads>
                 <j:SizeControl size="small"/>
                 <j:TextAlign align="center"/>

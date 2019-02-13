@@ -28,6 +28,7 @@ limitations under the License.
 			import vos.IconListVO;
 			import org.apache.royale.jewel.List;
 			import org.apache.royale.collections.ArrayList;
+			import org.apache.royale.jewel.beads.views.ListView;
             
             [Bindable("dataChange")]
             public function get iconList():IconListVO
@@ -37,8 +38,13 @@ limitations under the License.
 
             private function clickCloseButton():void
 			{
-                var list:List = itemRendererParent as List;
-                (list.dataProvider as ArrayList).removeItemAt(index);
+                var view:ListView = this.itemRendererParent as ListView;
+				if (view) {
+					var host:List = view.host as List;
+					if (host) {
+                        (host.dataProvider as ArrayList).removeItemAt(index);
+                    }
+                }
             }
 		]]>
     </fx:Script>

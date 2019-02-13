@@ -132,12 +132,12 @@ $combobox-item-min-heigh: 34px
         .jewel.list
             width: 98% !important
 
-@media (min-width: $tablet) and (max-width: $desktop)
-    .combobox-popup
-        .jewel.list
-            width: 70% !important
+// @media (min-width: $tablet) and (max-width: $desktop)
+//     .combobox-popup
+//         .jewel.list
+//             width: 70% !important
 
-@media (max-width: $desktop)
+@media (max-width: $tablet)
     .combobox-popup
         .jewel.list
             max-height: ( $combobox-item-min-heigh + 14 ) * 5 !important
@@ -145,7 +145,7 @@ $combobox-item-min-heigh: 34px
             .jewel.item
                 min-height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
 
-@media (min-width: $desktop)
+@media (min-width: $tablet)
     .combobox-popup
         &::before
             background-color: rgba($combobox-popup-overlay-color, 0)

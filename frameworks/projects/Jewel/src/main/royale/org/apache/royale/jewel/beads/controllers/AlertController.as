@@ -86,17 +86,19 @@ package org.apache.royale.jewel.beads.controllers
 		 */
         private function alertCloseHandler(event:CloseEvent):void
         {
+			var host:UIBase = strand as UIBase;
+		
 			COMPILE::SWF
             {
-                DisplayObject(_strand).parent.removeChild(DisplayObject(_strand));
+            DisplayObject(host).parent.removeChild(DisplayObject(_strand));
             }
-
+			
 			COMPILE::JS
 			{
-				document.body.classList.remove("viewport");
-				var host:UIBase = strand as UIBase;
-                var htmlElement:HTMLElement = host.element as HTMLElement;
-                htmlElement.parentElement.removeChild(host.element);
+			document.body.classList.remove("viewport");
+			var dialog:HTMLDialogElement = host.element as HTMLDialogElement;
+			dialog.close();
+			dialog.parentElement.removeChild(dialog);
 			}
         }
 	}
