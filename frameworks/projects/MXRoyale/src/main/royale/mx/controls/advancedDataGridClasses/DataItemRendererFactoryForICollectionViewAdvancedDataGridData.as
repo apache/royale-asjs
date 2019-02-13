@@ -159,7 +159,7 @@ package mx.controls.advancedDataGridClasses
 			treeListData.hasChildren = hasChildren;
 			
 			ir.listData = treeListData;
-            if (firstColumn)
+            if (firstColumn && (_strand as AdvancedDataGridColumnList).adg.groupLabelField)
                 ir.labelField = (_strand as AdvancedDataGridColumnList).adg.groupLabelField;
 			
 			super.setData(ir, data, index);
