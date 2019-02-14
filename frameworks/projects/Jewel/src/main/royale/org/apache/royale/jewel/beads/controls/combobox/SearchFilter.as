@@ -48,6 +48,14 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 		override protected function keyUpLogic(input:Object):void
 		{
+			// first remove a previous selection
+			if(list.selectedIndex != -1)
+			{
+				var tmp:String = input.text;
+				list.selectedItem = null;
+				input.text = tmp;
+			}
+
 			var popUpVisible:Boolean = input.parent.view.popUpVisible;
             if (!popUpVisible) {
                 //force popup ?:
@@ -68,7 +76,7 @@ package org.apache.royale.jewel.beads.controls.combobox
                 var _textInput:TextInputBase = IComboBoxView(_strand['view']).textinput as TextInputBase;
                 if (_textInput) {
 					COMPILE::JS {
-                        _textInput.element.addEventListener( 'focus', onInputFocus);
+                        _textInput.element.addEventListener('focus', onInputFocus);
                     }
             	}
             }

@@ -81,6 +81,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function keyUpHandler(event:KeyboardEvent):void
 		{
+
 			const inputBase:TextInputBase = event.target as TextInputBase;
 			//keyup can include other things like tab navigation
 
@@ -94,6 +95,12 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function keyUpLogic(input:Object):void
 		{
+			// first remove a previous selection
+			if(list.selectedIndex != -1)
+			{
+				list.selectedItem = null;
+			}
+
 			applyFilter(input.text.toUpperCase());
 		}
 
@@ -122,20 +129,27 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
             var ir:ListItemRenderer;
             var numElements:int = list.numElements;
-            var count:uint = 0;
-            var lastActive:ListItemRenderer;
-            for (var i:int = 0; i < numElements; i++)
+            // var count:uint = 0;
+            // var lastActive:ListItemRenderer = null;
+			while (numElements--)
             {
-                ir = list.getElementAt(i) as ListItemRenderer;
+                ir = list.getElementAt(numElements) as ListItemRenderer;
                 if (filterFunction(ir.text, filterText))
                 {
                     ir.visible = true;
-                    lastActive = ir;
-                    count++;
+                    // lastActive = ir;
+                    // count++;
                 } else {
                     ir.visible = false;
                 }
             }
+			// if (lastActive != null && list.selectedItem != lastActive.data)
+			// {
+			// 	list.selectedItem = lastActive.data;
+			// } else
+			// {
+			// 	list.selectedItem = null;
+			// }
 			/* if (count == 1) {
 				//select lastActive if there is only one that matches?
 			}*/
