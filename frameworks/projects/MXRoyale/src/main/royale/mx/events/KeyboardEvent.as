@@ -137,8 +137,11 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 	public static const RIGHT:uint = platformConstant(39);
 	public static const DELETE:uint = platformConstant(46);
 	public static const END:uint = platformConstant(35);
-	public static const KEY_DOWN:String = platformConstant1("keyDown");
-	public static const KEY_UP:String = platformConstant1("keyUp");
+    // in emulation leave these as mixed case as in Flash because lots of
+    // people (and MXML output) may have used the string and not the constant
+    // so we'll see if we can send the mixed case name.
+	public static const KEY_DOWN:String = "keyDown";
+	public static const KEY_UP:String = "keyUp";
 	
 	//--------------------------------------------------------------------------
 	//
