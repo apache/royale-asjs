@@ -5409,6 +5409,8 @@ COMPILE::JS
     {
         if (type == "keyDown") type = "keydown";
         else if (type == "keyUp") type = "keyup";
+        else if (type == "focusIn") type = "focusin";
+        else if (type == "focusOut") type = "focusout";
         super.addEventListener(type, handler, opt_capture, opt_handlerScope);
     }
     
@@ -5417,6 +5419,8 @@ COMPILE::JS
     {
         if (type == "keyDown") type = "keydown";
         else if (type == "keyUp") type = "keyup";
+        else if (type == "focusIn") type = "focusin";
+        else if (type == "focusOut") type = "focusout";
         super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
     }
 
