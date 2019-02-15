@@ -18,21 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
-	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IStrand;
 COMPILE::SWF {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
 }
 COMPILE::JS {
+	import goog.events;
+	import goog.events.Event;
+	import goog.events.EventType;
+
+	import org.apache.royale.core.IRuntimeSelectableItemRenderer;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.events.BrowserEvent;
-	import goog.events.Event;
-	import goog.events.EventType;
-    import goog.events;
+	
 }
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.ItemClickedEvent;
 
 	/**
@@ -203,7 +206,7 @@ COMPILE::JS {
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
 			event.stopImmediatePropagation();
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IRuntimeSelectableItemRenderer = event.currentTarget as IRuntimeSelectableItemRenderer;
 			if (target && target.selectable)
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");

@@ -29,67 +29,36 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface ISelectableItemRenderer extends IItemRenderer
+	public interface IRuntimeSelectableItemRenderer extends ISelectableItemRenderer
 	{
-		
-        /**
-         *  The property on the data item that the item renderer
-         *  should renderer.
+		/**
+         *  <code>true</code> if the item renderer is can be selected
+         *  false otherwise. Use to configure a renderer to be non 
+         *  selectable.
+         *  
+         *  Defaults to true
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
-		function get labelField():String;
-		function set labelField(value:String):void;
-		
+		function get selectable():Boolean;
+		function set selectable(value:Boolean):void;
+        
         /**
-         *  The index of the data item in the data provider.
+         *  <code>true</code> if the item renderer is can be hovered
+         *  false otherwise. Use to configure a renderer to be non 
+         *  hoverable.
+         *  
+         *  Defaults to true
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.3
          */
-		function get index():int;
-		function set index(value:int):void;
-		
-        /**
-         *  <code>true</code> if the item renderer is rendering
-         *  an item that is selected.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		function get selected():Boolean;
-		function set selected(value:Boolean):void;
-
-        /**
-         *  <code>true</code> if the item renderer is rendering
-         *  an item that is under the mouse pointer.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        function get hovered():Boolean;
-        function set hovered(value:Boolean):void;
-
-        /**
-         *  <code>true</code> if the item renderer is rendering
-         *  an item that is under the mouse pointer and the
-         *  mouse button is down.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        function get down():Boolean;
-        function set down(value:Boolean):void;
+		function get hoverable():Boolean;
+		function set hoverable(value:Boolean):void;
 	}
 }
