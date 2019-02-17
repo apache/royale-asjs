@@ -116,11 +116,23 @@ COMPILE::JS
                 var outerWidth:Number = document.body.getBoundingClientRect().width;
                 var outerHeight:Number = document.body.getBoundingClientRect().height;
                 
-                if (orientation != PORTRAIT && outerHeight > outerWidth) {
-                    orientation = PORTRAIT;
-                } else if (orientation != LANDSCAPE && outerHeight < outerWidth) {
-                    orientation = LANDSCAPE;
+                if(OSUtils.getOS() == OSUtils.IOS_OS)
+                {
+                    if (orientation != PORTRAIT && outerHeight > outerWidth) {
+                        orientation = PORTRAIT;
+                    } else if (orientation != LANDSCAPE && outerHeight < outerWidth) {
+                        orientation = LANDSCAPE;
+                    }
+                } else if(OSUtils.getOS() == OSUtils.ANDROID_OS)
+                {
+                    if(orientation != PORTRAIT && screen.orientation.type.indexOf("portrait") != -1 )
+                    {
+                        orientation = PORTRAIT;
+                    } else if (orientation != LANDSCAPE && screen.orientation.type.indexOf("landscape") != -1) {
+                        orientation = LANDSCAPE;
+                    }
                 }
+                
             }
         }
 	}
