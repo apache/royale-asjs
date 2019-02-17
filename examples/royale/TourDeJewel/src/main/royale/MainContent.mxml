@@ -28,6 +28,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import vos.NavigationLinkVO;
+            import org.apache.royale.utils.OSUtils;
             
             private function changeHandler(event:Event):void
             {
@@ -55,6 +56,39 @@ limitations under the License.
             {
                 badge.text = ++badgeNum > 0 ? '' + badgeNum : '';
             }
+
+            private var _listenToOrientation:Boolean = false;
+            [Bindable]
+            public function get listenToOrientation():Boolean
+            {
+                return _listenToOrientation;
+            }
+			public function set listenToOrientation(listen:Boolean):void
+			{
+                _listenToOrientation = listen;
+                if(_listenToOrientation)
+                {
+				    addEventListener('orientationPortrait', notifyOrientation);
+				    addEventListener('orientationLandscape', notifyOrientation);
+                } else {
+				    removeEventListener('orientationPortrait', notifyOrientation);
+				    removeEventListener('orientationLandscape', notifyOrientation);
+                }
+			}
+			public function notifyOrientation(event:Event):void
+			{
+				if(event.type == 'orientationPortrait')
+                {
+					orientation = "Portrait";
+                }
+				if(event.type == 'orientationLandscape')
+                {
+					orientation = "Landscape";
+                }
+			}
+
+            [Bindable]
+            public var orientation:String = "No Orientation";
         ]]>
     </fx:Script>
 
@@ -64,6 +98,7 @@ limitations under the License.
 
     <j:beads>
         <js:ContainerDataBinding/>
+        <js:BrowserOrientation/>	
     </j:beads>
 
     <j:Drawer localId="drawer">
@@ -112,7 +147,7 @@ limitations under the License.
                 </j:PopUp>
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsCenter">
-                <html:H3 text="FooterBar" />
+                <html:H3 text="{orientation}" />
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsRight">
                 <j:IconButton>
@@ -140,7 +175,7 @@ limitations under the License.
             <j:BarSection>
                 <j:IconButton click="drawer.isOpen ? drawer.close() : drawer.open()">
                     <js:beads>
-                        <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false"/>
+                        <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false" />
                     </js:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
@@ -149,6 +184,14 @@ limitations under the License.
                 <j:BarTitle text="Apache Royale Tour de Jewel"/>
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsRight">
+                <j:ToggleButton click="listenToOrientation = !listenToOrientation" visible="{OSUtils.getOS() == OSUtils.ANDROID_OS || OSUtils.getOS() == OSUtils.IOS_OS}">
+                    <j:beads>
+                        <j:ToolTip toolTip="Detect Orientation"/>
+                    </j:beads>
+                    <j:icon>
+                        <js:ToggleFontIcon text="{MaterialIconType.SCREEN_LOCK_ROTATION}" selectedText="{MaterialIconType.SCREEN_ROTATION}" material="true"/>
+                    </j:icon>
+                </j:ToggleButton>
                 <j:ToggleButton click="footerbar.visible = !footerbar.visible">
                     <j:beads>
                         <j:ToolTip toolTip="show/hide FooterBar"/>
