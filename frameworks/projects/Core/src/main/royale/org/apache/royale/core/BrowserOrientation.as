@@ -99,7 +99,7 @@ COMPILE::JS
         public function set orientation(value:String):void
         {
         	_orientation = value;
-            host.dispatchEvent(new Event('orientation'+_orientation));
+            host.dispatchEvent(new Event("orientationChanged"));
         }
         
 		/**
@@ -125,14 +125,12 @@ COMPILE::JS
                     }
                 } else if(OSUtils.getOS() == OSUtils.ANDROID_OS)
                 {
-                    if(orientation != PORTRAIT && screen.orientation.type.indexOf("portrait") != -1 )
-                    {
+                    if(orientation != PORTRAIT && screen.orientation.type.indexOf("portrait") != -1 ) {
                         orientation = PORTRAIT;
                     } else if (orientation != LANDSCAPE && screen.orientation.type.indexOf("landscape") != -1) {
                         orientation = LANDSCAPE;
                     }
                 }
-                
             }
         }
 	}

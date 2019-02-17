@@ -68,22 +68,17 @@ limitations under the License.
                 _listenToOrientation = listen;
                 if(_listenToOrientation)
                 {
-				    addEventListener('orientationPortrait', notifyOrientation);
-				    addEventListener('orientationLandscape', notifyOrientation);
+				    addEventListener("orientationChanged", notifyOrientation);
                 } else {
-				    removeEventListener('orientationPortrait', notifyOrientation);
-				    removeEventListener('orientationLandscape', notifyOrientation);
+				    removeEventListener("orientationChanged", notifyOrientation);
                 }
 			}
-			public function notifyOrientation(event:Event):void
+			public function notifyOrientation(event:Event = null):void
 			{
-				if(event.type == 'orientationPortrait')
-                {
-					orientation = "Portrait";
-                }
-				if(event.type == 'orientationLandscape')
-                {
-					orientation = "Landscape";
+				if(bo.orientation == BrowserOrientation.PORTRAIT) {
+					orientation = BrowserOrientation.PORTRAIT;
+                } else if(bo.orientation == BrowserOrientation.LANDSCAPE) {
+					orientation = BrowserOrientation.LANDSCAPE;
                 }
 			}
 
@@ -98,7 +93,7 @@ limitations under the License.
 
     <j:beads>
         <js:ContainerDataBinding/>
-        <js:BrowserOrientation/>	
+        <js:BrowserOrientation localId="bo"/>	
     </j:beads>
 
     <j:Drawer localId="drawer">
