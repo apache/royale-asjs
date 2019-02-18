@@ -48,6 +48,11 @@ limitations under the License.
 				<html:H3 text="Jewel Button"/>
 
 				<j:Button text="Default" id="button" click="clickHandler(event)"/>
+				<j:Button text="Disabled">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:Button>
 				<j:Button text="Button With More Text"/>
 				<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
 				<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
@@ -124,6 +129,11 @@ limitations under the License.
 				<html:H3 text="Jewel ToggleButton"/>
 
 				<j:ToggleButton text="Default"/>
+				<j:ToggleButton text="Disabled">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:ToggleButton>
 				<j:ToggleButton text="Button With More Text"/>
 				<j:ToggleButton text="Primary" emphasis="{Button.PRIMARY}"/>
 				<j:ToggleButton text="Secondary" emphasis="{Button.SECONDARY}"/>

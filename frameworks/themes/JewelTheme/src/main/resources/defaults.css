@@ -175,9 +175,9 @@ hr {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -215,9 +215,9 @@ hr {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.primary[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -949,9 +949,9 @@ a:active {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.togglebutton[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -994,9 +994,9 @@ a:active {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.togglebutton.primary[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -1116,9 +1116,9 @@ j|Wizard {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.secondary[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -1173,9 +1173,9 @@ a:active {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.togglebutton.secondary[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -1212,9 +1212,9 @@ a:active {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.emphasized[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -1257,9 +1257,9 @@ a:active {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.togglebutton.emphasized[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
