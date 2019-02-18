@@ -298,9 +298,11 @@ package org.apache.royale.jewel.beads.validators
 
             _errorTip.text = errorText;
 
-			var pt:Point = determinePosition();
-			_errorTip.x = pt.x;
-			_errorTip.y = pt.y;
+			COMPILE::JS
+			{
+			window.addEventListener('resize', repositionHandler, false);
+			repositionHandler();
+			}
 
 			COMPILE::JS
 			{
@@ -308,8 +310,20 @@ package org.apache.royale.jewel.beads.validators
 					hostClassList.add("errorBorder");
 			}
 		}
+
+		protected function repositionHandler(event:Event = null):void
+		{
+            var pt:Point = determinePosition();
+            _errorTip.x = pt.x;
+            _errorTip.y = pt.y;
+		}
+
 		private function removeTip(ev:Event):void
 		{
+			COMPILE::JS
+			{
+			window.removeEventListener('resize', repositionHandler, false);
+			}
 			if(_errorTip){
 				_errorTip.parent.removeElement(_errorTip);
 				_errorTip = null;
@@ -370,6 +384,10 @@ package org.apache.royale.jewel.beads.validators
          */
         internal function destroyErrorTip():void
         {
+			COMPILE::JS
+			{
+			window.removeEventListener('resize', repositionHandler, false);
+			}
             if (_errorTip) {
                 _host.popUpParent.removeElement(_errorTip);
 				_errorTip = null;
