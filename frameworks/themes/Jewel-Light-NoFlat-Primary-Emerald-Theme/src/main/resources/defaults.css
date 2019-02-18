@@ -175,9 +175,9 @@ hr {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -215,9 +215,9 @@ hr {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.primary[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -280,6 +280,13 @@ j|Card {
 .jewel.combobox .jewel.button::after {
   background-size: 66%;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%238CC63C' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.combobox .jewel.button[disabled] {
+  border-left: 0px !important;
+}
+.jewel.combobox .jewel.button[disabled]::after {
+  background-size: 66%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 
 .jewel.datechooser .jewel.table {
@@ -411,6 +418,19 @@ j|Card {
   background-repeat: no-repeat;
   border: 1px solid #b3b3b3;
   border-radius: 0.25rem;
+}
+.jewel.dropdownlist[disabled] {
+  background-color: #f3f3f3;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+  color: silver;
+}
+.jewel.dropdownlist[disabled]::placeholder, .jewel.dropdownlist[disabled]:-ms-input-placeholder {
+  color: silver;
+}
+.jewel.dropdownlist[disabled] + i {
+  color: silver;
 }
 .jewel.dropdownlist:focus {
   border: 1px solid #638c29;
@@ -949,9 +969,9 @@ a:active {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.togglebutton[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -994,9 +1014,9 @@ a:active {
   box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.togglebutton.primary[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
