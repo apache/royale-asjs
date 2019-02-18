@@ -74,6 +74,7 @@ $datechooser-buttons-border-radius: 50%
 
     &[disabled]
         pointer-events: none
+        
         .jewel.table
             color: $disabled-font-color
             text:
@@ -107,7 +108,7 @@ $datechooser-buttons-border-radius: 50%
         
         .jewel.tableitem
             &.selected, &.selectable:active
-                background: #{darken($disabled-color, 15%)}
+                background: darken($disabled-color, 15%)
 
 .calendar
     &.item
