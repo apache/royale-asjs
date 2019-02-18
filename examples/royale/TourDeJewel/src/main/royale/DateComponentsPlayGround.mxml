@@ -165,6 +165,12 @@ limitations under the License.
 					</j:beads>
 				</j:DateField>
 				
+				<html:H3 text="Jewel DateChooser Disabled"/>
+				<j:DateChooser>
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:DateChooser>
 			</j:Card>
 		</j:GridCell>
 
