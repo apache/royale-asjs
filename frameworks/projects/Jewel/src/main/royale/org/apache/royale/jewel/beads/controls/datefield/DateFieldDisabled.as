@@ -16,24 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.combobox
+package org.apache.royale.jewel.beads.controls.datefield
 {
 COMPILE::JS
 {
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.jewel.beads.views.ComboBoxView;
+	import org.apache.royale.jewel.beads.views.DateFieldView;
 }
 	import org.apache.royale.jewel.beads.controls.Disabled;
 	
 	/**
-	 *  The ComboBoxDisabled bead class is a specialty bead that can be used to disable a Jewel ComboBox.
+	 *  The DateFieldDisabled bead class is a specialty bead that can be used to disable a Jewel DateField.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ComboBoxDisabled extends Disabled
+	public class DateFieldDisabled extends Disabled
 	{
 		/**
 		 *  constructor.
@@ -43,24 +43,55 @@ COMPILE::JS
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function ComboBoxDisabled()
+		public function DateFieldDisabled()
 		{
 		}
+
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 */
+		// override public function set strand(value:IStrand):void
+		// {
+		// 	_strand = value;
+
+		// 	COMPILE::JS
+		// 	{
+		// 	if (DateField(value).numElements ==2) {
+		// 		updateHost();
+		// 	} else {
+		// 		DateField(value).addEventListener('beadsAdded', onBeadsAdded);
+		// 	}
+		// 	}
+		// }
+
+		// COMPILE::JS
+		// private function onBeadsAdded(event:Event):void
+		// {
+		// 	DateField(_strand).removeEventListener('beadsAdded', onBeadsAdded);
+		// 	updateHost();
+		// }
 
 		COMPILE::JS
 		override protected function updateHost():void
 		{
 			super.updateHost();
 
-			var view:ComboBoxView = (_strand as UIBase).view as ComboBoxView;
+			var view:DateFieldView = (_strand as UIBase).view as DateFieldView;
 
 			if (view) {
                 if(disabled) {
-					view.textinput.element.setAttribute('disabled', '');
-					view.button.element.setAttribute('disabled', '');
+					view.textInput.element.setAttribute('disabled', '');
+					view.menuButton.element.setAttribute('disabled', '');
 				} else {
-					view.textinput.element.removeAttribute('disabled');
-					view.button.element.removeAttribute('disabled');
+					view.textInput.element.removeAttribute('disabled');
+					view.menuButton.element.removeAttribute('disabled');
 				}
             }
 		}

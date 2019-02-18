@@ -129,6 +129,7 @@
     <component id="SearchFilter" class="org.apache.royale.jewel.beads.controls.combobox.SearchFilter"/>
     <component id="DateFieldTextPrompt" class="org.apache.royale.jewel.beads.controls.datefield.DateFieldTextPrompt"/>
     <component id="SpanishDateComponentConfig" class="org.apache.royale.jewel.beads.controls.datefield.SpanishDateComponentConfig"/>
+    <component id="DateFieldDisabled" class="org.apache.royale.jewel.beads.controls.datefield.DateFieldDisabled"/>
     <component id="TextPrompt" class="org.apache.royale.jewel.beads.controls.textinput.TextPrompt"/>
     <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>
     <component id="MaxNumberCharacters" class="org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters"/>

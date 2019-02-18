@@ -246,7 +246,7 @@ limitations under the License.
 						<j:DropDownList labelField="label" dataProvider="{listModel.avengers}">
 							<j:beads>
 								<j:Disabled disabled="{disable_ddl.selected}"/>
-								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
+								<j:DropDownListTextPrompt prompt="Disabled..."/>
 							</j:beads>
 						</j:DropDownList>
 					</j:GridCell>
