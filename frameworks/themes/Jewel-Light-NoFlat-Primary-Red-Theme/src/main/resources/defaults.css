@@ -555,11 +555,11 @@ j|FormItem {
 }
 .jewel.item.hovered:hover {
   color: #FFFFFF;
-  background: #EC1C24 !important;
+  background: #EC1C24;
 }
 .jewel.item.selected, .jewel.item.selectable:active {
   color: #FFFFFF;
-  background: #dc121a !important;
+  background: #dc121a;
 }
 
 .jewel.label {
@@ -572,6 +572,18 @@ j|FormItem {
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
   border-radius: 3px;
+}
+.jewel.list[disabled] {
+  pointer-events: none;
+  color: silver;
+  color-text-shadow: unset;
+  font-weight: normal;
+  background: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+}
+.jewel.list[disabled] .jewel.item.selected, .jewel.list[disabled] .jewel.item.selectable:active {
+  background: #cccccc !important;
 }
 
 .jewel.navigation {
