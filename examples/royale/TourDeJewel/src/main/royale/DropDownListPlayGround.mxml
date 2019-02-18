@@ -236,6 +236,26 @@ limitations under the License.
 				</j:Grid>
 			</j:Card>
 		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DropDownList Disabled"/>
+
+				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
+						<j:DropDownList labelField="label" dataProvider="{listModel.avengers}">
+							<j:beads>
+								<j:Disabled disabled="{disable_ddl.selected}"/>
+								<j:DropDownListTextPrompt prompt="Select Avengers..."/>
+							</j:beads>
+						</j:DropDownList>
+					</j:GridCell>
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
+						<j:CheckBox localId="disable_ddl" text="Disable ComboBox?" selected="true"/>
+					</j:GridCell>
+				</j:Grid>
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
