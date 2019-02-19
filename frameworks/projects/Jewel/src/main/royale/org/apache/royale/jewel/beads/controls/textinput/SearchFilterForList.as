@@ -26,6 +26,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
 	/**
 	 *  The SearchFilterForList bead class is a specialty bead that can be used with
@@ -81,7 +82,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function keyUpHandler(event:KeyboardEvent):void
 		{
-
 			const inputBase:TextInputBase = event.target as TextInputBase;
 			//keyup can include other things like tab navigation
 
@@ -101,28 +101,48 @@ package org.apache.royale.jewel.beads.controls.textinput
 				list.selectedItem = null;
 			}
 
-			applyFilter(input.text.toUpperCase());
+			applyFilter(input.text);
 		}
 
-		protected function onBeadsAdded(event:Event):void{
+		protected function onBeadsAdded(event:Event):void
+		{
 			var input:TextInputBase = TextInputBase(_strand);
-            COMPILE::JS{
+            COMPILE::JS
+			{
                 input.element.addEventListener('focus', onInputFocus);
             }
 		}
 
 		protected function onInputFocus(event:Event):void
 		{
-			applyFilter(TextInputBase(_strand).text.toUpperCase());
+			applyFilter(TextInputBase(_strand).text);
 		}
 
 		/**
 		 * default filter function just filters substrings
 		 * you can use other advanced methods like levenshtein distance
+		 *
+		 * @param text, the text where perform the seach
+		 * @param filterText, the text to use as Filter
+		 * @return true if filterText was found in text, false otherwise
 		 */
 		protected function defaultFilterFunction(text:String, filterText:String):Boolean
 		{
-			return text.toUpperCase().indexOf(filterText) > -1;
+			return text.toUpperCase().indexOf(filterText.toUpperCase()) > -1;
+		}
+
+		/**
+		 * Used to decorated the filtered text
+		 * 
+		 * @param originalString, the original String
+		 * @param toReplace, the string to replace
+		 * @param decoration, the decoration to use, defaults to "strong"
+		 * @return the originalString with the replacement performed
+		 */
+		protected function decorateText(originalString:String, location:int, len:int, decorationPrefix:String = "<strong><u>", decorationSufix:String = "</u></strong>"):String
+		{
+			var str:String = originalString.substr(location, len);
+			return originalString.replace(str , decorationPrefix + str + decorationSufix);
 		}
 
         protected function applyFilter(filterText:String):void
@@ -133,21 +153,26 @@ package org.apache.royale.jewel.beads.controls.textinput
             while (numElements--)
             {
                 ir = list.getElementAt(numElements) as ListItemRenderer;
-                if (filterFunction(ir.text, filterText))
+				ir.addClass("preserveWhiteSpaces");
+				var textData:String = getLabelFromData(ir, ir.data);
+                if (filterFunction(textData, filterText))
                 {
                     ir.visible = true;
 					
 					//stores the item if text is the same
-					if(ir.text.toUpperCase() == filterText)
+					if(textData.toUpperCase() == filterText.toUpperCase())
 					{
 						item = ir.data;
 					}
+
+					//decorate text
+					ir.text = filterText != "" ? decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData;
                 } else {
                     ir.visible = false;
                 }
             }
 
-			//Select the item in the list if text is the same 
+			// Select the item in the list if text is the same 
 			// we do at the end to avoid multiple selection (if there's more than one matches)
 			// in that case, select the first one in the list
 			if(item != null)

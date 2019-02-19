@@ -865,6 +865,9 @@ j|ImageButton {
 .jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;
 }
+.jewel.item.preserveWhiteSpaces, .jewel.navigationlink.preserveWhiteSpaces, .jewel.tabbarbutton.preserveWhiteSpaces {
+  white-space: pre;
+}
 .jewel.item .fonticon, .jewel.navigationlink .fonticon, .jewel.tabbarbutton .fonticon {
   cursor: inherit;
 }

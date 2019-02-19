@@ -27,7 +27,7 @@ package org.apache.royale.jewel.itemRenderers
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 	
 	/**
@@ -81,10 +81,7 @@ package org.apache.royale.jewel.itemRenderers
 				_text = value;
 				COMPILE::JS
 				{
-				if(textNode != null)
-				{
-					textNode.nodeValue = _text;
-				}
+				element.innerHTML = value;
 				}
 				dispatchEvent(new Event('textChange'));
 			}
