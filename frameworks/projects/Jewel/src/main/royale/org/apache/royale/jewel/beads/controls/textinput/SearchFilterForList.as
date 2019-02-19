@@ -129,31 +129,31 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
             var ir:ListItemRenderer;
             var numElements:int = list.numElements;
-            // var count:uint = 0;
-            // var lastActive:ListItemRenderer = null;
-			while (numElements--)
+			var item:Object = null;
+            while (numElements--)
             {
                 ir = list.getElementAt(numElements) as ListItemRenderer;
                 if (filterFunction(ir.text, filterText))
                 {
                     ir.visible = true;
-                    // lastActive = ir;
-                    // count++;
+					
+					//stores the item if text is the same
+					if(ir.text.toUpperCase() == filterText)
+					{
+						item = ir.data;
+					}
                 } else {
                     ir.visible = false;
                 }
             }
-			// if (lastActive != null && list.selectedItem != lastActive.data)
-			// {
-			// 	list.selectedItem = lastActive.data;
-			// } else
-			// {
-			// 	list.selectedItem = null;
-			// }
-			/* if (count == 1) {
-				//select lastActive if there is only one that matches?
-			}*/
-		}
 
+			//Select the item in the list if text is the same 
+			// we do at the end to avoid multiple selection (if there's more than one matches)
+			// in that case, select the first one in the list
+			if(item != null)
+			{
+				list.selectedItem = item;
+			}
+		}
 	}
 }
