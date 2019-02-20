@@ -63,6 +63,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 		[Bindable]
 		public var filterFunction:Function = defaultFilterFunction;
 		
+		/**
+		 * enables label decoration when filter
+		 */
+		[Bindable]
+		public var useDecoration:Boolean = true;
+
+		
 		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -166,7 +173,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 					}
 
 					//decorate text
-					ir.text = filterText != "" ? decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData;
+					if(useDecoration)
+					{
+						ir.text = filterText != "" ? decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData;
+					}
                 } else {
                     ir.visible = false;
                 }

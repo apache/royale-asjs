@@ -81,16 +81,16 @@ package org.apache.royale.jewel.itemRenderers
 				_text = value;
 				COMPILE::JS
 				{
-				element.innerHTML = value;
+				if(MXMLDescriptor == null)
+				{
+					element.innerHTML = _text;
+				}
 				}
 				dispatchEvent(new Event('textChange'));
 			}
 		}
 
-		COMPILE::JS
-        protected var textNode:Text;
-
-		private var textAlign:TextAlign;
+        private var textAlign:TextAlign;
 
 		/**
 		 *  How text align in the itemRenderer instance.
@@ -135,12 +135,6 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this, 'li');
-            
-			if(MXMLDescriptor == null)
-			{
-				textNode = document.createTextNode('') as Text;
-				element.appendChild(textNode);
-			}
             return element;
         }
 
