@@ -620,7 +620,7 @@ j|Divider {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 15;
 }
 .jewel.drawer.float::before {
   position: absolute;
