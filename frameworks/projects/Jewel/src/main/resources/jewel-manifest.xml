@@ -147,8 +147,6 @@
     <component id="SimpleVerticalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout"/>
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
-    <component id="FormLayout" class="org.apache.royale.jewel.beads.layouts.FormLayout"/>
-    <component id="FormItemLayout" class="org.apache.royale.jewel.beads.layouts.FormItemLayout"/>
     <component id="HorizontalCenteredLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalCenteredLayout"/>
     <component id="VerticalCenteredLayout" class="org.apache.royale.jewel.beads.layouts.VerticalCenteredLayout"/>
     <component id="HorizontalFlowLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalFlowLayout"/>

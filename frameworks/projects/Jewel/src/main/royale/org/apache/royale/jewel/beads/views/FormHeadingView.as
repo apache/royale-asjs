@@ -108,7 +108,6 @@ package org.apache.royale.jewel.beads.views
 			
 			if (headingLabel == null) {
 				headingLabel = createLabel(model.text);
-				headingLabel.className="headingLabel";
 			}
 			if (headingLabel != null && headingLabel.parent == null) {
 				formHeading.addElement(headingLabel);
