@@ -66,6 +66,13 @@ $gap-size: 10px !default
 			> *
 				flex: 0 0 auto
 
+		// FormItemLayout
+		&.formitem
+			width: 100%
+			// flex-wrap: wrap
+			align-items: flex-start
+			// justify-content: center
+
 		@for $i from 1 through $gaps
 			&.gap-#{$i}x#{$gap-step}px
 				> *:first-child
@@ -91,6 +98,14 @@ $gap-size: 10px !default
 			align-content: center
 			flex-direction: column
 			height: 100%
+
+		// FormLayout (consider for now Forms are always vertical)
+		&.form
+			width: 100%
+		
+		// FormItemLayout
+		// &.formitem
+		// 	width: 100%
 
 		@for $i from 1 through $gaps
 			&.gap-#{$i}x#{$gap-step}px

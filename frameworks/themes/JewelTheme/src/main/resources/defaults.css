@@ -524,17 +524,20 @@ j|FormHeading {
 }
 
 .jewel.formitem .jewel.label.formlabel {
-  width: 160px;
+  width: 120px;
+  line-height: 2.75em;
 }
 .jewel.formitem .jewel.label.required {
   color: #EC1C24;
-  font-size: 1.6em !important;
-  width: 10px;
+  font-size: 2.1em !important;
+  width: 14px;
+}
+.jewel.formitem .content {
+  width: 200px;
 }
 
 j|FormItem {
-  gap: 3;
-  itemsVerticalAlign: itemsCentered;
+  gap: 2;
 }
 
 .fonticon.dark {
