@@ -256,7 +256,7 @@ j|Card {
   position: relative;
   margin: 0;
   padding: 0;
-  height: 22px;
+  height: auto;
   cursor: pointer;
 }
 .jewel.checkbox input {
@@ -809,9 +809,6 @@ j|FooterBar {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
-.jewel.formheading {
-  line-height: 2em;
-}
 .jewel.formheading .jewel.label.headingLabel {
   white-space: initial;
   flex: 1 1 auto;

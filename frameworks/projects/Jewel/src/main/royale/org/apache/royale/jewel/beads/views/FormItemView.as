@@ -172,6 +172,7 @@ package org.apache.royale.jewel.beads.views
 			if (labelGroup == null) {
 				labelGroup = new HGroup();
 				labelGroup.gap = 2;
+				labelGroup.itemsHorizontalAlign = "itemsCentered";
 			}
 			if (labelGroup != null && labelGroup.parent == null) {
 				(_strand as IContainerBaseStrandChildrenHost).$addElement(labelGroup);
@@ -232,7 +233,7 @@ package org.apache.royale.jewel.beads.views
         protected function setupContentAreaLayout():void
         {
 			var defaultContentAreaLayout:VerticalLayout = new VerticalLayout();
-			defaultContentAreaLayout.gap = 3;
+			defaultContentAreaLayout.gap = 2;
 			// defaultContentAreaLayout.itemsHorizontalAlign = "itemsCenter";
             contentArea.addBead(defaultContentAreaLayout);
         }

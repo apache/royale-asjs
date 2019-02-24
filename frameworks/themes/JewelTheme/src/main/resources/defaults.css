@@ -512,32 +512,28 @@ j|Card {
   font-size: 1.4em !important;
 }
 .jewel.formheading .jewel.label.spacerLabel {
-  width: 160px;
+  width: 115px;
 }
 .jewel.formheading .jewel.label.requiredSpacerLabel {
   width: 10px;
 }
 
 j|FormHeading {
-  gap: 3;
-  itemsVerticalAlign: itemsCentered;
+  gap: 2;
 }
 
 .jewel.formitem .jewel.label.formlabel {
-  width: 120px;
-  line-height: 2.75em;
+  width: 115px;
 }
 .jewel.formitem .jewel.label.required {
   color: #EC1C24;
-  font-size: 2.1em !important;
-  width: 14px;
-}
-.jewel.formitem .content {
-  width: 200px;
+  font-size: 1.6em !important;
+  width: 10px;
 }
 
 j|FormItem {
   gap: 2;
+  itemsVerticalAlign: itemsCentered;
 }
 
 .fonticon.dark {
