@@ -86,20 +86,21 @@ limitations under the License.
     </j:FormItem>
 
     <j:FormItem label="Favorite movies (at least 2)" required="true">
-        <j:beads>
-            <j:CheckBoxValidator required="2" requiredFieldError="Please choose at least 2 movies"/>
-        </j:beads>
-        <j:CheckBox text="The Godfather"/>
-        <j:CheckBox text="Scent of a woman"/>
-        <j:CheckBox text="Star Wars"/>
-        <j:CheckBox text="The Shawshank Redemption"/>
+        <j:VGroup gap="3">
+            <j:beads>
+                <j:CheckBoxValidator required="2" requiredFieldError="Please choose at least 2 movies"/>
+            </j:beads>
+            <j:CheckBox text="The Godfather"/>
+            <j:CheckBox text="Scent of a woman"/>
+            <j:CheckBox text="Star Wars"/>
+            <j:CheckBox text="The Shawshank Redemption"/>
+        </j:VGroup>
     </j:FormItem>
 
     <j:FormItem label="Verification code: {randomCode}" required="true">
         <j:beads>
-            <j:HorizontalLayout gap="3"/>
+            <j:HorizontalLayout gap="2" itemsVerticalAlign="itemsCentered"/>
         </j:beads>
-
         <j:TextInput>
             <j:beads>
                 <j:TextPrompt prompt="Enter Verification Code"/>
