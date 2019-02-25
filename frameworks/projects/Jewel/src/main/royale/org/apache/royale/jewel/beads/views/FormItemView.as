@@ -173,6 +173,7 @@ package org.apache.royale.jewel.beads.views
 				labelGroup = new HGroup();
 				labelGroup.gap = 2;
 				labelGroup.itemsHorizontalAlign = "itemsCentered";
+				labelGroup.className = "labelGroup";
 			}
 			if (labelGroup != null && labelGroup.parent == null) {
 				(_strand as IContainerBaseStrandChildrenHost).$addElement(labelGroup);
