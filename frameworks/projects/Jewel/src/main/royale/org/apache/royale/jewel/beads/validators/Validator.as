@@ -19,8 +19,11 @@
 package org.apache.royale.jewel.beads.validators
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.ILocalizedValuesImpl;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.SimpleLocalizedValuesImpl;
+	import org.apache.royale.core.Strand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -28,6 +31,7 @@ package org.apache.royale.jewel.beads.validators
 	import org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 *  The Validator class is the base class for all validators.
@@ -39,8 +43,15 @@ package org.apache.royale.jewel.beads.validators
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Validator implements IBead
+	public class Validator extends Strand implements IBead
 	{
+		[Embed("locale/en_US/validator.properties", mimeType="text/plain")]
+		private var en_USvalidator:String;
+		[Embed("locale/de_DE/validator.properties", mimeType="text/plain")]
+		private var de_DEvalidator:String;
+		[Embed("locale/es_ES/validator.properties", mimeType="text/plain")]
+		private var es_ESvalidator:String;
+
 		/**
 		 *  constructor.
 		 *
@@ -135,7 +146,21 @@ package org.apache.royale.jewel.beads.validators
 		public function set strand(value:IStrand):void
 		{
 			hostComponent = value as UIBase;
+
+			//get translations from bundles
+			try{
+    			var resourceManager:SimpleLocalizedValuesImpl = loadBeadFromValuesManager(ILocalizedValuesImpl, "iLocalizedValuesImpl", this) as SimpleLocalizedValuesImpl;
+				resourceManager.localeChain = "es_ES";
+				var rfe:String = resourceManager.getValue("validator", "requiredFieldError");
+				_requiredFieldError = rfe
+			}
+			catch(e:Error)
+			{
+                trace(e.message);
+			}
+			
 			_trigger = hostComponent;
+
 			COMPILE::JS
 			{
 				hostClassList = hostComponent.positioner.classList;
@@ -200,7 +225,7 @@ package org.apache.royale.jewel.beads.validators
 			_required = value;
 		}
 
-		private var _requiredFieldError:String = "This field is required.";
+		private var _requiredFieldError:String = "NO TRANS";
 		/**
 		 *  The string to use as the errorTip.
 		 *
