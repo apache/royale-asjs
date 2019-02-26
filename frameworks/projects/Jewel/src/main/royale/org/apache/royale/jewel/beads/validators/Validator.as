@@ -46,11 +46,11 @@ package org.apache.royale.jewel.beads.validators
 	public class Validator extends Strand implements IBead
 	{
 		[Embed("locale/en_US/validator.properties", mimeType="text/plain")]
-		private var en_USvalidator:String;
+		public var en_USvalidator:String;
 		[Embed("locale/de_DE/validator.properties", mimeType="text/plain")]
-		private var de_DEvalidator:String;
+		public var de_DEvalidator:String;
 		[Embed("locale/es_ES/validator.properties", mimeType="text/plain")]
-		private var es_ESvalidator:String;
+		public var es_ESvalidator:String;
 
 		/**
 		 *  constructor.
