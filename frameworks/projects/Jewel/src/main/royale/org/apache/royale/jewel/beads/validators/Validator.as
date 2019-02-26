@@ -24,10 +24,13 @@ package org.apache.royale.jewel.beads.validators
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel;
+	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
 	 *  The Validator class is the base class for all validators.
@@ -43,6 +46,7 @@ package org.apache.royale.jewel.beads.validators
 	{
 		/**
 		 * locale
+		 * @royalesuppresspublicvarwarning
 		 */
 		public static var locale :String = LOCALE::language;
 

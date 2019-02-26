@@ -26,7 +26,7 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
-    <property name="locale" value="'en_US'"/>
+    <property name="locale" value="en_US"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
@@ -92,14 +92,16 @@
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
             <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
-            <arg value="-compiler.define+=LOCALE::language,${locale}" />
+            <arg value="-compiler.define+=LOCALE::language,'${locale}'" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
-            <arg value="-js-compiler-define+=LOCALE::language,${locale}" />
+            <arg value="-js-compiler-define+=LOCALE::language,'${locale}'" />
+            <arg value="-js-compiler-define+=COMPILE::SWF,false" />
+            <arg value="-js-compiler-define+=COMPILE::JS,true" />
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
