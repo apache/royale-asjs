@@ -60,10 +60,6 @@
             <name>COMPILE::JS</name>
             <value>false</value>
         </define>
-        <define>
-            <name>LOCALE::language</name>
-            <value>'en_US'</value>
-        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>

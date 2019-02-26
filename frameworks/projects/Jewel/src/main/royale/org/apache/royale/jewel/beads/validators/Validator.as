@@ -48,7 +48,7 @@ package org.apache.royale.jewel.beads.validators
 		 * locale
 		 * @royalesuppresspublicvarwarning
 		 */
-		public static var locale :String = LOCALE::language;
+		public static var locale :String = "en_US";
 
 		[Embed("locale/en_US/validator.properties", mimeType="text/plain")]
 		/**

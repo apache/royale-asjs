@@ -29,12 +29,6 @@
         "source-path": [
             "src/main/royale"
         ],
-        "define": [
-            {
-                "name": "LOCALE::language",
-                "value": "'en_US'"
-            }
-        ],
         "output": "target/Jewel.swc"
     }
 }
