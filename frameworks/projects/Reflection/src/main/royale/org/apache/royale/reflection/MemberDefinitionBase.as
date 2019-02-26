@@ -16,26 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package org.apache.royale.reflection
 {
-	import flexUnitTests.reflection.*;
-	
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class ReflectionTester
-    {
-        public function ReflectionTester()
+    
+    /**
+     *  The base class for definition types that can be decorated with metadata in actionscript
+     *  source code
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public class MemberDefinitionBase extends DefinitionWithMetaData
+	{
+        public function MemberDefinitionBase(name:String, isStatic:Boolean, owner:TypeDefinition, rawData:Object = null)
         {
-            // see notes in CoreTester
-            var arr:Array = [ReflectionTesterTest, ReflectionTesterTestUseCache, ReflectionTesterTestAlias, ReflectionTesterTestDynamic];
+            super(name, rawData);
+            _isStatic = isStatic;
+            _owner = owner;
         }
-        
-        public var reflectionTesterCacheTest:ReflectionTesterTestUseCache;
-        public var reflectionTesterTest:ReflectionTesterTest;
-        
-        public var reflectionTesterAliasTest:ReflectionTesterTestAlias;
-	
-	
-		public var reflectionTesterDynamicTest:ReflectionTesterTestDynamic;
+
+        private var _isStatic:Boolean;
+        public function get isStatic():Boolean{
+            return _isStatic;
+        }
+		
+		private var _owner:TypeDefinition;
+		public function get owner():TypeDefinition{
+			return _owner;
+		}
+    
+    
     }
 }

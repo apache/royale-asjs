@@ -21,17 +21,17 @@ package org.apache.royale.reflection
     
     /**
      *  The description of a method inside a class or interface
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public class MethodDefinition extends DefinitionWithMetaData
+    public class MethodDefinition extends MemberDefinitionBase
 	{
-        public function MethodDefinition(name:String, rawData:Object)
+        public function MethodDefinition(name:String, isStatic:Boolean, owner:TypeDefinition, rawData:Object = null)
         {
-            super(name, rawData);
+            super(name,isStatic, owner, rawData);
         }
 
         /**
@@ -46,7 +46,7 @@ package org.apache.royale.reflection
             COMPILE::JS{
                 var declareBy:String = _rawData.declaredBy;
             }
-            return TypeDefinition.getDefinition(declareBy);
+            return TypeDefinition.internalGetDefinition(declareBy);
         }
 
         private var _parameters:Array;
@@ -100,7 +100,7 @@ package org.apache.royale.reflection
                 var returnType:String = _rawData.type;
             }
 
-            return TypeDefinition.getDefinition(returnType);
+            return TypeDefinition.internalGetDefinition(returnType);
         }
 
         /**

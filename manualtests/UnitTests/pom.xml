@@ -29,10 +29,10 @@
 	<version>0.9.6-SNAPSHOT</version>
 	<packaging>swf</packaging>
 	<name>Apache Royale: ManualTests: UnitTests</name>
-	
-	<properties> 
+
+	<properties>
 		<title>${project.artifactId}</title>
-		<bgcolor>#ffffff</bgcolor> 
+		<bgcolor>#ffffff</bgcolor>
 		<useBrowserHistory>--</useBrowserHistory>
 		<version_major>11</version_major>
 		<version_minor>1</version_minor>
@@ -56,7 +56,7 @@
 					<mainClass>${project.artifactId}.mxml</mainClass>
                     <removeCirculars>true</removeCirculars>
 					<debug>true</debug>
-					<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
+					<additionalCompilerOptions>-js-default-initializers;-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta;-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
 					<outputDirectory>${basedir}/target/bin-debug</outputDirectory>
 					<flashOutputFileName>${project.artifactId}.swf</flashOutputFileName>
 				</configuration>
@@ -71,11 +71,11 @@
 							<targets>JSRoyale</targets>
 							<mainClass>${project.artifactId}.mxml</mainClass>
 							<debug>false</debug>
-							<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
+							<additionalCompilerOptions>-js-default-initializers;-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta;-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
 							<outputDirectory>${basedir}/target</outputDirectory>
 						</configuration>
 					</execution>
-				</executions>	
+				</executions>
 			</plugin>
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
@@ -92,8 +92,8 @@
 							<includeEmptyDirs>true</includeEmptyDirs>
 							<resources>
 								<resource>
-									<directory>${basedir}/../../templates/swfobject</directory>
-									<filtering>true</filtering>									
+									<directory>${basedir}/src/main/resources/swfobject</directory>
+									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
@@ -135,7 +135,7 @@
                <file>${basedir}/bin-debug/index.template.html</file>
 			   <regex>false</regex>
                <replacements>
-               
+
                </replacements>
              </configuration>
            </execution>

@@ -26,12 +26,13 @@ package flexUnitTests.reflection.support
 	{
 		public function TestClass1()
 		{
-			var something:ITestInterface2;
+		//	var something:ITestInterface2;
 		}
 		
 		[Bindable]
 		[Event(name="foo", type="org.apache.royale.events.Event")]
 		public var bindableVar:String;
+		
 		[Event(name="foo", type="org.apache.royale.events.Event")]
 		public var temp:Boolean;
 		

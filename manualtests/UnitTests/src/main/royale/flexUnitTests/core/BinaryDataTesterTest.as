@@ -25,7 +25,7 @@ package flexUnitTests.core
     import org.apache.royale.utils.BinaryData
 
 
-    public class BinaryDataTesterTest 
+    public class BinaryDataTesterTest
 	{
 
 		[Before]
@@ -524,20 +524,20 @@ package flexUnitTests.core
 
 
 		[Test]
-		public function testWriteBytes():void
+		public function testWriteBinaryData():void
 		{
 			var ba:BinaryData = new BinaryData();
 			for (var i:int=0;i<50;i++) ba.writeByte(i);
 
 
 			var newBa:BinaryData = new BinaryData();
-			newBa.writeBytes(ba);
+			newBa.writeBinaryData(ba);
 
-			Assert.assertEquals("BinaryData writeBytes: length", 50, newBa.length);
-			Assert.assertEquals("BinaryData writeBytes: position", 50, newBa.position);
+			Assert.assertEquals("BinaryData writeBinaryData: length", 50, newBa.length);
+			Assert.assertEquals("BinaryData writeBinaryData: position", 50, newBa.position);
 
 			for (i=0;i<50;i++) {
-				Assert.assertEquals("BinaryData writeBytes: content check", i, newBa.array[i]);
+				Assert.assertEquals("BinaryData writeBinaryData: content check", i, newBa.array[i]);
 			}
 
 
@@ -545,21 +545,29 @@ package flexUnitTests.core
 		}
 
 		[Test]
-		public function testReadBytes():void
+		public function testReadBinaryData():void
 		{
 			var ba:BinaryData = new BinaryData();
 			for (var i:int=0;i<50;i++) ba.writeByte(i);
 			ba.position=0;
 			var newBa:BinaryData = new BinaryData();
 
-			ba.readBytes(newBa,5,10);
-			Assert.assertEquals("BinaryData readBytes: position", 10, ba.position);
-			Assert.assertEquals("BinaryData readBytes: length", 15, newBa.length);
-			Assert.assertEquals("BinaryData readBytes: position", 0, newBa.position);
+			ba.readBinaryData(newBa,5,10);
+			Assert.assertEquals("BinaryData readBinaryData: position", 10, ba.position);
+			Assert.assertEquals("BinaryData readBinaryData: length", 15, newBa.length);
+			Assert.assertEquals("BinaryData readBinaryData: position", 0, newBa.position);
 			var expected:Array = [0,0,0,0,0,0,1,2,3,4,5,6,7,8,9];
-			for (i=5;i<15;i++) {
-				Assert.assertEquals("BinaryData readBytes: content check", expected[i], newBa.array[i]);
+			for (i=0;i<15;i++) {
+				Assert.assertEquals("BinaryData readBinaryData: content check", expected[i], newBa.array[i]);
 			}
+			newBa.position = 15;
+			ba.readBinaryData(newBa,5,10);
+			expected = [0,0,0,0,0,10,11,12,13,14,15,16,17,18,19];
+			for (i=0;i<15;i++) {
+				Assert.assertEquals("BinaryData readBinaryData: content check", expected[i], newBa.array[i]);
+			}
+			Assert.assertEquals("BinaryData readBinaryData: length", 15, newBa.length);
+			Assert.assertEquals("BinaryData readBinaryData: position", 15, newBa.position);
 		}
 
 		[Test]
