@@ -66,6 +66,12 @@
           <skipExtern>true</skipExtern>
           <additionalCompilerOptions>-source-map=true</additionalCompilerOptions>
           <!--<additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>-->
+          <defines>
+              <property>
+                  <name>LOCALE::language</name>
+                  <value>'"en_US"'</value>
+              </property>
+          </defines>
         </configuration>
       </plugin>
       <plugin>
