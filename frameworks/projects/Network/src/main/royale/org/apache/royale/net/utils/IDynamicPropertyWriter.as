@@ -18,18 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net.utils
 {
-    import org.apache.royale.net.remoting.amf.AMFBinaryData;
 
     /**
-     * initial work on replacement for flash.utils.IDataOutput
+     * This interface controls the serialization of dynamic properties of dynamic objects.
+	 * This interface is used with the IDynamicPropertyOutput interface to control the serialization
+	 * of dynamic properties of dynamic objects. To use this interface, assign an object that implements
+	 * the IDynamicPropertyWriter interface to the AMFObjectEncoding.dynamicPropertyWriter property.
      */
-    public interface IDataOutput
+    public interface IDynamicPropertyWriter
     {
-        function writeBytes(bytes:AMFBinaryData, offset:uint = 0, length:uint = 0):void;
-
-        function writeByte(value:int):void;
-
-        function writeObject(object:*):void;
+	
+		/**
+         * Writes the name and value of an IDynamicPropertyOutput object to an object with dynamic properties.
+		 * If ObjectEncoding.dynamicPropertyWriter is set, this method is invoked for each object with dynamic properties.
+         *
+		 * @param name  The name of the property. You can use this parameter either to specify the name of an existing property of the dynamic object or to create a new property.
+		 * @param value The value to write to the specified property.
+		 */
+		function writeDynamicProperties(obj:Object, output:IDynamicPropertyOutput):void
     }
 
 }

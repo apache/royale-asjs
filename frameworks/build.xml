@@ -21,7 +21,7 @@
 <!-- Note:
     If you modify this file you may have to make the same change in build_framework.xml.
     build_framework.xml is renamed to build.xml when it is packaged.
-    It is used to build the frameworks directory from the zip file. 
+    It is used to build the frameworks directory from the zip file.
 -->
 <project name="frameworks" default="main" basedir=".">
 
@@ -45,21 +45,21 @@
     </condition>
     <condition property="isWindows">
         <os family="windows" />
-    </condition>   
+    </condition>
     <condition property="isLinux">
         <and>
-          <os family="unix"/>    
+          <os family="unix"/>
           <not>
-            <os family="mac"/>    
+            <os family="mac"/>
           </not>
         </and>
-    </condition>  
+    </condition>
 
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}" />
- 
+
     <target name="main" depends="check-compile-env,clean,prepare,compile,fonts"
         description="Clean build of all SWCs"/>
 
@@ -105,7 +105,7 @@
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
         <ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>
     </target>
-    
+
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
         <antcall target="Language"/>
@@ -113,6 +113,8 @@
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
+        <antcall target="Reflection"/>
+        <antcall target="Network"/>
         <antcall target="Collections"/>
         <antcall target="Basic"/>
 	<antcall target="Ace"/>
@@ -128,8 +130,7 @@
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
-        <antcall target="Reflection"/>
-        <antcall target="Network"/>
+
         <antcall target="Storage"/>
         <antcall target="XML"/>
         <antcall target="Text"/>
@@ -144,29 +145,29 @@
         <antcall target="JewelTheme"/>
 		<antcall target="Icons"/>
     </target>
-    
+
     <target name="fonts">
         <ant dir="${basedir}/fontsrc" target="main"/>
     </target>
-    
+
     <target name="other.locales" description ="Builds resource SWCs for all locales">
         <!--<ant dir="${basedir}/projects/RoyaleUI" target="other.locales"/>-->
     </target>
-    
+
     <target name="doc" >
         <ant dir="${basedir}/projects/Core" target="doc" />
     </target>
-   
+
     <!--
 		Cleanup
 	-->
 
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
-	
+
     <target name="thirdparty-clean" unless="no.thirdparty-clean" description="Removes all thirdparty downloads.">
         <ant antfile="${basedir}/downloads.xml" target="clean" dir="${basedir}"/>
     </target>
-    
+
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
         <ant dir="${basedir}/projects/Testing" target="clean"/>
@@ -209,7 +210,7 @@
             <fileset dir="${basedir}/projects">
                 <include name="*/bin/**"/>
             </fileset>
-        </delete> 
+        </delete>
         <!-- Delete empty folders -->
         <delete dir="${basedir}/libs" failonerror="false">
             <include name="*.swc"/>
@@ -228,7 +229,7 @@
             <exclude name="js-index-template.html" />
         </delete>
     </target>
-    
+
     <target name="Testing" description="Clean build of Testing.swc">
         <ant dir="${basedir}/projects/Testing"/>
     </target>
@@ -236,7 +237,7 @@
     <target name="Binding" description="Clean build of Binding.swc">
         <ant dir="${basedir}/projects/Binding"/>
     </target>
-    
+
     <target name="Charts" description="Clean build of Charts.swc">
         <ant dir="${basedir}/projects/Charts"/>
     </target>
@@ -276,7 +277,7 @@
     <target name="FontAwesome" description="Clean build of FontAwesome.swc">
         <ant dir="${basedir}/projects/FontAwesome"/>
     </target>
-    
+
     <target name="Formatters" description="Clean build of Formatters.swc">
         <ant dir="${basedir}/projects/Formatters"/>
     </target>
@@ -316,7 +317,7 @@
 	<target name="MaterialDesignLite" description="Clean build of MaterialDesignLite.swc">
         <ant dir="${basedir}/projects/MaterialDesignLite"/>
     </target>
-	
+
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/Mobile"/>
     </target>
@@ -380,7 +381,7 @@
             token="&lt;target&gt;SWF&lt;/target&gt;"
             value="" />
     </target>
-    
+
 	<target name="playerglobal-setswfversion" description="Set the swfversion to insert into the -config file">
 		<condition property="playerglobal.swfversion" value="11">
 			<equals arg1="${playerglobal.version}" arg2="10.2" />

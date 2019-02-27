@@ -17,10 +17,21 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils {
+COMPILE::SWF{
+    import flash.utils.ByteArray
+}
 public interface IBinaryDataInput {
 
-    function readBytes(bytes:BinaryData, offset:uint = 0, length:uint = 0):void;
+    function readBinaryData(bytes:BinaryData, offset:uint = 0, length:uint = 0):void;
 
+    COMPILE::SWF{
+		function readBytes(bytes:ByteArray, offset:uint = 0, length:uint = 0):void;
+    }
+	
+	COMPILE::JS{
+		function readBytes(bytes:ArrayBuffer, offset:uint = 0, length:uint = 0):void;
+	}
+    
     function readBoolean():Boolean;
     function readByte():int;
     function readUnsignedByte():uint;
@@ -36,10 +47,6 @@ public interface IBinaryDataInput {
     function readUTFBytes(length:uint):String;
 
     function get bytesAvailable():uint;
-
-    // function readObject():*;
-    // function get objectEncoding():uint;
-    // function set objectEncoding(version:uint):void;
 
     function get endian():String;
     function set endian(type:String):void;

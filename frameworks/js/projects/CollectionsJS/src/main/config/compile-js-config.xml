@@ -20,7 +20,7 @@
 
     <compiler>
         <accessible>false</accessible>
-        
+
         <!-- build both SWF and JS. -->
         <targets>
             <target>SWF</target>
@@ -51,9 +51,9 @@
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
         </keep-as3-metadata>
-	  
+
         <locale/>
-        
+
         <!-- overwrite the default library-path setting -->
         <library-path>
             <path-element>../../../../../../../js/libs/GCL.swc</path-element>
@@ -61,29 +61,30 @@
              if these swcs are on the external-library-path then their requires
              will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/NetworkJS.swc</path-element>
         </library-path>
-        
+
         <namespaces>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>../../../../../../projects/Collections/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
         </namespaces>
-        
+
         <source-path>
             <path-element>../../../../../../projects/Collections/src/main/royale</path-element>
         </source-path>
-        
+
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
-    
+
     <include-classes>
         <class>CollectionsClasses</class>
     </include-classes>
-    
+
     <include-namespaces>
         <uri>library://ns.apache.org/royale/basic</uri>
     </include-namespaces>
-        
+
 
 </royale-config>

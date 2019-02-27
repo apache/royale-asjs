@@ -144,7 +144,7 @@
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.7</version>
         </plugin>
-        
+
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
@@ -240,6 +240,8 @@
                 target directories. We don't want that.
             -->
             <exclude>**/target/**</exclude>
+
+            <exclude>**/src/test/royale/out/**</exclude>
           </excludes>
         </configuration>
         <dependencies>

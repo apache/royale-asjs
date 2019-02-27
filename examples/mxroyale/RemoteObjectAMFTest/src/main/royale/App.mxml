@@ -32,11 +32,12 @@ limitations under the License.
             import mx.rpc.events.FaultEvent;
             import mx.rpc.events.ResultEvent;
             import mx.rpc.remoting.Operation;
+            import mx.collections.ArrayCollection;
 
             import org.apache.royale.collections.ArrayList;
             import org.apache.royale.events.Event;
-            import org.apache.royale.net.remoting.amf.AMFBinaryData;
             import org.apache.royale.reflection.registerClassAlias;
+            import org.apache.royale.reflection.getAliasByClass;
 
             import valueObjects.ClientValueObject;
             import valueObjects.Product;
@@ -45,8 +46,9 @@ limitations under the License.
 
 
             private function iniApp(event:Event):void{
-                AMFBinaryData.DEBUG = true;
-                registerClassAlias('org.apache.royale.collections.ArrayList', ArrayList);
+                //swap in ArrayCollection for ArrayList
+                registerClassAlias(getAliasByClass(ArrayCollection), ArrayList);
+
                 // Test CompressedRemoteObject
                 // trace("init CompressedRemoteObject.includePackages");
                 // CompressedRemoteObject.includePackages = ["valueObjects."];

@@ -31,7 +31,7 @@ package org.apache.royale.net
      *
      * It deserializes the compressed ByteArray in order to optimize the transfer time.
      * TOOD improve to serialize the sending.
-     * 
+     *
      */
     public class CompressedRemoteObject extends RemoteObject
     {
@@ -49,9 +49,9 @@ package org.apache.royale.net
 
         /**
          * disable the compression if true
-         * 
+         *
          * defaults to false
-         * 
+         *
          * @royalesuppresspublicvarwarning
          */
         public static var disableCompression:Boolean;
@@ -65,7 +65,7 @@ package org.apache.royale.net
                     var bytearray:Uint8Array = new Uint8Array(param.body);
 
                     // --- uncompress the bytearray to get the real object (tree) and create the AMFBinaryData with it
-                    var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray));
+                    var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray).buffer);
                     param.body = data.readObject();
                 }
                 // --- dispatch the ResultEvent like in the standard RemoteObject with the inflated result object

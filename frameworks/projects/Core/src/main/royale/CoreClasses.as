@@ -188,6 +188,8 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.geom.Rectangle; Rectangle;
     import org.apache.royale.utils.AnimationUtil; AnimationUtil;
     import org.apache.royale.utils.BinaryData; BinaryData;
+	import org.apache.royale.utils.IBinaryDataInput; IBinaryDataInput;
+	import org.apache.royale.utils.IBinaryDataOutput; IBinaryDataOutput;
 	import org.apache.royale.utils.BrowserInfo; BrowserInfo;
 	COMPILE::SWF
 	{
