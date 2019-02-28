@@ -62,7 +62,14 @@ package org.apache.royale.jewel.beads.controls.dropdownlist
 		{
 			ddl = value as DropDownList;
 			ddl.addEventListener('selectionChanged', selectionChangeHandler);
+			if(needUpdate)
+			{
+				needUpdate = false;
+				updateRequiredSelection();
+			}
 		}
+
+		private var needUpdate:Boolean = false;
 
 		/**
          *  @private
@@ -97,14 +104,21 @@ package org.apache.royale.jewel.beads.controls.dropdownlist
             if (value != _requireSelection)
             {
                 _requireSelection = value;
-
-                var ddModel:IDropDownListModel = ddl.model as IDropDownListModel;
-                if (ddModel) {
-                    ddModel.offset = _requireSelection ? 0 : 1;
-                    forceSelection();
-                }
+				updateRequiredSelection();
             }
         }
+
+		private function updateRequiredSelection():void {
+			if(ddl) {
+				var ddModel:IDropDownListModel = ddl.model as IDropDownListModel;
+				if (ddModel) {
+					ddModel.offset = _requireSelection ? 0 : 1;
+					forceSelection();
+				}
+			} else {
+				needUpdate = true;
+			}
+		}
 
 		private function selectionChangeHandler(event:Event):void {
 			forceSelection();
