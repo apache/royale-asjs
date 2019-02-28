@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
+    import org.apache.royale.events.Event;
 
     /**
      *  The DropDownListModel class defines the data associated with an org.apache.royale.jewel.DropDownListModel
@@ -35,11 +36,19 @@ package org.apache.royale.jewel.beads.models
             super();
         }
 
-
         private var _offset:int = 1;
-        public function get offset():int{
+        public function get offset():int
+        {
             return _offset;
         }
-
+        
+        public function set offset(value:int):void
+        {
+            if(_offset != value)
+            {
+                _offset = value;
+                dispatchEvent(new Event("dataProviderChanged"))
+            }
+        }
     }
 }

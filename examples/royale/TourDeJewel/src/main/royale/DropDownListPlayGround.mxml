@@ -256,6 +256,29 @@ limitations under the License.
 				</j:Grid>
 			</j:Card>
 		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DropDownList requireSelection"/>
+
+				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
+						<j:DropDownList localId="rqddl" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2">
+							<j:beads>
+								<j:DropDownListTextPrompt prompt="Required Selection..."/>
+								<j:RequireSelection requireSelection="{requiredSelecion_ddl.selected}"/>
+							</j:beads>
+						</j:DropDownList>
+					</j:GridCell>
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
+						<j:CheckBox localId="requiredSelecion_ddl" text="Require Selection?"/>
+					</j:GridCell>
+					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
+						<j:Button text="deselect" click="rqddl.selectedIndex = -1"/>
+					</j:GridCell>
+				</j:Grid>
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>

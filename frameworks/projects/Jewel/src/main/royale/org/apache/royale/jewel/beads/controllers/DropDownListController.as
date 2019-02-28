@@ -29,8 +29,8 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.jewel.beads.models.DropDownListModel;
-import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-import org.apache.royale.jewel.beads.views.DropDownListView;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.jewel.beads.views.DropDownListView;
 
     /**
      *  The DropDownListController class is the controller for
@@ -103,7 +103,6 @@ import org.apache.royale.jewel.beads.views.DropDownListView;
                 IEventDispatcher(model).addEventListener('selectionChanged', modelChangeHandler);
                 IEventDispatcher(model).addEventListener('dataProviderChanged', modelChangeHandler);
             }
-
 		}
 
         /**

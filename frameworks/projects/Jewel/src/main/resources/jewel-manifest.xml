@@ -125,6 +125,7 @@
     
     <component id="DispatchChangeOnStartup" class="org.apache.royale.jewel.beads.controls.DispatchChangeOnStartup"/>
     <component id="DropDownListTextPrompt" class="org.apache.royale.jewel.beads.controls.dropdownlist.DropDownListTextPrompt"/>
+    <component id="RequireSelection" class="org.apache.royale.jewel.beads.controls.dropdownlist.RequireSelection"/>
     <component id="ComboBoxTextPrompt" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"/>
     <component id="SearchFilter" class="org.apache.royale.jewel.beads.controls.combobox.SearchFilter"/>
     <component id="DateFieldTextPrompt" class="org.apache.royale.jewel.beads.controls.datefield.DateFieldTextPrompt"/>
