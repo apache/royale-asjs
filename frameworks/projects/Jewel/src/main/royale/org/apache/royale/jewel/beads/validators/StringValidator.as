@@ -142,9 +142,13 @@ package org.apache.royale.jewel.beads.validators
 		{
 			if (hostComponent)
             {
-                (_maxLength > 0) ?
-					hostComponent.element.setAttribute('maxlength', _maxLength) :
+                if(_maxLength > 0)
+				{
+					hostComponent.element.setAttribute('maxlength', _maxLength);
+				} else
+				{
 					hostComponent.element.removeAttribute('maxlength');
+				}
             }
 		}		
 	}
