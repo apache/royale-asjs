@@ -16,23 +16,35 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.network.support
 {
-	//test groups
-	import flexUnitTests.*;
-
-
-	public class TestClasses
+	import org.apache.royale.net.utils.IExternalizable;
+	COMPILE::JS{
+		import org.apache.royale.net.utils.IDataInput;
+		import org.apache.royale.net.utils.IDataOutput;
+	}
+	
+	COMPILE::SWF{
+		import flash.utils.IDataInput;
+		import flash.utils.IDataOutput;
+	}
+	
+	
+	public class TestClass3 implements IExternalizable
 	{
 		
-		public static function get testClasses():Array {
-			return [
-						CoreTester,
-						ReflectionTester,
-						ObservedBugsTester,
-						GithubIssuesTester,
-						NetworkTester
-					];
+		public var content:Array=["TestClass3"];
+		
+		
+		public function readExternal(input:IDataInput):void{
+			var content:Array = input.readObject() as Array;
+			this.content = content;
 		}
+		
+		public function writeExternal(output:IDataOutput):void {
+			output.writeObject(content);
+		}
+	
 	}
+	
 }

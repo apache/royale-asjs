@@ -34,7 +34,7 @@ limitations under the License.
             import mx.rpc.remoting.Operation;
             import mx.collections.ArrayCollection;
 
-            import org.apache.royale.collections.ArrayList;
+      //      import org.apache.royale.collections.ArrayList;
             import org.apache.royale.events.Event;
             import org.apache.royale.reflection.registerClassAlias;
             import org.apache.royale.reflection.getAliasByClass;
@@ -47,7 +47,7 @@ limitations under the License.
 
             private function iniApp(event:Event):void{
                 //swap in ArrayCollection for ArrayList
-                registerClassAlias(getAliasByClass(ArrayCollection), ArrayList);
+   //             registerClassAlias(getAliasByClass(ArrayCollection), ArrayList);
 
                 // Test CompressedRemoteObject
                 // trace("init CompressedRemoteObject.includePackages");
@@ -126,7 +126,7 @@ limitations under the License.
 
                 product.taxonomy = taxonomy;
 
-                var zones:ArrayList = new ArrayList();
+                var zones:ArrayCollection = new ArrayCollection();
 
                 var zone:Zone= new Zone();
                 zone.id = 1;
@@ -145,7 +145,7 @@ limitations under the License.
 
                 zones.addItem(zone);
 
-                var flavors:ArrayList = new ArrayList();
+                var flavors:ArrayCollection = new ArrayCollection();
 
                 flavors.addItem('X');
                 flavors.addItem('Y');

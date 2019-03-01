@@ -16,23 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package org.apache.royale.net.utils
 {
-	//test groups
-	import flexUnitTests.*;
-
-
-	public class TestClasses
+    import org.apache.royale.utils.IBinaryDataInput;
+    COMPILE::SWF{
+        import flash.utils.IDataInput
+    }
+    
+    /**
+     * initial work on replacement for flash.utils.IDataInput
+     */
+    COMPILE::JS
+    public interface IDataInput extends IBinaryDataInput
+    {
+        function readObject():*;
+    }
+	
+	COMPILE::SWF
+	public interface IDataInput extends IBinaryDataInput, flash.utils.IDataInput
 	{
-		
-		public static function get testClasses():Array {
-			return [
-						CoreTester,
-						ReflectionTester,
-						ObservedBugsTester,
-						GithubIssuesTester,
-						NetworkTester
-					];
-		}
+
 	}
+
 }

@@ -16,23 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests
 {
-	//test groups
-	import flexUnitTests.*;
-
-
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-						CoreTester,
-						ReflectionTester,
-						ObservedBugsTester,
-						GithubIssuesTester,
-						NetworkTester
-					];
-		}
-	}
+	import flexUnitTests.github.*
+	
+    [Suite]
+    [RunWith("org.flexunit.runners.Suite")]
+    public class GithubIssuesTester
+    {
+    
+    }
 }

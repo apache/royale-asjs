@@ -18,7 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package valueObjects
 {
-    import org.apache.royale.collections.ArrayList;
+  //  import org.apache.royale.collections.ArrayList;
+    
+    import mx.collections.ArrayCollection;
 
     [RemoteClass(alias="org.apache.royale.amfsamples.valueobjects.Product")]
 	public class Product
@@ -66,29 +68,29 @@ package valueObjects
             _taxonomy = value;
         }
 
-        // collection of zones (Zone), we can use Array and ArrayList
-        private var _zones:ArrayList;
+        // collection of zones (Zone), we can use ArrayCollection
+        private var _zones:ArrayCollection;
 
         [Bindable("__NoChangeEvent__")]
-        public function get zones():ArrayList
+        public function get zones():ArrayCollection
         {
             return _zones;
         }
 
-        public function set zones(value:ArrayList):void
+        public function set zones(value:ArrayCollection):void
         {
             _zones = value;
         }
 
-        private var _flavors:ArrayList = null;
+        private var _flavors:ArrayCollection = null;
 
         [Bindable("__NoChangeEvent__")]
-        public function get flavors():ArrayList
+        public function get flavors():ArrayCollection
         {
             return _flavors;
         }
 
-        public function set flavors(value:ArrayList):void
+        public function set flavors(value:ArrayCollection):void
         {
             _flavors = value;
         }

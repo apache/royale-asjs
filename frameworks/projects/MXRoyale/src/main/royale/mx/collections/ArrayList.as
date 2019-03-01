@@ -39,8 +39,14 @@ import org.apache.royale.utils.UIDUtil;
 import org.apache.royale.reflection.getQualifiedClassName;
 
 import org.apache.royale.net.utils.IExternalizable;
-import org.apache.royale.net.utils.IDataInput;
-import org.apache.royale.net.utils.IDataOutput;
+	COMPILE::JS {
+		import org.apache.royale.net.utils.IDataInput;
+		import org.apache.royale.net.utils.IDataOutput;
+	}
+	COMPILE::SWF{
+		import flash.utils.IDataInput;
+		import flash.utils.IDataOutput;
+	}
 
 //--------------------------------------
 //  Events
@@ -95,7 +101,7 @@ import org.apache.royale.net.utils.IDataOutput;
  *  @productversion Flex 4
  */
 public class ArrayList extends EventDispatcher
-       implements IList//, IExternalizable, IPropertyChangeNotifier
+       implements IList, IExternalizable//, IPropertyChangeNotifier
 {
     //--------------------------------------------------------------------------
     //

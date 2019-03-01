@@ -16,14 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package flexUnitTests.network.support
 {
-	import flexUnitTests.jira.*
-	
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    public class JiraIssuesTester
-    {
-        
-    }
+
+
+
+	dynamic public class DynamicTestClass
+	{
+		//Note: do not change this test class unless you change the related tests to
+		//support any changes that might appear when testing with it
+		
+
+		public var sealedInstanceProp1:Boolean;
+		
+		
+		/*private var _sealedInstanceAccessor1:String;
+		public function get sealedInstanceAccessor1():String{
+			return _sealedInstanceAccessor1;
+		}
+		
+		public function set sealedInstanceAccessor1(value:String):void{
+			_sealedInstanceAccessor1 = value;
+		}*/
+
+	}
 }

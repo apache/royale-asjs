@@ -467,13 +467,13 @@ public class AMFNetConnection
         //reader.pos += 4; //length
         //reader.reset();
 		var len:uint = reader.readUnsignedInt();
-		trace('readHeader len',len);
+		//trace('readHeader len',len);
         var type:uint = reader.readUnsignedByte();
         if (type != 2) { //amf0 string
             throw "Only string header data supported.";
         }
         header.data = reader.readUTF();
-        trace('readHeader data:',header.data);
+        //trace('readHeader data:',header.data);
         return header;
     }
 
@@ -485,7 +485,7 @@ public class AMFNetConnection
         body.responseURI = reader.readUTF();
         //reader.pos += 4; //length
         var len:uint = reader.readUnsignedInt();
-        trace('readBody len',len);
+        //trace('readBody len',len);
        //reader.reset();
         body.data = reader.readObject();
         return body;

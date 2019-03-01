@@ -16,13 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.jira
+package flexUnitTests.github
 {
     import flexunit.framework.Assert;
 
     
-    public class JiraTesterTest
-    {		
+    public class GithubTesterTest
+    {
 		public static var isJS:Boolean;
         [BeforeClass]
         public static function setUpBeforeClass():void
@@ -60,14 +60,14 @@ package flexUnitTests.jira
         
        
         /*
-		// TEST METHODS 
+		// TEST METHODS
 		*/
-        
+  
 		//example, postfix the test method with JIRA issue reference:
         /*[Test]
         public function testJIRA_FLEX_9999():void
         {
 
-        }*/    
+        }*/
     }
 }

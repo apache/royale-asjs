@@ -16,23 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.network.support
 {
-	//test groups
-	import flexUnitTests.*;
 
-
-	public class TestClasses
+	
+	public class TestClass2
 	{
+		//Note: do not change this test class unless you change the related tests to
+		//support any changes that might appear when testing reflection into it
 		
-		public static function get testClasses():Array {
-			return [
-						CoreTester,
-						ReflectionTester,
-						ObservedBugsTester,
-						GithubIssuesTester,
-						NetworkTester
-					];
+		public function TestClass2(){
+
 		}
+		
+		
+		public var testField1:Boolean = true;
+		//public var testField2:Boolean;
+		//public var testField3:Number;
+		/*public var testField4:Function;*/
 	}
 }
