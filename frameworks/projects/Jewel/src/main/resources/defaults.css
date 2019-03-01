@@ -115,8 +115,12 @@ j|DataContainer {
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+j|Validator {
+  ILocalizedValuesImpl: ClassReference("org.apache.royale.core.SimpleLocalizedValuesImpl");
+}
+
 j|Form {
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.FormLayout");
 }
 
 @media -royale-swf {
@@ -256,7 +260,7 @@ j|Card {
   position: relative;
   margin: 0;
   padding: 0;
-  height: 22px;
+  height: auto;
   cursor: pointer;
 }
 .jewel.checkbox input {
@@ -428,7 +432,6 @@ j|ComboBox {
     box-shadow: none !important;
   }
   .combobox-popup .jewel.list .jewel.item {
-    height: 0;
     overflow: hidden;
     transition: height 200ms ease-in;
   }
@@ -620,7 +623,7 @@ j|Divider {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 15;
 }
 .jewel.drawer.float::before {
   position: absolute;
@@ -809,8 +812,9 @@ j|FooterBar {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
 }
 
-.jewel.formheading {
-  line-height: 2em;
+.jewel.formheading .jewel.label.headingLabel {
+  white-space: initial;
+  flex: 1 1 auto;
 }
 
 j|FormHeading {
@@ -820,7 +824,7 @@ j|FormHeading {
 }
 
 j|FormItem {
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.FormItemLayout");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.FormItemView");
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.FormItemModel");
   IFormItemContentArea: ClassReference("org.apache.royale.jewel.Group");
@@ -853,14 +857,17 @@ j|ImageButton {
 }
 
 .jewel.item, .jewel.navigationlink, .jewel.tabbarbutton {
-  display: flex;
+  display: block;
   min-height: 34px;
   text-decoration: none;
-  align-items: center;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
   cursor: auto;
+}
+.jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent {
+  display: flex;
+  align-items: center;
 }
 .jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;
@@ -923,6 +930,10 @@ j|Label {
 }
 .layout.horizontal.centered > * {
   flex: 0 0 auto;
+}
+.layout.horizontal.formitem {
+  width: 100%;
+  align-items: flex-start;
 }
 .layout.horizontal.gap-1x3px > *:first-child {
   margin: 0px;
@@ -1001,6 +1012,9 @@ j|Label {
   align-content: center;
   flex-direction: column;
   height: 100%;
+}
+.layout.vertical.form {
+  width: 100%;
 }
 .layout.vertical.gap-1x3px > *:first-child {
   margin: 0px;

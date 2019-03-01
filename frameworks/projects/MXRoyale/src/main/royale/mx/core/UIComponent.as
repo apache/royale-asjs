@@ -5404,6 +5404,26 @@ COMPILE::JS
         return FlexGlobals.topLevelApplication.parent as IEventDispatcher;
     }
 
+    COMPILE::JS
+    override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        if (type == "keyDown") type = "keydown";
+        else if (type == "keyUp") type = "keyup";
+        else if (type == "focusIn") type = "focusin";
+        else if (type == "focusOut") type = "focusout";
+        super.addEventListener(type, handler, opt_capture, opt_handlerScope);
+    }
+    
+    COMPILE::JS
+    override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        if (type == "keyDown") type = "keydown";
+        else if (type == "keyUp") type = "keyup";
+        else if (type == "focusIn") type = "focusin";
+        else if (type == "focusOut") type = "focusout";
+        super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
+    }
+
 }
 
 }

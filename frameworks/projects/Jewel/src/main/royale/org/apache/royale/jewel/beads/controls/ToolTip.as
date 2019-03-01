@@ -156,7 +156,7 @@ package org.apache.royale.jewel.beads.controls
 
 			// add this before measuring or measurement is not accurate.
             host.popUpParent.addElement(tt, false); // don't trigger a layout
-            var pt:Point = determinePosition(event, event.target);
+            var pt:Point = determinePosition();
             tt.x = pt.x;
             tt.y = pt.y;
 		}
@@ -166,7 +166,7 @@ package org.apache.royale.jewel.beads.controls
 		 * Determines the position of the toolTip.
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
-		protected function determinePosition(event:MouseEvent, base:Object):Point
+		protected function determinePosition():Point
 		{
 			var ttWidth:Number = tt.width;
 			var ttHeight:Number = tt.height;

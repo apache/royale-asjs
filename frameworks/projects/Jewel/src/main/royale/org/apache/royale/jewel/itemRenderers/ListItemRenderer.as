@@ -27,7 +27,7 @@ package org.apache.royale.jewel.itemRenderers
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 	
 	/**
@@ -55,6 +55,11 @@ package org.apache.royale.jewel.itemRenderers
 			typeNames = "jewel item";
 			addClass("selectable");
 
+			if(MXMLDescriptor != null)
+			{
+				addClass("mxmlContent");
+			}
+
 			textAlign = new TextAlign();
 			addBead(textAlign);
 		}
@@ -81,19 +86,16 @@ package org.apache.royale.jewel.itemRenderers
 				_text = value;
 				COMPILE::JS
 				{
-				if(textNode != null)
+				if(MXMLDescriptor == null)
 				{
-					textNode.nodeValue = _text;
+					element.innerHTML = _text;
 				}
 				}
 				dispatchEvent(new Event('textChange'));
 			}
 		}
 
-		COMPILE::JS
-        protected var textNode:Text;
-
-		private var textAlign:TextAlign;
+        private var textAlign:TextAlign;
 
 		/**
 		 *  How text align in the itemRenderer instance.
@@ -138,12 +140,6 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this, 'li');
-            
-			if(MXMLDescriptor == null)
-			{
-				textNode = document.createTextNode('') as Text;
-				element.appendChild(textNode);
-			}
             return element;
         }
 

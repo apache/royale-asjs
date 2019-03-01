@@ -18,18 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-import org.apache.royale.jewel.beads.models.IDropDownListModel;
-
 COMPILE::JS
-    {
-        import org.apache.royale.html.elements.Select;
-    }
+{
+    import org.apache.royale.html.elements.Select;
+}
+    import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.DataContainerView;
     import org.apache.royale.jewel.DropDownList;
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.jewel.beads.models.IDropDownListModel;
 
     /**
      *  The DropDownListView class creates the visual elements of the org.apache.royale.jewel.DropDownList

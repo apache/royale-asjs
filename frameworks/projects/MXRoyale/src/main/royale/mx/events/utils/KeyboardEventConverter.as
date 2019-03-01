@@ -85,6 +85,8 @@ package mx.events.utils
 			if (code == null)
 				code = KeyConverter.convertKeyCode(nativeEvent['keyCode']);
 			
+            if (type == "keydown") type = "keyDown";
+            if (type == "keyup") type = "keyUp";
 			var newEvent:KeyboardEvent = new KeyboardEvent(type, key, code, nativeEvent["shiftKey"]);
 			newEvent.altKey = nativeEvent["altKey"];
 			newEvent.ctrlKey = nativeEvent["ctrlKey"];

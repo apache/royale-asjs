@@ -20,7 +20,6 @@ limitations under the License.
 <j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic" 
-    xmlns:html="library://ns.apache.org/royale/html" 
     xmlns="http://www.w3.org/1999/xhtml">
 
     <fx:Script>
@@ -55,7 +54,7 @@ limitations under the License.
 
     <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>
 
-    <html:Span text="{text}"/>
+    <j:Label html="{text}" multiline="true"/>
 
 </j:ListItemRenderer>
 

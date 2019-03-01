@@ -19,9 +19,12 @@
 package org.apache.royale.jewel.beads.validators
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.ILocalizedValuesImpl;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.Strand;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
@@ -39,8 +42,30 @@ package org.apache.royale.jewel.beads.validators
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Validator implements IBead
+	public class Validator extends Strand implements IBead
 	{
+		/**
+		 * locale
+		 * @royalesuppresspublicvarwarning
+		 */
+		public static var locale :String = "en_US";
+
+		[Embed("locale/en_US/validator.properties", mimeType="text/plain")]
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var en_USvalidator:String;
+		[Embed("locale/de_DE/validator.properties", mimeType="text/plain")]
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var de_DEvalidator:String;
+		[Embed("locale/es_ES/validator.properties", mimeType="text/plain")]
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public var es_ESvalidator:String;
+
 		/**
 		 *  constructor.
 		 *
@@ -141,6 +166,40 @@ package org.apache.royale.jewel.beads.validators
 				hostClassList = hostComponent.positioner.classList;
 			}
 		}
+
+		/**
+		 * @private
+		 */
+		private var _resourceManager:ILocalizedValuesImpl;
+		/**
+		 *  The Validator's resource manager to get translations from bundles	
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 *  @royaleignorecoercion org.apache.royale.core.ILocalizedValuesImpl
+		 */
+		public function get resourceManager():ILocalizedValuesImpl
+		{
+			if (_resourceManager == null) {
+				var c:Class = ValuesManager.valuesImpl.getValue(this, "iLocalizedValuesImpl");
+				if (c) {
+					_resourceManager = new c() as ILocalizedValuesImpl;
+					_resourceManager.localeChain = locale;
+					addBead(_resourceManager);
+				}
+			}
+			return _resourceManager;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.ILocalizedValuesImpl
+		 */
+		public function set resourceManager(value:ILocalizedValuesImpl):void
+		{
+			_resourceManager = value;
+		}
+
 		/**
 		 *  Contains true if the field generated a validation failure.
 		 *
@@ -200,7 +259,7 @@ package org.apache.royale.jewel.beads.validators
 			_required = value;
 		}
 
-		private var _requiredFieldError:String = "This field is required.";
+		private var _requiredFieldError:String;
 		/**
 		 *  The string to use as the errorTip.
 		 *
@@ -211,6 +270,9 @@ package org.apache.royale.jewel.beads.validators
 		 */
 		public function get requiredFieldError():String
 		{
+			if(_requiredFieldError == null) {
+				_requiredFieldError = resourceManager.getValue("validator", "requiredFieldError");
+			}
 			return _requiredFieldError;
 		}
 		public function set requiredFieldError(value:String):void
@@ -298,9 +360,11 @@ package org.apache.royale.jewel.beads.validators
 
             _errorTip.text = errorText;
 
-			var pt:Point = determinePosition();
-			_errorTip.x = pt.x;
-			_errorTip.y = pt.y;
+			COMPILE::JS
+			{
+			window.addEventListener('resize', repositionHandler, false);
+			repositionHandler();
+			}
 
 			COMPILE::JS
 			{
@@ -308,8 +372,20 @@ package org.apache.royale.jewel.beads.validators
 					hostClassList.add("errorBorder");
 			}
 		}
+
+		protected function repositionHandler(event:Event = null):void
+		{
+            var pt:Point = determinePosition();
+            _errorTip.x = pt.x;
+            _errorTip.y = pt.y;
+		}
+
 		private function removeTip(ev:Event):void
 		{
+			COMPILE::JS
+			{
+			window.removeEventListener('resize', repositionHandler, false);
+			}
 			if(_errorTip){
 				_errorTip.parent.removeElement(_errorTip);
 				_errorTip = null;
@@ -370,6 +446,10 @@ package org.apache.royale.jewel.beads.validators
          */
         internal function destroyErrorTip():void
         {
+			COMPILE::JS
+			{
+			window.removeEventListener('resize', repositionHandler, false);
+			}
             if (_errorTip) {
                 _host.popUpParent.removeElement(_errorTip);
 				_errorTip = null;

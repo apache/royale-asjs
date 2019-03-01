@@ -37,6 +37,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.beads.layouts.VerticalLayout;
     import org.apache.royale.jewel.beads.models.FormItemModel;
     import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy;
+    import org.apache.royale.jewel.HGroup;
 
 
     /**
@@ -77,7 +78,7 @@ package org.apache.royale.jewel.beads.views
 
         private var _contentArea:UIBase;
 		/**
-		 * The content area of the formItem.
+		 *  The content area of the formItem.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -124,9 +125,8 @@ package org.apache.royale.jewel.beads.views
 			model.addEventListener("htmlChange", textChangeHandler);
             model.addEventListener("requiredChange", requiredChangeHandler);
 
-            // Look for a layout and/or viewport bead on the formItem's beads list. If one
-			// is found, pull it off so it will not be added permanently
-			// to the strand.
+            // Look for a layout and/or viewport bead on the formItem's beads list delcared in MXML.
+			// If one is found, pull it off so it will not be added permanently to the strand.
             var beads:Array = formItem.beads;
             var transferLayoutBead:IBeadLayout;
             var transferViewportBead:IViewport;
@@ -146,7 +146,7 @@ package org.apache.royale.jewel.beads.views
             if (!_contentArea) {
                 var cls:Class = ValuesManager.valuesImpl.getValue(_strand, "iFormItemContentArea");
 				_contentArea = new cls() as UIBase;
-				// _contentArea.id = "content";
+				_contentArea.className = "content";
 
 				// add the layout bead to the content area.
 				if (transferLayoutBead)
@@ -168,6 +168,16 @@ package org.apache.royale.jewel.beads.views
 			}
 
             // super.strand = value;
+			var labelGroup:HGroup;
+			if (labelGroup == null) {
+				labelGroup = new HGroup();
+				labelGroup.gap = 2;
+				labelGroup.itemsHorizontalAlign = "itemsCentered";
+				labelGroup.className = "labelGroup";
+			}
+			if (labelGroup != null && labelGroup.parent == null) {
+				(_strand as IContainerBaseStrandChildrenHost).$addElement(labelGroup);
+			}
 
             if (textLabel == null) {
 				textLabel = createLabel(model.text);
@@ -175,7 +185,7 @@ package org.apache.royale.jewel.beads.views
 				textLabel.className = "formlabel";
 			}
 			if (textLabel != null && textLabel.parent == null) {
-				(_strand as IContainerBaseStrandChildrenHost).$addElement(textLabel);
+				labelGroup.addElement(textLabel);
 				textLabelAlign = new TextAlign();
 				textLabelAlign.align = model.labelAlign;
 				textLabel.addBead(textLabelAlign);
@@ -187,7 +197,7 @@ package org.apache.royale.jewel.beads.views
 				requiredLabel.className = "required";
 			}
 			if (requiredLabel != null && requiredLabel.parent == null) {
-				(_strand as IContainerBaseStrandChildrenHost).$addElement(requiredLabel);
+				labelGroup.addElement(requiredLabel);
 			}
 
 			if (contentArea.parent == null) {
@@ -224,8 +234,8 @@ package org.apache.royale.jewel.beads.views
         protected function setupContentAreaLayout():void
         {
 			var defaultContentAreaLayout:VerticalLayout = new VerticalLayout();
-			defaultContentAreaLayout.gap = 3;
-			defaultContentAreaLayout.itemsHorizontalAlign = "itemsCenter";
+			defaultContentAreaLayout.gap = 2;
+			// defaultContentAreaLayout.itemsHorizontalAlign = "itemsCenter";
             contentArea.addBead(defaultContentAreaLayout);
         }
 
