@@ -50,7 +50,8 @@ package models
             new IconListVO("Hawkeye", MaterialIconType.WEB_ASSET),
             new IconListVO("Vision", MaterialIconType.WEB_ASSET),
             new IconListVO("Scarlet Witch", MaterialIconType.WEB_ASSET),
-            new IconListVO("Spiderman", MaterialIconType.WEB_ASSET)
+            new IconListVO("Spiderman", MaterialIconType.WEB_ASSET),
+            new IconListVO("All Avengers and Guardians of the Galaxy", MaterialIconType.WEB_ASSET)
 		]);
 		
 		public function get avengers():ArrayList
@@ -64,6 +65,7 @@ package models
 		 * Used in the List example.
 		 */
 		private var _iconListData:ArrayList = new ArrayList([
+            new IconListVO("All Jewel UI Set Controls", MaterialIconType.SETTINGS),
             new IconListVO("Alert", MaterialIconType.WEB_ASSET),
             new IconListVO("Button", MaterialIconType.CROP_7_5),
             new IconListVO("DropDownList", MaterialIconType.CREDIT_CARD),

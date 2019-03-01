@@ -55,6 +55,11 @@ package org.apache.royale.jewel.itemRenderers
 			typeNames = "jewel item";
 			addClass("selectable");
 
+			if(MXMLDescriptor != null)
+			{
+				addClass("mxmlContent");
+			}
+
 			textAlign = new TextAlign();
 			addBead(textAlign);
 		}
