@@ -195,6 +195,33 @@ package flexUnitTests.network
 			Assert.assertEquals("post-write read was not correct", instance['test'], true);
 			Assert.assertTrue("post-write read was not correct", instance[0] === undefined);
 			
+			//edge cases
+			instance=[];
+			//length ==2 and Object.keys().length ==2
+			//but no dense keys;
+			instance[1]=true;
+			instance['test'] = true;
+			ba.length = 0;
+			ba.writeObject(instance);
+			Assert.assertEquals("post-write length was not correct", ba.length, 12);
+			Assert.assertEquals("post-write position was not correct", ba.position, 12);
+			
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[9, 1, 3, 49, 3, 9, 116, 101, 115, 116, 3, 1]));
+			
+			//empty array with length
+			instance = new Array(100);
+			Assert.assertEquals("pre-write array length was not correct", instance.length, 100);
+			ba.length = 0;
+			ba.writeObject(instance);
+			Assert.assertEquals("post-write length was not correct", ba.length, 3);
+			Assert.assertEquals("post-write position was not correct", ba.position, 3);
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[9, 1, 1]));
+			
+			ba.position = 0;
+			instance = ba.readObject() as Array;
+			//although the Array had a length of 100 on write, it has length zero on read:
+			Assert.assertTrue("post-write read did not match expected value", instance.length == 0);
+			
 		}
 		
 		

@@ -690,20 +690,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		}
 	}
 	
-	/*private function writeDynamicObject(v:Object, localTraits:Traits):void {
-		if (!this.traitsByReference([], '$DynObject$')) { //<-something to represent an anonymous object
-			this.writeUInt29(11 /!* 3 | 8 == dynamic *!/);
-			this.writeStringWithoutType(EMPTY_STRING); //class name
-		}
-		var i:uint = 0;
-		var l:uint = localTraits.props.length;
-		for (; i < l; i++) {
-			this.writeStringWithoutType(localTraits.props[i]);
-			this.writeObject(v[localTraits.props[i]]);
-		}
-		this.writeStringWithoutType(EMPTY_STRING);
-	}*/
-	
+
 	/**
 	 *
 	 * @royaleignorecoercion String
@@ -716,37 +703,46 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		if (!this.objectByReference(v)) {
 			var denseLength:uint = len;
 			var keys:Array = Object.keys(v);
-			var associativeKeys:Array;
 			//profile the array
-			if (keys.length != len) {
+			//es6 specifies a generalized traversal order we can rely upon going forward
+			//testing in IE11 shows the same order applies in that es5 Array implementation, so we assume it here:
+			/*
+			Property keys are traversed in the following order:
+
+			First, the keys that are integer indices, in ascending numeric order.
+			note non-integers: '02' round-tripping results in the different string '2'.
+				'3.141' is not an integer index, because 3.141 is not an integer.
+			Then, all other string keys, in the order in which they were added to the object.
+			Lastly, all symbol keys, in the order in which they were added to the object.
+			We don't need to worry about Symbols here
+			 */
+			var kl:uint = keys.length;
+			//Assumption - based on the above,
+			//if the last key in the keys is an integer index, and length matches the array.length then it is a pure strict array
+			//if not, it is non-strict
+			if (kl != len || (((keys[kl-1])>>0).toString() !== keys[kl-1])) {
 				//Array is not strict
 				if (len) {
-					associativeKeys = [];
-					var kl:uint = keys.length;
+					//the array has at least some integer keys
+					
 					//find denseLength
 					for (i=0;i<len;i++) {
-						if (keys.indexOf(''+i) == -1) break;
+						if (keys[i] != ""+i) break;
 					}
 					denseLength = i;
-					
-					for (i=0;i<kl;i++) {
-						
-						var key:String = keys[i] as String;
-						var numKey:Number = Number(key);
-						if (isNaN(numKey) || numKey > denseLength || numKey<0 || uint(numKey) != numKey) {
-							associativeKeys[akl++] = key;
-						}
-					}
-					
-				} else associativeKeys = keys;
+					//remove dense keys,
+					//leaving only associative keys (which may include valid integer keys outside the dense part)
+					keys.splice(0, denseLength);
+				}// else all keys are associative keys, and denseLength is zero
+				akl = keys.length;
 			}
 			this.writeUInt29((denseLength << 1) | 1);
 			
 			if (akl) {
 				//name-value pairs of associative keys
 				for (i = 0; i < akl; i++) {
-					this.writeStringWithoutType(associativeKeys[i] as String);
-					this.writeObject(v[associativeKeys[i]]);
+					this.writeStringWithoutType(keys[i] as String);
+					this.writeObject(v[keys[i]]);
 				}
 			}
 			//empty string 'terminates' associative keys block - no more associative keys (if there were any)
