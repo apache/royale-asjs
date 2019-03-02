@@ -31,8 +31,6 @@ package flexUnitTests.network.support
 		
 		
 		public var testField1:Boolean = true;
-		//public var testField2:Boolean;
-		//public var testField3:Number;
-		/*public var testField4:Function;*/
+
 	}
 }

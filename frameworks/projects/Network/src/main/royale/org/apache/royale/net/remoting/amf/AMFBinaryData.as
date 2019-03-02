@@ -682,8 +682,13 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				i = 0;
 				l = dynFields.length;
 				for (; i < l; i++) {
+					var val:* = v[dynFields[i]];
+					if (val is Function) {
+						//skip this value, don't even write it out as undefined (match flash)
+						continue;
+					}
 					this.writeStringWithoutType(dynFields[i]);
-					this.writeObject(v[dynFields[i]]);
+					this.writeObject(val);
 				}
 				this.writeStringWithoutType(EMPTY_STRING);
 			}

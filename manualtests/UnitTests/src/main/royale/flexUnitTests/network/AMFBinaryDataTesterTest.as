@@ -23,6 +23,7 @@ package flexUnitTests.network
 	import flexUnitTests.network.support.TestClass1;
 	import flexUnitTests.network.support.TestClass2;
 	import flexUnitTests.network.support.TestClass3;
+	import flexUnitTests.network.support.TestClass4;
 	import flexUnitTests.network.support.DynamicTestClass;
 	
 	import flexunit.framework.Assert;
@@ -247,6 +248,53 @@ package flexUnitTests.network
 			ba.writeObject([obj1, obj2, obj3]);
 			ba.position = 0;
 			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[9, 7, 1, 10, 11, 1, 9, 116, 101, 115, 116, 3, 1, 10, 1, 0, 6, 11, 109, 97, 121, 98, 101, 1, 10, 1, 0, 3, 1]));
+			
+		}
+		
+		
+		[Test]
+		public function testFunction():void{
+			var ba:AMFBinaryData = new AMFBinaryData();
+			//functions are always encoded as undefined
+			var instance:Function = function():void {};
+			ba.writeObject(instance);
+			
+			Assert.assertEquals("post-write length was not correct", ba.length, 1);
+			Assert.assertEquals("post-write position was not correct", ba.position, 1);
+			ba.position = 0;
+			
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[0]));
+			instance = ba.readObject();
+			COMPILE::SWF{
+				import flash.external.ExternalInterface;
+				ExternalInterface.call('console.warn',instance, instance === null, instance === undefined)
+			}
+			
+			Assert.assertTrue("post-write read did not match expected result", instance === null);
+			
+			//for a property that has a function value, the property is also undefined
+			var objectWithFunction:Object = {'function': function():void {}};
+			ba.length=0;
+			ba.writeObject(objectWithFunction);
+			
+			Assert.assertEquals("post-write length was not correct", ba.length, 4);
+			Assert.assertEquals("post-write position was not correct", ba.position, 4);
+			ba.position = 0;
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[10, 11, 1, 1]));
+			
+			//the dynamic deserialized object has no key for the function value
+			var obj:Object = ba.readObject();
+			Assert.assertTrue("post-write read did not match expected result", dynamicKeyCountMatches(obj,0));
+			
+			ba.length=0;
+			var tc4:TestClass4 = new TestClass4();
+			tc4.testField1 =function():void {};
+			
+			ba.writeObject(tc4);
+			Assert.assertEquals("post-write length was not correct", ba.length, 15);
+			Assert.assertEquals("post-write position was not correct", ba.position, 15);
+			
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[10, 19, 1, 21, 116, 101, 115, 116, 70, 105, 101, 108, 100, 49, 0]));
 			
 		}
 

@@ -19,16 +19,14 @@
 package flexUnitTests.network.support
 {
 	
-	public class TestClass1
+	public class TestClass4
 	{
-		public function TestClass1()
+		public function TestClass4()
 		{
 		}
 		
-		public var testField1:String = '';
+		public var testField1:Function;
 
 		
-
-
 	}
 }
