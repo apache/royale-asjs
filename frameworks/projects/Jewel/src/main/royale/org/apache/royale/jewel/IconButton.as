@@ -103,16 +103,42 @@ package org.apache.royale.jewel
 
             toggleClass(iconClass, (_icon != null));
             
-            COMPILE::JS
-            {
-                // insert the icon before the text
-                addElementAt(_icon, 0);
-            }
+            setIconPosition();
 
             COMPILE::SWF
             {
                 classSelectorList.toggle("icon", (_icon != null));
                 // todo set up icon on swf
+            }
+        }
+
+        private var _rightPosition:Boolean;
+        /**
+		 *  icon's position regarding the text content 
+         *  Can be false ("left") or true ("right"). defaults to false ("left")
+         *  Optional
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+        public function get rightPosition():Boolean
+        {
+            return _rightPosition;
+        }
+        public function set rightPosition(value:Boolean):void
+        {
+            _rightPosition = value;
+            if(_icon)
+                setIconPosition();
+        }
+        
+        public function setIconPosition():void
+        {
+            COMPILE::JS
+            {
+            addElementAt(_icon, rightPosition? numElements : 0);
             }
         }
 

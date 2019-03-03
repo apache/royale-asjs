@@ -86,7 +86,7 @@ package org.apache.royale.jewel
         private var _rightPosition:Boolean;
         /**
 		 *  icon's position regarding the text content 
-         *  Can be "left" or "right". defaults to "left"
+         *  Can be false ("left") or true ("right"). defaults to false ("left")
          *  Optional
 		 *
 		 *  @langversion 3.0
