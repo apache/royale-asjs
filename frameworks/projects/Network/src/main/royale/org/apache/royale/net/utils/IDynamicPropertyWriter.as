@@ -19,6 +19,13 @@
 package org.apache.royale.net.utils
 {
 
+	COMPILE::SWF{
+		import flash.net.IDynamicPropertyWriter;
+		import flash.net.IDynamicPropertyOutput;
+	}
+	
+	
+	COMPILE::JS
     /**
      * This interface controls the serialization of dynamic properties of dynamic objects.
 	 * This interface is used with the IDynamicPropertyOutput interface to control the serialization
@@ -37,5 +44,18 @@ package org.apache.royale.net.utils
 		 */
 		function writeDynamicProperties(obj:Object, output:IDynamicPropertyOutput):void
     }
+	
+	
+	COMPILE::SWF
+	/**
+	 * This interface controls the serialization of dynamic properties of dynamic objects.
+	 * This interface is used with the IDynamicPropertyOutput interface to control the serialization
+	 * of dynamic properties of dynamic objects. To use this interface, assign an object that implements
+	 * the IDynamicPropertyWriter interface to the AMFObjectEncoding.dynamicPropertyWriter property.
+	 */
+	public interface IDynamicPropertyWriter extends flash.net.IDynamicPropertyWriter
+	{
+	
+	}
 
 }

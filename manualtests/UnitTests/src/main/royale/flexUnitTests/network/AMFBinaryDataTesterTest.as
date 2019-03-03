@@ -20,6 +20,8 @@ package flexUnitTests.network
 {
 	
 	
+	import flexUnitTests.network.support.DynamicPropertyWriter;
+	import flexUnitTests.network.support.DynamicTestClass2;
 	import flexUnitTests.network.support.TestClass1;
 	import flexUnitTests.network.support.TestClass2;
 	import flexUnitTests.network.support.TestClass3;
@@ -28,7 +30,6 @@ package flexUnitTests.network
 	
 	import flexunit.framework.Assert;
     import org.apache.royale.net.remoting.amf.AMFBinaryData;
-	
 	import org.apache.royale.reflection.*;
 
 
@@ -265,10 +266,6 @@ package flexUnitTests.network
 			
 			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[0]));
 			instance = ba.readObject();
-			COMPILE::SWF{
-				import flash.external.ExternalInterface;
-				ExternalInterface.call('console.warn',instance, instance === null, instance === undefined)
-			}
 			
 			Assert.assertTrue("post-write read did not match expected result", instance === null);
 			
@@ -401,6 +398,40 @@ package flexUnitTests.network
 
 			//proof that it created a new instance, and that the reversed content string content is present in the new instance
 			Assert.assertTrue("post-write read did not match expected data", test3Read.content[0] == test3.content[0]);
+			
+		}
+		
+		
+		[Test]
+		public function testDynamicPropertyWriter():void{
+			var ba:AMFBinaryData = new AMFBinaryData();
+			var instance:DynamicTestClass2 = new DynamicTestClass2();
+			instance['_underscore'] = 'pseudo - private value';
+			instance['raining'] = 'cats and dogs';
+			
+			ba.writeObject(instance);
+			
+			Assert.assertEquals("post-write length was not correct", ba.length, 84);
+			Assert.assertEquals("post-write position was not correct", ba.position, 84);
+			
+			//in this case the order of encoding the dynamic fields is not defined. So we need to account for the valid serialization options of either output sequence of the two fields
+			var raining_then_underscore:Array = [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 15, 114, 97, 105, 110, 105, 110, 103, 6, 27, 99, 97, 116, 115, 32, 97, 110, 100, 32, 100, 111, 103, 115, 23, 95, 117, 110, 100, 101, 114, 115, 99, 111, 114, 101, 6, 45, 112, 115, 101, 117, 100, 111, 32, 45, 32, 112, 114, 105, 118, 97, 116, 101, 32, 118, 97, 108, 117, 101, 1];
+			var underscore_then_raining:Array = [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 23, 95, 117, 110, 100, 101, 114, 115, 99, 111, 114, 101, 6, 45, 112, 115, 101, 117, 100, 111, 32, 45, 32, 112, 114, 105, 118, 97, 116, 101, 32, 118, 97, 108, 117, 101, 15, 114, 97, 105, 110, 105, 110, 103, 6, 27, 99, 97, 116, 115, 32, 97, 110, 100, 32, 100, 111, 103, 115, 1];
+			
+			ba.position=0;
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, raining_then_underscore) || bytesMatchExpectedData(ba, underscore_then_raining));
+			
+			//now test the same instance with an IDynamicPropertyWriter that ignores the underscored field, only outputting the 'raining' field
+			ba.length = 0;
+			AMFBinaryData.dynamicPropertyWriter = new DynamicPropertyWriter();
+			ba.writeObject(instance);
+			Assert.assertEquals("post-write length was not correct", ba.length, 48);
+			Assert.assertEquals("post-write position was not correct", ba.position, 48);
+			
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 15, 114, 97, 105, 110, 105, 110, 103, 6, 27, 99, 97, 116, 115, 32, 97, 110, 100, 32, 100, 111, 103, 115, 1]));
+			
+			//remove the custom dynamicPropertyWriter
+			AMFBinaryData.dynamicPropertyWriter = null;
 			
 		}
 

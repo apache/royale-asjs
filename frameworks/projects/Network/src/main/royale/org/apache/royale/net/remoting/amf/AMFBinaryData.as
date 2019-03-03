@@ -20,8 +20,13 @@
 package org.apache.royale.net.remoting.amf {
 	import org.apache.royale.net.utils.IDataInput;
 	import org.apache.royale.net.utils.IDataOutput;
+	import org.apache.royale.net.utils.IDynamicPropertyWriter;
 	import org.apache.royale.net.utils.IExternalizable;
 	import org.apache.royale.utils.BinaryData;
+	
+	COMPILE::SWF{
+		import flash.net.ObjectEncoding;
+	}
 	
 	/**
 	 *  A version of BinaryData specific to AMF.
@@ -35,11 +40,44 @@ package org.apache.royale.net.remoting.amf {
 	 *  @royalesuppresspublicvarwarning
 	 */
 	public class AMFBinaryData extends BinaryData implements IDataInput, IDataOutput {
-		//--------------------------------------------------------------------------
-		//
-		// Class Constants
-		//
-		//--------------------------------------------------------------------------
+
+		COMPILE::JS
+		private static var _propertyWriter:IDynamicPropertyWriter;
+		
+		/**
+		 * Allows greater control over the serialization of dynamic properties of dynamic objects.
+		 * When this property is set to null, the default value, dynamic properties are serialized using native code,
+		 * which writes all dynamic properties excluding those whose value is a function.
+		 * This value is called only for properties of a dynamic object (objects declared within a dynamic class) or
+		 * for objects declared using the new operator.
+		 * You can use this property to exclude properties of dynamic objects from serialization; to write values
+		 * to properties of dynamic objects; or to create new properties for dynamic objects. To do so,
+		 * set this property to an object that implements the IDynamicPropertyWriter interface. For more information,
+		 * see the IDynamicPropertyWriter interface.
+		 */
+		public static function get dynamicPropertyWriter():IDynamicPropertyWriter {
+			COMPILE::JS{
+				return _propertyWriter;
+			}
+			COMPILE::SWF{
+				var value:flash.net.IDynamicPropertyWriter =  ObjectEncoding.dynamicPropertyWriter;
+				var outValue:org.apache.royale.net.utils.IDynamicPropertyWriter = value as org.apache.royale.net.utils.IDynamicPropertyWriter;
+				if (value && !outValue) {
+					outValue = new ExternallySetDynamicPropertyWriter(value);
+				}
+				return outValue;
+			}
+		}
+		
+		public static function set dynamicPropertyWriter(value:IDynamicPropertyWriter):void {
+			COMPILE::JS{
+				_propertyWriter = value;
+			}
+			COMPILE::SWF{
+				ObjectEncoding.dynamicPropertyWriter = value;
+			}
+		}
+		
 		
 		
 		public function AMFBinaryData(bytes:Object = null) {
@@ -58,13 +96,14 @@ package org.apache.royale.net.remoting.amf {
 		
 		
 		COMPILE::JS
-		private var serializationContext:SerializationContext;
+		private var _serializationContext:SerializationContext;
 		
 		COMPILE::JS
 		public function writeObject(v:*):void {
-			if (!serializationContext) serializationContext = new SerializationContext(this);
-			_position = serializationContext.writeObjectExternal(v, _position, mergeInToArrayBuffer);
-			var err:Error = serializationContext.getError();
+			if (!_serializationContext) _serializationContext = new SerializationContext(this);
+			_serializationContext.dynamicPropertyWriter = _propertyWriter;
+			_position = _serializationContext.writeObjectExternal(v, _position, mergeInToArrayBuffer);
+			var err:Error = _serializationContext.getError();
 			if (err) {
 				throw new Error(err.message);
 			}
@@ -72,9 +111,9 @@ package org.apache.royale.net.remoting.amf {
 		
 		COMPILE::JS
 		public function readObject():* {
-			if (!serializationContext) serializationContext = new SerializationContext(this);
-			var value:* = serializationContext.readObjectExternal();
-			var err:Error = serializationContext.getError();
+			if (!_serializationContext) _serializationContext = new SerializationContext(this);
+			var value:* = _serializationContext.readObjectExternal();
+			var err:Error = _serializationContext.getError();
 			if (err) {
 				throw new Error(err.message);
 			}
@@ -93,7 +132,27 @@ package org.apache.royale.net.remoting.amf {
 	}
 }
 
+
+COMPILE::SWF
+class ExternallySetDynamicPropertyWriter implements IDynamicPropertyWriter{
+	
+	import flash.net.IDynamicPropertyOutput;
+	
+	private var _externalImplementation:flash.net.IDynamicPropertyWriter;
+	
+	public function ExternallySetDynamicPropertyWriter(original:flash.net.IDynamicPropertyWriter) {
+		_externalImplementation = original;
+	}
+	
+	public function writeDynamicProperties(obj:Object, output:flash.net.IDynamicPropertyOutput):void {
+		_externalImplementation.writeDynamicProperties(obj, output);
+	}
+	
+}
+
 import org.apache.royale.net.remoting.amf.AMFBinaryData;
+import org.apache.royale.net.utils.IDynamicPropertyOutput;
+import org.apache.royale.net.utils.IDynamicPropertyWriter;
 import org.apache.royale.reflection.getAliasByClass;
 import org.apache.royale.reflection.getClassByAlias;
 import org.apache.royale.reflection.getDynamicFields;
@@ -107,7 +166,7 @@ import org.apache.royale.net.utils.IDataOutput;
 
 
 COMPILE::JS
-class SerializationContext extends BinaryData  implements IDataInput, IDataOutput {
+class SerializationContext extends BinaryData  implements IDataInput, IDataOutput, IDynamicPropertyOutput {
 	import goog.DEBUG;
 	
 	
@@ -141,6 +200,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 	private static const EMPTY_STRING:String = "";
 	
 	private var owner:AMFBinaryData;
+	public var dynamicPropertyWriter:IDynamicPropertyWriter;
 	private var writeBuffer:Array;
 	
 	private var objects:Array ;
@@ -642,6 +702,17 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		}
 	}
 	
+	/**
+	 * This serialization context is passed as the 2nd parameter to an IDynamicPropertyWriter
+	 * implementation's writeDynamicProperties method call. The resolved properties are written here
+	 * @param name property name
+	 * @param value property value
+	 */
+	public function writeDynamicProperty(name:String, value:*):void {
+		this.writeStringWithoutType(name);
+		this.writeObject(value);
+	}
+	
 	
 	private function writeTypedObject(v:Object, localTraits:Traits):void {
 		var encodedName:String = localTraits.alias && localTraits.alias.length ? localTraits.alias : ']:' + localTraits.qName + ":[";
@@ -678,18 +749,24 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			}
 			
 			if (localTraits.isDynamic) {
-				var dynFields:Array = getDynamicFields(v);
-				i = 0;
-				l = dynFields.length;
-				for (; i < l; i++) {
-					var val:* = v[dynFields[i]];
-					if (val is Function) {
-						//skip this value, don't even write it out as undefined (match flash)
-						continue;
+				if (dynamicPropertyWriter != null) {
+					dynamicPropertyWriter.writeDynamicProperties(v, this);
+				} else {
+					//default implementation
+					var dynFields:Array = getDynamicFields(v);
+					i = 0;
+					l = dynFields.length;
+					for (; i < l; i++) {
+						val = v[dynFields[i]];
+						if (val is Function) {
+							//skip this name-value pair, don't even write it out as undefined (match flash)
+							continue;
+						}
+						this.writeStringWithoutType(dynFields[i]);
+						this.writeObject(val);
 					}
-					this.writeStringWithoutType(dynFields[i]);
-					this.writeObject(val);
 				}
+				//end of dynamic properties marker
 				this.writeStringWithoutType(EMPTY_STRING);
 			}
 		}
@@ -1108,23 +1185,6 @@ COMPILE::JS
 class Traits {
 	import goog.DEBUG;
 	
-/*	public static function createInstanceVariableGetter(fromFunc:Function, type:String):Function{
-		if (type == "*") {
-			return function(inst:Object):* {
-				return fromFunc(inst, fromFunc);
-			}
-		} else {
-			return function(inst:Object):* {
-				fromFunc(inst);
-			}
-		}
-	}
-	
-	public static function createInstanceVariableSetter(toFunc:Function, type:String):Function{
-		return function(inst:Object, value:*):void {
-			toFunc(inst, value);
-		}
-	}*/
 	
 	public static function createInstanceVariableGetterSetter(reflectionFunction:Function, type:String):Object{
 		var ret:Object = {
