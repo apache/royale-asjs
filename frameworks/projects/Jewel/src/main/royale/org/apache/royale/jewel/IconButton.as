@@ -18,6 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+    COMPILE::JS
+    {
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addElementToWrapper;
+    }
+
     import org.apache.royale.core.IIconSupport;
     import org.apache.royale.core.IIcon;
     
@@ -34,8 +40,41 @@ package org.apache.royale.jewel
 		public function IconButton()
 		{
 			super();
+		}
 
-            //typeNames = "jewel button";
+        COMPILE::JS
+        protected var textNode:Text;
+
+        COMPILE::JS
+        private var _text:String = "";
+
+        [Bindable("textChange")]
+        /**
+         *  @copy org.apache.royale.html.Label#text
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        COMPILE::JS
+		override public function get text():String
+		{
+            return _text;
+		}
+
+        /**
+         *  @private
+         */
+        COMPILE::JS
+		override public function set text(value:String):void
+		{
+            if (textNode)
+            {
+                _text = value;
+                textNode.nodeValue = value;
+                this.dispatchEvent('textChange');
+            }
 		}
 
         private var _icon:IIcon;
@@ -75,6 +114,24 @@ package org.apache.royale.jewel
                 classSelectorList.toggle("icon", (_icon != null));
                 // todo set up icon on swf
             }
+        }
+
+        /**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 * @royaleignorecoercion org.apache.royale.html.util.addElementToWrapper
+         */
+        COMPILE::JS
+        override protected function createElement():WrappedHTMLElement
+        {
+			addElementToWrapper(this, 'button');
+            element.setAttribute('type', 'button');
+            
+            textNode = document.createTextNode(_text) as Text;
+            element.appendChild(textNode);
+
+            positioner = element;
+
+            return element;
         }
 	}
 }
