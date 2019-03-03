@@ -62,6 +62,11 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 				</j:Button>
+				<j:Button text="A Button with multiline text" emphasis="{Button.PRIMARY}" width="200">
+					<j:beads>
+						<j:MultilineLabel multiline="true"/>
+					</j:beads>
+				</j:Button>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
