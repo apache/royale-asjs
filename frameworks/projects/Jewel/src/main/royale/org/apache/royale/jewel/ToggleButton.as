@@ -133,6 +133,25 @@ package org.apache.royale.jewel
             }
         }
 
+        private var _selectedText:String = "";
+        /**
+         *  The selectedText of the icon
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get selectedText():String
+		{
+            return _selectedText;            
+		}
+        public function set selectedText(value:String):void
+		{
+            _selectedText = value;
+            internalSelected();
+		}
+
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
@@ -185,6 +204,11 @@ package org.apache.royale.jewel
                var selectableIcon:ISelectable = icon as ISelectable;
                selectableIcon.selected = _selected;
             }
+
+            COMPILE::JS
+			{
+                textNode.nodeValue = _selected ? selectedText : text;	
+			}
         }
 
         override public function set icon(value:IIcon):void
