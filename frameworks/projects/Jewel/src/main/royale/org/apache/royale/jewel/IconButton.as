@@ -94,15 +94,6 @@ package org.apache.royale.jewel
         public function set icon(value:IIcon):void
         {
             _icon = value;
-
-            var iconClass:String = "icon";
-            if(text != "")
-            {
-                iconClass += "WithSpace";
-            }
-
-            toggleClass(iconClass, (_icon != null));
-            
             setIconPosition();
 
             COMPILE::SWF
@@ -138,6 +129,15 @@ package org.apache.royale.jewel
         {
             COMPILE::JS
             {
+            removeClass("iconRSpace");
+            removeClass("iconLSpace");
+            var iconClass:String = "icon";
+            if(text != "")
+            {
+                iconClass += (rightPosition? "R" : "L" ) + "Space";
+            }
+            addClass(iconClass);
+            
             addElementAt(_icon, rightPosition? numElements : 0);
             }
         }

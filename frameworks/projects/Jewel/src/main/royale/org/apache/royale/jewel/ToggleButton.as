@@ -18,11 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.ISelectable;
-	import org.apache.royale.core.IToggleButtonModel;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.core.IIcon;
-
     COMPILE::SWF
     {
         import flash.events.MouseEvent;
@@ -32,6 +27,11 @@ package org.apache.royale.jewel
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.events.MouseEvent;
     }
+	import org.apache.royale.core.IIcon;
+	import org.apache.royale.core.ISelectable;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.events.Event;
+
 
     //--------------------------------------
     //  Events
