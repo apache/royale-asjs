@@ -1,0 +1,592 @@
+<?xml version="1.0"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<project name="CreateFrameworkReleaseCandidate" default="main" basedir=".">
+
+    <!-- use -Dtag=<tag or commit hash> to build from other than the head -->
+
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="windows"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+            <equals arg1="${ant.java.version}" arg2="1.6"/>
+        </and>
+    </condition>
+
+    <condition property="isMac" value="mac">
+        <os family="mac" />
+    </condition>
+    <condition property="isWindows" value="windows">
+        <os family="windows" />
+    </condition>
+    <condition property="isLinux" value="linux">
+		<and>
+			<os family="unix" />
+			<not>
+				<isset property="isMac" />
+			</not>
+		</and>
+    </condition>
+	
+	<property name="rat.report" value="${basedir}/rat-report.txt"/>
+    <property name="apache.rat.jar" value="apache-rat-0.11.jar" />
+    <property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.11.jar" />
+    <property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
+    <property name="apache.rat.tasks.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
+    
+	<property file="${basedir}/local.properties" />
+	<property file="${basedir}/build.properties" />
+	   
+    <property environment="env"/>
+    
+	<condition property="do.copy.downloads" >
+		<isset property="download.cache.dir" /> 
+	</condition>
+	
+    <condition property="CRLF" value="%0D%0A">
+        <isset property="isWindows" />
+    </condition>
+    <property name="CRLF" value="%0A" />
+    
+    <condition property="mvn" value="mvn.cmd">
+        <isset property="isWindows" />
+    </condition>
+    <property name="mvn" value="mvn" />
+
+    <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
+        type="file"
+        property="apache.rat.found"/>
+    <available file="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}"
+        type="file"
+        property="apache.rat.tasks.found"/>
+		
+    <fail message="The release version number is not set.  Specify -Drelease.version=&lt;release version (e.g. 0.9.0, 1.0.0, etc)&gt;"
+        unless="release.version"/>
+        
+	<target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
+	<target name="install-rat.jar" unless="apache.rat.found">
+		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
+	</target>
+	<target name="install-rat.tasks.jar" unless="apache.rat.tasks.found">
+		<get src="${apache.rat.url}/${apache.rat.tasks.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.tasks.jar}" />
+	</target>
+	
+    <target name="rat-taskdef" description="Rat taskdef">
+        <typedef resource="org/apache/rat/anttasks/antlib.xml"
+        uri="antlib:org.apache.rat.anttasks"
+        classpathref="anttask.classpath"/>
+    </target>
+    
+    <target name="checkout_tag" if="tag" >
+        <exec executable="${git}" dir="${basedir}" failonerror="true" >
+            <arg value="checkout" />
+            <arg value="${tag}" />
+        </exec>
+    </target>
+
+    <target name="Release_Step_011" depends="get-temp-folder,download-artifacts,unzip-artifacts,build-source,validate-bits">
+    </target>
+    <target name="get-temp-folder">
+        <input
+        message="Enter a temporary folder to store the downloaded artifacts:"
+        addproperty="artifactfolder"/>
+        <mkdir dir="${artifactfolder}" />
+        <available file="${artifactfolder}"
+        type="dir"
+        property="artifact.folder.found"/>
+        <fail message="Could not create artifact folder"
+        unless="artifact.folder.found"/>
+    </target>
+    <target name="download-artifacts" if="artifactfolder">
+        <get src="http://apacheroyaleci.westus2.cloudapp.azure.com:8080/job/Royale_Release_Step_011/lastSuccessfulBuild/artifact/*zip*/archive.zip" dest="${artifactfolder}/archive.zip" />
+    </target>
+    <target name="unzip-artifacts" if="artifactfolder">
+        <mkdir dir="${artifactfolder}/artifacts" />
+        <unzip src="${artifactfolder}/archive.zip" dest="${artifactfolder}/artifacts"/>
+    </target>
+    <target name="build-source" >
+        <mkdir dir="${artifactfolder}/sources" />
+        <unzip src="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" dest="${artifactfolder}/sources" >
+            <cutdirsmapper dirs="1" />
+        </unzip>
+        
+        <!-- build these modules -->
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="clean" />
+            <arg value="install" />
+            <!--<arg value="-P" />
+            <arg value="-main,utils" />-->
+        </exec>
+    </target>
+    
+    <target name="get-artifact-folder" unless="artifactfolder">
+        <input
+            message="Enter the temporary folder to store the downloaded artifacts:"
+            addproperty="artifactfolder"/>
+        <available file="${artifactfolder}"
+            type="dir"
+            property="artifact.folder.found"/>
+        <fail message="Could not find artifact folder"
+            unless="artifact.folder.found"/>
+    </target>
+    
+    <target name="validate-bits">
+    </target>
+    
+    <target name="Release_Step_011_Sign" depends="get-artifact-folder">
+        <fail message="release.version not specified"
+            unless="release.version"/>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-typedef-archetype/${release.version}/royale-simple-typedef-archetype-${release.version}-sources.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-typedef-archetype/${release.version}/royale-simple-typedef-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-library-archetype/${release.version}/royale-simple-library-archetype-${release.version}-sources.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-library-archetype/${release.version}/royale-simple-library-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-swf-archetype/${release.version}/royale-simple-application-pure-swf-archetype-${release.version}-sources.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-swf-archetype/${release.version}/royale-simple-application-pure-swf-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-js-archetype/${release.version}/royale-simple-application-pure-js-archetype-${release.version}-sources.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-js-archetype/${release.version}/royale-simple-application-pure-js-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-archetype/${release.version}/royale-simple-application-archetype-${release.version}-sources.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-archetype/${release.version}/royale-simple-application-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Basic" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Binding" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Charts" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Collections" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Core" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="CreateJS" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="DragDrop" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Effects" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Express" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Flat" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="FontAwesome" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Formatters" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="GoogleMaps" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Graphics" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="HTML" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="HTML5" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Icons" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Jewel" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="JQuery" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Language" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="MaterialDesignLite" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Mobile" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="MXRoyale" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Network" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Reflection" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="RoyaleSite" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="SparkRoyale" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Storage" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Text" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="TLF" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="XML" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="BasicTheme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Blue-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Emerald-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Green-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Orange-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Red-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Topaz-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Violet-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Yellow-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Amethyst-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Blue-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Emerald-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Green-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Orange-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Red-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Sapphire-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Sunflower-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Topaz-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Turquoise-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Violet-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Primary-Yellow-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Amethyst-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Blue-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Emerald-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Green-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Orange-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Red-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Sapphire-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Sunflower-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Topaz-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Turquoise-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Violet-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Dark-NoFlat-Secondary-Yellow-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Amethyst-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Blue-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Emerald-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Green-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Orange-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Red-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Sapphire-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Sunflower-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Topaz-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Turquoise-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Violet-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Emphasized-Yellow-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Amethyst-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Blue-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Emerald-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Green-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Orange-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Red-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Sapphire-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Sunflower-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Topaz-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Turquoise-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Violet-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Primary-Yellow-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Amethyst-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Blue-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Emerald-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Green-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Orange-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Red-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Sapphire-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Sunflower-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Topaz-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Turquoise-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Violet-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="Jewel-Light-NoFlat-Secondary-Yellow-Theme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="MDLTheme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="MXTheme" />
+        </antcall>
+    </target>
+    
+    <target name="sign-theme-artifacts" depends="sign-swc-artifacts">
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-typedefs.swc" />
+        </antcall>
+    </target>
+    
+    <target name="sign-swc-artifacts">
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-sources.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-js.swc" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-swf.swc" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}.swc" />
+        </antcall>
+    </target>
+    
+    <target name="sign-file">
+        <exec executable="gpg" failonerror="true">
+            <arg value="--armor" />
+            <arg value="--output" />
+            <arg value="${file}.asc" />
+            <arg value="--detach-sig" />
+            <arg value="${file}" />
+        </exec>
+    </target>
+    
+    <target name="Release_Step_011_Upload" depends="get-artifact-folder">
+        <fail message="release.version not specified"
+            unless="release.version"/>
+        <antcall target="uploadSWCs" />
+        <antcall target="uploadJewelDark" />
+        <antcall target="uploadJewelLight" />
+    </target>
+    
+    <target name="uploadSWCs" depends="get-artifact-folder" description="upload all SWCs except Jewel Themes">
+        <fail message="release.version not specified"
+        unless="release.version"/>
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="wagon:upload" />
+            <arg value="-X" />
+            <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/checkout/release-dir" />
+            <arg value="-Dwagon.includes=**" />
+            <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" />
+            <arg value="-P" />
+            <arg value="-main,upload-release-to-staging" />
+        </exec>
+    </target>
+    <target name="uploadJewelDark" depends="get-artifact-folder" description="upload Jewel Dark Themes">
+        <fail message="release.version not specified"
+        unless="release.version"/>
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="wagon:upload" />
+            <arg value="-X" />
+            <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/checkout/release-dir" />
+            <arg value="-Dwagon.includes=**/Jewel-Dark*/**" />
+            <arg value="-P" />
+            <arg value="-main,upload-release-to-staging" />
+        </exec>
+    </target>
+    <target name="uploadJewelLight" depends="get-artifact-folder" description="upload Jewel Light Themes">
+        <fail message="release.version not specified"
+        unless="release.version"/>
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="wagon:upload" />
+            <arg value="-X" />
+            <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/checkout/release-dir" />
+            <arg value="-Dwagon.includes=**/Jewel-Light*/**" />
+            <arg value="-P" />
+            <arg value="-main,upload-release-to-staging" />
+        </exec>
+    </target>
+    
+    <target name="main" description="Perform required release approval steps">
+    </target>
+</project>

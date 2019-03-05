@@ -106,11 +106,6 @@
     </mailingList>
   </mailingLists>
 
-  <modules>
-    <module>frameworks</module>
-    <module>archetypes</module>
-  </modules>
-
   <build>
     <pluginManagement>
       <plugins>
@@ -355,6 +350,16 @@
 
   <profiles>
     <profile>
+      <id>main</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+          <module>frameworks</module>
+          <module>archetypes</module>
+      </modules>
+    </profile>
+    <profile>
       <id>release</id>
       <properties>
         <royale.debug>false</royale.debug>
@@ -390,6 +395,11 @@
     </profile>
     <profile>
         <id>upload-release-to-staging</id>
+        <activation>
+            <activeByDefault>false</activeByDefault>
+        </activation>
+        <modules><!-- only run on top-level, not for each module -->
+        </modules>
         <build>
             <plugins>
                 <plugin>
@@ -397,7 +407,6 @@
                     <artifactId>wagon-maven-plugin</artifactId>
                     <version>2.0.0</version>
                     <configuration>
-                        <includes>**</includes>
                         <serverId>apache.releases.https</serverId>
                         <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
                     </configuration>
