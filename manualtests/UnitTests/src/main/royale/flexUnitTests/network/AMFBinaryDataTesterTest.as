@@ -463,7 +463,19 @@ package flexUnitTests.network
 			
 		}
 
-	
+		[Test]
+		public function testXML():void{
+			var ba:AMFBinaryData = new AMFBinaryData();
+			var xml:XML = <xml><item/></xml>;
+			
+			ba.writeObject(xml);
+			ba.position = 0;
+			
+			var xml2:XML = ba.readObject() as XML;
+			
+			//javascript toXMLString pretty printing does not match exactly flash...
+			Assert.assertTrue('XML round-tripping failed', xml.toXMLString() === xml2.toXMLString());
+		}
 		
 	}
 }

@@ -156,6 +156,7 @@ import org.apache.royale.net.utils.IDynamicPropertyWriter;
 import org.apache.royale.reflection.getAliasByClass;
 import org.apache.royale.reflection.getClassByAlias;
 import org.apache.royale.reflection.getDynamicFields;
+import org.apache.royale.reflection.getDefinitionByName;
 import org.apache.royale.reflection.isDynamicObject;
 import org.apache.royale.net.utils.IDataInput;
 import org.apache.royale.net.utils.IDataOutput;
@@ -224,6 +225,9 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 
 	private var _numberBytes:Uint8Array;
 	
+	private static var _xmlClass:Class;
+	private static var _xmlChecked:Boolean;
+	
 	private var _error:Error;
 	public function getError():Error{
 		var _err:Error = _error;
@@ -231,10 +235,13 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		return _err;
 	}
 	
-	
 	public function SerializationContext(ownerReference:AMFBinaryData){
 		owner = ownerReference;
 		reset();
+		if (!_xmlChecked) {
+			_xmlChecked = true;
+			_xmlClass = getDefinitionByName('XML') as Class;
+		}
 		super();
 	}
 	
@@ -351,7 +358,6 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				if (_len != writeBuffer.length) {
 					throw new Error('code review')
 				}
-				
 			}
 		}
 		_position += length;
@@ -661,12 +667,17 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				writeByte(AMF3_DOUBLE);
 				writeDouble(n);
 			}
-		} else if (v is Boolean)
+		} else if (v is Boolean) {
 			writeByte((v
 					? AMF3_BOOLEAN_TRUE
 					: AMF3_BOOLEAN_FALSE));
-		else if (v is Date)
+		}
+		else if (v is Date) {
 			writeDate(v as Date);
+		}
+		else if (_xmlClass && v is _xmlClass) {
+			writeXML(v);
+		}
 		else {
 			if (v is Array) {
 				if (v.toString().indexOf("[Vector") == 0)
@@ -676,6 +687,18 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			} else writeObjectVariant(v);
 		}
 	}
+	
+	
+	private function writeXML(v:Object):void{
+		writeByte(AMF3_XML);
+		if (!this.objectByReference(v)) {
+			var source:String = v.toXMLString();
+			//don't use the regular string writing... it is not added to the String reference table (it seems)
+			//this.writeStringWithoutType(source);
+			writeAMF_UTF(source);
+		}
+	}
+	
 	
 	/**
 	 *
@@ -953,6 +976,22 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		return readObjectValue(amfType);
 	}
 	
+	public function readXML():Object{
+		var ref:uint = readUInt29();
+		if ((ref & 1) == 0)
+			return getObject(ref >> 1);
+		else {
+			var len:uint = (ref >> 1);
+			var stringSource:String = readUTFBytes(len);
+			if (!_xmlClass) {
+				throw new Error("XML class is not linked in, as required for deserialization");
+			}
+			var xml:Object = new _xmlClass(stringSource);
+			rememberObject(xml);
+			return xml;
+		}
+	}
+	
 	public function readString():String {
 		var ref:uint = readUInt29();
 		if ((ref & 1) == 0) {
@@ -1199,6 +1238,9 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				break;
 			case AMF3_BYTEARRAY:
 				value = readByteArray();
+				break;
+			case AMF3_XML:
+				value = readXML();
 				break;
 			case AMF3_VECTOR_INT:
 			case AMF3_VECTOR_UINT:
