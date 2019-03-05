@@ -645,7 +645,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			writeByte(AMF3_NULL);
 			return;
 		}
-		if (v is Function) {
+		if (isFunctionValue(v)) {
 			//output function value as undefined
 			writeByte(AMF3_UNDEFINED);
 			return;
@@ -758,7 +758,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 					l = dynFields.length;
 					for (; i < l; i++) {
 						val = v[dynFields[i]];
-						if (val is Function) {
+						if (isFunctionValue(val)) {
 							//skip this name-value pair, don't even write it out as undefined (match flash)
 							continue;
 						}
@@ -772,6 +772,36 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		}
 	}
 	
+	private var _comparator:String;
+	
+	/**
+	 * javascript does not differentiate between 'Class' and 'Function'
+	 * So in javascript : Object instanceof Function is true, in flash it is not (Object instanceof Class *is* true).
+	 * The function below is an attempt to discriminate between a pure function and a 'constructor' function
+	 * @param value the value to inspect
+	 * @return true if considered to be a 'pure' function value (not a constructor)
+	 */
+	private function isFunctionValue(value:*):Boolean {
+		if (value instanceof Function) {
+			var comparator:String = _comparator;
+			var checkBase:Array;
+			if (!comparator) {
+				//var ff:Function = function f():void {};
+				checkBase = Object.getOwnPropertyNames(function():void {});
+				if (checkBase.indexOf('name') != -1) {
+					checkBase.splice(checkBase.indexOf('name'), 1);
+				}
+				_comparator = comparator = checkBase.join(",");
+			}
+			checkBase = Object.getOwnPropertyNames(value);
+			if (checkBase.indexOf('name') != -1) {
+				checkBase.splice(checkBase.indexOf('name'), 1);
+			}
+			var check:String = checkBase.join(",");
+			return check == comparator ;
+		}
+		return false;
+	}
 
 	/**
 	 *
@@ -802,14 +832,18 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			//Assumption - based on the above,
 			//if the last key in the keys is an integer index, and length matches the array.length then it is a pure strict array
 			//if not, it is non-strict
-			if (kl != len || (((keys[kl-1])>>0).toString() !== keys[kl-1])) {
+			var isFunctionValue:Function = this.isFunctionValue;
+			if (kl != len || (((keys[kl-1])>>0).toString() !== keys[kl-1]) || v.some(isFunctionValue)) {
 				//Array is not strict
 				if (len) {
 					//the array has at least some integer keys
 					
 					//find denseLength
 					for (i=0;i<len;i++) {
-						if (keys[i] != ""+i) break;
+						if (keys[i] != ""+i ) break;
+						//also seems to be true in avm:
+						if (isFunctionValue(v[i])) break;
+						
 					}
 					denseLength = i;
 					//remove dense keys,
@@ -823,8 +857,12 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			if (akl) {
 				//name-value pairs of associative keys
 				for (i = 0; i < akl; i++) {
+					var val:* = v[keys[i]];
+					if (isFunctionValue(val)) {
+						continue;
+					}
 					this.writeStringWithoutType(keys[i] as String);
-					this.writeObject(v[keys[i]]);
+					this.writeObject(val);
 				}
 			}
 			//empty string 'terminates' associative keys block - no more associative keys (if there were any)
