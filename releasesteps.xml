@@ -161,10 +161,37 @@
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" />
         </antcall>
         <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/projects/${release.version}/projects-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/frameworks/${release.version}/frameworks-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/themes/${release.version}/themes-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-maven-archetypes/${release.version}/royale-maven-archetypes-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/Fonts/${release.version}/Fonts-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/Fonts/${release.version}/Fonts-${release.version}.war" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/Fonts/${release.version}/Fonts-${release.version}-sources.jar" />
+        </antcall>
+        <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-typedef-archetype/${release.version}/royale-simple-typedef-archetype-${release.version}-sources.jar" />
         </antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-typedef-archetype/${release.version}/royale-simple-typedef-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-typedef-archetype/${release.version}/royale-simple-typedef-archetype-${release.version}.pom" />
         </antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-library-archetype/${release.version}/royale-simple-library-archetype-${release.version}-sources.jar" />
@@ -173,10 +200,16 @@
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-library-archetype/${release.version}/royale-simple-library-archetype-${release.version}.jar" />
         </antcall>
         <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-library-archetype/${release.version}/royale-simple-library-archetype-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-swf-archetype/${release.version}/royale-simple-application-pure-swf-archetype-${release.version}-sources.jar" />
         </antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-swf-archetype/${release.version}/royale-simple-application-pure-swf-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-swf-archetype/${release.version}/royale-simple-application-pure-swf-archetype-${release.version}.pom" />
         </antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-js-archetype/${release.version}/royale-simple-application-pure-js-archetype-${release.version}-sources.jar" />
@@ -185,10 +218,16 @@
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-js-archetype/${release.version}/royale-simple-application-pure-js-archetype-${release.version}.jar" />
         </antcall>
         <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-pure-js-archetype/${release.version}/royale-simple-application-pure-js-archetype-${release.version}.pom" />
+        </antcall>
+        <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-archetype/${release.version}/royale-simple-application-archetype-${release.version}-sources.jar" />
         </antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-archetype/${release.version}/royale-simple-application-archetype-${release.version}.jar" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/royale-simple-application-archetype/${release.version}/royale-simple-application-archetype-${release.version}.pom" />
         </antcall>
         <antcall target="sign-swc-artifacts" >
             <param name="swcname" value="Basic" />
@@ -285,6 +324,9 @@
         </antcall>
         <antcall target="sign-theme-artifacts" >
             <param name="swcname" value="BasicTheme" />
+        </antcall>
+        <antcall target="sign-theme-artifacts" >
+            <param name="swcname" value="JewelTheme" />
         </antcall>
         <antcall target="sign-theme-artifacts" >
             <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" />
@@ -517,6 +559,9 @@
     </target>
     
     <target name="sign-swc-artifacts">
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}.pom" />
+        </antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-sources.jar" />
         </antcall>
