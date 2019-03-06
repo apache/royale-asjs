@@ -234,6 +234,9 @@ j|Alert {
 .jewel.button[disabled] {
   cursor: default;
 }
+.jewel.button.multiline {
+  white-space: pre-wrap;
+}
 .jewel.button .fonticon {
   cursor: inherit;
 }
@@ -432,7 +435,6 @@ j|ComboBox {
     box-shadow: none !important;
   }
   .combobox-popup .jewel.list .jewel.item {
-    height: 0;
     overflow: hidden;
     transition: height 200ms ease-in;
   }
@@ -858,20 +860,20 @@ j|ImageButton {
 }
 
 .jewel.item, .jewel.navigationlink, .jewel.tabbarbutton {
-  display: flex;
+  display: block;
   min-height: 34px;
   text-decoration: none;
-  align-items: center;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
   cursor: auto;
 }
+.jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent {
+  display: flex;
+  align-items: center;
+}
 .jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;
-}
-.jewel.item.preserveWhiteSpaces, .jewel.navigationlink.preserveWhiteSpaces, .jewel.tabbarbutton.preserveWhiteSpaces {
-  white-space: pre;
 }
 .jewel.item .fonticon, .jewel.navigationlink .fonticon, .jewel.tabbarbutton .fonticon {
   cursor: inherit;

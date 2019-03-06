@@ -373,6 +373,7 @@ package org.apache.royale.jewel
             typeNames = "jewel button";
 		}
 
+        [Bindable("textChange")]
         /**
          *  @copy org.apache.royale.html.Label#text
          *
@@ -395,6 +396,7 @@ package org.apache.royale.jewel
             this.dispatchEvent('textChange');
 		}
 
+        [Bindable("htmlChange")]
         /**
          *  @copy org.apache.royale.html.Label#html
          *
@@ -456,11 +458,6 @@ package org.apache.royale.jewel
         {
 			addElementToWrapper(this, 'button');
             element.setAttribute('type', 'button');
-            /* AJH comment out until we figure out why it is needed
-            if (org.apache.royale.core.ValuesManager.valuesImpl.getValue) {
-                var impl:Object = org.apache.royale.core.ValuesManager.valuesImpl.
-                    getValue(this, 'iStatesImpl');
-            }*/
             positioner = element;
 
 

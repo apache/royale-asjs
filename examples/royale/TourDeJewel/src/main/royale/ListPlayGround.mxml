@@ -33,7 +33,7 @@ limitations under the License.
                 selected.text = "Selected: " + list.selectedItem;
             }
 
-            private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "Watermelons", "Apples", "Cherries", "Coconuts", "Figs", "Grapes", "Kiwis", "Mangos"]);
+            private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "This is a long item render to try long texts", "This should let you try filtering", "Watermelons", "Apples", "Cherries", "Coconuts", "Figs", "Grapes", "Kiwis", "Mangos"]);
 
 			[Bindable]
 			public function get simple():ArrayList
@@ -139,6 +139,12 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel List"/>
 				<j:List id="list" width="200" height="300" dataProvider="{simple}" change="onChange(event)"/>
+				<j:TextInput width="200">
+					<j:beads>
+						<j:TextPrompt prompt="filter list..."/>
+						<j:SearchFilterForList list="{list}"/>
+					</j:beads>
+				</j:TextInput>
 				<j:Label id="selected" html="{describeItem(list.selectedItem)}"/>
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 					<j:Label text="Select list by index: "/>

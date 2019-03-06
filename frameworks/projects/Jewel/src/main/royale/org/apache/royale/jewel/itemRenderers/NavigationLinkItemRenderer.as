@@ -56,6 +56,11 @@ package org.apache.royale.jewel.itemRenderers
 
 			typeNames = "jewel navigationlink";
 			addClass("selectable");
+
+			if(MXMLDescriptor != null)
+			{
+				addClass("mxmlContent");
+			}
 		}
 
 		private var _href:String = "#";

@@ -146,7 +146,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 * @param decoration, the decoration to use, defaults to "strong"
 		 * @return the originalString with the replacement performed
 		 */
-		protected function decorateText(originalString:String, location:int, len:int, decorationPrefix:String = "<strong><u>", decorationSufix:String = "</u></strong>"):String
+		protected function decorateText(originalString:String, location:int, len:int, decorationPrefix:String = "<span style='font-weight:bold; text-decoration: underline'>", decorationSufix:String = "</span>"):String
 		{
 			var str:String = originalString.substr(location, len);
 			return originalString.replace(str , decorationPrefix + str + decorationSufix);
@@ -160,7 +160,6 @@ package org.apache.royale.jewel.beads.controls.textinput
             while (numElements--)
             {
                 ir = list.getElementAt(numElements) as ListItemRenderer;
-				ir.addClass("preserveWhiteSpaces");
 				var textData:String = getLabelFromData(ir, ir.data);
                 if (filterFunction(textData, filterText))
                 {

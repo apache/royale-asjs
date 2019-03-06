@@ -148,6 +148,7 @@
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
+    <component id="DisableLoaderBead" class="org.apache.royale.html.beads.DisableLoaderBead" />
     <component id="DisableChildrenBead" class="org.apache.royale.html.beads.DisableChildrenBead" />
     <component id="NumericOnlyTextInputBead" class="org.apache.royale.html.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />

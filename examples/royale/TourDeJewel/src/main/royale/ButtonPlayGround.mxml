@@ -106,6 +106,15 @@ limitations under the License.
 						<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
 					</j:icon>
 				</j:IconButton>
+				
+				<j:HGroup gap="3" itemsHorizontalAlign="itemsCentered">
+					<j:IconButton localId="ib_lor" text="Do not disturb">
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.DO_NOT_DISTURB}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+					<j:CheckBox selected="true" text="rightPosition" change="ib_lor.rightPosition = !ib_lor.rightPosition"/>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
@@ -151,7 +160,7 @@ limitations under the License.
                         <j:ToolTip toolTip="show/hide FooterBar"/>
                     </j:beads>
                 </j:ToggleButton>
-				<j:ToggleButton text="Icon and Text" emphasis="{Button.SECONDARY}">
+				<j:ToggleButton text="Icon and Text" selectedText="Icon and Text" emphasis="{Button.SECONDARY}">
                     <j:icon>
                         <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" material="true"/>
                     </j:icon>
@@ -159,6 +168,14 @@ limitations under the License.
                         <j:ToolTip toolTip="show/hide FooterBar"/>
                     </j:beads>
                 </j:ToggleButton>
+				<j:HGroup gap="3" itemsHorizontalAlign="itemsCentered">
+					<j:ToggleButton localId="tb_lor" text="No Print" selectedText="Print">
+						<j:icon>
+							<js:ToggleFontIcon text="{MaterialIconType.PRINT_DISABLED}" selectedText="{MaterialIconType.PRINT}" material="true"/>
+						</j:icon>
+					</j:ToggleButton>
+					<j:CheckBox selected="true" text="rightPosition" change="tb_lor.rightPosition = !tb_lor.rightPosition"/>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
@@ -209,4 +226,5 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
+	
 </c:ExampleAndSourceCodeTabbedSectionContent>
