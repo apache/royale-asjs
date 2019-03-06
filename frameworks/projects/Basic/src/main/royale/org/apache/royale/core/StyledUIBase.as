@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
-
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
 
     /**
      *  The StyledUIBase is the base class for UIBase components that makes
@@ -48,23 +47,8 @@ package org.apache.royale.core
          */
 		public function StyledUIBase()
 		{
-            classSelectorList = new ClassSelectorList(this);
             super();
-		}
-
-        COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
-		override public function get positioner():WrappedHTMLElement
-		{
-			return _positioner;
-		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
-		{
-			_positioner = value;
+            classSelectorList = new ClassSelectorList(this);
 		}
 
         protected var classSelectorList:ClassSelectorList;
@@ -164,7 +148,6 @@ package org.apache.royale.core
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'div');
-            positioner = element;
             return element;
         }
     }
