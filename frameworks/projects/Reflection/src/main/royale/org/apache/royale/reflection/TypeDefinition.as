@@ -741,7 +741,7 @@ COMPILE::SWF {
                             var itemClassDef:DefinitionWithMetaData = new itemClass(item, itemDef);
                             if (resolve) {
                                 //resolve against older versions ("overrides")
-                                var oldIdx:uint = oldNames.indexOf(itemClassDef.name);
+                                var oldIdx:int = oldNames.indexOf(itemClassDef.name);
                                 if (oldIdx != -1) {
                                     //we have an override of an ancestor's definition, replace it
                                     results[oldIdx] = itemClassDef;
