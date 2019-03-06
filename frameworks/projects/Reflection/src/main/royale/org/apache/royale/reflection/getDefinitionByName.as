@@ -22,6 +22,10 @@ COMPILE::SWF
 {
     import flash.utils.getDefinitionByName;
 }
+COMPILE::JS
+{
+    import goog.global;
+}
     
     /**
      *  The equivalent of flash.utils.getQualifiedClassName.
@@ -41,7 +45,8 @@ COMPILE::SWF
         {
             var parts:Array = name.split('.');
             var n:int = parts.length;
-            var o:Object = window;
+            //use goog.global instead of window to support node too
+            var o:Object = goog.global;
             for (var i:int = 0; i < n; i++) {
                 o = o[parts[i]];
             }
