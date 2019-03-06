@@ -31,10 +31,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-	import org.apache.royale.core.UIBase;
 	
 	/**
 	 *  The Restrict bead class is a specialty bead that can be used with

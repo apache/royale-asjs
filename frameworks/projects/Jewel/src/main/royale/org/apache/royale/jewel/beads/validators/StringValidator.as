@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.validators
 {
+	COMPILE::JS
+	{
+		import goog.events.BrowserEvent;
+	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -106,8 +110,19 @@ package org.apache.royale.jewel.beads.validators
 			_maxLength = value;
 			COMPILE::JS
 			{
-				updateHost();
+			updateHost();
 			}	
+		}
+
+		COMPILE::JS
+		/**
+		 * solves Android issue where you can enter more characters than maxlenght in the input
+		 */
+		private function forceMaxLength(event:BrowserEvent):void {
+			var input:HTMLInputElement = hostComponent.element as HTMLInputElement;
+			if(input.value.length > _maxLength) {
+				input.value = input.value.substring(0, _maxLength);
+			}
 		}
 
 		/**
@@ -145,9 +160,12 @@ package org.apache.royale.jewel.beads.validators
                 if(_maxLength > 0)
 				{
 					hostComponent.element.setAttribute('maxlength', _maxLength);
+					//solves Android issue where you can enter more characters than maxlenght in the input
+					hostComponent.element.addEventListener("keyup", forceMaxLength, false);
 				} else
 				{
 					hostComponent.element.removeAttribute('maxlength');
+					hostComponent.element.addEventListener("keyup", forceMaxLength, false);
 				}
             }
 		}		
