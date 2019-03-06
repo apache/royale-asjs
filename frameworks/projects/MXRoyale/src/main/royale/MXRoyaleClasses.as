@@ -235,6 +235,16 @@ internal class MXRoyaleClasses
 
     import mx.containers.beads.FormItemView; FormItemView;
     import mx.containers.beads.FormItemContainer; FormItemContainer;
+
+
+	import org.apache.royale.reflection.registerClassAlias;
+	import mx.messaging.messages.AcknowledgeMessageExt;
+	import mx.messaging.messages.AsyncMessageExt;
+	import mx.messaging.messages.CommandMessageExt;
+	//RpcClassAliasInitializer
+	registerClassAlias("DSK", AcknowledgeMessageExt);
+	registerClassAlias("DSA", AsyncMessageExt);
+	registerClassAlias("DSC", CommandMessageExt);
     
 }
 

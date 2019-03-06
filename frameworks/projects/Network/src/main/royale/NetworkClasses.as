@@ -34,11 +34,11 @@ package
         import org.apache.royale.net.events.FaultEvent; FaultEvent;
         
         import org.apache.royale.net.remoting.messages.AcknowledgeMessage; AcknowledgeMessage;
-        import org.apache.royale.net.remoting.messages.AcknowledgeMessageExt;
+        // import org.apache.royale.net.remoting.messages.AcknowledgeMessageExt;
         import org.apache.royale.net.remoting.messages.AsyncMessage; AsyncMessage;
-        import org.apache.royale.net.remoting.messages.AsyncMessageExt;
+        // import org.apache.royale.net.remoting.messages.AsyncMessageExt;
         import org.apache.royale.net.remoting.messages.CommandMessage; CommandMessage;
-        import org.apache.royale.net.remoting.messages.CommandMessageExt;
+        // import org.apache.royale.net.remoting.messages.CommandMessageExt;
         import org.apache.royale.net.remoting.messages.RemotingMessage; RemotingMessage;
 
         import org.apache.royale.net.remoting.messages.RoyaleClient; RoyaleClient;
@@ -50,11 +50,11 @@ package
 		import org.apache.royale.net.utils.IDynamicPropertyWriter; IDynamicPropertyWriter;
 		import org.apache.royale.net.utils.IDynamicPropertyOutput; IDynamicPropertyOutput;
         
-        import org.apache.royale.reflection.registerClassAlias;
-        //RpcClassAliasInitializer
-        registerClassAlias("DSK", AcknowledgeMessageExt);
-        registerClassAlias("DSA", AsyncMessageExt);
-        registerClassAlias("DSC", CommandMessageExt);
+        // import org.apache.royale.reflection.registerClassAlias;
+        // //RpcClassAliasInitializer
+        // registerClassAlias("DSK", AcknowledgeMessageExt);
+        // registerClassAlias("DSA", AsyncMessageExt);
+        // registerClassAlias("DSC", CommandMessageExt);
         
     }
 }
