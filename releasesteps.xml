@@ -684,6 +684,9 @@
         <ant dir="${basedir}/artifacts/royale-asjs" target="main" />
     </target>
 
+    <target name="validate-ant-bits">
+    </target>
+
     <target name="main" description="Perform required release approval steps">
     </target>
 </project>
