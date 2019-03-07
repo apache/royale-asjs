@@ -167,7 +167,7 @@ package org.apache.royale.jewel.beads.validators
 					hostComponent.element.removeAttribute('maxlength');
 				}
 
-				if(OSUtils.getOS() != OSUtils.ANDROID_OS)
+				if(OSUtils.getOS() == OSUtils.ANDROID_OS)
 				{
 					if(_maxLength > 0)
 					{
