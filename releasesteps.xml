@@ -632,6 +632,58 @@
         </exec>
     </target>
     
+    <target name="get-maven-source-artifacts" >
+        <mkdir dir="${basedir}/artifacts" />
+        <mkdir dir="${basedir}/artifacts/royale-asjs" />
+        <mkdir dir="${basedir}/artifacts/royale-typedefs" />
+        <mkdir dir="${basedir}/artifacts/royale-compiler" />
+        <copy file="${basedir)/../Royale_Release_Step_011/target/checkout/release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" tofile="${basedir}/artifacts/royale-framework-parent-source-release.zip" />
+        <unzip src="${basedir}/artifacts/royale-framework-parent-source-release.zip"
+            dest="${basedir}/artifacts/royale-asjs">
+            <cutdirsmapper dirs="1"/>
+        </unzip>
+        <copy file="${basedir}/../Royale_Release_Step_007/target/checkout/release-dir/org/apache/royale/typedefs/royale-typedefs-parent/${release.version}/royale-typedefs-parent-${release.version}-source-release.zip" tofile="${basedir}/artifacts/royale-typedefs-parent-source-release.zip" />
+        <unzip src="${basedir}/artifacts/royale-typedefs-parent-source-release.zip"
+            dest="${basedir}/artifacts/royale-typedefs">
+            <cutdirsmapper dirs="1"/>
+        </unzip>
+        <copy file="${basedir}/../Royale_Release_Step_003/target/checkout/release-dir/org/apache/royale/compiler/royale-compiler-parent/${release.version}/royale-compiler-parent-${release.version}-source-release.zip" dest="${basedir}/artifacts/royale-compiler-parent-source-release.zip" />
+        <unzip src="${basedir}/artifacts/royale-compiler-parent-source-release.zip"
+            dest="${basedir}/artifacts/royale-compiler">
+            <cutdirsmapper dirs="1"/>
+        </unzip>
+    </target>
+    
+    <target name="ant-artifacts">
+        <property name="ROYALE_COMPILER_REPO" value="${basedir}/artifacts/royale-compiler" />
+        <property name="ROYALE_TYPEDEFS_HOME" value="${basedir}/artifacts/royale-typedefs" />
+        <ant dir="${basedir}/artifacts/royale-asjs" target="release" />
+        <ant dir="${basedir}/artifacts/royale-asjs" target="create-SHA-512" />
+        <ant dir="${basedir}/artifacts/royale-asjs" target="create-SHA-512-jsonly" />
+    </target>
+    
+    <target name="Release_Step_013_Generate_Artifacts" depends="get-maven-source-artifacts, ant-artifacts">
+    </target>
+    
+    <target name="Release_Step_013" depends="get-temp-folder,download-ant-artifacts,unzip-ant-artifacts,build-ant-source,validate-ant-bits">
+    </target>
+    
+    <target name="download-ant-artifacts" if="artifactfolder">
+        <get src="http://apacheroyaleci.westus2.cloudapp.azure.com:8080/job/Royale_Release_Step_013/lastSuccessfulBuild/artifact/*zip*/archive.zip" dest="${artifactfolder}/archive.zip" />
+    </target>
+    <target name="unzip-ant-artifacts" if="artifactfolder">
+        <mkdir dir="${artifactfolder}/artifacts" />
+        <unzip src="${artifactfolder}/archive.zip" dest="${artifactfolder}/artifacts"/>
+    </target>
+    <target name="build-ant-source" >
+        <mkdir dir="${artifactfolder}/sources" />
+        <unzip src="${artifactfolder}/artifacts/archive/apache-royale-${releaseversion}.zip" dest="${artifactfolder}/sources" >
+            <cutdirsmapper dirs="1" />
+        </unzip>
+        
+        <ant dir="${basedir}/artifacts/royale-asjs" target="main" />
+    </target>
+
     <target name="main" description="Perform required release approval steps">
     </target>
 </project>
