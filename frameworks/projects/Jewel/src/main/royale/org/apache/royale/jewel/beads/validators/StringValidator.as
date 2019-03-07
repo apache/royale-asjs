@@ -21,6 +21,8 @@ package org.apache.royale.jewel.beads.validators
 	COMPILE::JS
 	{
 		import goog.events.BrowserEvent;
+
+		import org.apache.royale.utils.OSUtils;
 	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
@@ -160,12 +162,21 @@ package org.apache.royale.jewel.beads.validators
                 if(_maxLength > 0)
 				{
 					hostComponent.element.setAttribute('maxlength', _maxLength);
-					//solves Android issue where you can enter more characters than maxlenght in the input
-					hostComponent.element.addEventListener("keyup", forceMaxLength, false);
 				} else
 				{
 					hostComponent.element.removeAttribute('maxlength');
-					hostComponent.element.addEventListener("keyup", forceMaxLength, false);
+				}
+
+				if(OSUtils.getOS() != OSUtils.ANDROID_OS)
+				{
+					if(_maxLength > 0)
+					{
+						//solves Android issue where you can enter more characters than maxlenght in the input
+						hostComponent.element.addEventListener("keyup", forceMaxLength, false);
+					} else
+					{
+						hostComponent.element.removeEventListener("keyup", forceMaxLength, false);
+					}
 				}
             }
 		}		
