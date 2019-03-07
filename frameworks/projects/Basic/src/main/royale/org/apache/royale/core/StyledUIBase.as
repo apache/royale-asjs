@@ -47,8 +47,8 @@ package org.apache.royale.core
          */
 		public function StyledUIBase()
 		{
-            super();
             classSelectorList = new ClassSelectorList(this);
+            super();
 		}
 
         protected var classSelectorList:ClassSelectorList;

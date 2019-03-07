@@ -284,7 +284,6 @@ package org.apache.royale.jewel
 
             goog.events.listen(element, 'change', changeHandler);
 
-            positioner = element;
             return element;
         }
 

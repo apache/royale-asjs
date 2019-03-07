@@ -184,7 +184,6 @@ package org.apache.royale.jewel
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this, 'div');
-			positioner = element;
 			return element;
         }
 
