@@ -633,21 +633,27 @@
     </target>
     
     <target name="get-maven-source-artifacts" >
+        <!-- done in batch file in jenkins job.  Jenkins didn't like relative path outside the workspace
         <mkdir dir="${basedir}/artifacts" />
         <mkdir dir="${basedir}/artifacts/royale-asjs" />
         <mkdir dir="${basedir}/artifacts/royale-typedefs" />
         <mkdir dir="${basedir}/artifacts/royale-compiler" />
         <copy file="${basedir)/../Royale_Release_Step_011/target/checkout/release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" tofile="${basedir}/artifacts/royale-framework-parent-source-release.zip" />
+         -->
         <unzip src="${basedir}/artifacts/royale-framework-parent-source-release.zip"
             dest="${basedir}/artifacts/royale-asjs">
             <cutdirsmapper dirs="1"/>
         </unzip>
+        <!-- done in batch file in jenkins job.  Jenkins didn't like relative path outside the workspace
         <copy file="${basedir}/../Royale_Release_Step_007/target/checkout/release-dir/org/apache/royale/typedefs/royale-typedefs-parent/${release.version}/royale-typedefs-parent-${release.version}-source-release.zip" tofile="${basedir}/artifacts/royale-typedefs-parent-source-release.zip" />
+         -->
         <unzip src="${basedir}/artifacts/royale-typedefs-parent-source-release.zip"
             dest="${basedir}/artifacts/royale-typedefs">
             <cutdirsmapper dirs="1"/>
         </unzip>
+        <!-- done in batch file in jenkins job.  Jenkins didn't like relative path outside the workspace
         <copy file="${basedir}/../Royale_Release_Step_003/target/checkout/release-dir/org/apache/royale/compiler/royale-compiler-parent/${release.version}/royale-compiler-parent-${release.version}-source-release.zip" dest="${basedir}/artifacts/royale-compiler-parent-source-release.zip" />
+         -->
         <unzip src="${basedir}/artifacts/royale-compiler-parent-source-release.zip"
             dest="${basedir}/artifacts/royale-compiler">
             <cutdirsmapper dirs="1"/>
