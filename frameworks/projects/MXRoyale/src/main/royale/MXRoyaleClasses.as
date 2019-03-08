@@ -201,6 +201,9 @@ internal class MXRoyaleClasses
 	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
+	
+	import mx.controls.PopUpButton; PopUpButton;
+	import mx.controls.PopUpMenuButton; PopUpMenuButton;
 
 
 	COMPILE::JS
