@@ -325,12 +325,6 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		}
 	}
 	
-	public function writeAll(bytes:Array):void {
-		for (var i:uint = 0; i < bytes.length; i++) {
-			writeByte(bytes[i]);
-		}
-	}
-	
 	protected function addByteSequence(array:Array):void{
 		var length:uint = array.length;
 		if (_position == _len) {
@@ -703,15 +697,25 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 	/**
 	 *
 	 * @royaleignorecoercion BinaryData
+	 * @royaleignorecoercion Uint8Array
 	 */
 	private function writeObjectVariant(v:Object):void {
 		if (v is AMFBinaryData || v is BinaryData) {
 			writeByte(AMF3_BYTEARRAY);
-			var binaryData:BinaryData = v as BinaryData;
-			var len:uint = binaryData.length;
-			writeUInt29(len);
-			writeBinaryData(binaryData, 0, len);
-			return;
+			if (!this.objectByReference(v)) {
+				var binaryData:BinaryData = v as BinaryData;
+				var len:uint = binaryData.length;
+				writeUInt29(len);
+				var sourceArray:Uint8Array = binaryData.array as Uint8Array;
+				if (sourceArray.forEach) {
+					sourceArray.forEach(writeByte, this);
+				} else {
+					for (var i:uint=0;i<len;i++) {
+						writeByte(sourceArray[i]);
+					}
+				}
+				return;
+			}
 		}
 		
 		writeByte(AMF3_OBJECT);
@@ -1159,7 +1163,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		else {
 			var len:uint = (ref >> 1);
 			var bytes:Uint8Array = new Uint8Array(len);
-			bytes.set(new Uint8Array(getTypedArray(), _position, len));
+			bytes.set(new Uint8Array(this.ba, _position, len));
 			_position += len;
 			var ba:AMFBinaryData = new AMFBinaryData(bytes.buffer);
 			rememberObject(ba);
