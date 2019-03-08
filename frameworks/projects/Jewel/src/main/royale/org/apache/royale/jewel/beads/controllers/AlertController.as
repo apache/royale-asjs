@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controllers
 {
     COMPILE::SWF
     {
-        import flash.display.DisplayObject;
+    import flash.display.DisplayObject;
     }
 
     import org.apache.royale.core.UIBase;
@@ -96,9 +96,7 @@ package org.apache.royale.jewel.beads.controllers
 			COMPILE::JS
 			{
 			document.body.classList.remove("viewport");
-			var dialog:HTMLDialogElement = host.element as HTMLDialogElement;
-			dialog.close();
-			dialog.parentElement.removeChild(dialog);
+			host.element.parentElement.removeChild(host.element);
 			}
         }
 	}
