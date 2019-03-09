@@ -383,6 +383,29 @@ package flexUnitTests.network
 			
 			
 		}
+		
+		[Test]
+		public function testByteArray():void{
+			//on swf it is native ByteArray that encodes to 'ByteArray', in js it is AMFBinaryData
+			COMPILE::SWF{
+				import flash.utils.ByteArray;
+				var source:ByteArray = new ByteArray();
+			}
+			
+			COMPILE::JS{
+				var source:AMFBinaryData = new AMFBinaryData();
+			}
+			
+			for (var i:uint=0;i<26;i++) source.writeByte(i);
+			var ba:AMFBinaryData = new AMFBinaryData();
+			var holder:Array = [source, source];
+			
+			ba.writeObject(holder);
+			Assert.assertEquals("post-write error length was not correct", ba.length, 33);
+			Assert.assertEquals("post-write error position was not correct", ba.position, 33);
+			ba.position = 0;
+			Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba,[9, 5, 1, 12, 53, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 12, 2]));
+		}
 
 
 		[Test]

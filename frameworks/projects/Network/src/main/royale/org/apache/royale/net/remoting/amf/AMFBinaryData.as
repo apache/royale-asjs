@@ -330,9 +330,9 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		if (_position == _len) {
 			writeBuffer = writeBuffer.concat(array);
 			_len = _len + length;
-			if (_len != writeBuffer.length) {
+			/*if (_len != writeBuffer.length) {
 				throw new Error('code review')
-			}
+			}*/
 		} else {
 			if (_position + length > _len) {
 				//overwrite beyond
@@ -697,7 +697,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 	/**
 	 *
 	 * @royaleignorecoercion BinaryData
-	 * @royaleignorecoercion Uint8Array
+	 * @royaleignorecoercion ArrayBuffer
 	 */
 	private function writeObjectVariant(v:Object):void {
 		if (v is AMFBinaryData || v is BinaryData) {
@@ -705,17 +705,10 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 			if (!this.objectByReference(v)) {
 				var binaryData:BinaryData = v as BinaryData;
 				var len:uint = binaryData.length;
-				writeUInt29(len);
-				var sourceArray:Uint8Array = binaryData.array as Uint8Array;
-				if (sourceArray.forEach) {
-					sourceArray.forEach(writeByte, this);
-				} else {
-					for (var i:uint=0;i<len;i++) {
-						writeByte(sourceArray[i]);
-					}
-				}
-				return;
+				this.writeUInt29((len << 1) | 1);
+				writeBytes(binaryData.data as ArrayBuffer);
 			}
+			return;
 		}
 		
 		writeByte(AMF3_OBJECT);
