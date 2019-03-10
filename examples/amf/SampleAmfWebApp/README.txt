@@ -35,7 +35,7 @@ Is the Apache Royale Client that uses RemoteObject to communicate with the backe
 SampleAmfWebApp: (server implementation)
 Is a Java WebApp that uses Apache Flex BlazeDS to expose some data and objects through an AMF endpoint. Direct Link to this project
 
-To run this example localy you can follow this steps. 
+To run this example localy you can follow this steps.
 Note: At this time some parts of the example only can be build with maven, we'll be providing at some time ANT build, but this is not priority. If you're interested in ANT build you can submit a PR)
 
 1. Build RemoteObjectAMFTest with maven using "mvn clean install". This generates the Apache Royale client.
@@ -47,3 +47,21 @@ Note: At this time some parts of the example only can be build with maven, we'll
 3. Launch SampleAmfWebApp in the embedded Jetty web server with "java -jar target/SampleAmfWebApp-0.9.6-SNAPSHOT-exec.war". You should be in root SampleAmfWebApp folder. Notice: that SNAPSHOT number is just an example and can be different
 
 4. In a browser launch "http://localhost:8080" and try the examples.
+
+To test the above with alternate client implementations, follow the the same process, but change steps 1 & 2 as follows:
+
+For non-mx use of Royale RemoteObject, and Jewel components, amend instructions for 1 & 2 above:
+
+1. Build RemoteObjectAMFTest with maven using "mvn clean install". This generates the Apache Royale client.
+(this one is in the examples/royale folder)
+
+2. instead of  "mvn clean install" for SampleAmfWebApp, use mvn -f pom-royale-jewel.xml clean install
+
+
+@todo (this is not working yet):
+For non-mx use of Royale RemoteObject, and Basic components, amend instructions for 1 & 2 above:
+
+1. Build RemoteObjectAMFTestBasic with maven using "mvn clean install". This generates the Apache Royale client.
+(this one is in the examples/royale folder)
+
+2. instead of  "mvn clean install" for SampleAmfWebApp, use mvn -f pom-royale-basic.xml clean install

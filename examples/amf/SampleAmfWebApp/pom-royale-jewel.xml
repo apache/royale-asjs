@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.apache.royale.examples</groupId>
+    <artifactId>examples-amf-webapps</artifactId>
+    <version>0.9.6-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>SampleAmfWebApp</artifactId>
+  <version>0.9.6-SNAPSHOT</version>
+  <packaging>war</packaging>
+
+  <name>Apache Royale: Examples: AMF Web Apps: SampleAmfWebApp</name>
+
+  <properties>
+    <java.version>1.7</java.version>
+  </properties>
+
+  <build>
+    <sourceDirectory>src/main/java</sourceDirectory>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.5.1</version>
+        <configuration>
+          <source>${java.version}</source>
+          <target>${java.version}</target>
+        </configuration>
+      </plugin>
+
+      <!-- Make Spring-Boot build an executable war -->
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>1.3.3.RELEASE</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>repackage</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <classifier>exec</classifier>
+        </configuration>
+      </plugin>
+      <!--
+          We are building a servlet 3.0 application we don't
+          need a web.xml, so we have to disable a check on the
+          plugin.
+      -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <configuration>
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+          <overlays>
+            <overlay>
+              <groupId>org.apache.royale.examples</groupId>
+               <artifactId>RemoteObjectAMFTest</artifactId>
+              <targetPath>public</targetPath>
+            </overlay>
+          </overlays>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <echo>To run, use:</echo>
+                <echo>java -jar target/${project.artifactId}-${project.version}-exec.war</echo>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Test create javadocs -->
+      <!-- <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+              <noqualifier>all</noqualifier>
+              <reportOutputDirectory>${basedir}/javadoc</reportOutputDirectory>
+              <destDir>javadoc</destDir>
+          </configuration>
+          <executions>
+            <execution>
+                <id>attach-javadocs</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+              </execution>
+          </executions>
+      </plugin>  -->
+    </plugins>
+  </build>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-context</artifactId>
+      <version>4.3.2.RELEASE</version>
+    </dependency>
+
+    <!--
+        This will pull in and configure the servlet engine as
+        well as the BlazeDS server.
+    -->
+    <dependency>
+      <groupId>org.apache.flex.blazeds</groupId>
+      <artifactId>blazeds-spring-boot-starter</artifactId>
+      <version>4.7.3</version>
+    </dependency>
+
+     <dependency>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RemoteObjectAMFTest</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>war</type>
+    </dependency>
+
+
+  </dependencies>
+
+</project>
