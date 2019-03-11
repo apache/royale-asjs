@@ -36,7 +36,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class SectionContent extends Group implements ISelectableContent
+	public class SectionContent extends Container implements ISelectableContent
 	{
 		/**
 		 *  constructor.

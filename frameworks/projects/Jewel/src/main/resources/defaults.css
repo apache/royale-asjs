@@ -57,7 +57,7 @@ j|ApplicationResponsiveView {
 .applicationResponsiveView {
   display: inline-flex;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 j|ApplicationView {
@@ -3322,12 +3322,21 @@ j|PopUp {
   flex-flow: column nowrap;
   height: 100%;
 }
+.jewel.section > * {
+  flex: 0 0 auto;
+}
 .jewel.section.is-selected {
   display: flex;
 }
 
 j|SectionContent {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|ScrollableSectionContent {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.slider {
@@ -3465,6 +3474,10 @@ j|Snackbar {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SnackbarModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SnackbarController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SnackbarView");
+}
+
+.jewel.tabbar {
+  height: 48px;
 }
 
 j|TabBar {
@@ -3898,15 +3911,15 @@ j|WizardContent {
 
 .jewel.main {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 .has-topappbar {
-  padding-top: 64px !important;
+  padding-top: 66px !important;
 }
 
 .has-footerbar {
-  padding-bottom: 64px !important;
+  padding-bottom: 66px !important;
 }
 
 j|ApplicationMainContent {

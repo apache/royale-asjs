@@ -16,34 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.jewel
+{
+	/**
+	 *  The ScrollableSectionContent class is a scrollable container component capable of parenting other
+	 *  components. This class is used along with Tabs to separate content and
+	 *  present and organize data for the user.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.6
+	 */
+	public class ScrollableSectionContent extends SectionContent
+	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function ScrollableSectionContent()
+		{
+			super();
 
-// Jewel TabBar
-
-// TabBar variables
-
-
-.jewel.tabbar
-
-// Jewel TabBarButtonItemRenderer
-
-// TabBarButtonItemRenderer variables
-// Jewel NavigationLinkItemRenderer
-
-// NavigationLinkItemRenderer variables
-.jewel.tabbarbutton
-    margin: 0
-    padding: ($itemrenderer-padding - 2) $itemrenderer-padding
-    font:
-        family: $font-stack
-        size: $font-size
-        weight: $font-weight-normal + 100
-
-    color: rgba(black, 0.6)
-    
-    &.hovered:hover
-        //color: $font-theme-color
-        background: lighten($default-color, 10%) !important
-
-    &.selected, &.selectable:active
-        color: $font-theme-color
-        background: lighten($primary-color, 5%) !important
+            typeNames = "jewel section scrollable";
+		}
+    }
+}
