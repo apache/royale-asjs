@@ -47,7 +47,7 @@ package org.apache.royale.jewel
 	/**
 	 * WizardPage is the main class for a page inside the WizardContent
 	 */
-    public class WizardPage extends ScrollableSectionContent
+    public class WizardPage extends SectionContent
     {
         /**
 		 *  constructor.

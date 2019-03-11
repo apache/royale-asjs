@@ -3902,10 +3902,14 @@ j|Wizard {
   IWizardContentArea: ClassReference("org.apache.royale.jewel.WizardContent");
 }
 
+j|WizardPage {
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.NoViewport");
+}
+
 j|WizardContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
