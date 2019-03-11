@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.rpc.remoting
+package mx.rpc.remoting.mxml
 {
     COMPILE::SWF
     {

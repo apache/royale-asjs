@@ -55,18 +55,20 @@ package org.apache.royale.net
          * @royalesuppresspublicvarwarning
          */
         public static var disableCompression:Boolean;
-
-        override public function resultHandler(param:Object):void
+	
+		/**
+		 * @royaleignorecoercion org.apache.royale.net.remoting.amf.AMFBinaryData
+		 */
+		override public function resultHandler(param:Object):void
 		{
             COMPILE::JS
             {
-                if(!disableCompression) {
-                    // --- Transform the number array into a bytearray
-                    var bytearray:Uint8Array = new Uint8Array(param.body);
-
-                    // --- uncompress the bytearray to get the real object (tree) and create the AMFBinaryData with it
-                    var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray).buffer);
-                    param.body = data.readObject();
+                if(!disableCompression && param.body is AMFBinaryData) {
+                    var original:AMFBinaryData = param.body as AMFBinaryData;
+                    
+                    // --- uncompress the original bytes to get the real object (tree) and create a new AMFBinaryData with it
+                    var uncompressed:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](original.array).buffer);
+                    param.body = uncompressed.readObject();
                 }
                 // --- dispatch the ResultEvent like in the standard RemoteObject with the inflated result object
     		    dispatchEvent(new ResultEvent(ResultEvent.RESULT, param.body));
@@ -75,7 +77,7 @@ package org.apache.royale.net
             COMPILE::SWF
             {
                 // --- SWF not tested
-                if(!disableCompression) {
+                if(!disableCompression && param.body is ByteArray) {
                     var byteArray:ByteArray = param.body as ByteArray;
                     byteArray.uncompress();
                     dispatchEvent(new ResultEvent(ResultEvent.RESULT, byteArray.readObject()));
