@@ -68,6 +68,8 @@ internal class MXRoyaleClasses
 	import mx.effects.Tween; Tween;
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
+	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
+	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
