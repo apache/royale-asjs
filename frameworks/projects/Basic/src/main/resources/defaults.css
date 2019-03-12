@@ -59,6 +59,14 @@ ButtonBar
 	border-style: none;
 }
 
+ColorPicker
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ComboBoxModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ColorPickerView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
+	IPopUp: ClassReference("org.apache.royale.html.supportClasses.SwatchList");
+}
+
 ComboBox
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ComboBoxModel");

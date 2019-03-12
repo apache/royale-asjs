@@ -18,30 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-
 	/**
-	 *  The SwatchList class is use in a ColorPicker. It contains a list of predefined colors.
+	 *  The ColorPicker class is a component that displays an input field and
+	 *  pop-up List with some optional controls, such as a swatch and a color gradient.
 	 * 
-	 *
-     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class SwatchList extends List
+	public class ColorPicker extends ComboBox
 	{
 		/**
-		 *  constructor.
+		 *  Constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function SwatchList()
+		public function ColorPicker()
 		{
 			super();
+            
+            typeNames = "ColorPicker";
 		}
 	}
 }

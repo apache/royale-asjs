@@ -48,7 +48,8 @@
     <component id="DynamicList" class="org.apache.royale.html.DynamicList"/>
     <component id="PopUpList" class="org.apache.royale.html.PopUpList"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
-    <component id="SwatchList" class="org.apache.royale.html.SwatchList"/>
+    <component id="SwatchList" class="org.apache.royale.html.supportClasses.SwatchList"/>
+    <component id="ColorPicker" class="org.apache.royale.html.ColorPicker"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
     <component id="CSSCheckBox" class="org.apache.royale.html.CSSCheckBox"/>
     <component id="RadioButton" class="org.apache.royale.html.RadioButton"/>

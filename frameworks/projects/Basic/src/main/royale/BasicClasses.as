@@ -81,6 +81,7 @@ internal class BasicClasses
 		import org.apache.royale.html.beads.CheckBoxView; CheckBoxView;
 	}
     import org.apache.royale.html.beads.ComboBoxView; ComboBoxView;
+    import org.apache.royale.html.beads.ColorPickerView; ColorPickerView;
     import org.apache.royale.html.MXMLBeadView; MXMLBeadView;
     import org.apache.royale.html.beads.GroupView; GroupView;
 	import org.apache.royale.html.beads.ContainerView; ContainerView;
