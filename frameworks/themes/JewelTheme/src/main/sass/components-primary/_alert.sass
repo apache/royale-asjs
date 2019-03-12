@@ -27,9 +27,9 @@ $alert-header-height: 50px
 $alert-footer-height: 84px
 $alert-border-radius: 3px
 
-$alert-title-font-size: 1.9em
+$alert-title-font-size: 1.45em
 $alert-title-font-weight: bold
-$alert-title-color: darken($default-font-color, 15%)
+$alert-title-color: $primary-color
 
 $alert-label-font-size: 1.1em
 $alert-label-font-weight: $font-weight-normal
@@ -79,8 +79,9 @@ $alert-modal-opacity: .5
         
         .jewel.label
             font:
-                size: $alert-title-font-size
+                size: $alert-title-font-size !important
                 weight: $alert-title-font-weight
+                color: $primary-color
           
     .content
         // position: absolute
