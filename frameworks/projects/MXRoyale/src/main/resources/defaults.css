@@ -29,7 +29,11 @@
 	box-sizing: border-box;
 }
 
+* {
+	font-family:	Verdana;
+	font-size:		12px;
 
+}
 
 global {
     IStatesImpl:            ClassReference("org.apache.royale.core.StatesWithTransitionsImpl");
