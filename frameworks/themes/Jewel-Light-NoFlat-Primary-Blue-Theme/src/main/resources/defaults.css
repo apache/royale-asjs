@@ -105,11 +105,12 @@ hr {
 .jewel.alert .jewel.titlebar {
   padding: 20px 20px 0px 20px;
   height: 50px;
-  color: #5a5a5a;
+  color: #3CADF1;
 }
 .jewel.alert .jewel.titlebar .jewel.label {
-  font-size: 1.9em;
+  font-size: 1.45em !important;
   font-weight: bold;
+  font-color: #3CADF1;
 }
 .jewel.alert .content {
   padding: 20px;
