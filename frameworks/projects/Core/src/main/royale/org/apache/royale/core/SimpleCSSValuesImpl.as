@@ -866,7 +866,7 @@ package org.apache.royale.core
             var skipStyles:Object = this.skipStyles;
             var numericStyles:Object = this.numericStyles;
             var listObj:Object = styles;
-            if (styles.styleList)
+            if (styles && styles.styleList)
                 listObj = styles.styleList;
             for (var p:String in listObj) 
             {
