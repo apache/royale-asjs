@@ -27,7 +27,6 @@ package
  */
 internal class MXRoyaleClasses
 {
-	import mx.core.mx_internal; mx_internal;
 	import mx.core.ScrollPolicy; ScrollPolicy;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
@@ -36,12 +35,8 @@ internal class MXRoyaleClasses
 	import mx.events.EffectEvent; EffectEvent;
 	import mx.graphics.IStroke; IStroke;
 	import mx.graphics.IFill; IFill;
-	import mx.core.EventPriority; EventPriority;
 	import mx.core.IFactory; IFactory;
 	import mx.core.ILayoutElement; ILayoutElement;
-	import mx.collections.CursorBookmark; CursorBookmark;
-	import mx.collections.ICollectionView; ICollectionView;
-	import mx.collections.IViewCursor; IViewCursor;
 	import mx.events.SandboxMouseEvent; SandboxMouseEvent;
 	import mx.events.ResizeEvent; ResizeEvent;
 	import mx.utils.StringUtil; StringUtil;
@@ -67,9 +62,6 @@ internal class MXRoyaleClasses
 	import mx.core.ClassFactory; ClassFactory;
 	import mx.effects.Tween; Tween;
 	import mx.system.ApplicationDomain; ApplicationDomain;
-	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
-	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
-	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
@@ -111,11 +103,6 @@ internal class MXRoyaleClasses
 	import mx.effects.easing.Exponential; Exponential;
 	import mx.effects.effectClasses.TweenEffectInstance; TweenEffectInstance;
 	import mx.effects.TweenEffect; TweenEffect; 
-	import mx.rpc.Fault; Fault;
-	import mx.rpc.events.InvokeEvent; InvokeEvent;
-	import mx.rpc.events.ResultEvent; ResultEvent;
-	import mx.rpc.AsyncResponder; AsyncResponder;
-	import mx.rpc.Responder; Responder;
 	import mx.printing.FlexPrintJobScaleType; FlexPrintJobScaleType; 
 	import mx.skins.RectangularBorder; RectangularBorder;
 	import mx.styles.IStyleClient; IStyleClient; 
@@ -128,11 +115,8 @@ internal class MXRoyaleClasses
 	import mx.utils.URLUtil; URLUtil;
 	import mx.core.UITextField; UITextField;
 	import mx.effects.Parallel; Parallel; 
-	import mx.rpc.events.FaultEvent; FaultEvent;
 	import mx.events.AdvancedDataGridEvent; AdvancedDataGridEvent;
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
-	import mx.rpc.soap.WebService; WebService;
-	import mx.collections.ISort; ISort;
 	import mx.utils.Base64Encoder; Base64Encoder;
 	import mx.utils.Base64Decoder; Base64Decoder;
 	import mx.events.IndexChangedEvent; IndexChangedEvent;
@@ -176,12 +160,8 @@ internal class MXRoyaleClasses
 	import mx.managers.ILayoutManagerClient; ILayoutManagerClient;
 	import mx.core.LayoutDirection; LayoutDirection;
 	import mx.styles.IAdvancedStyleClient; IAdvancedStyleClient;
-	import mx.collections.IComplexSortField; IComplexSortField;
 	import mx.core.IIMESupport; IIMESupport;
 	import mx.core.InteractionMode; InteractionMode;
-	import mx.collections.ComplexFieldChangeWatcher; ComplexFieldChangeWatcher;
-	import mx.binding.BindabilityInfo; BindabilityInfo;
-	import mx.binding.utils.ChangeWatcher; ChangeWatcher;
 	import mx.validators.IValidatorListener; IValidatorListener;
 	import mx.managers.IToolTipManagerClient; IToolTipManagerClient;
 	import mx.events.ToolTipEvent; ToolTipEvent;
@@ -190,17 +170,8 @@ internal class MXRoyaleClasses
 	import mx.managers.ToolTipManager; ToolTipManager;
 	import mx.managers.IToolTipManager2; IToolTipManager2;
 	import mx.utils.PopUpUtil; PopUpUtil;
-	import mx.rpc.http.HTTPMultiService; HTTPMultiService;
-	import mx.messaging.messages.HTTPRequestMessage; HTTPRequestMessage;
-	import mx.messaging.channels.DirectHTTPChannel; DirectHTTPChannel;
-	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
-	import mx.rpc.http.SerializationFilter; SerializationFilter;
-	import mx.rpc.http.AbstractOperation; AbstractOperation;
 	import mx.events.MenuEvent; MenuEvent;
-	import mx.rpc.CallResponder; CallResponder;
-	import mx.rpc.http.Operation; Operation;
 	import mx.events.TreeEvent; TreeEvent;
-	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
 	
@@ -240,16 +211,6 @@ internal class MXRoyaleClasses
 
     import mx.containers.beads.FormItemView; FormItemView;
     import mx.containers.beads.FormItemContainer; FormItemContainer;
-
-
-	import org.apache.royale.reflection.registerClassAlias;
-	import mx.messaging.messages.AcknowledgeMessageExt;
-	import mx.messaging.messages.AsyncMessageExt;
-	import mx.messaging.messages.CommandMessageExt;
-	//RpcClassAliasInitializer
-	registerClassAlias("DSK", AcknowledgeMessageExt);
-	registerClassAlias("DSA", AsyncMessageExt);
-	registerClassAlias("DSC", CommandMessageExt);
     
 }
 

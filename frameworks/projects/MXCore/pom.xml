@@ -26,11 +26,11 @@
     <version>0.9.6-SNAPSHOT</version>
   </parent>
 
-  <artifactId>MXRoyale</artifactId>
+  <artifactId>MXCore</artifactId>
   <version>0.9.6-SNAPSHOT</version>
   <packaging>swc</packaging>
 
-  <name>Apache Royale: Framework: Libs: MXRoyale</name>
+  <name>Apache Royale: Framework: Libs: MXCore</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -48,31 +48,11 @@
             </namespace>
           </namespaces>
           <includeClasses>
-            <includeClass>MXRoyaleClasses</includeClass>
+            <includeClass>MXCoreClasses</includeClass>
           </includeClasses>
-          <includeFiles>
-              <include-file>
-                  <name>defaults.css</name>
-                  <path>../src/main/resources/defaults.css</path>
-              </include-file>
-          </includeFiles>
           <skipExtern>true</skipExtern>
-          <defines>
-              <define>
-                  <name>GOOG::DEBUG</name>
-                  <value>true</value>
-              </define>
-              <define>
-                  <name>ROYALE::DISPLAYOBJECT</name>
-                  <value>IUIComponent</value>
-              </define>
-              <define>
-                  <name>ROYALE::PROXYVISIBILITY</name>
-                  <value>flash_proxy</value>
-              </define>
-          </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <additionalCompilerOptions>-source-map=true;-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG;-js-compiler-define=ROYALE::DISPLAYOBJECT,IUIComponent;-js-compiler-define=ROYALE::PROXYVISIBILITY,public;-namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml</additionalCompilerOptions>
+          <additionalCompilerOptions>-source-map=true;-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
@@ -236,35 +216,6 @@
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>XML</artifactId>
-        <version>0.9.6-SNAPSHOT</version>
-        <type>swc</type>
-        <classifier>js</classifier>
-    </dependency>
-    
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>MXCore</artifactId>
-        <version>0.9.6-SNAPSHOT</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>MXCore</artifactId>
-        <version>0.9.6-SNAPSHOT</version>
-        <type>swc</type>
-        <classifier>js</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>MXCollections</artifactId>
-        <version>0.9.6-SNAPSHOT</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>MXCollections</artifactId>
         <version>0.9.6-SNAPSHOT</version>
         <type>swc</type>
         <classifier>js</classifier>

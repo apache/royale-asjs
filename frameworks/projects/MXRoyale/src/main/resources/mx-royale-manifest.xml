@@ -21,17 +21,17 @@
 
 <componentPackage>
 
-  <component id="Application" class="mx.core.Application" />
-  <component id="Button" class="mx.controls.Button" />
-  <component id="CheckBox" class="mx.controls.CheckBox" />
-  <component id="ComboBox" class="mx.controls.ComboBox" />
-  <component id="DataGrid" class="mx.controls.DataGrid" />
-  <component id="DataGridColumn" class="mx.controls.dataGridClasses.DataGridColumn" />
+	<component id="Application" class="mx.core.Application" />
+	<component id="Button" class="mx.controls.Button" />
+	<component id="CheckBox" class="mx.controls.CheckBox" />
+	<component id="ComboBox" class="mx.controls.ComboBox" />
+	<component id="DataGrid" class="mx.controls.DataGrid" />
+	<component id="DataGridColumn" class="mx.controls.dataGridClasses.DataGridColumn" />
 	<component id="DateChooser" class="mx.controls.DateChooser" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
 	<component id="LinkButton" class="mx.controls.LinkButton" />
-  <component id="List" class="mx.controls.List" />
+	<component id="List" class="mx.controls.List" />
 	<component id="NumericStepper" class="mx.controls.NumericStepper" />
 	<component id="ProgressBar" class="mx.controls.ProgressBar" />
 	<component id="RadioButton" class="mx.controls.RadioButton" />
@@ -45,21 +45,17 @@
 	<component id="Container" class="mx.core.Container" />
 	<component id="HBox" class="mx.containers.HBox" />
 	<component id="HDividedBox" class="mx.containers.HDividedBox" />
-    <component id="Panel" class="mx.containers.Panel" />
+  	<component id="Panel" class="mx.containers.Panel" />
 	<component id="VBox" class="mx.containers.VBox" />
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
-  <component id="Panel" class="mx.containers.Panel" />
+  	<component id="Panel" class="mx.containers.Panel" />
 	<component id="ViewStack" class="mx.containers.ViewStack" />
-    <component id="TabNavigator" class="mx.containers.TabNavigator" />
+  	<component id="TabNavigator" class="mx.containers.TabNavigator" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
-	<component id="CompressedRemoteObject" class="mx.rpc.remoting.mxml.CompressedRemoteObject" />
-	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
-    <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation"/>
-	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
 	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
 	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
 	<component id="DateValidator" class="mx.validators.DateValidator"/>
@@ -67,16 +63,13 @@
 	<component id="Module" class="mx.modules.Module"/>
 	<component id="ModuleLoader" class="mx.modules.ModuleLoader"/>
 	<component id="State" class="mx.states.State" />
-    <component id="Transition" class="mx.states.Transition" />
+  <component id="Transition" class="mx.states.Transition" />
 	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
-	<component id="ArrayList" class="mx.collections.ArrayList"/>
 	<component id="UIComponent" class="mx.core.UIComponent"/>
 	<component id="Container" class="mx.core.Container"/>
 	<component id="ControlBar" class="mx.containers.ControlBar"/>
 	<component id="Panel" class="mx.containers.Panel"/>
 	<component id="ToolTip" class="mx.controls.ToolTip" />
-	<component id="SortField" class="mx.collections.SortField"/>
-	<component id="Sort" class="mx.collections.Sort"/>
 	<component id="Stroke" class="mx.graphics.Stroke"/>
 	<component id="SolidColor" class="mx.graphics.SolidColor"/>
 	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke"/>
@@ -91,21 +84,16 @@
 	<component id="Move" class="mx.effects.Move"/>
 	<component id="LinearGradient" class="mx.graphics.LinearGradient"/>
 	<component id="ListBase" class="mx.controls.listClasses.ListBase" />
-	<component id="Grouping" class="mx.collections.Grouping" />
-	<component id="GroupingField" class="mx.collections.GroupingField" />
 	<component id="MenuBar" class="mx.controls.MenuBar"/>
 	<component id="NumberFormatter" class="mx.formatters.NumberFormatter"/>
-    <component id="Form" class="mx.containers.Form" />
+  	<component id="Form" class="mx.containers.Form" />
 	<component id="FormHeading" class="mx.containers.FormHeading"/>
-    <component id="FormItem" class="mx.containers.FormItem" />
-	<component id="XMLListCollection" class="mx.collections.XMLListCollection"/>
+  	<component id="FormItem" class="mx.containers.FormItem" />
 	<component id="TreeItemRenderer" class="mx.controls.treeClasses.TreeItemRenderer" />
 	<component id="ToggleButtonBar" class="mx.controls.ToggleButtonBar"/>
 	<component id="DragManager" class="mx.managers.DragManager" />
 	<component id="TraceTarget" class="mx.logging.targets.TraceTarget"/>
-	<component id="GroupingCollection2" class="mx.collections.GroupingCollection2" />
 	<component id="AdvancedListBase" class="mx.controls.listClasses.AdvancedListBase" />
-	<component id="AsyncToken" class="mx.rpc.AsyncToken" />
 	<component id="VScrollBar" class="mx.controls.VScrollBar"/>
 	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke"/>
 	<component id="CursorManager" class="mx.managers.CursorManager" />
@@ -127,21 +115,14 @@
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
 	<component id="Tree" class="mx.controls.Tree"/>
 	<component id="LinkBar" class="mx.controls.LinkBar"/>
-
-	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
-	<component id="ChannelSet" class="mx.messaging.ChannelSet" />
-
-	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
-	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
 	<component id="Alert" class="mx.controls.Alert" />
 	<component id="ToolBar" class="mx.controls.richTextEditorClasses.ToolBar"/>
 	<component id="AdvancedDataGrid" class="mx.controls.AdvancedDataGrid" />
-        <component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
+  	<component id="MenuBarMouseController" class="mx.controls.beads.controllers.MenuBarMouseController" />
 	<component id="RichTextEditor" class="mx.controls.RichTextEditor" />
-        <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
-        <component id="MXAdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
+    <component id="PanelTitleBar" class="mx.containers.PanelTitleBar" />
+    <component id="MXAdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
 	<component id="PhoneFormatter" class="mx.formatters.PhoneFormatter"/>
-
 
     <component id="WipeLeft" class="mx.effects.WipeLeft" />
     <component id="WipeRight" class="mx.effects.WipeRight" />
@@ -203,8 +184,5 @@
 
     <component id="CartesianDataCanvas" class="mx.charts.chartClasses.CartesianDataCanvas"/>
     <component id="PolarDataCanvas" class="mx.charts.chartClasses.PolarDataCanvas"/>
-
-    <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
-    <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
 
 </componentPackage>
