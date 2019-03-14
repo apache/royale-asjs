@@ -71,7 +71,7 @@
       <id>brokenmodules</id>
       <modules>
           <!-- Seems to be missing a flexunit? -->
-          <module>Testing</module>
+          <module>RoyaleUnit</module>
       </modules>
     </profile>
   </profiles>

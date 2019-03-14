@@ -41,7 +41,8 @@
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
-            <path-element>../../../../../libs/Testing.swc</path-element>
+            <path-element>../../../../../libs/Reflection.swc</path-element>
+            <path-element>../../../../../libs/RoyaleUnit.swc</path-element>
         </library-path>
         
         <js-library-path>
@@ -50,7 +51,8 @@
             <path-element>../../../../../js/libs/CoreJS.swc</path-element>
             <path-element>../../../../../js/libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../js/libs/CollectionsJS.swc</path-element>
-            <path-element>../../../../../js/libs/TestingJS.swc</path-element>
+            <path-element>../../../../../js/libs/ReflectionJS.swc</path-element>
+            <path-element>../../../../../js/libs/RoyaleUnitJS.swc</path-element>
         </js-library-path>
 
         <allow-subclass-overrides>true</allow-subclass-overrides>
@@ -79,6 +81,16 @@
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
           <name>SWFOverride</name>
+
+          <!-- RoyaleUnit -->
+          <name>Test</name>
+          <name>Before</name>
+          <name>After</name>
+          <name>BeforeClass</name>
+          <name>AfterClass</name>
+          <name>Ignore</name>
+          <name>Suite</name>
+          <name>RunWith</name>
         </keep-as3-metadata>
 	  
         <locale/>

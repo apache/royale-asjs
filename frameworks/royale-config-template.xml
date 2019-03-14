@@ -118,9 +118,9 @@
          <path-element>libs/Network.swc</path-element>
          <path-element>libs/Reflection.swc</path-element>
          <path-element>libs/RoyaleSite.swc</path-element>
+         <path-element>libs/RoyaleUnit.swc</path-element>
          <path-element>libs/Storage.swc</path-element>
          <path-element>libs/TLF.swc</path-element>
-         <path-element>libs/Testing.swc</path-element>
          <path-element>libs/Text.swc</path-element>
          <path-element>libs/XML.swc</path-element>
          <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
@@ -154,9 +154,9 @@
           <path-element>js/libs/NetworkJS.swc</path-element>
           <path-element>js/libs/ReflectionJS.swc</path-element>
           <path-element>js/libs/RoyaleSiteJS.swc</path-element>
+          <path-element>js/libs/RoyaleUnitJS.swc</path-element>
           <path-element>js/libs/StorageJS.swc</path-element>
           <path-element>js/libs/TLFJS.swc</path-element>
-          <path-element>js/libs/TestingJS.swc</path-element>
           <path-element>js/libs/TextJS.swc</path-element>
           <path-element>js/libs/XMLJS.swc</path-element>
       </js-library-path>
