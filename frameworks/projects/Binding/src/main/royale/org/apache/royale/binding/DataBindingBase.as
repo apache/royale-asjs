@@ -187,11 +187,11 @@ package org.apache.royale.binding
                 // so just force an update via parentWatcher (if it is set, null if not)
                 if (parentWatcher)
                 {
-                    gb.valueChanged(parentWatcher.value);
+                    gb.valueChanged(parentWatcher.value, false);
                 }
                 else
                 {
-                    gb.valueChanged(null);
+                    gb.valueChanged(null, true);
                 }
             }
         }

@@ -202,7 +202,7 @@ package org.apache.royale.binding
                 // should be a constant expression.
                 // the value doesn't matter as GenericBinding
                 // should get the value from the source
-                gb.valueChanged(null);
+                gb.valueChanged(null, true);
             }
         }
     }
