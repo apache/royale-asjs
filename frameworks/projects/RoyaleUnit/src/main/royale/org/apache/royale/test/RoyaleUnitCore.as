@@ -86,7 +86,7 @@ package org.apache.royale.test
 			{
 				return;
 			}
-			_listeners.removeAt(index);
+			_listeners.splice(index, 1);
 		}
 
 		/**

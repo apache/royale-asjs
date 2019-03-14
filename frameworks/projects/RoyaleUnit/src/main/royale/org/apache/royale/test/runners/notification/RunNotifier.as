@@ -63,7 +63,7 @@ package org.apache.royale.test.runners.notification
 			if(index !== -1)
 			{
 				//remove so that we can add to the start
-				_listeners.removeAt(index);
+				_listeners.splice(index, 1);
 			}
 			_listeners.unshift(listener);
 		}
@@ -79,7 +79,7 @@ package org.apache.royale.test.runners.notification
 				//wasn't added
 				return;
 			}
-			_listeners.removeAt(index);
+			_listeners.splice(index, 1);
 		}
 
 		/**
