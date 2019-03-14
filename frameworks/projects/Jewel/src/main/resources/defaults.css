@@ -412,20 +412,16 @@ j|ComboBox {
   opacity: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .combobox-popup .jewel.list {
     width: 98% !important;
-  }
-}
-@media (max-width: 768px) {
-  .combobox-popup .jewel.list {
     max-height: 240px !important;
   }
   .combobox-popup .jewel.list .jewel.item {
     min-height: 48px !important;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 767px) {
   .combobox-popup::before {
     background-color: rgba(0, 0, 0, 0);
   }
