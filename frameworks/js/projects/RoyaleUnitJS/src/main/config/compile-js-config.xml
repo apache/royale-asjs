@@ -84,4 +84,6 @@
     <include-classes>
         <class>RoyaleUnitClasses</class>
     </include-classes>
+
+    <js-default-initializers>false</js-default-initializers>
 </royale-config>
