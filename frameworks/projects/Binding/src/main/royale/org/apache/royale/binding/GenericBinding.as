@@ -187,6 +187,7 @@ package org.apache.royale.binding
             return null;
 		}
         
+        private var _listening:Boolean;
         /**
          * @royaleignorecoercion Array
          */
@@ -203,8 +204,11 @@ package org.apache.royale.binding
                 var obj:Object = document[arr[0]];
                 if (obj == null)
                 {
-                    document.addEventListener(ValueChangeEvent.VALUE_CHANGE,
-                        destinationChangeHandler);
+                    if (!_listening) {
+                        document.addEventListener(ValueChangeEvent.VALUE_CHANGE,
+                            destinationChangeHandler);
+                        _listening = true;
+                    }
                     return;
                 }
                 for (var i:int = 1; i < n - 1; i++)
