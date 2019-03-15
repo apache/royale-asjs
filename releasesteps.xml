@@ -73,6 +73,11 @@
         <isset property="isWindows" />
     </condition>
     <property name="mvn" value="mvn" />
+    
+    <condition property="svn" value="svn.exe">
+        <isset property="isWindows" />
+    </condition>
+    <property name="svn" value="svn" />
 
     <available file="${env.ANT_HOME}/lib/${apache.rat.jar}"
         type="file"
@@ -675,22 +680,132 @@
     </target>
     
     <target name="download-ant-artifacts" if="artifactfolder">
-        <get src="http://apacheroyaleci.westus2.cloudapp.azure.com:8080/job/Royale_Release_Step_013/lastSuccessfulBuild/artifact/*zip*/archive.zip" dest="${artifactfolder}/archive.zip" />
+        <get src="http://apacheroyaleci.westus2.cloudapp.azure.com:8080/job/Royale_Release_Step_013/lastSuccessfulBuild/artifact/artifacts/royale-asjs/out/*zip*/out.zip" dest="${artifactfolder}/archive.zip" />
     </target>
     <target name="unzip-ant-artifacts" if="artifactfolder">
         <mkdir dir="${artifactfolder}/artifacts" />
-        <unzip src="${artifactfolder}/archive.zip" dest="${artifactfolder}/artifacts"/>
+        <unzip src="${artifactfolder}/archive.zip" dest="${artifactfolder}/artifacts" >
+            <cutdirsmapper dirs="1" />
+        </unzip>
     </target>
     <target name="build-ant-source" >
         <mkdir dir="${artifactfolder}/sources" />
-        <unzip src="${artifactfolder}/artifacts/archive/apache-royale-${releaseversion}.zip" dest="${artifactfolder}/sources" >
-            <cutdirsmapper dirs="1" />
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/sources" >
         </unzip>
         
-        <ant dir="${basedir}/artifacts/royale-asjs" target="main" />
+        <ant dir="${artifactfolder}/sources/royale-asjs" target="all" />
     </target>
 
     <target name="validate-ant-bits">
+    </target>
+
+    <target name="Release_Step_013_Sign" depends="get-artifact-folder">
+        <fail message="release.version not specified"
+        unless="release.version"/>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js-swf.zip" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js-swf.tar.gz" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js.zip" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js.tar.gz" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/apache-royale-${release.version}-src.tar.gz" />
+        </antcall>
+        <antcall target="sign-file" >
+            <param name="file" value="${artifactfolder}/artifacts/apache-royale-${release.version}-src.zip" />
+        </antcall>
+    </target>
+    
+    <target name="check-name-and-svn">
+        <fail message="The my.name property is not set to the RM's name.  This property (and other properties) is often set in a local.properties file and copied into an empty folder before running this script."
+        unless="my.name"/>
+        
+        <available file="${svn.dist.dev}"
+        type="dir"
+        property="dist.dev" value="${svn.dist.dev}" />
+        
+        <fail message="The svn.dist.dev property is not set to the working copy for https://dist.apache.org/repos/dist/dev."
+        unless="dist.dev"/>
+    </target>
+    
+    <target name="credentials" depends="get-username,get-password">
+        <echo>${apache.username}</echo>
+        <echo>${apache.password}</echo>
+    </target>
+    <target name="get-username" unless="apache.username" >
+        <input
+        message="Enter Apache account username:"
+        addproperty="apache.username"/>
+        <condition property="have.username">
+            <not>
+                <equals trim="true" arg1="" arg2="${apache.username}"/>
+            </not>
+        </condition>
+        <fail message="The apache.username property is not set.  It should be the username for Apache SVN and Git."
+        unless="have.username"/>
+    </target>
+    <target name="get-password" unless="apache.password" >
+        <input
+        message="Enter Apache account password:"
+        addproperty="apache.password"/>
+        <condition property="have.password">
+            <not>
+                <equals trim="true" arg1="" arg2="${apache.password}"/>
+            </not>
+        </condition>
+        <fail message="The apache.password property is not set.  It should be the password for Apache SVN and Git."
+        unless="have.password"/>
+    </target>
+    
+    <target name="Release_Step_013_Upload" depends="check-name-and-svn,get-artifact-folder,stage.rc,push.rc" description="upload the artifacts"/>
+    <target name="stage.rc" >
+        <fail message="release.version not specified"
+        unless="release.version"/>
+        <fail message="rc not specified"
+        unless="rc"/>
+        <exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
+            <arg value="update" />
+        </exec>
+        <mkdir dir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" />
+        <copy todir="${dist.dev}/royale/${release.version}/rc${rc}" >
+            <fileset dir="${artifactfolder}/artifacts" >
+                <include name="apache-royale-${release.version}-src*" />
+            </fileset>
+        </copy>
+        <copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
+            <fileset dir="${artifactfolder}/artifacts" >
+                <include name="apache-royale-${release.version}-bin-js-swf*" />
+            </fileset>
+        </copy>
+        <copy todir="${dist.dev}/royale/${release.version}/rc${rc}/binaries" >
+            <fileset dir="${artifactfolder}/artifacts" >
+                <include name="apache-royale-${release.version}-bin-js*" />
+            </fileset>
+        </copy>
+        <copy file="${artifactfolder}/sources/royale-asjs/releasemgr/README" tofile="${dist.dev}/royale/${release.version}/rc${rc}/READme" />
+        <copy file="${basedir}/ApproveRoyale.xml" tofile="${dist.dev}/royale/${release.version}/rc${rc}/ApproveRoyale.xml" />
+        <exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
+            <arg value="add" />
+            <arg value="${dist.dev}/royale/${release.version}/rc${rc}" />
+        </exec>
+    </target>
+    
+    <target name="push.rc" depends="check-name-and-svn,credentials" unless="no.push">
+        <exec executable="${svn}" dir="${dist.dev}/royale" failonerror="true" >
+            <arg value="commit" />
+            <arg value="--username" />
+            <arg value="${apache.username}" />
+            <arg value="--password" />
+            <arg value="${apache.password}" />
+            <arg value="-m" />
+            <arg value="rc${rc} of Apache Royale ${release.version}" />
+        </exec>
     </target>
 
     <target name="main" description="Perform required release approval steps">
