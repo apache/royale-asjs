@@ -86,5 +86,7 @@
         <uri>library://ns.apache.org/royale/basic</uri>
     </include-namespaces>
 
+    <js-default-initializers>false</js-default-initializers>
+
 
 </royale-config>
