@@ -43,7 +43,7 @@
         <configuration>
           <includeSources>true</includeSources>
           <skipExtern>true</skipExtern>
-          <additionalCompilerOptions>-source-map=true</additionalCompilerOptions>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

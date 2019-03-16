@@ -51,7 +51,7 @@
             <includeClass>NetworkClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
-          <additionalCompilerOptions>-source-map=true;-warn-instance-of-changes=false</additionalCompilerOptions>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-warn-instance-of-changes=false</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
