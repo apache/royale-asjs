@@ -18,23 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.drawer
 {
-	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.jewel.Group;
-
 	COMPILE::SWF
     {
-		import org.apache.royale.core.IRenderedObject;
-        import flash.display.DisplayObject;
-    }
+		import flash.display.DisplayObject;
 
+		import org.apache.royale.core.IRenderedObject;
+    }
 	COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.jewel.Group;
 
 	/**
      *  Dispatched when the drawer open
@@ -82,26 +79,34 @@ package org.apache.royale.jewel.supportClasses.drawer
             typeNames = "jewel drawer";
 		}
 
-		COMPILE::JS
-		protected var nav:HTMLElement;
-
 		/**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			nav = addElementToWrapper(this,'nav');
-			nav.className = "drawermain";
-			
-			var aside:HTMLElement = document.createElement('aside') as HTMLElement;
-			aside.appendChild(nav);
-
-			positioner = aside as WrappedHTMLElement;
-			positioner.royale_wrapper = this;
-
+			addElementToWrapper(this,'nav');
+			element.className = "drawermain";
+			positioner = document.createElement('aside') as WrappedHTMLElement;
 			return element;	
         }
+
+        COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
 
 		/**
          *  @copy org.apache.royale.core.IParent#addElement()
@@ -129,7 +134,7 @@ package org.apache.royale.jewel.supportClasses.drawer
             }
             COMPILE::JS
             {
-                nav.appendChild(c.positioner);
+                element.appendChild(c.positioner);
                 (c as IUIBase).addedToParent();
             }
 		}
