@@ -372,7 +372,7 @@ j|ComboBox {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 60;
   color: rgba(0, 0, 0, 0.8);
 }
 .combobox-popup::before {
@@ -522,7 +522,7 @@ j|DateChooser {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 60;
   color: rgba(0, 0, 0, 0.8);
 }
 .datechooser-popup::before {
@@ -622,7 +622,7 @@ j|Divider {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 15;
+  z-index: 100;
 }
 .jewel.drawer.float::before {
   position: absolute;
@@ -756,7 +756,7 @@ j|DropDownList {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  z-index: 4;
+  z-index: 20;
   position: fixed;
   bottom: 0px;
 }
@@ -3193,7 +3193,7 @@ j|Spinner {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 40;
 }
 .popup-content::before {
   position: absolute;
@@ -3438,7 +3438,7 @@ j|Slider {
   bottom: 0;
   position: fixed;
   width: 100%;
-  z-index: 5;
+  z-index: 40;
   justify-content: center;
 }
 
@@ -3769,7 +3769,7 @@ j|TitleBar {
   padding: 6px;
   position: absolute;
   pointer-events: none;
-  z-index: 5;
+  z-index: 80;
 }
 .jewel.tooltip.error {
   margin-top: -31px !important;
@@ -3791,7 +3791,7 @@ j|TitleBar {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  z-index: 4;
+  z-index: 20;
   position: fixed;
 }
 .jewel.topappbar .topBarAppHeader.fixed {
