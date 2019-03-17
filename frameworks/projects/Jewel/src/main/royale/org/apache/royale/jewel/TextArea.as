@@ -19,10 +19,10 @@ package org.apache.royale.jewel
 {
     COMPILE::JS
     {
-        import goog.events;
+    import goog.events;
 
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
     import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
@@ -121,7 +121,7 @@ package org.apache.royale.jewel
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
-            div.element.appendChild(input);
+            positioner = document.createElement('div') as WrappedHTMLElement;
             
             return element;
         }

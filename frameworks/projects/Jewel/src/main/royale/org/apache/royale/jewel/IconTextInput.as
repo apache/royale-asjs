@@ -75,10 +75,10 @@ package org.apache.royale.jewel
             // insert the icon before the text
             if(rightPosition)
             {
-                div.element.insertBefore(_icon.positioner, null);
+                positioner.insertBefore(_icon.positioner, null);
             } else
             {
-                div.element.insertBefore(_icon.positioner, element);
+                positioner.insertBefore(_icon.positioner, element);
             }
             (_icon as IUIBase).addedToParent();
             }

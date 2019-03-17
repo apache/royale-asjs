@@ -19,16 +19,15 @@ package org.apache.royale.jewel.supportClasses.textinput
 {
     COMPILE::JS
     {
-        import goog.events;
+    import goog.events;
 
-        import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.core.WrappedHTMLElement;
     }
     import org.apache.royale.core.ITextModel;
     import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
-    import org.apache.royale.jewel.Group;
-    import org.apache.royale.core.UIBase;
     
     /**
      *  Dispatched when the user changes the text.
@@ -237,25 +236,21 @@ package org.apache.royale.jewel.supportClasses.textinput
             _label = value;
         }
 
-        /**
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        private var _div:UIBase;
-
-        public function get div():UIBase
-		{
-            if(!_div)
-                _div = new UIBase();
-            return _div;
-        }
-
         COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
 		override public function get positioner():WrappedHTMLElement
 		{
-            return div.element;
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
 		}
 	}
 }

@@ -17,14 +17,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-
     COMPILE::JS
     {
-        import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import goog.events;
+
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
     /**
      *  The TextInput class implements the basic control for
@@ -67,7 +67,7 @@ package org.apache.royale.jewel
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
-            div.element.appendChild(input);
+            positioner = document.createElement('div') as WrappedHTMLElement;
             
             return element;
         }
