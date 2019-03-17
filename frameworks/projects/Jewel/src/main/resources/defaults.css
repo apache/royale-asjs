@@ -264,7 +264,6 @@ j|Card {
   margin: 0;
   padding: 0;
   height: auto;
-  cursor: pointer;
 }
 .jewel.checkbox input {
   -webkit-appearance: none;
@@ -303,13 +302,11 @@ j|Card {
 .jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
   outline: none;
 }
-.jewel.checkbox input[disabled] {
-  cursor: unset;
-}
 .jewel.checkbox input[disabled] + span {
   cursor: unset;
 }
 .jewel.checkbox span {
+  cursor: pointer;
   margin: 0;
   vertical-align: top;
   line-height: 24px;
@@ -3257,7 +3254,6 @@ j|PopUp {
   margin: 0;
   padding: 0;
   height: 22px;
-  cursor: pointer;
 }
 .jewel.radiobutton input {
   -webkit-appearance: none;
@@ -3296,13 +3292,11 @@ j|PopUp {
 .jewel.radiobutton input:focus + span::before, .jewel.radiobutton input:checked:focus + span::before, .jewel.radiobutton input:checked:active:focus + span::before {
   outline: none;
 }
-.jewel.radiobutton input[disabled] {
-  cursor: unset;
-}
 .jewel.radiobutton input[disabled] + span {
   cursor: unset;
 }
 .jewel.radiobutton span {
+  cursor: pointer;
   margin: 0;
   vertical-align: top;
   line-height: 24px;

@@ -310,37 +310,47 @@ package org.apache.royale.jewel
 
         private var radio:HTMLSpanElement;
         private var icon:HTMLInputElement;
-        private var label:HTMLLabelElement;
         private var textNode:Text;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         * @royaleignorecoercion HTMLLabelElement
          * @royaleignorecoercion HTMLInputElement
          * @royaleignorecoercion HTMLSpanElement
          * @royaleignorecoercion Text
          */
         override protected function createElement():WrappedHTMLElement
         {
-            label = document.createElement('label') as HTMLLabelElement;
-
             icon = addElementToWrapper(this, 'input') as HTMLInputElement;
             icon.type = 'radio';
             icon.id = '_radio_' + Math.random();
             icon.value = String(value);
-            label.appendChild(icon);
-
+            
             textNode = document.createTextNode('') as Text;
-
             radio = document.createElement('span') as HTMLSpanElement;
             radio.appendChild(textNode);
-            label.appendChild(radio);
             
-            positioner = label as WrappedHTMLElement;
-            positioner.royale_wrapper = this;
+            positioner = document.createElement('label') as WrappedHTMLElement;
             
             return element;
         }
+
+        COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+            _positioner.appendChild(radio);
+		}
 
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
