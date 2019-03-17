@@ -55,7 +55,7 @@ package org.apache.royale.html
 		public function ColorSpectrum()
 		{
 			super();
-			model.addEventListener("textChange", textChangeHandler);
+			model.addEventListener("colorChange", colorChangeHandler);
 		}
 
         /**
@@ -76,7 +76,21 @@ package org.apache.royale.html
          */
 		public function set color(value:uint):void
 		{
-			IColorModel(model).text = value;
+			IColorModel(model).color = value;
 		}
+
+		/**
+		 *  dispatch change event in response to a colorChange event
+		 *
+		 *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+		 */
+		public function textChangeHandler(event:Event):void
+		{
+			dispatchEvent(new Event(Event.CHANGE));
+		}
+
 	}
 }
