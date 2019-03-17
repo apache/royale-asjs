@@ -198,17 +198,27 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-            
-            var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
-            input.setAttribute('type', 'range');
-			
-			div.appendChild(input);
-
-            positioner = div as WrappedHTMLElement;
-            positioner.royale_wrapper = this;
-			
+			addElementToWrapper(this,'input') as HTMLInputElement;
+            element.setAttribute('type', 'range');
+			positioner = document.createElement('div') as WrappedHTMLElement;
 			return element;
         }
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
     }
 }
