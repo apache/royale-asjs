@@ -101,6 +101,8 @@
         <uri>library://ns.apache.org/royale/basic</uri>
         <uri>library://ns.apache.org/royale/html</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

@@ -109,15 +109,16 @@
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
         <antcall target="Language"/>
-        <antcall target="Testing"/>
         <antcall target="Core"/>
         <antcall target="Graphics"/>
         <antcall target="Binding"/>
         <antcall target="Reflection"/>
+        <antcall target="RoyaleUnit"/>
         <antcall target="Network"/>
         <antcall target="Collections"/>
         <antcall target="Basic"/>
-	<antcall target="Ace"/>
+        <antcall target="Ace"/>
+        <antcall target="RoyaleUnitTest"/>
         <antcall target="CoreTest"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
@@ -170,7 +171,6 @@
 
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
-        <ant dir="${basedir}/projects/Testing" target="clean"/>
         <ant dir="${basedir}/projects/Binding" target="clean"/>
         <ant dir="${basedir}/projects/Charts" target="clean"/>
         <ant dir="${basedir}/projects/Collections" target="clean"/>
@@ -192,6 +192,7 @@
 		<ant dir="${basedir}/projects/MaterialDesignLite" target="clean"/>
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
+        <ant dir="${basedir}/projects/RoyaleUnit" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
@@ -228,10 +229,6 @@
             <exclude name="swfobject/history/**" />
             <exclude name="js-index-template.html" />
         </delete>
-    </target>
-
-    <target name="Testing" description="Clean build of Testing.swc">
-        <ant dir="${basedir}/projects/Testing"/>
     </target>
 
     <target name="Binding" description="Clean build of Binding.swc">
@@ -328,6 +325,14 @@
 
     <target name="Reflection" description="Clean build of Reflection.swc">
         <ant dir="${basedir}/projects/Reflection"/>
+    </target>
+
+    <target name="RoyaleUnit" description="Clean build of RoyaleUnit.swc">
+        <ant dir="${basedir}/projects/RoyaleUnit"/>
+    </target>
+
+    <target name="RoyaleUnitTest" description="Test of RoyaleUnit.swc">
+        <ant dir="${basedir}/projects/RoyaleUnit" target="test"/>
     </target>
 
     <target name="Storage" description="Clean build of Storage.swc">

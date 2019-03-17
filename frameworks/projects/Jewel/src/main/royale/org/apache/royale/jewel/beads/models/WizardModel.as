@@ -52,7 +52,7 @@ package org.apache.royale.jewel.beads.models
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -66,7 +66,7 @@ package org.apache.royale.jewel.beads.models
         private var _text:String;
 		/**
 		 *  The title string for the org.apache.royale.jewel.Wizard.
-		 * 
+		 *
 		 *  @copy org.apache.royale.jewel.beads.models.WizardModel#title
 		 *
 		 *  @langversion 3.0
@@ -90,7 +90,7 @@ package org.apache.royale.jewel.beads.models
 		private var _html:String;
 		/**
 		 *  The HTML string for the title.
-		 * 
+		 *
 		 *  @copy org.apache.royale.jewel.beads.models.WizardModel#html
 		 *
 		 *  @langversion 3.0
@@ -114,7 +114,7 @@ package org.apache.royale.jewel.beads.models
 		private var _currentStep:WizardStep;
 		/**
 		 *  the current step or page visualized in this wizard
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -128,15 +128,37 @@ package org.apache.royale.jewel.beads.models
 		public function set currentStep(value:WizardStep):void
 		{
 			if(value != _currentStep) {
+				if (_currentStep) {
+					amendCurrentStepListeners(_currentStep, true);
+				}
 				_currentStep = value;
+				if (value) {
+					amendCurrentStepListeners(value, false);
+				}
 				dispatchEvent(new Event('currentStepChange'));
 			}
 		}
+		
+		private function amendCurrentStepListeners(step:WizardStep, remove:Boolean):void{
+			if (remove) {
+				step.removeEventListener('nextStepChange', onCurrentStepNextPreviousChange);
+				step.removeEventListener('previousStepChange', onCurrentStepNextPreviousChange);
+			} else {
+				step.addEventListener('nextStepChange', onCurrentStepNextPreviousChange);
+				step.addEventListener('previousStepChange', onCurrentStepNextPreviousChange);
+			}
+		}
+		
+		private function onCurrentStepNextPreviousChange(event:Event):void{
+			//something else changed within the currentStep that is important...
+			dispatchEvent(new Event('currentStepChange'));
+		}
+		
 
 		private var _showPreviousButton:Boolean = true;
 		/**
 		 *  show/hide wizard navigator previous button in the wizard
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -159,7 +181,7 @@ package org.apache.royale.jewel.beads.models
 		private var _showNextButton:Boolean = true;
 		/**
 		 *  show/hide wizard navigator next button in the wizard
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6

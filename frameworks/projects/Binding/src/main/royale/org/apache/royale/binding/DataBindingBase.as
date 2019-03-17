@@ -27,7 +27,7 @@ package org.apache.royale.binding
     /**
      *  The DataBindingBase class is the base class for custom data binding
      *  implementations that can be cross-compiled.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -37,7 +37,7 @@ package org.apache.royale.binding
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -104,6 +104,7 @@ package org.apache.royale.binding
 
         /**
          * @royaleignorecoercion Function
+         * @royaleignorecoercion String
          */
         protected function setupWatchers(gb:GenericBinding, index:int, watchers:Array, parentWatcher:WatcherBase):void
         {
@@ -125,7 +126,7 @@ package org.apache.royale.binding
 
                 if (isValidWatcher)
                 {
-                    var type:String = watcher.type;
+                    var type:String = watcher.type as String;
                     var parentObj:Object = _strand;
                     switch (type)
                     {
@@ -187,11 +188,11 @@ package org.apache.royale.binding
                 // so just force an update via parentWatcher (if it is set, null if not)
                 if (parentWatcher)
                 {
-                    gb.valueChanged(parentWatcher.value);
+                    gb.valueChanged(parentWatcher.value, false);
                 }
                 else
                 {
-                    gb.valueChanged(null);
+                    gb.valueChanged(null, true);
                 }
             }
         }

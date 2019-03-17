@@ -78,7 +78,7 @@ $combobox-item-min-heigh: 34px
     overflow: hidden
     contain: strict
 
-    z-index: 5
+    z-index: $app-control-popups-zindex
 
     color: rgba(0, 0, 0, 0.8)
 
@@ -127,25 +127,16 @@ $combobox-item-min-heigh: 34px
             transition: animation-standard(transform, .4s), animation-standard(opacity, .4s)
             opacity: 1
 
-@media (max-width: $tablet)
+@media (max-width: ($tablet - 1))
     .combobox-popup
         .jewel.list
             width: 98% !important
-
-// @media (min-width: $tablet) and (max-width: $desktop)
-//     .combobox-popup
-//         .jewel.list
-//             width: 70% !important
-
-@media (max-width: $tablet)
-    .combobox-popup
-        .jewel.list
             max-height: ( $combobox-item-min-heigh + 14 ) * 5 !important
             
             .jewel.item
                 min-height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
 
-@media (min-width: $tablet)
+@media (min-width: ($tablet - 1))
     .combobox-popup
         &::before
             background-color: rgba($combobox-popup-overlay-color, 0)

@@ -47,6 +47,8 @@ package org.apache.royale.utils
         public static const ANDROID_OS:String = "Android";
         public static const IOS_OS:String = "iOS";
         public static const UNKNOWN_OS:String = "Unknown OS";
+        
+        public static const UNKNOWN_VERSION:String = "Unknown OS Version";
 
         /**
          * Gets the name of the operating system.
@@ -85,7 +87,62 @@ package org.apache.royale.utils
                 return _osName;
             }
         }
-        
+
         private static var _osName:String;
+
+        /**
+         * Gets the version of the operating system.
+         */
+        public static function getOSVersion():String
+        {
+            COMPILE::SWF
+            {
+            if(!_osVersion)
+            {
+                _osVersion = "To be implemented in SWF";
+            }
+            return _osVersion;
+            }
+
+            COMPILE::JS
+            {
+            if(!_osVersion)
+            {
+                var tokenizer:Array = navigator.userAgent.split(/\s*[;)(]\s*/);
+                _osVersion = UNKNOWN_VERSION;
+                if (/^Android/.test(tokenizer[2]))
+                {
+                    _osVersion = tokenizer[2].split("Android ").pop(); // "8.1.0"
+                }
+                else if (/^Linux/.test(tokenizer[3]))
+                {
+                    _osVersion = tokenizer[6].split("/").pop(); // "8.10" (Ubuntu)
+                }
+                else if (/^Macintosh/.test(tokenizer[1]))
+                {
+                    _osVersion = tokenizer[2].split("Mac OS X ").pop().replace(/_/g,'.'); // "10.8.2" (Mountain Lion)
+                }
+                else if (/^iPhone/.test(tokenizer[1]))
+                {
+                    _osVersion = tokenizer[2].split("CPU iPhone OS ").pop().replace(/_/g,'.').replace(' like Mac OS X',''); // "12.1.4"
+                }
+                else if (/^iPad/.test(tokenizer[1]))
+                {
+                    _osVersion = tokenizer[2].split("CPU OS ").pop().replace(/_/g,'.').replace(' like Mac OS X',''); // "12.1.4"
+                }
+                else if (/^iPod/.test(tokenizer[1]))
+                {
+                    _osVersion = tokenizer[2].split("CPU OS ").pop().replace(/_/g,'.').replace(' like Mac OS X',''); // "12.1.4" (this one needs test)
+                }
+                else
+                {
+                    _osVersion = tokenizer[3].split(" ").pop(); // "6.1" (Win 7)
+                }
+            }
+            return _osVersion;
+            }
+        }
+
+        private static var _osVersion:String;
     }
 }

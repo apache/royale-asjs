@@ -363,6 +363,7 @@ package org.apache.royale.jewel.beads.validators
 			COMPILE::JS
 			{
 			window.addEventListener('resize', repositionHandler, false);
+			window.addEventListener('scroll', repositionHandler, true);
 			repositionHandler();
 			}
 
@@ -385,6 +386,7 @@ package org.apache.royale.jewel.beads.validators
 			COMPILE::JS
 			{
 			window.removeEventListener('resize', repositionHandler, false);
+			window.removeEventListener('scroll', repositionHandler, true);
 			}
 			if(_errorTip){
 				_errorTip.parent.removeElement(_errorTip);
@@ -449,6 +451,7 @@ package org.apache.royale.jewel.beads.validators
 			COMPILE::JS
 			{
 			window.removeEventListener('resize', repositionHandler, false);
+			window.removeEventListener('scroll', repositionHandler, true);
 			}
             if (_errorTip) {
                 _host.popUpParent.removeElement(_errorTip);

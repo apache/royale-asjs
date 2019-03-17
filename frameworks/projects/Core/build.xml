@@ -50,6 +50,7 @@
                 <available file="${basedir}/src/test/royale/build.xml" />
             </not>
         </condition>
+        <!-- exclude from js-only build -->
         <condition property="skip-tests" >
             <not>
                 <isset property="env.AIR_HOME" />

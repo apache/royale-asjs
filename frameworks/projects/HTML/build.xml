@@ -52,8 +52,8 @@
         </condition>
     </target>
     
-    <target name="test" depends="check-for-tests" unless="skip-tests">
-        <!--<ant dir="src/test/royale" />-->
+    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
+        <ant dir="src/test/royale" />
     </target>
     
     <target name="clean">

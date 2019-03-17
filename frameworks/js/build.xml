@@ -94,9 +94,9 @@
         <antcall target="Mobile"/>
         <antcall target="Network"/>
         <antcall target="Reflection"/>
+        <antcall target="RoyaleUnit"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
-        <antcall target="Testing"/>
         <antcall target="Text"/>
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
@@ -150,8 +150,8 @@
         <ant dir="${basedir}/projects/MobileJS" target="clean"/>
         <ant dir="${basedir}/projects/NetworkJS" target="clean"/>
         <ant dir="${basedir}/projects/ReflectionJS" target="clean"/>
+        <ant dir="${basedir}/projects/RoyaleUnitJS" target="clean"/>
         <ant dir="${basedir}/projects/StorageJS" target="clean"/>
-        <ant dir="${basedir}/projects/TestingJS" target="clean"/>
         <ant dir="${basedir}/projects/TextJS" target="clean"/>
         <ant dir="${basedir}/projects/TLFJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
@@ -246,16 +246,16 @@
         <ant dir="${basedir}/projects/ReflectionJS"/>
     </target>
 
+    <target name="RoyaleUnit" description="Clean build of RoyaleUnitJS.swc">
+        <ant dir="${basedir}/projects/RoyaleUnitJS"/>
+    </target>
+
     <target name="Storage" description="Clean build of StorageJS.swc">
         <ant dir="${basedir}/projects/StorageJS"/>
     </target>
 
     <target name="XML" description="Clean build of XMLJS.swc">
         <ant dir="${basedir}/projects/XMLJS"/>
-    </target>
-
-    <target name="Testing" description="Clean build of TestingJS.swc">
-        <ant dir="${basedir}/projects/TestingJS"/>
     </target>
 
     <target name="Text" description="Clean build of TextJS.swc">

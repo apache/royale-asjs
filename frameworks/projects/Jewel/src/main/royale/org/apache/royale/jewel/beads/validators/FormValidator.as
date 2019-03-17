@@ -20,7 +20,6 @@ package org.apache.royale.jewel.beads.validators
 {
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
 	import org.apache.royale.jewel.Snackbar;
 

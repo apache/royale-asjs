@@ -25,7 +25,7 @@ package components
     import org.apache.royale.html.elements.A;
     import org.apache.royale.html.elements.Code;
     import org.apache.royale.html.elements.Pre;
-    import org.apache.royale.jewel.SectionContent;
+    import org.apache.royale.jewel.ScrollableSectionContent;
     import org.apache.royale.jewel.TabBar;
     import org.apache.royale.jewel.TabBarContent;
 
@@ -35,7 +35,7 @@ package components
 
     import vos.TabBarButtonVO;
     
-    public class ExampleAndSourceCodeTabbedSectionContent extends SectionContent implements IContainerBaseStrandChildrenHost 
+    public class ExampleAndSourceCodeTabbedSectionContent extends ScrollableSectionContent implements IContainerBaseStrandChildrenHost 
 	{
         /**
 		 *  constructor.
@@ -49,7 +49,7 @@ package components
 		{
             super();
 
-            exampleTab = new SectionContent();
+            exampleTab = new ScrollableSectionContent();
             exampleTab.name = "exampleTab";
             contentArea = exampleTab;
 
@@ -60,8 +60,8 @@ package components
         private var tabbar:TabBar;
         private var tabBarNavigation:ArrayList;
         private var tabcontent:TabBarContent;
-        private var exampleTab:SectionContent;
-        private var sourceCodeTab:SectionContent;
+        private var exampleTab:ScrollableSectionContent;
+        private var sourceCodeTab:ScrollableSectionContent;
         private var sourceCodeMXMLText:Code;
 
         private var sourceCodeUrlPrefix:String = "https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/TourDeJewel/src/main/royale/";
@@ -93,7 +93,7 @@ package components
             tabbar.dataProvider = tabBarNavigation;
             $addElement(tabbar);
             
-            sourceCodeTab = new SectionContent();
+            sourceCodeTab = new ScrollableSectionContent();
             sourceCodeTab.name = "sourceCodeTab";
             var link:A = new A();
             link.href = sourceCodeUrlWebPrefix + sourceCodeUrl;
@@ -139,52 +139,8 @@ package components
             }
         }
 
-        public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-			super.addElement(c, dispatchEvent);
-		}
-		
-        /**
-         * @private
-         * @suppress {undefinedNames}
-         * Support strandChildren.
-         */
-        public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
-        {
-            super.addElementAt(c, index, dispatchEvent);
-        }
         
-		public function get $numElements():int
-		{
-			return super.numElements;
-		}
-		
-		public function $getElementAt(index:int):IChild
-		{
-			return super.getElementAt(index);
-		}
-		
-        /**
-         * @private
-         * @suppress {undefinedNames}
-         * Support strandChildren.
-         */
-        public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
-        {
-            super.removeElement(c, dispatchEvent);
-        }
-        
-        /**
-         * @private
-         * @suppress {undefinedNames}
-         * Support strandChildren.
-         */
-        public function $getElementIndex(c:IChild):int
-        {
-            return super.getElementIndex(c);
-        }
-
-        private var _contentArea:SectionContent;
+        private var _contentArea:ScrollableSectionContent;
 		/**
 		 * The content area of the formItem.
 		 *
@@ -193,11 +149,11 @@ package components
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get contentArea():SectionContent
+		public function get contentArea():ScrollableSectionContent
 		{
 			return _contentArea;
 		}
-		public function set contentArea(value:SectionContent):void
+		public function set contentArea(value:ScrollableSectionContent):void
 		{
 			_contentArea = value;
 		}

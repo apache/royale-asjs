@@ -100,6 +100,8 @@
         <uri>library://ns.apache.org/royale/basic</uri>
         <uri>library://ns.apache.org/royale/svg</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

@@ -187,9 +187,11 @@ limitations under the License.
         <mx:RemoteObject id="serviceResp" fault="onFault(event)"
                          endpoint="http://localhost:8080/messagebroker/websocket-amf"
                          destination="exampleService"/>
-        <!-- <mx:CompressedRemoteObject id="compressedService" fault="onFault(event)"
+        <mx:CompressedRemoteObject id="compressedService" fault="onFault(event)"
                          endpoint="http://localhost:8080/messagebroker/websocket-amf"
-                         destination="compressedService"/> -->
+                         destination="compressedService">
+
+        </mx:CompressedRemoteObject>
     </fx:Declarations>
 
     <mx:beads>
@@ -218,16 +220,6 @@ limitations under the License.
         </mx:HBox>
         <mx:Label id="result_txt" height="15"/>
     </mx:VBox>
-    <!-- <mx:VBox width="400">
-        <mx:HBox>
-            <mx:VBox>
-                <mx:Label text="Name to send via AMF (With Compression)"/>
-                <mx:TextInput id="nameCompress_txt"/>
-            </mx:VBox>
-            <mx:Button label="Send to Name (With Compression)" click="compressedSendEcho(event)"/>
-        </mx:HBox>
-        <mx:Label id="resultCompress_txt"/>
-    </mx:VBox> -->
     <mx:VBox width="400">
         <mx:Button label="Get Array Of Objects" click="service.getObjectArray1()"/>
         <mx:List id="list" labelField="id" width="100%" height="200"
@@ -238,6 +230,11 @@ limitations under the License.
         <mx:Button label="Get Some Product" click="service.getSomeProduct()"/>
         <mx:Label text="{((service.getSomeProduct as Operation).lastResult as Product).name}"  height="15"/>
     </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="(CompressedRO) Get Some Product" click="compressedService.getSomeCompressedProduct()"/>
+        <mx:Label text="{((compressedService.getSomeCompressedProduct as Operation).lastResult as Product).name}"  height="15"/>
+    </mx:VBox>
+
     <mx:VBox width="400">
         <mx:Button label="Send client vo to java" click="sendClientVO(event)"/>
         <!-- <mx:Label text="{(service.sendSomeProduct as Operation).lastResult as String}"/> -->

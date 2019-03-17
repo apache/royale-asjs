@@ -105,11 +105,12 @@ hr {
 .jewel.alert .jewel.titlebar {
   padding: 20px 20px 0px 20px;
   height: 50px;
-  color: #5a5a5a;
+  color: #2C74BE;
 }
 .jewel.alert .jewel.titlebar .jewel.label {
-  font-size: 1.9em;
+  font-size: 1.45em !important;
   font-weight: bold;
+  font-color: #2C74BE;
 }
 .jewel.alert .content {
   padding: 20px;
@@ -833,7 +834,7 @@ j|FormItem {
 }
 .jewel.tabbarbutton {
   margin: 0;
-  padding: 0 16px;
+  padding: 14px 16px;
   font-family: "Lato", sans-serif;
   font-size: 1em;
   font-weight: 500;

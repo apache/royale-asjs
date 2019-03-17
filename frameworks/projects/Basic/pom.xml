@@ -67,7 +67,7 @@
           </includeFiles>
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
-          <additionalCompilerOptions>-source-map=true;-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
