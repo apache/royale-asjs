@@ -124,6 +124,9 @@
     
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
     
+    <component id="NavigationActionNotifier" class="org.apache.royale.jewel.beads.controls.NavigationActionNotifier"/>
+    <component id="CleanValidationErrors" class="org.apache.royale.jewel.beads.controls.application.CleanValidationErrors"/>
+
     <component id="MultilineLabel" class="org.apache.royale.jewel.beads.controls.button.MultilineLabel"/>
     <component id="DispatchChangeOnStartup" class="org.apache.royale.jewel.beads.controls.DispatchChangeOnStartup"/>
     <component id="DropDownListTextPrompt" class="org.apache.royale.jewel.beads.controls.dropdownlist.DropDownListTextPrompt"/>
