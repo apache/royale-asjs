@@ -133,7 +133,7 @@ package org.apache.royale.jewel
             }
         }
 
-        private var _selectedText:String = "";
+        private var _selectedText:String = null;
         /**
          *  The selectedText of the icon
          *  
@@ -144,6 +144,10 @@ package org.apache.royale.jewel
          */
 		public function get selectedText():String
 		{
+            if(_selectedText == null)
+            {
+                return text;
+            }
             return _selectedText;            
 		}
         public function set selectedText(value:String):void

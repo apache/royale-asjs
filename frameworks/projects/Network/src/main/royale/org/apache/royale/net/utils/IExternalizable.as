@@ -18,13 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net.utils
 {
+    COMPILE::SWF{
+        import flash.utils.IExternalizable;
+    }
+    
     /**
      * replacement for flash.utils.IExternalizable
      */
+    COMPILE::JS
     public interface IExternalizable
     {
         function readExternal(input:IDataInput):void;
         
         function writeExternal(output:IDataOutput):void;
     }
+	
+	COMPILE::SWF
+	public interface IExternalizable extends flash.utils.IExternalizable
+	{
+		/*function readExternal(input:IDataInput):void;
+		
+		function writeExternal(output:IDataOutput):void;*/
+	}
 }

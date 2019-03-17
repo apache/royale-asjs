@@ -26,10 +26,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.LoadIndicator;
 	import org.apache.royale.utils.PointUtils;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.utils.UIUtils;
 
 	COMPILE::JS
-    {
-		import org.apache.royale.core.WrappedHTMLElement;
+	{
+	import org.apache.royale.core.WrappedHTMLElement;
 	}
 	/**
 	 *  The DisableLoaderBead class is a specialty bead that can be used with
@@ -117,7 +119,7 @@ package org.apache.royale.html.beads
 		
 		protected function addLoadIndicator():void
 		{
-			var point:Point = PointUtils.localToGlobal(new Point(host.x, host.y), host);
+			var point:Point = PointUtils.localToGlobal(new Point(0, 0), host);
 			_loader = new LoadIndicator();
 			_loader.x = point.x;
 			_loader.y = point.y;
@@ -127,7 +129,8 @@ package org.apache.royale.html.beads
 			{
 				_loader.element.style.position = "absolute";
 			}
-			(host.topMostEventDispatcher as IParent).addElement(_loader);
+				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+				popupHost.popUpParent.addElement(_loader);
 		}
 		
 		protected function removeLoadIndicator():void

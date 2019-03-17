@@ -20,6 +20,7 @@
     <js-output-optimization>
         <optimization>skipFunctionCoercions</optimization>
     </js-output-optimization>
+    <js-default-initializers>true</js-default-initializers>
     <compiler>
     </compiler>
 </royale-config>

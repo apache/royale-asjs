@@ -93,7 +93,8 @@ limitations under the License.
 
     <j:beads>
         <js:ContainerDataBinding/>
-        <js:BrowserOrientation localId="bo"/>	
+        <js:BrowserOrientation localId="bo"/>
+		<j:CleanValidationErrors/>
     </j:beads>
 
     <j:Drawer localId="drawer">
@@ -107,12 +108,14 @@ limitations under the License.
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="containerDrawerNavigation" destinationPropertyName="dataProvider"/>
+                    <j:NavigationActionNotifier/>
                 </j:beads>
             </j:Navigation>
             <j:Divider/>
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="controlsDrawerNavigation" destinationPropertyName="dataProvider"/>
+                    <j:NavigationActionNotifier/>
                 </j:beads>
             </j:Navigation>
         </j:DrawerContent>
@@ -207,7 +210,7 @@ limitations under the License.
         </j:BarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainContent" selectedContent = "welcome_panel">
+    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" selectedContent = "welcome_panel">
         <local:WelcomeSection name="welcome_panel"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>

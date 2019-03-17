@@ -18,18 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net.utils
 {
-    import org.apache.royale.net.remoting.amf.AMFBinaryData;
+	import org.apache.royale.utils.IBinaryDataOutput;
+    COMPILE::SWF{
+        import flash.utils.IDataOutput
+    }
 
     /**
      * initial work on replacement for flash.utils.IDataOutput
      */
-    public interface IDataOutput
+	COMPILE::JS
+    public interface IDataOutput extends IBinaryDataOutput
     {
-        function writeBytes(bytes:AMFBinaryData, offset:uint = 0, length:uint = 0):void;
-
-        function writeByte(value:int):void;
 
         function writeObject(object:*):void;
     }
+	
+	
+	COMPILE::SWF
+	public interface IDataOutput extends IBinaryDataOutput, flash.utils.IDataOutput
+	{
+		/*function get objectEncoding():uint;
+		function set objectEncoding(value:uint):void;
+		function writeObject(object:*):void;*/
+	}
 
 }

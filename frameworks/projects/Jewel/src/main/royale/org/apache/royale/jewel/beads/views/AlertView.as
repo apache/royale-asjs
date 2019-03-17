@@ -20,17 +20,17 @@ package org.apache.royale.jewel.beads.views
 {
     COMPILE::SWF
 	{
-        import flash.utils.setTimeout;
+	import flash.utils.setTimeout;
 
-        import org.apache.royale.core.IMeasurementBead;
-        import org.apache.royale.core.ValuesManager;
-        import org.apache.royale.html.beads.IBackgroundBead;
-        import org.apache.royale.html.beads.IBorderBead;
-        import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IMeasurementBead;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.html.beads.IBackgroundBead;
+	import org.apache.royale.html.beads.IBorderBead;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 	}
 	COMPILE::JS
 	{
-    	import org.apache.royale.jewel.ControlBar;	
+    import org.apache.royale.jewel.ControlBar;	
 	}
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IBeadLayout;

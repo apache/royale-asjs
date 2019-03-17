@@ -27,12 +27,15 @@ package flexUnitTests
         public function ReflectionTester()
         {
             // see notes in CoreTester
-            var arr:Array = [ReflectionTesterTest, ReflectionTesterTestUseCache, ReflectionTesterTestAlias];
+            var arr:Array = [ReflectionTesterTest, ReflectionTesterTestUseCache, ReflectionTesterTestAlias, ReflectionTesterTestDynamic];
         }
         
         public var reflectionTesterCacheTest:ReflectionTesterTestUseCache;
         public var reflectionTesterTest:ReflectionTesterTest;
         
         public var reflectionTesterAliasTest:ReflectionTesterTestAlias;
+	
+	
+		public var reflectionTesterDynamicTest:ReflectionTesterTestDynamic;
     }
 }

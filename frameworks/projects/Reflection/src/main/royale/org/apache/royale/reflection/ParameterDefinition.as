@@ -21,7 +21,7 @@ package org.apache.royale.reflection
     
     /**
      *  The description of a Function parameter
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2S
      *  @playerversion AIR 2.6
@@ -40,11 +40,11 @@ package org.apache.royale.reflection
 		 */
 		public function get type():TypeDefinition{
 			COMPILE::SWF {
-				return TypeDefinition.getDefinition(_rawData.@type);
+				return TypeDefinition.internalGetDefinition(_rawData.@type);
 			}
 
 			COMPILE::JS {
-				return TypeDefinition.getDefinition(_rawData.type);
+				return TypeDefinition.internalGetDefinition(_rawData.type);
 			}
 
 		}

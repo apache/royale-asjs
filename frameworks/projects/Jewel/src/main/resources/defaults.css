@@ -57,7 +57,7 @@ j|ApplicationResponsiveView {
 .applicationResponsiveView {
   display: inline-flex;
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 j|ApplicationView {
@@ -372,7 +372,7 @@ j|ComboBox {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 60;
   color: rgba(0, 0, 0, 0.8);
 }
 .combobox-popup::before {
@@ -412,20 +412,16 @@ j|ComboBox {
   opacity: 1;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .combobox-popup .jewel.list {
     width: 98% !important;
-  }
-}
-@media (max-width: 768px) {
-  .combobox-popup .jewel.list {
     max-height: 240px !important;
   }
   .combobox-popup .jewel.list .jewel.item {
     min-height: 48px !important;
   }
 }
-@media (min-width: 768px) {
+@media (min-width: 767px) {
   .combobox-popup::before {
     background-color: rgba(0, 0, 0, 0);
   }
@@ -526,7 +522,7 @@ j|DateChooser {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 60;
   color: rgba(0, 0, 0, 0.8);
 }
 .datechooser-popup::before {
@@ -626,7 +622,7 @@ j|Divider {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 15;
+  z-index: 100;
 }
 .jewel.drawer.float::before {
   position: absolute;
@@ -760,7 +756,7 @@ j|DropDownList {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  z-index: 4;
+  z-index: 20;
   position: fixed;
   bottom: 0px;
 }
@@ -3197,7 +3193,7 @@ j|Spinner {
   height: 100%;
   overflow: hidden;
   contain: strict;
-  z-index: 5;
+  z-index: 40;
 }
 .popup-content::before {
   position: absolute;
@@ -3322,12 +3318,21 @@ j|PopUp {
   flex-flow: column nowrap;
   height: 100%;
 }
+.jewel.section > * {
+  flex: 0 0 auto;
+}
 .jewel.section.is-selected {
   display: flex;
 }
 
 j|SectionContent {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+}
+
+j|ScrollableSectionContent {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.slider {
@@ -3433,7 +3438,7 @@ j|Slider {
   bottom: 0;
   position: fixed;
   width: 100%;
-  z-index: 5;
+  z-index: 40;
   justify-content: center;
 }
 
@@ -3465,6 +3470,10 @@ j|Snackbar {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SnackbarModel");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SnackbarController");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SnackbarView");
+}
+
+.jewel.tabbar {
+  height: 48px;
 }
 
 j|TabBar {
@@ -3760,7 +3769,7 @@ j|TitleBar {
   padding: 6px;
   position: absolute;
   pointer-events: none;
-  z-index: 5;
+  z-index: 80;
 }
 .jewel.tooltip.error {
   margin-top: -31px !important;
@@ -3782,7 +3791,7 @@ j|TitleBar {
   flex-direction: column;
   justify-content: space-between;
   width: 100%;
-  z-index: 4;
+  z-index: 20;
   position: fixed;
 }
 .jewel.topappbar .topBarAppHeader.fixed {
@@ -3889,24 +3898,28 @@ j|Wizard {
   IWizardContentArea: ClassReference("org.apache.royale.jewel.WizardContent");
 }
 
+j|WizardPage {
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.NoViewport");
+}
+
 j|WizardContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.main {
   width: 100%;
-  min-height: 100%;
+  height: 100%;
 }
 
 .has-topappbar {
-  padding-top: 64px !important;
+  padding-top: 66px !important;
 }
 
 .has-footerbar {
-  padding-bottom: 64px !important;
+  padding-bottom: 66px !important;
 }
 
 j|ApplicationMainContent {

@@ -63,6 +63,7 @@
             </include-file>
           </includeFiles>
           <skipExtern>true</skipExtern>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

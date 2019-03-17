@@ -109,6 +109,8 @@
     <include-namespaces>
         <uri>library://ns.apache.org/royale/spark</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

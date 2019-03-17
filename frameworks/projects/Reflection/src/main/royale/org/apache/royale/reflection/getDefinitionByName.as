@@ -28,7 +28,7 @@ COMPILE::JS
 }
     
     /**
-     *  The equivalent of flash.utils.getQualifiedClassName.
+     *  The equivalent of flash.utils.getDefinitionByName.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2

@@ -18,17 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net.utils
 {
+    import org.apache.royale.utils.IBinaryDataInput;
+    COMPILE::SWF{
+        import flash.utils.IDataInput
+    }
     
     /**
      * initial work on replacement for flash.utils.IDataInput
      */
-    public interface IDataInput
+    COMPILE::JS
+    public interface IDataInput extends IBinaryDataInput
     {
-        function get bytesAvailable():uint;
-
-        function readUnsignedByte():uint;
-
         function readObject():*;
     }
+	
+	COMPILE::SWF
+	public interface IDataInput extends IBinaryDataInput, flash.utils.IDataInput
+	{
+
+	}
 
 }

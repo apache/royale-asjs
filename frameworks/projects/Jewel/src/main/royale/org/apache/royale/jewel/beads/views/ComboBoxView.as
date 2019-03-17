@@ -313,7 +313,7 @@ package org.apache.royale.jewel.beads.views
 				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 
 				// Desktop width size
-				if(outerWidth > ResponsiveSizes.TABLET_BREAKPOINT)
+				if(outerWidth >= ResponsiveSizes.TABLET_BREAKPOINT)
 				{
 					//popup width needs to be set before position inside bounding client to work ok
 					_list.width = _textinput.width + _button.width;

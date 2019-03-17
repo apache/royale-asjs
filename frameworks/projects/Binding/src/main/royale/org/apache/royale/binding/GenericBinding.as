@@ -187,6 +187,7 @@ package org.apache.royale.binding
             return null;
 		}
         
+        private var _listening:Boolean;
         /**
          * @royaleignorecoercion Array
          */
@@ -203,8 +204,11 @@ package org.apache.royale.binding
                 var obj:Object = document[arr[0]];
                 if (obj == null)
                 {
-                    document.addEventListener(ValueChangeEvent.VALUE_CHANGE,
-                        destinationChangeHandler);
+                    if (!_listening) {
+                        document.addEventListener(ValueChangeEvent.VALUE_CHANGE,
+                            destinationChangeHandler);
+                        _listening = true;
+                    }
                     return;
                 }
                 for (var i:int = 1; i < n - 1; i++)
@@ -235,18 +239,23 @@ package org.apache.royale.binding
          *  may have changed.
          *
          *  @param value The new value.
+         *  @param getFromSource true if the value parameter should be ignored, and an
+         *  attempt should be made to get the value directly from the source object.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function valueChanged(value:Object):void
+		public function valueChanged(value:Object, getFromSource:Boolean):void
 		{
             try 
             {
-                var val:Object = getValueFromSource();
-                applyValue(val);
+			
+                if (getFromSource) {
+					value = getValueFromSource();
+				}
+                applyValue(value);
             } 
             catch (e:Error)
             {
@@ -256,7 +265,7 @@ package org.apache.royale.binding
         private function destinationChangeHandler(event:ValueChangeEvent):void
         {
             if (event.propertyName == destinationData[0])
-                valueChanged(null);
+                valueChanged(null, true);
         }
 	}
 }

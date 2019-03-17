@@ -877,7 +877,7 @@ package org.apache.royale.core
         public function set visible(value:Boolean):void
         {
             var oldValue:Boolean = positioner.style.display !== 'none';
-            if (value !== oldValue) 
+            if (Boolean(value) !== oldValue)
             {
                 if (!value) 
                 {

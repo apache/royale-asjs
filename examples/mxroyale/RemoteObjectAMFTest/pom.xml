@@ -72,7 +72,7 @@
       <type>swc</type>
       <scope>provided</scope>
     </dependency>
-      
+
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>
