@@ -35,6 +35,7 @@ package org.apache.royale.html.beads.models
      */
 	public class ColorModel extends EventDispatcher implements IBead, IColorModel
 	{
+		private var _color:uint;
         /**
          *  Constructor.
          *  
@@ -49,10 +50,9 @@ package org.apache.royale.html.beads.models
 		
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;
 		}
 
-        [Bindable("change")]
+        [Bindable("colorChange")]
         /**
          *  @copy org.apache.royale.core.IColorModel#color
          *  
@@ -63,7 +63,7 @@ package org.apache.royale.html.beads.models
          */
         public function get color():uint
 		{
-			return IColorModel(model).color;
+			return _color;
 		}
 		
         /**
@@ -71,21 +71,8 @@ package org.apache.royale.html.beads.models
          */
 		public function set color(value:uint):void
 		{
-                IColorModel(model).color = value;
+			_color = value;
+			dispatchEvent(new Event("colorChange"));
 		}
-
-		/**
-		 *  dispatch change event in response to a colorChange event
-		 *
-		 *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.6
-		 */
-		public function textChangeHandler(event:Event):void
-		{
-			dispatchEvent(new Event(Event.CHANGE));
-		}
-
 	}
 }

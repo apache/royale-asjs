@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IColorModel;
 	import org.apache.royale.core.UIBase;

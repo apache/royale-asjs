@@ -138,6 +138,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
     import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
     import org.apache.royale.core.ITextModel; ITextModel;
+    import org.apache.royale.core.IColorModel; IColorModel;
     import org.apache.royale.core.ITitleBarModel; ITitleBarModel;
     import org.apache.royale.core.IToggleButtonModel; IToggleButtonModel;
     import org.apache.royale.core.IUIBase; IUIBase;

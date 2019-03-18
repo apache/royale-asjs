@@ -27,7 +27,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.6
      */
-	public interface ICOlorModel extends IBeadModel
+	public interface IColorModel extends IBeadModel
 	{
         /**
          *  The color displayed in the control.

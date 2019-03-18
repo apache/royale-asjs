@@ -41,6 +41,7 @@ internal class BasicClasses
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
     import org.apache.royale.html.beads.AlertView; AlertView;
+    import org.apache.royale.html.beads.ColorSpectrumView; ColorSpectrumView;
     import org.apache.royale.html.beads.controllers.AlertController; AlertController;
 	
 	import org.apache.royale.html.beads.DividedContainerView; DividedContainerView;
@@ -163,6 +164,8 @@ internal class BasicClasses
 	{
 	    import org.apache.royale.html.beads.models.SingleLineBorderModel; SingleLineBorderModel;
 	}
+
+	import org.apache.royale.html.beads.models.ColorModel; ColorModel;
 	import org.apache.royale.html.beads.models.TextModel; TextModel;
     import org.apache.royale.html.beads.models.NonNullTextModel; NonNullTextModel;
     import org.apache.royale.html.beads.models.TitleBarModel; TitleBarModel;

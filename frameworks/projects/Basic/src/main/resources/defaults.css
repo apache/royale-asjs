@@ -601,6 +601,12 @@ SwatchList
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+ColorSpectrum
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ColorSpectrumView");
+}
+
 Slider
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
