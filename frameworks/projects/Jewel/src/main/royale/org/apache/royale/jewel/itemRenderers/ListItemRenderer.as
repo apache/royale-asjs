@@ -125,12 +125,11 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		override public function set data(value:Object):void
-		{
-			super.data = value;
+        override public function set data(value:Object):void
+        {
             text = getLabelFromData(this, value);
-			dispatchEvent(new Event("dataChange"));
-		}
+            super.data = value;
+        }
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
