@@ -1082,7 +1082,7 @@ j|Label {
   width: 100%;
 }
 .layout.grid > * {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   max-width: 100%;
   width: 100%;
 }
