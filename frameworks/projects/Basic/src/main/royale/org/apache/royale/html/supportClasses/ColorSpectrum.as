@@ -87,7 +87,7 @@ package org.apache.royale.html
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
 		 */
-		public function textChangeHandler(event:Event):void
+		public function colorChangeHandler(event:Event):void
 		{
 			dispatchEvent(new Event(Event.CHANGE));
 		}

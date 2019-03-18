@@ -19,7 +19,7 @@
 package org.apache.royale.core
 {
     /**
-     *  The ITextModel interface describes the minimum set of properties
+     *  The IColorModel interface describes the minimum set of properties
      *  available to a control that displays or edits color.
      *  
      *  @langversion 3.0
