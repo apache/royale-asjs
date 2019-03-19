@@ -1095,9 +1095,32 @@ a:active {
 .jewel.tooltip.error {
   background: #EC1C24;
 }
-.jewel.tooltip.error::before {
-  border-top-color: #EC1C24;
+.jewel.tooltip::before {
   border: solid 8px transparent;
+}
+.jewel.tooltip.left-top::before {
+  left: 8px;
+  border-top-color: #EC1C24;
+}
+.jewel.tooltip.middle-top::before {
+  margin-bottom: -8px;
+  margin-left: -8px;
+  border-top-color: #EC1C24;
+}
+.jewel.tooltip.left-middle::before {
+  margin-top: -8px;
+  margin-right: -8px;
+  border-left-color: #EC1C24;
+}
+.jewel.tooltip.right-middle::before {
+  margin-top: -8px;
+  margin-left: -8px;
+  border-right-color: #EC1C24;
+}
+.jewel.tooltip.middle-bottom::before {
+  margin-top: -8px;
+  margin-left: -8px;
+  border-bottom-color: #EC1C24;
 }
 @keyframes slide-up {
   0% {

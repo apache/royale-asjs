@@ -3765,16 +3765,40 @@ j|TitleBar {
   position: absolute;
   pointer-events: none;
   z-index: 80;
+  border-radius: 0.25em;
 }
 .jewel.tooltip.error {
   margin-top: -31px !important;
 }
 .jewel.tooltip.error::before {
-  top: 100%;
-  left: 8px;
-  position: absolute;
   content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+.jewel.tooltip.error.left-top::before {
+  top: 100%;
   margin-top: 0px;
+}
+.jewel.tooltip.error.middle-top::before {
+  bottom: 0;
+  left: 50%;
+  border-bottom: 0;
+}
+.jewel.tooltip.error.left-middle::before {
+  top: 50%;
+  right: 0;
+  border-right: 0;
+}
+.jewel.tooltip.error.right-middle::before {
+  top: 50%;
+  left: 0;
+  border-left: 0;
+}
+.jewel.tooltip.error.middle-bottom::before {
+  top: 0;
+  left: 50%;
+  border-top: 0;
 }
 
 .jewel.topappbar {
