@@ -293,7 +293,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
 
         COMPILE::JS
         {
-			writeBytes(bytes.ba as ArrayBuffer)
+			writeBytes(bytes.ba as ArrayBuffer,offset,length);
         }
 
     }
