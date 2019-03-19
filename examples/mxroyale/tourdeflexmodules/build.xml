@@ -248,9 +248,9 @@
 		<compile-mxml folder="/mx/controls/" relmap="../../" example="NumericStepperExample"/>
         <!--
 		<compile-mxml folder="/mx/controls/" relmap="../../" example="OLAPDataGridExample"/>
-		<compile-mxml folder="/mx/controls/" relmap="../../" example="PopUpButtonExample"/>
-		<compile-mxml folder="/mx/controls/" relmap="../../" example="PopUpButtonMenuExample"/>
          -->
+        <compile-mxml folder="/mx/controls/" relmap="../../" example="PopUpButtonExample"/>
+        <compile-mxml folder="/mx/controls/" relmap="../../" example="PopUpButtonMenuExample"/>
 		<compile-mxml folder="/mx/controls/" relmap="../../" example="RadioButtonExample"/>
 		<compile-mxml folder="/mx/controls/" relmap="../../" example="RadioButtonGroupExample"/>
 		<compile-mxml folder="/mx/controls/" relmap="../../" example="RichTextEditorExample"/>
