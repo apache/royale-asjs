@@ -331,25 +331,38 @@ package org.apache.royale.events
 		private var _buttons:int = -1;
 		public function get buttonDown():Boolean
 		{
-			if(_buttons > -1)
-				return _buttons == 1;
-			if(!wrappedEvent)
-				return false;
-			//Safari does not yet support buttons
-			if ('buttons' in nativeEvent)
-				_buttons = nativeEvent["buttons"];
-			else
-				_buttons = nativeEvent["which"];
-			return _buttons == 1;
+			return button > -1 && button < 3;
 		}
 		public function set buttonDown(value:Boolean):void
 		{
-			_buttons = value ? 1 : 0;
+			_button = value ? 0 : 9;// any value over 2 will be interpreted as no button down
 		}
 
+		private var _button:int = -1;
+
+		/**
+		 * see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
+		 */
+		public function get button():int
+		{
+			if(_button > -1)
+				return _button;
+			return nativeEvent["button"];
+		}
+
+		public function set button(value:int):void
+		{
+			_button = value;
+		}
+
+		/**
+		 * see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons
+		 */
 		public function get buttons():int
 		{
-			return _buttons;
+			if(_buttons > -1)
+				return _buttons;
+			return nativeEvent["buttons"];
 		}
 		public function set buttons(value:int):void
 		{
