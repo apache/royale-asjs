@@ -24,6 +24,10 @@ j|Application {
   margin: 0px;
 }
 
+input, select, textarea, button {
+  font-family: inherit;
+}
+
 j|Form {
   gap: 3;
 }
@@ -159,7 +163,6 @@ hr {
   border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(13, 13, 13, 0.7);
-  font-family: "Lato", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -568,7 +571,6 @@ j|FormItem {
 }
 
 .jewel.label {
-  font-family: "Lato", sans-serif;
   font-size: 1em;
 }
 
@@ -598,7 +600,6 @@ j|FormItem {
 .jewel.navigationlink {
   margin: 0;
   padding: 0 16px;
-  font-family: "Lato", sans-serif;
   font-size: 1em;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
@@ -836,7 +837,6 @@ j|FormItem {
 .jewel.tabbarbutton {
   margin: 0;
   padding: 14px 16px;
-  font-family: "Lato", sans-serif;
   font-size: 1em;
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
@@ -939,9 +939,6 @@ a:active {
   color: #FFFFFF;
 }
 .jewel.textinput input {
-  font-family: "Lato", sans-serif;
-}
-.jewel.textinput input {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   border-radius: 0.25rem;
@@ -975,9 +972,6 @@ a:active {
   color: #FFFFFF;
 }
 .jewel.textarea textarea {
-  font-family: "Lato", sans-serif;
-}
-.jewel.textarea textarea {
   background: linear-gradient(#7f7f7f, #737373);
   border: 1px solid #333333;
   border-radius: 0.25rem;
@@ -1007,7 +1001,6 @@ a:active {
   border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: 0 -1px 0 rgba(13, 13, 13, 0.7);
-  font-family: "Lato", sans-serif;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -1165,7 +1158,6 @@ a:active {
   border: none;
 }
 .jewel.topappbar .jewel.bartitle {
-  font-family: "Lato", sans-serif;
   font-size: 1.4em !important;
   font-weight: 800;
   padding-left: 20px;
