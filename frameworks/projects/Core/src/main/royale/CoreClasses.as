@@ -280,6 +280,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 
 	import org.apache.royale.utils.measureComponent; measureComponent;
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
+	import org.apache.royale.utils.hsvToHex; hsvToHex;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 
