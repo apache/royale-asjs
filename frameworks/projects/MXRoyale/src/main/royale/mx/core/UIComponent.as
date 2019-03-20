@@ -403,7 +403,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Style(name="chromeColor", type="uint", format="Color", inherit="yes", theme="spark")]
+[Style(name="chromeColor", type="uint", format="Color", inherit="yes")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
@@ -558,6 +558,22 @@ public class UIComponent extends UIBase
 	{
 	
 	}
+	
+	
+    //----------------------------------
+    //  chromeColor
+    //----------------------------------
+    private var _chromeColor:uint;
+	
+    public function get chromeColor():uint
+       {
+	  return _chromeColor;
+       }
+     public function set chromeColor(value:uint):void
+       {
+	  _chromeColor = value;
+       }
+	   
 	
     //----------------------------------
     //  mouseFocusEnabled
