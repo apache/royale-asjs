@@ -1564,12 +1564,12 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the minYear property.
      */
-   // private var _minYear:int = 1900;
+    private var _minYear:int = 1900;
 
     /**
      *  @private
      */
-   // private var minYearChanged:Boolean = false;
+    private var minYearChanged:Boolean = false;
 
     /**
      *  The first year selectable in the control.
