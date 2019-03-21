@@ -70,10 +70,11 @@ package org.apache.royale.jewel.beads.controllers
             model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			                   
             var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
-			view.prevMonthButton.addEventListener(MouseEvent.CLICK, prevMonthClickHandler);
-			view.nextMonthButton.addEventListener(MouseEvent.CLICK, nextMonthClickHandler);
+			view.previousButton.addEventListener(MouseEvent.CLICK, previousButtonClickHandler);
+			view.nextButton.addEventListener(MouseEvent.CLICK, nextButtonClickHandler);
+			view.viewSelector.addEventListener(MouseEvent.CLICK, viewSelectorClickHandler);
 			
-            IEventDispatcher(view.daysTable).addEventListener(Event.CHANGE, tableHandler);
+            IEventDispatcher(view.table).addEventListener(Event.CHANGE, tableHandler);
 		}
 
 		private var model:DateChooserModel;
@@ -87,7 +88,7 @@ package org.apache.royale.jewel.beads.controllers
 		/**
 		 * @private
 		 */
-		private function prevMonthClickHandler(event:MouseEvent):void
+		private function previousButtonClickHandler(event:MouseEvent):void
 		{
             event.preventDefault();
             
@@ -105,7 +106,7 @@ package org.apache.royale.jewel.beads.controllers
 		/**
 		 * @private
 		 */
-		private function nextMonthClickHandler(event:MouseEvent):void
+		private function nextButtonClickHandler(event:MouseEvent):void
 		{
             event.preventDefault();
             
@@ -119,6 +120,15 @@ package org.apache.royale.jewel.beads.controllers
 			model.displayedMonth = month;
 			model.displayedYear = year;
 		}
-		
+
+		/**
+		 * @private
+		 */
+		private function viewSelectorClickHandler(event:MouseEvent):void
+		{
+			event.preventDefault();
+			
+			model.viewState = model.viewState == 0 ? 1 : model.viewState == 1 ? 2 : 0;
+		}
 	}
 }

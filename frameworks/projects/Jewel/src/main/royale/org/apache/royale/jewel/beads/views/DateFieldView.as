@@ -239,7 +239,7 @@ package org.apache.royale.jewel.beads.views
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
 					host.popUpParent.addElement(_popUp);
 					// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-					daysTable = (popUp.view as DateChooserView).daysTable;
+					table = (popUp.view as DateChooserView).table;
 
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					setTimeout(prepareForPopUp,  300);
@@ -298,7 +298,7 @@ package org.apache.royale.jewel.beads.views
 			}
 		}
 
-		private var daysTable:Table;
+		private var table:Table;
 		/**
 		 *  When set to "auto" this resize handler monitors the width of the app window
 		 *  and switch between fixed and float modes.
@@ -323,14 +323,14 @@ package org.apache.royale.jewel.beads.views
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
 					var origin:Point = new Point(0, _button.y + _button.height - top);
-					var relocated:Point = positionInsideBoundingClientRect(_strand, daysTable, origin);
-					daysTable.x = relocated.x;
-					daysTable.y = relocated.y;
+					var relocated:Point = positionInsideBoundingClientRect(_strand, table, origin);
+					table.x = relocated.x;
+					table.y = relocated.y;
 				}
 				else
 				{
-					daysTable.positioner.style.left = '50%';
-					daysTable.positioner.style.top = 'calc(100% - 10px)';
+					table.positioner.style.left = '50%';
+					table.positioner.style.top = 'calc(100% - 10px)';
 				}
 			}
 		}

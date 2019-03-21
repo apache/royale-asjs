@@ -60,11 +60,36 @@ package org.apache.royale.jewel.beads.models
 		
 		private var _dayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 		private var _monthNames:Array = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-        private var _days:Array;
 		private var _displayedYear:Number;
 		private var _displayedMonth:Number;
 		private var _firstDayOfWeek:Number = 0;
 		private var _selectedDate:Date;
+		private var _viewState:int = 0;
+        
+        private var _days:Array = new Array(42);
+		private var _years:Array = new Array(24);
+		private var _months:Array = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+		
+		/**
+		 *  0 - days (calendar view): Select a day in a month calendar view, can navigate by months
+		 *  1 - years (year view): Select a year from a list of years, can navigate by group of years
+		 *  2 - months (months view): Select a month from the list of all months, there is no navigation
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function get viewState():int
+		{
+			return _viewState;
+		}
+		public function set viewState(value:int):void
+		{
+			_viewState = value;
+			updateCalendar();
+			dispatchEvent( new Event("viewStateChanged") );
+		}
 		
 		/**
 		 *  An array of strings used to name the days of the week with Sunday being the
@@ -178,6 +203,30 @@ package org.apache.royale.jewel.beads.models
                 dispatchEvent( new Event("daysChanged") );
             }
         }
+        
+		public function get years():Array
+        {
+            return _years;
+        }
+        public function set years(value:Array):void
+        {
+            if (value != _years) {
+                _years = value;
+                dispatchEvent( new Event("yearsChanged") );
+            }
+        }
+		
+		public function get months():Array
+        {
+            return _months;
+        }
+        public function set months(value:Array):void
+        {
+            if (value != _months) {
+                _months = value;
+                dispatchEvent( new Event("monthsChanged") );
+            }
+        }
 
 		/**
 		 *  The currently selected date or null if no date has been selected.
@@ -220,20 +269,41 @@ package org.apache.royale.jewel.beads.models
          * @private
          */
         private function updateCalendar():void
-        {       
-            var firstDay:Date = new Date(displayedYear, displayedMonth, 1);
-            
-            _days = new Array(42);
-            
-            // skip to the first day and renumber to the last day of the month
-			var i:int = firstDay.getDay() - firstDayOfWeek;
-            var dayNumber:int = 1;
-            var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
-            
-            while(dayNumber <= numDays) 
+        {
+			var i:int;
+			if(viewState == 0)
 			{
-                _days[i++] = new Date(displayedYear, displayedMonth, dayNumber++);
-            }
+				var firstDay:Date = new Date(displayedYear, displayedMonth, 1);
+				// skip to the first day and renumber to the last day of the month
+				i = firstDay.getDay() - firstDayOfWeek;
+				var dayNumber:int = 1;
+				var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
+				
+				while(dayNumber <= numDays) 
+				{
+					_days[i++] = new Date(displayedYear, displayedMonth, dayNumber++);
+				}
+			} else if(viewState == 1)
+			{
+				i = 0;
+				var yearNumber:int = new Date().getFullYear();
+				// trace("yearNumber",yearNumber)
+				var numYears:Number = 24;
+				while(i < numYears) 
+				{
+				// trace(i," - ",(yearNumber + i));
+					_years[i++] = new Date(yearNumber + i, 0, 1);
+				}
+			} else
+			{
+				i = 0;
+				var monthNumber:int = new Date().getMonth();
+				var numMonths:Number = 12;
+				while(i < numMonths) 
+				{
+					_months[i++] = new Date(displayedYear, monthNumber++, 1);
+				}
+			}
             
         }
         
