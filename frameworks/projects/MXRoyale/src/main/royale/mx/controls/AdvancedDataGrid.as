@@ -231,6 +231,19 @@ use namespace mx_internal;
  */
 [Event(name="itemEditEnd", type="mx.events.AdvancedDataGridEvent")]
 
+
+/**
+ *  Dispatched when an item editing session ends for any reason.
+ *
+ *  @eventType  mx.events.AdvancedDataGridEvent.ITEM_EDIT_BEGIN
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.4
+ */
+[Event(name="itemEditBegin", type="mx.events.AdvancedDataGridEvent")]
+
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -9744,7 +9757,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     {
         _presentationModel = value as IDataGridPresentationModel;
     }
-
+   
+    public function destroyItemEditor():void
+	{
+	
+	}
 	
 }
 
