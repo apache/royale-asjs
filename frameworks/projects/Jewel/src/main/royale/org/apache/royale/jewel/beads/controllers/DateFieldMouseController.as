@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.controllers
 		}
 		
 		private var viewBead:DateFieldView;
-		private var daysTable:Table;
+		private var table:Table;
 		private var model:IDateChooserModel;
 
 		private var _strand:IStrand;
@@ -97,9 +97,9 @@ package org.apache.royale.jewel.beads.controllers
             // t.start();
 
 			// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-			daysTable = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
+			table = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).table;
 
-			IEventDispatcher(daysTable).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(table).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
         }
 
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.controllers
         
 		protected function removePopUpWhenClickOutside(event:MouseEvent = null):void
 		{
-			IEventDispatcher(daysTable).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(table).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
 			viewBead.popUpVisible = false;
@@ -122,7 +122,7 @@ package org.apache.royale.jewel.beads.controllers
 		private function changeHandler(event:Event):void
 		{
 			event.stopImmediatePropagation();
-			IEventDispatcher(daysTable).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(table).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
             
