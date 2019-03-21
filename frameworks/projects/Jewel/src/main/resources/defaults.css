@@ -447,7 +447,7 @@ j|ComboBoxPopUp {
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
   padding: 12px 0px;
 }
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::before {
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::before {
   margin: 0;
   padding: 0;
   line-height: 22px;
@@ -458,7 +458,7 @@ j|ComboBoxPopUp {
   width: 22px;
   height: 22px;
 }
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::after {
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
   content: " ";
   position: absolute;
   width: 22px;
@@ -470,12 +470,6 @@ j|ComboBoxPopUp {
   padding: 4px;
 }
 .jewel.datechooser .jewel.table .jewel.tableitem {
-  width: 38px;
-  height: 38px;
-}
-.jewel.datechooser .jewel.table .jewel.tableitem .jewel.tableitem {
-  padding: 2px;
-  width: 38px;
   height: 38px;
 }
 
