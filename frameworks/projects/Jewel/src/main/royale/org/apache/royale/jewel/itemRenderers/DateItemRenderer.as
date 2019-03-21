@@ -22,6 +22,7 @@ package org.apache.royale.jewel.itemRenderers
 	{
 		import flash.text.TextFieldAutoSize;
 	}
+	import org.apache.royale.jewel.beads.models.DateChooserModel;
 
 	/**
 	 *  The DateItemRenderer class renders date values for the DateChooser.

@@ -23,7 +23,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IParent;
@@ -31,7 +30,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.events.CollectionEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
@@ -54,7 +52,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
      * and generates the appropiate table structure with thead, tbody and table rows and cells
      * to hold the columns and data in cells.
-     * 
 	 */
 	public class TableItemRendererFactoryForCollectionView extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
 	{
