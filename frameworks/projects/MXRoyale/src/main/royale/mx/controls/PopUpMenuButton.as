@@ -150,6 +150,12 @@ public class PopUpMenuButton extends PopUpButton
     {
         super();
     }
+    
+    /**
+     *  @private
+     */
+    private var popUpMenu:Menu = null;
+    
 
     //--------------------------------------------------------------------------
     // dataProvider
@@ -240,6 +246,44 @@ public class PopUpMenuButton extends PopUpButton
             
             dispatchEvent(new Event("labelFieldChanged"));
         }
+    }
+
+    /**
+     *  @private
+     */
+    override mx_internal function getPopUp():IUIComponent
+    {
+        super.getPopUp();
+        
+        if (!popUpMenu || !super.popUp)
+        {
+            popUpMenu = new Menu();
+            /*
+            popUpMenu.iconField = _iconField;
+            popUpMenu.iconFunction = _iconFunction;
+            */
+            popUpMenu.labelField = _labelField;
+            /*
+            popUpMenu.labelFunction = _labelFunction;
+            popUpMenu.showRoot = _showRoot;
+            popUpMenu.dataDescriptor = _dataDescriptor;
+            */
+            popUpMenu.dataProvider = _dataProvider;
+            /*
+            popUpMenu.addEventListener(MenuEvent.ITEM_CLICK, menuChangeHandler);
+            popUpMenu.addEventListener(FlexEvent.VALUE_COMMIT,
+                menuValueCommitHandler);
+            */
+            super.popUp = popUpMenu;
+            // Add PopUp to PopUpManager here so that
+            // commitProperties of Menu gets called even
+            // before the PopUp is opened. This is 
+            // necessary to get the initial label and dp.
+            PopUpManager.addPopUp(super.popUp, this, false);
+            super.popUp.owner = this;
+        }
+        
+        return popUpMenu;
     }
 
 	}
