@@ -709,6 +709,8 @@ public class Panel extends Container
     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
+        if ((panelView.contentArea as UIComponent).systemManager == null)
+            (panelView.contentArea as UIComponent).systemManager = systemManager;
         panelView.contentArea.addElement(c, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
@@ -722,6 +724,8 @@ public class Panel extends Container
     override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
+        if ((panelView.contentArea as UIComponent).systemManager == null)
+            (panelView.contentArea as UIComponent).systemManager = systemManager;
         panelView.contentArea.addElementAt(c, index, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
