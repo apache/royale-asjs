@@ -180,6 +180,7 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		private var buttonsRow:TableRow;
+		private var viewSelectorTableHeaderCell:TableHeaderCell;
 
 		private function createButtonsRow():void
 		{
@@ -191,6 +192,7 @@ package org.apache.royale.jewel.beads.views
 			tableHeader.addElement(_viewSelector);
 			tableHeader.expandColumns = 5;
 			buttonsRow.addElement(tableHeader);
+			viewSelectorTableHeaderCell = tableHeader; // to change colspan at a later time
 
 			tableHeader= new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
@@ -231,14 +233,17 @@ package org.apache.royale.jewel.beads.views
 			{
 				// display "FEB 2019"
 				_viewSelector.text = model.monthNames[model.displayedMonth] + " " + String(model.displayedYear);
+				viewSelectorTableHeaderCell.expandColumns = 5;
 			} else if(model.viewState == 1)
 			{
 				// display "2016-2039"
 				_viewSelector.text = String(model.displayedYear - 10) + "-" + String(model.displayedYear + 10);
+				viewSelectorTableHeaderCell.expandColumns = 2;
 			} else
 			{
 				// display "2017"
 				_viewSelector.text = String(model.displayedYear);
+				viewSelectorTableHeaderCell.expandColumns = 2;
 			}
 		}
 
