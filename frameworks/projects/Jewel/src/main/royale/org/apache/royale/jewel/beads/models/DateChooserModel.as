@@ -66,9 +66,11 @@ package org.apache.royale.jewel.beads.models
 		private var _selectedDate:Date;
 		private var _viewState:int = 0;
         
-        private var _days:Array = new Array(42);
-		private var _years:Array = new Array(24);
-		private var _months:Array = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+		private var _months:Array = [];
+		public static const NUM_DAYS_VIEW:int = 42;
+        private var _days:Array = new Array(NUM_DAYS_VIEW);
+		public static const NUM_YEARS_VIEW:int = 24;
+		private var _years:Array = new Array(NUM_YEARS_VIEW);
 		
 		/**
 		 *  0 - days (calendar view): Select a day in a month calendar view, can navigate by months
@@ -286,13 +288,10 @@ package org.apache.royale.jewel.beads.models
 			} else if(viewState == 1)
 			{
 				i = 0;
-				var yearNumber:int = new Date().getFullYear();
-				// trace("yearNumber",yearNumber)
-				var numYears:Number = 24;
-				while(i < numYears) 
+				var yearNumber:int = new Date().getFullYear() - NUM_YEARS_VIEW/2;
+				while(i < NUM_YEARS_VIEW) 
 				{
-				// trace(i," - ",(yearNumber + i));
-					_years[i++] = new Date(yearNumber + i, 0, 1);
+					_years[i] = new Date(yearNumber + i++, 0, 1);
 				}
 			} else
 			{
@@ -304,7 +303,6 @@ package org.apache.royale.jewel.beads.models
 					_months[i++] = new Date(displayedYear, monthNumber++, 1);
 				}
 			}
-            
         }
         
         /**

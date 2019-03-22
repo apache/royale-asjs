@@ -237,7 +237,7 @@ package org.apache.royale.jewel.beads.views
 			} else if(model.viewState == 1)
 			{
 				// display "2016-2039"
-				_viewSelector.text = String(model.displayedYear - 10) + "-" + String(model.displayedYear + 10);
+				_viewSelector.text = String(model.displayedYear - DateChooserModel.NUM_YEARS_VIEW/2) + "-" + String(model.displayedYear + DateChooserModel.NUM_YEARS_VIEW/2 - 1);
 				viewSelectorTableHeaderCell.expandColumns = 2;
 			} else
 			{
@@ -324,7 +324,6 @@ package org.apache.royale.jewel.beads.views
 				}
 				_table.dataProvider = new ArrayList(currrentMonth);
 			} else if(model.viewState == 1) {
-				trace("model.years",model.years);
 				var currrentYearGroup:Array = [];
 				var yearIndex:int = 0;
 				for(i = 0; i < model.years.length/NUM_COLS_YEARS_OR_MONTHS; i++)
@@ -332,7 +331,6 @@ package org.apache.royale.jewel.beads.views
 					currrentYearGroup[i] = {};
 					for(j = 0; j < columns.length; j++)
 					{
-						trace(yearIndex, model.years[yearIndex]);
 						currrentYearGroup[i]["d"+j] = model.years[yearIndex];
 						yearIndex++;
 					}
@@ -343,11 +341,9 @@ package org.apache.royale.jewel.beads.views
 				var monthIndex:int = 0;
 				for(i = 0; i < model.months.length/NUM_COLS_YEARS_OR_MONTHS; i++)
 				{
-					trace("model.months",model.months);
 					currrentYear[i] = {};
 					for(j = 0; j < columns.length; j++)
 					{
-						trace(monthIndex, model.months[monthIndex]);
 						currrentYear[i]["d"+j] = model.months[monthIndex];
 						monthIndex++;
 					}

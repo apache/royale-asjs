@@ -444,6 +444,10 @@ j|ComboBoxPopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
 }
 
+.jewel.datechooser .jewel.table {
+  min-width: 324px;
+  min-height: 364px;
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
   padding: 12px 0px;
 }

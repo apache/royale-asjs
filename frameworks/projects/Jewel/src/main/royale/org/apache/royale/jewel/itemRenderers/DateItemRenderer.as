@@ -75,7 +75,7 @@ package org.apache.royale.jewel.itemRenderers
 					text = String( (value[labelField] as Date).getFullYear());
 				} else {
 					var monthNames:Array = (itemRendererParent.parent.model as DateChooserModel).monthNames;
-					text = String( (value[labelField] as Date).getMonth());
+					text = String(monthNames[(value[labelField] as Date).getMonth()]);
 				}
 
 				COMPILE::SWF {
