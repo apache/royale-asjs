@@ -310,7 +310,7 @@ package org.apache.royale.jewel.beads.models
 				var yearNumber:int = displayedYear - NUM_YEARS_VIEW/2;
 				while(i < NUM_YEARS_VIEW) 
 				{
-					_years[i] = new Date(yearNumber + i++, _selectedDate.getMonth(), _selectedDate.getDate());
+					_years[i] = new Date(yearNumber + i++, displayedMonth, 1);
 				}
 			} else
 			{
@@ -318,7 +318,7 @@ package org.apache.royale.jewel.beads.models
 				var numMonths:Number = 12;
 				while(i < numMonths) 
 				{
-					_months[i] = new Date(displayedYear, i++, _selectedDate.getDate());
+					_months[i] = new Date(displayedYear, i++, 1);
 				}
 			}
         }
