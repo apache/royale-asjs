@@ -64,7 +64,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 			
 			var model:DateChooserModel = _strand.getBeadByType(DateChooserModel) as DateChooserModel;
             model.dayNames = ['D', 'L', 'M', 'X', 'J', 'V', 'S'];
-            model.monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre"];
+            model.monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
             model.firstDayOfWeek = 1;
 
 			(_strand as DateField).dateFormat = "DD/MM/YYYY";
