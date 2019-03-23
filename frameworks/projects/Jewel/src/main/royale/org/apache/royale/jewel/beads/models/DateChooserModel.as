@@ -265,7 +265,25 @@ package org.apache.royale.jewel.beads.models
         }
         
         // Utilities
+        public function changeYear(newYear:Number):void
+        {
+			_displayedYear = newYear;
+			_viewState = 2;
+			if(_selectedDate)
+				selectedDate.setFullYear(_displayedYear, selectedDate.getMonth(), selectedDate.getDate());
+			updateCalendar();
+			dispatchEvent( new Event("yearChanged") );
+		}
         
+		public function changeMonth(newMonth:Number):void
+        {
+			_displayedMonth = newMonth;
+			_viewState = 0;
+			if(_selectedDate)
+				selectedDate.setMonth(_displayedMonth, selectedDate.getDate());
+			updateCalendar();
+			dispatchEvent( new Event("monthChanged") );
+		}
         
         /**
          * @private
@@ -292,16 +310,15 @@ package org.apache.royale.jewel.beads.models
 				var yearNumber:int = displayedYear - NUM_YEARS_VIEW/2;
 				while(i < NUM_YEARS_VIEW) 
 				{
-					_years[i] = new Date(yearNumber + i++, 0, 1);
+					_years[i] = new Date(yearNumber + i++, _selectedDate.getMonth(), _selectedDate.getDate());
 				}
 			} else
 			{
 				i = 0;
-				var monthNumber:int = displayedMonth;
 				var numMonths:Number = 12;
 				while(i < numMonths) 
 				{
-					_months[i++] = new Date(displayedYear, monthNumber++, 1);
+					_months[i] = new Date(displayedYear, i++, _selectedDate.getDate());
 				}
 			}
         }

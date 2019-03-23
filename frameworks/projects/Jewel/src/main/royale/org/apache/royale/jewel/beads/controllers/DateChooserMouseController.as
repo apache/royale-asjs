@@ -52,6 +52,8 @@ package org.apache.royale.jewel.beads.controllers
 		public function DateChooserMouseController()
 		{
 		}
+
+		private var model:DateChooserModel;
 		
 		private var _strand:IStrand;
 		
@@ -77,15 +79,8 @@ package org.apache.royale.jewel.beads.controllers
             IEventDispatcher(view.table).addEventListener(Event.CHANGE, tableHandler);
 		}
 
-		private var model:DateChooserModel;
-		
-        private function tableHandler(event:Event):void
-        {
-            var table:DateChooserTable = event.target as DateChooserTable;
-            model.selectedDate = table.selectedItemProperty as Date;
-        }
-
 		/**
+		 * 
 		 * @private
 		 */
 		private function previousButtonClickHandler(event:MouseEvent):void
@@ -111,6 +106,7 @@ package org.apache.royale.jewel.beads.controllers
 		}
 		
 		/**
+		 * 
 		 * @private
 		 */
 		private function nextButtonClickHandler(event:MouseEvent):void
@@ -136,6 +132,7 @@ package org.apache.royale.jewel.beads.controllers
 		}
 
 		/**
+		 * 
 		 * @private
 		 */
 		private function viewSelectorClickHandler(event:MouseEvent):void
@@ -144,5 +141,25 @@ package org.apache.royale.jewel.beads.controllers
 			
 			model.viewState = model.viewState == 0 ? 1 : model.viewState == 1 ? 2 : 0;
 		}
+
+		/**
+		 * 
+		 * @private
+		 */
+        private function tableHandler(event:Event):void
+        {
+            var table:DateChooserTable = event.target as DateChooserTable;
+			var date:Date = table.selectedItemProperty as Date;
+
+			if(model.viewState == 0)
+			{
+				model.selectedDate = date;
+			} else 
+			if(model.viewState == 1) {
+				model.changeYear(date.getFullYear());
+			} else {
+				model.changeMonth(date.getMonth());
+			}
+        }
 	}
 }

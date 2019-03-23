@@ -75,6 +75,8 @@ package org.apache.royale.jewel.beads.views
 			model.addEventListener("dayNamesChanged", handleModelChange);
 			model.addEventListener("displayedMonthChanged", handleModelChange);
 			model.addEventListener("displayedYearChanged", handleModelChange);
+			model.addEventListener("yearChanged", handleModelChange);
+			model.addEventListener("monthChanged", handleModelChange);
 			
 			createChildren();
 			updateDisplay();
