@@ -358,14 +358,7 @@ package org.apache.royale.jewel.beads.views
 
 		private function selectCurrentDate():void
 		{
-			if(model.viewState == 0)
-			{
-				_table.selectedIndex = model.getIndexForSelectedDate();
-			} else if(model.viewState == 1) {
-				
-			} else {
-
-			}	
+			_table.selectedIndex = model.getIndexForSelectedDate();
 		}
 
 		/**

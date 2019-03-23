@@ -334,19 +334,32 @@ package org.apache.royale.jewel.beads.models
          */
         public function getIndexForSelectedDate():Number
         {
-            if (!_selectedDate) return -1;
-
-            var str:String = _selectedDate.toDateString();
-
-            for(var i:int=0; i < _days.length; i++) {
-                var test:Date = _days[i] as Date;
-				
-				if (test && test.toDateString() == str)
-				{
-					return i;
+			var i:int,test:Date;
+			if(viewState == 0 && _selectedDate)
+			{
+				var str:String = _selectedDate.toDateString();
+				for(i=0; i < _days.length; i++) {
+					test = _days[i] as Date;
+					
+					if (test && test.toDateString() == str)
+					{
+						return i;
+					}
 				}
-            }
-            return -1;
+			} else if(viewState == 1 && _displayedYear) {
+				for(i=0; i < _years.length; i++) {
+					test = _years[i] as Date;
+					
+					if (test && test.toDateString() == str)
+					{
+						return i;
+					}
+				}
+			} else {
+
+			}	
+			
+			return -1;
 		}
 	}
 }
