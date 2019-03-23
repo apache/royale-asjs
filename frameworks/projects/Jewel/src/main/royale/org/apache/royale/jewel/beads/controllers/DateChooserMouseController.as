@@ -92,14 +92,21 @@ package org.apache.royale.jewel.beads.controllers
 		{
             event.preventDefault();
             
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth - 1;
 			var year:Number  = model.displayedYear;
-			if (month < 0) {
-				month = 11;
+			
+			if(model.viewState == 0)
+			{
+				if (month < 0) {
+					month = 11;
+					year--;
+				}
+				model.displayedMonth = month;
+			} else if(model.viewState == 1) {
+				year = year - DateChooserModel.NUM_YEARS_VIEW;
+			} else {
 				year--;
 			}
-			model.displayedMonth = month;
 			model.displayedYear = year;
 		}
 		
@@ -110,14 +117,21 @@ package org.apache.royale.jewel.beads.controllers
 		{
             event.preventDefault();
             
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			var month:Number = model.displayedMonth + 1;
 			var year:Number  = model.displayedYear;
-			if (month >= 12) {
-				month = 0;
+			
+			if(model.viewState == 0)
+			{
+				if (month >= 12) {
+					month = 0;
+					year++;
+				}
+				model.displayedMonth = month;
+			} else if(model.viewState == 1) {
+				year = year + DateChooserModel.NUM_YEARS_VIEW;
+			} else {
 				year++;
 			}
-			model.displayedMonth = month;
 			model.displayedYear = year;
 		}
 

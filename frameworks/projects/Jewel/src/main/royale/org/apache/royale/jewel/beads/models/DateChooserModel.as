@@ -288,7 +288,7 @@ package org.apache.royale.jewel.beads.models
 			} else if(viewState == 1)
 			{
 				i = 0;
-				var yearNumber:int = new Date().getFullYear() - NUM_YEARS_VIEW/2;
+				var yearNumber:int = displayedYear - NUM_YEARS_VIEW/2;
 				while(i < NUM_YEARS_VIEW) 
 				{
 					_years[i] = new Date(yearNumber + i++, 0, 1);
@@ -296,7 +296,7 @@ package org.apache.royale.jewel.beads.models
 			} else
 			{
 				i = 0;
-				var monthNumber:int = new Date().getMonth();
+				var monthNumber:int = displayedMonth;
 				var numMonths:Number = 12;
 				while(i < numMonths) 
 				{
