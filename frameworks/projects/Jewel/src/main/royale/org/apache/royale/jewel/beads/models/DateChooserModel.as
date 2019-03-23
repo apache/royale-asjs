@@ -68,7 +68,7 @@ package org.apache.royale.jewel.beads.models
         
 		private var _months:Array = [];
 		public static const NUM_DAYS_VIEW:int = 42;
-        private var _days:Array = new Array(NUM_DAYS_VIEW);
+        private var _days:Array;
 		public static const NUM_YEARS_VIEW:int = 24;
 		private var _years:Array = new Array(NUM_YEARS_VIEW);
 		
@@ -276,6 +276,7 @@ package org.apache.royale.jewel.beads.models
 			if(viewState == 0)
 			{
 				var firstDay:Date = new Date(displayedYear, displayedMonth, 1);
+				_days = new Array(NUM_DAYS_VIEW); // always reset the array to remove older values
 				// skip to the first day and renumber to the last day of the month
 				i = firstDay.getDay() - firstDayOfWeek;
 				var dayNumber:int = 1;
