@@ -16,22 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.button
+package org.apache.royale.jewel.beads.controls
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.jewel.Button;
+	import org.apache.royale.utils.IClassSelectorListSupport;
 	
 	/**
-	 *  The MultilineLabel bead is a specialty bead that can be used with
-	 *  any DropDownList control to force a data item always be selected in the control
+	 *  The MultiLine bead is a specialty bead that can be used with
+	 *  any IClassSelectorListSupport control to allow more than one line
+	 *  i.e: Button, DropDownList, ...
+	 *  Note that Label has multiline property baked since is very used on that component
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class MultilineLabel implements IBead
+	public class MultiLine implements IBead
 	{
 		/**
 		 *  constructor.
@@ -41,35 +43,35 @@ package org.apache.royale.jewel.beads.controls.button
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function MultilineLabel()
+		public function MultiLine()
 		{
 		}
 		
-		private var button:Button;
-		
+		protected var control:IClassSelectorListSupport;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
+		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
-			button = value as Button;
-			updateHost();
-		}	
+			control = value as IClassSelectorListSupport;
+            updateControl();
+		}
 
-		private var _multiline:Boolean;
+        private var _multiline:Boolean;
         /**
 		 *  A boolean flag to activate "multiline" effect selector.
-		 *  Allow the Button to have more than one line label if needed
+		 *  Allow the label to have more than one line if needed
          *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
+		 *  @productversion Royale 0.9.4
 		 */
         public function get multiline():Boolean
         {
@@ -81,16 +83,16 @@ package org.apache.royale.jewel.beads.controls.button
             if (_multiline != value)
             {
                 _multiline = value;
-				updateHost();
+                updateControl();
             }
         }
 
-		protected function updateHost():void
+        protected function updateControl():void
 		{
-			if (button)
-			{
-                button.toggleClass("multiline", _multiline);
-            }
-		}
+			if(control)
+            {
+				control.toggleClass("multiline", _multiline);
+			}
+        }
 	}
 }
