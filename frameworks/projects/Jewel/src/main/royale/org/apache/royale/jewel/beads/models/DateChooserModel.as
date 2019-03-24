@@ -97,7 +97,7 @@ package org.apache.royale.jewel.beads.models
 			dispatchEvent( new Event("dayNamesChanged") );
 		}
 		
-		private var _monthNames:Array = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+		private var _monthNames:Array = ["JAN","FEB","MAR","APR","MAY","JUN","JUL","AUG","SEP","OCT","NOV","DEC"];
 		/**
 		 *  An array of strings used to name the months of the year with January being
 		 *  the first element of the array.
