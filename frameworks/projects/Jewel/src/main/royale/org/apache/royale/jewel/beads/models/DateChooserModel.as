@@ -37,10 +37,7 @@ package org.apache.royale.jewel.beads.models
 	{
 		public function DateChooserModel()
 		{
-			// default displayed year and month to "today"
-			// var today:Date = new Date();
-			// displayedYear = today.getFullYear();
-			// displayedMonth = today.getMonth();
+			super();
 		}
 		
 		private var _strand:IStrand;
@@ -58,20 +55,7 @@ package org.apache.royale.jewel.beads.models
 			_strand = value;
 		}
 		
-		private var _dayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-		private var _monthNames:Array = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-		private var _displayedYear:Number;
-		private var _displayedMonth:Number;
-		private var _firstDayOfWeek:Number = 0;
-		private var _selectedDate:Date;
 		private var _viewState:int = 0;
-        
-		private var _months:Array = [];
-		public static const NUM_DAYS_VIEW:int = 42;
-        private var _days:Array;
-		public static const NUM_YEARS_VIEW:int = 24;
-		private var _years:Array = new Array(NUM_YEARS_VIEW);
-		
 		/**
 		 *  0 - days (calendar view): Select a day in a month calendar view, can navigate by months
 		 *  1 - years (year view): Select a year from a list of years, can navigate by group of years
@@ -93,6 +77,7 @@ package org.apache.royale.jewel.beads.models
 			dispatchEvent( new Event("viewStateChanged") );
 		}
 		
+		private var _dayNames:Array   = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 		/**
 		 *  An array of strings used to name the days of the week with Sunday being the
 		 *  first element of the array.
@@ -112,6 +97,7 @@ package org.apache.royale.jewel.beads.models
 			dispatchEvent( new Event("dayNamesChanged") );
 		}
 		
+		private var _monthNames:Array = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 		/**
 		 *  An array of strings used to name the months of the year with January being
 		 *  the first element of the array.
@@ -131,6 +117,7 @@ package org.apache.royale.jewel.beads.models
 			dispatchEvent( new Event("monthNames") );
 		}
 		
+		private var _displayedYear:Number;
 		/**
 		 *  The year currently displayed by the DateChooser.
 		 *  
@@ -152,6 +139,7 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 		
+		private var _displayedMonth:Number;
 		/**
 		 *  The month currently displayed by the DateChooser.
 		 *  
@@ -173,6 +161,7 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 		
+		private var _firstDayOfWeek:Number = 0;
 		/**
 		 *  The index of the first day of the week, Sunday = 0.
 		 *  
@@ -194,6 +183,13 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 		
+		public static const NUM_DAYS_VIEW:int = 42;
+        private var _days:Array;
+		/**
+		 * The array of days in date form used in days view
+		 * the number of days in view comes from NUM_DAYS_VIEW
+		 * @return 
+		 */
         public function get days():Array
         {
             return _days;
@@ -206,6 +202,13 @@ package org.apache.royale.jewel.beads.models
             }
         }
         
+		public static const NUM_YEARS_VIEW:int = 24;
+		private var _years:Array = new Array(NUM_YEARS_VIEW);
+		/**
+		 * The array of year in date form used in year view
+		 * the number of years in view comes from NUM_YEARS_VIEW
+		 * @return 
+		 */
 		public function get years():Array
         {
             return _years;
@@ -218,6 +221,11 @@ package org.apache.royale.jewel.beads.models
             }
         }
 		
+		private var _months:Array = [];
+		/**
+		 * The array of 12 month in date form used in month view
+		 * @return 
+		 */
 		public function get months():Array
         {
             return _months;
@@ -230,6 +238,7 @@ package org.apache.royale.jewel.beads.models
             }
         }
 
+		private var _selectedDate:Date;
 		/**
 		 *  The currently selected date or null if no date has been selected.
 		 *  

@@ -381,21 +381,5 @@ package org.apache.royale.jewel.beads.views
 		{
 			updateDisplay();
 		}
-		
-		/**
-		 * @private
-		 */
-		// private function viewStateModelChange(event:Event):void
-		// {
-		// 	changeDisplay();
-		// }
-
-		/**
-		 * @private
-		 */
-		// private function changeDisplay():void
-		// {
-
-		// }
 	}
 }
