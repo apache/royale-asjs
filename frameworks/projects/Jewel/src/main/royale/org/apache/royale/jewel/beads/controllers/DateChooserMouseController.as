@@ -132,14 +132,14 @@ package org.apache.royale.jewel.beads.controllers
 		}
 
 		/**
-		 * 
+		 * Navigate from days to years. And from years to days
 		 * @private
 		 */
 		private function viewSelectorClickHandler(event:MouseEvent):void
 		{
 			event.preventDefault();
 			
-			model.viewState = model.viewState == 0 ? 1 : model.viewState == 1 ? 2 : 0;
+			model.viewState = model.viewState == 0 ? 1 : 0;
 		}
 
 		/**
