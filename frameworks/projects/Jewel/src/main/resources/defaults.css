@@ -3595,7 +3595,10 @@ j|Table {
   padding: 6px;
 }
 .jewel.tableitem.calendar {
-  border-radius: 10%;
+  border-radius: 4px;
+}
+.jewel.tableitem.calendar.selected {
+  font-weight: bold;
 }
 
 .empty-cell {
