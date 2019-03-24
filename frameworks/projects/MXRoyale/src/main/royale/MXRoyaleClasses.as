@@ -251,6 +251,7 @@ internal class MXRoyaleClasses
 	registerClassAlias("DSA", AsyncMessageExt);
 	registerClassAlias("DSC", CommandMessageExt);
     
+	import mx.net.URLLoader; URLLoader;
 }
 
 }
