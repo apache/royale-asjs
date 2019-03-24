@@ -340,12 +340,17 @@ package org.apache.royale.jewel.beads.views
 			} else {
 				var currrentYear:Array = [];
 				var monthIndex:int = 0;
-				for(i = 0; i < model.months.length/NUM_COLS_YEARS_OR_MONTHS; i++)
+				var extraEmptyRows:int = 1;
+				for(i = 0; i < model.months.length/NUM_COLS_YEARS_OR_MONTHS + extraEmptyRows; i++)
 				{
 					currrentYear[i] = {};
 					for(j = 0; j < columns.length; j++)
 					{
-						currrentYear[i]["d"+j] = model.months[monthIndex];
+						if(j < model.months.length)
+							currrentYear[i]["d"+j] = model.months[monthIndex];
+						else
+							currrentYear[i]["d"+j] = "";// create extra row with empty values to make rows less separated
+
 						monthIndex++;
 					}
 				}
