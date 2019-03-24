@@ -453,6 +453,9 @@ j|ComboBoxPopUp {
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
   padding: 12px 0px;
 }
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow > .layout.horizontal {
+  float: right;
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::before {
   margin: 0;
   padding: 0;

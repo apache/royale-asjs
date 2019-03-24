@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.jewel.Button;
+	import org.apache.royale.jewel.HGroup;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
@@ -182,28 +183,26 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		private var buttonsRow:TableRow;
-		private var viewSelectorTableHeaderCell:TableHeaderCell;
+		private var tableHeader:TableHeaderCell;
 
 		private function createButtonsRow():void
 		{
 			var view:TableView = _table.getBeadByType(IBeadView) as TableView;
 			buttonsRow = new TableRow();
 
-			var tableHeader:TableHeaderCell = new TableHeaderCell();
+			tableHeader = new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
-			tableHeader.addElement(_viewSelector);
-			tableHeader.expandColumns = 5;
-			buttonsRow.addElement(tableHeader);
-			viewSelectorTableHeaderCell = tableHeader; // to change colspan at a later time
-
-			tableHeader= new TableHeaderCell();
-			tableHeader.className = "buttonsRow";
-			tableHeader.addElement(_previousButton);
-			buttonsRow.addElement(tableHeader);
+			tableHeader.expandColumns = 7;
 			
-			tableHeader= new TableHeaderCell();
-			tableHeader.className = "buttonsRow";
-			tableHeader.addElement(_nextButton);
+			// left side (view selector)
+			tableHeader.addElement(_viewSelector);
+
+			// right side (navigation buttons)
+			var rgroup:HGroup = new HGroup();
+			rgroup.addElement(_previousButton);
+			rgroup.addElement(_nextButton);
+			tableHeader.addElement(rgroup);
+
 			buttonsRow.addElement(tableHeader);
 		}
 		
@@ -235,17 +234,17 @@ package org.apache.royale.jewel.beads.views
 			{
 				// display "FEB 2019"
 				_viewSelector.text = model.monthNames[model.displayedMonth] + " " + String(model.displayedYear);
-				viewSelectorTableHeaderCell.expandColumns = 5;
+				tableHeader.expandColumns = 7;
 			} else if(model.viewState == 1)
 			{
 				// display "2016-2039"
 				_viewSelector.text = String(model.displayedYear - DateChooserModel.NUM_YEARS_VIEW/2) + "-" + String(model.displayedYear + DateChooserModel.NUM_YEARS_VIEW/2 - 1);
-				viewSelectorTableHeaderCell.expandColumns = 2;
+				tableHeader.expandColumns = 4;
 			} else
 			{
 				// display "2017"
 				_viewSelector.text = String(model.displayedYear);
-				viewSelectorTableHeaderCell.expandColumns = 2;
+				tableHeader.expandColumns = 4;
 			}
 		}
 
