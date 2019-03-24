@@ -138,6 +138,33 @@ package org.apache.royale.jewel.beads.models
 				dispatchEvent( new Event("displayedYearChanged") );
 			}
 		}
+
+		private var navigateYearsChanged:Boolean;
+		private var _navigateYears:Number;
+		/**
+		 *  The year currently displayed while navigating in year view
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get navigateYears():Number
+		{
+			if(!_navigateYears)
+				return _displayedYear;
+			return _navigateYears;
+		}
+		public function set navigateYears(value:Number):void
+		{
+			if (value != _navigateYears) {
+				_navigateYears = value;
+				navigateYearsChanged = true;
+				updateCalendar();
+				navigateYearsChanged = false;
+				dispatchEvent( new Event("displayedYearChanged") );
+			}
+		}
 		
 		private var _displayedMonth:Number;
 		/**
@@ -146,7 +173,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get displayedMonth():Number
 		{
@@ -316,7 +343,7 @@ package org.apache.royale.jewel.beads.models
 			} else if(viewState == 1)
 			{
 				i = 0;
-				var yearNumber:int = displayedYear - NUM_YEARS_VIEW/2;
+				var yearNumber:int = (navigateYearsChanged ? navigateYears : displayedYear ) - NUM_YEARS_VIEW/2;
 				while(i < NUM_YEARS_VIEW) 
 				{
 					_years[i] = new Date(yearNumber + i++, displayedMonth, 1);

@@ -97,12 +97,12 @@ package org.apache.royale.jewel.beads.controllers
 					year--;
 				}
 				model.displayedMonth = month;
+				model.displayedYear = year;
 			} else if(model.viewState == 1) {
-				year = year - DateChooserModel.NUM_YEARS_VIEW;
+				model.navigateYears = model.navigateYears - DateChooserModel.NUM_YEARS_VIEW;
 			} else {
-				year--;
+				model.displayedYear = --year;
 			}
-			model.displayedYear = year;
 		}
 		
 		/**
@@ -123,12 +123,12 @@ package org.apache.royale.jewel.beads.controllers
 					year++;
 				}
 				model.displayedMonth = month;
+				model.displayedYear = year;
 			} else if(model.viewState == 1) {
-				year = year + DateChooserModel.NUM_YEARS_VIEW;
+				model.navigateYears = model.navigateYears + DateChooserModel.NUM_YEARS_VIEW;
 			} else {
-				year++;
+				model.displayedYear = ++year;
 			}
-			model.displayedYear = year;
 		}
 
 		/**

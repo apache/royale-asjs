@@ -238,7 +238,7 @@ package org.apache.royale.jewel.beads.views
 			} else if(model.viewState == 1)
 			{
 				// display "2016-2039"
-				_viewSelector.text = String(model.displayedYear - DateChooserModel.NUM_YEARS_VIEW/2) + "-" + String(model.displayedYear + DateChooserModel.NUM_YEARS_VIEW/2 - 1);
+				_viewSelector.text = String(model.navigateYears - DateChooserModel.NUM_YEARS_VIEW/2) + "-" + String(model.navigateYears + DateChooserModel.NUM_YEARS_VIEW/2 - 1);
 				tableHeader.expandColumns = 4;
 			} else
 			{
@@ -296,7 +296,6 @@ package org.apache.royale.jewel.beads.views
 				for(index = 0; index < NUM_COLS_YEARS_OR_MONTHS; index++)
 				{
 					column = columns[index];
-					// column.columnLabelAlign = "center";
 					column.label = null; // all column labels == null means hide header
 				}
 				_table.columns = columns;
@@ -304,7 +303,9 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		/**
-		 *  Only display days if viewState is calendar view (== 0)
+		 *  Display days if viewState is calendar view (== 0)
+		 *  Display years if viewState is calendar view (== 1)
+		 *  Display months if viewState is calendar view (== 2)
 		 */
 		private function fillTable():void
 		{
