@@ -361,11 +361,11 @@ package org.apache.royale.jewel.beads.models
          */
         public function getIndexForSelectedDate():Number
         {
-			var i:int,test:Date;
+			var i:int, test:Date;
 			if(viewState == 0 && _selectedDate)
 			{
 				var str:String = _selectedDate.toDateString();
-				for(i=0; i < _days.length; i++) {
+				for(i = 0; i < _days.length; i++) {
 					test = _days[i] as Date;
 					
 					if (test && test.toDateString() == str)
@@ -374,16 +374,23 @@ package org.apache.royale.jewel.beads.models
 					}
 				}
 			} else if(viewState == 1 && _displayedYear) {
-				for(i=0; i < _years.length; i++) {
+				for(i = 0; i < _years.length; i++) {
 					test = _years[i] as Date;
 					
-					if (test && test.toDateString() == str)
+					if (test.getFullYear() == _displayedYear)
 					{
 						return i;
 					}
 				}
-			} else {
-
+			} else if(viewState == 2 && _displayedMonth) {
+				for(i = 0; i < _months.length; i++) {
+					test = _months[i] as Date;
+					
+					if (test.getMonth() == _displayedMonth)
+					{
+						return i;
+					}
+				}
 			}	
 			
 			return -1;
