@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.Table;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
+	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -148,7 +149,16 @@ package org.apache.royale.jewel.beads.controllers
 			if(len == 10)
 			{
 				var date:Date = new Date(viewBead.textInput.text);
-				model.selectedDate = isValidDate(date) ? date : null;
+				date = isValidDate(date) ? date : null;
+				var year:int = date.getFullYear();
+				if(date.getFullYear() < DateChooserModel.MINIMUM_YEAR)
+				{
+					year = DateChooserModel.MINIMUM_YEAR;
+				} else if(date.getFullYear() > DateChooserModel.MAXIMUM_YEAR)
+				{
+					year = DateChooserModel.MAXIMUM_YEAR;
+				}
+				model.selectedDate = new Date(year, date.getMonth(), date.getDate());
 			}
 		}
         
