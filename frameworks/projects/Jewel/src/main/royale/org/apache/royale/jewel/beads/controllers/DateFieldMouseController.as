@@ -151,17 +151,23 @@ package org.apache.royale.jewel.beads.controllers
 			{
 				var date:Date = new Date(viewBead.textInput.text);
 				date = isValidDate(date) ? date : null; // 1.-checck date entered is valid
-				var year:int = date.getFullYear();  	// 2.-date must be between MAXIMUM_YEAR and MINIMUM_YEAR
-				if(date.getFullYear() < DateChooserModel.MINIMUM_YEAR)
+				if(date != null)
 				{
-					year = DateChooserModel.MINIMUM_YEAR;
-				} else if(date.getFullYear() > DateChooserModel.MAXIMUM_YEAR)
-				{
-					year = DateChooserModel.MAXIMUM_YEAR;
+					var year:int = date.getFullYear();  	// 2.-date must be between MAXIMUM_YEAR and MINIMUM_YEAR
+					if(date.getFullYear() < DateChooserModel.MINIMUM_YEAR)
+					{
+						year = DateChooserModel.MINIMUM_YEAR;
+					} else if(date.getFullYear() > DateChooserModel.MAXIMUM_YEAR)
+					{
+						year = DateChooserModel.MAXIMUM_YEAR;
+					}
+					var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter; // 3.- Get the actual format and get a new correct date
+					var dateString:String = formatter.format(new Date(year, date.getMonth(), date.getDate()));
+					model.selectedDate = new Date(dateString);
 				}
-				var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter; // 3.- Get the actual format and get a new correct date
-				var dateString:String = formatter.format(new Date(year, date.getMonth(), date.getDate()));
-				model.selectedDate = new Date(dateString);
+			} else
+			{
+				model.selectedDate = null;
 			}
 		}
         

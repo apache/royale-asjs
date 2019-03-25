@@ -287,15 +287,10 @@ package org.apache.royale.jewel.beads.views
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
 
-			if(model.selectedDate == null)
-			{
-				textInput.text = "";
-			}
-			else
+			if(model.selectedDate != null)
 			{
 				var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter;
 				_textInput.text = formatter.format(model.selectedDate);
-
 			}
 		}
 
