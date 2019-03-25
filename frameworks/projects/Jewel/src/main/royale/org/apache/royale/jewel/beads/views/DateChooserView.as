@@ -333,7 +333,13 @@ package org.apache.royale.jewel.beads.views
 					currrentYearGroup[i] = {};
 					for(j = 0; j < columns.length; j++)
 					{
-						currrentYearGroup[i]["d"+j] = model.years[yearIndex];
+						if((model.years[yearIndex] as Date).getFullYear() >= DateChooserModel.MINIMUN_YEAR && (model.years[yearIndex]as Date).getFullYear() <= DateChooserModel.MAXIMUN_YEAR)
+						{
+							currrentYearGroup[i]["d"+j] = model.years[yearIndex];
+						} else
+						{
+							currrentYearGroup[i]["d"+j] = "";// create empty year cell where is not a year allowed
+						}
 						yearIndex++;
 					}
 				}
