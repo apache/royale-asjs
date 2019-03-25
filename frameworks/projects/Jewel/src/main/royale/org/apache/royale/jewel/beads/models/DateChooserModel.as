@@ -139,8 +139,8 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
-		public static const MINIMUN_YEAR:int = 1900;
-		public static const MAXIMUN_YEAR:int = 2100;
+		public static const MINIMUM_YEAR:int = 1900;
+		public static const MAXIMUM_YEAR:int = new Date().getFullYear() + 100;
 		private var navigateYearsChanged:Boolean;
 		private var _navigateYears:Number;
 		/**
@@ -159,7 +159,7 @@ package org.apache.royale.jewel.beads.models
 		}
 		public function set navigateYears(value:Number):void
 		{
-			if (value != _navigateYears && (value >= MINIMUN_YEAR - NUM_YEARS_VIEW/2) && (value <= MAXIMUN_YEAR + NUM_YEARS_VIEW/2) ) {
+			if (value != _navigateYears && (value >= MINIMUM_YEAR - NUM_YEARS_VIEW/2) && (value <= MAXIMUM_YEAR + NUM_YEARS_VIEW/2) ) {
 				_navigateYears = value;
 				navigateYearsChanged = true;
 				updateCalendar();
@@ -347,7 +347,7 @@ package org.apache.royale.jewel.beads.models
 			{
 				i = 0;
 				var yearNumber:int = (navigateYearsChanged ? navigateYears : displayedYear ) - NUM_YEARS_VIEW/2;
-				while(i < NUM_YEARS_VIEW)// && yearNumber <= MINIMUN_YEAR && yearNumber >= MAXIMUN_YEAR) 
+				while(i < NUM_YEARS_VIEW)// && yearNumber <= MINIMUM_YEAR && yearNumber >= MAXIMUM_YEAR) 
 				{
 					_years[i] = new Date(yearNumber + i++, displayedMonth, 1);
 				}
