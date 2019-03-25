@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
-import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-
-COMPILE::SWF
+	COMPILE::SWF
 	{
-		import flash.utils.setTimeout;
+	import flash.utils.setTimeout;
     }
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IComboBoxModel;
@@ -32,6 +30,7 @@ COMPILE::SWF
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.views.ComboBoxPopUpView;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
 

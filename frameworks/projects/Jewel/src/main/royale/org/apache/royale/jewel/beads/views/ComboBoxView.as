@@ -304,7 +304,7 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		private function autoResizeHandler(event:Event = null):void
+		public function autoResizeHandler(event:Event = null):void
         {
 			COMPILE::JS
 			{
