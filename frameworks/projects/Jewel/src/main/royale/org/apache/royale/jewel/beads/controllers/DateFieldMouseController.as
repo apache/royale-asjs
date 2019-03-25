@@ -20,15 +20,16 @@ package org.apache.royale.jewel.beads.controllers
 {	
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
-	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -149,8 +150,8 @@ package org.apache.royale.jewel.beads.controllers
 			if(len == 10)
 			{
 				var date:Date = new Date(viewBead.textInput.text);
-				date = isValidDate(date) ? date : null;
-				var year:int = date.getFullYear();
+				date = isValidDate(date) ? date : null; // 1.-checck date entered is valid
+				var year:int = date.getFullYear();  	// 2.-date must be between MAXIMUM_YEAR and MINIMUM_YEAR
 				if(date.getFullYear() < DateChooserModel.MINIMUM_YEAR)
 				{
 					year = DateChooserModel.MINIMUM_YEAR;
@@ -158,7 +159,9 @@ package org.apache.royale.jewel.beads.controllers
 				{
 					year = DateChooserModel.MAXIMUM_YEAR;
 				}
-				model.selectedDate = new Date(year, date.getMonth(), date.getDate());
+				var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter; // 3.- Get the actual format and get a new correct date
+				var dateString:String = formatter.format(new Date(year, date.getMonth(), date.getDate()));
+				model.selectedDate = new Date(dateString);
 			}
 		}
         
