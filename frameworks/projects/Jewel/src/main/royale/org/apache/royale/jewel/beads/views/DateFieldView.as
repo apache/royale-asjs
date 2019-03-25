@@ -20,34 +20,35 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-		//import org.apache.royale.jewel.beads.views.TextInputView;
-		import flash.text.TextFieldType;
-		import flash.utils.setTimeout;
-    }
-    import org.apache.royale.core.BeadViewBase;
-    import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IDateChooserModel;
-    import org.apache.royale.core.IFormatter;
-    import org.apache.royale.core.IPopUpHost;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
+	import flash.text.TextFieldType;
+	import flash.utils.setTimeout;
+	}
+	COMPILE::JS
+	{
 	import org.apache.royale.geom.Point;
-    import org.apache.royale.jewel.Button;
-    import org.apache.royale.jewel.DateChooser;
-    import org.apache.royale.jewel.Table;
-    import org.apache.royale.jewel.TextInput;
-    import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
-    import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
+	}
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IDateFormatter;
+	import org.apache.royale.core.IFormatter;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.Button;
+	import org.apache.royale.jewel.DateChooser;
+	import org.apache.royale.jewel.DateField;
 	import org.apache.royale.jewel.Table;
-    import org.apache.royale.jewel.beads.views.DateChooserView;
-    import org.apache.royale.utils.UIUtils;
-    import org.apache.royale.core.IDateFormatter;
-    import org.apache.royale.jewel.DateField;
+	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
+	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
+	import org.apache.royale.jewel.beads.views.DateChooserView;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
