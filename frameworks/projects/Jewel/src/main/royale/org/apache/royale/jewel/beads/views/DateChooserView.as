@@ -205,12 +205,6 @@ package org.apache.royale.jewel.beads.views
 
 			buttonsRow.addElement(tableHeader);
 		}
-		
-		// cycle days array for offsetting when change firstDayOfWeek
-		private function cycleArray(array:Array, index:Number, n:Number):Number 
-		{
-			return ((index + n) % array.length + array.length) % array.length;
-		}
 
 		/**
 		 * @private
@@ -291,7 +285,7 @@ package org.apache.royale.jewel.beads.views
 				{
 					column = columns[index];
 					column.columnLabelAlign = "center";
-					column.label = model.dayNames[cycleArray(model.dayNames, index, model.firstDayOfWeek)];
+					column.label = model.dayNames[DateChooserModel.cycleArray(model.dayNames, index, model.firstDayOfWeek)];
 				}
 				_table.columns = columns;
 			} else

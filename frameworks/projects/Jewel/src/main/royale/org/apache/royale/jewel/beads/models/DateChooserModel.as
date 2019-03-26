@@ -324,6 +324,19 @@ package org.apache.royale.jewel.beads.models
 			dispatchEvent( new Event("monthChanged") );
 		}
         
+		/**
+		 * Cycle days array for offsetting when change firstDayOfWeek
+		 * 
+		 * @param array , the array to get a position
+		 * @param index, the index in the array to use
+		 * @param offset, the offset to apply, this could be positive or negative
+		 * @return the cycled position
+		 */
+		public static function cycleArray(array:Array, index:Number, offset:Number):Number 
+		{
+			return ((index + offset) % array.length + array.length) % array.length;
+		}
+
         /**
          * @private
          */
@@ -334,8 +347,8 @@ package org.apache.royale.jewel.beads.models
 			{
 				var firstDay:Date = new Date(displayedYear, displayedMonth, 1);
 				_days = new Array(NUM_DAYS_VIEW); // always reset the array to remove older values
-				// skip to the first day and renumber to the last day of the month
-				i = firstDay.getDay() - firstDayOfWeek;
+				// skip to the first day and renumber to the last day of the month (take into account firstDayOfWeek)
+				i = cycleArray(_dayNames, firstDay.getDay(), - firstDayOfWeek);
 				var dayNumber:int = 1;
 				var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
 				
