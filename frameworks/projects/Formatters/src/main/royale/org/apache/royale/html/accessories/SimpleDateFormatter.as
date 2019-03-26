@@ -139,5 +139,46 @@ package org.apache.royale.html.accessories
 			return result;
 		}
 		
+		/**
+		 *  Returns a Date created from a date string
+		 *  
+		 *  @param str, the date formated string. Some examples of valid formats are MM/DD/YYYY, DD/MM/YYYY
+		 *  @return the date object generated from the string or null
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function getDateFromString(str:String):Date
+		{
+			if (str != null) {
+				var month:int;
+				var day:int;
+				var year:int;
+				var tokens:Array = dateFormat.split(_separator);
+				var strtokens:Array = str.split(_separator);
+				var length:int = tokens.length;
+				
+				for (var i:int = 0; i < length; i++) {
+                    switch (tokens[i]) {
+                        case "YYYY":
+                            year = int(strtokens[i]);
+				            break;
+                        case "YY":
+							year = 2000 + int(strtokens[i]);
+				            break;
+                        case "MM" || "M":
+							month = int(strtokens[i]) - 1;
+				            break;
+                        case "DD" || "D":
+							day = int(strtokens[i]);
+				            break;
+                    }
+				}
+				
+				return new Date(year, month, day);
+			}
+			return null;
+		}
 	}
 }

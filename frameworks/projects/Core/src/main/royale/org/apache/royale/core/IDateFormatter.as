@@ -31,5 +31,7 @@ package org.apache.royale.core
   {
     function get dateFormat():String;
     function set dateFormat(value:String):void;
+
+	function getDateFromString(str:String):Date
   }
 }
