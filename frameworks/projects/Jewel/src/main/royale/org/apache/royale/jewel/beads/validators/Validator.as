@@ -428,7 +428,7 @@ package org.apache.royale.jewel.beads.validators
 			// remove a previous arrow position
 			_errorTip.removeClass(arrowclass);
 
-			arrowclass = "";
+			var arrowclass:String = "";
 			if (_xPos == LEFT) {
 				xFactor = Number.POSITIVE_INFINITY;
 				arrowclass = "left-";
