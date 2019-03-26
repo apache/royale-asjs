@@ -425,10 +425,10 @@ package org.apache.royale.jewel.beads.validators
 			var hp:Point = PointUtils.localToGlobal(new Point(0,0), _host);
 			var pt:Point;
 
-			// remove a previous arrow position
-			_errorTip.removeClass(arrowclass);
-
 			var arrowclass:String = "";
+			// remove a previous arrow position
+			//_errorTip.removeClass(arrowclass);
+
 			if (_xPos == LEFT) {
 				xFactor = Number.POSITIVE_INFINITY;
 				arrowclass = "left-";
