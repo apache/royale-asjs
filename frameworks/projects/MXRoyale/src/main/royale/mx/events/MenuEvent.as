@@ -403,6 +403,31 @@ public class MenuEvent extends ListEvent
     //--------------------------------------------------------------------------
 
     //----------------------------------
+    //  index
+    //----------------------------------
+    
+    private var _index:int = -1;
+    
+    /**
+     *  The index of the associated menu item within its parent menu or submenu. 
+     *  This is -1 for the menuShow and menuHide events.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get index():int
+    {
+        return _index;
+    }
+    
+    public function set index(value:int):void
+    {
+        _index = value;
+    }
+    
+    //----------------------------------
     //  item
     //----------------------------------
 

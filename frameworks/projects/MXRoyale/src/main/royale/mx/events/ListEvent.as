@@ -547,15 +547,15 @@ public class ListEvent extends Event
     public function ListEvent(type:String, bubbles:Boolean = false,
                               cancelable:Boolean = false,
                               columnIndex:int = -1, rowIndex:int = -1,
-                              reason:String = null
-                              ) //,itemRenderer:IListItemRenderer = null
+                              reason:String = null,
+                              itemRenderer:Object /*IListItemRenderer*/ = null)
     {
         super(type, bubbles, cancelable);
 
         this.columnIndex = columnIndex;
         this.rowIndex = rowIndex;
         this.reason = reason;
-      //  this.itemRenderer = itemRenderer;
+        this.itemRenderer = itemRenderer;
     }
 
     //--------------------------------------------------------------------------
@@ -592,7 +592,7 @@ public class ListEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-  //  public var itemRenderer:IListItemRenderer;
+    public var itemRenderer:Object /*IListItemRenderer*/;
 
     //----------------------------------
     //  reason

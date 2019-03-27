@@ -17,9 +17,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.IIconSupport;
-    import org.apache.royale.core.IIcon;
+    COMPILE::JS
+    {
     import org.apache.royale.core.IUIBase;
+    }
+    import org.apache.royale.core.IIcon;
+    import org.apache.royale.core.IIconSupport;
 
     /**
      *  The IconTextInput class implements is a TextInput that supports
@@ -45,8 +48,6 @@ package org.apache.royale.jewel
 		public function IconTextInput()
 		{
 			super();
-
-            //typeNames = "jewel textinput";
 		}
         
         private var _icon:IIcon;
@@ -71,15 +72,15 @@ package org.apache.royale.jewel
             
             COMPILE::JS
             {
-                // insert the icon before the text
-                if(rightPosition)
-                {
-                    div.insertBefore(_icon.positioner, null);
-                } else
-                {
-                    div.insertBefore(_icon.positioner, element);
-                }
-                (_icon as IUIBase).addedToParent();
+            // insert the icon before the text
+            if(rightPosition)
+            {
+                positioner.insertBefore(_icon.positioner, null);
+            } else
+            {
+                positioner.insertBefore(_icon.positioner, element);
+            }
+            (_icon as IUIBase).addedToParent();
             }
         }
         

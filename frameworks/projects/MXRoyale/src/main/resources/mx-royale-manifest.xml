@@ -55,6 +55,8 @@
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
+    <component id="PopUpButton" class="mx.controls.PopUpButton"/>
+    <component id="PopUpMenuButton" class="mx.controls.PopUpMenuButton"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
 	<component id="CompressedRemoteObject" class="mx.rpc.remoting.mxml.CompressedRemoteObject" />
 	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />

@@ -26,6 +26,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.views.ListView;
 	import org.apache.royale.jewel.supportClasses.table.TFoot;
 	import org.apache.royale.jewel.supportClasses.table.THead;
+	import org.apache.royale.core.IStrandWithModel;
 	
 	/**
 	 *  The TableView class creates the visual elements of the org.apache.royale.jewel.Table component.
@@ -76,9 +77,15 @@ package org.apache.royale.jewel.beads.views
 			model = _strand.getBeadByType(TableModel) as TableModel;
 			model.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			model.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+			model.addEventListener("columnsChanged", columnsChangedHandler);
 			IEventDispatcher(_strand).addEventListener("itemsCreated", itemsCreatedHandler);
 
 			super.handleInitComplete(event);
+		}
+
+		protected function columnsChangedHandler(event:Event):void
+		{
+			IStrandWithModel(_strand).model.dispatchEvent(new Event("dataProviderChanged"));
 		}
 
 		/**

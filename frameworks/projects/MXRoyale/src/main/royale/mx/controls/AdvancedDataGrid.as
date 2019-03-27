@@ -231,6 +231,19 @@ use namespace mx_internal;
  */
 [Event(name="itemEditEnd", type="mx.events.AdvancedDataGridEvent")]
 
+
+/**
+ *  Dispatched when an item editing session ends for any reason.
+ *
+ *  @eventType  mx.events.AdvancedDataGridEvent.ITEM_EDIT_BEGIN
+ *  
+ *  @langversion 3.0
+ *  @playerversion Flash 9
+ *  @playerversion AIR 1.1
+ *  @productversion Royale 0.9.4
+ */
+[Event(name="itemEditBegin", type="mx.events.AdvancedDataGridEvent")]
+
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -849,14 +862,14 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  
      *  @private
      */
-  //  private var selectedCellsChanged:Boolean = false;
+   private var selectedCellsChanged:Boolean = false;
 
     /**
      *  Temporary storage for selectedCells
      *  
      *  @private
      */
-  //  private var _temporary_selectedCells:Array = null;
+    private var _temporary_selectedCells:Array = null;
 
     /**
      * Storage of sortInfos, used for the multi column sorting UI.
@@ -1345,9 +1358,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     /**
      *  @private
      */
-    /* protected var _selectedCells:Array = [];
+    protected var _selectedCells:Array = [];
 
-    [Inspectable(category="Data", arrayType="Object")] */
+    [Inspectable(category="Data", arrayType="Object")]
     /**
      *  Contains an Array of cell locations as row and column indices.
      *  Changing the value of the <code>selectionMode</code> property 
@@ -1428,28 +1441,28 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get selectedCells():Array
+    public function get selectedCells():Array
     {
         if (_selectedCells)
             return _selectedCells.slice(); // make a copy
         else
             return null;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set selectedCells(value:Array):void
+     public function set selectedCells(value:Array):void
     {
         // clear selectedCells
-        clearSelectedCells();
+      //  clearSelectedCells();
         
         _temporary_selectedCells = value;
-		syncCellSelections(value);
+	//syncCellSelections(value);
         selectedCellsChanged = true;
         invalidateProperties();
         invalidateDisplayList();
-    } */
+    } 
 
     //--------------------------------------------------------------------------
     // Flex Builder design view functionality
@@ -9744,7 +9757,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     {
         _presentationModel = value as IDataGridPresentationModel;
     }
-
+   
+    public function destroyItemEditor():void
+	{
+	
+	}
 	
 }
 

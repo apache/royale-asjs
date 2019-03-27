@@ -16,26 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package org.apache.royale.jewel.supportClasses
 {
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-    }
-    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.core.DataContainerBase;
     import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.utils.ClassSelectorList;
 
-    /**
-     *  The StyledUIBase is the base class for UIBase components that makes
-     *  heavy use of styles
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public class StyledUIBase extends UIBase implements IClassSelectorListSupport
+    public class DataContainerBase extends org.apache.royale.core.DataContainerBase implements IClassSelectorListSupport
     {
         /**
          *  Constructor.
@@ -43,12 +30,12 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.0
          */
-		public function StyledUIBase()
+        public function DataContainerBase()
 		{
             classSelectorList = new ClassSelectorList(this);
-            super();
+			super();
 		}
 
         protected var classSelectorList:ClassSelectorList;
@@ -140,15 +127,6 @@ package org.apache.royale.core
             }
         }
 
-        /**
-         * @return The actual element to be parented.
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			addElementToWrapper(this,'div');
-            return element;
-        }
     }
+
 }

@@ -86,8 +86,11 @@ package org.apache.royale.jewel.beads.validators
 
 		private var _errorTip:ErrorTipLabel;
 		private var _host:IPopUpHost;
-		private var _xPos:int = LEFT;
-		private var _yPos:int = TOP;
+
+		private var _xPos:int = RIGHT;
+		private var _yPos:int = MIDDLE;
+		private var xoffset:int = 14;
+		private var yoffset:int = 0;
 
 		protected var hostComponent:UIBase;
 
@@ -352,6 +355,7 @@ package org.apache.royale.jewel.beads.validators
 
 				_host = UIUtils.findPopUpHost(hostComponent);
 				_host.popUpParent.addElement(_errorTip, false);
+				IEventDispatcher(_host.popUpParent).addEventListener("cleanValidationErrors", destroyErrorTip);
 			}
 			COMPILE::JS
 			{
@@ -389,6 +393,7 @@ package org.apache.royale.jewel.beads.validators
 			window.removeEventListener('scroll', repositionHandler, true);
 			}
 			if(_errorTip){
+				IEventDispatcher(_errorTip.parent).removeEventListener("cleanValidationErrors", destroyErrorTip);
 				_errorTip.parent.removeElement(_errorTip);
 				_errorTip = null;
 			}
@@ -397,6 +402,11 @@ package org.apache.royale.jewel.beads.validators
 				hostComponent.element.removeEventListener("blur",removeTip);
 			}
 		}
+
+		/**
+		 * errorTip css class that position the arrow
+		 */
+		private var arrowclass:String = "";
 
 		/**
 		 *  Determines the position of the errorTip.
@@ -410,29 +420,45 @@ package org.apache.royale.jewel.beads.validators
 		{
 			var xFactor:Number = 1;
 			var yFactor:Number = 1;
+			var ex:Number = 0;
+			var ey:Number = 0;
 			var hp:Point = PointUtils.localToGlobal(new Point(0,0), _host);
 			var pt:Point;
 
+			// remove a previous arrow position
+			_errorTip.removeClass(arrowclass);
+
+			var arrowclass:String = "";
 			if (_xPos == LEFT) {
 				xFactor = Number.POSITIVE_INFINITY;
+				arrowclass = "left-";
 			}
 			else if (_xPos == MIDDLE) {
 				xFactor = 2;
+				arrowclass = "middle-";
+				ex = - _errorTip.width / xFactor;
 			}
 			else if (_xPos == RIGHT) {
 				xFactor = 1;
+				arrowclass = "right-";
 			}
 			if (_yPos == TOP) {
 				yFactor = Number.POSITIVE_INFINITY;
+				arrowclass += "top";
 			}
 			else if (_yPos == MIDDLE) {
 				yFactor = 2;
+				ey = _errorTip.height / yFactor;
+				arrowclass += "middle";
 			}
 			else if (_yPos == BOTTOM) {
 				yFactor = 1;
+				arrowclass += "bottom";
 			}
 
-			pt = new Point(hostComponent.width/xFactor - hp.x, hostComponent.height/yFactor - hp.y);
+			_errorTip.addClass(arrowclass);
+
+			pt = new Point(hostComponent.width/xFactor + ex - hp.x + xoffset, hostComponent.height/yFactor + ey - hp.y + yoffset);
 			pt = PointUtils.localToGlobal(pt, hostComponent);
 
 			return pt;
@@ -454,6 +480,7 @@ package org.apache.royale.jewel.beads.validators
 			window.removeEventListener('scroll', repositionHandler, true);
 			}
             if (_errorTip) {
+				IEventDispatcher(_host.popUpParent).removeEventListener("cleanValidationErrors", destroyErrorTip);
                 _host.popUpParent.removeElement(_errorTip);
 				_errorTip = null;
 			}

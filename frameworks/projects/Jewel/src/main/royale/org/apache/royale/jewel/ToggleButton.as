@@ -84,7 +84,7 @@ package org.apache.royale.jewel
 
             COMPILE::SWF
             {
-                addEventListener(MouseEvent.CLICK, internalMouseHandler);
+            addEventListener(MouseEvent.CLICK, internalMouseHandler);
             }
 		}
 
@@ -103,11 +103,11 @@ package org.apache.royale.jewel
         {
             COMPILE::SWF
             {
-                return IToggleButtonModel(model).selected;
+            return IToggleButtonModel(model).selected;
             }
             COMPILE::JS
             {
-                return _selected;
+            return _selected;
             }
         }
 
@@ -118,18 +118,18 @@ package org.apache.royale.jewel
         {
             COMPILE::SWF
             {
-                IToggleButtonModel(model).selected = value;
-                internalSelected();
-                dispatchEvent(new Event(Event.CHANGE));
+            IToggleButtonModel(model).selected = value;
+            internalSelected();
+            dispatchEvent(new Event(Event.CHANGE));
             }
             COMPILE::JS
             {
-                if (_selected != value)
-                {
-                    _selected = value;
-                    internalSelected();
-                    dispatchEvent(new Event(Event.CHANGE));
-                }
+            if (_selected != value)
+            {
+                _selected = value;
+                internalSelected();
+                dispatchEvent(new Event(Event.CHANGE));
+            }
             }
         }
 
@@ -185,17 +185,17 @@ package org.apache.royale.jewel
         {
             COMPILE::SWF
             {
-                if(!savedClassName == null)
-                    savedClassName = className;
-                var name:String = savedClassName;
-                if (selected)
-                {
-                    className = "selected" + (name ? " " + name : "");
-                }
-                else
-                {
-                    className = (name ? " " + name : "");
-                }
+            if(!savedClassName == null)
+                savedClassName = className;
+            var name:String = savedClassName;
+            if (selected)
+            {
+                className = "selected" + (name ? " " + name : "");
+            }
+            else
+            {
+                className = (name ? " " + name : "");
+            }
             }
             
             var isToggleTextButtonSelected:Boolean = containsClass("selected");

@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.table
 {
-    import org.apache.royale.jewel.Group;
-
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.jewel.Group;
 
 	/**
 	 *  The TBody class is a building block of Jewel SimpleTable and Table components, 

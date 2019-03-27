@@ -77,12 +77,12 @@ package org.apache.royale.jewel
 			{
 			if(_fixed)
 			{
-				header.classList.add("fixed");
+				element.classList.add("fixed");
 				window.removeEventListener('scroll', scrollHandler, false);
 			}
 			else
 			{
-				header.classList.remove("fixed");
+				element.classList.remove("fixed");
 				window.addEventListener('scroll', scrollHandler, false);
 			}
 			}
@@ -110,16 +110,16 @@ package org.apache.royale.jewel
 				
 				if (currentOffset > 0) {
 					currentOffset = 0;
-				} else if (Math.abs(currentOffset) > header.clientHeight) {
-					currentOffset = -header.clientHeight;
+				} else if (Math.abs(currentOffset) > element.clientHeight) {
+					currentOffset = -element.clientHeight;
 				}
 
 				offset = currentOffset;
-				if (Math.abs(offset) >= header.clientHeight) {
+				if (Math.abs(offset) >= element.clientHeight) {
 					offset = -128;
 				}
 				
-				header.style.top = offset + "px";
+				element.style.top = offset + "px";
 			}
 		}
 
@@ -175,11 +175,11 @@ package org.apache.royale.jewel
                 {
 				if(_hasDrawer)
 				{
-					header.classList.add("has-drawer");
+					element.classList.add("has-drawer");
 				}
 				else
 				{
-					header.classList.remove("has-drawer");
+					element.classList.remove("has-drawer");
 				}
                 }
             }

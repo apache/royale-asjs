@@ -70,7 +70,7 @@ limitations under the License.
 			private function configDateChooserToES():void
 			{
 				dateChooserES.model.dayNames = ['D','L','M','X','J','V','S'];
-				dateChooserES.model.monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Deciembre"];
+				dateChooserES.model.monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
 				dateChooserES.model.firstDayOfWeek = 1;
 			}
 			
@@ -79,7 +79,7 @@ limitations under the License.
 				dateFieldES.dateFormat = "DD/MM/YYYY";
 
 				dateFieldES.model.dayNames = ['D','L','M','X','J','V','S'];
-				dateFieldES.model.monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Deciembre"];
+				dateFieldES.model.monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
 				dateFieldES.model.firstDayOfWeek = 1;
 			}
 

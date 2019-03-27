@@ -49,7 +49,7 @@ package org.apache.royale.binding
 
 		protected var _strand:IStrand;
 
-        protected var deferredBindings:Object = {};
+        protected var deferredBindings:Object;
 
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -96,8 +96,11 @@ package org.apache.royale.binding
                 }
                 else
                 {
+                    if (!deferredBindings) {
+						deferredBindings = {};
+						IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                    }
                     deferredBindings[bindingObject.destination[0]] = binding;
-                    IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                 }
             }
         }
@@ -188,7 +191,7 @@ package org.apache.royale.binding
                 // so just force an update via parentWatcher (if it is set, null if not)
                 if (parentWatcher)
                 {
-                    gb.valueChanged(parentWatcher.value, false);
+                    gb.valueChanged(parentWatcher.value, true);
                 }
                 else
                 {

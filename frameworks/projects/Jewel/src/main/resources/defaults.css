@@ -133,6 +133,11 @@ hr {
   height: 1px;
 }
 
+.jewel.multiline {
+  white-space: pre-wrap !important;
+  word-wrap: break-word;
+}
+
 .responsiveSizeMonitor {
   background: rgba(0, 0, 0, 0.8);
   color: white;
@@ -234,9 +239,6 @@ j|Alert {
 .jewel.button[disabled] {
   cursor: default;
 }
-.jewel.button.multiline {
-  white-space: pre-wrap;
-}
 .jewel.button .fonticon {
   cursor: inherit;
 }
@@ -264,7 +266,6 @@ j|Card {
   margin: 0;
   padding: 0;
   height: auto;
-  cursor: pointer;
 }
 .jewel.checkbox input {
   -webkit-appearance: none;
@@ -303,13 +304,11 @@ j|Card {
 .jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
   outline: none;
 }
-.jewel.checkbox input[disabled] {
-  cursor: unset;
-}
 .jewel.checkbox input[disabled] + span {
   cursor: unset;
 }
 .jewel.checkbox span {
+  cursor: pointer;
   margin: 0;
   vertical-align: top;
   line-height: 24px;
@@ -447,38 +446,42 @@ j|ComboBoxPopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
 }
 
+.jewel.datechooser .jewel.table {
+  min-width: 324px;
+  min-height: 364px;
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
   padding: 12px 0px;
 }
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::before, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::before {
-  margin: 0;
-  padding: 0;
-  line-height: 22px;
-  content: " ";
-  position: absolute;
-  left: calc(50% - 11px);
-  top: calc(50% - 11px);
-  width: 22px;
-  height: 22px;
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow > .layout.horizontal {
+  float: right;
 }
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .prevMonthButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextMonthButton::after {
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  content: " ";
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
   content: " ";
   position: absolute;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  width: 22px;
+  height: 16px;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
   width: 22px;
   height: 22px;
-  left: calc(50% - 11px);
   top: calc(50% - 11px);
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after {
+  left: calc(50% - 13px);
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  left: calc(50% - 9px);
 }
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
   padding: 4px;
 }
 .jewel.datechooser .jewel.table .jewel.tableitem {
-  width: 38px;
-  height: 38px;
-}
-.jewel.datechooser .jewel.table .jewel.tableitem .jewel.tableitem {
-  padding: 2px;
-  width: 38px;
   height: 38px;
 }
 
@@ -722,7 +725,6 @@ j|DrawerContent {
   -ms-appearance: none;
   appearance: none;
   width: 200px;
-  height: 38px;
   margin: 0;
   padding: 0.68em 2.38em 0.68em 1.12em;
   cursor: pointer;
@@ -798,6 +800,7 @@ j|DropDownList {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   white-space: nowrap;
+  flex: 1 1 auto;
   overflow: hidden;
   z-index: 1;
   line-height: 2rem;
@@ -878,12 +881,6 @@ j|ImageButton {
 .jewel.label {
   cursor: default;
   white-space: nowrap;
-}
-
-.jewel.label.multiline {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  width: 100%;
 }
 
 j|Label {
@@ -1084,7 +1081,7 @@ j|Label {
   width: 100%;
 }
 .layout.grid > * {
-  flex: 0 0 auto;
+  flex: 1 1 auto;
   max-width: 100%;
   width: 100%;
 }
@@ -3257,7 +3254,6 @@ j|PopUp {
   margin: 0;
   padding: 0;
   height: 22px;
-  cursor: pointer;
 }
 .jewel.radiobutton input {
   -webkit-appearance: none;
@@ -3296,13 +3292,11 @@ j|PopUp {
 .jewel.radiobutton input:focus + span::before, .jewel.radiobutton input:checked:focus + span::before, .jewel.radiobutton input:checked:active:focus + span::before {
   outline: none;
 }
-.jewel.radiobutton input[disabled] {
-  cursor: unset;
-}
 .jewel.radiobutton input[disabled] + span {
   cursor: unset;
 }
 .jewel.radiobutton span {
+  cursor: pointer;
   margin: 0;
   vertical-align: top;
   line-height: 24px;
@@ -3601,7 +3595,10 @@ j|Table {
   padding: 6px;
 }
 .jewel.tableitem.calendar {
-  border-radius: 10%;
+  border-radius: 4px;
+}
+.jewel.tableitem.calendar.selected {
+  font-weight: bold;
 }
 
 .empty-cell {
@@ -3770,16 +3767,40 @@ j|TitleBar {
   position: absolute;
   pointer-events: none;
   z-index: 80;
+  border-radius: 0.25em;
 }
 .jewel.tooltip.error {
   margin-top: -31px !important;
 }
 .jewel.tooltip.error::before {
-  top: 100%;
-  left: 8px;
-  position: absolute;
   content: "";
+  position: absolute;
+  height: 0;
+  width: 0;
+}
+.jewel.tooltip.error.left-top::before {
+  top: 100%;
   margin-top: 0px;
+}
+.jewel.tooltip.error.middle-top::before {
+  bottom: 0;
+  left: 50%;
+  border-bottom: 0;
+}
+.jewel.tooltip.error.left-middle::before {
+  top: 50%;
+  right: 0;
+  border-right: 0;
+}
+.jewel.tooltip.error.right-middle::before {
+  top: 50%;
+  left: 0;
+  border-left: 0;
+}
+.jewel.tooltip.error.middle-bottom::before {
+  top: 0;
+  left: 50%;
+  border-top: 0;
 }
 
 .jewel.topappbar {
@@ -3832,6 +3853,7 @@ j|TitleBar {
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   white-space: nowrap;
+  flex: 1 1 auto;
   overflow: hidden;
   z-index: 1;
   line-height: 2rem;

@@ -23,9 +23,8 @@ package org.apache.royale.jewel
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
-
-    import org.apache.royale.core.IIconSupport;
     import org.apache.royale.core.IIcon;
+    import org.apache.royale.core.IIconSupport;
     
     public class IconButton extends Button implements IIconSupport
 	{
@@ -73,7 +72,7 @@ package org.apache.royale.jewel
             {
                 _text = value;
                 textNode.nodeValue = value;
-                this.dispatchEvent('textChange');
+                this.dispatchEvent(new Event('textChange'));
             }
 		}
 
@@ -98,8 +97,8 @@ package org.apache.royale.jewel
 
             COMPILE::SWF
             {
-                classSelectorList.toggle("icon", (_icon != null));
-                // todo set up icon on swf
+            classSelectorList.toggle("icon", (_icon != null));
+            // todo set up icon on swf
             }
         }
 
@@ -154,8 +153,6 @@ package org.apache.royale.jewel
             
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);
-
-            positioner = element;
 
             return element;
         }
