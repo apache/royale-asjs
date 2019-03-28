@@ -242,6 +242,7 @@
             <exclude>**/target/**</exclude>
 
             <exclude>**/src/test/royale/out/**</exclude>
+            <exclude>lib/external/*.html</exclude>
           </excludes>
         </configuration>
         <dependencies>
