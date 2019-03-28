@@ -28,6 +28,7 @@
     <component id="VGroup" class="org.apache.royale.jewel.VGroup"/>
     <component id="Container" class="org.apache.royale.jewel.Container"/>
     <component id="Grid" class="org.apache.royale.jewel.Grid"/>
+    <component id="ScrollableGrid" class="org.apache.royale.jewel.ScrollableGrid"/>
     <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
 
     <component id="SimpleTable" class="org.apache.royale.jewel.SimpleTable"/>
