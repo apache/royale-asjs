@@ -34,6 +34,7 @@ import mx.events.MouseEvent;
 import mx.managers.PopUpManager;
 
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 
 use namespace mx_internal;
 
@@ -193,6 +194,11 @@ public class PopUpMenuButton extends PopUpButton
     public function set dataProvider(value:Object):void
     {
         _dataProvider = value;
+        if (parent)
+        {
+            setLabel();
+            (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
         //dataProviderChanged = true;
         
         //invalidateProperties();     
@@ -269,8 +275,8 @@ public class PopUpMenuButton extends PopUpButton
             popUpMenu.dataDescriptor = _dataDescriptor;
             */
             popUpMenu.dataProvider = _dataProvider;
-            /*
             popUpMenu.addEventListener(MenuEvent.ITEM_CLICK, menuChangeHandler);
+            /*
             popUpMenu.addEventListener(FlexEvent.VALUE_COMMIT,
                 menuValueCommitHandler);
             */
@@ -284,6 +290,60 @@ public class PopUpMenuButton extends PopUpButton
         }
         
         return popUpMenu;
+    }
+    
+    public static const downArrowString:String = "&#124;&nbsp;&#9660";
+
+    /**
+     *  @private
+     */
+    private function menuChangeHandler(event:MenuEvent):void
+    {
+        if (event.index >= 0)
+        {
+            var menuEvent:MenuEvent = new MenuEvent(MenuEvent.ITEM_CLICK);
+            
+            menuEvent.label = popUpMenu.itemToLabel(event.item);
+            /*if (labelSet)
+                super.label = _label;
+            else*/
+                super.label = popUpMenu.itemToLabel(event.item).replace(" ", "&nbsp;") + downArrowString;
+            //setSafeIcon(popUpMenu.itemToIcon(event.item));
+            menuEvent.menu = popUpMenu;
+            menuEvent.menu.selectedIndex = menuEvent.index = 
+                /*selectedIndex = */event.index;
+            menuEvent.item = event.item;
+            /*itemRenderer = */menuEvent.itemRenderer = 
+                event.itemRenderer;
+            dispatchEvent(menuEvent);
+            PopUpManager.removePopUp(popUp);
+            if (parent)
+                (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
+    }
+
+    
+    override public function addedToParent():void
+    {
+        setLabel();
+        super.addedToParent();
+    }
+    
+    private function setLabel():void
+    {
+        var lbl:String = downArrowString;
+        
+        if (dataProvider != null)
+        {
+            getPopUp();
+            if ((popUpMenu.dataProvider as ICollectionView).length > 0)
+            {
+                var cursor:IViewCursor = (popUpMenu.dataProvider as ICollectionView).createCursor();
+                var value:Object = cursor.current;
+                lbl = popUpMenu.itemToLabel(value).replace(" ", "&nbsp;") + lbl;
+            }
+        }
+        label = lbl;
     }
 
 	}
