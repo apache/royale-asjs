@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.beads.layouts.GridLayout;
-	import org.apache.royale.utils.StringUtil;
-
 	/**
 	 *  The ScrollableGrid class is a Grid with scroll capabilities
 	 *  
