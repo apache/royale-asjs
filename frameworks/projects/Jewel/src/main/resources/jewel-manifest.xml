@@ -195,7 +195,8 @@
     <component id="WizardContent" class="org.apache.royale.jewel.WizardContent"/>
     <component id="WizardPage" class="org.apache.royale.jewel.WizardPage"/>
     <component id="WizardStep" class="org.apache.royale.jewel.beads.models.WizardStep"/>
+    <component id="WizardEvent" class="org.apache.royale.jewel.events.WizardEvent"/>
 
-     <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
+    <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
 
 </componentPackage>

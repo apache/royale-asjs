@@ -22,7 +22,41 @@ package org.apache.royale.jewel
     import org.apache.royale.jewel.beads.models.WizardModel;
     import org.apache.royale.jewel.beads.models.WizardStep;
     import org.apache.royale.jewel.beads.views.WizardView;
+    import org.apache.royale.jewel.events.WizardEvent;
 
+	/**
+	 *  Dispatched When the wizard reach to this page
+	 *
+     *  @toplevel
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.6
+	 */
+	[Event(name="requestNavigateNextStep", type="org.apache.royale.jewel.events.WizardEvent")]
+	
+	/**
+	 *  Dispatched When the wizard reach to this page
+	 *
+     *  @toplevel
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.6
+	 */
+	[Event(name="requestNavigatePreviousStep", type="org.apache.royale.jewel.events.WizardEvent")]
+	
+	/**
+	 *  Dispatched When the wizard reach to this page
+	 *
+     *  @toplevel
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.6
+	 */
+	[Event(name="requestNavigateToStep", type="org.apache.royale.jewel.events.WizardEvent")]
+	
 	/**
 	 *  Dispatched When the wizard reach to this page
 	 *
@@ -68,6 +102,11 @@ package org.apache.royale.jewel
 		 * @royalesuppresspublicvarwarning
 		 */
         public var initialized:Boolean;
+		
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+        public var wizard:Wizard;
 
 		private var _step:WizardStep;
 		/**
@@ -106,10 +145,14 @@ package org.apache.royale.jewel
 		 */
 		public function addWizardListeners(wizard:Wizard):void
 		{
+			this.wizard = wizard;
 			wizard.addEventListener("goToPreviousStep", goToPreviousStepHandler);
 			wizard.addEventListener("goToNextStep", goToNextStepHandler);
 			addEventListener("showPreviousButtonChange", WizardView(wizard.view).showPreviousButtonChangeHandler);
 			addEventListener("showNextButtonChange",  WizardView(wizard.view).showNextButtonChangeHandler);
+			addEventListener(WizardEvent.REQUEST_NAVIGATE_NEXT_STEP,  handleNavigationRequest);
+			addEventListener(WizardEvent.REQUEST_NAVIGATE_PREVIOUS_STEP,  handleNavigationRequest);
+			addEventListener(WizardEvent.REQUEST_NAVIGATE_TO_STEP,  handleNavigationRequest);
 		}
 
 		/**
@@ -206,5 +249,29 @@ package org.apache.royale.jewel
 
 			dispatchEvent(new Event("showNextButtonChange"));
 		}
+
+		/**
+		 * 
+		 * 
+		 * @param event 
+		 */
+		protected function handleNavigationRequest(event:WizardEvent):void
+        {
+            switch (event.type){
+                case WizardEvent.REQUEST_NAVIGATE_TO_STEP:
+                    wizard.showPage(event.stepName);
+                    break;
+                case WizardEvent.REQUEST_NAVIGATE_PREVIOUS_STEP:
+                    wizard.dispatchEvent(new Event("goToPreviousStep"));
+                    wizard.currentStep = wizard.findStepByName(wizard.currentStep.previousStep);
+                    // wizard.dispatchEvent(new Event("change"));
+                    break;
+                case WizardEvent.REQUEST_NAVIGATE_NEXT_STEP:
+                    wizard.dispatchEvent(new Event("goToNextStep"));
+                    wizard.currentStep = wizard.findStepByName(wizard.currentStep.nextStep);
+                    // wizard.dispatchEvent(new Event("change"));
+                    break;
+            }
+        }
     }
 }
