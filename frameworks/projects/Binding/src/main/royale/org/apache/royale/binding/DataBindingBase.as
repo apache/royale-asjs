@@ -104,6 +104,30 @@ package org.apache.royale.binding
                 }
             }
         }
+        
+        private function watcherChildrenRelevantToIndex(children:Object, index:int):Boolean{
+            var watchers:Array = children ? children.watchers : null;
+			var hasValidWatcherChild:Boolean = false;
+            if (watchers) {
+                var l:uint = watchers.length;
+                while (l--) {
+					var watcher:Object = watchers[l];
+					if (typeof(watcher.bindings) == "number")
+					{
+						hasValidWatcherChild = (watcher.bindings == index);
+					}
+					else
+					{
+						hasValidWatcherChild = (watcher.bindings.indexOf(index) != -1);
+					}
+                    if (!hasValidWatcherChild && watcher.children){
+						hasValidWatcherChild = watcherChildrenRelevantToIndex(watcher.children, index);
+                    }
+                    if (hasValidWatcherChild) break;
+                }
+            }
+            return hasValidWatcherChild;
+        }
 
         /**
          * @royaleignorecoercion Function
@@ -129,6 +153,7 @@ package org.apache.royale.binding
 
                 if (isValidWatcher)
                 {
+                    var hasWatcherChildren:Boolean = watcherChildrenRelevantToIndex(watcher.children, index);
                     var type:String = watcher.type as String;
                     var parentObj:Object = _strand;
                     switch (type)
@@ -144,7 +169,7 @@ package org.apache.royale.binding
                         case "property":
                         {
                             var getterFunction:Function = watcher.getterFunction;
-                            if (typeof(gb.source) === "function" && watcher.children == null)
+                            if (typeof(gb.source) === "function" && !hasWatcherChildren)
                             {
                                getterFunction = gb.source as Function;
                             }
@@ -168,7 +193,7 @@ package org.apache.royale.binding
                                 parentWatcher.addChild(pw);
                             }
 
-                            if (watcher.children == null)
+                            if (!hasWatcherChildren)
                             {
                                 pw.addBinding(gb);
                             }
@@ -178,7 +203,7 @@ package org.apache.royale.binding
                         }
                     }
 
-                    if (watcher.children)
+                    if (hasWatcherChildren)
                     {
                         setupWatchers(gb, index, watcher.children.watchers, watcher.watcher);
                     }
