@@ -92,7 +92,8 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function handleStepChange(event:Event):void
 		{
-            wizard.showPage(model.currentStep.name);
+            wizard.content.selectedContent = model.currentStep.name;
+            wizard.title = model.currentStep.stepLabel;
 		}
 
         private var model:WizardModel;

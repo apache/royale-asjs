@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF {
-		import org.apache.royale.core.SimpleCSSStylesWithFlex;
+	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	}
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost;

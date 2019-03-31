@@ -86,7 +86,7 @@ package org.apache.royale.jewel
 		 */
 		public function showPage(stepName:String):void
 		{
-			content.selectedContent = stepName;
+			currentStep = findStepByName(stepName);
 		}
 
 		public function findStepByName(name:String):WizardStep
