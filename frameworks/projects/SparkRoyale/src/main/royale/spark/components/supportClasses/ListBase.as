@@ -922,7 +922,7 @@ public class ListBase  extends SkinnableContainer
        /*  if (_proposedSelectedIndex != NO_PROPOSED_SELECTION)
             return _proposedSelectedIndex; */
             
-        return _selectedIndex;
+        return (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex;
     }
     
     /**
@@ -930,6 +930,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set selectedIndex(value:int):void
     {
+        (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex = value;
        /*  setSelectedIndex(value, false); */
     }
     
