@@ -23,7 +23,7 @@ package org.apache.royale.utils
 	     *  @param h: A uint from 0 to 360 representing the hue value.
 	     *  @param s: A uint from 0 to 100 representing the saturation value.
 	     *  @param v: A uint from 0 to 100 representing the lightness value.
-	     *  @return Returns an object with the properties r, g, and b defined.
+	     *  @return Returns a hex value
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6

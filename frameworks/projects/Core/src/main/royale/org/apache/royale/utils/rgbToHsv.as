@@ -19,39 +19,45 @@
 package org.apache.royale.utils
 {
 	    /**
-	     *  Converts HSV values to RGB values.
-	     *  @param h: A uint from 0 to 360 representing the hue value.
-	     *  @param s: A uint from 0 to 100 representing the saturation value.
-	     *  @param v: A uint from 0 to 100 representing the lightness value.
-	     *  @return Returns an object with the properties r, g, and b defined.
+	     *  Converts RGB values to HSV values.
+	     *  @param r: A uint from 0 to 255 representing the red value.
+	     *  @param g: A uint from 0 to 255 representing the green value.
+	     *  @param b: A uint from 0 to 255 representing the blue value.
+	     *  @return Returns an HSV object with the properties h, s, and v defined.
 	     *  @langversion 3.0
 	     *  @playerversion Flash 10.2
 	     *  @playerversion AIR 2.6
 	     *  @productversion Royale 0.9.6
 	     */
 
-        public function rgbToHsv( r:uint, g:uint, b:uint ):uint
+        public function rgbToHsv( r:uint, g:uint, b:uint ):HSV
         {
-            var r:Number = 0;
-            var g:Number = 0;
-            var b:Number = 0;
-            var tempS:Number = s / 100;
-            var tempV:Number = v / 100;
-            var hi:int = Math.floor(h/60) % 6;
-            var f:Number = h/60 - Math.floor(h/60);
-            var p:Number = (tempV * (1 - tempS));
-            var q:Number = (tempV * (1 - f * tempS));
-            var t:Number = (tempV * (1 - (1 - f) * tempS));
-
-            switch(hi){
-                case 0: r = tempV; g = t; b = p; break;
-                case 1: r = q; g = tempV; b = p; break;
-                case 2: r = p; g = tempV; b = t; break;
-                case 3: r = p; g = q; b = tempV; break;
-                case 4: r = t; g = p; b = tempV; break;
-                case 5: r = tempV; g = p; b = q; break;
-            }
-
-			return Math.round( r * 255 ) << 16 | Math.round( g * 255 ) << 8 | Math.round( b * 255 );
+			var max:uint = Math.max( r, g, b );
+			var min:uint = Math.min( r, g, b );
+			var hue:Number = 0;
+			var saturation:Number = 0;
+			var value:Number = 0;
+			//get Hue
+			if( max == min )
+				hue = 0;
+			else if( max == r )
+				hue = ( 60 * ( g - b ) / ( max - min ) + 360 ) % 360;
+			else if( max == g )
+				hue = ( 60 * ( b - r ) / ( max - min ) + 120 );
+			else if( max == b )
+				hue = ( 60 * ( r - g ) / ( max - min ) + 240 );
+			//get Value
+			value = max;
+			//get Saturation
+			if(max == 0){
+				saturation = 0;
+			}else{
+				saturation = ( max - min ) / max;
+			}
+			var hsv:HSV = new HSV();
+			hsv.h = Math.round(hue);
+			hsv.s = Math.round(saturation * 100);
+			hsv.v = Math.round(value / 255 * 100);
+			return hsv;
         }
 }

@@ -166,6 +166,7 @@ internal class BasicClasses
 	}
 
 	import org.apache.royale.html.beads.models.ColorModel; ColorModel;
+	import org.apache.royale.html.beads.models.ColorSpectrumModel; ColorSpectrumModel;
 	import org.apache.royale.html.beads.models.TextModel; TextModel;
     import org.apache.royale.html.beads.models.NonNullTextModel; NonNullTextModel;
     import org.apache.royale.html.beads.models.TitleBarModel; TitleBarModel;

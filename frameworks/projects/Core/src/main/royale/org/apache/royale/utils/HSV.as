@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.events
+package org.apache.royale.utils
 {
 	
 	/**
@@ -25,49 +25,59 @@ package org.apache.royale.events
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.6
 	 * 
 	 *  @royalesuppresspublicvarwarning
 	 */
-	public class ValueEvent extends Event
+	public class HSV
 	{
+		private var _h:Number;
+		private var _s:Number;
+		private var _v:Number;
+		
 		/**
 		 *  Constructor.
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.6
 		 */
-		public function ValueEvent(type:String, value:* = null, bubbles:Boolean=false,
-								   cancelable:Boolean=false)
+		public function HSV(h:Number, s:Number, v:Number)
 		{
-			super(type, bubbles, cancelable);
-			
-			this.value = value;
+			_h = h;
+			_s = s;
+			_v = v;
+		}
+	
+		public function get h():Number 
+		{
+			_return h;
 		}
 		
-		/**
-		 *  The value.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public var value:*;
-		
-		/**
-		 * Create a copy/clone of the ValueEvent object.
-		 *
-		 * @langversion 3.0
-		 * @playerversion Flash 10.2
-		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.0
-		 */
-		override public function cloneEvent():IRoyaleEvent
+		public function set h(value:Number):void
 		{
-			return new ValueEvent(type, value, bubbles, cancelable);
+			_h = value;
+		}
+		
+		public function get s():Number 
+		{
+			_return s;
+		}
+		
+		public function set s(value:Number):void
+		{
+			_s = value;
+		}
+
+		public function get v():Number
+		{
+			return _v;
+		}
+
+		public function set v(value:Number):void
+		{
+			_v = value;
 		}
 	}
 }

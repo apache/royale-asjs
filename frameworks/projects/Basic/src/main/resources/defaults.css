@@ -605,6 +605,7 @@ ColorSpectrum
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ColorSpectrumView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ColorSpectrumMouseController");
 }
 
 Slider
