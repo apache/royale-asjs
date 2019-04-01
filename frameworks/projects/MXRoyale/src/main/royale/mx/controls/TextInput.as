@@ -1621,7 +1621,10 @@ public class TextInput extends UIComponent implements ITextInput
 	public function textChangeHandler(event:Event):void
 	{
         if (!inSetter)
+        {
             dispatchEvent(new Event(Event.CHANGE));
+            dispatchEvent(new Event(FlexEvent.VALUE_COMMIT));
+        }
 	}
 
     //--------------------------------------------------------------------------
