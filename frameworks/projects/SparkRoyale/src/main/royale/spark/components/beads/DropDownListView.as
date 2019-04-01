@@ -37,6 +37,7 @@ import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IStrandWithModel;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.html.beads.IDropDownListView;
 
 /**
@@ -80,6 +81,8 @@ public class DropDownListView extends SkinnableContainerView implements IDropDow
         selectionModel = (value as IStrandWithModel).model as ISelectionModel;
         selectionModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
         selectionModel.addEventListener("dataProviderChanged", selectionChangeHandler);
+        
+        (value as IEventDispatcher).addEventListener("initComplete", selectionChangeHandler);
         
         // remove the DataGroup.  It will be the dropdown
         var chost:IContainer = host as IContainer;

@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
@@ -102,6 +103,27 @@ package org.apache.royale.html.beads
         {
             _lastContentSize = value;
         }
+        
+        /**
+         * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+         * @private
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IParent
+         */
+        override public function removeAllItemRenderers():void
+        {
+            // don't remove the top and bottom spacer divs which should
+            // be the first and last child
+            while ((contentView as IParent).numElements > 2) {
+                var child:IChild = (contentView as IParent).getElementAt(1);
+                (contentView as IParent).removeElement(child);
+            }
+        }
+
 	}
 	
 }
