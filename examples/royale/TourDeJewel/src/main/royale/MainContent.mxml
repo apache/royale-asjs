@@ -17,11 +17,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:ApplicationResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009" 
-    xmlns:j="library://ns.apache.org/royale/jewel" 
-    xmlns:js="library://ns.apache.org/royale/basic" 
-    xmlns:html="library://ns.apache.org/royale/html" 
-    xmlns:models="models.*" 
+<j:ApplicationResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:models="models.*"
     xmlns:c="components.*"
     xmlns:local="*">
 
@@ -29,7 +29,7 @@ limitations under the License.
         <![CDATA[
             import vos.NavigationLinkVO;
             import org.apache.royale.utils.OSUtils;
-            
+
             private function changeHandler(event:Event):void
             {
                 var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
@@ -237,6 +237,7 @@ limitations under the License.
         <local:LayoutsPlayGround name="layouts_panel"/>
         <local:WizardPlayGround name="wizards_panel"/>
         <local:PopUpPlayGround name="popup_panel"/>
+        <local:AdvancedListPlayGround name="advanced_list_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->

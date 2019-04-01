@@ -19,17 +19,18 @@
 package models
 {
 	import vos.IconListVO;
+	import vos.DetailIconListVO;
 	import org.apache.royale.collections.ArrayList;
 
 	[Bindable]
-	public class ListsModel 
+	public class ListsModel
 	{
 		/**
 		 * Used in the List example.
 		 */
 		private var _watchmen:ArrayList = new ArrayList([
-			"The Comedian", 
-			"Doctor Manhattan", 
+			"The Comedian",
+			"Doctor Manhattan",
 			"Nite Owl",
 			"Ozymandias",
             "Rorschach",
@@ -43,7 +44,7 @@ package models
 
 		private var _avengers:ArrayList = new ArrayList([
 			new IconListVO("Iron Man", MaterialIconType.WEB_ASSET),
-			new IconListVO("Hulk", MaterialIconType.WEB_ASSET), 
+			new IconListVO("Hulk", MaterialIconType.WEB_ASSET),
 			new IconListVO("Thor", MaterialIconType.WEB_ASSET),
 			new IconListVO("Captain America", MaterialIconType.WEB_ASSET),
             new IconListVO("Black Widow", MaterialIconType.WEB_ASSET),
@@ -75,12 +76,52 @@ package models
             new IconListVO("RadioButton", MaterialIconType.RADIO_BUTTON_CHECKED),
             new IconListVO("Slider", MaterialIconType.STORAGE),
             new IconListVO("Text", MaterialIconType.SUBJECT),
-            new IconListVO("TextInput", MaterialIconType.TEXT_FIELDS)            
+            new IconListVO("TextInput", MaterialIconType.TEXT_FIELDS)
         ]);
 
 		public function get iconListData():ArrayList
 		{
 			return _iconListData;
+		}
+		
+		
+		
+		/**
+		 * Used in the AdvancedLists example.
+		 */
+		private var _iconLDetailistDataSource:Array = [
+			new DetailIconListVO("All Jewel UI Set Controls", "Jewel", MaterialIconType.SETTINGS),
+			new DetailIconListVO("Alert", "Jewel", MaterialIconType.WEB_ASSET),
+			new DetailIconListVO("Button", "Jewel", MaterialIconType.CROP_7_5),
+			new DetailIconListVO("DropDownList", "Jewel", MaterialIconType.CREDIT_CARD),
+			new DetailIconListVO("CheckBox", "Jewel", MaterialIconType.CHECK_BOX),
+			new DetailIconListVO("Label","Jewel",  MaterialIconType.LABEL),
+			new DetailIconListVO("List", "Jewel", MaterialIconType.LIST_ALT),
+			new DetailIconListVO("RadioButton", "Jewel", MaterialIconType.RADIO_BUTTON_CHECKED),
+			new DetailIconListVO("Slider", "Jewel", MaterialIconType.STORAGE),
+			new DetailIconListVO("Text", "Jewel", MaterialIconType.SUBJECT),
+			new DetailIconListVO("TextInput", "Jewel", MaterialIconType.TEXT_FIELDS),
+			new DetailIconListVO("Button", "Basic", MaterialIconType.CROP_7_5),
+			new DetailIconListVO("DropDownList", "Basic", MaterialIconType.CREDIT_CARD),
+			new DetailIconListVO("CheckBox", "Basic", MaterialIconType.CHECK_BOX),
+			new DetailIconListVO("Label","Basic",  MaterialIconType.LABEL),
+			new DetailIconListVO("List", "Basic", MaterialIconType.LIST_ALT),
+			new DetailIconListVO("RadioButton", "Basic", MaterialIconType.RADIO_BUTTON_CHECKED),
+			new DetailIconListVO("Slider", "Basic", MaterialIconType.STORAGE),
+			new DetailIconListVO("Text", "Basic", MaterialIconType.SUBJECT),
+			new DetailIconListVO("TextInput", "Basic", MaterialIconType.TEXT_FIELDS)
+		];
+		
+		private var _iconLDetailistData:ArrayList;
+		
+		public function get iconDetailListData():ArrayList
+		{
+			return _iconLDetailistData || (_iconLDetailistData = new ArrayList(_iconLDetailistDataSource.slice()));
+		}
+		
+		public function get iconDetailListDataSource():Array
+		{
+			return _iconLDetailistDataSource.slice();
 		}
 	}
 }

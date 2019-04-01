@@ -31,6 +31,21 @@
     margin-right: 24px;
 }
 
+.advancedIconListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.AdvancedIconListItemRenderer");
+}
+.advancedIconListItemRenderer .fonticon
+{
+    margin-right: 24px;
+}
+.jewelItem{
+    color: #3cadf1;
+}
+.basicItem{
+    color: #71a02f;
+}
+
 .navIconLinkItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
@@ -45,7 +60,7 @@
     margin-right: 24px;
 }
 
-.jewel.drawerheader::before 
+.jewel.drawerheader::before
 {
     /*padding-top: 9 / 16 * 100%;*/
     padding-top: 56.25%; /* 16:9 Aspect Ratio */
