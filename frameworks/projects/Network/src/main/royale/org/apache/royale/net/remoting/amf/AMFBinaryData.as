@@ -18,10 +18,10 @@
  * AMF JavaScript library by Emil Malinov https://github.com/emilkm/amfjs
  */
 package org.apache.royale.net.remoting.amf {
-	import org.apache.royale.net.utils.IDataInput;
-	import org.apache.royale.net.utils.IDataOutput;
-	import org.apache.royale.net.utils.IDynamicPropertyWriter;
-	import org.apache.royale.net.utils.IExternalizable;
+	import org.apache.royale.utils.net.IDataInput;
+	import org.apache.royale.utils.net.IDataOutput;
+	import org.apache.royale.utils.net.IDynamicPropertyWriter;
+	import org.apache.royale.utils.net.IExternalizable;
 	import org.apache.royale.utils.BinaryData;
 	
 	COMPILE::SWF{
@@ -61,7 +61,7 @@ package org.apache.royale.net.remoting.amf {
 			}
 			COMPILE::SWF{
 				var value:flash.net.IDynamicPropertyWriter =  ObjectEncoding.dynamicPropertyWriter;
-				var outValue:org.apache.royale.net.utils.IDynamicPropertyWriter = value as org.apache.royale.net.utils.IDynamicPropertyWriter;
+				var outValue:org.apache.royale.utils.net.IDynamicPropertyWriter = value as org.apache.royale.utils.net.IDynamicPropertyWriter;
 				if (value && !outValue) {
 					outValue = new ExternallySetDynamicPropertyWriter(value);
 				}
@@ -151,19 +151,19 @@ class ExternallySetDynamicPropertyWriter implements IDynamicPropertyWriter{
 }
 
 import org.apache.royale.net.remoting.amf.AMFBinaryData;
-import org.apache.royale.net.utils.IDynamicPropertyOutput;
-import org.apache.royale.net.utils.IDynamicPropertyWriter;
+import org.apache.royale.utils.net.IDynamicPropertyOutput;
+import org.apache.royale.utils.net.IDynamicPropertyWriter;
 import org.apache.royale.reflection.getAliasByClass;
 import org.apache.royale.reflection.getClassByAlias;
 import org.apache.royale.reflection.getDynamicFields;
 import org.apache.royale.reflection.getDefinitionByName;
 import org.apache.royale.reflection.isDynamicObject;
-import org.apache.royale.net.utils.IDataInput;
-import org.apache.royale.net.utils.IDataOutput;
+import org.apache.royale.utils.net.IDataInput;
+import org.apache.royale.utils.net.IDataOutput;
 import org.apache.royale.utils.BinaryData;
-import org.apache.royale.net.utils.IExternalizable;
-import org.apache.royale.net.utils.IDataInput;
-import org.apache.royale.net.utils.IDataOutput;
+import org.apache.royale.utils.net.IExternalizable;
+import org.apache.royale.utils.net.IDataInput;
+import org.apache.royale.utils.net.IDataOutput;
 
 
 COMPILE::JS

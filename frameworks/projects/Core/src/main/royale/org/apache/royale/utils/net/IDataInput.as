@@ -16,28 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.net.utils
+package org.apache.royale.utils.net
 {
+    import org.apache.royale.utils.IBinaryDataInput;
     COMPILE::SWF{
-        import flash.utils.IExternalizable;
+        import flash.utils.IDataInput
     }
     
     /**
-     * replacement for flash.utils.IExternalizable
+     * initial work on replacement for flash.utils.IDataInput
      */
     COMPILE::JS
-    public interface IExternalizable
+    public interface IDataInput extends IBinaryDataInput
     {
-        function readExternal(input:IDataInput):void;
-        
-        function writeExternal(output:IDataOutput):void;
+        function readObject():*;
     }
 	
 	COMPILE::SWF
-	public interface IExternalizable extends flash.utils.IExternalizable
+	public interface IDataInput extends IBinaryDataInput, flash.utils.IDataInput
 	{
-		/*function readExternal(input:IDataInput):void;
-		
-		function writeExternal(output:IDataOutput):void;*/
+
 	}
+
 }

@@ -44,11 +44,6 @@ package
         import org.apache.royale.net.remoting.messages.RoyaleClient; RoyaleClient;
 	
 		import org.apache.royale.net.remoting.amf.AMFBinaryData; AMFBinaryData;
-		import org.apache.royale.net.utils.IDataInput; IDataInput;
-		import org.apache.royale.net.utils.IDataOutput; IDataOutput;
-		import org.apache.royale.net.utils.IExternalizable; IExternalizable;
-		import org.apache.royale.net.utils.IDynamicPropertyWriter; IDynamicPropertyWriter;
-		import org.apache.royale.net.utils.IDynamicPropertyOutput; IDynamicPropertyOutput;
         
         // import org.apache.royale.reflection.registerClassAlias;
         // //RpcClassAliasInitializer

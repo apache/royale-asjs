@@ -20,8 +20,8 @@
 package mx.messaging.messages
 {
 
-import org.apache.royale.net.utils.IDataOutput;
-import org.apache.royale.net.utils.IExternalizable;
+import org.apache.royale.utils.net.IDataOutput;
+import org.apache.royale.utils.net.IExternalizable;
 
 [RemoteClass(alias="DSK")]
 
@@ -33,7 +33,7 @@ public class AcknowledgeMessageExt extends AcknowledgeMessage implements IExtern
     //--------------------------------------------------------------------------
     //
     // Constructor
-    // 
+    //
     //--------------------------------------------------------------------------
 
     public function AcknowledgeMessageExt(message:AcknowledgeMessage=null)
@@ -52,12 +52,12 @@ public class AcknowledgeMessageExt extends AcknowledgeMessage implements IExtern
 
     /**
      *  The unique id for the message.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion LCDS 3
      */
     override public function get messageId():String
     {
