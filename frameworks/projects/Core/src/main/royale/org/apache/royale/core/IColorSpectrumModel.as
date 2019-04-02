@@ -37,8 +37,8 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        function get baseColor():IColorModel;
-        function set baseColor(value:IColorModel):void;
+        function get baseColor():uint;
+        function set baseColor(value:uint):void;
 		
         /**
          *  The resultant color after hue and saturation were modified
@@ -48,7 +48,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        function get hsvModifiedColor():IColorModel;
-        function set hsvModifiedColor(value:IColorModel):void;
+        function get hsvModifiedColor():uint;
+        function set hsvModifiedColor(value:uint):void;
 	}
 }

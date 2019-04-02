@@ -43,7 +43,7 @@ package org.apache.royale.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function HSV(h:Number, s:Number, v:Number)
+		public function HSV(h:Number=NaN, s:Number=NaN, v:Number=NaN)
 		{
 			_h = h;
 			_s = s;
@@ -52,7 +52,7 @@ package org.apache.royale.utils
 	
 		public function get h():Number 
 		{
-			_return h;
+			return _h;
 		}
 		
 		public function set h(value:Number):void
@@ -62,7 +62,7 @@ package org.apache.royale.utils
 		
 		public function get s():Number 
 		{
-			_return s;
+			return _s;
 		}
 		
 		public function set s(value:Number):void

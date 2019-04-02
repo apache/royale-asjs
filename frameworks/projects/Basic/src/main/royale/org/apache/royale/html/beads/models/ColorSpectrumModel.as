@@ -19,11 +19,11 @@
 package org.apache.royale.html.beads.models
 {	
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IColorSpectrumModel;
-	import org.apache.royale.core.IColorModel;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.ValueChangeEvent;
 		
     /**
      *  The ColorSpectrumModel class is the most basic data model for a
@@ -37,8 +37,8 @@ package org.apache.royale.html.beads.models
 	public class ColorSpectrumModel extends EventDispatcher implements IColorSpectrumModel
 	{
 		private var _color:uint;
-		private var _baseColor:IColorModel;
-		private var _hsvModifiedColor:IColorModel;
+		private var _baseColor:uint;
+		private var _hsvModifiedColor:uint;
         /**
          *  Constructor.
          *  
@@ -63,7 +63,7 @@ package org.apache.royale.html.beads.models
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        public function get baseColor():IColorModel
+        public function get baseColor():uint
 		{
 			return _baseColor;
 		}
@@ -71,9 +71,10 @@ package org.apache.royale.html.beads.models
         /**
          *  @private
          */
-        public function set baseColor(value:IColorModel):void
+        public function set baseColor(value:uint):void
 		{
 			_baseColor = value;
+			dispatchEvent(new Event("baseColorChange"));
 		}
         /**
          *  @copy org.apache.royale.core.ISpectrumColorModel#hsvModifiedColor
@@ -83,7 +84,7 @@ package org.apache.royale.html.beads.models
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        public function get hsvModifiedColor():IColorModel
+        public function get hsvModifiedColor():uint
 		{
 			return _hsvModifiedColor;
 		}
@@ -91,9 +92,10 @@ package org.apache.royale.html.beads.models
         /**
          *  @private
          */
-        public function set hsvModifiedColor(value:IColorModel):void
+        public function set hsvModifiedColor(value:uint):void
 		{
 			_hsvModifiedColor = value;
+			dispatchEvent(new Event("hsvModifiedColorChange"));
 		}
 	}
 }

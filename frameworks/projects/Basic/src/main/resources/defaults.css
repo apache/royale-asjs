@@ -603,7 +603,7 @@ SwatchList
 
 ColorSpectrum
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorSpectrumModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ColorSpectrumView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ColorSpectrumMouseController");
 }

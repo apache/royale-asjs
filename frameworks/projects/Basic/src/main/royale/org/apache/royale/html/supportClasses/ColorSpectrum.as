@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IColorModel;
+	import org.apache.royale.core.IColorSpectrumModel;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 
@@ -55,7 +55,31 @@ package org.apache.royale.html.supportClasses
 		public function ColorSpectrum()
 		{
 			super();
-			model.addEventListener("colorChange", colorChangeHandler);
+			model.addEventListener("hsvModifiedColorChange", colorChangeHandler);
+		}
+
+        /**
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+		public function get baseColor():uint
+		{
+			return IColorSpectrumModel(model).baseColor;
+		}
+
+        /**
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+		public function set baseColor(value:uint):void
+		{
+			IColorSpectrumModel(model).baseColor = value;
 		}
 
         /**
@@ -66,17 +90,9 @@ package org.apache.royale.html.supportClasses
          *  @productversion Royale 0.9.6
          */
 		[Bindable(event="change")]
-		public function get color():uint
+		public function get hsvModifiedColor():uint
 		{
-			return IColorModel(model).color;
-		}
-
-        /**
-         *  @private
-         */
-		public function set color(value:uint):void
-		{
-			IColorModel(model).color = value;
+			return IColorSpectrumModel(model).hsvModifiedColor;
 		}
 
 		/**

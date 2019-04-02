@@ -19,15 +19,20 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IColorSpectrumModel;
 	import org.apache.royale.core.IStrand;
-
+	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.utils.HSV;
+	import org.apache.royale.utils.hsvToHex;
+	import org.apache.royale.utils.rgbToHsv;
 	COMPILE::JS 
 	{
-		import org.apache.royale.core.IStrandWithModel;
-		import org.apache.royale.core.IUIBase;
-		import org.apache.royale.events.MouseEvent;
+        import org.apache.royale.events.BrowserEvent;
 	}
-	
+
     /**
      *  The ColorSpectrumMouseController class is a controller for
 	 *  the ColorSpecrum control. It's job is to detect the location
@@ -57,28 +62,31 @@ package org.apache.royale.html.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			COMPILE::JS 
-			{
-                goog.events.listen(track.element, goog.events.EventType.CLICK,
-                    handleClick, false, this);
-			}
+			(value as IEventDispatcher).addEventListener(MouseEvent.CLICK, handleClick);
 		}
 		
-		/**
+        /**
 		 * @royaleignorecoercion org.apache.royale.events.BrowserEvent
          */
-        COMPILE::JS
         private function handleClick(event:MouseEvent):void
         {
-			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
-            var host:ColorSpectrum = _strand as IUIBase;
-            var xloc:Number = bevent.offsetX;
-            var yloc:Number = bevent.offsetY;
+            var host:IUIBase = _strand as IUIBase;
+			var yloc:Number;
+			var xloc:Number;
+			COMPILE::JS 
+			{
+				var bevent:BrowserEvent = event["nativeEvent"] as BrowserEvent;
+				xloc = bevent.offsetX;
+				yloc = bevent.offsetY;
+			}
 			var widthRatio:Number = xloc / host.width;
-			var heightRatio:Number = yloc / host.height;
+			var heightRatio:Number = (host.height - yloc) / host.height;
 			var model:IColorSpectrumModel = (_strand as IStrandWithModel).model as IColorSpectrumModel;
-			var hsvBaseColor:HSV = rgbToHsv(model.baseColor.color);
-			model.hsvModifiedColor.color = hsvToHex(hsvBaseColor.h, hsvBaseColor.s * heightRatio, hsvBaseColor.v * widthRatio);
+			var r:uint = (model.baseColor >> 16 ) & 255;
+			var g:uint = (model.baseColor >> 8 ) & 255;
+			var b:uint = model.baseColor & 255;
+			var hsvBaseColor:HSV = rgbToHsv(r, g, b);
+			model.hsvModifiedColor = hsvToHex(hsvBaseColor.h, widthRatio * 100, heightRatio * 100);
         }
 	}
 }

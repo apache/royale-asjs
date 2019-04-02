@@ -43,6 +43,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.AlertView; AlertView;
     import org.apache.royale.html.beads.ColorSpectrumView; ColorSpectrumView;
     import org.apache.royale.html.beads.controllers.AlertController; AlertController;
+    import org.apache.royale.html.beads.controllers.ColorSpectrumMouseController; ColorSpectrumMouseController;
 	
 	import org.apache.royale.html.beads.DividedContainerView; DividedContainerView;
 	import org.apache.royale.html.beads.models.DividedContainerModel; DividedContainerModel;

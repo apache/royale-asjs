@@ -18,7 +18,7 @@
 package org.apache.royale.html.beads
 {
     import org.apache.royale.core.BeadViewBase;
-    import org.apache.royale.core.IColorModel;
+    import org.apache.royale.core.IColorSpectrumModel;
     import org.apache.royale.core.IRenderedObject;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithModel;
@@ -70,16 +70,16 @@ package org.apache.royale.html.beads
 		
 		private function updateSpectrum():void
 		{
-			var color:String = CSSUtils.attributeFromColor(colorModel.color);
+			var color:String = CSSUtils.attributeFromColor(colorModel.baseColor);
 			COMPILE::JS
 			{
 				(host as IRenderedObject).element.style.background = "linear-gradient(to top, #000000, transparent), linear-gradient(to left, " + color + ", #ffffff)";
 			}
 		}
 		
-		private function get colorModel():IColorModel
+		private function get colorModel():IColorSpectrumModel
 		{
-			return (host as IStrandWithModel).model as IColorModel
+			return (host as IStrandWithModel).model as IColorSpectrumModel;
 		}
 	}
 }

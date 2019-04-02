@@ -37,7 +37,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IIconSupport; IIconSupport;
 	import org.apache.royale.html.beads.IListView; IListView;
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
-import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
+	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.html.beads.IDropDownListView; IDropDownListView;
 
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
@@ -281,6 +281,8 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 
 	import org.apache.royale.utils.measureComponent; measureComponent;
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
+	import org.apache.royale.utils.HSV; HSV;
+	import org.apache.royale.utils.rgbToHsv; rgbToHsv;
 	import org.apache.royale.utils.hsvToHex; hsvToHex;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
