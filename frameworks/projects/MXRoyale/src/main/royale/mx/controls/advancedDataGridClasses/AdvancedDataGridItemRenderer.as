@@ -29,23 +29,21 @@ import flash.utils.getQualifiedSuperclassName; */
 //import mx.controls.AdvancedDataGrid;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
-//import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.core.IFlexDisplayObject;
 import mx.core.IToolTip;
-//import mx.core.UIComponentGlobals;
 import mx.core.UITextField;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
-//import mx.events.ToolTipEvent;
-//import mx.managers.ILayoutManagerClient;
 import mx.managers.ISystemManager;
 import mx.styles.CSSStyleDeclaration;
 //import mx.styles.IStyleClient;
 //import mx.styles.StyleProtoChain;
 use namespace mx_internal;
 
+import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.html.supportClasses.StringItemRenderer;
+import mx.core.UIComponent;
 
 //--------------------------------------
 //  Events
@@ -150,8 +148,33 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             
             indent += (treeListData.hasChildren ? (treeListData.open ? "▼" : "▶") : "") + extraSpace;
         }
-        
+        var bgColors:Array = (treeListData.owner as UIComponent).getStyle("alternatingItemColors");
+        backgroundColor = ((treeListData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
+
+        COMPILE::JS {
+            element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
+        }
         this.text = indent + this.text;
+    }
+
+    /**
+     * @private
+     */
+    override public function updateRenderer():void
+    {
+        COMPILE::SWF
+        {
+            super.updateRenderer();
+        }
+        COMPILE::JS
+        {
+            if (selected)
+                element.style.backgroundColor = '#9C9C9C';
+            else if (hovered)
+                element.style.backgroundColor = '#ECECEC';
+            else
+                element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
+        }
     }
 
     //--------------------------------------------------------------------------

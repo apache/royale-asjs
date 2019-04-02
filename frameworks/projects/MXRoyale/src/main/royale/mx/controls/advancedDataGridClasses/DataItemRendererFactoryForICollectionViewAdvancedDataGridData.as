@@ -153,7 +153,7 @@ package mx.controls.advancedDataGridClasses
             var firstColumn:Boolean =  listID == "dataGridColumn0";
 			
 			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", firstColumn ? 0 : 1, "", _strand as IUIComponent);
+			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", firstColumn ? 0 : 1, "", (_strand as AdvancedDataGridColumnList).adg, index);
 			treeListData.depth = depth;
 			treeListData.open = isOpen;
 			treeListData.hasChildren = hasChildren;
