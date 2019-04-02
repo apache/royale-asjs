@@ -51,6 +51,7 @@
             <includeClass>NetworkClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
           <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-warn-instance-of-changes=false</additionalCompilerOptions>
         </configuration>
       </plugin>
