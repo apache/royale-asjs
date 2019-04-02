@@ -59,7 +59,7 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 			_button = new Button();
-			(value as IEventDispatcher).addEventListener("change", changeHandler);
+			(colorModel as IEventDispatcher).addEventListener("baseColorChange", changeHandler);
 			updateSpectrum();
 		}
 		
