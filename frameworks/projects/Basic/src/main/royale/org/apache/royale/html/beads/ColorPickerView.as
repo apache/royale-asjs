@@ -48,7 +48,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.6
 	 */
 	public class ColorPickerView extends BeadViewBase implements IComboBoxView
 	{
@@ -67,7 +67,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get textInputField():Object
 		{
@@ -84,7 +84,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get popupButton():Object
 		{
@@ -101,7 +101,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get popUp():Object
 		{
@@ -165,13 +165,14 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.6
 		 */
 		public function get popUpVisible():Boolean
 		{
 			if (list) return list.visible;
 			else return false;
 		}
+
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
