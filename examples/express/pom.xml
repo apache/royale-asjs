@@ -57,6 +57,7 @@
                 <dependency>org.apache.royale.examples:examples-tests</dependency>
               </dependenciesToScan>
               <systemPropertyVariables>
+                <targets>${project.build.plugins.plugin.configuration.targets}</targets>
                 <artifactId>${project.artifactId}</artifactId>
                 <version>${project.version}</version>
                 <type>${project.packaging}</type>

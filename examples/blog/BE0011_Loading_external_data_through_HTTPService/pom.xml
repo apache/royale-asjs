@@ -41,7 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>BE0011_Loading_external_data_through_HTTPService.mxml</mainClass>
-          <targets>SWF, JSRoyale</targets>
+          <targets>${royale.example.targets}</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
           <additionalCompilerOptions>-source-map=true;-js-dynamic-access-unknown-members=true</additionalCompilerOptions>
@@ -51,13 +51,6 @@
   </build>
 
   <dependencies>
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Network</artifactId>

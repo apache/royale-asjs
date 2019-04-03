@@ -53,13 +53,6 @@
   </build>
 
   <dependencies>
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
     <!--
      By declaring this dependency here, we force the royale-externs-js to be
      added to the external library path of all modules. Without this it would

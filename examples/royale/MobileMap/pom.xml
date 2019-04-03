@@ -56,14 +56,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Mobile</artifactId>
       <version>0.9.6-SNAPSHOT</version>
