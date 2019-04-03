@@ -37,6 +37,7 @@ package org.apache.royale.html.beads
 	}
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.core.IStrandWithModel;
 	
 	/**
 	 *  The ColorPickerView class creates the visual elements of the org.apache.royale.html.ColorPicker 
@@ -145,7 +146,7 @@ package org.apache.royale.html.beads
 			list = new popUpClass() as UIBase;
 			list.visible = false;
 			
-			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			var model:IEventDispatcher = (_strand as IStrandWithModel).model as IEventDispatcher;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			
@@ -179,9 +180,9 @@ package org.apache.royale.html.beads
 		{
 			if (value && !list.visible) {
 				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-				list.model = model;
-				list.width = selectedColorDisplay.width;
+//				list.model = model;
 				list.height = 200;
+				list.width = 200;
 				list.visible = true;
 				
 				var origin:Point = new Point(0, button.y+button.height);
@@ -192,7 +193,7 @@ package org.apache.royale.html.beads
 					list.element.style.position = "absolute";
 				}
 					
-					var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
 				popupHost.popUpParent.addElement(list);
 			}
 			else if (list.visible) {
@@ -240,12 +241,13 @@ package org.apache.royale.html.beads
 			
 			selectedColorDisplay.x = 0;
 			selectedColorDisplay.y = 0;
+			selectedColorDisplay.height = 20;
 			if (host.isWidthSizedToContent()) {
 				selectedColorDisplay.width = 25;
 			} else {
 				selectedColorDisplay.width = host.width - 20;
 			}
-			
+
 			button.x = selectedColorDisplay.width;
 			button.y = 0;
 			button.width = 20;
