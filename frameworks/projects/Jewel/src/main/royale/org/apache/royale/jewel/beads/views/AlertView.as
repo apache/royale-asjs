@@ -168,7 +168,7 @@ package org.apache.royale.jewel.beads.views
 			// Text
 			label = new Label();
 			label.multiline = true;
-			label.text = alertModel.message;
+			label.html = alertModel.message;
 			
 			content = new VGroup();
 			content.addClass("content");

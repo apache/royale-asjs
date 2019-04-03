@@ -39,7 +39,7 @@ limitations under the License.
             // Event handler function uses a static method to show
             // a pop-up window with the title, message, and requested buttons.        
             private function clickHandler(event:MouseEvent):void {
-                var alert:Alert = Alert.show("Do you want to save your changes?", "Save Changes", 3);
+                var alert:Alert = Alert.show("Do you want to <b>save</b> your changes?", "Save Changes", 3);
 				alert.addEventListener(CloseEvent.CLOSE, alertClickHandler);
             }
             
