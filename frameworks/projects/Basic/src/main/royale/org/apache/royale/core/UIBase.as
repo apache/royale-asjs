@@ -1377,7 +1377,7 @@ package org.apache.royale.core
             }
             COMPILE::JS
             {
-                element.removeChild(c.element as HTMLElement);
+                element.removeChild(c.positioner as HTMLElement);
             }
         }
 		
