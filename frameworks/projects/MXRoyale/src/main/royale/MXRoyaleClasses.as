@@ -242,14 +242,25 @@ internal class MXRoyaleClasses
     import mx.containers.beads.FormItemContainer; FormItemContainer;
 
 
+	// --- RpcClassAliasInitializer
 	import org.apache.royale.reflection.registerClassAlias;
+
+	import mx.messaging.messages.AcknowledgeMessage;
+	import mx.messaging.messages.AsyncMessage;
+	import mx.messaging.messages.CommandMessage;
+	import mx.messaging.messages.RemotingMessage;
+	registerClassAlias("flex.messaging.messages.CommandMessage", CommandMessage);
+	registerClassAlias("flex.messaging.messages.AcknowledgeMessage", AcknowledgeMessage);
+	registerClassAlias("flex.messaging.messages.AsyncMessage", AsyncMessage);
+	registerClassAlias("flex.messaging.messages.RemotingMessage", RemotingMessage);  
+
 	import mx.messaging.messages.AcknowledgeMessageExt;
 	import mx.messaging.messages.AsyncMessageExt;
 	import mx.messaging.messages.CommandMessageExt;
-	//RpcClassAliasInitializer
 	registerClassAlias("DSK", AcknowledgeMessageExt);
 	registerClassAlias("DSA", AsyncMessageExt);
 	registerClassAlias("DSC", CommandMessageExt);
+	// RpcClassAliasInitializer ----------------------------------------
     
 	import mx.net.URLLoader; URLLoader;
 }
