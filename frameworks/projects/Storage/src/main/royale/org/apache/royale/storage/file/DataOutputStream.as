@@ -67,13 +67,13 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 			
 			var self:DataOutputStream = this;
 			
-			_fileWriter.onwriteend = function (e):void {
+			_fileWriter.onwriteend = function (e:Event):void {
 				var newEvent:FileEvent = new FileEvent("WRITE");
 				newEvent.stream = self;
 				_target.dispatchEvent(newEvent);
 			};
 			
-			_fileWriter.onerror = function (e):void {
+			_fileWriter.onerror = function (e:Event):void {
 				var newEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 				newEvent.stream = self;
 				newEvent.errorMessage = "Failed to write the file.";
@@ -117,7 +117,7 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 	public function writeText(text:String):void
 	{
 		COMPILE::JS {
-			var blob:Blob = new Blob([text], { type: 'text/plain' });
+			var blob:Blob = new Blob([text], new BlobPlainTextOptions());
 			_fileWriter.write(blob);
 		}
 		COMPILE::SWF {
@@ -163,3 +163,18 @@ public class DataOutputStream extends EventDispatcher implements IDataOutput
 }
 
 }
+
+COMPILE::JS
+class BlobPlainTextOptions implements BlobPropertyBag
+{
+    public function get type():String
+    {
+        return "text/plain";
+    }
+    
+    public function set type(value:String):void
+    {
+        
+    }
+}
+

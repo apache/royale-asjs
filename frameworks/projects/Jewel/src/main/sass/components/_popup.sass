@@ -1,0 +1,112 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel PopUp
+
+// PopUp variables
+$popup-content-margin-offset: 10px
+
+.jewel.popup
+    display: inline-flex
+
+.popup-content
+    position: fixed
+    pointer-events: none
+
+    bottom: 0
+    left: 0
+
+    width: 100%
+    height: 100%
+
+    overflow: hidden
+    contain: strict
+
+    z-index: $app-popups-zindex
+
+    &::before
+        position: absolute
+        display: block
+
+        top: 0
+        left: 0
+
+        width: 100%
+        height: 100%
+
+        content: ""
+
+    .jewel.popupcontent
+        display: inline-flex
+        
+        position: relative
+        transform: translate(-50%, 100%)
+        transition: none
+        will-change: transform, opacity
+        
+        bottom: auto
+        top: calc(100% - #{$popup-content-margin-offset})
+        left: 50%
+        touch-action: none
+        
+        opacity: 0
+
+    &.open
+        pointer-events: auto
+
+        &::before
+            opacity: 1
+
+        .jewel.popupcontent
+            transform: translate(-50%, -100%)
+            transition: animation-standard(transform, .4s), animation-standard(opacity, .4s)
+            opacity: 1
+
+@media (max-width: $tablet)
+    .popup-content
+        .jewel.popupcontent
+            width: calc(100% - #{2*$popup-content-margin-offset})
+
+// @media (min-width: $tablet) and (max-width: $desktop)
+//     .popup-content
+//         .jewel.popupcontent
+//             width: calc(100% - #{30*$popup-content-margin-offset})
+
+@media (min-width: $desktop)
+    .popup-content
+        .jewel.popupcontent
+            transform: translate(-50%, -60%)
+            
+        &.open
+            .jewel.popupcontent
+                top: 50%
+                left: 50%
+                margin-right: -50%
+                transform: translate(-50%, -50%)
+
+
+
+j|PopUp
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.PopUpView")
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.PopUpModel")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.PopUpMouseController")
+    IPopUpContent: ClassReference("org.apache.royale.core.StyledUIBase")
+
+@media -royale-swf
+

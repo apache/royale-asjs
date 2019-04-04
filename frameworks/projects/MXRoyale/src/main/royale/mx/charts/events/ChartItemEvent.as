@@ -20,16 +20,13 @@
 package mx.charts.events
 {
 
-/* import flash.events.Event;
-import flash.events.MouseEvent;
-import flash.display.InteractiveObject;
-import flash.geom.Point; */
-import mx.charts.HitData;
-import mx.charts.chartClasses.ChartBase;
-import org.apache.royale.events.MouseEvent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
+import org.apache.royale.events.MouseEvent;
+import mx.charts.HitData;
+import mx.charts.chartClasses.ChartBase;
 import org.apache.royale.geom.Point;
+
 /**
  * The ChartItemEvent class represents events that are specific
  * to the chart components, such as when a chart item is clicked.
@@ -37,11 +34,13 @@ import org.apache.royale.geom.Point;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
-public class ChartItemEvent extends  org.apache.royale.events.MouseEvent
+public class ChartItemEvent extends MouseEvent
 {
-  //  include "../../core/Version.as";
+//    include "../../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -56,11 +55,88 @@ public class ChartItemEvent extends  org.apache.royale.events.MouseEvent
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public static const ITEM_CLICK:String = "itemClick";
 	
+	/**
+	 *  Event type constant; indicates that the user double-clicked
+	 *  the mouse button over a chart item representing data in the chart.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const ITEM_DOUBLE_CLICK:String = "itemDoubleClick";
 	
+	/**
+	 *  Event type constant; indicates that the user pressed the mouse button
+	 *  over a chart item representing data in the chart.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const ITEM_MOUSE_DOWN:String = "itemMouseDown";
+	
+	/**
+	 *  Event type constant; indicates that the user moved the mouse pointer
+	 *  while hovering over a chart item representing data in the chart.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const ITEM_MOUSE_MOVE:String = "itemMouseMove";
+	
+	/**
+	 *  Event type constant; indicates that the user rolled the mouse pointer
+	 *  away from a chart item representing data in the chart.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const ITEM_ROLL_OUT:String = "itemRollOut";
+	
+	/**
+	 *  Event type constant; indicates that the user rolled the mouse pointer
+	 *  over  a chart item representing data in the chart.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const ITEM_ROLL_OVER:String = "itemRollOver";
+	
+	/**
+	 *  Event type constant; indicates that the user released the mouse button
+	 *  while over  a chart item representing data in the chart.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public static const ITEM_MOUSE_UP:String = "itemMouseUp";
+
+	/**
+	 *  Event type constant; indicates that the selection in the chart has 
+	 *  changed.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	
+	public static const CHANGE:String = "change"
+
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -82,17 +158,52 @@ public class ChartItemEvent extends  org.apache.royale.events.MouseEvent
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
-	public function ChartItemEvent(type:String, hitSet:Array=null,
+	public function ChartItemEvent(type:String, hitSet:Array /* of HitData */=null,
 								   triggerEvent:MouseEvent=null, target:ChartBase=null)
 	{	
+		var relPt:Point;
+		if (triggerEvent && triggerEvent.target)
+		{
+			relPt = target.globalToLocal(triggerEvent.target.localToGlobal(
+				new Point(triggerEvent.localX, triggerEvent.localY)));
+		}
+		else
+		{
+		    if (target)
+				relPt = new Point(target.mouseX,target.mouseY);
+			else
+				relPt = new Point(0,0);
+		}
 		
+		var bubbles:Boolean = true;
+		var cancelable:Boolean = false;
+		var relatedObject:Object = null;
+		var ctrlKey:Boolean = false;
+		var shiftKey:Boolean = false;
+		var altKey:Boolean = false;
+		var buttonDown:Boolean = false;
+		var delta:int = 0;
+			
+		if (triggerEvent)
+		{
+        	bubbles = triggerEvent.bubbles;
+			cancelable = triggerEvent.cancelable;
+			relatedObject = triggerEvent.relatedObject;
+			ctrlKey = triggerEvent.ctrlKey;
+			altKey = triggerEvent.altKey;
+			shiftKey = triggerEvent.shiftKey;
+			buttonDown = triggerEvent.buttonDown;
+			delta = triggerEvent.delta;
+		}
 		
+			
 		super(type, bubbles, cancelable,
-			  0,0, relatedObject,
+			  relPt.x, relPt.y, relatedObject,
 			  ctrlKey, altKey, shiftKey, buttonDown, delta);		
-		
+
+		this.hitSet = hitSet;		
 	}
 
     //--------------------------------------------------------------------------
@@ -115,14 +226,31 @@ public class ChartItemEvent extends  org.apache.royale.events.MouseEvent
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public function get hitData():HitData
 	{
-	return null;
+		return (hitSet && hitSet.length > 0)? hitSet[0]:null;
 	}
 
-    
+    //----------------------------------
+	//  hitSet
+    //----------------------------------
+
+	[Inspectable(environment="none")]
+
+	/**
+	 *  A set of HitData structures describing the chart items
+	 *  that triggered the event.
+	 *  This array is in depth order; the first item in the array
+	 *  is the top-most item, and the last is the deepest.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var hitSet:Array /* of HitData */;
 		
     //--------------------------------------------------------------------------
     //
@@ -135,7 +263,7 @@ public class ChartItemEvent extends  org.apache.royale.events.MouseEvent
 	 */
 	override public function cloneEvent():IRoyaleEvent
 	{
-		return new ChartItemEvent(type, null, this,ChartBase(this.target));
+		return new ChartItemEvent(type, hitSet, this,ChartBase(this.target));
 	}
 }
 

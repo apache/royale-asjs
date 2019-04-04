@@ -187,6 +187,7 @@ package org.apache.royale.jewel
 						setClassName(computeFinalClassNames()); 
 
 					toggleClass("open", _isOpen);
+					document.body.classList.remove("viewport");
 				}
             }
         }

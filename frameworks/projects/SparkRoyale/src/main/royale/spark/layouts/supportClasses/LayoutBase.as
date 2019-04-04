@@ -19,21 +19,26 @@
 
 package spark.layouts.supportClasses
 {
+COMPILE::SWF
+{
+    import flash.events.Event;
+}
+
+import mx.core.Container;
 import mx.core.ILayoutElement;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
-//import mx.core.UIComponentGlobals;
 import mx.core.mx_internal;
-//import mx.managers.ILayoutManagerClient;
 
 import spark.components.supportClasses.GroupBase;
-//import spark.components.supportClasses.OverlayDepth;
 import spark.core.NavigationUnit;
 
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.LayoutBase;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
 import org.apache.royale.utils.PointUtils;
@@ -82,7 +87,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class LayoutBase extends /*OnDemand*/EventDispatcher
+public class LayoutBase extends org.apache.royale.core.LayoutBase implements IEventDispatcher
 {
     //--------------------------------------------------------------------------
     //
@@ -103,6 +108,13 @@ public class LayoutBase extends /*OnDemand*/EventDispatcher
         super();
     }
     
+    override public function set strand(value:IStrand):void
+    {
+        _target = value as GroupBase;
+        super.strand = value;
+        
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -226,7 +238,7 @@ public class LayoutBase extends /*OnDemand*/EventDispatcher
         if (_useVirtualLayout == value)
             return;
 
-        dispatchEvent(new Event("useVirtualLayoutChanged"));
+        dispatchEvent(new org.apache.royale.events.Event("useVirtualLayoutChanged"));
         
         if (_useVirtualLayout && !value)  // turning virtual layout off
             clearVirtualLayoutCache();
@@ -2087,5 +2099,83 @@ public class LayoutBase extends /*OnDemand*/EventDispatcher
         }
         return local;
     }
+    
+    private var ed:EventDispatcher = new EventDispatcher(this);
+    
+    public function hasEventListener(type:String):Boolean
+    {
+        return ed.hasEventListener(type);
+    }
+    
+    COMPILE::JS
+    public function dispatchEvent(event:Object):Boolean
+    {
+        return ed.dispatchEvent(event);
+    }
+    
+    COMPILE::JS
+    public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        ed.addEventListener(type, handler, opt_capture, opt_handlerScope);
+    }
+    
+    COMPILE::JS
+    public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        ed.removeEventListener(type, handler, opt_capture, opt_handlerScope);
+    }
+
+    COMPILE::SWF
+    public function addEventListener(type:String, handler:Function, capture:Boolean = false, priority:int = 0, weak:Boolean = false):void
+    {
+        ed.addEventListener(type, handler, capture);
+    }
+    
+    COMPILE::SWF
+    public function removeEventListener(type:String, handler:Function, capture:Boolean = false):void
+    {
+        ed.removeEventListener(type, handler, capture);
+    }
+    
+    COMPILE::SWF
+    public function dispatchEvent(event:flash.events.Event):Boolean
+    {
+        return ed.dispatchEvent(event);
+    }
+
+    COMPILE::SWF
+    public function willTrigger(type:String):Boolean
+    {
+        return ed.willTrigger(type);
+    }
+    
+    override public function layout():Boolean
+    {
+        var n:int = layoutView.numElements;
+        if (n == 0)
+            return false;
+        
+        var w:Number = target.width;
+        var h:Number = target.height;
+        if (target.isHeightSizedToContent())
+            h = target.measuredHeight;
+        if (target.isWidthSizedToContent())
+            w = target.measuredWidth;
+        
+        updateDisplayList(w, h);
+        
+        // update the target's actual size if needed.
+        if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
+            target.setActualSize(target.getExplicitOrMeasuredWidth(), 
+                target.getExplicitOrMeasuredHeight());
+        }
+        else if (target.isWidthSizedToContent())
+            target.setWidth(target.getExplicitOrMeasuredWidth());
+        else if (target.isHeightSizedToContent())
+            target.setHeight(target.getExplicitOrMeasuredHeight());
+        
+        return true;
+    }
+
 }
 }

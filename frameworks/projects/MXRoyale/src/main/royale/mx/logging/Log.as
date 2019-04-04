@@ -19,12 +19,14 @@
 
 package mx.logging
 {
-/* 
+
 import mx.logging.errors.InvalidCategoryError;
 import mx.managers.ISystemManager;
 import mx.managers.SystemManager;
+import mx.messaging.errors.ArgumentError;
 import mx.resources.IResourceManager;
-import mx.resources.ResourceManager; */
+import mx.resources.ResourceManager;
+
 //[ResourceBundle("logging")]
 
 /**
@@ -92,11 +94,11 @@ import mx.resources.ResourceManager; */
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
 public class Log
 {
-   // include "../core/Version.as";
+//    include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -108,13 +110,13 @@ public class Log
      *  @private
      *  Sentinal value for the target log level to indicate no logging.
      */
-   // private static var NONE:int = int.MAX_VALUE;
+    private static var NONE:int = int.MAX_VALUE;
 
     /**
      *  @private
      *  The most verbose supported log level among registered targets.
      */
-  //  private static var _targetLevel:int = NONE;
+    private static var _targetLevel:int = NONE;
         // Initialize target level to a value out of range.
 
     /**
@@ -128,7 +130,7 @@ public class Log
      *  Array of targets that should be searched any time
      *  a new logger is created.
      */
-   // private static var _targets:Array = [];
+    private static var _targets:Array = [];
 
 	/**
 	 *  @private
@@ -137,7 +139,7 @@ public class Log
 	 *  not at static initialization time, in order to ensure
 	 *  that the Singleton registry has already been initialized.
 	 */
-	//private static var _resourceManager:IResourceManager;
+	private static var _resourceManager:IResourceManager;
 	
 	/**
 	 *  @private
@@ -146,13 +148,13 @@ public class Log
      *  This is a singleton instance which implements
      *  the IResourceManager interface.
 	 */
-	/* private static function get resourceManager():IResourceManager
+	private static function get resourceManager():IResourceManager
 	{
 		if (!_resourceManager)
 			_resourceManager = ResourceManager.getInstance();
 
 		return _resourceManager;
-	} */
+	}
 
     //--------------------------------------------------------------------------
     //
@@ -169,12 +171,12 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  public static function isFatal():Boolean
+    public static function isFatal():Boolean
     {
         return (_targetLevel <= LogEventLevel.FATAL) ? true : false;
-    } */
+    }
     
     /**
      *  Indicates whether an error level log event will be processed by a
@@ -185,12 +187,12 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  public static function isError():Boolean
+    public static function isError():Boolean
     {
         return (_targetLevel <= LogEventLevel.ERROR) ? true : false;
-    } */
+    }
     
     /**
      *  Indicates whether a warn level log event will be processed by a
@@ -201,12 +203,12 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public static function isWarn():Boolean
+    public static function isWarn():Boolean
     {
         return (_targetLevel <= LogEventLevel.WARN) ? true : false;
-    } */
+    }
 
     /**
      *  Indicates whether an info level log event will be processed by a
@@ -217,12 +219,12 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */ 
-   /*  public static function isInfo():Boolean
+    public static function isInfo():Boolean
     {
         return (_targetLevel <= LogEventLevel.INFO) ? true : false;
-    } */
+    }
     
     /**
      *  Indicates whether a debug level log event will be processed by a
@@ -233,12 +235,12 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public static function isDebug():Boolean
+    public static function isDebug():Boolean
     {
         return (_targetLevel <= LogEventLevel.DEBUG) ? true : false;
-    } */
+    }
 
     /**
      *  Allows the specified target to begin receiving notification of log
@@ -249,9 +251,9 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public static function addTarget(target:ILoggingTarget):void
+    public static function addTarget(target:ILoggingTarget):void
     {
         if (target)
         {
@@ -280,7 +282,7 @@ public class Log
                 "logging", "invalidTarget");
             throw new ArgumentError(message);
         }
-    } */
+    }
 
     /**
      *  Stops the specified target from receiving notification of log
@@ -291,9 +293,9 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public static function removeTarget(target:ILoggingTarget):void
+    public static function removeTarget(target:ILoggingTarget):void
     {
         if (target)
         {
@@ -324,7 +326,7 @@ public class Log
                 "logging", "invalidTarget");
             throw new ArgumentError(message);
         }
-    } */
+    }
 
     /**
      *  Returns the logger associated with the specified category.
@@ -345,18 +347,18 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public static function getLogger(category:String):ILogger
     {
-       // checkCategory(category);
+        checkCategory(category);
         if (!_loggers)
             _loggers = [];
 
         // get the logger for the specified category or create one if it
         // doesn't exist
         var result:ILogger = _loggers[category];
-       /*  if (result == null)
+        if (result == null)
         {
             result = new LogLogger(category);
             _loggers[category] = result;
@@ -369,7 +371,7 @@ public class Log
             target = ILoggingTarget(_targets[i]);
             if (categoryMatchInFilterList(category, target.filters))
                 target.addLogger(result);
-        } */
+        }
 
         return result;
     }
@@ -383,14 +385,14 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public static function flush():void
+    public static function flush():void
     {
         _loggers = [];
         _targets = [];
         _targetLevel = NONE;
-    } */
+    }
 
     /**
      *  This method checks the specified string value for illegal characters.
@@ -404,13 +406,13 @@ public class Log
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public static function hasIllegalCharacters(value:String):Boolean
+    public static function hasIllegalCharacters(value:String):Boolean
     {
         return value.search(/[\[\]\~\$\^\&\\(\)\{\}\+\?\/=`!@#%,:;'"<>\s]/) != -1;
     }
- */
+
     // private members
     /**
      *  This method checks that the specified category matches any of the filter
@@ -423,7 +425,7 @@ public class Log
      *            otherwise.
      *  @private
      */
-   /*  private static function categoryMatchInFilterList(category:String, filters:Array):Boolean
+    private static function categoryMatchInFilterList(category:String, filters:Array):Boolean
     {
         var result:Boolean = false;
         var filter:String;
@@ -444,7 +446,7 @@ public class Log
                 return true;
         }
         return false;
-    } */
+    }
 
     /**
      *  This method will ensure that a valid category string has been specified.
@@ -454,7 +456,7 @@ public class Log
      *    []`*~,!#$%^&amp;()]{}+=\|'";?&gt;&lt;./&#64; or be less than 1 character in length.
      *  @private
      */
-   /*  private static function checkCategory(category:String):void
+    private static function checkCategory(category:String):void
     {
         var message:String;
         
@@ -471,14 +473,14 @@ public class Log
                 "logging", "invalidChars");
             throw new InvalidCategoryError(message);
         }
-    } */
+    }
     
     /**
      *  @private
      *  This method resets the Log's target level to the most verbose log level
      *  for the currently registered targets.
      */
-    /* private static function resetTargetLevel():void
+    private static function resetTargetLevel():void
     {
         var minLevel:int = NONE;
         for (var i:int = 0; i < _targets.length; i++)
@@ -487,7 +489,7 @@ public class Log
                 minLevel = _targets[i].level;
         }
         _targetLevel = minLevel;
-    } */
+    }
 }
 
 }

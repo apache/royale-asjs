@@ -157,6 +157,13 @@ COMPILE::JS {
 			if (target)
 			{
                 target.down = true;
+                
+                var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
+                newEvent.data = target.data;
+                newEvent.multipleSelection = event.shiftKey;
+                newEvent.index = target.index;
+                
+                target.dispatchEvent(newEvent);
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 		}

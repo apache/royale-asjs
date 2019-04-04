@@ -180,6 +180,10 @@
 			<arg value="-targets=${targets}" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
 			<arg value="-js-output=${jsDir}" />
+            <!--
+            <arg value="-js-library-path+=/Users/aharui/git/flex/master/flex-sdk/frameworks/locale/{locale}" />
+            <arg value="-library-path+=/Users/aharui/git/flex/master/flex-sdk/frameworks/locale/{locale}" />
+             -->
         </mxmlc>
 
         <antcall target="build_example.wrapper">

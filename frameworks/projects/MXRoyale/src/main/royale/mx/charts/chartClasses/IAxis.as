@@ -19,11 +19,10 @@
 
 package mx.charts.chartClasses
 {
-	import org.apache.royale.events.IEventDispatcher;
-/*	
-import flash.events.IEventDispatcher;
+
+import org.apache.royale.events.IEventDispatcher;
 import mx.charts.AxisLabel;
-*/
+
 /**
  *  The IAxis class is an abstract interface for defining label,
  *  tick mark, and data positioning properties for a chart axis.
@@ -273,7 +272,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    //function getLabelEstimate():AxisLabelSet;
+    function getLabelEstimate():AxisLabelSet;
 
     /** 
      *  Determines how the axis handles overlapping labels. 
@@ -306,7 +305,7 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    //function getLabels(minimumAxisLength:Number):AxisLabelSet;
+    function getLabels(minimumAxisLength:Number):AxisLabelSet;
 
     /**
      *  Invoked when an AxisRenderer is unable to cleanly render
@@ -326,8 +325,8 @@ public interface IAxis extends IEventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    //function reduceLabels(intervalStart:AxisLabel,
-    //                      intervalEnd:AxisLabel):AxisLabelSet;
+    function reduceLabels(intervalStart:AxisLabel,
+                          intervalEnd:AxisLabel):AxisLabelSet;
 
     //--------------------------------------------------------------------------
     //

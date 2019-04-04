@@ -23,10 +23,15 @@
 	<component id="TransformBead" class="org.apache.royale.svg.TransformBead" />
 	<component id="ClipBead" class="org.apache.royale.svg.ClipBead" />
 	<component id="DropShadowFilter" class="org.apache.royale.svg.DropShadowFilter" />
+	<component id="BevelFilter" class="org.apache.royale.svg.BevelFilter" />
+	<component id="RetainColorBevelFilter" class="org.apache.royale.svg.RetainColorBevelFilter" />
 	<component id="Filter" class="org.apache.royale.svg.Filter" />
 	<component id="OffsetFilterElement" class="org.apache.royale.svg.OffsetFilterElement" />
+	<component id="TileFilterElement" class="org.apache.royale.svg.TileFilterElement" />
 	<component id="ColorMatrixFilterElement" class="org.apache.royale.svg.ColorMatrixFilterElement" />
+	<component id="DiffuseLightingFilterElement" class="org.apache.royale.svg.DiffuseLightingFilterElement" />
 	<component id="SpreadFilterElement" class="org.apache.royale.svg.SpreadFilterElement" />
+	<component id="AdjustBrightnessFilterElement" class="org.apache.royale.svg.AdjustBrightnessFilterElement" />
 	<component id="BlurFilterElement" class="org.apache.royale.svg.BlurFilterElement" />
 	<component id="InvertFilterElement" class="org.apache.royale.svg.InvertFilterElement" />
 	<component id="FullAlphaFilterElement" class="org.apache.royale.svg.FullAlphaFilterElement" />

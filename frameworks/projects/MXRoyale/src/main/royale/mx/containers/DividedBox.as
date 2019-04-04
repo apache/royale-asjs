@@ -100,7 +100,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="dividerRelease", type="mx.events.DividerEvent")]
+[Event(name="dividerRelease", type="mx.events.DividerEvent")]
 
 /**
  *  A DividedBox container measures and lays out its children

@@ -35,6 +35,10 @@ package org.apache.royale.svg
 	 */
 	public class CompositeFilterElement extends FilterElement
 	{
+		private var _k4:Number
+		private var _k3:Number
+		private var _k2:Number
+		private var _k1:Number;
 		private var _in2:String;
 		private var _operator:String;
 
@@ -52,6 +56,13 @@ package org.apache.royale.svg
 			{
 				super.build();
 				filterElement.setAttribute("in2", in2);
+				if (operator == "arithmetic")
+				{
+					filterElement.setAttribute("k1", k1);
+					filterElement.setAttribute("k2", k2);
+					filterElement.setAttribute("k3", k3);
+					filterElement.setAttribute("k4", k4);
+				}
 				filterElement.setAttribute("operator", operator);
 			}
 		}
@@ -82,6 +93,46 @@ package org.apache.royale.svg
 			return "feComposite";
 		}
 
+
+		public function get k1():Number 
+		{
+			return _k1;
+		}
+		
+		public function set k1(value:Number):void 
+		{
+			_k1 = value;
+		}
+
+		public function get k2():Number 
+		{
+			return _k2;
+		}
+		
+		public function set k2(value:Number):void 
+		{
+			_k2 = value;
+		}
+
+		public function get k3():Number 
+		{
+			return _k3;
+		}
+		
+		public function set k3(value:Number):void 
+		{
+			_k3 = value;
+		}
+
+		public function get k4():Number 
+		{
+			return _k4;
+		}
+		
+		public function set k4(value:Number):void 
+		{
+			_k4 = value;
+		}
 	}
 }
 

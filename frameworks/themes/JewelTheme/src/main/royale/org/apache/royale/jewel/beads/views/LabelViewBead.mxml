@@ -44,17 +44,17 @@ limitations under the License.
         <js:LayoutChangeNotifier watchedProperty="{additionalInfoLabel.text}" />
     </js:beads>
 
-    <js:Label id="titleLabel" text="{CustomPanelWithControlBarModel(model).title}" className="TitleBarTitle" >
+    <js:Label localId="titleLabel" text="{CustomPanelWithControlBarModel(model).title}" className="TitleBarTitle" >
         <js:style>
             <js:SimpleCSSStyles fontWeight="inherit" marginLeft="5" />
         </js:style>
     </js:Label>
-	<js:Label id="additionalInfoLabel" text="{CustomPanelWithControlBarModel(model).info}" height="16">
+	<js:Label localId="additionalInfoLabel" text="{CustomPanelWithControlBarModel(model).info}" height="16">
 		<js:style>
             <js:SimpleCSSStyles fontWeight="inherit" marginRight="5" />
         </js:style>
 	</js:Label>
-    <js:CloseButton id="closeButton" click="clickHandler()" className="TitleBarCloseButton"
+    <js:CloseButton localId="closeButton" click="clickHandler()" className="TitleBarCloseButton"
                     visible="{CustomPanelWithControlBarModel(model).showCloseButton}"/>
      -->
 </js:MXMLBeadView>

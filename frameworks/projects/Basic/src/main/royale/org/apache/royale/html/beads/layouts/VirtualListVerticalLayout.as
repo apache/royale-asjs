@@ -44,7 +44,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
-    import org.apache.royale.html.beads.VirtualListView;
+    import org.apache.royale.html.beads.VirtualDataContainerView;
 	import org.apache.royale.utils.CSSUtils;
 
     COMPILE::SWF {
@@ -112,6 +112,7 @@ package org.apache.royale.html.beads.layouts
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
@@ -134,6 +135,11 @@ package org.apache.royale.html.beads.layouts
 				var maxWidth:Number = 0;
 				var maxHeight:Number = 0;
                 var dp:Array = dataProviderModel.dataProvider as Array;
+                if (!dp) 
+                {
+                    inLayout = false;
+                    return true;
+                }
                 var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
 				var hostWidthSizedToContent:Boolean = host.isWidthSizedToContent();
 				var hostHeightSizedToContent:Boolean = host.isHeightSizedToContent();
@@ -222,6 +228,8 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
+                    if (i >= dp.length) continue; // no more renderers needed
+                    
                     var ir:ISelectableItemRenderer;
                     if (i < firstIndex)
                     {
@@ -238,7 +246,7 @@ package org.apache.royale.html.beads.layouts
                 }
                 visibleIndexes = visibleIndexes.sort(numberSort);
 
-                var view:VirtualListView = host.getBeadByType(VirtualListView) as VirtualListView;
+                var view:VirtualDataContainerView = host.getBeadByType(VirtualDataContainerView) as VirtualDataContainerView;
                 view.lastContentSize = new Size(hostWidth, dp.length * presentationModel.rowHeight);
 
                 inLayout = false;
@@ -254,6 +262,11 @@ package org.apache.royale.html.beads.layouts
                 // going off-screen
                 var contentView:ILayoutView = layoutView;
                 var dp:Array = dataProviderModel.dataProvider as Array;
+                if (!dp) 
+                {
+                    inLayout = false;
+                    return true;
+                }
                 var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
                 var totalHeight:Number = presentationModel.rowHeight * dp.length;
                 var viewportTop:Number = Math.max(contentView.element.scrollTop, 0);
@@ -327,6 +340,8 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
+                    if (i >= dp.length) continue; // no more renderers needed
+                    
                     var ir:ISelectableItemRenderer;
                     if (i < firstIndex)
                     {

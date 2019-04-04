@@ -24,6 +24,13 @@ package spark.components
 import flash.events.FocusEvent;
 
 import flashx.textLayout.formats.LineBreak; */
+COMPILE::JS
+{
+	import goog.events;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
+}
+
 import org.apache.royale.events.Event;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
@@ -290,6 +297,33 @@ public class TextInput extends SkinnableTextBase
         // Trigger bindings to textChanged.
         dispatchEvent(new Event("textChanged"));
     }
+    
+    COMPILE::JS
+	override protected function createElement():WrappedHTMLElement
+	{
+		addElementToWrapper(this,'input');
+		element.setAttribute('type', 'text');
+		
+		//attach input handler to dispatch royale change event when user write in textinput
+		//goog.events.listen(element, 'change', killChangeHandler);
+		goog.events.listen(element, 'input', textChangeHandler);
+		return element;
+	}
+	private var inSetter:Boolean;
+
+	/**
+	 *  dispatch change event in response to a textChange event
+	 *
+	 *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+	 */
+	public function textChangeHandler(event:Event):void
+	{
+        if (!inSetter)
+            dispatchEvent(new Event(Event.CHANGE));
+	}
 
     //--------------------------------------------------------------------------
     //
@@ -335,18 +369,18 @@ public class TextInput extends SkinnableTextBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get widthInChars():Number
+    public function get widthInChars():Number
     {
-        return getWidthInChars();
-    } */
+        return 0; //getWidthInChars();
+    }
 
     /**
      *  @private
      */
-    /* public function set widthInChars(value:Number):void
+    public function set widthInChars(value:Number):void
     {
-        setWidthInChars(value);
-    } */
+        // setWidthInChars(value);
+    }
     
     //--------------------------------------------------------------------------
     //

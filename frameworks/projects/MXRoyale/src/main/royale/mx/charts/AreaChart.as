@@ -19,14 +19,6 @@
 
 package mx.charts
 {
-import mx.charts.chartClasses.IAxis;
-import mx.graphics.IFill;
-import mx.graphics.SolidColor;
-import mx.graphics.SolidColorStroke;
-import mx.graphics.Stroke;
-import mx.charts.chartClasses.ChartBase;
-/*
-import flash.utils.Dictionary;
 
 import mx.charts.chartClasses.CartesianChart;
 import mx.charts.chartClasses.DataTip;
@@ -45,10 +37,10 @@ import mx.graphics.Stroke;
 import mx.styles.CSSStyleDeclaration;
 
 use namespace mx_internal;
-*/
+
 [DefaultBindingProperty(destination="dataProvider")]
 
-//[DefaultTriggerEvent("itemClick")]
+[DefaultTriggerEvent("itemClick")]
 
 //[IconFile("AreaChart.png")]
 
@@ -83,12 +75,11 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-public class AreaChart extends ChartBase
-//extends CartesianChart
+public class AreaChart extends CartesianChart
 {
-    //include "../core/Version.as";
+//    include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -108,13 +99,13 @@ public class AreaChart extends ChartBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function AreaChart()
     {
         super();
 
-        //LinearAxis(horizontalAxis).autoAdjust = false;
+        LinearAxis(horizontalAxis).autoAdjust = false;
     }
 
     //--------------------------------------------------------------------------
@@ -126,7 +117,7 @@ public class AreaChart extends ChartBase
     /**
      *  @private
      */
-    //private static var _moduleFactoryInitialized:Dictionary = new Dictionary(true);
+//    private static var _moduleFactoryInitialized:Dictionary = new Dictionary(true);
 
     //--------------------------------------------------------------------------
     //
@@ -138,18 +129,18 @@ public class AreaChart extends ChartBase
     //  horizontalAxis
     //----------------------------------
 
-    //[Inspectable(category="Data")]
+    [Inspectable(category="Data")]
 
     /**
      *  @private
      */
-    /*override*/  /* public function set horizontalAxis(value:IAxis):void
+    override public function set horizontalAxis(value:IAxis):void
     {
-        //if (value is CategoryAxis)
-        //    CategoryAxis(value).padding = 0;
+        if (value is CategoryAxis)
+            CategoryAxis(value).padding = 0;
 
-        //super.horizontalAxis = value;
-    } */   
+        super.horizontalAxis = value;
+    }   
 
     //--------------------------------------------------------------------------
     //
@@ -167,7 +158,7 @@ public class AreaChart extends ChartBase
      */
     private var _type:String = "overlaid";
 
-    //[Inspectable(category="General", enumeration="overlaid,stacked,100%", defaultValue="overlaid")]
+    [Inspectable(category="General", enumeration="overlaid,stacked,100%", defaultValue="overlaid")]
 
     /**
      *  Type of area chart to render.
@@ -191,7 +182,7 @@ public class AreaChart extends ChartBase
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function get type():String
     {
@@ -204,32 +195,128 @@ public class AreaChart extends ChartBase
     public function set type(value:String):void
     {
         _type = value;
-        //invalidateSeries();
-        //invalidateData();
+        invalidateSeries();
+        invalidateData();
     }
 
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: UIComponent
+    //
+    //--------------------------------------------------------------------------
+    
+	/**
+     *  @private
+     */
+    private function initStyles():Boolean
+    {
+        HaloDefaults.init(styleManager);
+        
+      	var areaChartSeriesStyles:Array /* of Object */ = [];
+        
+        var n:int = HaloDefaults.defaultFills.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            var styleName:String = "haloAreaSeries" + i;
+            areaChartSeriesStyles[i] = styleName;
+            
+            var o:CSSStyleDeclaration =
+                HaloDefaults.createSelector("." + styleName, styleManager);
+            
+            var f:Function = function(o:CSSStyleDeclaration, stroke:Stroke,
+                                      fill:IFill):void
+            {
+                o.defaultFactory = function():void
+                {
+                    this.areaFill = fill;
+                    this.fill = fill;
+                }
+            }
+            
+            f(o, null, HaloDefaults.defaultFills[i]);
+        }
+		
+		var areaChartStyle:CSSStyleDeclaration = HaloDefaults.findStyleDeclaration(styleManager, "mx.charts.AreaChart");
+		if (areaChartStyle)
+		{
+			areaChartStyle.setStyle("chartSeriesStyles", areaChartSeriesStyles);
+			areaChartStyle.setStyle("fill", new SolidColor(0xFFFFFF, 0));
+			areaChartStyle.setStyle("calloutStroke", new SolidColorStroke(0x888888,2));
+			areaChartStyle.setStyle("horizontalAxisStyleNames", ["hangingCategoryAxis"]);
+			areaChartStyle.setStyle("verticalAxisStyleNames", ["blockNumericAxis"]);
+		}
+		
+        return true;
+    }
+    
     /**
-     *  Sets a style property on this component instance.
-     *
-     *  <p>This can override a style that was set globally.</p>
-     *
-     *  <p>Calling the <code>setStyle()</code> method can result in decreased performance.
-     *  Use it only when necessary.</p>
-     *
-     *  @param styleProp Name of the style property.
-     *
-     *  @param newValue New value for the style.
+     *   A module factory is used as context for using embedded fonts and for finding the style manager that controls the styles for this component.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    override public function setStyle(styleProp:String, newValue:*):void
+    override public function set moduleFactory(factory:IFlexModuleFactory):void
     {
-        trace("setStyle not implemented");
+        super.moduleFactory = factory;
+        
+        /*
+        if (_moduleFactoryInitialized[factory])
+            return;
+        
+        _moduleFactoryInitialized[factory] = true;
+        */
+        
+        // our style settings
+        initStyles();
+    }
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: ChartBase
+    //
+    //--------------------------------------------------------------------------
+
+    /**
+     *  @private
+     */
+    override protected function customizeSeries(seriesGlyph:Series,
+                                                i:uint):void
+    {
+        var aSeries:AreaSeries = seriesGlyph as AreaSeries;
+
+        if (aSeries)
+        {
+            aSeries.stacker = null;
+            aSeries.stackTotals = null;
+        }
     }
 
+    /**
+     *  @private
+     */
+    override protected function applySeriesSet(seriesSet:Array /* of Series */,
+                                               transform:DataTransform):Array /* of Series */
+    {
+        switch (_type)
+        {
+            case "stacked":
+            case "100%":
+            {
+                var newSeriesGlyph:AreaSet = new AreaSet();
+                newSeriesGlyph.series = seriesSet;
+                newSeriesGlyph.type = _type;
+                return [ newSeriesGlyph ];
+            }               
+
+            case "overlaid":
+            default:
+            {
+                return super.applySeriesSet(seriesSet, transform);
+            }
+        }
+    }
 }
 
 }

@@ -19,12 +19,12 @@
 
 package mx.charts.renderers
 {
-/* 
-import flash.filters.DropShadowFilter;
+
+//import flash.filters.DropShadowFilter;
 import mx.charts.chartClasses.GraphicsUtilities;
 import mx.core.IDataRenderer;
 import mx.graphics.IStroke;
-import mx.skins.ProgrammaticSkin; */
+import mx.skins.ProgrammaticSkin;
 
 /**
  *  An implementation of a line segment renderer
@@ -40,13 +40,21 @@ import mx.skins.ProgrammaticSkin; */
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ShadowLineRenderer
+public class ShadowLineRenderer extends ProgrammaticSkin implements IDataRenderer
 {
+//    include "../../core/Version.as";
 
- //extends ProgrammaticSkin implements IDataRenderer
-   // include "../../core/Version.as";
+    //--------------------------------------------------------------------------
+    //
+    //  Class constants
+    //
+    //--------------------------------------------------------------------------
 
-    
+	/**
+	 *  @private
+	 */
+	private static var FILTERS:Array /* of BitMapFilter */ = [ /*new DropShadowFilter()*/ ];
+
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -63,12 +71,79 @@ public class ShadowLineRenderer
 	 */
 	public function ShadowLineRenderer() 
 	{
-		//super();
+		super();
 
-		//filters = FILTERS;		
+		filters = FILTERS;		
 	}
 
-    
+    //--------------------------------------------------------------------------
+    //
+    //  Properties
+    //
+    //--------------------------------------------------------------------------
+
+    //----------------------------------
+	//  data
+    //----------------------------------
+
+	/**
+	 *  @private
+	 *  Storage for the data property.
+	 */
+	private var _data:Object;
+	
+	[Inspectable(environment="none")]
+
+	/**
+	 *  The chart item that this renderer represents.
+	 *  ShadowLineRenderers assume that this value
+	 *  is an instance of LineSeriesItem.
+	 *  This value is assigned by the owning series.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get data():Object
+	{
+		return _data;
+	}
+
+	/**
+	 *  @private
+	 */
+	public function set data(value:Object):void
+	{
+		_data = value;
+
+		invalidateDisplayList();
+	}
+
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods
+    //
+    //--------------------------------------------------------------------------
+	
+	/**
+	 *  @private
+	 */
+	override protected function updateDisplayList(unscaledWidth:Number,
+												  unscaledHeight:Number):void
+	{
+		super.updateDisplayList(unscaledWidth, unscaledHeight);
+
+		var stroke:IStroke = getStyle("lineStroke");		
+		var form:String = getStyle("form");
+
+		graphics.clear();
+
+		GraphicsUtilities.drawPolyLine(graphics, _data.items,
+									   _data.start, _data.end + 1,
+									   "x","y",
+									   stroke,form);
+	}
 }
 
 }

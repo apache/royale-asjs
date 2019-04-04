@@ -32,6 +32,7 @@ import spark.components.ResizeMode;
 
 use namespace mx_internal;  */
 
+import org.apache.royale.core.ISelectableItemRenderer;
 import spark.components.DataRenderer;
 /**
  *  The ItemRenderer class is the base class for Spark item renderers.
@@ -83,7 +84,7 @@ import spark.components.DataRenderer;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class ItemRenderer extends DataRenderer
+public class ItemRenderer extends DataRenderer implements ISelectableItemRenderer
 {    // implements IItemRenderer
     //--------------------------------------------------------------------------
     //
@@ -213,7 +214,7 @@ public class ItemRenderer extends DataRenderer
      *  @private
      *  storage for the down property 
      */    
-    //private var _down:Boolean = false;
+    private var _down:Boolean = false;
     
     /**
      *  Set to <code>true</code> when the user is pressing down on an item renderer.
@@ -225,27 +226,29 @@ public class ItemRenderer extends DataRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */    
-    /* protected function get down():Boolean
+    public function get down():Boolean
     {
         return _down;
-    } */
+    }
     
     /**
      *  @private
      */    
-    /* protected function set down(value:Boolean):void
+    public function set down(value:Boolean):void
     {
         if (value != _down)
         {
             _down = value;
+            /*
             invalidateRendererState();
             if (autoDrawBackground)
             {
                 redrawRequested = true;
                 super.$invalidateDisplayList();
             }
+            */
         }
-    } */
+    }
     
     //----------------------------------
     //  hovered
@@ -254,7 +257,7 @@ public class ItemRenderer extends DataRenderer
      *  @private
      *  storage for the hovered property 
      */    
-    //private var _hovered:Boolean = false;
+    private var _hovered:Boolean = false;
     
     /**
      *  Set to <code>true</code> when the user is hovered over the item renderer.
@@ -266,27 +269,72 @@ public class ItemRenderer extends DataRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */    
-    /* protected function get hovered():Boolean
+    public function get hovered():Boolean
     {
         return _hovered;
-    } */
+    }
     
     /**
      *  @private
      */    
-    /* protected function set hovered(value:Boolean):void
+    public function set hovered(value:Boolean):void
     {
         if (value != _hovered)
         {
             _hovered = value;
+            /*
             invalidateRendererState();
             if (autoDrawBackground)
             {
                 redrawRequested = true;
                 super.$invalidateDisplayList();
             }
+            */
         }
-    } */
+    }
+    
+    //----------------------------------
+    //  hoverable
+    //----------------------------------
+    /**
+     *  @private
+     *  storage for the hovered property 
+     */    
+    private var _hoverable:Boolean = false;
+    
+    /**
+     *  Set to <code>true</code> when the user is hovered over the item renderer.
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */    
+    public function get hoverable():Boolean
+    {
+        return _hoverable;
+    }
+    
+    /**
+     *  @private
+     */    
+    public function set hoverable(value:Boolean):void
+    {
+        if (value != _hoverable)
+        {
+            _hoverable = value;
+            /*
+            invalidateRendererState();
+            if (autoDrawBackground)
+            {
+            redrawRequested = true;
+            super.$invalidateDisplayList();
+            }
+            */
+        }
+    }
     
     //----------------------------------
     //  itemIndex
@@ -333,6 +381,54 @@ public class ItemRenderer extends DataRenderer
         
         dispatchEvent(new Event("itemIndexChanged"));
     } */
+    
+    //----------------------------------
+    //  index
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  storage for the index property 
+     */    
+    private var _index:int;
+    
+    [Bindable("itemIndexChanged")]
+    
+    /**
+     *  @inheritDoc 
+     *
+     *  @default 0
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */    
+    public function get index():int
+    {
+        return _index;
+    }
+    
+    /**
+     *  @private
+     */    
+    public function set index(value:int):void
+    {
+        if (value == _index)
+        return;
+        
+        _index = value;
+
+        /*
+        if (autoDrawBackground)
+        {
+            redrawRequested = true;
+            super.$invalidateDisplayList();
+        }
+        
+        dispatchEvent(new Event("itemIndexChanged"));
+        */
+    }
     
     //----------------------------------
     //  labelDisplay
@@ -401,7 +497,7 @@ public class ItemRenderer extends DataRenderer
      *  @private
      *  storage for the selected property 
      */    
-    //private var _selected:Boolean = false;
+    private var _selected:Boolean = false;
     
     /**
      *  @inheritDoc 
@@ -413,28 +509,73 @@ public class ItemRenderer extends DataRenderer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */    
-    /* public function get selected():Boolean
+    public function get selected():Boolean
     {
         return _selected;
-    } */
+    }
     
     /**
      *  @private
      */    
-    /* public function set selected(value:Boolean):void
+    public function set selected(value:Boolean):void
     {
         if (value != _selected)
         {
             _selected = value;
+            /*
             invalidateRendererState();
             if (autoDrawBackground)
             {
                 redrawRequested = true;
                 super.$invalidateDisplayList();
             }
+            */
         }
     }
-       */ 
+    
+    //----------------------------------
+    //  selected
+    //----------------------------------
+    /**
+     *  @private
+     *  storage for the selected property 
+     */    
+    private var _selectable:Boolean = false;
+    
+    /**
+     *  @inheritDoc 
+     *
+     *  @default false
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10
+     *  @playerversion AIR 1.5
+     *  @productversion Royale 0.9.4
+     */    
+    public function get selectable():Boolean
+    {
+        return _selectable;
+    }
+    
+    /**
+     *  @private
+     */    
+    public function set selectable(value:Boolean):void
+    {
+        if (value != _selectable)
+        {
+            _selectable = value;
+            /*
+            invalidateRendererState();
+            if (autoDrawBackground)
+            {
+            redrawRequested = true;
+            super.$invalidateDisplayList();
+            }
+            */
+        }
+    }
+
     //----------------------------------
     //  dragging
     //----------------------------------

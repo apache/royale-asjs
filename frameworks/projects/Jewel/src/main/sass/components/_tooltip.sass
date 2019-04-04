@@ -25,14 +25,52 @@
 		padding: 6px
 		position: absolute
 		pointer-events: none
-		z-index: 5
+		z-index: $app-tooltips-zindex
+		border-radius: .25em
 	
 		&.error
 			margin-top: -31px !important
 
 			&::before
-				top: 100%
-				left: 8px
-				position: absolute
 				content: ""
-				margin-top: 0px
+				position: absolute
+				height: 0
+				width: 0
+
+			&.left-top
+				&::before
+					top: 100%
+					margin-top: 0px
+			&.middle-top
+				&::before
+					bottom: 0
+					left: 50%
+					border-bottom: 0
+			&.right-top
+				&::before
+					
+			&.left-middle
+				&::before
+					top: 50%
+					right: 0
+					border-right: 0
+			&.middle-middle
+				&::before
+					
+			&.right-middle
+				&::before
+					top: 50%
+					left: 0
+					border-left: 0 
+			
+			&.left-bottom
+				&::before
+					
+			&.middle-bottom
+				&::before
+					top: 0
+					left: 50%
+					border-top: 0
+			&.right-bottom
+				&::before
+					

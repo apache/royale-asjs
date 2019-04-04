@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.6-SNAPSHOT</version>
   </parent>
 
   <artifactId>Express</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.6-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Express</name>
@@ -41,7 +41,6 @@
         <version>${royale.compiler.version}</version>
         <extensions>true</extensions>
         <configuration>
-          <additionalCompilerOptions>-include-lookup-only</additionalCompilerOptions>
           <namespaces>
             <namespace>
               <uri>library://ns.apache.org/royale/express</uri>
@@ -63,6 +62,8 @@
             </include-file>
           </includeFiles>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-include-lookup-only</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
@@ -72,84 +73,84 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>DragDrop</artifactId>
-        <version>0.9.4-SNAPSHOT</version>
+        <version>0.9.6-SNAPSHOT</version>
         <type>swc</type>
         <classifier>swf</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>DragDrop</artifactId>
-        <version>0.9.4-SNAPSHOT</version>
+        <version>0.9.6-SNAPSHOT</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>

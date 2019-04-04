@@ -48,8 +48,8 @@ limitations under the License.
         <js:LayoutChangeNotifier watchedProperty="{titleLabel.text}" />
     </js:beads>
 
-    <j:Label id="titleLabel" text="{ITitleBarModel(model).title}"/>
+    <j:Label localId="titleLabel" text="{ITitleBarModel(model).title}"/>
 
-    <j:Button id="closeButton" click="clickHandler()" className="closebutton"/>
+    <j:Button localId="closeButton" click="clickHandler()" className="closebutton"/>
 <!-- visible="{ITitleBarModel(model).showCloseButton}"     -->
 </js:MXMLBeadView>

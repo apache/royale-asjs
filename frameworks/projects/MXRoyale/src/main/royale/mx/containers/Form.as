@@ -34,6 +34,7 @@ import mx.core.IUIComponent;
 import mx.core.mx_internal;
 import mx.styles.IStyleManager2;
 //import mx.styles.StyleManager;
+import org.apache.royale.core.IChild;
 
 use namespace mx_internal;
 
@@ -203,6 +204,7 @@ public class Form extends Container
         
         layoutObject.target = this;
         layoutObject.direction = BoxDirection.VERTICAL;
+        addBead(layoutObject);
     }
 
     //--------------------------------------------------------------------------
@@ -296,6 +298,15 @@ public class Form extends Container
         
         return super.addChild(child);
     }
+    
+    /**
+     * @private
+     */
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        invalidateLabelWidth();
+        super.addElement(c, dispatchEvent);
+    }
 
     /**
      *  @private
@@ -309,6 +320,15 @@ public class Form extends Container
     }
 
     /**
+     * @private
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        invalidateLabelWidth();
+        super.addElementAt(c, index, dispatchEvent);
+    }
+    
+    /**
      *  @private
      */
     override public function removeChild(child:IUIComponent):IUIComponent
@@ -318,6 +338,15 @@ public class Form extends Container
         return super.removeChild(child);
     }
 
+    /**
+     * @private
+     */
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        invalidateLabelWidth();
+        super.removeElement(c, dispatchEvent);
+    }
+    
     /**
      *  @private
      */
@@ -457,7 +486,7 @@ public class Form extends Container
     {
         // We only need to invalidate the label width
         // after we've been initialized.
-        if (!isNaN(measuredLabelWidth) && initialized)
+        if (!isNaN(measuredLabelWidth)/* && initialized*/)
         {
             measuredLabelWidth = NaN;
 
@@ -500,7 +529,7 @@ public class Form extends Container
             }
         }
 
-		if (labelWidthSet)
+		if (labelWidthSet && labelWidth > 0)
         	measuredLabelWidth = labelWidth;
 
         return labelWidth;

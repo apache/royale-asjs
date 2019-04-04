@@ -53,7 +53,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 		function get button():Object;
 		
 		/**
-		 *  The component housing the selection list.
+		 *  The component housing the selection list. The main component must be a placeholder
+		 *  that support responsiveness and holds a subcomponent that parents the list or other possible
+		 *  components needed in other implementations.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

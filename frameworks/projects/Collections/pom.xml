@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.6-SNAPSHOT</version>
   </parent>
 
   <artifactId>Collections</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.6-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Collections</name>
@@ -51,6 +51,8 @@
             <includeClass>CollectionsClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
@@ -60,14 +62,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>

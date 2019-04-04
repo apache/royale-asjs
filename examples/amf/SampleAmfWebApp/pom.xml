@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-amf-webapps</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.6-SNAPSHOT</version>
   </parent>
-  
+
   <artifactId>SampleAmfWebApp</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.6-SNAPSHOT</version>
   <packaging>war</packaging>
 
   <name>Apache Royale: Examples: AMF Web Apps: SampleAmfWebApp</name>
@@ -34,7 +34,7 @@
   <properties>
     <java.version>1.7</java.version>
   </properties>
-  
+
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
@@ -47,7 +47,7 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
-        
+
       <!-- Make Spring-Boot build an executable war -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -77,12 +77,52 @@
           <overlays>
             <overlay>
               <groupId>org.apache.royale.examples</groupId>
-              <artifactId>RemoteObjectAMFTest</artifactId>
+              <!-- <artifactId>RemoteObjectAMFTest</artifactId> -->
+              <artifactId>RemoteObjectAMFTest-MXRoyale</artifactId>
               <targetPath>public</targetPath>
             </overlay>
           </overlays>
         </configuration>
       </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <echo>To run, use:</echo>
+                <echo>java -jar target/${project.artifactId}-${project.version}-exec.war</echo>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <!-- Test create javadocs -->
+      <!-- <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>2.9</version>
+          <configuration>
+              <noqualifier>all</noqualifier>
+              <reportOutputDirectory>${basedir}/javadoc</reportOutputDirectory>
+              <destDir>javadoc</destDir>
+          </configuration>
+          <executions>
+            <execution>
+                <id>attach-javadocs</id>
+                <phase>install</phase>
+                <goals>
+                  <goal>javadoc</goal>
+                </goals>
+              </execution>
+          </executions>
+      </plugin>  -->
     </plugins>
   </build>
 
@@ -103,10 +143,17 @@
       <version>4.7.3</version>
     </dependency>
 
-    <dependency>
+    <!-- <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RemoteObjectAMFTest</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>war</type>
+    </dependency> -->
+
+    <dependency>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>RemoteObjectAMFTest-MXRoyale</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
       <type>war</type>
     </dependency>
 

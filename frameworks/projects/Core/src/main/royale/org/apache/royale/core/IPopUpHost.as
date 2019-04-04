@@ -29,6 +29,6 @@ package org.apache.royale.core
      */
     public interface IPopUpHost
 	{
-        function get popUpParent():IParent;
+        function get popUpParent():IPopUpHostParent;
 	}
 }

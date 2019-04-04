@@ -19,10 +19,6 @@
 
 package mx.charts
 {
-	import mx.charts.chartClasses.IAxis;
-	import mx.charts.chartClasses.ChartBase;
-/*
-import flash.utils.Dictionary;
 
 import mx.charts.chartClasses.CartesianChart;
 import mx.charts.chartClasses.DataTip;
@@ -41,10 +37,10 @@ import mx.graphics.Stroke;
 import mx.styles.CSSStyleDeclaration;
 
 use namespace mx_internal;
-*/
+
 [DefaultBindingProperty(destination="dataProvider")]
 
-//[DefaultTriggerEvent("itemClick")]
+[DefaultTriggerEvent("itemClick")]
 
 //[IconFile("PlotChart.png")]
 
@@ -74,11 +70,11 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-public class PlotChart extends ChartBase//extends CartesianChart
+public class PlotChart extends CartesianChart
 {
-    //include "../core/Version.as";
+//    include "../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -98,55 +94,104 @@ public class PlotChart extends ChartBase//extends CartesianChart
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function PlotChart()
     {
         super();
     }
 
+    //--------------------------------------------------------------------------
     //
-    //  Properties
+    //  Variables
     //
     //--------------------------------------------------------------------------
     
-    //----------------------------------
-    //  horizontalAxis
-    //----------------------------------
-
     /**
      *  @private
-     *  Storage for the horizontalAxis property.
      */
-    //private var _horizontalAxis:IAxis;
+//    private static var _moduleFactoryInitialized:Dictionary = new Dictionary(true);
+    
+    //--------------------------------------------------------------------------
+    //
+    //  Overridden methods: UIComponent
+    //
+    //--------------------------------------------------------------------------
+    
+	/**
+     *  @private
+     */
+    private function initStyles():Boolean
+    {
+        HaloDefaults.init(styleManager);
+        
+        var plotChartSeriesStyles:Array /* of Object */ = [];
+        
+		var plotChartStyle:CSSStyleDeclaration = HaloDefaults.findStyleDeclaration(styleManager, "mx.charts.PlotChart");
+		if (plotChartStyle)
+		{
+			plotChartStyle.setStyle("chartSeriesStyles", plotChartSeriesStyles);
+			plotChartStyle.setStyle("fill", new SolidColor(0xFFFFFF, 0));
+			plotChartStyle.setStyle("calloutStroke", new SolidColorStroke(0x888888,2));
+			plotChartStyle.setStyle("horizontalAxisStyleNames", ["blockNumericAxis"]);
+			plotChartStyle.setStyle("verticalAxisStyleNames", ["blockNumericAxis"]);
+			
+	        var defaultSkins:Array /* of IFactory */ = [ new ClassFactory(DiamondItemRenderer),
+	            new ClassFactory(CircleItemRenderer),
+	            new ClassFactory(BoxItemRenderer) ];
+	        var defaultSizes:Array /* of Number */ = [ 5, 3.5, 3.5 ];
+	        
+	        var n:int = HaloDefaults.defaultFills.length;
+	        for (var i:int = 0; i < n; i++)
+	        {
+	            var styleName:String = "haloPlotSeries"+i;
+	            plotChartSeriesStyles[i] = styleName;
+	            
+	            var o:CSSStyleDeclaration =
+	                HaloDefaults.createSelector("." + styleName, styleManager);
+	            
+	            var f:Function = function(o:CSSStyleDeclaration, skin:IFactory,
+	                                      fill:IFill, radius:Number):void
+	            {
+	                o.defaultFactory = function():void
+	                {
+	                    this.fill = fill;
+	                    this.itemRenderer = skin;
+	                    this.radius = radius
+	                }
+	            }
+	            
+	            f(o, defaultSkins[i % defaultSkins.length],
+	                HaloDefaults.defaultFills[i],
+	                defaultSizes[i % defaultSizes.length]);
+	        }
+		}        
+       return true;
+    }
+
     
     /**
-     *  Defines the labels, tick marks, and data position
-     *  for items on the x-axis.
-     *  Use either the LinearAxis class or the CategoryAxis class
-     *  to set the properties of the horizontalAxis as a child tag in MXML
-     *  or create a LinearAxis or CategoryAxis object in ActionScript.
+     *   A module factory is used as context for using embedded fonts and for finding the style manager that controls the styles for this component.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-	
-    /* public function get horizontalAxis():IAxis
+    override public function set moduleFactory(factory:IFlexModuleFactory):void
     {
-        return _horizontalAxis;
-    } */
-    
-    /**
-     *  @private
-     */
-	
-    /* public function set horizontalAxis(value:IAxis):void
-    {
-        _horizontalAxis = value;
-    } */
-	
+        super.moduleFactory = factory;
+        
+        /*
+        if (_moduleFactoryInitialized[factory])
+            return;
+        
+        _moduleFactoryInitialized[factory] = true;
+        */
+        
+        // our style settings
+        initStyles();
+    }
 }
 
 }

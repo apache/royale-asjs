@@ -31,71 +31,10 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class FormatBase extends EventDispatcher implements IFormatBead
+	public class FormatBase implements IFormatter
 	{
 		public function FormatBase()
 		{
-		}
-		
-		/**
-		 *  Retrieves the current value of the property from the strand.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get propertyValue():Object
-		{
-			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
-			var value:Object = model[propertyName];
-			return value;
-		}
-		
-		private var _propertyName:String;
-		
-		/**
-		 *  The name of the property in the model holding the value to be
-		 *  formatted. The default is text.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get propertyName():String
-		{
-			if (_propertyName == null) {
-				_propertyName = "text";
-			}
-			return _propertyName;
-		}
-		public function set propertyName(value:String):void
-		{
-			_propertyName = value;
-		}
-		
-		private var _eventName:String;
-		
-		/**
-		 *  The name of the event dispatched when the property changes. The
-		 *  default is propertyName + "Changed".
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get eventName():String
-		{
-			if (_eventName == null) {
-				return _propertyName+"Changed";
-			}
-			return _eventName;
-		}
-		public function set eventName(value:String):void
-		{
-			_eventName = value;
 		}
 		
 		/**
@@ -104,15 +43,15 @@ package org.apache.royale.core
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.6
 		 */
-		public function get formattedString():String
+		public function format(value:Object):String
 		{
 			// override to produce actual result
 			return null;
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		public function set strand(value:IStrand):void
 		{

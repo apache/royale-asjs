@@ -20,20 +20,16 @@
 package mx.rpc.events
 {
 
-/* import flash.events.Event;
- */
- import org.apache.royale.events.Event;
+import org.apache.royale.events.Event;
+
 
 import mx.core.mx_internal;
-//import mx.messaging.events.MessageFaultEvent;
-/* import mx.messaging.messages.AbstractMessage;
+import mx.messaging.events.MessageFaultEvent;
+import mx.messaging.messages.AbstractMessage;
 import mx.messaging.messages.IMessage;
-
- */
-
-//import mx.rpc.AsyncToken;
-
+import mx.rpc.AsyncToken;
 import mx.rpc.Fault;
+
 use namespace mx_internal;
 
 /**
@@ -42,11 +38,10 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-public class FaultEvent extends Event
+public class FaultEvent extends AbstractEvent
 {
-// extends AbstractEvent
     //--------------------------------------------------------------------------
     //
     //  Class constants
@@ -82,7 +77,7 @@ public class FaultEvent extends Event
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
+    *  @productversion Flex 3
     */
     public static const FAULT:String = "fault";
 
@@ -106,17 +101,16 @@ public class FaultEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function FaultEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = true,
-                                fault:Fault = null, token:Object = null, message:Object = null) //token:AsyncToken  //message:IMessage
+                                fault:Fault = null, token:AsyncToken = null, message:IMessage = null)
     {
-	super(type, bubbles, cancelable);       
+        super(type, bubbles, cancelable, token, message);
 
-       /* 	   super(type, bubbles, cancelable, token, message);
-			if (message != null && message.headers != null)
+        if (message != null && message.headers != null)
             _statusCode = message.headers[AbstractMessage.STATUS_CODE_HEADER] as int;
-		*/
+
         _fault = fault;
     }
 
@@ -133,7 +127,7 @@ public class FaultEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function get fault():Fault
     {
@@ -147,20 +141,20 @@ public class FaultEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  public function get headers():Object
+    public function get headers():Object
     {
         return _headers;
     }
- */
+
     /**
      * @private
      */
-   /*  public function set headers(value:Object):void
+    public function set headers(value:Object):void
     {
         _headers = value;
-    } */
+    }
 
     /**
      * If the source message was sent via HTTP, this property provides access
@@ -170,12 +164,12 @@ public class FaultEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */ 
-    /* public function get statusCode():int
+    public function get statusCode():int
     {
         return _statusCode;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -189,11 +183,12 @@ public class FaultEvent extends Event
      * event type.
      * @private
      */
-    /* override  public function clone():Event
+    [SWFOverride(returns="flash.events.Event"))]
+    override public function clone():Event
     {
         return new FaultEvent(type, bubbles, cancelable, fault, token, message);
     }
-	*/
+
      /**
       * Returns a string representation of the FaultEvent.
       *
@@ -202,22 +197,21 @@ public class FaultEvent extends Event
       *  @langversion 3.0
       *  @playerversion Flash 9
       *  @playerversion AIR 1.1
-      *  @productversion Royale 0.9.3
+      *  @productversion Flex 3
       */  
-    /* override  public function toString():String
+    override public function toString():String
     {
-        //return formatToString("FaultEvent", "fault", "messageId", "type", "bubbles", "cancelable", "eventPhase");
-		return "";
-    }*/
+        return formatToString("FaultEvent", "fault", "messageId", "type", "bubbles", "cancelable", "eventPhase");
+    }
 
     /*
      * Have the token apply the fault.
      */
-    /* override mx_internal function callTokenResponders():void
+    override mx_internal function callTokenResponders():void
     {
         if (token != null)
             token.applyFault(this);
-    } */
+    }
 
     /**
      *  Given a MessageFaultEvent, this method constructs and
@@ -231,14 +225,14 @@ public class FaultEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */ 
-   /*  public static function createEventFromMessageFault(value:MessageFaultEvent, token:AsyncToken = null):FaultEvent
+    public static function createEventFromMessageFault(value:MessageFaultEvent, token:AsyncToken = null):FaultEvent
     {
         var fault:Fault = new Fault(value.faultCode, value.faultString, value.faultDetail);
         fault.rootCause = value.rootCause;
         return new FaultEvent(FaultEvent.FAULT, false, true, fault, token, value.message);
-    } */
+    }
 
     /**
      *  Given a Fault, this method constructs and
@@ -252,12 +246,12 @@ public class FaultEvent extends Event
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */ 
-    /* public static function createEvent(fault:Fault, token:AsyncToken = null, msg:IMessage = null):FaultEvent
+    public static function createEvent(fault:Fault, token:AsyncToken = null, msg:IMessage = null):FaultEvent
     {
         return new FaultEvent(FaultEvent.FAULT, false, true, fault, token, msg);
-    } */
+    }
 
 
     //--------------------------------------------------------------------------
@@ -267,8 +261,8 @@ public class FaultEvent extends Event
     //--------------------------------------------------------------------------
 
     private var _fault:Fault;
-    /* private var _headers:Object;
-    private var _statusCode:int; */
+    private var _headers:Object;
+    private var _statusCode:int;
 }
 
 }

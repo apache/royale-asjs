@@ -129,7 +129,7 @@ package mx.controls.beads
 			hitArea.graphics.drawRect(0,0,upSprite.width, upSprite.height);
 			hitArea.graphics.endFill();
 			
-            UIBase(value).$addChild(upSprite);
+            UIBase(value).$sprite_addChild(upSprite);
             /* TODO switch sprites on mouse state 
 			SimpleButton(value).downState = downSprite;
 			SimpleButton(value).overState = overSprite;
@@ -233,7 +233,7 @@ package mx.controls.beads
 			layoutControl();
 			
 			if( value ) {
-                UIBase(_strand).$addChild(upAndSelectedSprite);
+                UIBase(_strand).$sprite_addChild(upAndSelectedSprite);
                 upAndSelectedSprite.visible = true;
                 upSprite.visible = false;
                 /* TODO switch sprites on mouse state 
@@ -241,7 +241,7 @@ package mx.controls.beads
 				SimpleButton(_strand).overState = overAndSelectedSprite;
 				*/
 			} else {
-                UIBase(_strand).$addChild(upSprite);
+                UIBase(_strand).$sprite_addChild(upSprite);
                 upAndSelectedSprite.visible = false;
                 upSprite.visible = true;
                 /* TODO switch sprites on mouse state 

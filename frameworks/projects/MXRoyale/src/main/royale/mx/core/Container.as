@@ -391,7 +391,62 @@ public class Container extends UIComponent
         super();
 		typeNames = "Container";
     }
-
+    
+    //----------------------------------
+    //  defaultButton
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the defaultButton property.
+     */
+    private var _defaultButton:IFlexDisplayObject;
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  The Button control designated as the default button
+     *  for the container.
+     *  When controls in the container have focus, pressing the
+     *  Enter key is the same as clicking this Button control.
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get defaultButton():IFlexDisplayObject
+    {
+        return _defaultButton;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set defaultButton(value:IFlexDisplayObject):void
+    {
+        _defaultButton = value;
+        //ContainerGlobals.focusedContainer = null;
+    }
+    
+    
+    //----------------------------------
+    //  textDecoration
+    //----------------------------------
+    
+	
+	
+    public function get textDecoration():String 
+	{
+		return "none";
+	}
+   public function set textDecoration(val:String):void
+	{
+	
+	}
+	
     //----------------------------------
     //  horizontalScrollPolicy
     //----------------------------------
@@ -623,12 +678,11 @@ public class Container extends UIComponent
      */
     public function get backgroundColor():Object
     {
-        trace("backgroundColor not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "backgroundColor");
     }
     public function set backgroundColor(value:Object):void
     {
-        trace("backgroundColor not implemented");
+        setStyle("backgroundColor", value);
     }
     
     //----------------------------------
@@ -976,6 +1030,8 @@ public class Container extends UIComponent
 		o.top = vm.top + pd.top;
 		o.bottom = vm.bottom + pd.bottom;
 		
+        if (isNaN(o.left) || isNaN(o.top))
+            _viewMetricsAndPadding = null; // don't cache invalid entry
 		return o;
 	}
 	
@@ -1336,6 +1392,75 @@ public class Container extends UIComponent
         setStyle("_creationPolicy", styleValue);
 
         //setActualCreationPolicies(value);
+    }
+    /**
+     *  Returns an Array of DisplayObject objects consisting of the content children 
+     *  of the container.
+     *  This array does <b>not</b> include the DisplayObjects that implement 
+     *  the container's display elements, such as its border and 
+     *  the background image.
+     *
+     *  @return Array of DisplayObject objects consisting of the content children 
+     *  of the container.
+     * 
+     *  @see #rawChildren
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function getChildren():Array
+    {
+        var results:Array = [];
+        
+        var n:int = numChildren;
+        for (var i:int = 0; i < n; i++)
+        {
+            results.push(getChildAt(i));
+        }
+
+        return results;
+    }
+    
+    //----------------------------------
+    //  contentMouseX
+    //----------------------------------
+
+    /**
+     *  @copy mx.core.UIComponent#contentMouseX
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    override public function get contentMouseX():Number
+    {
+       /*  if (contentPane)
+            return contentPane.mouseX;*/
+        
+        return super.contentMouseX; 
+    }
+    
+    //----------------------------------
+    //  contentMouseY
+    //----------------------------------
+
+    /**
+     *  @copy mx.core.UIComponent#contentMouseY
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    override public function get contentMouseY():Number
+    {
+       /*  if (contentPane)
+            return contentPane.mouseY;
+        */
+        return super.contentMouseY; 
     }
 
 }

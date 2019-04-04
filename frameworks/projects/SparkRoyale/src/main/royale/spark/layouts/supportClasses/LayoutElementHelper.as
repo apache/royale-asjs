@@ -80,7 +80,7 @@ public class LayoutElementHelper
      *  so that an array is returned where the first value is
      *  the offset (ie: 10) and the second value is 
      *  the boundary (ie: "col1")
-     *  @arg result :  optional Array to save an Array memory allocation
+     *  @param result :  optional Array to save an Array memory allocation
      */
     public static function parseConstraintExp(val:Object, result:Array=null):Array
     {

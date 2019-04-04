@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -26,10 +27,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.DataContainerView;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IContentView;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.core.ILayoutView;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -92,7 +89,7 @@ package org.apache.royale.jewel.beads.views
 		override protected function handleInitComplete(event:Event):void
 		{
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			IEventDispatcher(_strand).addEventListener("itemsCreated", itemsCreatedHandler);
 
@@ -103,8 +100,9 @@ package org.apache.royale.jewel.beads.views
 		 * @private
 		 * Ensure the list selects the selectedItem if someone is set by the user at creation time
 		 */
-		private function itemsCreatedHandler(event:Event):void
+		override protected function itemsCreatedHandler(event:Event):void
 		{
+            super.itemsCreatedHandler(event);
 			if(listModel.selectedIndex != -1)
 				selectionChangeHandler(null);
 		}
@@ -189,7 +187,7 @@ package org.apache.royale.jewel.beads.views
 			super.handleInitComplete(event);
 
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 		}
 
@@ -222,7 +220,7 @@ package org.apache.royale.jewel.beads.views
 			ir = dataGroup.getItemRendererAt(IRollOverModel(listModel).rollOverIndex) as ISelectableItemRenderer;
 			if(ir)
 				ir.hovered = true;
-			
+
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
 		}
 	}

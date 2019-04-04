@@ -28,14 +28,16 @@ package org.apache.royale.events
     {
         import window.MouseEvent;
 		import goog.events.BrowserEvent;
+        import org.apache.royale.core.HTMLElementWrapper;
 		import org.apache.royale.events.Event;
-		import org.apache.royale.events.utils.EventUtils;
+        import org.apache.royale.events.utils.MouseEventConverter;
+        import org.apache.royale.conversions.MouseEventInit;
     }
     
     import org.apache.royale.core.IRoyaleElement;
+    import org.apache.royale.events.IBrowserEvent;
     import org.apache.royale.geom.Point;
     import org.apache.royale.utils.PointUtils;
-    import org.apache.royale.events.IBrowserEvent;
 
 
 	/**
@@ -312,8 +314,9 @@ package org.apache.royale.events
 		
 		/**
 		 * @type {MouseEvent}
+		 * @royalesuppresspublicvarwarning
 		 */
-		private var nativeEvent:Object;
+		public var nativeEvent:Object;
 
 		public function wrapEvent(event:goog.events.BrowserEvent):void
         {
@@ -328,25 +331,38 @@ package org.apache.royale.events
 		private var _buttons:int = -1;
 		public function get buttonDown():Boolean
 		{
-			if(_buttons > -1)
-				return _buttons == 1;
-			if(!wrappedEvent)
-				return false;
-			//Safari does not yet support buttons
-			if ('buttons' in nativeEvent)
-				_buttons = nativeEvent["buttons"];
-			else
-				_buttons = nativeEvent["which"];
-			return _buttons == 1;
+			return button > -1 && button < 3;
 		}
 		public function set buttonDown(value:Boolean):void
 		{
-			_buttons = value ? 1 : 0;
+			_button = value ? 0 : 9;// any value over 2 will be interpreted as no button down
 		}
 
+		private var _button:int = -1;
+
+		/**
+		 * see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/button
+		 */
+		public function get button():int
+		{
+			if(_button > -1)
+				return _button;
+			return nativeEvent["button"];
+		}
+
+		public function set button(value:int):void
+		{
+			_button = value;
+		}
+
+		/**
+		 * see https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/buttons
+		 */
 		public function get buttons():int
 		{
-			return _buttons;
+			if(_buttons > -1)
+				return _buttons;
+			return nativeEvent["buttons"];
 		}
 		public function set buttons(value:int):void
 		{
@@ -421,11 +437,11 @@ package org.apache.royale.events
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
 		 */
-		public function get target():Object
+        override public function get target():Object
 		{
 			return wrappedEvent ? getTargetWrapper(wrappedEvent.target) : _target;
 		}
-		public function set target(value:Object):void
+        override public function set target(value:Object):void
 		{
 			_target = value;
 		}
@@ -438,11 +454,11 @@ package org.apache.royale.events
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
 		 */
-		public function get currentTarget():Object
+        override public function get currentTarget():Object
 		{
 			return wrappedEvent ? getTargetWrapper(wrappedEvent.currentTarget) : _target;
 		}
-		public function set currentTarget(value:Object):void
+        override public function set currentTarget(value:Object):void
 		{
 			_target = value;
 		}
@@ -575,11 +591,11 @@ package org.apache.royale.events
          * @playerversion AIR 2.6
          * @productversion Royale 0.0
 		 */
-		public function get defaultPrevented():Boolean
+        override public function get defaultPrevented():Boolean
 		{
 			return wrappedEvent ? wrappedEvent.defaultPrevented : _defaultPrevented;
 		}
-		public function set defaultPrevented(value:Boolean):void
+        override public function set defaultPrevented(value:Boolean):void
 		{
 			_defaultPrevented = value;
 		}
@@ -680,7 +696,7 @@ package org.apache.royale.events
 		 */
 		private static function makeMouseEvent(type:String, e:window.MouseEvent):window.MouseEvent
 		{
-			var out:window.MouseEvent = EventUtils.createMouseEvent(type, false, false, {
+			var out:window.MouseEvent = MouseEvent.createMouseEvent(type, false, false, {
                     view: e.view, detail: e.detail, screenX: e.screenX, screenY: e.screenY,
 					clientX: e.clientX, clientY: e.clientY, ctrlKey: e.ctrlKey, altKey: e.altKey,
 				    shiftKey: e.shiftKey, metaKey: e.metaKey, button: e.button, relatedTarget: e.relatedTarget});
@@ -728,6 +744,46 @@ package org.apache.royale.events
             if(wrappedEvent)
 			    wrappedEvent.stopPropagation();
 		}
+
+        public static function setupConverter():Boolean
+        {
+            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+            return true;
+        }
+        
+        public static var initialized:Boolean = setupConverter();
+        
+        public static function createMouseEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false,
+                                                params:Object = null):Object
+        {
+            var mouseEvent:Object = null;
+            
+            if (!params)
+                params = {};
+            
+            try
+            {
+                params.bubbles = bubbles;
+                params.cancelable = cancelable;
+                var initObject:MouseEventInit = MouseEventInit(params);
+                mouseEvent = new window.MouseEvent(type, initObject);
+                return mouseEvent;
+            }
+            catch (e:Error)
+            {
+                
+            }
+            
+            if (!mouseEvent)
+            {
+                mouseEvent = document.createEvent('MouseEvent');
+                mouseEvent.initMouseEvent(type, bubbles, cancelable, params.view,
+                    params.detail, params.screenX, params.screenY, params.clientX, params.clientY,
+                    params.ctrlKey, params.altKey, params.shiftKey, params.metaKey, params.button, params.relatedTarget);
+            }
+            
+            return mouseEvent;
+        }
 
 	}
 }

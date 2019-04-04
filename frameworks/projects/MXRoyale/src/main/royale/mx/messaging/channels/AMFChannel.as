@@ -20,14 +20,25 @@
 package mx.messaging.channels
 {
 
-/* import flash.events.IOErrorEvent;
+COMPILE::SWF
+{
+import flash.events.IOErrorEvent;
 import flash.events.NetStatusEvent;
 import flash.events.SecurityErrorEvent;
 import flash.net.Responder;
+}
+COMPILE::JS
+{
+import mx.events.IOErrorEvent;
+import mx.events.NetStatusEvent;
+import mx.events.SecurityErrorEvent;
+import mx.net.Responder;    
+}
 
+import mx.core.mx_internal;
 import mx.logging.Log;
-import mx.messaging.FlexClient;
 import mx.messaging.MessageResponder;
+import mx.messaging.RoyaleClient;
 import mx.messaging.config.ConfigMap;
 import mx.messaging.config.ServerConfig;
 import mx.messaging.events.ChannelFaultEvent;
@@ -37,8 +48,6 @@ import mx.messaging.messages.ErrorMessage;
 import mx.messaging.messages.IMessage;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
-import mx.utils.ObjectUtil; */
-import mx.core.mx_internal;
 
 use namespace mx_internal;
 
@@ -87,8 +96,8 @@ use namespace mx_internal;
  *  @productversion BlazeDS 4
  *  @productversion LCDS 3 
  */
-public class AMFChannel 
-{ //extends NetConnectionChannel
+public class AMFChannel extends NetConnectionChannel
+{
     //--------------------------------------------------------------------------
     //
     // Constructor
@@ -110,7 +119,7 @@ public class AMFChannel
      */
     public function AMFChannel(id:String = null, uri:String = null)
     {
-        //super(id, uri);
+        super(id, uri);
     }
 
     //--------------------------------------------------------------------------
@@ -124,7 +133,7 @@ public class AMFChannel
      * Flag used to indicate that the channel is in the process of reconnecting
      * with the session id in the url.
      */
-    //protected var _reconnectingWithSessionId:Boolean;
+    protected var _reconnectingWithSessionId:Boolean;
 
     /**
      *  @private
@@ -133,14 +142,14 @@ public class AMFChannel
      *  continue listening for events (such as 404s) but we've already shutdown so
      *  we must ignore them.
      */
-   // private var _ignoreNetStatusEvents:Boolean;
+    private var _ignoreNetStatusEvents:Boolean;
 
     /**
      *  @private
      */
-/*     private var resourceManager:IResourceManager =
+    private var resourceManager:IResourceManager =
                                     ResourceManager.getInstance();
- */
+
     //--------------------------------------------------------------------------
     //
     // Properties
@@ -163,18 +172,18 @@ public class AMFChannel
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-   /*  public function get piggybackingEnabled():Boolean
+    public function get piggybackingEnabled():Boolean
     {
         return internalPiggybackingEnabled;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set piggybackingEnabled(value:Boolean):void
+    public function set piggybackingEnabled(value:Boolean):void
     {
         internalPiggybackingEnabled = value;
-    } */
+    }
 
     //----------------------------------
     //  pollingEnabled
@@ -191,8 +200,7 @@ public class AMFChannel
      */
     public function get pollingEnabled():Boolean
     {
-       // return internalPollingEnabled; 
-	   return true;
+        return internalPollingEnabled;
     }
 
     /**
@@ -200,7 +208,7 @@ public class AMFChannel
      */
     public function set pollingEnabled(value:Boolean):void
     {
-       // internalPollingEnabled = value;
+        internalPollingEnabled = value;
     }
 
     //----------------------------------
@@ -224,8 +232,7 @@ public class AMFChannel
      */
     public function get pollingInterval():Number
     {
-       // return internalPollingInterval;
-	   return 0;
+        return internalPollingInterval;
     }
 
     /**
@@ -233,7 +240,7 @@ public class AMFChannel
      */
     public function set pollingInterval(value:Number):void
     {
-       // internalPollingInterval = value;
+        internalPollingInterval = value;
     }
 
     //----------------------------------
@@ -249,10 +256,10 @@ public class AMFChannel
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    /* public function get polling():Boolean
+    public function get polling():Boolean
     {
         return pollOutstanding;
-    } */
+    }
 
     //----------------------------------
     //  protocol
@@ -267,10 +274,10 @@ public class AMFChannel
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    /* override public function get protocol():String
+    override public function get protocol():String
     {
         return "http";
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -282,11 +289,11 @@ public class AMFChannel
      *  @private
      *  Processes polling related configuration settings.
      */
-   /*  override public function applySettings(settings:XML):void
+    override public function applySettings(settings:XML):void
     {
         super.applySettings(settings);
         applyPollingSettings(settings);
-    } */
+    }
 
     /**
      *  @private
@@ -294,14 +301,14 @@ public class AMFChannel
      *  the process of reconnecting with the session id, so the initial
      *  NetConnection call can be discarded properly in the resultHandler.
      */
-    /* override public function AppendToGatewayUrl(value:String):void
+    override public function AppendToGatewayUrl(value:String):void
     {
         if (value != null && value != "" && _appendToURL != value)
         {
             super.AppendToGatewayUrl(value);
             _reconnectingWithSessionId = true;
         }
-    } */
+    }
     //--------------------------------------------------------------------------
     //
     // Protected Methods
@@ -312,7 +319,7 @@ public class AMFChannel
      *  @private
      *  Attempts to connect to the endpoint specified for this channel.
      */
-    /* override protected function internalConnect():void
+    override protected function internalConnect():void
     {
         super.internalConnect();
         _ignoreNetStatusEvents = false;
@@ -336,13 +343,13 @@ public class AMFChannel
         if (ServerConfig.needsConfig(this))
             msg.headers[CommandMessage.NEEDS_CONFIG_HEADER] = true;
 
-        // Add the FlexClient id header.
-        setFlexClientIdOnMessage(msg);
+        // Add the RoyaleClient id header.
+        setRoyaleClientIdOnMessage(msg);
 
         netConnection.call(null, new Responder(resultHandler, faultHandler), msg);
         if (Log.isDebug())
             _log.debug("'{0}' pinging endpoint.", id);
-    } */
+    }
 
     /**
      *  @private
@@ -351,7 +358,7 @@ public class AMFChannel
      *  message to the server as it disconnects to allow the server to shut down any
      *  session or other resources that it may be managing on behalf of this channel.
      */
-    /* override protected function internalDisconnect(rejected:Boolean = false):void
+    override protected function internalDisconnect(rejected:Boolean = false):void
     {
         // Attempt to notify the server of the disconnect.
         if (!rejected && !shouldBeConnected)
@@ -363,16 +370,16 @@ public class AMFChannel
         // Shut down locally.
         setConnected(false);
         super.internalDisconnect(rejected);
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override protected function internalSend(msgResp:MessageResponder):void
+    override protected function internalSend(msgResp:MessageResponder):void
     {
         handleReconnectWithSessionId(); // Adjust the session id, in case it's needed.
         super.internalSend(msgResp);
-    } */
+    }
 
     /**
      *  @private
@@ -383,21 +390,21 @@ public class AMFChannel
      *  The only time this can occur when the channel has been shut down due to a connect
      *  timeout but an error (i.e. 404) response from the server returns later.
      */
-    /* override protected function shutdownNetConnection():void
+    override protected function shutdownNetConnection():void
     {
         _nc.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
         _nc.removeEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
         // Leave the NetStatusEvent statusHandler registered but set the ignore flag.
         _ignoreNetStatusEvents = true;
         _nc.close();
-    } */
+    }
 
     /**
      *  @private
      *  Called on the status event of the associated NetConnection when there is a
      *  problem with the connection for this channel.
      */
-    /* override protected function statusHandler(event:NetStatusEvent):void
+    override protected function statusHandler(event:NetStatusEvent):void
     {
         if (_ignoreNetStatusEvents)
             return; // Ignore NetStatusEvents that are dispatched after the NetConnection has been closed.
@@ -405,7 +412,7 @@ public class AMFChannel
         var channelFault:ChannelFaultEvent;
 
         if (Log.isDebug())
-            _log.debug("'{0}' channel got status. {1}", id, ObjectUtil.toString(event.info));
+            _log.debug("'{0}' channel got status. {1}", id, event.info.toString());
 
         var handled:Boolean = true;
         // We should always have a non-null info object.
@@ -436,7 +443,7 @@ public class AMFChannel
                         channelFault.rootCause = info;
                         // Dispatch the fault.
                         dispatchEvent(channelFault);
-                    } */
+                    }
                     /*
                      * A NetConnection.Call.Failed indicates that the server is
                      * not running or the URL to the channel endpoint is incorrect.
@@ -452,7 +459,7 @@ public class AMFChannel
                      * In any case, at this point we need to indicate to the channel that
                      * it is disconnected which may trigger failover/hunting.
                      */
-                /*     internalDisconnect();
+                    internalDisconnect();
                 }
                 else
                 {
@@ -486,7 +493,7 @@ public class AMFChannel
                 "messaging", "invalidURL");
              connectFailed(ChannelFaultEvent.createEvent(this, false, "Channel.Connect.Failed", "error", errorText + " url: '" + endpoint + "'"));
          }
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -499,7 +506,7 @@ public class AMFChannel
      *  Used by result and fault handlers to update the url of the underlying
      *  NetConnection with session id.
      */
-    /* protected function handleReconnectWithSessionId():void
+    protected function handleReconnectWithSessionId():void
     {
         if (_reconnectingWithSessionId)
         {
@@ -508,7 +515,7 @@ public class AMFChannel
             super.internalConnect(); // To avoid another ping request.
             _ignoreNetStatusEvents = false;
         }
-    } */
+    }
 
     /**
      *  @private
@@ -516,7 +523,7 @@ public class AMFChannel
      *  An error indicates that although the endpoint uri is reachable the Channel
      *  is still not able to connect.
      */
-    /* protected function faultHandler(msg:ErrorMessage):void
+    protected function faultHandler(msg:ErrorMessage):void
     {
         if (msg != null)
         {
@@ -534,12 +541,12 @@ public class AMFChannel
             {
                 _log.debug("'{0}' fault handler called. {1}", id, msg.toString());
 
-                // Set the server assigned FlexClient Id.
-                if (FlexClient.getInstance().id == null && msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER] != null)
-                    FlexClient.getInstance().id = msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER];
+                // Set the server assigned RoyaleClient Id.
+                if (RoyaleClient.getInstance().id == null && msg["headers"] != undefined && msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER] != null)
+                    RoyaleClient.getInstance().id = msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER];
 
                 // Process the features advertised by the server endpoint.
-                if (msg.headers[CommandMessage.MESSAGING_VERSION] != null)
+                if (msg["headers"] != undefined && msg.headers[CommandMessage.MESSAGING_VERSION] != null)
                 {
                     var serverVersion:Number = msg.headers[CommandMessage.MESSAGING_VERSION] as Number;
                     handleServerMessagingVersion(serverVersion);
@@ -555,23 +562,23 @@ public class AMFChannel
         }
 
         handleReconnectWithSessionId();
-    } */
+    }
 
     /**
      *  @private
      *  This method will be called if the ping message sent to test connectivity
      *  to the server during the connection attempt succeeds.
      */
-    /* protected function resultHandler(msg:IMessage):void
+    protected function resultHandler(msg:IMessage):void
     {
         // Update the ServerConfig with dynamic configuration
         if (msg != null)
         {
             ServerConfig.updateServerConfigData(msg.body as ConfigMap, endpoint);
 
-            // Set the server assigned FlexClient Id.
-            if (FlexClient.getInstance().id == null && msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER] != null)
-                FlexClient.getInstance().id = msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER];
+            // Set the server assigned RoyaleClient Id.
+            if (RoyaleClient.getInstance().id == null && msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER] != null)
+                RoyaleClient.getInstance().id = msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER];
 
             // Process the features advertised by the server endpoint.
             if (msg.headers[CommandMessage.MESSAGING_VERSION] != null)
@@ -586,7 +593,7 @@ public class AMFChannel
         connectSuccess();
         if (credentials != null && !(msg is ErrorMessage))
             setAuthenticated(true);
-    } */
+    }
 }
 
 }

@@ -19,14 +19,17 @@
 -->
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"  
 			   xmlns:s="library://ns.apache.org/royale/spark" 
-			   xmlns:mx="library://ns.apache.org/royale/mx">
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+               width="100%" height="100%">
 	
 	<fx:Script>
 		<![CDATA[
 			private function smoothImage(ev:Event):void{
             	//set image smoothing so image looks better when transformed.
+                /* not supported in Royale (yet)
 				var bmp:Bitmap = ev.target.content as Bitmap;
 				bmp.smoothing = true;
+                */
 			}
 		]]>
 	</fx:Script>
@@ -36,21 +39,22 @@
 		<s:layout>
 			<s:HorizontalLayout paddingLeft="10" paddingRight="10" paddingTop="10" paddingBottom="10"/>
 		</s:layout>
-		
+		<!--
 		<s:BorderContainer width="50%" height="100%">
 			<s:layout>
 				<s:VerticalLayout paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5"/>
 			</s:layout>
 			<s:Label text="Sample of image embeded at compile time." />
-			<mx:Image id="embededImage" width="50%" height="50%" source="@Embed('assets/ApacheFlexLogo.png')" creationComplete="smoothImage(event)"/>
+			<s:Image id="embededImage" width="50%" height="50%" source="@Embed('assets/ApacheFlexLogo.png')" creationComplete="smoothImage(event)"/>
 		</s:BorderContainer>
-		
+		-->
+        
 		<s:BorderContainer width="50%" height="100%">
 			<s:layout>
 				<s:VerticalLayout paddingBottom="5" paddingLeft="5" paddingRight="5" paddingTop="5"/>
 			</s:layout>
 			<s:Label text="Sample of image loaded at run-time." />
-			<mx:Image id="loadedImage" width="50%" height="50%" source="assets/ApacheFlexLogo.png" creationComplete="smoothImage(event)"/>
+			<s:Image id="loadedImage" width="50%" height="50%" source="assets/ApacheFlexLogo.png" creationComplete="smoothImage(event)"/>
 		</s:BorderContainer>
 	</s:Panel>
 	

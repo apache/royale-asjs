@@ -32,13 +32,11 @@ $checkbox-button-yoffset: 0px
 	padding: 0
 
 	// width: 100%
-	height: $checkbox-button-size
-	cursor: pointer
+	height: auto //$checkbox-button-size
 
 	// -- INPUT
 	input
 		+appear(none)
-		// cursor: pointer
 		display: inline-flex
 
 		margin: 0
@@ -79,14 +77,12 @@ $checkbox-button-yoffset: 0px
 			outline: none
 
 		&[disabled]
-			cursor: unset
-
 			& + span
 				cursor: unset
 
 	// -- LABEL
 	span
-		// cursor: pointer
+		cursor: pointer
 
 		margin: 0
 		vertical-align: top

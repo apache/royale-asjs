@@ -18,10 +18,32 @@
 
 package mx.graphics
 {
-    import org.apache.royale.graphics.IStroke;
-    public interface IStroke extends org.apache.royale.graphics.IStroke
+    import org.apache.royale.geom.Point;
+    import org.apache.royale.geom.Rectangle;
+    import mx.display.Graphics;
+    public interface IStroke
     {
-       
+        function apply(s:Graphics, targetBounds:Rectangle = null, targetOrigin:Point = null):void;
+        
+        //----------------------------------
+        //  weight
+        //----------------------------------
+        
+        /**
+         *  The line weight, in pixels.
+         *  For many chart lines, the default value is 1 pixel.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        function get weight():Number;
+        
+        /**
+         *  @private
+         */
+        function set weight(value:Number):void;
 
     }
 }

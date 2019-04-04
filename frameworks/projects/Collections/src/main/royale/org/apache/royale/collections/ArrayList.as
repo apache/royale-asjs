@@ -24,6 +24,17 @@ package org.apache.royale.collections
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.CollectionEvent;
+	
+	import org.apache.royale.utils.net.IExternalizable;
+	COMPILE::JS{
+		import org.apache.royale.utils.net.IDataInput;
+		import org.apache.royale.utils.net.IDataOutput;
+	}
+	COMPILE::SWF{
+		import flash.utils.IDataInput;
+		import flash.utils.IDataOutput;
+	}
+	
 
     //--------------------------------------
     //  Events
@@ -90,7 +101,7 @@ package org.apache.royale.collections
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class ArrayList extends EventDispatcher implements IBead, ICollectionView, IArrayList
+	public class ArrayList extends EventDispatcher implements IBead, ICollectionView, IArrayList, IExternalizable
 	{
         /**
          *  Constructor.
@@ -423,6 +434,25 @@ package org.apache.royale.collections
         {
             return _source ? _source.length : 0;
         }
+		
+		
+		/**
+		 *  @private
+		 *  Ensures that only the source property is serialized.
+		 */
+		public function readExternal(input:IDataInput):void
+		{
+			source = input.readObject() as Array;
+		}
+		
+		/**
+		 *  @private
+		 *  Ensures that only the source property is serialized.
+		 */
+		public function writeExternal(output:IDataOutput):void
+		{
+			output.writeObject(source);
+		}
 
 	}
 }

@@ -35,6 +35,7 @@
             <path-element>../../../../../libs/Basic.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
             <path-element>../../../../../libs/HTML.swc</path-element>
+            <path-element>../../../../../libs/Formatters.swc</path-element>
         </external-library-path>
         
         <allow-subclass-overrides>true</allow-subclass-overrides>

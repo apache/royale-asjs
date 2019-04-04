@@ -52,7 +52,7 @@
         </condition>
     </target>
     
-    <target name="test" depends="check-for-tests" unless="skip-tests">
+    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
     </target>
     
@@ -91,7 +91,7 @@
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
-            <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
+            <arg value="-js-load-config=${ROYALE_HOME}/frameworks/jquery-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
     </target>

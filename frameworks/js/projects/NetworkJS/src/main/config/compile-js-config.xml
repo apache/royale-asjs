@@ -76,6 +76,8 @@
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
+		<!-- Use of the instanceof operator. -->
+        <warn-instance-of-changes>false</warn-instance-of-changes>
     </compiler>
     
     <include-file>
@@ -91,6 +93,8 @@
     <include-namespaces>
         <uri>library://ns.apache.org/royale/basic</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

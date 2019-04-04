@@ -422,6 +422,8 @@ public class List extends ListBase implements IFocusManagerComponent
     {
         super();
 
+        typeNames += " List";
+        
        /*  useVirtualLayout = true;
         
         // If available, get soft reference to the RichEditableText class

@@ -91,7 +91,7 @@ package org.apache.royale.html.beads.controllers
          */
 		override protected function handleItemAdded(event:ItemAddedEvent):void
 		{
-			IEventDispatcher(event.item).addEventListener("itemMouseUp", selectedHandler);
+			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
 		}
@@ -101,7 +101,7 @@ package org.apache.royale.html.beads.controllers
          */
 		override protected function handleItemRemoved(event:ItemRemovedEvent):void
 		{
-			IEventDispatcher(event.item).removeEventListener("itemMouseUp", selectedHandler);
+			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
@@ -122,6 +122,7 @@ package org.apache.royale.html.beads.controllers
 			
 			list.model.selectedItem = node;
 			menuDispatcher.dispatchEvent(new Event("change"));
+            hideOpenMenus();
 		}
 		
 		/**

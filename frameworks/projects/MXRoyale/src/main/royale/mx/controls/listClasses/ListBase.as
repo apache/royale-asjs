@@ -19,13 +19,20 @@
 package mx.controls.listClasses
 {
 
+import mx.collections.ArrayCollection;
+import mx.collections.ICollectionView;
+import mx.collections.IList;
+import mx.collections.ListCollectionView;
+import mx.collections.XMLListCollection;
 import mx.core.EdgeMetrics;
 import mx.core.IFactory;
 import mx.core.IUIComponent;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
+import mx.events.CollectionEvent;
 import mx.utils.UIDUtil;
+import mx.core.ScrollControlBase;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
 import org.apache.royale.core.IBeadLayout;
@@ -80,9 +87,15 @@ use namespace mx_internal;
      *  @productversion Royale 0.0
      *  @royalesuppresspublicvarwarning
 	*/
-	public class ListBase extends UIComponent implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
-	{
+	public class ListBase extends ScrollControlBase implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
+	{  //extends UIComponent
 	
+	
+	
+	public function get value():Object
+	{
+	   return null;
+	}
         //----------------------------------
         //  dragEnabled
         //----------------------------------
@@ -208,6 +221,36 @@ use namespace mx_internal;
          */
         public function set dataProvider(value:Object):void
         {
+            if (value is Array)
+            {
+                value = new ArrayCollection(value as Array);
+            }
+            else if (value is ICollectionView)
+            {
+                value = ICollectionView(value);
+            }
+            else if (value is IList)
+            {
+                value = new ListCollectionView(IList(value));
+            }
+            else if (value is XMLList)
+            {
+                value = new XMLListCollection(value as XMLList);
+            }
+            else if (value is XML)
+            {
+                var xl:XMLList = new XMLList();
+                xl += value;
+                value = new XMLListCollection(xl);
+            }
+            else
+            {
+                // convert it to an array containing this one item
+                var tmp:Array = [];
+                if (value != null)
+                    tmp.push(value);
+                value = new ArrayCollection(tmp);
+            }
             (model as ISelectionModel).dataProvider = value;
         }
         
@@ -711,7 +754,7 @@ use namespace mx_internal;
             return _strandChildren;
         }
         
-        public function scrollToIndex(index):void
+        public function scrollToIndex(index:int):void
         {
 
             trace("ListBase:scrollToIndex not implemented");
@@ -1207,6 +1250,77 @@ use namespace mx_internal;
                 return "null";
             return UIDUtil.getUID(data);
         }
-                
+
+        //--------------------------------------------------------------------------
+        //
+        //  Methods: Item fields
+        //
+        //--------------------------------------------------------------------------
+        
+        /**
+         *  Returns the string the renderer would display for the given data object
+         *  based on the labelField and labelFunction properties.
+         *  If the method cannot convert the parameter to a string, it returns a
+         *  single space.
+         *
+         *  @param data Object to be rendered.
+         *
+         *  @return The string to be displayed based on the data.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function itemToLabel(data:Object):String
+        {
+            if (data == null)
+                return " ";
+            
+            /*
+            if (labelFunction != null)
+                return labelFunction(data);
+            */
+            
+            if (data is XML)
+            {
+                try
+                {
+                    if ((data as XML)[labelField].length() != 0)
+                        data = (data as XML)[labelField];
+                    //by popular demand, this is a default XML labelField
+                    //else if (data.@label.length() != 0)
+                    //  data = data.@label;
+                }
+                catch(e:Error)
+                {
+                }
+            }
+            else if (data is Object)
+            {
+                try
+                {
+                    if (data[labelField] != null)
+                        data = data[labelField];
+                }
+                catch(e:Error)
+                {
+                }
+            }
+            
+            if (data is String)
+                return String(data);
+            
+            try
+            {
+                return data.toString();
+            }
+            catch(e:Error)
+            {
+            }
+            
+            return " ";
+        }
+
     }
 }

@@ -39,7 +39,6 @@ import mx.effects.EffectManager;
 import mx.events.FlexEvent;
 import mx.managers.IActiveWindowManager;
 import mx.managers.ILayoutManager;
-import mx.managers.ISystemManager;
 import mx.styles.CSSStyleDeclaration;
 import mx.styles.IStyleClient;
 import mx.utils.LoaderUtil;
@@ -55,14 +54,22 @@ import flash.display.StageQuality;
 import flash.display.StageScaleMode;
 import flash.system.ApplicationDomain;
 import flash.utils.getQualifiedClassName;
-import org.apache.royale.events.utils.MouseEventConverter;
 }
 
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
+import mx.events.KeyboardEvent;
+import mx.events.utils.FocusEventConverter;
+import mx.events.utils.KeyboardEventConverter;
+import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
+import mx.managers.ISystemManager;
 
-import org.apache.royale.binding.ApplicationDataBinding;
+COMPILE::JS {
+    import org.apache.royale.core.HTMLElementWrapper;
+    import org.apache.royale.events.ElementEvents;
+}
+
 import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IBead;
@@ -72,6 +79,7 @@ import org.apache.royale.core.IInitialViewApplication;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IPopUpHostParent;
 import org.apache.royale.core.IRenderedObject;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStrand;
@@ -231,7 +239,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class Application extends Container implements IStrand, IParent, IEventDispatcher, IPopUpHost, IRenderedObject, IFlexInfo
+public class Application extends Container implements IStrand, IParent, IEventDispatcher, IPopUpHost, IPopUpHostParent, IRenderedObject, IFlexInfo
 {
 
     //--------------------------------------------------------------------------
@@ -304,7 +312,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         typeNames += " Application";
 		
 		this.valuesImpl = new AllCSSValuesImpl();
-		addBead(new ApplicationDataBinding());
+		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
 		addBead(new ApplicationLayout());
 
         instanceParent = this;
@@ -342,7 +350,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     [SWFOverride(returns="flash.display.DisplayObjectContainer")]
     override public function get parent():IParent
     {
-        var p:* = $parent;
+        var p:* = $sprite_parent;
         return p;
     }
     }
@@ -419,6 +427,15 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         }
     }
 
+    public function set parameters(value:Object):void
+    {
+        // do nothing in SWF.  It is determined by loaderInfo.
+        COMPILE::JS
+        {
+            _parameters = value;
+        }
+    }
+    
 	/**
 	 *  This method gets called when all preinitialize handlers
 	 *  no longer call preventDefault();
@@ -514,7 +531,30 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 			}
 		}
 	}
-		
+	
+	//----------------------------------
+    //  url
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the url property.
+     *  This variable is set in the initialize() method.
+     */
+    /* mx_internal */ private var _url:String;
+
+    /**
+     *  The URL from which this Application's SWF file was loaded.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get url():String
+    {
+        return _url;
+    }		
 	//--------------------------------------------------------------------------
 	//
 	//  Initialization and Start-up
@@ -523,6 +563,11 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 
     override protected function createChildren():void
     {
+        COMPILE::JS
+        {
+            ElementEvents.elementEvents["focusin"] = 1;
+            ElementEvents.elementEvents["focusout"] = 1;
+        }
         super.createChildren();        
         dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
     }
@@ -534,19 +579,17 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	{
 		focusManager = new FocusManager(this);
 	}
-	
-	/**
-	 * @return {Object} The array of children.
-	 */
-	COMPILE::JS
-	protected function internalChildren():NodeList
-	{
-		return element.childNodes;
-	};
-	
+		
 	COMPILE::JS
 	protected var startupTimer:Timer;
 	
+    COMPILE::JS
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        start();
+    }
+    
 	/**
 	 * @royaleignorecoercion org.apache.royale.core.IBead
 	 */
@@ -581,6 +624,11 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
+        HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+        HTMLElementWrapper.converterMap["FocusEvent"] = FocusEventConverter;
+        addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
+        
         initManagers();
         
 //		if (initialView)
@@ -600,6 +648,12 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
 	}
 	
+    COMPILE::JS
+    public function keyDownForCapsLockHandler(event:KeyboardEvent):void
+    {
+        
+    }
+
 	//--------------------------------------------------------------------------
 	//
 	//  Other overrides
@@ -642,10 +696,30 @@ public class Application extends Container implements IStrand, IParent, IEventDi
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get popUpParent():IParent
+    public function get popUpParent():IPopUpHostParent
     {
-        return strandChildren;
+        COMPILE::JS
+        {
+            return systemManager as IPopUpHostParent;
+        }
+        COMPILE::SWF
+        {
+            return strandChildren as IPopUpHostParent;
+        }
     }
+    
+    override public function get systemManager():ISystemManager
+    {
+        return parent as ISystemManager;
+    }
+    
+    /**
+     */
+    public function get popUpHost():IPopUpHost
+    {
+        return this;
+    }
+
 }
 
 }

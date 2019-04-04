@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.validators
 			super()
 		}
 
-		       /**                         	
+		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
 		 *  @langversion 3.0
@@ -58,10 +58,7 @@ package org.apache.royale.jewel.beads.validators
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			COMPILE::JS
-			{
-				hostComponent.addEventListener(Event.CHANGE, validate, false);
-			}
+			hostComponent.addEventListener(triggerEvent, validate, false);
 		}
 
 

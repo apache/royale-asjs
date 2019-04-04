@@ -67,7 +67,7 @@ package org.apache.royale.jewel.beads.controls
             }
         }
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -90,7 +90,7 @@ package org.apache.royale.jewel.beads.controls
 		}
 
 		COMPILE::JS
-		private function updateHost():void
+		protected function updateHost():void
 		{
 			var host:UIBase = _strand as UIBase;
 

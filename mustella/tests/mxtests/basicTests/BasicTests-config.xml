@@ -104,6 +104,7 @@
         <symbol>ExitWhenDone</symbol>
         <symbol>SetShowRTE</symbol>
         <symbol>SendFormattedResultsToLog</symbol>
+        <symbol>DontSendScriptComplete</symbol>
         <symbol>RoyaleContext</symbol>
     </includes>
 </flex-config>

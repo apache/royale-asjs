@@ -18,17 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.ISelectionModel;
-    import org.apache.royale.core.DataContainerBase;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-
 	COMPILE::JS
 	{
-		import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.core.WrappedHTMLElement;
 	}
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.DataContainerBase;
+
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -84,6 +84,7 @@ package org.apache.royale.jewel
             typeNames = "jewel list";
 		}
 
+        [Bindable("labelFieldChanged")]
 		/**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -106,6 +107,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+        [Bindable("dataProviderChanged")]
 		/**
 		 *  The data being display by the List.
 		 *
@@ -137,7 +139,7 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-		[Bindable("change")]
+		[Bindable("selectionChanged")]
         public function get selectedIndex():int
 		{
 			return ISelectionModel(model).selectedIndex;
@@ -150,6 +152,7 @@ package org.apache.royale.jewel
 			ISelectionModel(model).selectedIndex = value;
 		}
 
+        [Bindable("rollOverIndexChanged")]
 		/**
 		 *  The index of the item currently below the pointer.
 		 *
@@ -198,7 +201,7 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
-		[Bindable("change")]
+        [Bindable("selectionChanged")]
 		public function get selectedItem():Object
 		{
 			return ISelectionModel(model).selectedItem;
@@ -229,5 +232,7 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
+
+
    	}
 }

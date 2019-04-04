@@ -34,8 +34,10 @@ package org.apache.royale.html.util
 
         if (obj["labelField"]) return "" + data[obj["labelField"]];
         if (obj["dataField"]) return "" + data[obj["dataField"]];
-        if (data.hasOwnProperty("label")) return "" + data["label"];
-
+        var label:String = data["label"];
+        if(label != null){
+            return label;
+        }
         return "" + data;
 
     }

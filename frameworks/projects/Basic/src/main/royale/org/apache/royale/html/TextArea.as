@@ -76,7 +76,7 @@ package org.apache.royale.html
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
-         *  @royaleignorecoercion HTMLInputElement
+         *  @royaleignorecoercion HTMLTextAreaElement
          */
         [Bindable(event="change")]
 		public function get text():String
@@ -87,13 +87,13 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                return (element as HTMLInputElement).value;
+                return (element as HTMLTextAreaElement).value;
             }
 		}
 
         /**
          *  @private
-         *  @royaleignorecoercion HTMLInputElement
+         *  @royaleignorecoercion HTMLTextAreaElement
          */
 		public function set text(value:String):void
 		{
@@ -105,7 +105,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                (element as HTMLInputElement).value = value;
+                (element as HTMLTextAreaElement).value = value;
                 dispatchEvent(new Event('textChange'));
             }
 		}
@@ -127,7 +127,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                return (element as HTMLInputElement).value;
+                return (element as HTMLTextAreaElement).value;
             }
 		}
 
@@ -142,7 +142,7 @@ package org.apache.royale.html
             }
             COMPILE::JS
             {
-                (element as HTMLInputElement).value = value;
+                (element as HTMLTextAreaElement).value = value;
                 dispatchEvent(new Event('textChange'));
             }
 		}

@@ -106,7 +106,10 @@
       <mxml>
           <children-as-data>true</children-as-data>
           <imports>
-              <implicit-import>org.apache.royale.events.*</implicit-import>
+              <implicit-import>org.apache.royale.events.Event</implicit-import>
+              <implicit-import>org.apache.royale.events.EventDispatcher</implicit-import>
+              <implicit-import>org.apache.royale.events.IEventDispatcher</implicit-import>
+              <implicit-import>mx.events.MouseEvent</implicit-import>
               <implicit-import>org.apache.royale.geom.*</implicit-import>
               <implicit-import>org.apache.royale.core.ClassFactory</implicit-import>
               <implicit-import>org.apache.royale.core.IFactory</implicit-import>

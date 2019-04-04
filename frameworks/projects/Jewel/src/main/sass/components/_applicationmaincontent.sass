@@ -23,7 +23,7 @@
 
 .jewel.main
     width: 100%
-    min-height: 100%
+    height: 100%
     
     // display: inline-block
     // flex-grow: 1
@@ -35,7 +35,10 @@
 // used by ApplicationMainContent 
 // depends on $top-app-bar-row-height
 .has-topappbar
-    padding-top: $top-app-bar-row-height !important
+    padding-top: ($top-app-bar-row-height + 2) !important
+
+.has-footerbar
+    padding-bottom: ($footer-bar-row-height + 2) !important
 
 j|ApplicationMainContent
     IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")

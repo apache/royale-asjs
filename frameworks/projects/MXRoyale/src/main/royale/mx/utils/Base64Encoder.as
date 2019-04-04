@@ -51,7 +51,6 @@ public class Base64Encoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    COMPILE::SWF
     public static const CHARSET_UTF_8:String = "UTF-8";
 
     /**
@@ -138,9 +137,15 @@ public class Base64Encoder
 
         return result;
     }
+    
+    COMPILE::JS
+    public function drain():String
+    {
+        return encodedString;
+    }
 
     COMPILE::JS
-    public function encode(data:String, encoding = "utf-8"):void
+    public function encode(data:String, encoding:String = "utf-8"):void
     {
         var bytes:Object = new TextEncoderLiteWrapper(encoding).encode(data);
         encodedString = new Base64JSWrapper().fromByteArray(bytes);

@@ -78,6 +78,8 @@
     <include-classes>
         <class>LanguageClasses</class>
     </include-classes>
+
+    <js-default-initializers>false</js-default-initializers>
     
 
 </royale-config>

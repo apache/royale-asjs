@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.supportClasses.IActivable;
+	import org.apache.royale.jewel.supportClasses.ISelectableContent;
 
     COMPILE::JS
     {
@@ -27,8 +27,8 @@ package org.apache.royale.jewel
     }
 
 	/**
-	 *  The ApplicationMainContent class is a Container component capable of parenting
-	 *  the other organized content that implements IActivable interface
+	 *  The TabBarContent class is a Container component capable of parenting
+	 *  the other organized content that implements ISelectableContent interface
 	 *  (i.e, a SectionContent)
 	 *
 	 *  @langversion 3.0
@@ -53,37 +53,52 @@ package org.apache.royale.jewel
             typeNames = "jewel tabbarcontent";
 		}
 
+		private var _selectedContent:String;
 		/**
 		 *  shows a concrete content and hides the rest
 		 * 
-		 *  @param id, the id of the container to show
+		 *  @param name, the name of the container to show
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function showContent(id:String):void
+		public function get selectedContent():String
         {
+			return _selectedContent;
+		}
+        public function set selectedContent(name:String):void
+        {
+			if(_selectedContent != name)
+			{
+				_selectedContent = name;
+
+				selectContent();
+			}
+		}
+
+		public function selectContent():void
+		{
 			try
 			{
 				for (var i:int = 0; i < numElements; i++)
 				{
-					var content:IActivable = getElementAt(i) as IActivable;
+					var content:ISelectableContent = getElementAt(i) as ISelectableContent;
 					
-					if(content.id == id)
+					if(content.name == _selectedContent)
 					{
-						content.isActive = true;
+						content.isSelected = true;
 					}
 					else
 					{
-						content.isActive = false;
+						content.isSelected = false;
 					}
 				}
 			}
 			catch (error:Error)
 			{
-				throw new Error ("One or more content in TabBarContent is not implementing IActivable interface.");	
+				throw new Error ("One or more content in TabBarContent is not implementing ISelectableContent interface.");	
 			}
         }
 
@@ -95,5 +110,20 @@ package org.apache.royale.jewel
         {
 			return addElementToWrapper(this, 'div');
         }
+
+		/**
+		 *  The method called when added to a parent.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			selectContent();
+		}
 	}
 }

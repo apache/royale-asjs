@@ -19,18 +19,16 @@
 
 package mx.rpc 
 {
-/* 
-import flash.events.Event;
-import flash.events.EventDispatcher; */
 
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 
 import mx.core.mx_internal;
-//import mx.events.PropertyChangeEvent;
-//import mx.messaging.messages.IMessage;
-//import mx.rpc.events.FaultEvent;
-//import mx.rpc.events.ResultEvent;
+import mx.events.PropertyChangeEvent;
+import mx.messaging.messages.IMessage;
+import mx.rpc.events.FaultEvent;
+import mx.rpc.events.ResultEvent;
+
 
 use namespace mx_internal;
 
@@ -44,7 +42,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="propertyChange", type="mx.events.PropertyChangeEvent")]
+[Event(name="propertyChange", type="mx.events.PropertyChangeEvent")]
 
 /**
  *  This class provides a place to set additional or token-level data for 
@@ -76,10 +74,10 @@ public dynamic class AsyncToken extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function AsyncToken(message:Object=null) //message:IMessage
+    public function AsyncToken(message:IMessage=null)
     {
         super();
-       // _message = message;
+        _message = message;
     }
 
     //--------------------------------------------------------------------------
@@ -92,7 +90,7 @@ public dynamic class AsyncToken extends EventDispatcher
     // message
     //----------------------------------
     
-   // private var _message:IMessage; 
+    private var _message:IMessage;
 
     /**
      *  Provides access to the associated message.
@@ -102,19 +100,19 @@ public dynamic class AsyncToken extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-  /*   public function get message():IMessage
+    public function get message():IMessage
     {
         return _message;
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  mx_internal function setMessage(message:IMessage):void
+    mx_internal function setMessage(message:IMessage):void
     {
         _message = message;
     }
-     */
+    
     //----------------------------------
     // responder
     //----------------------------------
@@ -153,9 +151,9 @@ public dynamic class AsyncToken extends EventDispatcher
     // result
     //----------------------------------
     
-   /*  private var _result:Object;
+    private var _result:Object;
     
-    [Bindable(event="propertyChange")] */
+    [Bindable(event="propertyChange")]
     /**
      * The result that was returned by the associated RPC call.
      * Once the result property on the token has been assigned
@@ -167,10 +165,10 @@ public dynamic class AsyncToken extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get result():Object
+    public function get result():Object
     {
         return _result;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -192,7 +190,7 @@ public dynamic class AsyncToken extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function addResponder(responder:Object):void //responder:IResponder
+    public function addResponder(responder:IResponder):void
     {
         if (_responders == null)
             _responders = [];
@@ -209,15 +207,15 @@ public dynamic class AsyncToken extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function hasResponder():Boolean
+    public function hasResponder():Boolean
     {
         return (_responders != null && _responders.length > 0);
-    } */
+    }
 
     /**
      * @private
      */
-   /*  mx_internal function applyFault(event:FaultEvent):void
+    mx_internal function applyFault(event:FaultEvent):void
     {
         if (_responders != null)
         {
@@ -230,12 +228,12 @@ public dynamic class AsyncToken extends EventDispatcher
                 }
             }
         }
-    } */
+    }
 
     /**
      * @private
      */
-    /* mx_internal function applyResult(event:ResultEvent):void
+    mx_internal function applyResult(event:ResultEvent):void
     {
         setResult(event.result);
 
@@ -250,12 +248,12 @@ public dynamic class AsyncToken extends EventDispatcher
                 }
             }
         }
-    } */
+    }
 
     /**
      * @private
      */
-    /* mx_internal function setResult(newResult:Object):void
+    mx_internal function setResult(newResult:Object):void
     {
         if (_result !== newResult)
         {
@@ -263,6 +261,6 @@ public dynamic class AsyncToken extends EventDispatcher
             _result = newResult;
             dispatchEvent(event);
         }
-    } */
+    }
 }
 }

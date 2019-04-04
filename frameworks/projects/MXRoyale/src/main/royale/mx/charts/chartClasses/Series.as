@@ -20,17 +20,17 @@
 package mx.charts.chartClasses
 {
 
-//import flash.geom.Rectangle;
+import org.apache.royale.geom.Rectangle;
 
 import mx.charts.ChartItem;
-//import mx.charts.effects.effectClasses.SeriesEffectInstance;
+import mx.charts.effects.effectClasses.SeriesEffectInstance;
 import mx.core.mx_internal;
 import mx.effects.Effect;
 //import mx.effects.EffectManager;
 import mx.effects.IEffectInstance;
-//import mx.events.DragEvent;
+import mx.events.DragEvent;
 import mx.events.FlexEvent;
-import mx.core.UIComponent;
+
 use namespace mx_internal;
 
 //--------------------------------------
@@ -43,9 +43,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-//[Effect(name="hideDataEffect", event="hideData")]
+[Effect(name="hideDataEffect", event="hideData")]
 
 /**
  *  Defines the effect that Flex uses as it moves the current data
@@ -54,9 +54,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-//[Effect(name="showDataEffect", event="showData")]
+[Effect(name="showDataEffect", event="showData")]
 
 
 /**
@@ -70,12 +70,11 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-public class Series  extends UIComponent
+public class Series extends ChartElement
 {
-//extends ChartElement
-  //  include "../../core/Version.as";
+//    include "../../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -89,13 +88,13 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function Series()
     {
         super();
         //super.showInAutomationHierarchy = false;
-        //this.addEventListener(DragEvent.DRAG_START, dragStartHandler);
+        this.addEventListener(DragEvent.DRAG_START, dragStartHandler);
     }
 
     //--------------------------------------------------------------------------
@@ -107,52 +106,52 @@ public class Series  extends UIComponent
     /**
      *  @private
      */
-    //protected var allSeriesTransform:Boolean = true;
+    protected var allSeriesTransform:Boolean = true;
 
     /**
      *  @private
      */
-    //private var _previousTransitionData:Object;
+    private var _previousTransitionData:Object;
 
     /**
      *  @private
      */
-    //private var _bDataDirty:Boolean = true;
+    private var _bDataDirty:Boolean = true;
 
     /**
      *  @private
      */
-    //private var _bMappingDirty:Boolean = true;
+    private var _bMappingDirty:Boolean = true;
 
     /**
      *  @private
      */
-    //private var _bFilterDirty:Boolean = true;
+    private var _bFilterDirty:Boolean = true;
 
     /**
      *  @private
      */
-    //private var _bTransformDirty:Boolean = true;
+    private var _bTransformDirty:Boolean = true;
 
     /**
      *  @private
      */
-    //private var _bHideTransitionDirty:Boolean = false;
+    private var _bHideTransitionDirty:Boolean = false;
     
     /**
      *  @private
      */
-    //private var _selectionDirty:Boolean = false;
+    private var _selectionDirty:Boolean = false;
     
     /**
      *  @private
      */
-    //private var _selectionDirtyArray:Array /* of ChartItem */ = [];
+    private var _selectionDirtyArray:Array /* of ChartItem */ = [];
     
     /**
      *  @private
      */
-    //private var _selectionIndicesDirty:Boolean = false;
+    private var _selectionIndicesDirty:Boolean = false;
     
     /**
      *  @private
@@ -175,9 +174,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* override public function set dataTransform(value:DataTransform):void
+    override public function set dataTransform(value:DataTransform):void
     {
         if (dataTransform)
         {
@@ -189,7 +188,7 @@ public class Series  extends UIComponent
         {
             super.dataTransform = value;
             value.addEventListener(FlexEvent.TRANSFORM_CHANGE,
-                                   transformChangeHandler, false, 0, true);
+                                   transformChangeHandler/*, false, 0, true*/);
         }
         else
         {
@@ -199,7 +198,7 @@ public class Series  extends UIComponent
                 dataTransform.getAxis(p).unregisterDataTransform(dataTransform);
             }           
         }
-    } */
+    }
 
     //----------------------------------
     //  showInAutomationHierarchy
@@ -207,11 +206,11 @@ public class Series  extends UIComponent
 
     /**
      *  @private
-     */
-    /* override public function set showInAutomationHierarchy(value:Boolean):void
+    override public function set showInAutomationHierarchy(value:Boolean):void
     {
         //do not allow value changes
-    } */
+    }
+     */
     
     //--------------------------------------------------------------------------
     //
@@ -223,14 +222,14 @@ public class Series  extends UIComponent
     // dataFunction
     //----------------------------------
     
-    /* [Bindable]
+    [Bindable]
     [Inspectable(category="General")]
-     */
+    
     /**
      *  @private
      *  Storage for dataFunction property
      */    
-    //private var _dataFunction:Function;    
+    private var _dataFunction:Function;    
     
     /**
      * Specifies a method that returns the value that should be used for 
@@ -278,33 +277,33 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function get dataFunction():Function
+    public function get dataFunction():Function
     {
         return _dataFunction;   
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set dataFunction(value:Function):void
+    public function set dataFunction(value:Function):void
     {
         _dataFunction = value;
         dataChanged();
-    } */
+    }
 
     //---------------------------------
     // dataTipItems
     //---------------------------------
     
-    //[Bindable]
-    //[Inspectable(category="General")]
+    [Bindable]
+    [Inspectable(category="General")]
     
     /**
      *  @private
      */
-    //private var _dataTipItems:Array /* of ChartItem */;
+    private var _dataTipItems:Array /* of ChartItem */;
     
     /**
      *  Array of chart items for which data tips are to be shown
@@ -313,21 +312,21 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-     // public function get dataTipItems():Array /* of ChartItem */
-     // {
-        // return _dataTipItems;
-     // }
+     public function get dataTipItems():Array /* of ChartItem */
+     {
+        return _dataTipItems;
+     }
      
      /**
       *  @private
       */
-     // public function set dataTipItems(value:Array /* of ChartItem */):void
-     // {
-        // _dataTipItems = value;
-        // invalidateProperties();
-     // }
+     public function set dataTipItems(value:Array /* of ChartItem */):void
+     {
+        _dataTipItems = value;
+        invalidateProperties();
+     }
     
     //----------------------------------
     //  displayName
@@ -339,8 +338,8 @@ public class Series  extends UIComponent
      */
     private var _displayName:String;
 
-    //[Inspectable(category="Display")]
-	
+    [Inspectable(category="Display")]
+
     /**
      *  The name of the series, for display to the user.
      *  This property is used to represent the series in user-visible labels,
@@ -349,12 +348,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-     public function get displayName():String
+    public function get displayName():String
     {
         return _displayName;
-    } 
+    }
     
     /**
      *  @private
@@ -363,23 +362,10 @@ public class Series  extends UIComponent
     {
         _displayName = value;
 
-     //   var c:ChartBase = chart;
-       // if (c)
-           // c.legendDataChanged();
-    } 
-    
-    //----------------------------------
-    //  DataProvider
-    //----------------------------------
-    private var _dataProvider:Object; 
-    public function get dataProvider():Object
-	{
-	  return _dataProvider;  
-	}
-    public function set dataProvider(value:Object):void
-	{
-	}
-
+        var c:ChartBase = chart;
+        if (c)
+            c.legendDataChanged();
+    }
     
     //----------------------------------
     //  filterDataValues
@@ -389,11 +375,11 @@ public class Series  extends UIComponent
      *  @private
      *  Storage for the filterDataValues property.
      */
-   /*  private var _filterDataValues:String = "outsideRange";
+    private var _filterDataValues:String = "outsideRange";
     private var _userfilterDataValues:String = "";
 
     [Inspectable(category="General", enumeration="none,nulls,outsideRange", defaultValue="outsideRange")]
- */
+
     /**
      *  If <code>filterFuction</code> is set, <code>filterDataValues</code> and
      *  <code>filterData</code> are ignored.
@@ -417,20 +403,20 @@ public class Series  extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    /* public function get filterDataValues():String
+    public function get filterDataValues():String
     {
         return _filterDataValues;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set filterDataValues(value:String):void
+    public function set filterDataValues(value:String):void
     {
         _filterDataValues = value;
         _userfilterDataValues = value;
         invalidateFilter();
-    } */
+    }
     
     //----------------------------------
     //  filterData
@@ -440,9 +426,9 @@ public class Series  extends UIComponent
      *  @private
      *  Storage for the filterData property.
      */
-    //private var _filterData:Boolean = true;
+    private var _filterData:Boolean = true;
 
-    //[Inspectable(category="General", defaultValue="true")]
+    [Inspectable(category="General", defaultValue="true")]
 
     /**
      *  If <code>filterFuction</code> or <code>filterDataValues</code> is set,  
@@ -460,17 +446,17 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function get filterData():Boolean
+    public function get filterData():Boolean
     {
         return _filterData;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set filterData(value:Boolean):void
+    public function set filterData(value:Boolean):void
     {
         _filterData = value;
         
@@ -485,7 +471,7 @@ public class Series  extends UIComponent
                 _filterDataValues = "none";
             invalidateFilter();
         }
-    } */
+    }
     
     
     //----------------------------------
@@ -496,9 +482,9 @@ public class Series  extends UIComponent
      *  @private
      *  Storage for the filterFunction property.
      */
-    //private var _filterFunction:Function = defaultFilterFunction;
+    private var _filterFunction:Function = defaultFilterFunction;
 
-    //[Inspectable(category="General")]
+    [Inspectable(category="General")]
 
     /**
      * Specifies a method that returns the array of chart items in the series
@@ -548,15 +534,15 @@ public class Series  extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    /* public function get filterFunction():Function
+    public function get filterFunction():Function
     {
         return _filterFunction;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* public function set filterFunction(value:Function):void
+    public function set filterFunction(value:Function):void
     {
         if(value != null)
             _filterFunction = value;
@@ -564,7 +550,7 @@ public class Series  extends UIComponent
             _filterFunction = defaultFilterFunction;
 
         invalidateFilter();
-    } */
+    }
     
     //----------------------------------
     //  interactive
@@ -574,9 +560,9 @@ public class Series  extends UIComponent
      *  @private
      *  Storage for the interactive property.
      */
-    //private var _interactive:Boolean=true;
+    private var _interactive:Boolean=true;
 
-    //[Inspectable(category="General", defaultValue="true")]
+    [Inspectable(category="General", defaultValue="true")]
 
     /**
      *  Determines whether data tips appear when users interact
@@ -589,28 +575,28 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function get interactive():Boolean
+    public function get interactive():Boolean
     {
         return _interactive;
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  public function set interactive(value:Boolean):void
+    public function set interactive(value:Boolean):void
     {
         _interactive = value;
 
         invalidateDisplayList();
-    } */
+    }
 
     //----------------------------------
     //  legendData
     //----------------------------------
 
-    //[Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  An Array of LegendData instances that describe the items
@@ -625,12 +611,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    //public function get legendData():Array /* of LegendData */
-   /*  {
+    public function get legendData():Array /* of LegendData */
+    {
         return null;
-    } */
+    }
     
     //----------------------------------
     //  renderData
@@ -642,12 +628,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function get renderData():Object
+    protected function get renderData():Object
     {
         return null;
-    } */
+    }
 
     //----------------------------------
     //  selectable
@@ -657,9 +643,9 @@ public class Series  extends UIComponent
      *  @private
      *  Storage for the selectable property.
      */
-    //private var _selectable:Boolean=true;
+    private var _selectable:Boolean=true;
 
-    //[Inspectable(category="General")]
+    [Inspectable(category="General")]
 
     /**
      *  Specifies whether a series is selectable or not.
@@ -668,17 +654,17 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  public function get selectable():Boolean
+    public function get selectable():Boolean
     {
         return _selectable;
-    } */
+    }
 
     /**
      *  @private
      */     
-   /*  public function set selectable(value:Boolean):void
+    public function set selectable(value:Boolean):void
     {
         if (_selectable != value)
         {
@@ -686,13 +672,13 @@ public class Series  extends UIComponent
 
             invalidateProperties();
         }
-    } */
+    }
 
     //----------------------------------
     //  selectedIndex
     //----------------------------------
     
-    //[Inspectable(category="General")]
+    [Inspectable(category="General")]
 
     /**
      *  Index of the selected item in the data provider of the series. If multiple items are selected, 
@@ -701,9 +687,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-  /*   public function get selectedIndex():int
+    public function get selectedIndex():int
     {
         var len:int;
         
@@ -712,12 +698,12 @@ public class Series  extends UIComponent
             return _selectedItems[len - 1].index;
         return -1;
 
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  public function set selectedIndex(value:int):void
+    public function set selectedIndex(value:int):void
     {
         if (_selectedItems.length == 1 && _selectedItems[0].index == value)
             return;
@@ -742,13 +728,13 @@ public class Series  extends UIComponent
             _selectionIndicesDirtyArray.push(value);
             invalidateProperties();
         }
-    } */
+    }
 
     //----------------------------------
     //  selectedIndices
     //----------------------------------
 
-    //[Inspectable(category="General")]
+    [Inspectable(category="General")]
 
     /**
      *  An Array of indexes of the selected items in the data provider of the series.
@@ -757,24 +743,24 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */     
-   // public function get selectedIndices():Array /* of int */
-   //  {
-        // var arrItems:Array /* of int */ = [];
-        // var n:int = _selectedItems.length;
-        // for (var i:int = 0; i < n; i++)
-        // {
-            // arrItems.push(_selectedItems[i].index);
-        // }   
-        // return arrItems;
-    // } 
+    public function get selectedIndices():Array /* of int */
+    {
+        var arrItems:Array /* of int */ = [];
+        var n:int = _selectedItems.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            arrItems.push(_selectedItems[i].index);
+        }   
+        return arrItems;
+    }
 
     /**
      *  @private
      */
-   // public function set selectedIndices(value:Array /* of int */):void
-   /*  {           
+    public function set selectedIndices(value:Array /* of int */):void
+    {           
         if (_selectedItems.length == 0 && value.length == 0)
             return;
         
@@ -801,12 +787,12 @@ public class Series  extends UIComponent
             invalidateProperties();
         }
     }
- */
+
     //----------------------------------
     //  selectedItem
     //----------------------------------
 
-   // [Inspectable(category="General")]
+    [Inspectable(category="General")]
 
     /**
      *  The chart item that is selected in the series. If multiple items are selected, 
@@ -815,9 +801,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function get selectedItem():ChartItem
+    public function get selectedItem():ChartItem
     {
         var len:int;
         
@@ -825,12 +811,12 @@ public class Series  extends UIComponent
         if (len > 0)
             return _selectedItems[len - 1];
         return null;
-    } */
+    }
 
    /**
      *  @private
      */
-   /*  public function set selectedItem(value:ChartItem):void
+    public function set selectedItem(value:ChartItem):void
     {   
         if (_selectedItems.length == 1 && _selectedItems[0] == value)
             return;
@@ -840,7 +826,7 @@ public class Series  extends UIComponent
             
         _selectionDirty = true;
         invalidateProperties();
-    } */
+    }
 
     //----------------------------------
     //  selectedItems
@@ -850,9 +836,9 @@ public class Series  extends UIComponent
      *  @private
      *  Storage for the selectedItems property.
      */
-   // private var _selectedItems:Array /* of ChartItem */ = [];
+    private var _selectedItems:Array /* of ChartItem */ = [];
 
-   // [Inspectable(category="General")]
+    [Inspectable(category="General")]
 
     /**
      *  An Array of chart items that are selected in the series.
@@ -860,25 +846,25 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */     
-   // public function get selectedItems():Array /* of ChartItem */
-    // {
-        // return _selectedItems;
-    // }
+    public function get selectedItems():Array /* of ChartItem */
+    {
+        return _selectedItems;
+    }
 
     /**
      *  @private
      */
-    // public function set selectedItems(value:Array /* of ChartItem */):void
-    // {   
-        // if (_selectedItems.length == 0 && value.length == 0)
-            // return;
+    public function set selectedItems(value:Array /* of ChartItem */):void
+    {   
+        if (_selectedItems.length == 0 && value.length == 0)
+            return;
                     
-        // _selectionDirtyArray = value;
-        // _selectionDirty = true; 
-        // invalidateProperties();
-    // }
+        _selectionDirtyArray = value;
+        _selectionDirty = true; 
+        invalidateProperties();
+    }
     
     //----------------------------------
     //  transitionRenderData
@@ -902,7 +888,7 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function get transitionRenderData():Object
     {
@@ -929,22 +915,22 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  override public function stylesInitialized():void
+    override public function stylesInitialized():void
     {
         legendDataChanged();
-    } */
+    }
 
     /**
      *  @private
      */
-    /* override public function invalidateSize():void
+    override public function invalidateSize():void
     {
         invalidateTransform();
 
         super.invalidateSize();     
-    }   */ 
+    }   
 
     /**
      *  @inheritDoc
@@ -952,14 +938,14 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-     override protected function updateDisplayList(unscaledWidth:Number,
+    override protected function updateDisplayList(unscaledWidth:Number,
                                                   unscaledHeight:Number):void
     {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
 
-       /*  if (_bHideTransitionDirty)
+        if (_bHideTransitionDirty)
             _bHideTransitionDirty = false;
 
         var s:ChartBase = chart;
@@ -968,7 +954,7 @@ public class Series  extends UIComponent
 
         validateData();
         validateTransform();
-        validateSelection(); */
+        validateSelection();
     }
     
     /**
@@ -977,14 +963,14 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  override public function setActualSize(w:Number, h:Number):void
+    override public function setActualSize(w:Number, h:Number):void
     {
         invalidateTransform();
 
         super.setActualSize(w, h);
-    } */
+    }
     
     /**
      *  @inheritDoc
@@ -992,9 +978,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* override protected function commitProperties():void
+    override protected function commitProperties():void
     {
         super.commitProperties();
         if (_dataTipItems && chart)
@@ -1008,7 +994,7 @@ public class Series  extends UIComponent
             if (_selectable && chart)
                 chart.seriesSelectionChanged(this,_selectionDirtyArray);    
         }
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -1019,15 +1005,15 @@ public class Series  extends UIComponent
     /**
      *  @private
      */
-    /* override public function mappingChanged():void
+    override public function mappingChanged():void
     {
         invalidateMapping();
-    } */
+    }
     
     /**
      *  @private
      */
-    /* override public function chartStateChanged(oldState:uint, v:uint):void
+    override public function chartStateChanged(oldState:uint, v:uint):void
     {
         invalidateDisplayList();
 
@@ -1035,17 +1021,18 @@ public class Series  extends UIComponent
             transitionRenderData = null;
         
         super.chartStateChanged(oldState,v);
-    } */
+    }
 
     /**
      *  @private
      */
-    //override public function collectTransitions(chartState:Number,
-     //                                           transitions:Array /* of IEffectInstance */):void
-    /* {
+    override public function collectTransitions(chartState:Number,
+                                                transitions:Array /* of IEffectInstance */):void
+    {
         var transition:Effect = null;
         var instance:IEffectInstance;
 
+        /*
         if (chartState == ChartState.PREPARING_TO_HIDE_DATA)
         {
             transition = EffectManager.
@@ -1075,12 +1062,13 @@ public class Series  extends UIComponent
                     (instance as SeriesEffectInstance).type = "show";
             }
         }
-
+        */
+        
         if (instance)
             transitions.push(instance);
 
         super.collectTransitions(chartState,transitions);
-    } */
+    }
 
     /**
      *  @copy mx.charts.chartClasses.IChartElement#claimStyles()
@@ -1088,14 +1076,14 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    //override public function claimStyles(styles:Array /* of Object */,
-    //                                     firstAvailable:uint):uint
-    /* {
+    override public function claimStyles(styles:Array /* of Object */,
+                                         firstAvailable:uint):uint
+    {
         internalStyleName = styles[firstAvailable];
         return (firstAvailable + 1) % styles.length;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -1112,13 +1100,13 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
 
-    //public function get items():Array /* of ChartItem */
-    /* {
+    public function get items():Array /* of ChartItem */
+    {
         return [];
-    } */
+    }
     
      /**
      *  Gets all the items that are in a rectangular region for the series.
@@ -1136,84 +1124,84 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   // public function getItemsInRegion(r:Rectangle):Array /* of ChartItem */
-    /* {
+    public function getItemsInRegion(r:Rectangle):Array /* of ChartItem */
+    {
         return [];
     }
- */
+
     /**
      *  @private
      */        
-    /* mx_internal function addItemtoSelection(item:ChartItem):void
+    mx_internal function addItemtoSelection(item:ChartItem):void
     {
         _selectedItems.push(item);      
         item.currentState = ChartItem.SELECTED;
-    } */
+    }
     
     /**
      *  @private 
      */
      
-   /*  mx_internal function removeItemfromSelection(item:ChartItem, state:String = ChartItem.DISABLED):void
+    mx_internal function removeItemfromSelection(item:ChartItem, state:String = ChartItem.DISABLED):void
     {
         var index:int;
         
         index = _selectedItems.indexOf(item);
         _selectedItems.splice(index,1);
         item.currentState = state;
-    } */
+    }
     
     /**
      *  @private
      */
      
-     // mx_internal function setItemsState(state:String):void
-    // {
-        // var items:Array /* of ChartItem */;
-        // items = (renderData)? renderData.filteredCache : [];
-        // if (items) 
-        // {
-            // var n:int  = items.length;
-            // for (var i:int = 0; i < n; i++)
-            // {
-                // items[i].currentState = state;
-            // }   
-        // }   
-    // } 
+    mx_internal function setItemsState(state:String):void
+    {
+        var items:Array /* of ChartItem */;
+        items = (renderData)? renderData.filteredCache : [];
+        if (items) 
+        {
+            var n:int  = items.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                items[i].currentState = state;
+            }   
+        }   
+    }
     
     /**
      *  @private
      */
      
-    /* mx_internal function clearSeriesItemsState(clear:Boolean, state:String = ChartItem.NONE):void
+    mx_internal function clearSeriesItemsState(clear:Boolean, state:String = ChartItem.NONE):void
     {
         if (clear)
             _selectedItems = [];
         setItemsState(state);
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  mx_internal function getTransformState():Boolean
+    mx_internal function getTransformState():Boolean
     {
         return _bTransformDirty;    
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  mx_internal function emptySelectedItems():void
+    mx_internal function emptySelectedItems():void
     {
         _selectedItems = [];
-    } */
+    }
 
     /**
      *  @private
      */    
-   /*  private function validateSelection():void
+    private function validateSelection():void
     {
         if (_selectionIndicesDirty)
         {
@@ -1227,17 +1215,17 @@ public class Series  extends UIComponent
             if (chart)
                 chart.updateKeyboardCache();
         }
-    } */
+    }
     
      /**
      *  @private
      */    
-   /*  mx_internal function getChartSelectedStatus():Boolean
+    mx_internal function getChartSelectedStatus():Boolean
     {
         if (chart)
             return chart.selectedChartItems.length > 0;
         return false;
-    } */
+    }
 
     /**
      *  Caches the values stored in the <code>measureName</code> property
@@ -1265,11 +1253,11 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    //protected function cacheDefaultValues(measureName:String, cache:Array /* of ChartItem */,
-    //                                      fieldName:String): Boolean
-    /* {
+    protected function cacheDefaultValues(measureName:String, cache:Array /* of ChartItem */,
+                                          fieldName:String): Boolean
+    {
         var n:int = cache.length;
         var i:int;
         var c:Object;
@@ -1304,7 +1292,7 @@ public class Series  extends UIComponent
             }
             return true;
         }
-    } */
+    }
 
     /**
      *  Caches the values stored in the <code>measureName</code> property
@@ -1329,11 +1317,11 @@ public class Series  extends UIComponent
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
+    *  @productversion Flex 3
     */
-    // protected function cacheNamedValues(measureName:String, cache:Array /* of ChartItem */,
-     //                                   fieldName:String):Boolean
-    /*{
+    protected function cacheNamedValues(measureName:String, cache:Array /* of ChartItem */,
+                                        fieldName:String):Boolean
+    {
         var n:int = cache.length;
         var c:Object;
         if (_dataFunction != null)
@@ -1358,7 +1346,7 @@ public class Series  extends UIComponent
         }
         
         return true;
-    } */
+    }
 
     /**
      *  Caches the values stored in the <code>measureName</code> property
@@ -1386,11 +1374,11 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    //protected function cacheIndexValues(measureName:String, cache:Array /* of ChartItem */,
-    //                                    fieldName:String):Boolean
-    /* {
+    protected function cacheIndexValues(measureName:String, cache:Array /* of ChartItem */,
+                                        fieldName:String):Boolean
+    {
         var n:int = cache.length;
         var i:int;
         var c:Object;
@@ -1425,7 +1413,7 @@ public class Series  extends UIComponent
             return true;
         }
 
-    } */
+    }
     
     /**
      *  Extracts the minimum value, maximum value, and, optionally,
@@ -1450,12 +1438,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // protected function extractMinMax(cache:Array /* of ChartItem */, measureName:String,
-                                     // desc:DataDescription,
-                                     // calculateInterval:Boolean = false):void
-   /*  {
+    protected function extractMinMax(cache:Array /* of ChartItem */, measureName:String,
+                                     desc:DataDescription,
+                                     calculateInterval:Boolean = false):void
+    {
         var n:int = cache.length;
         var i:int;
         var v:Number;
@@ -1501,7 +1489,7 @@ public class Series  extends UIComponent
         {
             desc.minInterval = minInterval;
         }
-    } */
+    }
 
     /**
      *  Extracts the minimum value, maximum value, and, optionally,
@@ -1523,11 +1511,11 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // protected function extractMinInterval(cache:Array /* of ChartItem */, measureName:String,
-                                          // desc:DataDescription):void
-    /* {
+    protected function extractMinInterval(cache:Array /* of ChartItem */, measureName:String,
+                                          desc:DataDescription):void
+    {
         var n:int = cache.length;
         var i:int;
         var v:Number;
@@ -1563,7 +1551,7 @@ public class Series  extends UIComponent
         {
             desc.minInterval = minInterval;
         }
-    } */
+    }
 
     /**
      *  Removes any item from the provided cache whose <code>field</code>
@@ -1579,10 +1567,10 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    //protected function stripNaNs(cache:Array /* of ChartItem */, field:String):void
-   /*  {
+    protected function stripNaNs(cache:Array /* of ChartItem */, field:String):void
+    {
         if (filterDataValues == "none")
             return;
             
@@ -1638,7 +1626,7 @@ public class Series  extends UIComponent
 
         if (start >= 0)
             cache.splice(end, start - end + 1);
-    } */
+    }
     
     /**
      *  Informs the series that the underlying data
@@ -1656,9 +1644,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  protected function invalidateData(invalid:Boolean = true):void
+    protected function invalidateData(invalid:Boolean = true):void
     {
         if (invalid)
         {
@@ -1674,7 +1662,7 @@ public class Series  extends UIComponent
         {
             _bDataDirty = false;
         }
-    } */
+    }
 
     /**
      *  Informs the series that the mapping of the data into numeric values
@@ -1691,9 +1679,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  protected function invalidateMapping(invalid:Boolean = true):void
+    protected function invalidateMapping(invalid:Boolean = true):void
     {
         if (invalid)
         {
@@ -1710,7 +1698,7 @@ public class Series  extends UIComponent
             _bMappingDirty = true;
         }
     }
- */
+
     /**
      *  Informs the series that the filter of the data against the axes
      *  has changed and must be recalculated.
@@ -1726,9 +1714,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function invalidateFilter(invalid:Boolean = true):void
+    protected function invalidateFilter(invalid:Boolean = true):void
     {
         if (invalid)
         {
@@ -1742,7 +1730,7 @@ public class Series  extends UIComponent
         {
             _bFilterDirty = false;
         }
-    } */
+    }
 
     /**
      *  Informs the series that the transform of the data to screen coordinates
@@ -1757,9 +1745,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function invalidateTransform(invalid:Boolean = true):void
+    protected function invalidateTransform(invalid:Boolean = true):void
     {
         if (invalid)        
         {
@@ -1772,7 +1760,7 @@ public class Series  extends UIComponent
             _bTransformDirty = false;
         }
     }
- */
+
     /**
      *  Informs the series that a significant change has occured
      *  in the display of data.
@@ -1781,9 +1769,9 @@ public class Series  extends UIComponent
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
+    *  @productversion Flex 3
     */
-   /*  protected function invalidateTransitions():void
+    protected function invalidateTransitions():void
     {
         if (_bHideTransitionDirty == false)
         {
@@ -1795,7 +1783,7 @@ public class Series  extends UIComponent
 
             _bHideTransitionDirty = true;
         }       
-    } */
+    }
     
     /**
      *  Called when the underlying data that the series represents
@@ -1813,12 +1801,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function updateData():void
+    protected function updateData():void
     {
         _bDataDirty = false;
-    } */
+    }
     
     /**
      *  Called when the underlying data the series represents
@@ -1842,12 +1830,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function updateMapping():void
+    protected function updateMapping():void
     {
         _bMappingDirty = false;
-    } */
+    }
     
     /**
      *  Called when the underlying data the series represents
@@ -1873,12 +1861,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function updateFilter():void
+    protected function updateFilter():void
     {
         _bFilterDirty = false;
-    } */
+    }
     
     /**
      *  Called when the underlying data the series represents
@@ -1903,12 +1891,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function updateTransform():void
+    protected function updateTransform():void
     {
         _bTransformDirty = false;     
-    } */
+    }
         
     /**
      *  Calls the <code>updateFilter()</code> and
@@ -1926,9 +1914,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function validateTransform():void
+    protected function validateTransform():void
     {
         if (dataTransform)
         {
@@ -1944,7 +1932,7 @@ public class Series  extends UIComponent
                 updateTransform();
             }
         }
-    } */
+    }
 
     /**
      *  Calls the <code>updateData()</code> and
@@ -1960,9 +1948,9 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   /*  protected function validateData():void
+    protected function validateData():void
     {
         if (dataTransform)
         {
@@ -1978,7 +1966,7 @@ public class Series  extends UIComponent
                 updateMapping();
             }
         }
-    } */
+    }
 
     /**
      *  Captures the before and after states of the series for animation. This method
@@ -1995,11 +1983,11 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function getRenderDataForTransition(type:String):Object
     {
-        /* if (type == "hide")
+        if (type == "hide")
         {
             return _previousTransitionData;
         }
@@ -2008,7 +1996,7 @@ public class Series  extends UIComponent
             validateData();
             validateTransform();
             return renderData;
-        } */return null;
+        }
     }
 
     /**
@@ -2025,7 +2013,7 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function getElementBounds(renderData:Object):void
     {
@@ -2043,13 +2031,13 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function endInterpolation(interpolationData:Object):void
+    public function endInterpolation(interpolationData:Object):void
     {
         transitionRenderData = null;
     }
-     */
+    
     /**
      *  Called by the SeriesInterpolate effect to initiate an interpolation effect.
      *  The effect passes in the source and destination data
@@ -2069,14 +2057,14 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function beginInterpolation(sourceRenderData:Object,
+    public function beginInterpolation(sourceRenderData:Object,
                                        destRenderData:Object):Object
     {
         return null;
     }
- */
+
     /**
      *  Helper method to implement the interpolation effect.
      *  A custom series can call this method from its
@@ -2115,96 +2103,96 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-     // protected function initializeInterpolationData(
-                            // srcCache:Array /* of ChartItem */, 
-                            // dstCache:Array /* of ChartItem */,
-                            // iProps:Object, cacheType:Class = null,
-                            // customData:Object = null):Object
-    // {
-        // var interpolationCache:Array /* of ChartItem */ = [];
-        // var deltaCache:Array /* of ChartItem */ = [];
-        // var n:int = Math.max(srcCache.length, dstCache.length);
+    protected function initializeInterpolationData(
+                            srcCache:Array /* of ChartItem */, 
+                            dstCache:Array /* of ChartItem */,
+                            iProps:Object, cacheType:Class = null,
+                            customData:Object = null):Object
+    {
+        var interpolationCache:Array /* of ChartItem */ = [];
+        var deltaCache:Array /* of ChartItem */ = [];
+        var n:int = Math.max(srcCache.length, dstCache.length);
 
-        // var interpolationSource:Array /* of ChartItem */ = [];
+        var interpolationSource:Array /* of ChartItem */ = [];
         
-        // if (!cacheType)
-            // cacheType = Object;
+        if (!cacheType)
+            cacheType = Object;
             
-        // for (var i:int = 0; i < n; i++)
-        // {
-            // var src:ChartItem = srcCache[i];
-            // var dst:ChartItem = dstCache[i];
+        for (var i:int = 0; i < n; i++)
+        {
+            var src:ChartItem = srcCache[i];
+            var dst:ChartItem = dstCache[i];
 
-            // var iobj:ChartItem = dst == null ? src.clone() : dst.clone();
-            // var iSrc:ChartItem = src == null ? dst.clone() : src.clone();
+            var iobj:ChartItem = dst == null ? src.clone() : dst.clone();
+            var iSrc:ChartItem = src == null ? dst.clone() : src.clone();
             
-            // var delta:ChartItem = new cacheType();
-            // var populated:Boolean = false;
-            // var missingSrcValues:Object = {};
-            // var missingDestValues:Object = {};
-            // var bNeedMissingValues:Boolean = false;
-            // var srcValue:Number;
-            // var dstValue:Number;
+            var delta:ChartItem = new cacheType();
+            var populated:Boolean = false;
+            var missingSrcValues:Object = {};
+            var missingDestValues:Object = {};
+            var bNeedMissingValues:Boolean = false;
+            var srcValue:Number;
+            var dstValue:Number;
             
-            // for (var p:String in iProps)
-            // {
-                // if (src)
-                    // srcValue = src[p];
-                // else
-                    // srcValue = NaN;
+            for (var p:String in iProps)
+            {
+                if (src)
+                    srcValue = src[p];
+                else
+                    srcValue = NaN;
                 
-                // if (dst)
-                    // dstValue = dst[p];
-                // else
-                    // dstValue = NaN;
+                if (dst)
+                    dstValue = dst[p];
+                else
+                    dstValue = NaN;
 
-                // if (isNaN(srcValue) || isNaN(dstValue))
-                // {
-                    // bNeedMissingValues = true;
-                    // missingSrcValues[p] = srcValue;
-                    // missingDestValues[p] = dstValue;                    
-                // }
-                // else
-                // {
-                    // iSrc[p] = srcValue;
-                    // iobj[p] = srcValue;
-                    // delta[p] = dstValue - srcValue;             
-                // }
-            // }
+                if (isNaN(srcValue) || isNaN(dstValue))
+                {
+                    bNeedMissingValues = true;
+                    missingSrcValues[p] = srcValue;
+                    missingDestValues[p] = dstValue;                    
+                }
+                else
+                {
+                    iSrc[p] = srcValue;
+                    iobj[p] = srcValue;
+                    delta[p] = dstValue - srcValue;             
+                }
+            }
 
-            // if (bNeedMissingValues)
-            // {
-                // getMissingInterpolationValues(missingSrcValues, srcCache,
-                                              // missingDestValues, dstCache,
-                                              // i, customData);
+            if (bNeedMissingValues)
+            {
+                getMissingInterpolationValues(missingSrcValues, srcCache,
+                                              missingDestValues, dstCache,
+                                              i, customData);
 
-                // for (p in missingSrcValues)
-                // {
-                    // srcValue = missingSrcValues[p];
-                    // iSrc[p] = srcValue;
-                    // iobj[p] = srcValue;
-                    // delta[p] = missingDestValues[p] - srcValue;             
-                // }
-            // }
+                for (p in missingSrcValues)
+                {
+                    srcValue = missingSrcValues[p];
+                    iSrc[p] = srcValue;
+                    iobj[p] = srcValue;
+                    delta[p] = missingDestValues[p] - srcValue;             
+                }
+            }
 
-            // interpolationSource[i] = iSrc;
-            // interpolationCache[i] = iobj;
-            // deltaCache[i] = delta;          
-        // }
-                      
-        // var interpolationData:Object =
-        // {
-            // cache: interpolationCache,
-            // interpolationSource: interpolationSource,
-            // deltaCache: deltaCache,
-            // properties: iProps
-        // }
+            interpolationSource[i] = iSrc;
+            interpolationCache[i] = iobj;
+            deltaCache[i] = delta;          
+        }
+                        
+        var interpolationData:Object =
+        {
+            cache: interpolationCache,
+            interpolationSource: interpolationSource,
+            deltaCache: deltaCache,
+            properties: iProps
+        }
             
-        // return interpolationData;
-    // }
-  
+        return interpolationData;
+    }
+
     /**
      *  Fills in missing values in an interpolation structure.
      *  When a series calls the <code>initializeInterpolationData()</code> method,
@@ -2239,14 +2227,14 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // protected function getMissingInterpolationValues(
-                            // sourceProps:Object, srcCache:Array /* of ChartItem */,
-                            // destProps:Object, destCache:Array /* of ChartItem */,
-                            // index:Number, customData:Object):void
-    // {
-    // }
+    protected function getMissingInterpolationValues(
+                            sourceProps:Object, srcCache:Array /* of ChartItem */,
+                            destProps:Object, destCache:Array /* of ChartItem */,
+                            index:Number, customData:Object):void
+    {
+    }
 
     /**
      *  Called by the SeriesInterpolate effect to advance an interpolation.
@@ -2270,39 +2258,39 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // public function interpolate(interpolationValues:Array /* of Number */,
-                                // interpolationData:Object):void
-    // {
-        // applyInterpolation(interpolationData, interpolationValues);
-    // }
+    public function interpolate(interpolationValues:Array /* of Number */,
+                                interpolationData:Object):void
+    {
+        applyInterpolation(interpolationData, interpolationValues);
+    }
 
     /**
      *  @private
      */
-    // private function applyInterpolation(interpolationData:Object,
-                                        // interpolationValues:Array /* of Number */):void
-    // {       
-        // var n:int = interpolationValues.length;
-        // var srcCache:Array /* of ChartItem */ = interpolationData.interpolationSource;
-        // var deltaCache:Array /* of ChartItem */ = interpolationData.deltaCache;
-        // var interpolationCache:Array /* of ChartItem */ = interpolationData.cache;
-        // var iProps:Object = interpolationData.properties;
+    private function applyInterpolation(interpolationData:Object,
+                                        interpolationValues:Array /* of Number */):void
+    {       
+        var n:int = interpolationValues.length;
+        var srcCache:Array /* of ChartItem */ = interpolationData.interpolationSource;
+        var deltaCache:Array /* of ChartItem */ = interpolationData.deltaCache;
+        var interpolationCache:Array /* of ChartItem */ = interpolationData.cache;
+        var iProps:Object = interpolationData.properties;
 
-        // n = interpolationCache.length;
-        // for (var i:int = 0; i < n; i++)
-        // {
-            // var interpValue:Number = interpolationValues[i];
-            // var src:Object = srcCache[i];
-            // var delta:Object = deltaCache[i];           
-            // var interp:Object  = interpolationCache[i];
-            // for (var p:String in iProps)
-            // {
-                // interp[p] = src[p] + delta[p] * interpValue;    
-            // }
-        // }
-    // }
+        n = interpolationCache.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            var interpValue:Number = interpolationValues[i];
+            var src:Object = srcCache[i];
+            var delta:Object = deltaCache[i];           
+            var interp:Object  = interpolationCache[i];
+            for (var p:String in iProps)
+            {
+                interp[p] = src[p] + delta[p] * interpValue;    
+            }
+        }
+    }
     
     /**
      *  Updates the Legend items when the series display name changes
@@ -2311,14 +2299,14 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* protected function legendDataChanged():void
+    protected function legendDataChanged():void
     {
         var c:ChartBase = chart;
         if (c)
             c.legendDataChanged();
-    } */
+    }
 
    /**
      *  Gets a ChartItem from the series'
@@ -2332,25 +2320,25 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // private function findChartItemFor(value:int):ChartItem
-    // {
-        // var items:Array /* of ChartItem */;
-        // var item:ChartItem = null;
+    private function findChartItemFor(value:int):ChartItem
+    {
+        var items:Array /* of ChartItem */;
+        var item:ChartItem = null;
         
-        // items = (renderData)? renderData.filteredCache : [];
-        // var n:int = items.length;
-        // for (var i:int = 0; i < n; i++)
-        // {
-            // if (items[i].index == value)
-            // {
-                // item = items[i];
-                // break;
-            // }
-        // }
-        // return item;
-    // }
+        items = (renderData)? renderData.filteredCache : [];
+        var n:int = items.length;
+        for (var i:int = 0; i < n; i++)
+        {
+            if (items[i].index == value)
+            {
+                item = items[i];
+                break;
+            }
+        }
+        return item;
+    }
     
     /**
      *  This is used if you do not set a custom function as the filterFunction for the series.
@@ -2365,10 +2353,10 @@ public class Series  extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */ 
-    // protected function defaultFilterFunction(cache:Array /*of Object*/):Array /*of Object*/
-    // {
-        // return [];
-    // }
+    protected function defaultFilterFunction(cache:Array /*of Object*/):Array /*of Object*/
+    {
+        return [];
+    }
     
     /**
      *  You typically retrieve the Axis instance directly through a named property
@@ -2384,12 +2372,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function getAxis(dimension:String):IAxis
+    public function getAxis(dimension:String):IAxis
     {
         return dataTransform.getAxis(dimension);
-    } */
+    }
 
     /**
      *  Assigns an Axis instance to a particular dimension of the chart.
@@ -2406,12 +2394,12 @@ public class Series  extends UIComponent
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    /* public function setAxis(dimension:String, value:IAxis):void
+    public function setAxis(dimension:String, value:IAxis):void
     {
         dataTransform.setAxis(dimension, value);
-    } */
+    }
 
     
     //--------------------------------------------------------------------------
@@ -2423,12 +2411,12 @@ public class Series  extends UIComponent
     /**
      *  @private
      */
-   /*  override protected function dataChanged():void
+    override protected function dataChanged():void
     {
         invalidateData();
 
         super.dataChanged();
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -2439,11 +2427,11 @@ public class Series  extends UIComponent
     /**
      *  @private
      */
-    /* private function transformChangeHandler(event:FlexEvent):void
+    private function transformChangeHandler(event:FlexEvent):void
     {
         invalidateTransform();
     }
-     */
+    
     /**
      *  The default handler for the <code>dragStart</code> event.
      *
@@ -2454,11 +2442,11 @@ public class Series  extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
      */
-    /*  protected function dragStartHandler(event:DragEvent):void
+    protected function dragStartHandler(event:DragEvent):void
     {
         if(chart)
             chart.dragStartHandler(event);                   
-    }  */
+    }
 }
 
 }

@@ -105,10 +105,13 @@ package
 		}
 
 		COMPILE::JS
-		public function toString():String
+		public function objectAccessFormat():String
 		{
 			var uriVal:String = _uri ? _uri : "*";
-			return uriVal + "::" + _localName;
+            uriVal = uriVal.replace(/:/g, "_");
+            uriVal = uriVal.replace(/\./g, "_");
+            uriVal = uriVal.replace(/\//g, "$");
+			return uriVal + "__" + _localName;
 		}
 
 		COMPILE::JS

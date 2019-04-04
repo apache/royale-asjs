@@ -48,7 +48,7 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		private function destinationChangedHandler(event:Event):void
+		override protected function destinationChangedHandler(event:Event):void
 		{
 			var object:Object = document[sourceID];
 			if (dataProvider)

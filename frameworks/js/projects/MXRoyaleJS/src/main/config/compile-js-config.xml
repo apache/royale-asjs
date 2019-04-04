@@ -77,6 +77,10 @@
         
         <namespaces>
             <namespace>
+                <uri>http://ns.adobe.com/mxml/2009</uri>
+                <manifest>../../../../../../mxml-2009-manifest.xml</manifest>
+            </namespace>
+            <namespace>
                 <uri>library://ns.apache.org/royale/mx</uri>
                 <manifest>../../../../../../projects/MXRoyale/src/main/resources/mx-royale-manifest.xml</manifest>
             </namespace>
@@ -88,6 +92,8 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
+    
+    <export-protected-symbols>true</export-protected-symbols>
     
     <include-file>
         <name>defaults.css</name>
@@ -104,6 +110,8 @@
     <include-namespaces>
         <uri>library://ns.apache.org/royale/mx</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

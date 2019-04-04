@@ -26,18 +26,23 @@ COMPILE::JS
 	import org.apache.royale.html.util.addElementToWrapper;
 }
 import mx.controls.listClasses.BaseListData;
+import mx.core.EdgeMetrics;
 import mx.core.ITextInput;
 import mx.core.UIComponent;
+import mx.core.UITextField;
 import mx.events.FlexEvent;
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.accessories.PasswordInputBead;
 import org.apache.royale.html.beads.DisableBead;
+import org.apache.royale.core.TextLineMetrics;
 
 COMPILE::SWF {
 	import org.apache.royale.html.beads.TextInputView;
 }
+import mx.core.mx_internal;
+use namespace mx_internal;
 
 /*
 import mx.managers.IFocusManager;
@@ -412,6 +417,19 @@ public class TextInput extends UIComponent implements ITextInput
     //
     //--------------------------------------------------------------------------
     
+    //----------------------------------
+    //  contentBackgroundColor
+    //----------------------------------
+	
+    public function get contentBackgroundColor():uint
+    {
+        return 0xFFFFFF;
+    }
+	
+    public function set contentBackgroundColor(value:uint) :void
+    {
+    }
+	
     //----------------------------------
     //  borderVisible
     //----------------------------------
@@ -1258,10 +1276,13 @@ public class TextInput extends UIComponent implements ITextInput
      */
     private var textChanged:Boolean = false;
 
-    [Bindable("textChanged")]
+    //[Bindable("textChanged")]
+    [Bindable("change")]
     [CollapseWhiteSpace]
     [Inspectable(category="General", defaultValue="")]
-    [NonCommittingChangeEvent("change")]
+    //[NonCommittingChangeEvent("change")]  Not sure what this did
+    // since TextField sends change on every keystroke and other
+    // code looked like it would dispatch a textChanged
 
     /**
      *  @inheritDoc
@@ -1299,9 +1320,9 @@ public class TextInput extends UIComponent implements ITextInput
 		COMPILE::JS
 		{
 			(element as HTMLInputElement).value = value;
-			dispatchEvent(new Event('textChange'));
 		}
 
+        dispatchEvent(new Event('textChanged'));
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
 
@@ -1443,6 +1464,22 @@ public class TextInput extends UIComponent implements ITextInput
 //             horizontalScrollPositionChanged = false;
 //         }
     }
+    
+    override public function getExplicitOrMeasuredWidth():Number
+    {
+        if (!isNaN(explicitWidth))
+            return explicitWidth;
+        measure()
+        return measuredWidth;
+    }
+
+    override public function getExplicitOrMeasuredHeight():Number
+    {
+        if (!isNaN(explicitHeight))
+            return explicitHeight;
+        measure()
+        return measuredHeight;
+    }
 
     /**
      *  @private
@@ -1451,49 +1488,47 @@ public class TextInput extends UIComponent implements ITextInput
     {
         super.measure();
 
-        trace("TextInput.measure not implemented");
+        var bm:EdgeMetrics = /*border && border is IRectangularBorder ?
+                             IRectangularBorder(border).borderMetrics :*/
+                             EdgeMetrics.EMPTY;
 
-//         var bm:EdgeMetrics = border && border is IRectangularBorder ?
-//                              IRectangularBorder(border).borderMetrics :
-//                              EdgeMetrics.EMPTY;
-//
-//         var w:Number;
-//         var h:Number;
-//
-//         // Start with a width of 160. This may change.
-//         measuredWidth = DEFAULT_MEASURED_WIDTH;
-//
-//         if (maxChars)
-//         {
-//             // Use the width of "W" and multiply by the maxChars
-//             measuredWidth = Math.min(measuredWidth,
-//                 measureText("W").width * maxChars + bm.left + bm.right + 8);
-//         }
-//
-//         if (!text || text == "")
-//         {
-//             w = DEFAULT_MEASURED_MIN_WIDTH;
-//             h = measureText(" ").height +
-//                 bm.top + bm.bottom + UITextField.TEXT_HEIGHT_PADDING;
-//             h += getStyle("paddingTop") + getStyle("paddingBottom");
-//         }
-//         else
-//         {
-//             var lineMetrics:TextLineMetrics;
-//             lineMetrics = measureText(text);
-//
-//             w = lineMetrics.width + bm.left + bm.right + 8;
-//             h = lineMetrics.height + bm.top + bm.bottom + UITextField.TEXT_HEIGHT_PADDING;
-//
-//             w += getStyle("paddingLeft") + getStyle("paddingRight");
-//             h += getStyle("paddingTop") + getStyle("paddingBottom");
-//         }
-//
-//         measuredWidth = Math.max(w, measuredWidth);
-//         measuredHeight = Math.max(h, DEFAULT_MEASURED_HEIGHT);
-//
-//         measuredMinWidth = DEFAULT_MEASURED_MIN_WIDTH;
-//         measuredMinHeight = DEFAULT_MEASURED_MIN_HEIGHT;
+        var w:Number;
+        var h:Number;
+        
+        // Start with a width of 160. This may change.
+        measuredWidth = DEFAULT_MEASURED_WIDTH;
+
+        if (maxChars)
+        {
+            // Use the width of "W" and multiply by the maxChars
+            measuredWidth = Math.min(measuredWidth,
+                measureText("W").width * maxChars + bm.left + bm.right + 8);
+        }
+
+        if (!text || text == "")
+        {
+            w = DEFAULT_MEASURED_MIN_WIDTH;
+            h = measureText(" ").height +
+                bm.top + bm.bottom + UITextField.TEXT_HEIGHT_PADDING;
+            h += getStyle("paddingTop") + getStyle("paddingBottom");
+        }
+        else
+        {
+            var lineMetrics:TextLineMetrics;
+            lineMetrics = measureText(text);
+
+            w = lineMetrics.width + bm.left + bm.right + 8;
+            h = lineMetrics.height + bm.top + bm.bottom + UITextField.TEXT_HEIGHT_PADDING;
+
+            w += getStyle("paddingLeft") + getStyle("paddingRight");
+            h += getStyle("paddingTop") + getStyle("paddingBottom");
+        }
+
+        measuredWidth = Math.max(w, measuredWidth);
+        measuredHeight = Math.max(h, DEFAULT_MEASURED_HEIGHT);
+
+        measuredMinWidth = DEFAULT_MEASURED_MIN_WIDTH;
+        measuredMinHeight = DEFAULT_MEASURED_MIN_HEIGHT;
     }
 
     /**
@@ -1605,7 +1640,10 @@ public class TextInput extends UIComponent implements ITextInput
 	public function textChangeHandler(event:Event):void
 	{
         if (!inSetter)
+        {
             dispatchEvent(new Event(Event.CHANGE));
+            dispatchEvent(new Event(FlexEvent.VALUE_COMMIT));
+        }
 	}
 
     //--------------------------------------------------------------------------

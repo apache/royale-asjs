@@ -23,8 +23,8 @@
 	<component id="Application" class="spark.components.Application"/>
 	<component id="Button" class="spark.components.Button" />
 	<component id="CheckBox" class="spark.components.CheckBox" />
-	<component id="Label" class="spark.components.Label" />
-    	<component id="List" class="spark.components.List" />
+	<component id="Label" class="spark.components.Label" />,
+	<component id="List" class="spark.components.List" />
    	<component id="ComboBox" class="spark.components.ComboBox" />
 	<component id="DropDownList" class="spark.components.DropDownList" />
 	<component id="RadioButton" class="spark.components.RadioButton" />
@@ -34,47 +34,48 @@
 	<component id="TextInput" class="spark.components.TextInput" />
 	<component id="Panel" class="spark.components.Panel" />
 	<component id="TitleWindow" class="spark.components.TitleWindow" />
-    	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
+	<component id="SparkSkin" class="spark.skins.SparkSkin"/>
 	<component id="Path" class="spark.primitives.Path"/>
 	<component id="Rect" class="spark.primitives.Rect"/>
-    	<component id="Line" class="spark.primitives.Line"/>
-    	<component id="RectangularDropShadow" class="spark.primitives.RectangularDropShadow"/>
-    	<component id="Range" class="spark.components.supportClasses.Range"/>
-    	<component id="RichEditableText" class="spark.components.RichEditableText"/>
-        <component id="RichText" class="spark.components.RichText"/>
+	<component id="Line" class="spark.primitives.Line"/>
+	<component id="RectangularDropShadow" class="spark.primitives.RectangularDropShadow"/>
+	<component id="Range" class="spark.components.supportClasses.Range"/>
+	<component id="RichEditableText" class="spark.components.RichEditableText"/>
+	<component id="RichText" class="spark.components.RichText"/>
 	<component id="Skin" class="spark.components.supportClasses.Skin"/>
-    	<component id="SkinnableComponent" class="spark.components.supportClasses.SkinnableComponent"/>
+	<component id="SkinnableComponent" class="spark.components.supportClasses.SkinnableComponent"/>
+    <component id="SkinnableContainer" class="spark.components.SkinnableContainer"/>
 	<component id="ToggleButton" class="spark.components.ToggleButton"/>
-    	<component id="ToggleButtonBase" class="spark.components.supportClasses.ToggleButtonBase"/>
-    	<component id="DataRenderer" class="spark.components.DataRenderer"/>
+	<component id="ToggleButtonBase" class="spark.components.supportClasses.ToggleButtonBase"/>
+	<component id="DataRenderer" class="spark.components.DataRenderer"/>
 	<component id="SkinnableTextBase" class="spark.components.supportClasses.SkinnableTextBase"/>
 	<component id="TextBase" class="spark.components.supportClasses.TextBase"/>
-    	<component id="TextInput" class="spark.components.TextInput"/>
+	<component id="TextInput" class="spark.components.TextInput"/>
 	<component id="PopUpAnchor" class="spark.components.PopUpAnchor"/>
 	<component id="Group" class="spark.components.Group"/>
-    	<component id="GroupBase" class="spark.components.supportClasses.GroupBase"/>
-    	<component id="HGroup" class="spark.components.HGroup"/>
+	<component id="GroupBase" class="spark.components.supportClasses.GroupBase"/>
+	<component id="HGroup" class="spark.components.HGroup"/>
 	<component id="VGroup" class="spark.components.VGroup"/>
     <component id="TileGroup" class="spark.components.TileGroup"/>
-    	<component id="ListBase" class="spark.components.supportClasses.ListBase"/>
-    	<component id="ItemRenderer" class="spark.components.supportClasses.ItemRenderer"/>
+    <component id="ListBase" class="spark.components.supportClasses.ListBase"/>
+    <component id="ItemRenderer" class="spark.components.supportClasses.ItemRenderer"/>
  	<component id="GradientEntry" class="mx.graphics.GradientEntry" lookupOnly="true"/>
-     	<component id="LinearGradient" class="mx.graphics.LinearGradient" lookupOnly="true"/>
-   	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke" lookupOnly="true"/> 
-    	<component id="State" class="mx.states.State" lookupOnly="true"/>
+ 	<component id="LinearGradient" class="mx.graphics.LinearGradient" lookupOnly="true"/>
+   	<component id="LinearGradientStroke" class="mx.graphics.LinearGradientStroke" lookupOnly="true"/>
+   	<component id="State" class="mx.states.State" lookupOnly="true"/>
 	<component id="SolidColor" class="mx.graphics.SolidColor" lookupOnly="true"/>
 	<component id="SolidColorStroke" class="mx.graphics.SolidColorStroke" lookupOnly="true"/>
 	<component id="NavigatorContent" class="spark.components.NavigatorContent"/>
-	<component id="BorderContainer" class="spark.components.BorderContainer"/>
+	<component id="BorderContainer" class="spark.components.BorderContainer" />
 	<component id="Scroller" class="spark.components.Scroller"/>
-    	<component id="DataGroup" class="spark.components.DataGroup"/>
+	<component id="DataGroup" class="spark.components.DataGroup"/>
 	<component id="VerticalLayout" class="spark.layouts.VerticalLayout"/>
 	<component id="BitmapImage" class="spark.primitives.BitmapImage"/>
-    	<component id="Image" class="spark.components.Image"/>
-        <component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
-        <component id="TileLayout" class="spark.layouts.TileLayout"/>
+	<component id="Image" class="spark.components.Image"/>
+	<component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
+	<component id="TileLayout" class="spark.layouts.TileLayout"/>
+    <component id="Module" class="spark.modules.Module" />
 
-    <component id="Module" class="mx.modules.Module" lookupOnly="true"/>
     <component id="ArrayCollection" class="mx.collections.ArrayCollection" lookupOnly="true"/>
 
     <!-- Text Layout Framework (TLF) -->
@@ -92,5 +93,25 @@
     <component id="g" class="org.apache.royale.textLayout.elements.SubParagraphGroupElement" lookupOnly="true"/>
     <component id="TextFlow" class="org.apache.royale.textLayout.elements.TextFlow" lookupOnly="true"/>
     <component id="TextLayoutFormat" class="org.apache.royale.textLayout.formats.TextLayoutFormat" lookupOnly="true"/>
+    
+    <component id="Form" class="spark.components.Form"/>
+	<component id="FormItem" class="spark.components.FormItem"/>
+	<component id="Spacer" class="mx.controls.Spacer" lookupOnly="true"/>
+	<component id="CallResponder" class="mx.rpc.CallResponder" lookupOnly="true"/>
+	<component id="DataGrid" class="spark.components.DataGrid"/>
+	<component id="GridColumn" class="spark.components.gridClasses.GridColumn"/>
+	<component id="ArrayList" class="mx.collections.ArrayList" lookupOnly="true"/>
+	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" lookupOnly="true"/>
+	<component id="GridItemRenderer" class="spark.components.gridClasses.GridItemRenderer"/>
+	<component id="Parallel" class="mx.effects.Parallel" lookupOnly="true"/>
+	<component id="BasicLayout" class="spark.layouts.BasicLayout"/>
+	<component id="FormLayout" class="spark.layouts.FormLayout"/>
+	<component id="TabBar" class="spark.components.TabBar"/>
+	<component id="ButtonBar" class="spark.components.ButtonBar"/>
+	<component id="SkinnablePopUpContainer" class="spark.components.SkinnablePopUpContainer"/>
+    
+    <component id="NonVirtualHDataGroup" class="spark.components.NonVirtualHDataGroup"/>
+    <component id="NonVirtualVDataGroup" class="spark.components.NonVirtualVDataGroup"/>
 
+	
 </componentPackage>

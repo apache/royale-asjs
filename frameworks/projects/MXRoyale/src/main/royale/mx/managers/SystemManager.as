@@ -63,7 +63,6 @@ import flash.utils.getQualifiedClassName;
 import mx.core.FlexSprite;
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
-import mx.core.IFlexModuleFactory;
 import mx.core.IInvalidating;
 import mx.core.IRawChildrenContainer;
 import mx.core.IUIComponent;
@@ -87,14 +86,17 @@ import mx.utils.LoaderUtil;
 use namespace mx_internal;
 */
 
-import org.apache.royale.geom.Rectangle;
-
 import mx.core.IChildList;
 import mx.core.IFlexDisplayObject;
+import mx.core.IFlexModuleFactory;
 import mx.core.IUIComponent;
 
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IPopUpHostParent;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.geom.Rectangle;
 
 //--------------------------------------
 //  Events
@@ -189,7 +191,7 @@ import org.apache.royale.events.IEventDispatcher;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class SystemManager extends SystemManagerBase implements ISystemManager, IEventDispatcher, IChildList
+public class SystemManager extends SystemManagerBase implements ISystemManager, IFlexModuleFactory, IEventDispatcher, IPopUpHostParent, IChildList
 { //extends MovieClip implements IFlexDisplayObject,IFlexModuleFactory, ISystemManager
    // include "../core/Version.as";
 
@@ -270,6 +272,12 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             
     }
         
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
+    COMPILE::JS
+    public var measuringElement:HTMLSpanElement;
+    
     /**
      *  @royalesuppresspublicvarwarning
      */
@@ -1821,7 +1829,43 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             return ret as IUIComponent;
         }
     }
-            
+    
+    COMPILE::SWF
+    public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        trace("SystemManager:addElement should not be called");   
+    }
+    COMPILE::SWF
+    public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        trace("SystemManager:addElementAt should not be called");   
+        
+    }
+    COMPILE::SWF
+    public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        trace("SystemManager:removeElement should not be called");   
+        
+    }
+    COMPILE::SWF
+    public function getElementIndex(c:IChild):int
+    {
+        trace("SystemManager:getElementIndex should not be called");   
+        return 0;
+    }
+    COMPILE::SWF
+    public function get numElements():int
+    {
+        trace("SystemManager:numElements should not be called");   
+        return 0;    
+    }
+    COMPILE::SWF
+    public function getElementAt(index:int):IChild
+    {
+        trace("SystemManager:getElementAt should not be called");   
+        return null;            
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Methods: IFlexModuleFactory
@@ -1883,7 +1927,8 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         }
         COMPILE::JS
         {
-            return mainClassName ? new mainClassName() : null
+            if (mainClassName)
+                return new mainClassName();
         }
         return null;
     }
@@ -2510,13 +2555,11 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         */
         root.loaderInfo.removeEventListener(Event.INIT, initHandler);
 
-        /*
         if (!SystemManagerGlobals.info)
             SystemManagerGlobals.info = info();
         if (!SystemManagerGlobals.parameters)
             SystemManagerGlobals.parameters = loaderInfo.parameters;
 
-        */
         var docFrame:int = (totalFrames == 1)? 0 : 1;
         addEventListener(Event.ENTER_FRAME, docFrameListener);
         addFrameScript(docFrame, docFrameHandler);
@@ -2903,10 +2946,12 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  The JavaScript entry point.
      */
     COMPILE::JS
-    public function start():void
+    public function start(parameters:Object = null):void
     {
         var body:HTMLElement = document.getElementsByTagName('body')[0];
         body.appendChild(element);
+        
+        SystemManagerGlobals.info = info();
         
         var mixinList:Array = info()["mixins"];
         if (mixinList && mixinList.length > 0)
@@ -2914,9 +2959,13 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             var n:int = mixinList.length;
             for (var i:int = 0; i < n; ++i)
             {
-                mixinList[i].init(this);
+                mixinList[i]['init'](this);
             }
         }
+        if (!SystemManagerGlobals.info)
+            SystemManagerGlobals.info = info();
+        if (!SystemManagerGlobals.parameters)
+            SystemManagerGlobals.parameters = parameters;
         initializeTopLevelWindow(null);
     }
     
@@ -2928,8 +2977,12 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     private function initializeTopLevelWindow(event:Event):void
     {
         component = IUIComponent(create());
+        if (SystemManagerGlobals.parameters)
+            component["parameters"] = SystemManagerGlobals.parameters;
+        
         // until preloader?
         component.addEventListener("applicationComplete", applicationCompleteHandler);
+        component.moduleFactory = this;
         addChild(component as IUIComponent);
         var screen:Rectangle = this.screen;
         component.setActualSize(screen.width, screen.height);            
@@ -3667,6 +3720,13 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         return true;
     }
     
+    /**
+     * @royaleignorecoercion org.apache.royale.core.IPopUpHost; 
+     */
+    public function get popUpHost():IPopUpHost
+    {
+        return component as IPopUpHost;
+    }
 
 }
 

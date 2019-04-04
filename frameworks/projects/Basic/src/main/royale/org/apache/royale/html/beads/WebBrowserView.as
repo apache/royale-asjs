@@ -94,7 +94,7 @@ package org.apache.royale.html.beads
 			loader.y = 0;
 			loader.width = host.width;
 			loader.height = host.height;
-			(host as UIBase).$addChild(loader);
+			(host as UIBase).$sprite_addChild(loader);
 		}
 
 		/**

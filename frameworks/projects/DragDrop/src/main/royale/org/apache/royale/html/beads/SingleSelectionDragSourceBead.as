@@ -25,12 +25,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.IDragInitiator;
 	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.DragEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
@@ -181,7 +181,7 @@ package org.apache.royale.html.beads
 			var itemRenderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
 
 			if (itemRenderer) {
-				var p:UIBase = itemRenderer.itemRendererParent as UIBase;
+				var p:IParent = (itemRenderer.itemRendererParent as ILayoutHost).contentView as IParent;
 				_dragSourceIndex = p.getElementIndex(itemRenderer as IChild);
 				DragEvent.dragSource = (itemRenderer as IItemRenderer).data;
 			}

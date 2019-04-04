@@ -26,6 +26,7 @@ package org.apache.royale.utils.object
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
+    COMPILE::JS
     public function defineSimpleProperty(obj:Object,prop:String):void
     {
 		var privateProp:String = "_" + prop;
@@ -33,7 +34,7 @@ package org.apache.royale.utils.object
 			"get" : function ():Object {
 				return this[privateProp];
 			},
-			"set" : function (val):void {
+			"set" : function (val:*):void {
 				this[privateProp] = val;
 			}
 		});

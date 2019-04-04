@@ -30,6 +30,7 @@ package org.apache.royale.svg
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.createSVG;
     }
 
     public class Circle extends GraphicShape implements ICircle, IDrawable
@@ -92,7 +93,7 @@ package org.apache.royale.svg
                 var style:String = getStyleStr();
 
                 if (_circle == null) {
-                    _circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle') as WrappedHTMLElement;
+                    _circle = createSVG('circle') as WrappedHTMLElement;
                     _circle.royale_wrapper = this;
                     element.appendChild(_circle);
                 }

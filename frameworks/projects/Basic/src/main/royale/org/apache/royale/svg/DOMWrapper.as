@@ -21,6 +21,7 @@ package org.apache.royale.svg
   COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.addSvgElementToWrapper;
     }
 
 	import org.apache.royale.core.ContainerBase;
@@ -44,7 +45,7 @@ package org.apache.royale.svg
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			element = document.createElementNS('http://www.w3.org/2000/svg', 'foreignObject') as WrappedHTMLElement;
+			element = addSvgElementToWrapper(this, 'foreignObject') as WrappedHTMLElement;
 			element.style.left = "0px";
 			element.style.top = "0px";
 			//element.offsetParent = null;

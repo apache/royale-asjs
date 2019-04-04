@@ -52,7 +52,7 @@
         </condition>
     </target>
     
-    <target name="test" depends="check-for-tests" unless="skip-tests">
+    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
     </target>
     
@@ -75,12 +75,19 @@
     </target>
     
     <target name="compile" description="Compiles .as files into .swc" if="env.AIR_HOME">
+        <!-- use antcall so that resultproperty can be used in other projects and
+             they don't collide when being run one after the other -->
+        <antcall target="compile-swf" />
+    </target>
+    
+    <target name="compile-swf">
         <echo message="Compiling libs/${ant.project.name}.swc"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         
-        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" >
+        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true"
+            resultproperty="compcoutput">
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
@@ -100,6 +107,16 @@
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
+        <fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${compcoutput}" arg2="0" />
+                        <equals arg1="${compcoutput}" arg2="2" />
+                    </or>
+                </not>
+            </condition>
+        </fail>
     </target>
     
     <target name="check-compiler" depends="check-compiler-home,check-transpiler-home">

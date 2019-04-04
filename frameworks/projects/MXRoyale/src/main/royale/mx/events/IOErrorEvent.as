@@ -39,6 +39,8 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class IOErrorEvent extends flash.events.IOErrorEvent
 {
+	public static const IO_ERROR:String = "ioError";
+	
 	public function IOErrorEvent(type:String, bubbles:Boolean = false,
 							  cancelable:Boolean = false, text:String = "", id:int = 0
 							  )
@@ -59,7 +61,7 @@ public class IOErrorEvent extends flash.events.IOErrorEvent
  *  @royalesuppresspublicvarwarning
  */
 COMPILE::JS
-public class IOErrorEvent extends org.apache.royale.events.Event
+public class IOErrorEvent extends ErrorEvent
 {
    /*  include "../core/Version.as"; */
 	public static const IO_ERROR:String = "ioError";

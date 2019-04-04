@@ -960,17 +960,17 @@ public class RichText extends TextBase implements IStyleClient
         // We might not have a valid _textFlow for two reasons:
         // either because the 'text' was set (which is the state
         // after construction) or because the 'content' was set.
+        /*
         if (!_textFlow)
         {
-            /*
             if (_content != null)
                 _textFlow = createTextFlowFromContent(_content);
             else
                 _textFlow = staticPlainTextImporter.importToFlow(_text);
             
             lastGeneration = _textFlow ? _textFlow.generation : 0;
-            */
         }
+        */
         /*
         _textFlow.addEventListener(DamageEvent.DAMAGE,
                                    textFlow_damageHandler);
@@ -1347,11 +1347,11 @@ public class RichText extends TextBase implements IStyleClient
         }
         else if (factory is TextFlowTextLineFactory)
         {
-            if (_textFlow && _textFlow.flowComposer)
-            {
+            // if (_textFlow && _textFlow.flowComposer)
+            // {
                 //_textFlow.flowComposer.swfContext = 
                 //    ISWFContext(embeddedFontContext);
-            }
+            // }
             
             //staticTextFlowFactory.swfContext = ISWFContext(embeddedFontContext);
             staticTextFlowFactory.createTextLines(addTextLine, _textFlow);

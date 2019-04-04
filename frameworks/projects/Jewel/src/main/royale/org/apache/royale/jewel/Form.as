@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.IParent;
-    import org.apache.royale.core.IPopUpHost;
+    COMPILE::JS
+    {
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
+    }
 
     /**
      *  Dispatched when the form validation succeeds.
@@ -29,7 +32,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    [Event("valid","org.apache.royale.events.Event")]
+    [Event(name="valid", type="org.apache.royale.events.Event")]
 
     /**
      *  Dispatched when the form validation fails.
@@ -39,7 +42,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    [Event("invalid","org.apache.royale.events.Event")]
+    [Event(name="invalid", type="org.apache.royale.events.Event")]
 
     /**
 	 *  The Form class works with all validators,
@@ -51,7 +54,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-    public class Form extends Group implements IPopUpHost {
+    public class Form extends Group {
         
         /**
 		 *  constructor.
@@ -66,17 +69,14 @@ package org.apache.royale.jewel
 			super();
             typeNames = "jewel form";
 		}
+
         /**
-         *  Form can host error tips but they will be in the layout, if any
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        public function get popUpParent():IParent
-        {
-            return this as IParent;
-        }
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			return addElementToWrapper(this,'form');
+		}
     }
 }

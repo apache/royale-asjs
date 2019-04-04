@@ -44,9 +44,40 @@ package
 			{
 				this[0] = expression;
 			}
-			else
-				this[0] = new XML(expression);
+			else 
+            {
+                try
+                {
+    				this[0] = new XML(expression);
+                }
+                catch (e:Error)
+                {
+                    if (typeof(expression) === "string")
+                    {
+                        // try adding a wrapping node and then grab the children
+                        expression = "<root>" + expression + "</root>";
+                        try
+                        {
+                            var xml:XML = new XML(expression);
+                            var list:XMLList = xml.children();
+                            var m:int = list.length();
+                            for (var j:int = 0; j < m; j++)
+                            {
+                                this[j] = list[j];
+                            }
+                        }
+                        catch (e2:Error)
+                        {
+                            throw e; // throw original error
+                        }
+                        
+                    }
+                    else
+                        throw e;
+                }
+            }
 		}
+        
 		private var _xmlArray:Array = [];
 		/*
 			9.2.1.2 [[Put]] (P, V)
@@ -1100,7 +1131,7 @@ package
 		{
 			return isSingle() ? _xmlArray[0].toExponential(fractionDigits) : NaN;
 		}
-		public function toFixed(digits:*=undefined):Number
+		public function toFixed(digits:int=0):Number
 		{
 			return isSingle() ? _xmlArray[0].toFixed(digits) : NaN;
 		}

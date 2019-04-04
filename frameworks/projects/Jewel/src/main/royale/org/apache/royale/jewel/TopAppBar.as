@@ -18,19 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 
 	COMPILE::SWF
     {
+		import flash.display.DisplayObject;
+
 		import org.apache.royale.core.IRenderedObject;
-        import flash.display.DisplayObject;
     }
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	/**
@@ -44,7 +43,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TopAppBar extends Group
+	public class TopAppBar extends Bar
 	{
 		/**
 		 *  constructor.
@@ -58,8 +57,13 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel topappbar"
+            typeNames = "jewel topappbar";
 			setListenersForFixed();
+		}
+
+		override protected function get headerClassName():String
+		{
+			return "topBarAppHeader";
 		}
 
 		COMPILE::JS
@@ -73,12 +77,12 @@ package org.apache.royale.jewel
 			{
 			if(_fixed)
 			{
-				header.classList.add("fixed");
+				element.classList.add("fixed");
 				window.removeEventListener('scroll', scrollHandler, false);
 			}
 			else
 			{
-				header.classList.remove("fixed");
+				element.classList.remove("fixed");
 				window.addEventListener('scroll', scrollHandler, false);
 			}
 			}
@@ -106,16 +110,16 @@ package org.apache.royale.jewel
 				
 				if (currentOffset > 0) {
 					currentOffset = 0;
-				} else if (Math.abs(currentOffset) > header.clientHeight) {
-					currentOffset = -header.clientHeight;
+				} else if (Math.abs(currentOffset) > element.clientHeight) {
+					currentOffset = -element.clientHeight;
 				}
 
 				offset = currentOffset;
-				if (Math.abs(offset) >= header.clientHeight) {
+				if (Math.abs(offset) >= element.clientHeight) {
 					offset = -128;
 				}
 				
-				header.style.top = offset + "px";
+				element.style.top = offset + "px";
 			}
 		}
 
@@ -144,61 +148,7 @@ package org.apache.royale.jewel
 				setListenersForFixed();
             }
         }
-
-
-		COMPILE::JS
-		private var header:HTMLElement;
-
-		/**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			header = addElementToWrapper(this,'header');
-			header.className = "topBarAppHeader";
-			header.style.top = "0px";
-			
-			var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-			div.appendChild(header);
-
-			positioner = div as WrappedHTMLElement;
-			positioner.royale_wrapper = this;
-
-			return element;
-        }
-
-		/**
-         *  @copy org.apache.royale.core.IParent#addElement()
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-            COMPILE::SWF
-            {
-                if (c is IUIBase)
-                {
-                    if (c is IRenderedObject)
-                        $addChild(IRenderedObject(c).$displayObject);
-                    else
-                        $addChild(c as DisplayObject);                        
-                    IUIBase(c).addedToParent();
-                }
-                else
-                    $addChild(c as DisplayObject);
-            }
-            COMPILE::JS
-            {
-                header.appendChild(c.positioner);
-                (c as IUIBase).addedToParent();
-            }
-		}
-
+		
 		private var _hasDrawer:Boolean;
 
         /**
@@ -225,11 +175,11 @@ package org.apache.royale.jewel
                 {
 				if(_hasDrawer)
 				{
-					header.classList.add("has-drawer");
+					element.classList.add("has-drawer");
 				}
 				else
 				{
-					header.classList.remove("has-drawer");
+					element.classList.remove("has-drawer");
 				}
                 }
             }

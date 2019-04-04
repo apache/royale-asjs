@@ -159,18 +159,14 @@ limitations under the License.
 
 
 		private static function getPlatform():String {
-			try {
-				var check:* = getDefinitionByName("flash.system.Capabilities");
-			} catch (e:Error) {
-				return "JS";
+			var platform:String;
+			COMPILE::JS{
+				platform = "JS";
 			}
-			//if this next reference to 'check' is not included, then the above try/catch code
-			// appears to be optimized away in js-release mode
-			//[this issue was added to ObservedBugs Tests]
-			if (check == null) {
-				return "JS";
+			COMPILE::SWF{
+				platform = "SWF";
 			}
-			return "SWF";
+			return platform;
 		}
 
 		public static const PLATFORM:String = getPlatform();

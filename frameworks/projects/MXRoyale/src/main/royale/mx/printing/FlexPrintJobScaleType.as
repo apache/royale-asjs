@@ -101,6 +101,7 @@ public final class FlexPrintJobScaleType
 	 *  @productversion Royale 0.9.3
 	 */
 	public static const SHOW_ALL:String = "showAll";
+	public static const MATCH_WIDTH:String = "matchWidth";
 }
 
 }

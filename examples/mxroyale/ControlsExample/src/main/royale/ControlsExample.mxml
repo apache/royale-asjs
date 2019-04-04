@@ -43,7 +43,6 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.events.Event;
-			import org.apache.royale.events.MouseEvent;
 			
 			private function pushMePushed(event:MouseEvent):void
 			{

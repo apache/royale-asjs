@@ -153,6 +153,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
+		protected var itemsHorizontalAlignInitialized:Boolean;
 		private var _itemsHorizontalAlign:String;
 		/**
 		 *  Distribute all items horizontally
@@ -173,6 +174,7 @@ package org.apache.royale.jewel.beads.layouts
             return _itemsHorizontalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsLeft,itemsCenter,itemsRight,itemsSpaceBetween,itemsSpaceAround")]
         public function set itemsHorizontalAlign(value:String):void
         {
 			if (_itemsHorizontalAlign != value)
@@ -181,10 +183,12 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					setHostClassList(_itemsHorizontalAlign, value);
 					_itemsHorizontalAlign = value;
+					itemsHorizontalAlignInitialized = true;
 				}
 			}
         }
 
+		protected var itemsVerticalAlignInitialized:Boolean;
         private var _itemsVerticalAlign:String;
 		/**
 		 *  Distribute all items vertically
@@ -204,6 +208,7 @@ package org.apache.royale.jewel.beads.layouts
             return _itemsVerticalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCentered,itemsTop,itemsBottom")]
         public function set itemsVerticalAlign(value:String):void
         {
 			if (_itemsVerticalAlign != value)
@@ -212,6 +217,7 @@ package org.apache.royale.jewel.beads.layouts
                 {
 					setHostClassList(_itemsVerticalAlign, value);
 					_itemsVerticalAlign = value;
+					itemsVerticalAlignInitialized = true;
 				}
 			}
         }

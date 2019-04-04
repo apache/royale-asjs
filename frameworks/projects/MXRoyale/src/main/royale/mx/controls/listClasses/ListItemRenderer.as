@@ -19,10 +19,19 @@
 
 package mx.controls.listClasses
 {
-import org.apache.royale.html.supportClasses.StringItemRenderer;
+import mx.core.UIComponent;
+import mx.events.ListEvent;
+
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-import org.apache.royale.core.layout.EdgeData;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IBeadView;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.core.layout.EdgeData;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.MouseEvent;
+import org.apache.royale.html.supportClasses.StringItemRenderer;
 
 /**
  *  The ListItemRenderer is the default renderer for mx.controls.List
@@ -35,6 +44,39 @@ import org.apache.royale.core.ValuesManager;
 
 public class ListItemRenderer extends StringItemRenderer
 {
+    public function ListItemRenderer()
+    {
+        addEventListener("click", clickHandler);    
+    }
+    
+    /**
+     * @royaleignorecoercion mx.core.UIComponent
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     */
+    private function clickHandler(event:MouseEvent):void
+    {
+        var le:ListEvent = new ListEvent("itemClick");
+        le.rowIndex = rowIndex;
+        le.columnIndex = 0;
+        le.itemRenderer = this;
+        getComponentDispatcher().dispatchEvent(le);
+    }
+
+    protected function getComponentDispatcher():IEventDispatcher
+    {
+        var irp:Object = itemRendererParent;
+        var p:IParent = parent;
+        while (p)
+        {
+            if (parent is IStrand)
+            {
+                var b:IBead = (parent as IStrand).getBeadByType(IBeadView);
+                if (b == irp) return p as IEventDispatcher;
+            }
+            p = (p as UIComponent).parent;
+        }
+        return null;
+    }
     override public function set text(value:String):void
     {
         super.text = value;
@@ -45,6 +87,16 @@ public class ListItemRenderer extends StringItemRenderer
             textField.autoSize = "none";
             textField.height = h;
         }
+    }
+    
+    override protected function dataToString(value:Object):String
+    {
+        if (value is XML)
+        {
+            var xml:XML = value as XML;
+            return xml[labelField];
+        }
+        return super.dataToString(value);
     }
 
 }

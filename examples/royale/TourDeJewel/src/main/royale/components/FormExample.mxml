@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:Form xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:models="models.*" valid="doSubmit(event)">
+
+    <fx:Script>
+        <![CDATA[
+			import org.apache.royale.jewel.Alert;
+			import org.apache.royale.utils.StringPadder;
+
+			[Bindable]
+            /**
+             * @royalesuppresspublicvarwarning
+             */
+			public var randomCode:String = StringPadder.pad(String(Math.round(Math.random() * 10000)), "0", 5);
+
+            public function customValidate(host:TextInput):String {
+				return (host.text == randomCode) ? "" : "The entered code doesn't match " + randomCode;
+            }
+
+            public function doSubmit(event:Event):void {
+				Alert.show("Data is valid submitted", "Sending Form!");
+            }
+
+            /**
+             * @royalesuppresspublicvarwarning
+             */
+            public var label:String = "";
+		]]>
+    </fx:Script>
+
+    <j:beads>
+        <j:FormValidator id="formValidator" trigger="{btn}" triggerEvent="click" requiredFieldError="There are invalid data, please check it."/>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:model>
+        <models:ListsModel id="listModel"/>
+    </j:model>
+
+    <j:FormHeading initComplete="event.target.label = label"/>
+
+    <j:FormItem label="Your name" required="true">
+        <j:TextInput>
+            <j:beads>
+                <j:TextPrompt prompt="Name"/>
+                <j:StringValidator required="3" autoTrim="true" requiredFieldError="Need more than 3 characters"/>
+            </j:beads>
+        </j:TextInput>
+    </j:FormItem>
+
+    <j:FormItem label="Your born date" required="true">
+        <j:DateField>
+            <j:beads>
+                <j:DateValidator requiredFieldError="The value is not a valid date"/>
+            </j:beads>
+        </j:DateField>
+    </j:FormItem>
+
+    <j:FormItem label="Your Favorite Avenger" required="true">
+        <j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+            <j:beads>
+                <j:SelectedItemNullValidator requiredFieldError="You must to select one value from the list"/>
+            </j:beads>
+        </j:ComboBox>
+    </j:FormItem>
+
+    <j:FormItem label="Favorite movies (at least 2)" required="true">
+        <j:VGroup gap="3">
+            <j:beads>
+                <j:CheckBoxValidator required="2" requiredFieldError="Please choose at least 2 movies"/>
+            </j:beads>
+            <j:CheckBox text="The Godfather"/>
+            <j:CheckBox text="Scent of a woman"/>
+            <j:CheckBox text="Star Wars"/>
+            <j:CheckBox text="The Shawshank Redemption"/>
+        </j:VGroup>
+    </j:FormItem>
+
+    <j:FormItem label="Verification code: {randomCode}" required="true">
+        <j:beads>
+            <j:HorizontalLayout gap="2" itemsVerticalAlign="itemsCentered"/>
+        </j:beads>
+        <j:TextInput>
+            <j:beads>
+                <j:TextPrompt prompt="Enter Verification Code"/>
+                <j:StringValidator validateFunction="{customValidate}"/>
+            </j:beads>
+        </j:TextInput>
+        <j:Button localId="btn" text="send" emphasis="primary"/>
+    </j:FormItem>
+</j:Form>

@@ -20,8 +20,9 @@
 package mx.containers.beads.models
 {
 
-import org.apache.royale.html.beads.models.PanelModel;
 import mx.core.ContainerLayout;
+
+import org.apache.royale.html.beads.models.PanelModel;
 
 /**
  *  @private
@@ -61,6 +62,47 @@ public class PanelModel extends org.apache.royale.html.beads.models.PanelModel
         _layout = value;
     }
 
+    private var _paddingBottom:String;
+    public function get paddingBottom():String
+    {
+        return _paddingBottom;
+    }
+    
+    public function set paddingBottom(value:String):void
+    {
+        _paddingBottom = value;
+    }
+    
+    private var _paddingTop:String;
+    public function get paddingTop():String
+    {
+        return _paddingTop;
+    }
+    public function set paddingTop(value:String):void
+    {
+        _paddingTop = value;
+    }
+    
+    private var _paddingLeft:String;
+    public function get paddingLeft():String
+    {
+        return _paddingLeft;
+    }
+    public function set paddingLeft(value:String):void
+    {
+        _paddingLeft = value;
+    }
+    
+    private var _paddingRight:String;
+    public function get paddingRight():String
+    {
+        return _paddingRight;
+    }
+    public function set paddingRight(value:String):void
+    {
+        _paddingRight = value;
+    }
+    
 }
 
 }

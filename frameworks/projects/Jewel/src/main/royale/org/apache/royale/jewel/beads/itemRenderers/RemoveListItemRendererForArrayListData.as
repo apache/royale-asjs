@@ -32,7 +32,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 
 	/**
-	 *  Handles the removal of an itemRenderer in a List component once the corresponding 
+	 *  Handles the removal of an itemRenderer in a List component once the corresponding
 	 *  datum has been removed from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
@@ -69,7 +69,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
-		
+
 		/**
 		 *  finish setup
 		 *
@@ -81,14 +81,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 		protected function initComplete(event:Event):void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
-			
+
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
-			
+			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
-		
+
 		private var dp:IEventDispatcher;
 		/**
 		 * @private
@@ -102,7 +102,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
-			
+
 			// listen for individual items being removed in the future.
 			dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 		}
@@ -116,12 +116,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
 			var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererAt(event.index) as ISelectableItemRenderer;
 			itemRendererParent.removeItemRenderer(ir);
-			
+
 			// adjust the itemRenderers' index to adjust for the shift
 			var n:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
@@ -129,6 +130,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
+			//adjust the model's selectedIndex, if applicable
+            if (event.index < ISelectionModel(_dataProviderModel).selectedIndex) {
+                ISelectionModel(_dataProviderModel).selectedIndex = ISelectionModel(_dataProviderModel).selectedIndex - 1;
+            } else if (event.index == ISelectionModel(_dataProviderModel).selectedIndex) {
+                ISelectionModel(_dataProviderModel).selectedIndex = -1;
+            }
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}

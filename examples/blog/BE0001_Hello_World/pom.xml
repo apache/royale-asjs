@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-blog</artifactId>
-    <version>0.9.4-SNAPSHOT</version>
+    <version>0.9.6-SNAPSHOT</version>
   </parent>
 
   <artifactId>BE0001_Hello_World</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.6-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0001: Hello World</name>
@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>BE0001_Hello_World.mxml</mainClass>
-          <targets>JSRoyale,SWF</targets>
+          <targets>${royale.example.targets}</targets>
           <debug>false</debug>
         </configuration>
       </plugin>
@@ -49,23 +49,16 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -73,7 +66,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
     </dependency>

@@ -40,19 +40,19 @@ $textinput-padding-horizontal: 1.12em !default
 
 			flex: 1 0 auto
 			outline: none
-			
+
 			text:
 				align: left
 			line-height: normal !important
-			
+
 			&[disabled]
 				cursor: unset
-		
+
 		&.icon
 			input
 				padding-left: $textinput-padding-horizontal + 1
 
-			i		
+			i
 				&.fonticon
 					cursor: default
 					pointer-events: none
@@ -62,7 +62,7 @@ $textinput-padding-horizontal: 1.12em !default
 					position: absolute
 					text-align: center
 					margin-top: -.5em
-		
+
 			&.right
 				input
 					padding-right: $textinput-padding-horizontal + 1
@@ -76,8 +76,13 @@ $textinput-padding-horizontal: 1.12em !default
 
 j|TextInput
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-	//IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
-	//IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
+
+@media -royale-swf
+	j|TextInput
+		IBeadView: ClassReference("org.apache.royale.html.beads.TextInputWithBorderView")
+		IBeadController: ClassReference("org.apache.royale.html.beads.controllers.EditableTextKeyboardController")
+		IBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead')
+		IBackgroundBead: ClassReference('org.apache.royale.html.beads.SolidBackgroundBead')
 
 
 // Jewel TextArea
@@ -95,16 +100,17 @@ $textarea-padding: .72em 1.12em !default
 			+appear(none)
 			margin: $textarea-margin
 			padding: $textarea-padding
+			resize: none
 
 			max-width: 100%
 
 			flex: 1 0 auto
 			outline: none
-			
+
 			text:
 				align: left
 			line-height: normal !important
-			
+
 			&[disabled]
 				cursor: unset
 

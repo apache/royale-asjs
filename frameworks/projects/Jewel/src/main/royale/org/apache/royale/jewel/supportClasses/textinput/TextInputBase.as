@@ -17,16 +17,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.textinput
 {
-    import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
-    import org.apache.royale.core.ITextModel;
-    
     COMPILE::JS
     {
-        import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;
+    import goog.events;
+
+    import org.apache.royale.core.WrappedHTMLElement;
     }
+    import org.apache.royale.core.ITextModel;
+    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
     
     /**
      *  Dispatched when the user changes the text.
@@ -62,7 +63,7 @@ package org.apache.royale.jewel.supportClasses.textinput
 
             COMPILE::SWF
             {
-                model.addEventListener("textChange", textChangeHandler);
+            model.addEventListener("textChange", textChangeHandler);
             }
 		}
 
@@ -76,15 +77,16 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @royaleignorecoercion HTMLInputElement
          */
 		[Bindable(event="change")]
+		[Bindable(event="textChange")]
 		public function get text():String
 		{
             COMPILE::SWF
             {
-                return ITextModel(model).text;
+            return ITextModel(model).text;
             }
             COMPILE::JS
             {
-                return (element as HTMLInputElement).value;
+            return (element as HTMLInputElement).value;
             }
 		}
 
@@ -96,14 +98,14 @@ package org.apache.royale.jewel.supportClasses.textinput
 		{
             COMPILE::SWF
             {
-                inSetter = true;
-                ITextModel(model).text = value;
-                inSetter = false;
+            inSetter = true;
+            ITextModel(model).text = value;
+            inSetter = false;
             }
             COMPILE::JS
             {
-                (element as HTMLInputElement).value = value;
-                dispatchEvent(new Event('textChange'));
+            (element as HTMLInputElement).value = value;
+            dispatchEvent(new Event('textChange'));
             }
 		}
 
@@ -121,11 +123,11 @@ package org.apache.royale.jewel.supportClasses.textinput
 		{
             COMPILE::SWF
             {
-                return ITextModel(model).html;
+            return ITextModel(model).html;
             }
             COMPILE::JS
             {
-                return (element as HTMLInputElement).value;
+            return (element as HTMLInputElement).value;
             }
 		}
 
@@ -137,12 +139,12 @@ package org.apache.royale.jewel.supportClasses.textinput
 		{
             COMPILE::SWF
             {
-                ITextModel(model).html = value;
+            ITextModel(model).html = value;
             }
             COMPILE::JS
             {
-                (element as HTMLInputElement).value = value;
-                dispatchEvent(new Event('textChange'));
+            (element as HTMLInputElement).value = value;
+            dispatchEvent(new Event('textChange'));
             }
 		}
 
@@ -235,35 +237,20 @@ package org.apache.royale.jewel.supportClasses.textinput
         }
 
         COMPILE::JS
-        /**
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-         *  @royalesuppresspublicvarwarning
-		 */
-        public var div:HTMLDivElement;
+		private var _positioner:WrappedHTMLElement;
 
-        // private var _isInvalid:Boolean = false;
-        // /**
-		//  *  A boolean flag to activate "is-invalid" effect selector.
-        //  *  Defines the textinput as invalid on initial load.
-        //  *  Optional
-		//  *
-		//  *  @langversion 3.0
-		//  *  @playerversion Flash 10.2
-		//  *  @playerversion AIR 2.6
-		//  *  @productversion Royale 0.9.4
-		//  */
-        // public function get isInvalid():Boolean
-        // {
-        //     return _isInvalid;
-        // }
-        // public function set isInvalid(value:Boolean):void
-        // {
-        //     _isInvalid = value;
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
 
-        //     toggleClass("is-invalid", _isInvalid);
-        // }
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
 	}
 }

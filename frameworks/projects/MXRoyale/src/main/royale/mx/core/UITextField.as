@@ -31,27 +31,21 @@ import flash.text.TextFormat;
 import flash.text.TextFormatAlign;
 import flash.text.TextLineMetrics;
  */
+ import mx.controls.Label;
+ import mx.core.UIComponent;
+ import mx.managers.ISystemManager;
+ import mx.styles.ISimpleStyleClient;
+ import mx.styles.IStyleManager2;
+ import mx.utils.StringUtil;
+ 
  import org.apache.royale.events.Event;
-
-//import mx.automation.IAutomationObject;
-//import mx.core.LayoutDirection;
-import mx.managers.ISystemManager;
-//import mx.managers.IToolTipManagerClient;
-//import mx.managers.SystemManager;
-//import mx.managers.ToolTipManager;
-//import mx.resources.IResourceManager;
-//import mx.resources.ResourceManager;
-import mx.styles.ISimpleStyleClient;
-//import mx.styles.IStyleClient;
-import mx.styles.IStyleManager2;
-//import mx.styles.StyleManager;
-//import mx.styles.StyleProtoChain;
-//import mx.utils.MatrixUtil;
-//import mx.utils.NameUtil;
-import mx.utils.StringUtil;
-
-
-import mx.core.UIComponent;
+ 
+ COMPILE::JS
+ {
+     import window.Text;
+ }
+ import org.apache.royale.core.ITextModel;
+ import mx.events.FlexEvent;
 
 use namespace mx_internal;
 
@@ -87,6 +81,9 @@ include "../styles/metadata/TextStyles.as"
  *  will modify its own <code>transform.matrix</code> to restore the default
  *  coordinate system locally.</p>
  *
+ *  This is mostly a copy of Label but with a DIV element instead of SPAN so
+ *  we can measure text.
+ *  
  *  @see flash.text.TextField
  *  @see mx.core.UITextFormat
  *  
@@ -95,7 +92,7 @@ include "../styles/metadata/TextStyles.as"
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class UITextField  extends UIComponent
+public class UITextField  extends UIComponent implements IUITextField
        
 {
 
@@ -212,14 +209,14 @@ public class UITextField  extends UIComponent
      *  The padding to be added to textWidth to get the width
      *  of a TextField that can display the text without clipping.
      */ 
-    //mx_internal static const TEXT_WIDTH_PADDING:int = 5;
+    mx_internal static const TEXT_WIDTH_PADDING:int = 5;
 
     /**
      *  @private
      *  The padding to be added to textHeight to get the height
      *  of a TextField that can display the text without clipping.
      */ 
-    //mx_internal static const TEXT_HEIGHT_PADDING:int = 4;
+    mx_internal static const TEXT_HEIGHT_PADDING:int = 4;
 
     //--------------------------------------------------------------------------
     //
@@ -462,40 +459,224 @@ public class UITextField  extends UIComponent
             dispatchEvent(new Event("textFieldWidthChange")); */
     }
     
-    //----------------------------------
-    //  htmlText
-    //----------------------------------
-
-    /**
-     *  @private
-     */
-    /* override */ public function set htmlText(value:String):void
-    {
-        // TextField's htmlText property can't be set to null.
-       /*  if (!value)
-            value = "";
-
-        // Performance optimization: if the htmlText hasn't changed,
-        // don't let the player think that we're dirty.
-        if (isHTML && super.htmlText == value)
-            return;
-
-        // Reapply the format because TextField would otherwise reset to
-        // black, Times New Roman, 12
-        if (cachedTextFormat && styleSheet == null)
-            defaultTextFormat = cachedTextFormat;
-            
-        super.htmlText = value;
-        
-        // Remember the htmlText that we've set,
-        // because the TextField doesn't remember it for us.
-        // We need it so that we can re-apply the HTML markup
-        // in validateNow() after the CSS styles change
-        explicitHTMLText = value;
-
-        if (invalidateDisplayListFlag)
-            validateNow(); */
-    }
+     //----------------------------------
+     //  htmlText
+     //----------------------------------
+     
+     /**
+      *  @private
+      *  Storage for the htmlText property.
+      *  In addition to being set in the htmlText setter,
+      *  it is automatically updated at two other times.
+      *  1. When the 'text' or 'htmlText' is pushed down into
+      *  the textField in commitProperties(), this causes
+      *  the textField to update its own 'htmlText'.
+      *  Therefore in commitProperties() we reset this storage var
+      *  to be in sync with the textField.
+      *  2. When the TextFormat of the textField changes
+      *  because a CSS style has changed (see validateNow()
+      *  in UITextField), the textField also updates its own 'htmlText'.
+      *  Therefore in textField_textFieldStyleChangeHandler()
+      */
+     
+     
+     [Bindable("htmlChange")]
+     [CollapseWhiteSpace]
+     [Inspectable(category="General", defaultValue="")]
+     
+     /**
+      *  Specifies the text displayed by the Label control, including HTML markup that
+      *  expresses the styles of that text.
+      *  When you specify HTML text in this property, you can use the subset of HTML
+      *  tags that is supported by the Flash TextField control.
+      *
+      *  <p>When you set this property, the HTML markup is applied
+      *  after the CSS styles for the Label instance are applied.
+      *  When you get this property, the HTML markup includes
+      *  the CSS styles.</p>
+      *
+      *  <p>For example, if you set this to be a string such as,
+      *  <code>"This is an example of &lt;b&gt;bold&lt;/b&gt; markup"</code>,
+      *  the text "This is an example of <b>bold</b> markup" appears
+      *  in the Label with whatever CSS styles normally apply.
+      *  Also, the word "bold" appears in boldface font because of the
+      *  <code>&lt;b&gt;</code> markup.</p>
+      *
+      *  <p>HTML markup uses characters such as &lt; and &gt;,
+      *  which have special meaning in XML (and therefore in MXML). So,
+      *  code such as the following does not compile:</p>
+      *
+      *  <pre>
+      *  &lt;mx:Label htmlText="This is an example of &lt;b&gt;bold&lt;/b&gt; markup"/&gt;
+      *  </pre>
+      *
+      *  <p>There are three ways around this problem.</p>
+      *
+      *  <ul>
+      *
+      *  <li>
+      *
+      *  <p>Set the <code>htmlText</code> property in an ActionScript method called as
+      *  an <code>initialize</code> handler:</p>
+      *
+      *  <pre>
+      *  &lt;mx:Label id="myLabel" initialize="myLabel_initialize()"/&gt;
+      *  </pre>
+      *
+      *  <p>where the <code>myLabel_initialize</code> method is in a script CDATA section:</p>
+      *
+      *  <pre>
+      *  &lt;fx:Script&gt;
+      *  &lt;![CDATA[
+      *  private function myLabel_initialize():void {
+      *      myLabel.htmlText = "This is an example of &lt;b&gt;bold&lt;/b&gt; markup";
+      *  }
+      *  ]]&gt;
+      *  &lt;/fx:Script&gt;
+      *
+      *  </pre>
+      *
+      *  <p>This is the simplest approach because the HTML markup
+      *  remains easily readable.
+      *  Notice that you must assign an <code>id</code> to the label
+      *  so you can refer to it in the <code>initialize</code>
+      *  handler.</p>
+      *
+      *  </li>
+      *
+      *  <li>
+      *
+      *  <p>Specify the <code>htmlText</code> property by using a child tag
+      *  with a CDATA section. A CDATA section in XML contains character data
+      *  where characters like &lt; and &gt; aren't given a special meaning.</p>
+      *
+      *  <pre>
+      *  &lt;mx:Label&gt;
+      *      &lt;mx:htmlText&gt;&lt;![CDATA[This is an example of &lt;b&gt;bold&lt;/b&gt; markup]]&gt;&lt;/mx:htmlText&gt;
+      *  &lt;mx:Label/&gt;
+      *  </pre>
+      *
+      *  <p>You must write the <code>htmlText</code> property as a child tag
+      *  rather than as an attribute on the <code>&lt;mx:Label&gt;</code> tag
+      *  because XML doesn't allow CDATA for the value of an attribute.
+      *  Notice that the markup is readable, but the CDATA section makes
+      *  this approach more complicated.</p>
+      *
+      *  </li>
+      *
+      *  <li>
+      *
+      *  <p>Use an <code>hmtlText</code> attribute where any occurences
+      *  of the HTML markup characters &lt; and &gt; in the attribute value
+      *  are written instead as the XML "entities" <code>&amp;lt;</code>
+      *  and <code>&amp;gt;</code>:</p>
+      *
+      *  <pre>
+      *  &lt;mx:Label htmlText="This is an example of &amp;lt;b&amp;gt;bold&amp;lt;/b&amp;gt; markup"/&amp;gt;
+      *  </pre>
+      *
+      *  Adobe does not recommend this approach because the HTML markup becomes
+      *  nearly impossible to read.
+      *
+      *  </li>
+      *
+      *  </ul>
+      *
+      *  <p>If the <code>condenseWhite</code> property is <code>true</code>
+      *  when you set the <code>htmlText</code> property, multiple
+      *  white-space characters are condensed, as in HTML-based browsers;
+      *  for example, three consecutive spaces are displayed
+      *  as a single space.
+      *  The default value for <code>condenseWhite</code> is
+      *  <code>false</code>, so you must set <code>condenseWhite</code>
+      *  to <code>true</code> to collapse the white space.</p>
+      *
+      *  <p>If you read back the <code>htmlText</code> property quickly
+      *  after setting it, you get the same string that you set.
+      *  However, after the LayoutManager runs, the value changes
+      *  to include additional markup that includes the CSS styles.</p>
+      *
+      *  <p>Setting the <code>htmlText</code> property affects the <code>text</code>
+      *  property in several ways.
+      *  If you read the <code>text</code> property quickly after setting
+      *  the <code>htmlText</code> property, you get <code>null</code>,
+      *  which indicates that the <code>text</code> corresponding to the new
+      *  <code>htmlText</code> has not yet been determined.
+      *  However, after the LayoutManager runs, the <code>text</code> property
+      *  value changes to the <code>htmlText</code> string with all the
+      *  HTML markup removed; that is,
+      *  the value is the characters that the Label actually displays.</p>
+      *
+      *  <p>Conversely, if you set the <code>text</code> property,
+      *  any previously set <code>htmlText</code> is irrelevant.
+      *  If you read the <code>htmlText</code> property quickly after setting
+      *  the <code>text</code> property, you get <code>null</code>,
+      *  which indicates that the <code>htmlText</code> that corresponds to the new
+      *  <code>text</code> has not yet been determined.
+      *  However, after the LayoutManager runs, the <code>htmlText</code> property
+      *  value changes to the new text plus the HTML markup for the CSS styles.</p>
+      *
+      *  <p>To make the LayoutManager run immediately, you can call the
+      *  <code>validateNow()</code> method on the Label.
+      *  For example, you could set some <code>htmlText</code>,
+      *  call the <code>validateNow()</code> method, and immediately
+      *  obtain the corresponding <code>text</code> that doesn't have
+      *  the HTML markup.</p>
+      *
+      *  <p>If you set both <code>text</code> and <code>htmlText</code> properties
+      *  in ActionScript, whichever is set last takes effect.
+      *  Do not set both in MXML, because MXML does not guarantee that
+      *  the properties of an instance get set in any particular order.</p>
+      *
+      *  <p>Setting either <code>text</code> or <code>htmlText</code> property
+      *  inside a loop is a fast operation, because the underlying TextField
+      *  that actually renders the text is not updated until
+      *  the LayoutManager runs.</p>
+      *
+      *  <p>If you try to set this property to <code>null</code>,
+      *  it is set, instead, to the empty string.
+      *  If the property temporarily has the value <code>null</code>,
+      *  it indicates that the <code>text</code> has been recently set
+      *  and the corresponding <code>htmlText</code>
+      *  has not yet been determined.</p>
+      *
+      *  @default ""
+      *
+      *  @see flash.text.TextField#htmlText
+      *
+      *  @langversion 3.0
+      *  @playerversion Flash 9
+      *  @playerversion AIR 1.1
+      *  @productversion Flex 3
+      */
+     public function get htmlText():String
+     {
+         COMPILE::SWF
+             {
+                 return ITextModel(model).html;
+             }
+             COMPILE::JS
+             {
+                 return element.innerHTML;
+             }
+     }
+     
+     /**
+      *  @private
+      */
+     public function set htmlText(value:String):void
+     {
+         COMPILE::SWF
+             {
+                 ITextModel(model).html = value;
+             }
+             COMPILE::JS
+             {
+                 this.element.innerHTML = value;
+                 this.dispatchEvent('textChange');
+             }
+             invalidateSize();
+     }
 
     //----------------------------------
     //  parent
@@ -531,50 +712,61 @@ public class UITextField  extends UIComponent
         return _parent ? _parent : super.parent;
     }
  */
-    //----------------------------------
-    //  text
-    //----------------------------------
-
-    /**
-     *  @private
-     */
-    /* override */ public function set text(value:String):void
-    {
-        // TextField's text property can't be set to null.
-       /*  if (!value)
-            value = "";
-        
-        // Performance optimization: if the text hasn't changed,
-        // don't let the player think that we're dirty.
-        if (!isHTML && super.text == value)
-            return;
-
-        super.text = value;
-
-        explicitHTMLText = null;
-
-        if (invalidateDisplayListFlag)
-            validateNow(); */
-    }
-	public function get text():String
-    {
-        // TextField's text property can't be set to null.
-       /*  if (!value)
-            value = "";
-        
-        // Performance optimization: if the text hasn't changed,
-        // don't let the player think that we're dirty.
-        if (!isHTML && super.text == value)
-            return;
-
-        super.text = value;
-
-        explicitHTMLText = null;
-
-        if (invalidateDisplayListFlag)
-            validateNow(); */
-			return "";
-    }
+     
+     //----------------------------------
+     //  text
+     //----------------------------------
+     
+     
+     COMPILE::JS
+     protected var textNode:window.Text;
+     
+     COMPILE::JS
+     private var _text:String = "";
+     
+     [Bindable("textChange")]
+     /**
+      *  The text to display in the label.
+      *
+      *  @langversion 3.0
+      *  @playerversion Flash 10.2
+      *  @playerversion AIR 2.6
+      *  @productversion Royale 0.0
+      */
+     public function get text():String
+     {
+         COMPILE::SWF
+             {
+                 return ITextModel(model).text;
+             }
+             COMPILE::JS
+             {
+                 return _text;
+             }
+     }
+     
+     /**
+      *  @private
+      */
+     public function set text(value:String):void
+     {
+         COMPILE::SWF
+             {
+                 ITextModel(model).text = value;
+             }
+             COMPILE::JS
+             {
+                 if (textNode)
+                 {
+                     _text = value;
+                     textNode.nodeValue = value;
+                     this.dispatchEvent('textChange');
+                 }
+             }
+             
+             invalidateSize();
+         
+     }
 
 	//----------------------------------
 	//  textColor
@@ -804,6 +996,56 @@ public class UITextField  extends UIComponent
         return NameUtil.getUnqualifiedClassName(this);
     }
  */
+     //----------------------------------
+     //  data
+     //----------------------------------
+     
+     /**
+      *  @private
+      *  Storage for the data property.
+      */
+     private var _data:Object;
+     
+     [Bindable("dataChange")]
+     [Inspectable(environment="none")]
+     
+     /**
+      *  Lets you pass a value to the component
+      *  when you use it in an item renderer or item editor.
+      *  You typically use data binding to bind a field of the <code>data</code>
+      *  property to a property of this component.
+      *
+      *  <p>When you use the control as a drop-in item renderer or drop-in
+      *  item editor, Flex automatically writes the current value of the item
+      *  to the <code>text</code> property of this control.</p>
+      *
+      *  <p>You do not set this property in MXML.</p>
+      *
+      *  @default null
+      *  @see mx.core.IDataRenderer
+      *
+      *  @langversion 3.0
+      *  @playerversion Flash 9
+      *  @playerversion AIR 1.1
+      *  @productversion Flex 3
+      */
+     public function get data():Object
+     {
+         return _data;
+     }
+     
+     /**
+      *  @private
+      */
+     public function set data(value:Object):void
+     {
+         var newText:*;
+         
+         _data = value;
+         
+         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+     }
+
     //----------------------------------
     //  document
     //----------------------------------
@@ -1337,7 +1579,7 @@ public class UITextField  extends UIComponent
      */
     override public function get measuredHeight():Number
     {
-	return super.measuredHeight();
+    	return super.measuredHeight;
        /*  validateNow();
         
         // If we use device fonts, then the unscaled height is 
@@ -1413,7 +1655,7 @@ public class UITextField  extends UIComponent
      */
     override public function get measuredWidth():Number
     {
-	return super.measuredWidth();
+	    return super.measuredWidth;
        /*  validateNow();
         
         // If we use device fonts, then the unscaled width is 
@@ -1702,7 +1944,7 @@ public class UITextField  extends UIComponent
      */
      override public function get styleName():Object /* String, CSSStyleDeclaration, or UIComponent */
      {
-         return super.styleName();
+         return super.styleName;
      } 
 
     /**
@@ -1715,7 +1957,7 @@ public class UITextField  extends UIComponent
 
          _styleName = value;
 
-		 super.styleName(value);
+		 super.styleName = value;
         // if (parent)
         // {
             // StyleProtoChain.initTextField(this);
@@ -1909,7 +2151,7 @@ public class UITextField  extends UIComponent
     /**
      *  @private
      */
-    /* override */ public function setTextFormat(format:Object,
+    /* override */ public function setTextFormat(format:UITextFormat,
                                            beginIndex:int = -1,
                                            endIndex:int = -1):void
     {
@@ -2702,7 +2944,7 @@ public class UITextField  extends UIComponent
     
     /**
      *  @private
-     */
+	 */
      public function set selectable(value:Boolean):void
 		{
 		}
@@ -2711,6 +2953,7 @@ public class UITextField  extends UIComponent
 		{
 			return true;
 		} 
+     
 	public function set getCharIndexAtPoint(value:int):void
 		{
 		}
@@ -2735,6 +2978,33 @@ public class UITextField  extends UIComponent
         return null;
     } */
 
+     public function getUITextFormat():UITextFormat
+     {
+        return new UITextFormat(systemManager);    
+     }
+
+     public function truncateToFit(truncationIndicator:String = null):Boolean
+     {
+         return true;
+     }
+     
+     public function get textWidth():Number
+     {
+         return width;
+     }
+     
+     public function get textHeight():Number
+     {
+         return height;
+     }
+     
+     public function get wordWrap():Boolean
+     {
+         return true;
+     }
+     public function set wordWrap(value:Boolean):void
+     {
+     }
 }
 
 }

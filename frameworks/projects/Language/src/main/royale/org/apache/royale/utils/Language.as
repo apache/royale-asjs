@@ -106,13 +106,18 @@ package org.apache.royale.utils
 
 		/**
 		 * string()
-		 *
 		 * @param value The value to be cast.
 		 * @return {string}
 		 */
 		static public function string(value:*):String
 		{
-			return value == null ? null : value.toString();
+			if(value == null)
+			{
+				return null;
+			}
+			//toString() leads the compiler to emit type coercion,
+			//and concatenation is generally faster than String()
+			return "" + value;
 		}
 
 		/**
@@ -290,10 +295,67 @@ package org.apache.royale.utils
             return boundMethod;
         };
 
+        /**
+         * @param arr
+         * @param names
+         * @param opt
+         */
+        public static function sort(arr:Array,...args):void{
+            var compareFunction:Function = null;
+            var opt:int = 0;
+            if (args.length == 1)
+            {
+                if (typeof args[0] === "function")
+                    compareFunction = args[0];
+                else
+                    opt = args[0];
+            }
+            else if (args.length == 2)
+            {
+                compareFunction = args[0];
+                opt = args[1];
+            }
+                
+            muler = (Array.DESCENDING & opt) > 0?-1: 1;
+            if (compareFunction)
+                arr.sort(compareFunction);
+            else if (opt & Array.NUMERIC){
+                arr.sort(compareAsNumber);
+            }else if (opt & Array.CASEINSENSITIVE){
+                arr.sort(compareAsStringCaseinsensitive);
+            }else{
+                arr.sort(compareAsString);
+            }
+        }
+        
+        private static function compareAsStringCaseinsensitive(a:Object, b:Object):int{
+            var v:int = (a||zeroStr).toString().toLowerCase().localeCompare((b||zeroStr).toString().toLowerCase());
+            if (v != 0){
+                return v*muler;
+            }
+            return 0;
+        }
+        private static function compareAsString(a:Object, b:Object):int{
+            var v:int = (a||zeroStr).toString().localeCompare((b||zeroStr).toString());
+            if (v != 0){
+                return v*muler;
+            }
+        return 0;
+        }
+        
+        private static function compareAsNumber(a:Object, b:Object):int{
+            if (a>b){
+                return muler;
+            }else if (a<b){
+                    return -muler;
+            }
+            return 0;
+        }
+        
 		/**
-		 * @param	arr
-		 * @param	names
-		 * @param	opt
+		 * @param arr
+		 * @param names
+		 * @param opt
 		 */
 		public static function sortOn(arr:Array,names:Object,opt:Object=0):void{
 			if (names is Array){

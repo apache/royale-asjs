@@ -19,12 +19,12 @@
 
 package mx.charts
 {
-/* 
+
 import mx.charts.chartClasses.IChartElement;
 import mx.styles.ISimpleStyleClient;
 import mx.styles.IStyleClient;
-import mx.charts.chartClasses.GraphicsUtilities; */
-import mx.charts.ChartItem;
+import mx.charts.chartClasses.GraphicsUtilities;
+
 /**
  *  The HitData class represents information about the data item
  *  at a specific location on the screen.
@@ -41,13 +41,14 @@ import mx.charts.ChartItem;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
+ * 
  *  @royalesuppresspublicvarwarning
  */
 public class HitData
 {
-/*     include "../core/Version.as";
- */
+//    include "../core/Version.as";
+
 	//--------------------------------------------------------------------------
 	//
 	//  Constructor
@@ -72,26 +73,26 @@ public class HitData
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public function HitData(id:Number, distance:Number, x:Number, y:Number,
 							chartItem:ChartItem)
 	{
 		super();
 
-	/* 	this.id = id;
+		this.id = id;
 		this.distance = distance;
 		this.x = x;
-		this.y = y; */
+		this.y = y;
 		this.chartItem = chartItem;
 		this.item = chartItem.item;
 		
-		/* if (chartItem.element is IStyleClient)
+		if (chartItem.element is IStyleClient)
 		{
 			var f:Object = IStyleClient(chartItem.element).getStyle("fill");
 			
-			contextColor = GraphicsUtilities.colorFromFill(f);  
-		} */
+			contextColor = GraphicsUtilities.colorFromFill(f);
+		}
 	}
 
 	//--------------------------------------------------------------------------
@@ -114,11 +115,82 @@ public class HitData
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var chartItem:ChartItem;
 	
+	//----------------------------------
+	//  contextColor
+	//----------------------------------
 
+	[Inspectable(environment="none")]
+
+	/**
+	 *  An RGB value that can be used to associate an on-screen
+	 *  representation of the associated <code>chartItem</code>.
+	 *  DataTips use this field to help render their data.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var contextColor:uint = 0;
+	
+	//----------------------------------
+	//  dataTipFunction
+	//----------------------------------
+
+	[Inspectable(environment="none")]
+
+	/**
+	 *  A function provided by the HitData creator
+	 *  to generate a user-suitable String for display on screen
+	 *  that describes the referenced item. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var dataTipFunction:Function;
+	
+	//----------------------------------
+	//  displayText
+	//----------------------------------
+
+	[Inspectable(environment="none")]
+
+	/**
+	 *  A description of the associated item for display on screen. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function get displayText():String
+	{
+		return dataTipFunction(this);	
+	}
+	
+	//----------------------------------
+	//  distance
+	//----------------------------------
+
+	[Inspectable(environment="none")]
+
+	/**
+	 *  Specifies the distance between the data item on the screen
+	 *  and the location of the mouse pointer, in pixels.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var distance:Number;
+	
 	//----------------------------------
 	//  element
 	//----------------------------------
@@ -132,15 +204,33 @@ public class HitData
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
-	public function get element():Object 
+	public function get element():IChartElement 
 	{
-		//return chartItem.element; //chartItem.element donot exist in API List https://github.com/apache/royale-asjs/wiki/Emulation-Components
-		return null;
+		return chartItem.element;
 	}
 
-	
+	//----------------------------------
+	//  id
+	//----------------------------------
+
+	[Inspectable(environment="none")]
+
+	/**
+	 *  Specifies a unique identifier representing the data point.
+	 *  You can use this identifier to test for equality
+	 *  between two HitData objects. 
+	 *  If two different chart elements represent the same <code>dataProvider</code> entry,
+	 *  they will have two different identifiers.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var id:Number;
+
 	//----------------------------------
 	//  item
 	//----------------------------------
@@ -153,11 +243,41 @@ public class HitData
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
-	 *  @productversion Royale 0.9.3
+	 *  @productversion Flex 3
 	 */
 	public var item:Object;
 	
+	//----------------------------------
+	//  x
+	//----------------------------------
+
+	[Inspectable(environment="none")]
+
+	/**
+	 *  Specifies the X coordinate of the data item on the screen.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var x:Number;
 	
+	//----------------------------------
+	//  y
+	//----------------------------------
+
+	[Inspectable(environment="none")]
+
+	/**
+	 *  Specifies the Y coordinate of the data item on the screen.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var y:Number;
 }
 
 }

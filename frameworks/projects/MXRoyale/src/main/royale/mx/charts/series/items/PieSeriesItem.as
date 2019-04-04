@@ -20,17 +20,14 @@
 package mx.charts.series.items
 {
 
-	import mx.charts.ChartItem;
-	import mx.core.mx_internal;
-	import mx.graphics.IFill;
-	import org.apache.royale.geom.Point;
-	import mx.charts.series.PieSeries;
+import org.apache.royale.geom.Point;
+import mx.charts.ChartItem;
+import mx.charts.series.PieSeries;
+import mx.core.IUITextField;
+import mx.core.mx_internal;
+import mx.graphics.IFill;
 
-	//import flash.geom.Point;
-	//import mx.charts.series.PieSeries;
-	//import mx.core.IUITextField;
-
-//use namespace mx_internal;
+use namespace mx_internal;
 
 /**
  *  Represents the information required
@@ -40,11 +37,13 @@ package mx.charts.series.items
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class PieSeriesItem extends ChartItem
 {
-    //include "../../../core/Version.as";
+//    include "../../../core/Version.as";
 
     //--------------------------------------------------------------------------
     //
@@ -64,7 +63,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function PieSeriesItem(element:PieSeries = null,
                                   data:Object = null, index:uint = 0)
@@ -81,52 +80,52 @@ public class PieSeriesItem extends ChartItem
     /**
      *  @private
      */
-   // mx_internal var labelText:String;
+    mx_internal var labelText:String;
     
     /**
      *  @private
      */
-  //  mx_internal var labelCos:Number;
+    mx_internal var labelCos:Number;
     
     /**
      *  @private
      */
-   // mx_internal var labelSin:Number;
+    mx_internal var labelSin:Number;
     
     /**
      *  @private
      */
-   // mx_internal var label:IUITextField;
+    mx_internal var label:IUITextField;
 
     /**
      *  @private
      */
-  //  mx_internal var labelX:Number;
+    mx_internal var labelX:Number;
     
     /**
      *  @private
      */
-  //  mx_internal var labelY:Number;
+    mx_internal var labelY:Number;
     
     /**
      *  @private
      */
-   // mx_internal var labelWidth:Number;
+    mx_internal var labelWidth:Number;
     
     /**
      *  @private
      */
-   // mx_internal var labelHeight:Number;
+    mx_internal var labelHeight:Number;
     
     /**
      *  @private
      */
-   // mx_internal var next:PieSeriesItem;
+    mx_internal var next:PieSeriesItem;
 
     /**
      *  @private
      */
-   // mx_internal var prev:PieSeriesItem;
+    mx_internal var prev:PieSeriesItem;
     
     //--------------------------------------------------------------------------
     //
@@ -138,7 +137,7 @@ public class PieSeriesItem extends ChartItem
     //  angle
     //----------------------------------
 
-    // [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The angle, in radians, that this wedge subtends.
@@ -146,8 +145,7 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-	 *  @royalesuppresspublicvarwarning
+     *  @productversion Flex 3
      */
     public var angle:Number;
 
@@ -155,7 +153,7 @@ public class PieSeriesItem extends ChartItem
     //  fill
     //----------------------------------
 
-   //  [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The fill value associated with this wedge of the PieChart control.
@@ -163,16 +161,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-	 *  @royalesuppresspublicvarwarning
+     *  @productversion Flex 3
      */
-     public var fill:IFill;
+    public var fill:IFill;
 
     //----------------------------------
     //  innerRadius
     //----------------------------------
 
-   // [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The distance of the inner edge of this wedge from its origin, measured in pixels. If 0, the wedge should come to a point at the origin.
@@ -180,15 +177,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   //  public var innerRadius:Number;
+    public var innerRadius:Number;
 
     //----------------------------------
     //  labelAngle
     //----------------------------------
 
-   //  [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The angle of the label, in radians, for this wedge.
@@ -196,15 +193,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   // public var labelAngle:Number;
+    public var labelAngle:Number;
     
     //----------------------------------
     //  number
     //----------------------------------
 
-    // [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The value this wedge represents converted into screen coordinates.
@@ -212,15 +209,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-   // public var number:Number;
+    public var number:Number;
 
     //----------------------------------
     //  origin
     //----------------------------------
 
-   //  [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The origin, relative to the PieSeries's coordinate system, of this wedge.
@@ -228,15 +225,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // public var origin:Point;
+    public var origin:Point;
 
     //----------------------------------
     //  outerRadius
     //----------------------------------
 
-    // [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The distance of the outer edge of this wedge from its origin, measured in pixels.
@@ -244,15 +241,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // public var outerRadius:Number;
+    public var outerRadius:Number;
 
     //----------------------------------
     //  percentValue
     //----------------------------------
 
-    // [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The percentage this value represents of the total pie.
@@ -260,15 +257,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // public var percentValue:Number;
+    public var percentValue:Number;
 
     //----------------------------------
     //  startAngle
     //----------------------------------
- 
-    //[Inspectable(environment="none")]
+
+    [Inspectable(environment="none")]
 
     /**
      *  The start angle, in radians, of this wedge.
@@ -276,15 +273,15 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // public var startAngle:Number;
+    public var startAngle:Number;
 
     //----------------------------------
     //  value
     //----------------------------------
 
-    // [Inspectable(environment="none")]
+    [Inspectable(environment="none")]
 
     /**
      *  The value this wedge represents from the PieSeries' dataProvider.
@@ -292,9 +289,9 @@ public class PieSeriesItem extends ChartItem
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    // public var value:Object;
+    public var value:Object;
 
     //--------------------------------------------------------------------------
     //
@@ -306,6 +303,12 @@ public class PieSeriesItem extends ChartItem
      *  @private
      *  Returns a copy of this ChartItem.
      */
-     
+    override public function clone():ChartItem
+    {       
+        var result:PieSeriesItem = new PieSeriesItem(PieSeries(element),item,index);
+        result.itemRenderer = itemRenderer;
+        return result;
+    }
 }
+
 }

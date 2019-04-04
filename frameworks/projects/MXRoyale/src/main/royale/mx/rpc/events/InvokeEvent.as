@@ -20,9 +20,8 @@
 package mx.rpc.events
 {
 
-/* import flash.events.Event;
- */
- //import mx.messaging.messages.IMessage;
+import org.apache.royale.events.Event;
+import mx.messaging.messages.IMessage;
 import mx.rpc.AsyncToken;
 
 /**
@@ -33,8 +32,8 @@ import mx.rpc.AsyncToken;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class InvokeEvent 
-{	/* extends AbstractEvent */
+public class InvokeEvent extends AbstractEvent
+{
     /**
      * The INVOKE event type.
      * 
@@ -62,7 +61,7 @@ public class InvokeEvent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   // public static const INVOKE:String = "invoke";
+    public static const INVOKE:String = "invoke";
 
     /**
      * Create a new InvokeEvent.
@@ -79,18 +78,18 @@ public class InvokeEvent
      *  @productversion Flex 3
      */
     public function InvokeEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false,
-            token:AsyncToken = null, message:Object = null)
+            token:AsyncToken = null, message:IMessage = null)
     {
-       // super(type, bubbles, cancelable, token, message);
+        super(type, bubbles, cancelable, token, message);
     }
 
     /**
      * @private
      */
-    /* public static function createEvent(token:AsyncToken = null, message:IMessage = null):InvokeEvent
+    public static function createEvent(token:AsyncToken = null, message:IMessage = null):InvokeEvent
     {
         return new InvokeEvent(InvokeEvent.INVOKE, false, false, token, message);
-    } */
+    }
 
     /** 
      * Because this event can be re-dispatched we have to implement clone to
@@ -98,10 +97,11 @@ public class InvokeEvent
      * event type.
      * @private
      */
-    /* override public function clone():Event
+    [SWFOverride(returns="flash.events.Event"))]
+    override public function clone():Event
     {
         return new InvokeEvent(type, bubbles, cancelable, token, message);
-    } */
+    }
    /**
     * Returns a string representation of the InvokeEvent.
     *
@@ -112,10 +112,10 @@ public class InvokeEvent
     *  @playerversion AIR 1.1
     *  @productversion Flex 3
     */
-   /*  override public function toString():String
+    override public function toString():String
     {
         return formatToString("InvokeEvent", "messageId", "type", "bubbles", "cancelable", "eventPhase");
-    } */
+    }
 }
 
 }

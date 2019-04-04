@@ -28,8 +28,9 @@ import mx.core.mx_internal;
 import spark.components.supportClasses.GroupBase;
 import spark.core.NavigationUnit;
 
-import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.LayoutBase;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
@@ -75,7 +76,21 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
         if (n == 0)
             return false;
         
-        target.layout.updateDisplayList(target.width, target.height);
+        if (target != host)
+        {
+            var tlc:UIComponent = host as UIComponent;
+            if (!tlc.isWidthSizedToContent() &&
+                !tlc.isHeightSizedToContent())
+                target.setActualSize(tlc.width, tlc.height);
+        }
+        
+        var w:Number = target.width;
+        var h:Number = target.height;
+        if (target.isHeightSizedToContent())
+            h = target.measuredHeight;
+        if (target.isWidthSizedToContent())
+            w = target.measuredWidth;
+        target.layout.updateDisplayList(w, h);
         
         // update the target's actual size if needed.
         if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
@@ -101,7 +116,8 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
     override public function set strand(value:IStrand):void
     {
         _strand = value;
-        _target = value as GroupBase;
+        var host:UIBase = value as UIBase;
+        _target = (host.view as ILayoutHost).contentView as GroupBase;
         super.strand = value;
         
     }

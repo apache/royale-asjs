@@ -60,7 +60,7 @@ package org.apache.royale.jewel.beads.validators
 			super.strand = value;
 			COMPILE::JS
 			{
-				hostComponent.addEventListener(Event.CHANGE, validate, false);
+				hostComponent.addEventListener(triggerEvent, validate, false);
 			}
 		}
 

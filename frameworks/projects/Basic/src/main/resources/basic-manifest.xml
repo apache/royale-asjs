@@ -77,10 +77,12 @@
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>
+    <component id="NoLayout" class="org.apache.royale.html.beads.layouts.NoLayout"/>
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
     <component id="LayoutChangeNotifier" class="org.apache.royale.html.beads.layouts.LayoutChangeNotifier"/>
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
+    <component id="VirtualDataContainerView" class="org.apache.royale.html.beads.VirtualDataContainerView"/>
     <component id="VirtualListView" class="org.apache.royale.html.beads.VirtualListView"/>
     <component id="VirtualListVerticalLayout" class="org.apache.royale.html.beads.layouts.VirtualListVerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
@@ -146,6 +148,7 @@
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
+    <component id="DisableLoaderBead" class="org.apache.royale.html.beads.DisableLoaderBead" />
     <component id="DisableChildrenBead" class="org.apache.royale.html.beads.DisableChildrenBead" />
     <component id="NumericOnlyTextInputBead" class="org.apache.royale.html.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />
@@ -217,6 +220,7 @@
     <component id="OneFlexibleChildHorizontalLayout" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayout"/>
     <component id="OneFlexibleChildVerticalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildVerticalLayoutForOverflow"/>
     <component id="OneFlexibleChildHorizontalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayoutForOverflow"/>
+    <component id="ScrollingFlexibleChild" class="org.apache.royale.html.beads.layouts.ScrollingFlexibleChild"/>
 
     <component id="SubAppLoader" class="org.apache.royale.html.SubAppLoader" />
 
@@ -247,5 +251,8 @@
     <component id="CascadingMenuItemRenderer" class="org.apache.royale.html.supportClasses.CascadingMenuItemRenderer" />
 
     <component id="CascadingMenuFactory" class="org.apache.royale.html.beads.CascadingMenuFactory" />
+
+    <component id="ModalDisplay" class="org.apache.royale.html.beads.plugin.ModalDisplay"/>
+    <component id="ModalOverlay" class="org.apache.royale.html.beads.plugin.ModalOverlay"/>
 
 </componentPackage>

@@ -18,19 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.ISelectionModel;
-    import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.DataContainerBase;
-    import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.jewel.beads.models.ListPresentationModel;
-    import org.apache.royale.html.elements.Select;
-
     COMPILE::JS
     {
-        import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import goog.events;
+
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.jewel.beads.models.IDropDownListModel;
     }
+    import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.html.elements.Select;
+    import org.apache.royale.jewel.beads.models.ListPresentationModel;
+    import org.apache.royale.jewel.supportClasses.DataContainerBase;
+
 
     //--------------------------------------
     //  Events
@@ -82,26 +84,6 @@ package org.apache.royale.jewel
             typeNames = "jewel dropdownlist";
 		}
 
-        private var _prompt:String = "";
-
-        /**
-         *  The prompt for the DropDownList control.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        public function get prompt():String
-        {
-            return _prompt;
-        }
-
-        public function set prompt(value:String):void
-        {
-            _prompt = value;
-        }
-
         protected var _dropDown:Select;
 
         public function get dropDown():Select
@@ -114,6 +96,7 @@ package org.apache.royale.jewel
             _dropDown = value;
         }
 
+        [Bindable("labelFieldChanged")]
         /**
 		 *  The name of field within the data used for display. Each item of the
 		 *  data should have a property with this name.
@@ -136,6 +119,7 @@ package org.apache.royale.jewel
             IDataProviderModel(model).labelField = value;
 		}
 
+        [Bindable("dataProviderChanged")]
         /**
 		 *  The data being display by the List.
 		 *
@@ -157,50 +141,11 @@ package org.apache.royale.jewel
             IDataProviderModel(model).dataProvider = value;
         }
 
-        /**
-         *  @private
-         *  @royaleignorecoercion HTMLOptionElement
-         *  @royaleignorecoercion HTMLSelectElement
-         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
-         */
-        // public function set dataProvider(value:Object):void
-        // {
-        //     ISelectionModel(model).dataProvider = value;
-        //     COMPILE::JS
-        //     {
-        //         var dp:HTMLOptionsCollection;
-        //         var i:int;
-        //         var n:int;
-        //         var opt:HTMLOptionElement;
-        //         var dd:HTMLSelectElement = element as HTMLSelectElement;
-
-        //         dp = dd.options;
-        //         n = dp.length;
-        //         for (i = 0; i < n; i++) {
-        //             dd.remove(0);
-        //         }
-        //         // The value could be undefined if data binding is used and the variable is not initialized.
-        //         if(!value)return;
-                
-        //         var lf:String = labelField;
-        //         n = value.length;
-        //         for (i = 0; i < n; i++) {
-        //             opt = document.createElement('option') as HTMLOptionElement;
-        //             if (lf)
-        //                 opt.text = value[i][lf];
-        //             else
-        //                 opt.text = value[i];
-        //             dd.add(opt, null);
-        //         }
-
-        //     }
-        // }
-
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
         /**
          *  The index of the currently selected item. Changing this value
 		 *  also changes the selectedItem property.
-         *  
+         *
          *  @copy org.apache.royale.core.ISelectionModel#selectedIndex
          *
          *  @langversion 3.0
@@ -218,21 +163,26 @@ package org.apache.royale.jewel
          *  @private
          *  @royaleignorecoercion HTMLSelectElement
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         *  @royaleignorecoercion org.apache.royale.jewel.beads.models.IDropDownListModel
          */
         public function set selectedIndex(value:int):void
         {
             ISelectionModel(model).selectedIndex = value;
-            // COMPILE::JS
-            // {
-            //     (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
-            // }
+            COMPILE::JS
+            {
+                value = ISelectionModel(model).selectedIndex;
+                if (model is IDropDownListModel) {
+                    value += IDropDownListModel(model).offset;
+                }
+                (element as HTMLSelectElement).selectedIndex = value;
+            }
         }
 
-        [Bindable("change")]
+        [Bindable("selectionChanged")]
         /**
          *  The item currently selected. Changing this value also
 		 *  changes the selectedIndex property.
-         * 
+         *
          *  @copy org.apache.royale.core.ISelectionModel#selectedItem
          *
          *  @langversion 3.0
@@ -250,14 +200,16 @@ package org.apache.royale.jewel
          *  @private
          *  @royaleignorecoercion HTMLSelectElement
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
          */
         public function set selectedItem(value:Object):void
         {
             ISelectionModel(model).selectedItem = value;
-            // COMPILE::JS
-            // {
-            //     (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex;
-            // }
+            COMPILE::JS
+            {
+                const offset:int = model is IDropDownListModel ? IDropDownListModel(model).offset : 0;
+                (element as HTMLSelectElement).selectedIndex = ISelectionModel(model).selectedIndex + offset;
+            }
         }
 
         /**
@@ -278,7 +230,7 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
-        
+
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -289,10 +241,9 @@ package org.apache.royale.jewel
         {
 			addElementToWrapper(this, 'select');
             (element as HTMLSelectElement).size = 1;
-            
+
             goog.events.listen(element, 'change', changeHandler);
-            
-            positioner = element;
+
             return element;
         }
 
@@ -302,7 +253,14 @@ package org.apache.royale.jewel
         COMPILE::JS
         protected function changeHandler(event:Event):void
         {
-            model.selectedIndex = (element as HTMLSelectElement).selectedIndex;
+            var index:int = (element as HTMLSelectElement).selectedIndex;
+
+            var ddModel:IDropDownListModel = model as IDropDownListModel;
+            if (ddModel) {
+                index -= ddModel.offset;
+            }
+
+            model.selectedIndex = index;
         }
     }
 }

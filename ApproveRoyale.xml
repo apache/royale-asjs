@@ -239,17 +239,17 @@
     <target name="download" description="download the release package">
         <get src="${package.url.path}/${package.url.name}.${package.suffix}"
             dest="${basedir}/${package.url.name}.${package.suffix}" />
-        <get src="${package.url.path}/${package.url.name}.${package.suffix}.SHA-512"
-            dest="${basedir}/${package.url.name}.${package.suffix}.SHA-512" />
+        <get src="${package.url.path}/${package.url.name}.${package.suffix}.sha512"
+            dest="${basedir}/${package.url.name}.${package.suffix}.sha512" />
         <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}"
             dest="${basedir}/${bin.package.url.name}.${package.suffix}" />
-        <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}.SHA-512"
-            dest="${basedir}/${bin.package.url.name}.${package.suffix}.SHA-512" />
+        <get src="${bin.package.url.path}/${bin.package.url.name}.${package.suffix}.sha512"
+            dest="${basedir}/${bin.package.url.name}.${package.suffix}.sha512" />
         <!-- no doc packages in 0.8.0
         <get src="${doc.package.url.path}/${doc.package.url.name}.zip"
             dest="${basedir}/${doc.package.url.name}.zip" />
-        <get src="${doc.package.url.path}/${doc.package.url.name}.zip.SHA-512"
-            dest="${basedir}/${doc.package.url.name}.zip.SHA-512" />-->
+        <get src="${doc.package.url.path}/${doc.package.url.name}.zip.sha512"
+            dest="${basedir}/${doc.package.url.name}.zip.sha512" />-->
         <antcall target="get_asc" />
     </target>
 
@@ -263,8 +263,8 @@
         dest="${basedir}/${doc.package.url.name}.zip.asc" />-->
     </target>
     
-    <target name="check-sigs" description="check SHA-512 and gpg sigs">
-		<replace file="${basedir}/${package.url.name}.${package.suffix}.SHA-512"
+    <target name="check-sigs" description="check sha512 and gpg sigs">
+		<replace file="${basedir}/${package.url.name}.${package.suffix}.sha512"
 			token=" " />
 		<checksum file="${basedir}/${package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="SHA-512.ok" fileext=".sha512"/>
         <condition property="SHA-512Invalid">
@@ -273,7 +273,7 @@
 			</not>
         </condition>
         <fail message="SHA-512 checksum did not match" if="SHA-512Invalid" />
-        <replace file="${basedir}/${bin.package.url.name}.${package.suffix}.SHA-512"
+        <replace file="${basedir}/${bin.package.url.name}.${package.suffix}.sha512"
         token=" " />
         <checksum file="${basedir}/${bin.package.url.name}.${package.suffix}" algorithm="SHA-512" verifyproperty="bin.SHA-512.ok" fileext=".sha512"/>
         <condition property="BinarySHA-512Invalid">
@@ -283,7 +283,7 @@
         </condition>
         <fail message="Binary Package SHA-512 checksum did not match" if="BinarySHA-512Invalid" />
         <!-- no doc packages in 0.8.0
-        <replace file="${basedir}/${doc.package.url.name}.zip.SHA-512"
+        <replace file="${basedir}/${doc.package.url.name}.zip.sha512"
         token=" " />
         <checksum file="${basedir}/${doc.package.url.name}.zip" algorithm="SHA-512" verifyproperty="doc.SHA-512.ok" fileext=".sha512"/>
         <condition property="DocSHA-512Invalid">
@@ -386,6 +386,7 @@
                 <exclude name="royale-compiler/NOTICE.base"/>
                 <exclude name="royale-compiler/NOTICE.fdb"/>
                 <exclude name="royale-compiler/NOTICE.oem"/>
+                <exclude name="royale-asjs/examples/mxroyale/tourdeflexmodules/src/swfobject.js"/>
             </fileset>
         </rat:report>
 		<antcall target="display-text" >
@@ -472,18 +473,24 @@
                 <exclude name="royale-asjs/frameworks/libs/Graphics.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/HTML.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/HTML5.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Icons.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/jQuery.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Jewel.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/JewelTheme.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Language.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/MaterialDesignLite.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Mobile.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/MXRoyale.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Network.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Reflection.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/RoyaleSite.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/RoyaleUnit.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/SparkRoyale.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Storage.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/TLF.swc"/>
-                <exclude name="royale-asjs/frameworks/libs/Testing.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Text.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/XML.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/AceJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/BasicJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/BindingJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/ChartsJS.swc"/>
@@ -500,19 +507,24 @@
                 <exclude name="royale-asjs/frameworks/js/libs/GraphicsJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/HTMLJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/HTML5JS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/IconsJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/JewelJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/jQueryJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/LanguageJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/MaterialDesignLiteJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/MobileJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/MXRoyaleJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/NetworkJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/ReflectionJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/RoyaleSiteJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/RoyaleUnitJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/SparkRoyaleJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/StorageJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TLFJS.swc"/>
-                <exclude name="royale-asjs/frameworks/js/libs/TestingJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TextJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/XMLJS.swc"/>
                 <exclude name="royale-asjs/frameworks/themes/Halo/Halo.swc"/>
+                <exclude name="royale-asjs/frameworks/themes/JewelTheme/target/JewelTheme.swc"/>
                 
                 <exclude name="royale-asjs/frameworks/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/*.pbj"/>
                 <exclude name="royale-asjs/frameworks/projects/Basic/src/test/royale/FlexUnitRoyaleApplication.swf"/>
@@ -530,6 +542,7 @@
                 <exclude name="royale-asjs/js/libs/jquery.swc"/>
                 <exclude name="royale-asjs/js/libs/js.swc"/>
                 <exclude name="royale-asjs/js/libs/node.swc"/>
+                <exclude name="royale-asjs/js/libs/ace-1.2.3.swc"/>
 
                 <exclude name="royale-asjs/js/lib/args4j.jar"/>
                 <exclude name="royale-asjs/js/lib/asdoc.jar"/>
@@ -573,6 +586,7 @@
                 
                 <exclude name="royale-asjs/templates/swfobject/swfobject.js"/>
                 <exclude name="royale-asjs/templates/swfobject/expressInstall.swf"/>
+                <exclude name="royale-asjs/examples/mxroyale/tourdeflexmodules/src/swfobject.js"/>
             </fileset>
         </rat:report>
         
@@ -843,8 +857,8 @@
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
         <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.SHA-512"
-             dest="${basedir}/${binary.jx.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.sha512"
+             dest="${basedir}/${binary.jx.kit}.zip.sha512" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext=".sha512"/>
         <condition property="CompilerSHA-512Invalid">
             <not>
@@ -862,8 +876,8 @@
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
         <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip"
         dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip.SHA-512"
-        dest="${basedir}/${binary.jx.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <get src="https://dist.apache.org/repos/dist/dev/royale/compiler/${release.version}/rc1/binaries/${binary.jx.kit}.zip.sha512"
+        dest="${basedir}/${binary.jx.kit}.zip.sha512" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext=".sha512"/>
         <condition property="CompilerSHA-512Invalid">
             <not>
@@ -880,8 +894,8 @@
         <property name="binary.flexunit.kit" value="apache.royale-flexunit-4.2.0-4.12.0-bin"/>
         <get src="https://archive.apache.org/dist/royale/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip"
         dest="${basedir}/${binary.flexunit.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://archive.apache.org/dist/royale/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.SHA-512"
-        dest="${basedir}/${binary.flexunit.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <get src="https://archive.apache.org/dist/royale/flexunit/4.2.0/binaries/${binary.flexunit.kit}.zip.sha512"
+        dest="${basedir}/${binary.flexunit.kit}.zip.sha512" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.flexunit.kit}.zip" algorithm="SHA-512" verifyproperty="flexunit.SHA-512.ok" fileext=".sha512"/>
         <condition property="FlexUnitSHA-512Invalid">
             <not>
@@ -898,8 +912,8 @@
         <property name="binary.sdk.kit" value="${kit.sdk.prefix}-bin"/>
         <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip"
         dest="${basedir}/${binary.sdk.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip.SHA-512"
-        dest="${basedir}/${binary.sdk.kit}.zip.SHA-512" verbose="true" skipexisting="true"/>
+        <get src="https://archive.apache.org/dist/royale/4.15.0/binaries/${binary.sdk.kit}.zip.sha512"
+        dest="${basedir}/${binary.sdk.kit}.zip.sha512" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.sdk.kit}.zip" algorithm="SHA-512" verifyproperty="sdk.SHA-512.ok" fileext=".sha512"/>
         <condition property="SDKSHA-512Invalid">
             <not>

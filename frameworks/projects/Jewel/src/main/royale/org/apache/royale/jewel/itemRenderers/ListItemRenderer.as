@@ -27,7 +27,7 @@ package org.apache.royale.jewel.itemRenderers
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 	
 	/**
@@ -55,12 +55,18 @@ package org.apache.royale.jewel.itemRenderers
 			typeNames = "jewel item";
 			addClass("selectable");
 
+			if(MXMLDescriptor != null)
+			{
+				addClass("mxmlContent");
+			}
+
 			textAlign = new TextAlign();
 			addBead(textAlign);
 		}
 
 		private var _text:String = "";
 
+		[Bindable(event="textChange")]
         /**
          *  The text of the renderer
          *  
@@ -76,21 +82,20 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set text(value:String):void
 		{
-            _text = value;
-			
-			COMPILE::JS
-			{
-			if(textNode != null)
-			{
-				textNode.nodeValue = _text;
-			}	
+            if(value != _text) {
+				_text = value;
+				COMPILE::JS
+				{
+				if(MXMLDescriptor == null)
+				{
+					element.innerHTML = _text;
+				}
+				}
+				dispatchEvent(new Event('textChange'));
 			}
 		}
 
-		COMPILE::JS
-        protected var textNode:Text;
-
-		private var textAlign:TextAlign;
+        private var textAlign:TextAlign;
 
 		/**
 		 *  How text align in the itemRenderer instance.
@@ -120,12 +125,11 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		override public function set data(value:Object):void
-		{
-			super.data = value;
+        override public function set data(value:Object):void
+        {
             text = getLabelFromData(this, value);
-			dispatchEvent(new Event("dataChange"));
-		}
+            super.data = value;
+        }
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -135,12 +139,6 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this, 'li');
-            
-			if(MXMLDescriptor == null)
-			{
-				textNode = document.createTextNode('') as Text;
-				element.appendChild(textNode);
-			}
             return element;
         }
 

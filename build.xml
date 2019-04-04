@@ -150,7 +150,7 @@
     </target>
     
     <target name="release"
-        depends="block-flat-fonts,source-release,binary-release,rat-check"
+        depends="block-flat-fonts,check-compiler-home,check-typedefs-home,source-release,binary-release,rat-check"
         description="Creates source and binary kits for Apache Royale."/>
         
     <target name="release-jenkins" 
@@ -577,6 +577,10 @@ limitations under the License.
         <delete file="${ROYALE_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
+        <delete dir="${basedir}" failonerror="false">
+            <include name="**/*.log"/>
+            <include name="**/*.mdmp"/>
+        </delete>
     </target>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
@@ -624,7 +628,7 @@ limitations under the License.
 
     <target name="checkintests-clean">
         <delete file="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf" failonerror="false"/>
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/mustella/tests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="player-clean">
@@ -780,20 +784,20 @@ limitations under the License.
     </target>
 
     <target name="stage-compiler" >
-        <echo file="${basedir}/../royale-compiler/env.properties">env.ASJS_HOME=${basedir}</echo>
+        <echo file="${ROYALE_COMPILER_REPO}/env.properties">env.ASJS_HOME=${basedir}</echo>
         <!-- windows needs backslashes escaped -->
-        <replaceregexp file="${basedir}/../royale-compiler/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
-        <ant dir="${basedir}/../royale-compiler" target="wipe-all" />
-        <ant dir="${basedir}/../royale-compiler" target="stage-all" >
+        <replaceregexp file="${ROYALE_COMPILER_REPO}/env.properties" match="\\" replace="\\\\\\\\" flags="g" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="wipe-all" />
+        <ant dir="${ROYALE_COMPILER_REPO}" target="stage-all" >
             <property name="staging-dir" value="${basedir}/temp/royale-compiler" />
         </ant>
     </target>
     
     <target name="stage-typedefs" >
-        <ant dir="${basedir}/../royale-typedefs" target="wipe" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" target="wipe" />
         <mkdir dir="${staging-dir}/../royale-typedefs"/>
         <copy todir="${staging-dir}/../royale-typedefs" includeEmptyDirs="false" >
-            <fileset dir="${basedir}/../royale-typedefs" includes="**" />
+            <fileset dir="${ROYALE_TYPEDEFS_HOME}" includes="**" />
         </copy>
     </target>
     
@@ -838,7 +842,6 @@ limitations under the License.
                 <exclude name=".DS_Store"/>
                 <exclude name="**/.DS_Store"/>
                 <exclude name=".git/**"/>
-                <exclude name=".mvn/**"/>
                 <exclude name="in/**"/>
                 <exclude name="out/**"/>
                 <exclude name="**/out/**"/>
@@ -1055,6 +1058,8 @@ limitations under the License.
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
         tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" />
         <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml" match="(\s+?)&lt;path-element&gt;libs\/[^\.]+\.swc&lt;\/path-element&gt;(\s+?)" replace="" flags ="g"/>
+        <replace file="${ROYALE_HOME}/frameworks/royale-config.xml" token="&lt;path-element&gt;libs/player/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}&lt;/path-element&gt;" value="&lt;path-element&gt;libs/KeepsFBFromHanging.swc&lt;/path-element&gt;"/>
     </target>
     
     <!--
@@ -1319,7 +1324,7 @@ limitations under the License.
             file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <targets>JSRoyale</targets>
-            <library-path dir="${ROYALE_HOME}" append="true">
+            <library-path dir="${ROYALE_HOME}">
                 <include name="mustella/mustella.swc"/>
             </library-path>
             <js-external-library-path dir="${basedir}">
@@ -1534,7 +1539,7 @@ limitations under the License.
     <target name="mxtests" depends="load-task,mxtests-compile-java" description="run MX tests using mustella"  if="env.AIR_HOME">
         <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
-        <mxmlc fork="true" debug="true"
+        <mxmlc fork="true" debug="true" configname="flex"
                closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
@@ -1674,7 +1679,7 @@ limitations under the License.
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" />
-        <mxmlc fork="true" debug="true"
+        <mxmlc fork="true" debug="true" configname="flex"
             closure-lib="${env.GOOG_HOME}"
             file="${basedir}/mustella/tests/mxtests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
@@ -1970,9 +1975,16 @@ limitations under the License.
     </target>
 
     <target name="check-royale-compiler">
+        <available file="${ROYALE_COMPILER_REPO}"
+        type="dir"
+        property="royale-compiler-exists"/>
         <available file="${base.folder.name}/royale-compiler"
         type="dir"
         property="royale-compiler-exists"/>
+        <available file="${base.folder.name}/royale-compiler"
+        type="dir"
+        property="ROYALE_COMPILER_REPO"
+        value="${base.folder.name}/royale-compiler"/>
     </target>
 
     <target name="clone-royale-compiler" depends="check-royale-compiler" unless="royale-compiler-exists">
@@ -1982,6 +1994,7 @@ limitations under the License.
             <arg value="https://github.com/apache/royale-compiler.git" />
             <arg value="royale-compiler" />
         </exec>
+        <property name="ROYALE_COMPILER_REPO" value="${base.folder.name}/royale-compiler" />
         <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-compiler">
             <arg value="checkout" />
             <arg value="develop" />
@@ -1989,9 +2002,16 @@ limitations under the License.
     </target>
 
     <target name="check-royale-typedefs">
+        <available file="${ROYALE_TYPEDEFS_HOME}"
+        type="dir"
+        property="royale-typedefs-exists"/>
         <available file="${base.folder.name}/royale-typedefs"
         type="dir"
         property="royale-typedefs-exists"/>
+        <available file="${base.folder.name}/royale-typedefs"
+        type="dir"
+        property="ROYALE_TYPEDEFS_HOME"
+        value="${base.folder.name}/royale-typedefs"/>
     </target>
 
     <target name="clone-royale-typedefs" depends="check-royale-typedefs" unless="royale-typedefs-exists">
@@ -2001,18 +2021,19 @@ limitations under the License.
             <arg value="https://github.com/apache/royale-typedefs.git" />
             <arg value="royale-typedefs" />
         </exec>
+        <property name="ROYALE_TYPEDEFS_HOME" value="${base.folder.name}/royale-typedefs" />
         <exec executable="git" failonerror="true" dir="${base.folder.name}/royale-typedefs">
             <arg value="checkout" />
             <arg value="develop" />
         </exec>
     </target>
 
-    <target name="build-all" depends="check-playerglobal-home,check-air-home">
+    <target name="build-all" depends="check-playerglobal-home,check-air-home,check-royale-compiler,check-royale-typedefs">
         <property name="font.donot.ask" value="set" />
         <antcall target="ask-before-build-all" />
         <property name="javadoc.zip.uptodate" value="set" /> <!-- javadoc fails on windows? -->
-        <ant dir="${base.folder.name}/royale-compiler" />
-        <ant dir="${base.folder.name}/royale-typedefs" />
+        <ant dir="${ROYALE_COMPILER_REPO}" />
+        <ant dir="${ROYALE_TYPEDEFS_HOME}" />
     </target>
     <target name="ask-before-build-all" unless="release.target">
         <input

@@ -65,7 +65,14 @@ import org.apache.royale.html.beads.IComboBoxView;
 import org.apache.royale.core.IComboBoxModel;
 import org.apache.royale.core.IUIBase;
 import mx.events.FlexEvent;
-    
+import mx.collections.IList;
+import mx.collections.XMLListCollection;
+import mx.collections.ArrayCollection;
+import mx.collections.ICollectionView;
+import mx.collections.ListCollectionView;
+import org.apache.royale.html.beads.DisableBead;
+import org.apache.royale.events.Event;
+
 /**
  *  The alpha of the content background for this component.
  * 
@@ -86,7 +93,7 @@ import mx.events.FlexEvent;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */ 
-//[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes", theme="spark")]
+[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  Color of focus ring when the component is in focus
@@ -393,8 +400,24 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      *  @private
      *  Storage for enabled property.
      */
+    private var _disableBead:DisableBead;
     private var _enabled:Boolean = false;
+    
+    private var _contentBackgroundColor:uint = 0xFFFFFF;
 
+    /**
+     *  @private
+     */
+    public function get contentBackgroundColor():uint{
+	
+        return _contentBackgroundColor;
+    }
+    
+    public function set contentBackgroundColor(value:uint):void
+    {
+       _contentBackgroundColor = value;
+    }
+    
     /**
      *  @private
      */
@@ -407,13 +430,20 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     override public function get enabled():Boolean
     {
-        trace("ComboBox.enabled not implemented");
-        return true;
+        return _enabled;
     }
     
     override public function set enabled(value:Boolean):void
     {
-        trace("ComboBox.enabled not implemented");
+        _enabled = value;
+	if (_disableBead == null) {
+		_disableBead = new DisableBead();
+		addBead(_disableBead);
+	}
+
+	_disableBead.disabled = !value;
+
+	dispatchEvent(new org.apache.royale.events.Event("enabledChanged"));
     }
 
     //--------------------------------------------------------------------------
@@ -472,6 +502,36 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     public function set dataProvider(value:Object):void
     {
+        if (value is Array)
+        {
+            value = new ArrayCollection(value as Array);
+        }
+        else if (value is ICollectionView)
+        {
+            value = ICollectionView(value);
+        }
+        else if (value is IList)
+        {
+            value = new ListCollectionView(IList(value));
+        }
+        else if (value is XMLList)
+        {
+            value = new XMLListCollection(value as XMLList);
+        }
+        else if (value is XML)
+        {
+            var xl:XMLList = new XMLList();
+            xl += value;
+            value = new XMLListCollection(xl);
+        }
+        else
+        {
+            // convert it to an array containing this one item
+            var tmp:Array = [];
+            if (value != null)
+                tmp.push(value);
+            value = new ArrayCollection(tmp);
+        }
         IComboBoxModel(model).dataProvider = value;
         if (value && IComboBoxModel(model).selectedIndex == -1)
             IComboBoxModel(model).selectedIndex = 0;

@@ -19,21 +19,21 @@
 package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.IRangeModel;
-	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IParentIUIBase;
+    import org.apache.royale.core.IRangeModel;
+    import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.ValueChangeEvent
-	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.jewel.Label;
-	import org.apache.royale.jewel.Spinner;
-	import org.apache.royale.jewel.TextInput;
+    import org.apache.royale.jewel.Spinner;
+    import org.apache.royale.jewel.TextInput;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 

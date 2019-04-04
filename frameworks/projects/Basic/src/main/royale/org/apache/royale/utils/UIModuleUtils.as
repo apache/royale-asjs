@@ -36,6 +36,7 @@ package org.apache.royale.utils
 	
     COMPILE::JS
     {
+        import goog.DEBUG;
         import goog.global;
         import org.apache.royale.core.WrappedHTMLElement;   
     }
@@ -185,8 +186,11 @@ package org.apache.royale.utils
 				}
 			}
 			COMPILE::JS {
-                loadCSS(modulePath ? modulePath + "/" + moduleName + ".css" :
-                    moduleName + ".css");
+                var suffix:String = ".min.css";
+                if (goog.DEBUG)
+                    suffix = ".css";
+                loadCSS(modulePath ? modulePath + "/" + moduleName + suffix :
+                    moduleName + suffix);
             }
         }
         

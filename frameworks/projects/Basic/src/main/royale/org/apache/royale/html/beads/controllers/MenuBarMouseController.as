@@ -21,17 +21,17 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IMenu;
+	import org.apache.royale.core.IMenuBarModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
-	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.Menu;
 	import org.apache.royale.html.MenuBar;
-	import org.apache.royale.html.beads.models.MenuBarModel;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -114,13 +114,18 @@ package org.apache.royale.html.beads.controllers
 			var menuFactory:IFactory = loadBeadFromValuesManager(IFactory, "iMenuFactory", _strand) as IFactory;
 			var menu:IMenu = menuFactory.newInstance() as IMenu;
 			
-			var model:MenuBarModel = _strand.getBeadByType(IBeadModel) as MenuBarModel;
+			var model:IMenuBarModel = _strand.getBeadByType(IBeadModel) as IMenuBarModel;
 			
-			menu.dataProvider = event.data[model.submenuField];
+			menu.dataProvider = getMenuDataProvider(event.data, model.submenuField);
 			menu.labelField = model.labelField;
 			menu.submenuField = model.submenuField;
 			menu.parentMenuBar = _strand as IEventDispatcher;
             showMenu(menu, component);
+        }
+        
+        protected function getMenuDataProvider(obj:Object, fieldName:String):Object
+        {
+            return obj[fieldName];
         }
         
         protected function showMenu(menu:IMenu, component:IUIBase):void

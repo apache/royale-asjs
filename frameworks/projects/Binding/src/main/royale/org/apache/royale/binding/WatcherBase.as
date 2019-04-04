@@ -156,7 +156,7 @@ package org.apache.royale.binding
             else
                 listeners.push(binding);
             
-            binding.valueChanged(value);
+            binding.valueChanged(value, false);
         }
                 
         /**
@@ -333,7 +333,7 @@ package org.apache.royale.binding
                 
                 for (var i:int = 0; i < n; i++)
                 {
-                    listeners[i].valueChanged(value);
+                    listeners[i].valueChanged(value, false);
                 }
             }
         }

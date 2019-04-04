@@ -321,11 +321,14 @@ package org.apache.royale.core
                                 var child:IChild = ai.document[ai.relativeTo] as IChild;
                                 if (ai.destination == null)
                                     parent = child.parent as IParent;
-                                var index:int = parent.getElementIndex(child);
-                                if (ai.position == "after")
-                                    index++;
-                                parent.addElementAt(item, index);
-                                childrenAdded = true;
+								if(parent != null) 
+								{
+	                                var index:int = parent.getElementIndex(child);
+	                                if (ai.position == "after")
+	                                    index++;
+	                                parent.addElementAt(item, index);
+	                                childrenAdded = true;
+								}
                             }
                             else
                             {

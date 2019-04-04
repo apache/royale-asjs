@@ -1153,6 +1153,8 @@ public class UnitTester extends EventDispatcher
 							var child:DisplayObject;
                             if ("$getChildAt" in doc)
                                 child = doc["$getChildAt"](i);
+                            else if ("$sprite_getChildAt" in doc)
+                                child = doc["$sprite_getChildAt"](i);
                             else
                                 child = doc.getChildAt(i);
 							if (swfLoaders[doc] && child is flash.display.Loader)
@@ -1530,6 +1532,12 @@ public class UnitTester extends EventDispatcher
 	 */
 	public static var runnerPort:int = 9999;
 
+    /**
+     *  Which port to talk to the Runner on
+     *  
+     */
+    public static var noScriptComplete:Boolean = false;
+    
 
 	/**
 	 *  Whether to close the Standalone player when done

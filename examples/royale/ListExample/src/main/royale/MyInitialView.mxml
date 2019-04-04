@@ -64,7 +64,23 @@ limitations under the License.
 				(applicationModel as ProductsModel).productNames.addItemAt("Wing Bats", 2);
 			}
 			private function onScrollEnd():void{
-				trace("scroll end");
+				addToInfiniteList();
+			}
+
+			private function infiniteListInitCompleteHandler():void
+			{
+				infiniteList.dataProvider = new ArrayList();
+				addToInfiniteList();
+			}
+
+			private function addToInfiniteList():void
+			{
+				var dp:ArrayList = infiniteList.dataProvider as ArrayList;
+				for (var i:int = 0; i < 100; i++)
+				{
+					dp.source.push("Item " + (dp.length + 1));
+				}
+				infiniteList.dataProvider = new ArrayList(dp.source);
 			}
 
 			private function assignDataProvider():void{
@@ -98,11 +114,12 @@ limitations under the License.
 	
 	<js:List id="dynamicList" x="300" y="40" width="200" height="300" className="DynamicList">
 		<js:beads>
+			<js:ArrayListSelectionModel/>
+			<js:DataItemRendererFactoryForArrayList/>
 			<js:ConstantBinding
 				sourceID="applicationModel"
 				sourcePropertyName="states"
 				destinationPropertyName="dataProvider" />
-			<js:InfiniteVScroller scrollEnd="onScrollEnd()"/>
 		</js:beads>
 	</js:List>
 	
@@ -145,6 +162,20 @@ limitations under the License.
             <js:VirtualDataItemRendererFactoryForArrayData />
             <js:VirtualListVerticalLayout />
             <js:VirtualListView />
+        </js:beads>
+    </js:List>
+    
+    <!-- An infinite List
+    -->
+    
+    <js:Label x="1180" y="20" text="An infinite List" />
+    
+    <js:List x="1180" y="40" width="200" height="300" initComplete="infiniteListInitCompleteHandler()" id="infiniteList">
+        <js:beads>
+	    <js:InfiniteVScroller scrollEnd="onScrollEnd()"/>
+	    <js:ArrayListSelectionModel/>
+	    <js:DataItemRendererFactoryForArrayList/>
+	    <js:EasyDataProviderChangeNotifier/>
         </js:beads>
     </js:List>
     

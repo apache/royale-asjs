@@ -1847,13 +1847,13 @@ public class VerticalLayout extends LayoutBase
      *  for the initial layout and then, if it has changed, we loop through 
      *  the layout items again and fix up the x/width values.
      */
-    private function updateDisplayListVirtual():void
+    private function updateDisplayListVirtual(targetWidth:Number, targetHeight:Number):void
     {
         var layoutTarget:GroupBase = target; 
         var eltCount:int = layoutTarget.numElements;
-        var targetWidth:Number = Math.max(0, layoutTarget.width - paddingLeft - paddingRight);
+        targetWidth = Math.max(0, targetWidth - paddingLeft - paddingRight);
         var minVisibleY:Number = layoutTarget.verticalScrollPosition;
-        var maxVisibleY:Number = minVisibleY + layoutTarget.height;
+        var maxVisibleY:Number = minVisibleY + targetHeight;
        
 		var contentHeight:Number;
 		var paddedContentHeight:Number;
@@ -1927,10 +1927,10 @@ public class VerticalLayout extends LayoutBase
         
         // Third pass: if neccessary, fix up y based on updated contentHeight
 		contentHeight = llv.end(llv.length - 1) - paddingTop;
-        var targetHeight:Number = Math.max(0, layoutTarget.height - paddingTop - paddingBottom);
-        if (contentHeight < targetHeight)
+        var newTargetHeight:Number = Math.max(0, layoutTarget.height - paddingTop - paddingBottom);
+        if (contentHeight < newTargetHeight)
         {
-            var excessHeight:Number = targetHeight - contentHeight;
+            var excessHeight:Number = newTargetHeight - contentHeight;
             var dy:Number = 0;
             var vAlign:String = verticalAlign;
             if (vAlign == VerticalAlign.MIDDLE)
@@ -1966,11 +1966,11 @@ public class VerticalLayout extends LayoutBase
     /**
      *  @private
      */
-    private function updateDisplayListReal():void
+    private function updateDisplayListReal(targetWidth:Number, targetHeight:Number):void
     {
         var layoutTarget:GroupBase = target;
-        var targetWidth:Number = Math.max(0, layoutTarget.width - paddingLeft - paddingRight);
-        var targetHeight:Number = Math.max(0, layoutTarget.height - paddingTop - paddingBottom);
+        targetWidth = Math.max(0, targetWidth - paddingLeft - paddingRight);
+        targetHeight = Math.max(0, targetHeight - paddingTop - paddingBottom);
         
         var layoutElement:ILayoutElement;
         var count:int = layoutTarget.numElements;
@@ -2190,9 +2190,9 @@ public class VerticalLayout extends LayoutBase
         }
         
         if (useVirtualLayout) 
-            updateDisplayListVirtual();
+            updateDisplayListVirtual(unscaledWidth, unscaledHeight);
         else
-            updateDisplayListReal();
+            updateDisplayListReal(unscaledWidth, unscaledHeight);
     }
     
     /**

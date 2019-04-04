@@ -129,10 +129,23 @@ public class RoyaleUnitTestRunner {
         if (afterClassFunc!=null) afterClassFunc();
     }
 
+    private function consoleOut(message:String, type:String='log'):void{
+		COMPILE::JS {
+            console[type]("[JS]", message);
+		}
+		COMPILE::SWF{
+			import flash.external.ExternalInterface;
+			if (ExternalInterface.available) {
+                try{
+					ExternalInterface.call('console.'+type,'[SWF]', message);
+                } catch(e:Error) {}
+			}
+		}
+    }
 
     private function runRoyaleTest(testClass:String,instance:Object,methodDef:MethodDefinition,callback:Function=null):void{
         var methodName:String = methodDef.name;
-        trace('running test in '+testClass+":"+methodName);
+		consoleOut('running test in '+testClass+":"+methodName);
         var varianceMetas:Array = methodDef.retrieveMetaDataByName("TestVariance");
         
         var method:Function = instance[methodName];
@@ -177,6 +190,12 @@ public class RoyaleUnitTestRunner {
         if (result.pass) _successCount++;
         else _failCount++;
         _successfulAssertions += result.assertions;
+        if (result.error) {
+			consoleOut(methodName+'::'+result.error, 'warn');
+        }
+        if (result.warning) {
+			consoleOut(methodName+'::'+result.warning, 'warn');
+        }
         if (callback!=null) {
             callback(result);
         }

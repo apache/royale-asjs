@@ -30,7 +30,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.4-SNAPSHOT</version>
+  <version>0.9.6-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -55,10 +55,13 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
-    <royale.compiler.version>0.9.4-SNAPSHOT</royale.compiler.version>
-    <royale.typedefs.version>0.9.4-SNAPSHOT</royale.typedefs.version>
+    <royale.compiler.version>0.9.6-SNAPSHOT</royale.compiler.version>
+    <royale.typedefs.version>0.9.6-SNAPSHOT</royale.typedefs.version>
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
 
+    <royale.example.targets>JSRoyale</royale.example.targets>
+    
+    <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
@@ -144,7 +147,7 @@
           <artifactId>versions-maven-plugin</artifactId>
           <version>2.7</version>
         </plugin>
-        
+
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
@@ -154,7 +157,7 @@
         <plugin>
           <groupId>nl.geodienstencentrum.maven</groupId>
           <artifactId>sass-maven-plugin</artifactId>
-          <version>3.5.4</version>
+          <version>3.6.0</version>
         </plugin>
 
         <plugin>
@@ -240,6 +243,9 @@
                 target directories. We don't want that.
             -->
             <exclude>**/target/**</exclude>
+
+            <exclude>**/src/test/royale/out/**</exclude>
+            <exclude>lib/external/*.html</exclude>
           </excludes>
         </configuration>
         <dependencies>
@@ -358,6 +364,39 @@
         <module>testsuite</module>
       </modules>
     </profile>
+    
+    <profile>
+        <id>generate-swf</id>
+        <properties>
+            <royale.example.targets>SWF,JSRoyale</royale.example.targets>
+        </properties>
+        <dependencies>
+            <dependency>
+                <groupId>com.adobe.flash.framework</groupId>
+                <artifactId>playerglobal</artifactId>
+                <version>${flash.version}</version>
+                <type>swc</type>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </profile>
+    
+    <profile>
+      <id>generate-swcs-for-swf</id>
+      <properties>
+          <royale.skipAS>false</royale.skipAS>
+      </properties>
+      <dependencies>
+          <dependency>
+              <groupId>com.adobe.air.framework</groupId>
+              <artifactId>airglobal</artifactId>
+              <version>${air.version}</version>
+              <type>swc</type>
+              <scope>runtime</scope>
+          </dependency>
+      </dependencies>
+    </profile>
+    
   </profiles>
 
   <repositories>

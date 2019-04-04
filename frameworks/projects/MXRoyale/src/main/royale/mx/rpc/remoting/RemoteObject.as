@@ -19,8 +19,7 @@
 
 package mx.rpc.remoting
 {
-import org.apache.royale.events.EventDispatcher;
-/*
+
 import mx.core.mx_internal;
 import mx.messaging.Channel;
 import mx.messaging.ChannelSet;
@@ -31,31 +30,6 @@ import mx.rpc.AbstractService;
 import mx.rpc.mxml.Concurrency;
 
 use namespace mx_internal;
-*/
-
-/**
- * The result event is dispatched when a service call successfully returns and
- * isn't handled by the Operation itself.
- * @eventType mx.rpc.events.ResultEvent.RESULT 
- *
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Event(name="result", type="mx.rpc.events.ResultEvent")]
-
-/**
- * The fault event is dispatched when a service call fails and isn't handled by
- * the Operation itself.
- * @eventType mx.rpc.events.FaultEvent.FAULT 
- *
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Flex 3
- */
-[Event(name="fault", type="mx.rpc.events.FaultEvent")]
 
 /**
  * The RemoteObject class gives you access to classes on a remote application server.
@@ -63,10 +37,9 @@ use namespace mx_internal;
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
+ *  @productversion Flex 3
  */
-public dynamic class RemoteObject 
-	//		extends AbstractService
+public dynamic class RemoteObject extends AbstractService
 {
     //-------------------------------------------------------------------------
     //
@@ -81,14 +54,14 @@ public dynamic class RemoteObject
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function RemoteObject(destination:String = null)
     {
-        super();
+        super(destination);
 
-    //    concurrency = Concurrency.MULTIPLE;
-        makeObjectsBindable = true;
+        concurrency = Concurrency.MULTIPLE;
+        makeObjectsBindable = false; // change this for now since Royale tries to create ObejctProxy that still is not implemented and make things fail. This can be reverted when ObjectProxy works
         showBusyCursor = false;
     }
     
@@ -100,9 +73,9 @@ public dynamic class RemoteObject
     
     private var _concurrency:String;
     
-//    private var _endpoint:String;
+    private var _endpoint:String;
 
-//    private var _source:String;
+    private var _source:String;
     
     private var _makeObjectsBindable:Boolean;
 
@@ -133,7 +106,7 @@ public dynamic class RemoteObject
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
+    *  @productversion Flex 3
     */
     public function get concurrency():String
     {
@@ -148,32 +121,45 @@ public dynamic class RemoteObject
         _concurrency = c;
     }
 
-	 //----------------------------------
-    //  destination
-    //----------------------------------
+    
+	//----------------------------------
+	//  endpoint
+	//----------------------------------
 
     [Inspectable(category="General")]
-
     /**
-     * The destination of the service. This value should match a destination
-     * entry in the services-config.xml file.
+     * This property allows the developer to quickly specify an endpoint for a RemoteObject
+     * destination without referring to a services configuration file at compile time or programmatically creating 
+     * a ChannelSet. It also overrides an existing ChannelSet if one has been set for the RemoteObject service.
      *
+     * <p>If the endpoint url starts with "https" a SecureAMFChannel will be used, otherwise an AMFChannel will 
+     * be used. Two special tokens, {server.name} and {server.port}, can be used in the endpoint url to specify
+     * that the channel should use the server name and port that was used to load the SWF. </p>
+     *
+     * <p><b>Note:</b> This property is required when creating AIR applications.</p>
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    public function get destination():String
+    public function get endpoint():String
     {
-        return "";
+        return _endpoint;
     }
-
-    public function set destination(name:String):void
+    
+    public function set endpoint(url:String):void
     {
-        destination = name;
+        // If endpoint has changed, null out channelSet to force it
+        // to be re-initialized on the next Operation send
+        if (_endpoint != url || url == null)
+        {
+            _endpoint = url;
+            channelSet = null;
+        }
     }
-	
-    //----------------------------------
+    
+	//----------------------------------
 	//  makeObjectsBindable
 	//----------------------------------
 
@@ -185,7 +171,7 @@ public dynamic class RemoteObject
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
     public function get makeObjectsBindable():Boolean
     {
@@ -209,61 +195,192 @@ public dynamic class RemoteObject
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
-    *  @productversion Royale 0.9.3
+    *  @productversion Flex 3
     */
     public function get showBusyCursor():Boolean
     {
         return _showBusyCursor;
     }
-	
+
     public function set showBusyCursor(sbc:Boolean):void
     {
         _showBusyCursor = sbc;
     }
-	
-	//----------------------------------
-    //  channelSet
-    //----------------------------------
 
+	//----------------------------------
+	//  source
+	//----------------------------------
+
+	[Inspectable(category="General")]
     /**
-     *  Provides access to the ChannelSet used by the service. The
-     *  ChannelSet can be manually constructed and assigned, or it will be 
-     *  dynamically created to use the configured Channels for the
-     *  <code>destination</code> for this service.
-     *
+     * Lets you specify a source value on the client; not supported for destinations that use the JavaAdapter. This allows you to provide more than one source
+     * that can be accessed from a single destination on the server. 
+     *     
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
+     *  @productversion Flex 3
      */
-    public function get channelSet():Object
+    public function get source():String
     {
-        return "";
+        return _source;
+    }
+
+    public function set source(s:String):void
+    {
+        _source = s;
+    }
+        
+    /**
+     * An optional function, primarily intended for framework developers who need to install
+     * a function to get called with the parameters passed to each remote object invocation.
+     * The function takes an array of parameters and returns the potentially altered array.
+     *
+     * The function definition should look like:
+     * <code>
+     *   function myParametersFunction(parameters:Array):Array
+     * </code>
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
+    public var convertParametersHandler:Function;
+
+    /**
+     * An optional function, primarily intended for framework developers who need to install
+     * a hook to process the results of an operation before notifying the result handlers.
+     *
+     * The function definition should look like:
+     * <code>
+     *   function myConvertResultsFunction(result:*, operation:AbstractOperation):*
+     * </code>
+     * 
+     * It is passed the result just after the makeObjectsBindable conversion has been done
+     * but before the result event is created.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
+    public var convertResultHandler:Function;
+
+   //-------------------------------------------------------------------------
+
+   //
+   // Internal Methods
+   //
+   //-------------------------------------------------------------------------
+
+    /**
+     *@private
+     */
+    mx_internal function initEndpoint():void
+    {
+        if (endpoint != null)
+        {
+            var chan:Channel;
+            if (endpoint.indexOf("https") == 0)
+            {
+                chan = new SecureAMFChannel(null, endpoint);
+            }
+            else
+            {
+                chan = new AMFChannel(null, endpoint);
+            }
+            
+            // Propagate requestTimeout.
+            chan.requestTimeout = requestTimeout;
+            
+            channelSet = new ChannelSet();
+            channelSet.addChannel(chan);
+        }
+    }
+
+    //--------------------------------------------------------------------------
+    //
+    // Methods
+    // 
+    //--------------------------------------------------------------------------
+
+    /**
+     * Returns an Operation of the given name. If the Operation wasn't
+     * created beforehand, a new <code>mx.rpc.remoting.Operation</code> is
+     * created during this call. Operations are usually accessible by simply
+     * naming them after the service variable
+     * (<code>myService.someOperation</code>), but if your Operation name
+     * happens to match a defined method on the service
+     * (like <code>setCredentials</code>), you can use this method to get the
+     * Operation instead.
+     * @param name Name of the Operation.
+     * @return Operation that executes for this name.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function getOperation(name:String):AbstractOperation
+    {
+        var op:AbstractOperation = super.getOperation(name);
+        if (op == null)
+        {
+            op = new Operation(this, name);
+            _operations[name] = op;
+            op.asyncRequest = asyncRequest;
+            op.setKeepLastResultIfNotSet(_keepLastResult);
+        }
+        return op;
     }
 
     /**
-     *  @private
+     * If a remote object is managed by an external service, such a ColdFusion Component (CFC),
+     * a username and password can be set for the authentication mechanism of that remote service.
+     *
+     * @param remoteUsername the username to pass to the remote endpoint
+     * @param remotePassword the password to pass to the remote endpoint
+     * @param charset The character set encoding to use while encoding the
+     * remote credentials. The default is null, which implies the legacy charset
+     * of ISO-Latin-1. The only other supported charset is &quot;UTF-8&quot;.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
      */
-    public function set channelSet(value:Object):void
+    override public function setRemoteCredentials(remoteUsername:String, remotePassword:String, charset:String=null):void
     {
-        if (channelSet != value)
-        {
-            channelSet = value;
-        }
+        super.setRemoteCredentials(remoteUsername, remotePassword, charset);
     }
-	
-	//-------------------------------------------------------------------------
-    //
-    //              Methods
-    //
-    //-------------------------------------------------------------------------
-
-	private var eventDispatcher:EventDispatcher;
-	
-	public function addEventListener(type:String, listener:Function,
-        useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+    
+    /**
+     * Represents an instance of RemoteObject as a String, describing
+     * important properties such as the destination id and the set of
+     * channels assigned.
+     *
+     * @return Returns a String representing an instance of a RemoteObject.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    COMPILE::JS {override}
+    public function toString():String
     {
-        eventDispatcher.addEventListener(type, listener, useCapture, priority);
+        var s:String = "[RemoteObject ";
+        s += " destination=\"" + destination + "\"";
+        if (source)
+            s += " source=\"" + source + "\"";
+        s += " channelSet=\"" + channelSet + "\"]";
+        return s;
     }
 }
 

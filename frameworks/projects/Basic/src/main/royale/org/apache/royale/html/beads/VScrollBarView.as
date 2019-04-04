@@ -106,10 +106,10 @@ package org.apache.royale.html.beads
 			_thumb = new Button();				
 			Button(_thumb).addBead(new VScrollBarThumbView());
             
-            UIBase(value).$addChild(_decrement);
-            UIBase(value).$addChild(_increment);
-            UIBase(value).$addChild(_track);
-            UIBase(value).$addChild(_thumb);
+            UIBase(value).$sprite_addChild(_decrement);
+            UIBase(value).$sprite_addChild(_increment);
+            UIBase(value).$sprite_addChild(_track);
+            UIBase(value).$sprite_addChild(_thumb);
             
             IEventDispatcher(_strand).addEventListener("heightChanged", changeHandler);
             

@@ -21,6 +21,7 @@ package org.apache.royale.utils
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
+    import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.core.IUIBase;
 
 	/**
@@ -81,6 +82,9 @@ package org.apache.royale.utils
 		 */
 		public static function findPopUpHost(start:IUIBase):IPopUpHost
 		{
+            if (start.parent is IPopUpHostParent)
+                return (start.parent as IPopUpHostParent).popUpHost;
+            
 			while( start && !(start is IPopUpHost) ) {
 				// start.parent will be undefined in js if it's not an IChild and return null
 				COMPILE::SWF
@@ -95,26 +99,37 @@ package org.apache.royale.utils
 		}
 		
 		/**
-		 *  Removes the given component from the IPopUpHost. 
+		 *  Adds the given component to the IPopUpHost. 
 		 * 
-		 *  @param start A component to start the search.
-		 *  @return A component that implements IPopUpHost or null.
+		 *  @param popUp the component that popups
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IChild
-		 *  @royaleignorecoercion org.apache.royale.core.IPopUpHost
+		 *  @royaleignorecoercion org.apache.royale.core.IPopUpHostParent
+		 */
+		public static function addPopUp(popUp:IChild, host:IUIBase):void
+		{
+			(findPopUpHost(host) as IPopUpHostParent).popUpHost.popUpParent.addElement(popUp);
+		}
+
+		/**
+		 *  Removes the given component from the IPopUpHost. 
+		 * 
+		 *  @param popUp the component that popups
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IPopUpHostParent
 		 */
 		public static function removePopUp(popUp:IChild):void
 		{
-			//TODO (harbs) The loop appears to not be needed. If removeElement is being called, it seems like the IPopUpHost would be the direct parent.
-			var start:IParent = popUp.parent;
-			while(!(start is IPopUpHost)) {
-				start = IChild(start).parent;
-			}
-			(start as IPopUpHost).popUpParent.removeElement(popUp);
+			(popUp.parent as IPopUpHostParent).popUpHost.popUpParent.removeElement(popUp);
 		}
 	}
 }

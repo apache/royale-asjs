@@ -40,7 +40,6 @@ import flash.utils.Dictionary;
 import flash.utils.setInterval; */
 /* 
 import mx.core.EventPriority;
-import mx.core.FlexGlobals;
 import mx.core.IInvalidating;
 import mx.core.InteractionMode;
 import mx.core.Singleton;
@@ -57,7 +56,33 @@ import mx.utils.LoaderUtil;
 import mx.utils.Platform; 
 import spark.layouts.supportClasses.LayoutBase; */
 
+COMPILE::SWF {
+    import flash.system.ApplicationDomain;
+    import flash.utils.getQualifiedClassName;
+}
+
 import mx.core.mx_internal;
+import mx.core.FlexGlobals;
+import mx.events.utils.MouseEventConverter;
+import mx.managers.ISystemManager;
+
+COMPILE::JS {
+    import org.apache.royale.core.HTMLElementWrapper;
+}
+
+import org.apache.royale.binding.ContainerDataBinding;
+import org.apache.royale.core.AllCSSValuesImpl;
+import org.apache.royale.core.IFlexInfo;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IPopUpHostParent;
+import org.apache.royale.core.IRenderedObject;
+import org.apache.royale.core.IStatesImpl;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.IValuesImpl;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.IEventDispatcher;
+
 use namespace mx_internal; 
 
 //--------------------------------------
@@ -232,7 +257,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-public class Application extends SkinnableContainer
+public class Application extends SkinnableContainer implements IStrand, IParent, IEventDispatcher, IPopUpHost, IPopUpHostParent, IRenderedObject, IFlexInfo
 {
    // include "../core/Version.as";
 
@@ -283,14 +308,49 @@ public class Application extends SkinnableContainer
             Singleton.getInstance("mx.managers::ILayoutManager"));
         UIComponentGlobals.layoutManager.usePhasedInstantiation = true;
 
+		*/
         if (!FlexGlobals.topLevelApplication)
             FlexGlobals.topLevelApplication = this;
-		*/
         super();
 
         /* showInAutomationHierarchy = true;
 
         initResizeBehavior(); */
+        
+        this.valuesImpl = new AllCSSValuesImpl();
+        addBead(new ContainerDataBinding());
+        
+        COMPILE::JS
+        {
+            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        }
+    }
+
+    
+    private var _info:Object;
+    
+    /**
+     *  An Object containing information generated
+     *  by the compiler that is useful at startup time.
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function info():Object
+    {
+        COMPILE::SWF
+        {
+            if (!_info)
+            {
+                var mainClassName:String = getQualifiedClassName(this);
+                var initClassName:String = "_" + mainClassName + "_FlexInit";
+                var c:Class = ApplicationDomain.currentDomain.getDefinition(initClassName) as Class;
+                _info = c.info();
+            }
+        }
+        return _info;
     }
 
     //--------------------------------------------------------------------------
@@ -298,6 +358,25 @@ public class Application extends SkinnableContainer
     //  Variables
     //
     //--------------------------------------------------------------------------
+    
+    /**
+     *  The org.apache.royale.core.IValuesImpl that will
+     *  determine the default values and other values
+     *  for the application.  The most common choice
+     *  is org.apache.royale.core.SimpleCSSValuesImpl.
+     *
+     *  @see org.apache.royale.core.SimpleCSSValuesImpl
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function set valuesImpl(value:IValuesImpl):void
+    {
+        ValuesManager.valuesImpl = value;
+        ValuesManager.valuesImpl.init(this);
+    }
     
     /**
      *  @private
@@ -2204,6 +2283,46 @@ public class Application extends SkinnableContainer
 		
 		return _softKeyboardRect;
 	}*/
+     
+     //--------------------------------------------------------------------------
+     //
+     //  IPopUpHost
+     //
+     //--------------------------------------------------------------------------
+     
+     /**
+      *  Application can host popups but in the strandChildren
+      *
+      *  @langversion 3.0
+      *  @playerversion Flash 10.2
+      *  @playerversion AIR 2.6
+      *  @productversion Royale 0.0
+      */
+     public function get popUpParent():IPopUpHostParent
+     {
+         COMPILE::JS
+             {
+                 return systemManager as IPopUpHostParent;
+             }
+             COMPILE::SWF
+             {
+                 return strandChildren as IPopUpHostParent;
+             }
+     }
+     
+     override public function get systemManager():ISystemManager
+     {
+         return parent as ISystemManager;
+     }
+     
+     /**
+      */
+     public function get popUpHost():IPopUpHost
+     {
+         return this;
+     }
+     
+
 }
 
 }

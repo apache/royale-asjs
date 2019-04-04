@@ -19,10 +19,10 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.html.Group;
-    import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
-    import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
-    import org.apache.royale.utils.StringUtil;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
+	import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.utils.IClassSelectorListSupport;
+	import org.apache.royale.utils.StringUtil;
 
     /**
      *  The Group class provides a light-weight container for visual elements. By default
@@ -164,6 +164,7 @@ package org.apache.royale.jewel
             return _layout.itemsHorizontalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsLeft,itemsCenter,itemsRight,itemsSpaceBetween,itemsSpaceAround")]
         public function set itemsHorizontalAlign(value:String):void
         {
 			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsHorizontalAlign);
@@ -195,6 +196,7 @@ package org.apache.royale.jewel
             return _layout.itemsVerticalAlign;
         }
 
+        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCentered,itemsTop,itemsBottom")]
         public function set itemsVerticalAlign(value:String):void
         {
 			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsVerticalAlign);

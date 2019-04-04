@@ -76,7 +76,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="borderAlpha", type="Number", inherit="no", theme="spark", minValue="0.0", maxValue="1.0")]
+[Style(name="borderAlpha", type="Number", inherit="no", minValue="0.0", maxValue="1.0")]
 
 /**
  *  The color of the border for this component.
@@ -87,7 +87,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark, mobile")]
+[Style(name="borderColor", type="uint", format="Color", inherit="no", "mobile")]
 
 /**
  *  Controls the visibility of the border for this component.
@@ -97,7 +97,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
+//[Style(name="borderVisible", type="Boolean", inherit="no", theme="spark, mobile")]
 
 /**
  *  The alpha of the content background for this component.
@@ -107,7 +107,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="contentBackgroundAlpha", type="Number", inherit="yes", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
+//[Style(name="contentBackgroundAlpha", type="Number", inherit="yes", theme="spark, mobile", minValue="0.0", maxValue="1.0")]
 
 /**
  *  @copy spark.components.supportClasses.GroupBase#style:contentBackgroundColor
@@ -434,11 +434,80 @@ public class SkinnableTextBase extends SkinnableComponent
         super();
     }
     
+    private var _borderAlpha:Number;
+    private var _borderColor:uint;
+    
+    public function get borderAlpha():Number
+    {
+        return _borderAlpha;
+    } 
+    
+    /**
+     *  @private
+     */
+    public function set borderAlpha(value:Number):void
+    {
+        _borderAlpha = value;
+    } 
+	
+    public function get borderColor():uint
+    {
+        return _borderColor;
+    } 
+    /**
+     *  @private
+     */
+    public function set borderColor(value:uint):void
+    {
+        _borderColor = value;
+    } 
+    
+    
     public function get contentBackgroundColor():uint
     {
 	return 0;
     }
     public function set contentBackgroundColor(val:uint):void
+    {
+    }
+    
+    public function get contentBackgroundAlpha():Number
+    {
+	return 0;
+    }
+    public function set contentBackgroundAlpha(val:Number):void
+    {
+    }
+    
+    public function get borderVisible():Boolean
+    {
+	return true;
+    }
+    public function set borderVisible(val:Boolean):void
+    {
+    }
+    
+    public function get lineThrough():Boolean
+    {
+	return true;
+    }
+    public function set lineThrough(val:Boolean):void
+    {
+    }
+    
+    public function get textDecoration():String
+    {
+	return null;
+    }
+    public function set textDecoration(val:String):void
+    {
+    }
+    
+    public function get textAlignLast():String
+    {
+	return "";
+    }
+    public function set textAlignLast(val:String):void
     {
     }
     
@@ -1292,10 +1361,10 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get selectionActivePosition():int
+    public function get selectionActivePosition():int
     {
-        return textDisplay ? textDisplay.selectionActivePosition : -1;
-    } */
+        return 0; //textDisplay ? textDisplay.selectionActivePosition : -1;
+    }
 
     //----------------------------------
     //  selectionAnchorPosition
@@ -1959,16 +2028,16 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function appendText(text:String):void
-    {
+    public function appendText(text:String):void
+    {/*
         if (!textDisplay)
             return;
 
         textDisplay.appendText(text);
         
         // This changes text so generate an UPDATE_COMPLETE event.
-        invalidateProperties();
-    } */
+        invalidateProperties();*/
+    } 
     
     /**
      *  @copy spark.core.IEditableText#selectRange()
@@ -1981,16 +2050,16 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function selectRange(anchorIndex:int, activeIndex:int):void
+    public function selectRange(anchorIndex:int, activeIndex:int):void
     {
-        if (!textDisplay)
-            return;
+        //if (!textDisplay)
+        //    return;
 
-        textDisplay.selectRange(anchorIndex, activeIndex);
+        // textDisplay.selectRange(anchorIndex, activeIndex);
 
         // This changes the selection so generate an UPDATE_COMPLETE event.
-        invalidateProperties();
-    } */
+        // invalidateProperties();
+    }
 
     /**
      *  @copy spark.core.IEditableText#selectAll()

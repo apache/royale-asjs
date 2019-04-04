@@ -65,7 +65,7 @@ package org.apache.royale.html.beads
 			COMPILE::JS {
 				_layer.element.style.position = 'absolute';
 				_layer.element.style['pointer-events'] = 'none';
-				_layer.element.style['overflow'] = 'hidden';
+				_layer.element.style['overflow'] = 'visible';
 			}
 		}
 		

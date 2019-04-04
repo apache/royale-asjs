@@ -104,7 +104,7 @@ package org.apache.royale.html.beads
 		 */
 		public function get dataProviderModel():IDataProviderModel
 		{
-			if (_dataProviderModel == null) {
+			if (_dataProviderModel == null && _strand != null) {
 				_dataProviderModel = _strand.getBeadByType(IBeadModel) as IDataProviderModel;
 			}
 			return _dataProviderModel;

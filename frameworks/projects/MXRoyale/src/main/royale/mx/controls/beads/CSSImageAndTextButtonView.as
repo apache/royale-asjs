@@ -119,7 +119,7 @@ package mx.controls.beads
             upTextField.parentHandlesPadding = true;
             downTextField.parentHandlesPadding = true;
             overTextField.parentHandlesPadding = true;
-            UIBase(value).$addChild(upSprite);
+            UIBase(value).$sprite_addChild(upSprite);
             /* TODO switch sprites on mouse state 
 			SimpleButton(value).downState = downSprite;
 			SimpleButton(value).overState = overSprite;

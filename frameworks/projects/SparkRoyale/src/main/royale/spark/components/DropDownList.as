@@ -32,6 +32,7 @@ import spark.utils.LabelUtil;
     
  */
  import spark.components.supportClasses.DropDownListBase;
+ import spark.components.beads.DropDownListView;
 
 
 //--------------------------------------
@@ -138,6 +139,7 @@ public class DropDownList extends DropDownListBase
     public function DropDownList()
     {
         super();
+        typeNames += " DropDownList";
     }
     
     //--------------------------------------------------------------------------
@@ -168,7 +170,8 @@ public class DropDownList extends DropDownListBase
     //
     //--------------------------------------------------------------------------
 
-    /* private var labelChanged:Boolean = false;
+	private var labelChanged:Boolean = false;
+    /* 
     private var labelDisplayExplicitWidth:Number; 
     private var labelDisplayExplicitHeight:Number; 
     private var sizeSetByTypicalItem:Boolean;
@@ -204,10 +207,10 @@ public class DropDownList extends DropDownListBase
     /**
      *  @private
      */
-    /* private var _prompt:String = "";
+    private var _prompt:String = "";
 
     [Inspectable(category="General", defaultValue="")]
-     */
+    
     /**
      *  The prompt for the DropDownList control. 
      *  The prompt is a String that is displayed in the
@@ -223,15 +226,15 @@ public class DropDownList extends DropDownListBase
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get prompt():String
+    public function get prompt():String
     {
         return _prompt;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set prompt(value:String):void
+    public function set prompt(value:String):void
     {
         if (_prompt == value)
             return;
@@ -239,7 +242,7 @@ public class DropDownList extends DropDownListBase
         _prompt = value;
         labelChanged = true;
         invalidateProperties();
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -377,5 +380,35 @@ public class DropDownList extends DropDownListBase
                   labelDisplay.text = prompt;
 		}
     } */
+    
+    /**
+     *  @private
+     *  Because DropDown extends List which overrides numChildren to point to
+     *  the DataGroup, the default measurement code will be incorrect
+     *  
+     *  @royaleignorecoercion spark.components.beads.DropDownListView 
+     */
+    override public function get measuredWidth():Number
+    {
+        var mw:Number = super.measuredWidth;
+        if (mw == 0)
+            mw = (view as DropDownListView).label.measuredWidth;
+        return mw;
+    }
+    
+    /**
+     *  @private
+     *  Because DropDown extends List which overrides numChildren to point to
+     *  the DataGroup, the default measurement code will be incorrect
+     *  
+     *  @royaleignorecoercion spark.components.beads.DropDownListView 
+     */
+    override public function get measuredHeight():Number
+    {
+        var mh:Number = super.measuredHeight;
+        if (mh == 0)
+            mh = (view as DropDownListView).label.measuredHeight;
+        return mh;
+    }
 }
 }

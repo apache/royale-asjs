@@ -27,8 +27,10 @@ import mx.containers.beads.BoxLayout;
 import mx.containers.beads.CanvasLayout;
 import mx.containers.beads.models.PanelModel;
 import mx.core.ContainerLayout;
+import mx.core.UIComponent;
 
 import org.apache.royale.core.IBead;
+import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.html.beads.PanelView;
@@ -60,8 +62,6 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
 	}
 
     /**
-     * @royaleignorecoercion org.apache.royale.core.UIBase; 
-     * @royaleignorecoercion mx.containers.beads.models.PanelModel; 
      */
     override public function set strand(value:IStrand):void
     {
@@ -69,10 +69,30 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
         super.strand = value;
     }
     
+    /**
+     * @royaleignorecoercion mx.core.UIComponent 
+     * @royaleignorecoercion org.apache.royale.core.UIBase
+     * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     */
     override protected function setupContentAreaLayout():void
     {
-        var model:PanelModel = (_strand as UIBase).model as PanelModel;
+        var host:UIBase = _strand as UIBase;
+        var model:PanelModel = host.model as PanelModel;
         var _layout:String = model.layout;
+        if (model.paddingBottom)
+            (contentArea as UIComponent).paddingBottom = model.paddingBottom;
+        if (model.paddingTop)
+            (contentArea as UIComponent).paddingTop = model.paddingTop;
+        if (model.paddingLeft)
+            (contentArea as UIComponent).paddingLeft = model.paddingLeft;
+        if (model.paddingRight)
+            (contentArea as UIComponent).paddingRight = model.paddingRight;
+        
+        if (!host.isWidthSizedToContent())
+            contentArea.percentWidth = 100;
+        if (!host.isHeightSizedToContent())
+            contentArea.percentHeight = 100;
+            
         var layoutObject:IBead;
         if (_layout == ContainerLayout.ABSOLUTE)
             layoutObject = new CanvasLayout();
@@ -97,8 +117,11 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
     {
         titleBar.percentWidth = 100;
             
-        contentArea.percentWidth = 100;
-        contentArea.percentHeight = 100;
+        var panel:ILayoutChild = host as ILayoutChild;
+        if (!panel.isWidthSizedToContent())
+            contentArea.percentWidth = 100;
+        if (!panel.isHeightSizedToContent())
+            contentArea.percentHeight = 100;
         
         // Now give the Panel its own layout
         var boxLayout:BoxLayout = new BoxLayout();

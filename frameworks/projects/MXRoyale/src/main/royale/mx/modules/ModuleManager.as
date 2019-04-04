@@ -19,7 +19,7 @@
 
 package mx.modules 
 {
-
+  import mx.modules.IModuleInfo;
 /* import flash.utils.ByteArray;
 
  import mx.core.IFlexModuleFactory;
@@ -64,7 +64,7 @@ public class ModuleManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public static function getModule(url:String):Object //:IModuleInfo
+    public static function getModule(url:String):IModuleInfo
     {
 		return null;
         //return getSingleton().getModule(url);

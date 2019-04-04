@@ -3746,8 +3746,8 @@ package org.apache.royale.textLayout.formats
 			if (stylesObject is TextLayoutFormat)
 			{
 				// DO THIS possible optimization if (format.getStyles() == _emptyStyles) return;
-				stylesObject.writableStyles();
-				stylesObject = stylesObject.getStyles();
+				(stylesObject as TextLayoutFormat).writableStyles();
+				stylesObject = (stylesObject as TextLayoutFormat).getStyles();
 			}
 
 			if (stylesObject.columnBreakBefore != undefined && stylesObject.columnBreakBefore != TextLayoutFormat.columnBreakBeforeProperty.defaultValue)

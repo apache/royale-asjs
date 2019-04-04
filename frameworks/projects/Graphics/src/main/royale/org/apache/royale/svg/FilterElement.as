@@ -46,6 +46,10 @@ package org.apache.royale.svg
 		}
 		private var _result:String;
 		private var _in:String;
+		private var _x:Number;
+		private var _y:Number;
+		private var _width:Number;
+		private var _height:Number;
 
 		public function FilterElement()
 		{
@@ -66,6 +70,22 @@ package org.apache.royale.svg
 				if (_in)
 				{
 					filterElement.setAttribute("in", _in);
+				}
+				if (!isNaN(x))
+				{
+					filterElement.setAttribute("x", _x);
+				}
+				if (!isNaN(y))
+				{
+					filterElement.setAttribute("y", _y);
+				}
+				if (!isNaN(width))
+				{
+					filterElement.setAttribute("width", _width);
+				}
+				if (!isNaN(height))
+				{
+					filterElement.setAttribute("height", _height);
 				}
 			}
 		}
@@ -131,6 +151,47 @@ package org.apache.royale.svg
 		{
 			_in = value;
 		}
+		
+		public function get x():Number  
+		{
+			return _x;
+		}
+		
+		public function set x(value:Number):void 
+		{ 
+			_x = value;
+		}
+
+		public function get y():Number  
+		{
+			return _y;
+		}
+		
+		public function set y(value:Number):void 
+		{ 
+			_y = value;
+		}
+
+		public function get width():Number  
+		{
+			return _width;
+		}
+		
+		public function set width(value:Number):void 
+		{
+			_width = value;
+		}
+
+		public function get height():Number  
+		{
+			return _height;
+		}
+		
+		public function set height(value:Number):void 
+		{
+			_height = value;
+		}
+
 	}
 }
 

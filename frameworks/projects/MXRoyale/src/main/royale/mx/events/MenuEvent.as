@@ -41,6 +41,8 @@ import mx.controls.listClasses.IListItemRenderer;
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class MenuEvent extends ListEvent
 {
@@ -146,7 +148,7 @@ public class MenuEvent extends ListEvent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const ITEM_CLICK:String = "itemClick";
+    public static const ITEM_CLICK:String = "itemClick";
 
     /**
      *  The MenuEvent.MENU_HIDE event type constant indicates that
@@ -401,6 +403,31 @@ public class MenuEvent extends ListEvent
     //--------------------------------------------------------------------------
 
     //----------------------------------
+    //  index
+    //----------------------------------
+    
+    private var _index:int = -1;
+    
+    /**
+     *  The index of the associated menu item within its parent menu or submenu. 
+     *  This is -1 for the menuShow and menuHide events.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get index():int
+    {
+        return _index;
+    }
+    
+    public function set index(value:int):void
+    {
+        _index = value;
+    }
+    
+    //----------------------------------
     //  item
     //----------------------------------
 
@@ -425,6 +452,20 @@ public class MenuEvent extends ListEvent
         _item = value;
     }
 	
+	//----------------------------------
+	//  label
+	//----------------------------------
+	
+	/**
+	 *  The label text of the associated menu item.
+	 *  This is null for the menuShow and menuHide events. 
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public var label:String;
     //----------------------------------
     //  menu
     //----------------------------------

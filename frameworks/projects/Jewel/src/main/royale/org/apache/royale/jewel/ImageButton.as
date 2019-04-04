@@ -62,7 +62,6 @@ package org.apache.royale.jewel
         {
 			addElementToWrapper(this, 'input');
             element.setAttribute('type', 'image');
-            positioner = element;
             return element;
         }
 

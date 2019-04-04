@@ -23,6 +23,8 @@ package mx.controls
 /* import flash.display.Graphics;*/
 import mx.core.UIComponent;
 
+import org.apache.royale.core.SimpleCSSStyles;
+
 //--------------------------------------
 //  Styles
 //--------------------------------------
@@ -85,7 +87,7 @@ import mx.core.UIComponent;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Style(name="strokeWidth", type="Number", format="Length", inherit="yes")]
+//[Style(name="strokeWidth", type="Number", format="Length", inherit="yes")]
     // Note: stroke-width is inheriting in SVG,
     // although border-width is not inheriting in CSS
 
@@ -177,23 +179,44 @@ public class VRule extends UIComponent
         super();
     }
 
+    private var _strokeWidth:int = 1;
+    public function get strokeWidth():int
+    {
+        return _strokeWidth;
+    }
+    public function set strokeWidth(value:int):void
+    {
+        _strokeWidth = value;
+    }
+    
+    override public function addedToParent():void
+    {
+        var values:Object = {
+            styleList : { "borderLeftStyle" : 1,
+                          "borderLeftWidth" : 1,
+                          "borderLeftColor" : 1 },
+            "borderLeftWidth" : strokeWidth.toString() + "px",
+            "borderLeftStyle" : "solid",
+            "borderLeftColor" : "#000"
+        }
+        style = values;
+        super.addedToParent();
+    }
     //--------------------------------------------------------------------------
     //
     //  Overridden methods
     //
     //--------------------------------------------------------------------------
 
-    /**
-     *  @private
-     */
-    override protected function measure():void
+    override public function get measuredWidth():Number
     {
-        super.measure();
-
-        measuredWidth = getStyle("strokeWidth");
-        measuredHeight = DEFAULT_PREFERRED_HEIGHT;
+        return strokeWidth;
     }
-
+    override public function get measuredHeight():Number
+    {
+        return DEFAULT_PREFERRED_HEIGHT;
+    }
+    
     /**
      *  @private
      *  The appearance of our vertical rule is inspired by

@@ -29,18 +29,19 @@
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
+    <echo>AIR_HOME is ${env.AIR_HOME}</echo>
+    
     <!-- doesn't contain compiled files so only need to compile JS version -->
     <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
-    <target name="compile-js">
-        <!-- doesn't contain compiled files so only need to compile JS version
-        <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" >
+    <target name="compile-js" unless="env.AIR_HOME">
+        <ant dir="${ROYALE_HOME}/frameworks/js/themes/${ant.project.name}JS/" inheritAll="false" >
             <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
             <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
             <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
         </ant>
-         -->
+        <copy file="${ROYALE_HOME}/frameworks/js/themes/${ant.project.name}JS/target/${ant.project.name}JS.swc" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
     </target>
     
     <target name="copy-swc" if="env.AIR_HOME">

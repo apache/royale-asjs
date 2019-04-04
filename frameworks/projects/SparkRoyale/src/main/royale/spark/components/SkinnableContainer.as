@@ -29,13 +29,31 @@ import mx.utils.BitFlagUtil;
 
 import spark.components.supportClasses.SkinnableContainerBase;
 import spark.events.ElementExistenceEvent;
-import spark.layouts.supportClasses.LayoutBase; */
-import spark.components.supportClasses.SkinnableComponent;
+*/
 import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
 
+import spark.components.supportClasses.SkinnableComponent;
+import spark.layouts.supportClasses.LayoutBase;
+import spark.layouts.BasicLayout;
+
 use namespace mx_internal;
+
+import org.apache.royale.binding.ContainerDataBinding;
+import org.apache.royale.binding.DataBindingBase;
+import org.apache.royale.core.ContainerBaseStrandChildren;
+import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.IContainer;
+import org.apache.royale.core.IContainerBaseStrandChildrenHost;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.ValueEvent;
+import org.apache.royale.events.Event;
+import org.apache.royale.utils.MXMLDataInterpreter;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 
 /**
  *  Dispatched after the content for this component has been created. With deferred 
@@ -231,6 +249,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
 //--------------------------------------
 
 //[DefaultProperty("mxmlContentFactory")]
+[DefaultProperty("mxmlContent")]
 
 /**
  *  The SkinnableContainer class is the base class for skinnable containers that have 
@@ -344,7 +363,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class SkinnableContainer extends SkinnableComponent
+public class SkinnableContainer extends SkinnableComponent implements IContainer, IContainerBaseStrandChildrenHost
 {// SkinnableContainerBase 
  //    implements IDeferredContentOwner, IVisualElementContainer
    // include "../core/Version.as";
@@ -382,7 +401,38 @@ public class SkinnableContainer extends SkinnableComponent
     public function SkinnableContainer()
     {
         super();
+        typeNames = "SkinnableContainer";
     }
+    
+    /**
+     * Returns the ILayoutHost which is its view. From ILayoutParent.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function getLayoutHost():ILayoutHost
+    {
+        return view as ILayoutHost;
+    }
+    
+
+    //----------------------------------
+    //  textDecoration
+    //----------------------------------
+	
+    public function get textDecoration():String 
+     {
+	return "";
+     }
+     
+    public function set textDecoration(val:String):void
+     {
+	
+     }
+	
+	
         public function get blockProgression():String 
 	{
 		return "";
@@ -524,45 +574,18 @@ public class SkinnableContainer extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get creationPolicy():String
+     public function get creationPolicy():String
     {
-        // Use an inheriting style as the backing storage for this property.
-        // This allows the property to be inherited by either mx or spark
-        // containers, and also to correctly cascade through containers that
-        // don't have this property (ie Group).
-        // This style is an implementation detail and should be considered
-        // private. Do not set it from CSS.
-        var result:String = getStyle("_creationPolicy");
-        
-        if (result == null)
-            result = ContainerCreationPolicy.AUTO;
-        
-        if (creationPolicyNone)
-            result = ContainerCreationPolicy.NONE;
-        
-        return result;
+       return "";
     }
-     */
+     
     /**
      *  @private
      */
-    /* public function set creationPolicy(value:String):void
+     public function set creationPolicy(value:String):void
     {
-        if (value == ContainerCreationPolicy.NONE)
-        {
-            // creationPolicy of none is not inherited by descendants.
-            // In this case, set the style to "auto" and set a local
-            // flag for subsequent access to the creationPolicy property.
-            creationPolicyNone = true;
-            value = ContainerCreationPolicy.AUTO;
-        }
-        else
-        {
-            creationPolicyNone = false;
-        }
         
-        setStyle("_creationPolicy", value);
-    } */
+    } 
 
     //--------------------------------------------------------------------------
     //
@@ -617,6 +640,8 @@ public class SkinnableContainer extends SkinnableComponent
     //  layout
     //----------------------------------
     
+    private var _layout:LayoutBase;
+    
     //[Inspectable(category="General")]
     
     /**
@@ -629,18 +654,24 @@ public class SkinnableContainer extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get layout():LayoutBase
+    public function get layout():LayoutBase
     {
+        /*
         return (contentGroup) 
             ? contentGroup.layout 
             : contentGroupProperties.layout;
+        */
+        if (!_layout)
+            _layout = new BasicLayout();
+        return _layout;
     }
-     */
+    
     /**
      * @private
      */
-    /* public function set layout(value:LayoutBase):void
+    public function set layout(value:LayoutBase):void
     {
+        /*
         if (contentGroup)
         {
             contentGroup.layout = value;
@@ -649,8 +680,9 @@ public class SkinnableContainer extends SkinnableComponent
         }
         else
             contentGroupProperties.layout = value;
-        
-    } */
+        */
+        _layout = value;
+    }
     
     //----------------------------------
     //  mxmlContent
@@ -695,6 +727,19 @@ public class SkinnableContainer extends SkinnableComponent
             _contentModified = true;
     }
      */
+     
+     /**
+      *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+      *  
+      *  @langversion 3.0
+      *  @playerversion Flash 10.2
+      *  @playerversion AIR 2.6
+      *  @productversion Royale 0.8
+      * 
+      *  @royalesuppresspublicvarwarning
+      */
+     public var mxmlContent:Array;
+
     /**
      *  override setting of children
      */
@@ -858,6 +903,53 @@ public class SkinnableContainer extends SkinnableComponent
     } 
     
     /**
+     *  @copy org.apache.royale.core.Application#MXMLDescriptor
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get MXMLDescriptor():Array
+    {
+        return _mxmlDescriptor;
+    }
+    
+    /**
+     *  @private
+     */
+    public function setMXMLDescriptor(document:Object, value:Array):void
+    {
+        _mxmlDocument = document;
+        _mxmlDescriptor = value;
+    }
+    
+    /**
+     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function generateMXMLAttributes(data:Array):void
+    {
+        MXMLDataInterpreter.generateMXMLProperties(this, data);
+    }
+    
+    /*
+    * IContainer
+    */
+    
+    /**
+     *  @private
+     */
+    public function childrenAdded():void
+    {
+        dispatchEvent(new ValueEvent("childrenAdded"));
+    }
+    
+    /**
      *  @inheritDoc
      *  
      *  @langversion 3.0
@@ -905,39 +997,45 @@ public class SkinnableContainer extends SkinnableComponent
     //
     //--------------------------------------------------------------------------
     
-    /* private var creatingDeferredContent:Boolean;
+    //--------------------------------------------------------------------------
+    //
+    //  IMXMLDocument et al
+    //
+    //--------------------------------------------------------------------------
     
-    override protected function generateMXMLInstances(document:Object, data:Array, recursive:Boolean = true):void
+    private var _mxmlDescriptor:Array;
+    private var _mxmlDocument:Object = this;
+    
+    override public function addedToParent():void
     {
-        // don't generate children during super.createChildren
-        if (!creatingDeferredContent)
-		{
-			setMXMLDescriptor(data);
-            return;
-		}
+        if (!initialized) {
+            // each MXML file can also have styles in fx:Style block
+            ValuesManager.valuesImpl.init(this);
+        }
         
-        super.generateMXMLInstances(document, data, recursive);
+        if (MXMLDescriptor)
+            component = this;
+        
+        super.addedToParent();		
+        
+        // Load the layout bead if it hasn't already been loaded.
+        loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+        
+        dispatchEvent(new Event("initComplete"));
+        if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
+            (isWidthSizedToContent() || !isNaN(explicitWidth)))
+            dispatchEvent(new Event("layoutNeeded"));
     }
-    */
-    /**
-     *  Create content children, if the <code>creationPolicy</code> property 
-     *  is not equal to <code>none</code>.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    /* override protected function createChildren():void
+    
+    override protected function createChildren():void
     {
-        super.createChildren();
+        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
         
-        // TODO (rfrishbe): When navigator support is added, this is where we would 
-        // determine if content should be created now, or wait until
-        // later. For now, we always create content here unless
-        // creationPolicy="none".
-        createContentIfNeeded();
-    } */
+        if (getBeadByType(DataBindingBase) == null)
+            addBead(new ContainerDataBinding());
+        
+        dispatchEvent(new Event("initBindings"));
+    }
    
     /**
      *  @inheritDoc
@@ -1034,9 +1132,9 @@ public class SkinnableContainer extends SkinnableComponent
      */
      /* override */ protected function partRemoved(partName:String, instance:Object):void
     {
-        super.partRemoved(partName, instance);
+         /* super.partRemoved(partName, instance);
 
-       /*  if (instance == contentGroup)
+         if (instance == contentGroup)
         {
             contentGroup.removeEventListener(
                 ElementExistenceEvent.ELEMENT_ADD, contentGroup_elementAddedHandler);
@@ -1165,6 +1263,196 @@ public class SkinnableContainer extends SkinnableComponent
         // Re-dispatch the event
         dispatchEvent(event);
     } */
+     
+     //--------------------------------------------------------------------------
+     //  StrandChildren
+     //--------------------------------------------------------------------------
+     
+     private var _strandChildren:ContainerBaseStrandChildren;
+     
+     /**
+      * @copy org.apache.royale.core.IContentViewHost#strandChildren
+      *  
+      *  @langversion 3.0
+      *  @playerversion Flash 10.2
+      *  @playerversion AIR 2.6
+      *  @productversion Royale 0.8
+      */
+     
+     /**
+      * @private
+      */
+     public function get strandChildren():IParent
+     {
+         if (_strandChildren == null) {
+             _strandChildren = new ContainerBaseStrandChildren(this);
+         }
+         return _strandChildren;
+     }
+     
+     //--------------------------------------------------------------------------
+     //
+     //  element/child handlers
+     //
+     //--------------------------------------------------------------------------
+         
+     /*
+     * The following functions are for the SWF-side only and re-direct element functions
+     * to the content area, enabling scrolling and clipping which are provided automatically
+     * in the JS-side. 
+     */
+     
+     /**
+      * @private
+      */
+     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+     {
+         var contentView:IParent = getLayoutHost().contentView as IParent;
+         if (c == contentView)
+         {
+             super.addElement(c); // ContainerView uses addElement to add inner contentView
+             return;
+         }
+         contentView.addElement(c, dispatchEvent);
+         if (dispatchEvent)
+             this.dispatchEvent(new ValueEvent("childrenAdded", c));
+     }
+     
+     /**
+      * @private
+      */
+     override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+     {
+         var contentView:IParent = getLayoutHost().contentView as IParent;
+         contentView.addElementAt(c, index, dispatchEvent);
+         if (dispatchEvent)
+             this.dispatchEvent(new ValueEvent("childrenAdded", c));
+     }
+     
+     /**
+      * @private
+      */
+     override public function getElementIndex(c:IChild):int
+     {
+         var layoutHost:ILayoutHost = view as ILayoutHost;
+         var contentView:IParent = layoutHost.contentView as IParent;
+         return contentView.getElementIndex(c);
+     }
+     
+     /**
+      * @private
+      */
+     override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+     {
+         var layoutHost:ILayoutHost = view as ILayoutHost;
+         var contentView:IParent = layoutHost.contentView as IParent;
+         contentView.removeElement(c, dispatchEvent);
+         //TODO This should possibly be ultimately refactored to be more PAYG
+         if(dispatchEvent)
+             this.dispatchEvent(new ValueEvent("childrenRemoved", c));
+     }
+     
+     /**
+      * @private
+      */
+     override public function get numElements():int
+     {
+         var layoutHost:ILayoutHost = view as ILayoutHost;
+         if (!layoutHost) return 0; // view is null when called in addingChild from MXMLDataInterpreter before children are added
+         var contentView:IParent = layoutHost.contentView as IParent;
+         return contentView.numElements;
+     }
+     
+     /**
+      * @private
+      */
+     override public function getElementAt(index:int):IChild
+     {
+         var layoutHost:ILayoutHost = view as ILayoutHost;
+         var contentView:IParent = layoutHost.contentView as IParent;
+         return contentView.getElementAt(index);
+     }
+     
+     [SWFOverride(returns="flash.display.DisplayObject"))]
+     COMPILE::SWF
+     override public function getChildAt(index:int):IUIComponent
+     {
+         var layoutHost:ILayoutHost = view as ILayoutHost;
+         var contentView:IParent = layoutHost.contentView as IParent;
+         return contentView.getElementAt(index) as IUIComponent;
+     }
+     
+     /*
+     * IContainerBaseStrandChildrenHost
+     *
+     * These "internal" function provide a backdoor way for proxy classes to
+     * operate directly at strand level. While these function are available on
+     * both SWF and JS platforms, they really only have meaning on the SWF-side. 
+     * Other subclasses may provide use on the JS-side.
+     *
+     * @see org.apache.royale.core.IContainer#strandChildren
+     */
+     
+     /**
+      * @private
+      * @suppress {undefinedNames}
+      * Support strandChildren.
+      */
+     public function get $numElements():int
+     {
+         return super.numElements;
+     }
+     
+     /**
+      * @private
+      * @suppress {undefinedNames}
+      * Support strandChildren.
+      */
+     public function $addElement(c:IChild, dispatchEvent:Boolean = true):void
+     {
+         super.addElement(c, dispatchEvent);
+     }
+     
+     /**
+      * @private
+      * @suppress {undefinedNames}
+      * Support strandChildren.
+      */
+     public function $addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+     {
+         super.addElementAt(c, index, dispatchEvent);
+     }
+     
+     /**
+      * @private
+      * @suppress {undefinedNames}
+      * Support strandChildren.
+      */
+     public function $removeElement(c:IChild, dispatchEvent:Boolean = true):void
+     {
+         super.removeElement(c, dispatchEvent);
+     }
+     
+     /**
+      * @private
+      * @suppress {undefinedNames}
+      * Support strandChildren.
+      */
+     public function $getElementIndex(c:IChild):int
+     {
+         return super.getElementIndex(c);
+     }
+     
+     /**
+      * @private
+      * @suppress {undefinedNames}
+      * Support strandChildren.
+      */
+     public function $getElementAt(index:int):IChild
+     {
+         return super.getElementAt(index);
+     }
+
 }
 
 }

@@ -240,22 +240,26 @@ public class BorderContainer extends SkinnableContainer
     {
         super(); 
     }
+    
 	public function get borderColor():uint 
 	{
-		return 0;
+		return getStyle("borderColor");
 
 	}
 	public function set borderColor(val:uint):void 
 	{
+        setStyle("borderColor", val);
 	}
+    
 	public function get borderWeight():Number 
 	{
-		return 0;
-
+		return getStyle("borderWidth");
 	}
 	public function set borderWeight(val:Number):void
 	{
+        setStyle("borderWidth", val);
 	}
+    
 	public function get dropShadowVisible():Boolean 
 	{
 		return false;
@@ -264,14 +268,14 @@ public class BorderContainer extends SkinnableContainer
 	public function set dropShadowVisible(val:Boolean):void 
 	{
 	}
+    
 	public function get borderStyle():String
-	{
-	    trace("BorderContainer:borderStyle not implemented");
-    	return "solid";
+    {
+    	return getStyle("borderStyle");
 	}
 	public function set borderStyle(value:String):void
 	{
-	    trace("BorderContainer:borderStyle not implemented");
+	    setStyle("borderStyle", value);
 	}
 	
 	public function get backgroundImage():Object

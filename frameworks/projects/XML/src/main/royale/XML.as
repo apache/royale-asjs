@@ -904,10 +904,6 @@ package
 
 		private function deleteChildAt(idx:int):void
 		{
-			if(idx < 0)
-				return;
-			if(idx >= childrenLength())
-				return;
 			var child:XML = _children[idx];
 			child._parent = null;
 			_children.splice(idx,1);
@@ -1116,11 +1112,11 @@ package
 
 		public function getAttributeArray():Array
 		{
-			return _attributes ? _attributes.slice() : [];
+			return _attributes ? _attributes : [];
 		}
 		public function getChildrenArray():Array
 		{
-			return _children ? _children.slice() : [];
+			return _children ? _children : [];
 		}
 
 		public function getIndexOf(elem:XML):int
@@ -1569,7 +1565,10 @@ package
 						deleteChildAt(i+1);
 					}
 					if(!child.s())
+                    {
 						deleteChildAt(i);
+                        continue; //don't set last child if we removed it
+                    }
 				}
 				lastChild = child;
 			}
@@ -2700,7 +2699,10 @@ package
 			if(str == "")
 				return str;
 			var num:Number = Number(str);
-			return isNaN(num) ? str : num;
+			if("" + num == str){
+				return  num;
+			}
+			return str;
 		}
 
 		////////////////////////////////////////////////////////////////
@@ -2760,19 +2762,19 @@ Moved this logic (partially) into the other replace method
 		}
 		public function slice(beginSlice:Number, endSlice:*=undefined):String
 		{
-			return s().slice(beginSlice,endSlice);
+			return s()["slice"](beginSlice,endSlice);
 		}
 		public function split(separator:*=undefined,limit:*=undefined):Array
 		{
-			return s().split(separator,limit);
+			return s()["split"](separator,limit);
 		}
 		public function substr(start:Number, length:*=undefined):String
 		{
-			return s().substr(start,length);
+			return s()["substr"](start,length);
 		}
 		public function substring(indexStart:Number, indexEnd:*=undefined):String
 		{
-			return s().substring(indexStart,indexEnd);
+			return s()["substring"](indexStart,indexEnd);
 		}
 		public function toLocaleLowerCase():String
 		{
@@ -2802,12 +2804,12 @@ Moved this logic (partially) into the other replace method
         */
 		public function toExponential(fractionDigits:*=undefined):Number
 		{
-			return v().toExponential(fractionDigits) as Number;
+			return v()["toExponential"](fractionDigits) as Number;
 		}
         /**
          * @royaleignorecoercion Number
         */
-		public function toFixed(digits:*=undefined):Number
+		public function toFixed(digits:int=0):Number
 		{
 			return v().toFixed(digits) as Number;
 		}
@@ -2816,7 +2818,7 @@ Moved this logic (partially) into the other replace method
         */
 		public function toPrecision(precision:*=undefined):Number
 		{
-			return v().toPrecision(precision) as Number;
+			return v()["toPrecision"](precision) as Number;
 		}
 		private function s():String
 		{

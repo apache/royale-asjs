@@ -39,6 +39,7 @@ package org.apache.royale.svg
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.createSVG;
     }
 
     /**
@@ -186,7 +187,7 @@ package org.apache.royale.svg
                     radiusY = radiusX;
 
                 var style:String = getStyleStr();
-                var rect:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
+                var rect:WrappedHTMLElement = createSVG('rect') as WrappedHTMLElement;
                 rect.royale_wrapper = this;
                 rect.style.left = x + "px";
                 rect.style.top = y + "px";
@@ -230,7 +231,7 @@ package org.apache.royale.svg
             COMPILE::JS
             {
                 var style:String = getStyleStr();
-                var ellipse:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                var ellipse:WrappedHTMLElement = createSVG('ellipse') as WrappedHTMLElement;
                 ellipse.royale_wrapper = this;
                 ellipse.style.left = x + "px";
                 ellipse.style.top = y + "px";
@@ -267,7 +268,7 @@ package org.apache.royale.svg
             COMPILE::JS
             {
                 var style:String = getStyleStr();
-                var circle:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                var circle:WrappedHTMLElement = createSVG('ellipse') as WrappedHTMLElement;
                 circle.royale_wrapper = this;
                 circle.style.left = x + "px";
                 circle.style.top = y + "px";
@@ -326,7 +327,7 @@ package org.apache.royale.svg
             COMPILE::JS
             {
                 var style:String = getStyleStr();
-                var path:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'path') as WrappedHTMLElement;
+                var path:WrappedHTMLElement = createSVG('path') as WrappedHTMLElement;
                 path.royale_wrapper = this;
                 path.style.left = "0px";
                 path.style.top = "0px";
@@ -541,7 +542,7 @@ package org.apache.royale.svg
             COMPILE::JS
             {
                 var style:String = getTxtStyleStr();
-                var text:WrappedHTMLElement = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
+                var text:WrappedHTMLElement = createSVG('text') as WrappedHTMLElement;
                 text.royale_wrapper = this;
                 text.style.left = x + "px";
                 text.style.top = y + "px";

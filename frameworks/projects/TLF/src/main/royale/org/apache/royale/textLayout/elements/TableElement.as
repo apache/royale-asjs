@@ -93,6 +93,7 @@ package org.apache.royale.textLayout.elements {
 		/** @private if its in a numbered list expand the damage to all list items - causes the numbers to be regenerated */
 		public override function modelChanged(changeType:String, elem:IFlowElement, changeStart:int, changeLen:int, needNormalize:Boolean = true, bumpGeneration:Boolean = true):void
 		{
+            /*
 			if (changeType==ModelChange.ELEMENT_ADDED) {
 				
 			}
@@ -101,7 +102,7 @@ package org.apache.royale.textLayout.elements {
 					
 				}
 			}
-			
+			*/
 			super.modelChanged(changeType,elem,changeStart,changeLen,needNormalize,bumpGeneration);
 		}
 		
@@ -750,6 +751,7 @@ package org.apache.royale.textLayout.elements {
 		}
 		
 		/**
+         * @suppress {uselessCode}
 		 * Sets the row and column indices of the cells in the table to match their logical position as described by the table columns and rows
 		 * @royaleignorecoercion org.apache.royale.textLayout.elements.ITableCellElement
 		 **/

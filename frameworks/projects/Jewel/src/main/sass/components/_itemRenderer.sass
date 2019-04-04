@@ -23,19 +23,26 @@
 $item-min-height: 34px
 
 .jewel.item, .jewel.navigationlink, .jewel.tabbarbutton
-    display: flex
+    display: block // this works better when render is just text
     min-height: $item-min-height
     text-decoration: none
-    align-items: center
     letter-spacing: 0
     line-height: normal !important
     overflow: hidden
     cursor: auto
+    // pointer-events: none
+
+    // used when the renderer is extended, so we change to flex display
+    &.mxmlContent
+        display: flex
+        align-items: center
 
     &.selectable
         cursor: pointer
+        // pointer-events: auto
     
     .fonticon
         cursor: inherit
+
     
 

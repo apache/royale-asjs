@@ -108,6 +108,7 @@
         </antcall>
         
         <unzip src="${download.dir}/${flexunit.bin.zip}" dest="${ROYALE_HOME}/in/flexunit" />
+        <delete file="${ROYALE_HOME}/in/flexunit/flexunit/flexunit-4.2.0-20140410-flex_4.12.0.swc"/>
     </target>
 
     <target name="flexunit-clean" description="Deletes flexunit files.">
@@ -261,7 +262,7 @@
 	<!-- Google Closure Library -->
     <target name="gcl-download" depends="check-goog-home" unless="GOOG_HOME" description="Downloads Google Closure Library">
     	<mkdir dir="${download.dir}"/>
-    	<get src="https://github.com/google/closure-library/archive/v20170910.zip"
+    	<get src="https://github.com/google/closure-library/archive/v20180910.zip"
     	        dest="${download.dir}/google-closure-library-master.zip"
     	        verbose="false" ignoreerrors="true"/>
     	

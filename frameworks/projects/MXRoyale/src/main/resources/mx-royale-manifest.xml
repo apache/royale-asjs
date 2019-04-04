@@ -21,7 +21,7 @@
 
 <componentPackage>
 
-  <component id="Application" class="mx.core.Application" />   
+  <component id="Application" class="mx.core.Application" />
   <component id="Button" class="mx.controls.Button" />
   <component id="CheckBox" class="mx.controls.CheckBox" />
   <component id="ComboBox" class="mx.controls.ComboBox" />
@@ -49,14 +49,18 @@
 	<component id="VBox" class="mx.containers.VBox" />
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
   <component id="Panel" class="mx.containers.Panel" />
-	<component id="ViewStack" class="mx.containers.ViewStack" /> 
+	<component id="ViewStack" class="mx.containers.ViewStack" />
     <component id="TabNavigator" class="mx.containers.TabNavigator" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
+    <component id="PopUpButton" class="mx.controls.PopUpButton"/>
+    <component id="PopUpMenuButton" class="mx.controls.PopUpMenuButton"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
+	<component id="CompressedRemoteObject" class="mx.rpc.remoting.mxml.CompressedRemoteObject" />
 	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
+    <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation"/>
 	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
 	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
 	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
@@ -66,10 +70,6 @@
 	<component id="ModuleLoader" class="mx.modules.ModuleLoader"/>
 	<component id="State" class="mx.states.State" />
     <component id="Transition" class="mx.states.Transition" />
-  <component id="PlotChart" class="mx.charts.PlotChart" />
-	<component id="PieSeries" class="mx.charts.series.PieSeries" />
-	<component id="PlotSeries" class="mx.charts.series.PlotSeries" />
-	<component id="AreaChart" class="mx.charts.AreaChart" />
 	<component id="ListItemRenderer" class="mx.controls.listClasses.ListItemRenderer" />
 	<component id="ArrayList" class="mx.collections.ArrayList"/>
 	<component id="UIComponent" class="mx.core.UIComponent"/>
@@ -89,10 +89,6 @@
 	<component id="VRule" class="mx.controls.VRule"/>
 	<component id="HRule" class="mx.controls.HRule"/>
 	<component id="Sequence" class="mx.effects.Sequence"/>
-	<component id="LineChart" class="mx.charts.LineChart" />
-	<component id="PieChart" class="mx.charts.PieChart" />
-	<component id="BarChart" class="mx.charts.BarChart" />
-	<component id="ColumnChart" class="mx.charts.ColumnChart" />
 	<component id="Resize" class="mx.effects.Resize"/>
 	<component id="Move" class="mx.effects.Move"/>
 	<component id="LinearGradient" class="mx.graphics.LinearGradient"/>
@@ -104,15 +100,8 @@
     <component id="Form" class="mx.containers.Form" />
 	<component id="FormHeading" class="mx.containers.FormHeading"/>
     <component id="FormItem" class="mx.containers.FormItem" />
-	<component id="BarSeries" class="mx.charts.series.BarSeries" />
 	<component id="XMLListCollection" class="mx.collections.XMLListCollection"/>
 	<component id="TreeItemRenderer" class="mx.controls.treeClasses.TreeItemRenderer" />
-	<component id="ColumnSeries" class="mx.charts.series.ColumnSeries" />
-	<component id="CategoryAxis" class="mx.charts.CategoryAxis" />
-	<component id="LinearAxis" class="mx.charts.LinearAxis" />
-	<component id="ShadowLineRenderer" class="mx.charts.renderers.ShadowLineRenderer" />
-	<component id="Legend" class="mx.charts.Legend" />
-	<component id="AreaSeries" class="mx.charts.series.AreaSeries" />
 	<component id="ToggleButtonBar" class="mx.controls.ToggleButtonBar"/>
 	<component id="DragManager" class="mx.managers.DragManager" />
 	<component id="TraceTarget" class="mx.logging.targets.TraceTarget"/>
@@ -138,10 +127,12 @@
 	<component id="GridRow" class="mx.containers.GridRow"/>
 	<component id="Parallel" class="mx.effects.Parallel"/>
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
-	<component id="LineSeries" class="mx.charts.series.LineSeries" />
 	<component id="Tree" class="mx.controls.Tree"/>
+	<component id="LinkBar" class="mx.controls.LinkBar"/>
+
 	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
 	<component id="ChannelSet" class="mx.messaging.ChannelSet" />
+
 	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
 	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
 	<component id="Alert" class="mx.controls.Alert" />
@@ -159,5 +150,63 @@
     <component id="WipeUp" class="mx.effects.WipeUp" />
     <component id="WipeDown" class="mx.effects.WipeDown" />
     <component id="Pause" class="mx.effects.Pause" />
+
+    <!-- charts -->
+    <component id="AxisRenderer" class="mx.charts.AxisRenderer"/>
+    <component id="BarChart" class="mx.charts.BarChart"/>
+    <component id="BubbleChart" class="mx.charts.BubbleChart"/>
+    <component id="CategoryAxis" class="mx.charts.CategoryAxis"/>
+    <component id="ColumnChart" class="mx.charts.ColumnChart"/>
+    <component id="CandlestickChart" class="mx.charts.CandlestickChart"/>
+    <component id="DataTip" class="mx.charts.chartClasses.DataTip"/>
+    <component id="HLOCChart" class="mx.charts.HLOCChart"/>
+    <component id="AreaChart" class="mx.charts.AreaChart"/>
+    <component id="GridLines" class="mx.charts.GridLines"/>
+    <component id="Legend" class="mx.charts.Legend"/>
+    <component id="LegendItem" class="mx.charts.LegendItem"/>
+    <component id="LineChart" class="mx.charts.LineChart"/>
+    <component id="LinearAxis" class="mx.charts.LinearAxis"/>
+    <component id="LogAxis" class="mx.charts.LogAxis"/>
+    <component id="DateTimeAxis" class="mx.charts.DateTimeAxis"/>
+    <component id="PieChart" class="mx.charts.PieChart"/>
+    <component id="PlotChart" class="mx.charts.PlotChart"/>
+    <component id="PolarChart" class="mx.charts.chartClasses.PolarChart"/>
+    <component id="CartesianChart" class="mx.charts.chartClasses.CartesianChart"/>
+    <component id="ChartBase" class="mx.charts.chartClasses.ChartBase"/>
+    <component id="AreaSeries" class="mx.charts.series.AreaSeries"/>
+    <component id="AreaSet" class="mx.charts.series.AreaSet"/>
+    <component id="BarSeries" class="mx.charts.series.BarSeries"/>
+    <component id="BarSet" class="mx.charts.series.BarSet"/>
+    <component id="BubbleSeries" class="mx.charts.series.BubbleSeries"/>
+    <component id="ColumnSeries" class="mx.charts.series.ColumnSeries"/>
+    <component id="ColumnSet" class="mx.charts.series.ColumnSet"/>
+    <component id="CandlestickSeries" class="mx.charts.series.CandlestickSeries"/>
+    <component id="HLOCSeries" class="mx.charts.series.HLOCSeries"/>
+    <component id="LineSeries" class="mx.charts.series.LineSeries"/>
+    <component id="PieSeries" class="mx.charts.series.PieSeries"/>
+    <component id="PlotSeries" class="mx.charts.series.PlotSeries"/>
+    <component id="SeriesEffect" class="mx.charts.effects.SeriesEffect"/>
+    <component id="SeriesInterpolate" class="mx.charts.effects.SeriesInterpolate"/>
+    <component id="SeriesSlide" class="mx.charts.effects.SeriesSlide"/>
+    <component id="SeriesZoom" class="mx.charts.effects.SeriesZoom"/>
+
+    <component id="AreaRenderer" class="mx.charts.renderers.AreaRenderer"/>
+    <component id="BoxItemRenderer" class="mx.charts.renderers.BoxItemRenderer"/>
+    <component id="CandlestickItemRenderer" class="mx.charts.renderers.CandlestickItemRenderer"/>
+    <component id="CircleItemRenderer" class="mx.charts.renderers.CircleItemRenderer"/>
+    <component id="CrossItemRenderer" class="mx.charts.renderers.CrossItemRenderer"/>
+    <component id="DiamondItemRenderer" class="mx.charts.renderers.DiamondItemRenderer"/>
+    <component id="HLOCItemRenderer" class="mx.charts.renderers.HLOCItemRenderer"/>
+    <component id="LineRenderer" class="mx.charts.renderers.LineRenderer"/>
+    <component id="ShadowBoxItemRenderer" class="mx.charts.renderers.ShadowBoxItemRenderer"/>
+    <component id="ShadowLineRenderer" class="mx.charts.renderers.ShadowLineRenderer"/>
+    <component id="TriangleItemRenderer" class="mx.charts.renderers.TriangleItemRenderer"/>
+    <component id="WedgeItemRenderer" class="mx.charts.renderers.WedgeItemRenderer"/>
+
+    <component id="CartesianDataCanvas" class="mx.charts.chartClasses.CartesianDataCanvas"/>
+    <component id="PolarDataCanvas" class="mx.charts.chartClasses.PolarDataCanvas"/>
+
+    <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
+    <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
 
 </componentPackage>

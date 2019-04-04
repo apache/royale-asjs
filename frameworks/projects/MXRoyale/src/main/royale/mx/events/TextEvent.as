@@ -39,6 +39,13 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class TextEvent extends flash.events.TextEvent
 {
+	private static function platformConstant(s:String):String
+        {
+            return s;
+        }
+		
+    public static const TEXT_INPUT : String = platformConstant("textInput"); 
+		
 	public function TextEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, text:String = "")
     {
         super(type, bubbles, cancelable,text);

@@ -24,6 +24,10 @@ j|Application {
   margin: 0px;
 }
 
+input, select, textarea, button {
+  font-family: inherit;
+}
+
 j|Form {
   gap: 3;
 }
@@ -56,6 +60,10 @@ div {
   font-size: 14px;
 }
 
+hr {
+  background-color: #d9d9d9;
+}
+
 .jewel.xsmall {
   font-size: 0.6em !important;
 }
@@ -74,6 +82,11 @@ div {
 
 .jewel.xlarge {
   font-size: 1.4em !important;
+}
+
+.jewel.badge.secondary {
+  background: #C92CC6;
+  color: #FFFFFF;
 }
 
 .jewel.button.secondary {
@@ -98,10 +111,11 @@ div {
   box-shadow: inset 0px 0px 0px 1px rgba(253, 247, 253, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 .jewel.button.secondary[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
+  text-shadow: unset;
 }
 
 .jewel.snackbar.secondary .jewel.snackbar-content {
@@ -130,6 +144,40 @@ a:hover {
 
 a:active {
   color: #d94fd6;
+}
+
+.jewel.togglebutton.secondary {
+  background: linear-gradient(#d43bd1, #b427b1);
+  border: 1px solid #8a1e88;
+  box-shadow: inset 0 1px 0 #e279e0;
+  border-radius: 3px;
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(75, 17, 74, 0.7);
+}
+.jewel.togglebutton.secondary:hover, .jewel.togglebutton.secondary:hover:focus {
+  background: linear-gradient(#C92CC6, #9f239d);
+  border: 1px solid #751a74;
+}
+.jewel.togglebutton.secondary:active, .jewel.togglebutton.secondary:active:focus {
+  background: linear-gradient(#9f239d, #751a74);
+  border: 1px solid #4b114a;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.jewel.togglebutton.secondary:focus {
+  border: 1px solid #8a1e88;
+  box-shadow: inset 0px 0px 0px 1px rgba(253, 247, 253, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.jewel.togglebutton.secondary[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.secondary.selected {
+  background: linear-gradient(#9f239d, #751a74);
+  border: 1px solid #4b114a;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
 }
 
 /*# sourceMappingURL=defaults.css.map */

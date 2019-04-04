@@ -20,3 +20,5 @@
 Just a commit test [Olaf Krueger]
 Testing Gitbox [JT]
 Test Commit
+Test Commit
+Test Commit [Piotr]

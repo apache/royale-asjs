@@ -312,3 +312,29 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+The following is relative to the royale-compiler folder:
+
+The following .java files in 
+compiler-jx/src/main/java/com/google/javascript/jscomp
+are derived from the files in the Google Closure Compiler which are available 
+under Apache License 2.0.
+
+RoyaleClosurePassConfig.java
+Files with names ending with WithModuleSupport.java
+
+TourDeFlex Subcomponents:
+
+The examples/mxroyale/tourdeflexmodules includes a number of subcomponents with
+separate copyright notices and license terms. Your use of the source
+code for the these subcomponents is subject to the terms and
+conditions of the following licenses. 
+
+The Open-Sans font is available under Apache License 2.0. For details
+see src/mx/effects/assets.
+
+The ping sound effect (ping.mp3) in src/mx/effects/assets is
+licensed under Creative Commons Attribution 3.0 (CC BY 3.0).
+
+/src/swfobject.js from SWFObject 2.2, is available under a MIT license.
+For details, see https://code.google.com/p/swfobject.

@@ -26,6 +26,7 @@ package org.apache.royale.net
     import org.apache.royale.net.events.ResultEvent;
     import org.apache.royale.net.remoting.SimpleOperation;
     import org.apache.royale.net.remoting.amf.AMFNetConnection;
+    import org.apache.royale.net.remoting.messages.ErrorMessage;
 
 	[Event(name="result", type="org.apache.royale.net.events.ResultEvent")]
 	[Event(name="fault", type="org.apache.royale.net.events.FaultEvent")]
@@ -53,6 +54,7 @@ package org.apache.royale.net
 		 */ 
 		public function SimpleRemoteObject()
 		{
+            nc.errorClass = ErrorMessage;
 		}
 		
         private var _strand:IStrand;

@@ -39,7 +39,7 @@ package org.apache.royale.binding
      *  the different lifecycles.  For example, an item renderer
      *  databinding implementation can wait to execute databindings
      *  until the data property is set.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -49,7 +49,7 @@ package org.apache.royale.binding
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -126,6 +126,8 @@ package org.apache.royale.binding
                                 cb.setDocument(_strand);
 
                                 prepareCreatedBinding(cb as IBinding, binding);
+                            } else {
+                                makeGenericBinding(binding, i, watchers);
                             }
                         }
                         else
@@ -176,8 +178,7 @@ package org.apache.royale.binding
                         prepareCreatedBinding(sb as IBinding, binding);
                     }
                 }
-                else
-                {
+                else  {
                     makeGenericBinding(binding, i, watchers);
                 }
 
@@ -201,7 +202,7 @@ package org.apache.royale.binding
                 // should be a constant expression.
                 // the value doesn't matter as GenericBinding
                 // should get the value from the source
-                gb.valueChanged(null);  
+                gb.valueChanged(null, true);
             }
         }
     }

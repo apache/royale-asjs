@@ -57,7 +57,7 @@ use namespace mx_internal;
  *  @playerversion AIR 2.6
  *  @productversion Royale 0.0
  */
-[Event(name="click", type="org.apache.royale.events.MouseEvent")]
+[Event(name="click", type="mx.events.MouseEvent")]
 
 /**
  *  Dispatched when the user presses the Button control.

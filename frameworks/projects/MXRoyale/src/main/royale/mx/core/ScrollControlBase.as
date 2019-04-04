@@ -239,7 +239,7 @@ public class ScrollControlBase extends UIComponent
      *  @private
      */
 //    mx_internal var _maxVerticalScrollPosition:Number;
-//    mx_internal var _maxHorizontalScrollPosition:Number;
+    mx_internal var _maxHorizontalScrollPosition:Number;
 
     /**
      *  @private
@@ -261,7 +261,7 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    protected var scrollAreaChanged:Boolean;
+    protected var scrollAreaChanged:Boolean;
 
     /**
      *  @private
@@ -317,7 +317,35 @@ public class ScrollControlBase extends UIComponent
     //  Properties
     //
     //--------------------------------------------------------------------------
+    
+    //----------------------------------
+    //  contentBackgroundColor
+    //----------------------------------
+	
+	public function get contentBackgroundColor():uint
+    {
+      return null;
+    }
 
+    public function set contentBackgroundColor(value:uint):void
+    {
+        
+    }
+	
+    //----------------------------------
+    //  borderVisible
+    //----------------------------------
+	
+	public function get borderVisible():Boolean
+    {
+      return 0;
+    }
+
+    public function set borderVisible(value:Boolean):void
+    {
+        
+    } 
+    
     //----------------------------------
     //  borderMetrics
     //----------------------------------

@@ -39,6 +39,8 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class SecurityErrorEvent extends flash.events.SecurityErrorEvent
 {
+	public static const SECURITY_ERROR:String = "securityError";
+	
 	public function SecurityErrorEvent(type:String, bubbles:Boolean = false, 
 	cancelable:Boolean = false, text:String = "", id:int = 0)
 	{
@@ -58,7 +60,7 @@ public class SecurityErrorEvent extends flash.events.SecurityErrorEvent
  *  @royalesuppresspublicvarwarning
  */
 COMPILE::JS
-public class SecurityErrorEvent extends org.apache.royale.events.Event
+public class SecurityErrorEvent extends ErrorEvent
 {
    /*  include "../core/Version.as"; */
 	public static const SECURITY_ERROR:String = "securityError";

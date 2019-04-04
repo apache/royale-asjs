@@ -65,6 +65,14 @@ package org.apache.royale.events
 		//--------------------------------------
 
 		/**
+		 	* @type {Event}
+      * @royalesuppresspublicvarwarning
+		 */
+        COMPILE::JS
+		public var nativeEvent:Object;
+
+
+		/**
 		 * @type {?goog.events.BrowserEvent}
 		 */
 		private var wrappedEvent:Object;
@@ -72,6 +80,7 @@ package org.apache.royale.events
 		public function wrapEvent(event:goog.events.BrowserEvent):void
 		{
 			wrappedEvent = event;
+			nativeEvent = event.getBrowserEvent();
 		}
 		//--------------------------------------
 		//   Function

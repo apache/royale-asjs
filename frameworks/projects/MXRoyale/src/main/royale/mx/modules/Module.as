@@ -89,6 +89,23 @@ public class Module extends Container implements IModule //extends LayoutContain
         super();
     }
 	
+    /**
+     * These APIs keep properties in ROYALE_CLASS_INFO from being minified.
+     * When a module is being loaded, both the loading .js file and the loaded
+     * .js file need to have an agreement on which plain object field names
+     * can be minified.  If you run into other issues with plain object renaming
+     * you can add your own getters.
+     */
+    private static function get interfaces():Boolean
+    {
+        return true;
+    }
+    private static function get qName():Boolean
+    {
+        return true;
+    }
+    
+    
     //----------------------------------
     //  layout
     //----------------------------------
@@ -164,6 +181,21 @@ public class Module extends Container implements IModule //extends LayoutContain
 
             dispatchEvent(new Event("layoutChanged"));*/
         }
+    }
+    
+    COMPILE::JS
+    public function _keepcode(obj:Object):Object
+    {
+        // Google Closure will remove code from a module that
+        // it doesn't see anybody use in the module.  But if
+        // there is stuff in the module the loading app uses
+        // we need to add it here in a way that Closure will
+        // think it is used.  Exported/public variables should
+        // be ok, but non-exported stuff needs to be used.
+        if (obj.cssData)
+            return obj.cssData;
+        
+        return obj.ROYALE_CLASS_INFO;
     }
 
 }

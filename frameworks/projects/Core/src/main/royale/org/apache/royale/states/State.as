@@ -20,6 +20,8 @@
 // shim the mx classes for states
 package org.apache.royale.states
 {
+    import org.apache.royale.core.IState;
+    
     /**
      *  The State class is one of the classes in the
      *  view states subsystem.  It is used to declare a 
@@ -30,7 +32,7 @@ package org.apache.royale.states
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class State
+	public class State implements IState
 	{
         /**
          *  Constructor.

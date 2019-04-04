@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 
     /**
-	 *  Handles the update of an itemRenderer in a List component once the corresponding 
+	 *  Handles the update of an itemRenderer in a List component once the corresponding
 	 *  datum has been updated from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
@@ -71,7 +71,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
-		
+
 		/**
 		 *  finish setup
 		 *
@@ -84,16 +84,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 		protected function initComplete(event:Event):void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
-			
+
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			labelField = _dataProviderModel.labelField;
 
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
+			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
-		
+
 		private var dp:IEventDispatcher;
 		/**
 		 * @private
@@ -108,7 +108,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
-			
+
 			// listen for individual items being updated in the future.
 			dp.addEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
 		}
@@ -121,12 +121,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
             var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererAt(event.index) as ISelectableItemRenderer;
-			
+
             setData(ir, event.item, event.index);
+
+            if (event.index == ISelectionModel(_dataProviderModel).selectedIndex) {
+				//manually trigger a selection change, even if there was actually none.
+				//This causes selection-based bindings to work
+                IEventDispatcher(_dataProviderModel).dispatchEvent(new Event('selectionChanged'));
+            }
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
@@ -177,7 +184,13 @@ package org.apache.royale.jewel.beads.itemRenderers
         protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
-            itemRenderer.data = data;
+			var forceDataChangeEvent:Boolean = (itemRenderer.data == data);
+			
+			itemRenderer.data = data;
+			
+			if (forceDataChangeEvent) {
+				itemRenderer.dispatchEvent(new Event('dataChange'));
+			}
         }
 	}
 }

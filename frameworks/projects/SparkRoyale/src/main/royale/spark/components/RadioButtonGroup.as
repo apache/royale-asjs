@@ -60,7 +60,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Event(name="change", type="flash.events.Event")]
+[Event(name="change", type="org.apache.royale.events.Event")]
 
 /**
  *  Dispatched when a user selects a RadioButton component in the group.
@@ -207,14 +207,14 @@ public class RadioButtonGroup extends EventDispatcher
      *  @private
      *  An Array of the RadioButtons that belong to this group.
      */
-    //private var radioButtons:Array /* of RadioButton */ = [];
+    private var radioButtons:Array /* of RadioButton */ = [];
 
     /**
      *  @private
      *  Whether the group is enabled.  This can be different than the individual
      *  radio buttons in the group.
      */
-    //private var _enabled:Boolean = true;
+    private var _enabled:Boolean = true;
 
     //--------------------------------------------------------------------------
     //
@@ -241,15 +241,15 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get enabled():Boolean
+     public function get enabled():Boolean
     {
         return _enabled;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set enabled(value:Boolean):void
+    public function set enabled(value:Boolean):void
     {
         if (_enabled == value)
             return;
@@ -258,9 +258,9 @@ public class RadioButtonGroup extends EventDispatcher
 
         // The group state changed.  Invalidate all the radio buttons.  The
         // radio button skin most likely will change.
-        for (var i:int = 0; i < numRadioButtons; i++)
-            getRadioButtonAt(i).invalidateSkinState();
-    } */
+       // for (var i:int = 0; i < numRadioButtons; i++)
+         //   getRadioButtonAt(i).invalidateSkinState();
+    } 
 
     //----------------------------------
     //  numRadioButtons
@@ -278,10 +278,10 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function get numRadioButtons():int
+     public function get numRadioButtons():int
     {
         return radioButtons.length;
-    } */
+    } 
 
 
     //----------------------------------
@@ -291,7 +291,7 @@ public class RadioButtonGroup extends EventDispatcher
     /**
     *  @private
     */
-    //private var _selectedIndex:int = -1;
+    private var _selectedIndex:int = -1;
 
     //[Bindable("change")]
     //[Bindable("valueCommit")]
@@ -308,15 +308,15 @@ public class RadioButtonGroup extends EventDispatcher
     *  @playerversion AIR 3.4
     *  @productversion Royale 0.9.4
     */
-    /* public function get selectedIndex():int
+    public function get selectedIndex():int
     {
         return _selectedIndex;
-    } */
+    }
 
     /**
     *  @private.
     */
-    /* public function set selectedIndex(newValue:int):void
+    public function set selectedIndex(newValue:int):void
     {
         if (newValue == _selectedIndex)
         {
@@ -334,7 +334,7 @@ public class RadioButtonGroup extends EventDispatcher
         changeSelection(newValue, false)
 
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-    } */
+    }
 
 
     //----------------------------------
@@ -370,12 +370,12 @@ public class RadioButtonGroup extends EventDispatcher
      */
     public function get selectedValue():Object
     {
-        /* if (selection)
+        if (selection)
         {
             return selection.value != null ?
                    selection.value :
                    selection.label;
-        } */
+        }
 
         return null;
     }
@@ -391,7 +391,7 @@ public class RadioButtonGroup extends EventDispatcher
         _selectedValue = value;
         
         // Clear the exisiting selecton if there is one.
-        /* if (value == null)
+        if (value == null)
         {
             setSelection(null, false);
             return;
@@ -412,7 +412,7 @@ public class RadioButtonGroup extends EventDispatcher
 
                 break;
             }
-        } */
+        }
     }
 
     //----------------------------------
@@ -423,7 +423,7 @@ public class RadioButtonGroup extends EventDispatcher
      *  @private
      *  Reference to the selected radio button.
      */
-     private var _selection:Object;//RadioButton;
+     private var _selection:RadioButton;
 
     [Bindable("change")]
     [Bindable("valueCommit")]
@@ -444,7 +444,7 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function get selection():Object//RadioButton
+    public function get selection():RadioButton
     {
         return _selection;
     } 
@@ -452,14 +452,13 @@ public class RadioButtonGroup extends EventDispatcher
     /**
      *  @private
      */
-	//public function set selection(value:RadioButton):void
-    public function set selection(value:Object):void
+	public function set selection(value:RadioButton):void
     {
         if ( _selection == value)
             return;
         
         // Going through the selection setter should never fire a change event.
-       // setSelection(value, false);
+        setSelection(value, false);
     } 
 
     //--------------------------------------------------------------------------
@@ -510,13 +509,13 @@ public class RadioButtonGroup extends EventDispatcher
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    /* public function getRadioButtonAt(index:int):RadioButton
+     public function getRadioButtonAt(index:int):RadioButton
     {
         if (index >= 0 && index < numRadioButtons)
             return radioButtons[index];
             
         return null;
-    } */
+    } 
 
     /**
      *  @private
@@ -619,7 +618,7 @@ public class RadioButtonGroup extends EventDispatcher
     /**
      *  @private
      */
-    /* mx_internal function setSelection(value:RadioButton, fireChange:Boolean = true):void
+    mx_internal function setSelection(value:RadioButton, fireChange:Boolean = true):void
     {
         if (_selection == value)
             return;
@@ -650,11 +649,11 @@ public class RadioButtonGroup extends EventDispatcher
 
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
-    */
+    
     /**
      *  @private
      */
-    /* private function changeSelection(index:int, fireChange:Boolean = true):void
+    private function changeSelection(index:int, fireChange:Boolean = true):void
     {
         var rb:RadioButton = getRadioButtonAt(index);
         if (rb && rb != _selection)
@@ -673,7 +672,7 @@ public class RadioButtonGroup extends EventDispatcher
             if (fireChange)
                 dispatchEvent(new Event(Event.CHANGE));
         }
-    } */
+    }
 
     /**
      *  @private

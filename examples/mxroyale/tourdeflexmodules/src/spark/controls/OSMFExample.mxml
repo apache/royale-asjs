@@ -18,7 +18,8 @@
 
 -->
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
-			   xmlns:s="library://ns.apache.org/royale/spark">
+			   xmlns:s="library://ns.apache.org/royale/spark"
+               width="100%" height="100%">
 	
 	<s:VideoPlayer horizontalCenter="0" verticalCenter="0"
 		source="http://mediapm.edgesuite.net/osmf/content/test/manifest-files/dynamic_Streaming.f4m" 

@@ -18,25 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.IToggleButtonModel;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.supportClasses.checkbox.CheckBoxIcon;
-    import org.apache.royale.utils.ClassSelectorList;
-
     COMPILE::SWF
     {
-        import org.apache.royale.events.MouseEvent;
-        import org.apache.royale.core.UIButtonBase;
-        import org.apache.royale.core.IStrand;
-        import org.apache.royale.core.ISelectable;
+    import org.apache.royale.core.ISelectable;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIButtonBase;
+    import org.apache.royale.events.MouseEvent;
     }
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IToggleButtonModel;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.utils.ClassSelectorList;
 
     //--------------------------------------
     //  Events
@@ -196,7 +193,6 @@ package org.apache.royale.jewel
         }
 
         private var _label:WrappedHTMLElement;
-		private var _icon:CheckBoxIcon;
 
 		private static var _checkNumber:Number = 0;
         
@@ -205,35 +201,39 @@ package org.apache.royale.jewel
 
         COMPILE::JS
         protected var checkbox:HTMLSpanElement;
-
-        COMPILE::JS
-        protected var label:HTMLLabelElement;
         
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         * @royaleignorecoercion HTMLLabelElement
          * @royaleignorecoercion HTMLInputElement
          * @royaleignorecoercion HTMLSpanElement
-         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var label:HTMLLabelElement = document.createElement('label') as HTMLLabelElement;
-            
             input = addElementToWrapper(this,'input') as HTMLInputElement;
-            input.type = 'checkbox';    
-            label.appendChild(input);
-            
+            input.type = 'checkbox';
             checkbox = document.createElement('span') as HTMLSpanElement;
-            label.appendChild(checkbox);
-            
-            positioner = label as WrappedHTMLElement;
-            positioner.royale_wrapper = this;
-            //(input as WrappedHTMLElement).royale_wrapper = this;
-            //(checkbox as WrappedHTMLElement).royale_wrapper = this;
+            positioner = document.createElement('label') as WrappedHTMLElement;   
             return element;
         }
+
+        COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+            _positioner.appendChild(checkbox);
+		}
 
         /**
          *  The text label for the CheckBox.
@@ -352,16 +352,7 @@ package org.apache.royale.jewel
 			{
                 if(input.checked == value)
                     return;
-                var instance:Object = element['JewelCheckbox'];
-                if(instance)
-                {
-                    if(value)
-                        instance["check"]();
-                    else
-                        instance["uncheck"]();
-                }
-                else
-                    input.checked = value;
+                input.checked = value;
                 dispatchEvent(new Event(Event.CHANGE));
             }
         }

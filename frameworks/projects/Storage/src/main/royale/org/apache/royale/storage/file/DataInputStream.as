@@ -67,7 +67,7 @@ public class DataInputStream extends EventDispatcher implements IDataInput
 			
 			var self:DataInputStream = this;
 			
-			_fileReader.onloadend = function (e):void {
+			_fileReader.onloadend = function (e:Event):void {
 				var streamEvent:FileEvent = new FileEvent("READ");
 				streamEvent.stream = self;
 				streamEvent.data = this.result;

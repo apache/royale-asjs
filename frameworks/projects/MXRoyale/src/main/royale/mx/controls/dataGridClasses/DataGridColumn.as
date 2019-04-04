@@ -277,6 +277,7 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     public function set headerText(value:String):void
     {
         _headerText = value;
+        label = value;
     }
 
 

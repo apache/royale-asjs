@@ -25,13 +25,6 @@ import mx.core.FlexVersion;
 import mx.events.FlexEvent;
 import mx.events.ModuleEvent;
 import mx.system.ApplicationDomain;
-//import flash.display.DisplayObject;
-//import flash.display.DisplayObjectContainer;
-//import flash.events.Event;
-//import flash.system.ApplicationDomain;
-//import flash.system.SecurityDomain;
-//import flash.utils.ByteArray;
-//import mx.core.IDeferredInstantiationUIComponent;
 
 import org.apache.royale.utils.UIModuleUtils;
 
@@ -210,6 +203,23 @@ public class ModuleLoader extends VBox
     }
 
     private var utils:UIModuleUtils = new UIModuleUtils();
+    
+    /**
+     * These APIs keep properties in ROYALE_CLASS_INFO from being minified.
+     * When a module is being loaded, both the loading .js file and the loaded
+     * .js file need to have an agreement on which plain object field names
+     * can be minified.  If you run into other issues with plain object renaming
+     * you can add your own getters.
+     */
+    private static function get interfaces():Boolean
+    {
+        return true;
+    }
+    private static function get qName():Boolean
+    {
+        return true;
+    }
+    
     
     //--------------------------------------------------------------------------
     //
