@@ -19,13 +19,13 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.core.ContainerBase;
-	import org.apache.royale.core.IMXMLDocument;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.MXMLDataInterpreter;
-	import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.core.IMXMLDocument;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
+    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.StringUtil;
 	
 	/**

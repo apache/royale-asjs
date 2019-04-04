@@ -131,7 +131,6 @@ package org.apache.royale.jewel.beads.controllers
             var stepToGo:WizardStep = findStep(model.currentStep, true);
             wizard.dispatchEvent(new Event("goToPreviousStep"));
             model.currentStep = stepToGo;
-            // wizard.dispatchEvent(new Event("change"));
             // }
         }
 
@@ -148,7 +147,6 @@ package org.apache.royale.jewel.beads.controllers
                 var stepToGo:WizardStep = findStep(model.currentStep, false);
                 wizard.dispatchEvent(new Event("goToNextStep"));
                 model.currentStep = stepToGo;
-                // wizard.dispatchEvent(new Event("change"));
             }
         }
 
