@@ -614,9 +614,9 @@ public class Validator extends EventDispatcher
      */
     public function set trigger(value:IEventDispatcher):void
     {
-        //removeTriggerHandler();
+        removeTriggerHandler();
         _trigger = value;
-        //addTriggerHandler();    
+        addTriggerHandler();    
     } 
     
     //----------------------------------
@@ -659,9 +659,9 @@ public class Validator extends EventDispatcher
         if (_triggerEvent == value)
             return;
             
-        //removeTriggerHandler();
+        removeTriggerHandler();
         _triggerEvent = value;
-       // addTriggerHandler();
+        addTriggerHandler();
     }
 
     //--------------------------------------------------------------------------
