@@ -488,6 +488,68 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
     
+    //--------------------------------------------------------------------------
+    //
+    //  Class constants
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  The default value for the <code>measuredWidth</code> property.
+     *  Most components calculate a measuredWidth but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 160
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_WIDTH:Number = 160;
+    
+    /**
+     *  The default value for the <code>measuredMinWidth</code> property.
+     *  Most components calculate a measuredMinWidth but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 40
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_MIN_WIDTH:Number = 40;
+    
+    /**
+     *  The default value for the <code>measuredHeight</code> property.
+     *  Most components calculate a measuredHeight but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 22
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_HEIGHT:Number = 22;
+    
+    /**
+     *  The default value for the <code>measuredMinHeight</code> property.
+     *  Most components calculate a measuredMinHeight but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 22
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_MIN_HEIGHT:Number = 22;
+
     /**
      *  The default value for the <code>maxWidth</code> property.
      *
@@ -4064,8 +4126,8 @@ COMPILE::JS
      */
     public function measureText(text:String):TextLineMetrics
     {
-        trace("measureText not implemented");
-        return null;
+        var uitf:UITextFormat = new UITextFormat(systemManager);
+        return uitf.measureText(text);
     }
 	
 	//----------------------------------
