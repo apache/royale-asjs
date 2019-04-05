@@ -18,24 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.core.ITextModel;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.events.IEventDispatcher;
-
     COMPILE::SWF
     {
     	import org.apache.royale.core.UIButtonBase;
-        import org.apache.royale.utils.IClassSelectorListSupport;
+    	import org.apache.royale.utils.IClassSelectorListSupport;
     }
 
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.core.StyledUIBase;
+        import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ITextModel;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.ClassSelectorList;
 
     //--------------------------------------
     //  Events
@@ -373,6 +372,7 @@ package org.apache.royale.jewel
             typeNames = "jewel button";
 		}
 
+        [Bindable("textChange")]
         /**
          *  @copy org.apache.royale.html.Label#text
          *
@@ -392,9 +392,10 @@ package org.apache.royale.jewel
 		public function set text(value:String):void
 		{
             (element as HTMLButtonElement).innerHTML = value;
-            this.dispatchEvent('textChange');
+            this.dispatchEvent(new Event('textChange'));
 		}
 
+        [Bindable("htmlChange")]
         /**
          *  @copy org.apache.royale.html.Label#html
          *
@@ -414,7 +415,7 @@ package org.apache.royale.jewel
 		public function set html(value:String):void
 		{
             (element as HTMLButtonElement).innerHTML = value;
-            this.dispatchEvent('textChange');
+            this.dispatchEvent(new Event('textChange'));
 		}
 
         private var _emphasis:String;
@@ -456,14 +457,7 @@ package org.apache.royale.jewel
         {
 			addElementToWrapper(this, 'button');
             element.setAttribute('type', 'button');
-            /* AJH comment out until we figure out why it is needed
-            if (org.apache.royale.core.ValuesManager.valuesImpl.getValue) {
-                var impl:Object = org.apache.royale.core.ValuesManager.valuesImpl.
-                    getValue(this, 'iStatesImpl');
-            }*/
-            positioner = element;
-
-
+            
             return element;
         }
 	}

@@ -228,6 +228,8 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
+                    if (i >= dp.length) continue; // no more renderers needed
+                    
                     var ir:ISelectableItemRenderer;
                     if (i < firstIndex)
                     {
@@ -338,6 +340,8 @@ package org.apache.royale.html.beads.layouts
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
+                    if (i >= dp.length) continue; // no more renderers needed
+                    
                     var ir:ISelectableItemRenderer;
                     if (i < firstIndex)
                     {

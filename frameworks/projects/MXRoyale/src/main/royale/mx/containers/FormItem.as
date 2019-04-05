@@ -24,9 +24,6 @@ COMPILE::SWF
 {    
 import flash.display.DisplayObject;
 }
-import org.apache.royale.core.IChild;
-import org.apache.royale.events.Event;
-
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.FormItemView;
 import mx.containers.utilityClasses.Flex;
@@ -36,9 +33,13 @@ import mx.core.Container;
 import mx.core.EdgeMetrics;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
-import mx.core.mx_internal;
 import mx.core.ScrollPolicy;
+import mx.core.UIComponent;
+import mx.core.mx_internal;
 import mx.styles.CSSStyleDeclaration;
+
+import org.apache.royale.core.IChild;
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 
@@ -292,7 +293,7 @@ public class FormItem extends Container
      *  @private
      *  We use the VBox algorithm when direction="vertical" and make a few adjustments
      */
-    mx_internal var verticalLayoutObject:BoxLayout = new BoxLayout();
+    mx_internal var verticalLayoutObject:BoxLayout = new FormItemLayout(this);
 
     //--------------------------------------------------------------------------
     //
@@ -637,6 +638,15 @@ public class FormItem extends Container
             measureHorizontal();
     }
     
+    /**
+     * @private
+     * called from FormItemLayout
+     */
+    public function measureFormItem():void
+    {
+        measure();
+    }
+    
     private function measureVertical():void
     {
         // use VBox and then take into account label, indictor gap
@@ -892,6 +902,15 @@ public class FormItem extends Container
 
         // Position the "required" indicator.
         displayIndicator(x, y);
+    }
+    
+    /**
+     * @private
+     * called from FormItemLayout
+     */
+    public function updateFormItemDisplayList(w:Number, h:Number):void
+    {
+        updateDisplayList(w, h);   
     }
     
     private function updateDisplayListVerticalChildren(unscaledWidth:Number,
@@ -1463,6 +1482,8 @@ public class FormItem extends Container
         return 0;
     }
     
+    private var formItemLayout:FormItemLayout;
+    
     override public function addedToParent():void
     {
         super.addedToParent();
@@ -1483,6 +1504,8 @@ public class FormItem extends Container
     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var containerView:FormItemView = view as FormItemView;
+        if ((containerView.contentArea as UIComponent).systemManager == null)
+            (containerView.contentArea as UIComponent).systemManager = systemManager;
         if (c == containerView.contentArea)
         {
             super.addElement(c, dispatchEvent);
@@ -1499,6 +1522,8 @@ public class FormItem extends Container
     override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
     {
         var containerView:FormItemView = view as FormItemView;
+        if ((containerView.contentArea as UIComponent).systemManager == null)
+            (containerView.contentArea as UIComponent).systemManager = systemManager;
         containerView.contentArea.addElementAt(c, index, dispatchEvent);
         containerView.contentArea.dispatchEvent(new Event("layoutNeeded"));
     }
@@ -1543,20 +1568,76 @@ public class FormItem extends Container
         return containerView.contentArea.getElementAt(index);
     }
 
-}
-
-}
-
-import mx.core.UIComponent;
-import mx.containers.FormItem;
-import org.apache.royale.core.LayoutBase;
-
-// this blocks other layout beads from doing things
-class FormItemLayout extends LayoutBase
-{
-    override public function layout():Boolean
+    /**
+     * @private
+     * lie about being sized to content.  The size of the form item
+     * is dictated by the form's layout, which is dictated by
+     * formItem measurement but at layout time, the BoxLayout
+     * should not use the measured size as it doesn't take into account
+     * the form item label
+     */
+    override public function isWidthSizedToContent():Boolean
     {
-        // don't do anything
         return false;
     }
+    
+    /**
+     * @private
+     * lie about being sized to content.  The size of the form item
+     * is dictated by the form's layout, which is dictated by
+     * formItem measurement but at layout time, the BoxLayout
+     * should not use the measured size as it doesn't take into account
+     * the form item label
+     */
+    override public function isHeightSizedToContent():Boolean
+    {
+        return false;
+    }
+    
+}
+
+}
+
+import mx.containers.FormItem;
+import mx.core.UIComponent;
+
+import mx.containers.beads.BoxLayout;
+
+class FormItemLayout extends BoxLayout
+{
+    private var formItem:FormItem;
+    
+    public function FormItemLayout(formItem:FormItem)
+    {
+        this.formItem = formItem;
+    }
+    
+    private var inMeasure:Boolean;
+    
+    override public function measure():void
+    {
+        if (inMeasure)
+            super.measure();
+        else
+        {
+            inMeasure = true;
+            formItem.measureFormItem();
+            inMeasure = false;
+        }
+    }
+    
+    private var inUpdateDisplayList:Boolean;
+    
+    override public function updateDisplayList(w:Number, h:Number):void
+    {
+        if (inUpdateDisplayList)
+            super.updateDisplayList(w, h);
+        else
+        {
+            inUpdateDisplayList = true;
+            formItem.updateFormItemDisplayList(w, h);
+            inUpdateDisplayList = false;
+        }
+    }
+    
 }

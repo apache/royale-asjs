@@ -20,8 +20,8 @@ package org.apache.royale.jewel
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.core.ITextModel;
 	import org.apache.royale.core.StyledUIBase;
@@ -112,7 +112,7 @@ package org.apache.royale.jewel
                 {
                     _text = value;
                     textNode.nodeValue = value;
-                    this.dispatchEvent('textChange');
+                    dispatchEvent(new Event('textChange'));
                 }
             }
 
@@ -150,8 +150,8 @@ package org.apache.royale.jewel
             }
             COMPILE::JS
             {
-                this.element.innerHTML = value;
-                this.dispatchEvent('textChange');
+                element.innerHTML = value;
+                dispatchEvent(new Event('textChange'));
             }
         }
 
@@ -201,8 +201,6 @@ package org.apache.royale.jewel
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);
             
-            positioner = element;
-
             return element;
         }
 

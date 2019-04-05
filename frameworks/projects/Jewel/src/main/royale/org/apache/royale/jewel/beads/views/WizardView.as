@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF {
-		import org.apache.royale.core.SimpleCSSStylesWithFlex;
+	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	}
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
@@ -42,7 +42,7 @@ package org.apache.royale.jewel.beads.views
 
 	/**
 	 *  The Wizard class creates the visual elements of the org.apache.royale.jewel.Wizard
-	 *  component. A Wizard has two org.apache.royale.jewel.Button, and content. The buttons 
+	 *  component. A Wizard has two org.apache.royale.jewel.Button, and content. The buttons
 	 *  navigate pages to previous or next.
 	 *
 	 *  @viewbead
@@ -205,13 +205,13 @@ package org.apache.royale.jewel.beads.views
                 IEventDispatcher(value).addEventListener("initComplete", handleInitComplete);
 			}
 
-			// adds an vgroup so we can arrange vertically the title and then the rest of content 
+			// adds an vgroup so we can arrange vertically the title and then the rest of content
 			var vg:VGroup = new VGroup();
 			vg.className = "jewel wizard main"
 			vg.gap = 3;
 			(_strand as IContainerBaseStrandChildrenHost).$addElement(vg);
 
-			// add title 
+			// add title
             if (titleLabel.parent == null) {
 				vg.addElement(titleLabel);
 			}
@@ -220,7 +220,7 @@ package org.apache.royale.jewel.beads.views
 			g.className = "precontent";
 			g.gap = 3;
 			g.itemsHorizontalAlign = "itemsCentered";
-			// add the group that holds buttons and content 
+			// add the group that holds buttons and content
             if (g.parent == null) {
 				vg.addElement(g);
 				//g.addBead(_strand.getBeadByType(IBeadLayout));
@@ -253,7 +253,7 @@ package org.apache.royale.jewel.beads.views
         }
 
 		/**
-		 * 
+		 *
 		 */
 		public function createButton(labelText:String = null, emphasis:String = null):IconButton
 		{
@@ -267,7 +267,7 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		public function textChangeHandler(event:Event):void
 		{
@@ -283,7 +283,7 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		public function showPreviousButtonChangeHandler(event:Event):void
 		{
@@ -291,7 +291,7 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		/**
-		 * 
+		 *
 		 */
 		public function showNextButtonChangeHandler(event:Event):void
 		{
@@ -304,13 +304,13 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function stepChangeAction():void
 		{
-			previousButton.visible = model.showPreviousButton && model.currentStep.previousStep != null;
-			nextButton.visible = model.showNextButton && model.currentStep.nextStep != null;
+			previousButton.visible = model.showPreviousButton && model.currentStep && model.currentStep.previousStep != null;
+			nextButton.visible = model.showNextButton && model.currentStep && model.currentStep.nextStep != null;
 		}
 		
         protected function setupContentAreaLayout():void
         {
-            
+        
         }
         
         protected function setupLayout():void
@@ -319,7 +319,7 @@ package org.apache.royale.jewel.beads.views
             //     _titleLabel.element.style["flex-grow"] = "0";
             //     _titleLabel.element.style["order"] = "1";
             // }
-                
+            
             COMPILE::SWF {
                 _contentArea.percentWidth = 100;
                 
@@ -329,10 +329,10 @@ package org.apache.royale.jewel.beads.views
                 _contentArea.style.flexGrow = 1;
                 _contentArea.style.order = 2;
             }
-                
+            
             // COMPILE::SWF {
             //     _titleLabel.percentWidth = 100;
-                
+            
             //     if (_titleLabel.style == null) {
             //         _titleLabel.style = new SimpleCSSStylesWithFlex();
             //     }
@@ -394,7 +394,7 @@ package org.apache.royale.jewel.beads.views
 
 		private function handleChildrenAdded(event:Event):void
 		{
-            if (sawInitComplete || 
+            if (sawInitComplete ||
                 ((wizard.isHeightSizedToContent() || !isNaN(wizard.explicitHeight)) &&
                     (wizard.isWidthSizedToContent() || !isNaN(wizard.explicitWidth))))
             {

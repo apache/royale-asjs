@@ -47,6 +47,7 @@ package mx.controls
 	import mx.collections.XMLListCollection;
 	import mx.controls.listClasses.BaseListData;
 	import mx.controls.listClasses.IListItemRenderer;
+    import mx.controls.listClasses.ListItemRenderer;
 	// import mx.controls.menuClasses.IMenuBarItemRenderer;
 	// import mx.controls.menuClasses.IMenuDataDescriptor;
 	// import mx.controls.menuClasses.IMenuItemRenderer;
@@ -1514,7 +1515,7 @@ package mx.controls
 		/**
 		 *  @private
 		 */
-		/*override public function dispatchEvent(event:Event):Boolean
+		override public function dispatchEvent(event:Event):Boolean
 		{  
 			if (!(event is MenuEvent) && event is ListEvent && 
 				(event.type == ListEvent.ITEM_ROLL_OUT ||
@@ -1537,14 +1538,15 @@ package mx.controls
 				var me:MenuEvent = new MenuEvent(event.type,
 					event.bubbles,
 					event.cancelable);
+                me.index = ListEvent(event).rowIndex;
 				me.item = ListEvent(event).itemRenderer.data;
-				me.label = itemToLabel(ListEvent(event).itemRenderer);
+				me.label = (ListEvent(event).itemRenderer as ListItemRenderer).text;
 				return super.dispatchEvent(me);                     
 			}
 			
 			// we'll let everything else go through
 			return super.dispatchEvent(event);
-		}*/
+		}
 		
 		//--------------------------------------------------------------------------
 		//

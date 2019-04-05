@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.WizardModel;
 	import org.apache.royale.jewel.beads.models.WizardStep;
 	import org.apache.royale.jewel.beads.views.WizardView;
+	import org.apache.royale.jewel.events.WizardEvent;
 	
     /**
      *  The WizardController class is the controller for
@@ -92,7 +93,8 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function handleStepChange(event:Event):void
 		{
-            wizard.showPage(model.currentStep.name);
+            wizard.content.selectedContent = model.currentStep.name;
+            wizard.title = model.currentStep.stepLabel;
 		}
 
         private var model:WizardModel;
@@ -129,7 +131,6 @@ package org.apache.royale.jewel.beads.controllers
             var stepToGo:WizardStep = findStep(model.currentStep, true);
             wizard.dispatchEvent(new Event("goToPreviousStep"));
             model.currentStep = stepToGo;
-            wizard.dispatchEvent(new Event("change"));
             // }
         }
 
@@ -146,7 +147,6 @@ package org.apache.royale.jewel.beads.controllers
                 var stepToGo:WizardStep = findStep(model.currentStep, false);
                 wizard.dispatchEvent(new Event("goToNextStep"));
                 model.currentStep = stepToGo;
-                wizard.dispatchEvent(new Event("change"));
             }
         }
 

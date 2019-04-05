@@ -83,14 +83,6 @@
       <scope>theme</scope>
     </dependency>
 
-    <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>20.0</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
   </dependencies>
 
 </project>

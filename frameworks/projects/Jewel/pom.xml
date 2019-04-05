@@ -64,8 +64,8 @@
           <includeLookupOnly>true</includeLookupOnly>
           <!--<allowSubclassOverrides>true</allowSubclassOverrides>-->
           <skipExtern>true</skipExtern>
-          <additionalCompilerOptions>-source-map=true</additionalCompilerOptions>
-          <!--<additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>-->
+          <skipAS>${royale.skipAS}</skipAS>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
       <plugin>

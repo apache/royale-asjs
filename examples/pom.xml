@@ -103,6 +103,9 @@
           <artifactId>royale-maven-plugin</artifactId>
           <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
+          <configuration>
+              <targets>${royale.example.targets}</targets>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.jboss.errai</groupId>

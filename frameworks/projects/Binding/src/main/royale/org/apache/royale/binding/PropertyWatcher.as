@@ -163,11 +163,11 @@ package org.apache.royale.binding
          *  @private
          *  @royaleignorecoercion org.apache.royale.binding.PropertyWatcher
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */                
+         */
         override public function parentChanged(parent:Object):void
         {
             if (dispatcher)
-                removeEventListeners();
+				adjustListeners(false);
 
             if (parent is PropertyWatcher)
                 source = PropertyWatcher(parent).value;
@@ -179,23 +179,25 @@ package org.apache.royale.binding
                 else if (source is Class && source['staticEventDispatcher']!=null) dispatcher = source.staticEventDispatcher;
             }
 
-            if (dispatcher) addEventListeners();
+            if (dispatcher) 
+                adjustListeners(true);
             
             // Now get our property.
             wrapUpdate(updateProperty);
             
-            notifyListeners();            
+            notifyListeners();
         }
 
         /**
          * @royaleignorecoercion Array
          * @royaleignorecoercion String
          */
-        private function addEventListeners():void
+        private function adjustListeners(add:Boolean):void
         {
+            var adjustListener:Function = add ? dispatcher.addEventListener : dispatcher.removeEventListener;
             if (eventNames is String)
             {
-                dispatcher.addEventListener(eventNames as String, changeHandler);
+				adjustListener(eventNames as String, changeHandler);
             }
             else if (eventNames is Array)
             {
@@ -204,30 +206,10 @@ package org.apache.royale.binding
                 for (var i:int = 0; i < n; i++)
                 {
                     var eventName:String = eventNames[i];
-                    dispatcher.addEventListener(eventName, changeHandler);
+					adjustListener(eventName, changeHandler);
                 }
             }
-        }
-        
-        /**
-         * @royaleignorecoercion Array
-         * @royaleignorecoercion String
-         */
-        private function removeEventListeners():void
-        {
-            if (eventNames is String)
-                dispatcher.removeEventListener(eventNames as String, changeHandler);
-            else if (eventNames is Array)
-            {
-                var arr:Array = eventNames as Array;
-                var n:int = arr.length;
-                for (var i:int = 0; i < n; i++)
-                {
-                    var eventName:String = eventNames[i];
-                    dispatcher.removeEventListener(eventName, changeHandler);
-                }
-            }
-            dispatcher = null;
+            if (!add)  dispatcher = null;
         }
         
         /**

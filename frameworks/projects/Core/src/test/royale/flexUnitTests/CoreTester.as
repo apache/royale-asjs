@@ -19,7 +19,7 @@
 package flexUnitTests
 {
     [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
+    [RunWith("org.apache.royale.test.runners.SuiteRunner")]
     public class CoreTester
     {
         public var strandTesterTest:StrandTesterTest;

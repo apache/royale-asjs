@@ -522,20 +522,20 @@ package flexUnitTests {
 
 
     [Test]
-    public function testWriteBytes():void
+    public function testWriteBinaryData():void
     {
         var ba:BinaryData = new BinaryData();
         for (var i:int=0;i<50;i++) ba.writeByte(i);
 
 
         var newBa:BinaryData = new BinaryData();
-        newBa.writeBytes(ba);
+        newBa.writeBinaryData(ba);
 
-        assertEquals(50, newBa.length, "BinaryData writeBytes: length");
-        assertEquals(50, newBa.position, "BinaryData writeBytes: position");
+        assertEquals(50, newBa.length, "BinaryData writeBinaryData: length");
+        assertEquals(50, newBa.position, "BinaryData writeBinaryData: position");
 
         for (i=0;i<50;i++) {
-            assertEquals(i, newBa.array[i], "BinaryData writeBytes: content check");
+            assertEquals(i, newBa.array[i], "BinaryData writeBinaryData: content check");
         }
 
 
@@ -543,20 +543,20 @@ package flexUnitTests {
     }
 
     [Test]
-    public function testReadBytes():void
+    public function testReadBinaryData():void
     {
         var ba:BinaryData = new BinaryData();
         for (var i:int=0;i<50;i++) ba.writeByte(i);
         ba.position=0;
         var newBa:BinaryData = new BinaryData();
 
-        ba.readBytes(newBa,5,10);
-        assertEquals(10, ba.position, "BinaryData readBytes: position");
-        assertEquals(15, newBa.length, "BinaryData readBytes: length");
-        assertEquals(0, newBa.position, "BinaryData readBytes: position");
+        ba.readBinaryData(newBa,5,10);
+        assertEquals(10, ba.position, "BinaryData readBinaryData: position");
+        assertEquals(15, newBa.length, "BinaryData readBinaryData: length");
+        assertEquals(0, newBa.position, "BinaryData readBinaryData: position");
         var expected:Array = [0,0,0,0,0,0,1,2,3,4,5,6,7,8,9];
         for (i=5;i<15;i++) {
-            assertEquals(expected[i], newBa.array[i], "BinaryData readBytes: content check");
+            assertEquals(expected[i], newBa.array[i], "BinaryData readBinaryData: content check");
         }
     }
 

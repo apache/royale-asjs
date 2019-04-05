@@ -85,6 +85,10 @@ import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
+import mx.validators.IValidatorListener;
+import mx.validators.ValidationResult;
+import mx.events.ValidationResultEvent;
+
 /**
  *  Set a different class for click events so that
  *  there aren't dependencies on the flash classes
@@ -403,7 +407,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */
-[Style(name="chromeColor", type="uint", format="Color", inherit="yes", theme="spark")]
+[Style(name="chromeColor", type="uint", format="Color", inherit="yes")]
 
 // Excluding the property to enable code hinting for the layoutDirection style
 [Exclude(name="layoutDirection", kind="property")]
@@ -476,7 +480,7 @@ public class UIComponent extends UIBase
     IInvalidating,
     IStatesObject,
     ISimpleStyleClient,
-    IUIComponent, IVisualElement, IFlexModule
+    IUIComponent, IVisualElement, IFlexModule, IValidatorListener
 {
     //--------------------------------------------------------------------------
     //
@@ -484,6 +488,68 @@ public class UIComponent extends UIBase
     //
     //--------------------------------------------------------------------------
     
+    //--------------------------------------------------------------------------
+    //
+    //  Class constants
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  The default value for the <code>measuredWidth</code> property.
+     *  Most components calculate a measuredWidth but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 160
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_WIDTH:Number = 160;
+    
+    /**
+     *  The default value for the <code>measuredMinWidth</code> property.
+     *  Most components calculate a measuredMinWidth but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 40
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_MIN_WIDTH:Number = 40;
+    
+    /**
+     *  The default value for the <code>measuredHeight</code> property.
+     *  Most components calculate a measuredHeight but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 22
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_HEIGHT:Number = 22;
+    
+    /**
+     *  The default value for the <code>measuredMinHeight</code> property.
+     *  Most components calculate a measuredMinHeight but some are flow-based and
+     *  have to pick a number that looks reasonable.
+     *
+     *  @default 22
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const DEFAULT_MEASURED_MIN_HEIGHT:Number = 22;
+
     /**
      *  The default value for the <code>maxWidth</code> property.
      *
@@ -558,6 +624,22 @@ public class UIComponent extends UIBase
 	{
 	
 	}
+	
+	
+    //----------------------------------
+    //  chromeColor
+    //----------------------------------
+    private var _chromeColor:uint;
+	
+    public function get chromeColor():uint
+       {
+	  return _chromeColor;
+       }
+     public function set chromeColor(value:uint):void
+       {
+	  _chromeColor = value;
+       }
+	   
 	
     //----------------------------------
     //  mouseFocusEnabled
@@ -983,6 +1065,22 @@ public class UIComponent extends UIBase
         trace("buttonMode not implemented");
     }
     
+    //----------------------------------
+    //  errorString
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for errorString property.
+     */
+    mx_internal var _errorString:String = "";
+    
+    /**
+     *  @private
+     *  Storage for previous errorString property.
+     */
+    private var oldErrorString:String = "";
+    
     [Bindable("errorStringChanged")]
     
     /**
@@ -1010,8 +1108,7 @@ public class UIComponent extends UIBase
      */
     public function get errorString():String
     {
-        trace("errorString not implemented");
-        return "";
+        return _errorString;
     }
     
     /**
@@ -1019,9 +1116,83 @@ public class UIComponent extends UIBase
      */
     public function set errorString(value:String):void
     {
-        trace("errorString not implemented");
+        if (value == _errorString)
+            return;
+        
+        oldErrorString = _errorString;
+        _errorString = value;
+        
+        //errorStringChanged = true;
+        setBorderColorForErrorString();
+        dispatchEvent(new Event("errorStringChanged"));
     }
+
+    //--------------------------------------------------------------------------
+    //
+    //  Variables: Validation
+    //
+    //--------------------------------------------------------------------------
     
+    /**
+     *  @private
+     */
+    mx_internal var saveBorderColor:Boolean = true;
+    
+    /**
+     *  @private
+     */
+    mx_internal var origBorderColor:Number;
+    
+    /**
+     *  @private
+     *  Set the appropriate borderColor based on errorString.
+     *  If we have an errorString, use errorColor. If we don't
+     *  have an errorString, restore the original borderColor.
+     */
+    private function setBorderColorForErrorString():void
+    {
+        var showErrorSkin:Boolean = true; //FlexVersion.compatibilityVersion < FlexVersion.VERSION_4_0 || getStyle("showErrorSkin");
+        
+        if (showErrorSkin)
+        {
+            
+            if (!_errorString || _errorString.length == 0)
+            {
+                if (!isNaN(origBorderColor))
+                {
+                    setStyle("borderColor", origBorderColor);
+                    saveBorderColor = true;
+                }
+            }
+            else
+            {
+                // Remember the original border color
+                if (saveBorderColor)
+                {
+                    saveBorderColor = false;
+                    origBorderColor = getStyle("borderColor");
+                }
+                
+                setStyle("borderColor", getStyle("errorColor"));
+            }
+            
+            styleChanged("themeColor");
+            
+            /*
+            var focusManager:IFocusManager = focusManager;
+            var focusObj:DisplayObject = focusManager ?
+                DisplayObject(focusManager.getFocus()) :
+                null;
+            if (focusManager && focusManager.showFocusIndicator &&
+                focusObj == this)
+            {
+                drawFocus(true);
+            }
+            */
+            
+        }
+    }
+
     //----------------------------------
     //  owner
     //----------------------------------
@@ -3955,8 +4126,8 @@ COMPILE::JS
      */
     public function measureText(text:String):TextLineMetrics
     {
-        trace("measureText not implemented");
-        return null;
+        var uitf:UITextFormat = new UITextFormat(systemManager);
+        return uitf.measureText(text);
     }
 	
 	//----------------------------------
@@ -5148,6 +5319,152 @@ COMPILE::JS
     {
     }
     
+    //--------------------------------------------------------------------------
+    //
+    //  Event handlers: Validation
+    //
+    //--------------------------------------------------------------------------
+    
+    /**
+     *  @private
+     *  Individual error messages from validators
+     */
+    private var errorArray:Array;
+
+    /**
+     *  @private
+     *  Array of validators who gave error messages
+     */
+    private var errorObjectArray:Array = null;
+    
+    //----------------------------------
+    //  validationSubField
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the validationSubField property.
+     */
+    private var _validationSubField:String;
+    
+    /**
+     *  Used by a validator to associate a subfield with this component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get validationSubField():String
+    {
+        return _validationSubField;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set validationSubField(value:String):void
+    {
+        _validationSubField = value;
+    }
+
+    /**
+     *  Handles both the <code>valid</code> and <code>invalid</code> events from a
+     *  validator assigned to this component.
+     *
+     *  <p>You typically handle the <code>valid</code> and <code>invalid</code> events
+     *  dispatched by a validator by assigning event listeners to the validators.
+     *  If you want to handle validation events directly in the component that is being validated,
+     *  you can override this method to handle the <code>valid</code>
+     *  and <code>invalid</code> events. You typically call
+     *  <code>super.validationResultHandler(event)</code> in your override.</p>
+     *
+     *  @param event The event object for the validation.
+     *
+     *  @see mx.events.ValidationResultEvent
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function validationResultHandler(event:ValidationResultEvent):void
+    {
+        if (errorObjectArray === null)
+        {
+            errorObjectArray = [];
+            errorArray = [];
+        }
+        
+        var validatorIndex:int = errorObjectArray.indexOf(event.target);
+        // If we are valid, then clear the error string
+        if (event.type == ValidationResultEvent.VALID)
+        {
+            if (validatorIndex != -1)
+            {
+                errorObjectArray.splice(validatorIndex, 1);
+                errorArray.splice(validatorIndex, 1);
+                errorString = errorArray.join("\n");
+                if (errorArray.length == 0)
+                    dispatchEvent(new FlexEvent(FlexEvent.VALID));
+            }
+        }
+        else // If we get an invalid event
+        {
+            var msg:String;
+            var result:ValidationResult;
+            
+            // We are associated with a subfield
+            if (validationSubField != null && validationSubField != "" && event.results)
+            {
+                for (var i:int = 0; i < event.results.length; i++)
+                {
+                    result = event.results[i];
+                    // Find the result that is meant for us
+                    if (result.subField == validationSubField)
+                    {
+                        if (result.isError)
+                        {
+                            msg = result.errorMessage;
+                        }
+                        else
+                        {
+                            if (validatorIndex != -1)
+                            {
+                                errorObjectArray.splice(validatorIndex, 1);
+                                errorArray.splice(validatorIndex, 1);
+                                errorString = errorArray.join("\n");
+                                if (errorArray.length == 0)
+                                    dispatchEvent(new FlexEvent(FlexEvent.VALID));
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+            else if (event.results && event.results.length > 0)
+            {
+                msg = event.results[0].errorMessage;
+            }
+            
+            if (msg && validatorIndex != -1)
+            {
+                // Handle the case where this target already had this invalid
+                // event and the errorString has been cleared.
+                errorArray[validatorIndex] = msg;
+                errorString = errorArray.join("\n");
+                dispatchEvent(new FlexEvent(FlexEvent.INVALID));
+            }
+            else if (msg && validatorIndex == -1)
+            {
+                errorObjectArray.push(event.target);
+                errorArray.push(msg);
+                errorString = errorArray.join("\n");
+                dispatchEvent(new FlexEvent(FlexEvent.INVALID));
+            }
+        }
+    }
+    
     /**
      *  Returns a UITextFormat object corresponding to the text styles
      *  for this UIComponent.
@@ -5402,6 +5719,26 @@ COMPILE::JS
     override public function get topMostEventDispatcher():IEventDispatcher
     {
         return FlexGlobals.topLevelApplication.parent as IEventDispatcher;
+    }
+
+    COMPILE::JS
+    override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        if (type == "keyDown") type = "keydown";
+        else if (type == "keyUp") type = "keyup";
+        else if (type == "focusIn") type = "focusin";
+        else if (type == "focusOut") type = "focusout";
+        super.addEventListener(type, handler, opt_capture, opt_handlerScope);
+    }
+    
+    COMPILE::JS
+    override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        if (type == "keyDown") type = "keydown";
+        else if (type == "keyUp") type = "keyup";
+        else if (type == "focusIn") type = "focusin";
+        else if (type == "focusOut") type = "focusout";
+        super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
     }
 
 }

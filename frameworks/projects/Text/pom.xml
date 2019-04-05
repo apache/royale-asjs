@@ -62,7 +62,9 @@
             </include-file>
           </includeFiles>
           <allowSubclassOverrides>true</allowSubclassOverrides>
+          <skipAS>${royale.skipAS}</skipAS>
           <skipExtern>true</skipExtern>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

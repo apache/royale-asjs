@@ -33,12 +33,10 @@ $radiobutton-button-yoffset: 0px
 
 	// width: 100%
 	height: $radiobutton-button-size
-	cursor: pointer
 
 	// -- INPUT
 	input
 		+appear(none)
-		// cursor: pointer
 		display: inline-flex
 
 		margin: 0
@@ -79,14 +77,12 @@ $radiobutton-button-yoffset: 0px
 			outline: none
 			
 		&[disabled]
-			cursor: unset
-
 			& + span
 				cursor: unset
 				
 	// -- LABEL
 	span
-		// cursor: pointer
+		cursor: pointer
 
 		margin: 0
 		vertical-align: top

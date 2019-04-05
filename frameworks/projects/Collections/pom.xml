@@ -51,7 +51,8 @@
             <includeClass>CollectionsClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
-          <additionalCompilerOptions>-source-map=true</additionalCompilerOptions>
+          <skipAS>${royale.skipAS}</skipAS>
+          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

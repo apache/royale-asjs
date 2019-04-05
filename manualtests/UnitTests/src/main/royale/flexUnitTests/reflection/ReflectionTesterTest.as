@@ -23,7 +23,7 @@ package flexUnitTests.reflection
     import org.apache.royale.reflection.*;
     
     public class ReflectionTesterTest
-    {		
+    {
        
         public static var isJS:Boolean;
         [BeforeClass]
@@ -233,8 +233,12 @@ package flexUnitTests.reflection
             Assert.assertEquals("unexpected meta arg name","foo",metaArg.name);
             Assert.assertEquals("unexpected meta arg value","instanceVariable",metaArg.value);
 
-            Assert.assertEquals("unexpected reflection initial variable value","testVar_val",inst[variable.name]);
-
+     //       Assert.assertEquals("unexpected reflection initial variable value","testVar_val",inst[variable.name]);
+			Assert.assertEquals("unexpected reflection initial variable value","testVar_val",variable.getValue(inst));
+            variable.setValue(inst, "testVar_val_reflection_set");
+			Assert.assertEquals("unexpected reflection initial variable value","testVar_val_reflection_set",variable.getValue(inst));
+			inst.testVar = "testVar_val";
+            
             var accessors:Array = def.accessors;
             var testReadOnly:AccessorDefinition = retrieveItemWithName(accessors,"testReadOnly") as AccessorDefinition;
             meta = testReadOnly.retrieveMetaDataByName("TestMeta")[0];
@@ -296,8 +300,14 @@ package flexUnitTests.reflection
             Assert.assertEquals("unexpected meta arg name","foo",metaArg.name);
             Assert.assertEquals("unexpected meta arg value","staticVariable",metaArg.value);
 
-            Assert.assertEquals("unexpected reflection initial variable value","testStaticVar_val",TestClass2[variable.name]);
-
+           // Assert.assertEquals("unexpected reflection initial variable value","testStaticVar_val",TestClass2[variable.name]);
+			Assert.assertEquals("unexpected reflection initial variable value","testStaticVar_val",variable.getValue());
+			variable.setValue("testStaticVar_val_reflection_set");
+			Assert.assertEquals("unexpected reflection initial variable value","testStaticVar_val_reflection_set",variable.getValue());
+			TestClass2.testStaticVar = "testStaticVar_val";
+            
+            
+            
             /** static accessors **/
 
             accessors = def.staticAccessors;

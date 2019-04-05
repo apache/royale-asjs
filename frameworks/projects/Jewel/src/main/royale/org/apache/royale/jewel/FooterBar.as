@@ -20,14 +20,14 @@ package org.apache.royale.jewel
 {
 	COMPILE::SWF
     {
-		import flash.display.DisplayObject;
+	import flash.display.DisplayObject;
 
-		import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IRenderedObject;
     }
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	/**
@@ -75,12 +75,12 @@ package org.apache.royale.jewel
 			{
 			if(_fixed)
 			{
-				header.classList.add("fixed");
+				element.classList.add("fixed");
 				// window.removeEventListener('scroll', scrollHandler, false);
 			}
 			else
 			{
-				header.classList.remove("fixed");
+				element.classList.remove("fixed");
 				// window.addEventListener('scroll', scrollHandler, false);
 			}
 			}
@@ -173,11 +173,11 @@ package org.apache.royale.jewel
                 {
 				if(_hasDrawer)
 				{
-					header.classList.add("has-drawer");
+					element.classList.add("has-drawer");
 				}
 				else
 				{
-					header.classList.remove("has-drawer");
+					element.classList.remove("has-drawer");
 				}
                 }
             }

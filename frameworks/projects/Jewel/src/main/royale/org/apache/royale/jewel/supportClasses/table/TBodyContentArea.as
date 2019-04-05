@@ -18,20 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.table
 {
-    import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.ItemAddedEvent;
-	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.html.supportClasses.ContainerContentArea;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
-	import org.apache.royale.jewel.supportClasses.table.TableRow;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ItemAddedEvent;
+    import org.apache.royale.events.ItemRemovedEvent;
+    import org.apache.royale.html.supportClasses.ContainerContentArea;
+    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.jewel.supportClasses.table.TableRow;
+
 
 	/**
 	 *  The TBodyContentArea class is a building block of Jewel SimpleTable and Table components, 

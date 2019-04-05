@@ -18,9 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-
-COMPILE::SWF
+	COMPILE::SWF
 	{
 		import flash.utils.setTimeout;
     }
@@ -35,6 +33,7 @@ COMPILE::SWF
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.TextInput;
@@ -42,6 +41,8 @@ COMPILE::SWF
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
+	import org.apache.royale.utils.BrowserInfo;
+	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
 
 	/**
@@ -192,12 +193,22 @@ COMPILE::SWF
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
                     // _list.model = _comboPopUp.model;
 
-                    setTimeout(prepareForPopUp,  300);
-
                     COMPILE::JS
                     {
-                        window.addEventListener('resize', autoResizeHandler, false);
+					// Fix temporary: when soft keyboard opens in ios devices browser is not resized, so popup gets under the keyboard
+					// this fixes the issue on iPad for now, but we need some better and more reliable way of doing this
+					// if(BrowserInfo.current().formFactor == "iPad")
+					// {
+					// 	var fromTop:Number = _textinput.element.getBoundingClientRect().top;
+					// 	if(fromTop < 720)
+					// 	{
+					// 		_comboPopUp.positioner.style["padding-bottom"] =  "310px";
+					// 	}
+					// }
+
+					window.addEventListener('resize', autoResizeHandler, false);
                     }
+                    setTimeout(prepareForPopUp,  300);
 
                     autoResizeHandler();
 				}
@@ -286,14 +297,14 @@ COMPILE::SWF
 
 		/**
 		 *  Adapt the popup list to the right position taking into account
-		 *  if we are in DESKTOP screen size or in PHONE/TABLET screen size
+		 *  if we are in DESKTOP/TABLET screen size or in PHONE screen size
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		private function autoResizeHandler(event:Event = null):void
+		public function autoResizeHandler(event:Event = null):void
         {
 			COMPILE::JS
 			{
@@ -302,15 +313,41 @@ COMPILE::SWF
 				var top:Number = (window.pageYOffset || document.documentElement.scrollTop)  - (document.documentElement.clientTop || 0);
 
 				// Desktop width size
-				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
+				if(outerWidth >= ResponsiveSizes.TABLET_BREAKPOINT)
 				{
 					//popup width needs to be set before position inside bounding client to work ok
 					_list.width = _textinput.width + _button.width;
 
 					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = positionInsideBoundingClientRect(_strand, _list, origin);
-					_list.x = relocated.x;
-					_list.y = relocated.y;
+					var point:Point = PointUtils.localToGlobal(origin, _strand);
+					
+					// by default list appear below textinput
+
+					// if there's no enough space below, reposition above input
+					if(relocated.y < point.y)
+					{
+						var origin2:Point = new Point(0, button.y - _list.height - top);
+						var relocated2:Point = positionInsideBoundingClientRect(_strand, _list, origin2);
+						_list.y = relocated2.y;
+					
+						//if start to cover input...
+						if(_list.y == 0)
+						{
+							// ... reposition to the left or to right side (so we still can see the input)
+							_list.x = (relocated.x + _list.width + 1 >= outerWidth) ? relocated.x - _list.width : _list.x = relocated.x + _list.width;
+						}
+						else
+						{
+							// otherwise left in the same vertical as input
+							_list.x = relocated.x;
+						}
+					}
+					else
+					{
+						_list.y = relocated.y;
+						_list.x = relocated.x;
+					}
 				}
 				else
 				{

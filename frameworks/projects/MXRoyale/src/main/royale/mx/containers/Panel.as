@@ -709,7 +709,12 @@ public class Panel extends Container
     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
-        panelView.contentArea.addElement(c, dispatchEvent);
+        if ((panelView.contentArea as UIComponent).systemManager == null)
+            (panelView.contentArea as UIComponent).systemManager = systemManager;
+        if (panelView.contentArea == this)
+            super.addElement(c, dispatchEvent);
+        else
+            panelView.contentArea.addElement(c, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
@@ -722,7 +727,12 @@ public class Panel extends Container
     override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
-        panelView.contentArea.addElementAt(c, index, dispatchEvent);
+        if ((panelView.contentArea as UIComponent).systemManager == null)
+            (panelView.contentArea as UIComponent).systemManager = systemManager;
+        if (panelView.contentArea == this)
+            super.addElementAt(c, index, dispatchEvent);
+        else
+            panelView.contentArea.addElementAt(c, index, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
@@ -735,6 +745,8 @@ public class Panel extends Container
     override public function getElementIndex(c:IChild):int
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.getElementIndex(c);
         return panelView.contentArea.getElementIndex(c);
     }
     
@@ -745,6 +757,8 @@ public class Panel extends Container
     override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            super.removeElement(c, dispatchEvent);
         panelView.contentArea.removeElement(c, dispatchEvent);
     }
     
@@ -755,6 +769,8 @@ public class Panel extends Container
     override public function get numElements():int
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.numElements;
         return panelView.contentArea.numElements;
     }
     
@@ -765,6 +781,8 @@ public class Panel extends Container
     override public function getElementAt(index:int):IChild
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.getElementAt(index);
         return panelView.contentArea.getElementAt(index);
     }
 
@@ -778,6 +796,8 @@ public class Panel extends Container
     override public function get paddingLeft():Object
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.paddingLeft;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingLeft;
     }
@@ -796,6 +816,11 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingLeft = value;
+                return;
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingLeft = value;
         }
@@ -809,6 +834,8 @@ public class Panel extends Container
     {
         var panelView:PanelView = view as PanelView;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
+        if (panelView.contentArea == this)
+            return super.paddingRight;
         return contentView.paddingRight;
     }
     
@@ -826,6 +853,11 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingRight = value;
+                return;
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingRight = value;
         }
@@ -837,6 +869,8 @@ public class Panel extends Container
     override public function get paddingTop():Object
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.paddingTop;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingTop;
     }
@@ -855,6 +889,11 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingTop = value;
+                return;
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingTop = value;
         }
@@ -867,6 +906,8 @@ public class Panel extends Container
     override public function get paddingBottom():Object
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.paddingBottom;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingBottom;
     }
@@ -886,6 +927,11 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingBottom = value;
+                return;                
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingBottom = value;
         }
@@ -904,6 +950,8 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentWidth = 100;
         }
@@ -919,6 +967,8 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentWidth = 100;
         }
@@ -934,6 +984,8 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentHeight = 100;
         }
@@ -949,6 +1001,8 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentHeight = 100;
         }

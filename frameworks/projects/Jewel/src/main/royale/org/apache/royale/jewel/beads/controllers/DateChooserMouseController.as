@@ -52,6 +52,8 @@ package org.apache.royale.jewel.beads.controllers
 		public function DateChooserMouseController()
 		{
 		}
+
+		private var model:DateChooserModel;
 		
 		private var _strand:IStrand;
 		
@@ -70,55 +72,94 @@ package org.apache.royale.jewel.beads.controllers
             model = _strand.getBeadByType(IBeadModel) as DateChooserModel;
 			                   
             var view:DateChooserView = value.getBeadByType(IBeadView) as DateChooserView;
-			view.prevMonthButton.addEventListener(MouseEvent.CLICK, prevMonthClickHandler);
-			view.nextMonthButton.addEventListener(MouseEvent.CLICK, nextMonthClickHandler);
+			view.previousButton.addEventListener(MouseEvent.CLICK, previousButtonClickHandler);
+			view.nextButton.addEventListener(MouseEvent.CLICK, nextButtonClickHandler);
+			view.viewSelector.addEventListener(MouseEvent.CLICK, viewSelectorClickHandler);
 			
-            IEventDispatcher(view.daysTable).addEventListener(Event.CHANGE, tableHandler);
+            IEventDispatcher(view.table).addEventListener(Event.CHANGE, tableHandler);
 		}
 
-		private var model:DateChooserModel;
+		/**
+		 * 
+		 * @private
+		 */
+		private function previousButtonClickHandler(event:MouseEvent):void
+		{
+            event.preventDefault();
+            
+			var month:Number = model.displayedMonth - 1;
+			var year:Number  = model.displayedYear;
+			
+			if(model.viewState == 0)
+			{
+				if (month < 0) {
+					month = 11;
+					year--;
+				}
+				model.displayedMonth = month;
+				model.displayedYear = year;
+			} else if(model.viewState == 1) {
+				model.navigateYears = model.navigateYears - DateChooserModel.NUM_YEARS_VIEW;
+			} else {
+				model.displayedYear = --year;
+			}
+		}
 		
+		/**
+		 * 
+		 * @private
+		 */
+		private function nextButtonClickHandler(event:MouseEvent):void
+		{
+            event.preventDefault();
+            
+			var month:Number = model.displayedMonth + 1;
+			var year:Number  = model.displayedYear;
+			
+			if(model.viewState == 0)
+			{
+				if (month >= 12) {
+					month = 0;
+					year++;
+				}
+				model.displayedMonth = month;
+				model.displayedYear = year;
+			} else if(model.viewState == 1) {
+				model.navigateYears = model.navigateYears + DateChooserModel.NUM_YEARS_VIEW;
+			} else {
+				model.displayedYear = ++year;
+			}
+		}
+
+		/**
+		 * Navigate from days to years. And from years to days
+		 * @private
+		 */
+		private function viewSelectorClickHandler(event:MouseEvent):void
+		{
+			event.preventDefault();
+			
+			model.viewState = model.viewState == 0 ? 1 : 0;
+		}
+
+		/**
+		 * 
+		 * @private
+		 */
         private function tableHandler(event:Event):void
         {
             var table:DateChooserTable = event.target as DateChooserTable;
-            model.selectedDate = table.selectedItemProperty as Date;
-        }
+			var date:Date = table.selectedItemProperty as Date;
 
-		/**
-		 * @private
-		 */
-		private function prevMonthClickHandler(event:MouseEvent):void
-		{
-            event.preventDefault();
-            
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			var month:Number = model.displayedMonth - 1;
-			var year:Number  = model.displayedYear;
-			if (month < 0) {
-				month = 11;
-				year--;
+			if(model.viewState == 0)
+			{
+				model.selectedDate = date;
+			} else 
+			if(model.viewState == 1) {
+				model.changeYear(date.getFullYear());
+			} else {
+				model.changeMonth(date.getMonth());
 			}
-			model.displayedMonth = month;
-			model.displayedYear = year;
-		}
-		
-		/**
-		 * @private
-		 */
-		private function nextMonthClickHandler(event:MouseEvent):void
-		{
-            event.preventDefault();
-            
-			var model:DateChooserModel = _strand.getBeadByType(IBeadModel) as DateChooserModel;
-			var month:Number = model.displayedMonth + 1;
-			var year:Number  = model.displayedYear;
-			if (month >= 12) {
-				month = 0;
-				year++;
-			}
-			model.displayedMonth = month;
-			model.displayedYear = year;
-		}
-		
+        }
 	}
 }

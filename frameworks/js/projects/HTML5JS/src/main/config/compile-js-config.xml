@@ -90,6 +90,8 @@
     <include-namespaces>
         <uri>library://ns.apache.org/royale/html5</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

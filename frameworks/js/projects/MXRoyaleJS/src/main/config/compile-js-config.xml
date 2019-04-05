@@ -110,6 +110,8 @@
     <include-namespaces>
         <uri>library://ns.apache.org/royale/mx</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

@@ -18,22 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.core.ISelectionModel;
-    import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.DataContainerBase;
-    import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.jewel.beads.models.IDropDownListModel;
-    import org.apache.royale.jewel.beads.models.ListPresentationModel;
-    import org.apache.royale.html.elements.Select;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.Event;
-
     COMPILE::JS
     {
-        import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import goog.events;
+
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.jewel.beads.models.IDropDownListModel;
     }
+    import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.html.elements.Select;
+    import org.apache.royale.jewel.beads.models.ListPresentationModel;
+    import org.apache.royale.jewel.supportClasses.DataContainerBase;
+
 
     //--------------------------------------
     //  Events
@@ -142,45 +141,6 @@ package org.apache.royale.jewel
             IDataProviderModel(model).dataProvider = value;
         }
 
-        /**
-         *  @private
-         *  @royaleignorecoercion HTMLOptionElement
-         *  @royaleignorecoercion HTMLSelectElement
-         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
-         */
-        // public function set dataProvider(value:Object):void
-        // {
-        //     ISelectionModel(model).dataProvider = value;
-        //     COMPILE::JS
-        //     {
-        //         var dp:HTMLOptionsCollection;
-        //         var i:int;
-        //         var n:int;
-        //         var opt:HTMLOptionElement;
-        //         var dd:HTMLSelectElement = element as HTMLSelectElement;
-
-        //         dp = dd.options;
-        //         n = dp.length;
-        //         for (i = 0; i < n; i++) {
-        //             dd.remove(0);
-        //         }
-        //         // The value could be undefined if data binding is used and the variable is not initialized.
-        //         if(!value)return;
-
-        //         var lf:String = labelField;
-        //         n = value.length;
-        //         for (i = 0; i < n; i++) {
-        //             opt = document.createElement('option') as HTMLOptionElement;
-        //             if (lf)
-        //                 opt.text = value[i][lf];
-        //             else
-        //                 opt.text = value[i];
-        //             dd.add(opt, null);
-        //         }
-
-        //     }
-        // }
-
         [Bindable("selectionChanged")]
         /**
          *  The index of the currently selected item. Changing this value
@@ -284,7 +244,6 @@ package org.apache.royale.jewel
 
             goog.events.listen(element, 'change', changeHandler);
 
-            positioner = element;
             return element;
         }
 

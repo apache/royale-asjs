@@ -18,11 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.ISelectable;
-	import org.apache.royale.core.IToggleButtonModel;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.core.IIcon;
-
     COMPILE::SWF
     {
         import flash.events.MouseEvent;
@@ -32,6 +27,11 @@ package org.apache.royale.jewel
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.events.MouseEvent;
     }
+	import org.apache.royale.core.IIcon;
+	import org.apache.royale.core.ISelectable;
+	import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.events.Event;
+
 
     //--------------------------------------
     //  Events
@@ -84,7 +84,7 @@ package org.apache.royale.jewel
 
             COMPILE::SWF
             {
-                addEventListener(MouseEvent.CLICK, internalMouseHandler);
+            addEventListener(MouseEvent.CLICK, internalMouseHandler);
             }
 		}
 
@@ -103,11 +103,11 @@ package org.apache.royale.jewel
         {
             COMPILE::SWF
             {
-                return IToggleButtonModel(model).selected;
+            return IToggleButtonModel(model).selected;
             }
             COMPILE::JS
             {
-                return _selected;
+            return _selected;
             }
         }
 
@@ -118,20 +118,43 @@ package org.apache.royale.jewel
         {
             COMPILE::SWF
             {
-                IToggleButtonModel(model).selected = value;
-                internalSelected();
-                dispatchEvent(new Event(Event.CHANGE));
+            IToggleButtonModel(model).selected = value;
+            internalSelected();
+            dispatchEvent(new Event(Event.CHANGE));
             }
             COMPILE::JS
             {
-                if (_selected != value)
-                {
-                    _selected = value;
-                    internalSelected();
-                    dispatchEvent(new Event(Event.CHANGE));
-                }
+            if (_selected != value)
+            {
+                _selected = value;
+                internalSelected();
+                dispatchEvent(new Event(Event.CHANGE));
+            }
             }
         }
+
+        private var _selectedText:String = null;
+        /**
+         *  The selectedText of the icon
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.3
+         */
+		public function get selectedText():String
+		{
+            if(_selectedText == null)
+            {
+                return text;
+            }
+            return _selectedText;            
+		}
+        public function set selectedText(value:String):void
+		{
+            _selectedText = value;
+            internalSelected();
+		}
 
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
@@ -162,17 +185,17 @@ package org.apache.royale.jewel
         {
             COMPILE::SWF
             {
-                if(!savedClassName == null)
-                    savedClassName = className;
-                var name:String = savedClassName;
-                if (selected)
-                {
-                    className = "selected" + (name ? " " + name : "");
-                }
-                else
-                {
-                    className = (name ? " " + name : "");
-                }
+            if(!savedClassName == null)
+                savedClassName = className;
+            var name:String = savedClassName;
+            if (selected)
+            {
+                className = "selected" + (name ? " " + name : "");
+            }
+            else
+            {
+                className = (name ? " " + name : "");
+            }
             }
             
             var isToggleTextButtonSelected:Boolean = containsClass("selected");
@@ -185,6 +208,11 @@ package org.apache.royale.jewel
                var selectableIcon:ISelectable = icon as ISelectable;
                selectableIcon.selected = _selected;
             }
+
+            COMPILE::JS
+			{
+                textNode.nodeValue = _selected ? selectedText : text;	
+			}
         }
 
         override public function set icon(value:IIcon):void

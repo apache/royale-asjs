@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
+	import org.apache.royale.jewel.beads.views.ComboBoxView;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
 	/**
@@ -48,6 +49,14 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 		override protected function keyUpLogic(input:Object):void
 		{
+			// first remove a previous selection
+			if(list.selectedIndex != -1)
+			{
+				var tmp:String = input.text;
+				list.selectedItem = null;
+				input.text = tmp;
+			}
+
 			var popUpVisible:Boolean = input.parent.view.popUpVisible;
             if (!popUpVisible) {
                 //force popup ?:
@@ -61,6 +70,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 			list = input.parent.view.popup.view.list;
 			
 			applyFilter(input.parent.view.textinput.text.toUpperCase());
+
+			ComboBoxView(_strand['view']).autoResizeHandler(); //as we filter the popup list will be smaller, and we want to reposition
 		}
 
 		override protected function onBeadsAdded(event:Event):void{
@@ -68,7 +79,7 @@ package org.apache.royale.jewel.beads.controls.combobox
                 var _textInput:TextInputBase = IComboBoxView(_strand['view']).textinput as TextInputBase;
                 if (_textInput) {
 					COMPILE::JS {
-                        _textInput.element.addEventListener( 'focus', onInputFocus);
+                        _textInput.element.addEventListener('focus', onInputFocus);
                     }
             	}
             }

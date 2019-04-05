@@ -36,6 +36,10 @@ package valueObjects
         {
             _id = value;
         }
+		
+		public function toString():String{
+			return 'clientside representation (ClientValueObject) ' + id;
+		}
 
 	}
 }

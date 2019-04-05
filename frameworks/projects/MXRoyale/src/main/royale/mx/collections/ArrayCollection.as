@@ -29,6 +29,18 @@ import mx.core.mx_internal;
 
 use namespace mx_internal;
 */
+
+import org.apache.royale.utils.net.IExternalizable;
+COMPILE::JS {
+	import org.apache.royale.utils.net.IDataInput;
+	import org.apache.royale.utils.net.IDataOutput;
+}
+COMPILE::SWF{
+	import flash.utils.IDataInput;
+	import flash.utils.IDataOutput;
+}
+
+
 [DefaultProperty("source")]
 
 [RemoteClass(alias="flex.messaging.io.ArrayCollection")]
@@ -40,7 +52,7 @@ use namespace mx_internal;
  *  interfaces. Operations on a ArrayCollection instance modify the data source;
  *  for example, if you use the <code>removeItemAt()</code> method on an
  *  ArrayCollection, you remove the item from the underlying Array.
- * 
+ *
  *  @mxml
  *
  *  <p>The <code>&lt;mx:ArrayCollection&gt;</code> tag inherits all the attributes of its
@@ -66,13 +78,13 @@ use namespace mx_internal;
  *  if (firstItem == firstItemFromCursor)
  *        doCelebration();
  *  </pre>
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ArrayCollection extends ListCollectionView //implements IExternalizable
+public class ArrayCollection extends ListCollectionView implements IExternalizable
 {
     //include "../core/Version.as";
 
@@ -89,7 +101,7 @@ public class ArrayCollection extends ListCollectionView //implements IExternaliz
      *  If no array is specified an empty array will be used.</p>
      *
      *  @param source The source Array.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -120,7 +132,7 @@ public class ArrayCollection extends ListCollectionView //implements IExternaliz
      *  The ArrayCollection object does not represent any changes that you make
      *  directly to the source array. Always use
      *  the ICollectionView or IList methods to modify the collection.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -142,6 +154,32 @@ public class ArrayCollection extends ListCollectionView //implements IExternaliz
     {
         list = new ArrayList(s);
     }
+	
+	
+	
+	/**
+	 *  @private
+	 *  Ensures that only the source property is serialized.
+	 */
+	public function readExternal(input:IDataInput):void
+	{
+		if (list is IExternalizable)
+			IExternalizable(list).readExternal(input);
+		else
+			source = input.readObject() as Array;
+	}
+	
+	/**
+	 *  @private
+	 *  Ensures that only the source property is serialized.
+	 */
+	public function writeExternal(output:IDataOutput):void
+	{
+		if (list is IExternalizable)
+			IExternalizable(list).writeExternal(output);
+		else
+			output.writeObject(source);
+	}
 
 }
 

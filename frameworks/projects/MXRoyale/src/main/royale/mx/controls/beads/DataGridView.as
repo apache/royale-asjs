@@ -56,8 +56,16 @@ package mx.controls.beads
             
             var host:IDataGrid = _strand as IDataGrid;
             
-            // see if there is a presentation model already in place. if not, add one.
             IEventDispatcher(host).addEventListener(CollectionEvent.COLLECTION_CHANGE, handleCollectionChanged);
+            if (host.model.dataProvider != null && host.model.dataProvider.length > 0)
+            {
+                // force update of list.adg and refresh renderers
+                handleCollectionChanged(event);
+            }
+            else if (host.model.dataProvider == null)
+            {
+                IEventDispatcher(host.model).addEventListener("dataProviderChanged", handleCollectionChanged);
+            }
         }		
         
         private function handleCollectionChanged(event:Event):void

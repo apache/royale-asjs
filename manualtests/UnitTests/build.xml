@@ -19,7 +19,7 @@
 -->
 
 
-<project name="GenericTests" default="main" basedir=".">
+<project name="UnitTests" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../.."/>
     <property name="example" value="UnitTests" />
 
@@ -27,27 +27,27 @@
     <property name="theme_arg" value="-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta" />
     <!-- adding flexuint style meta collection, and additional testing meta tags (Event,Bindable,TestMeta)-->
     <property name="extlib_arg" value="-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta" />
-    
+
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
 	<property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
-	
+
 	<!-- make ant src and output consistent with maven -->
 	<property name="maven_compat" value="true"/>
-    
+
     <include file="${basedir}/../build_example.xml" />
 
     <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
     </target>
-    
+
     <target name="clean">
         <delete dir="${basedir}/bin" failonerror="false" />
         <delete dir="${basedir}/bin-debug" failonerror="false" />
         <delete dir="${basedir}/bin-release" failonerror="false" />
         <delete dir="${basedir}/target" failonerror="false" />
     </target>
-	
+
 	<target name="examine" depends="build_example.get.browser">
         <echo message="View the swf and js unit tests side-by-side"/>
         <exec executable="${browser}" dir="${basedir}" failonerror="true">

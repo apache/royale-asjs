@@ -58,12 +58,16 @@ import flash.utils.getQualifiedClassName;
 
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
+import mx.events.KeyboardEvent;
+import mx.events.utils.FocusEventConverter;
+import mx.events.utils.KeyboardEventConverter;
 import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
 
 COMPILE::JS {
     import org.apache.royale.core.HTMLElementWrapper;
+    import org.apache.royale.events.ElementEvents;
 }
 
 import org.apache.royale.binding.ContainerDataBinding;
@@ -559,6 +563,11 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 
     override protected function createChildren():void
     {
+        COMPILE::JS
+        {
+            ElementEvents.elementEvents["focusin"] = 1;
+            ElementEvents.elementEvents["focusout"] = 1;
+        }
         super.createChildren();        
         dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
     }
@@ -616,6 +625,9 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	public function initializeApplication():void
 	{
         HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+        HTMLElementWrapper.converterMap["FocusEvent"] = FocusEventConverter;
+        addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
         
         initManagers();
         
@@ -636,6 +648,12 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
 	}
 	
+    COMPILE::JS
+    public function keyDownForCapsLockHandler(event:KeyboardEvent):void
+    {
+        
+    }
+
 	//--------------------------------------------------------------------------
 	//
 	//  Other overrides

@@ -17,18 +17,19 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:ApplicationResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009" 
-    xmlns:j="library://ns.apache.org/royale/jewel" 
-    xmlns:js="library://ns.apache.org/royale/basic" 
-    xmlns:html="library://ns.apache.org/royale/html" 
-    xmlns:models="models.*" 
+<j:ApplicationResponsiveView xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:models="models.*"
     xmlns:c="components.*"
     xmlns:local="*">
 
     <fx:Script>
         <![CDATA[
             import vos.NavigationLinkVO;
-            
+            import org.apache.royale.utils.OSUtils;
+
             private function changeHandler(event:Event):void
             {
                 var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
@@ -55,6 +56,34 @@ limitations under the License.
             {
                 badge.text = ++badgeNum > 0 ? '' + badgeNum : '';
             }
+
+            private var _listenToOrientation:Boolean = false;
+            [Bindable]
+            public function get listenToOrientation():Boolean
+            {
+                return _listenToOrientation;
+            }
+			public function set listenToOrientation(listen:Boolean):void
+			{
+                _listenToOrientation = listen;
+                if(_listenToOrientation)
+                {
+				    addEventListener("orientationChanged", notifyOrientation);
+                } else {
+				    removeEventListener("orientationChanged", notifyOrientation);
+                }
+			}
+			public function notifyOrientation(event:Event = null):void
+			{
+				if(bo.orientation == BrowserOrientation.PORTRAIT) {
+					orientation = BrowserOrientation.PORTRAIT;
+                } else if(bo.orientation == BrowserOrientation.LANDSCAPE) {
+					orientation = BrowserOrientation.LANDSCAPE;
+                }
+			}
+
+            [Bindable]
+            public var orientation:String = "No Orientation";
         ]]>
     </fx:Script>
 
@@ -64,6 +93,8 @@ limitations under the License.
 
     <j:beads>
         <js:ContainerDataBinding/>
+        <js:BrowserOrientation localId="bo"/>
+		<j:CleanValidationErrors/>
     </j:beads>
 
     <j:Drawer localId="drawer">
@@ -77,12 +108,14 @@ limitations under the License.
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="containerDrawerNavigation" destinationPropertyName="dataProvider"/>
+                    <j:NavigationActionNotifier/>
                 </j:beads>
             </j:Navigation>
             <j:Divider/>
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="controlsDrawerNavigation" destinationPropertyName="dataProvider"/>
+                    <j:NavigationActionNotifier/>
                 </j:beads>
             </j:Navigation>
         </j:DrawerContent>
@@ -112,7 +145,7 @@ limitations under the License.
                 </j:PopUp>
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsCenter">
-                <html:H3 text="FooterBar" />
+                <html:H3 text="{orientation}" />
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsRight">
                 <j:IconButton>
@@ -140,7 +173,7 @@ limitations under the License.
             <j:BarSection>
                 <j:IconButton click="drawer.isOpen ? drawer.close() : drawer.open()">
                     <js:beads>
-                        <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false"/>
+                        <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false" />
                     </js:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
@@ -149,6 +182,14 @@ limitations under the License.
                 <j:BarTitle text="Apache Royale Tour de Jewel"/>
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsRight">
+                <j:ToggleButton click="listenToOrientation = !listenToOrientation" visible="{OSUtils.getOS() == OSUtils.ANDROID_OS || OSUtils.getOS() == OSUtils.IOS_OS}">
+                    <j:beads>
+                        <j:ToolTip toolTip="Detect Orientation"/>
+                    </j:beads>
+                    <j:icon>
+                        <js:ToggleFontIcon text="{MaterialIconType.SCREEN_LOCK_ROTATION}" selectedText="{MaterialIconType.SCREEN_ROTATION}" material="true"/>
+                    </j:icon>
+                </j:ToggleButton>
                 <j:ToggleButton click="footerbar.visible = !footerbar.visible">
                     <j:beads>
                         <j:ToolTip toolTip="show/hide FooterBar"/>
@@ -169,7 +210,7 @@ limitations under the License.
         </j:BarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" className="mainContent" selectedContent = "welcome_panel">
+    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" selectedContent = "welcome_panel">
         <local:WelcomeSection name="welcome_panel"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>
@@ -196,6 +237,7 @@ limitations under the License.
         <local:LayoutsPlayGround name="layouts_panel"/>
         <local:WizardPlayGround name="wizards_panel"/>
         <local:PopUpPlayGround name="popup_panel"/>
+        <local:AdvancedListPlayGround name="advanced_list_panel"/>
     </j:ApplicationMainContent>
 
     <!-- <j:ResponsiveSizeMonitor/> -->

@@ -18,8 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.net.remoting.messages
 {
-    import org.apache.royale.net.utils.IDataOutput;
-    import org.apache.royale.net.utils.IExternalizable;
+    import org.apache.royale.utils.net.IExternalizable;
+	COMPILE::JS{
+		import org.apache.royale.utils.net.IDataOutput;
+	}
+	COMPILE::SWF{
+		import flash.utils.IDataOutput;
+	}
 
     [RemoteClass(alias="DSK")]
     /**
@@ -30,7 +35,7 @@ package org.apache.royale.net.remoting.messages
         //--------------------------------------------------------------------------
         //
         // Constructor
-        // 
+        //
         //--------------------------------------------------------------------------
 
         public function AcknowledgeMessageExt(message:AcknowledgeMessage = null)
@@ -49,12 +54,12 @@ package org.apache.royale.net.remoting.messages
 
         /**
          *  The unique id for the message.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 9
          *  @playerversion AIR 1.1
          *  @productversion BlazeDS 4
-         *  @productversion LCDS 3 
+         *  @productversion LCDS 3
          */
         override public function get messageId():String
         {

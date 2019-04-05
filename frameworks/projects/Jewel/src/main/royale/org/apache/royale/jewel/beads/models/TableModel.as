@@ -37,6 +37,7 @@ package org.apache.royale.jewel.beads.models
 		public function set columns(value:Array):void
 		{
 			_columns = value;
+			dispatchEvent( new Event("columnsChanged") );
 		}
 
 		private var _selectedItemProperty:Object;

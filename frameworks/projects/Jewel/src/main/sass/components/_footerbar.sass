@@ -32,7 +32,7 @@ $footer-bar-button-size: 48px
         flex-direction: column
         justify-content: space-between
         width: 100%
-        z-index: 4
+        z-index: $app-bars-zindex
         position: fixed
         bottom: 0px
     
@@ -79,6 +79,7 @@ $footer-bar-button-size: 48px
         -moz-osx-font-smoothing: grayscale
         -webkit-font-smoothing: antialiased
         white-space: nowrap
+        flex: 1 1 auto
         overflow: hidden
         z-index: 1
         line-height: 2rem

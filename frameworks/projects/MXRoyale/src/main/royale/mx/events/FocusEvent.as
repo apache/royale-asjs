@@ -25,6 +25,11 @@ import flash.events.FocusEvent;
 import flash.display.InteractiveObject;      
 }
 /* import mx.events.Event;*/
+COMPILE::JS
+{
+import goog.events.BrowserEvent;
+}
+
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
 
@@ -106,7 +111,23 @@ public class FocusEvent extends org.apache.royale.events.Event
 	}
 	
 
-	
+    /**
+     * @type {?goog.events.FocusEvent}
+     */
+    private var wrappedEvent:Object;
+    
+    /**
+     * @type {FocusEvent}
+     */
+    private var nativeEvent:Object;
+    
+    public function wrapEvent(event:goog.events.BrowserEvent):void
+    {
+        wrappedEvent = event;
+        nativeEvent = event.getBrowserEvent();
+    }
+    
+
 
 	
 }

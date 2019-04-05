@@ -52,6 +52,12 @@ public class AMFNetConnection
     // Constructor
     //
     //--------------------------------------------------------------------------
+    
+    
+	private static const UNKNOWN_CONTENT_LENGTH:int = 1;
+	private static const AMF0_BOOLEAN:int = 1;
+	private static const NULL_STRING:String = "null";
+	private static const AMF0_AMF3:int = 17;
 
     /**
      *  Constructor
@@ -340,7 +346,7 @@ public class AMFNetConnection
                     var message:ActionMessage;
                     var body:MessageBody;
 	                _relinquishCall(call);
-                    var deserializer:AMFBinaryData = new AMFBinaryData(new Uint8Array(xhr.response) as Array);
+                    var deserializer:AMFBinaryData = new AMFBinaryData(xhr.response);
                     try
                     {
                         message = readMessage(deserializer) as ActionMessage;
@@ -409,10 +415,10 @@ public class AMFNetConnection
     {
         writer.writeUTF(header.name);
         writer.writeBoolean(header.mustUnderstand);
-        writer.writeInt(AMFBinaryData.UNKNOWN_CONTENT_LENGTH);
-        writer.reset();
+        writer.writeInt(UNKNOWN_CONTENT_LENGTH);
         //writer.writeObject(header.data);
-        writer.write(AMFBinaryData.AMF0_BOOLEAN);
+        trace('not sending header data:', header.data);
+        writer.writeByte(AMF0_BOOLEAN);
         writer.writeBoolean(true);
     }
 
@@ -420,18 +426,18 @@ public class AMFNetConnection
     private function writeBody(writer:AMFBinaryData, body:MessageBody):void
     {
         if (body.targetURI == null) {
-            writer.writeUTF(AMFBinaryData.NULL_STRING);
+            writer.writeUTF(NULL_STRING);
         } else {
             writer.writeUTF(body.targetURI);
         }
         if (body.responseURI == null) {
-            writer.writeUTF(AMFBinaryData.NULL_STRING);
+            writer.writeUTF(NULL_STRING);
         } else {
             writer.writeUTF(body.responseURI);
         }
-        writer.writeInt(AMFBinaryData.UNKNOWN_CONTENT_LENGTH);
-        writer.reset();
-        writer.write(AMFBinaryData.AMF0_AMF3);
+        writer.writeInt(UNKNOWN_CONTENT_LENGTH);
+ 
+        writer.writeByte(AMF0_AMF3);
         writer.writeObject(body.data);
 
     }
@@ -458,13 +464,16 @@ public class AMFNetConnection
         var header:MessageHeader = new MessageHeader();
         header.name = reader.readUTF();
         header.mustUnderstand = reader.readBoolean();
-        reader.pos += 4; //length
-        reader.reset();
-        var type:uint = reader.read();
+        //reader.pos += 4; //length
+        //reader.reset();
+		var len:uint = reader.readUnsignedInt();
+		//trace('readHeader len',len);
+        var type:uint = reader.readUnsignedByte();
         if (type != 2) { //amf0 string
             throw "Only string header data supported.";
         }
         header.data = reader.readUTF();
+        //trace('readHeader data:',header.data);
         return header;
     }
 
@@ -474,8 +483,10 @@ public class AMFNetConnection
         var body:MessageBody = new MessageBody();
         body.targetURI = reader.readUTF();
         body.responseURI = reader.readUTF();
-        reader.pos += 4; //length
-        reader.reset();
+        //reader.pos += 4; //length
+        var len:uint = reader.readUnsignedInt();
+        //trace('readBody len',len);
+       //reader.reset();
         body.data = reader.readObject();
         return body;
     }

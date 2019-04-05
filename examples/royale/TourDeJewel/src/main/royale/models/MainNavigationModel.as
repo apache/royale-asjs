@@ -24,7 +24,7 @@ package models
 
     public class MainNavigationModel
     {
-        private var _controlsDrawerNavigation:ArrayList = new ArrayList([            
+        private var _controlsDrawerNavigation:ArrayList = new ArrayList([
             new NavigationLinkVO("Alert", "alert_panel", MaterialIconType.WEB_ASSET),
             new NavigationLinkVO("Button", "button_panel", MaterialIconType.CROP_7_5),
             new NavigationLinkVO("CheckBox", "checkbox_panel", MaterialIconType.CHECK_BOX),
@@ -42,7 +42,8 @@ package models
             new NavigationLinkVO("Slider", "slider_panel", MaterialIconType.STORAGE),
             new NavigationLinkVO("Snackbar", "snackbar_panel", MaterialIconType.VIDEO_LABEL),
             new NavigationLinkVO("Text", "text_panel", MaterialIconType.SUBJECT),
-            new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS)
+            new NavigationLinkVO("TextInput", "textinput_panel", MaterialIconType.TEXT_FIELDS),
+			new NavigationLinkVO("List with ArrayListView", "advanced_list_panel", MaterialIconType.LIST_ALT)
             // new NavigationLinkVO("Menu", "menus_panel"),
             // new NavigationLinkVO("Loading", "loading_panel")
         ]);

@@ -20,14 +20,14 @@ package org.apache.royale.jewel
 {
 	COMPILE::SWF
     {
-		import flash.display.DisplayObject;
+	import flash.display.DisplayObject;
 
-		import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IRenderedObject;
     }
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IUIBase;
@@ -60,9 +60,6 @@ package org.apache.royale.jewel
             typeNames = "jewel bar";
 		}
 
-		COMPILE::JS
-		protected var header:HTMLElement;
-
 		protected function get headerClassName():String
 		{
 			return "barHeader";
@@ -74,17 +71,28 @@ package org.apache.royale.jewel
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			header = addElementToWrapper(this,'header');
-			header.className = headerClassName;
-			
-			var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-			div.appendChild(header);
-
-			positioner = div as WrappedHTMLElement;
-			positioner.royale_wrapper = this;
-
+			addElementToWrapper(this,'header');
+			element.className = headerClassName;
+			positioner = document.createElement('div') as WrappedHTMLElement;
 			return element;
         }
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
 
 		/**
          *  @copy org.apache.royale.core.IParent#addElement()
@@ -112,7 +120,7 @@ package org.apache.royale.jewel
             }
             COMPILE::JS
             {
-                header.appendChild(c.positioner);
+                element.appendChild(c.positioner);
                 (c as IUIBase).addedToParent();
             }
 		}

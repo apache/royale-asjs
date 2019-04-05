@@ -24,6 +24,10 @@ j|Application {
   margin: 0px;
 }
 
+input, select, textarea, button {
+  font-family: inherit;
+}
+
 j|Form {
   gap: 3;
 }
@@ -107,9 +111,9 @@ hr {
   box-shadow: inset 0px 0px 0px 1px rgba(224, 204, 239, 0.5), inset 0 1px 0 rgba(236, 223, 245, 0.6);
 }
 .jewel.button.emphasized[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }
@@ -152,9 +156,9 @@ hr {
   box-shadow: inset 0px 0px 0px 1px rgba(224, 204, 239, 0.5), inset 0 1px 0 rgba(236, 223, 245, 0.6);
 }
 .jewel.togglebutton.emphasized[disabled] {
-  background: #f3f3f3;
-  border: 1px solid #d9d9d9;
-  box-shadow: none;
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
   color: silver;
   text-shadow: unset;
 }

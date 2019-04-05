@@ -184,7 +184,13 @@ package org.apache.royale.jewel.beads.itemRenderers
         protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
-            itemRenderer.data = data;
+			var forceDataChangeEvent:Boolean = (itemRenderer.data == data);
+			
+			itemRenderer.data = data;
+			
+			if (forceDataChangeEvent) {
+				itemRenderer.dispatchEvent(new Event('dataChange'));
+			}
         }
 	}
 }

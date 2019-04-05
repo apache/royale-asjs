@@ -276,6 +276,12 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @royalesuppresspublicvarwarning
      */
     COMPILE::JS
+    public var measuringElement:HTMLSpanElement;
+    
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
+    COMPILE::JS
     public var mainClassName:String;
 
     /**

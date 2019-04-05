@@ -70,7 +70,7 @@ limitations under the License.
 			private function configDateChooserToES():void
 			{
 				dateChooserES.model.dayNames = ['D','L','M','X','J','V','S'];
-				dateChooserES.model.monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Deciembre"];
+				dateChooserES.model.monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
 				dateChooserES.model.firstDayOfWeek = 1;
 			}
 			
@@ -79,7 +79,7 @@ limitations under the License.
 				dateFieldES.dateFormat = "DD/MM/YYYY";
 
 				dateFieldES.model.dayNames = ['D','L','M','X','J','V','S'];
-				dateFieldES.model.monthNames = ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Deciembre"];
+				dateFieldES.model.monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
 				dateFieldES.model.firstDayOfWeek = 1;
 			}
 
@@ -152,6 +152,25 @@ limitations under the License.
 				<html:H3 text="Jewel DateChooser - selectedDate: {someDate}"/>
 				<j:DateChooser id="dateChooserSelectedDate" change="dateChooserDefaultChanged()" selectedDate="{someDate}"/>
 				<j:Label multiline="true" html="&lt;strong>DateChooser selected date:&lt;/strong> {dateChooserSelectedDate.selectedDate}" width="275"/>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateField Disabled"/>
+				<j:DateField>
+					<j:beads>
+						<j:DateFieldDisabled/>
+						<j:DateFieldTextPrompt prompt="Disabled..."/>
+					</j:beads>
+				</j:DateField>
+				
+				<html:H3 text="Jewel DateChooser Disabled"/>
+				<j:DateChooser>
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:DateChooser>
 			</j:Card>
 		</j:GridCell>
 

@@ -68,6 +68,8 @@ internal class MXRoyaleClasses
 	import mx.effects.Tween; Tween;
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
+	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
+	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
@@ -201,6 +203,9 @@ internal class MXRoyaleClasses
 	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
+	
+	import mx.controls.PopUpButton; PopUpButton;
+	import mx.controls.PopUpMenuButton; PopUpMenuButton;
 
 
 	COMPILE::JS
@@ -235,7 +240,29 @@ internal class MXRoyaleClasses
 
     import mx.containers.beads.FormItemView; FormItemView;
     import mx.containers.beads.FormItemContainer; FormItemContainer;
+
+
+	// --- RpcClassAliasInitializer
+	import org.apache.royale.reflection.registerClassAlias;
+
+	import mx.messaging.messages.AcknowledgeMessage;
+	import mx.messaging.messages.AsyncMessage;
+	import mx.messaging.messages.CommandMessage;
+	import mx.messaging.messages.RemotingMessage;
+	registerClassAlias("flex.messaging.messages.CommandMessage", CommandMessage);
+	registerClassAlias("flex.messaging.messages.AcknowledgeMessage", AcknowledgeMessage);
+	registerClassAlias("flex.messaging.messages.AsyncMessage", AsyncMessage);
+	registerClassAlias("flex.messaging.messages.RemotingMessage", RemotingMessage);  
+
+	import mx.messaging.messages.AcknowledgeMessageExt;
+	import mx.messaging.messages.AsyncMessageExt;
+	import mx.messaging.messages.CommandMessageExt;
+	registerClassAlias("DSK", AcknowledgeMessageExt);
+	registerClassAlias("DSA", AsyncMessageExt);
+	registerClassAlias("DSC", CommandMessageExt);
+	// RpcClassAliasInitializer ----------------------------------------
     
+	import mx.net.URLLoader; URLLoader;
 }
 
 }

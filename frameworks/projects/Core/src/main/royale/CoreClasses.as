@@ -129,6 +129,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	{
 	    import org.apache.royale.core.IScrollBarModel; IScrollBarModel;
 	}
+    import org.apache.royale.core.IRuntimeSelectableItemRenderer; IRuntimeSelectableItemRenderer;
     import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
     import org.apache.royale.core.ISelectable; ISelectable;
     import org.apache.royale.core.ISelectionModel; ISelectionModel;
@@ -187,6 +188,15 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.geom.Rectangle; Rectangle;
     import org.apache.royale.utils.AnimationUtil; AnimationUtil;
     import org.apache.royale.utils.BinaryData; BinaryData;
+	import org.apache.royale.utils.IBinaryDataInput; IBinaryDataInput;
+	import org.apache.royale.utils.IBinaryDataOutput; IBinaryDataOutput;
+	
+	import org.apache.royale.utils.net.IDataInput; IDataInput;
+	import org.apache.royale.utils.net.IDataOutput; IDataOutput;
+	import org.apache.royale.utils.net.IExternalizable; IExternalizable;
+	import org.apache.royale.utils.net.IDynamicPropertyWriter; IDynamicPropertyWriter;
+	import org.apache.royale.utils.net.IDynamicPropertyOutput; IDynamicPropertyOutput;
+	
 	import org.apache.royale.utils.BrowserInfo; BrowserInfo;
 	COMPILE::SWF
 	{
