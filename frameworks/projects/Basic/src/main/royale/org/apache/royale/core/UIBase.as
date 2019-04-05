@@ -1350,7 +1350,7 @@ package org.apache.royale.core
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
-                    if (children[i] === c.element)
+                    if (children[i] === c.positioner)
                         return i;
                 }
                 return -1;                
