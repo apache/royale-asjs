@@ -85,15 +85,7 @@ package org.apache.royale.jewel
 				for (var i:int = 0; i < numElements; i++)
 				{
 					var content:ISelectableContent = getElementAt(i) as ISelectableContent;
-					
-					if(content.name == _selectedContent)
-					{
-						content.isSelected = true;
-					}
-					else
-					{
-						content.isSelected = false;
-					}
+					content.isSelected = content.name == _selectedContent ? true : false;
 				}
 			}
 			catch (error:Error)

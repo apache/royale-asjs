@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.supportClasses.ISelectableContent;
-    
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
-
+    import org.apache.royale.jewel.supportClasses.ISelectableContent;
+    
 	/**
 	 *  The SectionContent class is a Container component capable of parenting other
 	 *  components. This class is used along with Tabs to separate content and
