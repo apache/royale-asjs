@@ -19,46 +19,61 @@ limitations under the License.
 -->
 <project>
   <output>
+    <movie version="32"/>
     <movie path="bin-debug/HelloWorld.swf"/>
-    <movie width="800"/>
+    <movie disabled="False"/>
     <movie fps="60"/>
     <movie height="600"/>
-    <movie platform="Flash Player"/>
-    <movie version="11"/>
-    <movie disabled="False"/>
     <movie background="#FFFFFF"/>
+    <movie width="800"/>
+    <movie platform="Flash Player"/>
     <movie input=""/>
   </output>
   &lt;!-- Other classes to be compiled into your SWF --&gt;
+  <jsOutput>
+    <option path=""/>
+  </jsOutput>
   <classpaths>
     <class path="src/main/royale"/>
   </classpaths>
   <moonshineResourcePaths></moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
-    <option optimize="False"/>
+    <option allowSourcePathOverlap="False"/>
     <option showActionScriptWarnings="True"/>
-    <option staticLinkRSL="False"/>
-    <option locale=""/>
-    <option showBindingWarnings="True"/>
-    <option compilerConstants=""/>
-    <option showDeprecationWarnings="True"/>
-    <option antBuildPath="build/build.xml"/>
-    <option additional="-theme=${royalelib}/themes/Basic/src/basic.css"/>
-    <option showUnusedTypeSelectorWarnings="True"/>
-    <option customSDK=""/>
     <option strict="True"/>
+    <option warnings="True"/>
+    <option loadConfig=""/>
+    <option showDeprecationWarnings="True"/>
+    <option linkReport=""/>
+    <option antBuildPath="build/build.xml"/>
+    <option showUnusedTypeSelectorWarnings="True"/>
+    <option additional="+configname=flex"/>
+    <option showBindingWarnings="True"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
-    <option allowSourcePathOverlap="False"/>
     <option useResourceBundleMetadata="True"/>
+    <option optimize="False"/>
+    <option compilerConstants=""/>
+    <option customSDK=""/>
     <option benchmark="False"/>
-    <option warnings="True"/>
-    <option es="False"/>
     <option verboseStackTraces="False"/>
-    <option loadConfig=""/>
-    <option linkReport=""/>
+    <option es="False"/>
+    <option staticLinkRSL="False"/>
+    <option locale=""/>
   </build>
+  <mavenBuild>
+    <option mavenBuildPath=""/>
+    <option commandLine=""/>
+    <option settingsFilePath=""/>
+    <actions>
+      <action action="install" actionName="Build"/>
+      <action action="clean package" actionName="Clean and package"/>
+      <action action="clean" actionName="Clean"/>
+      <action action="clean install" actionName="Clean and Build"/>
+      <action action="war:exploded" actionName="Exploded"/>
+    </actions>
+  </mavenBuild>
   <includeLibraries></includeLibraries>
   <libraryPaths></libraryPaths>
   <externalLibraryPaths></externalLibraryPaths>
@@ -76,20 +91,22 @@ limitations under the License.
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
-    <option isExportedToExistingSource="False"/>
     <option isPrimeFacesVisualEditor="False"/>
-    <option visualEditorExportPath=""/>
-    <option showHiddenPaths="False"/>
+    <option isExportedToExistingSource="False"/>
     <option testMovie=""/>
-    <option testMovieCommand=""/>
+    <option showHiddenPaths="False"/>
     <option defaultBuildTargets=""/>
+    <option visualEditorExportPath=""/>
+    <option isRoyale="True"/>
+    <option testMovieCommand=""/>
   </options>
   <moonshineRunCustomization>
     <option launchMethod="Simulator"/>
-    <option targetPlatform="2"/>
+    <option customUrlToLaunch=""/>
+    <option deviceSimulator="null"/>
     <option urlToLaunch=""/>
     <option projectType="2"/>
-    <option deviceSimulator="null"/>
+    <option targetPlatform="2"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
