@@ -25,6 +25,7 @@ package org.apache.royale.jewel
     }
     import org.apache.royale.core.IIcon;
     import org.apache.royale.core.IIconSupport;
+    import org.apache.royale.events.Event;
     
     public class IconButton extends Button implements IIconSupport
 	{
