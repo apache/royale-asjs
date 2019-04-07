@@ -3897,24 +3897,58 @@ j|BarTitle {
   order: -1;
 }
 
-.jewel .wizard .main {
+.jewel.wizard.main {
   align-items: center;
   width: 100%;
   height: 100%;
 }
-.jewel .precontent {
+.jewel.precontent {
+  position: relative;
   width: 100%;
   flex: 1 0;
 }
 .jewel.next, .jewel.previous {
+  z-index: 1;
   height: 100%;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
-.jewel .wizardcontent {
+.jewel.wizardcontent {
   height: 100%;
   flex-grow: 100;
+  position: inherit;
+}
+.jewel.wizardpage {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  width: 100%;
+  display: none;
+}
+.jewel.wizardpage > * {
+  margin: auto;
+}
+.jewel.wizardpage.is-selected {
+  z-index: 1;
+  display: block;
+}
+.jewel.wizardpage.is-selected.transitions {
+  opacity: 1;
+  transform: translateX(0%);
+}
+.jewel.wizardpage.transitions {
+  opacity: 0;
+  transition: transform 0.6s ease-out, opacity 0.6s ease-out;
+  will-change: transform, opacity;
+  transform: translateX(100%);
+  display: initial;
+}
+.jewel.wizardpage.transitions.slideLeft {
+  transform: translateX(-100%);
+}
+.jewel.wizardpage.transitions.slideRight {
+  transform: translateX(100%);
 }
 
 j|Wizard {
@@ -3925,15 +3959,13 @@ j|Wizard {
   IWizardContentArea: ClassReference("org.apache.royale.jewel.WizardContent");
 }
 
-j|WizardPage {
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.NoViewport");
-}
-
 j|WizardContent {
   IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
-  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
-  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+j|WizardPage {
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.NoViewport");
 }
 
 .jewel.main {
