@@ -61,10 +61,10 @@ ButtonBar
 
 ColorPicker
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ComboBoxModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.ColorPickerView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
-	IPopUp: ClassReference("org.apache.royale.html.supportClasses.SwatchList");
+	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ColorPickerPopUp");
 }
 
 ComboBox

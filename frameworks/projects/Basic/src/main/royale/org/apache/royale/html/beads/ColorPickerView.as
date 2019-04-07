@@ -19,25 +19,27 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.Group;
 	import org.apache.royale.html.TextButton;
 	COMPILE::JS 
 	{
 		import org.apache.royale.utils.CSSUtils;
+		import org.apache.royale.core.IRenderedObject;
 	}
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.html.supportClasses.IColorPickerPopUp;
+	import org.apache.royale.core.IColorModel;
 	
 	/**
 	 *  The ColorPickerView class creates the visual elements of the org.apache.royale.html.ColorPicker 
@@ -91,10 +93,10 @@ package org.apache.royale.html.beads
 			return button;
 		}
 		
-		private var list:UIBase;
+		private var list:IUIBase;
 		
 		/**
-		 *  The pop-up list component of the ComboBox.
+		 *  The pop-up component of the ComboBox.
 		 * 
 		 *  @copy org.apache.royale.html.beads.IComboBoxView#text
 		 *
@@ -143,10 +145,11 @@ package org.apache.royale.html.beads
 			host.addElement(button);
 			
 			var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-			list = new popUpClass() as UIBase;
+			list = new popUpClass() as IUIBase;
 			list.visible = false;
 			
 			var model:IEventDispatcher = (_strand as IStrandWithModel).model as IEventDispatcher;
+			(list as IColorPickerPopUp).model = model;
 			model.addEventListener("selectedIndexChanged", handleItemChange);
 			model.addEventListener("selectedItemChanged", handleItemChange);
 			
@@ -180,8 +183,8 @@ package org.apache.royale.html.beads
 		public function set popUpVisible(value:Boolean):void
 		{
 			if (value && !list.visible) {
-				var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-//				list.model = model;
+				var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
+				(list as IColorPickerPopUp).model = model;
 				list.height = 200;
 				list.width = 200;
 				list.visible = true;
@@ -191,7 +194,7 @@ package org.apache.royale.html.beads
 				list.x = relocated.x
 				list.y = relocated.y;
 				COMPILE::JS {
-					list.element.style.position = "absolute";
+					(list as IRenderedObject).element.style.position = "absolute";
 				}
 					
 				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
@@ -221,14 +224,14 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.IComboBoxModel
+		 * @royaleignorecoercion org.apache.royale.core.IColorModel
 		 */
 		protected function itemChangeAction():void
 		{
-			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
 			COMPILE::JS 
 			{
-				selectedColorDisplay.element.style.backgroundColor = CSSUtils.attributeFromColor(uint(model.selectedItem));
+				selectedColorDisplay.element.style.backgroundColor = CSSUtils.attributeFromColor(model.color);
 			}
 		}
 		

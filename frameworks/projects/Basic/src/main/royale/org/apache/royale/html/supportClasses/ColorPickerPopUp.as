@@ -16,46 +16,58 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IColorModel;
+	import org.apache.royale.core.IColorSpectrumModel;
+	import org.apache.royale.core.IPopUp;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
-	[Event(name="change", type="org.apache.royale.events.Event")]
 	/**
-	 *  The ColorPicker class is a component that lets you select a color
+	 *  The ColorPickerPopUp class is used in ColorPicker. It contains a set of controls for picking a color.
 	 * 
+	 *
+     *  @toplevel
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ColorPicker extends UIBase
+	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp
 	{
+		private var colorSpectrum:ColorSpectrum;
 		/**
-		 *  Constructor.
+		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		private var _color:uint;
-		public function ColorPicker()
+		public function ColorPickerPopUp()
 		{
 			super();
-            
-            typeNames = "ColorPicker";
-		}
-
-		public function get color():uint 
-		{
-			return (model as IColorModel).color;
+			colorSpectrum = new ColorSpectrum();
+			colorSpectrum.height =  300;
+			colorSpectrum.width =  300;
+			addElement(colorSpectrum);
 		}
 		
-		public function set color(value:uint):void 
+		override public function set model(value:Object):void
 		{
-			(model as IColorModel).color = value;
+			super.model = value;
+			var colorSpectrumModel:IColorSpectrumModel = loadBeadFromValuesManager(IColorSpectrumModel, "iColorSpectrumModel", colorSpectrum) as IColorSpectrumModel;
+			colorSpectrumModel.baseColor = (value as IColorModel).color;
+			(colorSpectrum as IEventDispatcher).addEventListener("change", colorSpectrumChangeHandler);
 		}
+		
+		protected function colorSpectrumChangeHandler(event:Event):void
+		{
+			(model as IColorModel).color = colorSpectrum.hsvModifiedColor;
+		}
+		
 	}
 }

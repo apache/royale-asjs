@@ -16,46 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IColorModel;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IPopUp;
 
-	[Event(name="change", type="org.apache.royale.events.Event")]
 	/**
-	 *  The ColorPicker class is a component that lets you select a color
-	 * 
+	 * All color picker pop-ups must implement this interface.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ColorPicker extends UIBase
+	public interface IColorPickerPopUp extends IPopUp
 	{
 		/**
-		 *  Constructor.
+		 * The model being used with the IColorPickerPopup.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		private var _color:uint;
-		public function ColorPicker()
-		{
-			super();
-            
-            typeNames = "ColorPicker";
-		}
-
-		public function get color():uint 
-		{
-			return (model as IColorModel).color;
-		}
-		
-		public function set color(value:uint):void 
-		{
-			(model as IColorModel).color = value;
-		}
+		function set model(value:Object):void;
 	}
 }

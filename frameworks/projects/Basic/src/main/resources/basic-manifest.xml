@@ -51,6 +51,7 @@
     <component id="SwatchList" class="org.apache.royale.html.supportClasses.SwatchList"/>
     <component id="ColorSpectrum" class="org.apache.royale.html.supportClasses.ColorSpectrum"/>
     <component id="ColorPicker" class="org.apache.royale.html.ColorPicker"/>
+    <component id="ColorPickerPopUp" class="org.apache.royale.html.supportClasses.ColorPickerPopUp"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
     <component id="CSSCheckBox" class="org.apache.royale.html.CSSCheckBox"/>
     <component id="RadioButton" class="org.apache.royale.html.RadioButton"/>
