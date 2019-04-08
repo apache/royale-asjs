@@ -141,6 +141,7 @@ hr {
 .jewel.multiline {
   white-space: pre-wrap !important;
   word-wrap: break-word;
+  max-width: 100%;
 }
 
 .responsiveSizeMonitor {
@@ -181,6 +182,11 @@ hr {
   height: 50px;
 }
 
+@media all and (-ms-high-contrast: none) {
+  .jewel.alert {
+    display: table;
+  }
+}
 @media (min-width: 768px) {
   .jewel.alert {
     min-width: 450px;
@@ -922,6 +928,7 @@ j|Label {
 }
 .layout.horizontal.flow {
   flex-wrap: wrap;
+  max-width: 100%;
 }
 .layout.horizontal.centered {
   justify-content: center;
