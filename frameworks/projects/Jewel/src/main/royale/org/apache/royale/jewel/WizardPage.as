@@ -87,6 +87,9 @@ package org.apache.royale.jewel
 	 */
     public class WizardPage extends SectionContent
     {
+		public static const LEFT_EFFECT:String = "slideLeft";
+		public static const RIGHT_EFFECT:String = "slideRight";
+
         /**
 		 *  constructor.
 		 *
@@ -190,7 +193,6 @@ package org.apache.royale.jewel
 			{
 				dispatchEvent(new Event("exitPage"));
 				exitPage();
-				moveEffect(model.activateEffect, "slideRight", true);
 			}
 			if(model.currentStep.previousStep == step.name)
 			{
@@ -198,22 +200,9 @@ package org.apache.royale.jewel
 				model.showNextButton = showNextButton;
 				dispatchEvent(new Event("enterPage"));
 				enterPage();
-				moveEffect(model.activateEffect, "slideLeft", false);
 			}
 		}
-
-		public function moveEffect(activate:Boolean, direction:String, addclass:Boolean = true):void
-		{
-			if(activate)
-			{
-				// COMPILE::JS
-				// {
-				// element.addEventListener(transitionEvent, transitionendHandler);
-				// }
-				addclass ? addClass(direction) : removeClass(direction);
-			}
-		}
-
+		
 		// public function transitionendHandler(event:Event):void
 		// {
 		// 	if(event["propertyName"] == "opacity")
@@ -243,7 +232,6 @@ package org.apache.royale.jewel
 			{
 				dispatchEvent(new Event("exitPage"));
 				exitPage();
-				moveEffect(model.activateEffect, "slideLeft", true);
 			}
 			if(model.currentStep.nextStep == step.name)
 			{
@@ -251,7 +239,6 @@ package org.apache.royale.jewel
 				model.showNextButton = showNextButton;
 				dispatchEvent(new Event("enterPage"));
 				enterPage();
-				moveEffect(model.activateEffect, "slideRight", false);
 			}
 		}
 
@@ -302,17 +289,16 @@ package org.apache.royale.jewel
         {
             switch (event.type){
                 case WizardEvent.REQUEST_NAVIGATE_TO_STEP:
-                    wizard.showPage(event.stepName);
+					var step:WizardStep = wizard.findStepByName(event.stepName);
+					model.currentStep = step;
                     break;
                 case WizardEvent.REQUEST_NAVIGATE_PREVIOUS_STEP:
                     wizard.dispatchEvent(new Event("goToPreviousStep"));
-                    wizard.currentStep = wizard.findStepByName(wizard.currentStep.previousStep);
-                    // wizard.dispatchEvent(new Event("change"));
+                    model.currentStep = wizard.findStepByName(wizard.currentStep.previousStep);
                     break;
                 case WizardEvent.REQUEST_NAVIGATE_NEXT_STEP:
                     wizard.dispatchEvent(new Event("goToNextStep"));
-                    wizard.currentStep = wizard.findStepByName(wizard.currentStep.nextStep);
-                    // wizard.dispatchEvent(new Event("change"));
+                    model.currentStep = wizard.findStepByName(wizard.currentStep.nextStep);
                     break;
             }
         }

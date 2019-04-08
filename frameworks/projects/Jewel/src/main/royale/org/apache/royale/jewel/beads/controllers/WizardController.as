@@ -93,6 +93,7 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function handleStepChange(event:Event):void
 		{
+            setUpEffects();
             wizard.content.selectedContent = model.currentStep.name;
             wizard.title = model.currentStep.stepLabel;
 		}
@@ -171,5 +172,30 @@ package org.apache.royale.jewel.beads.controllers
             
             return null;
         }
+
+        public function setUpEffects():void
+		{
+			if(model.activateEffect)
+			{
+                model.currentStep.page.removeClass(WizardPage.LEFT_EFFECT);
+                model.currentStep.page.removeClass(WizardPage.RIGHT_EFFECT);
+                
+                var previous:WizardStep = findStep(model.currentStep, true);
+                while(previous != null)
+                {
+                    previous.page.removeClass(WizardPage.RIGHT_EFFECT);
+				    previous.page.addClass(WizardPage.LEFT_EFFECT);
+                    previous = findStep(previous, true);
+                }
+                
+                var next:WizardStep = findStep(model.currentStep, false);
+                while(next != null)
+                {
+                    next.page.removeClass(WizardPage.LEFT_EFFECT);
+	    			next.page.addClass(WizardPage.RIGHT_EFFECT);
+                    next = findStep(next, false);
+                }
+            }
+		}
     }
 }

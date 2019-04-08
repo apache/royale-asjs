@@ -27,10 +27,29 @@ limitations under the License.
 		<![CDATA[
 			import org.apache.royale.events.Event;
 			import org.apache.royale.jewel.Button;
+			import org.apache.royale.jewel.events.WizardEvent;
 
 			public function getStepLabel(step:WizardStep):String
 			{
 				return step.stepLabel;
+			}
+			
+			public function goToPage(num:int):void
+			{
+				var navEvent:WizardEvent = new WizardEvent(WizardEvent.REQUEST_NAVIGATE_TO_STEP, 'page' + num);
+				page3.dispatchEvent(navEvent);
+			}
+			
+			public function goToNextPage():void
+			{
+				var navEvent:WizardEvent = new WizardEvent(WizardEvent.REQUEST_NAVIGATE_NEXT_STEP);
+				page3.dispatchEvent(navEvent);
+			}
+			
+			public function goToPreviousPage():void
+			{
+				var navEvent:WizardEvent = new WizardEvent(WizardEvent.REQUEST_NAVIGATE_PREVIOUS_STEP);
+				page3.dispatchEvent(navEvent);
 			}
 		]]>
 	</fx:Script>
@@ -40,7 +59,7 @@ limitations under the License.
 	</j:beads>
 
 	<j:Card width="600">
-		<j:Wizard id="wizard" width="100%" height="500" title="{getStepLabel(wizard.currentStep)}" activateEffect="false">
+		<j:Wizard id="wizard" width="100%" height="500" title="{getStepLabel(wizard.currentStep)}" activateEffect="true">
 			<j:previousButton>
 				<j:Group>
 					<j:IconButton emphasis="{Button.SECONDARY}">
@@ -90,7 +109,7 @@ limitations under the License.
 
 			</j:WizardPage>
 
-			<j:WizardPage name="page3">
+			<j:WizardPage name="page3" localId="page3">
 				<views:step>
 					<j:WizardStep name="page3" previousStep="page2" nextStep="page4" stepLabel="Page 3"/>
 				</views:step>
@@ -100,6 +119,12 @@ limitations under the License.
 						<j:VerticalCenteredLayout gap="9"/>
 					</j:beads>
 					<html:H1 text="Page 3"/>
+					<j:Button text="Go To Page 1" emphasis="primary" click="goToPage(1);"/>
+					<j:Button text="Go To Page 6" emphasis="primary" click="goToPage(6);"/>
+					<j:HGroup gap="3">
+						<j:Button text="Go To Previous" emphasis="emphasized" click="goToPreviousPage();"/>
+						<j:Button text="Go To Next" emphasis="emphasized" click="goToNextPage();"/>
+					</j:HGroup>
 				</j:Group>
 
 			</j:WizardPage>

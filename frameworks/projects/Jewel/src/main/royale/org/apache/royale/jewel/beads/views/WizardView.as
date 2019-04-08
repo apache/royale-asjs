@@ -304,9 +304,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function stepChangeAction():void
 		{
-			model.currentStep.page.removeClass("slideLeft");
-			model.currentStep.page.removeClass("slideRight");
-
 			if(model.activateEffect) {
 				COMPILE::JS
 				{
@@ -317,9 +314,8 @@ package org.apache.royale.jewel.beads.views
 				previousButton.visible = model.showPreviousButton && model.currentStep && model.currentStep.previousStep != null;
 				nextButton.visible = model.showNextButton && model.currentStep && model.currentStep.nextStep != null;
 			}
-
 		}
-		
+
         protected function setupContentAreaLayout():void
         {
         
