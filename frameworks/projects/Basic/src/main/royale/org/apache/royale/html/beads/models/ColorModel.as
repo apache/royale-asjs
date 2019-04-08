@@ -52,7 +52,7 @@ package org.apache.royale.html.beads.models
 		{
 		}
 
-        [Bindable("colorChange")]
+        [Bindable("change")]
         /**
          *  @copy org.apache.royale.core.IColorModel#color
          *  
@@ -72,7 +72,7 @@ package org.apache.royale.html.beads.models
 		public function set color(value:uint):void
 		{
 			_color = value;
-			dispatchEvent(new Event("colorChange"));
+			dispatchEvent(new Event("change"));
 		}
 	}
 }

@@ -150,13 +150,12 @@ package org.apache.royale.html.beads
 			
 			var model:IEventDispatcher = (_strand as IStrandWithModel).model as IEventDispatcher;
 			(list as IColorPickerPopUp).model = model;
-			model.addEventListener("selectedIndexChanged", handleItemChange);
-			model.addEventListener("selectedItemChanged", handleItemChange);
+			model.addEventListener("change", handleColorChange);
 			
 			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
 			
 			// set initial value and positions using default sizes
-			itemChangeAction();
+			colorChangeAction();
 			sizeChangeAction();
 		}
 		
@@ -217,16 +216,16 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 */
-		protected function handleItemChange(event:Event):void
+		protected function handleColorChange(event:Event):void
 		{
-			itemChangeAction();
+			colorChangeAction();
 		}
 		
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IColorModel
 		 */
-		protected function itemChangeAction():void
+		protected function colorChangeAction():void
 		{
 			var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
 			COMPILE::JS 
