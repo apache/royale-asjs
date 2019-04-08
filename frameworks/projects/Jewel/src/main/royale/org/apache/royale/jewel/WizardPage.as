@@ -289,8 +289,7 @@ package org.apache.royale.jewel
         {
             switch (event.type){
                 case WizardEvent.REQUEST_NAVIGATE_TO_STEP:
-					var step:WizardStep = wizard.findStepByName(event.stepName);
-					model.currentStep = step;
+					wizard.showPage(event.stepName);
                     break;
                 case WizardEvent.REQUEST_NAVIGATE_PREVIOUS_STEP:
                     wizard.dispatchEvent(new Event("goToPreviousStep"));

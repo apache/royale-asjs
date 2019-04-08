@@ -181,8 +181,12 @@ package org.apache.royale.jewel.beads.controllers
                 model.currentStep.page.removeClass(WizardPage.RIGHT_EFFECT);
                 
                 var previous:WizardStep = findStep(model.currentStep, true);
+
                 while(previous != null)
                 {
+                    // this prevents bindings not done
+                    if(previous != null && !previous.name)
+                        break;
                     previous.page.removeClass(WizardPage.RIGHT_EFFECT);
 				    previous.page.addClass(WizardPage.LEFT_EFFECT);
                     previous = findStep(previous, true);
@@ -191,6 +195,9 @@ package org.apache.royale.jewel.beads.controllers
                 var next:WizardStep = findStep(model.currentStep, false);
                 while(next != null)
                 {
+                    // this prevents bindings not done
+                    if(next != null && !next.name)
+                        break;
                     next.page.removeClass(WizardPage.LEFT_EFFECT);
 	    			next.page.addClass(WizardPage.RIGHT_EFFECT);
                     next = findStep(next, false);
