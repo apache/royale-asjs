@@ -196,7 +196,7 @@ package org.apache.royale.html.beads.controllers
         COMPILE::JS
         private function handleTrackClick(event:MouseEvent):void
         {
-			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
+			var bevent:BrowserEvent = event["nativeEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
             var xloc:Number = bevent.offsetX;
 			var useWidth:Number = parseInt(track.element.style.width, 10) * 1.0;
@@ -216,7 +216,7 @@ package org.apache.royale.html.beads.controllers
         COMPILE::JS
         private function handleThumbDown(event:MouseEvent):void
         {
-			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
+			var bevent:BrowserEvent = event["nativeEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
             goog.events.listen(host.element, goog.events.EventType.MOUSEUP,
                 handleThumbUp, false, this);
@@ -241,7 +241,7 @@ package org.apache.royale.html.beads.controllers
         COMPILE::JS
         private function handleThumbUp(event:MouseEvent):void
         {
-			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
+			var bevent:BrowserEvent = event["nativeEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
             goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
                 handleThumbUp, false, this);
@@ -263,7 +263,7 @@ package org.apache.royale.html.beads.controllers
         COMPILE::JS
         private function handleThumbMove(event:MouseEvent):void
         {
-			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
+			var bevent:BrowserEvent = event["nativeEvent"] as BrowserEvent;
             var host:Slider = _strand as Slider;
             var lastValue:Number = rangeModel.value;
             calcValFromMousePosition(bevent, false);
