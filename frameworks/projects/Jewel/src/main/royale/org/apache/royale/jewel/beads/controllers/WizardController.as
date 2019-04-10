@@ -94,8 +94,8 @@ package org.apache.royale.jewel.beads.controllers
 		protected function handleStepChange(event:Event):void
 		{
             setUpEffects();
-            wizard.content.selectedContent = model.currentStep.name;
             wizard.title = model.currentStep.stepLabel;
+            wizard.content.selectedContent = model.currentStep.name;
 		}
 
         private var model:WizardModel;
@@ -201,6 +201,26 @@ package org.apache.royale.jewel.beads.controllers
                     next.page.removeClass(WizardPage.LEFT_EFFECT);
 	    			next.page.addClass(WizardPage.RIGHT_EFFECT);
                     next = findStep(next, false);
+                }
+
+                // depending on step config we still can have pages not configured to transition correctly
+                var n:int = wizard.numElements;
+                var foundSelected:Boolean;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var page:WizardPage = wizard.getElementAt(i) as WizardPage;
+                    if (page == model.currentStep.page) 
+                    {
+                        foundSelected = true;
+                        continue;
+                    }
+                    if(!page.containsClass(WizardPage.LEFT_EFFECT) && !page.containsClass(WizardPage.LEFT_EFFECT))
+                    {
+                        if (foundSelected)
+                            page.addClass(WizardPage.RIGHT_EFFECT)
+                        else
+                            page.addClass(WizardPage.LEFT_EFFECT)
+                    }
                 }
             }
 		}
