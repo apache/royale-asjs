@@ -25,14 +25,8 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
-			import org.apache.royale.events.Event;
 			import org.apache.royale.jewel.Button;
 			import org.apache.royale.jewel.events.WizardEvent;
-
-			public function getStepLabel(step:WizardStep):String
-			{
-				return step.stepLabel;
-			}
 			
 			public function goToPage(num:int):void
 			{
@@ -59,7 +53,7 @@ limitations under the License.
 	</j:beads>
 
 	<j:Card width="600">
-		<j:Wizard id="wizard" width="100%" height="500" title="{getStepLabel(wizard.currentStep)}" activateEffect="true">
+		<j:Wizard id="wizard" width="100%" height="500">
 			<j:previousButton>
 				<j:Group>
 					<j:IconButton emphasis="{Button.SECONDARY}">
