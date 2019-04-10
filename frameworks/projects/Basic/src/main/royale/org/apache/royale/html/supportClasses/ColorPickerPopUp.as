@@ -20,10 +20,11 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IColorModel;
 	import org.apache.royale.core.IColorSpectrumModel;
-	import org.apache.royale.core.IPopUp;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.HueSelector;
+	import org.apache.royale.utils.hsvToHex;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
@@ -39,6 +40,7 @@ package org.apache.royale.html.supportClasses
 	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp
 	{
 		private var colorSpectrum:ColorSpectrum;
+		private var hueSelector:HueSelector;
 		/**
 		 *  constructor.
 		 *
@@ -53,9 +55,25 @@ package org.apache.royale.html.supportClasses
 			colorSpectrum = new ColorSpectrum();
 			colorSpectrum.height =  300;
 			colorSpectrum.width =  300;
+			hueSelector = new HueSelector;
+			hueSelector.width = 20;
+			hueSelector.height = 280;
+			hueSelector.x = 310;
+			hueSelector.y = 0;
+			hueSelector.addEventListener("valueChange", hueChangeHandler);
+			COMPILE::JS 
+			{
+				hueSelector.element.style.position = "absolute";
+			}
 			addElement(colorSpectrum);
+			addElement(hueSelector);
 		}
 		
+		private function hueChangeHandler(event:Event):void
+		{
+			colorSpectrum.baseColor = hsvToHex(hueSelector.value, 100, 100);
+		}
+
 		override public function set model(value:Object):void
 		{
 			super.model = value;
