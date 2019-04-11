@@ -41,9 +41,12 @@
         align-items: center
         justify-content: center
         cursor: pointer
+        flex: 0 0 0% //IE11
         &:hover
             
         .jewel.button
+            position: relative
+            flex-direction: column
 
     &.wizardcontent
         height: 100%
@@ -72,9 +75,9 @@
         &.transitions
             opacity: 0
             transition: transform .6s ease-out, opacity .6s ease-out
-            will-change: transform, opacity
+            // will-change: transform, opacity
             transform: translateX(100%)
-            display: initial
+            display: block
         
             &.slideLeft
                 transform: translateX(-100%)
