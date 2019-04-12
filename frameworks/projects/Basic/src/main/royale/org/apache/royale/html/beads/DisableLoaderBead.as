@@ -110,7 +110,7 @@ package org.apache.royale.html.beads
 				if (disabled)
 				{
 					addLoadIndicator();
-				} else
+				} else if (_loader)
 				{
 					removeLoadIndicator();
 				}
@@ -129,8 +129,8 @@ package org.apache.royale.html.beads
 			{
 				_loader.element.style.position = "absolute";
 			}
-				var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-				popupHost.popUpParent.addElement(_loader);
+			var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+			popupHost.popUpParent.addElement(_loader);
 		}
 		
 		protected function removeLoadIndicator():void
