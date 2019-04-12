@@ -23,7 +23,6 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.jewel.Container;
 	import org.apache.royale.jewel.supportClasses.ISelectableContent;
 
 	/**
@@ -36,7 +35,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class WizardContent extends Container
+	public class WizardContent extends Group
 	{
 		/**
 		 *  constructor.

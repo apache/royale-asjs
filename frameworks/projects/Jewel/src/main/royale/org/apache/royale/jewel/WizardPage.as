@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	// COMPILE::JS
+	// {
+	// import org.apache.royale.utils.css.transitionEventAvailable;
+	// }
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.WizardModel;
     import org.apache.royale.jewel.beads.models.WizardStep;
@@ -83,6 +87,9 @@ package org.apache.royale.jewel
 	 */
     public class WizardPage extends SectionContent
     {
+		public static const LEFT_EFFECT:String = "slideLeft";
+		public static const RIGHT_EFFECT:String = "slideRight";
+
         /**
 		 *  constructor.
 		 *
@@ -95,8 +102,16 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel section wizardpage";
+            typeNames = "jewel wizardpage";
+
+			// COMPILE::JS
+			// {
+			// transitionEvent = transitionEventAvailable(this);
+			// }
 		}
+
+		// COMPILE::JS
+		// private var transitionEvent:String;
 
 		/**
 		 * @royalesuppresspublicvarwarning
@@ -146,6 +161,11 @@ package org.apache.royale.jewel
 		public function addWizardListeners(wizard:Wizard):void
 		{
 			this.wizard = wizard;
+			model = wizard.getBeadByType(WizardModel) as WizardModel;
+			if(model.activateEffect)
+			{
+				addClass("transitions");
+			}
 			wizard.addEventListener("goToPreviousStep", goToPreviousStepHandler);
 			wizard.addEventListener("goToNextStep", goToNextStepHandler);
 			addEventListener("showPreviousButtonChange", WizardView(wizard.view).showPreviousButtonChangeHandler);
@@ -169,7 +189,6 @@ package org.apache.royale.jewel
 		 */
 		protected function goToPreviousStepHandler(event:Event):void
 		{
-			var model:WizardModel = (event.target as Wizard).getBeadByType(WizardModel) as WizardModel;
 			if(model.currentStep.name == step.name)
 			{
 				dispatchEvent(new Event("exitPage"));
@@ -183,6 +202,18 @@ package org.apache.royale.jewel
 				enterPage();
 			}
 		}
+		
+		// public function transitionendHandler(event:Event):void
+		// {
+		// 	if(event["propertyName"] == "opacity")
+		// 	{
+		// 	trace(event);
+		// 		COMPILE::JS
+		// 		{
+		// 		element.removeEventListener(transitionEvent, transitionendHandler);	
+		// 		}
+		// 	}
+		// }
 
 		/**
 		 * exit page
@@ -197,7 +228,6 @@ package org.apache.royale.jewel
 		 */
 		protected function goToNextStepHandler(event:Event):void
 		{
-			var model:WizardModel = (event.target as Wizard).getBeadByType(WizardModel) as WizardModel;
 			if(model.currentStep.name == step.name)
 			{
 				dispatchEvent(new Event("exitPage"));
@@ -259,17 +289,15 @@ package org.apache.royale.jewel
         {
             switch (event.type){
                 case WizardEvent.REQUEST_NAVIGATE_TO_STEP:
-                    wizard.showPage(event.stepName);
+					wizard.showPage(event.stepName);
                     break;
                 case WizardEvent.REQUEST_NAVIGATE_PREVIOUS_STEP:
                     wizard.dispatchEvent(new Event("goToPreviousStep"));
-                    wizard.currentStep = wizard.findStepByName(wizard.currentStep.previousStep);
-                    // wizard.dispatchEvent(new Event("change"));
+                    model.currentStep = wizard.findStepByName(wizard.currentStep.previousStep);
                     break;
                 case WizardEvent.REQUEST_NAVIGATE_NEXT_STEP:
                     wizard.dispatchEvent(new Event("goToNextStep"));
-                    wizard.currentStep = wizard.findStepByName(wizard.currentStep.nextStep);
-                    // wizard.dispatchEvent(new Event("change"));
+                    model.currentStep = wizard.findStepByName(wizard.currentStep.nextStep);
                     break;
             }
         }

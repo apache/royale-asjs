@@ -304,6 +304,11 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.utils.date.addYears; addYears;
 
 	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
+
+	COMPILE::JS
+	{
+	import org.apache.royale.utils.css.transitionEventAvailable; transitionEventAvailable;
+	}
 	
 	import org.apache.royale.utils.replaceBead; replaceBead;
 

@@ -131,6 +131,27 @@ package org.apache.royale.jewel
 		}
 		
 		/**
+		 *  turn on/off the transition effects
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
+		 */
+		public function get activateEffect():Boolean
+		{
+			return WizardModel(model).activateEffect;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
+		 */
+		public function set activateEffect(value:Boolean):void
+		{
+			WizardModel(model).activateEffect = value;
+		}
+		
+		/**
 		 *  The HTML string to display in the org.apache.royale.jewel.TitleBar.
 		 *
 		 *  @langversion 3.0

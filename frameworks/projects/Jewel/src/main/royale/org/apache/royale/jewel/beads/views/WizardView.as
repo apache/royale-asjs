@@ -304,10 +304,18 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function stepChangeAction():void
 		{
-			previousButton.visible = model.showPreviousButton && model.currentStep && model.currentStep.previousStep != null;
-			nextButton.visible = model.showNextButton && model.currentStep && model.currentStep.nextStep != null;
+			if(model.activateEffect) {
+				COMPILE::JS
+				{
+				previousButton.element.style.visibility = model.showPreviousButton && model.currentStep && model.currentStep.previousStep != null ? "visible" : "hidden";
+				nextButton.element.style.visibility = model.showNextButton && model.currentStep && model.currentStep.nextStep != null ? "visible" : "hidden";
+				}
+			} else {
+				previousButton.visible = model.showPreviousButton && model.currentStep && model.currentStep.previousStep != null;
+				nextButton.visible = model.showNextButton && model.currentStep && model.currentStep.nextStep != null;
+			}
 		}
-		
+
         protected function setupContentAreaLayout():void
         {
         

@@ -63,7 +63,29 @@ package org.apache.royale.jewel.beads.models
 			_strand = value;
 		}
 		
-        private var _text:String;
+        private var _activateEffect:Boolean = true;
+		/**
+		 *  turn on/off the transition effects
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		[Bindable(event="activateEffectChange")]
+		public function get activateEffect():Boolean
+		{
+			return _activateEffect;
+		}
+		public function set activateEffect(value:Boolean):void
+		{
+			if(value != _activateEffect) {
+				_activateEffect = value;
+				dispatchEvent(new Event('activateEffectChange'));
+			}
+		}
+        
+		private var _text:String;
 		/**
 		 *  The title string for the org.apache.royale.jewel.Wizard.
 		 *
