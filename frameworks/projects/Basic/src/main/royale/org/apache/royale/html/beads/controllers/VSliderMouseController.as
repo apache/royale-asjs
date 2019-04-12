@@ -22,6 +22,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.IRenderedObject;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
@@ -206,11 +207,11 @@ package org.apache.royale.html.beads.controllers
 		{
 			var bevent:BrowserEvent = event["nativeEvent"] as BrowserEvent;
 			var host:Slider = _strand as Slider;
-			goog.events.listen(host.element, goog.events.EventType.MOUSEUP,
+			goog.events.listen((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSEUP,
 				handleThumbUp, false, this);
-			goog.events.listen(host.element, goog.events.EventType.MOUSEMOVE,
+			goog.events.listen((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSEMOVE,
 				handleThumbMove, false, this);
-			goog.events.listen(host.element, goog.events.EventType.MOUSELEAVE,
+			goog.events.listen((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSELEAVE,
 				handleThumbLeave, false, this);
 			
 			mouseOrigin = bevent.screenY; //.clientY;
@@ -231,11 +232,11 @@ package org.apache.royale.html.beads.controllers
 		{
 			var bevent:BrowserEvent = event["nativeEvent"] as BrowserEvent;
 			var host:Slider = _strand as Slider;
-			goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
+			goog.events.unlisten((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSEUP,
 				handleThumbUp, false, this);
-			goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,
+			goog.events.unlisten((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSEMOVE,
 				handleThumbMove, false, this);
-			goog.events.unlisten(host.element, goog.events.EventType.MOUSELEAVE,
+			goog.events.unlisten((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSELEAVE,
 				handleThumbLeave, false, this);
 			
 			calcValFromMousePosition(bevent, false);
@@ -264,11 +265,11 @@ package org.apache.royale.html.beads.controllers
 		private function handleThumbLeave(event:MouseEvent):void
 		{
 			var host:Slider = _strand as Slider;
-			goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
+			goog.events.unlisten((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSEUP,
 				handleThumbUp, false, this);
-			goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,
+			goog.events.unlisten((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSEMOVE,
 				handleThumbMove, false, this);
-			goog.events.unlisten(host.element, goog.events.EventType.MOUSELEAVE,
+			goog.events.unlisten((host.topMostEventDispatcher as IRenderedObject).element, goog.events.EventType.MOUSELEAVE,
 				handleThumbLeave, false, this);
 		}
 		
