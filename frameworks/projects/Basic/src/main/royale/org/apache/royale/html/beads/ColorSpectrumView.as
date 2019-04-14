@@ -19,13 +19,18 @@ package org.apache.royale.html.beads
 {
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IColorSpectrumModel;
+    import org.apache.royale.core.IParent;
     import org.apache.royale.core.IRenderedObject;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithModel;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.Button;
+    import org.apache.royale.html.TextButton;
     import org.apache.royale.utils.CSSUtils;
+    import org.apache.royale.utils.HSV;
+    import org.apache.royale.utils.rgbToHsv;
 	
     /**
      *  The ColorSpectrumView class is the view for
@@ -36,9 +41,9 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.6
      */
-	public class ColorSpectrumView extends BeadViewBase
+	public class ColorSpectrumView extends BeadViewBase implements ISliderView
 	{
-		private var _button:Button;
+		private var _thumb:TextButton;
         /**
          *  Constructor.
          *  
@@ -58,14 +63,45 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			_button = new Button();
+			_thumb = new TextButton();
+			_thumb.className = "SliderThumb";
+			_thumb.style = {"position" : "absolute", "padding" : 0};
+			_thumb.text = '\u29BF';
+			(value as IParent).addElement(_thumb);
 			(colorModel as IEventDispatcher).addEventListener("baseColorChange", changeHandler);
+			(colorModel as IEventDispatcher).addEventListener("hsvModifiedColorChange", changeHandler);
 			updateSpectrum();
 		}
 		
 		private function changeHandler(e:Event):void
 		{
 			updateSpectrum();
+		}
+		
+		/**
+		 *  The track component.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		public function get track():IUIBase
+		{
+			return _strand as IUIBase;
+		}
+
+		/**
+		 *  The thumb component.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function get thumb():IUIBase
+		{
+			return _thumb;
 		}
 		
 		private function updateSpectrum():void
@@ -75,6 +111,13 @@ package org.apache.royale.html.beads
 			{
 				(host as IRenderedObject).element.style.background = "linear-gradient(to top, #000000, transparent), linear-gradient(to left, " + color + ", #ffffff)";
 			}
+			var hsvModifiedColor:uint = colorModel.hsvModifiedColor;
+			var r:uint = (hsvModifiedColor >> 16 ) & 255;
+			var g:uint = (hsvModifiedColor >> 8 ) & 255;
+			var b:uint = hsvModifiedColor & 255;
+			var hsv:HSV = rgbToHsv(r,g,b);
+			_thumb.x = (hsv.s / 100) * host.width - _thumb.width / 2;
+			_thumb.y = host.height - hsv.v * host.height / 100 - _thumb.height / 2;
 		}
 		
 		private function get colorModel():IColorSpectrumModel
