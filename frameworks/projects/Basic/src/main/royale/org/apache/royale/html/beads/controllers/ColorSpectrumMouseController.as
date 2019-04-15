@@ -22,12 +22,14 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IColorSpectrumModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModel;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.html.beads.ISliderView;
 	import org.apache.royale.utils.HSV;
 	import org.apache.royale.utils.hsvToHex;
 	import org.apache.royale.utils.rgbToHsv;
+
 	COMPILE::JS 
 	{
         import org.apache.royale.events.BrowserEvent;
@@ -62,14 +64,28 @@ package org.apache.royale.html.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			(value as IEventDispatcher).addEventListener(MouseEvent.CLICK, handleClick);
+			sliderView.thumb.addEventListener(MouseEvent.MOUSE_DOWN, thumbDownHandler);
+			sliderView.track.addEventListener(MouseEvent.CLICK, trackClickHandler);
 		}
 		
         /**
 		 * @royaleignorecoercion org.apache.royale.events.BrowserEvent
          */
-        private function handleClick(event:MouseEvent):void
+        private function trackClickHandler(event:MouseEvent):void
         {
+			if (event.target != sliderView.track)
+			{
+				return;
+			}
+			var modifiedColor:uint = getColorFromMousePosition(event);
+			model.hsvModifiedColor = modifiedColor;
+        }
+		
+        /**
+		 * @royaleignorecoercion org.apache.royale.events.BrowserEvent
+         */
+		private function getColorFromMousePosition(event:MouseEvent):uint
+		{
             var host:IUIBase = _strand as IUIBase;
 			var yloc:Number;
 			var xloc:Number;
@@ -81,12 +97,43 @@ package org.apache.royale.html.beads.controllers
 			}
 			var widthRatio:Number = xloc / host.width;
 			var heightRatio:Number = (host.height - yloc) / host.height;
-			var model:IColorSpectrumModel = (_strand as IStrandWithModel).model as IColorSpectrumModel;
 			var r:uint = (model.baseColor >> 16 ) & 255;
 			var g:uint = (model.baseColor >> 8 ) & 255;
 			var b:uint = model.baseColor & 255;
 			var hsvBaseColor:HSV = rgbToHsv(r, g, b);
-			model.hsvModifiedColor = hsvToHex(hsvBaseColor.h, widthRatio * 100, heightRatio * 100);
-        }
+			return hsvToHex(hsvBaseColor.h, widthRatio * 100, heightRatio * 100);
+		}
+		
+		private function get sliderView():ISliderView
+		{
+			return (_strand as IStrandWithModelView).view as ISliderView;
+		}
+		
+		private function get model():IColorSpectrumModel
+		{
+			return (_strand as IStrandWithModel).model as IColorSpectrumModel;
+		}
+
+		private function thumbDownHandler( event:MouseEvent ) : void
+		{
+			sliderView.track.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
+			sliderView.track.addEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+		}
+		
+		private function thumbMoveHandler(event:MouseEvent):void
+		{
+			if (event.target != sliderView.track)
+			{
+				return;
+			}
+			model.hsvModifiedColor = getColorFromMousePosition(event);
+		}
+		
+		private function thumbUpHandler(event:MouseEvent):void
+		{
+			sliderView.track.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
+			sliderView.track.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+		}
+
 	}
 }
