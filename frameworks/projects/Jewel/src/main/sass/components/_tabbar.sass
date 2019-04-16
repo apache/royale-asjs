@@ -23,13 +23,14 @@
 $tabbarbutton-margin-height: 48px
 
 .jewel.tabbar
-    height: $tabbarbutton-margin-height
+    display: flex
+    // flex: 1 0 auto
 
 
 j|TabBar
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer")
     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
@@ -39,13 +40,33 @@ j|TabBar
 
 // Jewel TabBarButtonItemRenderer
 $tabbarbutton-margin: 0 !default
-$tabbarbutton-padding: 0.68em 1.12em !default
+$tabbarbutton-padding: 0 1.12em !default
 
 // TabBarButtonItemRenderer variables
-.jewel.tabbarbutton
-    min-height: $tabbarbutton-margin-height
-    margin: $tabbarbutton-margin
-    padding: $tabbarbutton-padding
+.jewel
+    &.tabbarbutton
+        height: $tabbarbutton-margin-height
+        // min-height: $tabbarbutton-margin-height
+        margin: $tabbarbutton-margin
+        padding: $tabbarbutton-padding
+        
+        position: relative
+        display: flex
+        flex: 1 0 auto
+        white-space: nowrap
+
+        text-transform: uppercase
+        text-decoration: none
+
+        z-index: 1
+
+        .content
+            display: flex
+            align-items: center
+            justify-content: center
+
+            width: 100%
+            height: inherit
 
 j|TabBarButtonItemRenderer
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")

@@ -3479,13 +3479,13 @@ j|Snackbar {
 }
 
 .jewel.tabbar {
-  height: 48px;
+  display: flex;
 }
 
 j|TabBar {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
@@ -3495,9 +3495,23 @@ j|TabBar {
 }
 
 .jewel.tabbarbutton {
-  min-height: 48px;
+  height: 48px;
   margin: 0;
-  padding: 0.68em 1.12em;
+  padding: 0 1.12em;
+  position: relative;
+  display: flex;
+  flex: 1 0 auto;
+  white-space: nowrap;
+  text-transform: uppercase;
+  text-decoration: none;
+  z-index: 1;
+}
+.jewel.tabbarbutton .content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: inherit;
 }
 
 j|TabBarButtonItemRenderer {

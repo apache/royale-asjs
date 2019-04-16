@@ -18,13 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.events.MouseEvent;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.core.ISelectionModel;
 
 	/**
 	 *  The Navigation class is a List used for navigate other organized content
@@ -52,6 +52,8 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "jewel tabbar";
+
+			ISelectionModel(model).selectedIndex = 0;
 
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
