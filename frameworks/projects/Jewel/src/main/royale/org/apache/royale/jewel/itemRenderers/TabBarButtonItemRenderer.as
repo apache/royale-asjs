@@ -18,17 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.events.Event;
-    
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
-
+	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
+	import org.apache.royale.jewel.beads.controls.TextAlign;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
     
 	/**
 	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 
@@ -56,6 +55,15 @@ package org.apache.royale.jewel.itemRenderers
 
 			typeNames = "jewel tabbarbutton";
 			addClass("selectable");
+
+			if(MXMLDescriptor != null)
+			{
+				addClass("mxmlContent");
+			}
+
+			textAlign = new TextAlign();
+			textAlign.align = TextAlign.CENTER;
+			addBead(textAlign);
 		}
 
 		private var _href:String = "#";
@@ -78,6 +86,7 @@ package org.apache.royale.jewel.itemRenderers
 
 		private var _text:String = "";
 
+		[Bindable(event="textChange")]
         /**
          *  The text of the navigation link
          *  
@@ -93,11 +102,38 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set text(value:String):void
 		{
-             _text = value;
+            if(value != _text) {
+				_text = value;
+				COMPILE::JS
+				{
+				if(MXMLDescriptor == null)
+				{
+					element.innerHTML = _text;
+				}
+				}
+				dispatchEvent(new Event('textChange'));
+			}
 		}
 
-		COMPILE::JS
-        private var textNode:Text;
+		private var textAlign:TextAlign;
+
+		/**
+		 *  How text align in the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get align():String
+		{
+			return textAlign.align;
+		}
+
+		public function set align(value:String):void
+		{
+			textAlign.align = value;
+		}
 
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
@@ -111,59 +147,84 @@ package org.apache.royale.jewel.itemRenderers
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;
-
-			if(value == null) return;
-
-			if (labelField)
-			{
-                text = String(value[labelField]);
-            }
-			else if(value.label !== undefined)
-			{
-                text = String(value.label);
-			}
-			else
-			{
-				text = String(value);
-			}
-			// text = getLabelFromData(this, value);
+			text = getLabelFromData(this, value);
+            super.data = value;
 			
             if(value.href !== undefined)
 			{
                 href = String(value.href);
 			}
 
-			COMPILE::JS
-			{
-			if(textNode != null)
-			{
-				textNode.nodeValue = text;
-				(element as HTMLElement).setAttribute('href', href);
-			}	
-			}
-
-			dispatchEvent(new Event("dataChange"));
+			// COMPILE::JS
+			// {
+			// if(textNode != null)
+			// {
+			// 	textNode.nodeValue = text;
+			// 	(element as HTMLElement).setAttribute('href', href);
+			// }	
+			// }
 		}
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion Text
+		 * @royaleignorecoercion HTMLSpanElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var a:WrappedHTMLElement = addElementToWrapper(this, 'a');
-            a.setAttribute('href', href);
+            var span:HTMLSpanElement = addElementToWrapper(this, 'span') as HTMLSpanElement;
+			span.className = "content";
+			positioner = document.createElement('button') as WrappedHTMLElement;
+            //a.setAttribute('href', href);
 
-			if(MXMLDescriptor == null)
-			{
-				textNode = document.createTextNode('') as Text;
-				a.appendChild(textNode);
-			}
+			// if(MXMLDescriptor == null)
+			// {
+			// 	textNode = document.createTextNode('') as Text;
+			// 	a.appendChild(textNode);
+			// }
 
             return element;
         }
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
+
+		private var _selectable:Boolean = true;
+		/**
+         *  <code>true</code> if the item renderer is can be selected
+         *  false otherwise. Use to configure a renderer to be non 
+         *  selectable.
+         *  
+         *  Defaults to true
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+		override public function get selectable():Boolean
+		{
+			return _selectable;
+		}
+		override public function set selectable(value:Boolean):void
+		{
+			_selectable = value;
+			toggleClass("selectable", _selectable);	
+		}
 
 		/**
 		 * @private

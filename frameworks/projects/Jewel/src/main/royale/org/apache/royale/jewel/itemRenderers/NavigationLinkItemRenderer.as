@@ -18,18 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.events.Event;
-    
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.beads.controls.TextAlign;
+	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
 
-    
 	/**
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 
      *  Navigation List Component. It handles Objects with "label" and "href" data.
@@ -61,6 +59,30 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("mxmlContent");
 			}
+
+			textAlign = new TextAlign();
+			textAlign.align = TextAlign.CENTER;
+			addBead(textAlign);
+		}
+
+		private var textAlign:TextAlign;
+
+		/**
+		 *  How text align in the itemRenderer instance.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get align():String
+		{
+			return textAlign.align;
+		}
+
+		public function set align(value:String):void
+		{
+			textAlign.align = value;
 		}
 
 		private var _href:String = "#";
