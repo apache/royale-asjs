@@ -844,17 +844,24 @@ j|FormItem {
 }
 .jewel.tabbarbutton {
   margin: 0;
-  padding: 14px 16px;
+  padding: 0;
   font-size: 1em;
   font-weight: 500;
+  border: none;
+  background: none;
+  outline: none;
   color: rgba(0, 0, 0, 0.6);
 }
+.jewel.tabbarbutton .content {
+  padding: 0px 16px;
+}
 .jewel.tabbarbutton.hovered:hover {
-  background: #737373 !important;
+  color: #FFFFFF;
+  background: #36cec3;
 }
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
   color: #FFFFFF;
-  background: #2ebcb2 !important;
+  background: #2ebcb2;
 }
 
 .jewel.simpletable {
