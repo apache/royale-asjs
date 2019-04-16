@@ -18,17 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
+    COMPILE::JS
+    {
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
+    }
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.controls.TextAlign;
 	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-    }
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
