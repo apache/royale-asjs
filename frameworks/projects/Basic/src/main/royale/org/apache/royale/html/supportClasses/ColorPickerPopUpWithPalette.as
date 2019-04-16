@@ -18,10 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.html.List;
+	import org.apache.royale.core.IColorModel;
+	import org.apache.royale.core.IColorSpectrumModel;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.HueSelector;
+	import org.apache.royale.utils.hsvToHex;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
-	 *  The SwatchList class is use in a ColorPicker. It contains a list of predefined colors.
+	 *  The ColorPickerPopUpWithPalette class is used in ColorPicker. It contains a set of controls for picking a color, incluse a color palette.
 	 * 
 	 *
      *  @toplevel
@@ -30,8 +37,9 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class SwatchList extends List
+	public class ColorPickerPopUpWithPalette extends ColorPickerPopUp
 	{
+		protected var colorPalette:SwatchList;
 		/**
 		 *  constructor.
 		 *
@@ -40,9 +48,18 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function SwatchList()
+		public function ColorPickerPopUpWithPalette()
 		{
 			super();
+			colorPalette = new SwatchList();
+			COMPILE::JS 
+			{
+				colorPalette.element.style.position = "absolute";
+			}
+			colorPalette.y = colorSpectrum.height + 10;
+			colorPalette.x = colorSpectrum.x;
+			colorPalette.width =  300;
+			addElement(colorPalette);
 		}
 	}
 }

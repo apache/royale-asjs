@@ -52,6 +52,7 @@
     <component id="ColorSpectrum" class="org.apache.royale.html.supportClasses.ColorSpectrum"/>
     <component id="ColorPicker" class="org.apache.royale.html.ColorPicker"/>
     <component id="HueSelector" class="org.apache.royale.html.HueSelector"/>
+    <component id="ColorPickerPopUpWithPalette" class="org.apache.royale.html.supportClasses.ColorPickerPopUpWithPalette"/>
     <component id="ColorPickerPopUp" class="org.apache.royale.html.supportClasses.ColorPickerPopUp"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
     <component id="CSSCheckBox" class="org.apache.royale.html.CSSCheckBox"/>
@@ -79,6 +80,7 @@
     <component id="TitleBarTitle" class="org.apache.royale.html.beads.TitleBarTitle"/>
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
+    <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>

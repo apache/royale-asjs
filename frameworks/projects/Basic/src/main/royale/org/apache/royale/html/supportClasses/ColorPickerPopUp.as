@@ -39,8 +39,8 @@ package org.apache.royale.html.supportClasses
 	 */
 	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp
 	{
-		private var colorSpectrum:ColorSpectrum;
-		private var hueSelector:HueSelector;
+		protected var colorSpectrum:ColorSpectrum;
+		protected var hueSelector:HueSelector;
 		/**
 		 *  constructor.
 		 *
