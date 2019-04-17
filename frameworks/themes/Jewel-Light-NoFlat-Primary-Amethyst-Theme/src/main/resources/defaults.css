@@ -842,8 +842,6 @@ j|FormItem {
   }
 }
 .jewel.tabbarbutton {
-  margin: 0;
-  padding: 0;
   font-size: 1em;
   font-weight: 500;
   border: none;
@@ -851,16 +849,12 @@ j|FormItem {
   outline: none;
   color: rgba(0, 0, 0, 0.6);
 }
-.jewel.tabbarbutton .content {
-  padding: 0px 16px;
-}
-.jewel.tabbarbutton.hovered:hover {
-  color: #FFFFFF;
-  background: #d94fd6;
-}
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
-  color: #FFFFFF;
-  background: #d43bd1;
+  color: #C92CC6;
+}
+.jewel.tabbarbutton .indicator .indicatorContent {
+  height: 2px;
+  background-color: #C92CC6;
 }
 
 .jewel.simpletable {
