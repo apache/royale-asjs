@@ -261,7 +261,7 @@ package org.apache.royale.core
             var source:Object = this;
             if (ElementEvents.elementEvents[type]) {
                 // mouse and keyboard events also dispatch off the element.
-                source = this.positioner;
+                source = this.element;
             }
             return source;
         }
