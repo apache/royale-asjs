@@ -59,30 +59,6 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("mxmlContent");
 			}
-
-			textAlign = new TextAlign();
-			textAlign.align = TextAlign.CENTER;
-			addBead(textAlign);
-		}
-
-		private var textAlign:TextAlign;
-
-		/**
-		 *  How text align in the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get align():String
-		{
-			return textAlign.align;
-		}
-
-		public function set align(value:String):void
-		{
-			textAlign.align = value;
 		}
 
 		private var _href:String = "#";

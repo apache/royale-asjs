@@ -18,28 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-	import org.apache.royale.core.ISelectableItemRenderer;
-
-    /**
-     *  The ITextItemRenderer interface is the interface for
-     *  for org.apache.royale.core.IItemRenderer that display text.
+	/**
+     *  The IAlignItemRenderer interface is the interface for
+     *  for org.apache.royale.core.IItemRenderer that display text aligned.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.6
      */
-	public interface ITextItemRenderer extends ISelectableItemRenderer
+	public interface IAlignItemRenderer
 	{
         /**
-         *  The text to be displayed in the item renderer.
-         *  
+         *  How text align in the itemRenderer instance.
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.6
          */
-        function get text():String;
-        function set text(value:String):void;
+        function get align():String
+        function set align(value:String):void
     }
 }

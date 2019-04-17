@@ -20,18 +20,19 @@ package org.apache.royale.jewel.itemRenderers
 {
     COMPILE::SWF
     {
-        import flash.text.TextFieldAutoSize;
-        import flash.text.TextFieldType;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFieldType;
 
-        import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.CSSTextField;
     }
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
     import org.apache.royale.html.supportClasses.DataItemRenderer;
     import org.apache.royale.jewel.beads.controls.TextAlign;
+    import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
     import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
@@ -44,7 +45,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class StringItemRenderer extends DataItemRenderer implements ITextItemRenderer
+	public class StringItemRenderer extends DataItemRenderer implements ITextItemRenderer, IAlignItemRenderer
 	{
 		/**
 		 *  constructor.

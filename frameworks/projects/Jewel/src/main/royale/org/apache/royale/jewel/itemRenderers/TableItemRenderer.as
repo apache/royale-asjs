@@ -20,9 +20,11 @@ package org.apache.royale.jewel.itemRenderers
 {
 	COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-    	import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     }
+	import org.apache.royale.jewel.beads.controls.TextAlign;
 
 	/**
 	 *  The TableItemRenderer class displays data in string form using the data's toString()
@@ -53,6 +55,9 @@ package org.apache.royale.jewel.itemRenderers
 			{
             	typeNames += " with-childs";
 			}
+
+			textAlign = new TextAlign();
+			addBead(textAlign);
 		}
 		
         /**
