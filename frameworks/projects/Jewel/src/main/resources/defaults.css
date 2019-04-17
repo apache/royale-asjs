@@ -3480,6 +3480,9 @@ j|Snackbar {
 
 .jewel.tabbar {
   display: flex;
+  position: relative;
+  transform: none;
+  will-change: transform;
 }
 
 j|TabBar {
@@ -3496,22 +3499,42 @@ j|TabBar {
 
 .jewel.tabbarbutton {
   height: 48px;
-  margin: 0;
-  padding: 0 1.12em;
+  padding: 0 24px;
   position: relative;
   display: flex;
   flex: 1 0 auto;
   white-space: nowrap;
+  justify-content: center;
   text-transform: uppercase;
   text-decoration: none;
   z-index: 1;
 }
 .jewel.tabbarbutton .content {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: inherit;
+}
+.jewel.tabbarbutton .indicator {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+.jewel.tabbarbutton .indicator .indicatorContent {
+  align-self: flex-end;
+  width: 100%;
+  transform-origin: left;
+  opacity: 0;
+  transition: transform 0.25s ease;
+}
+.jewel.tabbarbutton.selected .indicator .indicatorContent {
+  opacity: 1;
 }
 
 j|TabBarButtonItemRenderer {

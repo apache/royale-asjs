@@ -32,8 +32,8 @@
 // NavigationLinkItemRenderer variables
 .jewel
     &.tabbarbutton
-        margin: 0
-        padding: 0
+        // margin: 0
+        // padding: 0
         font:
             // family: $font-stack
             size: $font-size
@@ -44,13 +44,20 @@
         outline: none
         color: rgba(black, 0.6)
 
-        .content
-            padding: 0px $itemrenderer-padding
-            
-        &.hovered:hover
-            color: $font-theme-color
-            background: lighten($primary-color, 10%)
-
+        // .content
+            // padding: 0px $itemrenderer-padding
+        
         &.selected, &.selectable:active
-            color: $font-theme-color
-            background: lighten($primary-color, 5%)
+            color: $primary-color
+
+        .indicator
+            .indicatorContent
+                height: 2px
+                background-color: $primary-color
+        // &.hovered:hover
+        //     color: $font-theme-color
+        //     background: lighten($primary-color, 10%)
+
+        // &.selected, &.selectable:active
+        //     color: $font-theme-color
+        //     background: lighten($primary-color, 5%)

@@ -53,6 +53,8 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
+			hoverable = false;
+
 			typeNames = "jewel tabbarbutton";
 			addClass("selectable");
 		}
@@ -146,7 +148,16 @@ package org.apache.royale.jewel.itemRenderers
             var span:HTMLSpanElement = addElementToWrapper(this, 'span') as HTMLSpanElement;
 			span.className = "content";
 			positioner = document.createElement('button') as WrappedHTMLElement;
-            //a.setAttribute('href', href);
+
+			indicator = document.createElement('span') as HTMLSpanElement;
+			indicator.className = "indicator";
+			positioner.appendChild(indicator);
+			
+			var indicator_content:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
+			indicator_content.className = "indicatorContent";
+			indicator.appendChild(indicator_content);
+            
+			//a.setAttribute('href', href);
 
 			// if(MXMLDescriptor == null)
 			// {
@@ -156,6 +167,9 @@ package org.apache.royale.jewel.itemRenderers
 
             return element;
         }
+
+		COMPILE::JS
+		private var indicator:HTMLSpanElement;
 
 		COMPILE::JS
 		private var _positioner:WrappedHTMLElement;
@@ -208,8 +222,16 @@ package org.apache.royale.jewel.itemRenderers
 			// there's no selection only hover state
 			if(hoverable)
             	toggleClass("hovered", hovered);
-			if(selectable)
+			if(selectable) {
             	toggleClass("selected", selected);
+				
+				// COMPILE::JS
+				// {
+				// 	indicator.classList.toggle("selected", selected);
+				// }
+			}
+
+			
 		}
 	}
 }
