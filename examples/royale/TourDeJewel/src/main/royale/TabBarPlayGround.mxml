@@ -34,16 +34,17 @@ limitations under the License.
                 tabcontent.selectedContent = item.href;
             }
 
-            private var _tabBarNavigation:ArrayList = new ArrayList([
-				new TabBarButtonVO("Tab1", "tab1", null),
-				new TabBarButtonVO("Tab2", "tab2", null),
-				new TabBarButtonVO("Tab3", "tab3", null),
-				new TabBarButtonVO("Tab4", "tab4", null)		
+            private var _tabBarData:ArrayList = new ArrayList([
+				new TabBarButtonVO("Tab 1", "tab1", MaterialIconType.ACCESSIBILITY),
+				new TabBarButtonVO("Tab 2", "tab2", MaterialIconType.ACCESS_ALARMS),
+				new TabBarButtonVO("Tab 3", "tab3", MaterialIconType.WALLPAPER),
+				new TabBarButtonVO("Tab 4", "tab4", MaterialIconType.NATURE)
 			]);
 
-			public function get tabBarNavigation():ArrayList
+			[Bindable]
+			public function get tabBarData():ArrayList
 			{
-				return _tabBarNavigation;
+				return _tabBarData;
 			}
 		]]>
 	</fx:Script>
@@ -57,12 +58,59 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel TabBar"/>
 
-				<j:TabBar id="tabbar" className="tabBarIconItemRenderer" change="changeHandler(event)">
+				<j:Label multiline="true">
+					<j:html><![CDATA[This Tab Bar has an <strong>ItemRenderer</strong> composed by an icon and a label. the ItemRenderer is asigned vía className <strong>tabBarIconItemRenderer</strong>.]]></j:html>
+				</j:Label>
+
+				<j:TabBar localId="tabbar" width="100%" className="tabBarIconItemRenderer"
+						dataProvider="{tabBarData}">
 					<j:beads>
-						<js:ConstantBinding sourcePropertyName="tabBarNavigation" destinationPropertyName="dataProvider"/>
+						<j:AssignTabContent selectedContentProperty="href">
+							<j:content>
+								<j:TabBarContent localId="tabcontent" >
+									<j:SectionContent name="tab1">
+										<j:Label text="Tab 1"/>
+									</j:SectionContent>
+									<j:SectionContent name="tab2">
+										<j:Label text="Tab 2"/>
+									</j:SectionContent>
+									<j:SectionContent name="tab3">
+										<j:Label text="Tab 3"/>
+									</j:SectionContent>
+									<j:SectionContent name="tab4">
+										<j:Label text="Tab 4"/>
+									</j:SectionContent>
+								</j:TabBarContent>
+							</j:content>
+						</j:AssignTabContent>
 					</j:beads>
 				</j:TabBar>
-				<j:TabBarContent id="tabcontent" selectedContent="tab1">
+				
+				<!-- <j:Label multiline="true">
+					<j:html><![CDATA[Components:
+						<ul>
+							<li><strong>TabBar:</strong> Es el componente
+								<li><strong>AssignTabContent:</strong> Asigansdsd </li>
+							</li>
+							<li><strong>TabBarContent:</strong></li>
+						</ul>]]></j:html>
+				</j:Label> -->
+
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel TabBar"/>
+
+				<j:Label text="This Tab Bar has an ItemRenderer composed by just a label."/>
+
+				<j:TabBar localId="tabbar2" selectedIndex="2">
+					<j:beads>
+						<js:ConstantBinding sourcePropertyName="tabBarData" destinationPropertyName="dataProvider"/>
+					</j:beads>
+				</j:TabBar>
+				<j:TabBarContent localId="tabcontent2" selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).href}" >
 					<j:SectionContent name="tab1">
 						<j:Label text="Tab 1"/>
 					</j:SectionContent>
