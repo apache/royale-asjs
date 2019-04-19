@@ -46,6 +46,7 @@ package org.apache.royale.jewel
 	 *  To ensure support across all modern browsers, we use use dialogPolyfill extern or creating your own.
 	 *  The required Dialog Polyfill lines are injected in the constructor
 	 * 
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6

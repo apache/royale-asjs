@@ -3486,7 +3486,7 @@ j|Snackbar {
 }
 
 j|TabBar {
-  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TabBarView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
@@ -3508,6 +3508,7 @@ j|TabBar {
   text-transform: uppercase;
   text-decoration: none;
   z-index: 1;
+  overflow: initial;
 }
 .jewel.tabbarbutton .content {
   display: flex;
@@ -3526,14 +3527,13 @@ j|TabBar {
   pointer-events: none;
   z-index: 1;
 }
-.jewel.tabbarbutton .indicator .indicatorContent {
+.jewel.tabbarbutton .indicator > .indicatorContent {
   align-self: flex-end;
   width: 100%;
   transform-origin: left;
   opacity: 0;
-  transition: transform 0.25s ease;
 }
-.jewel.tabbarbutton.selected .indicator .indicatorContent {
+.jewel.tabbarbutton.selected .indicator > .indicatorContent {
   opacity: 1;
 }
 

@@ -26,7 +26,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-	import org.apache.royale.jewel.beads.controls.TextAlign;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
     
 	/**
@@ -138,6 +137,12 @@ package org.apache.royale.jewel.itemRenderers
 			// }
 		}
 
+		COMPILE::JS
+		private var indicator:HTMLSpanElement;
+		
+		COMPILE::JS
+		private var indicator_content:HTMLSpanElement;
+
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 * @royaleignorecoercion HTMLSpanElement
@@ -153,7 +158,7 @@ package org.apache.royale.jewel.itemRenderers
 			indicator.className = "indicator";
 			positioner.appendChild(indicator);
 			
-			var indicator_content:HTMLSpanElement = document.createElement('span') as HTMLSpanElement;
+			indicator_content = document.createElement('span') as HTMLSpanElement;
 			indicator_content.className = "indicatorContent";
 			indicator.appendChild(indicator_content);
             
@@ -169,8 +174,30 @@ package org.apache.royale.jewel.itemRenderers
         }
 
 		COMPILE::JS
-		private var indicator:HTMLSpanElement;
+		public function get getBoundingBox():ClientRect
+		{
+			return indicator.getBoundingClientRect();
+		}
 
+		COMPILE::JS
+		public function animateIndicator(positionDiff:Number, widthDiff:Number, duration:int, easingFunction:String):void
+		{
+			indicator_content["animate"]([
+					{ 
+						transform : "translateX(" + positionDiff + "px) scaleX(" + widthDiff + ")"
+					}, 
+					{
+						transform: "none"
+					}
+				], 
+				{
+					duration: duration,
+					easing: easingFunction,
+					fill: 'both'
+				}
+			);
+		}
+		
 		COMPILE::JS
 		private var _positioner:WrappedHTMLElement;
 
@@ -224,14 +251,7 @@ package org.apache.royale.jewel.itemRenderers
             	toggleClass("hovered", hovered);
 			if(selectable) {
             	toggleClass("selected", selected);
-				
-				// COMPILE::JS
-				// {
-				// 	indicator.classList.toggle("selected", selected);
-				// }
 			}
-
-			
 		}
 	}
 }

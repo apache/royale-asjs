@@ -32,7 +32,7 @@ $tabbarbutton-margin-height: 48px
 
 
 j|TabBar
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView")
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TabBarView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
@@ -64,6 +64,7 @@ $tabbarbutton-padding: 0 24px !default
         text-decoration: none
 
         z-index: 1
+        overflow: initial
 
         .content
             display: flex
@@ -71,7 +72,6 @@ $tabbarbutton-padding: 0 24px !default
             align-items: center
             justify-content: center
 
-            // width: 100%
             height: inherit
 
         .indicator
@@ -84,16 +84,16 @@ $tabbarbutton-padding: 0 24px !default
             pointer-events: none
             z-index: 1
 
-            .indicatorContent
+            > .indicatorContent
                 align-self: flex-end
                 width: 100%
                 transform-origin: left
                 opacity: 0
-                transition: transform .25s ease //cubic-bezier(.4,0,.2,1)
+                // transition: transform .25s ease //cubic-bezier(.4,0,.2,1)
 
         &.selected
             .indicator
-                .indicatorContent
+                > .indicatorContent
                     opacity: 1
 
 j|TabBarButtonItemRenderer
