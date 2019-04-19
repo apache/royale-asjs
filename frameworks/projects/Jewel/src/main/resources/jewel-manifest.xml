@@ -82,6 +82,7 @@
     <component id="SelectedItemNullValidator" class="org.apache.royale.jewel.beads.validators.SelectedItemNullValidator"/>
     <component id="CheckBoxValidator" class="org.apache.royale.jewel.beads.validators.CheckBoxValidator"/>
     <component id="RadioButtonValidator" class="org.apache.royale.jewel.beads.validators.RadioButtonValidator"/>
+    <component id="EmailValidator" class="org.apache.royale.jewel.beads.validators.EmailValidator"/>
     
     <component id="AssignTabContent" class="org.apache.royale.jewel.beads.controls.tabbar.AssignTabContent"/>
 
