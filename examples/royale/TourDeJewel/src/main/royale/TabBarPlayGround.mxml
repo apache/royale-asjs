@@ -46,6 +46,18 @@ limitations under the License.
 			{
 				return _tabBarData;
 			}
+            
+			private var _tabBarDataSample:ArrayList = new ArrayList([
+				{label:"Films", content:"films"},
+				{label:"Collection", content:"collection"},
+				{label:"Favorites", content:"favorites"}
+			]);
+			
+			[Bindable]
+			public function get tabBarDataSample():ArrayList
+			{
+				return _tabBarDataSample;
+			}
 		]]>
 	</fx:Script>
 
@@ -125,6 +137,34 @@ limitations under the License.
 					</j:SectionContent>
 				</j:TabBarContent>
 
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel TabBar"/>
+
+				<j:TabBar>
+					<j:beads>
+						<js:ConstantBinding sourcePropertyName="tabBarDataSample"
+											destinationPropertyName="dataProvider"/>
+						<j:AssignTabContent selectedContentProperty="content">
+							<j:content>
+								<j:TabBarContent>
+									<j:SectionContent name="films">
+										<j:Label text="Films Content Goes Here"/>
+									</j:SectionContent>
+									<j:SectionContent name="collection">
+										<j:Label text="Collection Content Goes Here"/>
+									</j:SectionContent>
+									<j:SectionContent name="favorites">
+										<j:Label text="Favorites Content Goes Here"/>
+									</j:SectionContent>
+								</j:TabBarContent>
+							</j:content>
+						</j:AssignTabContent>
+					</j:beads>
+				</j:TabBar>
 			</j:Card>
 		</j:GridCell>
 
