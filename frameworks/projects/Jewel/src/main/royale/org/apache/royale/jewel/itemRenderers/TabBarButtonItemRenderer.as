@@ -138,6 +138,9 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
+		private var span:HTMLSpanElement;
+		
+		COMPILE::JS
 		private var indicator:HTMLSpanElement;
 		
 		COMPILE::JS
@@ -150,7 +153,7 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var span:HTMLSpanElement = addElementToWrapper(this, 'span') as HTMLSpanElement;
+            span = addElementToWrapper(this, 'span') as HTMLSpanElement;
 			span.className = "content";
 			positioner = document.createElement('button') as WrappedHTMLElement;
 
@@ -251,6 +254,36 @@ package org.apache.royale.jewel.itemRenderers
             	toggleClass("hovered", hovered);
 			if(selectable) {
             	toggleClass("selected", selected);
+			}
+		}
+
+
+		private var _restrictIndicatorToContent:Boolean;
+        /**
+         *  Restrict the indicator to content
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+		public function get restrictIndicatorToContent():Boolean
+		{
+            return _restrictIndicatorToContent;   
+		}
+		public function set restrictIndicatorToContent(value:Boolean):void
+		{
+            _restrictIndicatorToContent = value;
+
+			COMPILE::JS
+			{
+			if(!_restrictIndicatorToContent && positioner && indicator)
+			{
+				positioner.appendChild(indicator);
+			} else if(_restrictIndicatorToContent && span && indicator)
+			{
+				span.appendChild(indicator);
+			}
 			}
 		}
 	}
