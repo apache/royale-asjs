@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.validators
 {
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.CheckBox;
 
@@ -45,22 +44,6 @@ package org.apache.royale.jewel.beads.validators
 		{
 			super()
 		}
-
-		/**                         	
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-			hostComponent.addEventListener(triggerEvent, validate, false);
-		}
-
 
 		/**
 		 *  Override of the base class validate() method to validate if selected.

@@ -107,14 +107,20 @@ package org.apache.royale.jewel.beads.validators
 		{
 			return _trigger;
 		}
+
 		public function set trigger(value:IEventDispatcher):void
 		{
-			if (_triggerEvent) {
-				if (_trigger)
-					_trigger.removeEventListener(_triggerEvent, validate);
+			if (triggerEvent)
+			{
+				if (trigger)
+				{
+					trigger.removeEventListener(triggerEvent, validate);
+				}
 
 				if (value)
-					value.addEventListener(_triggerEvent, validate);
+				{
+					value.addEventListener(triggerEvent, validate);
+				}
 			}
 			_trigger = value;
 		}
@@ -133,18 +139,29 @@ package org.apache.royale.jewel.beads.validators
 		{
 			return _triggerEvent;
 		}
+
 		public function set triggerEvent(value:String):void
 		{
-			if (_trigger) {
-				if (_triggerEvent)
-					_trigger.removeEventListener(_triggerEvent, validate);
-				if (value)
-					_trigger.addEventListener(value, validate);
-			}
-			_triggerEvent = value;
-			if(hostComponent != null)
+			if (triggerEvent != value)
 			{
-				hostComponent.dispatchEvent(new Event("triggerEventChanged"));
+				if(trigger)
+				{
+					if(triggerEvent)
+					{
+						trigger.removeEventListener(triggerEvent, validate);
+					}
+
+					if(value)
+					{
+						trigger.addEventListener(value, validate);
+					}
+				}
+
+				_triggerEvent = value;
+				if(hostComponent != null)
+				{
+					hostComponent.dispatchEvent(new Event("triggerEventChanged"));
+				}
 			}
 		}
 
@@ -163,7 +180,7 @@ package org.apache.royale.jewel.beads.validators
 		public function set strand(value:IStrand):void
 		{
 			hostComponent = value as UIBase;
-			_trigger = hostComponent;
+			trigger = hostComponent;
 			COMPILE::JS
 			{
 				hostClassList = hostComponent.positioner.classList;
