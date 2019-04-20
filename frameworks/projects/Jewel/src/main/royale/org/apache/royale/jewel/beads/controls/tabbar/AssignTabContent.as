@@ -25,6 +25,8 @@ package org.apache.royale.jewel.beads.controls.tabbar
 	import org.apache.royale.jewel.TabBarContent;
 	import org.apache.royale.core.IDataProviderModel;
 	
+	[DefaultProperty("content")]
+
 	/**
 	 *  The Disabled bead class is a specialty bead that can be used to disable a Jewel control.
 	 *  
@@ -72,12 +74,14 @@ package org.apache.royale.jewel.beads.controls.tabbar
 			if(tabbar)
 			{
 				tabbar.parent.addElement(content);
+				if(tabbar.dataProvider)
+					content.selectedContent = tabbar.selectedItem[selectedContentProperty];
 			}
 		}
 		
 		protected function selectionChangedChangeHandler(event:Event):void
 		{
-			if(content && tabbar.selectedIndex != -1)
+			if(content)
 			{
 				content.selectedContent = tabbar.selectedItem[selectedContentProperty];
 			}
@@ -110,7 +114,7 @@ package org.apache.royale.jewel.beads.controls.tabbar
 		
 		private var _selectedContentProperty:String;
         /**
-		 *  the property in the object that will be used to
+		 *  the property in the object in the TabBar dataProvider that will be used to
 		 *  select the content
 		 *
 		 *  @langversion 3.0

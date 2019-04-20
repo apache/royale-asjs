@@ -53,6 +53,7 @@ package org.apache.royale.jewel
 
             typeNames = "jewel tabbar";
 
+			//TabBar is always selected, so selectedIndex can't be -1, at least it will default to 0
 			ISelectionModel(model).selectedIndex = 0;
 
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
