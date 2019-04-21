@@ -51,9 +51,13 @@
             color: $primary-color
 
         .indicator
-            .indicatorContent
+            > .indicatorContent
                 height: 2px
                 background-color: $primary-color
+                // transition: transform .25s ease-in-out //cubic-bezier(.4,0,.2,1)
+                // animation-duration: .3s
+                // animation-timing-function: ease-in-out
+                // animation-fill-mode: both
         // &.hovered:hover
         //     color: $font-theme-color
         //     background: lighten($primary-color, 10%)

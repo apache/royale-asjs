@@ -855,7 +855,7 @@ j|FormItem {
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
   color: #3CADF1;
 }
-.jewel.tabbarbutton .indicator .indicatorContent {
+.jewel.tabbarbutton .indicator > .indicatorContent {
   height: 2px;
   background-color: #3CADF1;
 }
