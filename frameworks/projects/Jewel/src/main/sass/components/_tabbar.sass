@@ -22,13 +22,25 @@
 // TabBar variables
 $tabbarbutton-margin-height: 48px
 
-.jewel.tabbar
-    display: flex
-    
-    position: relative
-    // flex: 1 0 auto  --> make TabBarContent positioned at bottom
-    transform: none
-    will-change: transform
+.jewel
+    &.tabbar
+        // width: 100%
+        overflow-y: hidden
+        overflow-x: scroll
+        -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
+        display: flex
+        -ms-overflow-style: none  // IE 10+
+        scrollbar-width: none  // Firefox
+        &::-webkit-scrollbar 
+            display: none  // Safari and Chrome
+
+        > .content
+            display: flex
+            
+            position: relative
+            flex: 1 0 auto 
+            transform: none
+            will-change: transform
 
 
 j|TabBar

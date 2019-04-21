@@ -3479,8 +3479,20 @@ j|Snackbar {
 }
 
 .jewel.tabbar {
+  overflow-y: hidden;
+  overflow-x: scroll;
+  -webkit-overflow-scrolling: touch;
+  display: flex;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.jewel.tabbar::-webkit-scrollbar {
+  display: none;
+}
+.jewel.tabbar > .content {
   display: flex;
   position: relative;
+  flex: 1 0 auto;
   transform: none;
   will-change: transform;
 }

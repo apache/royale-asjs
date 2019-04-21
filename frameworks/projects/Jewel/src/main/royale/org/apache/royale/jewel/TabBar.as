@@ -67,5 +67,34 @@ package org.apache.royale.jewel
 				event.preventDefault();
 			}
 		}
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			addElementToWrapper(this,'div');
+			element.className = "content";
+			positioner = document.createElement('div') as WrappedHTMLElement;
+			return element;
+		}
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
 	}
 }
