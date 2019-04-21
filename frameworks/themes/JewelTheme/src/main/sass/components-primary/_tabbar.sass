@@ -41,10 +41,16 @@
             weight: $font-weight-normal + 100
         
         border: none
-        background: none
+        background: transparent
         outline: none
         color: rgba(black, 0.6)
 
+        text-transform: uppercase
+        text-decoration: none
+        letter-spacing: .1em
+        font-weight: 600
+
+        transition: background-color .3s ease-in-out
         // .content
             // padding: 0px $itemrenderer-padding
         
@@ -55,14 +61,16 @@
             > .indicatorContent
                 height: 2px
                 background-color: $primary-color
+                // transform-origin: left
                 // transition: transform .25s ease-in-out //cubic-bezier(.4,0,.2,1)
                 // animation-duration: .3s
                 // animation-timing-function: ease-in-out
                 // animation-fill-mode: both
-        // &.hovered:hover
-        //     color: $font-theme-color
-        //     background: lighten($primary-color, 10%)
+        &.hovered:hover
+            // color: $font-theme-color
+            background: rgba($primary-color, .2)
+            
 
-        // &.selected, &.selectable:active
-        //     color: $font-theme-color
-        //     background: lighten($primary-color, 5%)
+        &.selected, &.selectable:active
+            // color: $font-theme-color
+            background: rgba($primary-color, .4)

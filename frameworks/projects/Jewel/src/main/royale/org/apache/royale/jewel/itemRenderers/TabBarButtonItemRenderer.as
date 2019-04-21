@@ -52,8 +52,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
-			hoverable = false;
-
 			typeNames = "jewel tabbarbutton";
 			addClass("selectable");
 		}

@@ -20,7 +20,6 @@
 // Jewel TabBar
 
 // TabBar variables
-$tabbarbutton-margin-height: 48px
 
 .jewel
     &.tabbar
@@ -49,7 +48,7 @@ j|TabBar
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer")
-    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
@@ -57,6 +56,7 @@ j|TabBar
 // Jewel TabBarButtonItemRenderer
 // $tabbarbutton-margin: 0 !default
 $tabbarbutton-padding: 0 24px !default
+$tabbarbutton-margin-height: 48px
 
 // TabBarButtonItemRenderer variables
 .jewel
@@ -71,10 +71,6 @@ $tabbarbutton-padding: 0 24px !default
         flex: 1 0 auto
         white-space: nowrap
         justify-content: center
-
-        text-transform: uppercase
-        text-decoration: none
-
         z-index: 1
         overflow: initial
 
@@ -99,9 +95,7 @@ $tabbarbutton-padding: 0 24px !default
             > .indicatorContent
                 align-self: flex-end
                 width: 100%
-                transform-origin: left
                 opacity: 0
-                // transition: transform .25s ease //cubic-bezier(.4,0,.2,1)
 
         &.selected
             .indicator
