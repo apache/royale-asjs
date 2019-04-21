@@ -50,13 +50,12 @@
         letter-spacing: .1em
         font-weight: 600
 
-        transition: background-color .3s ease-in-out
-        // .content
-            // padding: 0px $itemrenderer-padding
+        transition: background-color .3s ease-in-out, color .3s ease-in-out
         
-        &.selected, &.selectable:active
-            color: $primary-color
-
+        > .content
+            padding-top: 12px
+            padding-bottom: 12px
+        
         .indicator
             > .indicatorContent
                 height: 2px
@@ -73,4 +72,5 @@
 
         &.selected, &.selectable:active
             // color: $font-theme-color
+            color: darken($primary-color, 15%)
             background: rgba($primary-color, .4)

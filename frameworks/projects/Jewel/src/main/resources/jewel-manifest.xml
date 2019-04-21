@@ -88,6 +88,7 @@
 
     <component id="TabBar" class="org.apache.royale.jewel.TabBar"/>
     <component id="TabBarButtonItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer"/>
+    <component id="TabBarButtonInidicatorRestrictedToContentItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonInidicatorRestrictedToContentItemRenderer"/>
     <component id="TabBarContent" class="org.apache.royale.jewel.TabBarContent"/>
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer"/>

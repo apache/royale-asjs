@@ -855,10 +855,11 @@ j|FormItem {
   text-decoration: none;
   letter-spacing: 0.1em;
   font-weight: 600;
-  transition: background-color 0.3s ease-in-out;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
-  color: #3CADF1;
+.jewel.tabbarbutton > .content {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 .jewel.tabbarbutton .indicator > .indicatorContent {
   height: 2px;
@@ -868,6 +869,7 @@ j|FormItem {
   background: rgba(60, 173, 241, 0.2);
 }
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
+  color: #0f88d1;
   background: rgba(60, 173, 241, 0.4);
 }
 

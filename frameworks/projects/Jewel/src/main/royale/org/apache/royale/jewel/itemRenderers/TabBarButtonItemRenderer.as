@@ -136,13 +136,13 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		COMPILE::JS
-		private var span:HTMLSpanElement;
+		protected var span:HTMLSpanElement;
 		
 		COMPILE::JS
-		private var indicator:HTMLSpanElement;
+		protected var indicator:HTMLSpanElement;
 		
 		COMPILE::JS
-		private var indicator_content:HTMLSpanElement;
+		protected var indicator_content:HTMLSpanElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -157,7 +157,7 @@ package org.apache.royale.jewel.itemRenderers
 
 			indicator = document.createElement('span') as HTMLSpanElement;
 			indicator.className = "indicator";
-			positioner.appendChild(indicator);
+			addIndicator();
 			
 			indicator_content = document.createElement('span') as HTMLSpanElement;
 			indicator_content.className = "indicatorContent";
@@ -173,6 +173,17 @@ package org.apache.royale.jewel.itemRenderers
 
             return element;
         }
+
+		/**
+		 * adding indicator to positioner makes the indicator fill all available space
+		 * adding to "span" HTMLElement restrict indicator to content.
+		 * Override this function in TabBarButtonItemRenderer subclasses
+		 */
+		COMPILE::JS
+		protected function addIndicator():void
+		{
+			positioner.appendChild(indicator);
+		}
 
 		COMPILE::JS
 		public function get getBoundingBox():ClientRect
@@ -247,36 +258,6 @@ package org.apache.royale.jewel.itemRenderers
             	toggleClass("hovered", hovered);
 			if(selectable) {
             	toggleClass("selected", selected);
-			}
-		}
-
-
-		private var _restrictIndicatorToContent:Boolean;
-        /**
-         *  Restrict the indicator to content
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.6
-         */
-		public function get restrictIndicatorToContent():Boolean
-		{
-            return _restrictIndicatorToContent;   
-		}
-		public function set restrictIndicatorToContent(value:Boolean):void
-		{
-            _restrictIndicatorToContent = value;
-
-			COMPILE::JS
-			{
-			if(!_restrictIndicatorToContent && positioner && indicator)
-			{
-				positioner.appendChild(indicator);
-			} else if(_restrictIndicatorToContent && span && indicator)
-			{
-				span.appendChild(indicator);
-			}
 			}
 		}
 	}
