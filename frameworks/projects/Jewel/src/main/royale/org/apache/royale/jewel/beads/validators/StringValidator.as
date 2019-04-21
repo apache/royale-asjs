@@ -20,9 +20,9 @@ package org.apache.royale.jewel.beads.validators
 {
 	COMPILE::JS
 	{
-		import goog.events.BrowserEvent;
+	import goog.events.BrowserEvent;
 
-		import org.apache.royale.utils.OSUtils;
+	import org.apache.royale.utils.OSUtils;
 	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
