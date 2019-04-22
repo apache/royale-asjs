@@ -849,16 +849,29 @@ j|FormItem {
   font-size: 1em;
   font-weight: 500;
   border: none;
-  background: none;
+  background: transparent;
   outline: none;
   color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
-.jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
-  color: #EF5A2A;
+.jewel.tabbarbutton > .content {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
-.jewel.tabbarbutton .indicator .indicatorContent {
+.jewel.tabbarbutton .indicator > .indicatorContent {
   height: 2px;
   background-color: #EF5A2A;
+}
+.jewel.tabbarbutton.hovered:hover {
+  background: rgba(239, 90, 42, 0.2);
+}
+.jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
+  color: #be390e;
+  background: rgba(239, 90, 42, 0.4);
 }
 
 .jewel.simpletable {
