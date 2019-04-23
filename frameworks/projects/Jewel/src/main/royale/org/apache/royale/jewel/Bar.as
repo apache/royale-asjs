@@ -93,36 +93,5 @@ package org.apache.royale.jewel
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(element);
 		}
-
-		/**
-         *  @copy org.apache.royale.core.IParent#addElement()
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
-		{
-            COMPILE::SWF
-            {
-                if (c is IUIBase)
-                {
-                    if (c is IRenderedObject)
-                        $sprite_addChild(IRenderedObject(c).$displayObject);
-                    else
-                        $sprite_addChild(c as DisplayObject);                        
-                    IUIBase(c).addedToParent();
-                }
-                else
-                    $sprite_addChild(c as DisplayObject);
-            }
-            COMPILE::JS
-            {
-                element.appendChild(c.positioner);
-                (c as IUIBase).addedToParent();
-            }
-		}
 	}
 }
