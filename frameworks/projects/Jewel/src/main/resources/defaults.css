@@ -3479,11 +3479,11 @@ j|Snackbar {
 }
 
 .jewel.tabbar {
+  display: flex;
   overflow-y: hidden;
   overflow-x: scroll;
   -webkit-overflow-scrolling: touch;
-  display: flex;
-  -ms-overflow-style: none;
+  -ms-overflow-style: -ms-autohiding-scrollbar !important;
   scrollbar-width: none;
 }
 .jewel.tabbar::-webkit-scrollbar {
