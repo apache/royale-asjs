@@ -92,10 +92,10 @@ limitations under the License.
 				<html:H3 text="Jewel TabBar"/>
 
 				<j:Label multiline="true">
-					<j:html><![CDATA[This Tab Bar has an <strong>ItemRenderer</strong> composed by an icon and a label. the ItemRenderer is asigned vía className <strong>tabBarIconItemRenderer</strong>.]]></j:html>
+					<j:html><![CDATA[This Tab Bar has an <strong>ItemRenderer</strong> composed by an icon and a label. the ItemRenderer is asigned vía className <strong>tabBarVerticalIconItemRenderer</strong>.]]></j:html>
 				</j:Label>
 
-				<j:TabBar localId="tabbar" width="100%" className="tabBarIconItemRenderer"
+				<j:TabBar localId="tabbar" width="100%" className="tabBarVerticalIconItemRenderer"
 						dataProvider="{tabBarData}">
 					<j:beads>
 						<j:AssignTabContent selectedContentProperty="href">
@@ -138,7 +138,7 @@ limitations under the License.
 
 				<j:Label text="This Tab Bar has an ItemRenderer composed by just a label."/>
 
-				<j:TabBar localId="tabbar2" selectedIndex="2">
+				<j:TabBar localId="tabbar2" selectedIndex="2" className="tabBarHorizontalIconItemRenderer">
 					<j:beads>
 						<js:ConstantBinding sourcePropertyName="tabBarData" destinationPropertyName="dataProvider"/>
 					</j:beads>

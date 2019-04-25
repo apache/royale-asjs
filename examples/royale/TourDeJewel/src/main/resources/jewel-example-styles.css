@@ -50,14 +50,20 @@
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
 }
-.tabBarIconItemRenderer
-{
-    IItemRenderer: ClassReference("itemRenderers.TabBarIconItemRenderer");
-}
 
 .navIconLinkItemRenderer .fonticon
 {
     margin-right: 24px;
+}
+
+.tabBarVerticalIconItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.TabBarVerticalIconItemRenderer");
+}
+
+.tabBarHorizontalIconItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.TabBarHorizontalIconItemRenderer");
 }
 
 .jewel.drawerheader::before

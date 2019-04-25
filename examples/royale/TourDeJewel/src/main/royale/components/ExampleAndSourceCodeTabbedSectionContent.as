@@ -88,7 +88,7 @@ package components
 			]);
 
             tabbar = new TabBar();
-            tabbar.className = "tabBarIconItemRenderer";
+            tabbar.className = "tabBarVerticalIconItemRenderer";
             tabbar.addEventListener(Event.CHANGE, changeHandler);
             tabbar.dataProvider = tabBarNavigation;
             $addElement(tabbar);
