@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package utils
 {
+	COMPILE::JS
+	{
+	import org.apache.royale.core.WrappedHTMLElement;
+	}
+
 	public class HighlightCode
 	{
 		/** 
@@ -45,11 +50,19 @@ package utils
         /**
          * block is the element (WrappedHTMLElement) inside the component (the <code> tag)
          */
-		public function highlightBlock(block:Object):void
+		public function highlightBlock(block:WrappedHTMLElement):void
 		{
-			var hljs:Object = window["hljs"];
-			//prevent renaming by compiler
-			hljs["highlightBlock"](block);
+			// dot access notation using a class hljs created with @externs
+			
+				hljs.highlightBlock(block);
+
+			// bracket access notation for a diynaimc access without create additional class
+
+				//var hljs:Object = window["hljs"];
+				//prevent renaming by compiler
+				//hljs["highlightBlock"](block);
 		}
+
+
 	}
 }
