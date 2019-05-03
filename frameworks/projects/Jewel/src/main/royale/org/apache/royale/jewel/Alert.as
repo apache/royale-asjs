@@ -222,7 +222,7 @@ package org.apache.royale.jewel
 					
 					if (!("showModal" in dialog))
 					{
-						window["dialogPolyfill"]["registerDialog"](dialog);
+						dialogPolyfill.registerDialog(dialog);
 					}
 
 					//avoid scroll in html
