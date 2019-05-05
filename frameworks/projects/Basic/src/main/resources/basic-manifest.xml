@@ -48,7 +48,7 @@
     <component id="DynamicList" class="org.apache.royale.html.DynamicList"/>
     <component id="PopUpList" class="org.apache.royale.html.PopUpList"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
-    <component id="SwatchList" class="org.apache.royale.html.supportClasses.SwatchList"/>
+    <component id="ColorPalette" class="org.apache.royale.html.supportClasses.ColorPalette"/>
     <component id="ColorSpectrum" class="org.apache.royale.html.supportClasses.ColorSpectrum"/>
     <component id="ColorPicker" class="org.apache.royale.html.ColorPicker"/>
     <component id="HueSelector" class="org.apache.royale.html.HueSelector"/>

@@ -55,7 +55,7 @@ package org.apache.royale.html.supportClasses
 			colorSpectrum = new ColorSpectrum();
 			colorSpectrum.height =  300;
 			colorSpectrum.width =  300;
-			hueSelector = new HueSelector;
+			hueSelector = new HueSelector();
 			hueSelector.width = 20;
 			hueSelector.height = 280;
 			hueSelector.x = 310;

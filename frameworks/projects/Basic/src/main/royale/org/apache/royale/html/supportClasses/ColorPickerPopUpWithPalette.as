@@ -39,7 +39,7 @@ package org.apache.royale.html.supportClasses
 	 */
 	public class ColorPickerPopUpWithPalette extends ColorPickerPopUp
 	{
-		protected var colorPalette:SwatchList;
+		protected var colorPalette:ColorPalette;
 		/**
 		 *  constructor.
 		 *
@@ -51,7 +51,7 @@ package org.apache.royale.html.supportClasses
 		public function ColorPickerPopUpWithPalette()
 		{
 			super();
-			colorPalette = new SwatchList();
+			colorPalette = new ColorPalette();
 			COMPILE::JS 
 			{
 				colorPalette.element.style.position = "absolute";

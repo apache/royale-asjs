@@ -21,7 +21,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.List;
 
 	/**
-	 *  The SwatchList class is use in a ColorPicker. It contains a list of predefined colors.
+	 *  The ColorPalette class is used in a ColorPicker. It contains a list of predefined colors.
 	 * 
 	 *
      *  @toplevel
@@ -30,7 +30,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class SwatchList extends List
+	public class ColorPalette extends List
 	{
 		/**
 		 *  constructor.
@@ -40,7 +40,7 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-		public function SwatchList()
+		public function ColorPalette()
 		{
 			super();
 		}
