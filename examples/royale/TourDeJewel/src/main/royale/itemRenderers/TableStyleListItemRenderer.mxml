@@ -17,36 +17,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<itemRenderers:IconListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
-    xmlns:js="library://ns.apache.org/royale/basic" 
-    xmlns="http://www.w3.org/1999/xhtml">
-
-    <fx:Script>
-        <![CDATA[
-			import vos.IconListVO;
-			import org.apache.royale.jewel.List;
-			import org.apache.royale.collections.ArrayList;
-			import org.apache.royale.jewel.beads.views.ListView;
-            
-            [Bindable("dataChange")]
-            public function get iconList():IconListVO
-            {
-                return data as IconListVO;
-            }
-
-            private function clickCloseButton():void
-			{
-                var view:ListView = this.itemRendererParent as ListView;
-				if (view) {
-					var host:List = view.host as List;
-					if (host) {
-                        (host.dataProvider as ArrayList).removeItemAt(index);
-                    }
-                }
-            }
-		]]>
-    </fx:Script>
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:itemRenderers="itemRenderers.*">
 
     <j:beads>
         <js:ItemRendererDataBinding />
@@ -58,5 +32,5 @@ limitations under the License.
     <j:Label html="Third field" multiline="true" width="100"/>
     <j:Label html="Fourth field" multiline="true" width="200"/>
 
-</j:ListItemRenderer>
+</itemRenderers:IconListItemRenderer>
 
