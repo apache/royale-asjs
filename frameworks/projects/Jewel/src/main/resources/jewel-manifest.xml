@@ -85,6 +85,8 @@
     <component id="EmailValidator" class="org.apache.royale.jewel.beads.validators.EmailValidator"/>
     
     <component id="AssignTabContent" class="org.apache.royale.jewel.beads.controls.tabbar.AssignTabContent"/>
+    
+    <component id="HorizontalListScroll" class="org.apache.royale.jewel.beads.controls.list.HorizontalListScroll"/>
 
     <component id="TabBar" class="org.apache.royale.jewel.TabBar"/>
     <component id="TabBarButtonItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer"/>

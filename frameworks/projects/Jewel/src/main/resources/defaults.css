@@ -3078,6 +3078,12 @@ j|Label {
   background: transparent;
   border: none;
 }
+.jewel.list.horizontalScroll, .jewel.navigation.horizontalScroll {
+  align-items: baseline !important;
+}
+.jewel.list.horizontalScroll .jewel.item, .jewel.navigation.horizontalScroll .jewel.item {
+  overflow: initial;
+}
 
 j|List {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");

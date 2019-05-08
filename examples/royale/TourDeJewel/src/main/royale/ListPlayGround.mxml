@@ -229,6 +229,19 @@ limitations under the License.
 	<j:Grid gap="true">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
+				<html:H3 text="Jewel List with Horizontal Scroll"/>
+				<j:List width="450" height="300" className="tableStyle" 
+						labelField="label" selectedIndex="1"
+						dataProvider="{listModel.iconListData}">
+					<j:beads>
+						<j:HorizontalListScroll/>
+					</j:beads>
+				</j:List>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
 				<html:H3 text="Jewel List Disabled"/>
 				<j:List width="200" height="300" className="iconListItemRenderer" labelField="label" selectedIndex="1">
 					<j:beads>
@@ -238,7 +251,6 @@ limitations under the License.
 				</j:List>
 			</j:Card>
 		</j:GridCell>
-		
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
