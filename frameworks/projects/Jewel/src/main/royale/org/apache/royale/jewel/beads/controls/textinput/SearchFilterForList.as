@@ -31,6 +31,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 	/**
 	 *  The SearchFilterForList bead class is a specialty bead that can be used with
      *  a Jewel TextInput to filter options in other List component
+	 *  
+	 *  Notice that the filtering is only visual, and the underlaying dataProvider is not
+	 *  filtered itself. To get a filtered view of the dataProvider you should use ArrayListView
+	 *  API.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -51,11 +55,25 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 		}
 
+		private var _list:List;
 		/**
 		 * the list to filter
 		 */
 		[Bindable]
-		public var list:List;
+		public function get list():List
+		{
+			return _list;
+		}
+
+		public function set list(value:List):void
+		{
+			_list = value;
+
+			if(_list != null)
+			{
+				length = list.numElements;
+			}
+		}
 
 		/**
 		 * the filter function to use to filter entries in the list
@@ -68,6 +86,22 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 */
 		[Bindable]
 		public var useDecoration:Boolean = true;
+
+		private var _length:int;
+
+		/**
+		 * enables label decoration when filter
+		 */
+		[Bindable]
+		public function get length():int
+		{
+			return _length;
+		}
+
+		public function set length(value:int):void
+		{
+			_length = value;
+		}
 
 		
 		protected var _strand:IStrand;
@@ -157,6 +191,7 @@ package org.apache.royale.jewel.beads.controls.textinput
             var ir:ListItemRenderer;
             var numElements:int = list.numElements;
 			var item:Object = null;
+			length = numElements;
             while (numElements--)
             {
                 ir = list.getElementAt(numElements) as ListItemRenderer;
@@ -178,6 +213,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 					}
                 } else {
                     ir.visible = false;
+					length--;
                 }
             }
 
