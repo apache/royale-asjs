@@ -18,14 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IColorModel;
-	import org.apache.royale.core.IColorSpectrumModel;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.HueSelector;
-	import org.apache.royale.utils.hsvToHex;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 *  The ColorPickerPopUpWithPalette class is used in ColorPicker. It contains a set of controls for picking a color, incluse a color palette.
@@ -59,7 +52,22 @@ package org.apache.royale.html.supportClasses
 			colorPalette.y = colorSpectrum.height + 10;
 			colorPalette.x = colorSpectrum.x;
 			colorPalette.width =  300;
-			addElement(colorPalette);
+		}
+		
+		override public function set model(value:Object):void
+		{
+			super.model = value;
+			colorPalette.model = value;
+			if (getElementIndex(colorPalette) < 0)
+			{
+				addElement(colorPalette);
+			}
+		}
+		
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			colorPalette.dispatchEvent(new Event('layoutNeeded'));
 		}
 	}
 }

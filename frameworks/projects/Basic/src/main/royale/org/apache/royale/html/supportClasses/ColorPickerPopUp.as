@@ -20,6 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IColorModel;
 	import org.apache.royale.core.IColorSpectrumModel;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -85,6 +86,18 @@ package org.apache.royale.html.supportClasses
 		protected function colorSpectrumChangeHandler(event:Event):void
 		{
 			(model as IColorModel).color = colorSpectrum.hsvModifiedColor;
+		}
+		
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 */
+		public function set strand(value:IStrand):void
+		{
 		}
 		
 	}

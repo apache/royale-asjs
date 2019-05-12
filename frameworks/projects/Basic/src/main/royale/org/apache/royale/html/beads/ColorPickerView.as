@@ -144,8 +144,7 @@ package org.apache.royale.html.beads
 			host.addElement(selectedColorDisplay);
 			host.addElement(button);
 			
-			var popUpClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
-			list = new popUpClass() as IUIBase;
+			list = _strand.getBeadByType(IColorPickerPopUp) as IUIBase;
 			list.visible = false;
 			
 			var model:IEventDispatcher = (_strand as IStrandWithModel).model as IEventDispatcher;

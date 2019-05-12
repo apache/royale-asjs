@@ -19,6 +19,7 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IPopUp;
+	import org.apache.royale.core.IStrand;
 
 	/**
 	 * All color picker pop-ups must implement this interface.
@@ -28,7 +29,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public interface IColorPickerPopUp extends IPopUp
+	public interface IColorPickerPopUp extends IPopUp, IStrand
 	{
 		/**
 		 * The model being used with the IColorPickerPopup.
