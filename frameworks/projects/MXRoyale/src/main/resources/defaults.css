@@ -44,6 +44,7 @@ global {
 	verticalAlign: "top";
 	verticalGap: 6;
     padding : 0px;
+	errorColor: #CE2929;
 }
 
 /* -------------------------------------------------------
@@ -74,6 +75,7 @@ Basic|DataGridButtonBar {
 
 AdvancedDataGrid
 {
+	alternatingItemColors: #F7F7F7, #FFFFFF;
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("mx.controls.beads.DataGridView");
@@ -322,6 +324,16 @@ TabNavigator
 	verticalGap: 0;	
 	background-color: #FFFFFF;
 	border: 1px solid #333333
+}
+
+
+TextInput
+{
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
+	font-size: 11px;
+	font-family: Arial;
 }
 
 Tree

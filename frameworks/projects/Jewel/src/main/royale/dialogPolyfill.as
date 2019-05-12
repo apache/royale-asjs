@@ -16,28 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.net.utils
+package
 {
-    COMPILE::SWF{
-        import flash.utils.IExternalizable;
-    }
-    
-    /**
-     * replacement for flash.utils.IExternalizable
-     */
-    COMPILE::JS
-    public interface IExternalizable
-    {
-        function readExternal(input:IDataInput):void;
-        
-        function writeExternal(output:IDataOutput):void;
-    }
-	
-	COMPILE::SWF
-	public interface IExternalizable extends flash.utils.IExternalizable
+	/**
+	 * @externs
+	 */
+	public class dialogPolyfill
 	{
-		/*function readExternal(input:IDataInput):void;
-		
-		function writeExternal(output:IDataOutput):void;*/
+		public static function registerDialog(dialog:HTMLDialogElement):void {}
 	}
 }

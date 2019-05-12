@@ -51,6 +51,7 @@
             <includeClass>CoreClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <additionalCompilerOptions>-allow-abstract-classes;-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
         </configuration>

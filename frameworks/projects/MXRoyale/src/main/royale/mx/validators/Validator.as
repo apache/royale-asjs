@@ -32,8 +32,8 @@ package mx.validators
     import mx.events.FlexEvent;
     
     import mx.resources.IResourceManager;
-    import mx.resources.ResourceManager;
-    import mx.utils.ObjectUtil; */
+    import mx.resources.ResourceManager; */
+    import mx.utils.ObjectUtil;
 
 //--------------------------------------
 //  Events
@@ -185,7 +185,7 @@ public class Validator extends EventDispatcher
     /**
      *  @private
      */
-    /* private static function trimString(str:String):String
+    private static function trimString(str:String):String
     {
         var startIndex:int = 0;
         while (str.indexOf(' ', startIndex) == startIndex)
@@ -202,7 +202,7 @@ public class Validator extends EventDispatcher
         return endIndex >= startIndex ?
                str.slice(startIndex, endIndex + 1) :
                "";
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -262,7 +262,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  protected function get actualTrigger():IEventDispatcher
+    protected function get actualTrigger():IEventDispatcher
     {
         if (_trigger)
             return _trigger;
@@ -271,7 +271,7 @@ public class Validator extends EventDispatcher
             return _source as IEventDispatcher;
             
         return null;            
-    } */
+    }
     
     //----------------------------------
     //  actualListeners
@@ -287,7 +287,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function get actualListeners():Array
+    protected function get actualListeners():Array
     {
         var result:Array = [];
     
@@ -298,7 +298,7 @@ public class Validator extends EventDispatcher
             result.push(_source);
             
         return result;
-    } */
+    }
     
     //----------------------------------
     //  enabled
@@ -391,9 +391,9 @@ public class Validator extends EventDispatcher
      */
     public function set listener(value:Object):void
     {
-        //removeListenerHandler();    
+        removeListenerHandler();    
         _listener = value;
-        //addListenerHandler();   
+        addListenerHandler();   
     }
     
     //----------------------------------
@@ -546,14 +546,14 @@ public class Validator extends EventDispatcher
         }
         
         // Remove the listener from the old source.
-        //removeTriggerHandler();
-        //removeListenerHandler();
+        removeTriggerHandler();
+        removeListenerHandler();
         
         _source = value;
                 
         // Listen for the trigger event on the new source.
-        //addTriggerHandler();    
-        //addListenerHandler();
+        addTriggerHandler();    
+        addListenerHandler();
 		//dispatchEvent(new Event("sourceChanged"));
     }
 
@@ -579,7 +579,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //protected var subFields:Array = [];
+    protected var subFields:Array = [];
 
     //----------------------------------
     //  trigger
@@ -614,9 +614,9 @@ public class Validator extends EventDispatcher
      */
     public function set trigger(value:IEventDispatcher):void
     {
-        //removeTriggerHandler();
+        removeTriggerHandler();
         _trigger = value;
-        //addTriggerHandler();    
+        addTriggerHandler();    
     } 
     
     //----------------------------------
@@ -659,9 +659,9 @@ public class Validator extends EventDispatcher
         if (_triggerEvent == value)
             return;
             
-        //removeTriggerHandler();
+        removeTriggerHandler();
         _triggerEvent = value;
-       // addTriggerHandler();
+        addTriggerHandler();
     }
 
     //--------------------------------------------------------------------------
@@ -773,20 +773,20 @@ public class Validator extends EventDispatcher
     /**
      *  @private
      */
-    /* private function addTriggerHandler():void
+    private function addTriggerHandler():void
     {
         if (actualTrigger)
             actualTrigger.addEventListener(_triggerEvent, triggerHandler);
-    } */
+    }
     
     /**
      *  @private
      */
-    /* private function removeTriggerHandler():void
+    private function removeTriggerHandler():void
     {
         if (actualTrigger)  
             actualTrigger.removeEventListener(_triggerEvent, triggerHandler);
-    } */
+    }
     
     /**
      *  Sets up all of the listeners for the 
@@ -802,7 +802,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function addListenerHandler():void
+    protected function addListenerHandler():void
     {
         var actualListener:Object;
         var listeners:Array = actualListeners;
@@ -820,7 +820,7 @@ public class Validator extends EventDispatcher
                                  IValidatorListener(actualListener).validationResultHandler); 
             }
         }
-    } */
+    }
     
     /**
      *  Disconnects all of the listeners for the 
@@ -836,7 +836,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function removeListenerHandler():void
+    protected function removeListenerHandler():void
     {
         var actualListener:Object;
         var listeners:Array = actualListeners;
@@ -854,7 +854,7 @@ public class Validator extends EventDispatcher
                                     IValidatorListener(actualListener).validationResultHandler); 
             }
         }
-    } */
+    }
 
     /**
      *  Returns <code>true</code> if <code>value</code> is not null. 
@@ -868,11 +868,11 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function isRealValue(value:Object):Boolean
+    protected function isRealValue(value:Object):Boolean
     {
         return (value != null); 
     }
-	*/
+
     /**
      *  Performs validation and optionally notifies
      *  the listeners of the result. 
@@ -910,7 +910,7 @@ public class Validator extends EventDispatcher
                         value:Object = null,
                         suppressEvents:Boolean = false):ValidationResultEvent
     {   
-        /*if (value == null)
+        if (value == null)
             value = getValueFromSource();   
         
         if (isRealValue(value) || required)
@@ -919,16 +919,16 @@ public class Validator extends EventDispatcher
             return processValidation(value, suppressEvents);
         }
         else
-        {*/
+        {
             // We assume if value is null and required is false that
             // validation was successful.
-            var resultEvent:ValidationResultEvent; /* = handleResults(null);
+            var resultEvent:ValidationResultEvent = handleResults(null);
             if (!suppressEvents && _enabled)
             {
                 dispatchEvent(resultEvent);
-            }*/
+            }
             return resultEvent; 
-        //} 
+        } 
     } 
     
     /**
@@ -944,7 +944,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function getValueFromSource():Object
+    protected function getValueFromSource():Object
     {
         var message:String;
 
@@ -955,26 +955,26 @@ public class Validator extends EventDispatcher
 
         else if (!_source && _property)
         {
-            message = resourceManager.getString(
-                "validators", "SAttributeMissing");
+            message = /*resourceManager.getString(
+                "validators",*/ "SAttributeMissing"/*)*/;
             throw new Error(message);
         }
 
         else if (_source && !_property)
         {
-            message = resourceManager.getString(
-                "validators", "PAttributeMissing");
+            message = /*resourceManager.getString(
+                "validators",*/ "PAttributeMissing"/*)*/;
             throw new Error(message);
         }
         
         return null;
-    } */
+    }
 
     /** 
      *  @private 
      *  Main internally used function to handle validation process.
      */ 
-    /* private function processValidation(
+    private function processValidation(
                         value:Object,
                         suppressEvents:Boolean):ValidationResultEvent
     {   
@@ -997,7 +997,7 @@ public class Validator extends EventDispatcher
         }
 
         return resultEvent;
-    } */
+    }
 
     /**
      *  Executes the validation logic of this validator, 
@@ -1021,7 +1021,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function doValidation(value:Object):Array
+    protected function doValidation(value:Object):Array
     {
         var results:Array = [];
         
@@ -1030,7 +1030,7 @@ public class Validator extends EventDispatcher
             results.push(result);
             
         return results;
-    } */
+    }
             
     /**
      *  @private 
@@ -1039,7 +1039,7 @@ public class Validator extends EventDispatcher
      *  This is a convenience method for calling a validator from within a 
      *  custom validation function. 
      */
-    /* private function validateRequired(value:Object):ValidationResult
+    private function validateRequired(value:Object):ValidationResult
     {
         if (required)
         {
@@ -1057,7 +1057,7 @@ public class Validator extends EventDispatcher
         }
         
         return null;
-    } */
+    }
 
     /**
      *  Returns a ValidationResultEvent from the Array of error results. 
@@ -1078,7 +1078,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* protected function handleResults(errorResults:Array):ValidationResultEvent
+    protected function handleResults(errorResults:Array):ValidationResultEvent
     {
         var resultEvent:ValidationResultEvent;
         
@@ -1124,7 +1124,7 @@ public class Validator extends EventDispatcher
         }
         
         return resultEvent;
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -1135,10 +1135,10 @@ public class Validator extends EventDispatcher
     /**
      *  @private
      */
-    /* protected function triggerHandler(event:Event):void
+    protected function triggerHandler(event:Event):void
     {
         validate();
-    } */
+    }
 
     /**
      *  @private

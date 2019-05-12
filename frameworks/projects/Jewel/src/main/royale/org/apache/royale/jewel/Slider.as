@@ -191,13 +191,12 @@ package org.apache.royale.jewel
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion HTMLInputElement
 		 * @royaleignorecoercion HTMLDivElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			addElementToWrapper(this,'input') as HTMLInputElement;
+			addElementToWrapper(this,'input');
             element.setAttribute('type', 'range');
 			positioner = document.createElement('div') as WrappedHTMLElement;
 			return element;

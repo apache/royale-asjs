@@ -368,6 +368,9 @@ j|Card {
   color: #737373;
   text-shadow: unset;
 }
+.jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23191919' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
 .jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
   background-size: 40%;
 }
@@ -843,18 +846,32 @@ j|FormItem {
   }
 }
 .jewel.tabbarbutton {
-  margin: 0;
-  padding: 14px 16px;
   font-size: 1em;
   font-weight: 500;
+  border: none;
+  background: transparent;
+  outline: none;
   color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.jewel.tabbarbutton > .content {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.jewel.tabbarbutton .indicator > .indicatorContent {
+  height: 2px;
+  background-color: #3CADF1;
 }
 .jewel.tabbarbutton.hovered:hover {
-  background: #737373 !important;
+  background: rgba(60, 173, 241, 0.2);
 }
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
-  color: #FFFFFF;
-  background: #54b7f3 !important;
+  color: #0f88d1;
+  background: rgba(60, 173, 241, 0.4);
 }
 
 .jewel.simpletable {

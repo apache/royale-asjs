@@ -31,7 +31,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Grid extends Group
+	public class Grid extends Container
 	{
 		/**
 		 *  constructor.

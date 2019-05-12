@@ -34,6 +34,7 @@ package org.apache.royale.jewel
     import org.apache.royale.core.ITextModel;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.Event;
     import org.apache.royale.utils.ClassSelectorList;
 
     //--------------------------------------

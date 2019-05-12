@@ -38,9 +38,9 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.controls.TextAlign;
-    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
     import org.apache.royale.jewel.beads.models.TableModel;
     import org.apache.royale.jewel.beads.views.TableView;
+    import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
@@ -182,7 +182,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			labelField = model.labelField;
 			
             var column:TableColumn;
-            var ir:ITextItemRenderer;
+            var ir:TableItemRenderer;
 
 			var n:int = dp.length;
 			var index:int = 0;
@@ -194,10 +194,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 					
 			        if(column.itemRenderer != null)
                     {
-						ir = column.itemRenderer.newInstance() as ITextItemRenderer;
+						ir = column.itemRenderer.newInstance() as TableItemRenderer;
                     } else
                     {
-                        ir = itemRendererFactory.createItemRenderer(tbody) as ITextItemRenderer;
+                        ir = itemRendererFactory.createItemRenderer(tbody) as TableItemRenderer;
                     }
 
 					labelField =  column.dataField;

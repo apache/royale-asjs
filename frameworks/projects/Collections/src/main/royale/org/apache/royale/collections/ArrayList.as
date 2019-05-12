@@ -25,10 +25,10 @@ package org.apache.royale.collections
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.CollectionEvent;
 	
-	import org.apache.royale.net.utils.IExternalizable;
+	import org.apache.royale.utils.net.IExternalizable;
 	COMPILE::JS{
-		import org.apache.royale.net.utils.IDataInput;
-		import org.apache.royale.net.utils.IDataOutput;
+		import org.apache.royale.utils.net.IDataInput;
+		import org.apache.royale.utils.net.IDataOutput;
 	}
 	COMPILE::SWF{
 		import flash.utils.IDataInput;

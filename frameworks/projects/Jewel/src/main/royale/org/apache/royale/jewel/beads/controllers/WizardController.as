@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.jewel.beads.models.WizardModel;
 	import org.apache.royale.jewel.beads.models.WizardStep;
 	import org.apache.royale.jewel.beads.views.WizardView;
+	import org.apache.royale.jewel.events.WizardEvent;
 	
     /**
      *  The WizardController class is the controller for
@@ -92,7 +93,9 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function handleStepChange(event:Event):void
 		{
-            wizard.showPage(model.currentStep.name);
+            setUpEffects();
+            wizard.title = model.currentStep.stepLabel;
+            wizard.content.selectedContent = model.currentStep.name;
 		}
 
         private var model:WizardModel;
@@ -129,7 +132,6 @@ package org.apache.royale.jewel.beads.controllers
             var stepToGo:WizardStep = findStep(model.currentStep, true);
             wizard.dispatchEvent(new Event("goToPreviousStep"));
             model.currentStep = stepToGo;
-            wizard.dispatchEvent(new Event("change"));
             // }
         }
 
@@ -146,7 +148,6 @@ package org.apache.royale.jewel.beads.controllers
                 var stepToGo:WizardStep = findStep(model.currentStep, false);
                 wizard.dispatchEvent(new Event("goToNextStep"));
                 model.currentStep = stepToGo;
-                wizard.dispatchEvent(new Event("change"));
             }
         }
 
@@ -171,5 +172,57 @@ package org.apache.royale.jewel.beads.controllers
             
             return null;
         }
+
+        public function setUpEffects():void
+		{
+			if(model.activateEffect)
+			{
+                model.currentStep.page.removeClass(WizardPage.LEFT_EFFECT);
+                model.currentStep.page.removeClass(WizardPage.RIGHT_EFFECT);
+                
+                var previous:WizardStep = findStep(model.currentStep, true);
+
+                while(previous != null)
+                {
+                    // this prevents bindings not done
+                    if(previous != null && !previous.name)
+                        break;
+                    previous.page.removeClass(WizardPage.RIGHT_EFFECT);
+				    previous.page.addClass(WizardPage.LEFT_EFFECT);
+                    previous = findStep(previous, true);
+                }
+                
+                var next:WizardStep = findStep(model.currentStep, false);
+                while(next != null)
+                {
+                    // this prevents bindings not done
+                    if(next != null && !next.name)
+                        break;
+                    next.page.removeClass(WizardPage.LEFT_EFFECT);
+	    			next.page.addClass(WizardPage.RIGHT_EFFECT);
+                    next = findStep(next, false);
+                }
+
+                // depending on step config we still can have pages not configured to transition correctly
+                var n:int = wizard.numElements;
+                var foundSelected:Boolean;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var page:WizardPage = wizard.getElementAt(i) as WizardPage;
+                    if (page == model.currentStep.page) 
+                    {
+                        foundSelected = true;
+                        continue;
+                    }
+                    if(!page.containsClass(WizardPage.LEFT_EFFECT) && !page.containsClass(WizardPage.LEFT_EFFECT))
+                    {
+                        if (foundSelected)
+                            page.addClass(WizardPage.RIGHT_EFFECT)
+                        else
+                            page.addClass(WizardPage.LEFT_EFFECT)
+                    }
+                }
+            }
+		}
     }
 }

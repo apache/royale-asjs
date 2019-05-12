@@ -41,16 +41,5 @@ package org.apache.royale.jewel.beads.itemRenderers
          */
         function get text():String;
         function set text(value:String):void;
-
-        /**
-         *  How text align in the itemRenderer instance.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        function get align():String
-        function set align(value:String):void
     }
 }

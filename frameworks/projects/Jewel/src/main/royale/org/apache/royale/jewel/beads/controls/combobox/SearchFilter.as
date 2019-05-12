@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
+	import org.apache.royale.jewel.beads.views.ComboBoxView;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
 	/**
@@ -69,6 +70,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 			list = input.parent.view.popup.view.list;
 			
 			applyFilter(input.parent.view.textinput.text.toUpperCase());
+
+			ComboBoxView(_strand['view']).autoResizeHandler(); //as we filter the popup list will be smaller, and we want to reposition
 		}
 
 		override protected function onBeadsAdded(event:Event):void{

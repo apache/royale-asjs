@@ -16,26 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.net.utils
+package org.apache.royale.jewel.beads.itemRenderers
 {
-    import org.apache.royale.utils.IBinaryDataInput;
-    COMPILE::SWF{
-        import flash.utils.IDataInput
-    }
-    
-    /**
-     * initial work on replacement for flash.utils.IDataInput
+	/**
+     *  The IAlignItemRenderer interface is the interface for
+     *  for org.apache.royale.core.IItemRenderer that display text aligned.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.6
      */
-    COMPILE::JS
-    public interface IDataInput extends IBinaryDataInput
-    {
-        function readObject():*;
-    }
-	
-	COMPILE::SWF
-	public interface IDataInput extends IBinaryDataInput, flash.utils.IDataInput
+	public interface IAlignItemRenderer
 	{
-
-	}
-
+        /**
+         *  How text align in the itemRenderer instance.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+        function get align():String
+        function set align(value:String):void
+    }
 }

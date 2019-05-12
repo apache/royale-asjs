@@ -32,6 +32,7 @@ import mx.text.TextFormat;
 }
 
 import mx.managers.ISystemManager;
+import mx.managers.SystemManager;
 
 /**
  *  The UITextFormat class represents character formatting information
@@ -558,11 +559,25 @@ public class UITextFormat extends TextFormat
         return lineMetrics;
     }
     
+    /**
+     * @royaleignorecoercion mx.managers.SystemManager;
+     * @royaleignorecoercion HTMLSpanElement; 
+     */
     COMPILE::JS
     private function measure(s:String, html:Boolean, roundUp:Boolean):TextLineMetrics
     {
-        trace("UITextFormat.measure not implemented");
-        return null;;
+        var sm:SystemManager = systemManager as SystemManager;
+        if (sm.measuringElement == null)
+        {
+            sm.measuringElement = document.createElement("span") as HTMLSpanElement;
+            sm.measuringElement.style.position = "float"; // to try to keep it from affecting position of other elements
+            sm.measuringElement.style.display = "none"; // to try to keep it hidden
+        }
+        sm.measuringElement.text = s;
+        var tlm:TextLineMetrics = new TextLineMetrics();
+        tlm.width = sm.measuringElement.offsetWidth;
+        tlm.height = sm.measuringElement.offsetHeight;
+        return tlm;
     }
     
     /**

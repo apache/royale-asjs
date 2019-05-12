@@ -22,6 +22,11 @@
 @namespace "http://www.w3.org/1999/xhtml";
 @namespace j "library://ns.apache.org/royale/jewel";
 
+.tableStyle
+{
+    IItemRenderer: ClassReference("itemRenderers.TableStyleListItemRenderer");
+}
+
 .iconListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.IconListItemRenderer");
@@ -31,13 +36,24 @@
     margin-right: 24px;
 }
 
+.advancedIconListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.AdvancedIconListItemRenderer");
+}
+.advancedIconListItemRenderer .fonticon
+{
+    margin-right: 24px;
+}
+.jewelItem{
+    color: #3cadf1;
+}
+.basicItem{
+    color: #71a02f;
+}
+
 .navIconLinkItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
-}
-.tabBarIconItemRenderer
-{
-    IItemRenderer: ClassReference("itemRenderers.TabBarIconItemRenderer");
 }
 
 .navIconLinkItemRenderer .fonticon
@@ -45,7 +61,17 @@
     margin-right: 24px;
 }
 
-.jewel.drawerheader::before 
+.tabBarVerticalIconItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.TabBarVerticalIconItemRenderer");
+}
+
+.tabBarHorizontalIconItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.TabBarHorizontalIconItemRenderer");
+}
+
+.jewel.drawerheader::before
 {
     /*padding-top: 9 / 16 * 100%;*/
     padding-top: 56.25%; /* 16:9 Aspect Ratio */

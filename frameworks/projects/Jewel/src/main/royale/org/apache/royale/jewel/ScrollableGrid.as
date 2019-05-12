@@ -16,30 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.net.utils
+package org.apache.royale.jewel
 {
-	import org.apache.royale.utils.IBinaryDataOutput;
-    COMPILE::SWF{
-        import flash.utils.IDataOutput
-    }
-
-    /**
-     * initial work on replacement for flash.utils.IDataOutput
-     */
-	COMPILE::JS
-    public interface IDataOutput extends IBinaryDataOutput
-    {
-
-        function writeObject(object:*):void;
-    }
-	
-	
-	COMPILE::SWF
-	public interface IDataOutput extends IBinaryDataOutput, flash.utils.IDataOutput
+	/**
+	 *  The ScrollableGrid class is a Grid with scroll capabilities
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.6
+	 */
+	public class ScrollableGrid extends Grid
 	{
-		/*function get objectEncoding():uint;
-		function set objectEncoding(value:uint):void;
-		function writeObject(object:*):void;*/
-	}
-
+    }
 }

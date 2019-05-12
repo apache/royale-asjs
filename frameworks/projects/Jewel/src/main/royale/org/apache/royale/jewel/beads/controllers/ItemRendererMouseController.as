@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
-COMPILE::SWF {
+	COMPILE::SWF {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
-}
-COMPILE::JS {
+	}
+	COMPILE::JS {
 	import goog.events;
 	import goog.events.Event;
 	import goog.events.EventType;
@@ -31,8 +31,7 @@ COMPILE::JS {
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.events.BrowserEvent;
-	
-}
+	}
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
@@ -89,12 +88,12 @@ COMPILE::JS {
 			}
 				
 			COMPILE::JS {
-				var element:WrappedHTMLElement = (_strand as UIBase).element;
+				var positioner:WrappedHTMLElement = (_strand as UIBase).positioner;
 				
-				goog.events.listen(element, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
-				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
-				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
-				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseUp);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
+				goog.events.listen(positioner, goog.events.EventType.CLICK, this.handleMouseUp);
 			}
 		}
 		

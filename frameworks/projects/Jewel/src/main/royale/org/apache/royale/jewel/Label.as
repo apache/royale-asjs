@@ -25,7 +25,8 @@ package org.apache.royale.jewel
     }
 	import org.apache.royale.core.ITextModel;
 	import org.apache.royale.core.StyledUIBase;
-
+	import org.apache.royale.events.Event;
+	
     /**
      *  Dispatched when the user clicks on a Label.
      *

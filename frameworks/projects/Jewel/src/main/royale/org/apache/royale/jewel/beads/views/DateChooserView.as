@@ -205,12 +205,6 @@ package org.apache.royale.jewel.beads.views
 
 			buttonsRow.addElement(tableHeader);
 		}
-		
-		// cycle days array for offsetting when change firstDayOfWeek
-		private function cycleArray(array:Array, index:Number, n:Number):Number 
-		{
-			return ((index + n) % array.length + array.length) % array.length;
-		}
 
 		/**
 		 * @private
@@ -238,7 +232,10 @@ package org.apache.royale.jewel.beads.views
 			} else if(model.viewState == 1)
 			{
 				// display "2016-2039"
-				_viewSelector.text = String(model.navigateYears - DateChooserModel.NUM_YEARS_VIEW/2) + "-" + String(model.navigateYears + DateChooserModel.NUM_YEARS_VIEW/2 - 1);
+				var minyear:int = DateChooserModel.MINIMUM_YEAR > model.navigateYears - DateChooserModel.NUM_YEARS_VIEW/2 ? DateChooserModel.MINIMUM_YEAR : model.navigateYears - DateChooserModel.NUM_YEARS_VIEW/2;
+				var maxyear:int = DateChooserModel.MAXIMUM_YEAR < model.navigateYears + DateChooserModel.NUM_YEARS_VIEW/2 ? DateChooserModel.MAXIMUM_YEAR : model.navigateYears + DateChooserModel.NUM_YEARS_VIEW/2;
+
+				_viewSelector.text = String(minyear) + "-" + String(maxyear);
 				tableHeader.expandColumns = 4;
 			} else
 			{
@@ -288,7 +285,7 @@ package org.apache.royale.jewel.beads.views
 				{
 					column = columns[index];
 					column.columnLabelAlign = "center";
-					column.label = model.dayNames[cycleArray(model.dayNames, index, model.firstDayOfWeek)];
+					column.label = model.dayNames[DateChooserModel.cycleArray(model.dayNames, index, model.firstDayOfWeek)];
 				}
 				_table.columns = columns;
 			} else
@@ -333,7 +330,13 @@ package org.apache.royale.jewel.beads.views
 					currrentYearGroup[i] = {};
 					for(j = 0; j < columns.length; j++)
 					{
-						currrentYearGroup[i]["d"+j] = model.years[yearIndex];
+						if((model.years[yearIndex] as Date).getFullYear() >= DateChooserModel.MINIMUM_YEAR && (model.years[yearIndex]as Date).getFullYear() <= DateChooserModel.MAXIMUM_YEAR)
+						{
+							currrentYearGroup[i]["d"+j] = model.years[yearIndex];
+						} else
+						{
+							currrentYearGroup[i]["d"+j] = "";// create empty year cell where is not a year allowed
+						}
 						yearIndex++;
 					}
 				}

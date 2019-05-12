@@ -78,15 +78,20 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 * show a page by id, but does not update currentStep
+		 * Update currentStep by name finding the appropiate step
 		 * 
-		 * @param steName, that is the "id" of the content (the WizardPage) to activate
+		 * @param stepName, that is the "id" of the content (the WizardPage) to activate
 		 * 
 		 * @see org.apache.royale.jewel.WizardContent.selectedContent
 		 */
 		public function showPage(stepName:String):void
 		{
-			content.selectedContent = stepName;
+			var step:WizardStep = findStepByName(stepName);
+			if (step) {
+				currentStep = step;
+			} else {
+				throw new Error('Unknown wizard step:'+ stepName)
+			}
 		}
 
 		public function findStepByName(name:String):WizardStep
@@ -123,6 +128,27 @@ package org.apache.royale.jewel
 		public function set title(value:String):void
 		{
 			WizardModel(model).text = value;
+		}
+		
+		/**
+		 *  turn on/off the transition effects
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
+		 */
+		public function get activateEffect():Boolean
+		{
+			return WizardModel(model).activateEffect;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.jewel.beads.models.WizardModel
+		 */
+		public function set activateEffect(value:Boolean):void
+		{
+			WizardModel(model).activateEffect = value;
 		}
 		
 		/**

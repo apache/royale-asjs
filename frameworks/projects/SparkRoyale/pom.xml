@@ -57,6 +57,7 @@
               </include-file>
           </includeFiles>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
           <defines>
               <define>
                   <name>GOOG::DEBUG</name>

@@ -83,12 +83,12 @@ package components
         private function initCompleteHandler(event:Event):void
         {
             tabBarNavigation = new ArrayList([
-				new TabBarButtonVO("Examples", "exampleTab", null),
-				new TabBarButtonVO("Source Code", "sourceCodeTab", null)		
+				new TabBarButtonVO("Examples", "exampleTab", MaterialIconType.VIEW_COMPACT),
+				new TabBarButtonVO("Source Code", "sourceCodeTab", MaterialIconType.CODE)		
 			]);
 
             tabbar = new TabBar();
-            tabbar.className = "tabBarIconItemRenderer";
+            tabbar.className = "tabBarVerticalIconItemRenderer";
             tabbar.addEventListener(Event.CHANGE, changeHandler);
             tabbar.dataProvider = tabBarNavigation;
             $addElement(tabbar);

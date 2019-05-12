@@ -54,14 +54,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Storage</artifactId>
       <version>0.9.6-SNAPSHOT</version>
@@ -91,14 +83,6 @@
       <classifier>js</classifier>
     </dependency>
 
-    <!-- <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-     -->
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>

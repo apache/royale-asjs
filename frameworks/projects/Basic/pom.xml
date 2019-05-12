@@ -31,7 +31,7 @@
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Basic</name>
-
+  
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
     <plugins>
@@ -67,6 +67,7 @@
           </includeFiles>
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
           <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>
         </configuration>
       </plugin>

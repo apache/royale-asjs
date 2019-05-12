@@ -93,7 +93,7 @@ public class StringValidator extends Validator
         var results:Array = [];
         
         // Resource-backed properties of the validator.
-       /*  var maxLength:Number = Number(validator.maxLength);
+        var maxLength:Number = Number(validator.maxLength);
         var minLength:Number = Number(validator.minLength);
 
         var val:String = value != null ? String(value) : "";
@@ -112,7 +112,7 @@ public class StringValidator extends Validator
                 true, baseField, "tooShort",
                 StringUtil.substitute(validator.tooShortError, minLength)));
             return results;
-        } */
+        }
 
         return results;
     }
@@ -180,12 +180,12 @@ public class StringValidator extends Validator
      */
     public function set maxLength(value:Object):void
     {
-       /*  maxLengthOverride = value;
+       /*  maxLengthOverride = value; */
 
         _maxLength = value != null ?
-                     Number(value) :
+                     Number(value) : /*
                      resourceManager.getNumber(
-                         "validators", "maxLength"); */
+                         "validators", "maxLength"); */ 20;
     }
     
     //----------------------------------
@@ -226,12 +226,12 @@ public class StringValidator extends Validator
      */
     public function set minLength(value:Object):void
     {
-       /*  minLengthOverride = value;
+       /*  minLengthOverride = value;*/
 
         _minLength = value != null ?
-                     Number(value) :
+                     Number(value) : /*
                      resourceManager.getNumber(
-                         "validators", "minLength"); */
+                         "validators", "minLength"); */ 0;
     }
 
     //--------------------------------------------------------------------------
@@ -248,7 +248,7 @@ public class StringValidator extends Validator
      *  @private
      *  Storage for the tooLongError property.
      */
-    private var _tooLongError:String;
+    private var _tooLongError:String = "This string is longer than the maximum allowed length. This must be less than {0} characters long.";
 
     /**
      *  @private
@@ -294,7 +294,7 @@ public class StringValidator extends Validator
      *  @private
      *  Storage for the tooShortError property.
      */
-    private var _tooShortError:String;
+    private var _tooShortError:String = "This string is shorter than the minimum allowed length. This must be at least {0} characters long.";
     
     /**
      *  @private
@@ -370,7 +370,7 @@ public class StringValidator extends Validator
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* override protected function doValidation(value:Object):Array
+    override protected function doValidation(value:Object):Array
     {
         var results:Array = super.doValidation(value);
         
@@ -381,7 +381,7 @@ public class StringValidator extends Validator
             return results;
         else
             return StringValidator.validateString(this, value, null);
-    } */
+    }
 }
 
 }

@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.network.support
 {
-	import org.apache.royale.net.utils.IDynamicPropertyWriter;
+	import org.apache.royale.utils.net.IDynamicPropertyWriter;
 	import org.apache.royale.reflection.*;
 	COMPILE::JS{
-		import org.apache.royale.net.utils.IDynamicPropertyOutput;
+		import org.apache.royale.utils.net.IDynamicPropertyOutput;
 	}
 	
 	COMPILE::SWF{

@@ -20,12 +20,15 @@ package org.apache.royale.jewel.beads.controllers
 {	
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IDateFormatter;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
 	
@@ -147,8 +150,26 @@ package org.apache.royale.jewel.beads.controllers
 			var len:int = viewBead.textInput.text.length;
 			if(len == 10)
 			{
-				var date:Date = new Date(viewBead.textInput.text);
-				model.selectedDate = isValidDate(date) ? date : null;
+				var formatter:IDateFormatter = _strand.getBeadByType(IFormatter) as IDateFormatter; // 3.- Get the actual format and get a new correct date
+				var date:Date = formatter.getDateFromString(viewBead.textInput.text);
+				date = isValidDate(date) ? date : null; // 1.-checck date entered is valid
+				if(date != null)
+				{
+					// 2.-date must be between MAXIMUM_YEAR and MINIMUM_YEAR
+					if(DateChooserModel.MINIMUM_YEAR <= date.getFullYear() <= DateChooserModel.MAXIMUM_YEAR)
+					{
+						model.selectedDate = date;
+					} else if(date.getFullYear() < DateChooserModel.MINIMUM_YEAR)
+					{
+						model.selectedDate = new Date(DateChooserModel.MINIMUM_YEAR, date.getMonth(), date.getDate());
+					} else if(date.getFullYear() > DateChooserModel.MAXIMUM_YEAR)
+					{
+						model.selectedDate = new Date(DateChooserModel.MAXIMUM_YEAR, date.getMonth(), date.getDate());
+					}
+				}
+			} else
+			{
+				model.selectedDate = null;
 			}
 		}
         

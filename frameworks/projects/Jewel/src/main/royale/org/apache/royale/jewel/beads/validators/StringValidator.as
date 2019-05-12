@@ -20,9 +20,9 @@ package org.apache.royale.jewel.beads.validators
 {
 	COMPILE::JS
 	{
-		import goog.events.BrowserEvent;
+	import goog.events.BrowserEvent;
 
-		import org.apache.royale.utils.OSUtils;
+	import org.apache.royale.utils.OSUtils;
 	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
@@ -69,7 +69,6 @@ package org.apache.royale.jewel.beads.validators
 			super.strand = value;
 			COMPILE::JS
 			{
-				hostComponent.addEventListener(triggerEvent, validate);
 				updateHost();
 			}
 		}
@@ -159,9 +158,9 @@ package org.apache.royale.jewel.beads.validators
 		{
 			if (hostComponent)
             {
-                if(_maxLength > 0)
+                if(maxLength > 0)
 				{
-					hostComponent.element.setAttribute('maxlength', _maxLength);
+					hostComponent.element.setAttribute('maxlength', maxLength);
 				} else
 				{
 					hostComponent.element.removeAttribute('maxlength');
@@ -169,7 +168,7 @@ package org.apache.royale.jewel.beads.validators
 
 				if(OSUtils.getOS() == OSUtils.ANDROID_OS)
 				{
-					if(_maxLength > 0)
+					if(maxLength > 0)
 					{
 						//solves Android issue where you can enter more characters than maxlenght in the input
 						hostComponent.element.addEventListener("keyup", forceMaxLength, false);

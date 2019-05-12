@@ -192,6 +192,13 @@ internal class CoreClasses
     import org.apache.royale.utils.BinaryData; BinaryData;
 	import org.apache.royale.utils.IBinaryDataInput; IBinaryDataInput;
 	import org.apache.royale.utils.IBinaryDataOutput; IBinaryDataOutput;
+	
+	import org.apache.royale.utils.net.IDataInput; IDataInput;
+	import org.apache.royale.utils.net.IDataOutput; IDataOutput;
+	import org.apache.royale.utils.net.IExternalizable; IExternalizable;
+	import org.apache.royale.utils.net.IDynamicPropertyWriter; IDynamicPropertyWriter;
+	import org.apache.royale.utils.net.IDynamicPropertyOutput; IDynamicPropertyOutput;
+	
 	import org.apache.royale.utils.BrowserInfo; BrowserInfo;
 	COMPILE::SWF
 	{
@@ -302,6 +309,11 @@ internal class CoreClasses
 	import org.apache.royale.utils.date.addYears; addYears;
 
 	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
+
+	COMPILE::JS
+	{
+	import org.apache.royale.utils.css.transitionEventAvailable; transitionEventAvailable;
+	}
 	
 	import org.apache.royale.utils.replaceBead; replaceBead;
 

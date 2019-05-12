@@ -25,8 +25,8 @@ package org.apache.royale.net.remoting.messages
 	}
 	
 	COMPILE::JS{
-		import org.apache.royale.net.utils.IDataInput;
-		import org.apache.royale.net.utils.IDataOutput;
+		import org.apache.royale.utils.net.IDataInput;
+		import org.apache.royale.utils.net.IDataOutput;
 	}
 
     [RemoteClass(alias="flex.messaging.messages.CommandMessage")]

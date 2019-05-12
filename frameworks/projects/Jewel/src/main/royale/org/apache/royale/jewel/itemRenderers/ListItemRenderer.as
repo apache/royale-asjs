@@ -18,17 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
+    COMPILE::JS
+    {
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
+    }
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.controls.TextAlign;
+	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-    }
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
@@ -38,7 +38,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ListItemRenderer extends StyledMXMLItemRenderer implements ITextItemRenderer
+	public class ListItemRenderer extends StyledMXMLItemRenderer implements ITextItemRenderer, IAlignItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -58,10 +58,11 @@ package org.apache.royale.jewel.itemRenderers
 			if(MXMLDescriptor != null)
 			{
 				addClass("mxmlContent");
+			} else
+			{
+				textAlign = new TextAlign();
+				addBead(textAlign);
 			}
-
-			textAlign = new TextAlign();
-			addBead(textAlign);
 		}
 
 		private var _text:String = "";
@@ -95,7 +96,7 @@ package org.apache.royale.jewel.itemRenderers
 			}
 		}
 
-        private var textAlign:TextAlign;
+        protected var textAlign:TextAlign;
 
 		/**
 		 *  How text align in the itemRenderer instance.

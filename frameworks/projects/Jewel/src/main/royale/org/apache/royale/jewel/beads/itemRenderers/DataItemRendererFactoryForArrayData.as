@@ -44,9 +44,9 @@ package org.apache.royale.jewel.beads.itemRenderers
      *  The DataItemRendererFactoryForArrayData class reads an
      *  array of data and creates an item renderer for every
      *  item in the array.  Other implementations of
-     *  IDataProviderItemRendererMapper map different data 
+     *  IDataProviderItemRendererMapper map different data
      *  structures or manage a virtual set of renderers.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -77,7 +77,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -97,7 +97,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @royaleignorecoercion org.apache.royale.html.beads.DataFieldProviderBead
 		 */
 		private function finishSetup(event:Event):void
-		{			
+		{
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 			labelField = dataProviderModel.labelField;
@@ -108,10 +108,10 @@ package org.apache.royale.jewel.beads.itemRenderers
                 dataField = dataFieldProvider.dataField;
             }
 
-			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
+			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will
 			// already have been loaded by DataContainerBase.addedToParent function.
 			if(!_itemRendererFactory)
-    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;				
+    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
 			
 			dataProviderChangeHandler(null);
 		}
@@ -119,9 +119,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		private var _itemRendererFactory:IItemRendererClassFactory;
 		
         /**
-         *  The org.apache.royale.core.IItemRendererClassFactory used 
+         *  The org.apache.royale.core.IItemRendererClassFactory used
          *  to generate instances of item renderers.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -147,7 +147,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
          *  The org.apache.royale.core.IItemRendererParent that will
          *  parent the item renderers.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -159,7 +159,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */		
+         */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = dataProviderModel.dataProvider as Array;
@@ -173,13 +173,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			
-			var n:int = dp.length; 
+			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
-			{				
+			{
 				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
                 var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
-				dataGroup.addItemRenderer(ir, false);
+				
 				ir.index = i;
 				ir.labelField = labelField;
                 if (dataItemRenderer)
@@ -195,7 +195,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					UIBase(ir).percentWidth = 100;
 				}
 				ir.data = dp[i];
-				
+				dataGroup.addItemRenderer(ir, false);
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 				newEvent.itemRenderer = ir;
 				dispatchEvent(newEvent);

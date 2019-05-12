@@ -20,7 +20,6 @@ package org.apache.royale.jewel
 {
     COMPILE::SWF
     {
-    import org.apache.royale.core.ISelectable;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIButtonBase;
     import org.apache.royale.events.MouseEvent;
@@ -34,6 +33,7 @@ package org.apache.royale.jewel
     import org.apache.royale.core.IToggleButtonModel;
     import org.apache.royale.events.Event;
     import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.core.ISelectable;
 
     //--------------------------------------
     //  Events
@@ -175,7 +175,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
     COMPILE::JS
-    public class CheckBox extends StyledUIBase
+    public class CheckBox extends StyledUIBase implements ISelectable
     {
         /**
          *  Constructor.

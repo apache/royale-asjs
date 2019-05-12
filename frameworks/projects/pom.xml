@@ -93,14 +93,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-gcl</artifactId>
       <version>${royale.typedefs.version}</version>

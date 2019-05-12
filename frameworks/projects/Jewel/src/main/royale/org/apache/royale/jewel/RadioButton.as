@@ -21,6 +21,7 @@ package org.apache.royale.jewel
     import org.apache.royale.events.Event;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.utils.ClassSelectorList;
+	import org.apache.royale.core.ISelectable;
 
     COMPILE::SWF
     {
@@ -78,7 +79,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
-	public class RadioButton extends UIButtonBase implements IStrand
+	public class RadioButton extends UIButtonBase implements IStrand, ISelectable
 	{
         /**
 		 *  constructor.
@@ -286,7 +287,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
     COMPILE::JS
-    public class RadioButton extends StyledUIBase
+    public class RadioButton extends StyledUIBase implements ISelectable
     {
         /**
          *  Constructor.

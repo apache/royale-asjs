@@ -27,8 +27,6 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.DataContainerBase;
-	import org.apache.royale.utils.IClassSelectorListSupport;
-
 	
 	[DefaultProperty("columns")]
 
@@ -68,7 +66,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Table extends DataContainerBase implements IClassSelectorListSupport
+	public class Table extends DataContainerBase
 	{
 		/**
 		 *  constructor.

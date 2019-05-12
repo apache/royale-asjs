@@ -139,6 +139,8 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
+		public static const MINIMUM_YEAR:int = 1900;
+		public static const MAXIMUM_YEAR:int = new Date().getFullYear() + 100;
 		private var navigateYearsChanged:Boolean;
 		private var _navigateYears:Number;
 		/**
@@ -157,7 +159,7 @@ package org.apache.royale.jewel.beads.models
 		}
 		public function set navigateYears(value:Number):void
 		{
-			if (value != _navigateYears) {
+			if (value != _navigateYears && (value >= MINIMUM_YEAR - NUM_YEARS_VIEW/2) && (value <= MAXIMUM_YEAR + NUM_YEARS_VIEW/2) ) {
 				_navigateYears = value;
 				navigateYearsChanged = true;
 				updateCalendar();
@@ -229,6 +231,7 @@ package org.apache.royale.jewel.beads.models
             }
         }
         
+
 		public static const NUM_YEARS_VIEW:int = 24;
 		private var _years:Array = new Array(NUM_YEARS_VIEW);
 		/**
@@ -321,6 +324,19 @@ package org.apache.royale.jewel.beads.models
 			dispatchEvent( new Event("monthChanged") );
 		}
         
+		/**
+		 * Cycle days array for offsetting when change firstDayOfWeek
+		 * 
+		 * @param array , the array to get a position
+		 * @param index, the index in the array to use
+		 * @param offset, the offset to apply, this could be positive or negative
+		 * @return the cycled position
+		 */
+		public static function cycleArray(array:Array, index:Number, offset:Number):Number 
+		{
+			return ((index + offset) % array.length + array.length) % array.length;
+		}
+
         /**
          * @private
          */
@@ -331,8 +347,8 @@ package org.apache.royale.jewel.beads.models
 			{
 				var firstDay:Date = new Date(displayedYear, displayedMonth, 1);
 				_days = new Array(NUM_DAYS_VIEW); // always reset the array to remove older values
-				// skip to the first day and renumber to the last day of the month
-				i = firstDay.getDay() - firstDayOfWeek;
+				// skip to the first day and renumber to the last day of the month (take into account firstDayOfWeek)
+				i = cycleArray(_dayNames, firstDay.getDay(), - firstDayOfWeek);
 				var dayNumber:int = 1;
 				var numDays:Number = numberOfDaysInMonth(displayedMonth, displayedYear);
 				
@@ -344,7 +360,7 @@ package org.apache.royale.jewel.beads.models
 			{
 				i = 0;
 				var yearNumber:int = (navigateYearsChanged ? navigateYears : displayedYear ) - NUM_YEARS_VIEW/2;
-				while(i < NUM_YEARS_VIEW) 
+				while(i < NUM_YEARS_VIEW)// && yearNumber <= MINIMUM_YEAR && yearNumber >= MAXIMUM_YEAR) 
 				{
 					_years[i] = new Date(yearNumber + i++, displayedMonth, 1);
 				}

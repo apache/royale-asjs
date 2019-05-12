@@ -1538,6 +1538,7 @@ package mx.controls
 				var me:MenuEvent = new MenuEvent(event.type,
 					event.bubbles,
 					event.cancelable);
+                me.index = ListEvent(event).rowIndex;
 				me.item = ListEvent(event).itemRenderer.data;
 				me.label = (ListEvent(event).itemRenderer as ListItemRenderer).text;
 				return super.dispatchEvent(me);                     

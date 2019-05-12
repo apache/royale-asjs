@@ -20,13 +20,9 @@ package org.apache.royale.jewel
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
-
-    import org.apache.royale.core.IParent;
-    import org.apache.royale.core.IPopUpHost;
-    import org.apache.royale.core.IPopUpHostParent;
 
     /**
      *  Dispatched when the form validation succeeds.
