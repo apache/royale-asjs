@@ -58,9 +58,8 @@ package org.apache.royale.html.supportClasses
 			colorSpectrum.width =  300;
 			hueSelector = new HueSelector();
 			hueSelector.width = 20;
-			hueSelector.height = 280;
+			hueSelector.height = 300;
 			hueSelector.x = 310;
-			hueSelector.y = 0;
 			hueSelector.addEventListener("valueChange", hueChangeHandler);
 			COMPILE::JS 
 			{
