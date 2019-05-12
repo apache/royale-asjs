@@ -111,7 +111,7 @@ package org.apache.royale.html.beads
 			{
 				(host as IRenderedObject).element.style.background = "linear-gradient(to top, #000000, transparent), linear-gradient(to left, " + color + ", #ffffff)";
 			}
-			var hsvModifiedColor:uint = colorModel.hsvModifiedColor;
+			var hsvModifiedColor:uint = colorModel.hsvModifiedColor || colorModel.baseColor;
 			var r:uint = (hsvModifiedColor >> 16 ) & 255;
 			var g:uint = (hsvModifiedColor >> 8 ) & 255;
 			var b:uint = hsvModifiedColor & 255;
