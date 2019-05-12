@@ -19,6 +19,8 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.beads.layouts.TileLayout;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 *  The ColorPickerPopUpWithPalette class is used in ColorPicker. It contains a set of controls for picking a color, incluse a color palette.
@@ -45,13 +47,18 @@ package org.apache.royale.html.supportClasses
 		{
 			super();
 			colorPalette = new ColorPalette();
+			var colorPaletteLayout:TileLayout = loadBeadFromValuesManager(TileLayout, "iBeadLayout", colorPalette) as TileLayout;
+			colorPaletteLayout.rowHeight = colorPaletteLayout.columnWidth = 30;
+			var pwidth:Number = 300;
+			var margin:Number = 10;
+			colorPalette.width =  pwidth;
+			colorSpectrum.x = pwidth + margin;
 			COMPILE::JS 
 			{
-				colorPalette.element.style.position = "absolute";
+				colorSpectrum.element.style.position = "absolute";
 			}
-			colorPalette.y = colorSpectrum.height + 10;
-			colorPalette.x = colorSpectrum.x;
-			colorPalette.width =  300;
+			hueSelector.x += pwidth + margin;
+			
 		}
 		
 		override public function set model(value:Object):void
@@ -62,12 +69,6 @@ package org.apache.royale.html.supportClasses
 			{
 				addElement(colorPalette);
 			}
-		}
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-			colorPalette.dispatchEvent(new Event('layoutNeeded'));
 		}
 	}
 }
