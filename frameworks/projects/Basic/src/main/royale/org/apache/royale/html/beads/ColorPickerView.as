@@ -183,8 +183,6 @@ package org.apache.royale.html.beads
 			if (value && !list.visible) {
 				var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
 				(list as IColorPickerPopUp).model = model;
-				list.height = 200;
-				list.width = 200;
 				list.visible = true;
 				
 				var origin:Point = new Point(0, button.y+button.height);
