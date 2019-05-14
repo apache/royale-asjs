@@ -37,8 +37,8 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        function get color():uint;
-        function set color(value:uint):void;
+        function get color():Number;
+        function set color(value:Number):void;
 		
 	}
 }

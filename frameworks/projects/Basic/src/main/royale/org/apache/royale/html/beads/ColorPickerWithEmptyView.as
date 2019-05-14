@@ -16,46 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html
+package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IColorModel;
-	import org.apache.royale.core.UIBase;
-
-	[Event(name="change", type="org.apache.royale.events.Event")]
+	import org.apache.royale.utils.CSSUtils;
+	
 	/**
-	 *  The ColorPicker class is a component that lets you select a color
-	 * 
+	 *  The ColorPickerWithEmptyView overrides ColorPickerView methods to visibly indicate that a selection is empty
+	 *  
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ColorPicker extends UIBase
+	public class ColorPickerWithEmptyView extends ColorPickerView
 	{
-		/**
-		 *  Constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
-		 */
-		private var _color:uint;
-		public function ColorPicker()
+		public function ColorPickerWithEmptyView()
 		{
 			super();
-            
-            typeNames = "ColorPicker";
-		}
-
-		public function get color():Number 
-		{
-			return (model as IColorModel).color;
 		}
 		
-		public function set color(value:Number):void 
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IColorModel
+		 */
+		override protected function colorChangeAction():void
 		{
-			(model as IColorModel).color = value;
+			var model:IColorModel = _strand.getBeadByType(IColorModel) as IColorModel;
+			var isEmpty:Boolean = isNaN(model.color);
+			COMPILE::JS 
+			{
+				selectedColorDisplay.element.style.backgroundColor = isEmpty ? "transparent" : CSSUtils.attributeFromColor(model.color);
+			}		
 		}
 	}
 }

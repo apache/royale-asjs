@@ -52,11 +52,11 @@ package org.apache.royale.html.beads.models
 			dispatchEvent(new Event("change"));
 		}
 		
-		public function get color():uint
+		public function get color():Number
 		{
-			return uint(selectedItem);
+			return Number(selectedItem);
 		}
-		public function set color(value:uint):void
+		public function set color(value:Number):void
 		{
 			selectedItem = value;
 		}

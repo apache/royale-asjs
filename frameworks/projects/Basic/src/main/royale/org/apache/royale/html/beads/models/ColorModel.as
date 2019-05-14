@@ -61,7 +61,7 @@ package org.apache.royale.html.beads.models
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        public function get color():uint
+        public function get color():Number
 		{
 			return _color;
 		}
@@ -69,7 +69,7 @@ package org.apache.royale.html.beads.models
         /**
          *  @private
          */
-		public function set color(value:uint):void
+		public function set color(value:Number):void
 		{
 			_color = value;
 			dispatchEvent(new Event("change"));

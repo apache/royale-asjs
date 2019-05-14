@@ -54,6 +54,8 @@
     <component id="HueSelector" class="org.apache.royale.html.HueSelector"/>
     <component id="ColorPickerPopUpWithPalette" class="org.apache.royale.html.supportClasses.ColorPickerPopUpWithPalette"/>
     <component id="ColorPickerPopUp" class="org.apache.royale.html.supportClasses.ColorPickerPopUp"/>
+    <component id="ColorPickerView" class="org.apache.royale.html.beads.ColorPickerView"/>
+    <component id="ColorPickerWithEmptyView" class="org.apache.royale.html.beads.ColorPickerWithEmptyView"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
     <component id="CSSCheckBox" class="org.apache.royale.html.CSSCheckBox"/>
     <component id="RadioButton" class="org.apache.royale.html.RadioButton"/>
