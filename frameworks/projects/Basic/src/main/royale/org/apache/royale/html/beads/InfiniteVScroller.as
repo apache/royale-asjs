@@ -125,7 +125,7 @@ package org.apache.royale.html.beads
 			}
 		}
 		COMPILE::JS
-		private var lastTime:int = 0;
+		private var lastTime:Number = 0;
 		
 		COMPILE::JS
 		private var lastTop:Number = 0;
@@ -145,7 +145,7 @@ package org.apache.royale.html.beads
 
 			if(elem.offsetHeight + top >= elem.scrollHeight - _offset)
 			{
-				var time:int = new Date().getTime();
+				var time:Number = new Date().getTime();
 				if(time - lastTime < _interval)
 					return;
 				lastTime = time;

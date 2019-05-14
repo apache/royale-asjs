@@ -147,7 +147,7 @@ package org.apache.royale.net
 			}
 		}
 		
-		private var _contentData:String;
+		private var _contentData:Object;
 
         /**
          *  The text to send to the server, if any.
@@ -157,7 +157,7 @@ package org.apache.royale.net
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function get contentData():String
+		public function get contentData():Object
 		{
 			return _contentData;
 		}
@@ -165,7 +165,7 @@ package org.apache.royale.net
         /**
          *  @private
          */
-		public function set contentData(value:String):void
+		public function set contentData(value:Object):void
 		{
 			if (_contentData != value)
 			{
@@ -575,12 +575,18 @@ package org.apache.royale.net
                     if (method == HTTPConstants.GET)
                     {
                         if (url.indexOf("?") != -1)
+                        {
                             url += contentData;
+                        }
                         else
+                        {
                             url += "?" + contentData;
+                        }
                     }
                     else
+                    {
                         request.data = contentData;
+                    }
                 }
                 urlLoader.addEventListener(flash.events.Event.COMPLETE, completeHandler);
                 urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
@@ -589,6 +595,7 @@ package org.apache.royale.net
                 urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, statusHandler);
                 urlLoader.load(request);
             }
+
             COMPILE::JS
             {
                 var element:XMLHttpRequest = this.element as XMLHttpRequest;
@@ -596,27 +603,34 @@ package org.apache.royale.net
                 
                 url = _url;
                 
-                var contentData:String = null;
-                if (_contentData != null) {
-                    if (_method == HTTPConstants.GET) {
-                        if (url.indexOf('?') != -1) {
-                            url += _contentData;
-                        } else {
-                            url += '?' + _contentData;
+                var currentData:Object = null;
+                if (contentData != null)
+                {
+                    if (method == HTTPConstants.GET)
+                    {
+                        if (url.indexOf('?') != -1)
+                        {
+                            url += String(contentData);
                         }
-                    } else {
-                        contentData = _contentData;
+                        else
+                        {
+                            url += '?' + String(contentData);
+                        }
+                    }
+                    else
+                    {
+                        currentData = contentData;
                     }
                 }
                 
-                element.open(_method, _url, true);
-                element.timeout = _timeout;
+                element.open(method, url, true);
+                element.timeout = timeout;
                 
                 var sawContentType:Boolean = false;
-                if (_headers) {
-                    var n:int = _headers.length;
+                if (headers) {
+                    var n:int = headers.length;
                     for (var i:int = 0; i < n; i++) {
-                        var header:HTTPHeader = _headers[i];
+                        var header:HTTPHeader = headers[i];
                         if (header.name == HTTPHeader.CONTENT_TYPE) {
                             sawContentType = true;
                         }
@@ -625,15 +639,18 @@ package org.apache.royale.net
                     }
                 }
                 
-                if (_method != HTTPConstants.GET &&
-                    !sawContentType && contentData) {
-                    element.setRequestHeader(
-                        HTTPHeader.CONTENT_TYPE, _contentType);
+                if (method != HTTPConstants.GET &&
+                    !sawContentType && currentData)
+                {
+                    element.setRequestHeader(HTTPHeader.CONTENT_TYPE, contentType);
                 }
                 
-                if (contentData) {
-                    element.send(contentData);
-                } else {
+                if (currentData)
+                {
+                    element.send(currentData);
+                }
+                else
+                {
                     element.send();
                 }
 
