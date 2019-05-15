@@ -65,7 +65,7 @@ package org.apache.royale.html.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-		public function get baseColor():uint
+		public function get baseColor():Number
 		{
 			return IColorSpectrumModel(model).baseColor;
 		}
@@ -77,7 +77,7 @@ package org.apache.royale.html.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-		public function set baseColor(value:uint):void
+		public function set baseColor(value:Number):void
 		{
 			IColorSpectrumModel(model).baseColor = value;
 		}
@@ -90,7 +90,7 @@ package org.apache.royale.html.supportClasses
          *  @productversion Royale 0.9.6
          */
 		[Bindable(event="change")]
-		public function get hsvModifiedColor():uint
+		public function get hsvModifiedColor():Number
 		{
 			return IColorSpectrumModel(model).hsvModifiedColor;
 		}

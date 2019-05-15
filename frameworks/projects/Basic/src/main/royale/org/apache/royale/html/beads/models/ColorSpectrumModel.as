@@ -36,9 +36,9 @@ package org.apache.royale.html.beads.models
      */
 	public class ColorSpectrumModel extends EventDispatcher implements IColorSpectrumModel
 	{
-		private var _color:uint;
-		private var _baseColor:uint;
-		private var _hsvModifiedColor:uint;
+		private var _color:Number;
+		private var _baseColor:Number;
+		private var _hsvModifiedColor:Number;
         /**
          *  Constructor.
          *  
@@ -63,7 +63,7 @@ package org.apache.royale.html.beads.models
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        public function get baseColor():uint
+        public function get baseColor():Number
 		{
 			return _baseColor;
 		}
@@ -71,7 +71,7 @@ package org.apache.royale.html.beads.models
         /**
          *  @private
          */
-        public function set baseColor(value:uint):void
+        public function set baseColor(value:Number):void
 		{
 			_baseColor = value;
 			dispatchEvent(new Event("baseColorChange"));
@@ -84,7 +84,7 @@ package org.apache.royale.html.beads.models
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-        public function get hsvModifiedColor():uint
+        public function get hsvModifiedColor():Number
 		{
 			return _hsvModifiedColor;
 		}
@@ -92,7 +92,7 @@ package org.apache.royale.html.beads.models
         /**
          *  @private
          */
-        public function set hsvModifiedColor(value:uint):void
+        public function set hsvModifiedColor(value:Number):void
 		{
 			_hsvModifiedColor = value;
 			dispatchEvent(new Event("hsvModifiedColorChange"));
