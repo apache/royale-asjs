@@ -54,7 +54,7 @@ package org.apache.royale.html.beads.models
 		
 		public function get color():Number
 		{
-			return Number(selectedItem);
+			return selectedItem == null ? NaN : Number(selectedItem);
 		}
 		public function set color(value:Number):void
 		{
