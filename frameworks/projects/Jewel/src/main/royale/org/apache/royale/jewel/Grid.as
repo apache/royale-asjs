@@ -23,7 +23,7 @@ package org.apache.royale.jewel
 
 	/**
 	 *  The Grid class is a container that uses Grid Layout.
-	 *  Grid Layout need other inmediate children to work as cells
+	 *  Grid Layout need other immediate children to work as cells
 	 *  to host cell content.
 	 *  
 	 *  @langversion 3.0
