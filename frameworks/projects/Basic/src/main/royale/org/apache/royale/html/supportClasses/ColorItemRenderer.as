@@ -56,26 +56,12 @@ package org.apache.royale.html.supportClasses
 		 *  @productversion Royale 0.9.6
 		 *  @royaleignorecoercion String
 		 */
+		
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-			COMPILE::JS
-			{
-				var color:uint;
-				if (!isNaN(value))
-				{
-					color = uint(value);
-				} else if (dataField)
-				{
-					color = uint(data[dataField]);
-				} else
-				{
-					color = 0x000000;
-				}
-				element.style.backgroundColor = CSSUtils.attributeFromColor(color);
-			}
+			updateRenderer();
 		}
-
 
 		/**
 		 * @private
@@ -93,12 +79,18 @@ package org.apache.royale.html.supportClasses
 			}
 			COMPILE::JS
 			{
-//				if (selected)
-//					element.style.backgroundColor = '#9C9C9C';
-//				else if (hovered)
-//					element.style.backgroundColor = '#ECECEC';
-//				else
-//					element.style.backgroundColor = 'transparent';
+				var color:uint;
+				if (!isNaN(data))
+				{
+					color = uint(data);
+				} else if (dataField)
+				{
+					color = uint(data[dataField]);
+				} else
+				{
+					color = 0x000000;
+				}
+				element.style.backgroundColor = CSSUtils.attributeFromColor(color);
 			}
 		}
 	}
