@@ -62,7 +62,7 @@
           </includeFiles>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-js-output-optimization=skipAsCoercions</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-js-output-optimization=skipAsCoercions</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

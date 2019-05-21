@@ -63,7 +63,7 @@
           </includeFiles>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-include-lookup-only</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-include-lookup-only</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

@@ -111,7 +111,7 @@
           </includeClasses>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true;-compiler.byte-array-embed-class=org.apache.royale.core.ByteArrayAsset</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-compiler.byte-array-embed-class=org.apache.royale.core.ByteArrayAsset</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
