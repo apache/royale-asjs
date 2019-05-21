@@ -52,8 +52,8 @@
 	<property name="rat.report" value="${basedir}/rat-report.txt"/>
     <property name="apache.rat.jar" value="apache-rat-0.11.jar" />
     <property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.11.jar" />
-    <property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
-    <property name="apache.rat.tasks.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
+    <property name="apache.rat.url" value="https://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
+    <property name="apache.rat.tasks.url" value="https://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
     
 	<property file="${basedir}/local.properties" />
 	<property file="${basedir}/build.properties" />
