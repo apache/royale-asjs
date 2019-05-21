@@ -34,7 +34,7 @@
 
   <properties>
     <!-- TODO: This is a fix till we release this via Maven -->
-    <pixelbender.download-url>http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/flex/pixelbender/1.0/binaries/apache-flex-sdk-pixel-bender-1.0.0-bin.zip</pixelbender.download-url>
+    <pixelbender.download-url>https://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/flex/pixelbender/1.0/binaries/apache-flex-sdk-pixel-bender-1.0.0-bin.zip</pixelbender.download-url>
   </properties>
 
   <build>

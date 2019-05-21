@@ -28,6 +28,11 @@
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
+    <tstamp>
+        <format property="royale.swc-date" pattern="MM/dd/yy HH:mm Z"/>
+    </tstamp>
+    <echo>swc-date is ${royale.swc-date}</echo>
+
     <echo file="${basedir}/${target.name}.properties">target.name.nojs=${ant.project.name}</echo>
     <replaceregexp file="${basedir}/${target.name}.properties" match="(.*)JS$" replace="\1" flags="m" />
     <property file="${basedir}/${target.name}.properties"/>
@@ -62,6 +67,8 @@
             <arg value="-warn-public-vars=false" />
             <arg value="-js-output-optimization=skipAsCoercions"/>
             <arg value="-compiler.targets=SWF,JSRoyale" />
+            <arg value="-metadata.date=&quot;${royale.swc-date}&quot;" />
+            <arg value="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-load-config+=${basedir}/src/main/config/compile-js-config.xml" />
