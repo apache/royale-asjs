@@ -60,7 +60,7 @@
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}" />
 
-    <target name="main" depends="check-compile-env,clean,prepare,compile,fonts"
+    <target name="main" depends="check-compile-env,clean,prepare,compile,test,fonts"
         description="Clean build of all SWCs"/>
 
     <target name="check-compile-env" description="Check for the required environment variables">
@@ -118,8 +118,6 @@
         <antcall target="Collections"/>
         <antcall target="Basic"/>
         <antcall target="Ace"/>
-        <antcall target="RoyaleUnitTest"/>
-        <antcall target="CoreTest"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
         <antcall target="Flat"/>
@@ -145,6 +143,12 @@
         <antcall target="Jewel"/>
         <antcall target="JewelTheme"/>
 		<antcall target="Icons"/>
+    </target>
+
+    <target name="test" description="Tests all SWCs">
+        <antcall target="RoyaleUnitTest"/>
+        <antcall target="CoreTest"/>
+        <antcall target="BasicTest"/>
     </target>
 
     <target name="fonts">
@@ -289,6 +293,10 @@
 
     <target name="Basic" description="Clean build of Basic.swc">
         <ant dir="${basedir}/projects/Basic"/>
+    </target>
+
+    <target name="BasicTest" description="Test of Basic.swc">
+        <ant dir="${basedir}/projects/Basic" target="test"/>
     </target>
 
     <target name="HTML" description="Clean build of HTML.swc">
