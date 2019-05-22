@@ -77,46 +77,32 @@
         </copy>
     </target>
 
-    <target name="check-compiler" depends="check-compiler-home, check-transpiler-home">
+    <target name="check-compiler" depends="check-compiler-home,check-transpiler-home">
         <path id="lib.path">
             <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
         </path>
         <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
     </target>
-
-    <target name="check-compiler-home" unless="ROYALE_SWF_COMPILER_HOME"
-        description="Check ROYALE_SWF_COMPILER_HOME is a directory.">
+    
+    <target name="check-compiler-home"
+        description="Set ROYALE_SWF_COMPILER_HOME to point at the compiler.">
         
-        <echo message="ROYALE_SWF_COMPILER_HOME is ${env.ROYALE_SWF_COMPILER_HOME}"/>
-        
-        <available file="${env.ROYALE_SWF_COMPILER_HOME}/lib/compiler-mxmlc.jar"
+        <available file="${ROYALE_HOME}/lib/compiler-mxmlc.jar"
         type="file"
         property="ROYALE_SWF_COMPILER_HOME"
-        value="${env.ROYALE_SWF_COMPILER_HOME}"/>
+        value="${ROYALE_HOME}"/>
         
-        <available file="${ROYALE_HOME}/../royale-compiler/compiler/lib/compiler-mxmlc.jar"
-        type="file"
-        property="ROYALE_SWF_COMPILER_HOME"
-        value="${ROYALE_HOME}/../royale-compiler/compiler"/>
-        
-        <fail message="ROYALE_SWF_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or a Royale SDK folder"
+        <fail message="ROYALE_SWF_COMPILER_HOME must be set to a folder with a lib sub-folder containing compiler-mxmlc.jar such as the compiler folder in royale-compiler repo or the root of a Royale SDK"
         unless="ROYALE_SWF_COMPILER_HOME"/>
     </target>
-
-    <target name="check-transpiler-home" unless="ROYALE_COMPILER_HOME"
-        description="Check ROYALE_SWF_COMPILER_HOME is a directory.">
+    
+    <target name="check-transpiler-home"
+        description="Set ROYALE_COMPILER_HOME to point at the cross-compiler.">
         
-        <echo message="ROYALE_COMPILER_HOME is ${env.ROYALE_COMPILER_HOME}"/>
-        
-        <available file="${env.ROYALE_COMPILER_HOME}/lib/jsc.jar"
+        <available file="${ROYALE_HOME}/js/lib/jsc.jar"
         type="file"
         property="ROYALE_COMPILER_HOME"
-        value="${env.ROYALE_COMPILER_HOME}"/>
-        
-        <available file="${ROYALE_HOME}/../royale-compiler/compiler-jx/lib/jsc.jar"
-        type="file"
-        property="ROYALE_COMPILER_HOME"
-        value="${ROYALE_HOME}/../royale-compiler/compiler-jx"/>
+        value="${ROYALE_HOME}/js"/>
         
         <fail message="ROYALE_COMPILER_HOME must be set to a folder with a lib sub-folder containing jsc.jar such as the compiler-jx folder in royale-compiler repo or the js folder of a Royale SDK"
         unless="ROYALE_COMPILER_HOME"/>
