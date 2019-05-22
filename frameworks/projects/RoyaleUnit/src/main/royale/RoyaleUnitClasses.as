@@ -38,6 +38,7 @@ internal class RoyaleUnitClasses
 	import org.apache.royale.test.asserts.assertStrictlyEquals;assertStrictlyEquals;
 	import org.apache.royale.test.asserts.assertTrue;assertTrue;
 	import org.apache.royale.test.asserts.fail;fail;
+	import org.apache.royale.test.listeners.CIListener;CIListener;
 	import org.apache.royale.test.listeners.FailureListener;FailureListener;
 	import org.apache.royale.test.listeners.TraceListener;TraceListener
 	import org.apache.royale.test.runners.ITestRunner;ITestRunner;
@@ -49,10 +50,5 @@ internal class RoyaleUnitClasses
 	import org.apache.royale.test.runners.notification.IRunNotifier;IRunNotifier;
 	import org.apache.royale.test.runners.notification.Result;Result;
 	import org.apache.royale.test.runners.notification.RunNotifier;RunNotifier;
-
-	COMPILE::SWF
-	{
-		import org.apache.royale.test.listeners.CIListener;CIListener;
-	}
 }
 }
