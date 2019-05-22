@@ -108,10 +108,7 @@
 			haltonfailure="false"
 			verbose="true"
 			localTrusted="true"
-			timeout="90000">
-            <source dir="${ROYALE_HOME}/frameworks/projects/RoyaleUnit/src/main/royale" />
-            <library dir="${ROYALE_HOME}/frameworks/libs" />
-        </royaleunit>
+			timeout="90000" />
         
 		<!-- Generate readable JUnit-style reports -->
 		<junitreport todir="${report.dir}">

@@ -21,7 +21,6 @@
     <compiler>
         <accessible>false</accessible>
         
-        <!-- build both SWF and JS. -->
         <targets>
             <target>SWF</target>
         </targets>
@@ -41,6 +40,7 @@
             <path-element>../../../../../libs/Core.swc</path-element>
             <path-element>../../../../../libs/Graphics.swc</path-element>
             <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Language.swc</path-element>
             <path-element>../../../../../libs/Reflection.swc</path-element>
             <path-element>../../../../../libs/RoyaleUnit.swc</path-element>
         </library-path>
@@ -51,28 +51,20 @@
             <path-element>../../../../../js/libs/CoreJS.swc</path-element>
             <path-element>../../../../../js/libs/GraphicsJS.swc</path-element>
             <path-element>../../../../../js/libs/CollectionsJS.swc</path-element>
+            <path-element>../../../../../js/libs/LanguageJS.swc</path-element>
             <path-element>../../../../../js/libs/ReflectionJS.swc</path-element>
             <path-element>../../../../../js/libs/RoyaleUnitJS.swc</path-element>
         </js-library-path>
         
         <allow-subclass-overrides>true</allow-subclass-overrides>
         
-		<mxml>
-			<children-as-data>true</children-as-data>
-		</mxml>
-		<binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
-		<binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
-		<binding-value-change-event-type>valueChange</binding-value-change-event-type>
+      <mxml>
+          <children-as-data>true</children-as-data>
+      </mxml>
+      <binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+      <binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
+      <binding-value-change-event-type>valueChange</binding-value-change-event-type>
         <fxg-base-class>flash.display.Sprite</fxg-base-class>
-
-        <define>
-            <name>COMPILE::SWF</name>
-            <value>true</value>
-        </define>
-        <define>
-            <name>COMPILE::JS</name>
-            <value>false</value>
-        </define>
 
         <keep-as3-metadata>
           <name>Bindable</name>
@@ -92,7 +84,7 @@
           <name>Suite</name>
           <name>RunWith</name>
         </keep-as3-metadata>
-	  
+    
         <locale/>
         
         <library-path/>
@@ -116,6 +108,5 @@
     </compiler>
     
     <target-player>${playerglobal.version}</target-player>
-	
 
 </royale-config>

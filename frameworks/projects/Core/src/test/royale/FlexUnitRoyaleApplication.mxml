@@ -28,10 +28,14 @@ limitations under the License.
     </fx:Declarations>
     <fx:Script>
         <![CDATA[
-            import flash.system.fscommand;
+            COMPILE::SWF
+            {
+                import flash.system.fscommand;
+            }
 
             import flexUnitTests.CoreTester;
             
+            import org.apache.royale.events.Event;
             import org.apache.royale.test.listeners.CIListener;
             
             public function runTests():void
@@ -43,7 +47,10 @@ limitations under the License.
 
             private function core_completeHandler(event:Event):void
             {
-                fscommand("quit");
+                COMPILE::SWF
+                {
+                    fscommand("quit");
+                }
             }
             
         ]]>
