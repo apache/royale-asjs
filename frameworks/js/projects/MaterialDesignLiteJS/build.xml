@@ -37,6 +37,18 @@
     <target name="main" depends="clean,check-compiler,compile" description="Full build of ${ant.project.name}.swc">
     </target>
     
+    <target name="check-for-tests" >
+        <condition property="skip-tests" >
+            <not>
+                <available file="${basedir}/src/test/royale/build.xml" />
+            </not>
+        </condition>
+    </target>
+    
+    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
+        <ant dir="src/test/royale" />
+    </target>
+    
     <target name="clean">
         <delete failonerror="false">
             <fileset dir="${ROYALE_HOME}/frameworks/js/libs">
@@ -48,6 +60,11 @@
                 <include name="**/**"/>
             </fileset>
         </delete>
+        <antcall target="clean-tests" />
+    </target>
+    
+    <target name="clean-tests" depends="check-for-tests" unless="skip-tests">
+        <ant dir="src/test/royale" target="clean"/>
     </target>
     
     <target name="compile" depends="check-compiler">
