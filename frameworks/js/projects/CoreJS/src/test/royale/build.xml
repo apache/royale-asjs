@@ -30,9 +30,9 @@
     <property name="target.name" value="CoreJS-${release.version}.swc" />
 
     <!--
-        Windows:
+        Windows browser:
             try chrome first because it's the most popular browser
-            then, fall back to firefox
+            otherwise, try to fall back to firefox
             DON'T use internet explorer! it cannot run scripts in local pages
     -->
     <condition property="browser" value="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe">
@@ -47,8 +47,24 @@
             <available file="C:/Program Files/Mozilla Firefox/firefox.exe"/>
         </and>
     </condition>
-    <condition property="browser" value="/Applications/Safari.app/Contents/MacOS/Safari">
-        <os family="mac"/>
+
+    <!--
+        macOS browser:
+            try chrome first because it's the most popular browser
+            otherwise, try to fall back to firefox
+            DON'T use safari! it asks the user to confirm opening local pages
+    -->
+    <condition property="browser" value="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome">
+        <and>
+            <os family="mac"/>
+            <available file="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"/>
+        </and>
+    </condition>
+    <condition property="browser" value="/Applications/Firefox.app/Contents/MacOS/firefox">
+        <and>
+            <os family="mac"/>
+            <available file="/Applications/Firefox.app/Contents/MacOS/firefox"/>
+        </and>
     </condition>
 
     <property name="report.dir" value="${basedir}/out" />
