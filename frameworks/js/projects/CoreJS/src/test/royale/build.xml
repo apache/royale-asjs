@@ -79,6 +79,16 @@
         </and>
     </condition>
 
+    <!--
+        Linux/Unix browser
+    -->
+    <condition property="royaleunit.browser" value="/usr/bin/firefox">
+        <and>
+            <os family="unix"/>
+            <available file="/usr/bin/firefox"/>
+        </and>
+    </condition>
+
     <property name="report.dir" value="${basedir}/out" />
 
     <target name="main" depends="clean,compile,test" description="Clean test of ${target.name}">
