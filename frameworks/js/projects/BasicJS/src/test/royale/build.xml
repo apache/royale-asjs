@@ -139,7 +139,22 @@
         </mxmlc>
     </target>
 
-    <target name="test" if="royaleunit.browser">
+    <target name="check-royaleunit-browser" if="royaleunit.browser" unless="skip-tests">
+        <!--
+            if the royaleunit.browser property was provided manually,
+            check if the file actually exists
+        -->
+        <condition property="royaleunit.browser.exists">
+            <and>
+                <isset property="royaleunit.browser" />
+                <available file="${royaleunit.browser}" type="file" />
+            </and>
+        </condition>
+        
+        <fail unless="royaleunit.browser.exists" message="Invalid royaleunit.browser path: &quot;${royaleunit.browser}&quot;. To skip RoyaleUnit tests, use -Dskip-tests." />
+    </target>
+
+    <target name="test" depends="check-royaleunit-browser" if="royaleunit.browser.exists" unless="skip-tests">
         <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
         <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
