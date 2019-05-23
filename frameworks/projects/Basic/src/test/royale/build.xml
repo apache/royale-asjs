@@ -29,13 +29,6 @@
     <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
     <property name="target.name" value="Core-${release.version}.swc" />
 
-	<condition property="browser" value="C:/Program Files/Internet Explorer/iexplore.exe">
-		<os family="windows"/>
-    </condition>
-    <condition property="browser" value="/Applications/Safari.app/Contents/MacOS/Safari">
-        <os family="mac"/>
-    </condition>
-
     <property name="report.dir" value="${basedir}/out" />
 
     <target name="main" depends="clean,compile,test" description="Clean test of ${target.name}">
