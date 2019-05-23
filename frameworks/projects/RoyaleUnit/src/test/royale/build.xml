@@ -98,7 +98,7 @@
             swf="${basedir}/FlexUnitRoyaleApplication.swf"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"
-			haltonfailure="true"
+			haltonfailure="false"
 			verbose="true"
 			localTrusted="true"
 			timeout="90000" />
