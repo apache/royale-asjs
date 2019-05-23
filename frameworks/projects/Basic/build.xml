@@ -60,7 +60,8 @@
     
     <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
-        <antcall target="test-js" />
+        <!-- temporarily disabled because royaleunit task crashes on macOS -->
+        <!--<antcall target="test-js" />-->
     </target>
     
     <target name="test-js">
