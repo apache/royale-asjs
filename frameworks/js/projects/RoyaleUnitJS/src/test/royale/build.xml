@@ -35,16 +35,28 @@
             otherwise, try to fall back to firefox
             DON'T use internet explorer! it cannot run scripts in local pages
     -->
-    <condition property="browser" value="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe">
+    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe">
         <and>
             <os family="windows"/>
-            <available file="C:/Program Files (x86)/Google/Chrome/Application/chrome.exe"/>
+            <available file="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe"/>
         </and>
     </condition>
-    <condition property="browser" value="C:/Program Files/Mozilla Firefox/firefox.exe">
+    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe">
         <and>
             <os family="windows"/>
-            <available file="C:/Program Files/Mozilla Firefox/firefox.exe"/>
+            <available file="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"/>
         </and>
     </condition>
 
@@ -54,13 +66,13 @@
             otherwise, try to fall back to firefox
             DON'T use safari! it asks the user to confirm opening local pages
     -->
-    <condition property="browser" value="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome">
+    <condition property="royaleunit.browser" value="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome">
         <and>
             <os family="mac"/>
             <available file="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"/>
         </and>
     </condition>
-    <condition property="browser" value="/Applications/Firefox.app/Contents/MacOS/firefox">
+    <condition property="royaleunit.browser" value="/Applications/Firefox.app/Contents/MacOS/firefox">
         <and>
             <os family="mac"/>
             <available file="/Applications/Firefox.app/Contents/MacOS/firefox"/>
@@ -127,7 +139,7 @@
         </mxmlc>
     </target>
 
-    <target name="test" if="browser">
+    <target name="test" if="royaleunit.browser">
         <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
         <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
@@ -135,7 +147,7 @@
 		<royaleunit
             player="html"
             swf="${basedir}/target/bin/js-debug/index.html"
-            command="${browser}"
+            command="${royaleunit.browser}"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"
 			haltonfailure="false"
