@@ -211,8 +211,8 @@
         <delete file="${artifactfolder}/loop1.txt" />
     </target>
     
-    <target name="compare_files" depends="is_theme,compare_theme,compare_swc" />
-    <target name="compare_swc" unless="theme">
+    <target name="compare_files" depends="is_theme,compare_swc,compare_theme" />
+    <target name="compare_swc">
         <echo>comparing ${artifactid}-${release.version}-js.swc</echo>
         <fail message="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-js.swc does not exist" >
             <condition>
@@ -221,16 +221,16 @@
                 </not>
             </condition>
         </fail>
-        <fail message="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-js.swc does not exist" >
+        <fail message="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-js.swc does not exist" >
             <condition>
                 <not>
-                    <resourceexists><file file="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-js.swc"/></resourceexists>
+                    <resourceexists><file file="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-js.swc"/></resourceexists>
                 </not>
             </condition>
         </fail>
         <condition property="filesmatch" value="true">
             <filesmatch file1="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-js.swc"
-            file2="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-js.swc" />
+            file2="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-js.swc" />
         </condition>
         <fail message="${artifactid}-${release.version}-js.swc does not match" unless="filesmatch" />
         <echo>comparing ${artifactid}-${release.version}-swf.swc</echo>
@@ -241,18 +241,18 @@
                 </not>
             </condition>
         </fail>
-        <fail message="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-js.swc does not exist" >
+        <fail message="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-js.swc does not exist" >
             <condition>
                 <not>
-                    <resourceexists><file file="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-swf.swc"/></resourceexists>
+                    <resourceexists><file file="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-swf.swc"/></resourceexists>
                 </not>
             </condition>
         </fail>
-        <condition property="filesmatch" value="true">
+        <condition property="filesmatch1" value="true">
             <filesmatch file1="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-swf.swc"
             file2="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-swf.swc" />
         </condition>
-        <fail message="${artifactid}-${release.version}-swf.swc does not match" unless="filesmatch" />
+        <fail message="${artifactid}-${release.version}-swf.swc does not match" unless="filesmatch1" />
         <echo>comparing ${artifactid}-${release.version}.swc</echo>
         <fail message="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}.swc does not exist" >
             <condition>
@@ -261,44 +261,47 @@
                 </not>
             </condition>
         </fail>
-        <fail message="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}.swc does not exist" >
+        <fail message="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}.swc does not exist" >
             <condition>
                 <not>
-                    <resourceexists><file file="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}.swc"/></resourceexists>
+                    <resourceexists><file file="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}.swc"/></resourceexists>
                 </not>
             </condition>
         </fail>
-        <condition property="filesmatch" value="true">
+        <condition property="filesmatch2" value="true">
             <filesmatch file1="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}.swc"
-            file2="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}.swc" />
+            file2="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}.swc" />
         </condition>
-        <fail message="${artifactid}-${release.version}.swc does not match" unless="filesmatch" />
+        <fail message="${artifactid}-${release.version}.swc does not match" unless="filesmatch2" />
     </target>
     <target name="compare_theme" if="theme">
-        <echo>comparing ${artifactid}-${release.version}-framework.swc</echo>
-        <fail message="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-framework.swc does not exist" >
+        <echo>comparing ${artifactid}-${release.version}-typedefs.swc</echo>
+        <fail message="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc does not exist" >
             <condition>
                 <not>
-                    <resourceexists><file file="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-framework.swc"/></resourceexists>
+                    <resourceexists><file file="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"/></resourceexists>
                 </not>
             </condition>
         </fail>
-        <fail message="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-framework.swc does not exist" >
+        <fail message="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-extern.swc does not exist" >
             <condition>
                 <not>
-                    <resourceexists><file file="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-framework.swc"/></resourceexists>
+                    <resourceexists><file file="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-extern.swc"/></resourceexists>
                 </not>
             </condition>
         </fail>
         <condition property="filesmatch" value="true">
-            <filesmatch file1="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-framework.swc"
-            file2="${artifactfolder}/sources/${thisFile}/target/${artifactid}-${release.version}-framework.swc" />
+            <filesmatch file1="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"
+            file2="${artifactfolder}/sources/frameworks/${theme_or_project}/${thisFile}/target/${artifactid}-${release.version}-extern.swc" />
         </condition>
-        <fail message="${artifactid}-${release.version}-framework.swc does not match" unless="filesmatch" />
+        <fail message="${artifactid}-${release.version}-typedefs.swc does not match" unless="filesmatch" />
     </target>
     <target name="is_theme">
         <condition property="theme">
-            <resourceexists><file file="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-framework.swc"/></resourceexists>
+            <resourceexists><file file="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"/></resourceexists>
+        </condition>
+        <condition property="theme_or_project" value="themes" else="projects">
+            <resourceexists><file file="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${artifactid}/${release.version}/${artifactid}-${release.version}-typedefs.swc"/></resourceexists>
         </condition>
     </target>
 
@@ -702,7 +705,7 @@
     
     <target name="sign-theme-artifacts" depends="sign-swc-artifacts">
         <antcall target="sign-file" >
-            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-framework.swc" />
+            <param name="file" value="${artifactfolder}/artifacts/archive/target/checkout/release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-typedefs.swc" />
         </antcall>
     </target>
     
