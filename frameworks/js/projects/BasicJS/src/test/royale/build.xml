@@ -19,15 +19,75 @@
 -->
 
 
-<project name="RoyaleUnit.test" default="main" basedir=".">
-    <property name="ROYALE_HOME" location="../../../../../.."/>
+<project name="BasicJS.test" default="main" basedir=".">
+    <property name="ROYALE_HOME" location="../../../../../../.."/>
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${env.ROYALE_HOME}"/>
     <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
-    <property name="target.name" value="RoyaleUnit-${release.version}.swc" />
+    <property name="target.name" value="BasicJS-${release.version}.swc" />
+
+    <!--
+        Windows browser:
+            try chrome first because it's the most popular browser
+            otherwise, try to fall back to firefox
+            DON'T use internet explorer! it cannot run scripts in local pages
+    -->
+    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles}/Google/Chrome/Application/chrome.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles(x86)}/Google/Chrome/Application/chrome.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles}/Mozilla Firefox/firefox.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles}/Mozilla Firefox/firefox.exe"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe">
+        <and>
+            <os family="windows"/>
+            <available file="${env.ProgramFiles(x86)}/Mozilla Firefox/firefox.exe"/>
+        </and>
+    </condition>
+
+    <!--
+        macOS browser:
+            try chrome first because it's the most popular browser
+            otherwise, try to fall back to firefox
+            DON'T use safari! it asks the user to confirm opening local pages
+    -->
+    <condition property="royaleunit.browser" value="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome">
+        <and>
+            <os family="mac"/>
+            <available file="/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"/>
+        </and>
+    </condition>
+    <condition property="royaleunit.browser" value="/Applications/Firefox.app/Contents/MacOS/firefox">
+        <and>
+            <os family="mac"/>
+            <available file="/Applications/Firefox.app/Contents/MacOS/firefox"/>
+        </and>
+    </condition>
+
+    <!--
+        Linux/Unix browser
+    -->
+    <condition property="royaleunit.browser" value="/usr/bin/firefox">
+        <and>
+            <os family="unix"/>
+            <available file="/usr/bin/firefox"/>
+        </and>
+    </condition>
 
     <property name="report.dir" value="${basedir}/out" />
 
@@ -52,8 +112,8 @@
       <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="royaleUnitTasks.jar"/>
     </path>
 
-    <target name="compile" description="Compiles FlexUnitRoyaleApplication.swf">
-        <echo message="Compiling FlexUnitRoyaleApplication.swf"/>
+    <target name="compile" description="Cross-compiles tests">
+        <echo message="Cross-compiling tests"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="playerglobal.version: ${playerglobal.version}"/>
@@ -74,8 +134,7 @@
             into the file bundles.properties in this directory.
         -->
         <mxmlc fork="true"
-            file="${basedir}/FlexUnitRoyaleApplication.mxml"
-            output="${basedir}/FlexUnitRoyaleApplication.swf">
+            file="${basedir}/../../../../../../projects/Basic/src/test/royale/FlexUnitRoyaleApplication.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <!--
             <jvmarg value="-Xdebug" />
@@ -83,19 +142,37 @@
             <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8763,server=y,suspend=y" />
              -->
             <arg value="-debug" />
-            <arg value="-compiler.targets=SWF" />
+            <arg value="-compiler.targets=JSRoyale" />
+            <arg value="-js-output=target" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
         </mxmlc>
     </target>
 
-    <target name="test">
+    <target name="check-royaleunit-browser" if="royaleunit.browser" unless="skip-tests">
+        <!--
+            if the royaleunit.browser property was provided manually,
+            check if the file actually exists
+        -->
+        <condition property="royaleunit.browser.exists">
+            <and>
+                <isset property="royaleunit.browser" />
+                <available file="${royaleunit.browser}" type="file" />
+            </and>
+        </condition>
+        
+        <fail unless="royaleunit.browser.exists" message="Invalid royaleunit.browser path: &quot;${royaleunit.browser}&quot;. To skip RoyaleUnit tests, use -Dskip-tests." />
+    </target>
+
+    <target name="test" depends="check-royaleunit-browser" if="royaleunit.browser.exists" unless="skip-tests">
         <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
         <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
 		<mkdir dir="${report.dir}" />
 		<royaleunit
-            swf="${basedir}/FlexUnitRoyaleApplication.swf"
+            player="html"
+            swf="${basedir}/target/bin/js-debug/index.html"
+            command="${royaleunit.browser}"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"
 			haltonfailure="true"

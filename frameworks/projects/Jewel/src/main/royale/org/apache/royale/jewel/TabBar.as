@@ -27,7 +27,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ISelectionModel;
 
 	/**
-	 *  The Navigation class is a List used for navigate other organized content
+	 *  The TabBar class is a List used for navigate other organized content
 	 *  in a Royale Application. In HTML is represented by a <nav> tag in HTML and
 	 *  It parents a list of links.
 	 *  By default it uses TabBarButtonItemRenderer class to define each item.

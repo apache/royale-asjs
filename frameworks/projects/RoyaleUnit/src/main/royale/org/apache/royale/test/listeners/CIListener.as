@@ -23,6 +23,7 @@ package org.apache.royale.test.listeners
 	import org.apache.royale.test.runners.notification.Failure;
 	import org.apache.royale.test.runners.notification.IAsyncStartupRunListener;
 	import org.apache.royale.test.runners.notification.Result;
+	import org.apache.royale.utils.Timer;
 	
 	COMPILE::SWF
 	{
@@ -30,12 +31,9 @@ package org.apache.royale.test.listeners
 		import flash.events.Event;
 		import flash.events.IOErrorEvent;
 		import flash.events.SecurityErrorEvent;
-		import flash.events.TimerEvent;
 		import flash.net.XMLSocket;
-		import flash.utils.Timer;
 	}
 	
-	COMPILE::SWF
 	public class CIListener extends EventDispatcher implements IAsyncStartupRunListener
 	{
 		/**
@@ -91,20 +89,33 @@ package org.apache.royale.test.listeners
 			_port = port;
 			_server = server;
 			
-			_socket = new XMLSocket();
-			_socket.addEventListener(DataEvent.DATA, socket_dataHandler);
-			_socket.addEventListener(Event.CONNECT, socket_connectHandler);
-			_socket.addEventListener(IOErrorEvent.IO_ERROR, socket_errorHandler);
-			_socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, socket_errorHandler);
-			_socket.addEventListener(Event.CLOSE, socket_errorHandler);
+			COMPILE::SWF
+			{
+				_socket = new XMLSocket();
+				_socket.addEventListener(DataEvent.DATA, socket_dataHandler);
+				_socket.addEventListener(Event.CONNECT, socket_connectHandler);
+				_socket.addEventListener(IOErrorEvent.IO_ERROR, socket_errorHandler);
+				_socket.addEventListener(SecurityErrorEvent.SECURITY_ERROR, socket_errorHandler);
+				_socket.addEventListener(Event.CLOSE, socket_errorHandler);
+			}
+			COMPILE::JS
+			{
+				_socket = new WebSocket("ws://" + server + ":" + port);
+				_socket.addEventListener("open", webSocket_openHandler);
+				_socket.addEventListener("error", socket_errorHandler);
+				_socket.addEventListener("message", webSocket_messageHandler);
+			}
 			
 			socketTimeOutTimer = new Timer(2000, 1);
-			socketTimeOutTimer.addEventListener(TimerEvent.TIMER_COMPLETE, socketTimeOutTimer_timerCompleteHandler, false, 0, true);
+			socketTimeOutTimer.addEventListener(Timer.TIMER, socketTimeOutTimer_timerHandler);
 			socketTimeOutTimer.start();
 
 			try
 			{
-				_socket.connect(server, port);
+				COMPILE::SWF
+				{
+					_socket.connect(server, port);
+				}
 				socketTimeOutTimer.stop();
 			}
 			catch(e:Error)
@@ -114,7 +125,12 @@ package org.apache.royale.test.listeners
 			}
 		}
 		
+		COMPILE::SWF
 		protected var _socket:XMLSocket;
+
+		COMPILE::JS
+		protected var _socket:WebSocket;
+
 		protected var _port:uint;
 		protected var _server:String;
 		
@@ -206,8 +222,17 @@ package org.apache.royale.test.listeners
 			{
 				return "";
 			}
-			var xml:XML = <escaped value={value}/>;
-			return xml.@value.toXMLString();
+			COMPILE::SWF
+			{
+				var xml:XML = <escaped value={value}/>;
+				return xml.@value.toXMLString();
+			}
+			COMPILE::JS
+			{
+				var serializer:XMLSerializer = new XMLSerializer()
+				var textNode:Text = document.createTextNode(value);
+				return serializer.serializeToString(textNode);
+			}
 		}
 		
 		/**
@@ -325,9 +350,19 @@ package org.apache.royale.test.listeners
 		 */
 		protected function sendResults(msg:String):void
 		{
-			if(_socket.connected)
+			COMPILE::SWF
 			{
-				_socket.send(msg);			
+				if(_socket.connected)
+				{
+					_socket.send(msg);			
+				}
+			}
+			COMPILE::JS
+			{
+				if(_socket.readyState == 1)
+				{
+					_socket.send(msg);
+				}
 			}
 			
 			trace(msg);
@@ -336,7 +371,7 @@ package org.apache.royale.test.listeners
 		/**
 		 * @private
 		 */
-		protected function socketTimeOutTimer_timerCompleteHandler(event:TimerEvent):void
+		protected function socketTimeOutTimer_timerHandler(event:org.apache.royale.events.Event):void
 		{
 			trace("Socket timeout in CIListener");
 			dispatchEvent(new org.apache.royale.events.Event("skip"));
@@ -345,7 +380,17 @@ package org.apache.royale.test.listeners
 		/**
 		 * @private
 		 */
+		COMPILE::SWF
 		protected function socket_connectHandler(event:flash.events.Event):void
+		{
+			//we're not "ready" yet. wait until we get some data first.
+		}
+		
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		protected function webSocket_openHandler(event:Event):void
 		{
 			//we're not "ready" yet. wait until we get some data first.
 		}
@@ -353,7 +398,7 @@ package org.apache.royale.test.listeners
 		/**
 		 * @private
 		 */
-		protected function socket_errorHandler(event:flash.events.Event):void
+		protected function socket_errorHandler(event:Object):void
 		{
 			trace("Socket error in CIListener");
 			trace(event);
@@ -363,6 +408,7 @@ package org.apache.royale.test.listeners
 		/**
 		 * @private
 		 */
+		COMPILE::SWF
 		protected function socket_dataHandler(event:DataEvent):void
 		{
 			var data:String = event.data;
@@ -378,6 +424,28 @@ package org.apache.royale.test.listeners
 				//if we received an acknowledgement finish-up, close the socket.
 				_socket.close();
 			}
+		}
+
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		protected function webSocket_messageHandler(event:MessageEvent):void
+		{
+			var data:String = event.data as String;
+
+			//if we received an acknowledgement on startup, the java server is ready and we can start sending.			
+			if(data == START_OF_TEST_RUN_ACK)
+			{
+				_ready = true;
+				dispatchEvent(new org.apache.royale.events.Event("ready"));
+			}
+			else if(data == END_OF_TEST_ACK)
+			{
+				//if we received an acknowledgement finish-up, close the socket.
+				_socket.close();
+			}
+
 		}
 	}
 }
