@@ -148,10 +148,10 @@ package org.apache.royale.html.beads
 			_dropController = new DropMouseController();
 			_strand.addBead(_dropController);
 
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_OVER, handleDragOver);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
+			_dropController.addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
+			_dropController.addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
+			_dropController.addEventListener(DragEvent.DRAG_OVER, handleDragOver);
+			_dropController.addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
 		}
 
 		private var _dropDirection: String = "horizontal";
@@ -413,11 +413,13 @@ package org.apache.royale.html.beads
 		COMPILE::JS
 		private function displayDropIndicator(item:IUIBase):void
 		{
+			var pt:Point = PointUtils.localToGlobal(new Point(0,0), item);
+			pt = PointUtils.globalToLocal(pt,indicatorParent);
 			if (dropDirection == "horizontal") {
 				_dropIndicator.x = 0;
-				_dropIndicator.y = item.y;
+				_dropIndicator.y = pt.y;
 			} else {
-				_dropIndicator.x = item.x;
+				_dropIndicator.x = pt.x;
 				_dropIndicator.y = 0;
 			}
 		}
