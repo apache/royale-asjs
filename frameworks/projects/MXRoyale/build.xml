@@ -103,8 +103,9 @@
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-compiler.define+=GOOG::DEBUG,true" />
             <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject" />
-            <arg value="-metadata.date=&quot;${royale.swc-date}&quot;" />
-            <arg value="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
+            <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />
+            <arg line="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
+            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent" />
