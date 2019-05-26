@@ -140,8 +140,8 @@
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="clean" />
             <arg value="install" />
-            <!--<arg value="-P" />
-            <arg value="-main,utils" />-->
+            <arg value="-P" />
+            <arg value="release-swcs,main" />
         </exec>
     </target>
     
