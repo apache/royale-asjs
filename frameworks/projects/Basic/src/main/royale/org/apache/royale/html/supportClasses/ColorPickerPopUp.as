@@ -42,6 +42,7 @@ package org.apache.royale.html.supportClasses
 	{
 		protected var colorSpectrum:ColorSpectrum;
 		protected var hueSelector:HueSelector;
+		protected var host:IStrand;
 		/**
 		 *  constructor.
 		 *
@@ -97,6 +98,7 @@ package org.apache.royale.html.supportClasses
 		 */
 		public function set strand(value:IStrand):void
 		{
+			host = value;
 		}
 		
 	}
