@@ -99,7 +99,14 @@ package org.apache.royale.html.supportClasses
 			
 			if (!contentArea)
 				contentArea = value as UIBase;
-			
+			setScrollStyle();
+		}
+		/**
+		 * Subclasses override this method to change scrolling behavior
+		 */
+		COMPILE::JS
+		protected function setScrollStyle():void
+		{
 			contentArea.element.style.overflow = "hidden";
 		}
 

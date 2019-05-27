@@ -78,20 +78,13 @@ package org.apache.royale.html.supportClasses
 			// Do nothing
 		}
 		
-		/**
-		 * @royaleignorecoercion HTMLElement 
-		 */
-		override public function set strand(value:IStrand):void
+		override protected function setScrollStyle():void
 		{
-			super.strand = value;
-			if (contentView == null) {
-				(value as UIBase).element.style.overflow = "hidden";
-				(value as UIBase).element.style.overflowX = "auto";
-			} else {
-				(contentView as UIBase).element.style.overflow = "hidden";
-				(contentView as UIBase).element.style.overflowX = "auto";
-			}
-		}		
+			contentArea.element.style.overflow = "hidden";
+			contentArea.element.style.overflowX = "auto";
+			adaptContentArea();
+		}
+
 	}
 	
 	COMPILE::SWF

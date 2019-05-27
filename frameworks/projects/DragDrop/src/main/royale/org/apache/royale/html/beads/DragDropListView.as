@@ -59,8 +59,6 @@ package org.apache.royale.html.beads
 			//chost.strandChildren.addElement(_layer);
 			UIBase(_strand).addElement(_layer);
 
-			UIBase(_strand).element.style['overflow'] = 'auto';
-
 		}
 
 		/**

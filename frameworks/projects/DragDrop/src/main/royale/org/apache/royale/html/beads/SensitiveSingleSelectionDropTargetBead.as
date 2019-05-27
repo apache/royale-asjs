@@ -137,6 +137,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+     *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -145,10 +146,10 @@ package org.apache.royale.html.beads
 			_dropController = new DropMouseController();
 			_strand.addBead(_dropController);
 
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_OVER, handleDragOver);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
+			_dropController.addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
+			_dropController.addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
+			_dropController.addEventListener(DragEvent.DRAG_OVER, handleDragOver);
+			_dropController.addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
 			IEventDispatcher(_strand).addEventListener(DragEvent.DRAG_MOVE, handleDragMove);
 		}
 
@@ -387,11 +388,13 @@ package org.apache.royale.html.beads
 		COMPILE::JS
 		private function displayDropIndicator(item:IUIBase, isEndOfList:Boolean=false):void
 		{
+			var pt:Point = PointUtils.localToGlobal(new Point(0,0), item);
+			pt = PointUtils.globalToLocal(pt,indicatorParent);
 			if (dropDirection == "horizontal") {
 				_dropIndicator.x = 0;
-				_dropIndicator.y = item.y + (isEndOfList ? item.height : 0);
+				_dropIndicator.y = pt.y + (isEndOfList ? item.height : 0);
 			} else {
-				_dropIndicator.x = item.x + (isEndOfList ? item.width : 0);
+				_dropIndicator.x = pt.x + (isEndOfList ? item.width : 0);
 				_dropIndicator.y = 0;
 			}
 		}
