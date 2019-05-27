@@ -103,43 +103,19 @@ package org.apache.royale.html.supportClasses
 
 		/**
 		 * If the contentArea is not the same as the strand,
-		 * we need to sync the percentage sizes for scrolling to work correctly.
+		 * we need to size it to 100% for scrolling to work correctly.
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function adaptContentArea():void
 		{
 			if(_strand != contentArea)
 			{
-				var host:ILayoutChild = _strand as ILayoutChild;
-				var val:Number = host.percentHeight;
-				if(!isNaN(val)){
-					contentArea.percentHeight = val;
-				}
-				val = host.percentWidth;
-				if(!isNaN(val)){
-					contentArea.percentWidth = val;
-				}
-				(_strand as IEventDispatcher).addEventListener("percentWidthChanged",handleWidthChange);
-				(_strand as IEventDispatcher).addEventListener("percentHeightChanged",handleHeightChange);
+				contentArea.percentHeight = 100;
+				contentArea.percentWidth = 100;
+				contentArea.element.style.position = "absolute";
 			}
 
 		}
-		/**
-     *  @royaleignorecoercion org.apache.royale.core.ILayoutChild
-		 */
-		private function handleWidthChange(ev:Event):void
-		{
-			contentArea.percentWidth = (_strand as ILayoutChild).percentWidth;
-		}
-
-		/**
-     *  @royaleignorecoercion org.apache.royale.core.ILayoutChild
-		 */
-		private function handleHeightChange(ev:Event):void
-		{
-			contentArea.percentHeight = (_strand as ILayoutChild).percentHeight;
-		}
-
 	}
 	
 	COMPILE::SWF
