@@ -48,6 +48,7 @@ package org.apache.royale.html
             typeNames = "ColorPicker";
 		}
 
+		[Bindable("change")]
 		public function get color():Number 
 		{
 			return (model as IColorModel).color;
