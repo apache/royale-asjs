@@ -22,7 +22,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.geom.Point;
@@ -56,8 +55,6 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -101,7 +98,7 @@ package org.apache.royale.html.beads
 			var relocated:Point = PointUtils.localToGlobal(origin,_strand);
 			if (isRightOutOfBounds)
 			{
-				popup.x = relocated.x - popup.width;
+				popup.x = relocated.x - popup.width + (_strand as IUIBase).width;
 			}
 			if (isBottomOutOfBounds)
 			{
