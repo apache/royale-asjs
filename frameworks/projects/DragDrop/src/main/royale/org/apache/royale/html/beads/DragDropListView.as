@@ -54,6 +54,8 @@ package org.apache.royale.html.beads
 			var layerBead:ListDrawingLayerBead = new ListDrawingLayerBead();
 			_strand.addBead(layerBead);
 			_layer = layerBead.layer;
+			_layer.percentHeight = 100;
+			_layer.percentWidth = 100;
 
 			//var chost:IContainer = host as IContainer;
 			//chost.strandChildren.addElement(_layer);
@@ -61,19 +63,6 @@ package org.apache.royale.html.beads
 
 		}
 
-		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 */
-		override public function afterLayout():void
-		{
-			super.afterLayout();
-
-			_layer.x = 0;
-			_layer.y = 0;
-			_layer.width = UIBase(_strand).width;
-			_layer.height = UIBase(_strand).height;
-		}
 	}
 
 	COMPILE::SWF
