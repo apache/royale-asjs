@@ -52,7 +52,7 @@
       </source-path>
       -->
       <source-path>
-          <path-element>${frameworks_dir}/projects/Ace/src/main/royale</path-element>
+          <!-- <path-element>${frameworks_dir}/projects/Ace/src/main/royale</path-element> -->
           <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Binding/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Charts/src/main/royale</path-element>
@@ -73,9 +73,9 @@
           <path-element>${frameworks_dir}/projects/Icons/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Jewel/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/JQuery/src/main/royale</path-element>
-          <path-element>${frameworks_dir}/projects/Language/src/main/royale</path-element>
+          <!-- <path-element>${frameworks_dir}/projects/Language/src/main/royale</path-element> -->
           <path-element>${frameworks_dir}/projects/MaterialDesignLite/src/main/royale</path-element>
-          <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale</path-element>
+          <!-- <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale</path-element> -->
           <path-element>${frameworks_dir}/projects/Mobile/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Network/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Reflection/src/main/royale</path-element>
@@ -147,10 +147,10 @@
 
         <!-- namespace declaration for asdoc -->
         <namespaces>
-            <namespace>
+            <!-- <namespace>
                 <uri>library://ns.apache.org/royale/ace</uri>
                 <manifest>${frameworks_dir}/projects/Ace/src/main/resources/ace-manifest.xml</manifest>
-            </namespace>
+            </namespace> -->
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Basic/src/main/resources/basic-manifest.xml</manifest>
@@ -223,10 +223,10 @@
                 <uri>library://ns.apache.org/royale/mdl</uri>
                 <manifest>${frameworks_dir}/projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
             </namespace>
-            <namespace>
+            <!-- <namespace>
                 <uri>library://ns.apache.org/royale/mx</uri>
                 <manifest>${frameworks_dir}/projects/MXRoyale/src/main/resources/mx-royale-manifest.xml</manifest>
-            </namespace>
+            </namespace> -->
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Mobile/src/main/resources/basic-manifest.xml</manifest>
