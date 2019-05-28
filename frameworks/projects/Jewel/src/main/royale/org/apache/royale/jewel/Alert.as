@@ -115,7 +115,7 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 *  The tile of the Alert.
+		 *  The title of the Alert.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
