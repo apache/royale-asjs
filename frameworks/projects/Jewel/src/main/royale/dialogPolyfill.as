@@ -23,6 +23,7 @@ package
 	 */
 	public class dialogPolyfill
 	{
+		COMPILE::JS
 		public static function registerDialog(dialog:HTMLDialogElement):void {}
 	}
 }
