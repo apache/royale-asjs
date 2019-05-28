@@ -524,6 +524,7 @@
             <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/HTML/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/HTML5/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Icons/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/Jewel/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/JQuery/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/Mobile/src/main/royale</path-element>

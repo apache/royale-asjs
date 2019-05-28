@@ -87,6 +87,7 @@
             <arg value="-external-library-path=${ROYALE_HOME}/js/libs/GCL.swc" />
             <arg value="-external-library-path=${ROYALE_HOME}/js/libs/createjs.swc" />
             <arg value="-external-library-path=${ROYALE_HOME}/js/libs/jquery.swc" />
+            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/icons.swc" />
             <arg value="-external-library-path=${ROYALE_HOME}/js/libs/jewel.swc" />
             <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
