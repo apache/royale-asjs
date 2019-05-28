@@ -67,7 +67,6 @@
           <path-element>${frameworks_dir}/projects/Formatters/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Graphics/src/main/royale</path-element>
-          <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/HTML/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/HTML5/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Icons/src/main/royale</path-element>
@@ -202,6 +201,14 @@
             <namespace>
                 <uri>library://ns.apache.org/royale/html5</uri>
                 <manifest>${frameworks_dir}/projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>${frameworks_dir}/projects/Icons/src/main/resources/icons-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/jewel</uri>
+                <manifest>${frameworks_dir}/projects/Jewel/src/main/resources/jewel-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/jquery</uri>

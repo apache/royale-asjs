@@ -67,7 +67,6 @@
           <path-element>${frameworks_dir}/projects/Formatters/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Graphics/src/main/royale</path-element>
-          <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/HTML/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/HTML5/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Icons/src/main/royale</path-element>
