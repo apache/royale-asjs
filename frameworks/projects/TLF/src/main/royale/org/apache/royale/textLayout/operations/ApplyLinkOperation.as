@@ -58,7 +58,7 @@ package org.apache.royale.textLayout.operations
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0 
 		 */
-		function ApplyLinkOperation(operationState:SelectionState, href:String, target:String, extendToLinkBoundary:Boolean)
+		public function ApplyLinkOperation(operationState:SelectionState, href:String, target:String, extendToLinkBoundary:Boolean)
 		{
 			super(operationState);
 		
