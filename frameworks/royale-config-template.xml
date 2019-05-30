@@ -552,14 +552,6 @@
       <!-- Possible usage of the ActionScript 2.0 XML class. -->
       <warn-xml-class-has-changed>false</warn-xml-class-has-changed>
 
-      <!-- New AS3 capabilities-->
-      
-        <!-- Allow abstract classes (on by default)-->
-        <allow-abstract-classes>true</allow-abstract-classes>
-        
-        <!-- Allow private constructors (on by default)-->
-        <allow-private-constructors>true</allow-private-constructors>
-        
    </compiler>
 
    <!-- compute-digest: writes a digest to the catalog.xml of a library. Use this when the library will be used as a
