@@ -48,9 +48,9 @@ package org.apache.royale.net
             var x:String;
             for(x in data)
             {
-                b.push(encodeURI(x));
+                b.push(encodeURIComponent(x));
                 b.push("=");
-                b.push(encodeURI(data[x]));
+                b.push(encodeURIComponent(data[x]));
                 b.push("&");
             }
             if(b.length)
