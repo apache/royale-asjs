@@ -24,18 +24,19 @@
 
     <fx:Script>
 		<![CDATA[
+            import utils.HighlightCode;
+
             public var _hljs:hljs;
             
             public function highLightContent():void
             {
-                // dot access notation using a class hljs created with @externs
-                
-                hljs.highlightBlock(sourceCodeMXMLText.element);
-
-                // bracket access notation for a diynaimc access without create additional class
-                //var hljs:Object = window["hljs"];
-                //prevent renaming by compiler
-                //hljs["highlightBlock"](block);
+                sourceCodeMXMLText.text = "public function hello(){}";
+            
+                COMPILE::JS
+                {
+                    var highlightCode:HighlightCode = new HighlightCode();
+                    highlightCode.highlightBlock(sourceCodeMXMLText.element);
+                }
             }
 		]]>
 	</fx:Script>
@@ -55,7 +56,7 @@
                     <js:beads>
                         <j:ScrollingViewport/>
                     </js:beads>
-                    <html:Code id="sourceCodeMXMLText" text="public function hello(){}"/>ç
+                    <html:Code id="sourceCodeMXMLText"/>
                 </html:Pre>
                 
                 <j:Button text="highlight Block" emphasis="primary" click="highLightContent()"/>
