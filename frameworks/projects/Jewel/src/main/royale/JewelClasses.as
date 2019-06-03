@@ -116,6 +116,9 @@ package
         //import org.apache.royale.jewel.beads.views.JewelLabelViewBead; JewelLabelViewBead;
 
         import org.apache.royale.jewel.beads.validators.removeErrorTip; removeErrorTip;
+
+        import dialogPolyfill; dialogPolyfill;
+        import hljs; hljs;
     }
 
 }
