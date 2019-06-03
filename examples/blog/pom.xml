@@ -44,6 +44,7 @@
     <module>BE0009_Using_an_Item_ Renderer_with_a_List</module>
     <module>BE0010_Customization_through_the_Royale_API</module>
     <module>BE0011_Loading_external_data_through_HTTPService</module>
+    <module>BE0012_Using_external_javascript_libraries_in_Apache_Royale</module>
   </modules>
 
   <build>
