@@ -19,11 +19,10 @@
 
 DESCRIPTION
 
-Loading external data through HTTPService
+Using external javascript libraries in Apache Royale
 
-Learn how to use the HTTPService to load external data from a server. In this case we load the source code of
-this example using the Github API in a Royale panel to browse it.
+Learn how to use external Javascript libraries in your Apache Royale application. This will be very useful to add quick functionality to your Application adding code that is not part of Apache Royale itself or even was not written in ActionsScript, but with the powerful capabilities like type checking or code completion.
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-https://royale.apache.org//customization-through-the-royale-api/
+https://royale.apache.org/using-external-javascript-libraries-in-apache-royale/
