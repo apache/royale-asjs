@@ -27,6 +27,7 @@
 		<![CDATA[
             import utils.HighlightCode;
 
+            [Bindable]
             public var code_txt:String;
 
             public function highLightContent():void
@@ -37,17 +38,14 @@
                     highlightCode.highlightBlock(sourceCodeMXMLText.element);
                 }
             }
-
-            public function onComplete():void
-            {
-                code_txt = codeTextLoader.data;
-                sourceCodeMXMLText.text = code_txt;
-            }
 		]]>
 	</fx:Script>
-
-    <js:HTTPService id="codeTextLoader" url="as3code.txt" complete="onComplete()"/>
     
+    <j:beads>
+        <js:ApplicationDataBinding />
+        <js:HTTPService id="codeTextLoader" url="as3code.txt" complete="code_txt = codeTextLoader.data;"/>
+    </j:beads>
+
     <j:initialView>
         <j:View>
             <js:beads>
@@ -63,7 +61,7 @@
                     <js:beads>
                         <j:ScrollingViewport/>
                     </js:beads>
-                    <html:Code id="sourceCodeMXMLText"/>
+                    <html:Code id="sourceCodeMXMLText" text="{code_txt}"/>
                 </html:Pre>
                 
                 <j:Button text="highlight Block" emphasis="primary" click="highLightContent()"/>
