@@ -31,8 +31,6 @@ package components
 
     import services.GitHubService;
 
-    import utils.HighlightCode;
-
     import vos.TabBarButtonVO;
     
     public class ExampleAndSourceCodeTabbedSectionContent extends ScrollableSectionContent implements IContainerBaseStrandChildrenHost 
@@ -132,11 +130,7 @@ package components
         {
             sourceCodeMXMLText.text = event.target.sourceCode;
             
-            COMPILE::JS
-            {
-                var highlightCode:HighlightCode = new HighlightCode();
-                highlightCode.highlightBlock(sourceCodeMXMLText.element);
-            }
+            hljs.highlightBlock(sourceCodeMXMLText.element);
         }
 
         
