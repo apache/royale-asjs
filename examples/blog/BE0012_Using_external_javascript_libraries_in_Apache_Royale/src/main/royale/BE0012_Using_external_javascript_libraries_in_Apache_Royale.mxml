@@ -25,18 +25,12 @@
 
     <fx:Script>
 		<![CDATA[
-            import utils.HighlightCode;
-
             [Bindable]
             public var code_txt:String;
 
             public function highLightContent():void
             {
-                COMPILE::JS
-                {
-                    var highlightCode:HighlightCode = new HighlightCode();
-                    highlightCode.highlightBlock(sourceCodeMXMLText.element);
-                }
+                hljs.highlightBlock(sourceCodeMXMLText.element);   
             }
 		]]>
 	</fx:Script>
