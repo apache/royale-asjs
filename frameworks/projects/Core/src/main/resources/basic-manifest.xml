@@ -53,6 +53,6 @@
     
     <component id="State" class="org.apache.royale.states.State"/>
     
-    <component id="CompoundAsyncTask" class="org.apache.royale.utils.CompoundAsyncTask">
-    <component id="SequentialAsyncTask" class="org.apache.royale.utils.SequentialAsyncTask">
+    <component id="CompoundAsyncTask" class="org.apache.royale.utils.async.CompoundAsyncTask"/>
+    <component id="SequentialAsyncTask" class="org.apache.royale.utils.async.SequentialAsyncTask"/>
 </componentPackage>
