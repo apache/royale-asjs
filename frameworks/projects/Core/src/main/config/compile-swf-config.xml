@@ -75,6 +75,7 @@
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
+        <allow-abstract-classes>true</allow-abstract-classes>
         
         <!-- Use of the instanceof operator. -->
         <warn-instance-of-changes>false</warn-instance-of-changes>

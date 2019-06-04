@@ -308,6 +308,9 @@ internal class CoreClasses
 	import org.apache.royale.utils.date.addSeconds; addSeconds;
 	import org.apache.royale.utils.date.addYears; addYears;
 
+	import org.apache.royale.utils.async.CompoundAsyncTask; CompoundAsyncTask;
+	import org.apache.royale.utils.async.SequentialAsyncTask; SequentialAsyncTask;
+
 	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
 
 	COMPILE::JS

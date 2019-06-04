@@ -52,4 +52,7 @@
     <component id="StyleChangeNotifier" class="org.apache.royale.core.StyleChangeNotifier"/>
     
     <component id="State" class="org.apache.royale.states.State"/>
+    
+    <component id="CompoundAsyncTask" class="org.apache.royale.utils.CompoundAsyncTask">
+    <component id="SequentialAsyncTask" class="org.apache.royale.utils.SequentialAsyncTask">
 </componentPackage>
