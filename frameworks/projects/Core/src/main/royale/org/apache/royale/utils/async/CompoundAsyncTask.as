@@ -22,6 +22,10 @@ package org.apache.royale.utils.async
 
   /**
    * The CompoundAsyncTask class allows running a number of AsyncTasks in parallel and resolves when they are done.
+   *  @langversion 3.0
+   *  @playerversion Flash 10.2
+   *  @playerversion AIR 2.6
+   *  @productversion Royale 0.9.6
    */
   public class CompoundAsyncTask extends AsyncTask
   {
@@ -40,6 +44,10 @@ package org.apache.royale.utils.async
     private var _failEarly:Boolean;
     /**
      * If <code>failEarly</code> is true, the task will fail as soon as the first subtask fails.
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.6
      */
     public function get failEarly():Boolean
     {
@@ -50,7 +58,13 @@ package org.apache.royale.utils.async
     {
     	_failEarly = value;
     }
-
+    /**
+     * Adds a task to the task list.
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.6
+     */
     public function addTask(task:AsyncTask):void{
       tasks.push(task);
     }
@@ -58,10 +72,18 @@ package org.apache.royale.utils.async
     protected var pendingTasks:Array;
 
     /**
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.6
      *  @royalesuppresspublicvarwarning
      */
     public var completedTasks:Array;
     /**
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.6
      *  @royalesuppresspublicvarwarning
      */
     public var failedTasks:Array;
