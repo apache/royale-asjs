@@ -71,26 +71,26 @@ package org.apache.royale.events
             return goog.events.hasListener(this, type);
         }
 		
-		override public function dispatchEvent(event:Object):Boolean
+		override public function dispatchEvent(event1:Object):Boolean
 		{
 			try 
 			{
 				//we get quite a few string events here, "initialize" etc
 				//so this general approach doesn't work:
 				//event.target = _dispatcher;
-				if (event) {
-					if (typeof event == "string") {
-						event = new Event("" + event);
-						event.target = _dispatcher;
+				if (event1) {
+					if (typeof event1 == "string") {
+						event1 = new Event("" + event1);
+						event1.target = _dispatcher;
 						//console.log("created event from string ",event);
 					}
-					else if ("target" in event) {
-						event.target = _dispatcher;
+					else if ("target" in event1) {
+						event1.target = _dispatcher;
 						//console.log("assigned target to event ",event);
 					}
 				} else return false;
 
-				return super.dispatchEvent(event);
+				return super.dispatchEvent(event1);
 			}
 			catch (e:Error)
 			{
