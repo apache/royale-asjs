@@ -956,7 +956,7 @@
           <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/royale-asjs/js/lib" />
           <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
       </exec>
-      <antcall name="compare-ant-jars" />
+      <antcall target="compare-ant-jars" />
     </target>
     
     <target name="compare-ant-jars">
