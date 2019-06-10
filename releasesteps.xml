@@ -862,7 +862,7 @@
     <target name="Release_Step_013_Generate_Artifacts" depends="get-maven-source-artifacts, ant-artifacts">
     </target>
     
-    <target name="Release_Step_013" depends="get-temp-folder,download-ant-artifacts,unzip-ant-artifacts,build-ant-source,validate-ant-bits">
+    <target name="Release_Step_013" depends="get-temp-folder,download-ant-artifacts,unzip-ant-artifacts,validate-ant-artifacts">
     </target>
     
     <target name="download-ant-artifacts" if="artifactfolder">
@@ -874,6 +874,7 @@
             <cutdirsmapper dirs="1" />
         </unzip>
     </target>
+    
     <target name="build-ant-source" depends="check-air-home,check-playerglobal-home,check-runtime-env" >
         <mkdir dir="${artifactfolder}/sources" />
         <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/sources" >
@@ -882,6 +883,93 @@
         <ant dir="${artifactfolder}/sources/royale-asjs" target="all" />
     </target>
 
+    <target name="validate-ant-artifacts">
+        <mkdir dir="${artifactfolder}/sources" />
+        <exec executable="git" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="clone" />
+            <arg value="--branch" />
+            <arg value="org.apache.royale.compiler-${releaseversion}-rc${rc}" />
+            <arg value="https://github.com/apache/royale-compiler.git" />
+            <arg value="royale-compiler" />
+        </exec>
+        <exec executable="git" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="clone" />
+            <arg value="--branch" />
+            <arg value="org.apache.royale.typedefs-${releaseversion}-rc${rc}" />
+            <arg value="https://github.com/apache/royale-typedefs.git" />
+            <arg value="royale-typedefs" />
+        </exec>
+        <exec executable="git" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="clone" />
+            <arg value="--branch" />
+            <arg value="org.apache.royale.framework-${releaseversion}-rc${rc}" />
+            <arg value="https://github.com/apache/royale-asjs.git" />
+            <arg value="royale-asjs" />
+        </exec>
+        <antcall target="validate-ant-source"/>
+        <antcall target="validate-ant-bits"/>
+    </target>
+    
+    <target name="validate-ant-source" description="do some tweaks so the clone is the same as maven source file set"  >
+        <!-- unpack ant src which was generated from maven source package -->
+        <mkdir dir="${artifactfolder}/artifacts/source" />
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/artifacts/source" />
+        <property name="artifactfolder" value="${artifactfolder}" />
+        <!-- get the build date from flex-sdk-description and use it -->
+        <xmlproperty file="${artifactfolder}/artifacts/source/royale-asjs/flex-sdk-description.xml" prefix="desc" />
+        <property name="build.number.date" value="${desc.flex-sdk-description.build}" />
+        <echo message="build.number is ${build.number.date}"/>
+        <!-- delete all .project files -->
+        <delete dir="${artifactfolder}/sources/royale-asjs" failonerror="false">
+            <include name="**/.project"/>
+        </delete>
+
+        <!-- copy Maven-generated DEPENDENCIES files -->
+        <copy file="${artifactfolder}/artifacts/source/royale-asjs/DEPENDENCIES"
+        tofile="${artifactfolder}/sources/royale-asjs/DEPENDENCIES" />
+        <copy file="${artifactfolder}/artifacts/source/royale-typedefs/DEPENDENCIES"
+        tofile="${artifactfolder}/sources/royale-typedefs/DEPENDENCIES" />
+        
+        <!-- build compiler and typedefs via "all" target -->
+        <ant dir="${artifactfolder}/sources/royale-asjs" target="all" />
+        <!-- delete all royale-asjs stuff -->
+        <ant dir="${artifactfolder}/sources/royale-asjs" target="super-clean" />
+        <!-- delete frameworks/libs empty folder -->
+        <delete dir="${artifactfolder}/sources/royale-asjs/frameworks/libs" failonerror="false" />
+        <delete dir="${artifactfolder}/sources/royale-asjs/temp/royale-asjs/frameworks/libs" failonerror="false" />
+        <!-- delete history empty folder -->
+        <delete dir="${artifactfolder}/sources/royale-asjs/templates/swfobject/history" failonerror="false" />
+        <!-- build release artifacts -->
+        <ant dir="${artifactfolder}/sources/royale-asjs" target="release" />
+        <antcall target="compare-src-zips" />
+    </target>
+    
+    <target name="compare-src-zips" >
+        <echo>releaseversion: ${releaseversion}</echo>
+        <echo>copy src-zip file to a separate folder</echo>
+        <mkdir dir="${artifactfolder}/artifacts/srczip" />
+        <copy file="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip"
+            tofile="${artifactfolder}/artifacts/srczip/apache-royale-${releaseversion}-src.zip" />
+        <mkdir dir="${artifactfolder}/sources/srczip" />
+        <copy file="${artifactfolder}/sources/royale-asjs/out/apache-royale-${releaseversion}-src.zip"
+            tofile="${artifactfolder}/sources/srczip/apache-royale-${releaseversion}-src.zip" />
+        <echo>running reproducible build plugin on ${artifactfolder}/artifacts/srczip</echo>
+        <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+            <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+            <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/srczip" />
+        </exec>
+        <echo>running reproducible build plugin on ${artifactfolder}/sources/srczip</echo>
+        <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+            <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+            <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/srczip" />
+        </exec>
+        <condition property="filesmatch" value="true">
+            <filesmatch file1="${artifactfolder}/artifacts/srczip/apache-royale-${releaseversion}-src.zip"
+            file2="${artifactfolder}/sources/srczip/apache-royale-${releaseversion}-src.zip" />
+        </condition>
+        <fail message="apache-royale-${releaseversion}-src.zip does not match" unless="filesmatch" />
+    </target>
+    
     <target name="validate-ant-bits">
         <mkdir dir="${artifactfolder}/artifacts/tar/js" />
         <mkdir dir="${artifactfolder}/artifacts/tar/swf" />
