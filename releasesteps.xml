@@ -89,7 +89,63 @@
     <fail message="The release version number is not set.  Specify -Drelease.version=&lt;release version (e.g. 0.9.0, 1.0.0, etc)&gt;"
         unless="release.version"/>
         
-	<target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
+    <target name="check-air-home" unless="env.AIR_HOME"
+        description="Check that AIR_HOME is a directory">
+        
+        <echo message="AIR_HOME is ${env.AIR_HOME}"/>
+        
+        <condition property="AIR_HOME.set">
+            <and>
+                <length string="${env.AIR_HOME}" when="greater" length="0" />
+                <available file="${env.AIR_HOME}" type="dir"/>
+                <!--available file="${env.AIR_HOME}/bin/adt" type="file"/-->
+            </and>
+        </condition>
+        
+        <fail message="The environment variable AIR_HOME must be set to the AIR SDK Kit directory"
+        unless="AIR_HOME.set"/>
+    </target>
+    
+    <target name="check-playerglobal-home" unless="env.PLAYERGLOBAL_HOME"
+        description="Check PLAYERGLOBAL_HOME for both a directory and a swc file">
+        
+        <echo message="PLAYERGLOBAL_HOME is ${env.PLAYERGLOBAL_HOME}"/>
+        <echo message="playerglobal.version is ${playerglobal.version}"/>
+        
+        <available file="${env.PLAYERGLOBAL_HOME}"
+        type="dir"
+        property="PLAYERGLOBAL_HOME.set"/>
+        
+        <fail message="The environment variable PLAYERGLOBAL_HOME is not set to a directory"
+        unless="PLAYERGLOBAL_HOME.set"/>
+        
+        <property name="playerglobal.swc"
+        value="${env.PLAYERGLOBAL_HOME}/${playerglobal.version}/playerglobal.swc"/>
+        
+        <available file="${playerglobal.swc}"
+        type="file"
+        property="playerglobal.swc.exists"/>
+        
+        <fail message="The file ${playerglobal.swc} does not exist"
+        unless="playerglobal.swc.exists"/>
+        
+        <echo message="playerglobal.swc is ${playerglobal.swc}"/>
+    </target>
+    
+    <!-- To run the checkintests as well as any mustella tests need AIR for the adl and
+     a flash player content debugger.
+     -->
+    <target name="check-runtime-env" depends="check-air-home"
+        description="Check for the required runtime environment variables for the checkintests">
+        
+        <available file="${env.FLASHPLAYER_DEBUGGER}" property="FLASHPLAYER_DEBUGGER.set"/>
+        <fail message="FLASHPLAYER_DEBUGGER is ${env.FLASHPLAYER_DEBUGGER} which is not an Adobe Flash Player content debugger"
+        unless="FLASHPLAYER_DEBUGGER.set"/>
+    </target>
+    
+
+
+    <target name="install-rat" depends="install-rat.jar,install-rat.tasks.jar" />
 	<target name="install-rat.jar" unless="apache.rat.found">
 		<get src="${apache.rat.url}/${apache.rat.jar}" dest="${env.ANT_HOME}/lib/${apache.rat.jar}" />
 	</target>
@@ -818,7 +874,7 @@
             <cutdirsmapper dirs="1" />
         </unzip>
     </target>
-    <target name="build-ant-source" >
+    <target name="build-ant-source" depends="check-air-home,check-playerglobal-home,check-runtime-env" >
         <mkdir dir="${artifactfolder}/sources" />
         <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/sources" >
         </unzip>
@@ -827,6 +883,521 @@
     </target>
 
     <target name="validate-ant-bits">
+        <mkdir dir="${artifactfolder}/artifacts/tar/js" />
+        <mkdir dir="${artifactfolder}/artifacts/tar/swf" />
+        <mkdir dir="${artifactfolder}/artifacts/tar/src" />
+        <mkdir dir="${artifactfolder}/artifacts/zip/js" />
+        <mkdir dir="${artifactfolder}/artifacts/zip/swf" />
+        <mkdir dir="${artifactfolder}/artifacts/zip/src" />
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/artifacts/zip/src" />
+        <untar src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.tar.gz" dest="${artifactfolder}/artifacts/tar/src" compression="gzip">
+            <cutdirsmapper dirs="1" />
+        </untar>
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js.zip" dest="${artifactfolder}/artifacts/zip/js" />
+        <untar src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js.tar.gz" dest="${artifactfolder}/artifacts/tar/js" compression="gzip">
+            <cutdirsmapper dirs="1" />
+        </untar>
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js-swf.zip" dest="${artifactfolder}/artifacts/zip/swf" />
+        <untar src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js-swf.tar.gz" dest="${artifactfolder}/artifacts/tar/swf" compression="gzip">
+            <cutdirsmapper dirs="1" />
+        </untar>
+        <antcall target="validate-ant-jars" />
+        <antcall target="validate-ant-swcs" />
+    </target>
+
+    <target name="validate-ant-jars" >
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+        <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+        <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/zip/js/royale-asjs/lib" />
+        <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/zip/js/royale-asjs/js/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/zip/swf/royale-asjs/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/zip/swf/royale-asjs/js/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/tar/js/royale-asjs/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/tar/js/royale-asjs/js/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/tar/swf/royale-asjs/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/artifacts/tar/swf/royale-asjs/js/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/royale-asjs/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
+          <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/royale-asjs/js/lib" />
+          <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
+      </exec>
+      <antcall name="compare-ant-jars" />
+    </target>
+    
+    <target name="compare-ant-jars">
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compiler-asc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compiler-common.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compiler-compc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compiler-mxmlc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compiler-optimizer.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compiler-swfdump.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compiler.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="compc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="fdb.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="flex-compiler-oem.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="mxmlc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/lib" />
+          <param name="fileName" value="swfutils.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="fileName" value="asdoc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="fileName" value="asdoc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="fileName" value="compc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="fileName" value="compiler-royaletasks.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="fileName" value="externc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="fileName" value="mxmlc.jar"/>
+      </antcall>
+      <antcall target="compare-jar">
+          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="fileName" value="jsc.jar"/>
+      </antcall>
+    </target>
+    
+    <target name="compare-jar">
+        <condition property="filesmatch" value="true">
+            <filesmatch file1="${artifactfolder}/tar/js/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match tar/js" unless="filesmatch" />
+        <condition property="filesmatch1" value="true">
+            <filesmatch file1="${artifactfolder}/tar/swf/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match tar/swf" unless="filesmatch1" />
+        <condition property="filesmatch2" value="true">
+            <filesmatch file1="${artifactfolder}/zip/swf/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match zip/swf" unless="filesmatch2" />
+        <condition property="filesmatch3" value="true">
+            <filesmatch file1="${artifactfolder}/zip/js/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match zip/js" unless="filesmatch3" />
+    </target>
+
+    <target name="compare-swf-swc">
+        <condition property="filesmatch" value="true">
+            <filesmatch file1="${artifactfolder}/tar/js/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match tar/js" unless="filesmatch" />
+        <condition property="filesmatch1" value="true">
+            <filesmatch file1="${artifactfolder}/tar/swf/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match tar/swf" unless="filesmatch1" />
+        <condition property="filesmatch2" value="true">
+            <filesmatch file1="${artifactfolder}/zip/swf/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match zip/swf" unless="filesmatch2" />
+        <condition property="filesmatch3" value="true">
+            <filesmatch file1="${artifactfolder}/zip/js/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match zip/js" unless="filesmatch3" />
+    </target>
+    
+    <target name="compare-js-swc">
+        <condition property="filesmatch" value="true">
+            <filesmatch file1="${artifactfolder}/tar/js/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match tar/js" unless="filesmatch" />
+        <condition property="filesmatch3" value="true">
+            <filesmatch file1="${artifactfolder}/zip/js/${folderPath}/${filename}"
+            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+        </condition>
+        <fail message="${folderPath}/${filename} does not match zip/js" unless="filesmatch3" />
+    </target>
+
+    <target name="validate-ant-swcs">
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Basic.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Binding.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Charts.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Collections.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Core.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="CreateJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="DragDrop.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Effects.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Express.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Flat.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="FontAwesome.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Formatters.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="GoogleMaps.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Graphics.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="HTML.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="HTML5.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Icons.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Jewel.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="JewelTheme.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Language.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="MXRoyale.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="MaterialDesignLite.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Mobile.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Network.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Reflection.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="RoyaleSite.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="RoyaleUnit.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="SparkRoyale.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Storage.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="TLF.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Text.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="XML.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="jQuery.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="AceJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="BasicJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="BindingJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="ChartsJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="CollectionsJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="CoreJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="CreateJSJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="DragDropJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="EffectsJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="ExpressJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="FlatJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="FontAwesomeJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="FormattersJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="GoogleMapsJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="GraphicsJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="HTMLJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="HTML5JS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="IconsJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="JewelJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="LanguageJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="MXRoyaleJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="MaterialDesignLiteJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="MobileJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="NetworkJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="ReflectionJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="RoyaleSiteJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="RoyaleUnitJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="SparkRoyaleJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="StorageJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="TLFJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="TextJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="XMLJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="jQueryJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="ace-1.2.3.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="cordova.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="createjs.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="GCL.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="google_maps.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="jasmine.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="jquery.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="js.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/js/libs" />
+            <param name="fileName" value="node.swc"/>
+        </antcall>
     </target>
 
     <target name="Release_Step_013_Sign" depends="get-artifact-folder">
