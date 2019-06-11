@@ -18,16 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-	import flexUnitTests.core.*
-
+    import flexUnitTests.core.*
+    
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
     public class CoreTester
     {
         public function CoreTester()
         {
             // for JS, force-link these classes in the output
-            var arr:Array = [StrandTesterTest, BinaryDataTesterTest,MD5Test];
+            var arr:Array = [StrandTesterTest, BinaryDataTesterTest, MD5Test, ArrayTesterTest];
         }
         
         // in JS, using a class as a type won't include the class in
@@ -38,7 +41,9 @@ package flexUnitTests
         // of tests?  I would think an array of tests would wokr
         // better and allow you to define order.
         public var strandTesterTest:StrandTesterTest;
-		public var binaryDataTesterTest:BinaryDataTesterTest;
-		public var md5Test:MD5Test;
+        public var binaryDataTesterTest:BinaryDataTesterTest;
+        public var md5Test:MD5Test;
+    
+        public var arrayTest:ArrayTesterTest;
     }
 }

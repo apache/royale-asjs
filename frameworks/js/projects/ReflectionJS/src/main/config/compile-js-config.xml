@@ -61,6 +61,7 @@
                  if these swcs are on the external-library-path then their requires
                  will not be listed -->
             <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
         </library-path>
         
         <namespaces>
@@ -81,10 +82,10 @@
     </include-file>
 
     <include-sources>
-        <path-element>../../../../../../projects/Reflection/src/main/royale</path-element>
     </include-sources>
-    
+
     <include-classes>
+        <class>ReflectionClasses</class>
     </include-classes>
     
     <include-namespaces>
@@ -92,6 +93,10 @@
     </include-namespaces>
 
     <js-default-initializers>false</js-default-initializers>
+
+    <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
+    <js-resolve-uncertain>false</js-resolve-uncertain>
+    <js-vector-index-checks>false</js-vector-index-checks>
     
 
 </royale-config>

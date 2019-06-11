@@ -18,19 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.network.support
 {
-
-	
-	public class TestClass2
-	{
-		//Note: do not change this test class unless you change the related tests to
-		//support any changes that might appear when testing reflection into it
-		
-		public function TestClass2(){
-
-		}
-		
-		
-		public var testField1:Boolean = true;
-
-	}
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass2
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing reflection into it
+        
+        public function TestClass2()
+        {
+        
+        }
+        
+        
+        public var testField1:Boolean = true;
+        
+    }
 }

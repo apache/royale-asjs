@@ -117,12 +117,13 @@ package
 		COMPILE::JS
 		public function equals(name:QName):Boolean
 		{
-			return this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
+			return name != null && this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
 		}
 		
     	COMPILE::JS
 		public function matches(name:QName):Boolean
 		{
+			if (name == null) return this.localName == "*";
 			if(this.uri == "*" || name.uri == "*")
 				return this.localName == "*" || name.localName == "*" || this.localName == name.localName;
 

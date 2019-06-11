@@ -20,7 +20,8 @@ package flexunit.framework
  	
 	/**
 	 * A set of assert methods.  Messages are only displayed when an assert fails.
-	 */
+     * @royalesuppresspublicvarwarning
+     */
 	public class Assert
 	{
 		/**

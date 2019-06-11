@@ -18,38 +18,44 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.network.support
 {
-	import org.apache.royale.utils.net.IDynamicPropertyWriter;
-	import org.apache.royale.reflection.*;
-	COMPILE::JS{
-		import org.apache.royale.utils.net.IDynamicPropertyOutput;
-	}
-	
-	COMPILE::SWF{
-		import flash.net.IDynamicPropertyOutput;
-	}
-	
-
-	public class DynamicPropertyWriter implements IDynamicPropertyWriter
-	{
-		//Note: do not change this test class unless you change the related tests to
-		//support any changes that might appear when testing with it
-		
-		
-		public function DynamicPropertyWriter() {
-			// constructor code
-		}
-		
-		public var excludeBeginningUnderscores:Boolean = true;
-		
-		public function writeDynamicProperties(obj:Object, output:IDynamicPropertyOutput):void {
-			var dynamicProperties:Array = getDynamicFields(obj);
-			while (dynamicProperties.length) {
-				var prop:String = dynamicProperties.shift();
-				if (excludeBeginningUnderscores && (prop.charAt(0) == '_')) continue;
-				output.writeDynamicProperty(prop,obj[prop]);
-			}
-		}
-		
-	}
-	
+    import org.apache.royale.utils.net.IDynamicPropertyWriter;
+    import org.apache.royale.reflection.*;
+    
+    COMPILE::JS{
+        import org.apache.royale.utils.net.IDynamicPropertyOutput;
+    }
+    
+    COMPILE::SWF{
+        import flash.net.IDynamicPropertyOutput;
+    }
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class DynamicPropertyWriter implements IDynamicPropertyWriter
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing with it
+        
+        
+        public function DynamicPropertyWriter()
+        {
+            // constructor code
+        }
+        
+        public var excludeBeginningUnderscores:Boolean = true;
+        
+        public function writeDynamicProperties(obj:Object, output:IDynamicPropertyOutput):void
+        {
+            var dynamicProperties:Array = getDynamicFields(obj);
+            while (dynamicProperties.length)
+            {
+                var prop:String = dynamicProperties.shift();
+                if (excludeBeginningUnderscores && (prop.charAt(0) == '_')) continue;
+                output.writeDynamicProperty(prop, obj[prop]);
+            }
+        }
+        
+    }
+    
 }

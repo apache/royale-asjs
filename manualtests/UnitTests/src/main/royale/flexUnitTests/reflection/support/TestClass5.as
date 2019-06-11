@@ -18,65 +18,75 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection.support
 {
-
-
-
-	public class TestClass5 
-	{
-		//Note: do not change this test class unless you change the related tests to 
-		//support any changes that might appear when testing reflection into it
-		
-		public function TestClass5(){
-			
-		}
-		
-		
-		[TestMeta(foo="instanceMethod")]
-		public function method():void{
-		
-		}
-		
-		[TestMeta(foo="instanceMethod")]
-		public function methodWithArgs(mandatory:String,optional:Boolean=true):void{
-		
-		}
-		
-		[TestMeta(foo="instanceVariable")]
-		public var testVar:String;
-		
-		[TestMeta(foo="instanceAccessor")]
-		public function get testGetter():String{
-			return null
-		}
-		
-		[TestMeta(foo="instanceAccessor")]
-		public function set testSetter(value:String):void{
-			
-		}
-		
-		
-		[TestMeta(foo="staticMethod")]
-		public static function method():void{
-		}
-		
-		[TestMeta(foo="staticMethod")]
-		public static function methodWithArgs(mandatory:String,optional:Boolean=true):void{
-		}
-		
-		[TestMeta(foo="staticVariable")]
-		public static var testVar:String;
-		
-		[TestMeta(foo="staticAccessor")]
-		public static function get testGetter():String{
-			return null
-		}
-		
-		[TestMeta(foo="staticAccessor")]
-		public static function set testSetter(value:String):void{
-			
-		}
-		
-
-
-	}
+    
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass5
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing reflection into it
+        
+        public function TestClass5()
+        {
+        
+        }
+        
+        
+        [TestMeta(foo="instanceMethod")]
+        public function method():void
+        {
+        
+        }
+        
+        [TestMeta(foo="instanceMethod")]
+        public function methodWithArgs(mandatory:String, optional:Boolean = true):void
+        {
+        
+        }
+        
+        [TestMeta(foo="instanceVariable")]
+        public var testVar:String;
+        
+        [TestMeta(foo="instanceAccessor")]
+        public function get testGetter():String
+        {
+            return null
+        }
+        
+        [TestMeta(foo="instanceAccessor")]
+        public function set testSetter(value:String):void
+        {
+        
+        }
+        
+        
+        [TestMeta(foo="staticMethod")]
+        public static function method():void
+        {
+        }
+        
+        [TestMeta(foo="staticMethod")]
+        public static function methodWithArgs(mandatory:String, optional:Boolean = true):void
+        {
+        }
+        
+        [TestMeta(foo="staticVariable")]
+        public static var testVar:String;
+        
+        [TestMeta(foo="staticAccessor")]
+        public static function get testGetter():String
+        {
+            return null
+        }
+        
+        [TestMeta(foo="staticAccessor")]
+        public static function set testSetter(value:String):void
+        {
+        
+        }
+        
+        
+    }
 }

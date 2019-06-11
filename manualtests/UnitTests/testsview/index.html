@@ -111,14 +111,16 @@
 
 	function onSwfFrameReady(){
         //this supports intellij's 'launch in browser'
-        var swfFrameSource = "/target/bin-debug/UnitTests.html";
+        var swfFrameSource = "/target/swf/UnitTests.html";
         if (window.location.search) {
            var append = window.location.search;
            if (append) swfFrameSource += append;
-           if ( document.getElementById('swfIframe').src.indexOf(swfFrameSource) == -1) {
-               document.getElementById('swfIframe').src =".."+swfFrameSource;
-           }
+           console.log('appending url params:',swfFrameSource)
 		}
+        if ( document.getElementById('swfIframe').src.indexOf(swfFrameSource) == -1) {
+            console.log(document.getElementById('swfIframe').src)
+            document.getElementById('swfIframe').src =".."+swfFrameSource;
+        }
 	}
 	</script>
 </head>

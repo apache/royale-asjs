@@ -18,10 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-	import flexUnitTests.network.*
-
+    import flexUnitTests.network.*
+    
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class NetworkTester
     {
         public function NetworkTester()
@@ -37,7 +40,7 @@ package flexUnitTests
         // Is there a reason to use reflection to gather the set
         // of tests?  I would think an array of tests would wokr
         // better and allow you to define order.
-		public var amfBinaryDataTesterTest:AMFBinaryDataTesterTest;
-
+        public var amfBinaryDataTesterTest:AMFBinaryDataTesterTest;
+        
     }
 }

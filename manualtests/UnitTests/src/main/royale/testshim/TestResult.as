@@ -16,41 +16,51 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package testshim {
-public class TestResult {
-    public function TestResult() {
-    }
-
-    public var testClass:String;
-
-    public var testMethod:String;
-
-    public var pass:Boolean;
-
-    public var assertions:uint;
-
-    public var error:String;
-
-    public var hasVariance:Boolean;
-
-    public var varianceTarget:String;
-
-    public var varianceDescription:String;
+package testshim
+{
     
-    public var warning:String;
-
-    public function toString(newline:String=null):String {
-        if (newline==null) newline="\n";
-        var s:String="";
-        var postFix:String = testMethod+" in "+testClass;
-        if (pass) {
-           s += "PASSED ("+assertions+" assertions made) ["+postFix+"]";
-        } else {
-            s += "FAILED ( at assertion "+assertions+" in test method) ["+postFix+"]"+newline;
-            s += "["+error+"]";
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestResult
+    {
+        public function TestResult()
+        {
         }
-        return s;
+        
+        public var testClass:String;
+        
+        public var testMethod:String;
+        
+        public var pass:Boolean;
+        
+        public var assertions:uint;
+        
+        public var error:String;
+        
+        public var hasVariance:Boolean;
+        
+        public var varianceTarget:String;
+        
+        public var varianceDescription:String;
+        
+        public var warning:String;
+        
+        public function toString(newline:String = null):String
+        {
+            if (newline == null) newline = "\n";
+            var s:String = "";
+            var postFix:String = testMethod + " in " + testClass;
+            if (pass)
+            {
+                s += "PASSED (" + assertions + " assertions made) [" + postFix + "]";
+            } else
+            {
+                s += "FAILED ( at assertion " + assertions + " in test method) [" + postFix + "]" + newline;
+                s += "[" + error + "]";
+            }
+            return s;
+        }
+        
     }
-
-}
 }

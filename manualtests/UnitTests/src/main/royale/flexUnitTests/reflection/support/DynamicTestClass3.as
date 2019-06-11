@@ -18,19 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection.support
 {
-
-	import org.apache.royale.core.UIBase;
-
-	dynamic public class DynamicTestClass3 extends UIBase
-	{
-		//Note: do not change this test class unless you change the related tests to
-		//support any changes that might appear when testing reflection into it
-		
-		public function DynamicTestClass3(){
-		
-		
-		}
-		
-		
-	}
+    
+    import org.apache.royale.core.UIBase;
+    
+    dynamic public class DynamicTestClass3 extends UIBase
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing reflection into it
+        
+        public function DynamicTestClass3()
+        {
+        
+        
+        }
+        
+        
+    }
 }

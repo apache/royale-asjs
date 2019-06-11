@@ -18,22 +18,25 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection.support
 {
-
-
-
-	public class TestClass3 extends TestClass1 implements ITestInterface2, ITestInterface3
-	{
-		
-		public var something:String;
-		
-		
-		public function someMethod2(compulsoryArg:int, optArg:String=null):TestClass1
-		{
-			return null;
-		}
-		
-		public function get someValue2():Boolean {
-			return false;
-		}
-	}
+    
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass3 extends TestClass1 implements ITestInterface2, ITestInterface3
+    {
+        
+        public var something:String;
+        
+        
+        public function someMethod2(compulsoryArg:int, optArg:String = null):TestClass1
+        {
+            return null;
+        }
+        
+        public function get someValue2():Boolean
+        {
+            return false;
+        }
+    }
 }

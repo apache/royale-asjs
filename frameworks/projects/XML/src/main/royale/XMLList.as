@@ -603,6 +603,28 @@ package
 			    i. Let i = i + 1
 			3. Return list
 			*/
+			var len:uint = _xmlArray.length;
+            var textAccumulator:XML;
+			for (var i:int=0; i<len; i++) {
+				var node:XML = XML(_xmlArray[i]);
+				var nodeKind:String = node.nodeKind();
+				if (nodeKind == 'element' ) {
+                    node.normalize();
+                    textAccumulator = null;
+				} else if (nodeKind == 'text') {
+					if (textAccumulator) {
+                        textAccumulator.setValue(textAccumulator.getValue() + node.getValue());
+                        removeChildAt(i);
+						i--;
+						len--;
+					} else {
+                        textAccumulator = node;
+					}
+				} else {
+                    textAccumulator = null;
+				}
+			}
+			
 			return this;
 		}
 		
@@ -973,26 +995,37 @@ package
 				if(str)
 					retVal.push(str);
 			}
-			return retVal.join("");
+			return retVal.join("\n");
 		}
 		
 		/**
 		 * Returns a string representation of all the XML objects in an XMLList object.
 		 * 
 		 * @return 
-		 * 
+		 *
+		 * @royaleignorecoercion XML
 		 */
 		public function toString():String
 		{
 			var retVal:Array = [];
 			var len:int = _xmlArray.length;
+			var cumulativeText:String = '';
 			for (var i:int=0;i<len;i++)
 			{
 				var str:String = _xmlArray[i].toString();
-				if(str)
-					retVal.push(str);
+				if (XML(_xmlArray[i]).nodeKind() == 'text') {
+					cumulativeText += str;
+				} else {
+					if (cumulativeText) {
+                        retVal.push(cumulativeText);
+                        cumulativeText = '';
+					}
+                    if(str)
+                        retVal.push(str);
+				}
 			}
-			return retVal.join("");
+            if (cumulativeText) retVal.push(cumulativeText);
+			return retVal.join("\n");
 		}
 		
 		/**

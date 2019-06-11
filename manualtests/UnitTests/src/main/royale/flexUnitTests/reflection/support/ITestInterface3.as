@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection.support
 {
-
-	public interface ITestInterface3
-	{
-			//empty
-
-	}
+    
+    public interface ITestInterface3
+    {
+        //empty
+        
+    }
 }

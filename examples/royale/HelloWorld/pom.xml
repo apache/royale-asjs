@@ -39,13 +39,28 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
+          <targets>SWF,JSRoyale</targets>
+          <debug>false</debug>
+          <removeCirculars>true</removeCirculars>
           <mainClass>HelloWorld.mxml</mainClass>
+          <additionalCompilerOptions>
+            -js-complex-implicit-coercions=false;
+            -js-vector-index-checks=false;
+            -js-resolve-uncertain=false;
+          </additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
+    <dependency>
+      <groupId>com.adobe.flash.framework</groupId>
+      <artifactId>playerglobal</artifactId>
+      <version>${flash.version}</version>
+      <type>swc</type>
+      <scope>provided</scope>
+    </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>

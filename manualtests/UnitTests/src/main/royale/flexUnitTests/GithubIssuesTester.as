@@ -18,12 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-	import flexUnitTests.github.*
-	
+    import flexUnitTests.github.*
+    
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class GithubIssuesTester
     {
     
+        public function GithubIssuesTester()
+        {
+            // see notes in CoreTester
+            var arr:Array = [GithubIssues2018, GithubIssues2019];
+        }
+    
+        public var issues2018:GithubIssues2018;
+    
+        public var issues2019:GithubIssues2019;
     }
 }

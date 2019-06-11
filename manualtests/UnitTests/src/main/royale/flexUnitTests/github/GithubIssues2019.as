@@ -19,35 +19,26 @@
 package flexUnitTests.github
 {
     import flexunit.framework.Assert;
-
     
-    public class GithubTesterTest
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class GithubIssues2019
     {
-		public static var isJS:Boolean;
+        public static var isJS:Boolean;
+        
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-            var js:Boolean = false;
-            try {
-                var check:* = getDefinitionByName("flash.system.Capabilities");
-            } catch (e:Error) {
-                js = true;
-            }
-            //if this next reference to 'check' is not included, then the above try/catch code
-            // appears to be optimized away in js-release mode
-            //todo: this is inconsistent with swf, need to create simple test case for jx compiler/gcc
-            if (check == null) {
-                js = true;
-            }
-            isJS = js;
+            isJS = COMPILE::JS;
         }
-		
-		[AfterClass]
+        
+        [AfterClass]
         public static function tearDownAfterClass():void
         {
         }
-	
-	
+        
+        
         [Before]
         public function setUp():void
         {
@@ -58,16 +49,17 @@ package flexUnitTests.github
         {
         }
         
-       
+        
         /*
 		// TEST METHODS
 		*/
-  
-		//example, postfix the test method with JIRA issue reference:
-        /*[Test]
-        public function testJIRA_FLEX_9999():void
+    
+        //example, postfix the test method with issue reference:
+        [Test]
+        public function placeholdertestIssue_999():void
         {
-
-        }*/
+            //https://github.com/apache/royale-asjs/issues/#
+            Assert.assertTrue('replace me with a real issue', true)
+        }
     }
 }

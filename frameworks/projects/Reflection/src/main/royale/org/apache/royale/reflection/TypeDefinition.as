@@ -114,7 +114,11 @@ COMPILE::SWF {
         }
         
         internal static function internalGetDefinition(name:String, rawData:Object = null):TypeDefinition{
-			return _cache ? (_cache[name] || new TypeDefinition(name, rawData)) : new TypeDefinition(name, rawData);
+            COMPILE::SWF {
+                //normalize Vector naming
+                if (name.indexOf('__AS3__.vec::') == 0) name = name.substr(13);
+            }
+            return _cache ? (_cache[name] || new TypeDefinition(name, rawData)) : new TypeDefinition(name, rawData);
         }
 
         /**
@@ -125,6 +129,10 @@ COMPILE::SWF {
          */
         public function TypeDefinition(name:String, rawData:Object = null)
         {
+            COMPILE::SWF {
+                //normalize Vector naming
+                if (name.indexOf('__AS3__.vec::') == 0) name = name.substr(13);
+            }
             if (_cache) _cache[name] = this;
 
 			var c:int;
@@ -139,10 +147,11 @@ COMPILE::SWF {
 					_packageName = "";
                 //this definition sets a flag for where to find the metadata:
                 useFactory = true;
+                
 			}
 			COMPILE::JS{
 				c = name.lastIndexOf(".");
-				if (c > -1)
+				if (c > -1 && name.indexOf('Vector.') != 0)
 				{
 					_packageName = name.substr(0, c);
 					name = name.substr(c+1);
@@ -150,7 +159,7 @@ COMPILE::SWF {
 				else
 					_packageName = "";
 			}
-            _specialCase = _packageName=="" && SC.indexOf(name) != -1;
+            _specialCase = _packageName == "" && SC.indexOf(name) != -1;
             super(name, rawData);
         }
 
@@ -242,6 +251,9 @@ COMPILE::SWF {
                         def = getDefinitionByName(_packageName + "." + _name);
                     else def = getDefinitionByName(_name);
                     _rawData = def.prototype.ROYALE_CLASS_INFO;
+                    if (_rawData == null) {
+                        _rawData = ExtraData.hasData(def) ? ExtraData.getData(def)['ROYALE_CLASS_INFO'] : null;
+                    }
                 }
             }
             return _rawData;
@@ -260,13 +272,15 @@ COMPILE::SWF {
                 if (!_constructorMethod) {
                     var source:XML = rawData.factory.constructor[0];//['constructor'][0];
                     var declaredBy:String = _packageName.length? _packageName+"::"+_name : _name;
+                    var xmlName:String = _name.replace('<', '&lt;');
+                    declaredBy = declaredBy.replace('<', '&lt;');
                     if (source ==null) {
                         //constructor with no params
                         _constructorMethod =
-                                new MethodDefinition(_name, false, this, XML('<method name="'+_name+'" declaredBy="'+declaredBy+'" returnType="" />'));
+                                new MethodDefinition(_name, false, this, XML('<method name="'+xmlName+'" declaredBy="'+declaredBy+'" returnType="" />'));
                     } else {
                         var params:XMLList = source.parameter;
-                        _constructorMethod=new MethodDefinition(_name, false, this, XML('<method name="'+_name+'" declaredBy="'+declaredBy+'" returnType="">'+params.toXMLString()+'</method>'))
+                        _constructorMethod=new MethodDefinition(_name, false, this, XML('<method name="'+xmlName+'" declaredBy="'+declaredBy+'" returnType="">'+params.toXMLString()+'</method>'))
                     }
                 }
             }
@@ -704,8 +718,9 @@ COMPILE::SWF {
            var data:Object = rawData;
            var qname:String = data.names[0].qName;
            var def:Object = getDefinitionByName(qname);
-           var rdata:* =  def.prototype.ROYALE_REFLECTION_INFO();
-
+            
+           const infoDataSource:Function =  def.prototype.ROYALE_REFLECTION_INFO || ExtraData.getData(qname)['ROYALE_REFLECTION_INFO'];
+           var rdata:* =  infoDataSource();
            var itemClass:Class = lookups[collection];
 
            var l:int, i:int = 0;
@@ -726,7 +741,7 @@ COMPILE::SWF {
            //get the local definitions
             if (rdata !== undefined)
             {
-                var items:Object = rdata[collection]();
+                var items:Object = rdata[collection] ? rdata[collection]() : null;
                 if (items)
                 {
                     for (var item:String in items)

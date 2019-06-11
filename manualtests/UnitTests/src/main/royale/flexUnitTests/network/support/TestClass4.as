@@ -18,15 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.network.support
 {
-	
-	public class TestClass4
-	{
-		public function TestClass4()
-		{
-		}
-		
-		public var testField1:Function;
-
-		
-	}
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass4
+    {
+        public function TestClass4()
+        {
+        }
+        
+        public var testField1:Function;
+        
+        
+    }
 }

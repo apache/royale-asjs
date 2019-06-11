@@ -18,17 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.network.support
 {
-	
-	public class TestClass1
-	{
-		public function TestClass1()
-		{
-		}
-		
-		public var testField1:String = '';
-
-		
-
-
-	}
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass1
+    {
+        public function TestClass1()
+        {
+        }
+        
+        public var testField1:String = '';
+        
+        
+    }
 }

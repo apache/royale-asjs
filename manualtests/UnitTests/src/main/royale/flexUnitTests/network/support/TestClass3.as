@@ -18,33 +18,38 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.network.support
 {
-	import org.apache.royale.utils.net.IExternalizable;
-	COMPILE::JS{
-		import org.apache.royale.utils.net.IDataInput;
-		import org.apache.royale.utils.net.IDataOutput;
-	}
-	
-	COMPILE::SWF{
-		import flash.utils.IDataInput;
-		import flash.utils.IDataOutput;
-	}
-	
-	
-	public class TestClass3 implements IExternalizable
-	{
-		
-		public var content:Array=["TestClass3"];
-		
-		
-		public function readExternal(input:IDataInput):void{
-			var content:Array = input.readObject() as Array;
-			this.content = content;
-		}
-		
-		public function writeExternal(output:IDataOutput):void {
-			output.writeObject(content);
-		}
-	
-	}
-	
+    import org.apache.royale.utils.net.IExternalizable;
+    
+    COMPILE::JS{
+        import org.apache.royale.utils.net.IDataInput;
+        import org.apache.royale.utils.net.IDataOutput;
+    }
+    
+    COMPILE::SWF{
+        import flash.utils.IDataInput;
+        import flash.utils.IDataOutput;
+    }
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass3 implements IExternalizable
+    {
+        
+        public var content:Array = ["TestClass3"];
+        
+        
+        public function readExternal(input:IDataInput):void
+        {
+            var content:Array = input.readObject() as Array;
+            this.content = content;
+        }
+        
+        public function writeExternal(output:IDataOutput):void
+        {
+            output.writeObject(content);
+        }
+        
+    }
+    
 }

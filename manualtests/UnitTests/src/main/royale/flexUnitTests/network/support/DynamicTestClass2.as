@@ -18,17 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.network.support
 {
-
-
-
-	dynamic public class DynamicTestClass2
-	{
-		//Note: do not change this test class unless you change the related tests to
-		//support any changes that might appear when testing with it
-		
-
-		public var sealedInstanceProp1:Boolean;
-		
-
-	}
+    
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    dynamic public class DynamicTestClass2
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing with it
+        
+        
+        public var sealedInstanceProp1:Boolean;
+        
+        
+    }
 }

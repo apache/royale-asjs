@@ -28,12 +28,23 @@
 		@namespace js "library://ns.apache.org/royale/basic";
 		js|Application {
 			background-color:#ffffff ;
+			position:absolute;
+			top:0;
+			bottom:0;
+			left:0;
+			right:0;
 		}
+
+		.view{
+			width: 100%;
+			height: 100%;
+		}
+
 	</fx:Style>
 	<js:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</js:valuesImpl>
 	<js:initialView>
-		<local:MyInitialView />
+		<local:MyInitialView className="view" />
 	</js:initialView>
 </js:Application>

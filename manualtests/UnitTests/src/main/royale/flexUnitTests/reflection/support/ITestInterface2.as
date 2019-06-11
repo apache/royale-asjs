@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection.support
 {
-
-	public interface ITestInterface2 extends ITestInterface
-	{
-		function someMethod2(compulsoryArg:int, optArg:String=null):TestClass1;
-		
-		function get someValue2():Boolean;
-
-	}
+    
+    public interface ITestInterface2 extends ITestInterface
+    {
+        function someMethod2(compulsoryArg:int, optArg:String = null):TestClass1;
+        
+        function get someValue2():Boolean;
+        
+    }
 }

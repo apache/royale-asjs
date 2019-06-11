@@ -66,7 +66,7 @@
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
           <!--<additionalCompilerOptions>-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>-->
-          <additionalCompilerOptions>-js-default-initializers=false;-source-map=true</additionalCompilerOptions>
+          <additionalCompilerOptions>-js-default-initializers=false;-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false;-source-map=true</additionalCompilerOptions>
         </configuration>
       </plugin>
       

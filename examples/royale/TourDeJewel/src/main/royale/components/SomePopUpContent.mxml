@@ -18,7 +18,8 @@ limitations under the License.
 
 -->
 <j:VGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
-    xmlns:j="library://ns.apache.org/royale/jewel" 
+    xmlns:j="library://ns.apache.org/royale/jewel"
+          implements="org.apache.royale.core.IBead"
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:html="library://ns.apache.org/royale/html"
     width="500" height="400" gap="3">
@@ -26,6 +27,12 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import org.apache.royale.events.Event;
+            import org.apache.royale.core.IStrand;
+
+            private var _strand:IStrand;
+            public function set strand(value:IStrand):void {
+                _strand = value;
+            }
         ]]>
     </fx:Script>
 

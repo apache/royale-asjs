@@ -83,7 +83,7 @@ package org.apache.royale.reflection.beads
                 {
                     var alias:String = map[cn];
                     var c:Class = getDefinitionByName(cn) as Class;
-                    if (c) // if no class, may have only been used in JS as a type and never actually instnatiated
+                    if (c) // if no class, may have only been used in JS as a type and never actually instantiated
                         registerClassAlias(alias, c);
                 }
             }

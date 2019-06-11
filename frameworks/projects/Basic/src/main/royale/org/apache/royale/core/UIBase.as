@@ -904,43 +904,6 @@ package org.apache.royale.core
         {
             return element.childNodes as Array;
         }
-        
-        COMPILE::SWF
-		private var _model:IBeadModel;
-
-        /**
-         *  An IBeadModel that serves as the data model for the component.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        COMPILE::SWF
-        public function get model():Object
-		{
-            if (_model == null)
-            {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
-            }
-			return _model;
-		}
-
-        COMPILE::SWF
-        /**
-         * @private
-         * @royaleignorecoercion org.apache.royale.core.IBead
-         */
-        [Bindable("modelChanged")]
-		public function set model(value:Object):void
-		{
-			if (_model != value)
-			{
-				addBead(value as IBead);
-				dispatchEvent(new Event("modelChanged"));
-			}
-		}
 		
         private var _view:IBeadView;
         
@@ -1157,8 +1120,6 @@ package org.apache.royale.core
          */
 		public var beads:Array;
 		
-        COMPILE::SWF
-		private var _beads:Vector.<IBead>;
         
         /**
          *  @copy org.apache.royale.core.IStrand#addBead()
@@ -1173,64 +1134,16 @@ package org.apache.royale.core
 		override public function addBead(bead:IBead):void
 		{
             var isView:Boolean;
-			if (!_beads)
-				_beads = new Vector.<IBead>;
-			_beads.push(bead);
-			if (bead is IBeadModel)
-				_model = bead as IBeadModel;
-            else if (bead is IBeadView)
-            {
-                _view = bead as IBeadView;
-                isView = true
-            }
-			bead.strand = this;
+			
+			super.addBead(bead);
+			if (this._model !== bead && bead is IBeadView) {
+				_view = bead as IBeadView;
+				isView = true
+			}
 			
 			if (isView) {
 				dispatchEvent(new Event("viewChanged"));
 			}
-		}
-		
-        /**
-         *  @copy org.apache.royale.core.IStrand#getBeadByType()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        COMPILE::SWF
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in _beads)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
-		
-        /**
-         *  @copy org.apache.royale.core.IStrand#removeBead()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        COMPILE::SWF
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = _beads.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = _beads[i];
-				if (bead == value)
-				{
-					_beads.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
 		}
 		
         /**

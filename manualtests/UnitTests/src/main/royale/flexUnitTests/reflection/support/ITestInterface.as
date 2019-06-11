@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection.support
 {
-
-	public interface ITestInterface
-	{
-		function someMethod(compulsoryArg:int, optArg:String=null):TestClass1;
-
-	}
+    
+    public interface ITestInterface
+    {
+        function someMethod(compulsoryArg:int, optArg:String = null):TestClass1;
+        
+    }
 }
