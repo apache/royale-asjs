@@ -1224,24 +1224,24 @@ limitations under the License.
         Tests: The current checkintests that must be run before every checkin
     -->
 
-    <target name="checkintests" depends="checkintests-clean,basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" />
+    <target name="checkintests" depends="checkintests-clean,basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" unless="skipTests" />
     
     <!--
      Tests: Marmotinni checkintests
      -->
     
-    <target name="basictests-marmotinni" depends="marmotinni-setup,basictests-js"/>
+    <target name="basictests-marmotinni" depends="marmotinni-setup,basictests-js" unless="skipTests"/>
 
-    <target name="marmotinni-setup"  description="download and set up marmotinni">
+    <target name="marmotinni-setup"  description="download and set up marmotinni" unless="skipTests">
         <subant target="main" >
             <fileset dir="${basedir}/marmotinni/java" includes="downloads.xml"/>
         </subant>
         <ant dir="${basedir}/mustella"/>
     </target>
     
-    <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" />
+    <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" unless="skipTests"/>
     
-    <target name="basictests-run-js" >
+    <target name="basictests-run-js" unless="skipTests" >
         <property name="profile_arg" value="dummy=false" />
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
@@ -1340,7 +1340,7 @@ limitations under the License.
         </mxmlc>
     </target>
     
-    <target name="basictests-compile-java" depends="marmotinni-setup">
+    <target name="basictests-compile-java" depends="marmotinni-setup" unless="skipTests">
         <delete dir="${basedir}/mustella/java/bin"/><!-- the old folder-->
         <delete dir="${basedir}/mustella/target/classes"/>
         <mkdir dir="${basedir}/mustella/target/classes"/>
@@ -1406,9 +1406,9 @@ limitations under the License.
         Tests: Mustella checkintests
     -->
 
-    <target name="basictests-mustella" depends="mustella-setup,basictests" if="env.AIR_HOME"/>
+    <target name="basictests-mustella" depends="mustella-setup,basictests" if="env.AIR_HOME" unless="skipTests"/>
 
-    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="env.AIR_HOME">
+    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="env.AIR_HOME" unless="skipTests">
         <ant dir="${basedir}/mustella" />
     <!--
         <ant dir="${basedir}/mustella" target="makemustellaswc">
@@ -1459,7 +1459,7 @@ limitations under the License.
         <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/compiler-royaleTasks.jar"/>
     </target>
 
-    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME">
+    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME" unless="skipTests">
         <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
@@ -1512,7 +1512,7 @@ limitations under the License.
         <antcall target="mustellaresultsparser"/>
     </target>
 
-    <target name="mustellaresultsparser">
+    <target name="mustellaresultsparser" unless="skipTests">
         <java classname="mustella.MustellaResultsParser" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
