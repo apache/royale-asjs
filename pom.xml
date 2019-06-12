@@ -30,7 +30,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.7-SNAPSHOT</version>
+  <version>0.9.6-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -64,7 +64,7 @@
     
     <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
-    <repo.compiler.options />
+    <repo.compiler.options></repo.compiler.options>
     
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
