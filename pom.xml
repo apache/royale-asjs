@@ -231,7 +231,7 @@
             <!-- Should probably also be removed -->
             <exclude>js/*jshint*</exclude>
             <!-- FlashBuilder settings. frameworks/fb.properties contains Alex' path entries and should be removed -->
-            <exclude>frameworks/fb.properties</exclude>
+            <exclude>**/fb.properties</exclude>
             <!-- FlashBuilder / Eclipse settings. If checked in, they should have apache headers -->
             <exclude>**/.settings/**</exclude>
             <!-- Ignore IntelliJ IDEA project files -->
