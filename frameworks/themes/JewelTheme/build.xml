@@ -45,6 +45,7 @@
             <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
             <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
             <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+            <property name="royale.swc-date" value="${royale.swc-date}"/>
         </ant>
         <copy file="${ROYALE_HOME}/frameworks/js/themes/${ant.project.name}JS/target/${ant.project.name}JS.swc" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
     </target>
