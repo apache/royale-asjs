@@ -30,7 +30,10 @@
 
             public function highLightContent():void
             {
-                hljs.highlightBlock(sourceCodeMXMLText.element);   
+				COMPILE::JS
+				{
+                	hljs.highlightBlock(sourceCodeMXMLText.element);   
+				}
             }
 		]]>
 	</fx:Script>
