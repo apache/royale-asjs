@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.6-SNAPSHOT</version>
+    <version>0.9.7-SNAPSHOT</version>
   </parent>
 
   <artifactId>Language</artifactId>
-  <version>0.9.6-SNAPSHOT</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Language</name>
@@ -46,7 +46,6 @@
           </includeClasses>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>-js-default-initializers=false;-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false;-source-map=true;-warn-instance-of-changes=false</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

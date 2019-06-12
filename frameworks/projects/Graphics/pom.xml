@@ -23,18 +23,18 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.6-SNAPSHOT</version>
+    <version>0.9.7-SNAPSHOT</version>
   </parent>
 
   <artifactId>Graphics</artifactId>
-  <version>0.9.6-SNAPSHOT</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Graphics</name>
 
   <properties>
     <!-- TODO: This is a fix till we release this via Maven -->
-    <pixelbender.download-url>http://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/flex/pixelbender/1.0/binaries/apache-flex-sdk-pixel-bender-1.0.0-bin.zip</pixelbender.download-url>
+    <pixelbender.download-url>https://ftp-stud.hs-esslingen.de/pub/Mirrors/ftp.apache.org/dist/flex/pixelbender/1.0/binaries/apache-flex-sdk-pixel-bender-1.0.0-bin.zip</pixelbender.download-url>
   </properties>
 
   <build>
@@ -111,7 +111,7 @@
           </includeClasses>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>-js-default-initializers=false;-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false;-source-map=true;-compiler.byte-array-embed-class=org.apache.royale.core.ByteArrayAsset</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-compiler.byte-array-embed-class=org.apache.royale.core.ByteArrayAsset</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
@@ -121,14 +121,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>

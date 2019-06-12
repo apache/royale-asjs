@@ -178,7 +178,7 @@
 	    description="Copies the selenium build jars.">
 		<mkdir dir="${lib.dir}/selenium" />
 	    <antcall target="download-zip">
-	      <param name="srcUrl" value="http://selenium-release.storage.googleapis.com/${selenium2.jar.dir.name}"/>
+	      <param name="srcUrl" value="https://selenium-release.storage.googleapis.com/${selenium2.jar.dir.name}"/>
 	      <param name="zipFile" value="${selenium2.jar.name}.zip"/>
 	    </antcall>
 	    <get src="http://www.apache.org/licenses/LICENSE-2.0" dest="${lib.dir}/selenium/selenium-LICENSE.txt"/>
