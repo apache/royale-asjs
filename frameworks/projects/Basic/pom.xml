@@ -68,7 +68,7 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions>-js-default-initializers=false;-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false;-source-map=true;-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-compiler.fxg-base-class=flash.display.Sprite</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

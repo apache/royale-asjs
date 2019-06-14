@@ -65,7 +65,7 @@
               </define>
           </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <additionalCompilerOptions>-js-default-initializers=false;-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false;-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

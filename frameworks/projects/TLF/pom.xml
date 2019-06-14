@@ -64,7 +64,7 @@
           <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipAS>${royale.skipAS}</skipAS>
           <skipExtern>true</skipExtern>
-          <additionalCompilerOptions>-js-default-initializers=false;-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false;-js-vector-emulation-class=Array;-source-map=true;</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-js-vector-emulation-class=Array</additionalCompilerOptions>
           <defines>
             <define>
               <name>CONFIG::debug</name>

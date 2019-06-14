@@ -29,6 +29,11 @@
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
+    <tstamp>
+        <format property="royale.swc-date" pattern="MM/dd/yy HH:mm Z"/>
+    </tstamp>
+    <echo>swc-date is ${royale.swc-date}</echo>
+    
     <echo>AIR_HOME is ${env.AIR_HOME}</echo>
     
     <!-- doesn't contain compiled files so only need to compile JS version -->
@@ -40,6 +45,7 @@
             <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
             <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
             <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+            <property name="royale.swc-date" value="${royale.swc-date}"/>
         </ant>
         <copy file="${ROYALE_HOME}/frameworks/js/themes/${ant.project.name}JS/target/${ant.project.name}JS.swc" tofile="${ROYALE_HOME}/frameworks/libs/${target.name}" />
     </target>
@@ -93,6 +99,9 @@
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />
+            <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />
+            <arg line="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
+            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />

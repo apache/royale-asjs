@@ -29,6 +29,11 @@
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
+    <tstamp>
+        <format property="royale.swc-date" pattern="MM/dd/yy HH:mm Z"/>
+    </tstamp>
+    <echo>swc-date is ${royale.swc-date}</echo>
+    
     <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
@@ -98,6 +103,9 @@
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-compiler.define+=GOOG::DEBUG,true" />
             <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject" />
+            <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />
+            <arg line="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
+            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent" />

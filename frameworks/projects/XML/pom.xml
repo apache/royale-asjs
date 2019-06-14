@@ -47,7 +47,9 @@
               <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
           </namespaces>
-          <includeSources>true</includeSources>
+          <includeClasses>
+            <includeClass>XMLClasses</includeClass>
+          </includeClasses>
           <skipAS>${royale.skipAS}</skipAS>
           <skipExtern>true</skipExtern>
         </configuration>
