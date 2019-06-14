@@ -16,8 +16,3 @@ The ping sound effect (ping.mp3) in
 examples/mxroyale/tourdeflexmodules/src/mx/effects/assets
 was created by CameronMusic. The original file can be found here:
 http://www.freesound.org/people/cameronmusic/sounds/138420/
-
-The loading indicator svg in 
-src/main/royale/org/apache/royale/html/LoadIndicator.as was created by Sam Herbert.
-The original code can be found here:
-http://samherbert.net/svg-loaders/

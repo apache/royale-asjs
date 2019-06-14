@@ -338,3 +338,8 @@ licensed under Creative Commons Attribution 3.0 (CC BY 3.0).
 
 /src/swfobject.js from SWFObject 2.2, is available under a MIT license.
 For details, see https://code.google.com/p/swfobject.
+
+The loading indicator svg in 
+src/main/royale/org/apache/royale/html/LoadIndicator.as was created by Sam Herbert.
+The original code can be found here:
+http://samherbert.net/svg-loaders/
