@@ -20,15 +20,17 @@
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:j="library://ns.apache.org/royale/jewel"
                xmlns:js="library://ns.apache.org/royale/basic"
-               xmlns:html="library://ns.apache.org/royale/html"
-               xmlns:mx="library://ns.apache.org/royale/mx">
+               xmlns:html="library://ns.apache.org/royale/html">
 
     <fx:Script>
 		<![CDATA[
             [Bindable]
             public var code_txt:String;
 
-            
+            public function loadModule():void
+            {
+                
+            }
 		]]>
 	</fx:Script>
     
@@ -43,13 +45,13 @@
             </js:beads>
 
             <j:Card percentWidth="90">
-                <html:H3 text="Using external Javascript Libraries"/>
+                <html:H3 text="Dividing an Apache Royale application with modules"/>
                 
                 <j:Label html="This example uses Modules to load other application parts"/>
 
-                <mx:ModuleLoader id="moduleLoader" width="100%" height="100%"/>
+                <js:UIModuleLoader modulePath="modules" moduleName="JewelModule" />
 
-                <j:Button text="highlight Block" emphasis="primary"/>
+                <j:Button text="Load a Module" emphasis="primary" click="loadModule()"/>
              </j:Card>
         </j:View>
     </j:initialView>

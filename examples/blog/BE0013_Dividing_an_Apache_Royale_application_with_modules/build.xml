@@ -20,44 +20,71 @@
 
 
 <project name="BE0013_Dividing_an_Apache_Royale_application_with_modules" default="main" basedir=".">
-    <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="App" />
-    
-    <property file="${ROYALE_HOME}/env.properties"/>
-    <property environment="env"/>
-    <property file="${ROYALE_HOME}/build.properties"/>
-    <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+    <property name="ROYALE_HOME" location=".."/>
 
-    <include file="${basedir}/../../build_example.xml" />
+    <!-- Required for OSX 10.6 / Snow Leopard Performance. -->
+    <!-- Java 7 on Mac requires OSX 10.7.3 or higher and is 64-bit only -->
+    <!-- local.d32 is set/used in build.properties so this needs to be done first. -->
+    <condition property="local.d32" value="-d32">
+        <and>
+            <os family="mac"/>
+            <matches pattern="1.6.*" string="${java.version}"/>
+            <equals arg1="${sun.arch.data.model}" arg2="64"/>
+            <equals arg1="${os.arch}" arg2="x86_64"/>
+        </and>
+    </condition>
+
+    <!-- Property for the platform.  -->
+    <condition property="isMac">
+        <os family="mac"/>
+    </condition>
+    <condition property="isWindows">
+        <os family="windows" />
+    </condition>   
+    <condition property="isLinux">
+        <and>
+          <os family="unix"/>    
+          <not>
+            <os family="mac"/>    
+          </not>
+        </and>
+    </condition>  
+ 
+    <target name="main" depends="check-compile-env,clean,prepare,compile" 
+        description="Clean build of all examples"/>
+
+    <target name="check-compile-env" description="Check for the required environment variables">
+    </target>
+
     
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
-        <mkdir dir="${basedir}/bin/js-debug/assets" />
-        <copy todir="${basedir}/bin/js-debug/assets" failonerror="false">
-            <fileset dir="${basedir}/src/main/resources/assets">
-                <include name="**" />
-            </fileset>
-        </copy>
-        <mkdir dir="${basedir}/bin/js-release/assets" />
-        <copy todir="${basedir}/bin/js-release/assets" failonerror="false">
-            <fileset dir="${basedir}/src/main/resources/assets">
-                <include name="**" />
-            </fileset>
-        </copy>
+    <target name="prepare" depends="thirdparty-downloads"/>
+            
+    <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
+        <!--<ant antfile="${basedir}/downloads.xml" dir="${basedir}"/>-->
     </target>
     
-    <target name="clean">
-        <delete dir="${basedir}/bin" failonerror="false" />
-        <delete dir="${basedir}/bin-debug" failonerror="false" />
-        <delete dir="${basedir}/bin-release" failonerror="false" />
-        <delete dir="${basedir}/target" failonerror="false" />
+    <target name="compile" description="Compile Examples" >
+        <ant dir="${basedir}/MainJewelApp/" inheritall="false"/>
+        <ant dir="${basedir}/JewelModule" inheritall="false"/>
+    </target>
+    
+    <!--
+		Cleanup
+	-->
+
+    <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
+	
+    <target name="thirdparty-clean" unless="no.thirdparty-clean" description="Removes all thirdparty downloads.">
+        <!--<ant antfile="${basedir}/downloads.xml" target="clean" dir="${basedir}"/>-->
+    </target>
+    
+    <target name="clean" description="Cleans all SWCs and their resource bundles">
+        <ant dir="${basedir}/MainJewelApp" target="clean"/>
+        <ant dir="${basedir}/JewelModule" target="clean"/>
     </target>
 
-    <target name="examine" depends="build_example.get.browser">
-        <property name="which" value="debug" />
-        <echo message="See various team members."/>
-        <exec executable="${browser}" dir="${basedir}/bin/js-${which}" failonerror="true">
-            <arg value="${basedir}/bin/js-${which}/index.html"/>
-        </exec>
+    <target name="examine" description="Cleans all SWCs and their resource bundles">
+        <ant dir="${basedir}/MainJewelApp" target="examine"/>
     </target>
 
 </project>

@@ -19,7 +19,7 @@
 
 DESCRIPTION
 
-Using external javascript libraries in Apache Royale
+Dividing an Apache Royale application with modules
 
 Learn how to use external Javascript libraries in your Apache Royale application. This will be very useful to add quick functionality to your Application adding code that is not part of Apache Royale itself or even was not written in ActionsScript, but with the powerful capabilities like type checking or code completion.
 

@@ -17,47 +17,49 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
-    <artifactId>examples-blog</artifactId>
+    <artifactId>BE0013_Dividing_an_Apache_Royale_application_with_modules</artifactId>
     <version>0.9.6-SNAPSHOT</version>
   </parent>
 
-  <artifactId>BE0013_Dividing_an_Apache_Royale_application_with_modules</artifactId>
+  <artifactId>JewelModule</artifactId>
   <version>0.9.6-SNAPSHOT</version>
-  <packaging>pom</packaging>
+  <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Blog: 0013: Dividing an Apache Royale application with modules</name>
-    
-  <modules>
-    <module>MainJewelApp</module>
-    <module>JewelModule</module>
-  </modules>
+  <name>BE0013_Dividing_an_Apache_Royale_application_with_modules: JewelModule</name>
 
-  <dependencies>  
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <extensions>true</extensions>
+        <configuration>
+          <mainClass>JewelModule.mxml</mainClass>
+          <debug>false</debug>
+          <additionalCompilerOptions>-js-compiler-option=--variable_map_input_file ../../../../../MainJewelApp/target/javascript/bin/js-release/gccvars.txt;-js-compiler-option+=--property_map_input_file ../../../../../MainJewelApp/target/javascript/bin/js-release/gccprops.txt</additionalCompilerOptions>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+  <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Jewel</artifactId>
+      <artifactId>Icons</artifactId>
       <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Jewel</artifactId>
+      <artifactId>Icons</artifactId>
       <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Jewel-Light-NoFlat-Primary-Red-Theme</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
-      <scope>theme</scope>
       <classifier>js</classifier>
     </dependency>
   </dependencies>
