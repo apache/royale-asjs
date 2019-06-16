@@ -24,6 +24,9 @@
 
     <fx:Script>
 		<![CDATA[
+            // inject_html does not wotk in modules
+            import MaterialIconType;MaterialIconType;
+
             [Bindable]
             public var code_txt:String;
 
