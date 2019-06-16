@@ -22,6 +22,7 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.royale.jewel.Application"/>
+    <component id="Module" class="org.apache.royale.jewel.Module"/>
     <component id="View" class="org.apache.royale.jewel.View"/>
     <component id="Group" class="org.apache.royale.jewel.Group"/>
     <component id="HGroup" class="org.apache.royale.jewel.HGroup"/>
