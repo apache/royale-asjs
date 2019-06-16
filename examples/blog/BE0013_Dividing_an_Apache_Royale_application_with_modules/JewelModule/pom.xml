@@ -44,24 +44,36 @@
           <additionalCompilerOptions>-js-compiler-option=--variable_map_input_file ../../../../../MainJewelApp/target/javascript/bin/js-release/gccvars.txt;-js-compiler-option+=--property_map_input_file ../../../../../MainJewelApp/target/javascript/bin/js-release/gccprops.txt</additionalCompilerOptions>
         </configuration>
       </plugin>
+      
+      <plugin>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>rename-file</id>
+            <phase>install</phase>
+            <goals>
+              <goal>rename</goal>
+            </goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <sourceFile>${project.basedir}/target/javascript/bin/js-release/${project.artifactId}.js</sourceFile>
+                  <destinationFile>${project.basedir}/../MainJewelApp/target/javascript/bin/js-release/modules/${project.artifactId}.js</destinationFile>
+                </fileSet>
+                <fileSet>
+                  <sourceFile>${project.basedir}/target/javascript/bin/js-release/${project.artifactId}.min.css</sourceFile>
+                  <destinationFile>${project.basedir}/../MainJewelApp/target/javascript/bin/js-release/modules/${project.artifactId}.min.css</destinationFile>
+                </fileSet>
+              </fileSets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Icons</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Icons</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-  </dependencies>
-
+  
 </project>
