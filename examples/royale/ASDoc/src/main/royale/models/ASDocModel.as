@@ -493,6 +493,9 @@ package models
             }
         }
         
+        /**
+         * @royalesuppresscompleximplicitcoercion false
+         */
         private function addIfNeededAndMakeAttributes(arr:Array, data:ASDocClassEvents):void
         {
         	var n:int = arr.length;
@@ -528,6 +531,9 @@ package models
         	arr.push(data);
         }
 
+        /**
+         * @royalesuppresscompleximplicitcoercion false
+         */
 		private function addAttributes(dest:ASDocClassEvents, src:ASDocClassEvents):void
 		{
 			if (!src.tags) return;
@@ -884,6 +890,9 @@ package models
             filterPackageList();
         }
 
+        /**
+         * @royalesuppresscompleximplicitcoercion false
+         */
         public function filterByTags(className:String):Boolean
         {
             var classData:ASDocClass = masterData["filterData"][className];
