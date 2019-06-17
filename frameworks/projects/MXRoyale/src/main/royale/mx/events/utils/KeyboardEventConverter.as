@@ -26,6 +26,7 @@ package mx.events.utils
 	COMPILE::SWF
 	{
 		import flash.events.KeyboardEvent;
+        import org.apache.royale.events.KeyboardEvent;
 	}
 	
 	/**

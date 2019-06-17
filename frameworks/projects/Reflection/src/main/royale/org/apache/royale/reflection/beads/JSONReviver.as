@@ -47,7 +47,7 @@ import org.apache.royale.core.IStrand;
  *  @productversion Royale 1.0.0
  *  @productversion Royale 0.0
  */
-public class JSONReviver
+public class JSONReviver implements IBead
 {
 
     public function JSONReviver()

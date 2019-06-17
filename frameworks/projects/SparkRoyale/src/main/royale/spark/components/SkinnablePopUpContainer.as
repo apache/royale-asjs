@@ -37,7 +37,7 @@ package spark.components
 	import mx.core.FlexVersion;
 	import mx.core.mx_internal;
 		
-	import mx.effects.Parallel;
+	//import mx.effects.Parallel;
 	import mx.events.EffectEvent;
 	import mx.events.FlexEvent;
 	import mx.events.SandboxMouseEvent;

@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads.layouts
+package mx.controls.listClasses
 {
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;

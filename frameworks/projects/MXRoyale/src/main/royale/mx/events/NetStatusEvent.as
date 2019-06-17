@@ -43,7 +43,7 @@ public class NetStatusEvent extends flash.events.NetStatusEvent
 							  cancelable:Boolean = false, text:String = "", id:int = 0
 							  )
 	{
-		super(type, bubbles, cancelable,text,id);
+		super(type, bubbles, cancelable,text);
 	}
 }
 

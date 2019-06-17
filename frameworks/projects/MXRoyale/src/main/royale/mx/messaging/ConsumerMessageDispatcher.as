@@ -43,13 +43,13 @@ use namespace mx_internal;
  *                  |                       |
  *               Channel 1               Channel 2  <- The endpoint URIs for these two channels are identical
  *                  |                       |
- *                  \_______________________/
+ *                  &#92;_______________________/
  *  Server:                     |
  *                              |
  *                          Endpoint (that the two channels point to)
  *                              |
  *                  FlexClientOutboundQueue (for this endpoint for this FlexClient)
- *                              \-- Outbound messages for the three Consumer subscriptions
+ *                              &#92;-- Outbound messages for the three Consumer subscriptions
  * 
  *  When the endpoint receives a poll request from Channel 1 it will return queued messages for all three subscriptions
  *  but back on the client when Channel 1 dispatches message events for Consumer 2 and 3's subscriptions they won't see

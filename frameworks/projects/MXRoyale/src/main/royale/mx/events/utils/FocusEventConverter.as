@@ -48,7 +48,7 @@ package mx.events.utils
 		COMPILE::SWF
 		public static function convert(oldEvent:flash.events.FocusEvent):mx.events.FocusEvent
 		{
-			var newEvent:mx.events.FocusEvent = new mx.events.FocusEvent(type, true);
+			var newEvent:mx.events.FocusEvent = new mx.events.FocusEvent(oldEvent.type, true);
 			return newEvent;
 		}
 		

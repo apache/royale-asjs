@@ -30,7 +30,7 @@ package org.apache.royale.mdl.beads
 	 *  input from user. A text property allows to configure error text.
 	 *  
 	 *  use examples:
-	 *  Numeric pattern = -?[0-9]*(\.[0-9]+)?
+	 *  Numeric pattern = -?[0-9]*(&#92;.[0-9]+)?
 	 *  error text = "Input is not a number!"
 	 *
 	 *  Letters and spaces only pattern = [A-Z,a-z, ]*

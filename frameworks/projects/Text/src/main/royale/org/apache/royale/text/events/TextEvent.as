@@ -36,7 +36,7 @@ package org.apache.royale.text.events
 	 * set to a new static constant.
 	 * </p>
 	 *
-	 * @includeExample examples\TextLayoutEvent_example.as -noswf
+	 * @includeExample examples/TextLayoutEvent_example.as -noswf
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5
 	 * @langversion 3.0

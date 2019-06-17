@@ -89,7 +89,7 @@ COMPILE::SWF
 		
 		
 		/**
-		 * [static] Constant associated with the key code value for the \ key (220).
+		 * [static] Constant associated with the key code value for the &#92; key (220).
 		 */
 		public static const BACKSLASH : uint = 220;
 		
