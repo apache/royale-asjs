@@ -25,6 +25,7 @@ import mx.events.ListEvent;
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadView;
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.ValuesManager;
@@ -68,12 +69,12 @@ public class ListItemRenderer extends StringItemRenderer
         var p:IParent = parent;
         while (p)
         {
-            if (parent is IStrand)
+            if (p is IStrand)
             {
-                var b:IBead = (parent as IStrand).getBeadByType(IBeadView);
+                var b:IBead = (p as IStrand).getBeadByType(IBeadView);
                 if (b == irp) return p as IEventDispatcher;
             }
-            p = (p as UIComponent).parent;
+            p = (p as IChild).parent;
         }
         return null;
     }
