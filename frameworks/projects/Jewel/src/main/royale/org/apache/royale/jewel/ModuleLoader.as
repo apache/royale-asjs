@@ -18,31 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.utils.PointUtils;
-    import org.apache.royale.utils.UIModuleUtils;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.UIModuleUtils;
 	
 	COMPILE::SWF
 	{
-		import flash.display.Loader;
 		import flash.display.DisplayObjectContainer;
-        import flash.events.Event;
-		import flash.system.LoaderContext;
-		import flash.system.ApplicationDomain;
+		import flash.display.Loader;
+		import flash.events.Event;
 		import flash.net.URLRequest;
+		import flash.system.ApplicationDomain;
+		import flash.system.LoaderContext;
 	}
 	
     COMPILE::JS
     {
         import goog.global;
+
         import org.apache.royale.core.WrappedHTMLElement;   
     }
     
     /**
-     *  The ModuleLoader class can load a Module. 
+     *  The Jewel ModuleLoader class can load a Jewel Module. 
 	 * 
      *  @toplevel
      *  @langversion 3.0
@@ -102,8 +99,8 @@ package org.apache.royale.jewel
         override public function addedToParent():void
         {
             super.addedToParent();
-            if (utils.moduleName)
-                loadModule();
+            // if (utils.moduleName)
+            //     loadModule();
         }
 		
         private var utils:UIModuleUtils = new UIModuleUtils();
