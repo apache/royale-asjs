@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>MainJewelApp.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>JSRoyale</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
           <additionalCompilerOptions>-source-map=true;-js-compiler-option=--variable_map_output_file gccvars.txt;-js-compiler-option+=--property_map_output_file gccprops.txt</additionalCompilerOptions>
