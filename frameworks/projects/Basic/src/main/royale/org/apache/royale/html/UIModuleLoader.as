@@ -18,26 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.utils.PointUtils;
-    import org.apache.royale.utils.UIModuleUtils;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.UIModuleUtils;
 	
 	COMPILE::SWF
 	{
-		import flash.display.Loader;
 		import flash.display.DisplayObjectContainer;
-        import flash.events.Event;
-		import flash.system.LoaderContext;
-		import flash.system.ApplicationDomain;
+		import flash.display.Loader;
+		import flash.events.Event;
 		import flash.net.URLRequest;
+		import flash.system.ApplicationDomain;
+		import flash.system.LoaderContext;
 	}
 	
     COMPILE::JS
     {
         import goog.global;
+
         import org.apache.royale.core.WrappedHTMLElement;   
     }
     
