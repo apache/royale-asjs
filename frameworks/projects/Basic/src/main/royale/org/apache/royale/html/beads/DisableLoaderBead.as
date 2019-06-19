@@ -56,8 +56,8 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-		private var _loader:IUIBase;
+		protected var _strand:IStrand;
+		protected var _loader:IUIBase;
 
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -85,7 +85,7 @@ package org.apache.royale.html.beads
         /**
          * @royaleignorecoercion org.apache.royale.core.IUIBase
          */
-		private function get host():IUIBase
+		protected function get host():IUIBase
 		{
 			return _strand as IUIBase;
 		}
