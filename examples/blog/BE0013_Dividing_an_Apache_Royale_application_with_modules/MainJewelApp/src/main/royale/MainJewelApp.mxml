@@ -27,12 +27,9 @@
             // inject_html does not wotk in modules
             import MaterialIconType; MaterialIconType;
 
-            [Bindable]
-            public var code_txt:String;
-
             public function loadModule():void
             {
-                
+                moduleLoader.loadModule();
             }
 		]]>
 	</fx:Script>
@@ -52,9 +49,7 @@
                 
                 <j:Label html="This example uses Modules to load other application parts"/>
 
-                <j:ModuleLoader localId="moduleLoader" 
-                    modulePath="modules" moduleName="JewelModule"
-                />
+                <j:ModuleLoader localId="moduleLoader" modulePath="modules" moduleName="JewelModule"/>
 
                 <j:Button text="Load a Module" emphasis="primary" click="loadModule()"/>
              </j:Card>
