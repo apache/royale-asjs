@@ -77,7 +77,6 @@ package org.apache.royale.jewel
         {
             return utils.modulePath;
         }
-        
         /**
          *  @private.
          */
@@ -90,17 +89,29 @@ package org.apache.royale.jewel
         {
             return utils.moduleName;
         }
-        
         public function set moduleName(value:String):void
         {
             utils.moduleName = value;
         }
-                
+
+        private var _autoLoad:Boolean = true;    
+        /**
+         *  @private.
+         */
+        public function set autoLoad(value:Boolean):void
+        {
+            _autoLoad = value;
+        }
+        public function get autoLoad():Boolean
+        {
+            return _autoLoad;
+        }
+
         override public function addedToParent():void
         {
             super.addedToParent();
-            // if (utils.moduleName)
-            //     loadModule();
+            if (_autoLoad && utils.moduleName)
+                loadModule();
         }
 		
         private var utils:UIModuleUtils = new UIModuleUtils();
