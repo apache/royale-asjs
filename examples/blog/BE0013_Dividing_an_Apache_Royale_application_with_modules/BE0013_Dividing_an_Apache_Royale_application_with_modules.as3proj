@@ -78,7 +78,7 @@
     <option testMovie=""/>
     <option showHiddenPaths="False"/>
     <option testMovieCommand=""/>
-    <option defaultBuildTargets=""/>
+    <option defaultBuild=""/>
     <option isPrimeFacesVisualEditor="False"/>
   </options>
   <moonshineRunCustomization>
