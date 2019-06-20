@@ -49,7 +49,8 @@
                 
                 <j:Label html="This example uses Modules to load other application parts"/>
 
-                <j:ModuleLoader localId="moduleLoader" modulePath="modules" moduleName="JewelModule"/>
+                <j:ModuleLoader localId="moduleLoader" autoLoad="false"
+                                modulePath="modules" moduleName="JewelModule"/>
 
                 <j:Button text="Load a Module" emphasis="primary" click="loadModule()"/>
              </j:Card>
