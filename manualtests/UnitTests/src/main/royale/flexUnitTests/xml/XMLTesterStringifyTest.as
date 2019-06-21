@@ -152,6 +152,161 @@ package flexUnitTests.xml
     
 
         }
+    
+        [Test]
+        public function stringifyAdvanced2():void{
+            XML.ignoreProcessingInstructions = true;
+            var xmlSource:String = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
+                    '<?aid style="50" type="snippet" readerVersion="6.0" featureSet="257" product="14.0(209)" ?>\n' +
+                    '<?aid SnippetType="PageItem"?>\n' +
+                    '<Document LinkedSpreads="undefined" DOMVersion="14.0" Self="d">\n' +
+                    '\t<Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" ColorOverride="Specialblack" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Black" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch3" />\n' +
+                    '\t<Swatch Self="Swatch/None" Name="None" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch0" />\n' +
+                    '\t<Str Self="Str/$ID/Solid" Name="$ID/Solid" />\n' +
+                    '\t<RCS Self="u77">\n' +
+                    '\t\t<CharacterStyle Self="CharacterStyle/$ID/[No character style]" Imported="false" Spl="false" EmitCss="true" StyleUniqueId="$ID/" IncludeClass="true" Name="$ID/[No character style]" />\n' +
+                    '\t</RCS>\n' +
+                    '\t<Nu Self="Nu/$ID/[Default]" Name="$ID/[Default]" ContinueNumbersAcrossStories="false" ContinueNumbersAcrossDocuments="false" />\n' +
+                    '\t<RootParagraphStyleGroup Self="u76">\n' +
+                    '\t\t\n' +
+                    '\t\t\n' +
+                    '\t</RootParagraphStyleGroup>\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t<Story Self="u180" UserText="true" IsEndnoteStory="false" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="$ID/" AppliedNamedGrid="n">\n' +
+                    '\t\t<StoryPreference OpticalMarginAlignment="false" OpticalMarginSize="12" FrameType="TextFrameType" StoryOrientation="Horizontal" StoryDirection="LeftToRightDirection" />\n' +
+                    '\t\t<InCopyExportOption IncludeGraphicProxies="true" IncludeAllResources="false" />\n' +
+                    '\t\t<ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/$ID/NormalParagraphStyle">\n' +
+                    '\t\t\t<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="20">\n' +
+                    '\t\t\t\t<Content>a</Content>\n' +
+                    '\t\t\t\t<Br />\n' +
+                    '\t\t\t\t<Content>s who work on the tickes.</Content>\n' +
+                    '\t\t\t</CharacterStyleRange>\n' +
+                    '\t\t</ParagraphStyleRange>\n' +
+                    '\t</Story>\n' +
+                    '\t<ColorGroup Self="ColorGroup/[Root Color Group]" Name="[Root Color Group]" IsRootColorGroup="true">\n' +
+                    '\t\t<ColorGroupSwatch Self="u223ColorGroupSwatch0" SwatchItemRef="Swatch/None" />\n' +
+                    '\t\t<ColorGroupSwatch Self="u223ColorGroupSwatch3" SwatchItemRef="Color/Black" />\n' +
+                    '\t</ColorGroup>\n' +
+                    '</Document>';
+            
+            var xml:XML = new XML(xmlSource);
+        
+            
+            var expected:String = '<Document LinkedSpreads="undefined" DOMVersion="14.0" Self="d">\n' +
+                    '  <Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" ColorOverride="Specialblack" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Black" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch3"/>\n' +
+                    '  <Swatch Self="Swatch/None" Name="None" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch0"/>\n' +
+                    '  <Str Self="Str/$ID/Solid" Name="$ID/Solid"/>\n' +
+                    '  <RCS Self="u77">\n' +
+                    '    <CharacterStyle Self="CharacterStyle/$ID/[No character style]" Imported="false" Spl="false" EmitCss="true" StyleUniqueId="$ID/" IncludeClass="true" Name="$ID/[No character style]"/>\n' +
+                    '  </RCS>\n' +
+                    '  <Nu Self="Nu/$ID/[Default]" Name="$ID/[Default]" ContinueNumbersAcrossStories="false" ContinueNumbersAcrossDocuments="false"/>\n' +
+                    '  <RootParagraphStyleGroup Self="u76"/>\n' +
+                    '  <Story Self="u180" UserText="true" IsEndnoteStory="false" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="$ID/" AppliedNamedGrid="n">\n' +
+                    '    <StoryPreference OpticalMarginAlignment="false" OpticalMarginSize="12" FrameType="TextFrameType" StoryOrientation="Horizontal" StoryDirection="LeftToRightDirection"/>\n' +
+                    '    <InCopyExportOption IncludeGraphicProxies="true" IncludeAllResources="false"/>\n' +
+                    '    <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/$ID/NormalParagraphStyle">\n' +
+                    '      <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="20">\n' +
+                    '        <Content>a</Content>\n' +
+                    '        <Br/>\n' +
+                    '        <Content>s who work on the tickes.</Content>\n' +
+                    '      </CharacterStyleRange>\n' +
+                    '    </ParagraphStyleRange>\n' +
+                    '  </Story>\n' +
+                    '  <ColorGroup Self="ColorGroup/[Root Color Group]" Name="[Root Color Group]" IsRootColorGroup="true">\n' +
+                    '    <ColorGroupSwatch Self="u223ColorGroupSwatch0" SwatchItemRef="Swatch/None"/>\n' +
+                    '    <ColorGroupSwatch Self="u223ColorGroupSwatch3" SwatchItemRef="Color/Black"/>\n' +
+                    '  </ColorGroup>\n' +
+                    '</Document>';
+            
+            var outString:String = xml.toString();
+
+            //RoyaleUnitTestRunner.consoleOut('stringifyAdvanced2:\n' + outString );
+            
+            //the order of toString output can be quite different for some browsers, but the length should be identical
+            Assert.assertTrue('unexpected toString result', outString.length == expected.length);
+        }
+    
+        [Test]
+        public function stringifyAdvanced3():void{
+            //AS3 XML ignores processing instructions outside the root tag, even when it is told not to
+            //This is (I think) because there is no concept of a 'Document' level XML that is different to a regular XML node
+            XML.ignoreProcessingInstructions = false;
+            var xmlSource:String = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
+                    '<?aid style="50" type="snippet" readerVersion="6.0" featureSet="257" product="14.0(209)" ?>\n' +
+                    '<?aid SnippetType="PageItem"?>\n' +
+                    '<Document LinkedSpreads="undefined" DOMVersion="14.0" Self="d">\n' +
+                    '\t<Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" ColorOverride="Specialblack" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Black" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch3" />\n' +
+                    '\t<Swatch Self="Swatch/None" Name="None" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch0" />\n' +
+                    '\t<Str Self="Str/$ID/Solid" Name="$ID/Solid" />\n' +
+                    '\t<RCS Self="u77">\n' +
+                    '\t\t<CharacterStyle Self="CharacterStyle/$ID/[No character style]" Imported="false" Spl="false" EmitCss="true" StyleUniqueId="$ID/" IncludeClass="true" Name="$ID/[No character style]" />\n' +
+                    '\t</RCS>\n' +
+                    '\t<Nu Self="Nu/$ID/[Default]" Name="$ID/[Default]" ContinueNumbersAcrossStories="false" ContinueNumbersAcrossDocuments="false" />\n' +
+                    '\t<RootParagraphStyleGroup Self="u76">\n' +
+                    '\t\t\n' +
+                    '\t\t\n' +
+                    '\t</RootParagraphStyleGroup>\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t\n' +
+                    '\t<Story Self="u180" UserText="true" IsEndnoteStory="false" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="$ID/" AppliedNamedGrid="n">\n' +
+                    '\t\t<StoryPreference OpticalMarginAlignment="false" OpticalMarginSize="12" FrameType="TextFrameType" StoryOrientation="Horizontal" StoryDirection="LeftToRightDirection" />\n' +
+                    '\t\t<InCopyExportOption IncludeGraphicProxies="true" IncludeAllResources="false" />\n' +
+                    '\t\t<ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/$ID/NormalParagraphStyle">\n' +
+                    '\t\t\t<CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="20">\n' +
+                    '\t\t\t\t<Content>a</Content>\n' +
+                    '\t\t\t\t<Br />\n' +
+                    '\t\t\t\t<Content>s who work on the tickes.</Content>\n' +
+                    '\t\t\t</CharacterStyleRange>\n' +
+                    '\t\t</ParagraphStyleRange>\n' +
+                    '\t</Story>\n' +
+                    '\t<ColorGroup Self="ColorGroup/[Root Color Group]" Name="[Root Color Group]" IsRootColorGroup="true">\n' +
+                    '\t\t<ColorGroupSwatch Self="u223ColorGroupSwatch0" SwatchItemRef="Swatch/None" />\n' +
+                    '\t\t<ColorGroupSwatch Self="u223ColorGroupSwatch3" SwatchItemRef="Color/Black" />\n' +
+                    '\t</ColorGroup>\n' +
+                    '</Document>';
+        
+            var xml:XML = new XML(xmlSource);
+            XML.ignoreProcessingInstructions = true;
+
+            var outString:String = xml.toString();
+            var expected:String = '<Document LinkedSpreads="undefined" DOMVersion="14.0" Self="d">\n' +
+                    '  <Color Self="Color/Black" Model="Process" Space="CMYK" ColorValue="0 0 0 100" ColorOverride="Specialblack" AlternateSpace="NoAlternateColor" AlternateColorValue="" Name="Black" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch3"/>\n' +
+                    '  <Swatch Self="Swatch/None" Name="None" ColorEditable="false" ColorRemovable="false" Visible="true" SwatchCreatorID="7937" SwatchColorGroupReference="u223ColorGroupSwatch0"/>\n' +
+                    '  <Str Self="Str/$ID/Solid" Name="$ID/Solid"/>\n' +
+                    '  <RCS Self="u77">\n' +
+                    '    <CharacterStyle Self="CharacterStyle/$ID/[No character style]" Imported="false" Spl="false" EmitCss="true" StyleUniqueId="$ID/" IncludeClass="true" Name="$ID/[No character style]"/>\n' +
+                    '  </RCS>\n' +
+                    '  <Nu Self="Nu/$ID/[Default]" Name="$ID/[Default]" ContinueNumbersAcrossStories="false" ContinueNumbersAcrossDocuments="false"/>\n' +
+                    '  <RootParagraphStyleGroup Self="u76"/>\n' +
+                    '  <Story Self="u180" UserText="true" IsEndnoteStory="false" AppliedTOCStyle="n" TrackChanges="false" StoryTitle="$ID/" AppliedNamedGrid="n">\n' +
+                    '    <StoryPreference OpticalMarginAlignment="false" OpticalMarginSize="12" FrameType="TextFrameType" StoryOrientation="Horizontal" StoryDirection="LeftToRightDirection"/>\n' +
+                    '    <InCopyExportOption IncludeGraphicProxies="true" IncludeAllResources="false"/>\n' +
+                    '    <ParagraphStyleRange AppliedParagraphStyle="ParagraphStyle/$ID/NormalParagraphStyle">\n' +
+                    '      <CharacterStyleRange AppliedCharacterStyle="CharacterStyle/$ID/[No character style]" PointSize="20">\n' +
+                    '        <Content>a</Content>\n' +
+                    '        <Br/>\n' +
+                    '        <Content>s who work on the tickes.</Content>\n' +
+                    '      </CharacterStyleRange>\n' +
+                    '    </ParagraphStyleRange>\n' +
+                    '  </Story>\n' +
+                    '  <ColorGroup Self="ColorGroup/[Root Color Group]" Name="[Root Color Group]" IsRootColorGroup="true">\n' +
+                    '    <ColorGroupSwatch Self="u223ColorGroupSwatch0" SwatchItemRef="Swatch/None"/>\n' +
+                    '    <ColorGroupSwatch Self="u223ColorGroupSwatch3" SwatchItemRef="Color/Black"/>\n' +
+                    '  </ColorGroup>\n' +
+                    '</Document>';
+            //RoyaleUnitTestRunner.consoleOut('stringifyAdvanced3:\n' + outString);
+    
+            //the order of toString output can be quite different for some browsers, but the length should be identical
+            Assert.assertTrue('unexpected toString result', outString.length == expected.length);
+        }
+        
         
         [Test]
         public function testCDATA():void{

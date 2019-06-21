@@ -172,7 +172,7 @@ package flexUnitTests.reflection
             
             var def:TypeDefinition = describeType(inst);
 
-                RoyaleUnitTestRunner.consoleOut('def name is '+def.name);
+            //    RoyaleUnitTestRunner.consoleOut('def name is '+def.name);
 
             //This is treated as Number
             Assert.assertEquals("Unexpected type name", def.name, "int");
@@ -211,7 +211,7 @@ package flexUnitTests.reflection
             Assert.assertEquals("Unexpected type name", getQualifiedClassName(Vector.<uint>), "Vector.<uint>");
             Assert.assertEquals("Unexpected type", getDefinitionByName("Vector.<uint>"), Vector.<uint>);
             var def:TypeDefinition = describeType(Vector.<uint>);
-            RoyaleUnitTestRunner.consoleOut(def.toString(true));
+         //   RoyaleUnitTestRunner.consoleOut(def.toString(true));
             Assert.assertEquals("Unexpected type name", def.name, "Vector.<uint>");
             
         }

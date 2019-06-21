@@ -32,6 +32,8 @@ package
 		 * Additionally, it has a namespaceURI. Otherwise the namespaceURI is null.
 		 * the prefix together with the namespaceURI form a QName
 		*/
+		
+
 
 		/**
 		 * Memory optimization.
@@ -59,6 +61,11 @@ package
 			}
 			return qname;
 		}
+		
+		/**
+		 * regex to match the xml declaration
+		 */
+		private static const xmlDecl:RegExp = /^\s*<\?xml[^?]*\?>/im;
 
 		/**
 		 * Method to free up references to shared QName objects.
@@ -456,10 +463,13 @@ package
 					errorNS = "na";
 				}
 			}
+			
+			var decl:String = xmlDecl.exec(xml);
+			if (decl) xml = xml.replace(decl,'');
+			if (ignoreWhitespace) xml = trimXMLWhitespace( xml) ;
 			//various node types not supported directly
-			//maybe it should always wrap (e4x seems to say yes on p34, 'Semantics' of e4x-Ecma-357.pdf)
-			var wrap:Boolean = (xml.indexOf('<?') == 0 && xml.indexOf('<?xml ') != 0) || (xml.indexOf('<![CDATA[') == 0) || (xml.indexOf('<!--') == 0);
-			if (wrap) xml = '<parseRoot>'+xml+'</parseRoot>';
+			//when parsing, always wrap (e4x ref p34, 'Semantics' of e4x-Ecma-357.pdf)
+			xml = '<parseRoot>'+xml+'</parseRoot>';
 			try
 			{
 				var doc:Document = parser.parseFromString(xml, "application/xml");
@@ -473,12 +483,19 @@ package
 			var errorNodes:NodeList = doc.getElementsByTagNameNS(errorNS, 'parsererror');
 			if(errorNodes.length > 0)
 				throw new Error(errorNodes[0].innerHTML);
-			if (wrap) doc = doc.childNodes[0];
-			for(var i:int=0;i<doc.childNodes.length;i++)
+
+			//parseRoot wrapper
+			doc = doc.childNodes[0];
+
+			var childCount:uint = doc.childNodes.length;
+			var errIfNoRoot:String;
+			for(var i:int=0;i<childCount;i++)
 			{
 				var node:Node = doc.childNodes[i];
 				if(node.nodeType == 1)
 				{
+					if (errIfNoRoot) errIfNoRoot = null;
+					if (childCount > 1) this.setNodeKind('element');
 					_version = doc.xmlVersion;
 					_encoding = doc.xmlEncoding;
 					_name = getQName(node.localName,node.prefix,node.namespaceURI,false);
@@ -490,6 +507,7 @@ package
 				}
 				else
 				{
+					
 					if (node.nodeType == 7) {
 						if (XML.ignoreProcessingInstructions) {
 							this.setNodeKind('text');
@@ -497,12 +515,20 @@ package
 							_name = null;
 							this.setValue('');
 						} else {
+							if (childCount > 1) {
+								//as3 XML ignores processing instructions outside the doc root tag
+								errIfNoRoot = 'Error #1088: The markup in the document following the root element must be well-formed.';
+								continue;
+							}
 							this.setNodeKind('processing-instruction');
 							this.setName(node.nodeName);
 							this.setValue(node.nodeValue);
 						}
 						
 					} else if (node.nodeType == 4) {
+						if (childCount > 1) {
+							throw new TypeError('Error #1088: The markup in the document following the root element must be well-formed.');
+						}
 						this.setNodeKind('text');
 						//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
 						_name = null;
@@ -521,15 +547,17 @@ package
 							this.setNodeKind('comment');
 							this.setValue(node.nodeValue);
 						}
-						
-						
 					}
-
-					// Do we record the nodes which are probably processing instructions?
-//						var child:XML = XML.fromNode(node);
-//						addChild(child);
+					else if (node.nodeType == 3) {
+						if (childCount > 1 && !(XML.ignoreWhitespace && /^\s*$/.test(node.nodeValue))) {
+							throw new TypeError('Error #1088: The markup in the document following the root element must be well-formed.');
+						}
+					}
+					
 				}
 			}
+			
+			if (errIfNoRoot) throw new TypeError(errIfNoRoot);
 			//normalize seems wrong here:
 			//normalize();
 		//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
@@ -539,12 +567,11 @@ package
 		
 		private var _children:Array;
 		private var _attributes:Array;
-		private var _processingInstructions:Array;
 		private var _parent:XML;
 		private var _value:String;
 		private var _version:String;
 		private var _encoding:String;
-		private var _appliedNamespace:Namespace;
+
 		/**
 		 * Memory optimization: Don't create the array unless needed.
 		 */

@@ -811,5 +811,33 @@ package flexUnitTests.xml
             //account for variation in output order of attributes and namespace declarations (from native DOMParser)
             Assert.assertTrue('unexpected complex stringify results',  xmlString == expected || xmlString == alternate);
         }
+        
+        
+        [Test]
+        public function testTopLevelProcessingInstructions():void{
+            var xmlSource:String = '<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n' +
+                    '<?aid style="50" type="snippet" readerVersion="6.0" featureSet="257" product="14.0(209)" ?>\n' +
+                    '<?aid SnippetType="PageItem"?>';
+    
+            XML.ignoreProcessingInstructions = true;
+            var xml:XML = new XML(xmlSource);
+            
+            
+            Assert.assertTrue('unexpected toSting result', xml.toString() == '');
+            Assert.assertTrue('unexpected toSting result', xml.nodeKind() == 'text');
+           
+    
+            XML.ignoreProcessingInstructions = false;
+            var parseError:Boolean;
+            try {
+                xml = new XML(xmlSource);
+            } catch (e:Error)
+            {
+                //RoyaleUnitTestRunner.consoleOut(e.message);
+                parseError = true;
+            }
+            //RoyaleUnitTestRunner.consoleOut('testTopLevelProcessingInstructions '+xml.nodeKind());
+            Assert.assertTrue('error was expected', parseError)
+        }
     }
 }
