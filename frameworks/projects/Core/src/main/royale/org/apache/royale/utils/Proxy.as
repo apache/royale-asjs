@@ -145,7 +145,7 @@ public dynamic class Proxy extends EventDispatcher
         delete valueMap[propName];
     }
 	
-	public function elementNames():Array
+	public function propertyNames():Array
 	{
 		var names:Array = [];
 		for (var p:String in valueMap)
