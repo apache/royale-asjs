@@ -494,7 +494,7 @@ package models
         }
         
         /**
-         * @royalesuppresscompleximplicitcoercion false
+         * @royalesuppresscompleximplicitcoercion true
          */
         private function addIfNeededAndMakeAttributes(arr:Array, data:ASDocClassEvents):void
         {
@@ -532,7 +532,7 @@ package models
         }
 
         /**
-         * @royalesuppresscompleximplicitcoercion false
+         * @royalesuppresscompleximplicitcoercion true
          */
 		private function addAttributes(dest:ASDocClassEvents, src:ASDocClassEvents):void
 		{
@@ -891,7 +891,7 @@ package models
         }
 
         /**
-         * @royalesuppresscompleximplicitcoercion false
+         * @royalesuppresscompleximplicitcoercion true
          */
         public function filterByTags(className:String):Boolean
         {
