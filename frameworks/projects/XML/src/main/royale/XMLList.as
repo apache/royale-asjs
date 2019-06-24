@@ -22,10 +22,21 @@ package
 	public class XMLList
 	{
 		import org.apache.royale.debugging.throwError;
+		
+		
+		/**
+		 *  mimics the top-level XMLList function (supports 'this' correctly)
+		 *
+		 *  @royalesuppressexport
+		 */
+		public static function conversion(val:* = null):XMLList{
+			return new XMLList(val);
+		}
+		
 		public function XMLList(expression:Object = null)
 		{
 			addIndex(0);
-			if(expression)
+			if(expression != null)
 				parseExpression(expression);
 		}
 		private function parseExpression(expression:Object):void
@@ -48,7 +59,9 @@ package
             {
                 try
                 {
-    				this[0] = new XML(expression);
+					var item:XML = new XML(expression);
+					if (item.nodeKind() == 'text' && item.getValue() == '') return;
+    				this[0] = item;
                 }
                 catch (e:Error)
                 {

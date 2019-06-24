@@ -386,13 +386,15 @@ package
         /**
          *  mimics the top-level XML function
          *  @royaleignorecoercion XMLList
+		 *
+		 *  @royalesuppressexport
          */
         public static function conversion(xml:*):XML
         {
             if (xml == null)
             {
-                // throw TypeError
-                return null;
+				//as3 docs say this is a TypeError, but it is actually not (in AVM), return an empty text node
+                return new XML('');
             }
             else if (xml.ROYALE_CLASS_INFO != null)
             {
@@ -415,7 +417,7 @@ package
 		{
 			// _origStr = xml;
 			// _children = [];
-			if(xml)
+			if(xml != null)
 			{
 				var xmlStr:String = ignoreWhitespace ? trimXMLWhitespace("" + xml) : "" + xml;
 				if(xmlStr.indexOf("<") == -1)
@@ -427,18 +429,25 @@ package
 				{
 					parseXMLStr(xmlStr);
 				}
+			} else {
+				//_nodeKind = "text";
+				//_value = '';
 			}
+
 			Object.defineProperty(this,"0",
-				{
-					"get": function():* { return this; },
-					"set": function(newValue:*):void {
-					},
-					enumerable: true,
-					configurable: true
-				}
+					{
+						"get": function():* { return this; },
+						"set": function(newValue:*):void {
+						},
+						enumerable: true,
+						configurable: true
+					}
 			);
+
+			
 		}
 		private static var xmlRegEx:RegExp = /&(?![\w]+;)/g;
+		private static var isWhitespace:RegExp = /^\s+$/;
 		private static var parser:DOMParser;
 		private static var errorNS:String;
 		
@@ -488,76 +497,87 @@ package
 			doc = doc.childNodes[0];
 
 			var childCount:uint = doc.childNodes.length;
-			var errIfNoRoot:String;
+			//var rootError:Boolean;
+			var foundRoot:Boolean;
+			var foundCount:uint = 0;
 			for(var i:int=0;i<childCount;i++)
 			{
 				var node:Node = doc.childNodes[i];
 				if(node.nodeType == 1)
 				{
-					if (errIfNoRoot) errIfNoRoot = null;
-					if (childCount > 1) this.setNodeKind('element');
-					_version = doc.xmlVersion;
-					_encoding = doc.xmlEncoding;
+					if (foundRoot) {
+						foundCount++;
+						//we have at least 2 root tags... definite error
+						break;
+					}
+					foundRoot = true;
+					foundCount = 1; //top level root tag wins
+
+					if (foundCount != 0) {
+						//reset any earlier settings
+						this.setNodeKind('element');
+						this.setValue(null);
+					}
 					_name = getQName(node.localName,node.prefix,node.namespaceURI,false);
-					// _name = new QName();
-					// _name.prefix = node.prefix;
-					// _name.uri = node.namespaceURI;
-					// _name.localName = node.localName;
 					iterateElement(node as Element,this);
 				}
 				else
 				{
-					
+					if (foundRoot) continue; // if we already found a root, then everything else is ignored outside it, regardless of XML settings, so only continue to check for multiple root tags (an error)
 					if (node.nodeType == 7) {
 						if (XML.ignoreProcessingInstructions) {
-							this.setNodeKind('text');
-							//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
-							_name = null;
-							this.setValue('');
-						} else {
-							if (childCount > 1) {
-								//as3 XML ignores processing instructions outside the doc root tag
-								errIfNoRoot = 'Error #1088: The markup in the document following the root element must be well-formed.';
-								continue;
+							if (!foundCount) {
+								this.setNodeKind('text');
+								//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
+								_name = null;
+								this.setValue('');
 							}
+						} else {
 							this.setNodeKind('processing-instruction');
 							this.setName(node.nodeName);
 							this.setValue(node.nodeValue);
+							foundCount++;
 						}
-						
 					} else if (node.nodeType == 4) {
-						if (childCount > 1) {
-							throw new TypeError('Error #1088: The markup in the document following the root element must be well-formed.');
-						}
-						this.setNodeKind('text');
-						//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
-						_name = null;
-						if (node.nodeName == '#cdata-section') {
+						if (!foundCount) {
+							this.setNodeKind('text');
+							//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
+							_name = null;
 							this.setValue('<![CDATA[' + node.nodeValue + ']]>');
-						} else {
-							this.setValue(node.nodeValue);
 						}
+						foundCount++;
 					} else if (node.nodeType == 8) {
 						//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
 						_name = null;
 						if (XML.ignoreComments) {
-							this.setNodeKind('text');
-							this.setValue('');
+							if (!foundCount) {
+								this.setNodeKind('text');
+								this.setValue('');
+							}
 						} else {
-							this.setNodeKind('comment');
-							this.setValue(node.nodeValue);
+							if (!foundCount) {
+								this.setNodeKind('comment');
+								this.setValue(node.nodeValue);
+							}
+							foundCount++;
 						}
 					}
 					else if (node.nodeType == 3) {
-						if (childCount > 1 && !(XML.ignoreWhitespace && /^\s*$/.test(node.nodeValue))) {
-							throw new TypeError('Error #1088: The markup in the document following the root element must be well-formed.');
+						var whiteSpace:Boolean = isWhitespace.test(node.nodeValue);
+						if (!whiteSpace || !XML.ignoreWhitespace) {
+							if (!foundCount) {
+								this.setNodeKind('text');
+								this.setValue(node.nodeValue);
+							}
+							foundCount++;
+						} else {
+							//do nothing
 						}
 					}
-					
 				}
 			}
 			
-			if (errIfNoRoot) throw new TypeError(errIfNoRoot);
+			if (foundCount > 1) throw new TypeError('Error #1088: The markup in the document following the root element must be well-formed.');
 			//normalize seems wrong here:
 			//normalize();
 		//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
@@ -569,8 +589,8 @@ package
 		private var _attributes:Array;
 		private var _parent:XML;
 		private var _value:String;
-		private var _version:String;
-		private var _encoding:String;
+		//private var _version:String;
+		//private var _encoding:String;
 
 		/**
 		 * Memory optimization: Don't create the array unless needed.
@@ -2475,8 +2495,10 @@ package
 		{
 			var i:int;
 			// text, comment, processing-instruction, attribute, or element
-			if(_nodeKind == "text" || _nodeKind == "attribute")
+			if( _nodeKind == "attribute")
 				return _value;
+			if(_nodeKind == "text")
+				return _value && _value.indexOf('<![CDATA[') == 0 ? _value.substring(9, _value.length-3): _value;
 			if(_nodeKind == "comment")
 				return "";
 			if(_nodeKind == "processing-instruction")

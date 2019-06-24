@@ -30,7 +30,7 @@ package flexUnitTests
         public function XMLTester()
         {
             // for JS, force-link these classes in the output
-            var arr:Array = [XMLTesterGeneralTest, XMLTesterStringifyTest];
+            var arr:Array = [XMLTesterGeneralTest, XMLTesterStringifyTest, XMLListTesterGeneralTest];
         }
         
         // in JS, using a class as a type won't include the class in
@@ -44,6 +44,8 @@ package flexUnitTests
         public var xmlTesterGeneralTest:XMLTesterGeneralTest;
         
         public var xmlTesterStringifyTest:XMLTesterStringifyTest;
+    
+        public var xmlListTesterGeneralTest:XMLListTesterGeneralTest;
         
     }
 }
