@@ -1020,6 +1020,8 @@ package
 		 */
 		public function toString():String
 		{
+			if(isSingle())
+				return _xmlArray[0].toString();
 			var retVal:Array = [];
 			var len:int = _xmlArray.length;
 			var cumulativeText:String = '';
@@ -1027,17 +1029,16 @@ package
 			{
 				var str:String = _xmlArray[i].toString();
 				if (XML(_xmlArray[i]).nodeKind() == 'text') {
-					cumulativeText += str;
+					cumulativeText += _xmlArray[i].toString();
 				} else {
 					if (cumulativeText) {
-                        retVal.push(cumulativeText);
-                        cumulativeText = '';
+						retVal.push(cumulativeText);
+						cumulativeText = '';
 					}
-                    if(str)
-                        retVal.push(str);
+					retVal.push(_xmlArray[i].toXMLString());
 				}
 			}
-            if (cumulativeText) retVal.push(cumulativeText);
+			if (cumulativeText) retVal.push(cumulativeText);
 			return retVal.join("\n");
 		}
 		
