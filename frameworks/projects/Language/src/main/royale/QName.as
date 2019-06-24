@@ -120,7 +120,7 @@ package
 			return name != null && this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
 		}
 		
-    	COMPILE::JS
+    COMPILE::JS
 		public function matches(name:QName):Boolean
 		{
 			if (name == null) return this.localName == "*";
@@ -174,7 +174,15 @@ package
 			return new Namespace(_prefix,_uri);
 		}
 
+		COMPILE::JS
+		public function toString():String
+		{
+			// This should cover "*" as well
+			if(_uri)
+				return _uri + "::" + _localName;
+
+			return _localName;
+		}
+
 	}
 }
-
-
