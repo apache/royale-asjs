@@ -21,8 +21,7 @@ DESCRIPTION
 
 Dividing an Apache Royale application with modules
 
-Learn how to use external Javascript libraries in your Apache Royale application. This will be very useful to add quick functionality to your Application adding code that is not part of Apache Royale itself or even was not written in ActionsScript, but with the powerful capabilities like type checking or code completion.
-
+This example will show you how to break an Apache Royale application into parts called Modules using a ModuleLoader.
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-https://royale.apache.org/using-external-javascript-libraries-in-apache-royale/
+https://royale.apache.org/dividing-an-apache-royale-application-with-modules/
