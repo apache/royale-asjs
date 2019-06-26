@@ -277,6 +277,7 @@ internal class CoreClasses
 		import org.apache.royale.utils.object.defineProperty; defineProperty;
 		import org.apache.royale.utils.object.defineSimpleProperty; defineSimpleProperty;
 		import org.apache.royale.utils.js.loadJavascript; loadJavascript;
+		import org.apache.royale.utils.css.loadCSS; loadCSS;
 	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;

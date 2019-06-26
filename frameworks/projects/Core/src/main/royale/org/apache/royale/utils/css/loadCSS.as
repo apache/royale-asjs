@@ -16,29 +16,29 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.utils.js
+package org.apache.royale.utils.css
 {
 	/**
-	 * Utility function to dynamically load Javascript in your application.
-	 * The callback will be called (with no arguments) when the javascript is loaded.
-	 * @param url The url of the js file.
+	 * Utility function to dynamically load CSS in your application.
+	 * 
+	 * @param url The url of the css file.
 	 * @param callback (optional) the function to be called when the code is loaded.
 	 * 
 	 * @langversion 3.0
-	 * @productversion Royale 0.9.4
-	 * @royaleignorecoercion HTMLScriptElement
+	 * @productversion Royale 0.9.6
+	 * @royaleignorecoercion HTMLLinkElement
 	 */
 	COMPILE::JS
-	public function loadJavascript(url:String, callback:Function = null):void
+	public function loadCSS(url:String, callback:Function = null):void
 	{
-		var script:HTMLScriptElement = document.createElement('script') as HTMLScriptElement;
-
+		var link:HTMLLinkElement = document.createElement('link') as HTMLLinkElement;
+		link.setAttribute('rel', 'stylesheet');
+		link.setAttribute('type', 'text/css');
+		link.setAttribute('href', url);
 		if (callback)
 		{
-			script.onload = callback;
+			link.onload = callback;
 		}
-
-		script.src = url;
-		document.head.appendChild(script);
+		document.head.appendChild(link);
 	}
 }
