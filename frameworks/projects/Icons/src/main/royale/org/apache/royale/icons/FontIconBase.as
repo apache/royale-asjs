@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
-    import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.core.IIcon;
+    import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.utils.StringUtil;
 
     COMPILE::JS

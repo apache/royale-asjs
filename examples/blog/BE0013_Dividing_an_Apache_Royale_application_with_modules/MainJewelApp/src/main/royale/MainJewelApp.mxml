@@ -24,9 +24,6 @@
 
     <fx:Script>
 		<![CDATA[
-            // inject_html does not wotk in modules
-            import MaterialIconType; MaterialIconType;
-
             public function loadModule():void
             {
                 moduleLoader.loadModule();

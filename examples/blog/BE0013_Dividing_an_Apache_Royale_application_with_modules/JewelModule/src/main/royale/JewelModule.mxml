@@ -19,8 +19,20 @@ limitations under the License.
 -->
 <j:Module xmlns:fx="http://ns.adobe.com/mxml/2009"
         xmlns:j="library://ns.apache.org/royale/jewel"
-        xmlns:js="library://ns.apache.org/royale/basic">
+        xmlns:js="library://ns.apache.org/royale/basic"
+        initComplete="initModule()">
     
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.utils.css.loadCSS;
+
+            private function initModule():void
+            {
+                loadCSS('https://fonts.googleapis.com/icon?family=Material+Icons');
+            }
+        ]]>
+    </fx:Script>
+
     <j:beads>
         <js:ContainerDataBinding/>
         <j:VerticalLayout/>
