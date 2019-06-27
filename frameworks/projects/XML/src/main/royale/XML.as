@@ -1852,6 +1852,9 @@ package
 			len = childrenLength() - 1;
 			for(i=len;i>=0;i--)
 			{
+				if(_children[i].nodeKind() != "element"){
+					continue;
+				}
 				if(_children[i].name().matches(name))
 				{
 					child = _children[i];
@@ -1860,6 +1863,7 @@ package
 					removedItem = true;
 				}
 			}
+			normalize();
 			return removedItem;
 		}
 		public function removeChildAt(index:int):void
