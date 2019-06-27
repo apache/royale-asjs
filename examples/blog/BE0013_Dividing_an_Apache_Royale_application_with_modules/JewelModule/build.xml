@@ -34,7 +34,7 @@
         <mkdir dir="${basedir}/../MainJewelApp/bin-debug/modules" />
         <mkdir dir="${basedir}/../MainJewelApp/bin/js-debug/modules" />
         <mkdir dir="${basedir}/../MainJewelApp/bin/js-release/modules" />
-        <replace file="${basedir}/bin/js-debug/Module__deps.js"
+        <replace file="${basedir}/bin/js-debug/JewelModule__deps.js"
             token="/JewelModule.js"
             value="/modules/JewelModule.js" />
         <copy file="${basedir}/bin-debug/JewelModule.swf" todir="${basedir}/../MainJewelApp/bin-debug/modules" failonerror="false" />

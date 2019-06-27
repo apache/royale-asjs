@@ -22,14 +22,14 @@
         "debug": false,
         "targets": ["JSRoyale"],
         "source-map": true,
-        "html-template": "src/main/resources/jewel-example-index-template.html",
+        "html-template": "MainJewelApp/src/main/resources/jewel-example-index-template.html",
         "theme": "${royalelib}/themes/JewelTheme/src/main/resources/defaults.css"
     },
     "copySourcePathAssets": true,
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "MainJewelApp/src/main/royale/MainJewelApp.mxml",
-        "JewelModule/src/main/royale/JewelModule.mxml"
+        "JewelModule/src/main/royale/JewelModule.mxml",
+        "MainJewelApp/src/main/royale/MainJewelApp.mxml"
     ]
 }
