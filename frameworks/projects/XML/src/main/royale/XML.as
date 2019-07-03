@@ -730,7 +730,7 @@ package
 			var childType:String = typeof child;
 			
 			if(childType != "object") {
-                var last:uint = childrenLength();
+        var last:uint = childrenLength();
 				const lastChild:XML = last ? _children[last-1] : null;
 				if (lastChild && lastChild.nodeKind() == 'element') {
 					
@@ -902,7 +902,10 @@ package
 			var list:XMLList = new XMLList();
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
-				list.append(_children[i]);
+			{
+				if(_children[i].nodeKind() == "element")
+					list.append(_children[i]);
+			}
 
 			list.targetObject = this;
 			return list;
