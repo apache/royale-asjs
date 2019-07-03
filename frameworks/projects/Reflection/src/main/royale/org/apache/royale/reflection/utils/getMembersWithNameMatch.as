@@ -16,34 +16,44 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.reflection
+package org.apache.royale.reflection.utils
 {
-COMPILE::SWF
-{
-    import flash.utils.getQualifiedSuperclassName;
-}
-    
+	import org.apache.royale.reflection.*;
+	
+	
     /**
-     *  The equivalent of flash.utils.getQualifiedSuperclassName.
-     * 
+     *  A utility method to retrieve all members with a name that matches via the matcher argument
+	 *  
+     *  @param memberCollection the collection (an Array) of member definitions to check
+	 *  @param matcher *must be* either a String or a Regexp instance to use for testing
+	 *  @param collate an optional array to collate into, if passed externally
+	 *  
+	 *  @returns an Array (the collate parameter if it was used, otherwise a new Array)
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+	 *  
+	 *  @royaleignorecoercion RegExp
      */
-    public function getQualifiedSuperclassName(value:*):String
+    public function getMembersWithNameMatch(memberCollection:Array,  matcher:Object = null, collate:Array = null):Array
 	{
-        COMPILE::SWF
-        {
-            return flash.utils.getQualifiedSuperclassName(value).replace('::','.');
-        }
-        COMPILE::JS
-        {
-            var constructorAsObject:Object = value["constructor"];
-            value = constructorAsObject.superClass_;
-            if (value == null || value.ROYALE_CLASS_INFO == null)
-                return null;
-            return value.ROYALE_CLASS_INFO.names[0].qName;
-        }
+        var ret:Array = collate ? collate : [];
+		var regexp:RegExp;
+		if (matcher is String) {
+			regexp = new RegExp('^' + matcher + '$');
+		} else {
+			regexp = matcher as RegExp;
+		}
+		if (memberCollection) {
+			for each(var item:MemberDefinitionBase in memberCollection) {
+				if (!regexp || regexp.test(item.name)) ret.push(item);
+			}
+		}
+
+		return ret;
     }
+	
+	
 }

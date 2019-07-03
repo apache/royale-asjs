@@ -33,6 +33,7 @@ package org.apache.royale.reflection {
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
+	 *
 	 */
 	public class CompilationData {
 		COMPILE::JS{
@@ -61,7 +62,9 @@ package org.apache.royale.reflection {
 			}
 		}
 		
-		
+		/**
+		 * @royalesuppressexport
+		 */
 		public static function hasCompilationOption(flags:uint, optionBits:uint):Boolean {
 			COMPILE::SWF{
 				return false;
@@ -70,7 +73,9 @@ package org.apache.royale.reflection {
 				return Boolean((flags & optionBits) === optionBits);
 			}
 		}
-		
+		/**
+		 * @royalesuppressexport
+		 */
 		public static function asStrings(flags:uint):Array {
 			var ret:Array = [];
 			COMPILE::JS{
@@ -86,6 +91,23 @@ package org.apache.royale.reflection {
 			return ret;
 		}
 		
+		/**
+		 * @royalesuppressexport
+		 */
+		public static function describeSingleFlag(flag:uint):String {
+			var ret:String;
+			COMPILE::JS{
+				if (flag in _DESCRIPTIONS) {
+					ret = _DESCRIPTIONS[flag];
+				}
+			}
+			if (!ret) {
+				ret = 'Unknown Compilation Flag';
+			}
+			return ret;
+		}
+		
+		
 		COMPILE::SWF
 		public function CompilationData(inspect:Object) {
 			throw new Error('CompilationData not implemented for swf');
@@ -94,6 +116,7 @@ package org.apache.royale.reflection {
 		COMPILE::JS
 		/**
 		 * @royaleignorecoercion Class
+		 * 
 		 */
 		public function CompilationData(inspect:Object) {
 			if (!inspect) throw new Error('CompilationData constructor parameter cannot be null');
@@ -127,6 +150,8 @@ package org.apache.royale.reflection {
 		 * 		  If not specified or less than zero, then it is the full set of flags on this
 		 * 		  CompilationData.
 		 * @return true if the ancestors have the same flags set, false otherwise
+		 * 
+		 * @royalesuppressexport
 		 */
 		public function hasSameAncestry(specificFlags:int = -1):Boolean{
 

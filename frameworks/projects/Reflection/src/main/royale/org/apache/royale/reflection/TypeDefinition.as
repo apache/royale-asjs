@@ -106,11 +106,16 @@ COMPILE::SWF {
          * is discouraged.
          * @param name the qualified name of the definition,
          * @param rawData (optional) the reflection data if already available
+         * @param clazz (optional) a class reference to store internally for performance of getClass method
          * @return a TypeDefinition representing the class or interface represented by the parameters
          */
-        public static function getDefinition(name:String, rawData:Object = null):TypeDefinition {
+        public static function getDefinition(name:String, rawData:Object = null, clazz:Class = null):TypeDefinition {
             if (rawData == null) return null;
-            return internalGetDefinition(name, rawData);
+            const def:TypeDefinition = internalGetDefinition(name, rawData);
+            if (clazz) {
+                def._class = clazz;
+            }
+            return def;
         }
         
         internal static function internalGetDefinition(name:String, rawData:Object = null):TypeDefinition{
@@ -225,6 +230,20 @@ COMPILE::SWF {
         public function get qualifiedName():String{
             if (_packageName.length) return _packageName + "." + _name;
             else return _name;
+        }
+        
+        private var _class:Class;
+        
+        /**
+         * convenience method to access the class definition from this TypeDefinition
+         * @return the original class (or interface) described by this TypeDefinition
+         * 
+         * @royaleignorecoercion Class
+         */
+        public function getClass():Class{
+            if (!_class)
+                _class = getDefinitionByName(qualifiedName) as Class;
+            return _class;
         }
 
         /**

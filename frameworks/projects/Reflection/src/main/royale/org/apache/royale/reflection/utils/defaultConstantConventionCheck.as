@@ -16,34 +16,17 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.reflection
-{
-COMPILE::SWF
-{
-    import flash.utils.getQualifiedSuperclassName;
-}
+package org.apache.royale.reflection.utils {
+    
+
     
     /**
-     *  The equivalent of flash.utils.getQualifiedSuperclassName.
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     * @param candidate the string name to check for conformance with naming convention for constants
+     * @return true if the candidate string matches the naming convention for constants
      */
-    public function getQualifiedSuperclassName(value:*):String
-	{
-        COMPILE::SWF
-        {
-            return flash.utils.getQualifiedSuperclassName(value).replace('::','.');
-        }
-        COMPILE::JS
-        {
-            var constructorAsObject:Object = value["constructor"];
-            value = constructorAsObject.superClass_;
-            if (value == null || value.ROYALE_CLASS_INFO == null)
-                return null;
-            return value.ROYALE_CLASS_INFO.names[0].qName;
-        }
+    internal function defaultConstantConventionCheck(candidate:String):Boolean {
+        return candidate && /^[A-Z][A-Z_0-9]+$/.test(candidate);
     }
+    
+    
 }

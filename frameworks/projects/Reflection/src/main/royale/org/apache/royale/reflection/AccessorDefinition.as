@@ -79,7 +79,9 @@ package org.apache.royale.reflection {
         COMPILE::JS
         override public function get getValue():Function{
 			if (_getter != null) return _getter;
-            var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
+            if (isStatic || goog.DEBUG) {
+                var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
+            }
             var fieldName:String = name;
             if (isStatic) {
                 _getter = function():* {return cl[fieldName]}
@@ -97,7 +99,9 @@ package org.apache.royale.reflection {
 		COMPILE::JS
 		override public function get setValue():Function{
 			if (_setter != null) return _setter;
-			var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
+            if (isStatic || goog.DEBUG) {
+                var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
+            }
 			var fieldName:String = name;
 			if (isStatic) {
 				_setter = function(value:*):* {
@@ -106,12 +110,12 @@ package org.apache.royale.reflection {
 			} else {
 				_setter = function(instance:Object, value:*):* {
 					if (goog.DEBUG) {
-						if (arguments.length != 2 || (!(instance is cl))) throw 'invalidsetValue parameters';
+						if (arguments.length != 2 || (!(instance is cl))) throw 'invalid setValue parameters';
 					}
 					instance[fieldName] = value;
 				}
 			}
-			return _getter;
+			return _setter;
 		}
         
 

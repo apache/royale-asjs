@@ -224,6 +224,37 @@ package flexUnitTests.language
             Assert.assertTrue('Unexpected coercion check', caughtError);
             Assert.assertTrue('Unexpected coercion check', testClass3 == null);
         }
+    
+    
+        [Test]
+        [TestVariance(variance="JS",description="Variance in js implementation with @royalesuppresscompleximplicitcoercion, outcome can be wrong")]
+        /**
+         * @royalesuppresscompleximplicitcoercion true
+         */
+        public function testImplicitCoercionAvoided():void
+        {
+            var testclass2Class:Class = TestClass2;
+            var testClass3:TestClass3;
+            var something:* = new testclass2Class();
+            var caughtError:Boolean;
+            try
+            {
+                caughtError = false;
+                testClass3 = something;
+            } catch (e:Error)
+            {
+                caughtError = e is TypeError
+            }
+        
+            if (isJS) {
+                Assert.assertFalse('Unexpected coercion check', caughtError);
+                Assert.assertFalse('Unexpected coercion check', testClass3 == null);
+            } else {
+                Assert.assertTrue('Unexpected coercion check', caughtError);
+                Assert.assertTrue('Unexpected coercion check', testClass3 == null);
+            }
+            
+        }
         
         [Test]
         public function testNullUndefined():void

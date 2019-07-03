@@ -166,7 +166,7 @@ package flexUnitTests.language
     
     
         [Test]
-        [TestVariance(variance="JS", description="Variance in js implementation with @royalesuppressresolveuncertain off, strict equality can fail")]
+        [TestVariance(variance="JS", description="Variance in js implementation with @royalesuppressresolveuncertain, strict equality can fail")]
         /**
          * @royalesuppressresolveuncertain c
          */
