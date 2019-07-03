@@ -273,6 +273,8 @@ public class SimpleBinding implements IBead, IDocument, IBinding
 		{
 			dispatcher.addEventListener(eventName, changeHandler);
 			destination[destinationPropertyName] = source[sourcePropertyName];
+		} else {
+			destination[destinationPropertyName] = null;
 		}
 	}
 }
