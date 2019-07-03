@@ -103,9 +103,6 @@ package org.apache.royale.crux.processors
 		{
 			var eventHandlerTag:EventHandlerMetadataTag = metadataTag as EventHandlerMetadataTag;
 			
-		/*	if( eventHandlerTag.name == MEDIATE )
-				logger.warn( "[Mediate] has been deprecated in favor of [EventHandler]. Please update {0} accordingly.", bean );
-*/
 			if( validateEventHandlerMetadataTag( eventHandlerTag ) )
 			{
 				var expression:EventTypeExpression = new EventTypeExpression( eventHandlerTag.event, crux );

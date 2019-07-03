@@ -43,6 +43,11 @@ package org.apache.royale.crux.utils.event
 	import org.apache.royale.crux.utils.async.AsyncTokenOperation;
 	import org.apache.royale.crux.utils.async.IAsynchronousEvent;
 	import org.apache.royale.crux.utils.async.IAsynchronousOperation;
+	import org.apache.royale.reflection.TypeDefinition;
+	import org.apache.royale.reflection.MethodDefinition;
+	import org.apache.royale.reflection.VariableDefinition;
+	
+	import org.apache.royale.reflection.utils.getMembersWithNameMatch;
 	
 	/**
 	 * Represents a deferred request for mediation.
@@ -160,7 +165,7 @@ package org.apache.royale.crux.utils.event
 				if( hostMethod.parameterCount > 0 && event is getParameterType( 0 ) )
 					result = method.apply( null, [ event ] );
 				else
-					result = method.apply();
+					result = method.call(null);
 			}
 			
 			if( event is IAsynchronousEvent && IAsynchronousEvent( event ).step != null )
@@ -199,6 +204,9 @@ package org.apache.royale.crux.utils.event
 				throw new Error( "The properties attribute of " + metadataTag.asTag + " is not compatible with the method signature of " + hostMethod.name + "()." );
 		}
 		
+		
+		protected var accessChains:Object ;
+		
 		/**
 		 * Validate Event
 		 *
@@ -210,26 +218,54 @@ package org.apache.royale.crux.utils.event
 		 */
 		protected function validateEvent( event:Event, metadataTag:EventHandlerMetadataTag ):Boolean
 		{
-			for each( var property:String in metadataTag.properties )
-			{
-				if( property.indexOf( "." ) < 0 && !( property in event ) )
-				{
-					throw new Error( "Unable to handle event: " + property + " does not exist as a property of " + getQualifiedClassName( event ) + "." );
-				}
-				else
+			
+			if (!accessChains) {
+				//set up access chains
+				accessChains = {};
+				var eventClassDescriptor:TypeDescriptor = TypeCache.getTypeDescriptor( eventClass );
+				var eventDefinition:TypeDefinition = eventClassDescriptor.typeDefinition;
+				
+				for each( var property:String in metadataTag.properties )
 				{
 					var chain:Array = property.split( "." );
-					var o:Object = event;
-					while( chain.length > 0 )
-					{
+					var accessChain:Array = [];
+					var definition:TypeDefinition = eventDefinition;
+					while (chain.length) {
 						var prop:String = chain.shift();
-						
-						if( prop in o )
-							o = o[ prop ];
-						else
-							throw new Error( "Unable to handle event: " + prop + " does not exist as a property of " + getQualifiedClassName( o ) + " as defined in " + metadataTag.asTag + "." );
+						var search:Array = getMembersWithNameMatch(definition.variables,prop);
+						if (search.length==0) getMembersWithNameMatch(definition.accessors,prop, search);
+						if (search.length != 1) {
+							throw new Error( "Unable to handle event: " + property + " does not exist as a property of " + eventClassDescriptor.className + "." );
+						}
+						var varDef:VariableDefinition = search[0];
+						accessChain.push(varDef);
+						if (chain.length) {
+							//continue with next definition
+							definition = varDef.type;
+						}
+					}
+					accessChains[property] = accessChain;
+				}
+			}
+			
+			//now validate it
+			for each( property in metadataTag.properties )
+			{
+				accessChain = accessChains[property];
+				var o:Object = event;
+				var defName:String = eventDefinition.qualifiedName;
+				if (accessChain.length > 1) {
+					var index:int = 0;
+					var l:int = accessChain.length-1;
+					while (index<l) {
+						if (o == null) {
+							throw new Error( "Unable to handle event: " + varDef.name + " is null as a property of " + defName + " as defined in " + metadataTag.asTag + "." );
+						}
+						varDef = accessChain[index];
+						o = varDef.getValue(o)
 					}
 				}
+				
 			}
 			
 			return true;
@@ -247,21 +283,23 @@ package org.apache.royale.crux.utils.event
 			
 			for each( var property:String in properties )
 			{
-				if( property.indexOf( "." ) < 0 )
-				{
-					args[ args.length ] = event[ property ];
-				}
-				else
-				{
-					var chain:Array = property.split( "." );
+				
+				var varDef:VariableDefinition;
+				var chain:Array = accessChains[property];
+				var l:uint = chain.length;
+				if (l == 1) {
+					varDef = chain[0];
+					args[ args.length ] = VariableDefinition(chain[0]).getValue(event);
+				} else {
 					var o:Object = event;
-					while( chain.length > 1 )
-						o = o[ chain.shift() ];
-					
-					args[ args.length ] = o[ chain.shift() ];
+					for (var i:int=0; i<l;i++) {
+						o = VariableDefinition(chain[i]).getValue(o);
+					}
+					args[ args.length ] = o
 				}
+				
 			}
-			
+			//trace('EventHandler... args', args)
 			return args;
 		}
 		

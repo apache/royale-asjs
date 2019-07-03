@@ -57,10 +57,6 @@ package org.apache.royale.crux.reflection
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-        // public var description:XML;
-		/**
-		 * @royalesuppresspublicvarwarning
-		 */
         public var typeDefinition:TypeDefinition;
 		
 		/**
