@@ -49,6 +49,7 @@
     <module>native</module>
     <module>node</module>
     <module>amf</module>
+    <module>crux</module>
     <module>examples-tests</module>
     <module>examples-integrationtests</module>
   </modules>

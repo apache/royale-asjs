@@ -104,6 +104,7 @@
         <antcall target="Jewel"/>
         <antcall target="MXRoyale"/>
         <antcall target="SparkRoyale"/>
+        <antcall target="Crux"/>
         <antcall target="Ace"/>
         <antcall target="RoyaleSite"/>
     </target>
@@ -158,6 +159,7 @@
         <ant dir="${basedir}/projects/IconsJS" target="clean"/>
         <ant dir="${basedir}/projects/JewelJS" target="clean"/>
         <ant dir="${basedir}/projects/MXRoyaleJS" target="clean"/>
+        <ant dir="${basedir}/projects/CruxJS" target="clean"/>
         <ant dir="${basedir}/projects/SparkRoyaleJS" target="clean"/>
         <ant dir="${basedir}/projects/AceJS" target="clean"/>
         <ant dir="${basedir}/projects/RoyaleSiteJS" target="clean"/>
@@ -280,6 +282,10 @@
 
     <target name="SparkRoyale" description="Clean build of SparkRoyaleJS.swc">
         <ant dir="${basedir}/projects/SparkRoyaleJS"/>
+    </target>
+
+    <target name="Crux" description="Clean build of CruxJS.swc">
+        <ant dir="${basedir}/projects/CruxJS"/>
     </target>
 
     <target name="Ace" description="Clean build of AceJS.swc">

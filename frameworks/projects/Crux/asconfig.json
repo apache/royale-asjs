@@ -1,0 +1,21 @@
+{
+    "config": "royale",
+    "compilerOptions": {
+        "debug": true,
+        "js-output-type": "royale",
+        "define": [
+            {
+                "name": "COMPILE::SWF",
+                "value": true
+            },
+            {
+                "name": "COMPILE::JS",
+                "value": false
+            }
+        ]
+    },
+    "files":
+    [
+        "src/main/royale/FlatClasses.as"
+    ]
+}

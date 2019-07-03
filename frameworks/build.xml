@@ -140,6 +140,7 @@
         <antcall target="RoyaleSite"/>
         <antcall target="MXRoyale"/>
         <antcall target="SparkRoyale"/>
+        <antcall target="Crux"/>
         <antcall target="Jewel"/>
         <antcall target="JewelTheme"/>
 		<antcall target="Icons"/>
@@ -205,6 +206,7 @@
         <ant dir="${basedir}/projects/RoyaleSite" target="clean"/>
         <ant dir="${basedir}/projects/MXRoyale" target="clean"/>
         <ant dir="${basedir}/projects/SparkRoyale" target="clean"/>
+        <ant dir="${basedir}/projects/Crux" target="clean"/>
         <ant dir="${basedir}/projects/Jewel" target="clean"/>
 		<ant dir="${basedir}/projects/Icons" target="clean"/>
         <ant dir="${basedir}/themes/JewelTheme" target="clean"/>
@@ -363,6 +365,9 @@
     </target>
     <target name="SparkRoyale" description="Clean build of SparkRoyale.swc">
         <ant dir="${basedir}/projects/SparkRoyale"/>
+    </target>
+    <target name="Crux" description="Clean build of Crux.swc">
+        <ant dir="${basedir}/projects/Crux"/>
     </target>
     <target name="Jewel" description="Clean build of Jewel.swc">
         <ant dir="${basedir}/projects/Jewel"/>
