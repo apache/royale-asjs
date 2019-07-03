@@ -24,38 +24,14 @@
                xmlns:config="crux.quickstart.config.*"
                initialize="setUp()">
 
-    <!--<fx:Style source="../../main/resources/crux-jewel-example-styles.css"/>-->
 
     <fx:Script>
 		<![CDATA[
 
-
         public function setUp():void
         {
-            trace('application setUp stub');
+            tracer('application setUp stub');
         }
-
-        /**
-         * Define Bean providers.
-         */
-        public function getBeanProvidersClasses() :Array {
-            return [];
-        }
-
-        /**
-         * Define custom package events.
-         */
-        public function getEventPackages() :Array {
-            return ['com.codeoscopic.avant.events.*'];
-        }
-
-        /**
-         * Define view packages to be wired up.
-         */
-        public function getViewPackages() :Array {
-            return ['com.codeoscopic.avant.views.*'];
-        }
-
 
         ]]>
 	</fx:Script>
@@ -94,13 +70,6 @@
     <j:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </j:valuesImpl>
-
-
-        <!--<view:UserForm id="userForm" />-->
-        <!--<view:MainContent/>-->
-
-
-
 
 
     <j:initialView>
