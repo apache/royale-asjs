@@ -21,7 +21,6 @@ package org.apache.royale.reflection
 COMPILE::SWF
 {
     import flash.utils.describeType;
-    import flash.external.ExternalInterface;
 }
 COMPILE::JS
 {
@@ -35,6 +34,8 @@ COMPILE::JS
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     *  
+     *  @royaleignorecoercion Class
      */
     public function describeType(value:Object):TypeDefinition
 	{
@@ -50,11 +51,12 @@ COMPILE::JS
                 }
             }
             var xml:XML = flash.utils.describeType(value);
-            return TypeDefinition.getDefinition(xml.@name, xml);
+            return TypeDefinition.getDefinition(xml.@name, xml, value as Class);
         }
         COMPILE::JS
         {
             const qname:String = getQualifiedClassName(value);
+            var clazz:Class = value ? (value.prototype ? value : value.constructor) as Class : null;
             var data:Object = value.ROYALE_CLASS_INFO || (value.prototype ? value.prototype.ROYALE_CLASS_INFO : null);
             if (!data) {
                 if (ExtraData.hasData(qname)) {
@@ -68,7 +70,7 @@ COMPILE::JS
                     }
                 }
             }
-            return TypeDefinition.getDefinition(qname, data);
+            return TypeDefinition.getDefinition(qname, data, clazz);
         }
     }
 }

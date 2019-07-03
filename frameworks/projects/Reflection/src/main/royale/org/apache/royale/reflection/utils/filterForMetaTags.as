@@ -16,34 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.reflection
-{
-COMPILE::SWF
-{
-    import flash.utils.getQualifiedSuperclassName;
-}
+package org.apache.royale.reflection.utils {
+    
+    import org.apache.royale.reflection.*;
+    
     
     /**
-     *  The equivalent of flash.utils.getQualifiedSuperclassName.
      * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     * @param memberDefinitions the member definitions to check
+     * @param tags the metatags to search for
+     * @param intoArray optional external Array to add matching definitions to 
+     * @return array of matching members
      */
-    public function getQualifiedSuperclassName(value:*):String
-	{
-        COMPILE::SWF
-        {
-            return flash.utils.getQualifiedSuperclassName(value).replace('::','.');
+    public function filterForMetaTags(memberDefinitions:Array, tags:Array, intoArray:Array = null):Array {
+        var ret:Array = intoArray ? intoArray : [];
+        const l:uint = memberDefinitions.length;
+        var tagCount:uint = tags.length;
+        for (var i:uint = 0; i< l; i++) {
+            var memberDefintion:MemberDefinitionBase = memberDefinitions[i];
+            for (var j:uint = 0; j< tagCount; j++) {
+                if (memberDefintion.retrieveMetaDataByName(tags[j]).length) {
+                    ret.push(memberDefintion);
+                    break;
+                }
+            }
         }
-        COMPILE::JS
-        {
-            var constructorAsObject:Object = value["constructor"];
-            value = constructorAsObject.superClass_;
-            if (value == null || value.ROYALE_CLASS_INFO == null)
-                return null;
-            return value.ROYALE_CLASS_INFO.names[0].qName;
-        }
+        return ret;
     }
+    
+    
 }

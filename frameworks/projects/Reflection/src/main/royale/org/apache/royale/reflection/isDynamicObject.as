@@ -72,7 +72,7 @@ COMPILE::SWF
 					if (inspect["wootHackwoot"] == "wootHackwoot") dyncheck=true;
 					delete inspect["wootHackwoot"];
 					
-				} catch(e:Error) {};
+				} catch(e:Error) {}
 				return dyncheck;
             } else return true
         }

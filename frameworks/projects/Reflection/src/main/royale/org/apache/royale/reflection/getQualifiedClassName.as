@@ -39,7 +39,7 @@ COMPILE::JS{
         COMPILE::SWF
         {
             //normalize for Vector:
-            return flash.utils.getQualifiedClassName(value).replace('__AS3__.vec::','');
+            return flash.utils.getQualifiedClassName(value).replace('__AS3__.vec::','').replace('::','.');
         }
         COMPILE::JS
         {
