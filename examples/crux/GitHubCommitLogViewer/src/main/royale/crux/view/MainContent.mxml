@@ -57,7 +57,6 @@ limitations under the License.
                     trace('requesting ', repo);
                     dispatchEvent(event);
                 }
-
             } else {
                 projectName = '';
                 commits = [];

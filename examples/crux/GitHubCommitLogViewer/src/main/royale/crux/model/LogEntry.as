@@ -16,14 +16,15 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package crux.model{
-
-public class LogEntry
+package crux.model
 {
-  public var date:String;
-  public var author:String;
-
-  [Bindable("__NoChangeEvent__")]
-  public var message:String;
-}
+    
+    [Bindable]
+    public class LogEntry
+    {
+        
+        public var date:String;
+        public var author:String;
+        public var message:String;
+    }
 }
