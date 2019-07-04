@@ -16,6 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+/***
+ * Based on the
+ * Swiz Framework library by Chris Scott, Ben Clinkinbeard, Sönke Rohde, John Yanarella, Ryan Campbell, and others https://github.com/swiz/swiz-framework
+ */
 package org.apache.royale.crux.utils.view {
 
 	import org.apache.royale.core.UIBase;
@@ -26,9 +30,6 @@ package org.apache.royale.crux.utils.view {
 		import flash.display.DisplayObject;
 	}
 
-	/*COMPILE::JS{
-		import org.apache.royale.core.HTMLElementWrapper;
-	}*/
 
 	/**
 	 * A utility function to check whether a content item has a container in its parent chain
@@ -48,7 +49,6 @@ package org.apache.royale.crux.utils.view {
 
 		COMPILE::JS{
 			return container.element.contains(content.element)
-			//return DisplayObjectContainer(container).contains(DisplayObject(content));
 		}
 
 	}
