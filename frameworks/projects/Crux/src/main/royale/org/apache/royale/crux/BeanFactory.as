@@ -23,6 +23,7 @@ package org.apache.royale.crux
 	}
 	COMPILE::JS{
 		import org.apache.royale.events.Event;
+		import goog.events;
 	}
 	
     import org.apache.royale.events.EventDispatcher;
@@ -122,17 +123,41 @@ package org.apache.royale.crux
 			if( crux.catchViews == false )
 			 	return;
 			
-			crux.dispatcher.addEventListener( crux.config.setUpEventType,
-													setUpEventHandler, 
-													(crux.config.setUpEventPhase == 1), //EventPhase.CAPTURING_PHASE ),
-													crux.config.setUpEventPriority ); //, true - weak refernce
-					
-			crux.dispatcher.addEventListener( crux.config.tearDownEventType,
-													tearDownEventHandler, 
-													(crux.config.tearDownEventPhase == 1), //EventPhase.CAPTURING_PHASE )
-													crux.config.tearDownEventPriority);//, true ); - weak refernce
+			var className:String = getQualifiedClassName(crux.dispatcher);
+
+			
+			COMPILE::JS {
+				//support for capture phase
+				goog.events.listen( crux.dispatcher,
+						crux.config.setUpEventType,
+						setUpEventHandler,
+						(crux.config.setUpEventPhase == 1));
+				goog.events.listen( crux.dispatcher,
+						crux.config.tearDownEventType,
+						tearDownEventHandler,
+						(crux.config.tearDownEventPhase == 1));
+			}
+			
+			COMPILE::SWF{
+				crux.dispatcher.addEventListener( crux.config.setUpEventType,
+						setUpEventHandler,
+						(crux.config.setUpEventPhase == 1), //EventPhase.CAPTURING_PHASE ),
+						crux.config.setUpEventPriority ); //, true - weak refernce
+				
+				crux.dispatcher.addEventListener( crux.config.tearDownEventType,
+						tearDownEventHandler,
+						(crux.config.tearDownEventPhase == 1), //EventPhase.CAPTURING_PHASE )
+						crux.config.tearDownEventPriority);//, true ); - weak refernce
+			}
 			
 			
+			/**
+			 * override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+			 {
+            var source:Object = getActualDispatcher_(type);
+            goog.events.listen(source, type, handler);
+        }
+			 */
 			//@todo...
 			/*if(crux.dispatcher)
 			{
@@ -164,8 +189,26 @@ package org.apache.royale.crux
 			crux.dispatcher.removeEventListener( BeanEvent.TEAR_DOWN_BEAN, handleBeanEvent );
 			crux.dispatcher.removeEventListener( BeanEvent.REMOVE_BEAN, handleBeanEvent );
 			
-			crux.dispatcher.removeEventListener( crux.config.setUpEventType, setUpEventHandler, ( crux.config.setUpEventPhase == 0));//EventPhase.CAPTURING_PHASE ) );
-			crux.dispatcher.removeEventListener( crux.config.tearDownEventType, tearDownEventHandler, ( crux.config.tearDownEventPhase == 0));//EventPhase.CAPTURING_PHASE ) );
+			
+			COMPILE::JS {
+				//support for capture phase
+				goog.events.unlisten(crux.dispatcher,
+						crux.config.setUpEventType,
+						setUpEventHandler,
+						(crux.config.setUpEventPhase == 0))
+				
+				goog.events.unlisten(crux.dispatcher,
+						crux.config.tearDownEventType,
+						tearDownEventHandler,
+						(crux.config.tearDownEventPhase == 0))
+			}
+			
+			COMPILE::SWF{
+				
+				crux.dispatcher.removeEventListener( crux.config.setUpEventType, setUpEventHandler, ( crux.config.setUpEventPhase == 0));//EventPhase.CAPTURING_PHASE ) );
+				crux.dispatcher.removeEventListener( crux.config.tearDownEventType, tearDownEventHandler, ( crux.config.tearDownEventPhase == 0));//EventPhase.CAPTURING_PHASE ) );
+				
+			}
 			
 		}
 		
@@ -432,7 +475,6 @@ package org.apache.royale.crux
 		protected function isPotentialInjectionTarget( instance:Object ):Boolean
 		{
 			var className:String = getQualifiedClassName( instance );
-
 			
 			if( crux.config.viewPackages.length > 0 ) {
 				for each( var viewPackage:String in crux.config.viewPackages ) {
@@ -451,7 +493,7 @@ package org.apache.royale.crux
 		 */
 		protected function setUpEventHandler( event:Event ):void
 		{
-			trace('BeanFactory setUpEventHandler', event);
+			//tracer('BeanFactory setUpEventHandler',event.type,event.bubbles, getQualifiedClassName(event.target), getQualifiedClassName(event.currentTarget));
 			if( event.target is ISetUpValidator && !( ISetUpValidator( event.target ).allowSetUp() ) )
 				return;
 			
@@ -497,12 +539,27 @@ package org.apache.royale.crux
 		 */
 		protected function tearDownEventHandler( event:Event ):void
 		{
+
 			if( event.target is ITearDownValidator && !( ITearDownValidator( event.target ).allowTearDown() ) )
 				return;
-
+			
+			//tracer('BeanFactory tearDownEventHandler',event.type,event.bubbles, getQualifiedClassName(event.target), getQualifiedClassName(event.currentTarget));
+			
 			// only views previously processed can be torn down
-			if( CruxManager.wiredViews[ event.target ] )
-				addRemovedDisplayObject( UIBase( event.target ) );
+			
+			COMPILE::SWF{
+				if( CruxManager.wiredViews[ event.target ] ) {
+					//tracer('addRemovedDisplayObject::', getQualifiedClassName(event.target));
+					addRemovedDisplayObject( UIBase( event.target ) );
+				}
+				
+			}
+			COMPILE::JS{
+				if( CruxManager.wiredViews.get(event.target)) {
+					//tracer('addRemovedDisplayObject::', getQualifiedClassName(event.target));
+					addRemovedDisplayObject( UIBase( event.target ) );
+				}
+			}
 		}
 		
 		protected function addRemovedDisplayObject( displayObject:UIBase ):void
@@ -539,24 +596,24 @@ package org.apache.royale.crux
 		 */
 		public static function constructBean(obj:*, name:String):Bean
 		{
-			trace("constructBean", obj, name);
+			//tracer("constructBean", getQualifiedClassName(obj), name);
 			var bean:Bean;
 			
 			if(obj is Bean)
 			{
-				trace("obj is Bean");
+				//trace("obj is Bean");
 				bean = Bean(obj);
 			}
 			else
 			{
-				trace("obj is not Bean, create a Bean from the obj");
+				//trace("obj is not Bean, create a Bean from the obj");
 				bean = new Bean();
 				bean.source = obj;
 			}
-			trace("Bean ", bean);
-			trace("bean.name ", bean.name);
+			//trace("Bean ", bean);
+			//trace("bean.name ", bean.name);
 			bean.name ||= name;
-			trace("after ||=", bean.name);
+			//trace("after ||=", bean.name);
 			bean.typeDescriptor = TypeCache.getTypeDescriptor(bean.type);
 			
 			return bean;

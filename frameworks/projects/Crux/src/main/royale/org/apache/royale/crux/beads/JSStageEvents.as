@@ -34,17 +34,18 @@ package org.apache.royale.crux.beads
     COMPILE::JS {
         import org.apache.royale.core.HTMLElementWrapper;
         import org.apache.royale.core.WrappedHTMLElement;
+        import goog.events.EventTarget;
     }
     
     /**
      *  The JSStageEvents class provides a way to simulate 'addedToStage' and 'removedFromStage' events in javascript.
      *
-     *  'addedToStage' events can bubble in a way that is similar to Flash Player/Adobe Air.
-     *  'removedFromStage' events do not (they are dispatched after 'removal' so must be listened for directly on the target instance)
-     *  If using bubbling, and you want to check for 'removedFromStage' a common pattern would be to add the 'removedFromStage' listener directly to instances
-     *  as they are handled in the upper level (e.g. application level) event handler, and in the 'removedFromStage' listener, to also remove the 'removedFromStage' listener itself.
+     *  'addedToStage' and 'removedFromStage' events do not bubble, but can be caught on the strand for anything in the child hierarchy
+     *  with capture phase listeners in a way that is similar to Flash Player/Adobe Air.
      *
-     *  For performance reasons, it is possible to filter out packages of view classes that will not have 'stage' events dispatched.
+     *  It is also possible specify a root dispatcher other than the strand.
+     *
+     *  For performance reasons, it is possible to filter out packages of view classes that will not need these events dispatched.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -77,6 +78,13 @@ package org.apache.royale.crux.beads
         }
         
 
+        private var _dispatcher:IEventDispatcher;
+        public function get dispatcher():IEventDispatcher{
+            return _dispatcher ;
+        }
+        public function set dispatcher(value:IEventDispatcher):void{
+            _dispatcher = value;
+        }
         
        
         
@@ -100,6 +108,7 @@ package org.apache.royale.crux.beads
                     trace('[IGNORING] there is already an active instance of JSStageEvents at ', _activeInstance.host);
                 } else {
                     _activeInstance = this;
+                    if (!_dispatcher) _dispatcher = value as IEventDispatcher;
                     var observer:MutationObserver = new MutationObserver(mutationDetected);
                     observer.observe(HTMLElementWrapper(value).element, {'childList': true, 'subtree': true});
                     trace('Activating JSStageEvents')
@@ -153,7 +162,12 @@ package org.apache.royale.crux.beads
                 var mutationRecord:MutationRecord = mutationsList[j] as MutationRecord;
 
                 var removedElements:NodeList = mutationRecord.removedNodes as NodeList;
-                for (var i:int = 0; i < removedElements.length; i++)
+                var l:uint = removedElements.length;
+                var fakeAncestors:Array;
+                if (l && _dispatcher) {
+                    fakeAncestors = [_dispatcher];
+                }
+                for (var i:int = 0; i < l; i++)
                 {
                     var element:WrappedHTMLElement = removedElements[i] as WrappedHTMLElement;
                     royaleInstance = element.royale_wrapper;
@@ -165,7 +179,8 @@ package org.apache.royale.crux.beads
                                 continue;
                             }
                         }
-                        royaleInstance.dispatchEvent(new Event('removedFromStage', true));
+                        //use the dispatcher (upper display list item) as a fake ancestor for capture phase listening
+                        goog.events.EventTarget.dispatchEventInternal_(royaleInstance, new Event('removedFromStage', false), fakeAncestors);
                     }
                 }
                 var addedElements:NodeList = mutationRecord.addedNodes as NodeList;
@@ -181,7 +196,8 @@ package org.apache.royale.crux.beads
                                 continue;
                             }
                         }
-                        royaleInstance.dispatchEvent(new Event('addedToStage', true));
+                        //dispatch a non-bubbling event, but support capture phase listeners
+                        royaleInstance.dispatchBubblingEvent(royaleInstance,new Event('addedToStage', false));
                     }
                 }
             }

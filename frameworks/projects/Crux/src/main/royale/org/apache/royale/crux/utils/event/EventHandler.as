@@ -66,6 +66,8 @@ package org.apache.royale.crux.utils.event
 		 */
 		protected var _eventClass:Class;
 		
+		protected var _eventClassName:String;
+		
 		/**
 		 * Backing variable for <code>domain</code> property.
 		 */
@@ -217,7 +219,7 @@ package org.apache.royale.crux.utils.event
 				accessChains = {};
 				var eventClassDescriptor:TypeDescriptor = TypeCache.getTypeDescriptor( eventClass );
 				var eventDefinition:TypeDefinition = eventClassDescriptor.typeDefinition;
-				
+				_eventClassName = eventDefinition.qualifiedName;
 				for each( var property:String in metadataTag.properties )
 				{
 					var chain:Array = property.split( "." );
@@ -240,19 +242,17 @@ package org.apache.royale.crux.utils.event
 					accessChains[property] = accessChain;
 				}
 			}
-			
 			//now validate it
 			for each( property in metadataTag.properties )
 			{
 				accessChain = accessChains[property];
 				var o:Object = event;
-				var defName:String = eventDefinition.qualifiedName;
 				if (accessChain.length > 1) {
 					var index:int = 0;
 					var l:int = accessChain.length-1;
 					while (index<l) {
 						if (o == null) {
-							throw new Error( "Unable to handle event: " + varDef.name + " is null as a property of " + defName + " as defined in " + metadataTag.asTag + "." );
+							throw new Error( "Unable to handle event: " + varDef.name + " is null as a property of " + _eventClassName + " as defined in " + metadataTag.asTag + "." );
 						}
 						varDef = accessChain[index];
 						o = varDef.getValue(o)
@@ -292,7 +292,6 @@ package org.apache.royale.crux.utils.event
 				}
 				
 			}
-			//trace('EventHandler... args', args)
 			return args;
 		}
 		
