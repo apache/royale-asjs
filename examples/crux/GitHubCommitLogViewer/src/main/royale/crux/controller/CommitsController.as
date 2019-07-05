@@ -24,7 +24,9 @@ package crux.controller
 
 	import mx.rpc.events.ResultEvent;	
 	import org.apache.royale.crux.utils.services.ServiceHelper;
-	
+	/**
+	 * @royalesuppresspublicvarwarning
+	 */
 	public class CommitsController
 	{
 		[Inject]

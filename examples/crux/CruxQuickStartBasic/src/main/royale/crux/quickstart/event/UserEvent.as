@@ -22,11 +22,12 @@ package crux.quickstart.event
 	import org.apache.royale.events.Event;
 	
 	/**
-	 * @royalesuppresspublicwarning
+	 * @royalesuppresspublicvarwarning
 	 */
 	public class UserEvent extends Event
 	{
-		public static const SAVE_USER_REQUESTED : String = "saveUser"; 
+		public static const SAVE_USER_REQUESTED : String = "saveUser";
+		
 		public var user : User;
 		
 		/**

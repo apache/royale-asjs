@@ -22,7 +22,9 @@ package crux.service
 	import org.apache.royale.events.IEventDispatcher;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.http.HTTPService;
-	
+	/**
+	 * @royalesuppresspublicvarwarning
+	 */
 	public class CommitsDelegate
 	{
 		[Dispatcher]

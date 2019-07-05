@@ -23,7 +23,9 @@ package crux.quickstart.service
 	import mx.rpc.AsyncToken;
 	
 	import org.apache.royale.crux.utils.services.MockDelegateHelper;
-	
+	/**
+	 * @royalesuppresspublicvarwarning
+	 */
 	public class UserService
 	{
 		[Dispatcher]

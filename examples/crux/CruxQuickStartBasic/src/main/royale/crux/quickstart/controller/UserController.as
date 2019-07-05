@@ -23,7 +23,9 @@ package crux.quickstart.controller
 	import org.apache.royale.html.SimpleAlert;
 	import mx.rpc.events.ResultEvent;	
 	import org.apache.royale.crux.utils.services.ServiceHelper;
-	
+	/**
+	 * @royalesuppresspublicvarwarning
+	 */
 	public class UserController
 	{
 		[Inject]

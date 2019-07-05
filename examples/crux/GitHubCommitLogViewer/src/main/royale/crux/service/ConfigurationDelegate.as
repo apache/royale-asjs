@@ -23,7 +23,9 @@ package crux.service
     import mx.rpc.AsyncToken;
     import mx.rpc.http.HTTPService;
     
-    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class ConfigurationDelegate
     {
         [Dispatcher]
