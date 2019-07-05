@@ -52,10 +52,11 @@ global {
  * -------------------------------------------------------
  */
 
-Basic|Menu
+Basic|CascadingMenu
 {
 	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IBeadController: ClassReference("mx.controls.beads.controllers.CascadingMenuSelectionMouseController");
 }
 
 Basic|ComboBoxList
@@ -218,7 +219,7 @@ MenuBar {
 	IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
 	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");			
 	IBeadController: ClassReference("mx.controls.beads.controllers.MenuBarMouseController");
-	IMenuFactory: ClassReference("org.apache.royale.html.beads.MenuFactory");
+	IMenuFactory: ClassReference("org.apache.royale.html.beads.CascadingMenuFactory");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
