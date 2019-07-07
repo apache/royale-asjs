@@ -19,6 +19,8 @@
 
 package mx.controls.beads.controllers
 {
+	import mx.collections.XMLListCollection;
+	
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController;
 	import org.apache.royale.html.beads.models.CascadingMenuModel;
 
@@ -40,7 +42,7 @@ package mx.controls.beads.controllers
 			{
 				return super.getSubMenuDataProvider(node, model)
 			}
-			return (node as XML).children();
+			return new XMLListCollection((node as XML).children());
 		}
 		
 		override protected function getHasMenu(node:Object, model:CascadingMenuModel):Boolean
