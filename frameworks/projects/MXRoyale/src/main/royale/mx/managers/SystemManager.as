@@ -191,7 +191,7 @@ import org.apache.royale.geom.Rectangle;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class SystemManager extends SystemManagerBase implements ISystemManager, IFlexModuleFactory, IEventDispatcher, IPopUpHostParent, IChildList
+public class SystemManager extends SystemManagerBase implements ISystemManager, IFlexModuleFactory, IEventDispatcher, IPopUpHostParent, IPopUpHost, IChildList
 { //extends MovieClip implements IFlexDisplayObject,IFlexModuleFactory, ISystemManager
    // include "../core/Version.as";
 
@@ -3727,6 +3727,13 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     {
         return component as IPopUpHost;
     }
+	
+	// TODO is this right? Otherwise UIUtils.findPopUpHost() won't stop here.
+	public function get popUpParent():IPopUpHostParent
+	{
+		return this;
+	}
+
 
 }
 

@@ -82,7 +82,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.6
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
@@ -90,10 +90,10 @@ package org.apache.royale.html.beads.controllers
 			
 			var model:CascadingMenuModel = _strand.getBeadByType(IBeadModel) as CascadingMenuModel;
 			
-			if (node.hasOwnProperty(model.submenuField)) {
+			if (getHasMenu(node, model)) {
 				var component:IUIBase = event.target as IUIBase;
 				var menu:IMenu = new CascadingMenu();
-				menu.dataProvider = node[model.submenuField];
+				menu.dataProvider = getSubMenuDataProvider(node, model);
 				menu.labelField = model.labelField;
 				menu.parentMenuBar = (_strand as IMenu).parentMenuBar;
 				menu.show(component, component.width, 0);
@@ -103,5 +103,16 @@ package org.apache.royale.html.beads.controllers
 				hideOpenMenus();
 			}
 		}
+		
+		protected function getSubMenuDataProvider(node:Object, model:CascadingMenuModel):Object
+		{
+			return node[model.submenuField];
+		}
+		
+		protected function getHasMenu(node:Object, model:CascadingMenuModel):Boolean
+		{
+			return node.hasOwnProperty(model.submenuField);
+		}
+		
 	}
 }

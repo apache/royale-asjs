@@ -223,7 +223,8 @@ internal class MXRoyaleClasses
     import mx.controls.beads.NumericStepperView; NumericStepperView;
     import mx.controls.beads.DateFieldView; DateFieldView;
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
-    import mx.controls.beads.controllers.MenuBarMouseController;
+    import mx.controls.beads.controllers.MenuBarMouseController; MenuBarMouseController;
+    import mx.controls.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
     
     import mx.containers.PanelTitleBar; PanelTitleBar;
     import mx.containers.beads.PanelView; PanelView;
@@ -237,6 +238,7 @@ internal class MXRoyaleClasses
     import mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer; TextButtonDataGridColumnItemRenderer;
     
     import mx.controls.menuClasses.MenuBarItemRenderer; MenuBarItemRenderer;
+    import mx.controls.menuClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
 
     import mx.containers.beads.FormItemView; FormItemView;
     import mx.containers.beads.FormItemContainer; FormItemContainer;
