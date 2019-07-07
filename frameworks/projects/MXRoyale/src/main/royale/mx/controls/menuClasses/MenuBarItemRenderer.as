@@ -22,7 +22,7 @@ package mx.controls.menuClasses
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.core.layout.EdgeData;
-import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer;
+import org.apache.royale.html.supportClasses.StringItemRenderer;
 
 /**
  *  The ListItemRenderer is the default renderer for mx.controls.List
@@ -33,56 +33,30 @@ import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer;
  *  @productversion Flex 3
  */
 
-public class MenuBarItemRenderer extends CascadingMenuItemRenderer
+public class MenuBarItemRenderer extends StringItemRenderer
 {
-    override public function set data(value:Object):void
+    override public function set text(value:String):void
     {
-        super.data = value;
-/*        COMPILE::SWF
+        super.text = value;
+        COMPILE::SWF
         {
             var edge:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getPaddingMetrics(this);
             var h:Number = textField.textHeight + edge.top + edge.bottom;
             textField.autoSize = "none";
             textField.height = h;
         }
-*/    }
+    }
     
-	override protected function getHasMenu():Boolean
-	{
-		if (!(data is XML))
-		{
-			return super.getHasMenu();
-		}
-		return (data as XML).children().length() > 0;
-	}
-	
-	override protected function getLabel():String
-	{
-		if (!(data is XML))
-		{
-			return super.getLabel();
-		}
-		var xml:XML = data as XML;
-		if (labelField)
-		{
-			return xml.attribute(labelField).toString();
-		}
-		if (dataField)
-		{
-			return xml.attribute(dataField).toString();
-		}
-        return xml.attribute("label").toString();
-	}
-	
-	override protected function getType():String
-	{
-		if (!(data is XML))
-		{
-			return super.getType();
-		}
-		var type:String = (data as XML).attribute("type").toString();
-		return type ? type : null;
-	}
+    override protected function dataToString(value:Object):String
+    {
+        if (value is XML)
+        {
+            var xml:XML = value as XML;
+            return xml.attribute(labelField).toString();
+        }
+        return super.dataToString(value);
+    }
+
 }
 
 }

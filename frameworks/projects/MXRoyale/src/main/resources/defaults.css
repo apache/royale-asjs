@@ -54,7 +54,7 @@ global {
 
 Basic|CascadingMenu
 {
-	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");
+	IItemRenderer: ClassReference("mx.controls.menuClasses.CascadingMenuItemRenderer");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IBeadController: ClassReference("mx.controls.beads.controllers.CascadingMenuSelectionMouseController");
 }
