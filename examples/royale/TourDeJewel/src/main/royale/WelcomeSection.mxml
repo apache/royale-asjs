@@ -46,21 +46,21 @@ limitations under the License.
             </html:beads>
         </html:H1>
 
-        <j:Label width="400" multiline="true" html="Jewel is a themeizable and responsive set of user interface components for Apache Royale to quickly build Front-end Applications with AS3 &amp; MXML.&lt;br>Check &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a>">
+        <j:Label width="400" multiline="true" html="Jewel is a themeable and responsive set of user interface components for Apache Royale to help you quickly build the front end of your applications with ActionScript &amp; MXML.&lt;br>Check &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a>">
             <j:beads>
                 <j:SizeControl size="large"/>
                 <j:TextAlign align="center"/>
             </j:beads>
         </j:Label>
 
-        <j:Label width="400" multiline="true" html="Browser support: Chrome (v.44+), Firefox (v.34+), IE 11 &amp; Edge 15+, Safari (v.11.1+), Opera. Mobile: iOS (v.11.0), Android (v.5.0) &amp; Windows Mobile.&lt;br>&lt;strong>This OS: {OSUtils.getOS() + ' (' + OSUtils.getOSVersion() + ')' }&lt;/strong>">
+        <j:Label width="400" multiline="true" html="Jewel Browser support: Chrome (v.44+), Firefox (v.34+), IE 11 &amp; Edge 15+, Safari (v.11.1+), Opera. Mobile: iOS (v.11.0), Android (v.5.0) &amp; Windows Mobile.&lt;br>&lt;strong>This OS: {OSUtils.getOS() + ' (' + OSUtils.getOSVersion() + ')' }&lt;/strong>">
             <j:beads>
                 <j:SizeControl size="small"/>
                 <j:TextAlign align="center"/>
             </j:beads>
         </j:Label>
 
-        <j:HGroup gap="3">
+        <!-- <j:HGroup gap="3">
             <j:IconTextInput>
                 <j:beads>
                     <j:TextPrompt prompt="Search..."/>
@@ -77,6 +77,6 @@ limitations under the License.
             </j:Button>
         </j:HGroup>
         
-        <html:Span text="(This search box doesn't implements logic at this time)"/>
+        <html:Span text="(This search box doesn't implements logic at this time)"/> -->
     </j:Group>
 </c:ExampleAndSourceCodeTabbedSectionContent>
