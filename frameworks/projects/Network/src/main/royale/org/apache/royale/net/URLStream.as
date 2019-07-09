@@ -129,7 +129,7 @@ package org.apache.royale.net
 					}
 					xhr.setRequestHeader(header.name, header.value);
 				}
-				if (!contentTypeSet)
+				if (!contentTypeSet && urlRequest.contentType)
 				{
 					xhr.setRequestHeader("Content-type", urlRequest.contentType);
 				}
