@@ -195,7 +195,14 @@ package org.apache.royale.jewel.itemRenderers
 		public function animateIndicator(positionDiff:Number, widthDiff:Number, duration:int, easingFunction:String):void
 		{
 			indicator_content["animate"](
-				{ transform: ["translateX(" + positionDiff + "px) scaleX(" + widthDiff + ")", "none"] }
+				[
+					{
+						transform: "translateX(" + positionDiff + "px) scaleX(" + widthDiff + ")"
+					},
+					{
+						transform: "none"
+					}
+				]
 				, 
 				{
 					duration: duration,
