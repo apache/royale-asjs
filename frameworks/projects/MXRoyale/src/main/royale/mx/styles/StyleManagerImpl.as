@@ -491,6 +491,12 @@ public class StyleManagerImpl extends EventDispatcher implements IStyleManager2
 			aqua: 0x00FFFF,
 			magenta: 0xFF00FF,
 			cyan: 0x00FFFF,
+			orange: 0xFFA500,
+			darkgrey: 0xA9A9A9,
+			brown: 0xA52A2A,
+			tan: 0xD2B48C,
+			lightgrey: 0xD3D3D3,
+			darkgreen: 0x006400,
 			
 			// IMPORTANT: Theme colors must also be updated
 			// in the Flex compiler's CSS parser
