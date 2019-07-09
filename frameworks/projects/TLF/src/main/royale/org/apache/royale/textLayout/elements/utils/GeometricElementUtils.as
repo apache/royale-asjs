@@ -289,6 +289,18 @@ package org.apache.royale.textLayout.elements.utils
 					ret = 0xFF00FF; break;
 				case ColorName.CYAN: 
 					ret = 0x00FFFF; break;
+				case ColorName.ORANGE:
+					ret = 0xFFA500; break;
+				case ColorName.DARK_GREY:
+					ret = 0xA9A9A9; break;
+				case ColorName.BROWN:
+					ret = 0xA52A2A; break;
+				case ColorName.TAN:
+					ret = 0xD2B48C; break;
+				case ColorName.LIGHT_GREY:
+					ret = 0xD3D3D3; break;
+				case ColorName.DARK_GREEN:
+					ret = 0x006400; break;
 				default : break;
 			}
 			
