@@ -104,6 +104,7 @@
     <component id="HorizontalFlowLayout" class="org.apache.royale.html.beads.layouts.HorizontalFlowLayout" />
     <component id="HorizontalSliderLayout" class="org.apache.royale.html.beads.layouts.HorizontalSliderLayout" />
     <component id="TileLayout" class="org.apache.royale.html.beads.layouts.TileLayout"/>
+    <component id="UseMaxChildForTileCellDimensions" class="org.apache.royale.html.beads.layouts.UseMaxChildForTileCellDimensions"/>
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
