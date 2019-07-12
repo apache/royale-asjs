@@ -19,7 +19,7 @@
 package org.apache.royale.html.beads.layouts
 {
 	import org.apache.royale.core.LayoutBase;
-	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.html.beads.layouts.ITileLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutView;
@@ -47,7 +47,7 @@ package org.apache.royale.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TileLayout extends LayoutBase implements IBeadLayout
+	public class TileLayout extends LayoutBase implements ITileLayout
 	{
 		/**
 		 *  constructor.
