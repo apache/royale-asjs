@@ -17,29 +17,22 @@
 
 -->
 <royale-config>
+
+    <js-default-initializers>true</js-default-initializers>
+
     <compiler>
-
-        <!-- build both SWF and JS. -->
         <targets>
-            <!--<target>SWF</target>-->
             <target>JSRoyale</target>
+            <!-- no point building the swf target yet, there is a bug in mx ObjectUtil somewhere -->
+            <!--<target>SWF</target>-->
         </targets>
-
-        <library-path>
-            <path-element>../../../../../../frameworks/libs/MXRoyale.swc</path-element>
-            <path-element>../../../../../../frameworks/libs/Crux.swc</path-element>
-        </library-path>
-        
-
-
         <keep-as3-metadata>
-          <name>Bindable</name>
-          <name>Managed</name>
-          <name>ChangeEvent</name>
-          <name>NonCommittingChangeEvent</name>
-          <name>Transient</name>
-          <name>SWFOverride</name>
-
+            <name>Bindable</name>
+            <name>Managed</name>
+            <name>ChangeEvent</name>
+            <name>NonCommittingChangeEvent</name>
+            <name>Transient</name>
+            <name>SWFOverride</name>
 
             <name>Inject</name>
             <name>Dispatcher</name>
@@ -49,11 +42,22 @@
             <name>ViewAdded</name>
             <name>ViewRemoved</name>
         </keep-as3-metadata>
+        <keep-code-with-metadata>
+            <name>Inject</name>
+        </keep-code-with-metadata>
 
-
+        <js-library-path append="true">
+            <path-element>../../../../../../frameworks/js/libs/BasicJS.swc</path-element>
+            <path-element>../../../../../../frameworks/js/libs/CruxJS.swc</path-element>
+            <path-element>../../../../../../frameworks/js/libs/MXRoyaleJS.swc</path-element>
+        </js-library-path>
+        <library-path append="true">
+            <path-element>../../../../../../frameworks/libs/Basic.swc</path-element>
+            <path-element>../../../../../../frameworks/libs/Crux.swc</path-element>
+            <path-element>../../../../../../frameworks/libs/MXRoyale.swc</path-element>
+        </library-path>
+        <exclude-defaults-css-files>
+            <filename>MXRoyaleJS.swc:defaults.css</filename>
+        </exclude-defaults-css-files>
     </compiler>
-    
-
-	
-
 </royale-config>

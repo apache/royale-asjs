@@ -189,6 +189,20 @@
             <arg value="${playerglobal_arg}" />
         </mxmlc>
     </target>
+
+
+    <!-- support for skipping swf build -->
+    <target name="compile-js-only">
+        <available file="${basedir}/src/main/config/compile-app-config.xml"
+                   type="file"
+                   property="optional_arg" value="-load-config+=&quot;${basedir}/src/main/config/compile-app-config.xml&quot;" />
+
+        <taskdef resource="flexTasks.tasks" classpathref="lib.path"/>
+        <property name="config_arg" value="royale" />
+        <property name="file_suffix" value="mxml" />
+        <property name="optional_arg" value="-define+=CONFIG::dummy,true" />
+        <antcall target="build_example.compile-js-release" />
+    </target>
     
     <target name="check-air">
         <condition property="is.air" value="true">

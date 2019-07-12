@@ -29,8 +29,8 @@
 
     <include file="${basedir}/../../build_example.xml" />
     
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
-        <copy file="${basedir}/src/main/resources/project.json" tofile="${basedir}/bin-debug/project.json" />
+    <target name="main" depends="clean,build_example.compile-js-only" description="Clean build of ${example}">
+        <!--<copy file="${basedir}/src/main/resources/project.json" tofile="${basedir}/bin-debug/project.json" />-->
         <copy file="${basedir}/src/main/resources/project.json" tofile="${basedir}/bin/js-debug/project.json" />
         <copy file="${basedir}/src/main/resources/project.json" tofile="${basedir}/bin/js-release/project.json" />
     </target>

@@ -19,7 +19,7 @@
 -->
 
 
-<project name="Crux_QuickStart_Jewel" default="main" basedir=".">
+<project name="CruxQuickStart" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
     <property name="example" value="CruxQuickStart" />
     
@@ -29,8 +29,10 @@
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
 
     <include file="${basedir}/../../build_example.xml" />
+
+
     
-    <target name="main" depends="clean,build_example.compile" description="Clean build of ${example}">
+    <target name="main" depends="clean,build_example.compile-js-only" description="Clean build of ${example}">
     </target>
     
     <target name="clean">

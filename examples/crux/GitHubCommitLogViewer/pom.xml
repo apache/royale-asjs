@@ -101,9 +101,7 @@
       <properties>
         <!-- no point building the swf target yet, there is a bug in mx ObjectUtil somewhere -->
         <royale.example.targets>JSRoyale</royale.example.targets>
-      </properties>
-      <!--<properties>
-        <title>${project.artifactId}</title>
+        <!--<title>${project.artifactId}</title>
         <bgcolor>#ffffff</bgcolor>
         <useBrowserHistory>&#45;&#45;</useBrowserHistory>
         <version_major>11</version_major>
@@ -113,53 +111,53 @@
         <application>${project.artifactId}</application>
         <swf>${project.artifactId}</swf>
         <width>100%</width>
-        <height>100%</height>
+        <height>100%</height>-->
       </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>3.1.0</version>
-            <executions>
-              <execution>
-                <id>copy-template-swf</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>copy-resources</goal>
-                </goals>
-                <configuration>
-                  <outputDirectory>${basedir}/target/swf</outputDirectory>
-                  <includeEmptyDirs>true</includeEmptyDirs>
-                  <resources>
-                    <resource>
-                      <directory>${ROYALE_HOME}/templates/swfobject</directory>
-                      <filtering>true</filtering>
-                    </resource>
-                  </resources>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>com.coderplus.maven.plugins</groupId>
-            <artifactId>copy-rename-maven-plugin</artifactId>
-            <version>1.0.1</version>
-            <executions>
-              <execution>
-                <id>rename-file</id>
-                <phase>compile</phase>
-                <goals>
-                  <goal>rename</goal>
-                </goals>
-                <configuration>
-                  <sourceFile>${basedir}/target/swf/index.template.html</sourceFile>
-                  <destinationFile>${basedir}/target/swf/${project.artifactId}.html</destinationFile>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>-->
+       <!-- <build>
+          <plugins>
+            <plugin>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>3.1.0</version>
+              <executions>
+                <execution>
+                  <id>copy-template-swf</id>
+                  <phase>compile</phase>
+                  <goals>
+                    <goal>copy-resources</goal>
+                  </goals>
+                  <configuration>
+                    <outputDirectory>${basedir}/target/swf</outputDirectory>
+                    <includeEmptyDirs>true</includeEmptyDirs>
+                    <resources>
+                      <resource>
+                        <directory>${basedir}/../../../templates/swfobject</directory>
+                        <filtering>true</filtering>
+                      </resource>
+                    </resources>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+            <plugin>
+              <groupId>com.coderplus.maven.plugins</groupId>
+              <artifactId>copy-rename-maven-plugin</artifactId>
+              <version>1.0.1</version>
+              <executions>
+                <execution>
+                  <id>rename-file</id>
+                  <phase>compile</phase>
+                  <goals>
+                    <goal>rename</goal>
+                  </goals>
+                  <configuration>
+                    <sourceFile>${basedir}/target/swf/index.template.html</sourceFile>
+                    <destinationFile>${basedir}/target/swf/${project.artifactId}.html</destinationFile>
+                  </configuration>
+                </execution>
+              </executions>
+            </plugin>
+          </plugins>
+        </build>-->
     </profile>
   </profiles>
   <dependencies>
@@ -177,7 +175,7 @@
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
-    <dependency>
+    <!--<dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
       <version>0.9.6-SNAPSHOT</version>
@@ -190,7 +188,7 @@
       <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
-    </dependency>
+    </dependency>-->
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>

@@ -19,9 +19,9 @@
 -->
 
 
-<project name="Crux_QuickStart_Basic" default="main" basedir=".">
+<project name="CruxQuickStartBasic" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="HelloWorld" />
+    <property name="example" value="CruxQuickStart" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
