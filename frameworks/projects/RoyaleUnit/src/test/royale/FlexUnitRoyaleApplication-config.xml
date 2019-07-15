@@ -32,6 +32,7 @@
         
         <js-external-library-path>
             <path-element>../../../../../../js/libs/js.swc</path-element>
+            <path-element>../../../../../../js/libs/gcl.swc</path-element>
         </js-external-library-path>
         
         <library-path>

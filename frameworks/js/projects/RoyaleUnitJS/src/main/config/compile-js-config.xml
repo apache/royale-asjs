@@ -64,15 +64,11 @@
 	  
         <locale/>
         
-        <!-- overwrite the default library-path setting -->
-        <library-path>
-            <!-- asjscompc won't 'link' these classes in, but will list their requires
-                 if these swcs are on the external-library-path then their requires
-                 will not be listed -->
+        <external-library-path append="true">
             <path-element>../../../../../libs/LanguageJS.swc</path-element>
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
-        </library-path>
+        </external-library-path>
         
         <source-path>
             <path-element>../../../../../../projects/RoyaleUnit/src/main/royale</path-element>

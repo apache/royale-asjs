@@ -61,10 +61,9 @@
             </namespace>
         </namespaces>
 
-        <!-- overwrite the default library-path setting -->
-        <library-path>
-          <path-element>../../../../../../../js/libs/GCL.swc</path-element>
-        </library-path>
+        <external-library-path append="true">
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
+        </external-library-path>
         
         <source-path>
             <path-element>../../../../../../projects/Core/src/main/royale</path-element>
