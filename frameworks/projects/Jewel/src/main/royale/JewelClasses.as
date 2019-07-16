@@ -117,6 +117,8 @@ package
 
         import org.apache.royale.jewel.beads.validators.removeErrorTip; removeErrorTip;
 
+        import org.apache.royale.jewel.supportClasses.validators.CreditCardValidatorCardType; CreditCardValidatorCardType;
+
         import dialogPolyfill; dialogPolyfill;
         import hljs; hljs;
     }
