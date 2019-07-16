@@ -332,6 +332,9 @@ package org.apache.royale.events
         {
             wrappedEvent = event;
             nativeEvent = event.getBrowserEvent();
+            // for wrapped events, proxy the button values to the native events
+            _button = -1;
+            _buttons = -1;
         }
         
         public var relatedObject:Object;

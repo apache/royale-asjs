@@ -58,6 +58,7 @@
       <!-- linking.                                                             -->
       <external-library-path>
           <path-element>../js/libs/js.swc</path-element>
+          <path-element>../js/libs/GCL.swc</path-element>
           <path-element>../js/libs/ace-1.2.3.swc</path-element>
       </external-library-path>
 
@@ -76,7 +77,6 @@
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
          <path-element>js/libs/LanguageJS.swc</path-element>
-         <path-element>../js/libs/GCL.swc</path-element>
       </library-path>
 
       <allow-subclass-overrides>true</allow-subclass-overrides>
