@@ -54,20 +54,18 @@
 
         <locale/>
 
-        <!-- overwrite the default library-path setting -->
-        <library-path>
+        <external-library-path append="true">
             <path-element>../../../../../../../js/libs/GCL.swc</path-element>
-            <!-- asjscompc won't 'link' these classes in, but will list their requires
-                 if these swcs are on the external-library-path then their requires
-                 will not be listed -->
 
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
+            <path-element>../../../../../libs/XMLJS.swc</path-element>
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/BasicJS.swc</path-element>
             <path-element>../../../../../libs/BindingJS.swc</path-element>
-            <path-element>../../../../../libs/MXRoyaleJS.swc</path-element>
             <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
-        </library-path>
+            <path-element>../../../../../libs/MXRoyaleJS.swc</path-element>
+        </external-library-path>
 
         <namespaces>
             <namespace>

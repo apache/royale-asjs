@@ -22,7 +22,9 @@ package crux.controller
 	import crux.service.ConfigurationDelegate;
 	import mx.rpc.events.ResultEvent;	
 	import org.apache.royale.crux.utils.services.ServiceHelper;
-	
+	/**
+	 * @royalesuppresspublicvarwarning
+	 */
 	public class ConfigurationController
 	{
 		[Inject]

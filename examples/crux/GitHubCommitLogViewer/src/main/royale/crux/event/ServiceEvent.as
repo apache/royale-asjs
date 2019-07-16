@@ -22,7 +22,7 @@ package crux.event
 	import org.apache.royale.events.Event;
 	
 	/**
-	 * @royalesuppresspublicwarning
+	 * @royalesuppresspublicvarwarning
 	 */
 	public class ServiceEvent extends Event
 	{
