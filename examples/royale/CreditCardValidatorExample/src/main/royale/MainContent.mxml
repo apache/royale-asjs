@@ -22,17 +22,26 @@
 						     xmlns:js="library://ns.apache.org/royale/basic"
 						     xmlns:html="library://ns.apache.org/royale/html"
 							 initComplete="onInit(event)">
+	<j:beads>
+		<js:ContainerDataBinding />
+	</j:beads>						
 	<fx:Script>
 	<![CDATA[
 		import org.apache.royale.collections.ArrayList;
+		import org.apache.royale.jewel.Alert;
 
 		private function onInit(event:Event):void
 		{
 			creditCardType.dataProvider = new ArrayList(["American Express", "Discover", "MasterCard", "Visa"]);
 		}
+		
+		private function onFormValid(event:Event):void
+		{
+			Alert.show("Credit Card is valid!");
+		}
 	]]>
 </fx:Script>
-	<j:Form>
+	<j:Form valid="onFormValid(event)">
 		<j:beads>
 			<j:FormValidator trigger="{btnSubmit}" triggerEvent="click" 
 							 requiredFieldError="There are invalid data, please check it."/>
@@ -68,7 +77,7 @@
 			</j:TextInput>
 		</j:FormItem>
 		<j:FormItem>
-			<j:Button localId="btnSubmit"/>
+			<j:Button localId="btnSubmit" text="Submit"/>
 		</j:FormItem>
 	</j:Form>
 </j:ApplicationResponsiveView>

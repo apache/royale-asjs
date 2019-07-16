@@ -41,20 +41,10 @@
   </moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
-    <option customSDK="D:\Work\royale_ide\royale_nightly_js"/>
-    <option loadConfig=""/>
-    <option linkReport=""/>
-    <option locale=""/>
-    <option staticLinkRSL="False"/>
-    <option showActionScriptWarnings="True"/>
-    <option compilerConstants=""/>
-    <option allowSourcePathOverlap="False"/>
-    <option showBindingWarnings="True"/>
-    <option optimize="False"/>
     <option showDeprecationWarnings="True"/>
-    <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/jewel-index-template.html"/>
+    <option additional="-theme=${royalelib}/themes/JewelTheme/src/main/resources/defaults.css -html-template=src/main/resources/jewel-example-index-template.html"/>
+    <option locale=""/>
     <option strict="True"/>
-    <option antBuildPath="build/build.xml"/>
     <option accessible="False"/>
     <option useNetwork="True"/>
     <option showUnusedTypeSelectorWarnings="True"/>
@@ -63,17 +53,27 @@
     <option warnings="True"/>
     <option es="False"/>
     <option verboseStackTraces="False"/>
+    <option customSDK="D:\Work\royale_ide\royale_nightly_js"/>
+    <option loadConfig=""/>
+    <option linkReport=""/>
+    <option optimize="False"/>
+    <option staticLinkRSL="False"/>
+    <option showActionScriptWarnings="True"/>
+    <option compilerConstants=""/>
+    <option allowSourcePathOverlap="False"/>
+    <option showBindingWarnings="True"/>
+    <option antBuildPath="build/build.xml"/>
   </build>
   <mavenBuild>
-    <option settingsFilePath=""/>
     <option mavenBuildPath=""/>
+    <option settingsFilePath=""/>
     <option commandLine=""/>
     <actions>
-      <action actionName="Build" action="install"/>
-      <action actionName="Clean and package" action="clean package"/>
-      <action actionName="Clean" action="clean"/>
-      <action actionName="Clean and Build" action="clean install"/>
-      <action actionName="Exploded" action="war:exploded"/>
+      <action action="install" actionName="Build"/>
+      <action action="clean package" actionName="Clean and package"/>
+      <action action="clean" actionName="Clean"/>
+      <action action="clean install" actionName="Clean and Build"/>
+      <action action="war:exploded" actionName="Exploded"/>
     </actions>
   </mavenBuild>
   <includeLibraries></includeLibraries>
@@ -94,22 +94,22 @@
   <postBuildCommand alwaysRun="False">null</postBuildCommand>
   <trustSVNCertificate>False</trustSVNCertificate>
   <options>
-    <option isRoyale="True"/>
     <option showHiddenPaths="False"/>
-    <option testMovie=""/>
+    <option isPrimeFacesVisualEditor="False"/>
     <option testMovieCommand=""/>
     <option isExportedToExistingSource="False"/>
     <option defaultBuildTargets=""/>
     <option visualEditorExportPath=""/>
-    <option isPrimeFacesVisualEditor="False"/>
+    <option testMovie=""/>
+    <option isRoyale="True"/>
   </options>
   <moonshineRunCustomization>
-    <option targetPlatform="2"/>
+    <option launchMethod="Simulator"/>
     <option urlToLaunch=""/>
     <option customUrlToLaunch=""/>
+    <option targetPlatform="2"/>
     <option deviceSimulator="null"/>
     <option projectType="2"/>
-    <option launchMethod="Simulator"/>
     <deviceSimulator>null</deviceSimulator>
     <certAndroid>null</certAndroid>
     <certIos>null</certIos>
