@@ -17,9 +17,9 @@
   limitations under the License.
 
 -->
-<project name="githubcommitlogviewer" default="main" basedir=".">
+<project name="cruxgithubcommitlogviewer" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="GitHubCommitLogViewer" />
+    <property name="example" value="CruxGitHubCommitLogViewer" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>

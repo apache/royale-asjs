@@ -35,7 +35,7 @@
   <modules>
     <module>CruxQuickStart</module>
     <module>CruxQuickStartBasic</module>
-    <module>GitHubCommitLogViewer</module>
+    <module>CruxGitHubCommitLogViewer</module>
   </modules>
 
   <build>

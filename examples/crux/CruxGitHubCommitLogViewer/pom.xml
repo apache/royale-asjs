@@ -26,11 +26,11 @@
     <version>0.9.6-SNAPSHOT</version>
   </parent>
 
-  <artifactId>GitHubCommitLogViewer</artifactId>
+  <artifactId>CruxGitHubCommitLogViewer</artifactId>
   <version>0.9.6-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Crux: GitHubCommitLogViewer</name>
+  <name>Apache Royale: Examples: Crux: CruxGitHubCommitLogViewer</name>
 
   <build>
     <plugins>
@@ -39,7 +39,7 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>GitHubCommitLogViewer.mxml</mainClass>
+          <mainClass>CruxGitHubCommitLogViewer.mxml</mainClass>
           <targets>${royale.example.targets}</targets>
           <debug>false</debug>
           <additionalCompilerOptions>
