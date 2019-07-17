@@ -41,18 +41,6 @@ limitations under the License.
 			 */
 			public var user : User;
 
-			/*public function get user():User{
-				return user_;
-			}
-			public function set user(value:User):void{
-				if (value != this.user_) {
-					var oldValue:User = this.user_;
-					this.user_ = value;
-					this.dispatchEvent(ValueChangeEvent.createUpdateEvent(
-							this, "user", oldValue, value));
-				}
-			}
-			private var user_:User;*/
 			/**
 			 * Handle the user hitting the save button. We capture the form data
 			 * and dispatch a standard Flex event. No Crux-specific events or

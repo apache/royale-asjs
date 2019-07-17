@@ -39,10 +39,11 @@ limitations under the License.
 			 * We could inject the whole controller instance, but we only need
 			 * one property from the controller, the current user, so we just
 			 * inject that property.
+			 * Using setter style binding below instead of direct property binding Injection here (for variety in example)
 			 */
 			public var user : User;
 
-
+			//example of setter style binding Injection
 			[Inject( source = "userController.currentUser", bind = "true" )]
 			public function setUser(val:User):void{
 				this.user = val;
