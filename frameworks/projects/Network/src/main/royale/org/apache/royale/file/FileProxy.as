@@ -20,7 +20,7 @@ package org.apache.royale.file
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.Strand;
-	import org.apache.royale.file.beads.FileModel;
+	import org.apache.royale.utils.BinaryData;
 	
 	/**
 	 *  Indicates that the model has changed
@@ -68,7 +68,7 @@ package org.apache.royale.file
 		 */
 		public function get lastModified():uint
 		{
-			return (model as FileModel).lastModified;
+			return (model as IFileModel).lastModified;
 		}
 		
 		/**
@@ -76,7 +76,7 @@ package org.apache.royale.file
 		 */
 		public function get name():String
 		{
-			return (model as FileModel).name;
+			return (model as IFileModel).name;
 		}
 		
 		/**
@@ -84,7 +84,23 @@ package org.apache.royale.file
 		 */
 		public function get type():String
 		{
-			return (model as FileModel).type;
+			return (model as IFileModel).type;
+		}
+
+		/**
+		 *  @copy org.apache.royale.file.IFileModel#blob
+		 */
+		public function get blob():Object
+		{
+			return (model as IFileModel).blob;
+		}
+
+		/**
+		 *  @copy org.apache.royale.file.IFileModel#fileContent
+		 */
+		public function set fileContent(value:BinaryData):void
+		{
+			(model as IFileModel).fileContent = value;
 		}
 		
 	}

@@ -75,13 +75,13 @@ package org.apache.royale.file.beads
 		protected function fileLoadHandler(event:flash.events.Event):void
 		{
 			fileModel.fileReference.removeEventListener(Event.COMPLETE, fileLoadHandler);
-			fileModel.blob = new BinaryData(fileModel.fileReference.data);
+			fileModel.fileContent = new BinaryData(fileModel.fileReference.data);
 		}
 		
 		COMPILE::JS 
 		protected function fileLoadHandler(event:Event):void
 		{
-			fileModel.blob = new BinaryData(event.target.result);
+			fileModel.fileContent = new BinaryData(event.target.result);
 		}
 		
 		/**

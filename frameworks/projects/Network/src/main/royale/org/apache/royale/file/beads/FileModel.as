@@ -150,14 +150,14 @@ package org.apache.royale.file.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.6
          */
-		public function get blob():BinaryData
+		public function get blob():Object
 		{
 			return _blob;
 		}
 		
-		public function set blob(value:BinaryData):void
+		public function set fileContent(value:BinaryData):void
 		{
 			_blob = value;
 			dispatchEvent(new Event("blobChanged"));

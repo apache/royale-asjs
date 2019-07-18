@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.file
 {
+	import org.apache.royale.utils.BinaryData;
+
 	public interface IFileModel
 	{
 		/**
@@ -49,6 +51,25 @@ package org.apache.royale.file
 		 *  @productversion Royale 0.9
 		 */
 		function get name():String;
+
+		/**
+		 *  A representation of the file model in binary format
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		function get blob():Object;
+		/**
+		 *  The file content
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		function set fileContent(value:BinaryData):void;
 
 		
 	}
