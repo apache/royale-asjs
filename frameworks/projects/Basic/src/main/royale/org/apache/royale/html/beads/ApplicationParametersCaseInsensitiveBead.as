@@ -52,7 +52,7 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-            _urlVars = {};
+            urlVars = {};
             
             COMPILE::JS
             {
@@ -62,7 +62,7 @@ package org.apache.royale.html.beads
                     var vars:Array = query.split("&");
                     for (var i:int=0;i<vars.length;i++) {
                         var pair:Array = vars[i].split("=");
-                        _urlVars[pair[0].toLowerCase()] = decodeURIComponent(pair[1]);
+                        urlVars[pair[0].toLowerCase()] = decodeURIComponent(pair[1]);
                     }
                 }
             }
@@ -74,7 +74,7 @@ package org.apache.royale.html.beads
 
 		}
 
-        private var _urlVars:Object;
+        protected var urlVars:Object;
 
         /**
          *  Returns the value of the specified URL parameter.
@@ -85,7 +85,7 @@ package org.apache.royale.html.beads
          */
         public function getValue(parameter:String):String
         {
-            return _urlVars[parameter.toLowerCase()];
+            return urlVars[parameter.toLowerCase()];
         }
 
     }
