@@ -21,6 +21,11 @@ package org.apache.royale.file
 	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.utils.BinaryData;
+
+	COMPILE::SWF
+	{
+		import flash.net.FileReference;
+	}
 	
 	/**
 	 *  Indicates that the model has changed
@@ -101,6 +106,33 @@ package org.apache.royale.file
 		public function set fileContent(value:BinaryData):void
 		{
 			(model as IFileModel).fileContent = value;
+		}
+		
+		/**
+		 *  @copy org.apache.royale.file.IFileModel#fileReference
+		 */
+		COMPILE::SWF
+		public function get fileReference():FileReference
+		{
+			return (model as IFileModel).fileReference;
+		}
+
+		COMPILE::JS
+		public function get fileReference():File
+		{
+			return (model as IFileModel).fileReference;
+		}
+		
+		COMPILE::SWF
+		public function set fileReference(value:FileReference):void
+		{
+			(model as IFileModel).fileReference = value;
+		}
+
+		COMPILE::JS
+		public function set fileReference(value:File):void
+		{
+			(model as IFileModel).fileReference = value;
 		}
 		
 	}

@@ -67,7 +67,7 @@ package org.apache.royale.file.beads
 			{
 				var reader:FileReader = new FileReader();
 				goog.events.listen(reader, 'load', fileLoadHandler);
-				reader.readAsArrayBuffer(fileModel.file);
+				reader.readAsArrayBuffer(fileModel.fileReference);
 			}
 		}
 		
