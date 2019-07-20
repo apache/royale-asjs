@@ -23,6 +23,7 @@ limitations under the License.
 	<fx:Declarations>
 		<js:FileProxy id="myFileProxy" modelChanged="modelChangedHandler(event)">
 			<js:beads>
+				<js:FileModel/>
 				<js:FileBrowser id="myBrowser"/>
 				<js:FileLoader id="myLoader"/>
 			</js:beads>
