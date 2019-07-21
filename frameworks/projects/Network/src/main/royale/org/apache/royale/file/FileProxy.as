@@ -93,6 +93,14 @@ package org.apache.royale.file
 		}
 
 		/**
+		 *  @copy org.apache.royale.file.IFileModel#size
+		 */
+		public function get size():Number
+		{
+			return (model as IFileModel).size;
+		}
+
+		/**
 		 *  @copy org.apache.royale.file.IFileModel#blob
 		 */
 		public function get blob():Object

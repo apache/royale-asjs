@@ -86,7 +86,14 @@ package org.apache.royale.file.beads
 		 */
 		public function get size():Number
 		{
-			return _data.size;
+			COMPILE::SWF 
+			{
+				return _data.size;
+			}
+			COMPILE::JS 
+			{
+				return blob ? blob.length : -1;
+			}
 		}
 		
 		/**

@@ -113,5 +113,18 @@ package org.apache.royale.file.beads
 		{
 			_fileParamName = value;
 		}
+	
+		override public function get size():Number
+		{
+			COMPILE::SWF 
+			{
+				return super.size;
+			}
+			COMPILE::JS 
+			{
+				var myBlob:Blob = _blob["get"](fileParamName) as Blob;
+				return myBlob ? myBlob.size : -1;
+			}
+		}
 	}
 }

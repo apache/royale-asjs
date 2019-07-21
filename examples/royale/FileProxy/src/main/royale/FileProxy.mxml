@@ -33,7 +33,6 @@ limitations under the License.
 		<![CDATA[
 			import org.apache.royale.events.Event;
 			import org.apache.royale.events.MouseEvent;
-			import org.apache.royale.file.beads.FileModel;
 			import org.apache.royale.html.SimpleAlert;
 			
 			protected function clickHandler(event:org.apache.royale.events.MouseEvent):void
@@ -51,7 +50,7 @@ limitations under the License.
 			private function blobChangedHandler(e:org.apache.royale.events.Event):void
 			{
 				var fileModel:FileModel = myFileProxy.model as FileModel;
-				SimpleAlert.show(fileModel.blob.length + " bytes of " + fileModel.name + " were loaded", this);
+				SimpleAlert.show(myFileProxy.size + " bytes of " + fileModel.name + " were loaded", this);
 			}
 			
 		]]>

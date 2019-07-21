@@ -21,6 +21,7 @@ package org.apache.royale.file.beads
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.file.FileProxy;
+	import org.apache.royale.file.IFileModel;
 
 	/**
 	 *  The FileLoaderAndUploader is a compound bead that allows you
@@ -80,8 +81,8 @@ package org.apache.royale.file.beads
 		
 		public function upload(url:String):void
 		{
-			var fileModel:FileModel = (_strand as FileProxy).model as FileModel;
-			if (!fileModel.blob)
+			var fileModel:IFileModel = (_strand as FileProxy).model as IFileModel;
+			if (fileModel.size <= 0)
 			{
 				_url = url;
 				(_strand as FileProxy).model.addEventListener("blobChanged", blobChangedHandler);

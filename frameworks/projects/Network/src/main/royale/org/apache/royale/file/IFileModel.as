@@ -37,6 +37,16 @@ package org.apache.royale.file
 		function get type():String;
 		
 		/**
+		 *  The size of the file
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		function get size():Number;
+
+		/**
 		 *  The last modified time of the file, in millisecond since the UNIX epoch (January 1st, 1970 at Midnight).
 		 * 
 		 *  @langversion 3.0
@@ -64,7 +74,6 @@ package org.apache.royale.file
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.6
 		 */
-
 		function get blob():Object;
 
 		/**

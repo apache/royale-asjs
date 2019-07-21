@@ -20,6 +20,7 @@ package org.apache.royale.file.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.file.FileProxy;
+	import org.apache.royale.file.IFileModel;
 	import org.apache.royale.utils.BinaryData;
 
 	COMPILE::SWF
@@ -97,9 +98,9 @@ package org.apache.royale.file.beads
 			_strand = value;
 		}
 		
-		private function get fileModel():FileModel
+		private function get fileModel():IFileModel
 		{
-			return (_strand as FileProxy).model as FileModel;
+			return (_strand as FileProxy).model as IFileModel;
 		}
 		
 	}

@@ -22,6 +22,7 @@ package org.apache.royale.file.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.file.FileProxy;
+	import org.apache.royale.file.IFileModel;
 	import org.apache.royale.net.URLBinaryLoader;
 	import org.apache.royale.net.URLRequest;
 
@@ -75,12 +76,12 @@ package org.apache.royale.file.beads
 //			COMPILE::SWF
 //			{
 //				var flashURL:flash.net.URLRequest = new URLRequest(url.url);
-//				(host.model as FileModel).fileReference.upload(flashURL);
+//				(host.model as IFileModel).fileReference.upload(flashURL);
 //			}
 			var binaryUploader:URLBinaryLoader = new URLBinaryLoader();
 			var req:URLRequest = new URLRequest();
 			req.method = "POST";
-			req.data = (host.model as FileModel).blob;
+			req.data = (host.model as IFileModel).blob;
 			req.url = url;
 			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
 			binaryUploader.load(req);
