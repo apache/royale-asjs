@@ -24,12 +24,13 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IViewport;
 	import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.geom.Rectangle;
-    import org.apache.royale.geom.Size;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.geom.Size;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+
 	COMPILE::SWF
 	{
 		import flash.geom.Rectangle;
@@ -83,7 +84,11 @@ package org.apache.royale.html.supportClasses
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            contentArea = loadBeadFromValuesManager(IContentView, "iContentView", _strand) as UIBase;
+			var c:Class = ValuesManager.valuesImpl.getValue(value, "iContentView") as Class;
+			if (c)
+			{
+				contentArea = new c() as UIBase;
+			}
 		}
 		
 		/**
@@ -95,7 +100,11 @@ package org.apache.royale.html.supportClasses
 		{
 			_strand = value;
 			
-			contentArea = loadBeadFromValuesManager(IContentView, "iContentView", _strand) as UIBase;
+			var f:Function = ValuesManager.valuesImpl.getValue(value, "iContentView") as Function;
+			if (f)
+			{
+				contentArea = new f() as UIBase;
+			}
 			
 			if (!contentArea)
 				contentArea = value as UIBase;
