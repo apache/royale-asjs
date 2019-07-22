@@ -81,7 +81,7 @@ package org.apache.royale.file.beads
 //			}
 			var binaryUploader:URLBinaryLoader = new URLBinaryLoader();
 			var req:URLRequest = new URLRequest();
-			if (contentType)
+			if (_contentType)
 			{
 				req.contentType = _contentType;
  			}
