@@ -29,7 +29,6 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.geom.Size;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	COMPILE::SWF
 	{
