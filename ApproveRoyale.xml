@@ -475,6 +475,7 @@
                 <exclude name="royale-asjs/frameworks/libs/HTML5.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Icons.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/jQuery.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Crux.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Jewel.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/JewelTheme.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Language.swc"/>
@@ -509,6 +510,7 @@
                 <exclude name="royale-asjs/frameworks/js/libs/HTML5JS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/IconsJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/JewelJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/CruxJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/jQueryJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/LanguageJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/MaterialDesignLiteJS.swc"/>

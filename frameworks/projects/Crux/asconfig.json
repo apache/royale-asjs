@@ -16,6 +16,6 @@
     },
     "files":
     [
-        "src/main/royale/FlatClasses.as"
+        "src/main/royale/CruxClasses.as"
     ]
 }

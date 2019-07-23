@@ -219,7 +219,7 @@
         <delete file="${artifactfolder}/swcs.txt" />
         <!-- this is a comma-delimited, no spaces, no-line-breaks list used to decide which swcs
          to skip in the rat-check of the binaries and which swcs to examine before approval -->
-        <property name="swcs-list" value="Basic,Binding,Charts,Collections,Core,CreateJS,DragDrop,Effects,Express,Flat,FontAwesome,Formatters,GoogleMaps,Graphics,HTML,HTML5,Icons,JQuery,Jewel,Language,MXRoyale,MaterialDesignLite,Mobile,Network,Reflection,RoyaleSite,SparkRoyale,Storage,TLF,Text,XML,BasicTheme,JewelTheme"/>
+        <property name="swcs-list" value="Basic,Binding,Charts,Collections,Core,CreateJS,DragDrop,Effects,Express,Flat,FontAwesome,Formatters,GoogleMaps,Graphics,HTML,HTML5,Icons,JQuery,Jewel,Crux,Language,MXRoyale,MaterialDesignLite,Mobile,Network,Reflection,RoyaleSite,SparkRoyale,Storage,TLF,Text,XML,BasicTheme,JewelTheme"/>
         <echo file="${artifactfolder}/swcs.txt" message="${swcs-list}"/>
     </target>
     
@@ -473,6 +473,9 @@
         </antcall>
         <antcall target="sign-swc-artifacts" >
             <param name="swcname" value="Jewel" />
+        </antcall>
+        <antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="Crux" />
         </antcall>
         <antcall target="sign-swc-artifacts" >
             <param name="swcname" value="JQuery" />
@@ -1260,6 +1263,10 @@
         </antcall>
         <antcall target="compare-swf-swc">
             <param name="folderName" value="royale-asjs/frameworks/libs" />
+            <param name="fileName" value="Crux.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/libs" />
             <param name="fileName" value="JewelTheme.swc"/>
         </antcall>
         <antcall target="compare-swf-swc">
@@ -1393,6 +1400,10 @@
         <antcall target="compare-swf-swc">
             <param name="folderName" value="royale-asjs/frameworks/js/libs" />
             <param name="fileName" value="JewelJS.swc"/>
+        </antcall>
+        <antcall target="compare-swf-swc">
+            <param name="folderName" value="royale-asjs/frameworks/js/libs" />
+            <param name="fileName" value="CruxJS.swc"/>
         </antcall>
         <antcall target="compare-swf-swc">
             <param name="folderName" value="royale-asjs/frameworks/js/libs" />

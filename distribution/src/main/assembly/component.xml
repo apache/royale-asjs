@@ -350,6 +350,11 @@ under the License.
       <destName>jewel-manifest.xml</destName>
     </file>
     <file>
+      <source>../frameworks/projects/Crux/src/main/resources/crux-manifest.xml</source>
+      <outputDirectory>frameworks/manifests</outputDirectory>
+      <destName>crux-manifest.xml</destName>
+    </file>
+    <file>
       <source>../frameworks/projects/Icons/src/main/resources/icons-manifest.xml</source>
       <outputDirectory>frameworks/manifests</outputDirectory>
       <destName>icons-manifest.xml</destName>

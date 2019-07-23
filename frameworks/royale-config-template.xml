@@ -112,6 +112,7 @@
          <path-element>libs/HTML5.swc</path-element>
          <path-element>libs/Icons.swc</path-element>
          <path-element>libs/Jewel.swc</path-element>
+         <path-element>libs/Crux.swc</path-element>
          <path-element>libs/jQuery.swc</path-element>
          <path-element>libs/Language.swc</path-element>
          <path-element>libs/MaterialDesignLite.swc</path-element>
@@ -148,6 +149,7 @@
           <path-element>js/libs/HTML5JS.swc</path-element>
           <path-element>js/libs/IconsJS.swc</path-element>
           <path-element>js/libs/JewelJS.swc</path-element>
+          <path-element>js/libs/CruxJS.swc</path-element>
           <path-element>js/libs/jQueryJS.swc</path-element>
           <path-element>js/libs/LanguageJS.swc</path-element>
           <path-element>js/libs/MaterialDesignLiteJS.swc</path-element>

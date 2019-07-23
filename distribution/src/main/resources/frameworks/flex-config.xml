@@ -286,6 +286,12 @@
           
       </namespace>
       <namespace>
+          <uri>library://ns.apache.org/royale/crux</uri>
+          
+          <manifest>manifests/crux-manifest.xml</manifest>
+          
+      </namespace>
+      <namespace>
           <uri>library://ns.apache.org/royale/icons</uri>
           
           <manifest>manifests/icons-manifest.xml</manifest>
