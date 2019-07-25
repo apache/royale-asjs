@@ -21,7 +21,6 @@ package org.apache.royale.jewel
     COMPILE::SWF
     {
     	import org.apache.royale.core.UIButtonBase;
-    	import org.apache.royale.utils.IClassSelectorListSupport;
     }
 
     COMPILE::JS
@@ -30,12 +29,13 @@ package org.apache.royale.jewel
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
+    
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.ITextModel;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.Event;
     import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
 
     //--------------------------------------
     //  Events
@@ -170,7 +170,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
-	public class Button extends UIButtonBase implements IStrand, IEventDispatcher, IUIBase, IClassSelectorListSupport
+	public class Button extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
 	{
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -353,7 +353,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
     COMPILE::JS
-    public class Button extends StyledUIBase implements IStrand, IEventDispatcher, IUIBase
+    public class Button extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
     {
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
