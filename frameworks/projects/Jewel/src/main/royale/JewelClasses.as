@@ -119,8 +119,11 @@ package
 
         import org.apache.royale.jewel.supportClasses.validators.CreditCardValidatorCardType; CreditCardValidatorCardType;
 
+        COMPILE::JS
+        {
         import dialogPolyfill; dialogPolyfill;
         import hljs; hljs;
+        }
     }
 
 }

@@ -21,9 +21,9 @@ package
 	/**
 	 * @externs
 	 */
+	COMPILE::JS
 	public class dialogPolyfill
 	{
-		COMPILE::JS
 		public static function registerDialog(dialog:Element):void {}
 	}
 }

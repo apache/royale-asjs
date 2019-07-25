@@ -21,6 +21,7 @@ package
 	/**
 	 * @externs
 	 */
+	COMPILE::JS
 	public class hljs
 	{
 		/** 
@@ -31,7 +32,6 @@ package
 		 */
 		public function hljs(){}
 
-        COMPILE::JS
 		public static function highlightBlock(block:Element):void {}
 	}
 }
