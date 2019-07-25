@@ -2267,7 +2267,9 @@ package
 					// remove the children
 					// adjust the childIndexes
 				}
-				var curChild:XML = getChildren()[childIdx];
+				if(chldrn.length()){
+					var curChild:XML = getChildren()[childIdx];
+				}
 				// Now add them in.
 				len = elements.length();
 				for(i=0;i<len;i++)
