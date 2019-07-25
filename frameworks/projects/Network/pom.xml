@@ -50,6 +50,12 @@
           <includeClasses>
             <includeClass>NetworkClasses</includeClass>
           </includeClasses>
+          <includeFiles>
+            <include-file>
+              <name>defaults.css</name>
+              <path>../src/main/resources/defaults.css</path>
+            </include-file>
+          </includeFiles>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
           <additionalCompilerOptions>${project.compiler.options};-warn-instance-of-changes=false</additionalCompilerOptions>

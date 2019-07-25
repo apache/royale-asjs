@@ -77,6 +77,8 @@
     </compiler>
     
     <include-file>
+        <name>defaults.css</name>
+        <path>../../../../../../projects/Network/src/main/resources/defaults.css</path>
     </include-file>
 
     <include-sources>

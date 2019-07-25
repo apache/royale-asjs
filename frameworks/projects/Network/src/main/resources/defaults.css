@@ -1,0 +1,5 @@
+@namespace "library://ns.apache.org/royale/basic";
+FileProxy
+{
+	IBeadModel: ClassReference("org.apache.royale.file.beads.FileModel");
+}

@@ -75,7 +75,12 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
-    
+
+    <include-file>
+        <name>defaults.css</name>
+        <path>../resources/defaults.css</path>
+    </include-file>
+
     <include-classes>
         <class>NetworkClasses</class>
     </include-classes>
