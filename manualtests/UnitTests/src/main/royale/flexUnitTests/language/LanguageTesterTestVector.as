@@ -824,6 +824,17 @@ package flexUnitTests.language
             Assert.assertTrue('Unexpected Vector check', vs['constructor'] === expected);
         }
         
+        [Test]
+        public function testVectorRemoveAtType():void{
+            var customClasses:Array = [null, new TestClass2(), undefined, new TestClass1()];
+    
+            var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
+            
+            var tc1:TestClass1 = vcustom.removeAt(1);
+            Assert.assertTrue('Unexpected Vector check', tc1 != null);
+            Assert.assertTrue('Unexpected Vector check', tc1 is TestClass1);
+            Assert.assertTrue('Unexpected Vector check', tc1 is TestClass2);
+        }
         
         private var _viTest:Vector.<int>;
         
