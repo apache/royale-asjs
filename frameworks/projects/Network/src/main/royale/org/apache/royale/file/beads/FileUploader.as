@@ -23,6 +23,7 @@ package org.apache.royale.file.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.file.FileProxy;
 	import org.apache.royale.file.IFileModel;
+	import org.apache.royale.net.HTTPConstants;
 	import org.apache.royale.net.URLBinaryLoader;
 	import org.apache.royale.net.URLRequest;
 
@@ -62,7 +63,7 @@ package org.apache.royale.file.beads
 	public class FileUploader implements IBead
 	{
 		private var _strand:IStrand;
-		private var _contentType:String;
+		private var _contentType:String = HTTPConstants.FORM_URL_ENCODED;
 		
 		/**
 		 *  Upload a file to the specified url.
@@ -81,10 +82,8 @@ package org.apache.royale.file.beads
 //			}
 			var binaryUploader:URLBinaryLoader = new URLBinaryLoader();
 			var req:URLRequest = new URLRequest();
-			if (_contentType)
-			{
-				req.contentType = _contentType;
- 			}
+				req.contentType = contentType;
+
 			req.method = "POST";
 			req.data = (host.model as IFileModel).blob;
 			req.url = url;
