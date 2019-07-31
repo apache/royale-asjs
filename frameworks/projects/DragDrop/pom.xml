@@ -86,6 +86,34 @@
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Collections</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Collections</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Graphics</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Graphics</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
   </dependencies>
 
 </project>
