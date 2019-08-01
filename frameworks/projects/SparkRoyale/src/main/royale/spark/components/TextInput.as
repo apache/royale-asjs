@@ -31,6 +31,7 @@ COMPILE::JS
 	import org.apache.royale.html.util.addElementToWrapper;
 }
 
+import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
