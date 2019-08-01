@@ -292,8 +292,18 @@ public class TextInput extends SkinnableTextBase
      */
     override public function set text(value:String):void
     {
-        super.text = value;
-        
+        COMPILE::SWF
+		{
+			inSetter = true;
+			ITextModel(model).text = value;
+			inSetter = false;
+		}
+		
+		COMPILE::JS
+		{
+			(element as HTMLInputElement).value = value;
+		}
+
         // Trigger bindings to textChanged.
         dispatchEvent(new Event("textChanged"));
     }
