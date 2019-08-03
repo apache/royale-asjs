@@ -47,11 +47,11 @@ import spark.components.Application;
 import spark.components.RichEditableText;
 import spark.components.TextSelectionHighlighting;
 import spark.core.IDisplayText;
-import spark.core.IEditableText;
 import spark.core.IProxiedStageTextWrapper;
 import spark.core.ISoftKeyboardHintClient;
 import spark.events.TextOperationEvent;
  */
+import spark.core.IEditableText;
 import mx.managers.IFocusManagerComponent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
@@ -606,7 +606,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-  //  public var textDisplay:IEditableText;
+    public var textDisplay:IEditableText;
 
     /**
      *  @private
@@ -1504,7 +1504,7 @@ public class SkinnableTextBase extends SkinnableComponent
     {
         // text should never be null.  Convert null to the empty string.
         
-        /* if (textDisplay)
+        if (textDisplay)
         {
             textDisplay.text = value;
             textDisplayProperties = BitFlagUtil.update(
@@ -1523,7 +1523,7 @@ public class SkinnableTextBase extends SkinnableComponent
 
         // Generate an UPDATE_COMPLETE event.
         invalidateProperties();
-        invalidateSkinState(); */
+        invalidateSkinState(); 
      } 
 
     //----------------------------------

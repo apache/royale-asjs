@@ -293,6 +293,7 @@ public class TextInput extends SkinnableTextBase
      */
     override public function set text(value:String):void
     {
+        // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
         COMPILE::SWF
 		{
 			inSetter = true;
@@ -304,7 +305,9 @@ public class TextInput extends SkinnableTextBase
 		{
 			(element as HTMLInputElement).value = value;
 		}
+        // END
 
+        super.text = value;
         // Trigger bindings to textChanged.
         dispatchEvent(new Event("textChanged"));
     }
