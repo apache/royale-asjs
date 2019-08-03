@@ -35,6 +35,7 @@ import org.apache.royale.core.IPopUpHost;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IStrandWithModel;
+import org.apache.royale.core.IStyleableObject;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
@@ -145,14 +146,16 @@ public class DropDownListView extends SkinnableContainerView implements IDropDow
         if (value != _popUpVisible)
         {
             _popUpVisible = value;
+            var popUpDisplayObject:IFlexDisplayObject = popUp as IFlexDisplayObject;
             if (value)
             {
-                PopUpManager.addPopUp(popUp as IFlexDisplayObject, _strand);
+                PopUpManager.addPopUp(popUpDisplayObject, _strand);
+                (popUpDisplayObject as IStyleableObject).className = "DropDownDataGroup";
                 (popUp as IUIComponent).setActualSize((popUp as IUIComponent).width, 100);
             }
             else
             {
-                PopUpManager.removePopUp(popUp as IFlexDisplayObject);
+                PopUpManager.removePopUp(popUpDisplayObject);
             }
         }
     }

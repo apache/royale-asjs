@@ -111,6 +111,11 @@ DropDownList
 	IBeadController: ClassReference("spark.components.beads.controllers.DropDownListController");
 }
 
+.DropDownDataGroup
+{
+	background-color: #FFFFFF;
+}
+
 List
 {
 	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
