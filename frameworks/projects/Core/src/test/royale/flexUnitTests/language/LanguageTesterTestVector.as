@@ -819,6 +819,28 @@ package flexUnitTests.language
             const expected:Class = isJS ? Vector.<String> : Vector.<*>;
             assertTrue( vs['constructor'] === expected,'Unexpected Vector check');
         }
+    
+        [Test]
+        public function testVectorRemoveAtType():void{
+            if (hasInsertAtRemoveAt()) {
+                var customClasses:Array = [null, new TestClass2(), undefined, new TestClass1()];
+    
+                var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
+    
+                COMPILE::SWF{
+                    var tc1:TestClass1 = vcustom['removeAt'](1);
+                }
+                COMPILE::JS{
+                    var tc1:TestClass1 = vcustom.removeAt(1);
+                }
+                assertTrue(tc1 != null, 'Unexpected Vector check');
+                assertTrue(tc1 is TestClass1, 'Unexpected Vector check');
+                assertTrue(tc1 is TestClass2, 'Unexpected Vector check');
+            } else {
+                assertTrue(true);
+            }
+           
+        }
         
         
         private var _viTest:Vector.<int>;
@@ -1397,9 +1419,9 @@ package flexUnitTests.language
         
         }
         
-        
     }
 }
+
 
 class PrivateClass {
     

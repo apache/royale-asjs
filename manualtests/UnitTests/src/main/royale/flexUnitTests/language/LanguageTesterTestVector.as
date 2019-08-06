@@ -29,8 +29,8 @@ package flexUnitTests.language
      */
     public class LanguageTesterTestVector
     {
-        
-        public static var isJS:Boolean;
+    
+        public static var isJS:Boolean = COMPILE::JS;
     
     
         public static function hasInsertAtRemoveAt():Boolean{
@@ -49,11 +49,6 @@ package flexUnitTests.language
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-            var js:Boolean;
-            COMPILE::JS {
-                js = true;
-            }
-            isJS = js;
         }
         
         [AfterClass]
@@ -1411,6 +1406,7 @@ package flexUnitTests.language
             Assert.assertTrue('Unexpected Vector check', v[0] is PrivateClass);
             
         }
+        
     }
 }
 

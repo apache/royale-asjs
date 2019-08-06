@@ -29,17 +29,13 @@ package flexUnitTests.language
      */
     public class LanguageTesterTestIs
     {
-        
-        public static var isJS:Boolean;
+    
+        public static var isJS:Boolean = COMPILE::JS;
         
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-            var js:Boolean;
-            COMPILE::JS {
-                js = true;
-            }
-            isJS = js;
+
         }
         
         [AfterClass]
@@ -253,7 +249,7 @@ package flexUnitTests.language
                 Assert.assertTrue('Unexpected coercion check', caughtError);
                 Assert.assertTrue('Unexpected coercion check', testClass3 == null);
             }
-            
+        
         }
         
         [Test]

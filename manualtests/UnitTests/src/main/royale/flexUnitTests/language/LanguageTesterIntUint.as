@@ -29,17 +29,13 @@ package flexUnitTests.language
      */
     public class LanguageTesterIntUint
     {
-        
-        public static var isJS:Boolean;
-        
+    
+        public static var isJS:Boolean = COMPILE::JS;
+    
+    
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-            var js:Boolean;
-            COMPILE::JS {
-                js = true;
-            }
-            isJS = js;
         }
         
         [AfterClass]

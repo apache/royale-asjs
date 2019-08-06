@@ -159,6 +159,28 @@ package flexUnitTests.language
             assertTrue( untyped === 31.5,'Unexpected Number check');
             
         }
+    
+    
+        [Test]
+        //[TestVariance(variance="JS", description="Variance in js implementation with @royalesuppressresolveuncertain, strict equality can fail")]
+        /**
+         * @royalesuppressresolveuncertain c
+         */
+        public function testNoResolveUncertain():void
+        {
+
+            var c:Class = int;
+            var untyped:* = new c(30);
+            var expected:Boolean = isJS ? false : true;
+            assertEquals(  expected, untyped === 30,'Unexpected int check');
+            // b does not have suppression, only c does above (via @royalesuppressresolveuncertain c)
+            expected = true;
+            var b:Class = String;
+           // c = String;
+            untyped = new b(30);
+            assertEquals(expected, untyped === '30', 'Unexpected String check');
+        
+        }
         
     }
 }
