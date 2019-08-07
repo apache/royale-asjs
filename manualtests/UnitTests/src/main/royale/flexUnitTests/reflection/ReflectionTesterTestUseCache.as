@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection
 {
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import flexUnitTests.reflection.support.*;
     
@@ -96,7 +96,7 @@ package flexUnitTests.reflection
             
             var def2:TypeDefinition = describeType(TestClass2);
             
-            Assert.assertEquals("cache not working", def, def2);
+            assertEquals( def, def2, "cache not working");
             
         }
         

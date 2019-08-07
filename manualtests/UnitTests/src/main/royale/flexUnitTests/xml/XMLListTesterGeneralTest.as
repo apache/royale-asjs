@@ -20,7 +20,7 @@ package flexUnitTests.xml
 {
     
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import testshim.RoyaleUnitTestRunner;
     
@@ -72,14 +72,14 @@ package flexUnitTests.xml
         {
             
             var xmllist:XMLList = XMLList(true);
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 1);
-            Assert.assertTrue('XMLList content was unexpected', xmllist[0].nodeKind() == 'text');
-            Assert.assertTrue('XMLList content was unexpected', xmllist.toString() == 'true');
+            assertTrue( xmllist.length() == 1, 'XMLList length was unexpected');
+            assertTrue( xmllist[0].nodeKind() == 'text', 'XMLList content was unexpected');
+            assertTrue( xmllist.toString() == 'true', 'XMLList content was unexpected');
     
             xmllist = XMLList(false);
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 1);
-            Assert.assertTrue('XMLList content was unexpected', xmllist[0].nodeKind() == 'text');
-            Assert.assertTrue('XMLList content was unexpected', xmllist.toString() == 'false');
+            assertTrue( xmllist.length() == 1, 'XMLList length was unexpected');
+            assertTrue( xmllist[0].nodeKind() == 'text', 'XMLList content was unexpected');
+            assertTrue( xmllist.toString() == 'false', 'XMLList content was unexpected');
         }
     
     
@@ -94,8 +94,8 @@ package flexUnitTests.xml
                 caughtError = true;
             }
             //as3 docs say this is an error, but it is not (in AVM)
-            Assert.assertFalse('XMLList error status was unexpected', caughtError);
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 0);
+            assertFalse( caughtError, 'XMLList error status was unexpected');
+            assertTrue( xmllist.length() == 0, 'XMLList length was unexpected');
 
         }
     
@@ -103,9 +103,9 @@ package flexUnitTests.xml
         public function testXMLListNumber():void
         {
             var xmllist:XMLList = XMLList(99.9);
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 1);
-            Assert.assertTrue('XMLList content was unexpected', xmllist[0].nodeKind() == 'text');
-            Assert.assertTrue('XMLList content was unexpected', xmllist.toString() == '99.9');
+            assertTrue( xmllist.length() == 1, 'XMLList length was unexpected');
+            assertTrue( xmllist[0].nodeKind() == 'text', 'XMLList content was unexpected');
+            assertTrue( xmllist.toString() == '99.9', 'XMLList content was unexpected');
             
         }
     
@@ -113,12 +113,12 @@ package flexUnitTests.xml
         public function testXMLListString():void
         {
             var xmllist:XMLList = XMLList('test');
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 1);
-            Assert.assertTrue('XMLList content was unexpected', xmllist[0].nodeKind() == 'text');
-            Assert.assertTrue('XMLList content was unexpected', xmllist.toString() == 'test');
+            assertTrue( xmllist.length() == 1, 'XMLList length was unexpected');
+            assertTrue( xmllist[0].nodeKind() == 'text', 'XMLList content was unexpected');
+            assertTrue( xmllist.toString() == 'test', 'XMLList content was unexpected');
             
             xmllist = XMLList('');
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 0);
+            assertTrue( xmllist.length() == 0, 'XMLList length was unexpected');
         }
     
         [Test]
@@ -133,8 +133,8 @@ package flexUnitTests.xml
             }
     
             //as3 docs say this is an error, but it is not (in AVM)
-            Assert.assertFalse('XMLList error status was unexpected', caughtError);
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 0);
+            assertFalse( caughtError, 'XMLList error status was unexpected');
+            assertTrue( xmllist.length() == 0, 'XMLList length was unexpected');
         
         }
     
@@ -145,9 +145,9 @@ package flexUnitTests.xml
             var xmllist:XMLList  = XMLList({});
     
             //as3 docs say this is an error, but it is not (in AVM)
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 1);
-            Assert.assertTrue('XMLList content was unexpected', xmllist[0].nodeKind() == 'text');
-            Assert.assertTrue('XMLList content was unexpected', xmllist.toString() == '[object Object]');
+            assertTrue( xmllist.length() == 1, 'XMLList length was unexpected');
+            assertTrue( xmllist[0].nodeKind() == 'text', 'XMLList content was unexpected');
+            assertTrue( xmllist.toString() == '[object Object]', 'XMLList content was unexpected');
         
         }
     
@@ -185,9 +185,9 @@ package flexUnitTests.xml
             var xmllist:XMLList  = XMLList(contentString);
         
 
-            Assert.assertTrue('XMLList length was unexpected', xmllist.length() == 6);
+            assertTrue( xmllist.length() == 6, 'XMLList length was unexpected');
             //use length here to account for variation in attribute/namespace sequence outputs
-            Assert.assertTrue('XMLList length was unexpected', xmllist.toXMLString().length == 1431);
+            assertTrue( xmllist.toXMLString().length == 1431, 'XMLList length was unexpected');
         }
         
         

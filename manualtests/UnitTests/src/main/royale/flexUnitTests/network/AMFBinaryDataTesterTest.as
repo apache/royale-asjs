@@ -28,7 +28,7 @@ package flexUnitTests.network
     import flexUnitTests.network.support.TestClass4;
     import flexUnitTests.network.support.DynamicTestClass;
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import org.apache.royale.net.remoting.amf.AMFBinaryData;
     import org.apache.royale.reflection.*;
@@ -94,11 +94,11 @@ package flexUnitTests.network
             
             ba.writeObject(testString);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 12);
-            Assert.assertEquals("post-write position was not correct", ba.position, 12);
+            assertEquals( ba.length, 12, "post-write length was not correct");
+            assertEquals( ba.position, 12, "post-write position was not correct");
             ba.position = 0;
             var readString:String = ba.readObject() as String;
-            Assert.assertEquals("post-write read of written string was not correct", readString, testString);
+            assertEquals( readString, testString, "post-write read of written string was not correct");
         }
         
         [Test]
@@ -109,12 +109,12 @@ package flexUnitTests.network
             ba.writeObject(false);
             ba.writeObject(true);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 2);
-            Assert.assertEquals("post-write position was not correct", ba.position, 2);
+            assertEquals( ba.length, 2, "post-write length was not correct");
+            assertEquals( ba.position, 2, "post-write position was not correct");
             ba.position = 0;
             
-            Assert.assertTrue("post-write read of written boolean was not correct", ba.readObject() === false);
-            Assert.assertTrue("post-write read of written boolean was not correct", ba.readObject() === true);
+            assertTrue( ba.readObject() === false, "post-write read of written boolean was not correct");
+            assertTrue( ba.readObject() === true, "post-write read of written boolean was not correct");
         }
         
         [Test]
@@ -131,33 +131,33 @@ package flexUnitTests.network
             ba.writeObject(Infinity);
             ba.writeObject(-Infinity);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 52);
-            Assert.assertEquals("post-write position was not correct", ba.position, 52);
+            assertEquals( ba.length, 52, "post-write length was not correct");
+            assertEquals( ba.position, 52, "post-write position was not correct");
             ba.position = 0;
             
             var num:Number = ba.readObject();
-            Assert.assertTrue("post-write read of written Number was not correct", (num is Number));
-            Assert.assertTrue("post-write read of written Number was not correct", isNaN(num));
+            assertTrue( (num is Number), "post-write read of written Number was not correct");
+            assertTrue( isNaN(num), "post-write read of written Number was not correct");
             num = ba.readObject();
-            Assert.assertTrue("post-write read of written Number was not correct", (num is Number));
-            Assert.assertTrue("post-write read of written Number was not correct", num === 1.0);
+            assertTrue( (num is Number), "post-write read of written Number was not correct");
+            assertTrue( num === 1.0, "post-write read of written Number was not correct");
             num = ba.readObject();
-            Assert.assertTrue("post-write read of written Number was not correct", (num is Number));
-            Assert.assertTrue("post-write read of written Number was not correct", num === -1.0);
+            assertTrue( (num is Number), "post-write read of written Number was not correct");
+            assertTrue( num === -1.0, "post-write read of written Number was not correct");
             num = ba.readObject();
-            Assert.assertTrue("post-write read of written Number was not correct", (num is Number));
-            Assert.assertTrue("post-write read of written Number was not correct", num === 1.5);
+            assertTrue( (num is Number), "post-write read of written Number was not correct");
+            assertTrue( num === 1.5, "post-write read of written Number was not correct");
             num = ba.readObject();
-            Assert.assertTrue("post-write read of written Number was not correct", (num is Number));
-            Assert.assertTrue("post-write read of written Number was not correct", num === -1.5);
+            assertTrue( (num is Number), "post-write read of written Number was not correct");
+            assertTrue( num === -1.5, "post-write read of written Number was not correct");
             num = ba.readObject();
-            Assert.assertTrue("post-write read of written Number was not correct", (num is Number));
-            Assert.assertTrue("post-write read of written Number was not correct", !isFinite(num));
-            Assert.assertTrue("post-write read of written Number was not correct", (num > 0));
+            assertTrue( (num is Number), "post-write read of written Number was not correct");
+            assertTrue( !isFinite(num), "post-write read of written Number was not correct");
+            assertTrue( (num > 0), "post-write read of written Number was not correct");
             num = ba.readObject();
-            Assert.assertTrue("post-write read of written Number was not correct", (num is Number));
-            Assert.assertTrue("post-write read of written Number was not correct", !isFinite(num));
-            Assert.assertTrue("post-write read of written Number was not correct", (num < 0));
+            assertTrue( (num is Number), "post-write read of written Number was not correct");
+            assertTrue( !isFinite(num), "post-write read of written Number was not correct");
+            assertTrue( (num < 0), "post-write read of written Number was not correct");
         }
         
         
@@ -168,48 +168,48 @@ package flexUnitTests.network
             var instance:Array = [];
             ba.writeObject(instance);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 3);
-            Assert.assertEquals("post-write position was not correct", ba.position, 3);
+            assertEquals( ba.length, 3, "post-write length was not correct");
+            assertEquals( ba.position, 3, "post-write position was not correct");
             
             instance = [99];
             ba.length = 0;
             ba.writeObject(instance);
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 3, 1, 4, 99]));
+            assertTrue( bytesMatchExpectedData(ba, [9, 3, 1, 4, 99]), "post-write bytes did not match expected data");
             instance = ba.readObject() as Array;
-            Assert.assertTrue("post-write read did not match expected result", instance.length == 1 && instance[0] == 99);
+            assertTrue( instance.length == 1 && instance[0] == 99, "post-write read did not match expected result");
             //sparse array
             instance = [];
             instance[100] = '100';
             ba.length = 0;
             ba.writeObject(instance);
-            Assert.assertEquals("post-write length was not correct", ba.length, 9);
-            Assert.assertEquals("post-write position was not correct", ba.position, 9);
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 1, 7, 49, 48, 48, 6, 0, 1]));
+            assertEquals( ba.length, 9, "post-write length was not correct");
+            assertEquals( ba.position, 9, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [9, 1, 7, 49, 48, 48, 6, 0, 1]), "post-write bytes did not match expected data");
             //check that read matches
             ba.position = 0;
             instance = ba.readObject();
             
-            Assert.assertEquals("post-write read was not correct", instance.length, 101);
-            Assert.assertEquals("post-write read was not correct", instance[100], '100');
-            Assert.assertTrue("post-write read was not correct", instance[0] === undefined);
+            assertEquals( instance.length, 101, "post-write read was not correct");
+            assertEquals( instance[100], '100', "post-write read was not correct");
+            assertTrue( instance[0] === undefined, "post-write read was not correct");
             //sparse with associative content
             instance = [];
             instance['test'] = true;
             instance[10] = 'I am number 10';
             ba.length = 0;
             ba.writeObject(instance);
-            Assert.assertEquals("post-write length was not correct", ba.length, 28);
-            Assert.assertEquals("post-write position was not correct", ba.position, 28);
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 1, 5, 49, 48, 6, 29, 73, 32, 97, 109, 32, 110, 117, 109, 98, 101, 114, 32, 49, 48, 9, 116, 101, 115, 116, 3, 1]));
+            assertEquals( ba.length, 28, "post-write length was not correct");
+            assertEquals( ba.position, 28, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [9, 1, 5, 49, 48, 6, 29, 73, 32, 97, 109, 32, 110, 117, 109, 98, 101, 114, 32, 49, 48, 9, 116, 101, 115, 116, 3, 1]), "post-write bytes did not match expected data");
             
             //check that read matches
             ba.position = 0;
             instance = ba.readObject();
-            Assert.assertEquals("post-write read was not correct", instance.length, 11);
-            Assert.assertEquals("post-write read was not correct", instance[10], 'I am number 10');
-            Assert.assertEquals("post-write read was not correct", instance['test'], true);
-            Assert.assertTrue("post-write read was not correct", instance[0] === undefined);
+            assertEquals( instance.length, 11, "post-write read was not correct");
+            assertEquals( instance[10], 'I am number 10', "post-write read was not correct");
+            assertEquals( instance['test'], true, "post-write read was not correct");
+            assertTrue( instance[0] === undefined, "post-write read was not correct");
             
             //edge cases
             instance = [];
@@ -219,24 +219,24 @@ package flexUnitTests.network
             instance['test'] = true;
             ba.length = 0;
             ba.writeObject(instance);
-            Assert.assertEquals("post-write length was not correct", ba.length, 12);
-            Assert.assertEquals("post-write position was not correct", ba.position, 12);
+            assertEquals( ba.length, 12, "post-write length was not correct");
+            assertEquals( ba.position, 12, "post-write position was not correct");
             
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 1, 3, 49, 3, 9, 116, 101, 115, 116, 3, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [9, 1, 3, 49, 3, 9, 116, 101, 115, 116, 3, 1]), "post-write bytes did not match expected data");
             
             //empty array with length
             instance = new Array(100);
-            Assert.assertEquals("pre-write array length was not correct", instance.length, 100);
+            assertEquals( instance.length, 100, "pre-write array length was not correct");
             ba.length = 0;
             ba.writeObject(instance);
-            Assert.assertEquals("post-write length was not correct", ba.length, 3);
-            Assert.assertEquals("post-write position was not correct", ba.position, 3);
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 1, 1]));
+            assertEquals( ba.length, 3, "post-write length was not correct");
+            assertEquals( ba.position, 3, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [9, 1, 1]), "post-write bytes did not match expected data");
             
             ba.position = 0;
             instance = ba.readObject() as Array;
             //although the Array had a length of 100 on write, it has length zero on read:
-            Assert.assertTrue("post-write read did not match expected value", instance.length == 0);
+            assertTrue( instance.length == 0, "post-write read did not match expected value");
             
             var ar:Array = [1, 2, 3];
             var f:Function = function ():void
@@ -246,27 +246,27 @@ package flexUnitTests.network
             ar['__AS3__.vec'] = f;
             ba.length = 0;
             ba.writeObject(ar);
-            Assert.assertEquals("post-write length was not correct", ba.length, 9);
-            Assert.assertEquals("post-write position was not correct", ba.position, 9);
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 7, 1, 4, 1, 4, 2, 4, 3]));
+            assertEquals( ba.length, 9, "post-write length was not correct");
+            assertEquals( ba.position, 9, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [9, 7, 1, 4, 1, 4, 2, 4, 3]), "post-write bytes did not match expected data");
             ar = [f, 1, 2, 3, f];
             ba.length = 0;
             ba.writeObject(ar);
-            Assert.assertEquals("post-write length was not correct", ba.length, 15);
-            Assert.assertEquals("post-write position was not correct", ba.position, 15);
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 1, 3, 49, 4, 1, 3, 50, 4, 2, 3, 51, 4, 3, 1]));
+            assertEquals( ba.length, 15, "post-write length was not correct");
+            assertEquals( ba.position, 15, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [9, 1, 3, 49, 4, 1, 3, 50, 4, 2, 3, 51, 4, 3, 1]), "post-write bytes did not match expected data");
             //post write read is an array with length of 4 instead of 5.
             ba.position = 0;
             ar = ba.readObject();
-            Assert.assertEquals("post-write read length was not correct", ar.length, 4);
+            assertEquals( ar.length, 4, "post-write read length was not correct");
             
             
             ar = [Object, 1, 2, 3, Object];
             ba.length = 0;
             ba.writeObject(ar);
-            Assert.assertEquals("post-write length was not correct", ba.length, 15);
-            Assert.assertEquals("post-write position was not correct", ba.position, 15);
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 11, 1, 10, 11, 1, 1, 4, 1, 4, 2, 4, 3, 10, 2]));
+            assertEquals( ba.length, 15, "post-write length was not correct");
+            assertEquals( ba.position, 15, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [9, 11, 1, 10, 11, 1, 1, 4, 1, 4, 2, 4, 3, 10, 2]), "post-write bytes did not match expected data");
             
             
         }
@@ -280,13 +280,13 @@ package flexUnitTests.network
             var instance:Object = {};
             ba.writeObject(instance);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 4);
-            Assert.assertEquals("post-write position was not correct", ba.position, 4);
+            assertEquals( ba.length, 4, "post-write length was not correct");
+            assertEquals( ba.position, 4, "post-write position was not correct");
             ba.position = 0;
             
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 11, 1, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 11, 1, 1]), "post-write bytes did not match expected data");
             instance = ba.readObject();
-            Assert.assertTrue("post-write read did not match expected result", dynamicKeyCountMatches(instance, 0));
+            assertTrue( dynamicKeyCountMatches(instance, 0), "post-write read did not match expected result");
             
             var obj1:Object = {test: true};
             var obj2:Object = {test: 'maybe'};
@@ -294,7 +294,7 @@ package flexUnitTests.network
             ba.length = 0;
             ba.writeObject([obj1, obj2, obj3]);
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 7, 1, 10, 11, 1, 9, 116, 101, 115, 116, 3, 1, 10, 1, 0, 6, 11, 109, 97, 121, 98, 101, 1, 10, 1, 0, 3, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [9, 7, 1, 10, 11, 1, 9, 116, 101, 115, 116, 3, 1, 10, 1, 0, 6, 11, 109, 97, 121, 98, 101, 1, 10, 1, 0, 3, 1]), "post-write bytes did not match expected data");
             
         }
         
@@ -309,14 +309,14 @@ package flexUnitTests.network
             };
             ba.writeObject(instance);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 1);
-            Assert.assertEquals("post-write position was not correct", ba.position, 1);
+            assertEquals( ba.length, 1, "post-write length was not correct");
+            assertEquals( ba.position, 1, "post-write position was not correct");
             ba.position = 0;
             
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [0]));
+            assertTrue( bytesMatchExpectedData(ba, [0]), "post-write bytes did not match expected data");
             instance = ba.readObject();
             
-            Assert.assertTrue("post-write read did not match expected result", instance === null);
+            assertTrue( instance === null, "post-write read did not match expected result");
             
             //for a property that has a function value, the property is also undefined
             var objectWithFunction:Object = {
@@ -327,14 +327,14 @@ package flexUnitTests.network
             ba.length = 0;
             ba.writeObject(objectWithFunction);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 4);
-            Assert.assertEquals("post-write position was not correct", ba.position, 4);
+            assertEquals( ba.length, 4, "post-write length was not correct");
+            assertEquals( ba.position, 4, "post-write position was not correct");
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 11, 1, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 11, 1, 1]), "post-write bytes did not match expected data");
             
             //the dynamic deserialized object has no key for the function value
             var obj:Object = ba.readObject();
-            Assert.assertTrue("post-write read did not match expected result", dynamicKeyCountMatches(obj, 0));
+            assertTrue( dynamicKeyCountMatches(obj, 0), "post-write read did not match expected result");
             
             ba.length = 0;
             var tc4:TestClass4 = new TestClass4();
@@ -343,10 +343,10 @@ package flexUnitTests.network
             };
             
             ba.writeObject(tc4);
-            Assert.assertEquals("post-write length was not correct", ba.length, 15);
-            Assert.assertEquals("post-write position was not correct", ba.position, 15);
+            assertEquals( ba.length, 15, "post-write length was not correct");
+            assertEquals( ba.position, 15, "post-write position was not correct");
             
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 19, 1, 21, 116, 101, 115, 116, 70, 105, 101, 108, 100, 49, 0]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 19, 1, 21, 116, 101, 115, 116, 70, 105, 101, 108, 100, 49, 0]), "post-write bytes did not match expected data");
             
         }
         
@@ -362,26 +362,26 @@ package flexUnitTests.network
             var instance:TestClass1 = new TestClass1();
             ba.writeObject(instance);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 16);
-            Assert.assertEquals("post-write position was not correct", ba.position, 16);
+            assertEquals( ba.length, 16, "post-write length was not correct");
+            assertEquals( ba.position, 16, "post-write position was not correct");
             
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 19, 1, 21, 116, 101, 115, 116, 70, 105, 101, 108, 100, 49, 6, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 19, 1, 21, 116, 101, 115, 116, 70, 105, 101, 108, 100, 49, 6, 1]), "post-write bytes did not match expected data");
             ba.position = 0;
             
             var anonObject:Object = ba.readObject();
             
-            Assert.assertTrue('post-write read did not match expected value', anonObject['testField1'] === instance.testField1);
+            assertTrue(anonObject['testField1'] === instance.testField1, "post-write read did not match expected value" );
             
             var multipleDifferentInstances:Array = [new TestClass1(), new TestClass2()];
             ba.length = 0;
             ba.writeObject(multipleDifferentInstances);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 24);
-            Assert.assertEquals("post-write position was not correct", ba.position, 24);
+            assertEquals( ba.length, 24, "post-write length was not correct");
+            assertEquals( ba.position, 24, "post-write position was not correct");
             ba.position = 0;
             
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 5, 1, 10, 19, 1, 21, 116, 101, 115, 116, 70, 105, 101, 108, 100, 49, 6, 1, 10, 19, 1, 0, 3]));
+            assertTrue( bytesMatchExpectedData(ba, [9, 5, 1, 10, 19, 1, 21, 116, 101, 115, 116, 70, 105, 101, 108, 100, 49, 6, 1, 10, 19, 1, 0, 3]), "post-write bytes did not match expected data");
             
         }
         
@@ -392,21 +392,21 @@ package flexUnitTests.network
             var instance:DynamicTestClass = new DynamicTestClass();
             ba.writeObject(instance);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 25);
-            Assert.assertEquals("post-write position was not correct", ba.position, 25);
+            assertEquals( ba.length, 25, "post-write length was not correct");
+            assertEquals( ba.position, 25, "post-write position was not correct");
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 1]), "post-write bytes did not match expected data");
             
             instance['someDynamicField'] = 'nonSealedPropValue';
             
             ba.writeObject(instance);
-            Assert.assertEquals("post-write length was not correct", ba.length, 62);
-            Assert.assertEquals("post-write position was not correct", ba.position, 62);
+            assertEquals( ba.length, 62, "post-write length was not correct");
+            assertEquals( ba.position, 62, "post-write position was not correct");
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 33, 115, 111, 109, 101, 68, 121, 110, 97, 109, 105, 99, 70, 105, 101, 108, 100, 6, 37, 110, 111, 110, 83, 101, 97, 108, 101, 100, 80, 114, 111, 112, 86, 97, 108, 117, 101, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 33, 115, 111, 109, 101, 68, 121, 110, 97, 109, 105, 99, 70, 105, 101, 108, 100, 6, 37, 110, 111, 110, 83, 101, 97, 108, 101, 100, 80, 114, 111, 112, 86, 97, 108, 117, 101, 1]), "post-write bytes did not match expected data");
             
             var instanceAnon:Object = ba.readObject();
-            Assert.assertTrue('post-write read did not match expected value', instanceAnon['someDynamicField'] === 'nonSealedPropValue');
+            assertTrue(instanceAnon['someDynamicField'] === 'nonSealedPropValue', "post-write read did not match expected value");
             
             
         }
@@ -430,10 +430,10 @@ package flexUnitTests.network
             var holder:Array = [source, source];
             
             ba.writeObject(holder);
-            Assert.assertEquals("post-write error length was not correct", ba.length, 33);
-            Assert.assertEquals("post-write error position was not correct", ba.position, 33);
+            assertEquals( ba.length, 33, "post-write error length was not correct");
+            assertEquals( ba.position, 33, "post-write error position was not correct");
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [9, 5, 1, 12, 53, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 12, 2]));
+            assertTrue( bytesMatchExpectedData(ba, [9, 5, 1, 12, 53, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 12, 2]), "post-write bytes did not match expected data");
         }
         
         
@@ -453,33 +453,33 @@ package flexUnitTests.network
                 err = e;
             }
             
-            Assert.assertTrue("externalizable writing should fail without an alias registered", err != null);
-            Assert.assertEquals("post-write error length was not correct", ba.length, 1);
-            Assert.assertEquals("post-write error position was not correct", ba.position, 1);
+            assertTrue( err != null, "externalizable writing should fail without an alias registered");
+            assertEquals( ba.length, 1, "post-write error length was not correct");
+            assertEquals( ba.position, 1, "post-write error position was not correct");
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10]));
+            assertTrue( bytesMatchExpectedData(ba, [10]), "post-write bytes did not match expected data");
             
             ba.length = 0;
             //register an alias
             registerClassAlias('TestClass3', TestClass3);
             ba.writeObject(test3);
-            Assert.assertEquals("post-write length was not correct", ba.length, 18);
-            Assert.assertEquals("post-write position was not correct", ba.position, 18);
+            assertEquals( ba.length, 18, "post-write length was not correct");
+            assertEquals( ba.position, 18, "post-write position was not correct");
             
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 7, 21, 84, 101, 115, 116, 67, 108, 97, 115, 115, 51, 9, 3, 1, 6, 0]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 7, 21, 84, 101, 115, 116, 67, 108, 97, 115, 115, 51, 9, 3, 1, 6, 0]), "post-write bytes did not match expected data");
             
             test3.content[0] = (test3.content[0]).split("").reverse().join("");
             ba.writeObject(test3);
-            Assert.assertEquals("post-write length was not correct", ba.length, 28);
-            Assert.assertEquals("post-write position was not correct", ba.position, 28);
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 7, 21, 84, 101, 115, 116, 67, 108, 97, 115, 115, 51, 9, 3, 1, 6, 21, 51, 115, 115, 97, 108, 67, 116, 115, 101, 84]));
+            assertEquals( ba.length, 28, "post-write length was not correct");
+            assertEquals( ba.position, 28, "post-write position was not correct");
+            assertTrue( bytesMatchExpectedData(ba, [10, 7, 21, 84, 101, 115, 116, 67, 108, 97, 115, 115, 51, 9, 3, 1, 6, 21, 51, 115, 115, 97, 108, 67, 116, 115, 101, 84]), "post-write bytes did not match expected data");
             
             ba.position = 0;
             var test3Read:TestClass3 = ba.readObject() as TestClass3;
             
             //proof that it created a new instance, and that the reversed content string content is present in the new instance
-            Assert.assertTrue("post-write read did not match expected data", test3Read.content[0] == test3.content[0]);
+            assertTrue( test3Read.content[0] == test3.content[0], "post-write read did not match expected data");
             
         }
         
@@ -494,24 +494,24 @@ package flexUnitTests.network
             
             ba.writeObject(instance);
             
-            Assert.assertEquals("post-write length was not correct", ba.length, 84);
-            Assert.assertEquals("post-write position was not correct", ba.position, 84);
+            assertEquals( ba.length, 84, "post-write length was not correct");
+            assertEquals( ba.position, 84, "post-write position was not correct");
             
             //in this case the order of encoding the dynamic fields is not defined. So we need to account for the valid serialization options of either output sequence of the two fields
             var raining_then_underscore:Array = [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 15, 114, 97, 105, 110, 105, 110, 103, 6, 27, 99, 97, 116, 115, 32, 97, 110, 100, 32, 100, 111, 103, 115, 23, 95, 117, 110, 100, 101, 114, 115, 99, 111, 114, 101, 6, 45, 112, 115, 101, 117, 100, 111, 32, 45, 32, 112, 114, 105, 118, 97, 116, 101, 32, 118, 97, 108, 117, 101, 1];
             var underscore_then_raining:Array = [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 23, 95, 117, 110, 100, 101, 114, 115, 99, 111, 114, 101, 6, 45, 112, 115, 101, 117, 100, 111, 32, 45, 32, 112, 114, 105, 118, 97, 116, 101, 32, 118, 97, 108, 117, 101, 15, 114, 97, 105, 110, 105, 110, 103, 6, 27, 99, 97, 116, 115, 32, 97, 110, 100, 32, 100, 111, 103, 115, 1];
             
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, raining_then_underscore) || bytesMatchExpectedData(ba, underscore_then_raining));
+            assertTrue( bytesMatchExpectedData(ba, raining_then_underscore) || bytesMatchExpectedData(ba, underscore_then_raining), "post-write bytes did not match expected data");
             
             //now test the same instance with an IDynamicPropertyWriter that ignores the underscored field, only outputting the 'raining' field
             ba.length = 0;
             AMFBinaryData.dynamicPropertyWriter = new DynamicPropertyWriter();
             ba.writeObject(instance);
-            Assert.assertEquals("post-write length was not correct", ba.length, 48);
-            Assert.assertEquals("post-write position was not correct", ba.position, 48);
+            assertEquals( ba.length, 48, "post-write length was not correct");
+            assertEquals( ba.position, 48, "post-write position was not correct");
             ba.position = 0;
-            Assert.assertTrue("post-write bytes did not match expected data", bytesMatchExpectedData(ba, [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 15, 114, 97, 105, 110, 105, 110, 103, 6, 27, 99, 97, 116, 115, 32, 97, 110, 100, 32, 100, 111, 103, 115, 1]));
+            assertTrue( bytesMatchExpectedData(ba, [10, 27, 1, 39, 115, 101, 97, 108, 101, 100, 73, 110, 115, 116, 97, 110, 99, 101, 80, 114, 111, 112, 49, 2, 15, 114, 97, 105, 110, 105, 110, 103, 6, 27, 99, 97, 116, 115, 32, 97, 110, 100, 32, 100, 111, 103, 115, 1]), "post-write bytes did not match expected data");
             
             //remove the custom dynamicPropertyWriter
             AMFBinaryData.dynamicPropertyWriter = null;
@@ -530,7 +530,7 @@ package flexUnitTests.network
             var xml2:XML = ba.readObject() as XML;
             
             //javascript toXMLString pretty printing does not match exactly flash...
-            Assert.assertTrue('XML round-tripping failed', xml.toXMLString() === xml2.toXMLString());
+            assertTrue( xml.toXMLString() === xml2.toXMLString(), "XML round-tripping failed");
         }
         
     }

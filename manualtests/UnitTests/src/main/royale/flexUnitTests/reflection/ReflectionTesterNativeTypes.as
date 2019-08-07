@@ -18,8 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection
 {
-    import flexunit.framework.Assert;
-    
+    import org.apache.royale.test.asserts.*;
     import flexUnitTests.reflection.support.*;
     import org.apache.royale.reflection.*;
     import testshim.RoyaleUnitTestRunner;
@@ -74,11 +73,11 @@ package flexUnitTests.reflection
         [Test]
         public function testArrayClass():void
         {
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(Array), "Array");
-            Assert.assertEquals("Unexpected type", getDefinitionByName("Array"), Array);
+            assertEquals( getQualifiedClassName(Array), "Array", "Unexpected type name");
+            assertEquals( getDefinitionByName("Array"), Array, "Unexpected type");
             var def:TypeDefinition = describeType(Array);
-            Assert.assertTrue("unexpected value", def.accessors.length == 1);
-            Assert.assertEquals("Unexpected type name", def.name, "Array");
+            assertTrue( def.accessors.length == 1, "unexpected value");
+            assertEquals( def.name, "Array", "Unexpected type name");
         }
     
     
@@ -86,22 +85,22 @@ package flexUnitTests.reflection
         public function testArrayInstance():void
         {
             var inst:Array = [];
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "Array");
+            assertEquals( getQualifiedClassName(inst), "Array", "Unexpected type name");
             
             var def:TypeDefinition = describeType([]);
-            Assert.assertTrue("unexpected value", def.accessors.length == 1);
-            Assert.assertEquals("Unexpected type name", def.name, "Array");
+            assertTrue( def.accessors.length == 1, "unexpected value");
+            assertEquals( def.name, "Array", "Unexpected type name");
             
         }
     
         [Test]
         public function testStringClass():void
         {
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(String), "String");
-            Assert.assertEquals("Unexpected type", getDefinitionByName("String"), String);
+            assertEquals( getQualifiedClassName(String), "String", "Unexpected type name");
+            assertEquals( getDefinitionByName("String"), String, "Unexpected type");
             var def:TypeDefinition = describeType(String);
-            Assert.assertTrue("unexpected value", def.accessors.length == 1);
-            Assert.assertEquals("Unexpected type name", def.name, "String");           
+            assertTrue( def.accessors.length == 1, "unexpected value");
+            assertEquals( def.name, "String", "Unexpected type name");
         }
     
     
@@ -109,22 +108,22 @@ package flexUnitTests.reflection
         public function testStringInstance():void
         {
             var inst:String = '';
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "String");
+            assertEquals( getQualifiedClassName(inst), "String", "Unexpected type name");
     
             var def:TypeDefinition = describeType(inst);
-            Assert.assertTrue("unexpected value", def.accessors.length == 1);
-            Assert.assertEquals("Unexpected type name", def.name, "String");
+            assertTrue( def.accessors.length == 1, "unexpected value");
+            assertEquals( def.name, "String", "Unexpected type name");
         }
     
     
         [Test]
         public function testNumberClass():void
         {
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(Number), "Number");
-            Assert.assertEquals("Unexpected type", getDefinitionByName("Number"), Number);
+            assertEquals( getQualifiedClassName(Number), "Number", "Unexpected type name");
+            assertEquals( getDefinitionByName("Number"), Number, "Unexpected type");
             var def:TypeDefinition = describeType(Number);
-            Assert.assertTrue("unexpected value", def.staticMethods.length == 18);
-            Assert.assertEquals("Unexpected type name", def.name, "Number");
+            assertTrue( def.staticMethods.length == 18, "unexpected value");
+            assertEquals( def.name, "Number", "Unexpected type name");
         }
     
     
@@ -132,12 +131,12 @@ package flexUnitTests.reflection
         public function testNumberInstance():void
         {
             var inst:Number = 1.5;
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "Number");
+            assertEquals( getQualifiedClassName(inst), "Number", "Unexpected type name");
             
             var def:TypeDefinition = describeType(inst);
             //This is resolved as Number
-            Assert.assertEquals("Unexpected type name", def.name, "Number");
-            Assert.assertTrue("unexpected value", def.staticMethods.length == 18);
+            assertEquals( def.name, "Number", "Unexpected type name");
+            assertTrue( def.staticMethods.length == 18, "unexpected value");
 
         }
     
@@ -145,11 +144,11 @@ package flexUnitTests.reflection
         public function testIntClass():void
         {
     
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(int), "int");
-            Assert.assertEquals("Unexpected type", getDefinitionByName("int"), int);
+            assertEquals( getQualifiedClassName(int), "int", "Unexpected type name");
+            assertEquals( getDefinitionByName("int"), int, "Unexpected type");
             var def:TypeDefinition = describeType(int);
             
-            Assert.assertEquals("Unexpected type name", def.name, "int");
+            assertEquals( def.name, "int", "Unexpected type name");
         }
     
     
@@ -158,16 +157,16 @@ package flexUnitTests.reflection
         {
             var inst:int = -268435456;
             
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "int");
+            assertEquals( getQualifiedClassName(inst), "int", "Unexpected type name");
             inst-=1;
             //resolves to Number outside boundary:
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "Number");
+            assertEquals( getQualifiedClassName(inst), "Number", "Unexpected type name");
             inst = 268435455;
             
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "int");
+            assertEquals( getQualifiedClassName(inst), "int", "Unexpected type name");
             inst+=1;
             //resolves to Number outside boundary:
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "Number");
+            assertEquals( getQualifiedClassName(inst), "Number", "Unexpected type name");
             inst = -268435456;
             
             var def:TypeDefinition = describeType(inst);
@@ -175,18 +174,18 @@ package flexUnitTests.reflection
             //    RoyaleUnitTestRunner.consoleOut('def name is '+def.name);
 
             //This is treated as Number
-            Assert.assertEquals("Unexpected type name", def.name, "int");
+            assertEquals( def.name, "int", "Unexpected type name");
         
         }
     
         [Test]
         public function testUintClass():void
         {
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(uint), "uint");
-            Assert.assertEquals("Unexpected type", getDefinitionByName("uint"), uint);
+            assertEquals( getQualifiedClassName(uint), "uint", "Unexpected type name");
+            assertEquals( getDefinitionByName("uint"), uint, "Unexpected type");
             
             var def:TypeDefinition = describeType(uint);
-            Assert.assertEquals("Unexpected type name", def.name, "uint");
+            assertEquals( def.name, "uint", "Unexpected type name");
         
         }
     
@@ -196,11 +195,11 @@ package flexUnitTests.reflection
         {
             var inst:uint = 1;
             //resolves to Number:
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "int");
+            assertEquals( getQualifiedClassName(inst), "int", "Unexpected type name");
     
             var def:TypeDefinition = describeType(inst);
             //This is treated as Number
-            Assert.assertEquals("Unexpected type name", def.name, "int");
+            assertEquals( def.name, "int", "Unexpected type name");
         
         }
     
@@ -208,11 +207,11 @@ package flexUnitTests.reflection
         [Test]
         public function testSpecificVectorClass():void
         {
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(Vector.<uint>), "Vector.<uint>");
-            Assert.assertEquals("Unexpected type", getDefinitionByName("Vector.<uint>"), Vector.<uint>);
+            assertEquals( getQualifiedClassName(Vector.<uint>), "Vector.<uint>", "Unexpected type name");
+            assertEquals( getDefinitionByName("Vector.<uint>"), Vector.<uint>, "Unexpected type");
             var def:TypeDefinition = describeType(Vector.<uint>);
          //   RoyaleUnitTestRunner.consoleOut(def.toString(true));
-            Assert.assertEquals("Unexpected type name", def.name, "Vector.<uint>");
+            assertEquals( def.name, "Vector.<uint>", "Unexpected type name");
             
         }
     
@@ -222,10 +221,10 @@ package flexUnitTests.reflection
         {
             var inst:Vector.<uint> = new Vector.<uint>();
             //resolves to Number:
-            Assert.assertEquals("Unexpected type name", getQualifiedClassName(inst), "Vector.<uint>");
+            assertEquals( getQualifiedClassName(inst), "Vector.<uint>", "Unexpected type name");
             
             var def:TypeDefinition = describeType(inst);
-            Assert.assertEquals("Unexpected type name", def.name, "Vector.<uint>");
+            assertEquals( def.name, "Vector.<uint>", "Unexpected type name");
         
         }
         
