@@ -20,7 +20,7 @@ package flexUnitTests.language
 {
     
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import flexUnitTests.language.support.*;
     
@@ -66,58 +66,58 @@ package flexUnitTests.language
             
             var clazz:Class = int;
             var intVal:int = (val1 as int);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             
             intVal = (var3 as int);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             intVal = (var4 as int);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             intVal = (var5 as int);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             
             intVal = int(var3);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             intVal = int(var4);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             intVal = int(var5);
-            Assert.assertTrue('Unexpected int check', intVal == 2);
+            assertTrue( intVal == 2,'Unexpected int check');
             
             intVal = new int(var3);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             intVal = new int(var4);
-            Assert.assertTrue('Unexpected int check', intVal == 0);
+            assertTrue( intVal == 0,'Unexpected int check');
             intVal = new int(var5);
-            Assert.assertTrue('Unexpected int check', intVal == 2);
+            assertTrue( intVal == 2,'Unexpected int check');
             
             
-            Assert.assertFalse('int check should be false', val1 is int);
-            Assert.assertTrue('int check should be true', val2 is int);
+            assertFalse( val1 is int,'int check should be false');
+            assertTrue( val2 is int,'int check should be true');
             
-            Assert.assertFalse('uint check should be false', val1 is uint);
-            Assert.assertTrue('uint check should be true', val2 is uint);
+            assertFalse( val1 is uint,'uint check should be false');
+            assertTrue( val2 is uint,'uint check should be true');
             
             var dyn:* = new clazz();
             
-            Assert.assertTrue('Unexpected int check', dyn == 0);
-            Assert.assertTrue('Unexpected int check', dyn === 0);
+            assertTrue( dyn == 0,'Unexpected int check');
+            assertTrue( dyn === 0,'Unexpected int check');
             
             
-            Assert.assertTrue('random check', int === int);
+            assertTrue( int === int,'random check');
             
-            Assert.assertTrue('Unexpected int check', new clazz(3.5) == 3);
+            assertTrue( new clazz(3.5) == 3,'Unexpected int check');
             
-            Assert.assertFalse('Unexpected int check', dyn !== 0);
+            assertFalse( dyn !== 0,'Unexpected int check');
             dyn = new clazz(3.5);
             intVal = dyn;
-            Assert.assertTrue('Unexpected int check', intVal === 3);
-            Assert.assertTrue('Unexpected int check', new clazz(3.5) === 3);
+            assertTrue( intVal === 3,'Unexpected int check');
+            assertTrue( new clazz(3.5) === 3,'Unexpected int check');
             
             //extra indirection
             var dynInt:* = var5;
             
-            Assert.assertFalse('Unexpected int check', dynInt is clazz);
-            Assert.assertNull('Unexpected int check', dynInt as clazz);
-            Assert.assertTrue('Unexpected int check', clazz(dynInt) === 2);
+            assertFalse( dynInt is clazz,'Unexpected int check');
+            assertNull( dynInt as clazz,'Unexpected int check');
+            assertTrue( clazz(dynInt) === 2,'Unexpected int check');
         }
         
         
@@ -129,34 +129,34 @@ package flexUnitTests.language
             var untyped:* = val;
             var untyped2:* = new c(30);
             var untyped3:Object = new c(30);
-            Assert.assertTrue('Unexpected int check', untyped3 == 30);
-            Assert.assertTrue('Unexpected int check', untyped3 === 30);
+            assertTrue( untyped3 == 30,'Unexpected int check');
+            assertTrue( untyped3 === 30,'Unexpected int check');
             
             val += 1.5;
             untyped += 1.5;
             untyped2 += 1.5;
-            Assert.assertTrue('Unexpected int check', val == 31);
-            Assert.assertTrue('Unexpected int check', val === 31);
+            assertTrue( val == 31,'Unexpected int check');
+            assertTrue( val === 31,'Unexpected int check');
             
-            Assert.assertTrue('Unexpected int check', untyped == 31.5);
-            Assert.assertTrue('Unexpected int check', untyped === 31.5);
+            assertTrue( untyped == 31.5,'Unexpected int check');
+            assertTrue( untyped === 31.5,'Unexpected int check');
             
-            Assert.assertTrue('Unexpected int check', untyped2 == 31.5);
-            Assert.assertTrue('Unexpected int check', untyped2 === 31.5);
+            assertTrue( untyped2 == 31.5,'Unexpected int check');
+            assertTrue( untyped2 === 31.5,'Unexpected int check');
             
             untyped = new Number(30);
-            Assert.assertTrue('Unexpected Number check', untyped == 30);
-            Assert.assertTrue('Unexpected Number check', untyped === 30);
+            assertTrue( untyped == 30,'Unexpected Number check');
+            assertTrue( untyped === 30,'Unexpected Number check');
             
             var numClass:Class = Number;
             untyped = new numClass(30);
-            Assert.assertTrue('Unexpected Number check', untyped == 30);
-            Assert.assertTrue('Unexpected Number check', untyped === 30);
-            Assert.assertTrue('Unexpected Number check', 30 === untyped);
+            assertTrue( untyped == 30,'Unexpected Number check');
+            assertTrue( untyped === 30,'Unexpected Number check');
+            assertTrue( 30 === untyped,'Unexpected Number check');
             
             untyped += 1.5;
-            Assert.assertTrue('Unexpected Number check', untyped == 31.5);
-            Assert.assertTrue('Unexpected Number check', untyped === 31.5);
+            assertTrue( untyped == 31.5,'Unexpected Number check');
+            assertTrue( untyped === 31.5,'Unexpected Number check');
             
         }
     
@@ -172,16 +172,15 @@ package flexUnitTests.language
             var c:Class = int;
             var untyped:* = new c(30);
             var expected:Boolean = isJS ? false : true;
-            Assert.assertEquals('Unexpected int check', untyped === 30, expected);
+            assertEquals(  expected, untyped === 30,'Unexpected int check');
             // b does not have suppression, only c does above (via @royalesuppressresolveuncertain c)
             expected = true;
             var b:Class = String;
            // c = String;
             untyped = new b(30);
-            Assert.assertEquals('Unexpected String check', untyped === '30', expected);
+            assertEquals(expected, untyped === '30', 'Unexpected String check');
         
         }
-        
         
     }
 }

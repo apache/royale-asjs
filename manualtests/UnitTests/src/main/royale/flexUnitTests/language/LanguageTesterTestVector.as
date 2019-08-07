@@ -19,7 +19,7 @@
 package flexUnitTests.language
 {
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     import flexUnitTests.language.support.*;
     
     import testshim.RoyaleUnitTestRunner;
@@ -78,20 +78,20 @@ package flexUnitTests.language
             
             var vi:Vector.<int> = new Vector.<int>();
             
-            Assert.assertFalse('Unexpected Vector check', vi.fixed);
-            Assert.assertTrue('Unexpected Vector check', vi.length == 0);
+            assertFalse( vi.fixed,'Unexpected Vector check');
+            assertTrue( vi.length == 0,'Unexpected Vector check');
             
             vi = new Vector.<int>(20);
             
-            Assert.assertFalse('Unexpected Vector check', vi.fixed);
-            Assert.assertTrue('Unexpected Vector check', vi.length == 20);
-            Assert.assertEquals('Unexpected Vector check', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', vi.toString());
+            assertFalse( vi.fixed,'Unexpected Vector check');
+            assertTrue( vi.length == 20,'Unexpected Vector check');
+            assertEquals( vi.toString(),'0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0','Unexpected Vector check');
             
             vi = new Vector.<int>(20, true);
             
-            Assert.assertTrue('Unexpected Vector check', vi.fixed);
-            Assert.assertTrue('Unexpected Vector check', vi.length == 20);
-            Assert.assertEquals('Unexpected Vector check', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', vi.toString());
+            assertTrue( vi.fixed,'Unexpected Vector check');
+            assertTrue( vi.length == 20,'Unexpected Vector check');
+            assertEquals( vi.toString(),'0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0','Unexpected Vector check');
             
             var c:Class = Vector.<int>;
             
@@ -99,114 +99,114 @@ package flexUnitTests.language
             var n:* = new c();
             n.push(12);
             n.push(24);
-            Assert.assertFalse('Unexpected Vector check', n.fixed);
-            Assert.assertTrue('Unexpected Vector check', n.length == 2);
-            Assert.assertEquals('Unexpected Vector check', '12,24', n.toString());
+            assertFalse( n.fixed,'Unexpected Vector check');
+            assertTrue( n.length == 2,'Unexpected Vector check');
+            assertEquals( n.toString(),'12,24','Unexpected Vector check');
             
             n = new c(20);
-            Assert.assertFalse('Unexpected Vector check', n.fixed);
-            Assert.assertTrue('Unexpected Vector check', n.length == 20);
-            Assert.assertEquals('Unexpected Vector check', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', n.toString());
+            assertFalse( n.fixed,'Unexpected Vector check');
+            assertTrue( n.length == 20,'Unexpected Vector check');
+            assertEquals( n.toString(),'0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0','Unexpected Vector check');
             
             n = new c(20, true);
-            Assert.assertTrue('Unexpected Vector check', n.fixed);
-            Assert.assertTrue('Unexpected Vector check', n.length == 20);
-            Assert.assertEquals('Unexpected Vector check', '0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0', n.toString());
+            assertTrue( n.fixed,'Unexpected Vector check');
+            assertTrue( n.length == 20,'Unexpected Vector check');
+            assertEquals( n.toString(),'0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0','Unexpected Vector check');
             
             var source:Array = [1, '', false, NaN, {test: true}, undefined];
             
             //coercion
             vi = Vector.<int>(source);
-            Assert.assertFalse('Unexpected Vector check', vi.fixed);
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertEquals('Unexpected Vector check', '1,0,0,0,0,0', vi.toString());
+            assertFalse( vi.fixed,'Unexpected Vector check');
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertEquals( vi.toString(),'1,0,0,0,0,0','Unexpected Vector check');
             
             var vb:Vector.<Boolean> = Vector.<Boolean>(source);
-            Assert.assertFalse('Unexpected Vector check', vb.fixed);
-            Assert.assertTrue('Unexpected Vector check', vb.length == 6);
-            Assert.assertEquals('Unexpected Vector check', 'true,false,false,false,true,false', vb.toString());
+            assertFalse( vb.fixed,'Unexpected Vector check');
+            assertTrue( vb.length == 6,'Unexpected Vector check');
+            assertEquals( vb.toString(),'true,false,false,false,true,false','Unexpected Vector check');
             
             n = vb;
-            Assert.assertFalse('Unexpected Vector check', n is Vector);
-            Assert.assertFalse('Unexpected Vector check', n is Array);
-            Assert.assertTrue('Unexpected Vector check', n is Vector.<Boolean>);
+            assertFalse( n is Vector,'Unexpected Vector check');
+            assertFalse( n is Array,'Unexpected Vector check');
+            assertTrue( n is Vector.<Boolean>,'Unexpected Vector check');
             
             var vs:Vector.<String> = Vector.<String>(source);
             
-            Assert.assertFalse('Unexpected Vector check', vs.fixed);
-            Assert.assertTrue('Unexpected Vector check', vs.length == 6);
-            Assert.assertEquals('Unexpected Vector check', '1,,false,NaN,[object Object],null', vs.toString());
+            assertFalse( vs.fixed,'Unexpected Vector check');
+            assertTrue( vs.length == 6,'Unexpected Vector check');
+            assertEquals( vs.toString(),'1,,false,NaN,[object Object],null','Unexpected Vector check');
             
             var vstar:Vector.<*> = Vector.<*>(source);
             
-            Assert.assertFalse('Unexpected Vector check', vstar.fixed);
-            Assert.assertTrue('Unexpected Vector check', vstar.length == 6);
-            Assert.assertEquals('Unexpected Vector check', '1,,false,NaN,[object Object],null', vstar.toString());
+            assertFalse( vstar.fixed,'Unexpected Vector check');
+            assertTrue( vstar.length == 6,'Unexpected Vector check');
+            assertEquals( vstar.toString(),'1,,false,NaN,[object Object],null','Unexpected Vector check');
             vstar.fixed = true;
-            Assert.assertTrue('Unexpected Vector check', vstar.fixed);
+            assertTrue( vstar.fixed,'Unexpected Vector check');
             
             var customClasses:Array = [null, new TestClass2(), undefined, new TestClass1()];
             
             var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
             
-            Assert.assertFalse('Unexpected Vector check', vcustom.fixed);
-            Assert.assertTrue('Unexpected Vector check', vcustom.length == 4);
-            Assert.assertTrue('Unexpected Vector check', vcustom[0] === null);
-            Assert.assertTrue('Unexpected Vector check', vcustom[1] is TestClass2);
-            Assert.assertTrue('Unexpected Vector check', vcustom[2] === null);
-            Assert.assertTrue('Unexpected Vector check', vcustom[3] is TestClass1);
+            assertFalse( vcustom.fixed,'Unexpected Vector check');
+            assertTrue( vcustom.length == 4,'Unexpected Vector check');
+            assertTrue( vcustom[0] === null,'Unexpected Vector check');
+            assertTrue( vcustom[1] is TestClass2,'Unexpected Vector check');
+            assertTrue( vcustom[2] === null,'Unexpected Vector check');
+            assertTrue( vcustom[3] is TestClass1,'Unexpected Vector check');
             
             var nested:Vector.<Vector.<TestClass1>> = Vector.<Vector.<TestClass1>>([vcustom, null, undefined, vcustom]);
-            Assert.assertFalse('Unexpected Vector check', nested.fixed);
-            Assert.assertTrue('Unexpected Vector check', nested.length == 4);
-            Assert.assertTrue('Unexpected Vector check', nested[0] === vcustom);
-            Assert.assertTrue('Unexpected Vector check', nested[1] === null);
-            Assert.assertTrue('Unexpected Vector check', nested[2] === null);
-            Assert.assertTrue('Unexpected Vector check', nested[3] === vcustom);
+            assertFalse( nested.fixed,'Unexpected Vector check');
+            assertTrue( nested.length == 4,'Unexpected Vector check');
+            assertTrue( nested[0] === vcustom,'Unexpected Vector check');
+            assertTrue( nested[1] === null,'Unexpected Vector check');
+            assertTrue( nested[2] === null,'Unexpected Vector check');
+            assertTrue( nested[3] === vcustom,'Unexpected Vector check');
             
             //indirect/dynamic coercion
             c = Vector.<int>;
             var result:*;
             result = c(source);
-            Assert.assertFalse('Unexpected Vector check', result.fixed);
-            Assert.assertTrue('Unexpected Vector check', result.length == 6);
-            Assert.assertFalse('Unexpected Vector check', result is Vector);
-            Assert.assertFalse('Unexpected Vector check', result is Array);
-            Assert.assertFalse('Unexpected Vector check', result is Vector.<*>);
-            Assert.assertTrue('Unexpected Vector check', result is Vector.<int>);
-            Assert.assertEquals('Unexpected Vector check', '1,0,0,0,0,0', result.toString());
+            assertFalse( result.fixed,'Unexpected Vector check');
+            assertTrue( result.length == 6,'Unexpected Vector check');
+            assertFalse( result is Vector,'Unexpected Vector check');
+            assertFalse( result is Array,'Unexpected Vector check');
+            assertFalse( result is Vector.<*>,'Unexpected Vector check');
+            assertTrue( result is Vector.<int>,'Unexpected Vector check');
+            assertEquals( result.toString(),'1,0,0,0,0,0','Unexpected Vector check');
             
             c = Vector.<Boolean>;
             result = c(source);
-            Assert.assertFalse('Unexpected Vector check', result.fixed);
-            Assert.assertTrue('Unexpected Vector check', result.length == 6);
-            Assert.assertFalse('Unexpected Vector check', result is Vector);
-            Assert.assertFalse('Unexpected Vector check', result is Array);
-            Assert.assertTrue('Unexpected Vector check', result is Vector.<*>);
-            Assert.assertTrue('Unexpected Vector check', result is Vector.<Boolean>);
-            Assert.assertEquals('Unexpected Vector check', 'true,false,false,false,true,false', result.toString());
+            assertFalse( result.fixed,'Unexpected Vector check');
+            assertTrue( result.length == 6,'Unexpected Vector check');
+            assertFalse( result is Vector,'Unexpected Vector check');
+            assertFalse( result is Array,'Unexpected Vector check');
+            assertTrue( result is Vector.<*>,'Unexpected Vector check');
+            assertTrue( result is Vector.<Boolean>,'Unexpected Vector check');
+            assertEquals( result.toString(),'true,false,false,false,true,false','Unexpected Vector check');
             
             c = Vector.<String>;
             result = c(source);
             
-            Assert.assertFalse('Unexpected Vector check', result.fixed);
-            Assert.assertTrue('Unexpected Vector check', result.length == 6);
-            Assert.assertFalse('Unexpected Vector check', result is Vector);
-            Assert.assertFalse('Unexpected Vector check', result is Array);
-            Assert.assertTrue('Unexpected Vector check', result is Vector.<*>);
-            Assert.assertTrue('Unexpected Vector check', result is Vector.<String>);
-            Assert.assertEquals('Unexpected Vector check', '1,,false,NaN,[object Object],null', result.toString());
+            assertFalse( result.fixed,'Unexpected Vector check');
+            assertTrue( result.length == 6,'Unexpected Vector check');
+            assertFalse( result is Vector,'Unexpected Vector check');
+            assertFalse( result is Array,'Unexpected Vector check');
+            assertTrue( result is Vector.<*>,'Unexpected Vector check');
+            assertTrue( result is Vector.<String>,'Unexpected Vector check');
+            assertEquals( result.toString(),'1,,false,NaN,[object Object],null','Unexpected Vector check');
             
             c = Vector.<*>;
             result = c(source);
             
-            Assert.assertFalse('Unexpected Vector check', result.fixed);
-            Assert.assertTrue('Unexpected Vector check', result.length == 6);
-            Assert.assertFalse('Unexpected Vector check', result is Vector);
-            Assert.assertFalse('Unexpected Vector check', result is Array);
-            Assert.assertTrue('Unexpected Vector check', result is Vector.<*>);
-            Assert.assertFalse('Unexpected Vector check', result is Vector.<Object>);
-            Assert.assertEquals('Unexpected Vector check', '1,,false,NaN,[object Object],null', result.toString());
+            assertFalse( result.fixed,'Unexpected Vector check');
+            assertTrue( result.length == 6,'Unexpected Vector check');
+            assertFalse( result is Vector,'Unexpected Vector check');
+            assertFalse( result is Array,'Unexpected Vector check');
+            assertTrue( result is Vector.<*>,'Unexpected Vector check');
+            assertFalse( result is Vector.<Object>,'Unexpected Vector check');
+            assertEquals( result.toString(),'1,,false,NaN,[object Object],null','Unexpected Vector check');
         }
         
         [Test]
@@ -227,7 +227,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             try
             {
                 caughtError = false;
@@ -237,7 +237,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             try
             {
                 caughtError = false;
@@ -247,7 +247,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             try
             {
                 caughtError = false;
@@ -257,7 +257,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
     
             if (hasInsertAtRemoveAt()) {
                 try
@@ -269,7 +269,7 @@ package flexUnitTests.language
                     caughtError = e is RangeError
                 }
                 
-                Assert.assertTrue('Unexpected Vector check', caughtError);
+                assertTrue( caughtError,'Unexpected Vector check');
             
                 try
                 {
@@ -280,7 +280,7 @@ package flexUnitTests.language
                     caughtError = e is RangeError
                 }
     
-                Assert.assertTrue('Unexpected Vector check', caughtError);
+                assertTrue( caughtError,'Unexpected Vector check');
             } else {
                 RoyaleUnitTestRunner.consoleOut('Variance: The current target does not have support for Vector insertAt/removeAt methods', 'warn')
             }
@@ -297,16 +297,16 @@ package flexUnitTests.language
             inst[2] = '';
             inst[3] = new String();
             inst[4] = something;
-            Assert.assertTrue('unexpected coercion result', inst[0] === null);
-            Assert.assertTrue('unexpected coercion result', inst[1] === null);
-            Assert.assertTrue('unexpected coercion result', inst[2] === '');
-            Assert.assertTrue('unexpected coercion result', inst[3] === '');
-            Assert.assertTrue('unexpected coercion result', inst[4] === null);
+            assertTrue( inst[0] === null,'unexpected coercion result');
+            assertTrue( inst[1] === null,'unexpected coercion result');
+            assertTrue( inst[2] === '','unexpected coercion result');
+            assertTrue( inst[3] === '','unexpected coercion result');
+            assertTrue( inst[4] === null,'unexpected coercion result');
         
             inst.push(undefined);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === null);
+            assertTrue( inst.pop() === null,'unexpected coercion result');
             inst.push(something);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === null);
+            assertTrue( inst.pop() === null,'unexpected coercion result');
         }
     
         [Test]
@@ -321,19 +321,19 @@ package flexUnitTests.language
             inst[3] = new String();
             inst[4] = nothing;
             inst[5] = something;
-            Assert.assertTrue('unexpected coercion result', inst[0] === false);
-            Assert.assertTrue('unexpected coercion result', inst[1] === false);
-            Assert.assertTrue('unexpected coercion result', inst[2] === false);
-            Assert.assertTrue('unexpected coercion result', inst[3] === false);
-            Assert.assertTrue('unexpected coercion result', inst[4] === false);
-            Assert.assertTrue('unexpected coercion result', inst[5] === true);
+            assertTrue( inst[0] === false,'unexpected coercion result');
+            assertTrue( inst[1] === false,'unexpected coercion result');
+            assertTrue( inst[2] === false,'unexpected coercion result');
+            assertTrue( inst[3] === false,'unexpected coercion result');
+            assertTrue( inst[4] === false,'unexpected coercion result');
+            assertTrue( inst[5] === true,'unexpected coercion result');
             
             inst.push(undefined);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === false);
+            assertTrue( inst.pop() === false,'unexpected coercion result');
             inst.push(nothing);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === false);
+            assertTrue( inst.pop() === false,'unexpected coercion result');
             inst.push(something);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === true);
+            assertTrue( inst.pop() === true,'unexpected coercion result');
         }
         
         [Test]
@@ -350,20 +350,20 @@ package flexUnitTests.language
             inst[4] = something;
             inst[5] = uint;
             inst[6] = TestClass1;
-            Assert.assertTrue('unexpected coercion result', inst[0] === null);
-            Assert.assertTrue('unexpected coercion result', inst[1] === null);
-            Assert.assertTrue('unexpected coercion result', inst[2] === String);
-            Assert.assertTrue('unexpected coercion result', inst[3] === null);
-            Assert.assertTrue('unexpected coercion result', inst[4] === Array);
-            Assert.assertTrue('unexpected coercion result', inst[5] === uint);
-            Assert.assertTrue('unexpected coercion result', inst[6] === TestClass1);
-            
+            assertTrue( inst[0] === null, 'unexpected coercion result');
+            assertTrue(inst[1] === null, 'unexpected coercion result');
+            assertTrue(inst[2] === String, 'unexpected coercion result');
+            assertTrue(inst[3] === null, 'unexpected coercion result');
+            assertTrue(inst[4] === Array, 'unexpected coercion result');
+            assertTrue(inst[5] === uint, 'unexpected coercion result');
+            assertTrue(inst[6] === TestClass1, 'unexpected coercion result');
+        
             inst.push(undefined);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === null);
+            assertTrue(inst.pop() === null, 'unexpected coercion result');
             inst.push(nothing);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === null);
+            assertTrue(inst.pop() === null,'unexpected coercion result');
             inst.push(something);
-            Assert.assertTrue('unexpected coercion result', inst.pop() === Array);
+            assertTrue(inst.pop() === Array,'unexpected coercion result');
         }
         
     
@@ -387,9 +387,9 @@ package flexUnitTests.language
             }
             //even though it was an error, it has pushed null into the vector, so it
             //now has length of 1
-            Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 1);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[0]);
+            assertTrue( tc1Vec.length == 1,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
+            assertNull( tc1Vec[0],'Unexpected Vector check');
     
             try
             {
@@ -406,13 +406,13 @@ package flexUnitTests.language
             }
             //even though it had an extra 2 error elements, it has pushed null into the vector, so it
             //now has length of 5
-            Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 5);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[0]);
-            Assert.assertTrue('Unexpected Vector check', tc1Vec[1] is TestClass1);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[2]);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[3]);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[4]);
+            assertTrue( tc1Vec.length == 5,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
+            assertNull( tc1Vec[0],'Unexpected Vector check');
+            assertTrue( tc1Vec[1] is TestClass1,'Unexpected Vector check');
+            assertNull( tc1Vec[2],'Unexpected Vector check');
+            assertNull( tc1Vec[3],'Unexpected Vector check');
+            assertNull( tc1Vec[4],'Unexpected Vector check');
             
             try
             {
@@ -427,17 +427,17 @@ package flexUnitTests.language
                 caughtError = e is TypeError;
             }
     
-            Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 9);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
-            Assert.assertTrue('Unexpected Vector check', tc1Vec[0] is TestClass1);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[1]);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[2]);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[3]);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[4]);
-            Assert.assertTrue('Unexpected Vector check', tc1Vec[5] is TestClass1);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[6]);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[7]);
-            Assert.assertNull('Unexpected Vector check', tc1Vec[8]);
+            assertTrue( tc1Vec.length == 9,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
+            assertTrue( tc1Vec[0] is TestClass1,'Unexpected Vector check');
+            assertNull( tc1Vec[1],'Unexpected Vector check');
+            assertNull( tc1Vec[2],'Unexpected Vector check');
+            assertNull( tc1Vec[3],'Unexpected Vector check');
+            assertNull( tc1Vec[4],'Unexpected Vector check');
+            assertTrue( tc1Vec[5] is TestClass1,'Unexpected Vector check');
+            assertNull( tc1Vec[6],'Unexpected Vector check');
+            assertNull( tc1Vec[7],'Unexpected Vector check');
+            assertNull( tc1Vec[8],'Unexpected Vector check');
             
         }
         
@@ -451,38 +451,38 @@ package flexUnitTests.language
             var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
             var vcustom2:Vector.<TestClass1> = vcustom.map(_mapper);
             
-            Assert.assertTrue('Unexpected Vector check', vcustom2 != vcustom);
-            Assert.assertTrue('Unexpected Vector check', vcustom2[0] is TestClass1);
-            Assert.assertTrue('Unexpected Vector check', vcustom2[1] is TestClass1);
-            Assert.assertTrue('Unexpected Vector check', vcustom2[2] is TestClass1);
-            Assert.assertTrue('Unexpected Vector check', vcustom2[3] is TestClass1);
+            assertTrue( vcustom2 != vcustom,'Unexpected Vector check');
+            assertTrue( vcustom2[0] is TestClass1,'Unexpected Vector check');
+            assertTrue( vcustom2[1] is TestClass1,'Unexpected Vector check');
+            assertTrue( vcustom2[2] is TestClass1,'Unexpected Vector check');
+            assertTrue( vcustom2[3] is TestClass1,'Unexpected Vector check');
             //remove 1 item at position 1 and replace it with a new TestClass2 instance
             var vcustom3:Vector.<TestClass1> = vcustom2.splice(1, 1, new TestClass2());
-            Assert.assertTrue('Unexpected Vector check', vcustom3 != vcustom2);
-            Assert.assertTrue('Unexpected Vector check', vcustom3.length == 1);
-            Assert.assertTrue('Unexpected Vector check', vcustom2.length == 4);
-            Assert.assertTrue('Unexpected Vector check', vcustom3[0] is TestClass1);
-            Assert.assertTrue('Unexpected Vector check', vcustom2[1] is TestClass2);
+            assertTrue( vcustom3 != vcustom2,'Unexpected Vector check');
+            assertTrue( vcustom3.length == 1,'Unexpected Vector check');
+            assertTrue( vcustom2.length == 4,'Unexpected Vector check');
+            assertTrue( vcustom3[0] is TestClass1,'Unexpected Vector check');
+            assertTrue( vcustom2[1] is TestClass2,'Unexpected Vector check');
             
             
             if (hasInsertAtRemoveAt()) {
                 vcustom3['insertAt'](0, new TestClass2());
-                Assert.assertTrue('Unexpected Vector check', vcustom3.length == 2);
-                Assert.assertTrue('Unexpected Vector check', vcustom3[0] is TestClass2);
-                Assert.assertTrue('Unexpected Vector check', vcustom3[1] is TestClass1);
+                assertTrue( vcustom3.length == 2,'Unexpected Vector check');
+                assertTrue( vcustom3[0] is TestClass2,'Unexpected Vector check');
+                assertTrue( vcustom3[1] is TestClass1,'Unexpected Vector check');
     
                 var removedItem:* = vcustom3['removeAt'](0);
-                Assert.assertTrue('Unexpected Vector check', vcustom3.length == 1);
-                Assert.assertTrue('Unexpected Vector check', vcustom3[0] is TestClass1);
-                Assert.assertTrue('Unexpected Vector check', removedItem is TestClass2);
+                assertTrue( vcustom3.length == 1,'Unexpected Vector check');
+                assertTrue( vcustom3[0] is TestClass1,'Unexpected Vector check');
+                assertTrue( removedItem is TestClass2,'Unexpected Vector check');
     
                 var tc1Vec:Vector.<TestClass1> = new Vector.<TestClass1>(4);
     
                 //insert at invalid index:
                 tc1Vec['insertAt'](6, new TestClass1());
                 //no error, insertAt minimises the specified index to the Vector's length and inserts there
-                Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 5);
-                Assert.assertTrue('Unexpected Vector check', tc1Vec[4] is TestClass1);
+                assertTrue( tc1Vec.length == 5,'Unexpected Vector check');
+                assertTrue( tc1Vec[4] is TestClass1,'Unexpected Vector check');
     
                 var caughtError:Boolean;
                 try
@@ -502,10 +502,10 @@ package flexUnitTests.language
                 {
                     caughtError = e is RangeError
                 }
-                Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 4);
-                Assert.assertEquals('Unexpected Vector check', 'null,null,null,null', tc1Vec.toString());
+                assertTrue( tc1Vec.length == 4,'Unexpected Vector check');
+                assertEquals( tc1Vec.toString(),'null,null,null,null','Unexpected Vector check');
                 //no error
-                Assert.assertFalse('Unexpected Vector check', caughtError);
+                assertFalse( caughtError,'Unexpected Vector check');
     
                 try
                 {
@@ -516,13 +516,13 @@ package flexUnitTests.language
                     caughtError = e is RangeError
                 }
     
-                Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 5);
+                assertTrue( tc1Vec.length == 5,'Unexpected Vector check');
                 //new item is at position 3
-                Assert.assertNotNull('Unexpected Vector check', tc1Vec[3]);
+                assertNotNull( tc1Vec[3],'Unexpected Vector check');
                 //moving the original content (null) from position 3 to 4
-                Assert.assertNull('Unexpected Vector check', tc1Vec[4]);
+                assertNull( tc1Vec[4],'Unexpected Vector check');
                 //no error
-                Assert.assertFalse('Unexpected Vector check', caughtError);
+                assertFalse( caughtError,'Unexpected Vector check');
     
                 try
                 {
@@ -534,13 +534,13 @@ package flexUnitTests.language
                     caughtError = e is RangeError
                 }
     
-                Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 6);
+                assertTrue( tc1Vec.length == 6,'Unexpected Vector check');
                 //new item is at position 0
-                Assert.assertNotNull('Unexpected Vector check', tc1Vec[0]);
+                assertNotNull( tc1Vec[0],'Unexpected Vector check');
                 //the other non-null item is now at postion 4
-                Assert.assertNotNull('Unexpected Vector check', tc1Vec[4]);
+                assertNotNull( tc1Vec[4],'Unexpected Vector check');
                 //no error
-                Assert.assertFalse('Unexpected Vector check', caughtError);
+                assertFalse( caughtError,'Unexpected Vector check');
     
                 try
                 {
@@ -551,13 +551,13 @@ package flexUnitTests.language
                     caughtError = e is RangeError;
                 }
     
-                Assert.assertTrue('Unexpected Vector check', tc1Vec.length == 5);
+                assertTrue( tc1Vec.length == 5,'Unexpected Vector check');
                 //position 0 is now null
-                Assert.assertNull('Unexpected Vector check', tc1Vec[0]);
+                assertNull( tc1Vec[0],'Unexpected Vector check');
                 //the non-null item is now at postion 3
-                Assert.assertNotNull('Unexpected Vector check', tc1Vec[3]);
+                assertNotNull( tc1Vec[3],'Unexpected Vector check');
                 //no error
-                Assert.assertFalse('Unexpected Vector check', caughtError);
+                assertFalse( caughtError,'Unexpected Vector check');
                 
             }  else {
                 RoyaleUnitTestRunner.consoleOut('Variance: The current target does not have support for Vector insertAt/removeAt methods, so these are untested', 'warn')
@@ -570,7 +570,7 @@ package flexUnitTests.language
         public function testSort():void{
             var vi:Vector.<int> = new <int>[1, 2, 3, 4, 5];
             vi.sort(Array.NUMERIC|Array.DESCENDING);
-            Assert.assertEquals('Unexpected Vector check', '5,4,3,2,1', vi.toString());
+            assertEquals( vi.toString(),'5,4,3,2,1','Unexpected Vector check');
         }
         
         [Test]
@@ -581,8 +581,8 @@ package flexUnitTests.language
             var vi2:Vector.<int> = new <int>[5, 4, 3, 2, 1];
             var vu2:Vector.<uint> = new <uint>[5, 4, 3, 2, 1];
             var vi3:Vector.<int> = vi1.concat(vi2);
-            Assert.assertEquals('Unexpected Vector check', '1,2,3,4,5,5,4,3,2,1', vi3.toString());
-            Assert.assertTrue('Unexpected Vector check', vi3 is Vector.<int>);
+            assertEquals( vi3.toString(),'1,2,3,4,5,5,4,3,2,1','Unexpected Vector check');
+            assertTrue( vi3 is Vector.<int>,'Unexpected Vector check');
             
             var caughtError:Boolean;
             try
@@ -593,12 +593,12 @@ package flexUnitTests.language
             {
                 caughtError = e is TypeError
             }
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             var vs:Vector.<String> = Vector.<String>(source);
             var testConcat:Vector.<String> = vs.concat(vs);
-            Assert.assertEquals('Unexpected Vector check', '1,,false,NaN,[object Object],null,1,,false,NaN,[object Object],null', testConcat.toString());
-            Assert.assertTrue('Unexpected Vector check', testConcat is Vector.<String>);
+            assertEquals( testConcat.toString(),'1,,false,NaN,[object Object],null,1,,false,NaN,[object Object],null','Unexpected Vector check');
+            assertTrue( testConcat is Vector.<String>,'Unexpected Vector check');
             
         }
     
@@ -609,24 +609,24 @@ package flexUnitTests.language
             var source:Array = [1, '', false, NaN, {test: true}, undefined];
             var vi1:Vector.<int> = new <int>[1, 2, 3, 4, 5];
             var vi2:Vector.<int> = vi1.slice();
-            Assert.assertEquals('Unexpected Vector check', '1,2,3,4,5', vi2.toString());
-            Assert.assertTrue('Unexpected Vector check', vi2 is Vector.<int>);
+            assertEquals( vi2.toString(),'1,2,3,4,5','Unexpected Vector check');
+            assertTrue( vi2 is Vector.<int>,'Unexpected Vector check');
             vi2 = vi1.slice(1);
-            Assert.assertEquals('Unexpected Vector check', '2,3,4,5', vi2.toString());
-            Assert.assertTrue('Unexpected Vector check', vi2 is Vector.<int>);
+            assertEquals( vi2.toString(),'2,3,4,5','Unexpected Vector check');
+            assertTrue( vi2 is Vector.<int>,'Unexpected Vector check');
     
             vi2 = vi1.slice(0,0);
-            Assert.assertEquals('Unexpected Vector check', '', vi2.toString());
-            Assert.assertTrue('Unexpected Vector check', vi2 is Vector.<int>);
+            assertEquals( vi2.toString(),'','Unexpected Vector check');
+            assertTrue( vi2 is Vector.<int>,'Unexpected Vector check');
     
             vi2 = vi1.slice(1,-1);
-            Assert.assertEquals('Unexpected Vector check', '2,3,4', vi2.toString());
-            Assert.assertTrue('Unexpected Vector check', vi2 is Vector.<int>);
+            assertEquals( vi2.toString(),'2,3,4','Unexpected Vector check');
+            assertTrue( vi2 is Vector.<int>,'Unexpected Vector check');
         
             var vs:Vector.<String> = Vector.<String>(source);
             var testSlice:Vector.<String> = vs.slice();
-            Assert.assertEquals('Unexpected Vector check', '1,,false,NaN,[object Object],null', testSlice.toString());
-            Assert.assertTrue('Unexpected Vector check', testSlice is Vector.<String>);
+            assertEquals( testSlice.toString(),'1,,false,NaN,[object Object],null','Unexpected Vector check');
+            assertTrue( testSlice is Vector.<String>,'Unexpected Vector check');
         
         }
         
@@ -643,9 +643,9 @@ package flexUnitTests.language
             };
             
             var vi2:Vector.<int> = vi1.filter(f);
-            Assert.assertEquals('Unexpected Vector check', '3,4,5,4,3', vi2.toString());
-            Assert.assertFalse('Unexpected Vector check', vi2 is Array);
-            Assert.assertTrue('Unexpected Vector check', vi2 is Vector.<int>);
+            assertEquals( vi2.toString(),'3,4,5,4,3','Unexpected Vector check');
+            assertFalse( vi2 is Array,'Unexpected Vector check');
+            assertTrue( vi2 is Vector.<int>,'Unexpected Vector check');
         }
         
         [Test]
@@ -654,50 +654,50 @@ package flexUnitTests.language
             var source:Array = [1, '', false, NaN, {test: true}, undefined];
             
             var vi:Vector.<int> = Vector.<int>(source);
-            Assert.assertFalse('Unexpected Vector check', vi is Vector);
-            Assert.assertFalse('Unexpected Vector check', vi is Array);
-            Assert.assertTrue('Unexpected Vector check', vi is Vector.<int>);
-            Assert.assertFalse('Unexpected Vector check', vi is Vector.<*>);
+            assertFalse( vi is Vector,'Unexpected Vector check');
+            assertFalse( vi is Array,'Unexpected Vector check');
+            assertTrue( vi is Vector.<int>,'Unexpected Vector check');
+            assertFalse( vi is Vector.<*>,'Unexpected Vector check');
             
             var vu:Vector.<uint> = Vector.<uint>(source);
-            Assert.assertFalse('Unexpected Vector check', vu is Vector);
-            Assert.assertFalse('Unexpected Vector check', vu is Array);
-            Assert.assertTrue('Unexpected Vector check', vu is Vector.<uint>);
-            Assert.assertFalse('Unexpected Vector check', vu is Vector.<*>);
+            assertFalse( vu is Vector,'Unexpected Vector check');
+            assertFalse( vu is Array,'Unexpected Vector check');
+            assertTrue( vu is Vector.<uint>,'Unexpected Vector check');
+            assertFalse( vu is Vector.<*>,'Unexpected Vector check');
             
             var vn:Vector.<Number> = Vector.<Number>(source);
-            Assert.assertFalse('Unexpected Vector check', vn is Vector);
-            Assert.assertFalse('Unexpected Vector check', vn is Array);
-            Assert.assertTrue('Unexpected Vector check', vn is Vector.<Number>);
-            Assert.assertFalse('Unexpected Vector check', vn is Vector.<*>);
+            assertFalse( vn is Vector,'Unexpected Vector check');
+            assertFalse( vn is Array,'Unexpected Vector check');
+            assertTrue( vn is Vector.<Number>,'Unexpected Vector check');
+            assertFalse( vn is Vector.<*>,'Unexpected Vector check');
             
             var vb:Vector.<Boolean> = Vector.<Boolean>(source);
-            Assert.assertFalse('Unexpected Vector check', vb is Vector);
-            Assert.assertFalse('Unexpected Vector check', vb is Array);
-            Assert.assertTrue('Unexpected Vector check', vb is Vector.<Boolean>);
-            Assert.assertTrue('Unexpected Vector check', vb is Vector.<*>);
+            assertFalse( vb is Vector,'Unexpected Vector check');
+            assertFalse( vb is Array,'Unexpected Vector check');
+            assertTrue( vb is Vector.<Boolean>,'Unexpected Vector check');
+            assertTrue( vb is Vector.<*>,'Unexpected Vector check');
             
             var vs:Vector.<String> = Vector.<String>(source);
-            Assert.assertFalse('Unexpected Vector check', vs is Vector);
-            Assert.assertFalse('Unexpected Vector check', vs is Array);
-            Assert.assertTrue('Unexpected Vector check', vs is Vector.<String>);
-            Assert.assertTrue('Unexpected Vector check', vs is Vector.<*>);
+            assertFalse( vs is Vector,'Unexpected Vector check');
+            assertFalse( vs is Array,'Unexpected Vector check');
+            assertTrue( vs is Vector.<String>,'Unexpected Vector check');
+            assertTrue( vs is Vector.<*>,'Unexpected Vector check');
             
             var vstar:Vector.<*> = Vector.<*>(source);
-            Assert.assertFalse('Unexpected Vector check', vstar is Vector);
-            Assert.assertFalse('Unexpected Vector check', vstar is Array);
-            Assert.assertTrue('Unexpected Vector check', vstar is Vector.<*>);
-            Assert.assertTrue('Unexpected Vector check', vstar is Vector.<*>);
+            assertFalse( vstar is Vector,'Unexpected Vector check');
+            assertFalse( vstar is Array,'Unexpected Vector check');
+            assertTrue( vstar is Vector.<*>,'Unexpected Vector check');
+            assertTrue( vstar is Vector.<*>,'Unexpected Vector check');
             
             
             var customClasses:Array = [null, new TestClass2(), undefined, new TestClass1()];
             
             var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
             
-            Assert.assertFalse('Unexpected Vector check', vcustom is Vector);
-            Assert.assertFalse('Unexpected Vector check', vcustom is Array);
-            Assert.assertTrue('Unexpected Vector check', vcustom is Vector.<TestClass1>);
-            Assert.assertTrue('Unexpected Vector check', vcustom is Vector.<*>);
+            assertFalse( vcustom is Vector,'Unexpected Vector check');
+            assertFalse( vcustom is Array,'Unexpected Vector check');
+            assertTrue( vcustom is Vector.<TestClass1>,'Unexpected Vector check');
+            assertTrue( vcustom is Vector.<*>,'Unexpected Vector check');
     
             customClasses.push(new TestClass5());
             var oldDef:Vector.<TestClass1> = vcustom;
@@ -712,8 +712,8 @@ package flexUnitTests.language
                 caughtError = e is TypeError;
             }
     
-            Assert.assertTrue('Unexpected Vector check', caughtError);
-            Assert.assertEquals('Unexpected Vector check', oldDef,vcustom);
+            assertTrue( caughtError,'Unexpected Vector check');
+            assertEquals( oldDef,vcustom,'Unexpected Vector check');
         }
         
         [Test]
@@ -725,58 +725,58 @@ package flexUnitTests.language
             var source:Array = [1, '', false, NaN, {test: true}, undefined];
             
             var vi:Vector.<int> = Vector.<int>(source);
-            Assert.assertFalse('Unexpected Vector check', vi is Vector);
-            Assert.assertFalse('Unexpected Vector check', vi is Array);
-            Assert.assertTrue('Unexpected Vector check', vi is Vector.<int>);
-            Assert.assertFalse('Unexpected Vector check', vi is Vector.<*>);
+            assertFalse( vi is Vector,'Unexpected Vector check');
+            assertFalse( vi is Array,'Unexpected Vector check');
+            assertTrue( vi is Vector.<int>,'Unexpected Vector check');
+            assertFalse( vi is Vector.<*>,'Unexpected Vector check');
             
             var vu:Vector.<uint> = Vector.<uint>(source);
-            Assert.assertFalse('Unexpected Vector check', vu is Vector);
-            Assert.assertFalse('Unexpected Vector check', vu is Array);
-            Assert.assertTrue('Unexpected Vector check', vu is Vector.<uint>);
-            Assert.assertFalse('Unexpected Vector check', vu is Vector.<*>);
+            assertFalse( vu is Vector,'Unexpected Vector check');
+            assertFalse( vu is Array,'Unexpected Vector check');
+            assertTrue( vu is Vector.<uint>,'Unexpected Vector check');
+            assertFalse( vu is Vector.<*>,'Unexpected Vector check');
             
             var vn:Vector.<Number> = Vector.<Number>(source);
-            Assert.assertFalse('Unexpected Vector check', vn is Vector);
-            Assert.assertFalse('Unexpected Vector check', vn is Array);
-            Assert.assertTrue('Unexpected Vector check', vn is Vector.<Number>);
-            Assert.assertFalse('Unexpected Vector check', vn is Vector.<*>);
+            assertFalse( vn is Vector,'Unexpected Vector check');
+            assertFalse( vn is Array,'Unexpected Vector check');
+            assertTrue( vn is Vector.<Number>,'Unexpected Vector check');
+            assertFalse( vn is Vector.<*>,'Unexpected Vector check');
             
             var vb:Vector.<Boolean> = Vector.<Boolean>(source);
-            Assert.assertFalse('Unexpected Vector check', vb is Vector);
-            Assert.assertFalse('Unexpected Vector check', vb is Array);
-            Assert.assertTrue('Unexpected Vector check', vb is Vector.<Boolean>);
-            Assert.assertTrue('Unexpected Vector check', vb is Vector.<*>);
+            assertFalse( vb is Vector,'Unexpected Vector check');
+            assertFalse( vb is Array,'Unexpected Vector check');
+            assertTrue( vb is Vector.<Boolean>,'Unexpected Vector check');
+            assertTrue( vb is Vector.<*>,'Unexpected Vector check');
             
             var vs:Vector.<String> = Vector.<String>(source);
-            Assert.assertFalse('Unexpected Vector check', vs is Vector);
-            Assert.assertFalse('Unexpected Vector check', vs is Array);
-            Assert.assertTrue('Unexpected Vector check', vs is Vector.<String>);
-            Assert.assertTrue('Unexpected Vector check', vs is Vector.<*>);
+            assertFalse( vs is Vector,'Unexpected Vector check');
+            assertFalse( vs is Array,'Unexpected Vector check');
+            assertTrue( vs is Vector.<String>,'Unexpected Vector check');
+            assertTrue( vs is Vector.<*>,'Unexpected Vector check');
             
             var vstar:Vector.<*> = Vector.<*>(source);
-            Assert.assertFalse('Unexpected Vector check', vstar is Vector);
-            Assert.assertFalse('Unexpected Vector check', vstar is Array);
-            Assert.assertTrue('Unexpected Vector check', vstar is Vector.<*>);
-            Assert.assertTrue('Unexpected Vector check', vstar is Vector.<*>);
+            assertFalse( vstar is Vector,'Unexpected Vector check');
+            assertFalse( vstar is Array,'Unexpected Vector check');
+            assertTrue( vstar is Vector.<*>,'Unexpected Vector check');
+            assertTrue( vstar is Vector.<*>,'Unexpected Vector check');
             
             
             var customClasses:Array = [null, new TestClass2(), undefined, new TestClass1()];
             
             var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
             
-            Assert.assertFalse('Unexpected Vector check', vcustom is Vector);
-            Assert.assertFalse('Unexpected Vector check', vcustom is Array);
-            Assert.assertTrue('Unexpected Vector check', vcustom is Vector.<TestClass1>);
-            Assert.assertTrue('Unexpected Vector check', vcustom is Vector.<*>);
+            assertFalse( vcustom is Vector,'Unexpected Vector check');
+            assertFalse( vcustom is Array,'Unexpected Vector check');
+            assertTrue( vcustom is Vector.<TestClass1>,'Unexpected Vector check');
+            assertTrue( vcustom is Vector.<*>,'Unexpected Vector check');
     
             var claZZ:Class = Vector.<TestClass1>;
             vcustom = claZZ(customClasses);
     
-            Assert.assertFalse('Unexpected Vector check', vcustom is Vector);
-            Assert.assertFalse('Unexpected Vector check', vcustom is Array);
-            Assert.assertTrue('Unexpected Vector check', vcustom is Vector.<TestClass1>);
-            Assert.assertTrue('Unexpected Vector check', vcustom is Vector.<*>);
+            assertFalse( vcustom is Vector,'Unexpected Vector check');
+            assertFalse( vcustom is Array,'Unexpected Vector check');
+            assertTrue( vcustom is Vector.<TestClass1>,'Unexpected Vector check');
+            assertTrue( vcustom is Vector.<*>,'Unexpected Vector check');
         }
         
         [Test]
@@ -785,9 +785,9 @@ package flexUnitTests.language
             var test:* = 'hello';
             var vi:Vector.<int> = new <int>[1, 2, test, 4, 5];
             
-            Assert.assertFalse('Unexpected Vector check', vi.fixed);
-            Assert.assertTrue('Unexpected Vector check', vi.length == 5);
-            Assert.assertEquals('Unexpected Vector check', '1,2,0,4,5', vi.toString());
+            assertFalse( vi.fixed,'Unexpected Vector check');
+            assertTrue( vi.length == 5,'Unexpected Vector check');
+            assertEquals( vi.toString(),'1,2,0,4,5','Unexpected Vector check');
         }
         
         [Test]
@@ -795,9 +795,9 @@ package flexUnitTests.language
         {
             var vi:Vector.<int> = new <int>[1, 2, 3, 4, 5];
             vi.length = 10;
-            Assert.assertFalse('Unexpected Vector check', vi.fixed);
-            Assert.assertTrue('Unexpected Vector check', vi.length == 10);
-            Assert.assertEquals('Unexpected Vector check', '1,2,3,4,5,0,0,0,0,0', vi.toString());
+            assertFalse( vi.fixed,'Unexpected Vector check');
+            assertTrue( vi.length == 10,'Unexpected Vector check');
+            assertEquals( vi.toString(),'1,2,3,4,5,0,0,0,0,0','Unexpected Vector check');
         }
         
         [TestVariance(variance="JS", description="Variance in js implementation for access to 'constructor' via Vector instance, js is specific vs. Vector.<*> in swf.")]
@@ -805,30 +805,41 @@ package flexUnitTests.language
         public function testVectorConstructor():void
         {
             var vi:Vector.<int> = new <int>[1, 2, 3, 4, 5];
-            Assert.assertTrue('Unexpected Vector check', vi['constructor'] === Vector.<int>);
+            assertTrue( vi['constructor'] === Vector.<int>,'Unexpected Vector check');
             
             var vui:Vector.<uint> = new <uint>[1, 2, 3, 4, 5];
-            Assert.assertTrue('Unexpected Vector check', vui['constructor'] === Vector.<uint>);
+            assertTrue( vui['constructor'] === Vector.<uint>,'Unexpected Vector check');
             
             var vn:Vector.<Number> = new <Number>[1, 2, 3, 4, 5];
-            Assert.assertTrue('Unexpected Vector check', vn['constructor'] === Vector.<Number>);
+            assertTrue( vn['constructor'] === Vector.<Number>,'Unexpected Vector check');
             
             var vs:Vector.<String> = new <String>[];
             //current variance in the javascript vs. avm implementations
             const expected:Class = isJS ? Vector.<String> : Vector.<*>;
-            Assert.assertTrue('Unexpected Vector check', vs['constructor'] === expected);
+            assertTrue( vs['constructor'] === expected,'Unexpected Vector check');
         }
         
         [Test]
+        [TestVariance(variance="SWF",description="SWF tests for removeAt are not run when swf version<30")]
         public function testVectorRemoveAtType():void{
-            var customClasses:Array = [null, new TestClass2(), undefined, new TestClass1()];
+            if (hasInsertAtRemoveAt()) {
+                var customClasses:Array = [null, new TestClass2(), undefined, new TestClass1()];
     
-            var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
-            
-            var tc1:TestClass1 = vcustom.removeAt(1);
-            Assert.assertTrue('Unexpected Vector check', tc1 != null);
-            Assert.assertTrue('Unexpected Vector check', tc1 is TestClass1);
-            Assert.assertTrue('Unexpected Vector check', tc1 is TestClass2);
+                var vcustom:Vector.<TestClass1> = Vector.<TestClass1>(customClasses);
+    
+                COMPILE::SWF{
+                    var tc1:TestClass1 = vcustom['removeAt'](1);
+                }
+                COMPILE::JS{
+                    var tc1:TestClass1 = vcustom.removeAt(1);
+                }
+                assertTrue(tc1 != null, 'Unexpected Vector check');
+                assertTrue(tc1 is TestClass1, 'Unexpected Vector check');
+                assertTrue(tc1 is TestClass2, 'Unexpected Vector check');
+            } else {
+                assertTrue(true);
+            }
+           
         }
         
         private var _viTest:Vector.<int>;
@@ -855,7 +866,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -866,7 +877,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -877,7 +888,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -888,7 +899,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -899,7 +910,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -910,7 +921,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -921,7 +932,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -932,7 +943,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -943,7 +954,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -954,7 +965,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -965,7 +976,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -976,7 +987,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -987,7 +998,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -998,7 +1009,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1009,7 +1020,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1020,7 +1031,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1031,7 +1042,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1042,7 +1053,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1053,7 +1064,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1064,7 +1075,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1075,7 +1086,7 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
         }
         
         [Test]
@@ -1088,8 +1099,8 @@ package flexUnitTests.language
             var vi:Vector.<int> = new <int>[1, 2, 3, 4, 5];
             //allowed, not an error:
             vi[5] = 6;
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertEquals('Unexpected Vector check', '1,2,3,4,5,6', vi.toString());
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertEquals( vi.toString(),'1,2,3,4,5,6', 'Unexpected Vector check');
             var caughtError:Boolean;
             try
             {
@@ -1103,8 +1114,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1118,8 +1129,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
     
             try
             {
@@ -1132,8 +1143,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
     
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
             
             try
             {
@@ -1145,7 +1156,7 @@ package flexUnitTests.language
             {
                 caughtError = e is RangeError
             }
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( caughtError,'Unexpected Vector check');
         }
     
     
@@ -1162,8 +1173,8 @@ package flexUnitTests.language
             var vi:Vector.<int> = new <int>[1, 2, 3, 4, 5];
             //allowed, not an error:
             vi[5] = 6;
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertEquals('Unexpected Vector check', '1,2,3,4,5,6', vi.toString());
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertEquals( vi.toString(), '1,2,3,4,5,6','Unexpected Vector check');
             var caughtError:Boolean;
             try
             {
@@ -1177,8 +1188,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
             
-            Assert.assertTrue('Unexpected Vector check', vi.length == (isJS? 8 : 6));
-            Assert.assertTrue('Unexpected Vector check', caughtError === (isJS ? false : true));
+            assertTrue( vi.length == (isJS? 8 : 6),'Unexpected Vector check');
+            assertTrue( caughtError === (isJS ? false : true),'Unexpected Vector check');
     
             try
             {
@@ -1192,8 +1203,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
     
-            Assert.assertTrue('Unexpected Vector check', vi.length == (isJS? 8 : 6));
-            Assert.assertTrue('Unexpected Vector check', caughtError === (isJS ? false : true));
+            assertTrue( vi.length == (isJS? 8 : 6),'Unexpected Vector check');
+            assertTrue( caughtError === (isJS ? false : true),'Unexpected Vector check');
     
             try
             {
@@ -1206,8 +1217,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
     
-            Assert.assertTrue('Unexpected Vector check', vi.length == (isJS? 8 : 6));
-            Assert.assertTrue('Unexpected Vector check', caughtError === (isJS ? false : true));
+            assertTrue( vi.length == (isJS? 8 : 6),'Unexpected Vector check');
+            assertTrue( caughtError === (isJS ? false : true),'Unexpected Vector check');
     
             try
             {
@@ -1219,7 +1230,7 @@ package flexUnitTests.language
             {
                 caughtError = e is RangeError
             }
-            Assert.assertTrue('Unexpected Vector check', caughtError  === (isJS ? false : true));
+            assertTrue( caughtError  === (isJS ? false : true),'Unexpected Vector check');
         }
     
         [TestVariance(variance="JS", description="Variance in js implementation with @royalesuppressvectorindexcheck {name here}, Vector instance can enter invalid state.")]
@@ -1237,8 +1248,8 @@ package flexUnitTests.language
             var vi:Vector.<int> = new <int>[1, 2, 3, 4, 5];
             //allowed, not an error:
             vi[5] = 6;
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertEquals('Unexpected Vector check', '1,2,3,4,5,6', vi.toString());
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertEquals( vi.toString(), '1,2,3,4,5,6','Unexpected Vector check');
             var caughtError:Boolean;
             try
             {
@@ -1252,8 +1263,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
     
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
     
             try
             {
@@ -1267,8 +1278,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
     
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
     
             try
             {
@@ -1281,8 +1292,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
     
-            Assert.assertTrue('Unexpected Vector check', vi.length == 6);
-            Assert.assertTrue('Unexpected Vector check', caughtError);
+            assertTrue( vi.length == 6,'Unexpected Vector check');
+            assertTrue( caughtError,'Unexpected Vector check');
             
             var vi2:Vector.<int> = vi;
             try
@@ -1296,8 +1307,8 @@ package flexUnitTests.language
                 caughtError = e is RangeError
             }
         
-            Assert.assertTrue('Unexpected Vector check', vi2.length == 6);
-            Assert.assertTrue('Unexpected Vector check', caughtError === (isJS ? false : true));
+            assertTrue( vi2.length == 6,'Unexpected Vector check');
+            assertTrue( caughtError === (isJS ? false : true),'Unexpected Vector check');
         }
         
         
@@ -1331,51 +1342,51 @@ package flexUnitTests.language
         public function testGetter():void{
             var vString:Vector.<String> = instGetterTest;
     
-            Assert.assertTrue('Unexpected Vector check', vString is Vector.<String>);
-            Assert.assertFalse('Unexpected Vector check', vString is Array);
+            assertTrue( vString is Vector.<String>,'Unexpected Vector check');
+            assertFalse( vString is Array,'Unexpected Vector check');
             
             vString = instMyVec;
     
-            Assert.assertTrue('Unexpected Vector check', vString is Vector.<String>);
-            Assert.assertFalse('Unexpected Vector check', vString is Array);
+            assertTrue( vString is Vector.<String>,'Unexpected Vector check');
+            assertFalse( vString is Array,'Unexpected Vector check');
     
             vString = instGetTestVector();
     
-            Assert.assertTrue('Unexpected Vector check', vString is Vector.<String>);
-            Assert.assertFalse('Unexpected Vector check', vString is Array);
+            assertTrue( vString is Vector.<String>,'Unexpected Vector check');
+            assertFalse( vString is Array,'Unexpected Vector check');
             
             //static
             vString = getterTest;
     
-            Assert.assertTrue('Unexpected Vector check', vString is Vector.<String>);
-            Assert.assertFalse('Unexpected Vector check', vString is Array);
+            assertTrue( vString is Vector.<String>,'Unexpected Vector check');
+            assertFalse( vString is Array,'Unexpected Vector check');
     
             vString = getTestVector();
     
-            Assert.assertTrue('Unexpected Vector check', vString is Vector.<String>);
-            Assert.assertFalse('Unexpected Vector check', vString is Array);
+            assertTrue( vString is Vector.<String>,'Unexpected Vector check');
+            assertFalse( vString is Array,'Unexpected Vector check');
     
             vString = myVec;
     
-            Assert.assertTrue('Unexpected Vector check', vString is Vector.<String>);
-            Assert.assertFalse('Unexpected Vector check', vString is Array);
+            assertTrue( vString is Vector.<String>,'Unexpected Vector check');
+            assertFalse( vString is Array,'Unexpected Vector check');
         }
         
         [Test]
         public function checkInterface():void{
             var v:Vector.<ITestInterface> = new <ITestInterface>[];
             v.push(new TestClass1());
-            Assert.assertTrue('Unexpected Vector check', v.length == 1);
-            Assert.assertTrue('Unexpected Vector check', v[0] is TestClass1);
- 
+            assertTrue( v.length == 1,'Unexpected Vector check');
+            assertTrue( v[0] is TestClass1,'Unexpected Vector check');
+        
             v=new Vector.<ITestInterface>();
             v.push(new TestClass1());
-            Assert.assertTrue('Unexpected Vector check', v.length == 1);
-            Assert.assertTrue('Unexpected Vector check', v[0] is TestClass1);
-    
+            assertTrue( v.length == 1,'Unexpected Vector check');
+            assertTrue( v[0] is TestClass1,'Unexpected Vector check');
+        
             v = Vector.<ITestInterface>([new TestClass1()]);
-            Assert.assertTrue('Unexpected Vector check', v.length == 1);
-            Assert.assertTrue('Unexpected Vector check', v[0] is TestClass1);
+            assertTrue( v.length == 1,'Unexpected Vector check');
+            assertTrue( v[0] is TestClass1,'Unexpected Vector check');
             var err:Boolean;
             try {
                 v.push(new TestClass5())
@@ -1383,7 +1394,7 @@ package flexUnitTests.language
             {
                 err=true;
             }
-            Assert.assertTrue('Unexpected Vector check', err);
+            assertTrue( err,'Unexpected Vector check');
         }
     
         [Test]
@@ -1392,19 +1403,19 @@ package flexUnitTests.language
             //literal:
             var v:Vector.<PrivateClass> = new <PrivateClass>[];
             v.push(new PrivateClass());
-            Assert.assertTrue('Unexpected Vector check', v.length == 1);
-            Assert.assertTrue('Unexpected Vector check', v[0] is PrivateClass);
+            assertTrue( v.length == 1,'Unexpected Vector check');
+            assertTrue( v[0] is PrivateClass,'Unexpected Vector check');
             //normal constructor:
             v=new Vector.<PrivateClass>();
             v.push(new PrivateClass());
-            Assert.assertTrue('Unexpected Vector check', v.length == 1);
-            Assert.assertTrue('Unexpected Vector check', v[0] is PrivateClass);
+            assertTrue( v.length == 1,'Unexpected Vector check');
+            assertTrue( v[0] is PrivateClass,'Unexpected Vector check');
             //coercion
             v = Vector.<PrivateClass>([]);
             v.push(new PrivateClass());
-            Assert.assertTrue('Unexpected Vector check', v.length == 1);
-            Assert.assertTrue('Unexpected Vector check', v[0] is PrivateClass);
-            
+            assertTrue( v.length == 1,'Unexpected Vector check');
+            assertTrue( v[0] is PrivateClass,'Unexpected Vector check');
+        
         }
         
     }
