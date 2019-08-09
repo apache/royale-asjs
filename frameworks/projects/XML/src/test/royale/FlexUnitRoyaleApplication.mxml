@@ -33,10 +33,11 @@ limitations under the License.
                 import flash.system.fscommand;
             }
 
-            import flexUnitTests.DataGridColumnTester;
+            import flexUnitTests.XMLTester;
             
             import org.apache.royale.events.Event;
             import org.apache.royale.test.listeners.CIListener;
+
             import org.apache.royale.test.Runtime;
 
             //account for swf version variance in some test results due to fixed player bugs etc
@@ -61,7 +62,7 @@ limitations under the License.
                 Runtime.swfVersion = getSwfVersion();
                 core.addListener(new CIListener());
                 core.addEventListener(Event.COMPLETE, core_completeHandler);
-                core.runClasses(DataGridColumnTester);
+                core.runClasses(XMLTester);
             }
 
             private function core_completeHandler(event:Event):void
@@ -75,7 +76,8 @@ limitations under the License.
         ]]>
     </fx:Script>
     <js:valuesImpl>
-        <js:SimpleValuesImpl />
+        <!-- for such a simple app, we just set values to an empty array so it thinks it doesn't have any values -->
+        <js:SimpleValuesImpl values="[]"/>
     </js:valuesImpl>
 
 </js:Application>

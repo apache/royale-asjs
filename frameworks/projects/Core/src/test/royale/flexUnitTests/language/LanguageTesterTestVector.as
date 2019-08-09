@@ -21,7 +21,7 @@ package flexUnitTests.language
     
     import org.apache.royale.test.asserts.*;
     import flexUnitTests.language.support.*;
-    
+    import org.apache.royale.test.Runtime;
     
     /**
      * @royalesuppresspublicvarwarning
@@ -37,9 +37,7 @@ package flexUnitTests.language
             COMPILE::SWF{
                 //see; http://fpdownload.macromedia.com/pub/labs/flashruntimes/shared/air19_flashplayer19_releasenotes.pdf
                 // "Please use swf-version 30 or greater and namespace 19.0 or greater to access the new APIs."
-                //return RoyaleUnitTestRunner.swfVersion >= 30;
-                
-                return false;
+                return Runtime.swfVersion >= 30;
             }
             COMPILE::JS {
                 //always supported

@@ -37,9 +37,28 @@ limitations under the License.
             
             import org.apache.royale.events.Event;
             import org.apache.royale.test.listeners.CIListener;
+            import org.apache.royale.test.Runtime;
+
+            //account for swf version variance in some test results due to fixed player bugs etc
+            public function getSwfVersion():uint{
+                COMPILE::SWF{
+                    return this.stage.loaderInfo.bytes[3];
+
+                }
+                return 0;
+            }
+
+            public function getPlayerVersion():String{
+                COMPILE::SWF{
+                    import flash.system.Capabilities;
+                    return Capabilities.version;
+                }
+                return '';
+            }
             
             public function runTests():void
             {
+                Runtime.swfVersion = getSwfVersion();
                 core.addListener(new CIListener());
                 core.addEventListener(Event.COMPLETE, core_completeHandler);
                 core.runClasses(RoyaleUnitSuite);

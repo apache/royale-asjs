@@ -50,5 +50,6 @@ internal class RoyaleUnitClasses
 	import org.apache.royale.test.runners.notification.IRunNotifier;IRunNotifier;
 	import org.apache.royale.test.runners.notification.Result;Result;
 	import org.apache.royale.test.runners.notification.RunNotifier;RunNotifier;
+	import org.apache.royale.test.Runtime;Runtime;
 }
 }

@@ -114,9 +114,9 @@
         <antcall target="Binding"/>
         <antcall target="Reflection"/>
         <antcall target="RoyaleUnit"/>
-        <antcall target="Network"/>
         <antcall target="Collections"/>
         <antcall target="Basic"/>
+
         <antcall target="Ace"/>
         <antcall target="HTML"/>
         <antcall target="Effects"/>
@@ -132,6 +132,7 @@
 
         <antcall target="Storage"/>
         <antcall target="XML"/>
+        <antcall target="Network"/>
         <antcall target="Text"/>
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
@@ -150,6 +151,9 @@
         <antcall target="RoyaleUnitTest"/>
         <antcall target="CoreTest"/>
         <antcall target="BasicTest"/>
+        <antcall target="ReflectionTest"/>
+        <antcall target="NetworkTest"/>
+        <antcall target="XMLTest"/>
     </target>
 
     <target name="fonts">
@@ -333,8 +337,16 @@
         <ant dir="${basedir}/projects/Network"/>
     </target>
 
+    <target name="NetworkTest" description="Test of Network.swc">
+        <ant dir="${basedir}/projects/Network" target="test"/>
+    </target>
+
     <target name="Reflection" description="Clean build of Reflection.swc">
         <ant dir="${basedir}/projects/Reflection"/>
+    </target>
+
+    <target name="ReflectionTest" description="Test of Reflection.swc">
+        <ant dir="${basedir}/projects/Reflection" target="test"/>
     </target>
 
     <target name="RoyaleUnit" description="Clean build of RoyaleUnit.swc">
@@ -351,6 +363,11 @@
     <target name="XML" description="Clean build of XML.swc">
         <ant dir="${basedir}/projects/XML"/>
     </target>
+
+    <target name="XMLTest" description="Test of XML.swc">
+        <ant dir="${basedir}/projects/XML" target="test"/>
+    </target>
+
     <target name="Text" description="Clean build of Text.swc">
         <ant dir="${basedir}/projects/Text"/>
     </target>
