@@ -291,7 +291,7 @@ package org.apache.royale.utils
                 value: boundMethod
             });
             return boundMethod;
-        };
+        }
         
         /**
          * @param arr
@@ -299,7 +299,6 @@ package org.apache.royale.utils
          * @param opt
          *
          * @royaleignorecoercion Function
-         * @royalesuppressexport
          */
         public static function sort(arr:Array, ...args):void
         {
@@ -368,7 +367,6 @@ package org.apache.royale.utils
          * @param arr
          * @param names
          * @param opt
-         * @royalesuppressexport
          */
         public static function sortOn(arr:Array, names:Object, opt:Object = 0):void
         {
@@ -448,7 +446,6 @@ package org.apache.royale.utils
     
         /**
          * no export (allow dead code elimination if never used):
-         * @royalesuppressexport
          */
         public static function resolveUncertain(val:*):*
         {
@@ -460,18 +457,12 @@ package org.apache.royale.utils
         }
         
         private static var _synthType:Class;
-        /**
-         * @royalesuppressexport
-         */
+    
         public static const SYNTH_TAG_FIELD:String = goog.DEBUG ? '_synthType' : '_s';
-        /**
-         * @royalesuppressexport
-         */
+    
         public static const CHECK_INDEX:String = goog.DEBUG ? 'chkIdx' : '_ci';
     
-        /**
-         * @royalesuppressexport
-         */
+    
         public static function isSynthType(def:Object):Boolean{
             return (_synthType && def && def.constructor == _synthType);
         }
@@ -485,8 +476,8 @@ package org.apache.royale.utils
          * Supports a 'plugin' style addition of extra types beyond the basic defaults
          *
          * @royalesuppressresolveuncertain true, _synthType
-         * no export (allow dead code elimination if never used):
-         * @royalesuppressexport
+         * @royalesuppresscompleximplicitcoercion true
+         *
          */
         public static function synthType(typeName:String, newDefinition:*):Class
         {
@@ -557,8 +548,8 @@ package org.apache.royale.utils
          * Uses cached lookups and 'plugin' style addition of synthTypes for each distinct requested Vector subclass type
          *
          * @royaleignorecoercion Array
-         * no export (allow dead code elimination if never used):
-         * @royalesuppressexport
+         * @royalesuppresscompleximplicitcoercion true
+         *
          */
         public static function synthVector(elementType:String):Class
         {
@@ -638,7 +629,6 @@ package org.apache.royale.utils
          *
          * @royaleignorecoercion Array
          * no export (allow dead code elimination if never used):
-         * @royalesuppressexport
          */
         public static function Vector(size:int = 0, baseType:String = null, fixed:Boolean = false):*
         {
@@ -650,7 +640,6 @@ package org.apache.royale.utils
          * Support for legacy vectorEmulationClass=Array approach.
          *
          * no export (allow dead code elimination if never used):
-         * @royalesuppressexport
          */
         public static function arrayAsVector(size:int = 0, baseType:String = null):Array
         {
@@ -686,34 +675,19 @@ class VectorSupport {
     //Warning : code in this class is very dependent on non-generation of closures and possibly other 'quirks'
     //If you make any changes, please verify this against Vector unit tests, across different targets
     
-    /**
-     * @royalesuppressexport
-     */
     public static const fixedRangeError:String = 'Error #1126: Cannot change the length of a fixed Vector';
-    /**
-     * @royalesuppressexport
-     */
+
     public static const nonConstructorError:String = 'Error #1007: Instantiation attempted on a non-constructor.';
-    /**
-     * @royalesuppressexport
-     */
+
     public static var langSynthType:Object;
     
-    /**
-     * @royalesuppressexport
-     */
+
     public static const COERCE_ELEMENT:String = goog.DEBUG ? 'coerceElement' : 'cE';
-    /**
-     * @royalesuppressexport
-     */
+
     public static const DEFAULT_VALUE:String = goog.DEBUG ? 'defaultValue' : 'dV';
-    /**
-     * @royalesuppressexport
-     */
+
     public static const ELEMENT_TYPE:String = goog.DEBUG ? 'elementType' : 'eT';
-    /**
-     * @royalesuppressexport
-     */
+
     public static const FIXED_LEN:String = goog.DEBUG ? 'fixedLen' : 'fL';
     
     private static function indexRangerError(index:Number, limit:uint):String{
@@ -721,8 +695,7 @@ class VectorSupport {
     }
     
     /**
-     * internal use only: v should be an Array. 
-     * @royalesuppressexport
+     * internal use only: v should be an Array.
      */
     public static function checkIsVector(v:Object, typeName:String):Boolean
     {
@@ -735,9 +708,7 @@ class VectorSupport {
         }
         return ret;
     }
-    /**
-     * @royalesuppressexport
-     */   
+   
     public static function vectorElementDefault(elementType:String, synthVectorClass:Object ):Object {
         if (synthVectorClass[VectorSupport.DEFAULT_VALUE] !== undefined) return synthVectorClass[VectorSupport.DEFAULT_VALUE];
         const standardDefaults:Object = {
@@ -757,8 +728,8 @@ class VectorSupport {
     
     /**
      *
-     * @royaleignorecoercion Function      
-     * @royalesuppressexport
+     * @royaleignorecoercion Function
+     * @royalesuppresscompleximplicitcoercion true
      */
     public static function vectorElementCoercion(elementType:String, synthVectorClass:Object, deferred:Boolean):Function{
         if (synthVectorClass[VectorSupport.COERCE_ELEMENT]) return synthVectorClass[VectorSupport.COERCE_ELEMENT] as Function;
@@ -838,7 +809,6 @@ class VectorSupport {
     
     /**
      * @royaleignorecoercion Function
-     * @royalesuppressexport
      */
     public static function arrayVector(arr:Array, size:int, basetype:String,fixed:Boolean , tag:Object, construct:Boolean = true):Array
     {
@@ -866,8 +836,8 @@ class VectorSupport {
         return arr;
     }
     /**
-     * @royalesuppressexport
      * @royalesuppressclosure
+     * @royalesuppresscompleximplicitcoercion true
      */    
     public static function tagVectorArray(array:Array, elementType:String, fixed:Boolean, inst:Object):Array
     {
@@ -949,7 +919,7 @@ class VectorSupport {
     private static var _instance:VectorSupport;
     private static var _baseObject:Object;
     /**
-     * @royalesuppressexport
+     
      * prevent closure generation for the method references:
      * @royalesuppressclosure
      */
@@ -975,7 +945,6 @@ class VectorSupport {
     private static var _nonFixedTypeSafetyOverrides:Object;
     private static var _fixedTypeSafetyOverrides:Object;
     /**
-     * @royalesuppressexport
      * @royalesuppressclosure
      */
     public static function getMutationTypeSafetyOverrides(fixed:Boolean):Object{
@@ -1021,22 +990,18 @@ class VectorSupport {
         };
         return fixed ? _fixedTypeSafetyOverrides : _nonFixedTypeSafetyOverrides;
     }
-    /**
-     * @royalesuppressexport
-     */   
+   
     public function  toString():String{
         return Array.prototype.map.call(this, String).toString();
     }
     /**
      * @royaleignorecoercion Array
-     * @royalesuppressexport
      */
     public function map(callback:Function):* {
         var inst:Object= this[Language.SYNTH_TAG_FIELD]; return tagVectorArray(Array.prototype.map.call(this, function(item:Object, index:int, source:*):Object{return inst[COERCE_ELEMENT](callback(item,index,source))}) as Array, inst[ELEMENT_TYPE],false,null);
     }
     /**
      * @royaleignorecoercion Array
-     * @royalesuppressexport
      */
     public function splice():* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;var inst:Object= this[Language.SYNTH_TAG_FIELD]; var ret:Array = Array.prototype.splice.apply(this, a) as Array; if (inst[FIXED_LEN] > -1) inst[FIXED_LEN] = this['length']; return tagVectorArray(ret, inst[ELEMENT_TYPE], false, null);
@@ -1044,7 +1009,6 @@ class VectorSupport {
     
     /**
      * @royaleignorecoercion Array
-     * @royalesuppressexport
      */
     public function slice():* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;var inst:Object= this[Language.SYNTH_TAG_FIELD]; var ret:Array = Array.prototype.slice.apply(this, a) as Array; return tagVectorArray(ret, inst[ELEMENT_TYPE], false, null);
@@ -1052,7 +1016,6 @@ class VectorSupport {
     
     /**
      * @royaleignorecoercion Array
-     * @royalesuppressexport
      */
     public function filter():* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;var inst:Object= this[Language.SYNTH_TAG_FIELD]; var ret:Array = Array.prototype.filter.apply(this, a) as Array; return tagVectorArray(ret, inst[ELEMENT_TYPE], false, null);
@@ -1061,7 +1024,6 @@ class VectorSupport {
     /**
      * @royaleignorecoercion Array
      * @royaleignorecoercion String
-     * @royalesuppressexport
      */
     public function concat():* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;var inst:Object = this[Language.SYNTH_TAG_FIELD];
@@ -1075,21 +1037,15 @@ class VectorSupport {
         var ret:Array = Array.prototype.concat.apply(this, a) as Array;
         return tagVectorArray(ret,inst[ELEMENT_TYPE], false, null);
     }
-    /**
-     * @royalesuppressexport
-     */
+
     public function uncheckedInsertAt(index:Number,item:*):* {
         return Array.prototype.splice.call(this, index, 0, item);
     }
-    /**
-     * @royalesuppressexport
-     */
+
     public function uncheckedRemoveAt(index:Number):* {
         return Array.prototype.splice.call(this, index, 1)[0];
     }
-    /**
-     * @royalesuppressexport
-     */
+
     public function get_len():Number{
         //'this' inside here is the synthType instance. It has a value property that refers to the
         //Array instance that it 'tags'
@@ -1097,7 +1053,6 @@ class VectorSupport {
     }
     /**
      * @royaleignorecoercion Array
-     * @royalesuppressexport
      */
     public function set_len(value:Number):void{
         //'this' here is the synthType instance. It has a value property that refers to the
@@ -1116,7 +1071,6 @@ class VectorSupport {
     //fixed-length vector-like array overrides
     /**
      * @royaleignorecoercion Array
-     * @royalesuppressexport
      */
     public function push(v:*):* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;
@@ -1127,7 +1081,6 @@ class VectorSupport {
     }
     /**
      * @royaleignorecoercion Array
-     * @royalesuppressexport
      */
     public function unshift(v:*):* {
         var a:Array = Array.prototype.slice.call(arguments) as Array;
@@ -1136,30 +1089,22 @@ class VectorSupport {
         if (err) throw new (err.constructor)(err.message);
         return len;
     }
-    /**
-     * @royalesuppressexport
-     */
+
     public function insertAt(index:int, item:*):void {
         this[Language.SYNTH_TAG_FIELD]['insertAt'].call(this,index,item);
     }
-    /**
-     * @royalesuppressexport
-     */
+
     public function removeAt(index:int):Object {
         const idx:int = index < 0 ? Math.max(this['length'] + index, 0) : index;
         if (idx >= this['length']) throw new RangeError(indexRangerError(index, this['length']));
         return this[Language.SYNTH_TAG_FIELD]['removeAt'].call(this, idx);
     }
-    /**
-     * @royalesuppressexport
-     */
+
     public function throwRangeError():void{
         throw new RangeError(fixedRangeError);
     }
     
-    /**
-     * @royalesuppressexport
-     */
+
     public function chkIdx(index:Number):Number {
         var limit:Number = this[Language.SYNTH_TAG_FIELD][FIXED_LEN];
         var fail:Boolean = index >>> 0 !== index; //fail if not a uint value (also covers negative value range check)
