@@ -21,7 +21,7 @@ package flexUnitTests.reflection
     import org.apache.royale.test.asserts.*;
     import flexUnitTests.reflection.support.*;
     import org.apache.royale.reflection.*;
-    //import testshim.RoyaleUnitTestRunner;
+    import org.apache.royale.test.Runtime;
     
     /**
      * @royalesuppresspublicvarwarning
@@ -29,7 +29,17 @@ package flexUnitTests.reflection
     public class ReflectionTesterNativeTypes
     {
         
-        public static var isJS:Boolean = COMPILE::JS;;
+        public static var isJS:Boolean = COMPILE::JS;
+    
+        public static function getSwfVersion():uint{
+            COMPILE::SWF{
+                return Runtime.swfVersion;
+            }
+            COMPILE::JS {
+                //this mimics the version of the flash player that is 11.3
+                return 16
+            }
+        }
         
         [BeforeClass]
         public static function setUpBeforeClass():void
@@ -123,7 +133,7 @@ package flexUnitTests.reflection
             var def:TypeDefinition = describeType(Number);
             //player 11.2 and below has zero static methods in the Number class reflection.
             //from player 11.3 and above it has 18 (same as javascript)
-            const expectedCount:uint = COMPILE::JS ? 18 : 0;
+            const expectedCount:uint = getSwfVersion() >= 16 ? 18 : 0;
             assertEquals( def.staticMethods.length , expectedCount, "unexpected value");
             assertEquals( def.name, "Number", "Unexpected type name");
         }
@@ -140,7 +150,7 @@ package flexUnitTests.reflection
             assertEquals( def.name, "Number", "Unexpected type name");
             //player 11.2 and below has zero static methods in the Number class reflection.
             //from player 11.3 and above it has 18 (same as javascript)
-            const expectedCount:uint = COMPILE::JS ? 18 : 0;
+            const expectedCount:uint = getSwfVersion() >= 16 ? 18 : 0;
             assertEquals( def.staticMethods.length , expectedCount, "unexpected value");
 
         }
