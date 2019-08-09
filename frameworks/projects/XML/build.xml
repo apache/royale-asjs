@@ -34,7 +34,7 @@
     </tstamp>
     <echo>swc-date is ${royale.swc-date}</echo>
 
-    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
+    <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc" description="Full build of ${ant.project.name}.swc">
     </target>
     
     <target name="compile-js">

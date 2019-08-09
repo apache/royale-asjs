@@ -151,9 +151,9 @@
         <antcall target="RoyaleUnitTest"/>
         <antcall target="CoreTest"/>
         <antcall target="BasicTest"/>
-        <antcall target="ReflectionTest"/>
+        <!--<antcall target="ReflectionTest"/>
         <antcall target="NetworkTest"/>
-        <antcall target="XMLTest"/>
+        <antcall target="XMLTest"/>-->
     </target>
 
     <target name="fonts">
