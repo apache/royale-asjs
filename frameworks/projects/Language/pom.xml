@@ -46,7 +46,7 @@
           </includeClasses>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
-          <additionalCompilerOptions combine.self="append">-warn-instance-of-changes=false</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-warn-instance-of-changes=false;</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
