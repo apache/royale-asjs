@@ -73,7 +73,7 @@ public class DropDownListController implements IBead, IBeadController
         popUpModel.labelField = selectionModel.labelField;
         viewBead.popUpVisible = true; // adds to display list as well
         popUpModel.selectedIndex = selectionModel.selectedIndex;
-        var pt:Point = new Point(IUIBase(_strand).x, IUIBase(_strand).y + IUIBase(_strand).height);
+        var pt:Point = new Point(0, IUIBase(_strand).height);
         pt = PointUtils.localToGlobal(pt, _strand);
         IUIBase(viewBead.popUp).x = pt.x;
         IUIBase(viewBead.popUp).y = pt.y;
