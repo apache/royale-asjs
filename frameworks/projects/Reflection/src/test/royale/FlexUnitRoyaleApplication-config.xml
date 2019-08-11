@@ -1,0 +1,108 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<royale-config>
+
+    <compiler>
+        <accessible>false</accessible>
+        
+        <targets>
+            <target>SWF</target>
+        </targets>
+        <strict-xml>true</strict-xml>
+
+        <external-library-path>
+            <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}/playerglobal.swc</path-element>
+        </external-library-path>
+        
+        <js-external-library-path>
+            <path-element>../../../../../../js/libs/js.swc</path-element>
+            <path-element>../../../../../../js/libs/gcl.swc</path-element>
+        </js-external-library-path>
+        
+        <library-path>
+            <path-element>../../../../../libs/Basic.swc</path-element>
+            <path-element>../../../../../libs/Binding.swc</path-element>
+            <path-element>../../../../../libs/Core.swc</path-element>
+            <path-element>../../../../../libs/Graphics.swc</path-element>
+            <path-element>../../../../../libs/Collections.swc</path-element>
+            <path-element>../../../../../libs/Language.swc</path-element>
+            <path-element>../../../../../libs/Reflection.swc</path-element>
+            <path-element>../../../../../libs/RoyaleUnit.swc</path-element>
+        </library-path>
+        
+        <js-library-path>
+            <path-element>../../../../../js/libs/BasicJS.swc</path-element>
+            <path-element>../../../../../js/libs/BindingJS.swc</path-element>
+            <path-element>../../../../../js/libs/CoreJS.swc</path-element>
+            <path-element>../../../../../js/libs/GraphicsJS.swc</path-element>
+            <path-element>../../../../../js/libs/CollectionsJS.swc</path-element>
+            <path-element>../../../../../js/libs/LanguageJS.swc</path-element>
+            <path-element>../../../../../js/libs/ReflectionJS.swc</path-element>
+            <path-element>../../../../../js/libs/RoyaleUnitJS.swc</path-element>
+        </js-library-path>
+
+        <allow-subclass-overrides>true</allow-subclass-overrides>
+
+        <mxml>
+            <children-as-data>true</children-as-data>
+        </mxml>
+        <binding-value-change-event>org.apache.royale.events.ValueChangeEvent</binding-value-change-event>
+        <binding-value-change-event-kind>org.apache.royale.events.ValueChangeEvent</binding-value-change-event-kind>
+        <binding-value-change-event-type>valueChange</binding-value-change-event-type>
+        <fxg-base-class>flash.display.Sprite</fxg-base-class>
+
+        <keep-as3-metadata>
+          <name>Bindable</name>
+          <name>Managed</name>
+          <name>ChangeEvent</name>
+          <name>NonCommittingChangeEvent</name>
+          <name>Transient</name>
+          <name>SWFOverride</name>
+
+          <!-- RoyaleUnit -->
+          <name>Test</name>
+          <name>Before</name>
+          <name>After</name>
+          <name>BeforeClass</name>
+          <name>AfterClass</name>
+          <name>Ignore</name>
+          <name>Suite</name>
+          <name>RunWith</name>
+
+            <!--Reflection testing Meta -->
+            <name>TestMeta</name>
+        </keep-as3-metadata>
+    
+        <locale/>
+        
+        <library-path/>
+
+        <namespaces>
+            <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>../../main/resources/basic-manifest.xml</manifest>
+            </namespace>
+        </namespaces>
+        
+        <warn-no-constructor>false</warn-no-constructor>
+    </compiler>
+    
+    <target-player>${playerglobal.version}</target-player>
+
+</royale-config>

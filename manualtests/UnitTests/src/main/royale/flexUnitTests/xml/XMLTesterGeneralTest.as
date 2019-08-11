@@ -20,7 +20,7 @@ package flexUnitTests.xml
 {
     
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import testshim.RoyaleUnitTestRunner;
     
@@ -136,22 +136,22 @@ package flexUnitTests.xml
         {
             
             var xml1:XML = <foo baz="true"/>;
-            Assert.assertTrue('<foo baz="true"/> should have attribute @baz', xml1.hasOwnProperty("@baz"));
-            Assert.assertFalse('<foo baz="true"/> should not have attribute @foo', xml1.hasOwnProperty("@foo"));
-            Assert.assertFalse('<foo baz="true"/> should not have attribute baz', xml1.hasOwnProperty("baz"));
-            Assert.assertTrue('<foo baz="true"/> toXMLString should be <foo baz="true"/>', xml1.toXMLString() == '<foo baz="true"/>');
+            assertTrue( xml1.hasOwnProperty("@baz"), '<foo baz="true"/> should have attribute @baz');
+            assertFalse( xml1.hasOwnProperty("@foo"), '<foo baz="true"/> should not have attribute @foo');
+            assertFalse( xml1.hasOwnProperty("baz"), '<foo baz="true"/> should not have attribute baz');
+            assertTrue( xml1.toXMLString() == '<foo baz="true"/>', '<foo baz="true"/> toXMLString should be <foo baz="true"/>');
             
-            Assert.assertTrue('xml1.@baz.toString() should be "true"', xml1.@baz.toString() == 'true');
+            assertTrue( xml1.@baz.toString() == 'true', 'xml1.@baz.toString() should be "true"');
     
             var baz:XMLList = xml1.@baz;
-            Assert.assertTrue('baz.toString() should be "true"', baz.toString() == 'true');
-            Assert.assertEquals('baz.length() should be 1', baz.length(),1);
+            assertTrue( baz.toString() == 'true', 'baz.toString() should be "true"');
+            assertEquals( baz.length(),1, 'baz.length() should be 1');
             var xml3:XML = <root/>;
             xml3.bar.baz = "baz";
             xml3.foo.@boo = "boo";
     
-            Assert.assertEquals('xml3.bar.baz should be "baz"', xml3.bar.baz,'baz');
-            Assert.assertEquals('xml3.foo.@boo should be "boo"', xml3.foo.@boo,'boo');
+            assertEquals( xml3.bar.baz,'baz', 'xml3.bar.baz should be "baz"');
+            assertEquals( xml3.foo.@boo,'boo', 'xml3.foo.@boo should be "boo"');
 
         }
         
@@ -163,30 +163,32 @@ package flexUnitTests.xml
         {
             var xml1:XML = <foo baz="true"/>;
             
-            Assert.assertTrue('toString value should be "true" ', xml1.@baz.toString() == "true");
+            assertTrue( xml1.@baz.toString() == "true", 'toString value should be "true" ');
             var xml3:XML = <root/>;
             xml3.bar.baz = "baz";
             xml3.foo.@boo = "boo";
 
-            Assert.assertEquals('toString value should be "baz" ', xml3.bar.baz.toString(), "baz");
-            Assert.assertEquals('toString value should be "boo" ', xml3.foo.@boo.toString(), "boo");
+            assertEquals( xml3.bar.baz.toString(), "baz", 'toString value should be "baz" ');
+            assertEquals( xml3.foo.@boo.toString(), "boo", 'toString value should be "boo" ');
             
             var newContent:XML = <Content/>;
             newContent.Properties.Leading.@type = "string";
             newContent.Properties.Leading = 36;
             
-            Assert.assertEquals("Leading should be @type=string", newContent.Properties.Leading.@type, "string");
-            Assert.assertStrictlyEquals("Leading should be 36", newContent.Properties.Leading.toString(), "36");
-            Assert.assertStrictlyEquals("unexpected toXMLString() value",
+            assertEquals( newContent.Properties.Leading.@type, "string", "Leading should be @type=string");
+            assertStrictlyEquals(newContent.Properties.Leading.toString(), "36", "Leading should be 36");
+            assertStrictlyEquals(
                     newContent.toXMLString(),
                     "<Content>\n" +
                     "  <Properties>\n" +
                     "    <Leading type=\"string\">36</Leading>\n" +
                     "  </Properties>\n" +
-                    "</Content>");
+                    "</Content>",
+                    "unexpected toXMLString() value"
+            );
 
             newContent.Properties.Leading = 72;
-            Assert.assertStrictlyEquals("Leading should be 72", newContent.Properties.Leading.toString(), "72");
+            assertStrictlyEquals(newContent.Properties.Leading.toString(), "72", "Leading should be 72");
             
         }
         
@@ -200,8 +202,8 @@ package flexUnitTests.xml
             child = <pop><child name="George"/></pop>;
             xml1.appendChild(child);
             
-            Assert.assertTrue('unexpected child result', xml1.pop[0].child.@name.toString() == 'Sam');
-            Assert.assertTrue('unexpected child result', xml1.pop[1].child.@name.toString() == 'George');
+            assertTrue( xml1.pop[0].child.@name.toString() == 'Sam', 'unexpected child result');
+            assertTrue( xml1.pop[1].child.@name.toString() == 'George', 'unexpected child result');
             
         }
 
@@ -220,16 +222,16 @@ package flexUnitTests.xml
                         <child name="George"/>
                     </pop>;
             xml1.appendChild(child);
-            Assert.assertEquals('unexpected output with xml1.pop[0].toString()',
+            assertEquals(
                     xml1.pop[0].toString(),
                     '<pop>\n' +
                     '  <child name="Sam"/>\n' +
-                    '</pop>');
-            Assert.assertEquals('unexpected output with xml1.pop[1].toString()',
+                    '</pop>', 'unexpected output with xml1.pop[0].toString()');
+            assertEquals(
                     xml1.pop[1].toString(),
                     '<pop>\n' +
                     '  <child name="George"/>\n' +
-                    '</pop>');
+                    '</pop>', 'unexpected output with xml1.pop[1].toString()');
             
 
             var pop:XMLList = xml1.pop;
@@ -237,7 +239,7 @@ package flexUnitTests.xml
                                     <child name="Fred"/>
                                 </pop>;
 
-            Assert.assertEquals('unexpected output with pop.toString()',
+            assertEquals(
                     pop.toString(),
                     '<pop>\n' +
                     '  <child name="Sam"/>\n' +
@@ -247,9 +249,9 @@ package flexUnitTests.xml
                     '</pop>\n' +
                     '<pop>\n' +
                     '  <child name="Fred"/>\n' +
-                    '</pop>');
+                    '</pop>', 'unexpected output with pop.toString()');
     
-            Assert.assertEquals('unexpected output with xml1.toString()',
+            assertEquals(
                     xml1.toString(),
                     '<foo baz="true">\n' +
                     '  <pop>\n' +
@@ -261,14 +263,14 @@ package flexUnitTests.xml
                     '  <pop>\n' +
                     '    <child name="Fred"/>\n' +
                     '  </pop>\n' +
-                    '</foo>');
+                    '</foo>', 'unexpected output with xml1.toString()');
             
             
             pop[0] =    <pop>
                             <child name="Fred"/>
                         </pop>;
     
-            Assert.assertEquals('unexpected output with pop.toString()',
+            assertEquals(
                     pop.toString(),
                     '<pop>\n' +
                     '  <child name="Fred"/>\n' +
@@ -278,9 +280,9 @@ package flexUnitTests.xml
                     '</pop>\n' +
                     '<pop>\n' +
                     '  <child name="Fred"/>\n' +
-                    '</pop>');
+                    '</pop>', 'unexpected output with pop.toString()');
     
-            Assert.assertEquals('unexpected output with xml1.toString()',
+            assertEquals(
                     xml1.toString(),
                     '<foo baz="true">\n' +
                     '  <pop>\n' +
@@ -292,7 +294,7 @@ package flexUnitTests.xml
                     '  <pop>\n' +
                     '    <child name="Fred"/>\n' +
                     '  </pop>\n' +
-                    '</foo>');
+                    '</foo>', 'unexpected output with xml1.toString()');
             
             //toLocaleString
             //VARIANCE
@@ -311,9 +313,9 @@ package flexUnitTests.xml
                     '</foo>' //js
                     : '[object XML]';// swf
             
-            Assert.assertEquals('unexpected output with xml1.toLocaleString()',
+            assertEquals(
                     xml1.toLocaleString(),
-                    expected);
+                    expected, 'unexpected output with xml1.toLocaleString()');
             
             expected = isJS
                 ?   '<pop>\n' +
@@ -327,20 +329,20 @@ package flexUnitTests.xml
                     '</pop>' //js
                     : '[object XMLList]';//swf
     
-            Assert.assertEquals('unexpected output with xml1.pop.toLocaleString()',
+            assertEquals(
                     xml1.pop.toLocaleString(),
-                    expected);
+                    expected, 'unexpected output with xml1.pop.toLocaleString()');
 
             
             var parentXML:XML = <parent/>;
             var childXML:XML = <child/>;
             parentXML.appendChild(childXML);
-            Assert.assertTrue('child/parent relationship was unexpected', (childXML.parent() == parentXML));
-            Assert.assertEquals('unexpected output following re-parenting',
+            assertTrue( (childXML.parent() == parentXML), 'child/parent relationship was unexpected');
+            assertEquals(
                     parentXML.toXMLString(),
                     '<parent>\n' +
                     '  <child/>\n' +
-                    '</parent>');
+                    '</parent>', 'unexpected output following re-parenting');
             
             var newParent:XML = <newparent/>;
             newParent.appendChild(childXML);
@@ -355,35 +357,35 @@ package flexUnitTests.xml
                 expected = '<parent/>';
             }
     
-            Assert.assertEquals('unexpected output following re-parenting',
+            assertEquals(
                     parentXML.toXMLString(),
-                    expected);
+                    expected, 'unexpected output following re-parenting');
     
-            Assert.assertEquals('unexpected output following re-parenting',
+            assertEquals(
                     newParent.toXMLString(),
                     '<newparent>\n' +
                     '  <child/>\n' +
-                    '</newparent>');
+                    '</newparent>', 'unexpected output following re-parenting');
             
-            Assert.assertFalse('child/parent relationship was unexpected', (childXML.parent() == parentXML));
+            assertFalse( (childXML.parent() == parentXML), 'child/parent relationship was unexpected');
             
             var expectedLength:uint = getSwfVersion() < 21 ? 1 : 0;
             //another bug in old swf version, some 'remnant' of the old 'child' is still present in the'old' parent
-            Assert.assertTrue('child/parent relationship was unexpected', (parentXML.children().length() == expectedLength));
-            Assert.assertTrue('child/parent relationship was unexpected', (childXML.parent() == newParent));
+            assertTrue( (parentXML.children().length() == expectedLength), 'child/parent relationship was unexpected');
+            assertTrue( (childXML.parent() == newParent), 'child/parent relationship was unexpected');
             
             childXML = <Content>• <?ACE 7?>Some amazing content</Content>;
             var childXMLStr:String = childXML.text();
 
-            Assert.assertEquals(" (should be) •Some amazing content", childXMLStr, '•Some amazing content');
+            assertEquals( childXMLStr, '•Some amazing content', " (should be) •Some amazing content");
         }
         [Test]
         public function testInvalidAppendChild():void{
             var root:XML = new XML('test');
             root.appendChild('test');
     
-            Assert.assertEquals('testInvalidAppendChild 1 result is bad',root.toString(), 'test');
-            Assert.assertEquals('testInvalidAppendChild 2 result is bad',root.toXMLString(), 'test');
+            assertEquals(root.toString(), 'test', 'testInvalidAppendChild 1 result is bad');
+            assertEquals(root.toXMLString(), 'test', 'testInvalidAppendChild 2 result is bad');
         }
     
         [Test]
@@ -391,29 +393,29 @@ package flexUnitTests.xml
             var root:XML = <root/>;
             root.appendChild('test');
     
-            Assert.assertEquals('testAppendNonXMLChild 1 result is bad',root.toString(), 'test');
-            Assert.assertEquals('testAppendNonXMLChild 2 result is bad',root.toXMLString(), '<root>test</root>');
+            assertEquals(root.toString(), 'test', 'testAppendNonXMLChild 1 result is bad');
+            assertEquals(root.toXMLString(), '<root>test</root>', 'testAppendNonXMLChild 2 result is bad');
             
             root = <root><test><something/></test></root>;
             root.appendChild('test');
     
-            Assert.assertEquals('testAppendNonXMLChild 3 result is bad',
+            assertEquals(
                     root.toString(),
                     '<root>\n' +
                     '  <test>\n' +
                     '    <something/>\n' +
                     '  </test>\n' +
                     '  <test>test</test>\n' +
-                    '</root>');
+                    '</root>', 'testAppendNonXMLChild 3 result is bad');
             
-            Assert.assertEquals('testAppendNonXMLChild 4 result is bad',
+            assertEquals(
                     root.toXMLString(),
                     '<root>\n' +
                     '  <test>\n' +
                     '    <something/>\n' +
                     '  </test>\n' +
                     '  <test>test</test>\n' +
-                    '</root>');
+                    '</root>', 'testAppendNonXMLChild 4 result is bad');
             
         }
         
@@ -428,7 +430,7 @@ package flexUnitTests.xml
             xml.appendChild("test4");
             
     
-            Assert.assertEquals('testXMLNormalize 1 result is bad',
+            assertEquals(
                     xml.toString(),
                     '<root>\n' +
                     '  test1\n' +
@@ -436,9 +438,9 @@ package flexUnitTests.xml
                     '  <element/>\n' +
                     '  <element>test3</element>\n' +
                     '  <element>test4</element>\n' +
-                    '</root>');
+                    '</root>', 'testXMLNormalize 1 result is bad');
     
-            Assert.assertEquals('testXMLNormalize 2 result is bad',
+            assertEquals(
                     xml.toXMLString(),
                     '<root>\n' +
                     '  test1\n' +
@@ -446,28 +448,28 @@ package flexUnitTests.xml
                     '  <element/>\n' +
                     '  <element>test3</element>\n' +
                     '  <element>test4</element>\n' +
-                    '</root>');
+                    '</root>', 'testXMLNormalize 2 result is bad');
             
    
             xml.normalize();
     
-            Assert.assertEquals('testXMLNormalize 3 result is bad',
+            assertEquals(
                     xml.toString(),
                     '<root>\n' +
                     '  test1test2\n' +
                     '  <element/>\n' +
                     '  <element>test3</element>\n' +
                     '  <element>test4</element>\n' +
-                    '</root>');
+                    '</root>', 'testXMLNormalize 3 result is bad');
     
-            Assert.assertEquals('testXMLNormalize 4 result is bad',
+            assertEquals(
                     xml.toXMLString(),
                     '<root>\n' +
                     '  test1test2\n' +
                     '  <element/>\n' +
                     '  <element>test3</element>\n' +
                     '  <element>test4</element>\n' +
-                    '</root>');
+                    '</root>', 'testXMLNormalize 4 result is bad');
 
             
         }
@@ -496,7 +498,7 @@ package flexUnitTests.xml
                     + '<rect id="3" height="100px"/>' + '\n'
                     + '<rect id="4"/>';
             
-            Assert.assertTrue('string output was unexpected', rects.toXMLString() == expected);
+            assertTrue( rects.toXMLString() == expected, 'string output was unexpected');
         }
     
     
@@ -509,16 +511,16 @@ package flexUnitTests.xml
     
             //var list:XMLList = xml.child('*')
     
-            Assert.assertEquals('Error in list length', 4, list.length());
+            assertEquals( 4, list.length(), 'Error in list length');
             //trace(list.length());
             list = xml.element;
-            Assert.assertEquals('Error in list length', 1, list.length());
+            assertEquals( 1, list.length(), 'Error in list length');
             //list = xml.child('element')
     
            // trace(list.length())
             list = xml.otherElement;
             //list = xml.child('otherElement')
-            Assert.assertEquals('Error in list length', 1, list.length());
+            assertEquals( 1, list.length(), 'Error in list length');
         
         }
     
@@ -531,8 +533,8 @@ package flexUnitTests.xml
             </Document>;
         
             var namespace:Namespace = content.children()[0].namespace();
-            Assert.assertEquals('Error in namespace prefix', namespace.prefix, 'x');
-            Assert.assertEquals('Error in namespace uri', namespace.uri, 'adobe:ns:meta/');
+            assertEquals( namespace.prefix, 'x', 'Error in namespace prefix');
+            assertEquals( namespace.uri, 'adobe:ns:meta/', 'Error in namespace uri');
         
         }
     
@@ -553,7 +555,7 @@ package flexUnitTests.xml
             if (isJS) {
                 caughtError = !caughtError;
             }
-            Assert.assertFalse('Unexpected Error state with duplicate namespace declarations', caughtError);
+            assertFalse( caughtError, 'Unexpected Error state with duplicate namespace declarations');
         
         }
     
@@ -566,7 +568,7 @@ package flexUnitTests.xml
                 caughtError = true;
             }
         
-            Assert.assertTrue('Unexpected Error state with duplicate attribute declarations', caughtError);
+            assertTrue( caughtError, 'Unexpected Error state with duplicate attribute declarations');
         
         }
     
@@ -576,23 +578,23 @@ package flexUnitTests.xml
             XML.ignoreWhitespace = true;
             var script:XML = <script>   <![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]>  </script>;
     
-            Assert.assertEquals('unexpected children number after parsing',1, script.children().length());
-            Assert.assertEquals('unexpected toString value after parsing',
+            assertEquals(1, script.children().length(), 'unexpected children number after parsing');
+            assertEquals(
                     '<script><![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]></script>', 
-                    script.toXMLString());
+                    script.toXMLString(), 'unexpected toString value after parsing');
 
             XML.ignoreWhitespace = false;
             script = <script>   <![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]>  </script>;
-            Assert.assertEquals('unexpected children number after parsing',3, script.children().length());
+            assertEquals(3, script.children().length(), 'unexpected children number after parsing');
             
 
-            Assert.assertEquals('unexpected toString value after parsing',
+            assertEquals(
                     '<script>\n' +
                     '  \n' +
                     '  <![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]>\n' +
                     '  \n' +
                     '</script>',
-                    script.toXMLString());
+                    script.toXMLString(), 'unexpected toString value after parsing');
             XML.ignoreWhitespace = originalSetting;
         }
         [Test]
@@ -600,12 +602,12 @@ package flexUnitTests.xml
             var original:Boolean = XML.ignoreProcessingInstructions;
             XML.ignoreProcessingInstructions = true;
             var xml:XML = new XML('<?bar foo?>');
-            Assert.assertEquals('unexpected nodeKind with XML.ignoreProcessingInstructions = true', 'text', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreProcessingInstructions = true', '', xml.toXMLString());
+            assertEquals( 'text', xml.nodeKind(), 'unexpected nodeKind with XML.ignoreProcessingInstructions = true');
+            assertEquals( '', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreProcessingInstructions = true');
             XML.ignoreProcessingInstructions = false;
             xml = new XML('<?bar foo?>');
-            Assert.assertEquals('unexpected nodeKind with XML.ignoreProcessingInstructions = false', 'processing-instruction', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreProcessingInstructions = false', '<?bar foo?>', xml.toXMLString());
+            assertEquals( 'processing-instruction', xml.nodeKind(), 'unexpected nodeKind with XML.ignoreProcessingInstructions = false');
+            assertEquals( '<?bar foo?>', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreProcessingInstructions = false');
     
             XML.ignoreProcessingInstructions = original;
         }
@@ -616,9 +618,9 @@ package flexUnitTests.xml
             var original:Boolean = XML.ignoreWhitespace;
             XML.ignoreWhitespace = true;
             var xml:XML = new XML('   <![CDATA[ my cdata ]]>   ');
-            Assert.assertEquals('unexpected cdata result with XML.ignoreWhitespace = true', 'text', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreWhitespace = true', '<![CDATA[ my cdata ]]>', xml.toXMLString());
-            Assert.assertNull('unexpected name value with CDATA', xml.name());
+            assertEquals( 'text', xml.nodeKind(), 'unexpected cdata result with XML.ignoreWhitespace = true');
+            assertEquals( '<![CDATA[ my cdata ]]>', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreWhitespace = true');
+            assertNull( xml.name(), 'unexpected name value with CDATA');
             XML.ignoreWhitespace = false;
             var caughtError:Boolean = false;
             try {
@@ -627,7 +629,7 @@ package flexUnitTests.xml
                 caughtError = true;
             }
             
-            Assert.assertTrue('unexpected error status for single cdata string parsing with XML.ignoreWhitespace = false', caughtError);
+            assertTrue( caughtError, 'unexpected error status for single cdata string parsing with XML.ignoreWhitespace = false');
         
             XML.ignoreWhitespace = original;
         }
@@ -638,9 +640,9 @@ package flexUnitTests.xml
             var original:Boolean = XML.ignoreWhitespace;
             XML.ignoreWhitespace = true;
             var xml:XML = new XML('   my text   ');
-            Assert.assertEquals('unexpected text result with XML.ignoreWhitespace = true', 'text', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreWhitespace = true', 'my text', xml.toXMLString());
-            Assert.assertNull('unexpected name value with text', xml.name());
+            assertEquals( 'text', xml.nodeKind(), 'unexpected text result with XML.ignoreWhitespace = true');
+            assertEquals( 'my text', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreWhitespace = true');
+            assertNull( xml.name(), 'unexpected name value with text');
             XML.ignoreWhitespace = false;
             var caughtError:Boolean = false;
             try {
@@ -649,9 +651,9 @@ package flexUnitTests.xml
                 caughtError = true;
             }
         
-            Assert.assertFalse('unexpected error status for text string parsing with XML.ignoreWhitespace = false', caughtError);
-            Assert.assertEquals('unexpected text result with XML.ignoreWhitespace = true', 'text', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreWhitespace = true', '   my text   ', xml.valueOf());
+            assertFalse( caughtError, 'unexpected error status for text string parsing with XML.ignoreWhitespace = false');
+            assertEquals( 'text', xml.nodeKind(), 'unexpected text result with XML.ignoreWhitespace = true');
+            assertEquals( '   my text   ', xml.valueOf(), 'unexpected toXMLString with XML.ignoreWhitespace = true');
             XML.ignoreWhitespace = original;
         }
     
@@ -662,9 +664,9 @@ package flexUnitTests.xml
             XML.ignoreWhitespace = true;
             XML.ignoreComments = false;
             var xml:XML = new XML('  <!-- my test comment -->  ');
-            Assert.assertEquals('unexpected comment result with XML.ignoreWhitespace = true', 'comment', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreWhitespace = true', '<!-- my test comment -->', xml.toXMLString());
-            Assert.assertNull('unexpected name value with text', xml.name());
+            assertEquals( 'comment', xml.nodeKind(), 'unexpected comment result with XML.ignoreWhitespace = true');
+            assertEquals( '<!-- my test comment -->', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreWhitespace = true');
+            assertNull( xml.name(), 'unexpected name value with text');
             XML.ignoreWhitespace = false;
             var caughtError:Boolean = false;
             try {
@@ -673,19 +675,19 @@ package flexUnitTests.xml
                 caughtError = true;
             }
         
-            Assert.assertTrue('unexpected error status for comment parsing with XML.ignoreWhitespace = false', caughtError);
+            assertTrue( caughtError, 'unexpected error status for comment parsing with XML.ignoreWhitespace = false');
     
             xml = new XML('<!-- my test comment -->');
-            Assert.assertNull('unexpected name value with comment', xml.name());
+            assertNull( xml.name(), 'unexpected name value with comment');
             
-            Assert.assertEquals('unexpected comment result with XML.ignoreWhitespace = true', 'comment', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreWhitespace = true', '<!-- my test comment -->', xml.toXMLString());
+            assertEquals( 'comment', xml.nodeKind(), 'unexpected comment result with XML.ignoreWhitespace = true');
+            assertEquals( '<!-- my test comment -->', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreWhitespace = true');
             XML.ignoreComments = true;
             xml = new XML('<!-- my test comment -->');
-            Assert.assertNull('unexpected name value with text', xml.name());
+            assertNull( xml.name(), 'unexpected name value with text');
     
-            Assert.assertEquals('unexpected comment result with XML.ignoreComments = true', 'text', xml.nodeKind());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreComments = true', '', xml.toXMLString());
+            assertEquals( 'text', xml.nodeKind(), 'unexpected comment result with XML.ignoreComments = true');
+            assertEquals( '', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreComments = true');
             
             
             XML.ignoreWhitespace = original;
@@ -699,18 +701,18 @@ package flexUnitTests.xml
             XML.ignoreWhitespace = true;
             XML.ignoreComments = false;
             var xml:XML = new XML('<root><!-- my test comment --></root>');
-            Assert.assertEquals('unexpected comment result with XML.ignoreComments = false', 1, xml.children().length());
+            assertEquals( 1, xml.children().length(), 'unexpected comment result with XML.ignoreComments = false');
 
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreComments = false',
+            assertEquals(
                     '<root>\n' +
                     '  <!-- my test comment -->\n' +
                     '</root>',
-                    xml.toXMLString());
-            Assert.assertNull('unexpected name value with comment', xml.children()[0].name());
+                    xml.toXMLString(), 'unexpected toXMLString with XML.ignoreComments = false');
+            assertNull( xml.children()[0].name(), 'unexpected name value with comment');
             XML.ignoreComments = true;
             xml = new XML('<root><!-- my test comment --></root>');
-            Assert.assertEquals('unexpected comment result with XML.ignoreComments = true', 0, xml.children().length());
-            Assert.assertEquals('unexpected toXMLString with XML.ignoreComments = true', '<root/>', xml.toXMLString());
+            assertEquals( 0, xml.children().length(), 'unexpected comment result with XML.ignoreComments = true');
+            assertEquals( '<root/>', xml.toXMLString(), 'unexpected toXMLString with XML.ignoreComments = true');
     
             XML.ignoreWhitespace = original;
             XML.ignoreComments = originalComments;
@@ -809,7 +811,7 @@ package flexUnitTests.xml
             
             //IE and MS Edge: inlcude alternate output check
             //account for variation in output order of attributes and namespace declarations (from native DOMParser)
-            Assert.assertTrue('unexpected complex stringify results',  xmlString.length == 2060);
+            assertTrue(  xmlString.length == 2060, 'unexpected complex stringify results');
         }
         
         
@@ -823,8 +825,8 @@ package flexUnitTests.xml
             var xml:XML = new XML(xmlSource);
             
             
-            Assert.assertTrue('unexpected toSting result', xml.toString() == '');
-            Assert.assertTrue('unexpected nodeKind result', xml.nodeKind() == 'text');
+            assertTrue( xml.toString() == '', 'unexpected toSting result');
+            assertTrue( xml.nodeKind() == 'text', 'unexpected nodeKind result');
            
     
             XML.ignoreProcessingInstructions = false;
@@ -837,7 +839,7 @@ package flexUnitTests.xml
                 caughtError = true;
             }
             //RoyaleUnitTestRunner.consoleOut('testTopLevelProcessingInstructions '+xml.nodeKind());
-            Assert.assertTrue('error was expected', caughtError)
+            assertTrue( caughtError, 'error was expected');
         }
     
     
@@ -851,15 +853,15 @@ package flexUnitTests.xml
             var xml:XML = new XML(xmlSource);
         
         
-            Assert.assertTrue('unexpected toSting result', xml.toString() == 'test');
-            Assert.assertTrue('unexpected nodeKind result', xml.nodeKind() == 'element');
+            assertTrue( xml.toString() == 'test', 'unexpected toSting result');
+            assertTrue( xml.nodeKind() == 'element', 'unexpected nodeKind result');
         
         
             XML.ignoreWhitespace = false;
             xml = new XML(xmlSource);
 
-            Assert.assertTrue('unexpected toSting result', xml.toString() == 'test');
-            Assert.assertTrue('unexpected nodeKind result', xml.nodeKind() == 'element');
+            assertTrue( xml.toString() == 'test', 'unexpected toSting result');
+            assertTrue( xml.nodeKind() == 'element', 'unexpected nodeKind result');
     
             XML.ignoreWhitespace = original;
         }
@@ -877,8 +879,8 @@ package flexUnitTests.xml
             var xml:XML = new XML(xmlSource);
         
         
-            Assert.assertTrue('unexpected toSting result', xml.toString() == 'test');
-            Assert.assertTrue('unexpected nodeKind result', xml.nodeKind() == 'element');
+            assertTrue( xml.toString() == 'test', 'unexpected toSting result');
+            assertTrue( xml.nodeKind() == 'element', 'unexpected nodeKind result');
     
             xmlSource = '<?xml version="1.0" encoding="UTF-8"?>\n'
                     +' <?test1 ?>  <!-- my test comment1 -->   <?test2 ?>  <!-- my test comment2 --> ';
@@ -890,9 +892,9 @@ package flexUnitTests.xml
             {
                 caughtError = true;
             }
-            Assert.assertTrue('unexpected error status', caughtError);
-            Assert.assertTrue('unexpected toSting result', xml.toString() == 'test');
-            Assert.assertTrue('unexpected nodeKind result', xml.nodeKind() == 'element');
+            assertTrue( caughtError, 'unexpected error status');
+            assertTrue( xml.toString() == 'test', 'unexpected toSting result');
+            assertTrue( xml.nodeKind() == 'element', 'unexpected nodeKind result');
             
             XML.setSettings(original)
         }
@@ -917,7 +919,7 @@ package flexUnitTests.xml
                 caughtError = true;
             }
     
-            Assert.assertTrue('unexpected error statust', caughtError);
+            assertTrue( caughtError, 'unexpected error statust');
             //repeat with all settings toggled (must remain an error)
             XML.ignoreComments = true;
             XML.ignoreProcessingInstructions = true;
@@ -929,7 +931,7 @@ package flexUnitTests.xml
                 caughtError = true;
             }
     
-            Assert.assertTrue('unexpected error statust', caughtError);
+            assertTrue( caughtError, 'unexpected error statust');
             //restore settings
             XML.ignoreComments = false;
             XML.ignoreProcessingInstructions = false;
@@ -944,7 +946,7 @@ package flexUnitTests.xml
             } catch(e:Error) {
                 caughtError = true;
             }
-            Assert.assertTrue('unexpected error status', caughtError);
+            assertTrue( caughtError, 'unexpected error status');
     
             //repeat with whiteSpace toggled (must remain an error)
             XML.ignoreWhitespace = true;
@@ -954,7 +956,7 @@ package flexUnitTests.xml
             } catch(e:Error) {
                 caughtError = true;
             }
-            Assert.assertTrue('unexpected error status', caughtError);
+            assertTrue( caughtError, 'unexpected error status');
             XML.ignoreWhitespace = false;
             //repeat with ignoreProcessingInstructions toggled
             XML.ignoreProcessingInstructions = true;
@@ -964,7 +966,7 @@ package flexUnitTests.xml
             } catch(e:Error) {
                 caughtError = true;
             }
-            Assert.assertTrue('unexpected error status', caughtError);
+            assertTrue( caughtError, 'unexpected error status');
             XML.ignoreProcessingInstructions = false;
             //repeat with ignoreComments toggled
             XML.ignoreComments = true;
@@ -974,7 +976,7 @@ package flexUnitTests.xml
             } catch(e:Error) {
                 caughtError = true;
             }
-            Assert.assertTrue('unexpected error status', caughtError);
+            assertTrue( caughtError, 'unexpected error status');
             XML.ignoreComments = false;
             
             
@@ -988,8 +990,8 @@ package flexUnitTests.xml
             } catch(e:Error) {
                 caughtError = true;
             }
-            Assert.assertFalse('unexpected error status', caughtError);
-            Assert.assertTrue('unexpected toSting result', xml.toString() == '');
+            assertFalse( caughtError, 'unexpected error status');
+            assertTrue( xml.toString() == '', 'unexpected toSting result');
             XML.ignoreComments = false;
             XML.ignoreProcessingInstructions = false;
             XML.ignoreWhitespace = false;
@@ -1003,7 +1005,7 @@ package flexUnitTests.xml
             } catch(e:Error) {
                 caughtError = true;
             }
-            Assert.assertTrue('unexpected error status', caughtError);
+            assertTrue( caughtError, 'unexpected error status');
             //repeat with all settings toggled
             XML.ignoreComments = true;
             XML.ignoreProcessingInstructions = true;
@@ -1014,9 +1016,9 @@ package flexUnitTests.xml
             } catch(e:Error) {
                 caughtError = true;
             }
-            Assert.assertFalse('unexpected error status', caughtError);
-            Assert.assertTrue('unexpected toSting result', xml.toString() == ' -<something>-  ');
-            Assert.assertTrue('unexpected toXMLString result', xml.toXMLString() == '<![CDATA[ -<something>-  ]]>');
+            assertFalse( caughtError, 'unexpected error status');
+            assertTrue( xml.toString() == ' -<something>-  ', 'unexpected toSting result');
+            assertTrue( xml.toXMLString() == '<![CDATA[ -<something>-  ]]>', 'unexpected toXMLString result');
             XML.ignoreComments = false;
             XML.ignoreProcessingInstructions = false;
             XML.ignoreWhitespace = false;
@@ -1033,47 +1035,47 @@ package flexUnitTests.xml
             var localXml:XML;
     
             localXml = XML(true);
-            Assert.assertTrue('XML content was unexpected', localXml.nodeKind() == 'text');
-            Assert.assertTrue('XML content was unexpected', localXml.toString() == 'true');
+            assertTrue( localXml.nodeKind() == 'text', 'XML content was unexpected');
+            assertTrue( localXml.toString() == 'true', 'XML content was unexpected');
     
     
             localXml = XML(false);
-            Assert.assertTrue('XML content was unexpected', localXml.nodeKind() == 'text');
-            Assert.assertTrue('XML content was unexpected', localXml.toString() == 'false');
+            assertTrue( localXml.nodeKind() == 'text', 'XML content was unexpected');
+            assertTrue( localXml.toString() == 'false', 'XML content was unexpected');
     
     
             localXml = XML('string');
-            Assert.assertTrue('XMLList content was unexpected', localXml.nodeKind() == 'text');
-            Assert.assertTrue('XMLList content was unexpected', localXml.toString() == 'string');
+            assertTrue( localXml.nodeKind() == 'text', 'XMLList content was unexpected');
+            assertTrue( localXml.toString() == 'string', 'XMLList content was unexpected');
     
             localXml = XML(99.9);
-            Assert.assertTrue('XML content was unexpected', localXml.nodeKind() == 'text');
-            Assert.assertTrue('XML content was unexpected', localXml.toString() == '99.9');
+            assertTrue( localXml.nodeKind() == 'text', 'XML content was unexpected');
+            assertTrue( localXml.toString() == '99.9', 'XML content was unexpected');
     
             
             //as3 docs say this is an error, but it is not (in AVM)
             localXml = XML(null);
-            Assert.assertTrue('XML content was unexpected', localXml.nodeKind() == 'text');
-            Assert.assertTrue('XML content was unexpected', localXml.toString() == '');
+            assertTrue( localXml.nodeKind() == 'text', 'XML content was unexpected');
+            assertTrue( localXml.toString() == '', 'XML content was unexpected');
     
             //as3 docs say this is an error, but it is not (in AVM)
             localXml = XML(undefined);
-            Assert.assertTrue('XML content was unexpected', localXml.nodeKind() == 'text');
-            Assert.assertTrue('XML content was unexpected', localXml.toString() == '');
+            assertTrue( localXml.nodeKind() == 'text', 'XML content was unexpected');
+            assertTrue( localXml.toString() == '', 'XML content was unexpected');
     
             //as3 docs say this is an error, but it is not (in AVM)
             localXml = XML({});
-            Assert.assertTrue('XML content was unexpected', localXml.nodeKind() == 'text');
-            Assert.assertTrue('XML content was unexpected', localXml.toString() == '[object Object]');
+            assertTrue( localXml.nodeKind() == 'text', 'XML content was unexpected');
+            assertTrue( localXml.toString() == '[object Object]', 'XML content was unexpected');
             
             var xmlContent:XML = xml;
             localXml = XML(xmlContent);
-            Assert.assertTrue('XML content was unexpected', localXml == xml);
+            assertTrue( localXml == xml, 'XML content was unexpected');
             
             var sizes:XMLList = localXml..size.(@description == 'Small');
-            Assert.assertTrue('XML content was unexpected', sizes.length() == 1);
+            assertTrue( sizes.length() == 1, 'XML content was unexpected');
             localXml = XML(sizes);
-            Assert.assertTrue('XML content was unexpected', localXml == sizes[0]);
+            assertTrue( localXml == sizes[0], 'XML content was unexpected');
             
         }
     }

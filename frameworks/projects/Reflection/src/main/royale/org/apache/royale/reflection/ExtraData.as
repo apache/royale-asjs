@@ -78,7 +78,6 @@ package org.apache.royale.reflection {
 		
 		/**
 		 * this is non-reflectable
-		 * @royalesuppressexport
 		 */
 		public static function get isRelevant():Boolean{
 			return true;
@@ -86,7 +85,6 @@ package org.apache.royale.reflection {
 		
 		/**
 		 * this is non-reflectable
-		 * @royalesuppressexport
 		 */
 		public static function hasData(key:*):Boolean{
 			return reflectionData && reflectionData.has(key);
@@ -94,7 +92,6 @@ package org.apache.royale.reflection {
 		
 		/**
 		 * this is non-reflectable
-		 * @royalesuppressexport
 		 */
 		public static function getData(key:*):Object{
 			return reflectionData.get(key);
@@ -114,8 +111,6 @@ package org.apache.royale.reflection {
 		 * import org.apache.royale.reflection.nativejs.AS3Array
 		 * ExtraData.addExternalDefinition(AS3Array())
 		 *
-		 * @royalesuppressexport
-
 		 */
 		public static function addExternDefintion(item:Object):void{
 			if (!reflectionData) reflectionData = new Map();
@@ -133,8 +128,6 @@ package org.apache.royale.reflection {
 		 * If this method is never used, the dependencies inside it
 		 * will not be included in release build
 		 *
-		 * @royalesuppressexport
-
 		 */
 		public static function addAll():void{
 			var items:Array = [

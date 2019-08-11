@@ -20,7 +20,7 @@ package flexUnitTests.language
 {
     
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import flexUnitTests.language.support.*;
     
@@ -29,17 +29,13 @@ package flexUnitTests.language
      */
     public class LanguageTesterTestIs
     {
-        
-        public static var isJS:Boolean;
+    
+        public static var isJS:Boolean = COMPILE::JS;
         
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-            var js:Boolean;
-            COMPILE::JS {
-                js = true;
-            }
-            isJS = js;
+
         }
         
         [AfterClass]
@@ -62,21 +58,21 @@ package flexUnitTests.language
         public function testIsOwnType():void
         {
             var test1:TestClass1 = new TestClass1();
-            Assert.assertTrue('Unexpected instance is {Class} check', test1 is TestClass1)
+            assertTrue(  test1 is TestClass1,'Unexpected instance is {Class} check');
         }
         
         [Test]
         public function testIsAncestorType():void
         {
             var test2:TestClass2 = new TestClass2();
-            Assert.assertTrue('Unexpected instance is {AncestorClass} check', test2 is TestClass1)
+            assertTrue(  test2 is TestClass1,'Unexpected instance is {AncestorClass} check');
         }
         
         [Test]
         public function testIsDistantAncestorType():void
         {
             var test4:TestClass4 = new TestClass4();
-            Assert.assertTrue('Unexpected instance is {DistantAncestorClass} check', test4 is TestClass1)
+            assertTrue( test4 is TestClass1,'Unexpected instance is {DistantAncestorClass} check');
         }
         
         
@@ -84,7 +80,7 @@ package flexUnitTests.language
         public function testIsImplementedInterface():void
         {
             var test1:TestClass1 = new TestClass1();
-            Assert.assertTrue('Unexpected instance is {OwnInterface} check', test1 is ITestInterface)
+            assertTrue( test1 is ITestInterface,'Unexpected instance is {OwnInterface} check');
         }
         
         
@@ -92,14 +88,14 @@ package flexUnitTests.language
         public function testIsAncestorInterface():void
         {
             var test2:TestClass2 = new TestClass2();
-            Assert.assertTrue('Unexpected instance is {AncestorInterface} check', test2 is ITestInterface)
+            assertTrue( test2 is ITestInterface,'Unexpected instance is {AncestorInterface} check');
         }
         
         [Test]
         public function testIsImplementedInterfaceAncestor():void
         {
             var test3:TestClass3 = new TestClass3();
-            Assert.assertTrue('Unexpected instance is {InterfaceAncestor} check', test3 is ITestInterface)
+            assertTrue( test3 is ITestInterface,'Unexpected instance is {InterfaceAncestor} check');
             
         }
         
@@ -107,7 +103,7 @@ package flexUnitTests.language
         public function testIsImplementedInterfaceAncestor2():void
         {
             var test4:TestClass4 = new TestClass4();
-            Assert.assertTrue('Unexpected instance is {InterfaceAncestor} check', test4 is ITestInterface)
+            assertTrue( test4 is ITestInterface,'Unexpected instance is {InterfaceAncestor} check');
         }
         
         
@@ -117,92 +113,92 @@ package flexUnitTests.language
             var val:Object = null;
             
             var s:String = String(val);
-            Assert.assertEquals('Unexpected coercion check', s, 'null');
+            assertEquals( s, 'null','Unexpected coercion check');
             var i:int = int(val);
-            Assert.assertTrue('Unexpected coercion check', i === 0);
+            assertTrue( i === 0,'Unexpected coercion check');
             var u:uint = uint(val);
-            Assert.assertTrue('Unexpected coercion check', u === 0);
+            assertTrue( u === 0,'Unexpected coercion check');
             var n:Number = Number(val);
-            Assert.assertTrue('Unexpected coercion check', n === 0);
+            assertTrue( n === 0,'Unexpected coercion check');
             var b:Boolean = Boolean(val);
-            Assert.assertTrue('Unexpected coercion check', b === false);
+            assertTrue( b === false,'Unexpected coercion check');
             
             var t:TestClass1 = TestClass1(val);
-            Assert.assertTrue('Unexpected coercion check', t === null);
+            assertTrue( t === null,'Unexpected coercion check');
             
             //with indirection
             var c:Class = String;
             var result:* = c(val);
-            Assert.assertTrue('Unexpected coercion check', result === 'null');
+            assertTrue( result === 'null','Unexpected coercion check');
             c = int;
             result = c(val);
-            Assert.assertTrue('Unexpected coercion check', result === 0);
+            assertTrue( result === 0,'Unexpected coercion check');
             c = uint;
             result = c(val);
-            Assert.assertTrue('Unexpected coercion check', result === 0);
+            assertTrue( result === 0,'Unexpected coercion check');
             c = Number;
             result = c(val);
-            Assert.assertTrue('Unexpected coercion check', result === 0);
+            assertTrue( result === 0,'Unexpected coercion check');
             
             c = Boolean;
             result = c(val);
-            Assert.assertTrue('Unexpected coercion check', result === false);
+            assertTrue( result === false,'Unexpected coercion check');
             
             c = TestClass1;
             result = c(val);
-            Assert.assertTrue('Unexpected coercion check', result === null);
+            assertTrue( result === null,'Unexpected coercion check');
         }
         
         [Test]
         public function testObjectCoercion():void
         {
-            Assert.assertTrue('Unexpected null check', Object(undefined) != null);
-            Assert.assertTrue('Unexpected null check', Object(null) != null);
-            Assert.assertTrue('Unexpected null check', Object('test') === 'test');
-            Assert.assertTrue('Unexpected null check', Object(1) === 1);
-            Assert.assertTrue('Unexpected null check', Object(false) === false);
-            Assert.assertTrue('Unexpected null check', Object(true) === true);
+            assertTrue( Object(undefined) != null,'Unexpected null check');
+            assertTrue( Object(null) != null,'Unexpected null check');
+            assertTrue( Object('test') === 'test','Unexpected null check');
+            assertTrue( Object(1) === 1,'Unexpected null check');
+            assertTrue( Object(false) === false,'Unexpected null check');
+            assertTrue( Object(true) === true,'Unexpected null check');
             var indirection:* = undefined;
-            Assert.assertTrue('Unexpected null check', Object(indirection) != null);
+            assertTrue( Object(indirection) != null,'Unexpected null check');
             indirection = null;
-            Assert.assertTrue('Unexpected null check', Object(indirection) != null);
+            assertTrue( Object(indirection) != null,'Unexpected null check');
             indirection = 'test';
-            Assert.assertTrue('Unexpected null check', Object(indirection) === 'test');
+            assertTrue( Object(indirection) === 'test','Unexpected null check');
             indirection = 1;
-            Assert.assertTrue('Unexpected null check', Object(indirection) === 1);
+            assertTrue( Object(indirection) === 1,'Unexpected null check');
             indirection = false;
-            Assert.assertTrue('Unexpected null check', Object(indirection) === false);
+            assertTrue( Object(indirection) === false,'Unexpected null check');
             indirection = true;
-            Assert.assertTrue('Unexpected null check', Object(indirection) === true);
+            assertTrue( Object(indirection) === true,'Unexpected null check');
             var dynObjectClass:Class = Object;
             //regular indirect coercion
             indirection = undefined;
-            Assert.assertTrue('Unexpected null check', dynObjectClass(indirection) != null);
+            assertTrue( dynObjectClass(indirection) != null,'Unexpected null check');
             indirection = null;
-            Assert.assertTrue('Unexpected null check', dynObjectClass(indirection) != null);
+            assertTrue( dynObjectClass(indirection) != null,'Unexpected null check');
             indirection = 'test';
-            Assert.assertTrue('Unexpected null check', dynObjectClass(indirection) === 'test');
+            assertTrue( dynObjectClass(indirection) === 'test','Unexpected null check');
             indirection = 1;
-            Assert.assertTrue('Unexpected null check', dynObjectClass(indirection) === 1);
+            assertTrue( dynObjectClass(indirection) === 1,'Unexpected null check');
             indirection = false;
-            Assert.assertTrue('Unexpected null check', dynObjectClass(indirection) === false);
+            assertTrue( dynObjectClass(indirection) === false,'Unexpected null check');
             indirection = true;
-            Assert.assertTrue('Unexpected null check', dynObjectClass(indirection) === true);
+            assertTrue( dynObjectClass(indirection) === true,'Unexpected null check');
             //no need to test 'new Object(something)' as it is not permitted explicitly in actionscript
             //but it can be achieved via indirection:
             var dynObject:Class = Object;
             indirection = undefined;
-            Assert.assertTrue('Unexpected null check', new dynObject(indirection) != null);
+            assertTrue( new dynObject(indirection) != null,'Unexpected null check');
             indirection = null;
-            Assert.assertTrue('Unexpected null check', new dynObject(indirection) != null);
+            assertTrue( new dynObject(indirection) != null,'Unexpected null check');
             indirection = 'test';
-            Assert.assertTrue('Unexpected null check', new dynObject(indirection) === 'test');
+            assertTrue( new dynObject(indirection) === 'test','Unexpected null check');
             indirection = 1;
-            Assert.assertTrue('Unexpected null check', new dynObject(indirection) === 1);
+            assertTrue( new dynObject(indirection) === 1,'Unexpected null check');
             indirection = false;
-            Assert.assertTrue('Unexpected null check', new dynObject(indirection) === false);
+            assertTrue( new dynObject(indirection) === false,'Unexpected null check');
             indirection = true;
-            Assert.assertTrue('Unexpected null check', new dynObject(indirection) === true);
+            assertTrue( new dynObject(indirection) === true,'Unexpected null check');
             
         }
         
@@ -221,8 +217,8 @@ package flexUnitTests.language
                 caughtError = e is TypeError
             }
             
-            Assert.assertTrue('Unexpected coercion check', caughtError);
-            Assert.assertTrue('Unexpected coercion check', testClass3 == null);
+            assertTrue( caughtError,'Unexpected coercion check');
+            assertTrue( testClass3 == null,'Unexpected coercion check');
         }
     
     
@@ -247,32 +243,32 @@ package flexUnitTests.language
             }
         
             if (isJS) {
-                Assert.assertFalse('Unexpected coercion check', caughtError);
-                Assert.assertFalse('Unexpected coercion check', testClass3 == null);
+                assertFalse( caughtError, 'Unexpected coercion check');
+                assertFalse(testClass3 == null, 'Unexpected coercion check');
             } else {
-                Assert.assertTrue('Unexpected coercion check', caughtError);
-                Assert.assertTrue('Unexpected coercion check', testClass3 == null);
+                assertTrue(caughtError, 'Unexpected coercion check');
+                assertTrue(testClass3 == null, 'Unexpected coercion check');
             }
-            
+        
         }
         
         [Test]
         public function testNullUndefined():void
         {
-            Assert.assertTrue('Unexpected null check', null == null);
-            Assert.assertTrue('Unexpected null check', null == undefined);
-            Assert.assertTrue('Unexpected null check', null === null);
-            Assert.assertTrue('Unexpected undefined check', undefined === undefined);
-            Assert.assertFalse('Unexpected null/undefined check', undefined === null);
+            assertTrue( null == null,'Unexpected null check');
+            assertTrue( null == undefined,'Unexpected null check');
+            assertTrue( null === null,'Unexpected null check');
+            assertTrue( undefined === undefined,'Unexpected undefined check');
+            assertFalse( undefined === null,'Unexpected null/undefined check');
         }
         
         [Test]
         public function testString():void
         {
-            Assert.assertTrue('Unexpected string check', String('test') == 'test');
-            Assert.assertTrue('Unexpected string check', String('test') === 'test');
-            Assert.assertTrue('Unexpected string check', new String('test') == 'test');
-            Assert.assertTrue('Unexpected string check', new String('test') === 'test');
+            assertTrue( String('test') == 'test','Unexpected string check');
+            assertTrue( String('test') === 'test','Unexpected string check');
+            assertTrue( new String('test') == 'test','Unexpected string check');
+            assertTrue( new String('test') === 'test','Unexpected string check');
         }
         
         

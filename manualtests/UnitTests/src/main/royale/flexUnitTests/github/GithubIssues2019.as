@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.github
 {
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     /**
      * @royalesuppresspublicvarwarning
@@ -59,7 +59,7 @@ package flexUnitTests.github
         public function placeholdertestIssue_999():void
         {
             //https://github.com/apache/royale-asjs/issues/#
-            Assert.assertTrue('replace me with a real issue', true)
+            assertTrue( true, 'replace me with a real issue');
         }
     }
 }

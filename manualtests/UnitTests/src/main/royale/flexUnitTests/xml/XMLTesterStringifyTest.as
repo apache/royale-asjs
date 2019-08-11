@@ -20,7 +20,7 @@ package flexUnitTests.xml
 {
     
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import testshim.RoyaleUnitTestRunner;
     
@@ -66,11 +66,11 @@ package flexUnitTests.xml
             XML.prettyPrinting = true;
             var xml:XML = <xml><item/></xml>;
             
-            Assert.assertEquals('Error in pretty Printing', xml.toXMLString(), '<xml>\n  <item/>\n</xml>');
+            assertEquals( xml.toXMLString(), '<xml>\n  <item/>\n</xml>', 'Error in pretty Printing');
             XML.prettyIndent = 4;
-            Assert.assertEquals('Error in pretty Printing', xml.toXMLString(), '<xml>\n    <item/>\n</xml>');
+            assertEquals( xml.toXMLString(), '<xml>\n    <item/>\n</xml>', 'Error in pretty Printing');
             XML.prettyIndent = 0;
-            Assert.assertEquals('Error in pretty Printing', xml.toXMLString(), '<xml>\n<item/>\n</xml>');
+            assertEquals( xml.toXMLString(), '<xml>\n<item/>\n</xml>', 'Error in pretty Printing');
     
             XML.prettyIndent = originalIndent;
             XML.prettyPrinting = originalPretty;
@@ -81,10 +81,10 @@ package flexUnitTests.xml
         public function testToStringVariants():void{
             var ampXML:XML = new XML("<Content>Bat & Ball</Content>");
             var amp2XML:XML = new XML("<Content>Bat &amp; Ball</Content>");
-            Assert.assertEquals('ampersand entities are output with toXMLString', ampXML.toXMLString(),'<Content>Bat &amp; Ball</Content>');
-            Assert.assertEquals('ampersand entities are output with toXMLString', amp2XML.toXMLString(),'<Content>Bat &amp; Ball</Content>');
-            Assert.assertEquals('ampersand entities are not output with toString', ampXML.toString(),'Bat & Ball');
-            Assert.assertEquals('ampersand entities are not output with toString', amp2XML.toString(),'Bat & Ball');
+            assertEquals( ampXML.toXMLString(),'<Content>Bat &amp; Ball</Content>', 'ampersand entities are output with toXMLString');
+            assertEquals(amp2XML.toXMLString(),'<Content>Bat &amp; Ball</Content>', 'ampersand entities are output with toXMLString');
+            assertEquals( ampXML.toString(),'Bat & Ball', 'ampersand entities are not output with toString');
+            assertEquals( amp2XML.toString(),'Bat & Ball', 'ampersand entities are not output with toString');
         
         }
         
@@ -107,10 +107,10 @@ package flexUnitTests.xml
             var contentStr:String = content.toXMLString();
             var correctStr:String = '<root><content><![CDATA[<?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?><x:xmpmeta xmlns:x="adobe:ns:meta/" x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        ">   <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">      <rdf:Description rdf:about=""/>   </rdf:RDF></x:xmpmeta><?xpacket end="r"?>]'+']></content></root>';
     
-            Assert.assertEquals('testStringifyAdvanced 1:content.toXMLString() was incorrect',correctStr, contentStr);
+            assertEquals(correctStr, contentStr, 'testStringifyAdvanced 1:content.toXMLString() was incorrect');
     
     
-            Assert.assertEquals('testStringifyAdvanced 1:content.toXMLString() was incorrect',correctStr, content.toXMLString());
+            assertEquals(correctStr, content.toXMLString(), 'testStringifyAdvanced 1:content.toXMLString() was incorrect');
             
             content = <Document>
                 <?xpacket begin="" id="W5M0MpCehiHzreSzNTczkc9d"?>
@@ -147,8 +147,8 @@ package flexUnitTests.xml
             //IE and Edge:
             var alternate:String = '<Document><x:xmpmeta x:xmptk="Adobe XMP Core 5.3-c011 66.145661, 2012/02/06-14:56:27        " xmlns:x="adobe:ns:meta/"><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"><rdf:Description rdf:about="" xmlns:dc="http://purl.org/dc/elements/1.1/"><dc:format>application/x-indesign</dc:format></rdf:Description><rdf:Description rdf:about="" xmlns:xmpGImg="http://ns.adobe.com/xap/1.0/g/img/" xmlns:xmp="http://ns.adobe.com/xap/1.0/"><xmp:CreatorTool>Adobe InDesign CS6 (Windows)</xmp:CreatorTool><xmp:CreateDate>2018-02-19T09:17:41Z</xmp:CreateDate><xmp:MetadataDate>2018-02-19T09:17:41Z</xmp:MetadataDate><xmp:ModifyDate>2018-02-19T09:17:41Z</xmp:ModifyDate><xmp:Thumbnails><rdf:Alt><rdf:li rdf:parseType="Resource"><xmpGImg:format>JPEG</xmpGImg:format><xmpGImg:width>512</xmpGImg:width><xmpGImg:height>512</xmpGImg:height><xmpGImg:image>FOO</xmpGImg:image></rdf:li></rdf:Alt></xmp:Thumbnails></rdf:Description></rdf:RDF></x:xmpmeta></Document>';
             
-            Assert.assertTrue('testStringifyAdvanced 1:content.toXMLString() was incorrect',
-                    (contentStr == expected) || (contentStr == alternate));
+            assertTrue(
+                    (contentStr == expected) || (contentStr == alternate), 'testStringifyAdvanced 1:content.toXMLString() was incorrect');
     
 
         }
@@ -227,7 +227,7 @@ package flexUnitTests.xml
             //RoyaleUnitTestRunner.consoleOut('stringifyAdvanced2:\n' + outString );
             
             //the order of toString output can be quite different for some browsers, but the length should be identical
-            Assert.assertTrue('unexpected toString result', outString.length == expected.length);
+            assertTrue( outString.length == expected.length, 'unexpected toString result');
         }
     
         [Test]
@@ -304,7 +304,7 @@ package flexUnitTests.xml
             //RoyaleUnitTestRunner.consoleOut('stringifyAdvanced3:\n' + outString);
     
             //the order of toString output can be quite different for some browsers, but the length should be identical
-            Assert.assertTrue('unexpected toString result', outString.length == expected.length);
+            assertTrue( outString.length == expected.length, 'unexpected toString result');
         }
         
         
@@ -312,9 +312,9 @@ package flexUnitTests.xml
         public function testCDATA():void{
             var script:XML = <script>   <![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]>  </script>;
 
-            Assert.assertEquals('unexpected toXMLString with child CDATA',
+            assertEquals(
                     '<script><![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]></script>',
-                    script.toXMLString())
+                    script.toXMLString(), 'unexpected toXMLString with child CDATA')
         }
         
 

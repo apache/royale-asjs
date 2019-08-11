@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection
 {
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import flexUnitTests.reflection.support.*;
     
@@ -80,29 +80,29 @@ package flexUnitTests.reflection
         {
             //class
             
-            Assert.assertTrue("class should be dynamic", isDynamicObject(Object));
+            assertTrue( isDynamicObject(Object), "class should be dynamic");
             
-            Assert.assertTrue("class should be dynamic", isDynamicObject(TestClass1));
+            assertTrue( isDynamicObject(TestClass1), "class should be dynamic");
             //interface is dynamic (even if it doesn't make much sense)
-            Assert.assertTrue("interface should be dynamic", true, isDynamicObject(ITestInterface));
+            assertTrue( isDynamicObject(ITestInterface), "interface should be dynamic");
             //instance
-            Assert.assertTrue("generic object should be dynamic", isDynamicObject({}));
+            assertTrue( isDynamicObject({}), "generic object should be dynamic");
             
-            Assert.assertFalse("sealed class instance should not be dynamic", isDynamicObject(new TestClass1()));
+            assertFalse( isDynamicObject(new TestClass1()), "sealed class instance should not be dynamic");
             
-            Assert.assertTrue("dynamic class instance should be dynamic", isDynamicObject(new DynamicTestClass()));
-            
-            
-            Assert.assertFalse("String instance should not be dynamic", isDynamicObject("String"));
-            Assert.assertFalse("int instance should not be dynamic", isDynamicObject(99));
-            Assert.assertFalse("Number instance should not be dynamic", isDynamicObject(99.99));
-            Assert.assertFalse("Boolean instance should not be dynamic", isDynamicObject(true));
+            assertTrue( isDynamicObject(new DynamicTestClass()), "dynamic class instance should be dynamic");
             
             
-            Assert.assertTrue("function instance should be dynamic", isDynamicObject(function ():void
+            assertFalse( isDynamicObject("String"), "String instance should not be dynamic");
+            assertFalse( isDynamicObject(99), "int instance should not be dynamic");
+            assertFalse( isDynamicObject(99.99), "Number instance should not be dynamic");
+            assertFalse( isDynamicObject(true), "Boolean instance should not be dynamic");
+            
+            
+            assertTrue( isDynamicObject(function ():void
             {
-            }));
-            Assert.assertTrue("Array instance should be dynamic", isDynamicObject([]));
+            }), "function instance should be dynamic");
+            assertTrue( isDynamicObject([]), "Array instance should be dynamic");
         }
         
         
@@ -113,60 +113,60 @@ package flexUnitTests.reflection
             
             const emptyArray:Array = [];
             const singleDynField:Array = ['test'];
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(Object), emptyArray));
+            assertTrue( contentStringsMatch(getDynamicFields(Object), emptyArray), "dynamic fields should match reference list");
             Object['test'] = true;
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(Object), singleDynField));
+            assertTrue( contentStringsMatch(getDynamicFields(Object), singleDynField), "dynamic fields should match reference list");
             delete Object['test'];
             
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(TestClass1), emptyArray));
+            assertTrue( contentStringsMatch(getDynamicFields(TestClass1), emptyArray), "dynamic fields should match reference list");
             TestClass1['test'] = true;
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(TestClass1), singleDynField));
+            assertTrue( contentStringsMatch(getDynamicFields(TestClass1), singleDynField), "dynamic fields should match reference list");
             delete TestClass1['test'];
             
             //interface is dynamic (even if it doesn't make much sense)
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(ITestInterface), emptyArray));
+            assertTrue( contentStringsMatch(getDynamicFields(ITestInterface), emptyArray), "dynamic fields should match reference list");
             ITestInterface['test'] = true;
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(ITestInterface), singleDynField));
+            assertTrue( contentStringsMatch(getDynamicFields(ITestInterface), singleDynField), "dynamic fields should match reference list");
             delete ITestInterface['test'];
             
             //instance
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields({}), emptyArray));
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields({test: true}), singleDynField));
+            assertTrue( contentStringsMatch(getDynamicFields({}), emptyArray), "dynamic fields should match reference list");
+            assertTrue( contentStringsMatch(getDynamicFields({test: true}), singleDynField), "dynamic fields should match reference list");
             
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(new TestClass1()), emptyArray));
+            assertTrue( contentStringsMatch(getDynamicFields(new TestClass1()), emptyArray), "dynamic fields should match reference list");
             
             const dynInstance:DynamicTestClass = new DynamicTestClass();
             dynInstance.test = true;
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(dynInstance), singleDynField));
+            assertTrue( contentStringsMatch(getDynamicFields(dynInstance), singleDynField), "dynamic fields should match reference list");
             
             
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields("String"), emptyArray));
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(99), emptyArray));
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(99.99), emptyArray));
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(true), emptyArray));
+            assertTrue( contentStringsMatch(getDynamicFields("String"), emptyArray), "dynamic fields should match reference list");
+            assertTrue( contentStringsMatch(getDynamicFields(99), emptyArray), "dynamic fields should match reference list");
+            assertTrue( contentStringsMatch(getDynamicFields(99.99), emptyArray), "dynamic fields should match reference list");
+            assertTrue( contentStringsMatch(getDynamicFields(true), emptyArray), "dynamic fields should match reference list");
             
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(function ():void
+            assertTrue( contentStringsMatch(getDynamicFields(function ():void
             {
-            }), emptyArray));
+            }), emptyArray), "dynamic fields should match reference list");
             
             const numericFields:Array = ["0", "1", "2", "3"];
             var arr:Array = [1, 2, 3, 4];
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(arr), numericFields));
+            assertTrue( contentStringsMatch(getDynamicFields(arr), numericFields), "dynamic fields should match reference list");
             numericFields.push('test');
             arr['test'] = true;
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(arr), numericFields));
+            assertTrue( contentStringsMatch(getDynamicFields(arr), numericFields), "dynamic fields should match reference list");
             
             
             var testclass2:DynamicTestClass2 = new DynamicTestClass2();
             testclass2.test = true;
             testclass2.something = '*something*';
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(testclass2), singleDynField));
+            assertTrue( contentStringsMatch(getDynamicFields(testclass2), singleDynField), "dynamic fields should match reference list");
             
             
             testclass2.test = 'test';
             testclass2.something = '*something else*';
             
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(testclass2), singleDynField));
+            assertTrue( contentStringsMatch(getDynamicFields(testclass2), singleDynField), "dynamic fields should match reference list");
             var testClass3:DynamicTestClass3 = new DynamicTestClass3();
             var swapAssertion:Boolean;
             COMPILE::JS{
@@ -180,10 +180,10 @@ package flexUnitTests.reflection
             
             if (!swapAssertion)
             {
-                Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(testClass3), emptyArray));
+                assertTrue( contentStringsMatch(getDynamicFields(testClass3), emptyArray), "dynamic fields should match reference list");
             } else
             {
-                Assert.assertFalse("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(testClass3), emptyArray));
+                assertFalse( contentStringsMatch(getDynamicFields(testClass3), emptyArray), "dynamic fields should match reference list");
                 trace('[WARN] Variance: a test is technically wrong in javascript, but is expected to be wrong, because the compilation settings do not support it throughout the inheritance chain');
             }
             testClass3.test = 'true';
@@ -193,10 +193,10 @@ package flexUnitTests.reflection
             
             if (!swapAssertion)
             {
-                Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(testClass3), singleDynField));
+                assertTrue( contentStringsMatch(getDynamicFields(testClass3), singleDynField), "dynamic fields should match reference list");
             } else
             {
-                Assert.assertFalse("dynamic fields should not match reference list", contentStringsMatch(getDynamicFields(testClass3), singleDynField));
+                assertFalse( contentStringsMatch(getDynamicFields(testClass3), singleDynField), "dynamic fields should not match reference list");
                 trace('[WARN] Variance: a test is technically wrong in javascript, but is expected to be wrong, because the compilation settings do not support it throughout the inheritance chain');
             }
             
@@ -215,7 +215,7 @@ package flexUnitTests.reflection
             {
                 return prop && prop.charAt(0) != '_';
             };
-            Assert.assertTrue("dynamic fields should match reference list", contentStringsMatch(getDynamicFields(test, excludeUnderscores), withoutUnderscores));
+            assertTrue( contentStringsMatch(getDynamicFields(test, excludeUnderscores), withoutUnderscores), "dynamic fields should match reference list");
             
         }
         

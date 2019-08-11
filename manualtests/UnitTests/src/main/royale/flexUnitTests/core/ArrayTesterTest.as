@@ -20,7 +20,7 @@ package flexUnitTests.core
 {
     
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     import flexUnitTests.core.support.TestVO;
     
     /**
@@ -90,43 +90,43 @@ package flexUnitTests.core
         [Test]
         public function testSort():void
         {
-            Assert.assertTrue("Parked, needs more work", true);
+            assertTrue(true, "Parked, needs more work");
             
             /*import testshim.RoyaleUnitTestRunner;
-            /!*Assert.assertEquals('unexpected starting state',
+            /!*assertEquals(
                     '23,-93,-59,-55,41,-29,69,11,33,-71,83,87,27,-39,70,-50,-56,-61,17,-35,-60,-86,-78,-83,-10',
-                    values.toString());*!/
-            Assert.assertEquals('unexpected starting state',
+                    values.toString(), 'unexpected starting state');*!/
+            assertEquals(
                 'aB,aA,aC,aa,ab,ac,zA,ZA,zA,ZA,zA,zA,AA,AA',
-                field1s.toString());
+                field1s.toString(), 'unexpected starting state');
             
             field1s.sort();
-            Assert.assertEquals('unexpected starting state',
+            assertEquals(
                     'AA,AA,ZA,ZA,aA,aB,aC,aa,ab,ac,zA,zA,zA,zA',
-                    field1s.toString());
+                    field1s.toString(), 'unexpected starting state');
     
             RoyaleUnitTestRunner.consoleOut('field1s ' + field1s.toString());
     
             _sort(field1s, [Array.CASEINSENSITIVE]);
     
-            Assert.assertEquals('unexpected starting state',
+            assertEquals(
                     'aa,AA,aA,AA,ab,aB,ac,aC,ZA,ZA,zA,zA,zA,zA',
-                    field1s.toString());
+                    field1s.toString(), 'unexpected starting state');
     
             _sort(field1s, [Array.DESCENDING]);
     
-            Assert.assertEquals('unexpected starting state',
+            assertEquals(
                     'zA,zA,zA,zA,ac,ab,aa,aC,aB,aA,ZA,ZA,AA,AA',
-                    field1s.toString());
+                    field1s.toString(), 'unexpected starting state');
             
            // field1s.sort(Array.CASEINSENSITIVE);
     
             RoyaleUnitTestRunner.consoleOut('field1s ' + field1s.toString());
             _sort(field1s, [Array.DESCENDING|Array.CASEINSENSITIVE]);
     
-            Assert.assertEquals('unexpected starting state',
+            assertEquals(
                     'zA,zA,zA,zA,ZA,ZA,ac,aC,ab,aB,AA,aA,aa,AA',
-                    field1s.toString());
+                    field1s.toString(), 'unexpected starting state');
             RoyaleUnitTestRunner.consoleOut('field1s ' + field1s.toString());*/
             
         }
@@ -135,11 +135,11 @@ package flexUnitTests.core
         [Test]
         public function testSortOn():void
         {
-            Assert.assertTrue("Parked, needs more work", true);
+            assertTrue(true, "Parked, needs more work");
             
-           /* Assert.assertEquals('unexpected starting state', 
+           /* assertEquals(
                     'TestVO [aB]#0 [zz],TestVO [aA]#0 [aa],TestVO [aC]#1 [zz],TestVO [aa]#1 [aa],TestVO [ab]#-1 [zz],TestVO [ac]#-1 [aa],TestVO [zA]#0 [bb],TestVO [ZA]#0 [aa],TestVO [zA]#1 [bb],TestVO [ZA]#1 [aa],TestVO [zA]#-1 [bb],TestVO [zA]#-1 [aa],TestVO [AA]#0 [aa],TestVO [AA]#0 [zz]',
-                    items.toString());
+                    items.toString(), 'unexpected starting state');
     
             import testshim.RoyaleUnitTestRunner;
     
@@ -148,9 +148,9 @@ package flexUnitTests.core
 
             
             items.sortOn('field1',0);
-            Assert.assertEquals('unexpected sortOn result',
+            assertEquals(
                     'TestVO [AA]#0 [aa],TestVO [AA]#0 [zz],TestVO [ZA]#0 [aa],TestVO [ZA]#-1 [aa],TestVO [ZA]#1 [aa],TestVO [aA]#0 [zz],TestVO [aA]#-1 [zz],TestVO [aA]#-1 [aa],TestVO [aA]#0 [aa],TestVO [aA]#1 [aa],TestVO [aA]#1 [zz],TestVO [zA]#-1 [bb],TestVO [zA]#0 [bb],TestVO [zA]#1 [bb]',
-                    items.toString());
+                    items.toString(), 'unexpected sortOn result');
             
             
     

@@ -18,9 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.observedbugs
 {
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import org.apache.royale.reflection.*;
+    import org.apache.royale.test.asserts.assertTrue;
     
     /**
      * @royalesuppresspublicvarwarning
@@ -77,7 +78,7 @@ package flexUnitTests.observedbugs
                 js = 2;
             }
             
-            Assert.assertTrue("Unexpected value following try/catch", (isJS ? (js == 2) : (js == 1)));
+            assertTrue( (isJS ? (js == 2) : (js == 1)), "Unexpected value following try/catch");
             
         }
         
@@ -97,7 +98,7 @@ package flexUnitTests.observedbugs
                 js = true;
             }
             
-            Assert.assertTrue("Unexpected value following try/catch", (isJS ? (js === true) : (js === false)));
+            assertTrue( (isJS ? (js === true) : (js === false)), "Unexpected value following try/catch");
         }
     }
 }

@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.github
 {
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     /**
      * @royalesuppresspublicvarwarning
@@ -60,10 +60,10 @@ package flexUnitTests.github
             
             //int
             var test:* = new (Class(a.a))(-21.5);
-            Assert.assertEquals('unexpected coercion check', -21, test);
+            assertEquals(-21, test, 'unexpected coercion check');
             //uint
             test = new (a.b as Class)(-21.5);
-            Assert.assertEquals('unexpected coercion check', 4294967275, test);
+            assertEquals(4294967275, test, 'unexpected coercion check');
 
         }
     }

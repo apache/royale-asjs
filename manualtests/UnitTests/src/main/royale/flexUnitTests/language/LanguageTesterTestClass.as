@@ -20,7 +20,7 @@ package flexUnitTests.language
 {
     
     
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import flexUnitTests.language.support.*;
     
@@ -29,17 +29,13 @@ package flexUnitTests.language
      */
     public class LanguageTesterTestClass
     {
-        
-        public static var isJS:Boolean;
+    
+        public static var isJS:Boolean = COMPILE::JS;
         
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-            var js:Boolean;
-            COMPILE::JS {
-                js = true;
-            }
-            isJS = js;
+
         }
         
         [AfterClass]
@@ -69,7 +65,7 @@ package flexUnitTests.language
                 err = true;
             }
             
-            Assert.assertTrue('Class constructor call should throw error', err);
+            assertTrue( err,'Class constructor call should throw error');
     
         }
     
@@ -78,7 +74,7 @@ package flexUnitTests.language
         public function testDistinctType():void
         {
             var classType:* = Class;
-            Assert.assertFalse('Class should be distinct from Object', classType == Object);
+            assertFalse( classType == Object,'Class should be distinct from Object');
         }
     
     
@@ -87,11 +83,11 @@ package flexUnitTests.language
         {
             var n:* = undefined;
             
-            Assert.assertNull('Class coercion of undefined should return null', Class(n));
+            assertNull( Class(n),'Class coercion of undefined should return null');
             
             n = null;
     
-            Assert.assertNull('Class  coercion of null should return null', Class(n));
+            assertNull( Class(n),'Class  coercion of null should return null');
         }
         
         
@@ -102,10 +98,10 @@ package flexUnitTests.language
            var nVal:* = 1;
            var c:Class; 
             
-           Assert.assertTrue('Number is Class should be true', Number is Class);
-           Assert.assertTrue('Number is Class should be true', n is Class);
+           assertTrue( Number is Class,'Number is Class should be true');
+           assertTrue( n is Class,'Number is Class should be true');
     
-           Assert.assertFalse('Number value is Class should be false', nVal is Class);
+           assertFalse( nVal is Class,'Number value is Class should be false');
     
             var err:Boolean = false;
             try {
@@ -113,8 +109,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('Number is Class should be true', err);
-            Assert.assertEquals('c should be Number', c, Number);
+            assertFalse( err,'Number is Class should be true');
+            assertEquals( c, Number,'c should be Number');
             
             err = false;
             c = Class;
@@ -123,8 +119,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('Number is Class should be true', err);
-            Assert.assertEquals('c should be Number', c, Number);
+            assertFalse( err,'Number is Class should be true');
+            assertEquals( c, Number,'c should be Number');
     
             err = false;
             try {
@@ -132,7 +128,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('Number value Class coercion should throw error', err);
+            assertTrue( err,'Number value Class coercion should throw error');
 
             err = false;
             c = Class;
@@ -141,7 +137,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('Number value Class coercion should throw error', err);
+            assertTrue( err,'Number value Class coercion should throw error');
             
         }
     
@@ -153,10 +149,10 @@ package flexUnitTests.language
             var nVal:* = [];
             var c:Class;
         
-            Assert.assertTrue('Array is Class should be true', Array is Class);
-            Assert.assertTrue('Array is Class should be true', n is Class);
+            assertTrue( Array is Class,'Array is Class should be true');
+            assertTrue( n is Class,'Array is Class should be true');
         
-            Assert.assertFalse('Array value is Class should be false', nVal is Class);
+            assertFalse( nVal is Class,'Array value is Class should be false');
         
             var err:Boolean = false;
             try {
@@ -164,8 +160,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('Array is Class should be true', err);
-            Assert.assertEquals('c should be Array', c, Array);
+            assertFalse( err,'Array is Class should be true');
+            assertEquals( c, Array,'c should be Array');
         
             err = false;
             c = Class;
@@ -174,8 +170,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('Array is Class should be true', err);
-            Assert.assertEquals('c should be Array', c, Array);
+            assertFalse( err,'Array is Class should be true');
+            assertEquals( c, Array,'c should be Array');
         
             err = false;
             try {
@@ -183,7 +179,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('Array value Class coercion should throw error', err);
+            assertTrue( err,'Array value Class coercion should throw error');
         
             err = false;
             c = Class;
@@ -192,7 +188,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('Array value Class coercion should throw error', err);
+            assertTrue( err,'Array value Class coercion should throw error');
         
         }
     
@@ -203,10 +199,10 @@ package flexUnitTests.language
             var nVal:* = new n();
             var c:Class;
         
-            Assert.assertTrue('uint is Class should be true', uint is Class);
-            Assert.assertTrue('uint is Class should be true', n is Class);
+            assertTrue( uint is Class,'uint is Class should be true');
+            assertTrue( n is Class,'uint is Class should be true');
         
-            Assert.assertFalse('uint val is Class should be false ', nVal is Class);
+            assertFalse( nVal is Class,'uint val is Class should be false ');
         
             var err:Boolean = false;
             try {
@@ -214,8 +210,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('uint Class coercion should succeed', err);
-            Assert.assertEquals('c should be uint', c, uint);
+            assertFalse( err,'uint Class coercion should succeed');
+            assertEquals( c, uint,'c should be uint');
         
             err = false;
             c = Class;
@@ -224,8 +220,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('uint Class coercion should succeed', err);
-            Assert.assertEquals('c should be uint', c, uint);
+            assertFalse( err,'uint Class coercion should succeed');
+            assertEquals( c, uint,'c should be uint');
         
             err = false;
             try {
@@ -233,7 +229,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('uint value Class coercion should throw error', err);
+            assertTrue( err,'uint value Class coercion should throw error');
         
             err = false;
             c = Class;
@@ -242,7 +238,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('uint value Class coercion should throw error', err);
+            assertTrue( err,'uint value Class coercion should throw error');
         }
     
     
@@ -253,10 +249,10 @@ package flexUnitTests.language
             var nVal:* = new TestClass1();
             var c:Class;
         
-            Assert.assertTrue('TestClass1 is Class should be true', TestClass1 is Class);
-            Assert.assertTrue('TestClass1 is Class should be true', n is Class);
+            assertTrue( TestClass1 is Class,'TestClass1 is Class should be true');
+            assertTrue( n is Class,'TestClass1 is Class should be true');
         
-            Assert.assertFalse('TestClass1 val is Class should be false ', nVal is Class);
+            assertFalse( nVal is Class,'TestClass1 val is Class should be false ');
         
             var err:Boolean = false;
             try {
@@ -264,8 +260,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('TestClass1 Class coercion should succeed', err);
-            Assert.assertEquals('c should be TestClass1', c, TestClass1);
+            assertFalse( err,'TestClass1 Class coercion should succeed');
+            assertEquals( c, TestClass1,'c should be TestClass1');
         
             err = false;
             c = Class;
@@ -274,8 +270,8 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertFalse('TestClass1 Class coercion should succeed', err);
-            Assert.assertEquals('c should be TestClass1', c, TestClass1);
+            assertFalse( err,'TestClass1 Class coercion should succeed');
+            assertEquals( c, TestClass1,'c should be TestClass1');
         
             err = false;
             try {
@@ -283,7 +279,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('TestClass1 value Class coercion should throw error', err);
+            assertTrue( err,'TestClass1 value Class coercion should throw error');
         
             err = false;
             c = Class;
@@ -292,7 +288,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('TestClass1 value Class coercion should throw error', err);
+            assertTrue( err,'TestClass1 value Class coercion should throw error');
         }
     
     
@@ -302,7 +298,7 @@ package flexUnitTests.language
             var n:* = ITestInterface;
             var c:Class;
             //strange, perhaps, but true:
-            Assert.assertTrue('ITestInterface is Class should be true', n is Class);
+            assertTrue( n is Class,'ITestInterface is Class should be true');
             
             var err:Boolean = false;
             try {
@@ -311,7 +307,7 @@ package flexUnitTests.language
                 err = true;
             }
             //ditto:
-            Assert.assertFalse('ITestInterface Class coercion should not throw error', err);
+            assertFalse( err,'ITestInterface Class coercion should not throw error');
         }
     
     
@@ -320,7 +316,7 @@ package flexUnitTests.language
         {
             var n:* = testRoyaleInterface;
             var c:Class;
-            Assert.assertFalse('method (function) is Class should be false', n is Class);
+            assertFalse( n is Class,'method (function) is Class should be false');
         
             var err:Boolean = false;
             try {
@@ -329,11 +325,11 @@ package flexUnitTests.language
                 err = true;
             }
 
-            Assert.assertTrue('method (function) Class coercion should throw error', err);
+            assertTrue( err,'method (function) Class coercion should throw error');
             
             //local function
             n = function():void{};
-            Assert.assertFalse('local function is Class should be false', n is Class);
+            assertFalse( n is Class,'local function is Class should be false');
     
             err = false;
             try {
@@ -341,7 +337,7 @@ package flexUnitTests.language
             } catch(e:Error) {
                 err = true;
             }
-            Assert.assertTrue('local function Class coercion should throw error', err);
+            assertTrue( err,'local function Class coercion should throw error');
         }
         
     }
