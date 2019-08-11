@@ -639,6 +639,11 @@ GridLines
 	verticalTickAligned: true;
 }
 
+RadioButton
+{
+	IBeadController:  ClassReference("mx.controls.beads.controllers.RadioButtonMouseController");			
+}
+
 .bothGridLines
 {
 	gridDirection : "both";
@@ -778,6 +783,7 @@ charts|DataTip
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
 		IBeadView:  ClassReference("mx.controls.beads.RadioButtonView");			
+		IBeadController:  ClassReference("mx.controls.beads.controllers.RadioButtonMouseController");			
 	}
 	
 	TextArea

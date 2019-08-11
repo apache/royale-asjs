@@ -220,6 +220,7 @@ internal class MXRoyaleClasses
 	import mx.controls.beads.CheckBoxView; CheckBoxView;
 	import mx.controls.beads.RadioButtonView; RadioButtonView;
 	}
+	import mx.controls.beads.controllers.RadioButtonMouseController; RadioButtonMouseController;
     import mx.controls.beads.NumericStepperView; NumericStepperView;
     import mx.controls.beads.DateFieldView; DateFieldView;
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
