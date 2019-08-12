@@ -58,6 +58,10 @@ import mx.controls.RadioButtonGroup;
             itemClickEvent.index = getRadioIndex(radioButton, group);
             itemClickEvent.relatedObject = radioButton;
             itemClickEvent.item = radioButton.value;
+            if (!radioButton.selected)
+            {
+                radioButton.selected = true;
+            }
             group.dispatchEvent(itemClickEvent);
         }
 
