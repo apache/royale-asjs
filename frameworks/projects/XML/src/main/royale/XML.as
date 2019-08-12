@@ -20,7 +20,7 @@ package
 {
 	COMPILE::JS
 	/**
-	 * @royaleignorepublicvarwarning
+	 * @royalesuppresspublicvarwarning
 	 */
 	public class XML
 	{
@@ -228,7 +228,9 @@ package
 			for(i=0;i<len;i++)
 			{
 				var nativeNode:Node = childNodes[i];
-				if (nativeNode.nodeType == 7 && XML.ignoreProcessingInstructions) {
+				const nodeType:Number = nativeNode.nodeType;
+				if ((nodeType == 7 && XML.ignoreProcessingInstructions) ||
+					(nodeType == 8 && XML.ignoreComments)) {
 					continue;
 				}
 				var child:XML = fromNode(nativeNode);
@@ -625,13 +627,7 @@ package
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 				getAttributes().push(child);
-            else if (child.nodeKind() == "comment" && XML.ignoreComments)
-            {
-                // don't add child
-            }
-			else
-				getChildren().push(child);
-			
+            else getChildren().push(child);
 		}
 
 		private function getChildren():Array
@@ -730,7 +726,7 @@ package
 			var childType:String = typeof child;
 			
 			if(childType != "object") {
-        var last:uint = childrenLength();
+        		const last:uint = childrenLength();
 				const lastChild:XML = last ? _children[last-1] : null;
 				if (lastChild && lastChild.nodeKind() == 'element') {
 					
@@ -903,8 +899,7 @@ package
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].nodeKind() == "element")
-					list.append(_children[i]);
+				list.append(_children[i]);
 			}
 
 			list.targetObject = this;

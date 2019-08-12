@@ -722,93 +722,7 @@ package flexUnitTests.xml
         [TestVariance(variance="JS",description="Some browsers can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
         public function testLargeComplex():void{
             var xmlString:String = xml.toXMLString();
-    
-            /*var expected:String = '<catalog xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:dac="com.printui.view.components.DesignAreaComponents.*">\n' +
-                    '  bla bla\n' +
-                    '  <product description="Cardigan Sweater" product_image="cardigan.jpg">\n' +
-                    '    <fx:catalog_item gender="Men\'s" fx:foo="bah">\n' +
-                    '      <item_number>QWZ5671</item_number>\n' +
-                    '      <price>39.95</price>\n' +
-                    '      <size description="Medium">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Large">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '      </size>\n' +
-                    '    </fx:catalog_item>\n' +
-                    '    <script><![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]></script>\n' +
-                    '    <catalog_item gender="Women\'s">\n' +
-                    '      <item_number>RRX9856</item_number>\n' +
-                    '      <price>42.50</price>\n' +
-                    '      <size description="Small">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Medium">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '        <color_swatch image="black_cardigan.jpg">Black</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Large">\n' +
-                    '        <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>\n' +
-                    '        <color_swatch image="black_cardigan.jpg">Black</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Extra Large">\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '        <color_swatch image="black_cardigan.jpg">Black</color_swatch>\n' +
-                    '      </size>\n' +
-                    '    </catalog_item>\n' +
-                    '  </product>\n' +
-                    '</catalog>';
-    
-            var alternate:String = '<catalog xmlns:dac="com.printui.view.components.DesignAreaComponents.*" xmlns:fx="http://ns.adobe.com/mxml/2009">\n' +
-                    '  bla bla\n' +
-                    '  <product product_image="cardigan.jpg" description="Cardigan Sweater">\n' +
-                    '    <fx:catalog_item fx:foo="bah" gender="Men\'s">\n' +
-                    '      <item_number>QWZ5671</item_number>\n' +
-                    '      <price>39.95</price>\n' +
-                    '      <size description="Medium">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Large">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '      </size>\n' +
-                    '    </fx:catalog_item>\n' +
-                    '    <script><![CDATA[private function onStylesLoaded(ev:Event):void {currentState = "normal";facade = ApplicationFacade.getInstance();facade.notifyObservers(new Notification(ApplicationFacade.CMD_STARTUP, this));}  ]]></script>\n' +
-                    '    <catalog_item gender="Women\'s">\n' +
-                    '      <item_number>RRX9856</item_number>\n' +
-                    '      <price>42.50</price>\n' +
-                    '      <size description="Small">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Medium">\n' +
-                    '        <color_swatch image="red_cardigan.jpg">Red</color_swatch>\n' +
-                    '        <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '        <color_swatch image="black_cardigan.jpg">Black</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Large">\n' +
-                    '        <color_swatch image="navy_cardigan.jpg">Navy</color_swatch>\n' +
-                    '        <color_swatch image="black_cardigan.jpg">Black</color_swatch>\n' +
-                    '      </size>\n' +
-                    '      <size description="Extra Large">\n' +
-                    '        <color_swatch image="burgundy_cardigan.jpg">Burgundy</color_swatch>\n' +
-                    '        <color_swatch image="black_cardigan.jpg">Black</color_swatch>\n' +
-                    '      </size>\n' +
-                    '    </catalog_item>\n' +
-                    '  </product>\n' +
-                    '</catalog>';*/
 
-            //RoyaleUnitTestRunner.consoleOut('testLargeComplex is alternate:\n' + (xmlString == alternate));
-            
             //IE and MS Edge: inlcude alternate output check
             //account for variation in output order of attributes and namespace declarations (from native DOMParser)
             assertTrue(  xmlString.length == 2060, 'unexpected complex stringify results');
@@ -1077,6 +991,94 @@ package flexUnitTests.xml
             localXml = XML(sizes);
             assertTrue( localXml == sizes[0], 'XML content was unexpected');
             
+        }
+        
+        [Test]
+        public function testChildren():void{
+            XML.setSettings(XML.defaultSettings());
+            var xml:XML = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
+            assertEquals(xml.children().length(),3 , 'unexpected default parsing children length');
+            assertEquals(xml.toXMLString(),
+                    '<root>\n' +
+                    '  <test/>\n' +
+                    '  Something\n' +
+                    '  surrounded With Whitespace\n' +
+                    '</root>' , 'unexpected default parsing string output');
+    
+            XML.ignoreComments = false;
+            xml = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
+            assertEquals(xml.children().length(),4 , 'unexpected parsing with ignoreComments = false children length');
+            assertEquals(xml.toXMLString(),
+                    '<root>\n' +
+                    '  <test/>\n' +
+                    '  Something\n' +
+                    '  <!-- comment -->\n' +
+                    '  surrounded With Whitespace\n' +
+                    '</root>' , 'unexpected parsing with ignoreComments = false string output');
+            XML.ignoreProcessingInstructions= false;
+            xml = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
+            assertEquals(xml.children().length(),5 , 'unexpected parsing with ignoreComments = false and ignoreProcessingInstructions= false children length');
+            assertEquals(xml.toXMLString(),
+                    '<root>\n' +
+                    '  <test/>\n' +
+                    '  <?foo bar?>\n' +
+                    '  Something\n' +
+                    '  <!-- comment -->\n' +
+                    '  surrounded With Whitespace\n' +
+                    '</root>' , 'unexpected parsing with ignoreComments = false and ignoreProcessingInstructions= false string output');
+            XML.ignoreWhitespace= false;
+            xml = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
+            assertEquals(xml.children().length(),6 , 'unexpected parsing with ignoreComments = false and ignoreProcessingInstructions= false and ignoreWhitespace= false children length');
+            assertEquals(xml.toXMLString(),
+                    '<root>\n' +
+                    '  \n' +
+                    '  <test/>\n' +
+                    '  <?foo bar?>\n' +
+                    '  Something\n' +
+                    '  <!-- comment -->\n' +
+                    '  surrounded With Whitespace\n' +
+                    '</root>' , 'unexpected parsing with ignoreComments = false and ignoreProcessingInstructions= false and ignoreWhitespace= false string output');
+            
+            //try something different
+    
+            XML.ignoreComments = true;
+            xml = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
+            //because ignoreComments is true, the following is parsed as an empty test node:
+            xml.appendChild(<!-- appended comment -->);
+            assertEquals(xml.children().length(),6 , 'unexpected parsing with ignoreComments = true and ignoreProcessingInstructions= false and ignoreWhitespace= false and appending comment... children length');
+            assertEquals(xml.toXMLString(),
+                    '<root>\n' +
+                    '  \n' +
+                    '  <test/>\n' +
+                    '  <?foo bar?>\n' +
+                    '  Something\n' +
+                    '  surrounded With Whitespace\n' +
+                    '  \n' +
+                    '</root>' , 'unexpected parsing with ignoreComments = true and ignoreProcessingInstructions= false and ignoreWhitespace= false and appending comment... string output');
+    
+            XML.ignoreComments = false;
+            var comment:XML = <xml><!-- appended comment --></xml>;
+            comment = comment.comments()[0];
+            assertEquals(comment.toXMLString(),'<!-- appended comment -->', 'unexpected toXMLString for comment');
+            XML.ignoreComments = true;
+            xml = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
+            //because ignoreComments is true, the following is parsed as an empty test node:
+            xml.appendChild(comment);
+            
+            assertEquals(xml.children().length(),6 , 'unexpected parsing with ignoreComments = true and ignoreProcessingInstructions= false and ignoreWhitespace= false and appending comment... children length');
+            assertEquals(xml.toXMLString(),
+                    '<root>\n' +
+                    '  \n' +
+                    '  <test/>\n' +
+                    '  <?foo bar?>\n' +
+                    '  Something\n' +
+                    '  surrounded With Whitespace\n' +
+                    '  <!-- appended comment -->\n' +
+                    '</root>' , 'unexpected parsing with ignoreComments = true and ignoreProcessingInstructions= false and ignoreWhitespace= false and appending comment... string output');
+            
+            
+    
+            XML.setSettings(XML.defaultSettings());
         }
     }
 }
