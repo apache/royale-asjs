@@ -25,7 +25,7 @@ import flash.events.Event;
  */
 import org.apache.royale.events.Event;
 
-//import mx.controls.AdvancedDataGridBaseEx;
+import mx.controls.AdvancedDataGrid; //BaseEx;
 import mx.controls.TextInput;
 //import mx.controls.listClasses.IListItemRenderer;
 import mx.core.ClassFactory;
@@ -298,7 +298,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @private
      *  The AdvancedDataGrid that owns this column.
      */
-    //mx_internal var owner:AdvancedDataGridBaseEx;
+    mx_internal var owner:AdvancedDataGrid; //BaseEx;
 
     /**
      *  @private
@@ -1180,14 +1180,14 @@ public class AdvancedDataGridColumn extends DataGridColumn
         {
             _visible = value;
 
-          /*   if (owner)
+            if (owner)
             {
-                owner.columnsInvalid = true;
+                owner.columnsInvalid();
                 
-                owner.invalidateProperties();
-                owner.invalidateSize();
-                owner.invalidateList();
-            } */
+                //owner.invalidateProperties();
+                //owner.invalidateSize();
+                //owner.invalidateList();
+            }
         }
     }
 

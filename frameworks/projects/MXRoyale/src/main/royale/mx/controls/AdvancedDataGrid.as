@@ -45,74 +45,18 @@ package mx.controls
     import mx.collections.IHierarchicalCollectionViewCursor;
     import mx.collections.IHierarchicalData;
     import mx.collections.IViewCursor;
-/*
-    import mx.collections.ItemResponder;
-    import mx.collections.Sort;
-    import mx.collections.SortField;
-    import mx.collections.SummaryObject;
-    import mx.collections.errors.ItemPendingError;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridBaseSelectionData;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridBaseSelectionPending;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridGroupItemRenderer;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderInfo;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridRendererDescription;
-    import mx.controls.advancedDataGridClasses.IAdvancedDataGridRendererProvider;
-    import mx.controls.advancedDataGridClasses.SortInfo;
-    import mx.controls.listClasses.BaseListData;
-    import mx.controls.listClasses.IDropInListItemRenderer;
-    import mx.controls.listClasses.IListItemRenderer;
-    import mx.controls.listClasses.ListBaseSeekPending;
-    import mx.controls.listClasses.ListRowInfo;
-    import mx.core.ClassFactory;
-    import mx.core.EdgeMetrics;
-    import mx.core.EventPriority;
-    import mx.core.FlexShape;
-    import mx.core.FlexSprite;
-    import mx.core.IDataRenderer;
-    import mx.core.IFactory;
-    import mx.core.IFlexDisplayObject;
-    import mx.core.IInvalidating;
-    import mx.core.IUITextField;
-    import mx.core.ScrollPolicy;
-    import mx.core.SpriteAsset;
-    import mx.core.UIComponent;
-    import mx.core.UIComponentGlobals;
-    import mx.effects.Tween;
-    import mx.events.AdvancedDataGridEvent;
-    import mx.events.AdvancedDataGridEventReason;
-*/
+    import mx.controls.dataGridClasses.DataGridColumn;
+    import mx.controls.listClasses.AdvancedListBase;
+    import mx.core.mx_internal;
     import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
-/*
-    import mx.events.DragEvent;
-    import mx.events.FlexEvent;
-    import mx.events.IndexChangedEvent;
-    import mx.events.ListEvent;
-    import mx.events.ListEventReason;
-    import mx.events.ScrollEvent;
-    import mx.events.ScrollEventDetail;
-    import mx.events.ScrollEventDirection;
-    import mx.events.TweenEvent;
-    import mx.managers.DragManager;
-    import mx.resources.IResourceManager;
-    import mx.resources.ResourceManager;
-    import mx.styles.ISimpleStyleClient;
-    import mx.styles.IStyleClient;
-    import mx.utils.UIDUtil;
- */
-import mx.controls.dataGridClasses.DataGridColumn;
-import mx.controls.listClasses.AdvancedListBase;
-import mx.core.mx_internal;
-
-import org.apache.royale.core.IBead;
-import org.apache.royale.core.IDataGrid;
-import org.apache.royale.core.IDataGridModel;
-import org.apache.royale.core.IDataGridPresentationModel;
-import org.apache.royale.core.ValuesManager;
-import org.apache.royale.events.Event;
+    
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IDataGrid;
+    import org.apache.royale.core.IDataGridModel;
+    import org.apache.royale.core.IDataGridPresentationModel;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 //--------------------------------------
@@ -3957,6 +3901,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 clearSelectedCells();
         }
     } */
+    
+    public function columnsInvalid():void
+    {
+        dispatchEvent(new Event("columnsInvalid"));
+    }
     
     /**
      *  @private
