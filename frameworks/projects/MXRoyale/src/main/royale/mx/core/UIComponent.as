@@ -5741,6 +5741,36 @@ COMPILE::JS
         super.removeEventListener(type, handler, opt_capture, opt_handlerScope);
     }
 
+    [Bindable("visibleChanged")]
+    COMPILE::JS
+    override public function get visible():Boolean
+    {
+        if (!positioner.style.visibility) return true;
+        
+        return positioner.style.visibility == 'visible';
+    }
+    
+    COMPILE::JS
+    override public function set visible(value:Boolean):void
+    {
+        var oldValue:Boolean = (!positioner.style.visibility) ||
+                                positioner.style.visibility == 'visible';
+        if (Boolean(value) !== oldValue)
+        {
+            if (!value) 
+            {
+                positioner.style.visibility = 'hidden';
+                dispatchEvent(new Event('hide'));
+            } 
+            else 
+            {
+                positioner.style.visibility = 'visible';
+                dispatchEvent(new Event('show'));
+            }
+            dispatchEvent(new Event('visibleChanged'));
+        }
+    }
+
 }
 
 }
