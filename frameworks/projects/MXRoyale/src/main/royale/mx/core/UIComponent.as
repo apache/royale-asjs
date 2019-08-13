@@ -1727,6 +1727,9 @@ public class UIComponent extends UIBase
     public function get systemManager():ISystemManager
     {
         // TODO
+        if (_systemManager == null && parent != null && parent is UIComponent)
+            _systemManager = (parent as UIComponent).systemManager;
+        
         return _systemManager;
     }
 
