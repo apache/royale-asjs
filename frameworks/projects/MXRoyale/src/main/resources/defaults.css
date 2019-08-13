@@ -80,7 +80,7 @@ AdvancedDataGrid
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("mx.controls.beads.DataGridView");
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList");
 	
