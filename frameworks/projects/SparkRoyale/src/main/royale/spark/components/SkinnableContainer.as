@@ -1013,9 +1013,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
             ValuesManager.valuesImpl.init(this);
         }
         
-        if (MXMLDescriptor)
-            mxmlDocument = this;
-        
         super.addedToParent();		
         
         // Load the layout bead if it hasn't already been loaded.
