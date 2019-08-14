@@ -1060,15 +1060,15 @@
             <mx:HBox id="toolBar2" horizontalGap="0">
 
                 <mx:Button id="boldButton" width="20" toggle="true"
-                           icon="@Embed('assets/icon_style_bold.png')"
+                           icon="assets/icon_style_bold.png"
                            click="setTextStyles('bold', event.currentTarget.selected);" /> 
                 
                 <mx:Button id="italicButton" width="20" toggle="true"
-                           icon="@Embed('assets/icon_style_italic.png')"
+                           icon="assets/icon_style_italic.png"
                            click="setTextStyles('italic', event.currentTarget.selected);" /> 
                 
                 <mx:Button id="underlineButton" width="20" toggle="true"
-                           icon="@Embed('assets/icon_style_underline.png')"
+                           icon="assets/icon_style_underline.png"
                            click="setTextStyles('underline', event.currentTarget.selected);" /> 
 
             </mx:HBox>
@@ -1082,16 +1082,16 @@
                             itemClick="setTextStyles('align', ToggleButtonBar(event.currentTarget).dataProvider.getItemAt(ToggleButtonBar(event.currentTarget).selectedIndex).action); " >
                 <mx:dataProvider>
                     <fx:Array> 
-                        <fx:Object icon="@Embed('assets/icon_align_left.png')" action="left"/>
-                        <fx:Object icon="@Embed('assets/icon_align_center.png')" action="center"/>
-                        <fx:Object icon="@Embed('assets/icon_align_right.png')" action="right"/>
-                        <fx:Object icon="@Embed('assets/icon_align_justify.png')" action="justify"/>
+                        <fx:Object icon="assets/icon_align_left.png" action="left"/>
+                        <fx:Object icon="assets/icon_align_center.png" action="center"/>
+                        <fx:Object icon="assets/icon_align_right.png" action="right"/>
+                        <fx:Object icon="assets/icon_align_justify.png" action="justify"/>
                     </fx:Array>
                 </mx:dataProvider>
             </mx:ToggleButtonBar>
 
             <mx:Button id="bulletButton" width="20" toggle="true"
-                   icon="@Embed('assets/icon_bullet.png')"
+                   icon="assets/icon_bullet.png"
                    click="setTextStyles('bullet', event.currentTarget.selected);" /> 
 
             <mx:VRule height="{linkTextInput.height}"/>

@@ -771,7 +771,6 @@ public class Container extends UIComponent
 	//--------------------------------------------------------------------------
 	
 	private var _mxmlDescriptor:Array;
-	private var _mxmlDocument:Object = this;
 	
 	override public function addedToParent():void
 	{
@@ -780,9 +779,6 @@ public class Container extends UIComponent
 			ValuesManager.valuesImpl.init(this);
 		}
 		
-        if (MXMLDescriptor)
-            component = this;
-        
 		super.addedToParent();		
 		
 		// Load the layout bead if it hasn't already been loaded.
@@ -851,6 +847,8 @@ public class Container extends UIComponent
 	 */
 	public function generateMXMLAttributes(data:Array):void
 	{
+        if (!_mxmlDocument)
+            _mxmlDocument = this;
 		MXMLDataInterpreter.generateMXMLProperties(this, data);
 	}
 	

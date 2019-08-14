@@ -98,6 +98,38 @@
         <name>defaults.css</name>
         <path>../resources/defaults.css</path>
     </include-file>
+    <include-file>
+        <name>assets/icon_align_center.png</name>
+        <path>../resources/assets/icon_align_center.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_align_justify.png</name>
+        <path>../resources/assets/icon_align_justify.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_align_left.png</name>
+        <path>../resources/assets/icon_align_left.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_align_right.png</name>
+        <path>../resources/assets/icon_align_right.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_bullet.png</name>
+        <path>../resources/assets/icon_bullet.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_style_bold.png</name>
+        <path>../resources/assets/icon_style_bold.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_style_italic.png</name>
+        <path>../resources/assets/icon_style_italic.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_style_underline.png</name>
+        <path>../resources/assets/icon_style_underline.png</path>
+    </include-file>
 
     <include-lookup-only>true</include-lookup-only>
 

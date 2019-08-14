@@ -160,6 +160,7 @@ internal class MXRoyaleClasses
 	import mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController; AdvancedDataGridSingleSelectionMouseController;
+    import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
     import mx.controls.beads.DataGridView; DataGridView;
 	import mx.formatters.Formatter; Formatter;
 	import mx.formatters.IFormatter; IFormatter;
@@ -235,6 +236,7 @@ internal class MXRoyaleClasses
     import mx.controls.beads.models.ComboBoxModel; ComboBoxModel;
     
     import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
+    import mx.controls.beads.models.DataGridICollectionViewModel; DataGridICollectionViewModel;
     import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
     import mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer; TextButtonDataGridColumnItemRenderer;
     

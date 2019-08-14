@@ -318,7 +318,8 @@ public class RadioButton extends Button
         {
             (rbicon.element as HTMLInputElement).checked = value;
         }
-        group.setSelection(this, false);
+        if (group != null)
+            group.setSelection(this, false);
         dispatchEvent(new Event("selectedChanged"));
     }    
     
@@ -350,9 +351,9 @@ public class RadioButton extends Button
      */
     public function get group():RadioButtonGroup
     {
-        if (_group == null)
+        if (_group == null && mxmlDocument != null)
         {
-            _group = component[groupName];
+            _group = mxmlDocument[groupName];
         }
         return _group;
     }

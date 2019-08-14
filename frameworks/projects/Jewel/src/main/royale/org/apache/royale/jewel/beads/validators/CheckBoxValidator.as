@@ -56,16 +56,34 @@ package org.apache.royale.jewel.beads.validators
 		override public function validate(event:Event = null):Boolean {
 			if (super.validate(event)) {
 				var selectedCount:int = 0;
-				var i:int = hostComponent.numElements;
-				while(--i > -1) {
-					var checkBox:CheckBox = hostComponent.getElementAt(i) as CheckBox;
-					if (!checkBox) continue;
+				var checkBox:CheckBox = hostComponent as CheckBox;
+				if (checkBox)
+				{
 					if (checkBox.selected)
+					{
 						selectedCount++;
+					}
 				}
-				if (selectedCount < required) {
+				else
+				{
+					var i:int = hostComponent.numElements;
+					while (--i > -1)
+					{
+						checkBox = hostComponent.getElementAt(i) as CheckBox;
+						if(!checkBox) continue;
+						if(checkBox.selected)
+						{
+							selectedCount++;
+						}
+					}
+				}
+
+				if (selectedCount < required)
+				{
 					createErrorTip(requiredFieldError);
-				} else {
+				}
+				else
+				{
 					destroyErrorTip();
 				}	
 			}
