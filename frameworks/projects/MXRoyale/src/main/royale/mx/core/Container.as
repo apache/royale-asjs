@@ -771,7 +771,6 @@ public class Container extends UIComponent
 	//--------------------------------------------------------------------------
 	
 	private var _mxmlDescriptor:Array;
-	private var _mxmlDocument:Object = this;
 	
 	override public function addedToParent():void
 	{
@@ -781,7 +780,7 @@ public class Container extends UIComponent
 		}
 		
         if (MXMLDescriptor)
-            component = this;
+            _mxmlDocument = this;
         
 		super.addedToParent();		
 		

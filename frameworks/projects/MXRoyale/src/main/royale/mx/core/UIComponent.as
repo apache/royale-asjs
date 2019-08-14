@@ -1847,7 +1847,7 @@ COMPILE::JS
      *  so that their 'document' property refers to the document object
      *  that they are inside.
      */
-    private var _component:Object;
+    protected var _mxmlDocument:Object;
     
     [Inspectable(environment="none")]
     
@@ -1861,9 +1861,9 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get component():Object
+    public function get mxmlDocument():Object
     {
-        return _component;
+        return _mxmlDocument;
     }
     
     /**
@@ -1876,7 +1876,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function set component(value:Object):void
+    public function set mxmlDocument(value:Object):void
     {
         var n:int = numChildren;
         for (var i:int = 0; i < n; i++)
@@ -1888,14 +1888,14 @@ COMPILE::JS
             if (child == this)
                 continue;
             
-            if (child.component == _component ||
-                child.component == FlexGlobals.topLevelApplication)
+            if (child.mxmlDocument == _mxmlDocument ||
+                child.mxmlDocument == FlexGlobals.topLevelApplication)
             {
-                child.component = value;
+                child.mxmlDocument = value;
             }
         }
         
-        _component = value;
+        _mxmlDocument = value;
     }
     
     
@@ -1915,10 +1915,10 @@ COMPILE::JS
             initialized = true;
         }
 
-        if (!component && parent is UIComponent)
-            component = UIComponent(parent).component;
-        else if (!component && parent is ContainerContentArea)
-            component = UIComponent(ContainerContentArea(parent).parent).component;
+        if (!mxmlDocument && parent is UIComponent)
+            mxmlDocument = UIComponent(parent).mxmlDocument;
+        else if (!mxmlDocument && parent is ContainerContentArea)
+            mxmlDocument = UIComponent(ContainerContentArea(parent).parent).mxmlDocument;
     }
     
     //----------------------------------
@@ -1966,7 +1966,7 @@ COMPILE::JS
     {
         // Look for the SystemManager's document,
         // which should be the Application.
-        var o:Object = systemManager.component;
+        var o:Object = systemManager.mxmlDocument;
 
         // If this UIComponent is its own root, then it is an Application.
         // We want to return its parent Application, or null
@@ -1983,7 +1983,7 @@ COMPILE::JS
         if (o == this)
         {
             var p:UIComponent = o.systemManager.parent as UIComponent;
-            o = p ? p.systemManager.component : null;
+            o = p ? p.systemManager.mxmlDocument : null;
         }
 
         return o;
@@ -2015,23 +2015,23 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get parentComponent():Object
+    public function get parentMxmlDocument():Object
     {
-        if (component == this)
+        if (mxmlDocument == this)
         {
             var p:IUIComponent = parent as IUIComponent;
             if (p)
-                return p.component;
+                return p.mxmlDocument;
 
             var sm:ISystemManager = parent as ISystemManager;
             if (sm)
-                return sm.component;
+                return sm.mxmlDocument;
 
             return null;
         }
         else
         {
-            return component;
+            return mxmlDocument;
         }
     }
 
@@ -5547,10 +5547,10 @@ COMPILE::JS
         // The document setter will recursively set it on any
         // descendants of the child that exist.
         if (child is IUIComponent &&
-            !IUIComponent(child).component)
+            !IUIComponent(child).mxmlDocument)
         {
-            IUIComponent(child).component = component ?
-                component :
+            IUIComponent(child).mxmlDocument = mxmlDocument ?
+                mxmlDocument :
                 FlexGlobals.topLevelApplication;
         }
         
@@ -5560,8 +5560,8 @@ COMPILE::JS
             if (moduleFactory != null)
                 IFlexModule(child).moduleFactory = moduleFactory;
                 
-            else if (component is IFlexModule && component.moduleFactory != null)
-                IFlexModule(child).moduleFactory = component.moduleFactory;
+            else if (mxmlDocument is IFlexModule && mxmlDocument.moduleFactory != null)
+                IFlexModule(child).moduleFactory = mxmlDocument.moduleFactory;
                 
             else if (parent is IFlexModule && IFlexModule(parent).moduleFactory != null)
                 IFlexModule(child).moduleFactory = IFlexModule(parent).moduleFactory;
@@ -5682,8 +5682,8 @@ COMPILE::JS
         {
             // only reset document if the child isn't
             // a document itself
-            if (IUIComponent(child).component != child)
-                IUIComponent(child).component = null;
+            if (IUIComponent(child).mxmlDocument != child)
+                IUIComponent(child).mxmlDocument = null;
             //IUIComponent(child).parentChanged(null);
         }
     }

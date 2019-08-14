@@ -1014,7 +1014,7 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
         }
         
         if (MXMLDescriptor)
-            component = this;
+            mxmlDocument = this;
         
         super.addedToParent();		
         

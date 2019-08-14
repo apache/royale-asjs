@@ -316,7 +316,7 @@ public class RadioButton extends Button
     {
         if (_group == null)
         {
-            _group = component[groupName];
+            _group = mxmlDocument[groupName];
         }
         return _group;
     }

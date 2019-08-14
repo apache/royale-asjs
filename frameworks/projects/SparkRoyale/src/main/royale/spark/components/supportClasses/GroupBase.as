@@ -1189,7 +1189,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer
         }
         
         if (MXMLDescriptor)
-            component = this;
+            mxmlDocument = this;
         
         super.addedToParent();		
         
