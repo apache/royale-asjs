@@ -518,6 +518,14 @@ public class RadioButton extends Button
         return g;
     }
 
+    override public function get measuredWidth():Number
+    {
+        // on Safari, we seem to come up one pixel short sometimes
+        // causing the label to appear on another line if the
+        // width is set the the measuredWidth.  Probably a fractional error.
+        return super.measuredWidth + 1;
+    }
+
 }
 
 }
