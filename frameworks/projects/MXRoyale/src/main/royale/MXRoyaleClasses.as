@@ -162,6 +162,7 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController; AdvancedDataGridSingleSelectionMouseController;
     import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
     import mx.controls.beads.DataGridView; DataGridView;
+    import mx.controls.beads.layouts.DataGridLayout; DataGridLayout;
 	import mx.formatters.Formatter; Formatter;
 	import mx.formatters.IFormatter; IFormatter;
 	import mx.formatters.NumberBase; NumberBase;

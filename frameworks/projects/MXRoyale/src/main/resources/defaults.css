@@ -81,7 +81,7 @@ AdvancedDataGrid
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("mx.controls.beads.AdvancedDataGridView");
 	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
+	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList");
 	
 	background-color: #FFFFFF;
@@ -154,7 +154,7 @@ DataGrid
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
+	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
 	
 	background-color: #FFFFFF;
