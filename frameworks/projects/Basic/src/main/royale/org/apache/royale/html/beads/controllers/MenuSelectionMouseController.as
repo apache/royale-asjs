@@ -158,13 +158,7 @@ package org.apache.royale.html.beads.controllers
 			
 			for(var i:int=0; i < copy.length; i++) {
 				var menu:UIBase = copy[i] as UIBase;
-				if (menu.parent != null) {
-					var controller:MenuSelectionMouseController = menu.getBeadByType(MenuSelectionMouseController) as MenuSelectionMouseController;
-					controller.removeClickOutHandler(menu);
-                    var host:IPopUpHost = UIUtils.findPopUpHost(menu as IUIBase);
-					if(host)
-						host.popUpParent.removeElement(menu);
-				}
+				removeMenu(menu);
 			}
 			MenuModel.clearMenuList();
 		}
@@ -179,6 +173,17 @@ package org.apache.royale.html.beads.controllers
 			hideOpenMenus();
 		}
 		
+		protected function removeMenu(menu:UIBase):void
+		{
+			if (menu.parent != null) {
+				var controller:MenuSelectionMouseController = menu.getBeadByType(MenuSelectionMouseController) as MenuSelectionMouseController;
+				controller.removeClickOutHandler(menu);
+				var host:IPopUpHost = UIUtils.findPopUpHost(menu as IUIBase);
+				if(host)
+					host.popUpParent.removeElement(menu);
+			}
+		}
+
 		/**
 		 * @private
 		 * 
