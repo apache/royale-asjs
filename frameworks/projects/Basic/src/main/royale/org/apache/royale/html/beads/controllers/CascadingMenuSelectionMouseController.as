@@ -145,7 +145,8 @@ package org.apache.royale.html.beads.controllers
 						var nextMenu:CascadingMenu = getMenuWithDataProvider(menuList, dp);
 						if (nextMenu)
 						{
-							return clearSubmenusOnSameLevel(menu, nextMenu.model as ISelectionModel);
+							clearSubmenusOnSameLevel(nextMenu, nextMenu.model as ISelectionModel);
+							break;
 						}
 					}
 				}
