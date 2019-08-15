@@ -100,7 +100,7 @@ package org.apache.royale.html.beads.controllers
 				menu.dataProvider = getSubMenuDataProvider(node, model);
 				menu.labelField = model.labelField;
 				menu.parentMenuBar = (_strand as IMenu).parentMenuBar;
-				// selected item holds the currently open submenu data provider
+				// selected item holds the currently open submenu data 
 				// check to see if that exists and hide it if it does
 				if (model.selectedItem)
 				{
