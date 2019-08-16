@@ -474,7 +474,7 @@ package mx.containers.beads
 		 */
 		public function getHorizontalAlignValue():Number
 		{
-			var horizontalAlign:String = target.getStyle("horizontalAlign");
+			var horizontalAlign:String = target.horizontalAlign;
 			
 			if (horizontalAlign == "center")
 				return 0.5;
