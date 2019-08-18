@@ -117,6 +117,8 @@
     <component id="DrawerHeader" class="org.apache.royale.jewel.supportClasses.drawer.DrawerHeader"/>
     <component id="DrawerContent" class="org.apache.royale.jewel.supportClasses.drawer.DrawerContent"/>
 
+    <component id="HideDrawerOnMouseDown" class="org.apache.royale.jewel.beads.controls.drawer.HideDrawerOnMouseDown"/>
+
     <component id="Divider" class="org.apache.royale.jewel.Divider"/>
 
     <component id="Image" class="org.apache.royale.jewel.Image"/>
