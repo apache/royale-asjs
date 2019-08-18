@@ -82,6 +82,7 @@ AdvancedDataGrid
 	IBeadView: ClassReference("mx.controls.beads.AdvancedDataGridView");
 	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
+	IDataProviderNotifier: ClassReference("mx.controls.beads.DataProviderChangeNotifier");
 	columnClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList");
 	
 	background-color: #FFFFFF;
