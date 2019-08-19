@@ -97,7 +97,7 @@ public class DispatchMouseClickEvent extends TestStep {
 		script.append("    var e = all[i];");
         script.append("    var bounds = e.getBoundingClientRect();");
 		script.append("     if (" + x + " >= bounds.left && " + x + " <= bounds.right && " + y + " >= bounds.top && " + y + " <= bounds.bottom) {");
-        script.append("         marmotinni_mouse_target = e;");
+        script.append("         window.marmotinni_mouse_target = e;");
 		script.append("         return e;");
         script.append("    }");
 		script.append("};");
@@ -128,7 +128,7 @@ public class DispatchMouseClickEvent extends TestStep {
             script.append("init.screenY = ");
             script.append(y.toString());
             script.append(";");
-            script.append("marmotinni_mouse_target.dispatchEvent(new MouseEvent('mousedown', init));");
+            script.append("window.marmotinni_mouse_target.dispatchEvent(new MouseEvent('mousedown', init));");
             if (TestStep.showScripts)
                 System.out.println(script);
             ((JavascriptExecutor)webDriver).executeScript(script.toString());
@@ -140,7 +140,7 @@ public class DispatchMouseClickEvent extends TestStep {
             script.append("init.screenY = ");
             script.append(y.toString());
             script.append(";");
-            script.append("marmotinni_mouse_target.dispatchEvent(new MouseEvent('mouseup', init));");
+            script.append("window.marmotinni_mouse_target.dispatchEvent(new MouseEvent('mouseup', init));");
             if (TestStep.showScripts)
                 System.out.println(script);
             ((JavascriptExecutor)webDriver).executeScript(script.toString());
