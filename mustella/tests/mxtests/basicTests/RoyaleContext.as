@@ -34,7 +34,7 @@ public class RoyaleContext
 	
 	public static function contextFunction():Object
 	{
-		return UnitTester._root["component"];		
+		return UnitTester._root["mxmlDocument"];		
 	}
 }
 
