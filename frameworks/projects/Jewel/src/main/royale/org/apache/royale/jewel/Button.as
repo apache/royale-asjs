@@ -61,7 +61,7 @@ package org.apache.royale.jewel
 
         [Bindable("textChange")]
         /**
-         *  the text to appear on the control.
+         *  The text to appear on the control.
          * 
          *  @copy org.apache.royale.jewel.Label#text
          *
@@ -100,7 +100,8 @@ package org.apache.royale.jewel
 
         [Bindable("htmlChange")]
         /**
-         *  the html text to appear on the control.
+         *  The html text to appear on the control.
+		 *  
          *  @copy org.apache.royale.jewel.Label#html
          *
          *  @langversion 3.0
