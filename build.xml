@@ -1243,10 +1243,12 @@ limitations under the License.
     
     <target name="basictests-run-js" unless="skipTests" >
         <property name="profile_arg" value="dummy=false" />
+        <echo>GECKODRIVER_HOME=${env.GECKODRIVER_HOME}</echo>
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml</echo>
 		<java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
+            <sysproperty key="webdriver.gecko.driver" value="${env.GECKODRIVER_HOME}" />
 		    <!--<arg value="browser=chrome" />-->
 		    <arg value="url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml" />
@@ -1504,6 +1506,7 @@ limitations under the License.
     <target name="mxtests-run-js" >
         <property name="profile_arg" value="dummy=false" />
         <echo>url=file://${basedir}/mustella/tests/mxtests/bin/js-debug/index.html</echo>
+        <echo>GECKODRIVER_HOME=${env.GECKODRIVER_HOME}</echo>
         <java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
             <sysproperty key="webdriver.gecko.driver" value="${env.GECKODRIVER_HOME}" />
             <!--<arg value="browser=chrome" />-->
