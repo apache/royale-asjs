@@ -122,8 +122,6 @@ package
         COMPILE::JS
         {
         import dialogPolyfill; dialogPolyfill;
-        import hljs; hljs;
         }
     }
-
 }
