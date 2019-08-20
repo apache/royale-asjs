@@ -96,12 +96,7 @@ package org.apache.royale.jewel
 		
 		/**
 		 *  constructor.
-		 *
-         *  <inject_html>
-         *  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css">
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js"></script>
-         *  </inject_html>
-         * 
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
