@@ -816,6 +816,13 @@ public class Container extends UIComponent
         }
     }
     
+    override public function get mxmlDocument():Object
+    {
+        if (!_mxmlDocument && MXMLDescriptor != null)
+            _mxmlDocument = this;
+        return _mxmlDocument;
+    }
+    
 	/**
 	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 	 *  
