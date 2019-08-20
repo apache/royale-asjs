@@ -25,7 +25,7 @@ import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.core.IBeadController;
 import mx.controls.RadioButton;
-import org.apache.royale.events.Event;
+import org.apache.royale.events.MouseEvent;
 import mx.events.ItemClickEvent;
 import mx.controls.RadioButtonGroup;
 
@@ -46,7 +46,7 @@ import mx.controls.RadioButtonGroup;
             (value as IEventDispatcher).addEventListener(MouseEvent.CLICK, clickHandler);
         }
 
-        protected function clickHandler(event:Event):void
+        protected function clickHandler(event:MouseEvent):void
         {
             // Dispatch an itemClick event from the RadioButtonGroup.
             var radioButton:RadioButton = event.target as RadioButton;
