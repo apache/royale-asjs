@@ -31,7 +31,6 @@ package org.apache.royale.jewel.supportClasses.button
     }
     
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.ITextModel;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.utils.ClassSelectorList;
@@ -52,9 +51,7 @@ package org.apache.royale.jewel.supportClasses.button
 	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
-     *  Set a different class for rollOver events so that
-     *  there aren't dependencies on the flash classes
-     *  on the JS side.
+     *  Dispatched when the user moves onto a button.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -64,9 +61,7 @@ package org.apache.royale.jewel.supportClasses.button
     [Event(name="rollOver", type="org.apache.royale.events.MouseEvent")]
     
     /**
-     *  Set a different class for rollOut events so that
-     *  there aren't dependencies on the flash classes
-     *  on the JS side.
+     *  Dispatched when the user moves out a button.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -76,9 +71,7 @@ package org.apache.royale.jewel.supportClasses.button
     [Event(name="rollOut", type="org.apache.royale.events.MouseEvent")]
     
     /**
-     *  Set a different class for mouseDown events so that
-     *  there aren't dependencies on the flash classes
-     *  on the JS side.
+     *  Dispatched when the user press mouse over a button.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -88,9 +81,7 @@ package org.apache.royale.jewel.supportClasses.button
     [Event(name="mouseDown", type="org.apache.royale.events.MouseEvent")]
     
     /**
-     *  Set a different class for mouseUp events so that
-     *  there aren't dependencies on the flash classes
-     *  on the JS side.
+     *  Dispatched when the user release mouse over a button.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -100,9 +91,7 @@ package org.apache.royale.jewel.supportClasses.button
     [Event(name="mouseUp", type="org.apache.royale.events.MouseEvent")]
     
     /**
-     *  Set a different class for mouseMove events so that
-     *  there aren't dependencies on the flash classes
-     *  on the JS side.
+     *  Dispatched when the user moves mouse pointer over a button.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -112,9 +101,7 @@ package org.apache.royale.jewel.supportClasses.button
     [Event(name="mouseMove", type="org.apache.royale.events.MouseEvent")]
     
     /**
-     *  Set a different class for mouseOut events so that
-     *  there aren't dependencies on the flash classes
-     *  on the JS side.
+     *  Dispatched when the user moves mouse pointer out of a button.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -124,9 +111,7 @@ package org.apache.royale.jewel.supportClasses.button
     [Event(name="mouseOut", type="org.apache.royale.events.MouseEvent")]
     
 	/**
-	 *  Set a different class for mouseOver events so that
-	 *  there aren't dependencies on the flash classes
-	 *  on the JS side.
+	 *  Dispatched when the user moves onto a button.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -134,10 +119,9 @@ package org.apache.royale.jewel.supportClasses.button
 	 *  @productversion Royale 0.9.4
 	 */
 	[Event(name="mouseOver", type="org.apache.royale.events.MouseEvent")]
+
 	/**
-	 *  Set a different class for mouseWheel events so that
-	 *  there aren't dependencies on the flash classes
-	 *  on the JS side.
+	 *  Dispatched when the user scrolls mouse whell over a button.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -147,9 +131,7 @@ package org.apache.royale.jewel.supportClasses.button
 	[Event(name="mouseWheel", type="org.apache.royale.events.MouseEvent")]
 	
 	/**
-	 *  Set a different class for doubleClick events so that
-	 *  there aren't dependencies on the flash classes
-	 *  on the JS side.
+	 *  Dispatched when the user double-click over a button.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -202,9 +184,10 @@ package org.apache.royale.jewel.supportClasses.button
 
         private var _emphasis:String;
         /**
-		 *  Activate "emphasis" effect selector. Applies emphasis color display effect.
-         *  Possible values are constants (PRIMARY, SECONDARY, EMPHASIZED)
-         *  Colors are defined in royale-jewel.css
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
          *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -242,7 +225,7 @@ package org.apache.royale.jewel.supportClasses.button
          */
         public function addClass(name:String):void
         {
-            // To implement.need to implement this interface or extensions will not compile
+            // To implement. Need to implement this interface or extensions will not compile
         }
 
         /**
@@ -260,7 +243,7 @@ package org.apache.royale.jewel.supportClasses.button
          */
         public function removeClass(name:String):void
         {
-            // To implement.need to implement this interface or extensions will not compile
+            // To implement. Need to implement this interface or extensions will not compile
         }
 
         /**
@@ -276,7 +259,7 @@ package org.apache.royale.jewel.supportClasses.button
          */
         public function toggleClass(name:String, value:Boolean):void
         {
-            // To implement.need to implement this interface or extensions will not compile
+            // To implement. Need to implement this interface or extensions will not compile
         }
 
         /**
@@ -336,10 +319,10 @@ package org.apache.royale.jewel.supportClasses.button
 
         private var _emphasis:String;
         /**
-		 *  Activate "emphasis" effect selector. Applies emphasis color display effect.
-         *  Possible values are constants (PRIMARY, SECONDARY, EMPHASIZED).
-         *  Left without value to get the default look (light or dark.)
-         *  Colors are defined in jewel theme CSS
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
          *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
