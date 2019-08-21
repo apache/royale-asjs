@@ -191,8 +191,15 @@ package org.apache.royale.jewel
 		{
             COMPILE::JS
 			{
-				var body:HTMLElement = document.getElementsByTagName('body')[0];
-				body.appendChild(element);
+				if (parent)
+				{
+					parent.element.appendChild(element);
+				}
+				else
+				{
+					var body:HTMLElement = document.getElementsByTagName('body')[0];
+					body.appendChild(element);
+				}
 				addedToParent();
 			}
 
