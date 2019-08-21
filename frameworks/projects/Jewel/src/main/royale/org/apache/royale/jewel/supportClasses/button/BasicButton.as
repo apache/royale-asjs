@@ -46,7 +46,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
 	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     [Event(name="rollOver", type="org.apache.royale.events.MouseEvent")]
     
@@ -66,7 +66,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     [Event(name="rollOut", type="org.apache.royale.events.MouseEvent")]
     
@@ -76,7 +76,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     [Event(name="mouseDown", type="org.apache.royale.events.MouseEvent")]
     
@@ -86,7 +86,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     [Event(name="mouseUp", type="org.apache.royale.events.MouseEvent")]
     
@@ -96,7 +96,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     [Event(name="mouseMove", type="org.apache.royale.events.MouseEvent")]
     
@@ -106,7 +106,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     [Event(name="mouseOut", type="org.apache.royale.events.MouseEvent")]
     
@@ -116,7 +116,7 @@ package org.apache.royale.jewel.supportClasses.button
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="mouseOver", type="org.apache.royale.events.MouseEvent")]
 
@@ -126,7 +126,7 @@ package org.apache.royale.jewel.supportClasses.button
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="mouseWheel", type="org.apache.royale.events.MouseEvent")]
 	
@@ -136,7 +136,7 @@ package org.apache.royale.jewel.supportClasses.button
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.6
 	 */
 	[Event(name="doubleClick", type="org.apache.royale.events.MouseEvent")]
 
@@ -155,7 +155,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     COMPILE::SWF
 	public class BasicButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
@@ -170,7 +170,7 @@ package org.apache.royale.jewel.supportClasses.button
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
+         *  @productversion Royale 0.9.6
          */
 		public function BasicButton()
 		{
@@ -192,7 +192,7 @@ package org.apache.royale.jewel.supportClasses.button
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
         public function get emphasis():String
         {
@@ -221,7 +221,7 @@ package org.apache.royale.jewel.supportClasses.button
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.4
+         * @productversion Royale 0.9.6
          */
         public function addClass(name:String):void
         {
@@ -239,7 +239,7 @@ package org.apache.royale.jewel.supportClasses.button
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.4
+         * @productversion Royale 0.9.6
          */
         public function removeClass(name:String):void
         {
@@ -255,7 +255,7 @@ package org.apache.royale.jewel.supportClasses.button
          * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
-         * @productversion Royale 0.9.4
+         * @productversion Royale 0.9.6
          */
         public function toggleClass(name:String, value:Boolean):void
         {
@@ -271,7 +271,7 @@ package org.apache.royale.jewel.supportClasses.button
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function containsClass(name:String):Boolean
         {
@@ -294,7 +294,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.6
      */
     COMPILE::JS
     public class BasicButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
@@ -309,7 +309,7 @@ package org.apache.royale.jewel.supportClasses.button
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
+         *  @productversion Royale 0.9.6
          */
 		public function BasicButton()
 		{
@@ -327,7 +327,7 @@ package org.apache.royale.jewel.supportClasses.button
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
         public function get emphasis():String
         {
