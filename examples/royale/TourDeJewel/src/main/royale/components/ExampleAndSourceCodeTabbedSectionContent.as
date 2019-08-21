@@ -37,7 +37,7 @@ package components
 	{
         /**
 		 *  constructor.
-		 *  
+         *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -130,7 +130,10 @@ package components
         {
             sourceCodeMXMLText.text = event.target.sourceCode;
             
+            COMPILE::JS
+            {
             hljs.highlightBlock(sourceCodeMXMLText.element);
+            }
         }
 
         

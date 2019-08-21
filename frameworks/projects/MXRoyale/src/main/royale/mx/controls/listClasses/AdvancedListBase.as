@@ -91,6 +91,8 @@ import mx.core.IFactory;
 import mx.core.UIComponent; 
 import mx.core.ScrollControlBase;
 import mx.core.mx_internal;
+import org.apache.royale.core.IDataProviderNotifier;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 use namespace mx_internal;
 
 
@@ -579,7 +581,35 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         super.dataProvider = value;
         collection = super.dataProvider as ICollectionView;
     }
+
+    override public function addedToParent():void
+    {
+        if (!dataNotifier) {
+            dataNotifier = loadBeadFromValuesManager(IDataProviderNotifier, "iDataProviderNotifier", this) as IDataProviderNotifier;
+        }
+        super.addedToParent();
+    }
+
+    private var _dataNotifier:IDataProviderNotifier;
+    /**
+     *  The IDataProviderNotifier that will watch for data
+     *  provider changes.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.6
+     */
+    public function get dataNotifier():IDataProviderNotifier
+    {
+        return _dataNotifier;
+    }
+    public function set dataNotifier(value:IDataProviderNotifier):void
+    {
+        _dataNotifier = value;
+    }
     
+
     //--------------------------------------------------------------------------
     //
     //  Variables

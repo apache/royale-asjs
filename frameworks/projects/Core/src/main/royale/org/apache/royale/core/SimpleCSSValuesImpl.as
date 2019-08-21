@@ -816,6 +816,7 @@ package org.apache.royale.core
          */
         COMPILE::JS
         private static const _colorStyles:Object = {
+            'background' : 1, // if only a color is specified, otherwise value will be a string
             'backgroundColor': 1,
             'borderColor': 1,
             'color': 1
@@ -884,7 +885,7 @@ package org.apache.royale.core
                     else
                         value = value.toString() + 'px';
                 }
-                else if (p == 'backgroundImage' && p.indexOf('url') != 0) {
+                else if (p == 'backgroundImage' && value.indexOf('url') != 0) {
                         value = 'url(' + value + ')';
                 }
                 (thisObject.element as HTMLElement).style[p] = value;

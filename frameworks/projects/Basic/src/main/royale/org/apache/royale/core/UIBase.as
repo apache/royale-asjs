@@ -409,7 +409,9 @@ package org.apache.royale.core
         COMPILE::JS
         public function get width():Number
         {
-            if(!isNaN(_explicitWidth))
+            if (!isNaN(_width))
+                return _width;
+            if (!isNaN(_explicitWidth))
                 return _explicitWidth;
             var pixels:Number;
             var strpixels:String = element.style.width as String;
@@ -503,7 +505,9 @@ package org.apache.royale.core
         COMPILE::JS
         public function get height():Number
         {
-            if(!isNaN(_explicitHeight))
+            if (!isNaN(_height))
+                return _height;
+            if (!isNaN(_explicitHeight))
                 return _explicitHeight;
             var pixels:Number;
             var strpixels:String = element.style.height as String;

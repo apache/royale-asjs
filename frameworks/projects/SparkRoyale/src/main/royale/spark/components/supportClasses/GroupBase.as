@@ -1188,9 +1188,6 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer
             ValuesManager.valuesImpl.init(this);
         }
         
-        if (MXMLDescriptor)
-            component = this;
-        
         super.addedToParent();		
         
         // Load the layout bead if it hasn't already been loaded.

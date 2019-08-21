@@ -614,6 +614,8 @@ public class Container extends UIComponent
         trace("verticalGap not implemented");
     }
 	
+    private var _horizontalAlign:String;
+    
     /**
      *  horizontalAlign (was a style in Flex)
      * 
@@ -626,12 +628,11 @@ public class Container extends UIComponent
      */
     public function get horizontalAlign():String
     {
-        trace("Container:horizontalAlign not implemented");
-        return null;
+        return _horizontalAlign;
     }
     public function set horizontalAlign(value:String):void
     {
-        trace("Container:horizontalAlign not implemented");
+        _horizontalAlign = value;
     }
     
     
@@ -771,7 +772,6 @@ public class Container extends UIComponent
 	//--------------------------------------------------------------------------
 	
 	private var _mxmlDescriptor:Array;
-	private var _mxmlDocument:Object = this;
 	
 	override public function addedToParent():void
 	{
@@ -780,9 +780,6 @@ public class Container extends UIComponent
 			ValuesManager.valuesImpl.init(this);
 		}
 		
-        if (MXMLDescriptor)
-            component = this;
-        
 		super.addedToParent();		
 		
 		// Load the layout bead if it hasn't already been loaded.
@@ -819,6 +816,13 @@ public class Container extends UIComponent
         }
     }
     
+    override public function get mxmlDocument():Object
+    {
+        if (!_mxmlDocument && MXMLDescriptor != null)
+            _mxmlDocument = this;
+        return _mxmlDocument;
+    }
+    
 	/**
 	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 	 *  
@@ -851,6 +855,8 @@ public class Container extends UIComponent
 	 */
 	public function generateMXMLAttributes(data:Array):void
 	{
+        if (!_mxmlDocument)
+            _mxmlDocument = this;
 		MXMLDataInterpreter.generateMXMLProperties(this, data);
 	}
 	

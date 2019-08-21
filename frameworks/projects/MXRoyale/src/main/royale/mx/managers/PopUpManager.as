@@ -23,9 +23,10 @@ package mx.managers
 //import flash.display.DisplayObject;
 //import mx.core.IFlexModuleFactory;
 //import mx.core.Singleton;
+import mx.core.FlexGlobals;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
-import mx.core.FlexGlobals;
+import mx.core.UIComponent;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IPopUpHost;
@@ -204,6 +205,8 @@ public class PopUpManager
             if (modalBead)
                 modalBead.show(popUpHost);
         }
+        if (popUpHost is UIComponent)
+            (window as UIComponent).systemManager = (popUpHost as UIComponent).systemManager;
         popUpHost.popUpParent.addElement(window as IUIComponent);
     }
 	

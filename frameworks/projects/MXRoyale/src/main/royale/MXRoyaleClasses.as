@@ -162,6 +162,7 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController; AdvancedDataGridSingleSelectionMouseController;
     import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
     import mx.controls.beads.DataGridView; DataGridView;
+    import mx.controls.beads.layouts.DataGridLayout; DataGridLayout;
 	import mx.formatters.Formatter; Formatter;
 	import mx.formatters.IFormatter; IFormatter;
 	import mx.formatters.NumberBase; NumberBase;
@@ -204,6 +205,7 @@ internal class MXRoyaleClasses
 	import mx.messaging.channels.URLVariables; URLVariables;
 	import mx.controls.Menu; Menu;
 	import mx.events.NumericStepperEvent; NumericStepperEvent;
+	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
 	
 	import mx.controls.PopUpButton; PopUpButton;
 	import mx.controls.PopUpMenuButton; PopUpMenuButton;
@@ -221,6 +223,7 @@ internal class MXRoyaleClasses
 	import mx.controls.beads.CheckBoxView; CheckBoxView;
 	import mx.controls.beads.RadioButtonView; RadioButtonView;
 	}
+    import mx.controls.beads.ComboBoxView; ComboBoxView;
 	import mx.controls.beads.controllers.RadioButtonMouseController; RadioButtonMouseController;
     import mx.controls.beads.NumericStepperView; NumericStepperView;
     import mx.controls.beads.DateFieldView; DateFieldView;

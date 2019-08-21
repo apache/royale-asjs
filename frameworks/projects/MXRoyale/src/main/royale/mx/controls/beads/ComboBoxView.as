@@ -16,53 +16,51 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.core
+package mx.controls.beads
 {
-	import org.apache.royale.events.IEventDispatcher;
-
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.beads.ComboBoxView;
+	
     /**
-     *  The IEffectTimer interface is the basic interface for the
-	 *  class that updates effects like tweens.  Different
-	 *  IEffectTimer implementations are tuned for various
-	 *  runtime environments like mobile, Flash, desktop,
-	 *  or even automated testing where the currentTime is
-	 *  controlled so the animation updates its target at
-	 *  predictable positions on the screen.
+     *  The ComboBoxView class.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IEffectTimer extends IEventDispatcher
+	public class ComboBoxView extends org.apache.royale.html.beads.ComboBoxView
 	{
         /**
-         *  Start getting update events.
-		 * 
-		 *  @return The current time.
-         * 
+         *  Constructor.
+         *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function start():Number;
-		
+		public function ComboBoxView()
+		{
+        }
+
         /**
-         *  Stop getting update events.  Current time
-		 *  should theoretically keep advancing, but events
-		 *  are not dispatched so most implementations
-		 *  stop the platform timer (which can save battery
-		 *  on mobile devices) because they know that
-		 *  when start() is called they have a way of
-		 *  getting the updated current time.
-         * 
+         * The content area of the panel.
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.UIBase
          */
-		function stop():void;
+        override public function set popUpVisible(value:Boolean):void
+        {
+            var sendClose:Boolean = !value && list.visible;
+            super.popUpVisible = value;
+            if (sendClose)
+                IEventDispatcher(_strand).dispatchEvent(new Event("close"));
+        }
 		
 	}
 }

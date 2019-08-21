@@ -23,9 +23,12 @@ package marmotinni;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriverLogLevel;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.firefox.FirefoxProfile;
-import org.openqa.selenium.firefox.internal.ProfilesIni;
+//import org.openqa.selenium.firefox.FirefoxProfile;
+//import org.openqa.selenium.firefox.internal.ProfilesIni;
+//import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.io.IOException;
 import java.nio.CharBuffer;
@@ -216,15 +219,16 @@ public class MarmotinniRunner extends DefaultHandler {
         WebDriver driver;
 		if (browser != null && browser.equalsIgnoreCase("chrome"))
 			driver = new ChromeDriver();
-		else if (argsMap.containsKey("profile"))
-		{
-			ProfilesIni profile = new ProfilesIni();
- 			FirefoxProfile ffprofile = profile.getProfile(argsMap.get("profile"));
-			System.out.println("FireFox Profile: " + argsMap.get("profile"));			
-			driver = new FirefoxDriver(ffprofile);
-		}
 		else
-			driver = new FirefoxDriver();
+		{
+            //set webdriver.gecko.driver at launch time via Ant or Maven or command-line
+            //System.setProperty("webdriver.gecko.driver", driverPath);
+            //DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+            FirefoxOptions ffo = new FirefoxOptions();
+            //ffo.setLogLevel(FirefoxDriverLogLevel.TRACE);
+            //capabilities.setCapability("marionette", true);
+            driver = new FirefoxDriver(ffo);
+        }
 		
         driver.get(url);
 		

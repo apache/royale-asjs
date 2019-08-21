@@ -26,6 +26,7 @@ import mx.containers.PanelTitleBar;
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.CanvasLayout;
 import mx.containers.beads.models.PanelModel;
+import mx.core.Container;
 import mx.core.ContainerLayout;
 import mx.core.UIComponent;
 
@@ -107,6 +108,8 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
                 BoxLayout(layoutObject).direction
                     = BoxDirection.HORIZONTAL;
         }
+        
+        (contentArea as Container).horizontalAlign = (host as Container).horizontalAlign;
         
         if (layoutObject)
             contentArea.addBead(layoutObject);            

@@ -66,6 +66,8 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 				</j:Button>
+
+				<j:BasicButton emphasis="{Button.EMPHASIZED}"/>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
