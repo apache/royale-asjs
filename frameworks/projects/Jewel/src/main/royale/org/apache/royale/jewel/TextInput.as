@@ -27,8 +27,9 @@ package org.apache.royale.jewel
     import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
     /**
-     *  The TextInput class implements the basic control for
-     *  single-line text input.
+     *  The TextInput implements the jewel control for
+     *  single-line text field. It dispatches a change event
+     *  when the user input text.
      *
      *  @toplevel
      *  @langversion 3.0
