@@ -23,12 +23,12 @@ package org.apache.royale.jewel
     import org.apache.royale.core.ITextModel;
     }
 
-    import org.apache.royale.jewel.supportClasses.button.BasicButton;
+    import org.apache.royale.jewel.supportClasses.button.SimpleButton;
 
     [DefaultProperty("text")]
 
     /**
-     *  The Jewel Button class adds text capabilities to Jewel BasicButton.
+     *  The Jewel Button class adds text capabilities to Jewel SimpleButton.
      * 
      *  Button is a commonly used rectangular button with text inside. It looks like it can be pressed 
      *  and allow users to take actions, and make choices, with a single click or tap. It typically
@@ -40,7 +40,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class Button extends BasicButton
+    public class Button extends SimpleButton
     {
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
