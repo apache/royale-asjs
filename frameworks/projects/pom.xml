@@ -69,17 +69,8 @@
     <module>Icons</module>
     <module>SparkRoyale</module>
     <module>Jewel</module>
+    <module>RoyaleUnit</module>
   </modules>
-
-  <profiles>
-    <profile>
-      <id>brokenmodules</id>
-      <modules>
-          <!-- Seems to be missing a flexunit? -->
-          <module>RoyaleUnit</module>
-      </modules>
-    </profile>
-  </profiles>
 
   <build>
     <plugins>
