@@ -110,6 +110,7 @@ package
         import org.apache.royale.jewel.supportClasses.list.DataGroup; DataGroup;
         import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy; FormItemLayoutProxy;
         import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy; WizardLayoutProxy;
+        import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase; SelectableButtonBase;
 
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 
