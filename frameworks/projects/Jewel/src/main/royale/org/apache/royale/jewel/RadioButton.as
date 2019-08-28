@@ -18,39 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.MouseEvent;
-    import org.apache.royale.utils.ClassSelectorList;
-	import org.apache.royale.core.ISelectable;
-
     COMPILE::SWF
     {
-        import flash.utils.Dictionary;
-        import org.apache.royale.core.UIButtonBase;
-        import org.apache.royale.core.IStrand;
-        import org.apache.royale.core.IValueToggleButtonModel;
+    import flash.utils.Dictionary;
+
+    import org.apache.royale.core.IValueToggleButtonModel;
+    import org.apache.royale.core.UIButtonBase;
+    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
     }
 
     COMPILE::JS
     {
-        import org.apache.royale.core.StyledUIBase;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+
+    import org.apache.royale.core.ISelectable;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.MouseEvent;
 
     //--------------------------------------
     //  Events
     //--------------------------------------
-
-    /**
-     *  Dispatched when the user clicks on RadioButton.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
-     */
-	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  Dispatched when RadioButton is being selected/unselected.
@@ -61,8 +52,6 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
     [Event(name="change", type="org.apache.royale.events.Event")]
-
-    
 
     /**
      *  The Jewel radio button component in SWF is a specialized button.
@@ -79,7 +68,7 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
     COMPILE::SWF
-	public class RadioButton extends UIButtonBase implements IStrand, ISelectable
+	public class RadioButton extends UIButtonBase implements ISelectable, IClassSelectorListSupport
 	{
         /**
 		 *  constructor.
@@ -100,7 +89,84 @@ package org.apache.royale.jewel
 			addEventListener(org.apache.royale.events.MouseEvent.CLICK, internalMouseHandler);
 		}
 
+        /**
+		 * @private
+		 */
+		private function internalMouseHandler(event:MouseEvent) : void
+		{
+			// prevent radiobutton from being turned off by a click
+			if( !selected ) {
+				selected = !selected;
+				dispatchEvent(new Event(Event.CHANGE));
+			}
+		}
+
         protected var classSelectorList:ClassSelectorList;
+
+        /**
+         * Add a class selector to the list.
+         * 
+         * @param name Name of selector to add.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.6
+         */
+        public function addClass(name:String):void
+        {
+            // To implement. Need to implement this interface or extensions will not compile
+        }
+
+        /**
+         * Removes a class selector from the list.
+         * 
+         * @param name Name of selector to remove.
+         *
+         * @royaleignorecoercion HTMLElement
+         * @royaleignorecoercion DOMTokenList
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.6
+         */
+        public function removeClass(name:String):void
+        {
+            // To implement. Need to implement this interface or extensions will not compile
+        }
+
+        /**
+         * Add or remove a class selector to/from the list.
+         * 
+         * @param name Name of selector to add or remove.
+         * @param value True to add, False to remove.
+         * 
+         * @langversion 3.0
+         * @playerversion Flash 10.2
+         * @playerversion AIR 2.6
+         * @productversion Royale 0.9.6
+         */
+        public function toggleClass(name:String, value:Boolean):void
+        {
+            // To implement. Need to implement this interface or extensions will not compile
+        }
+
+        /**
+		 *  Search for the name in the element class list 
+		 *
+         *  @param name Name of selector to find.
+         *  @return return true if the name is found or false otherwise.
+         * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function containsClass(name:String):Boolean
+        {
+            return false;
+        }
 
 		protected static var dict:Dictionary = new Dictionary(true);
 
@@ -233,33 +299,11 @@ package org.apache.royale.jewel
 
 			dict[this] = this;
 		}
-
-		/**
-		 * @private
-		 */
-		private function internalMouseHandler(event:MouseEvent) : void
-		{
-			// prevent radiobutton from being turned off by a click
-			if( !selected ) {
-				selected = !selected;
-				dispatchEvent(new Event(Event.CHANGE));
-			}
-		}
 	}
     
     //--------------------------------------
     //  Events
     //--------------------------------------
-
-    /**
-     *  Dispatched when the user clicks on RadioButton.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
-     */
-	[Event(name="click", type="org.apache.royale.events.MouseEvent")]
 
     /**
      *  Dispatched when RadioButton is being selected/unselected.
@@ -305,9 +349,113 @@ package org.apache.royale.jewel
         }
         
         /**
-         * Provides unique name
+         *  The text label for the RadioButton.
+         *
+         *  @royaleignorecoercion Text
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
          */
-        protected static var radioCounter:int = 0;
+        public function get text():String
+        {
+            return textNode.nodeValue;
+        }
+        public function set text(value:String):void
+        {
+            textNode.nodeValue = value;
+        }
+
+        /**
+         *  The value associated with the RadioButton.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get value():Object
+        {
+            return icon.value;
+        }
+        public function set value(value:Object):void
+        {
+            icon.value = String(value);
+        }
+
+        /**
+         *  <code>true</code> if the radio mark is displayed.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         * 
+         *  @export
+         */
+        public function get selected():Boolean
+        {
+            return icon.checked;
+        }
+        public function set selected(value:Boolean):void
+        {
+            if(icon.checked == value)
+                return;
+            icon.checked = value;
+            dispatchEvent(new Event(Event.CHANGE));
+        }
+
+        public function get selectedValue():Object
+        {
+            var groupName:String = icon.name as String;
+            var buttons:NodeList = document.getElementsByName(groupName);
+            var n:int = buttons.length;
+
+            for (var i:int = 0; i < n; i++)
+            {
+                if (buttons[i].checked)
+                {
+                    return buttons[i].value;
+                }
+            }
+            return null;
+        }
+        /**
+         * @royaleignorecoercion HTMLInputElement
+         */
+        public function set selectedValue(value:Object):void
+        {
+            var groupName:String = icon.name as String;
+            var buttons:NodeList = document.getElementsByName(groupName);
+            var n:int = buttons.length;
+
+            for (var i:int = 0; i < n; i++)
+            {
+                if (buttons[i].value === value)
+                {
+                    buttons[i].checked = true;
+                    break;
+                }
+            }
+        }
+
+        /**
+         *  The name of the group to which this radio belongs
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get groupName():String
+        {
+            return icon.name as String;
+        }
+        public function set groupName(value:String):void
+        {
+            icon.name = value;
+        }
 
         private var radio:HTMLSpanElement;
         private var icon:HTMLInputElement;
@@ -335,17 +483,20 @@ package org.apache.royale.jewel
             return element;
         }
 
-        COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
-		COMPILE::JS
+        private var _positioner:WrappedHTMLElement;
+        /**
+         *  @copy org.apache.royale.core.IUIBase#positioner
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
 		override public function get positioner():WrappedHTMLElement
 		{
 			return _positioner;
 		}
-
-		COMPILE::JS
-		override public function set positioner(value:WrappedHTMLElement):void
+        override public function set positioner(value:WrappedHTMLElement):void
 		{
 			_positioner = value;
             _positioner.royale_wrapper = this;
@@ -353,6 +504,9 @@ package org.apache.royale.jewel
             _positioner.appendChild(radio);
 		}
 
+        /**
+         * @copy org.apache.royale.events.EventDispatcher#addEventListener
+         */
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
             if (type == MouseEvent.CLICK)
@@ -362,89 +516,6 @@ package org.apache.royale.jewel
             else
             {
                super.addEventListener(type, handler, opt_capture, opt_handlerScope);
-            }
-        }
-
-        public function clickHandler(event:Event):void
-        {
-            selected = !selected;
-        }
-        
-        public function get groupName():String
-        {
-            return icon.name as String;
-        }
-
-        public function set groupName(value:String):void
-        {
-            icon.name = value;
-        }
-        
-        public function get text():String
-        {
-            return textNode.nodeValue;
-        }
-        
-        public function set text(value:String):void
-        {
-            textNode.nodeValue = value;
-        }
-        
-        /** @export */
-        public function get selected():Boolean
-        {
-            return icon.checked;
-        }
-
-        public function set selected(value:Boolean):void
-        {
-            if(icon.checked == value)
-                return;
-            icon.checked = value;
-            dispatchEvent(new Event(Event.CHANGE));
-        }
-        
-        public function get value():Object
-        {
-            return icon.value;
-        }
-        public function set value(value:Object):void
-        {
-            icon.value = String(value);
-        }
-        
-        public function get selectedValue():Object
-        {
-            var groupName:String = icon.name as String;
-            var buttons:NodeList = document.getElementsByName(groupName);
-            var n:int = buttons.length;
-
-            for (var i:int = 0; i < n; i++)
-            {
-                if (buttons[i].checked)
-                {
-                    return buttons[i].value;
-                }
-            }
-            return null;
-        }
-
-        /**
-         * @royaleignorecoercion HTMLInputElement
-         */
-        public function set selectedValue(value:Object):void
-        {
-            var groupName:String = icon.name as String;
-            var buttons:NodeList = document.getElementsByName(groupName);
-            var n:int = buttons.length;
-
-            for (var i:int = 0; i < n; i++)
-            {
-                if (buttons[i].value === value)
-                {
-                    buttons[i].checked = true;
-                    break;
-                }
             }
         }
     }
