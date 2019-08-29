@@ -26,6 +26,7 @@ package mx.controls.beads
     import org.apache.royale.html.DataGridButtonBar;
     
     import mx.events.CollectionEvent;
+    import mx.events.ItemClickEvent;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
     import mx.controls.AdvancedDataGrid;
@@ -73,12 +74,18 @@ package mx.controls.beads
             {
                 var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
                 list.visible = (sharedModel.columns[i] as AdvancedDataGridColumn).visible;
+                list.addEventListener(ItemClickEvent.ITEM_CLICK, itemClickHandler);
                 if (list.visible)
                     visibleColumns.push(sharedModel.columns[i]);
             }
             (header as DataGridButtonBar).dataProvider = visibleColumns;
             
             host.dispatchEvent(new Event("layoutNeeded"));
+        }
+        
+        private function itemClickHandler(event:ItemClickEvent):void
+        {
+            host.dispatchEvent(event);
         }
 	}
 }
