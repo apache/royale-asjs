@@ -37,7 +37,7 @@ package flexUnitTests.xml
     
         private var settings:Object;
         
-        private var source:String;
+        internal var source:String;
         
         [Before]
         public function setUp():void
@@ -124,7 +124,7 @@ package flexUnitTests.xml
             var xml:XML = new XML(source);
         
             var atomLinks:XMLList = xml..atom::link;
-            assertEquals(atomLinks.length(),2, 'unexpected results from namespace based child query');
+            assertEquals(atomLinks.length(),2, 'unexpected results from namespace based descendants query');
         
             //@todo:
             RoyaleUnitTestRunner.consoleOut('dscendants atomLinks');
@@ -142,6 +142,50 @@ package flexUnitTests.xml
             
             */
         
+        }
+    
+    
+        [Test]
+        public function testQueryWithAnyNamespace():void{
+            var xml:XML = new XML(source);
+            
+            var anyLinks:XMLList = xml..*::link;
+            assertEquals(anyLinks.length(),5, 'unexpected results from *any* namespace based descendants query');
+           /* RoyaleUnitTestRunner.consoleOut('descendants any * Links');
+            RoyaleUnitTestRunner.consoleOut(anyLinks.toString());*/
+        }
+    
+    
+        [Test]
+        public function testUnusualLanguageNamespaces():void{
+            var xml:XML = new XML(source);
+        
+            //public: (seems to behave like 'default')
+            var unusualLinks:XMLList = xml..public::link;
+            assertEquals(unusualLinks.length(),3, 'unexpected results from public namespace based descendants query');
+            /*   RoyaleUnitTestRunner.consoleOut('descendants public Links');
+               RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
+        
+            //protected: (seems to behave like 'default')
+            unusualLinks = xml..protected::link;
+        
+            assertEquals(unusualLinks.length(),3, 'unexpected results from protected namespace based descendants query');
+            /*RoyaleUnitTestRunner.consoleOut('descendants protected Links');
+            RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
+        
+            unusualLinks = xml..internal::link;
+        
+            assertEquals(unusualLinks.length(),0, 'unexpected results from internal namespace based descendants query');
+            /* RoyaleUnitTestRunner.consoleOut('descendants internal Links');
+             RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
+        
+        
+            unusualLinks = xml..private::link;
+        
+            assertEquals(unusualLinks.length(),0, 'unexpected results from private namespace based descendants query');
+            /* RoyaleUnitTestRunner.consoleOut('descendants private Links');
+             RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
+            
         }
         
         
