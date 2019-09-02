@@ -1,6 +1,6 @@
 {
   "name": "apache-royale-swf",
-  "version": "0.9.6",
+  "version": "0.9.6beta0",
   "description": "Apache Royale (formerly FlexJS) with SWF support",
   "keywords": [
     "royale",
@@ -23,10 +23,8 @@
     "merge-dirs": "^0.2.1",
     "mkdirp": "^0.5.1",
     "prompt": "^0.2.14",
-    "replace": "^0.3.0",
     "request": "^2.67.0",
-    "unzip": "^0.1.11",
-    "wrench": "^1.5.8"
+    "unzipper": "0.10.4"
   },
   "scripts": {
     "postinstall": "node npm/dependencies/download_dependencies.js"
