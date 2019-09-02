@@ -21,7 +21,7 @@
 var request = require('request');
 var fs = require('fs-extra');
 var events = require('events');
-var unzip = require('unzip');
+var unzip = require('unzipper');
 var constants = require('../dependencies/Constants');
 
 var DownloadUncompressAndCopy = module.exports = Object.create(events.EventEmitter.prototype);
