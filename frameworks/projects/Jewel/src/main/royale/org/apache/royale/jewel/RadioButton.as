@@ -124,10 +124,10 @@ package org.apache.royale.jewel
             }
             COMPILE::JS
             {
-            if(icon.checked == value) {
+            if(icon.checked == selValue) {
                 return;
             }
-            icon.checked = value;
+            icon.checked = selValue;
             dispatchEvent(new Event(Event.CHANGE));
             }
 		}
