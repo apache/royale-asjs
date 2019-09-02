@@ -83,14 +83,14 @@ package mx.controls.advancedDataGridClasses
     				adg.openNode(node);
     			}
             }
-            
-            var newEvent:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK);
-            newEvent.index = event.index;
-            IEventDispatcher(_strand).dispatchEvent(newEvent);
-            
+              
 			// reset the selection
             ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+	    
+	    var newEvent:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK);
+            newEvent.index = event.index;
+            IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 	}
 }
