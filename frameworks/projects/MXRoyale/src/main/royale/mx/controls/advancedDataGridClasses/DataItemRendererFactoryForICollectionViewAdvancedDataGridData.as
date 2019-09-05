@@ -20,6 +20,7 @@ package mx.controls.advancedDataGridClasses
 {
 	import mx.collections.ICollectionView;
 	import mx.collections.IViewCursor;
+    import mx.collections.CursorBookmark;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
 	import mx.core.IUIComponent;
 	
@@ -35,6 +36,7 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -45,7 +47,9 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
-	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.supportClasses.TreeListData;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -62,7 +66,7 @@ package mx.controls.advancedDataGridClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataItemRendererFactoryForICollectionViewAdvancedDataGridData extends DataItemRendererFactoryForCollectionView
+	public class DataItemRendererFactoryForICollectionViewAdvancedDataGridData extends VirtualDataItemRendererFactoryForArrayData
 	{
         /**
          *  Constructor.
@@ -109,30 +113,23 @@ package mx.controls.advancedDataGridClasses
             if (!dp)
                 return;
             
+            cursor = dp.createCursor();
+            currentIndex = 0;
+            
             // listen for individual items being added in the future.
-            var dped:IEventDispatcher = dp as IEventDispatcher;
-            dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
-            dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+            //var dped:IEventDispatcher = dp as IEventDispatcher;
+            //dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+            //dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+            //dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
             
-            dataGroup.removeAllItemRenderers();
-            
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            labelField = dataProviderModel.labelField;
-            
-            var n:int = dp.length;
-            var cursor:IViewCursor = dp.createCursor();
-            for (var i:int = 0; i < n; i++)
-            {
-                var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-                var item:Object = cursor.current;
-                cursor.moveNext();
-                fillRenderer(i, item, ir, presentationModel);
-            }
-            
+            //dataGroup.removeAllItemRenderers();
+                        
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+            IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
         }
 
+        private var cursor:IViewCursor;
+        private var currentIndex:int;
 		
 		/**
 		 * Sets the itemRenderer's data with additional tree-related data.
@@ -142,7 +139,7 @@ package mx.controls.advancedDataGridClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
 		 */
-		override protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
+		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
             if (!(_strand as AdvancedDataGridColumnList).adg) return;
             
@@ -162,7 +159,70 @@ package mx.controls.advancedDataGridClasses
             if (firstColumn && (_strand as AdvancedDataGridColumnList).adg.groupLabelField)
                 ir.labelField = (_strand as AdvancedDataGridColumnList).adg.groupLabelField;
 			
-			super.setData(ir, data, index);
+			ir.data = data;
+            ir.index = index;
 		}
+        
+        /**
+         *  Get an item renderer for a given index.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.0
+         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+         */
+        override public function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer
+        {
+            var ir:ISelectableItemRenderer = rendererMap[index];
+            if (ir) return ir;
+            
+            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+            
+            ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+            var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+            
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererParent = view.dataGroup;
+            dataGroup.addItemRendererAt(ir, elementIndex);
+            ir.labelField = labelField;
+            if (dataItemRenderer)
+            {
+                dataItemRenderer.dataField = dataField;
+            }
+            rendererMap[index] = ir;
+            
+            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+            if (presentationModel) {
+                var style:SimpleCSSStyles = new SimpleCSSStyles();
+                style.marginBottom = presentationModel.separatorThickness;
+                UIBase(ir).style = style;
+                UIBase(ir).height = presentationModel.rowHeight;
+                UIBase(ir).percentWidth = 100;
+            }
+            var delta:int = index - currentIndex;
+            if (delta == -1)
+            {
+                cursor.movePrevious();
+            }
+            else if (delta == 1)
+            {
+                cursor.moveNext();
+            }
+            else if (delta != 0)
+            {
+                cursor.seek(CursorBookmark.CURRENT, delta);
+            }
+            currentIndex = index;
+            
+            var item:Object = cursor.current;
+            setData(ir, item, index);
+            
+            var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
+            newEvent.itemRenderer = ir;
+            dispatchEvent(newEvent);
+            return ir;
+        }
 	}
 }
