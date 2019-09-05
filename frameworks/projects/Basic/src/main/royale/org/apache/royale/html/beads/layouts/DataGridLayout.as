@@ -150,20 +150,24 @@ package org.apache.royale.html.beads.layouts
 			
 			bbmodel.buttonWidths = columnWidths;
 			
-			header.x = borderMetrics.left;
-			header.y = borderMetrics.top;
 			COMPILE::SWF {
+                header.y = borderMetrics.top;
+                header.x = borderMetrics.left;
 				header.width = useWidth;
 			}
 			COMPILE::JS {
 				(header as UIBase).percentWidth = 100;
 				listArea.element.style.position = "absolute";
+                if (!(uiHost.element.style.position == 'absolute' ||
+                      uiHost.element.style.position == 'relative' ||
+                      uiHost.element.style.position == 'fixed'))
+                    uiHost.element.style.position = 'relative';
 			}
 			// header's height is set in CSS
 			
-			listArea.x = borderMetrics.left;
-			listArea.y = header.height + header.y;
+            listArea.y = header.height + header.y;
 			COMPILE::SWF {
+                listArea.x = borderMetrics.left;
 				listArea.width = useWidth;
 			}
 			COMPILE::JS {

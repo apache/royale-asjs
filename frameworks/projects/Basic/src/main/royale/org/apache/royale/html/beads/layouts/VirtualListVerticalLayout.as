@@ -91,14 +91,14 @@ package org.apache.royale.html.beads.layouts
         }
         
         COMPILE::JS
-        private var topSpacer:HTMLDivElement;
+        protected var topSpacer:HTMLDivElement;
         
         COMPILE::JS
-        private var bottomSpacer:HTMLDivElement;
+        protected var bottomSpacer:HTMLDivElement;
         
-        private var visibleIndexes:Array = [];
+        protected var visibleIndexes:Array = [];
         
-        private function scrollHandler(e:Event):void
+        protected function scrollHandler(e:Event):void
         {
             layout();
         }
@@ -374,7 +374,7 @@ package org.apache.royale.html.beads.layouts
         }
 
         COMPILE::SWF
-        private function sizeAndPositionRenderer(ir:ISelectableItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
+        protected function sizeAndPositionRenderer(ir:ISelectableItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
         {
             var ilc:ILayoutChild;
             var positions:Object = childPositions(ir);
