@@ -117,19 +117,25 @@ package org.apache.royale.html.beads
 				IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
 				IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 
-				_header = new DataGridButtonBar();
+                var columnContainerClass:Class = ValuesManager.valuesImpl.getValue(host, "columnContainerClass") as Class;
+                assert(columnContainerClass != null,"columnContainerClass for DataGrid must be set!")
+				_header = new columnContainerClass() as DataGridButtonBar;
 				// header's height is set in CSS
 				_header.percentWidth = 100;
 				_header.dataProvider = sharedModel.columns;
 				_header.labelField = "label";
 				sharedModel.headerModel = _header.model as IBeadModel;
 
-				_listArea = new DataGridListArea();
+                var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
+                assert(listAreaClass != null,"listAreaClass for DataGrid must be set!")
+				_listArea = new listAreaClass() as DataGridListArea;
 				_listArea.percentWidth = 100;
 
 				createLists();
 
-				var bblayout:ButtonBarLayout = new ButtonBarLayout();
+                var columnLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "columnLayoutClass") as Class;
+                assert(columnLayoutClass != null,"columnLayoutClass for DataGrid must be set!")
+				var bblayout:ButtonBarLayout = new columnLayoutClass() as ButtonBarLayout;
 				_header.addBead(bblayout as IBead);
 				_header.addBead(new Viewport() as IBead);
 				host.strandChildren.addElement(_header as IChild);

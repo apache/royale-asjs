@@ -134,6 +134,9 @@ DataGrid
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
+	columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar");
+	columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	listAreaClass: ClassReference("org.apache.royale.html.beads.DataGridListArea");
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
