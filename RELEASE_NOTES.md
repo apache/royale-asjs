@@ -6,6 +6,7 @@ Apache Royale 0.9.6
 - Emulations of many other components available
 - For applications targeting JavaScript, you can now incorporate the
   vast resources available in existing, free, JavaScript libraries
+- Added new [RoyaleUnit](https://apache.github.io/royale-docs/testing/royaleunit.html) library for unit testing.
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed)
 
