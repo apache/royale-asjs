@@ -1,3 +1,8 @@
+Apache Royale 0.9.6
+===================
+
+- Added new [RoyaleUnit](https://apache.github.io/royale-docs/testing/royaleunit.html) library for unit testing.
+
 Apache Royale 0.9.4
 ===================
 
