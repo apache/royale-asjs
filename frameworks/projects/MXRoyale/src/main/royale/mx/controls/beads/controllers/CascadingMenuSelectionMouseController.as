@@ -68,7 +68,7 @@ package mx.controls.beads.controllers
 		 */
 		override protected function getMenuWithDataProvider(menuList:Array, dp:Object):CascadingMenu
 		{
-			if (!dp is XMLListCollection)
+			if (!(dp is XMLListCollection))
 			{
 				return super.getMenuWithDataProvider(menuList, dp);
 			}
