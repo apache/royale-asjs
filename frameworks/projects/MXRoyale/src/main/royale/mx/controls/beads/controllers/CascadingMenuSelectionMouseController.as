@@ -23,6 +23,7 @@ package mx.controls.beads.controllers
 	
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController;
 	import org.apache.royale.html.beads.models.CascadingMenuModel;
+	import org.apache.royale.html.CascadingMenu;
 
 /**
  *  The CascadingMenuSelectionMouseController is the default controller for emulation cascading menu
@@ -52,6 +53,36 @@ package mx.controls.beads.controllers
 				return super.getHasMenu(node, model)
 			}
 			return (node as XML).children().length() > 0;
+		}
+
+
+		/**
+		 * @private
+		 * 
+		 *  Search for an open menu strand according to the given data provider.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		override protected function getMenuWithDataProvider(menuList:Array, dp:Object):CascadingMenu
+		{
+			if (!dp is XMLListCollection)
+			{
+				return super.getMenuWithDataProvider(menuList, dp);
+			}
+			var xmlListCollection:XMLListCollection = dp as XMLListCollection;
+			// go over open menus and return the one with the given data provider
+			for (var i:int = 0; i < menuList.length; i++)
+			{
+				var cascadingMenu:CascadingMenu = menuList[i] as CascadingMenu;
+				if (cascadingMenu && (cascadingMenu.dataProvider as XMLListCollection).toXMLString() == xmlListCollection.toXMLString())
+				{
+					return cascadingMenu;
+				}
+			}
+			return null;
 		}
 	}
 
