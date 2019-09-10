@@ -438,6 +438,7 @@ limitations under the License.
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="royale" />
         </ant>
+        <antcall target="tweak-for-jsonly" />
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="air" />
         </ant>
