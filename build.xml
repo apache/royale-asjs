@@ -846,6 +846,7 @@ limitations under the License.
                 <exclude name="in/**"/>
                 <exclude name="out/**"/>
                 <exclude name="**/out/**"/>
+                <exclude name="**/target/**"/>
                 <exclude name="manualtests/**"/>
                 <exclude name="marmotinni/**"/>
                 <exclude name="mustella/**"/>
