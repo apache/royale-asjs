@@ -20,7 +20,6 @@ package org.apache.royale.html.supportClasses
 {
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.html.SimpleList;
-    import org.apache.royale.html.beads.SolidBackgroundBead;
     
     //--------------------------------------
     //  Events
