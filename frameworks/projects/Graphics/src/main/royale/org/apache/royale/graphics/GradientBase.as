@@ -18,7 +18,10 @@
 
 package org.apache.royale.graphics
 {
+    COMPILE::SWF
+    {    
 	import org.apache.royale.graphics.utils.CompoundTransform;
+    }
 
 	public class GradientBase
 	{

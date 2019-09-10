@@ -19,6 +19,7 @@
 package mx.controls.advancedDataGridClasses
 {
 	import mx.controls.AdvancedDataGrid;
+	import mx.events.ItemClickEvent;
 	
 	import org.apache.royale.collections.ITreeData;
 	import org.apache.royale.core.ISelectionModel;
@@ -26,7 +27,7 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemClickedEvent;
-    import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
+	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -82,10 +83,14 @@ package mx.controls.advancedDataGridClasses
     				adg.openNode(node);
     			}
             }
-            
+              
 			// reset the selection
             ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+	    
+	    var newEvent:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK);
+            newEvent.index = event.index;
+            IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 	}
 }

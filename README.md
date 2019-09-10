@@ -87,7 +87,7 @@ For more information on installing Ant, see:
 
 The Adobe Flash Player *playerglobal.swc* (version 11.1) can be downloaded from:
 
-<http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>
+<http://fpdownload.macromedia.com/get/flashplayer/installers/archive/playerglobal/playerglobal11_1.swc>
 
 First, create the following directory structure:
 

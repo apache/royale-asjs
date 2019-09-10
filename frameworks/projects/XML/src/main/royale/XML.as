@@ -1602,7 +1602,6 @@ package
 				  b. Let i = i + 1
 				10. Return a
 			*/
-			var i:int;
 			var retVal:Array = [];
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
 				return retVal;
@@ -1613,11 +1612,11 @@ package
 				var parentNS:Array = parent.inScopeNamespaces();
 				var idx:int;
 				var pIdx:int;
-				for(pIdx=0;i<parentNS.length;pIdx++)
+				for(pIdx=0;pIdx<parentNS.length;pIdx++)
 				{
 					var uri:String = parentNS[pIdx].uri;
 					var prefix:String = parentNS[pIdx].prefix;
-					for(idx=0;i<declaredNS.length;idx++)
+					for(idx=0;idx<declaredNS.length;idx++)
 					{
 						if(declaredNS[idx].uri == uri && declaredNS[idx].prefix == prefix)
 						{

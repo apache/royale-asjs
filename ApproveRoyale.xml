@@ -571,6 +571,7 @@
                 <exclude name="royale-asjs/lib/mxmlc.jar"/>
                 <exclude name="royale-asjs/lib/swfutils.jar"/>
                 <exclude name="royale-asjs/lib/external/antlr-LICENSE.html"/>
+                <exclude name="royale-asjs/lib/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/lib/external/jflex-COPYRIGHT"/>
                 <exclude name="royale-asjs/lib/external/lzma-sdk-LICENSE.html"/>
                 <exclude name="royale-asjs/lib/external/antlr.jar"/>

@@ -20,14 +20,14 @@ package org.apache.royale.jewel.supportClasses.button
 {
     COMPILE::SWF
     {
-    	import org.apache.royale.core.UIButtonBase;
+    import org.apache.royale.core.UIButtonBase;
     }
 
     COMPILE::JS
     {
-        import org.apache.royale.core.StyledUIBase;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
     
     import org.apache.royale.core.IStrand;
@@ -141,10 +141,10 @@ package org.apache.royale.jewel.supportClasses.button
 	[Event(name="doubleClick", type="org.apache.royale.events.MouseEvent")]
 
     /**
-     *  The Jewel BasicButton class is a simple button.  Use Jewel Button for
+     *  The Jewel SimpleButton class is a simple button.  Use Jewel Button for
      *  buttons that should show text.
      * 
-     *  BasicButton is a commonly used rectangular button. It looks like it can be pressed 
+     *  SimpleButton is a commonly used rectangular button. It looks like it can be pressed 
      *  and allow users to take actions, and make choices, with a single click or tap. It typically
      *  use event listeners to perform an action when the user interact with the control. When a user
      *  clicks the mouse or tap with the finger this control it dispatches a click event.
@@ -158,7 +158,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @productversion Royale 0.9.6
      */
     COMPILE::SWF
-	public class BasicButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
+	public class SimpleButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
 	{
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -172,7 +172,7 @@ package org.apache.royale.jewel.supportClasses.button
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-		public function BasicButton()
+		public function SimpleButton()
 		{
 			super();
 
@@ -280,10 +280,10 @@ package org.apache.royale.jewel.supportClasses.button
     }
 
     /**
-     *  The Jewel BasicButton class is a simple button.  Use Jewel Button for
+     *  The Jewel SimpleButton class is a simple button.  Use Jewel Button for
      *  buttons that should show text.
      * 
-     *  BasicButton is a commonly used rectangular button. It looks like it can be pressed 
+     *  SimpleButton is a commonly used rectangular button. It looks like it can be pressed 
      *  and allow users to take actions, and make choices, with a single click or tap. It typically
      *  use event listeners to perform an action when the user interact with the control. When a user
      *  clicks the mouse or tap with the finger this control it dispatches a click event.
@@ -297,7 +297,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @productversion Royale 0.9.6
      */
     COMPILE::JS
-    public class BasicButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
+    public class SimpleButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport
     {
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -311,7 +311,7 @@ package org.apache.royale.jewel.supportClasses.button
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-		public function BasicButton()
+		public function SimpleButton()
 		{
 			super();
             typeNames = "jewel button";

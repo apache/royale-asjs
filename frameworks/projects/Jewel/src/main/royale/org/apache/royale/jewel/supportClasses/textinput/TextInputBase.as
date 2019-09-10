@@ -17,20 +17,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.textinput
 {
+    COMPILE::SWF
+    {
+    import org.apache.royale.core.ITextModel;
+    }
+
     COMPILE::JS
     {
     import goog.events;
 
     import org.apache.royale.core.WrappedHTMLElement;
     }
-    import org.apache.royale.core.ITextModel;
+
     import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
     
     /**
-     *  Dispatched when the user changes the text.
+     *  Dispatched when text in the control changes through user input.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -40,7 +44,8 @@ package org.apache.royale.jewel.supportClasses.textinput
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
-     *  The TextInputBase class is the base class for TextInput and TextArea Jewel controls
+     *  The TextInputBase class is the base class for TextInput and TextArea Jewel controls.
+     *  Implements text and html properties and change event.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -67,8 +72,11 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
 		}
 
+        COMPILE::SWF
+        private var inSetter:Boolean;
+
         /**
-         *  @copy org.apache.royale.html.Label#text
+         *  @copy org.apache.royale.jewel.Label#text
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -89,7 +97,6 @@ package org.apache.royale.jewel.supportClasses.textinput
             return (element as HTMLInputElement).value;
             }
 		}
-
         /**
          *  @private
          *  @royaleignorecoercion HTMLInputElement
@@ -110,7 +117,7 @@ package org.apache.royale.jewel.supportClasses.textinput
 		}
 
         /**
-         *  @copy org.apache.royale.html.Label#html
+         *  @copy org.apache.royale.jewel.Label#html
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -130,7 +137,6 @@ package org.apache.royale.jewel.supportClasses.textinput
             return (element as HTMLInputElement).value;
             }
 		}
-
         /**
          *  @private
          *  @royaleignorecoercion HTMLInputElement
@@ -148,18 +154,15 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
 		}
 
-        COMPILE::SWF
-        private var inSetter:Boolean;
-
         /**
-		 *  dispatch change event in response to a textChange event
+		 *  Dispatch change event in response to a textChange event
 		 *
 		 *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
 		 */
-		public function textChangeHandler(event:Event):void
+		protected function textChangeHandler(event:Event):void
 		{
             COMPILE::SWF
             {
@@ -170,32 +173,9 @@ package org.apache.royale.jewel.supportClasses.textinput
 		}
 
         COMPILE::JS
-        private var _textNode:Text;
-
-        /**
-         *  @copy org.apache.royale.jewel.supportClasses.ITextInput#textNode
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        COMPILE::JS
-        public function get textNode():Text
-        {
-            return _textNode;
-        }
-
-        COMPILE::JS
-        public function set textNode(value:Text):void
-        {
-            _textNode = value;
-        }
-
-        COMPILE::JS
         private var _input:HTMLInputElement;
         /**
-         *  @copy org.apache.royale.jewel.supportClasses.ITextInput#input
+         *  @copy org.apache.royale.jewel.supportClasses.textinput.ITextInput#input
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -214,31 +194,15 @@ package org.apache.royale.jewel.supportClasses.textinput
         }
 
         COMPILE::JS
-        private var _label:HTMLLabelElement;
-
+		private var _positioner:WrappedHTMLElement;
         /**
-         *  @copy org.apache.royale.jewel.supportClasses.ITextInput#label
+         *  @copy org.apache.royale.core.IUIBase#positioner
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        COMPILE::JS
-        public function get label():HTMLLabelElement
-        {
-            return _label;
-        }
-
-        COMPILE::JS
-        public function set label(value:HTMLLabelElement):void
-        {
-            _label = value;
-        }
-
-        COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
-
 		COMPILE::JS
 		override public function get positioner():WrappedHTMLElement
 		{

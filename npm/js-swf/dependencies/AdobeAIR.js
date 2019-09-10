@@ -22,7 +22,7 @@ var request = require('request');
 var fs = require('fs');
 var events = require('events');
 var prompt = require('prompt');
-var unzip = require('unzip');
+var unzip = require('unzipper');
 var pjson = require('../package');
 
 var constants = require('../dependencies/Constants');

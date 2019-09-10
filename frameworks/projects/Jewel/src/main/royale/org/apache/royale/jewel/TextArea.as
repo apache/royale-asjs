@@ -27,8 +27,12 @@ package org.apache.royale.jewel
     import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
     /**
-     *  The TextArea class implements the basic control for
-     *  single-line text input.
+     *  The TextArea implements the jewel control for
+     *  multiline text field. It dispatches a change event
+     *  when the user input text.
+     *  
+     *  User can define number of rows and the max number
+     *  of rows.
      *
      *  @toplevel
      *  @langversion 3.0
@@ -125,6 +129,5 @@ package org.apache.royale.jewel
             
             return element;
         }
-
 	}
 }

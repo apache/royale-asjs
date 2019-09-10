@@ -1,3 +1,18 @@
+Apache Royale 0.9.6
+===================
+
+- Compiles faster
+- Many additional components available
+- Emulations of many other components available
+- For applications targeting JavaScript, you can now incorporate the
+  vast resources available in existing, free, JavaScript libraries
+- Dozens of bugs reported, investigated, and squashed. For details of
+  closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed)
+
+Updates to the RELEASE_NOTES discovered after this file was packaged into the release artifacts can be found here:
+
+https://github.com/apache/royale-asjs/wiki/Release-Notes-0.9.6
+
 Apache Royale 0.9.4
 ===================
 

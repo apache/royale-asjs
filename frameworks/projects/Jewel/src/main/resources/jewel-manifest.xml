@@ -43,7 +43,7 @@
     <component id="TableHeaderCell" class="org.apache.royale.jewel.supportClasses.table.TableHeaderCell"/>
     <component id="TableColumn" class="org.apache.royale.jewel.supportClasses.table.TableColumn"/>
 
-    <component id="BasicButton" class="org.apache.royale.jewel.supportClasses.button.BasicButton"/>
+    <component id="SimpleButton" class="org.apache.royale.jewel.supportClasses.button.SimpleButton"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="IconButton" class="org.apache.royale.jewel.IconButton"/>
     <component id="ToggleButton" class="org.apache.royale.jewel.ToggleButton"/>

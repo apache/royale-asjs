@@ -30,6 +30,7 @@ import mx.core.UIComponent;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IPopUpHost;
+import org.apache.royale.core.IPopUpHostParent;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.html.beads.plugin.IModalDisplay;
@@ -228,8 +229,7 @@ public class PopUpManager
 	
     public static function centerPopUp(popUp:IFlexDisplayObject):void
     {
-        //impl.centerPopUp(popUp);
-
+        UIUtils.center(popUp as IUIBase, (popUp.parent as IPopUpHostParent).popUpHost as IUIBase);
     }
 	
     /**

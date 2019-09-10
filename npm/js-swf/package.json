@@ -1,6 +1,6 @@
 {
   "name": "@apache-royale/royale-js-swf",
-  "version": "0.9.6",
+  "version": "0.9.6-beta0",
   "description": "Apache Royale (formerly FlexJS)",
   "keywords": [
     "royale",
@@ -24,10 +24,10 @@
     "mkdirp": "^0.5.1",
     "prompt": "^0.2.14",
     "request": "^2.67.0",
-    "unzip": "^0.1.11"
+    "unzipper": "0.10.4"
   },
   "scripts": {
-    "postinstall": "node royale-asjs/npm/js-swf/dependencies/download_dependencies.js"
+    "postinstall": "node dependencies/download_dependencies.js"
   },
   "bin": {
     "asjsc": "./royale-asjs/js/bin/asjscnpm",

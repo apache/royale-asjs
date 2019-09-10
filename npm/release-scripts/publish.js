@@ -26,7 +26,8 @@ var password = args.password;
 var pathToTarball = args.pathToTarball;
 var type = args.type;
 var npmURL = 'https://registry.npmjs.org';
-var auth = {username: username, password:password, email: 'dev@royale.apache.org'};
+var tag = args.tag || 'latest';
+var auth = {username: username, password:password, email: 'dev@royale.apache.org', tag: tag};
 var addUserParams = {auth:auth};
 
 if (!username) {
