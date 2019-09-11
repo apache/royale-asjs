@@ -31,6 +31,7 @@ var FlashPlayerGlobal = module.exports = Object.create(events.EventEmitter.proto
 
 var flashPlayerGlobalURL = pjson.org_apache_royale.flash_player_global_url;
 var fileNameFlashPlayerGlobal = pjson.org_apache_royale.flash_player_global_file_name;
+var folderFlashPlayerGlobal = pjson.org_apache_royale.flash_player_global_folder;
 var flashPlayerGlobalPromptText = "\
 Apache Royale SWF support uses the Adobe Flash Player's playerglobal.swc to build Adobe Flash applications.\n\
 The playerglobal.swc file is subject to and governed by the\n\
@@ -80,8 +81,8 @@ FlashPlayerGlobal.downloadFlashPlayerGlobal = function()
     var downloadDetails = {
         url:flashPlayerGlobalURL,
         remoteFileName:fileNameFlashPlayerGlobal,
-        destinationPath:constants.DOWNLOADS_FOLDER,
-        destinationFileName:fileNameFlashPlayerGlobal,
+        destinationPath:constants.ROYALE_FOLDER + folderFlashPlayerGlobal,
+        destinationFileName:"playerglobal.swc",
         unzip:false
     };
 
