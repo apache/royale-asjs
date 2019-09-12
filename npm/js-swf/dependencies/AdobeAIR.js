@@ -99,7 +99,9 @@ function downloadAdobeAIR()
 function extract()
 {
 	var pathResolver = require('path');
-	var absPath = pathResolver.resolve(constants.ROYALE_FOLDER);
+	// ROYALE_FOLDER is the base of the tar.gz package which has the 3 repos as children
+	// and not the royale-asjs repo
+	var absPath = pathResolver.resolve(constants.ROYALE_FOLDER + "royale-asjs/");
     console.log('Extracting Adobe AIR');
     fs.createReadStream(constants.DOWNLOADS_FOLDER + fileNameAdobeAIR)
         .pipe(unzip.Extract({ path: absPath })
