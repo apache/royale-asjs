@@ -1,6 +1,6 @@
 {
   "name": "apache-royale-swf",
-  "version": "0.9.6-beta1",
+  "version": "0.9.6",
   "description": "Apache Royale (formerly FlexJS) with SWF support",
   "keywords": [
     "royale",
