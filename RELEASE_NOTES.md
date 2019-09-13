@@ -2,10 +2,15 @@ Apache Royale 0.9.6
 ===================
 
 - Compiles faster
-- Many additional components available
+- Many additional components available:
+  - for Jewel: Wizard, PopUp, TabBar, FooterBar, Badge
 - Emulations of many other components available
+- Many improvements and fixes in Jewel UI Set (DateField/DateChooser full implememtation, Fixes for components in Android/iOS, added search filter bead on Jewel ComboBox, added SearchFilterForList to use with Jewel List and TextInput, improvements on focus handling, added more styles like disabled missing in some components, RequiredSelection bead for DropDownList,...)
+- Tour De Jewel improvements to show all new components and beads developed.
+- Added BrowserOrientation bead
 - For applications targeting JavaScript, you can now incorporate the
   vast resources available in existing, free, JavaScript libraries
+- Added generation of source-maps to all Royale libs.
 - Added new [RoyaleUnit](https://apache.github.io/royale-docs/testing/royaleunit.html) library for unit testing.
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed)
