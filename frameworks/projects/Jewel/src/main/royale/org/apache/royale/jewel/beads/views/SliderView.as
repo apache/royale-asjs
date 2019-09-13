@@ -63,6 +63,7 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 
+		COMPILE::JS
 		protected var sliderTrackContainer:HTMLDivElement;
 
         private var rangeModel:IRangeModel;
