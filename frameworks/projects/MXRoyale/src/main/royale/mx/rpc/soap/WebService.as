@@ -25,7 +25,7 @@ package mx.rpc.soap
  import org.apache.royale.events.Event;
  
 import mx.core.mx_internal;
-/* import mx.logging.ILogger;
+import mx.logging.ILogger;
 import mx.logging.Log;
 import mx.messaging.ChannelSet;
 import mx.messaging.channels.DirectHTTPChannel;
@@ -44,8 +44,7 @@ import mx.rpc.wsdl.WSDLLoader;
 import mx.rpc.wsdl.WSDLOperation;
 import mx.rpc.wsdl.WSDLPort;
 import mx.utils.URLUtil;
-import mx.utils.XMLUtil;
- */
+
 use namespace mx_internal;
 
 /**
@@ -59,9 +58,9 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-/* [Event(name="load", type="mx.rpc.soap.LoadEvent")]
+[Event(name="load", type="mx.rpc.soap.LoadEvent")]
 
-[ResourceBundle("rpc")] */
+//[ResourceBundle("rpc")]
 
 /**
  * The WebService class provides access to SOAP-based web services on remote
@@ -72,8 +71,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public dynamic class WebService
-{ // extends AbstractWebService
+public dynamic class WebService extends AbstractWebService
+{ 
     //--------------------------------------------------------------------------
     //
     // Constructor
@@ -98,10 +97,10 @@ public dynamic class WebService
      */
     public function WebService(destination:String = null, rootURL:String = null)
     {
-      /*   super(destination, rootURL);
+        super(destination, rootURL);
 
         _ready = false;
-        _log = Log.getLogger("mx.rpc.soap.WebService"); */
+        _log = Log.getLogger("mx.rpc.soap.WebService");
     }
 
     //-------------------------------------------------------------------------
@@ -121,12 +120,12 @@ public dynamic class WebService
     //
     //-------------------------------------------------------------------------
 
-    /* mx_internal function get wsdlFault():Boolean
+    mx_internal function get wsdlFault():Boolean
     {
         return _wsdlFault;
     }
 
-    [Inspectable(defaultValue="true", category="General")] */
+    [Inspectable(defaultValue="true", category="General")]
 
     /**
      * The location of the WSDL document for this WebService. If you use a
@@ -138,7 +137,7 @@ public dynamic class WebService
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  public function get wsdl():String
+    public function get wsdl():String
     {
         return _wsdlURL;
     }
@@ -146,7 +145,7 @@ public dynamic class WebService
     public function set wsdl(w:String):void
     {
         _wsdlURL = w;
-    } */
+    }
 
     //-------------------------------------------------------------------------
     //
@@ -166,7 +165,7 @@ public dynamic class WebService
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  public function canLoadWSDL():Boolean
+    public function canLoadWSDL():Boolean
     {
         if (wsdl)
             return true;
@@ -174,7 +173,7 @@ public dynamic class WebService
             && destination != DEFAULT_DESTINATION_HTTPS)
             return true;
         return false;
-    } */
+    }
 
     /**
      * Returns an Operation of the given name. If the Operation wasn't
@@ -192,7 +191,7 @@ public dynamic class WebService
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* override public function getOperation(name:String):mx.rpc.AbstractOperation
+    override public function getOperation(name:String):mx.rpc.AbstractOperation
     {
         var op:mx.rpc.AbstractOperation = super.getOperation(name);
         if (op == null)
@@ -204,7 +203,7 @@ public dynamic class WebService
             initializeOperation(op as Operation);
         }
         return op;
-    } */
+    }
 
     /**
      * Instructs the WebService to download the WSDL document.  The WebService
@@ -223,7 +222,7 @@ public dynamic class WebService
      */
     public function loadWSDL(uri:String = null):void
     {
-       /*  if (uri != null)
+        if (uri != null)
         {
             wsdl = uri;
         }
@@ -235,8 +234,8 @@ public dynamic class WebService
 			var message:String;
             if (!useProxy)
             {
-				message = resourceManager.getString(
-					"rpc", "mustSpecifyWSDLLocation");
+				message = /*resourceManager.getString(
+					"rpc", */"mustSpecifyWSDLLocation"/*)*/;
                 var fault:Fault = new Fault("Client.WSDL", message);
                 dispatchEvent(FaultEvent.createEvent(fault));
                 return;
@@ -245,8 +244,8 @@ public dynamic class WebService
                 || (destination == DEFAULT_DESTINATION_HTTP) 
                 || (destination == DEFAULT_DESTINATION_HTTPS))
             {
-				message = resourceManager.getString(
-					"rpc", "destinationOrWSDLNotSpecified");
+				message = /*resourceManager.getString(
+					"rpc", */"destinationOrWSDLNotSpecified"/*)*/;
                 var fault1:Fault = new Fault("Client.WSDL", message);
                 dispatchEvent(FaultEvent.createEvent(fault1));
                 return;
@@ -269,7 +268,7 @@ public dynamic class WebService
 
         // Get the WSDL
         _wsdlFault = false;
-        _wsdlLoader.load(wsdl); */
+        _wsdlLoader.load(wsdl);
     }
 
     /**
@@ -284,7 +283,8 @@ public dynamic class WebService
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  public function toString():String
+    COMPILE::JS { override }
+    public function toString():String
     {
         var s:String = "[WebService ";
         s += " destination=\"" + destination + "\"";
@@ -292,13 +292,13 @@ public dynamic class WebService
             s += " wsdl=\"" + wsdl + "\"";
         s += " channelSet=\"" + channelSet + "\"]";
         return s;
-    } */
+    }
 
     //---------------------------------
     // Helper methods
     //---------------------------------
 
-    /* mx_internal function wsdlFaultHandler(event:FaultEvent):void
+    mx_internal function wsdlFaultHandler(event:FaultEvent):void
     {
         // remember that the wsdl failed
         _wsdlFault = true;
@@ -308,9 +308,9 @@ public dynamic class WebService
 
         // also inform enqueued operations of the wsdl failure
         unEnqueueCalls(event.fault);
-    } */
+    }
 
-    /* mx_internal function wsdlHandler(event:WSDLLoadEvent):void
+    mx_internal function wsdlHandler(event:WSDLLoadEvent):void
     {
         _log.debug("WSDL loaded");
         _wsdl = event.wsdl;
@@ -355,8 +355,8 @@ public dynamic class WebService
         catch(error:Error)
         {
             var errorMessage:String = error.message ? error.message : ""; 
-			var message:String =  resourceManager.getString(
-				"rpc", "unexpectedException", [ errorMessage ])          
+			var message:String =  /*resourceManager.getString(
+				"rpc",*/ "unexpectedException" /*, [ errorMessage ])*/;          
             var fault:Fault = new Fault("WSDLError", message);
             fault.rootCause = error;
             var faultEvent2:FaultEvent = FaultEvent.createEvent(fault);
@@ -364,12 +364,12 @@ public dynamic class WebService
             super.unEnqueueCalls(fault); // Jump straight to fault handling; ops cannot be initialized.
             return;
         }
-    } */
+    }
 
     /**
      * @private
      */
-    /* mx_internal function deriveHTTPService():HTTPService
+    mx_internal function deriveHTTPService():HTTPService
     {
         var httpService:HTTPService = new HTTPService();
         httpService.asyncRequest = asyncRequest;
@@ -381,7 +381,7 @@ public dynamic class WebService
         httpService.rootURL = rootURL;
         httpService.headers = httpHeaders;
         return httpService;
-    } */
+    }
 
    /**
     * Initializes a new Operation.
@@ -393,7 +393,7 @@ public dynamic class WebService
     *  @playerversion AIR 1.1
     *  @productversion Royale 0.9.4
     */
-    /* protected function initializeOperation(operation:Operation):void
+    protected function initializeOperation(operation:Operation):void
     {
         if (_wsdl != null)
         {
@@ -402,32 +402,32 @@ public dynamic class WebService
                 operation.endpointURI = endpointURI;
             operation.wsdlOperation = wsdlOp;
         }
-    } */
+    }
 
-    /* private function dispatchFault(faultCode:String, faultString:String, faultDetail:String = null):void
+    private function dispatchFault(faultCode:String, faultString:String, faultDetail:String = null):void
     {
         var fault:Fault = new Fault(faultCode, faultString, faultDetail);
         var event:FaultEvent = FaultEvent.createEvent(fault);
         dispatchEvent(event);
-    } */
+    }
 
     //--------------------------------------------
     // Backing variables for public getter/setters
     //--------------------------------------------
     
-	//private var _wsdlURL:String;
+	private var _wsdlURL:String;
 
     //---------------------------------
     // Internal properties
     //---------------------------------
     
-	/* private var _log:ILogger;
+	private var _log:ILogger;
     
 	private var _wsdlFault:Boolean;
     
 	private var _wsdl:mx.rpc.wsdl.WSDL;
     
-	private var _wsdlLoader:WSDLLoader; */
+	private var _wsdlLoader:WSDLLoader;
 
     //--------------------------------------------------------------------------
     //
@@ -435,9 +435,9 @@ public dynamic class WebService
     // 
     //--------------------------------------------------------------------------
 
-    /* public static const DEFAULT_DESTINATION_HTTP:String = "DefaultHTTP";
+    public static const DEFAULT_DESTINATION_HTTP:String = "DefaultHTTP";
     
-	public static const DEFAULT_DESTINATION_HTTPS:String = "DefaultHTTPS"; */
+	public static const DEFAULT_DESTINATION_HTTPS:String = "DefaultHTTPS";
 }
 
 }
