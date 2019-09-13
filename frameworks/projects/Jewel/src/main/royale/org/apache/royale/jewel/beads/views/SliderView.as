@@ -62,9 +62,11 @@ package org.apache.royale.jewel.beads.views
 		{
 			super();
 		}
-		
+
+		protected var sliderTrackContainer:HTMLDivElement;
+
         private var rangeModel:IRangeModel;
-		
+
 		private var _track:Button;
 
 		private var _thumb:Button;
@@ -129,7 +131,7 @@ package org.apache.royale.jewel.beads.views
                 var htmlSliderElement:HTMLInputElement = host.element as HTMLInputElement;
                 htmlSliderElement.value = String(rangeModel.value);
 
-				var sliderTrackContainer:HTMLDivElement = document.createElement('div') as HTMLDivElement;
+				sliderTrackContainer = document.createElement('div') as HTMLDivElement;
 				sliderTrackContainer.className="slider-track-container";
 
 				sliderTrackFill = document.createElement('div') as HTMLDivElement;
