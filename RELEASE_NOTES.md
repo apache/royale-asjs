@@ -2,15 +2,24 @@ Apache Royale 0.9.6
 ===================
 
 - Compiles faster
+- For applications targeting JavaScript, you can now incorporate the vast resources available in existing, free, JavaScript libraries.
 - Many additional components available:
-  - for Jewel: Wizard, PopUp, TabBar, FooterBar, Badge
+  - for Jewel: Wizard, PopUp, TabBar, Module, ModuleLoader, FooterBar, Badge, ScrollableSectionContent, HorizontalListScroll
 - Emulations of many other components available
-- Many improvements and fixes in Jewel UI Set (DateField/DateChooser full implememtation, Fixes for components in Android/iOS, added search filter bead on Jewel ComboBox, added SearchFilterForList to use with Jewel List and TextInput, improvements on focus handling, added more styles like disabled missing in some components, RequiredSelection bead for DropDownList,...)
-- Tour De Jewel improvements to show all new components and beads developed.
+- Many improvements and fixes in Jewel UI Set:
+  - DateField/DateChooser full implememtation.
+  - Fixes to make components work right on IE11 and Android/iOS mobile devices.
+  - Many improvements to all themes included (styles for new components, added more styles like disabled missing in some components,...)
+  - Many beads included for Jewel set:
+    - Added search filter bead on Jewel ComboBox
+    - Added SearchFilterForList bead to use with Jewel List and TextInput.
+    - RequiredSelection for DropDownList
+  - Improvements on focus handling
+  - Button now extends from new BasicButton
+- Many improvements on Tour De Jewel demo app to show all new components and beads developed in this version.
 - Added BrowserOrientation bead
-- For applications targeting JavaScript, you can now incorporate the
-  vast resources available in existing, free, JavaScript libraries
-- Added generation of source-maps to all Royale libs.
+- Added loadCSS, to load external CSS dinamically.
+- Added generation of source-maps to all Royale libs for better debugging framework code.
 - Added new [RoyaleUnit](https://apache.github.io/royale-docs/testing/royaleunit.html) library for unit testing.
 - Improvements to AMF / RemoteObject Support
 - AMFBinaryData api now matches flash.utils.ByteArray, (the missing feature is non-UTF String encoding support). It therefore now works for deep cloning via readObject/writeObject and registerClassAlias.
@@ -19,6 +28,7 @@ Apache Royale 0.9.6
 - int, uint, Class are now represented as simple, distinct types (Class is now not 'Object', int is now not 'Number' for example), and these support indirect 'as' or 'is' type checking and instantiation, matching swf behavior.
 - General Improvements and additions in Reflection library
 - New Apache Royale Crux MVC/DI/IOC application architecture library (based on Swiz Framework) was added, with some simple examples
+- Added many new or missing libs to [ASDocs reference](https://royale.apache.org/asdoc/)
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed)
 
