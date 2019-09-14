@@ -12,6 +12,13 @@ Apache Royale 0.9.6
   vast resources available in existing, free, JavaScript libraries
 - Added generation of source-maps to all Royale libs.
 - Added new [RoyaleUnit](https://apache.github.io/royale-docs/testing/royaleunit.html) library for unit testing.
+- Improvements to AMF / RemoteObject Support
+- AMFBinaryData api now matches flash.utils.ByteArray, (the missing feature is non-UTF String encoding support). It therefore now works for deep cloning via readObject/writeObject and registerClassAlias.
+- Updates to Royale collections library with support for sorting and filtering via ArrayListView. Simple example added to Tour de Jewel
+- A conforming runtime implementation of AS3 Vector (typed Arrays) was added for javascript output, with options for avoiding certain runtime checks.
+- int, uint, Class are now represented as simple, distinct types (Class is now not 'Object', int is now not 'Number' for example), and these support indirect 'as' or 'is' type checking and instantiation, matching swf behavior.
+- General Improvements and additions in Reflection library
+- New Apache Royale Crux MVC/DI/IOC application architecture library (based on Swiz Framework) was added, with some simple examples
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed)
 
