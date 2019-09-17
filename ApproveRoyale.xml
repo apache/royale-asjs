@@ -557,6 +557,7 @@
                 <exclude name="royale-asjs/js/lib/jsc.jar"/>
                 <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
                 <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
+                <exclude name="royale-asjs/js/lib/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/lib/adt.jar"/>
                 <exclude name="royale-asjs/lib/compc.jar"/>
                 <exclude name="royale-asjs/lib/compiler-asc.jar"/>
@@ -571,7 +572,6 @@
                 <exclude name="royale-asjs/lib/mxmlc.jar"/>
                 <exclude name="royale-asjs/lib/swfutils.jar"/>
                 <exclude name="royale-asjs/lib/external/antlr-LICENSE.html"/>
-                <exclude name="royale-asjs/lib/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/lib/external/jflex-COPYRIGHT"/>
                 <exclude name="royale-asjs/lib/external/lzma-sdk-LICENSE.html"/>
                 <exclude name="royale-asjs/lib/external/antlr.jar"/>
