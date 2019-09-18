@@ -26,5 +26,6 @@ package tests
 		public var beforeClassAndAfterClassTests:BeforeClassAndAfterClassTests;
 		public var ignoreTests:IgnoreTests;
 		public var scopeTests:ScopeTests;
+		public var asyncTests:AsyncTests;
 	}
 }
