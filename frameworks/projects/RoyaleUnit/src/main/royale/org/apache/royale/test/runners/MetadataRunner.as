@@ -25,6 +25,8 @@ package org.apache.royale.test.runners
 	import org.apache.royale.reflection.describeType;
 	import org.apache.royale.reflection.getQualifiedClassName;
 	import org.apache.royale.test.AssertionError;
+	import org.apache.royale.test.async.AsyncLocator;
+	import org.apache.royale.test.async.IAsyncHandler;
 	import org.apache.royale.test.runners.notification.Failure;
 	import org.apache.royale.test.runners.notification.IRunListener;
 	import org.apache.royale.test.runners.notification.IRunNotifier;
@@ -149,6 +151,11 @@ package org.apache.royale.test.runners
 		public function pleaseStop():void
 		{
 			_stopRequested = true;
+			if(_timer)
+			{
+				_timer.stop();
+				cleanupAsync();
+			}
 		}
 
 		/**
@@ -234,12 +241,20 @@ package org.apache.royale.test.runners
 				{
 					_before.apply(_target);
 				}
-				test.reference.apply(_target);
-				if(test.async)
+				var asyncHandler:AsyncHandler = null;
+				if(test.asyncTimeout > 0)
 				{
-					var timeout:int = getTimeout(test);
-					_timer = new Timer(timeout, 1);
+					asyncHandler = new AsyncHandler();
+					AsyncLocator.setAsyncHandlerForTest(_target, asyncHandler);
+					asyncHandler.bodyExecuting = true;
+				}
+				test.reference.apply(_target);
+				if(asyncHandler)
+				{
+					asyncHandler.bodyExecuting = false;
+					_timer = new Timer(test.asyncTimeout, 1);
 					_timer.addEventListener(Timer.TIMER, timer_timerHandler);
+					_timer.start();
 					return false;
 				}
 			}
@@ -333,6 +348,7 @@ package org.apache.royale.test.runners
 				var testFunction:Function = null;
 				var ignore:Boolean = false;
 				var async:Boolean = false;
+				var asyncTimeout:int = 0;
 
 				var testMetadata:Array = method.retrieveMetaDataByName(TestMetadata.TEST);
 				if(testMetadata.length > 0)
@@ -349,7 +365,18 @@ package org.apache.royale.test.runners
 					qualifiedName += lastPart;
 					testName = qualifiedName + "." + method.name;
 					testFunction = _target[method.name];
-					async = testTag.getArgsByKey("async").length > 0;
+					if(testTag.getArgsByKey("async").length > 0)
+					{
+						var timeoutArgs:Array = testTag.getArgsByKey("timeout");
+						if(timeoutArgs.length > 0)
+						{
+							asyncTimeout = parseFloat(timeoutArgs[0].value);
+						}
+						else
+						{
+							asyncTimeout = DEFAULT_ASYNC_TIMEOUT;
+						}
+					}
 				}
 				var ignoreMetadata:Array = method.retrieveMetaDataByName(TestMetadata.IGNORE);
 				if(ignoreMetadata.length > 0)
@@ -358,7 +385,7 @@ package org.apache.royale.test.runners
 				}
 				if(testName !== null)
 				{
-					_collectedTests.push(new TestInfo(testName, testFunction, ignore, async));
+					_collectedTests.push(new TestInfo(testName, testFunction, ignore, asyncTimeout));
 				}
 			}
 		}
@@ -366,18 +393,12 @@ package org.apache.royale.test.runners
 		/**
 		 * @private
 		 */
-		protected function getTimeout(test:TestInfo):int
-		{
-			return DEFAULT_ASYNC_TIMEOUT;
-		}
-
-		/**
-		 * @private
-		 */
-		protected function cleanupTimer():void
+		protected function cleanupAsync():void
 		{
 			_timer.removeEventListener(Timer.TIMER, timer_timerHandler);
 			_timer = null;
+
+			AsyncLocator.clearAsyncHandlerForTest(_target);
 		}
 
 		/**
@@ -385,33 +406,98 @@ package org.apache.royale.test.runners
 		 */
 		protected function timer_timerHandler(event:Event):void
 		{
-			cleanupTimer();
+			var asyncHandler:AsyncHandler = AsyncHandler(AsyncLocator.getAsyncHandlerForTest(_target));
+			cleanupAsync();
 
 			var test:TestInfo = _collectedTests[_currentIndex];
-			var timeout:int = getTimeout(test);
-			_failures = true;
-			_notifier.fireTestFailure(new Failure(test.description, new AssertionError("Test did not complete within specified timeout " + timeout + "ms")));
+			if(asyncHandler.error)
+			{
+				_failures = true;
+				_notifier.fireTestFailure(new Failure(test.description, asyncHandler.error));
+			}
+			if(asyncHandler.pendingCount > 0)
+			{
+				_failures = true;
+				_notifier.fireTestFailure(new Failure(test.description, new AssertionError("Test did not complete within specified timeout " + test.asyncTimeout + "ms")));
+			}
 			
-			_notifier.fireTestFinished(test.description);
-			_currentIndex++;
-
+			afterTest(test);
 			continueAll();
 		}
 	}
 }
 
+import org.apache.royale.events.Event;
+import org.apache.royale.test.async.IAsyncHandler;
+import org.apache.royale.test.runners.notification.Failure;
+import org.apache.royale.utils.Timer;
+
 class TestInfo
 {
-	public function TestInfo(name:String, reference:Function, ignore:Boolean, async:Boolean)
+	public function TestInfo(name:String, reference:Function, ignore:Boolean, asyncTimeout:int)
 	{
 		this.description = name;
 		this.reference = reference;
 		this.ignore = ignore;
-		this.async = async;
+		this.asyncTimeout = asyncTimeout;
 	}
 
 	public var description:String;
 	public var reference:Function;
 	public var ignore:Boolean;
-	public var async:Boolean;
+	public var asyncTimeout:int;
+}
+
+class AsyncHandler implements IAsyncHandler
+{
+	private var _bodyExecuting:Boolean = false;
+
+	public function get bodyExecuting():Boolean
+	{
+		return _bodyExecuting;
+	}
+
+	public function set bodyExecuting(value:Boolean):void
+	{
+		_bodyExecuting = value;
+	}
+
+	private var _error:Error = null;
+
+	public function get error():Error
+	{
+		return _error;
+	}
+
+	public function get pendingCount():int
+	{
+		return _timers.length;
+	}
+
+	private var _timers:Vector.<Timer> = new <Timer>[];
+
+	public function asyncHandler(callback:Function, delayMS:int):void
+	{
+		var timerIndex:int = -1;
+		var timer:Timer = new Timer(delayMS, 1);
+		timer.addEventListener(Timer.TIMER, function(event:Event):void
+		{
+			timer.removeEventListener(Timer.TIMER, arguments["callee"]);
+			var index:int = _timers.indexOf(timer);
+			if(index !== -1)
+			{
+				_timers.splice(index, 1);
+			}
+			try
+			{
+				callback();
+			}
+			catch(error:Error)
+			{
+				_error = error;
+			}
+		});
+		_timers.push(timer);
+		timer.start();
+	}
 }

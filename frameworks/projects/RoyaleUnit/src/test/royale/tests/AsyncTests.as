@@ -22,6 +22,7 @@ package tests
 	import org.apache.royale.test.runners.MetadataRunner;
 	import org.apache.royale.test.runners.notification.RunNotifier;
 	import org.apache.royale.test.runners.notification.IRunListener;
+	import org.apache.royale.test.async.Async;
 
 	public class AsyncTests
 	{
@@ -48,11 +49,66 @@ package tests
 			_runner.run(notifier);
 			Assert.assertTrue(listener.runStarted);
 			Assert.assertFalse(listener.runFinished);
-			Assert.assertStrictlyEquals(listener.finishedCount, 1);
+			//we can't check finished count because the order of tests cannot be
+			//determined. the async test may be run first.
 			Assert.assertStrictlyEquals(listener.failureCount, 0);
 			Assert.assertStrictlyEquals(listener.ignoreCount, 0);
-			Assert.assertEquals(listener.active, "tests.AsyncTests::AsyncFixture.test2");
+			Assert.assertTrue(listener.active.indexOf("AsyncTests::AsyncFixture.test2") > 0);
 			_runner.pleaseStop();
+		}
+
+		[Test(async)]
+		public function testRunFinishesAsynchronously():void
+		{
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:AsyncListener = new AsyncListener();
+			notifier.addListener(listener);
+			_runner = new MetadataRunner(AsyncFixture);
+			_runner.run(notifier);
+			Async.delayCall(this, function():void
+			{
+				Assert.assertTrue(listener.runStarted);
+				Assert.assertTrue(listener.runFinished);
+				Assert.assertStrictlyEquals(listener.finishedCount, 2);
+				Assert.assertStrictlyEquals(listener.failureCount, 0);
+				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
+				Assert.assertNull(listener.active);
+			}, 400);
+		}
+
+		[Test(async)]
+		public function testAsyncTestWithSynchronousFail():void
+		{
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:AsyncListener = new AsyncListener();
+			notifier.addListener(listener);
+			_runner = new MetadataRunner(AsyncFailFixture);
+			_runner.run(notifier);
+			Assert.assertTrue(listener.runStarted);
+			Assert.assertTrue(listener.runFinished);
+			Assert.assertStrictlyEquals(listener.finishedCount, 1);
+			Assert.assertStrictlyEquals(listener.failureCount, 1);
+			Assert.assertStrictlyEquals(listener.ignoreCount, 0);
+			Assert.assertNull(listener.active);
+		}
+
+		[Test(async)]
+		public function testAsyncTestWithFailInsideDelayCall():void
+		{
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:AsyncListener = new AsyncListener();
+			notifier.addListener(listener);
+			_runner = new MetadataRunner(AsyncFailWithDelayCallFixture);
+			_runner.run(notifier);
+			Async.delayCall(this, function():void
+			{
+				Assert.assertTrue(listener.runStarted);
+				Assert.assertTrue(listener.runFinished);
+				Assert.assertStrictlyEquals(listener.finishedCount, 1);
+				Assert.assertStrictlyEquals(listener.failureCount, 1);
+				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
+				Assert.assertNull(listener.active);
+			}, 400);
 		}
 	}
 }
@@ -60,6 +116,8 @@ package tests
 import org.apache.royale.test.runners.notification.IRunListener;
 import org.apache.royale.test.runners.notification.Failure;
 import org.apache.royale.test.runners.notification.Result;
+import org.apache.royale.test.Assert;
+import org.apache.royale.test.async.Async;
 
 class AsyncFixture
 {
@@ -68,9 +126,30 @@ class AsyncFixture
 	{
 	}
 
-	[Test(async)]
+	[Test(async,timeout="100")]
 	public function test2():void
 	{
+	}
+}
+
+class AsyncFailFixture
+{
+	[Test(async,timeout="100")]
+	public function test1():void
+	{
+		Assert.fail();
+	}
+}
+
+class AsyncFailWithDelayCallFixture
+{
+	[Test(async,timeout="200")]
+	public function test1():void
+	{
+		Async.delayCall(this, function():void
+		{
+			Assert.fail();
+		}, 100);
 	}
 }
 
