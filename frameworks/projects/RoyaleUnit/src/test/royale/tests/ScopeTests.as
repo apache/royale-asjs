@@ -25,17 +25,31 @@ package tests
 		private var _value:String = "ScopeTests hello";
 
 		[Before]
-		public function prepare():void
+		public function before():void
 		{
 			Assert.assertStrictlyEquals(this._value, "ScopeTests hello",
 				"Function marked with [Before] metadata called with incorrect scope.");
 		}
 
 		[After]
-		public function cleanup():void
+		public function after():void
 		{
 			Assert.assertStrictlyEquals(this._value, "ScopeTests hello",
 				"Function marked with [After] metadata called with incorrect scope.");
+		}
+
+		[BeforeClass]
+		public function beforeClass():void
+		{
+			Assert.assertStrictlyEquals(this._value, "ScopeTests hello",
+				"Function marked with [BeforeClass] metadata called with incorrect scope.");
+		}
+
+		[AfterClass]
+		public function afterClass():void
+		{
+			Assert.assertStrictlyEquals(this._value, "ScopeTests hello",
+				"Function marked with [AfterClass] metadata called with incorrect scope.");
 		}
 
 		[Test]
