@@ -376,7 +376,7 @@ package org.apache.royale.test.runners
 		 */
 		protected function cleanupTimer():void
 		{
-			_timer.removeAllListeners();
+			_timer.removeEventListener(Timer.TIMER, timer_timerHandler);
 			_timer = null;
 		}
 
