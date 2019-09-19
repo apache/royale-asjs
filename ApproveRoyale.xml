@@ -88,7 +88,7 @@
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
 		
-        <target name="check-flash" if="use-flash">
+    <target name="check-flash" if="use-flash">
         <available file="${env.AIR_HOME}"
             type="dir" 
             property="AIR_HOME" value="${env.AIR_HOME}" />
@@ -778,7 +778,11 @@
         <antcall target="build_maven" />
     </target>
 
-    <target name="build_maven" >
+    <target name="build_maven">
+        <condition property="asjs_mvn_profiles" value="generate-swcs-for-swf,generate-swf,main"
+            else="main">
+            <isset property="env.AIR_HOME" />
+        </condition>
         <echo>Path is ${env.Path}</echo>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="-P" />
@@ -796,6 +800,8 @@
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" >
             <arg value="clean" />
+            <arg value="-P" />
+            <arg value="${asjs_mvn_profiles}" />
             <arg value="install" />
         </exec>
     </target>
