@@ -218,6 +218,7 @@ internal class CoreClasses
     	import org.apache.royale.utils.SolidBorderUtil; SolidBorderUtil;
 		import org.apache.royale.utils.HTMLLoader; HTMLLoader;
 	}
+	import org.apache.royale.utils.getTimer; getTimer;
 	import org.apache.royale.utils.BrowserUtils; BrowserUtils;
 	import org.apache.royale.utils.callLater; callLater;
 	import org.apache.royale.utils.getParentOrSelfByType; getParentOrSelfByType;
