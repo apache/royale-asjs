@@ -98,6 +98,7 @@
     <component id="TabBarContent" class="org.apache.royale.jewel.TabBarContent"/>
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer"/>
+    <component id="CollapsibleNavigationSectionRenderer" class="org.apache.royale.jewel.itemRenderers.CollapsibleNavigationSectionRenderer"/>
 
     <component id="DateChooserModel" class="org.apache.royale.jewel.beads.models.DateChooserModel"/>
 

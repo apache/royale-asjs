@@ -70,6 +70,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
+		[Bindable('dataChange')]
 		public function get href():String
 		{
             return _href;   
@@ -89,6 +90,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
+		[Bindable('dataChange')]
 		public function get text():String
 		{
             return _text;
@@ -114,39 +116,45 @@ package org.apache.royale.jewel.itemRenderers
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;
-
-			if(value == null) return;
-
+			if (value == null) {
+				 _href = "#";
+				_text = null;
+				//super.data setter will dispatch dataChange
+				super.data = value;
+				return;
+			}
+			
 			if (labelField)
 			{
-                text = String(value[labelField]);
+                _text = String(value[labelField]);
             }
 			else if(value.label !== undefined)
 			{
-                text = String(value.label);
+				if (value.label === null) _text = null;
+                else _text = String(value.label);
 			}
 			else
 			{
-				text = String(value);
+				_text = String(value);
 			}
 			// text = getLabelFromData(this, value);
 			
             if(value.href !== undefined)
 			{
-                href = String(value.href);
-			}
+				if (value.href === null) _href = "#";
+                else _href = String(value.href);
+			} else _href = "#";
 
 			COMPILE::JS
 			{
 			if(textNode != null)
 			{
-				textNode.nodeValue = text;
-				(element as HTMLElement).setAttribute('href', href);
+				textNode.nodeValue = _text;
+				(element as HTMLElement).setAttribute('href', _href);
 			}	
 			}
-
-			dispatchEvent(new Event("dataChange"));
+			//super.data setter will dispatch dataChange
+			super.data = value;
 		}
 
         /**
