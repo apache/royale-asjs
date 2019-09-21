@@ -48,6 +48,7 @@ package
         import org.apache.royale.crux.ISetUpValidator; ISetUpValidator;
         import org.apache.royale.crux.ITearDownValidator; ITearDownValidator;
         import org.apache.royale.crux.Prototype; Prototype;
+
     
     
     
@@ -108,6 +109,8 @@ package
         import org.apache.royale.crux.utils.async.AsyncTokenOperation; AsyncTokenOperation;
         import org.apache.royale.crux.utils.async.IAsynchronousEvent; IAsynchronousEvent;
         import org.apache.royale.crux.utils.async.IAsynchronousOperation; IAsynchronousOperation;
+        
+        import org.apache.royale.crux.utils.commands.CommandMap; CommandMap;
 
         import org.apache.royale.crux.utils.chain.AbstractChain; AbstractChain;
         import org.apache.royale.crux.utils.chain.AsyncCommandChainStep; AsyncCommandChainStep;

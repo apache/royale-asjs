@@ -136,6 +136,7 @@ package org.apache.royale.crux.metadata
 		{
 			super.copyFrom( metadataTag );
 			
+			//@todo consider removing the 'bean' arg support or putting it only in debug-only build
 			if( hasArg( "bean" ) && hasArg( "source" ) )
 				throw new Error( "Your metadata tag defines both a bean and source attribute. source has replaced bean, please update accordingly." );
 			

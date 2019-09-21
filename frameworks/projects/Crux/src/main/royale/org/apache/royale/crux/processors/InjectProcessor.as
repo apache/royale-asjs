@@ -412,7 +412,7 @@ package org.apache.royale.crux.processors
 			}
 			catch( error:ReferenceError )
 			{
-				trace('todo')
+				trace('todo ReferenceError caught', error)
 			}
 			
 		}

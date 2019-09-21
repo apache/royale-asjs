@@ -110,7 +110,7 @@ package org.apache.royale.crux
 			if( waitForSetup )
 				return;
 			
-			trace("BeanFactory completing setup");
+			//trace("BeanFactory completing setup");
 			
 			// bean setup has to be delayed until after all startup beans have been added
 			for each(var bean:Bean in beans)
@@ -352,7 +352,7 @@ package org.apache.royale.crux
 			if( bean.initialized )
 				return;
 			
-			trace("BeanFactory::setUpBean", bean);
+			//trace("BeanFactory::setUpBean", bean);
 			bean.initialized = true;
 			
 			var processor:IProcessor;
@@ -366,7 +366,7 @@ package org.apache.royale.crux
 				// Handle Metadata Processors
 				if(processor is IMetadataProcessor)
 				{
-					trace("processor is IMetadataProcessor");
+					//trace("processor is IMetadataProcessor");
 					var metadataProcessor:IMetadataProcessor = IMetadataProcessor( processor );
 					
 					// get the tags this processor is interested in
@@ -382,7 +382,7 @@ package org.apache.royale.crux
 				// Handle Bean Processors
 				if(processor is IBeanProcessor)
 				{
-					trace("processor is IBeanProcessor");
+					//trace("processor is IBeanProcessor");
 					IBeanProcessor(processor).setUpBean(bean);
 				}
 			}
