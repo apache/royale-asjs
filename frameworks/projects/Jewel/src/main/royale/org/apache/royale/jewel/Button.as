@@ -22,7 +22,9 @@ package org.apache.royale.jewel
     {
     import org.apache.royale.core.ITextModel;
     }
-
+    //Below is needed to avoid dispatching native JS Event, which seems to still work in Chrome and probably other browsers,
+    //but IE11 will break if the following import is removed:
+    import org.apache.royale.events.Event;
     import org.apache.royale.jewel.supportClasses.button.SimpleButton;
 
     [DefaultProperty("text")]
@@ -132,7 +134,7 @@ package org.apache.royale.jewel
             COMPILE::JS
             {
             (element as HTMLButtonElement).innerHTML = value;
-            dispatchEvent(new Event('textChange'));
+            dispatchEvent(new Event('htmlChange'));
             }
 		}
 	}
