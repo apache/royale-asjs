@@ -78,13 +78,14 @@ package org.apache.royale.net
         COMPILE::JS
         private var element:XMLHttpRequest;
         
-        public function URLLoader()
+        public function URLLoader(request:org.apache.royale.net.URLRequest = null)
         {
             super();
             COMPILE::JS
             {
                 element = new XMLHttpRequest();
             }
+            if (request) load(request);
         }
         
         COMPILE::SWF
