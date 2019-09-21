@@ -50,6 +50,25 @@ package org.apache.royale.net
 	 */
     public class URLLoader extends URLLoaderBase
     {
+        COMPILE::JS
+        private static var _corsCredentialsChecker:Function;
+        COMPILE::JS
+        /**
+         * Intended as global configuration of CORS withCredentials setting on requests
+         * This method is not reflectable, is js-only and is eliminated via dead-code-elimination
+         * in js-release builds if it is never used.
+         * URLLoader is used a service base in other service classes, so this provides
+         * a 'low level' solution for a bead that can work at application level.
+         * The 'checker' function parameter should be a function that takes a url as its single argument
+         * and returns true or false depending on whether 'withCredentials' should be set for
+         * that http request. Set it to null to always be false.
+         * @private
+         * @royalesuppressexport
+         */
+        public static function setCORSCredentialsChecker(checker:Function):void{
+            _corsCredentialsChecker = checker;
+        }
+        
         
 		/**
 		 *  The number of bytes loaded so far.
@@ -207,6 +226,9 @@ package org.apache.royale.net
                         HTTPHeader.CONTENT_TYPE, _contentType);
                 }
                 */
+                if (_corsCredentialsChecker != null) {
+                    element.withCredentials = _corsCredentialsChecker(url);
+                }
                 
                 if (contentData) {
                     element.send(contentData);
