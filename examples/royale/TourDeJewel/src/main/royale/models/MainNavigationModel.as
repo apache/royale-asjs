@@ -67,5 +67,17 @@ package models
         {
             return _containerDrawerNavigation;
         }
+        
+        
+        private var _collapsibleNavExample:ArrayList;
+        public function get collapsibleNavExample():ArrayList {
+            if (_collapsibleNavExample) return _collapsibleNavExample;
+            var item:NavigationLinkVO = new NavigationLinkVO("Ditto", '#collapsible', MaterialIconType.UNFOLD_MORE);
+            item.subMenu = _containerDrawerNavigation;
+    
+            _collapsibleNavExample = new ArrayList([item]);
+            
+            return _collapsibleNavExample;
+        }
     }
 }

@@ -18,12 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package vos
 {
+    import org.apache.royale.collections.IArrayList;
+    
     [Bindable]
     public class NavigationLinkVO
     {
         public var label:String;
         public var href:String;
         public var icon:String;
+        
+        //for collapsible example
+        public var subMenu:IArrayList;
+        public var open:Boolean;
+        public var selectedChild:NavigationLinkVO;
 
         public function NavigationLinkVO(label:String, href:String, icon:String = null)
         {

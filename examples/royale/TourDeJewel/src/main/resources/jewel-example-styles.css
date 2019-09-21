@@ -106,5 +106,37 @@
 
 .somePopUpContent
 {
-    IPopUpContent: ClassReference("components.SomePopUpContent")
+    IPopUpContent: ClassReference("components.SomePopUpContent");
+}
+
+.navSectionItemRenderer{
+    IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
+}
+
+.navigation-section-group{
+    IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
+}
+.navigation-section-group.closed {
+    display: none
+}
+
+.navSectionItemRenderer .fonticon
+{
+    margin-right: 24px;
+}
+.navSectionItemRenderer.jewel.navigation{
+    background-color: aliceblue;
+}
+
+.navigation-section-group .navigationlink{
+    padding-left: 34px;
+    background-color:rgba(56, 172, 241, 0.31);
+}
+
+.jewel.navigationlink .hint.fonticon {
+    margin-left: auto;
+}
+
+.navigation .layout.vertical {
+    align-items: stretch;
 }

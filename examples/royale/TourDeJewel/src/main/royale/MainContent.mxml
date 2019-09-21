@@ -38,6 +38,18 @@ limitations under the License.
                     drawer.close();
             }
 
+            private function collapsibleChangeHandler(event:Event):void
+            {
+                var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
+                if (item){
+                    item = item.selectedChild;
+                    main.selectedContent = item.href;
+                    if(!drawer.fixed)
+                        drawer.close();
+                }
+
+            }
+
             private function toggleTopAppBarFixed():void
             {
                 topappbar.fixed = !topappbar.fixed;
@@ -108,6 +120,14 @@ limitations under the License.
             <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="containerDrawerNavigation" destinationPropertyName="dataProvider"/>
+                    <j:NavigationActionNotifier/>
+                </j:beads>
+            </j:Navigation>
+            <j:Divider/>
+            <j:Navigation change="collapsibleChangeHandler(event)"
+                          className="navSectionItemRenderer">
+                <j:beads>
+                    <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="collapsibleNavExample" destinationPropertyName="dataProvider"/>
                     <j:NavigationActionNotifier/>
                 </j:beads>
             </j:Navigation>
