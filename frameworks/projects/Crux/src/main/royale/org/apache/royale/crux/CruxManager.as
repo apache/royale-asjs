@@ -168,7 +168,24 @@ package org.apache.royale.crux
 				}
 			}
 			COMPILE::JS{
-				var iterator:IteratorIterable = wiredViews.keys();
+				//Don't use an IteratorIterable approach to maintain compatibility with IE11
+				//IE11
+				//ref: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map/forEach
+				
+				wiredViews.forEach(
+					function(value:Object, wiredView:*):void {
+						if (value == cruxInstance) {
+							tearDownWiredView(wiredView, cruxInstance);
+						}
+					} //no second 'this' arg here - we are static
+				)
+				
+				//otherwise (for other browsers) IteratorIterable might be faster (tbc):
+				//both could be supported with 'if (wireViews.keys) or maybe 'if (Map.prototype.keys)' tests
+				//as a feature check, but the above is common to all, and so deferring to IE's needs for now
+				//leaving this below as possible future improvement:
+
+				/*var iterator:IteratorIterable = wiredViews.keys();
 				var result:* = iterator.next();
 				while(!result.done)
 				{
@@ -179,7 +196,7 @@ package org.apache.royale.crux
 						tearDownWiredView(wiredView, cruxInstance);
 					}
 					result = iterator.next();
-				}
+				}*/
 			}
 		}
 	}
