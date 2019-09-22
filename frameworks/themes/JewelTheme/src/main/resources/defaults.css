@@ -626,7 +626,7 @@ j|FormItem {
 
 .navigation-section-group {
   transition: height 0.5s;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 .navigation-section-group .navigationlink {
   padding-left: 34px;
