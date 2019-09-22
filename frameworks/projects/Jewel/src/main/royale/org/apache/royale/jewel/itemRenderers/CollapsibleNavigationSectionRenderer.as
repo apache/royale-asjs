@@ -158,8 +158,15 @@ package org.apache.royale.jewel.itemRenderers
 			if (_open != value){
 				_open = value;
 				if (childNavigation) {
-					if (value) childNavigation.removeClass('closed');
-					else childNavigation.addClass('closed');
+					COMPILE::JS
+					{
+					if (value) {
+						childNavigation.element.style.height = childNavigation.element.scrollHeight + "px";
+						
+					} else {
+						childNavigation.element.style.height = 0;
+					}
+					}
 				}
 				if (!_inData) dispatchEvent(new Event('dataChange'));
 			}
@@ -190,7 +197,13 @@ package org.apache.royale.jewel.itemRenderers
 				childNavigation.addEventListener('change', _onChange);
 				childNavigation.className = childNavClassName;
 				super.addElement(childNavigation);
-				if (!_open) childNavigation.addClass('closed' );
+				if (!_open) 
+				{
+					COMPILE::JS
+					{
+					childNavigation.element.style.height = 0;
+					}
+				}
 			}
 			childNavigation.dataProvider = children;
 		}

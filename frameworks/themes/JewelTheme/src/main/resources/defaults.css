@@ -624,8 +624,9 @@ j|FormItem {
   margin-left: auto;
 }
 
-.navigation-section-group.closed {
-  display: none;
+.navigation-section-group {
+  transition: height 0.5s;
+  overflow: hidden;
 }
 .navigation-section-group .navigationlink {
   padding-left: 34px;

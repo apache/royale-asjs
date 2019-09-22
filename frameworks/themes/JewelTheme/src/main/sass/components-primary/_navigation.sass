@@ -55,8 +55,11 @@
             margin-left: auto
 
 .navigation-section-group
-    &.closed
-        display: none
+    transition: height .5s
+    overflow: hidden
+    // height: this is calculated in code using `childNavigation.element.scrollHeight`
+    //&.closed
+        //  height: 0
     
     .navigationlink
         padding-left: 34px
