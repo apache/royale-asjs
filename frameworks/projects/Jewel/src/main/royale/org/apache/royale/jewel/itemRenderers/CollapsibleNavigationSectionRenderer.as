@@ -18,19 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.jewel.Navigation;
-	
 	COMPILE::JS
     {
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
+
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.html.elements.A;
+	import org.apache.royale.jewel.Navigation;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-	
 	import org.apache.royale.utils.ClassSelectorList;
 	import org.apache.royale.utils.MXMLDataInterpreter;
 	
@@ -43,7 +42,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.6
 	 */
 	public class CollapsibleNavigationSectionRenderer extends StyledMXMLItemRenderer implements INavigationRenderer
 	{
@@ -53,7 +52,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		public function CollapsibleNavigationSectionRenderer()
 		{
@@ -106,7 +105,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
+         *  @productversion Royale 0.9.6
          */
 		public function get href():String
 		{
@@ -125,7 +124,7 @@ package org.apache.royale.jewel.itemRenderers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
+         *  @productversion Royale 0.9.6
          */
 		[Bindable('dataChange')]
 		public function get text():String
@@ -146,7 +145,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 */
 		[Bindable('dataChange')]
 		public function get open():Boolean
@@ -210,7 +209,7 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.6
 		 *
 		 *  @royaleignorecoercion org.apache.royale.collections.IArrayList
 		 */

@@ -124,19 +124,11 @@
 {
     margin-right: 24px;
 }
-.navSectionItemRenderer.jewel.navigation{
+
+/* .navSectionItemRenderer.jewel.navigation{
     background-color: aliceblue;
-}
+} */
 
-.navigation-section-group .navigationlink{
-    padding-left: 34px;
+/* .navigation-section-group .navigationlink{
     background-color:rgba(56, 172, 241, 0.31);
-}
-
-.jewel.navigationlink .hint.fonticon {
-    margin-left: auto;
-}
-
-.navigation .layout.vertical {
-    align-items: stretch;
-}
+} */
