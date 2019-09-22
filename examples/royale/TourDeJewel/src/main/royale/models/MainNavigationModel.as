@@ -72,8 +72,8 @@ package models
         private var _collapsibleNavExample:ArrayList;
         public function get collapsibleNavExample():ArrayList {
             if (_collapsibleNavExample) return _collapsibleNavExample;
-            var item1:NavigationLinkVO = new NavigationLinkVO("No Sub", "card_panel", MaterialIconType.FILTER_1);
-            var item2:NavigationLinkVO = new NavigationLinkVO("With Sub", '#collapsible', MaterialIconType.FILTER_2);
+            var item1:NavigationLinkVO = new NavigationLinkVO("No SubMenu", "card_panel", MaterialIconType.FILTER_1);
+            var item2:NavigationLinkVO = new NavigationLinkVO("With SubMenu", '#collapsible', MaterialIconType.FILTER_2);
             item2.subMenu = _containerDrawerNavigation;
             _collapsibleNavExample = new ArrayList([item1, item2]);
             

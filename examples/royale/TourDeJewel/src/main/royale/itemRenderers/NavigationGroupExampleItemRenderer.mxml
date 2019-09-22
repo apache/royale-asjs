@@ -18,17 +18,18 @@ limitations under the License.
 
 -->
 <j:CollapsibleNavigationSectionRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
-                                            xmlns:j="library://ns.apache.org/royale/jewel"
-                                            xmlns:js="library://ns.apache.org/royale/basic"
-                                            xmlns:html="library://ns.apache.org/royale/html"
-                                            className="layout vertical"
-                                            sectionClick="handleNavToggle(event)">
+                                        xmlns:j="library://ns.apache.org/royale/jewel"
+                                        xmlns:js="library://ns.apache.org/royale/basic"
+                                        xmlns:html="library://ns.apache.org/royale/html"
+                                        className="layout vertical"
+                                        sectionClick="handleNavToggle(event)">
 
     <fx:Script>
 		<![CDATA[
-        import vos.NavigationLinkVO;
         import org.apache.royale.events.Event;
         import org.apache.royale.jewel.Navigation;
+
+        import vos.NavigationLinkVO;
 
         [Bindable(event="dataChange")]
         public function get navlink():NavigationLinkVO

@@ -109,26 +109,21 @@
     IPopUpContent: ClassReference("components.SomePopUpContent");
 }
 
-.navSectionItemRenderer{
-    IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
-}
-
 .navigation-section-group{
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
 }
-.navigation-section-group.closed {
-    display: none
-}
+/* .navigation-section-group .navigationlink{
+    background-color:rgba(56, 172, 241, 0.31);
+} */
 
+.navSectionItemRenderer{
+    IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
+}
 .navSectionItemRenderer .fonticon
 {
     margin-right: 24px;
 }
-
 /* .navSectionItemRenderer.jewel.navigation{
     background-color: aliceblue;
 } */
 
-/* .navigation-section-group .navigationlink{
-    background-color:rgba(56, 172, 241, 0.31);
-} */
