@@ -779,6 +779,10 @@
     </target>
 
     <target name="build_maven">
+        <condition property="compiler_mvn_profiles" value="test-using-swf,main"
+            else="main">
+            <isset property="env.AIR_HOME" />
+        </condition>
         <condition property="asjs_mvn_profiles" value="generate-swcs-for-swf,generate-swf,main"
             else="main">
             <isset property="env.AIR_HOME" />
@@ -792,6 +796,8 @@
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="clean" />
+            <arg value="-P" />
+            <arg value="${compiler_mvn_profiles}" />
             <arg value="install" />
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-typedefs" failonerror="true" >
