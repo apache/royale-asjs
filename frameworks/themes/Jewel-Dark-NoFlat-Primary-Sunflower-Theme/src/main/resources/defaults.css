@@ -607,6 +607,9 @@ j|FormItem {
 .jewel.navigation {
   background-color: #ffffff;
 }
+.jewel.navigation .layout.vertical {
+  align-items: stretch;
+}
 
 .jewel.navigationlink {
   margin: 0;
@@ -617,6 +620,17 @@ j|FormItem {
 }
 .jewel.navigationlink.hovered:hover {
   background: #737373 !important;
+}
+.jewel.navigationlink .hint.fonticon {
+  margin-left: auto;
+}
+
+.navigation-section-group {
+  transition: height 0.5s;
+  overflow: hidden !important;
+}
+.navigation-section-group .navigationlink {
+  padding-left: 34px;
 }
 
 .jewel.numericstepper .jewel.textinput input {
