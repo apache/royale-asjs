@@ -429,6 +429,7 @@
         <id>generate-swf</id>
         <properties>
             <royale.example.targets>SWF,JSRoyale</royale.example.targets>
+            <generate.swf>true</generate.swf>
         </properties>
         <dependencies>
             <dependency>
@@ -445,6 +446,7 @@
       <id>generate-swcs-for-swf</id>
       <properties>
           <royale.skipAS>false</royale.skipAS>
+          <generate.swf.swcs>true</generate.swf.swcs>
       </properties>
       <dependencies>
           <dependency>

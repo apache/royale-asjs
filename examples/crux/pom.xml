@@ -69,6 +69,68 @@
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+      <profile>
+          <id>swf-dependencies-crux</id>
+          <activation>
+              <property>
+                  <name>generate.swf</name>
+              </property>
+          </activation>
+          <dependencies>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Core</artifactId>
+                  <version>0.9.6-SNAPSHOT</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Language</artifactId>
+                  <version>0.9.6-SNAPSHOT</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Crux</artifactId>
+                  <version>0.9.6-SNAPSHOT</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>HTML</artifactId>
+                  <version>0.9.6-SNAPSHOT</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Collections</artifactId>
+                  <version>0.9.6-SNAPSHOT</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Binding</artifactId>
+                  <version>0.9.6-SNAPSHOT</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Graphics</artifactId>
+                  <version>0.9.6-SNAPSHOT</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+          </dependencies>
+      </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
@@ -76,21 +138,7 @@
       <artifactId>Core</artifactId>
       <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
       <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Language</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
@@ -104,21 +152,7 @@
       <artifactId>Crux</artifactId>
       <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Crux</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
       <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>HTML</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
@@ -132,13 +166,6 @@
       <artifactId>Collections</artifactId>
       <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Collections</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
@@ -146,21 +173,7 @@
       <artifactId>Binding</artifactId>
       <version>0.9.6-SNAPSHOT</version>
       <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Binding</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
       <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Graphics</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
