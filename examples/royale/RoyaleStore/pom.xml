@@ -109,7 +109,6 @@
     </dependency>
 
     <dependency>
-    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>DragDrop</artifactId>
       <version>0.9.6-SNAPSHOT</version>
