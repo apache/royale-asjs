@@ -194,6 +194,7 @@
         
         <!-- build these modules -->
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="-Dgenerate.swf.swcs=true" />
             <arg value="clean" />
             <arg value="install" />
             <arg value="-P" />
