@@ -60,6 +60,7 @@ package org.apache.royale.svg
         public function set radius(value:Number):void
         {
             _radius = value;
+            updateView();
         }
 
         COMPILE::JS

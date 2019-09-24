@@ -74,6 +74,7 @@ package org.apache.royale.svg
 		public function set rx(value:Number):void
 		{
 			_rx = value;
+			updateView();
 		}
 
 		private var _ry:Number;
@@ -95,6 +96,7 @@ package org.apache.royale.svg
 		public function set ry(value:Number):void
 		{
 			_ry = value;
+			updateView();
 		}
 
 		/**

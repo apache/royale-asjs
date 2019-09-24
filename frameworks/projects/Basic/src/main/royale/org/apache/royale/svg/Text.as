@@ -73,6 +73,7 @@ package org.apache.royale.svg
 		public function set text(value:String):void
 		{
 			_text = value;
+			updateView();
 		}
 
         COMPILE::SWF
