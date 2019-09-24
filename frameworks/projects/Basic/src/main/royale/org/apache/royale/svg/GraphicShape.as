@@ -1,13 +1,13 @@
 /*
  *
- *  Licensed to the Apache Software Foundation (ASF) under one or more
- *  contributor license agreements.  See the NOTICE file distributed with
- *  this work for additional information regarding copyright ownership.
- *  The ASF licenses this file to You under the Apache License, Version 2.0
- *  (the "License"); you may not use this file except in compliance with
- *  the License.  You may obtain a copy of the License at
+ *	Licensed to the Apache Software Foundation (ASF) under one or more
+ *	contributor license agreements.	See the NOTICE file distributed with
+ *	this work for additional information regarding copyright ownership.
+ *	The ASF licenses this file to You under the Apache License, Version 2.0
+ *	(the "License"); you may not use this file except in compliance with
+ *	the License.	You may obtain a copy of the License at
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *		 http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,20 +19,20 @@
 package org.apache.royale.svg
 {
 	COMPILE::SWF
-    {
+	{
 		import flash.display.Graphics;
 		import flash.display.Sprite;
 		import flash.geom.Point;
 		import flash.geom.Rectangle;
 		import org.apache.royale.core.WrappedSprite;
-    }
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addSvgElementToWrapper;
-    }
+	}
+	COMPILE::JS
+	{
+	import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.html.util.addSvgElementToWrapper;
+	}
 
-    import org.apache.royale.core.IRoyaleElement;
+	import org.apache.royale.core.IRoyaleElement;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.graphics.IFill;
 	import org.apache.royale.graphics.IStroke;
@@ -50,16 +50,17 @@ package org.apache.royale.svg
 		}
 
 		/**
-		 *  A solid color fill.
+		 *	A solid color fill.
 		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Royale 0.0
+		 *	@langversion 3.0
+		 *	@playerversion Flash 9
+		 *	@playerversion AIR 1.1
+		 *	@productversion Royale 0.0
 		 */
 		public function set stroke(value:IStroke):void
 		{
 			_stroke = value;
+			updateView();
 		}
 
 		public function get fill():IFill
@@ -67,27 +68,35 @@ package org.apache.royale.svg
 			return _fill;
 		}
 		/**
-		 *  A solid color fill.
+		 *	A solid color fill.
 		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 9
-		 *  @playerversion AIR 1.1
-		 *  @productversion Royale 0.0
+		 *	@langversion 3.0
+		 *	@playerversion Flash 9
+		 *	@playerversion AIR 1.1
+		 *	@productversion Royale 0.0
 		 */
 		public function set fill(value:IFill):void
 		{
 			_fill = value;
+			updateView();
 		}
-
+		/**
+		 * Setting visuals after the element is added to the parent should have an effect (i.e. in MXML binding)
+		 */
+		protected function updateView():void
+		{
+			if(parent)
+				drawImpl();
+		}
 		/**
 		 * Constructor
 		 *
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 */
-        public function GraphicShape()
-        {
+		public function GraphicShape()
+		{
 			super();
-        }
+		}
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -113,7 +122,7 @@ package org.apache.royale.svg
 		// }
 
 
-        COMPILE::SWF
+		COMPILE::SWF
 		protected function applyStroke():void
 		{
 			if(stroke)
@@ -122,7 +131,7 @@ package org.apache.royale.svg
 			}
 		}
 
-        COMPILE::SWF
+		COMPILE::SWF
 		protected function beginFill(targetBounds:Rectangle,targetOrigin:Point):void
 		{
 			if(fill)
@@ -131,7 +140,7 @@ package org.apache.royale.svg
 			}
 		}
 
-        COMPILE::SWF
+		COMPILE::SWF
 		protected function endFill():void
 		{
 			if(fill)
@@ -150,43 +159,43 @@ package org.apache.royale.svg
 
 		override public function addedToParent():void
 		{
-            super.addedToParent();
+			super.addedToParent();
 			drawImpl();
-            COMPILE::JS
-            {
-                element.style.overflow = 'visible';
-            }
+			COMPILE::JS
+			{
+				element.style.overflow = 'visible';
+			}
 		}
 
-        /**
-         * @return {string} The style attribute.
-         */
-        COMPILE::JS
-        public function getStyleStr():String
-        {
-            var fillStr:String;
-            if (fill)
-            {
-                fillStr = fill.addFillAttrib(this);
-            }
-            else
-            {
-                fillStr = 'fill:none';
-            }
+		/**
+		 * @return {string} The style attribute.
+		 */
+		COMPILE::JS
+		public function getStyleStr():String
+		{
+			var fillStr:String;
+			if (fill)
+			{
+					fillStr = fill.addFillAttrib(this);
+			}
+			else
+			{
+					fillStr = 'fill:none';
+			}
 
-            var strokeStr:String;
-            if (stroke)
-            {
-                strokeStr = stroke.addStrokeAttrib(this);
-            }
-            else
-            {
-                strokeStr = 'stroke:none';
-            }
+			var strokeStr:String;
+			if (stroke)
+			{
+					strokeStr = stroke.addStrokeAttrib(this);
+			}
+			else
+			{
+					strokeStr = 'stroke:none';
+			}
 
 
-            return fillStr + ';' + strokeStr;
-        }
+			return fillStr + ';' + strokeStr;
+		}
 
 		COMPILE::JS
 		override protected function setClassName(value:String):void
@@ -195,28 +204,28 @@ package org.apache.royale.svg
 		}
 
 
-        /**
-         * @param x X position.
-         * @param y Y position.
-         * @param bbox The bounding box of the svg element.
-         */
-        COMPILE::JS
-        public function resize(x:Number, y:Number):void
-        {
-            // var useWidth:Number = Math.max(this.width, bbox.width);
-            // var useHeight:Number = Math.max(this.height, bbox.height);
-            var useWidth:Number = explicitWidth;
-            var useHeight:Number = explicitHeight;
+		/**
+		 * @param x X position.
+		 * @param y Y position.
+		 * @param bbox The bounding box of the svg element.
+		 */
+		COMPILE::JS
+		public function resize(x:Number, y:Number):void
+		{
+			// var useWidth:Number = Math.max(this.width, bbox.width);
+			// var useHeight:Number = Math.max(this.height, bbox.height);
+			var useWidth:Number = explicitWidth;
+			var useHeight:Number = explicitHeight;
 
-            element.style.position = 'absolute';
+			element.style.position = 'absolute';
 			//style needed for SVG inside DOM elements
 			// attributes for SVG inside SVG
-            if (!isNaN(x))
+			if (!isNaN(x))
 			{
 				element.style.left = x + "px";
 				element.setAttribute("x", x);
 			} 
-            if (!isNaN(y))
+						if (!isNaN(y))
 			{
 				element.style.top = y + "px";
 				element.setAttribute("y", y);
@@ -231,37 +240,37 @@ package org.apache.royale.svg
 				element.style.height = useHeight + "px";
 				element.setAttribute("height", useHeight);
 			}
-        }
+		}
 
-        COMPILE::JS
-        private var _x:Number;
-        COMPILE::JS
-        private var _y:Number;
-        COMPILE::JS
-        private var _xOffset:Number;
-        COMPILE::JS
-        private var _yOffset:Number;
+		COMPILE::JS
+		private var _x:Number;
+		COMPILE::JS
+		private var _y:Number;
+		COMPILE::JS
+		private var _xOffset:Number;
+		COMPILE::JS
+		private var _yOffset:Number;
 
-        /**
-         * @param x X position.
-         * @param y Y position.
-         * @param xOffset offset from x position.
-         * @param yOffset offset from y position.
-         */
-        COMPILE::JS
-        public function setPosition(x:Number, y:Number, xOffset:Number, yOffset:Number):void
-        {
-            _x = x;
-            _y = y;
-            _xOffset = xOffset;
-            _yOffset = yOffset;
+		/**
+		 * @param x X position.
+		 * @param y Y position.
+		 * @param xOffset offset from x position.
+		 * @param yOffset offset from y position.
+		 */
+		COMPILE::JS
+		public function setPosition(x:Number, y:Number, xOffset:Number, yOffset:Number):void
+		{
+			_x = x;
+			_y = y;
+			_xOffset = xOffset;
+			_yOffset = yOffset;
 			// Needed for SVG inside SVG
 			element.setAttribute("x", xOffset);
 			element.setAttribute("y", yOffset);
 			//Needed for SVG inside DOM elements
-            element.style.left = xOffset + "px";
-            element.style.top = yOffset + "px";
-        }
+			element.style.left = xOffset + "px";
+			element.style.top = yOffset + "px";
+		}
 		COMPILE::JS
 		override public function set x(value:Number):void
 		{
