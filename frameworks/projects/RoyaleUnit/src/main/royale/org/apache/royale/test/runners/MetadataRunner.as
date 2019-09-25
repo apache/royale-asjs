@@ -173,8 +173,13 @@ package org.apache.royale.test.runners
 			_notifier.fireTestRunStarted(description);
 			if(_testClass)
 			{
+				readStaticMetadataTags();
+				if(_beforeClass !== null)
+				{
+					_beforeClass.apply(_testClass);
+				}
 				_target = new _testClass();
-				readMetadataTags();
+				readInstanceMetadataTags();
 				continueAll();
 			}
 			else
@@ -199,7 +204,7 @@ package org.apache.royale.test.runners
 			}
 			if(_afterClass !== null)
 			{
-				_afterClass.apply(_target);
+				_afterClass.apply(_testClass);
 			}
 			_notifier.removeListener(_listener);
 			_notifier.fireTestRunFinished(_result);
@@ -223,10 +228,6 @@ package org.apache.royale.test.runners
 		 */
 		protected function continueNext():Boolean
 		{
-			if(_currentIndex == 0 && _beforeClass !== null)
-			{
-				_beforeClass.apply(_target);
-			}
 			var test:TestInfo = _collectedTests[_currentIndex];
 			try
 			{
@@ -288,15 +289,23 @@ package org.apache.royale.test.runners
 		/**
 		 * @private
 		 */
-		protected function readMetadataTags():void
+		protected function readStaticMetadataTags():void
+		{
+			_beforeClass = collectMethodWithMetadataTag(TestMetadata.BEFORE_CLASS, true);
+			_afterClass = collectMethodWithMetadataTag(TestMetadata.AFTER_CLASS, true);
+		}
+
+		/**
+		 * @private
+		 */
+		protected function readInstanceMetadataTags():void
 		{
 			collectTests();
 			if(_collectedTests.length === 0)
 			{
-				throw new Error("No methods found with [Test] metadata. Did you forget to include the -keep-as3-metadata compiler option?")
+				//at least one test is required
+				throw new Error("No methods with [Test] metadata found on instance of type: <" + getQualifiedClassName(_testClass) + ">. Did you forget to include the -keep-as3-metadata compiler option?")
 			}
-			_beforeClass = collectMethodWithMetadataTag(TestMetadata.BEFORE_CLASS);
-			_afterClass = collectMethodWithMetadataTag(TestMetadata.AFTER_CLASS);
 			_before = collectMethodWithMetadataTag(TestMetadata.BEFORE);
 			_after = collectMethodWithMetadataTag(TestMetadata.AFTER);
 		}
@@ -304,14 +313,15 @@ package org.apache.royale.test.runners
 		/**
 		 * @private
 		 */
-		protected function collectMethodWithMetadataTag(tagName:String):Function
+		protected function collectMethodWithMetadataTag(tagName:String, isStatic:Boolean = false):Function
 		{
-			var typeDefinition:TypeDefinition = describeType(_target);
+			var described:Object = isStatic ? _testClass : _target;
+			var typeDefinition:TypeDefinition = describeType(described);
 			if(!typeDefinition)
 			{
 				return null;
 			}
-			var methods:Array = typeDefinition.methods;
+			var methods:Array = isStatic ? typeDefinition.staticMethods : typeDefinition.methods;
 			var length:int = methods.length;
 			for(var i:int = 0; i < length; i++)
 			{
@@ -319,7 +329,7 @@ package org.apache.royale.test.runners
 				var metadata:Array = method.retrieveMetaDataByName(tagName);
 				if(metadata.length > 0)
 				{
-					return _target[method.name];
+					return described[method.name];
 				}
 			}
 			return null;

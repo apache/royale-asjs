@@ -111,7 +111,7 @@ var test2Ran:Boolean = false;
 class BeforeClassFixture
 {
 	[BeforeClass]
-	public function beforeClass():void
+	public static function beforeClass():void
 	{
 		Assert.assertFalse(beforeClassRan);
 		beforeClassRan = true;
@@ -142,7 +142,7 @@ class BeforeClassFixture
 class AfterClassFixture
 {
 	[AfterClass]
-	public function afterClass():void
+	public static function afterClass():void
 	{
 		Assert.assertFalse(afterClassRan);
 		afterClassRan = true;
@@ -173,7 +173,7 @@ class AfterClassFixture
 class BeforeClassAndAfterClassFixture
 {
 	[BeforeClass]
-	public function beforeClass():void
+	public static function beforeClass():void
 	{
 		Assert.assertFalse(beforeClassRan);
 		beforeClassRan = true;
@@ -183,7 +183,7 @@ class BeforeClassAndAfterClassFixture
 	}
 
 	[AfterClass]
-	public function afterClass():void
+	public static function afterClass():void
 	{
 		Assert.assertFalse(afterClassRan);
 		afterClassRan = true;
