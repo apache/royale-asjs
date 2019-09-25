@@ -251,7 +251,24 @@ package org.apache.royale.test.runners
 					AsyncLocator.setAsyncHandlerForTest(_target, asyncHandler);
 					asyncHandler.bodyExecuting = true;
 				}
-				test.reference.apply(_target);
+				if(test.expected != null)
+				{
+					var expectedType:Class = getDefinitionByName(test.expected) as Class;
+					var throwsType:Class = null;
+					try
+					{
+						test.reference.apply(_target);
+					}
+					catch(exception:Object)
+					{
+						throwsType = exception.constructor;
+					}
+					Assert.assertStrictlyEquals(throwsType, expectedType);
+				}
+				else
+				{
+					test.reference.apply(_target);
+				}
 				if(asyncHandler)
 				{
 					asyncHandler.bodyExecuting = false;
@@ -407,6 +424,7 @@ package org.apache.royale.test.runners
 				var ignore:Boolean = false;
 				var async:Boolean = false;
 				var asyncTimeout:int = 0;
+				var expected:String = null;
 
 				var testMetadata:Array = method.retrieveMetaDataByName(TestMetadata.TEST);
 				if(testMetadata.length > 0)
@@ -435,6 +453,11 @@ package org.apache.royale.test.runners
 							asyncTimeout = DEFAULT_ASYNC_TIMEOUT;
 						}
 					}
+					var expectedArgs:Array = testTag.getArgsByKey("expected");
+					if(expectedArgs.length > 0)
+					{
+						expected = expectedArgs[0].value;
+					}
 				}
 				var ignoreMetadata:Array = method.retrieveMetaDataByName(TestMetadata.IGNORE);
 				if(ignoreMetadata.length > 0)
@@ -443,7 +466,7 @@ package org.apache.royale.test.runners
 				}
 				if(testName !== null)
 				{
-					_collectedTests.push(new TestInfo(testName, testFunction, ignore, asyncTimeout));
+					_collectedTests.push(new TestInfo(testName, testFunction, ignore, asyncTimeout, expected));
 				}
 			}
 		}
@@ -492,18 +515,20 @@ import org.apache.royale.utils.Timer;
 
 class TestInfo
 {
-	public function TestInfo(name:String, reference:Function, ignore:Boolean, asyncTimeout:int)
+	public function TestInfo(name:String, reference:Function, ignore:Boolean, asyncTimeout:int, expected:String)
 	{
 		this.description = name;
 		this.reference = reference;
 		this.ignore = ignore;
 		this.asyncTimeout = asyncTimeout;
+		this.expected = expected;
 	}
 
 	public var description:String;
 	public var reference:Function;
 	public var ignore:Boolean;
 	public var asyncTimeout:int;
+	public var expected:String;
 }
 
 class AsyncHandler implements IAsyncHandler

@@ -28,5 +28,6 @@ package tests
 		public var scopeTests:ScopeTests;
 		public var runNotifierTests:RunNotifierTests;
 		public var asyncTests:AsyncTests;
+		public var expectedTests:ExpectedTests;
 	}
 }
