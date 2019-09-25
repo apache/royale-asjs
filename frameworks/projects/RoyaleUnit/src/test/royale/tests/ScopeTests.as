@@ -23,21 +23,6 @@ package tests
 	public class ScopeTests
 	{
 		private static var _staticValue:String = "ScopeTests static";
-		private var _value:String = "ScopeTests non-static";
-
-		[Before]
-		public function before():void
-		{
-			Assert.assertStrictlyEquals(this._value, "ScopeTests non-static",
-				"Function marked with [Before] metadata called with incorrect scope.");
-		}
-
-		[After]
-		public function after():void
-		{
-			Assert.assertStrictlyEquals(this._value, "ScopeTests non-static",
-				"Function marked with [After] metadata called with incorrect scope.");
-		}
 
 		[BeforeClass]
 		public static function beforeClass():void
@@ -52,11 +37,27 @@ package tests
 			Assert.assertStrictlyEquals(ScopeTests._staticValue, "ScopeTests static",
 				"Function marked with [AfterClass] metadata called with incorrect scope.");
 		}
+		
+		private var _value:String = "ScopeTests instance";
+
+		[Before]
+		public function before():void
+		{
+			Assert.assertStrictlyEquals(this._value, "ScopeTests instance",
+				"Function marked with [Before] metadata called with incorrect scope.");
+		}
+
+		[After]
+		public function after():void
+		{
+			Assert.assertStrictlyEquals(this._value, "ScopeTests instance",
+				"Function marked with [After] metadata called with incorrect scope.");
+		}
 
 		[Test]
 		public function testScope():void
 		{
-			Assert.assertStrictlyEquals(this._value, "ScopeTests non-static",
+			Assert.assertStrictlyEquals(this._value, "ScopeTests instance",
 				"Function marked with [Test] metadata called with incorrect scope.");
 		}
 	}

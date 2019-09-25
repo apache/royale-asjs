@@ -98,10 +98,49 @@ package tests
 			Assert.assertTrue(test1Ran);
 			Assert.assertTrue(test2Ran);
 		}
+
+		[Test]
+		public function testBeforeClassOnInstanceMethod():void
+		{
+			_runner = new MetadataRunner(BeforeClassOnInstanceMethodFixture);
+
+			Assert.assertFalse(beforeClassRan);
+
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:RunListener = new RunListener();
+			notifier.addListener(listener);
+			_runner.run(notifier);
+
+			Assert.assertFalse(beforeClassRan);
+
+			Assert.assertFalse(listener.result.successful);
+			Assert.assertStrictlyEquals(listener.result.failures.length, 1);
+		}
+
+		[Test]
+		public function testAfterClassOnInstanceMethod():void
+		{
+			_runner = new MetadataRunner(AfterClassOnInstanceMethodFixture);
+
+			Assert.assertFalse(afterClassRan);
+
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:RunListener = new RunListener();
+			notifier.addListener(listener);
+			_runner.run(notifier);
+
+			Assert.assertFalse(afterClassRan);
+
+			Assert.assertFalse(listener.result.successful);
+			Assert.assertStrictlyEquals(listener.result.failures.length, 1);
+		}
 	}
 }
 
 import org.apache.royale.test.Assert;
+import org.apache.royale.test.runners.notification.Failure;
+import org.apache.royale.test.runners.notification.Result;
+import org.apache.royale.test.runners.notification.IRunListener;
 
 var beforeClassRan:Boolean = false;
 var afterClassRan:Boolean = false;
@@ -208,5 +247,65 @@ class BeforeClassAndAfterClassFixture
 		test2Ran = true;
 		Assert.assertTrue(beforeClassRan);
 		Assert.assertFalse(afterClassRan);
+	}
+}
+
+class BeforeClassOnInstanceMethodFixture
+{
+	[BeforeClass]
+	public function beforeClassOnInstanceMethod():void
+	{
+		beforeClassRan = true;
+	}
+
+	[Test]
+	public function test1():void
+	{
+		//at least one test is always required
+	}
+}
+
+class AfterClassOnInstanceMethodFixture
+{
+	[AfterClass]
+	public function afterClassOnInstanceMethod():void
+	{
+		afterClassRan = true;
+	}
+
+	[Test]
+	public function test1():void
+	{
+		//at least one test is always required
+	}
+}
+
+class RunListener implements IRunListener
+{
+	public var result:Result = null;
+
+	public function testStarted(description:String):void
+	{
+	}
+
+	public function testFinished(description:String):void
+	{
+	}
+
+	public function testFailure(failure:Failure):void
+	{
+	}
+
+	public function testIgnored(description:String):void
+	{
+	}
+
+	public function testRunStarted(description:String):void
+	{
+	}
+
+	public function testRunFinished(result:Result):void
+	{
+		this.result = result;
 	}
 }

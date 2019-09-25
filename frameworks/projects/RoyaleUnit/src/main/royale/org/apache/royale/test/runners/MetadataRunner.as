@@ -23,7 +23,9 @@ package org.apache.royale.test.runners
 	import org.apache.royale.reflection.MethodDefinition;
 	import org.apache.royale.reflection.TypeDefinition;
 	import org.apache.royale.reflection.describeType;
+	import org.apache.royale.reflection.getDefinitionByName;
 	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.test.Assert;
 	import org.apache.royale.test.AssertionError;
 	import org.apache.royale.test.async.AsyncLocator;
 	import org.apache.royale.test.async.IAsyncHandler;
@@ -291,8 +293,34 @@ package org.apache.royale.test.runners
 		 */
 		protected function readStaticMetadataTags():void
 		{
-			_beforeClass = collectMethodWithMetadataTag(TestMetadata.BEFORE_CLASS, true);
-			_afterClass = collectMethodWithMetadataTag(TestMetadata.AFTER_CLASS, true);
+			var beforeClassDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.BEFORE_CLASS, true);
+			if(beforeClassDefinition != null)
+			{
+				_beforeClass = _testClass[beforeClassDefinition.name];
+			}
+			var afterClassDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.AFTER_CLASS, true);
+			if(afterClassDefinition != null)
+			{
+				_afterClass = _testClass[afterClassDefinition.name];
+			}
+			var beforeDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.BEFORE, true);
+			if(beforeDefinition != null)
+			{
+				_failures = true;
+				_notifier.fireTestFailure(new Failure(description + ".initializationError", new Error("Unexpected [Before] metadata on static method <" + beforeDefinition.name + "> defined on type <" + beforeDefinition.declaredBy.qualifiedName + ">. [Before] may be used on instance methods only.")));
+			}
+			var afterDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.AFTER, true);
+			if(afterDefinition != null)
+			{
+				_failures = true;
+				_notifier.fireTestFailure(new Failure(description + ".initializationError", new Error("Unexpected [After] metadata on static method <" + afterDefinition.name + "> defined on type <" + afterDefinition.declaredBy.qualifiedName + ">. [After] may be used on instance methods only.")));
+			}
+			var testDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.TEST, true);
+			if(testDefinition != null)
+			{
+				_failures = true;
+				_notifier.fireTestFailure(new Failure(description + ".initializationError", new Error("Unexpected [Test] metadata on static method <" + testDefinition.name + "> defined on type <" + testDefinition.declaredBy.qualifiedName + ">. [Test] may be used on instance methods only.")));
+			}
 		}
 
 		/**
@@ -304,16 +332,36 @@ package org.apache.royale.test.runners
 			if(_collectedTests.length === 0)
 			{
 				//at least one test is required
-				throw new Error("No methods with [Test] metadata found on instance of type: <" + getQualifiedClassName(_testClass) + ">. Did you forget to include the -keep-as3-metadata compiler option?")
+				throw new Error("No methods with [Test] metadata found on instance of type <" + getQualifiedClassName(_testClass) + ">. Did you forget to include the -keep-as3-metadata compiler option?")
 			}
-			_before = collectMethodWithMetadataTag(TestMetadata.BEFORE);
-			_after = collectMethodWithMetadataTag(TestMetadata.AFTER);
+			var beforeDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.BEFORE);
+			if(beforeDefinition != null)
+			{
+				_before = _target[beforeDefinition.name];
+			}
+			var afterDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.AFTER);
+			if(afterDefinition != null)
+			{
+				_after = _target[afterDefinition.name];
+			}
+			var beforeClassDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.BEFORE_CLASS);
+			if(beforeClassDefinition != null)
+			{
+				_failures = true;
+				_notifier.fireTestFailure(new Failure(description + ".initializationError", new Error("Unexpected [BeforeClass] metadata on instance method <" + beforeClassDefinition.name + "> defined on type <" + beforeClassDefinition.declaredBy.qualifiedName + ">. [BeforeClass] may be used on static methods only.")));
+			}
+			var afterClassDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.AFTER_CLASS);
+			if(afterClassDefinition != null)
+			{
+				_failures = true;
+				_notifier.fireTestFailure(new Failure(description + ".initializationError", new Error("Unexpected [AfterClass] metadata on instance method <" + afterClassDefinition.name + "> defined on type <" + afterClassDefinition.declaredBy.qualifiedName + ">. [AfterClass] may be used on static methods only.")));
+			}
 		}
 
 		/**
 		 * @private
 		 */
-		protected function collectMethodWithMetadataTag(tagName:String, isStatic:Boolean = false):Function
+		protected function collectMethodWithMetadataTag(tagName:String, isStatic:Boolean = false):MethodDefinition
 		{
 			var described:Object = isStatic ? _testClass : _target;
 			var typeDefinition:TypeDefinition = describeType(described);
@@ -329,7 +377,7 @@ package org.apache.royale.test.runners
 				var metadata:Array = method.retrieveMetaDataByName(tagName);
 				if(metadata.length > 0)
 				{
-					return described[method.name];
+					return method;
 				}
 			}
 			return null;
