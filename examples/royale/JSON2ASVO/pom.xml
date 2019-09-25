@@ -29,11 +29,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.6</version>
+    <version>0.9.7-SNAPSHOT</version>
   </parent>
 
   <artifactId>JSON2ASVO</artifactId>
-  <version>0.9.6</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: JSON2ASVO</name>
@@ -64,21 +64,21 @@
               <dependency>
                   <groupId>org.apache.royale.framework</groupId>
                   <artifactId>Storage</artifactId>
-                  <version>0.9.6</version>
+                  <version>0.9.7-SNAPSHOT</version>
                   <type>swc</type>
                   <classifier>swf</classifier>
               </dependency>
               <dependency>
                   <groupId>org.apache.royale.framework</groupId>
                   <artifactId>Reflection</artifactId>
-                  <version>0.9.6</version>
+                  <version>0.9.7-SNAPSHOT</version>
                   <type>swc</type>
                   <classifier>swf</classifier>
               </dependency>
               <dependency>
                   <groupId>org.apache.royale.framework</groupId>
                   <artifactId>Basic</artifactId>
-                  <version>0.9.6</version>
+                  <version>0.9.7-SNAPSHOT</version>
                   <type>swc</type>
                   <classifier>swf</classifier>
               </dependency>
@@ -90,7 +90,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Storage</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -98,7 +98,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Reflection</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -106,14 +106,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.6</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>BasicTheme</artifactId>
-        <version>0.9.6</version>
+        <version>0.9.7-SNAPSHOT</version>
         <type>swc</type>
         <scope>theme</scope>
     </dependency>
