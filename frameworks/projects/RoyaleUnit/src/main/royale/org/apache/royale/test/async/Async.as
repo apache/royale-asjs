@@ -18,11 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.test.async
 {
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.test.Assert;
+
 	/**
 	 * Helper functions for tests marked with <code>[Test(async)]</code> metadata.
 	 */
 	public class Async
 	{
+		/**
+		 * Calls a function after a delay, measured in milliseconds.
+		 */
 		public static function delayCall(testCase:Object, delayedFunction:Function, delayMS:int):void
 		{
 			var handler:IAsyncHandler = AsyncLocator.getAsyncHandlerForTest(testCase);
@@ -30,6 +37,73 @@ package org.apache.royale.test.async
 			{
 				delayedFunction();
 			}, delayMS);
+		}
+		
+		/**
+		 * If an event is not dispatched within the specified delay (measured in
+		 * milliseconds), the test will fail.
+		 */
+		public static function requireEvent(testCase:Object, dispatcher:EventDispatcher, eventName:String, timeout:int):void
+		{
+			handleEvent(testCase, dispatcher, eventName, null, timeout);
+		}
+		
+		/**
+		 * Similar to <code>requireEvent()</code>, requires an event to be
+		 * dispatched for the test to pass, but the arguments are also passed to
+		 * a custom event handler that may perform additional checks.
+		 */
+		public static function handleEvent(testCase:Object, dispatcher:EventDispatcher, eventName:String, eventHandler:Function, timeout:int):void
+		{
+			var eventDispatched:Boolean = false;
+			function handleDispatch(...rest:Array):void
+			{
+				eventDispatched = true;
+				if(eventHandler != null)
+				{
+					eventHandler.apply(null, rest);
+				}
+			}
+			dispatcher.addEventListener(eventName, handleDispatch);
+			var handler:IAsyncHandler = AsyncLocator.getAsyncHandlerForTest(testCase);
+			handler.asyncHandler(function():void
+			{
+				dispatcher.removeEventListener(eventName, handleDispatch);
+				if(!eventDispatched)
+				{
+					Assert.fail("Timeout occurred before expected event: " + eventName);
+				}
+			}, timeout);
+		}
+		
+		/**
+		 * If an event is dispatched within the specified delay, the test case
+		 * will fail.
+		 */
+		public static function failOnEvent(testCase:Object, dispatcher:EventDispatcher, eventName:String, timeout:int):void
+		{
+			var savedEvent:Event = null;
+			var eventDispatched:Boolean = false;
+			function handleDispatch(event:Event, ...rest:Array):void
+			{
+				savedEvent = event;
+				eventDispatched = true;
+			}
+			dispatcher.addEventListener(eventName, handleDispatch);
+			var handler:IAsyncHandler = AsyncLocator.getAsyncHandlerForTest(testCase);
+			handler.asyncHandler(function():void
+			{
+				dispatcher.removeEventListener(eventName, handleDispatch);
+				if(eventDispatched)
+				{
+					var message:String = "Unexpected event " + eventName + "dispatched";
+					if(savedEvent != null)
+					{
+						message += " " + String(savedEvent);
+					}
+					Assert.fail(message);
+				}
+			}, timeout);
 		}
 	}
 }

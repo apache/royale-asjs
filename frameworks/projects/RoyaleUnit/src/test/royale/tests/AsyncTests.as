@@ -73,6 +73,7 @@ package tests
 				Assert.assertStrictlyEquals(listener.failureCount, 0);
 				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
 				Assert.assertNull(listener.active);
+				Assert.assertTrue(listener.result.successful);
 			}, 400);
 		}
 
@@ -90,6 +91,7 @@ package tests
 			Assert.assertStrictlyEquals(listener.failureCount, 1);
 			Assert.assertStrictlyEquals(listener.ignoreCount, 0);
 			Assert.assertNull(listener.active);
+			Assert.assertFalse(listener.result.successful);
 		}
 
 		[Test(async)]
@@ -108,6 +110,87 @@ package tests
 				Assert.assertStrictlyEquals(listener.failureCount, 1);
 				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
 				Assert.assertNull(listener.active);
+				Assert.assertFalse(listener.result.successful);
+			}, 400);
+		}
+
+		[Test(async)]
+		public function testAsyncTestFinishesWithFailOnEventAndNoDispatch():void
+		{
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:AsyncListener = new AsyncListener();
+			notifier.addListener(listener);
+			_runner = new MetadataRunner(AsyncFailOnEventWithoutDispatchFixture);
+			_runner.run(notifier);
+			Async.delayCall(this, function():void
+			{
+				Assert.assertTrue(listener.runStarted);
+				Assert.assertTrue(listener.runFinished);
+				Assert.assertStrictlyEquals(listener.finishedCount, 1);
+				Assert.assertStrictlyEquals(listener.failureCount, 0);
+				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
+				Assert.assertNull(listener.active);
+				Assert.assertTrue(listener.result.successful);
+			}, 400);
+		}
+
+		[Test(async)]
+		public function testAsyncTestFailsWithFailOnEventAndDispatch():void
+		{
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:AsyncListener = new AsyncListener();
+			notifier.addListener(listener);
+			_runner = new MetadataRunner(AsyncFailOnEventWithDispatchFixture);
+			_runner.run(notifier);
+			Async.delayCall(this, function():void
+			{
+				Assert.assertTrue(listener.runStarted);
+				Assert.assertTrue(listener.runFinished);
+				Assert.assertStrictlyEquals(listener.finishedCount, 1);
+				Assert.assertStrictlyEquals(listener.failureCount, 1);
+				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
+				Assert.assertNull(listener.active);
+				Assert.assertFalse(listener.result.successful);
+			}, 400);
+		}
+
+		[Test(async)]
+		public function testAsyncTestFinishesWithRequireEventAndDispatch():void
+		{
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:AsyncListener = new AsyncListener();
+			notifier.addListener(listener);
+			_runner = new MetadataRunner(AsyncRequireEventWithDispatchFixture);
+			_runner.run(notifier);
+			Async.delayCall(this, function():void
+			{
+				Assert.assertTrue(listener.runStarted);
+				Assert.assertTrue(listener.runFinished);
+				Assert.assertStrictlyEquals(listener.finishedCount, 1);
+				Assert.assertStrictlyEquals(listener.failureCount, 0);
+				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
+				Assert.assertNull(listener.active);
+				Assert.assertTrue(listener.result.successful);
+			}, 400);
+		}
+
+		[Test(async)]
+		public function testAsyncTestFailsWithRequireEventAndNoDispatch():void
+		{
+			var notifier:RunNotifier = new RunNotifier();
+			var listener:AsyncListener = new AsyncListener();
+			notifier.addListener(listener);
+			_runner = new MetadataRunner(AsyncRequireEventWithoutDispatchFixture);
+			_runner.run(notifier);
+			Async.delayCall(this, function():void
+			{
+				Assert.assertTrue(listener.runStarted);
+				Assert.assertTrue(listener.runFinished);
+				Assert.assertStrictlyEquals(listener.finishedCount, 1);
+				Assert.assertStrictlyEquals(listener.failureCount, 1);
+				Assert.assertStrictlyEquals(listener.ignoreCount, 0);
+				Assert.assertNull(listener.active);
+				Assert.assertFalse(listener.result.successful);
 			}, 400);
 		}
 	}
@@ -118,6 +201,8 @@ import org.apache.royale.test.runners.notification.Failure;
 import org.apache.royale.test.runners.notification.Result;
 import org.apache.royale.test.Assert;
 import org.apache.royale.test.async.Async;
+import org.apache.royale.events.EventDispatcher;
+import org.apache.royale.events.Event;
 
 class AsyncFixture
 {
@@ -153,6 +238,55 @@ class AsyncFailWithDelayCallFixture
 	}
 }
 
+class AsyncFailOnEventWithoutDispatchFixture
+{
+	[Test(async,timeout="200")]
+	public function test1():void
+	{
+		var dispatcher:EventDispatcher = new EventDispatcher();
+		Async.failOnEvent(this, dispatcher, Event.CHANGE, 100);
+	}
+}
+
+class AsyncFailOnEventWithDispatchFixture
+{
+	[Test(async,timeout="300")]
+	public function test1():void
+	{
+		var dispatcher:EventDispatcher = new EventDispatcher();
+		Async.failOnEvent(this, dispatcher, Event.CHANGE, 200);
+		Async.delayCall(this, function():void
+		{
+			dispatcher.dispatchEvent(new Event(Event.CHANGE));
+			Assert.fail();
+		}, 100);
+	}
+}
+
+class AsyncRequireEventWithDispatchFixture
+{
+	[Test(async,timeout="300")]
+	public function test1():void
+	{
+		var dispatcher:EventDispatcher = new EventDispatcher();
+		Async.requireEvent(this, dispatcher, Event.CHANGE, 200);
+		Async.delayCall(this, function():void
+		{
+			dispatcher.dispatchEvent(new Event(Event.CHANGE));
+		}, 100);
+	}
+}
+
+class AsyncRequireEventWithoutDispatchFixture
+{
+	[Test(async,timeout="200")]
+	public function test1():void
+	{
+		var dispatcher:EventDispatcher = new EventDispatcher();
+		Async.requireEvent(this, dispatcher, Event.CHANGE, 100);
+	}
+}
+
 class AsyncListener implements IRunListener
 {
 	public var runStarted:Boolean = false;
@@ -161,6 +295,7 @@ class AsyncListener implements IRunListener
 	public var finishedCount:int = 0;
 	public var failureCount:int = 0;
 	public var ignoreCount:int = 0;
+	public var result:Result = null;
 
 	public function testStarted(description:String):void
 	{
@@ -190,6 +325,7 @@ class AsyncListener implements IRunListener
 
 	public function testRunFinished(result:Result):void
 	{
+		this.result = result;
 		runFinished = true;
 	}
 }
