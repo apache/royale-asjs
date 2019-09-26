@@ -787,10 +787,6 @@
             else="main">
             <isset property="env.AIR_HOME" />
         </condition>
-        <condition property="asjs_mvn_defines" value="-Dgenerate.swf.swcs=true"
-            else="-Ddummy=true">
-            <isset property="env.AIR_HOME" />
-        </condition>
         <echo>Path is ${env.Path}</echo>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="-P" />
@@ -798,7 +794,7 @@
             <arg value="clean" />
             <arg value="install" />
         </exec>
-        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" inputstring="Yes">
             <arg value="clean" />
             <arg value="-P" />
             <arg value="${compiler_mvn_profiles}" />
@@ -808,8 +804,7 @@
             <arg value="clean" />
             <arg value="install" />
         </exec>
-        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" >
-            <arg value="${asjs_mvn_defines}" />
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" inputstring="Yes">
             <arg value="clean" />
             <arg value="-P" />
             <arg value="${asjs_mvn_profiles}" />
