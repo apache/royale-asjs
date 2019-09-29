@@ -16,35 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package flexUnitTests.language.support
 {
-    import flexUnitTests.language.*;
+    import org.apache.royale.collections.ArrayList;
     
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    /**
-     * @royalesuppresspublicvarwarning
-     */
-    public class LanguageTester
+    public function checkArrayLikeFunc(val:ArrayList):String
     {
-        public function LanguageTester()
-        {
-            // see notes in CoreTester
-    //        var arr:Array = [LanguageTesterTestIs, LanguageTesterIntUint, LanguageTesterTestVector,LanguageTesterTestClass];
-        }
-        
-        public var languageTestIs:LanguageTesterTestIs;
-        
-        public var languageTestIntUint:LanguageTesterIntUint;
-        
-        public var languageTestVector:LanguageTesterTestVector;
-        
-        public var languageTestClass:LanguageTesterTestClass;
-        
-        public var languageTestForeach:LanguageTesterTestForEach;
-    
-        public var languageTestgetSet:LanguageTesterTestArraylikeGetSet
-    
-    
+        val[0] = 'get and set from checkArrayLikeFunc';
+        return val[0] as String;
+       // return val.getItemAt(0) as String;
     }
 }

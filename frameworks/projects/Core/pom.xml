@@ -68,5 +68,22 @@
       </plugin>
     </plugins>
   </build>
-
+  <dependencies>
+    <!-- Language is included to permit a concrete reference
+     to the arrayLike iterator to be re-exported, so that it is always available -->
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>swf</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Language</artifactId>
+      <version>0.9.6-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+  </dependencies>
 </project>

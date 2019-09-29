@@ -31,10 +31,10 @@ internal class LanguageClasses
 	    import org.apache.royale.utils.Language; Language;
 		import QName; QName;
 		import Namespace; Namespace;
-
 	}
 	import org.apache.royale.language.string.match; match;
 	import org.apache.royale.language.string.search; search;
+	import org.apache.royale.language.iterator.arrayLike; arrayLike;
 }
 
 }

@@ -324,6 +324,9 @@ internal class CoreClasses
 
     import org.apache.royale.core.TextLineMetrics; TextLineMetrics;
     import org.apache.royale.utils.ClassSelectorList; ClassSelectorList;
+	
+	//explicit support for RoyaleArrayLike for each iteration (BinaryData)
+	import org.apache.royale.language.iterator.arrayLike;arrayLike;
 }
 
 }

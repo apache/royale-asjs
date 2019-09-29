@@ -31,7 +31,11 @@
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
         </external-library-path>
-        
+
+        <library-path>
+            <path-element>../../../../../libs/Language.swc</path-element>
+        </library-path>
+
         <allow-subclass-overrides>true</allow-subclass-overrides>
         
 		<mxml>
