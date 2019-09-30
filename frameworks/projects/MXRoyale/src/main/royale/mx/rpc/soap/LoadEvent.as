@@ -22,7 +22,7 @@ package mx.rpc.soap
 
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
-import flash.xml.XMLDocument;
+//import flash.xml.XMLDocument;
 import mx.rpc.events.WSDLLoadEvent;
 import mx.rpc.wsdl.WSDL;
 
@@ -71,7 +71,6 @@ public class LoadEvent extends WSDLLoadEvent
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */
     public function get document():XMLDocument
     {
         if (_document == null && xml != null)
@@ -86,6 +85,7 @@ public class LoadEvent extends WSDLLoadEvent
         }
         return _document;
     }
+     */
 
     /**
      * Returns a copy of this LoadEvent.
@@ -150,7 +150,7 @@ public class LoadEvent extends WSDLLoadEvent
     */    
     public static const LOAD:String = "load";
 
-    private var _document:XMLDocument;
+    //private var _document:XMLDocument;
 }
 
 }

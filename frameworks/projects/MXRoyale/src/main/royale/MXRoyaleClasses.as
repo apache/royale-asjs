@@ -198,6 +198,7 @@ internal class MXRoyaleClasses
 	import mx.rpc.http.HTTPMultiService; HTTPMultiService;
 	import mx.messaging.messages.HTTPRequestMessage; HTTPRequestMessage;
 	import mx.messaging.channels.DirectHTTPChannel; DirectHTTPChannel;
+    import mx.messaging.channels.HTTPChannel; HTTPChannel;
 	import mx.messaging.errors.MessageSerializationError; MessageSerializationError;
 	import mx.rpc.http.SerializationFilter; SerializationFilter;
 	import mx.rpc.http.AbstractOperation; AbstractOperation;

@@ -20,8 +20,8 @@
 package mx.rpc.soap
 {
 
-import flash.xml.XMLDocument;
-import flash.xml.XMLNode;
+//import flash.xml.XMLDocument;
+//import flash.xml.XMLNode;
 
 import mx.core.mx_internal;
 import mx.logging.ILogger;
@@ -40,7 +40,7 @@ import mx.rpc.xml.SchemaDatatypes;
 import mx.rpc.xml.SchemaMarshaller;
 import mx.rpc.xml.XMLEncoder;
 
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 [ExcludeClass]
 
@@ -679,6 +679,7 @@ public class SOAPEncoder extends XMLEncoder implements ISOAPEncoder
             {
                 preEncodedNode = value as XML;
             }
+            /*
             else if (value is XMLDocument)
             {
                 var xmlDocument:XMLDocument = value as XMLDocument;
@@ -689,6 +690,7 @@ public class SOAPEncoder extends XMLEncoder implements ISOAPEncoder
                 var xmlNode:XMLNode = value as XMLNode;
                 preEncodedNode = new XML(xmlNode.toString());
             }
+            */
         }
         return preEncodedNode;
     }

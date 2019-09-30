@@ -20,9 +20,11 @@
 package mx.rpc.soap
 {
 
+/*
 import flash.utils.getTimer;
 import flash.xml.XMLDocument;
 import flash.xml.XMLNode;
+*/
 
 import mx.logging.ILogger;
 import mx.logging.Log;
@@ -228,7 +230,15 @@ public class SOAPDecoder extends XMLDecoder implements ISOAPDecoder
         else
             responseString = String(response);
 
-        var startTime:int = getTimer();
+        var startTime:Number;
+        COMPILE::SWF
+        {
+            startTime = new Date().time;
+        }
+        COMPILE::JS
+        {
+            startTime = Date.now();
+        }
 
         log.info("Decoding SOAP response");
 
@@ -261,7 +271,16 @@ public class SOAPDecoder extends XMLDecoder implements ISOAPDecoder
             }
         }
 
-        log.info("Decoded SOAP response into result [{0} millis]", getTimer() - startTime);
+        var stopTime:Number;
+        COMPILE::SWF
+        {
+            stopTime = new Date().time;
+        }
+        COMPILE::JS
+        {
+            stopTime = Date.now();
+        }
+        log.info("Decoded SOAP response into result [{0} millis]", stopTime - startTime);
         return soapResult;
     }
 
@@ -328,6 +347,7 @@ public class SOAPDecoder extends XMLDecoder implements ISOAPDecoder
                          // Return the children as an XMLList.
                         soapResult.result = bodyXML.children();
                     }
+                    /*
                     else if (resultFormat == "xml")
                     {
                          // Return the children as an Array of XMLNode
@@ -349,7 +369,7 @@ public class SOAPDecoder extends XMLDecoder implements ISOAPDecoder
                             }
                         }
                         soapResult.result = bodyArray;
-                    }
+                    }*/
                 }
             }
         }
@@ -718,10 +738,11 @@ public class SOAPDecoder extends XMLDecoder implements ISOAPDecoder
             {
                 headers.push(headerChild);
             }
+            /*
             else if (headerFormat == "xml")
             {
                 headers.push(new XMLDocument(headerChild.toString()));
-            }
+            }*/
         }
 
         return headers;

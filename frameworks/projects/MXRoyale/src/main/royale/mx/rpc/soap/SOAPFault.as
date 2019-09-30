@@ -20,7 +20,6 @@
 package mx.rpc.soap
 {
 
-import flash.xml.XMLNode;
 import mx.rpc.Fault;
 
 /**

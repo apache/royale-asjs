@@ -23,9 +23,13 @@ package mx.rpc.soap.mxml
 import org.apache.royale.events.Event;
 import mx.events.ErrorEvent;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.core.IDocument;
 
+import mx.core.IFlexModuleFactory;
 import mx.core.IMXMLObject;
+import mx.core.IUIComponent;
 import mx.core.mx_internal;
+import mx.managers.ISystemManager;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 import mx.rpc.AbstractOperation;
@@ -34,10 +38,11 @@ import mx.rpc.mxml.Concurrency;
 import mx.rpc.mxml.IMXMLSupport;
 import mx.rpc.soap.mxml.Operation;
 import mx.rpc.soap.WebService;
+import mx.messaging.config.ServerConfig;
 
 use namespace mx_internal;
 
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 /**
  * The &lt;mx:WebService&gt; tag gives you access to the operations of SOAP-compliant
@@ -94,7 +99,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public dynamic class WebService extends mx.rpc.soap.WebService implements IMXMLSupport, IMXMLObject
+public dynamic class WebService extends mx.rpc.soap.WebService implements IMXMLSupport, IMXMLObject, IDocument
 {
     //--------------------------------------------------------------------------
     //
@@ -357,6 +362,26 @@ public dynamic class WebService extends mx.rpc.soap.WebService implements IMXMLS
         initialize();
     }
 
+    public function setDocument(document:Object, id:String = null):void
+    {
+        this.document = document;
+        this.id = id;
+        if (document is IEventDispatcher)
+        {
+            IEventDispatcher(document).addEventListener("creationComplete", creationComplete);
+        }
+        
+        COMPILE::JS
+        {
+            if (document is IUIComponent)    
+            {
+                ServerConfig.xml = new XML(((document as IUIComponent).systemManager as IFlexModuleFactory).info()["servicesConfig"]);
+            }
+                ;
+        }
+        
+        initialize();
+    }
 
     //--------------------------------------------------------------------------
     //

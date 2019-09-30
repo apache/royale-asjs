@@ -20,12 +20,9 @@
 package mx.rpc.soap
 {
 
-import org.apache.royale.events.Event;
-import flash.xml.XMLNode;
-
 import mx.core.mx_internal;
-import mx.logging.Log;
 import mx.logging.ILogger;
+import mx.logging.Log;
 import mx.messaging.ChannelSet;
 import mx.messaging.events.MessageEvent;
 import mx.messaging.events.MessageFaultEvent;
@@ -47,6 +44,8 @@ import mx.rpc.xml.SchemaConstants;
 import mx.utils.ObjectProxy;
 import mx.utils.XMLUtil;
 
+import org.apache.royale.events.Event;
+
 use namespace mx_internal;
 
 /**
@@ -61,7 +60,7 @@ use namespace mx_internal;
  */
 [Event(name="header", type="mx.rpc.events.HeaderEvent")]
 
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 /**
  * An Operation used specifically by WebServices. An Operation is an individual
@@ -787,7 +786,7 @@ public class Operation extends AbstractOperation
         var argsToPass:Object = null;
         if (args && args.length > 0)
         {
-            if ((args.length == 1) && (args[0] is XMLNode || args[0] is XML))
+            if ((args.length == 1) && (/*args[0] is XMLNode ||*/ args[0] is XML))
             {
                 // special case: handle xml node as single argument and drop
                 // into literal mode.
@@ -902,18 +901,24 @@ public class Operation extends AbstractOperation
         {
             soap = encoder.encodeRequest(pc.args, pc.headers);
         }
-        catch(fault:Fault)
+        catch(obj:Object)
         {
-            dispatchRpcEvent(FaultEvent.createEvent(fault));
-            return;
-        }
-        catch(error:Error)
-        {
-            var errorMsg:String = error.message ? error.message : "";
-            var fault2:Fault = new Fault("EncodingError", errorMsg);
-            var faultEvent:FaultEvent = FaultEvent.createEvent(fault2);
-            dispatchRpcEvent(faultEvent);
-            return;
+            if (obj is Fault)
+            {
+                var fault:Fault = obj as Fault;
+                dispatchRpcEvent(FaultEvent.createEvent(fault));
+                return;
+            }
+            else if (obj is Error)
+            {
+                var error:Error = obj as Error;
+                var errorMsg:String = error.message ? error.message : "";
+                var fault2:Fault = new Fault("EncodingError", errorMsg);
+                var faultEvent:FaultEvent = FaultEvent.createEvent(fault2);
+                dispatchRpcEvent(faultEvent);                
+                return;
+            }
+            throw obj;
         }
 
         message.httpHeaders = httpHeaders;
@@ -1007,20 +1012,26 @@ public class Operation extends AbstractOperation
             if (eventDispatchRequired)
                 _result = soapResult.result;
         }
-        catch (fault:Fault)
+        catch(obj:Object)
         {
-            fault.content = body;
-            dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
-            eventDispatchRequired = false;
-        }
-        catch (error:Error)
-        {
-            var errorMsg:String = error.message != null ? error.message : "";
-            var fault2:Fault = new Fault("DecodingError", errorMsg);
-            fault2.content = body;
-            var faultEvent:FaultEvent = FaultEvent.createEvent(fault2, token, message);
-            dispatchRpcEvent(faultEvent);
-            eventDispatchRequired = false;
+            if (obj is Fault)
+            {
+                var fault:Fault = obj as Fault;
+                fault.content = body;
+                dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
+                eventDispatchRequired = false;
+            }
+            else if (obj is Error)
+            {
+                var error:Error = obj as Error;
+                var errorMsg:String = error.message != null ? error.message : "";
+                var fault2:Fault = new Fault("DecodingError", errorMsg);
+                fault2.content = body;
+                var faultEvent:FaultEvent = FaultEvent.createEvent(fault2, token, message);
+                dispatchRpcEvent(faultEvent);
+                eventDispatchRequired = false;
+            }
+            else throw obj;
         }
 
         return eventDispatchRequired;

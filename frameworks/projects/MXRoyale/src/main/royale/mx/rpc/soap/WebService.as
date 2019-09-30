@@ -345,24 +345,31 @@ public dynamic class WebService extends AbstractWebService
 
             unEnqueueCalls();
         }
-        catch(fault:Fault)
+        catch(obj:Object)
         {
-            var faultEvent:FaultEvent = FaultEvent.createEvent(fault);
-            dispatchEvent(faultEvent);
-            super.unEnqueueCalls(fault); // Jump straight to fault handling; ops cannot be initialized.
-            return;
-        }
-        catch(error:Error)
-        {
-            var errorMessage:String = error.message ? error.message : ""; 
-			var message:String =  /*resourceManager.getString(
-				"rpc",*/ "unexpectedException" /*, [ errorMessage ])*/;          
-            var fault:Fault = new Fault("WSDLError", message);
-            fault.rootCause = error;
-            var faultEvent2:FaultEvent = FaultEvent.createEvent(fault);
-            dispatchEvent(faultEvent2);
-            super.unEnqueueCalls(fault); // Jump straight to fault handling; ops cannot be initialized.
-            return;
+            var fault:Fault;
+            if (obj is Fault)
+            {
+                fault = obj as Fault;
+                var faultEvent:FaultEvent = FaultEvent.createEvent(fault);
+                dispatchEvent(faultEvent);
+                super.unEnqueueCalls(fault); // Jump straight to fault handling; ops cannot be initialized.
+                return;
+            }
+            else if (obj is Error)
+            {
+                var error:Error = obj as Error;
+                var errorMessage:String = error.message ? error.message : ""; 
+    			var message:String =  /*resourceManager.getString(
+    				"rpc",*/ "unexpectedException" /*, [ errorMessage ])*/;          
+                fault = new Fault("WSDLError", message);
+                fault.rootCause = error;
+                var faultEvent2:FaultEvent = FaultEvent.createEvent(fault);
+                dispatchEvent(faultEvent2);
+                super.unEnqueueCalls(fault); // Jump straight to fault handling; ops cannot be initialized.
+                return;
+            }
+            throw obj;
         }
     }
 
@@ -377,7 +384,7 @@ public dynamic class WebService extends AbstractWebService
         if (destination)
             httpService.destination = destination;
         httpService.useProxy = useProxy;
-        httpService.resultFormat = HTTPService.RESULT_FORMAT_XML;
+        // httpService.resultFormat = HTTPService.RESULT_FORMAT_XML; AJH gets reset to E4X in XMLLoader
         httpService.rootURL = rootURL;
         httpService.headers = httpHeaders;
         return httpService;

@@ -32,7 +32,7 @@ import mx.rpc.xml.SchemaConstants;
 import mx.rpc.xml.SchemaManager;
 import mx.rpc.xml.SchemaTypeRegistry;
 
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 [ExcludeClass]
 

@@ -41,7 +41,7 @@ import mx.utils.URLUtil;
 [Event(name="fault", type="mx.rpc.events.FaultEvent")]
 [Event(name="wsdlLoad", type="mx.rpc.events.WSDLLoadEvent")]
 
-[ResourceBundle("rpc")]
+//[ResourceBundle("rpc")]
 
 [ExcludeClass]
 

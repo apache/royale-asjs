@@ -200,7 +200,7 @@ public class Operation extends mx.rpc.soap.Operation implements IMXMLSupport
             return token;
         }
 
-        return super.send.apply(null, args);
+        return super.send.apply(this, args);
     }
 
 
