@@ -108,6 +108,10 @@ package org.apache.royale.html.beads
 				ir.hovered = true;
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
 		}
-        
+
+		override protected function dataProviderChangeHandler(event:Event):void
+		{
+
+		}
 	}
 }

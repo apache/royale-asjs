@@ -20,35 +20,35 @@
 package mx.controls.advancedDataGridClasses
 {
 
-/* import flash.display.DisplayObject;
-import flash.events.Event;
- */
-import mx.controls.AdvancedDataGrid;
+    /* import flash.display.DisplayObject;
+    import flash.events.Event;
+     */
+    import mx.controls.AdvancedDataGrid;
 
-import org.apache.royale.html.supportClasses.DataGridColumnList;
+    import org.apache.royale.html.supportClasses.DataGridColumnList;
 
 
-/**
- *  The AdvancedDataGridColumnList class represnts a column in an AdvancedDataGrid control.
- *  There is one AdvancedDataGridColumnList per displayable column, even if a column
- *  is hidden or off-screen.
- *  
- *  @langversion 3.0
- *  @playerversion Flash 9
- *  @playerversion AIR 1.1
- *  @productversion Royale 0.9.3
- *  @royalesuppresspublicvarwarning
- */
-public class AdvancedDataGridColumnList extends DataGridColumnList
-{
-    public function AdvancedDataGridColumnList()
+    /**
+     *  The AdvancedDataGridColumnList class represnts a column in an AdvancedDataGrid control.
+     *  There is one AdvancedDataGridColumnList per displayable column, even if a column
+     *  is hidden or off-screen.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     *  @royalesuppresspublicvarwarning
+     */
+    public class AdvancedDataGridColumnList extends DataGridColumnList
     {
-        super();
-        typeNames += " AdvancedDataGridColumnList";
-        
+        public function AdvancedDataGridColumnList()
+        {
+            super();
+            typeNames += " AdvancedDataGridColumnList";
+
+        }
+
+        public var adg:AdvancedDataGrid;
     }
-    
-    public var adg:AdvancedDataGrid;
-}
 
 }
