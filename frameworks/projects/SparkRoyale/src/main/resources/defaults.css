@@ -84,7 +84,7 @@ NonVirtualHDataGroup
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
+	IBeadLayout: ClassReference("spark.layouts.HorizontalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
