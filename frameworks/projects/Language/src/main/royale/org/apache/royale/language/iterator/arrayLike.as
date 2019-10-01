@@ -19,16 +19,17 @@
 package org.apache.royale.language.iterator
 {
     /**
-     * Used by the compiler for classes with [RoyaleArrayLike] metadata when processing for each loops
+     * Used by the compiler for classes with [RoyaleArrayLike] metadata when processing for-in/for-each-in loops
      * @param forInstance the instance to be checked
      * @param lengthCheck either a string that represents a property to return length value, or a function method reference, e.g. instance.length()
      * @param getAt the String name of the accessor for the item at index... e.g. 'getItemAt'. If null it will default to Array Access []
      * @param lengthIsMethodCall true if the length accessor is an explicit method call instead of a getter
+     * @param keys true if the request is to iterate over keys (as opposed to values)
      * @return a lightweight iterator Object with hasNext() and next() methods
      *
      * @royalesuppressexport
      */
-    public function arrayLike(forInstance:Object, lengthCheck:String, getAt:String,  lengthIsMethodCall:Boolean):Object{
+    public function arrayLike(forInstance:Object, lengthCheck:String, getAt:String, lengthIsMethodCall:Boolean, keys:Boolean = false):Object{
         if (forInstance) {
             var i:int = 0;
             var ret:Object = { };
@@ -43,11 +44,13 @@ package org.apache.royale.language.iterator
             }
             if (getAt != null){
                 ret['next']  = function():*{
-                    return forInstance[getAt](i++);
+                    if (keys) return (i++)+''; //for-in: for (var key:String in target)
+                    return forInstance[getAt](i++);//for-each-in: for each(var something:Something in target)
                 }
             } else {
                 ret['next'] = function():*{
-                    return forInstance[i++];
+                    if (keys) return (i++)+''; //for-in: for (var key:String in target)
+                    return forInstance[i++];//for-each-in: for each(var something:Something in target)
                 }
             }
         } else {

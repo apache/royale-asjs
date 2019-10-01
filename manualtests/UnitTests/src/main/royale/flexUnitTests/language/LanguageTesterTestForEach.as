@@ -188,18 +188,27 @@ package flexUnitTests.language
     
     
         [Test]
-        public function tesTargetMutation():void{
+        public function testTargetMutation():void{
             var arrayList:ArrayList = new ArrayList(['dog', 'cat','mouse','gerbil']);
     
             var foundItems:Array = [];
-            var charItems:Array = [];
-            for each(_animal in arrayList) {
-                foundItems.push(_animal);
+            for each(var animal:String in arrayList) {
+                foundItems.push(animal);
                 if (arrayList.length) arrayList.removeAll();//should stop iterating after first item
             }
             assertEquals(foundItems.toString(), 'dog', 'unexpected for each result');
         }
+    
+    
+        [Test]
+        public function testForIn():void{
+            var arrayList:ArrayList = new ArrayList(['dog', 'cat','mouse','gerbil']);
         
-        
+            var foundItems:Array = [];
+            for (var key:String in arrayList) {
+                foundItems.push(arrayList.getItemAt(uint(key)));
+            }
+            assertEquals(foundItems.toString(), 'dog,cat,mouse,gerbil', 'unexpected for in result');
+        }
     }
 }
