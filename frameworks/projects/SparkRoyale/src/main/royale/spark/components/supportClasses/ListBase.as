@@ -665,7 +665,7 @@ public class ListBase  extends SkinnableContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-     public function get labelField():String
+    public function get labelField():String
     {
          return (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).labelField;
     } 
