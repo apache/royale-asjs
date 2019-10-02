@@ -62,6 +62,8 @@ package org.apache.royale.jewel.beads.controls.dropdownlist
 		{
 			ddl = value as DropDownList;
 			ddl.addEventListener('selectionChanged', selectionChangeHandler);
+			ddl.addEventListener('dataProviderChanged', selectionChangeHandler);
+
 			if(needUpdate)
 			{
 				needUpdate = false;
