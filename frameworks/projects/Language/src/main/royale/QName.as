@@ -20,11 +20,45 @@ package
 {
 	public class QName
 	{
+		COMPILE::JS
+		/**
+		 * @private
+		 * @royalesuppressexport
+		 * @royalesuppresspublicvarwarning
+		 * compiler-use-only to support new QName with alternate default namespace
+		 */
+		public static var defaultNS:String = '';
+		
+		COMPILE::JS
+		/**
+         * @private
+		 * @royalesuppressexport
+		 * compiler use only to support QName == QName
+		 * this method can be dead-code eliminated in release build (by default) if never used
+		 */
+		public static function equality(lhs:QName, rhs:QName):Boolean{
+			return lhs === rhs || (lhs && lhs.equals(rhs));
+		}
+		/**
+		 * @private
+		 * @royalesuppressexport
+	 	 * compiler-use-only to support new QName with alternate default namespace
+		 * this method can be dead-code eliminated in release build (by default) if never used
+		 */
+        public static function createWithDefaultNamespace(uri:*, arg1:*, arg2:*):QName{
+			defaultNS = typeof uri == 'string' ? uri : uri.toString();
+			var qName:QName = new QName(arg1, arg2);
+			//always restore afterwards
+			defaultNS = '';
+			return qName;
+		}
+		
 		/**
 		 * @royaleignorecoercion Namespace
+		 * @royaleignorecoercion QName
 		 */
 		COMPILE::JS
-		public function QName(qNameOrUri:*=null,localNameVal:*=null)
+		public function QName(qNameOrUri:*=undefined,localNameVal:*=undefined)
 		{
 			/*
 				When the QName constructor is called with a one argument Name or two arguments Namespace and Name the following steps are taken:
@@ -47,61 +81,137 @@ package
 				  b. Let q.uri = Namespace.uri NOTE implementations that preserve prefixes in qualified names may also set q.[[Prefix]] to Namespace.prefix
 				8. Return q
 			*/
-			if(qNameOrUri != null)
-			{
-				if(qNameOrUri is QName)
-				{
-					_uri = qNameOrUri.uri;
-					_localName = qNameOrUri.localName;
-					_prefix = qNameOrUri.prefix;
+			//@todo log and categorise constructor argument types, optimise this code for most common constructor call signatures
+			
+			//firstClass is either nullish or the (expected string) value of the 'className' field on the qNameOrUri arg 
+			const firstClass:* = qNameOrUri && (typeof qNameOrUri == 'object') && qNameOrUri['className'];
+			//if firstClass == 'Namespace' then the first arg is a Namespace (avoids Language.is)
+			const ns:Namespace = (firstClass == 'Namespace') ? Namespace(qNameOrUri) : null;
+			//resolve qname depending on arg types
+			const qname:QName = localNameVal && typeof localNameVal == 'object' && localNameVal['className'] == 'QName'
+					? QName(localNameVal) : (!ns && firstClass == 'QName')
+							? QName(qNameOrUri) : null;
+			
+			//possibilities:
+			//qname, undefined
+			//namespace, qname
+			//qname1, qname2 <-- handle this one too. Checked in swf.
+			//namespace, (undefined, null, string or toString)
+			//(undefined, null , String or toString), (undefined, null, String or toString)
+			
+			if (qname) {
+				_localName = qname._localName;
+				if (!ns) {
+					if (qname != qNameOrUri) {
+						//qName is not the first arg, but the first arg is also not a Namespace instance
+						//the 'name' was the second argument
+						if (firstClass == 'QName') {
+							//, but first was also a QName. Covering all variants...
+							//in this case, swf treats the first QName arg as the namespace supplier for uri, second for local name.
+							_uri = QName(qNameOrUri)._uri;
+						} else {
+							//we have a toString, null or undefined value for first arg.
+							if (qNameOrUri === undefined) {
+								//get uri from qname
+								//we use the uri from our name - not part of spec, but observed behavior in swf
+								_uri = qname._uri;
+							} else {
+								if (qNameOrUri !== null) {
+									_uri = qNameOrUri.toString();
+								} else {
+									_uri = null;
+								}
+							}
+						}
+					} else _uri = qname._uri;
+				} else {
+					//both ns and qname args
+					_uri = ns.uri;
 				}
-				else if(qNameOrUri is Namespace)
-				{
-					_uri = (qNameOrUri as Namespace).uri;
-					_prefix = (qNameOrUri as Namespace).prefix;
-					if(localNameVal)
-						_localName = localNameVal.toString();
-				}
-				else if(localNameVal)
-				{
-					_localName = localNameVal;
-					_uri = qNameOrUri;
-				}
-				else if (qNameOrUri && qNameOrUri.toString())
-				{
-					_localName = qNameOrUri.toString();
+			} else {
+				if (ns) {
+					//namespace first arg, followed by non-QName localNameVal arg
+					if (localNameVal == undefined) //step 2.
+							_localName = localNameVal === undefined ? '' : 'null';
+					else _localName = localNameVal.toString(); //step 3
+					_uri = ns.uri;
+				} else {
+					//deal with string/toString variations
+					if (localNameVal !== undefined) {
+						_localName = localNameVal === null ? 'null' : localNameVal.toString();
+						if (qNameOrUri !== undefined) {
+							//'ns' is defined in some way, and can be explicitly null
+							if (qNameOrUri !== null)  _uri = qNameOrUri.toString();
+							//this can leave _uri in an internal undefined state, which covers one variation in matches
+						} else {
+							//ns is undefined. conform to step 4.
+							if (_localName == '*') _uri = null;
+							else _uri = defaultNS; // GetDefaultNamespace()
+						}
+					} else {
+						if (qNameOrUri !== undefined) {
+							//we only have one arg
+							//this is the local name and ns is undefined
+							_localName = qNameOrUri === null ? 'null' : qNameOrUri.toString();
+							//ns is undefined. conform to step 4.
+							if (_localName == '*') _uri = null;
+							else _uri = defaultNS; // GetDefaultNamespace()
+							
+						} else {
+							//both args are undefined
+							_localName = '';
+							_uri = defaultNS; // GetDefaultNamespace()
+						}
+					}
 				}
 			}
+			
 		}
 
-		private var _uri:String;
+		private var _uri:*;
+		/**
+		 * @royaleignorecoercion String
+		 * @royalenoimplicitstringconversion
+		 */
 		public function get uri():String
 		{
-			return _uri;
+			//support 'undefined' internal state
+			return _uri == null ? null : _uri as String;
 		}
-		public function set uri(value:String):void
-		{
-			_uri = value;
-		}
+
 		
 		private var _localName:String;
 		public function get localName():String
 		{
 			return _localName;
 		}
-		public function set localName(value:String):void
-		{
-			_localName = value;
-		}
+
 
 		private var _prefix:String;
 		public function get prefix():String
 		{
 			return _prefix;
 		}
-		public function set prefix(value:String):void
+
+		
+		/**
+		 * @private
+		 * @royalesuppressexport
+		 * intended for internal use only
+		 */
+		public function setPrefix(value:String):void
 		{
 			_prefix = value;
+		}
+		
+		COMPILE::JS
+		/**
+		 * Non-spec. Used for internal performance reasons only (faster than Language.is checks)
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public function get  className():String{
+			return 'QName';
 		}
 
 		COMPILE::JS
@@ -117,30 +227,50 @@ package
 		COMPILE::JS
 		public function equals(name:QName):Boolean
 		{
-			return name != null && this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
+			return name != null && (name === this || (this.uri == name.uri && this.localName == name.localName)); // this.prefix == name.prefix &&
 		}
 		
-    COMPILE::JS
-		public function matches(name:QName):Boolean
+		COMPILE::JS
+		public function matches(qname:QName):Boolean
 		{
-			if (name == null) return this.localName == "*";
-			if(this.uri == "*" || name.uri == "*")
-				return this.localName == "*" || name.localName == "*" || this.localName == name.localName;
-
-			if(this.localName == "*" || name.localName == "*")
-				return this.uri == name.uri;
-
-			return this.uri == name.uri && this.localName == name.localName;
+			if (qname && (isAttribute != qname.isAttribute)) return false;
+			
+			const anyName:Boolean = _localName == '*';
+	
+			if (anyName && (_uri === null || (qname && _uri === undefined))) return true; //variation
+			
+			if (!qname) return false; //different order to AVM code - hoisted by one
+		
+			if (!anyName && qname && (_localName != qname._localName)) return false;
+		
+			if (_uri == null) return true; //anyNamespace
+		
+			return _uri === qname._uri && _localName === qname._localName;
+			
 		}
-		private var _isAttribute:Boolean;
+		
+		private var _isAttribute:Boolean = false;
+		/**
+		 * @royalesuppressexport
+		 * This property is intended for internal use only in XML classes.
+		 */
 		public function get isAttribute():Boolean
 		{
 			return _isAttribute;
 		}
-		public function set isAttribute(value:Boolean):void
+		/**
+		 * @private
+		 * @royalesuppressexport
+		 * intended for internal use only
+		 */
+		public function setIsAttribute(value:Boolean):void
 		{
 			_isAttribute = value;
 		}
+		/*public function set isAttribute(value:Boolean):void
+		{
+			_isAttribute = value;
+		}*/
 
 		COMPILE::JS
 		public function getNamespace(namespaces:Array=null):Namespace
@@ -162,8 +292,9 @@ package
 			{
 				if(namespaces[i].uri == _uri)
 				{
-					possibleMatch = namespaces[i];
-					if(namespaces[i].prefix == _prefix)
+					if (!possibleMatch) //retain first possible match
+						possibleMatch = namespaces[i];
+					if(_prefix == null /*|| namespaces[i].prefix == _prefix*/)
 						return namespaces[i];
 				}
 			}
@@ -177,10 +308,21 @@ package
 		COMPILE::JS
 		public function toString():String
 		{
+			/*
+			 	1. If Type(n) is not Object or n.[[Class]] is not equal to "QName", throw a TypeError exception
+				2. Let s be the empty string
+				3. If n.uri is not the empty string
+					a. If n.uri == null, let s be the string "*::"
+					b. Else let s be the result of concatenating n.uri and the string "::"
+				4. Let s be the result of concatenating s and n.localName
+				5. Return s
+			 */
 			// This should cover "*" as well
-			if(_uri)
-				return _uri + "::" + _localName;
-
+			if(_uri !== '') {
+				//for '*' with null uri, it should return '*::*' as per 3.a and 4 above
+				return (_uri ? _uri : '*') + "::" + _localName;
+			}
+			
 			return _localName;
 		}
 

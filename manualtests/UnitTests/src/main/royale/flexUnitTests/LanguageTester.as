@@ -30,7 +30,7 @@ package flexUnitTests
         public function LanguageTester()
         {
             // see notes in CoreTester
-            var arr:Array = [LanguageTesterTestIs, LanguageTesterIntUint, LanguageTesterTestVector,LanguageTesterTestClass];
+    //        var arr:Array = [LanguageTesterTestIs, LanguageTesterIntUint, LanguageTesterTestVector,LanguageTesterTestClass];
         }
         
         public var languageTestIs:LanguageTesterTestIs;
@@ -40,5 +40,11 @@ package flexUnitTests
         public var languageTestVector:LanguageTesterTestVector;
         
         public var languageTestClass:LanguageTesterTestClass;
+        
+        public var languageTestForeach:LanguageTesterTestForEach;
+    
+        public var languageTestgetSet:LanguageTesterTestArraylikeGetSet
+    
+    
     }
 }

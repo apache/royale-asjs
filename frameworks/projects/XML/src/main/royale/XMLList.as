@@ -559,13 +559,25 @@ package
 		 */
 		public function hasSimpleContent():Boolean
 		{
-			//what to do with multiple nodes? If anything is complex, we return false.
+			/*
+			 13.5.4.14 XMLList.prototype.hasSimpleContent( )
+			 Overview
+			 The hasSimpleContent method returns a Boolean value indicating whether this XMLList contains simple content. An XMLList object is considered to contain simple content if it is empty, contains a single XML item with simple content or contains no elements.
+			 Semantics
+			 When the hasSimpleContent method is called on an XMLList object x, the following steps are taken:
+			 1. If x.[[Length]] is not equal to 0
+				 a. If x.[[Length]] == 1, return x[0].hasSimpleContent()
+				 b. For each property p in x
+			 		i. If p.[[Class]] == "element", return false
+			 2. Return true
+			 */
 			if(isEmpty())
 				return true;
 			var len:int = _xmlArray.length;
-			for (var i:int=1;i<len;i++)
+			if (len == 1) return _xmlArray[0].hasSimpleContent();
+			for (var i:int=0;i<len;i++)
 			{
-				if(_xmlArray[i].hasComplexContent())
+				if(_xmlArray[i].nodeKind() == 'element')
 					return false;
 			}
 			return true;
@@ -1020,26 +1032,33 @@ package
 		 */
 		public function toString():String
 		{
-			if(isSingle())
-				return _xmlArray[0].toString();
-			var retVal:Array = [];
-			var len:int = _xmlArray.length;
-			var cumulativeText:String = '';
-			for (var i:int=0;i<len;i++)
-			{
-				var str:String = _xmlArray[i].toString();
-				if (XML(_xmlArray[i]).nodeKind() == 'text') {
-					cumulativeText += _xmlArray[i].toString();
-				} else {
-					if (cumulativeText) {
-						retVal.push(cumulativeText);
-						cumulativeText = '';
+			/*
+			10.1.2 ToString Applied to the XMLList Type
+			Given an XMLList object list, ToString performs the following steps:
+			1. If list.hasSimpleContent() == true
+				a. Let s be the empty string
+				b. For i = 0 to list.[[Length]]-1,
+					i. If x[i].[[Class]] ∉ {"comment", "processing-instruction"}
+						1. Let s be the result of concatenating s and ToString(list[i])
+				c. Return s
+			2. Else
+				a. Return ToXMLString(x)
+			 */
+			
+			if (hasSimpleContent()) {
+				var len:int = _xmlArray.length;
+				var cumulativeText:String = '';
+				for (var i:int=0;i<len;i++)
+				{
+					var child:XML = _xmlArray[i] as XML;
+					var kind:String = child.nodeKind();
+					if (kind != "comment" && kind != "processing-instruction") {
+						cumulativeText += child.toString();
 					}
-					retVal.push(_xmlArray[i].toXMLString());
 				}
-			}
-			if (cumulativeText) retVal.push(cumulativeText);
-			return retVal.join("\n");
+				return cumulativeText;
+			} else return toXMLString();
+			
 		}
 		
 		/**

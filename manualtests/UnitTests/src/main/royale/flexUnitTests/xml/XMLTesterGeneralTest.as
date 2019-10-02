@@ -22,7 +22,7 @@ package flexUnitTests.xml
     
     import org.apache.royale.test.asserts.*;
     
-    import testshim.RoyaleUnitTestRunner;
+    //import testshim.RoyaleUnitTestRunner;
     
     /**
      * @royalesuppresspublicvarwarning
@@ -43,6 +43,7 @@ package flexUnitTests.xml
         
         public static function getSwfVersion():uint{
             COMPILE::SWF{
+                import testshim.RoyaleUnitTestRunner
                 return RoyaleUnitTestRunner.swfVersion;
             }
             COMPILE::JS {
@@ -190,6 +191,13 @@ package flexUnitTests.xml
             newContent.Properties.Leading = 72;
             assertStrictlyEquals(newContent.Properties.Leading.toString(), "72", "Leading should be 72");
             
+        }
+        
+        [Test]
+        public function testMinimum():void{
+            var xml:XML = new XML();
+            assertEquals(xml.nodeKind(), 'text', 'unexpected default nodeKind');
+            assertEquals(xml.toString(), '', 'unexpected default stringification');
         }
         
         
@@ -505,23 +513,53 @@ package flexUnitTests.xml
         [Test]
         public function testChildList():void{
             var xml:XML = <root> asdasdas <element/> asdasqdasd<otherElement/></root>;
-    
-    
+            
             var list:XMLList = xml.*;
-    
-            //var list:XMLList = xml.child('*')
-    
+
             assertEquals( 4, list.length(), 'Error in list length');
-            //trace(list.length());
+            assertEquals( list.toXMLString(), 'asdasdas\n' + '<element/>\n' +'asdasqdasd\n' +'<otherElement/>', 'Error in list length');
+            
             list = xml.element;
             assertEquals( 1, list.length(), 'Error in list length');
-            //list = xml.child('element')
-    
-           // trace(list.length())
+            assertEquals( list.toXMLString(),'<element/>', 'Error in list length');
+
             list = xml.otherElement;
-            //list = xml.child('otherElement')
+
             assertEquals( 1, list.length(), 'Error in list length');
+            assertEquals( list.toXMLString(),'<otherElement/>', 'Error in list length');
+        }
+    
+        [Test]
+        [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
+        public function testChildVariants():void{
+            var xml:XML = <root xmlns:foo="foo" xmlns:other="other"> asdasdas <element/> asdasqdasd<otherElement/><foo:otherElement/><other:otherElement/></root>;
         
+            var list:XMLList = xml.*::*;
+        
+            assertEquals( 4, list.length(), 'Error in list length');
+            //IE11/Edge issues
+            /*assertEquals( list.toXMLString(), '<element xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<foo:otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<other:otherElement xmlns:foo="foo" xmlns:other="other"/>', 'Error in list content');*/
+            assertEquals( list.toXMLString().length, 212, 'Error in list content');
+        
+            list = xml.otherElement;
+            assertEquals( 1, list.length(), 'Error in list length');
+            //IE11/Edge issues
+           /* assertEquals( list.toXMLString(),'<otherElement xmlns:foo="foo" xmlns:other="other"/>', 'Error in list content');*/
+            assertEquals( list.toXMLString().length,51, 'Error in list content');
+        
+            list = xml.*;
+        
+            assertEquals( 6, list.length(), 'Error in list length');
+           /* assertEquals( list.toXMLString(),'asdasdas\n' +
+                    '<element xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    'asdasqdasd\n' +
+                    '<otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<foo:otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<other:otherElement xmlns:foo="foo" xmlns:other="other"/>', 'Error in list content');*/
+            assertEquals( list.toXMLString().length,232, 'Error in list content');
         }
     
     
@@ -719,7 +757,7 @@ package flexUnitTests.xml
         }
         
         [Test]
-        [TestVariance(variance="JS",description="Some browsers can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
+        [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
         public function testLargeComplex():void{
             var xmlString:String = xml.toXMLString();
 
@@ -1080,5 +1118,13 @@ package flexUnitTests.xml
     
             XML.setSettings(XML.defaultSettings());
         }
+        
+        
+        //@todo - Passes in Swf, fails in browser:
+        /*[Test]
+        public function checkNumericAttributeSupported():void{
+            var xml:XML = XML('<test 1="23"/>');
+            assertEquals(xml.toXMLString(), '<test 1="23"/>', 'roundtripping with numeric attributes did not work');
+        }*/
     }
 }

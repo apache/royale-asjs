@@ -18,18 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+	import isXMLName;
+	
 	COMPILE::JS
 	public class Namespace
 	{
+		//force dependency
+		private static const xmlNameCheck:Function = isXMLName;
+		
 		COMPILE::JS
 		{
 			import org.apache.royale.utils.Language;
 		}
+		
+		COMPILE::JS
 		/**
 		 * @royaleignorecoercion Namespace
+		 * @royaleignorecoercion String
+		 * @royalenoimplicitstringconversion
 		 */
-		COMPILE::JS
-    	public function Namespace(prefixOrUri:Object=null,uriValue:Object=null)
+    	public function Namespace(prefixValue:*=undefined,uriValue:*=undefined)
 		{
 			/*
 				When the Namespace constructor is called with a no arguments, one argument uriValue or two arguments prefixValue and uriValue, the following steps are taken:
@@ -58,81 +66,127 @@ package
 				    ii. Else throw a TypeError exception
 				  d. Else if prefixValue is undefined, let n.prefix = undefined
 				  e. Else if isXMLName(prefixValue) == false
-				  i. Let n.prefix = undefined
+				  	i. Let n.prefix = undefined
 				  f. Else let n.prefix = ToString(prefixValue)
 				5. Return n
 			*/
-			if(!uriValue && prefixOrUri) //we don't have a prefix defined
+			
+			
+			var isObj:Boolean;
+			var argCount:uint = arguments.length;
+			if (argCount)
 			{
-				var uriVal:Object = uriValue ? uriValue : prefixOrUri;
-				if(uriVal is Namespace)
+				if (argCount == 1)
 				{
-					_prefix = (uriVal as Namespace).prefix;
-					_uri = (uriVal as Namespace).uri;
-				}
-				else if(isQName(uriVal ))
+					//steps 3...
+					uriValue = prefixValue; // <- normalise naming to match spec description
+					isObj = uriValue && typeof uriValue == 'object';
+					if (!isObj)
+					{ //faster branch for string only arg (common)
+						//3.c.i - 3.c.iii
+						_uri = uriValue + ''; //3.c.i
+						_prefix = _uri == '' ? '' : undefined;//3.c.ii, 3.c.iii
+					} else
+					{
+						if (uriValue['className'] == 'Namespace')
+						{
+							_prefix = uriValue.prefix;
+							_uri = uriValue.uri;
+						} else if (uriValue['className'] == 'QName' && uriValue.uri != null)
+						{
+							_uri = uriValue.uri;
+							trace('check');
+						} else
+						{
+							//3.c.i - 3.c.iii
+							_uri = uriValue.toString(); //3.c.i
+							_prefix = _uri == '' ? '' : undefined;//3.c.ii, 3.c.iii
+						}
+					}
+					
+				} else
 				{
-					_uri = uriVal.uri ? uriVal.uri : _uri;
+					//steps from 4.0
+					isObj = uriValue && typeof uriValue == 'object';
+					if (isObj)
+					{
+						if (uriValue['className'] == 'QName'  && uriValue.uri != null)
+						{
+							_uri = uriValue.uri; //4.a
+						} else _uri = uriValue.toString();//4.b for non-primitives
+					} else
+					{
+						_uri = uriValue + ''; //4.b for primitives
+					}
+					if (_uri == '') { //4.c
+						if (prefixValue === undefined || (prefixValue + '' == ''))
+						{
+							//4.c.i.1
+							_prefix = '';
+						} else {
+							//4.c.ii
+							throw new TypeError('Error #1098: Illegal prefix undefined for no namespace.');
+						}
+					} else if (prefixValue !== undefined)
+					{
+						var prfx:String = '' + prefixValue;
+						if (prfx == '') _prefix = '';
+						else if (isXMLName(prfx)) {
+							//4.f
+							_prefix = prfx
+						} //else 4.e _prefix is undefined by default
+					} //else  //4.d _prefix is undefined by default
 				}
-				else {
-					_uri = uriVal.toString();
-					if(_uri == "")
-						_prefix = "";
-				}
+			} else {
+				//Step 2: two undefined args
+				_uri = '';
+				_prefix = '';
 			}
-			else if(uriValue)
-			{
-				// something is specified as the URI otherwise fall through and leave both the prefix and uri blank
-				if(isQName(uriValue ))
-				{
-					if(uriValue.uri)
-						_uri = uriValue.uri;
-				}
-				else {
-					_uri = uriValue.toString();
-				}
-
-				if(!_uri)
-				{
-					if(!prefixOrUri)
-						_prefix = "";
-					else
-						throw new TypeError("invalid prefix");
-				}
-				else
-					_prefix = prefixOrUri.toString();
-
-			}
+			
 		}
 
-		// Using this instead of simply using "is QName" because "is QName" causes a circular dependency.
+		/*// Using this instead of simply using "is QName" because "is QName" causes a circular dependency.
 		private function isQName(val:Object):Boolean
 		{
-			if(val==null)
+			return val && typeof val == 'object' && val['className'] == 'QName';
+			/!*if(val==null)
 				return false;
 			if(val.hasOwnProperty("uri") && val.hasOwnProperty("localName") && val.hasOwnProperty("prefix"))
 				return true;
-			return false;
-		}
+			return false;*!/
+		}*/
 
 		private var _uri:String = "";
 		public function get uri():String
 		{
 			return _uri;
 		}
-		public function set uri(value:String):void
-		{
-			_uri = value;
-		}
 		
-		private var _prefix:String = null;
-		public function get prefix():String
+		private var _prefix:* ;
+		public function get prefix():*
 		{
 			return _prefix;
 		}
-		public function set prefix(value:String):void
+		
+		/**
+		 * @private
+		 * @royalesuppressexport
+		 * intended for internal use only
+		 */
+		public function setPrefix(value:String):void
 		{
 			_prefix = value;
+		}
+		
+		COMPILE::JS
+		/**
+		 * Non-spec (specifically: non swf spec, is however consistent with ECMA-357).
+		 * Used for internal performance reasons only (faster than Language.is checks)
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public function get className():String{
+			return 'Namespace';
 		}
 
 		COMPILE::JS
