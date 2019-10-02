@@ -193,6 +193,22 @@ package
 		}
 		
 		/**
+		 *
+		 * @royalesuppressresolveuncertain
+		 * @royaleignorecoercion String
+		 */
+		private static function createStringRef(val:String):String{
+			var clazz:Class = String;
+			return new clazz(val) as String;
+		}
+		
+		private static const ELEMENT:String = createStringRef('element');
+		private static const ATTRIBUTE:String = createStringRef('attribute');
+		private static const PROCESSING_INSTRUCTION:String = createStringRef('processing-instruction');
+		private static const TEXT:String = createStringRef('text');
+		private static const COMMENT:String = createStringRef('comment');
+		
+		/**
 		 * regex to match the xml declaration
 		 */
 		private static const xmlDecl:RegExp = /^\s*<\?xml[^?]*\?>/im;
@@ -319,7 +335,7 @@ package
 		{
 			var xml:XML = new XML();
 			xml._parent = parent;
-			xml._nodeKind = "attribute";
+			xml._nodeKind = ATTRIBUTE;
 			xml._name = getQName(att.localName, '', att.namespaceURI, true);
 			xml._value = att.value;
 			parent.addChildInternal(xml);
@@ -388,7 +404,8 @@ package
 				case 1:
 					//ELEMENT_NODE
 					xml = new XML();
-					xml._nodeKind = "element";
+					//this is _internal... so don't set it, let it use the protoype value of ELEMENT
+					//xml._nodeKind = "element";
 					//xml.setName(getQName(localName, prefix, node.namespaceURI,false));
 					
 					iterateElement(node as Element,xml);
@@ -401,11 +418,13 @@ package
 						if (!data) return null;
 					}
 					xml = new XML();
+					xml._nodeKind = TEXT; //explicit setting because 'internal''
 					xml.setValue(data);
 					break;
 				case 4:
 					//CDATA_SECTION_NODE
 					xml = new XML();
+					xml._nodeKind = TEXT; //explicit setting because 'internal''
 					data = "<![CDATA[" + data + "]]>";
 					xml.setValue(data);
 					break;
@@ -414,7 +433,7 @@ package
 				case 7:
 					//PROCESSING_INSTRUCTION_NODE
 					xml = new XML();
-					xml._nodeKind ="processing-instruction";
+					xml._nodeKind = PROCESSING_INSTRUCTION;
 					//e4x: The [[Name]] for each XML object representing a processing-instruction will have its uri property set to the empty string.
 					var localName:String = node.nodeName;
 					//var prefix:String = node.prefix;
@@ -430,7 +449,7 @@ package
 					//COMMENT_NODE
 					
 					xml = new XML();
-					xml._nodeKind = "comment";
+					xml._nodeKind = COMMENT;
 					//e4X: the name must be null (comment node rules)
 					xml.setValue(data);
 					break;
@@ -549,6 +568,7 @@ package
 		}
 		
 		private static var _defaultNS:String;
+		private static var _internal:Boolean;
 		
 		public function XML(xml:* = null)
 		{
@@ -559,7 +579,7 @@ package
 				var xmlStr:String = ignoreWhitespace ? trimXMLWhitespace("" + xml) : "" + xml;
 				if(xmlStr.indexOf("<") == -1)
 				{
-					_nodeKind = "text";
+					_nodeKind = TEXT;
 					_value = xmlStr;
 				}
 				else
@@ -567,8 +587,10 @@ package
 					parseXMLStr(xmlStr);
 				}
 			} else {
-				_nodeKind = "text";
-				_value = '';
+				if (!_internal) {
+					_nodeKind = TEXT;
+					_value = '';
+				}
 			}
 			
 			Object.defineProperty(this,"0",
@@ -660,12 +682,13 @@ package
 					
 					if (foundCount != 0) {
 						//reset any earlier settings
-						this.setNodeKind('element');
+						this.setNodeKind(ELEMENT);
 						this.setValue(null);
 					}
 					_name = getQName(node.localName,node.prefix,node.namespaceURI,false);
-					
+					_internal = true;
 					iterateElement(node as Element,this);
+					_internal = false;
 				}
 				else
 				{
@@ -673,20 +696,20 @@ package
 					if (node.nodeType == 7) {
 						if (XML.ignoreProcessingInstructions) {
 							if (!foundCount) {
-								this.setNodeKind('text');
+								this._nodeKind = TEXT;
 								//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
 								_name = null;
 								this.setValue('');
 							}
 						} else {
-							this._nodeKind = 'processing-instruction';
+							this._nodeKind = PROCESSING_INSTRUCTION;
 							this.setName(node.nodeName);
 							this.setValue(node.nodeValue);
 							foundCount++;
 						}
 					} else if (node.nodeType == 4) {
 						if (!foundCount) {
-							this._nodeKind = 'text';
+							this._nodeKind = TEXT;
 							//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
 							_name = null;
 							this.setValue('<![CDATA[' + node.nodeValue + ']]>');
@@ -697,12 +720,12 @@ package
 						_name = null;
 						if (XML.ignoreComments) {
 							if (!foundCount) {
-								this._nodeKind = 'text';
+								this._nodeKind = TEXT;
 								this.setValue('');
 							}
 						} else {
 							if (!foundCount) {
-								this._nodeKind = 'comment';
+								this._nodeKind = COMMENT;
 								this.setValue(node.nodeValue);
 							}
 							foundCount++;
@@ -712,7 +735,7 @@ package
 						var whiteSpace:Boolean = isWhitespace.test(node.nodeValue);
 						if (!whiteSpace || !XML.ignoreWhitespace) {
 							if (!foundCount) {
-								this._nodeKind = 'text';
+								this._nodeKind = TEXT;
 								this.setValue(node.nodeValue);
 							}
 							foundCount++;
@@ -767,7 +790,7 @@ package
 		{
 			assertType(child,XML,"Type must be XML");
 			child.setParent(this);
-			if(child.nodeKind() =="attribute")
+			if(child._nodeKind == ATTRIBUTE)
 				getAttributes().push(child);
 			else getChildren().push(child);
 		}
@@ -815,7 +838,7 @@ package
 				    i. If attr.[[Name]].[[Prefix]] == N.prefix, let attr.[[Name]].prefix = undefined
 				3. Return
 			*/
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind == ATTRIBUTE)
 				return this;
 			if(ns.prefix === undefined)
 				return this;
@@ -880,10 +903,10 @@ package
 			if(childType != "object") {
 				const last:uint = childrenLength();
 				const lastChild:XML = last ? _children[last-1] : null;
-				if (lastChild && lastChild.nodeKind() == 'element') {
+				if (lastChild && lastChild._nodeKind == ELEMENT) {
 					
 					const wrapper:XML = new XML();
-					wrapper.setNodeKind('element');
+					wrapper._nodeKind = ELEMENT;
 					child = new XML(child.toString());
 					wrapper.setName(lastChild.name());
 					child.setParent(wrapper);
@@ -1069,6 +1092,7 @@ package
 		 *
 		 * @return
 		 *
+		 * @royaleignorecoercion XML
 		 */
 		public function comments():XMLList
 		{
@@ -1077,7 +1101,7 @@ package
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].nodeKind() == "comment")
+				if((_children[i] as XML)._nodeKind == COMMENT)
 					list.append(_children[i]);
 			}
 			list.targetObject = this;
@@ -1145,7 +1169,7 @@ package
 			*/
 			var i:int;
 			var xml:XML = new XML();
-			xml.setNodeKind(_nodeKind);
+			xml._nodeKind = _nodeKind;
 			xml.setName(name());
 			xml.setValue(_value);
 			var len:int;
@@ -1222,7 +1246,7 @@ package
 				var child:XML = _children[i] as XML;
 				if(name.matches(child.name()))
 					list.append(child);
-				if(child._nodeKind == "element")
+				if(child._nodeKind == ELEMENT)
 				{
 					list.concat(child.descendants(name));
 				}
@@ -1236,6 +1260,7 @@ package
 		 * @param name
 		 * @return
 		 *
+		 * @royaleignorecoercion XML
 		 */
 		public function elements(name:Object = "*"):XMLList
 		{
@@ -1247,7 +1272,7 @@ package
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].nodeKind() == "element" && name.matches(_children[i].name()))
+				if((_children[i] as XML)._nodeKind == ELEMENT && name.matches((_children[i] as XML).name()))
 					list.append(_children[i]);
 			}
 			
@@ -1290,7 +1315,7 @@ package
 			if(!(xml is XML))
 				return false;
 			
-			if(xml.nodeKind() != _nodeKind)
+			if(xml._nodeKind != _nodeKind)
 				return false;
 			
 			if(!name().equals(xml.name()))
@@ -1440,8 +1465,9 @@ package
 		/**
 		 * Checks to see whether the XML object contains complex content.
 		 *
-		 * @return
+		 * @return true if this XML instance contains complex content
 		 *
+		 * @royaleignorecoercion XML
 		 */
 		public function hasComplexContent():Boolean
 		{
@@ -1452,18 +1478,23 @@ package
 				a. If p.[[Class]] == "element", return true
 				3. Return false
 			*/
-			if(_nodeKind == "attribute" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "text")
+			if(_nodeKind == ATTRIBUTE || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind == TEXT)
 				return false;
 			var i:int;
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].nodeKind() == "element")
+				
+				if((_children[i] as XML)._nodeKind == ELEMENT)
 					return true;
 			}
 			return false;
 		}
 		
+		/**
+		 *
+		 * @royaleignorecoercion XML
+		 */
 		override public function hasOwnProperty(p:*):Boolean
 		{
 			/*
@@ -1491,7 +1522,7 @@ package
 				len = attributeLength();
 				for(i=0;i<len;i++)
 				{
-					if(name.matches(_attributes[i].name()))
+					if(name.matches((_attributes[i] as XML).name()))
 						return true;
 				}
 			}
@@ -1500,9 +1531,9 @@ package
 				len = childrenLength();
 				for(i=0;i<len;i++)
 				{
-					if(_children[i].nodeKind() != "element")
+					if((_children[i] as XML)._nodeKind != ELEMENT)
 						continue;
-					if(_children[i].name().matches(name))
+					if((_children[i] as XML).name().matches(name))
 						return true;
 				}
 			}
@@ -1514,6 +1545,7 @@ package
 		 *
 		 * @return
 		 *
+		 * @royaleignorecoercion XML
 		 */
 		public function hasSimpleContent():Boolean
 		{
@@ -1524,13 +1556,13 @@ package
 				a. If p.[[Class]] == "element", return false
 				3. Return true
 			*/
-			if(_nodeKind == "comment" || _nodeKind == "processing-instruction")
+			if(_nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION)
 				return false;
 			var i:int;
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].nodeKind() == "element")
+				if((_children[i] as XML)._nodeKind == ELEMENT)
 					return false;
 			}
 			return true;
@@ -1603,7 +1635,7 @@ package
 				  a. Call the [[Replace]] method of x with arguments i and V
 				12. Return
 			*/
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind == ATTRIBUTE)
 				return;
 			if(!child)
 				return;
@@ -1635,7 +1667,7 @@ package
 				i. If x[i] is the same object as child1
 				1. Call the [[Insert]] method of x with a
 			*/
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind == ATTRIBUTE)
 				return null;
 			if(!child1)
 			{
@@ -1673,7 +1705,7 @@ package
 				2. Return x
 				4. Return
 			*/
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind == ATTRIBUTE)
 				return null;
 			if(!child1)
 			{
@@ -1754,7 +1786,7 @@ package
 			*/
 			
 			//4.a exit early before performing steps 2,3:
-			if(_nodeKind == "text" || _nodeKind ==  "comment" || _nodeKind ==  "processing-instruction")
+			if(_nodeKind == TEXT || _nodeKind ==  COMMENT || _nodeKind ==  PROCESSING_INSTRUCTION)
 				return null;
 			
 			//step 2, 3:
@@ -1803,7 +1835,7 @@ package
 				10. Return a
 			*/
 			
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind ==  ATTRIBUTE)
 				return [];
 			
 			//early check - no need to look in the ancestors if there is nothing local to check:
@@ -1836,7 +1868,7 @@ package
 			return declaredNS;
 		}
 		
-		private var _nodeKind:String = "element";
+		private var _nodeKind:String = ELEMENT;
 		/**
 		 * Specifies the type of node: text, comment, processing-instruction, attribute, or element.
 		 * @return
@@ -1844,7 +1876,7 @@ package
 		 */
 		public function nodeKind():String
 		{
-			return _nodeKind;
+			return _nodeKind + ''; // append '' here to convert the String Object to a primitive
 		}
 		
 		/**
@@ -1862,13 +1894,13 @@ package
 				var child:XML = _children[i];
 				// can we have a null child?
 				
-				if(child.nodeKind() == "element")
+				if(child._nodeKind == ELEMENT)
 				{
 					child.normalize();
 				}
-				else if(child.nodeKind() == "text")
+				else if(child._nodeKind == TEXT)
 				{
-					if(lastChild && lastChild.nodeKind() == "text")
+					if(lastChild && lastChild._nodeKind == TEXT)
 					{
 						child.setValue(child.s() + lastChild.s());
 						deleteChildAt(i+1);
@@ -1905,8 +1937,8 @@ package
 		private function xmlFromStringable(value:*):XML
 		{
 			var str:String = value.toString();
-			var xml:XML = new XML(); // text nodeKind by default
-			//xml.setNodeKind("text");
+			var xml:XML = new XML();
+			xml._nodeKind = TEXT; //this is always called internally, so explicit assign
 			xml.setValue(str);
 			return xml;
 		}
@@ -1951,6 +1983,7 @@ package
 		 * @param name
 		 * @return
 		 *
+		 * royaleignorecoercion XML
 		 */
 		public function processingInstructions(name:String = "*"):XMLList
 		{
@@ -1959,7 +1992,7 @@ package
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].nodeKind() == "processing-instruction")
+				if((_children[i] as XML)._nodeKind == PROCESSING_INSTRUCTION)
 					list.append(_children[i]);
 			}
 			list.targetObject = this;
@@ -2005,7 +2038,7 @@ package
 			if(!(child is XML))
 				return removeChildByName(child);
 			
-			if(child._nodeKind == "attribute")
+			if(child._nodeKind == ATTRIBUTE)
 			{
 				var len:int = attributeLength();
 				for(i=0;i<len;i++)
@@ -2060,7 +2093,7 @@ package
 			for(i=len;i>=0;i--)
 			{
 				child = _children[i] as XML;
-				if(child._nodeKind != "element"){
+				if(child._nodeKind != ELEMENT){
 					continue;
 				}
 				
@@ -2101,6 +2134,7 @@ package
 		 * @param ns
 		 * @return
 		 *
+		 * @royaleignorecoercion XML
 		 */
 		public function removeNamespace(ns:*):XML
 		{
@@ -2128,7 +2162,7 @@ package
 			*/
 			var i:int;
 			var len:int;
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind == ATTRIBUTE)
 				return this;
 			if(!(ns is Namespace))
 				ns = new Namespace(ns);
@@ -2154,8 +2188,8 @@ package
 			len = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if(_children[i].nodeKind() == "element")
-					_children[i].removeNamespace(ns);
+				if((_children[i] as XML)._nodeKind == ELEMENT)
+					(_children[i] as XML).removeNamespace(ns);
 			}
 			return this;
 		}
@@ -2189,7 +2223,7 @@ package
 				10. Return x
 			*/
 			
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind ==  ATTRIBUTE)
 			{
 				// Changing this to pretend we're a string
 				return s().replace(propertyName,value);
@@ -2205,6 +2239,10 @@ package
 			return null;
 		}
 		
+		/**
+		 *
+		 * @royaleignorecoercion XML
+		 */
 		public function replaceChildAt(idx:int,v:*):void
 		{
 			/*
@@ -2233,16 +2271,16 @@ package
 				8. Return
 			*/
 			var len:int;
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
+			if(_nodeKind == TEXT || _nodeKind == COMMENT || _nodeKind == PROCESSING_INSTRUCTION || _nodeKind ==  ATTRIBUTE)
 				return;
 			len = childrenLength();
 			if(idx > len)
 				idx = len;
 			// make sure _children exist
 			getChildren();
-			if(v is XML && v.nodeKind() != "attribute")
+			if(v is XML && (v as XML)._nodeKind != ATTRIBUTE)
 			{
-				if(v.nodeKind() == "element" && (v==this || isAncestor(v)) )
+				if((v as XML)._nodeKind == ELEMENT && (v==this || isAncestor(v)) )
 					throw new TypeError("cannot assign parent xml as child");
 				v.setParent(this);
 				if(_children[idx])
@@ -2285,6 +2323,10 @@ package
 			return false;
 		}
 		
+		/**
+		 *
+		 * @royaleignorecoercion XML
+		 */
 		public function setAttribute(attr:*,value:String):String
 		{
 			var i:int;
@@ -2293,7 +2335,7 @@ package
 			
 			if(attr is XML)
 			{
-				if(attr.nodeKind() == "attribute")
+				if((attr as XML)._nodeKind == ATTRIBUTE)
 				{
 					var len:int = attributeLength();
 					for(i=0;i<len;i++)
@@ -2325,7 +2367,7 @@ package
 			{
 				//it's a regular attribute string
 				var attrXML:XML = new XML();
-				attrXML._nodeKind = 'attribute';
+				attrXML._nodeKind = ATTRIBUTE;
 				attrXML.setName(toAttributeName(attr));
 				attrXML.setValue(value);
 				len = attributeLength();
@@ -2589,14 +2631,14 @@ package
 			b. Call x.[[Parent]].[[AddInScopeNamespace]](ns)
 			8. If x.[[Class]] == "element"
 			a. Call x.[[AddInScopeNamespace]](ns)*/
-			if (_nodeKind == 'text' || _nodeKind == 'comment') return; //e4x, see 1 above
+			if (_nodeKind == TEXT || _nodeKind == COMMENT) return; //e4x, see 1 above
 			var nameRef:QName;
 			if(name is QName)
 				nameRef = name;
 			else
 				nameRef = new QName(name);
 			
-			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,_nodeKind == 'attribute');
+			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,_nodeKind == ATTRIBUTE);
 		}
 		
 		/**
@@ -2608,12 +2650,12 @@ package
 		public function setNamespace(ns:Object):void
 		{
 			var kind:String = _nodeKind;
-			if(kind == "text" || kind == "comment" || kind == "processing-instruction")
+			if(kind == TEXT || kind == COMMENT || kind == PROCESSING_INSTRUCTION)
 				return;
 			var ns2:Namespace = new Namespace(ns);
 			var nameRef:QName = new QName(ns2,name());
 			
-			if(kind == "attribute")
+			if(kind == ATTRIBUTE)
 			{
 				if(_parent == null)
 					return;
@@ -2623,7 +2665,7 @@ package
 			
 			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,nameRef.isAttribute);
 			
-			if(kind == "element")
+			if(kind == ELEMENT)
 				addNamespace(ns2);
 		}
 		
@@ -2634,8 +2676,15 @@ package
 		public function setNodeKind(value:String):void
 		{
 			// memory optimization. The default on the prototype is "element" and using the prototype saves memory
-			if(_nodeKind != value)
-				_nodeKind = value;
+			if(_nodeKind != value) {
+				//use the String reference values internally
+				if (value == 'element') _nodeKind = ELEMENT;
+				else if( value == 'attribute') _nodeKind = ATTRIBUTE ;
+				else if( value == 'comment') _nodeKind = COMMENT ;
+				else if( value == 'text') _nodeKind = TEXT ;
+				else if( value == 'processing-instruction') _nodeKind = PROCESSING_INSTRUCTION ;
+			}
+			
 		}
 		
 		public function setParent(parent:XML):void
@@ -2677,7 +2726,7 @@ package
 			for(i=0;i<len;i++)
 			{
 				var child:XML = _children[i];
-				if(child._nodeKind == "text")
+				if(child._nodeKind == TEXT)
 					list.append(child);
 			}
 			list.targetObject = this;
@@ -2708,13 +2757,13 @@ package
 		{
 			var i:int;
 			// text, comment, processing-instruction, attribute, or element
-			if( _nodeKind == "attribute")
+			if( _nodeKind == ATTRIBUTE)
 				return _value;
-			if(_nodeKind == "text")
+			if(_nodeKind == TEXT)
 				return _value && _value.indexOf('<![CDATA[') == 0 ? _value.substring(9, _value.length-3): _value;
-			if(_nodeKind == "comment")
+			if(_nodeKind == COMMENT)
 				return "";
-			if(_nodeKind == "processing-instruction")
+			if(_nodeKind == PROCESSING_INSTRUCTION)
 				return "";
 			if(this.hasSimpleContent())
 			{
@@ -2723,7 +2772,7 @@ package
 				for(i=0;i<len;i++)
 				{
 					var child:XML = _children[i];
-					if(child._nodeKind == "comment" || child._nodeKind == "processing-instruction")
+					if(child._nodeKind == COMMENT || child._nodeKind == PROCESSING_INSTRUCTION)
 						continue;
 					s = s + child.toString();
 				}
@@ -2898,8 +2947,8 @@ package
 				indentArr.push(_indentStr);
 			
 			var indent:String = indentArr.join("");
-			const nodeType:String = this.nodeKind();
-			if(nodeType == "text") //4.
+			const nodeType:String = this._nodeKind;
+			if(nodeType == TEXT) //4.
 			{
 				if(prettyPrinting)
 				{
@@ -2913,13 +2962,13 @@ package
 					return _value;
 				return escapeElementValue(_value);
 			}
-			if(nodeType == "attribute")
+			if(nodeType == ATTRIBUTE)
 				return indent + escapeAttributeValue(_value);
 			
-			if(nodeType == "comment")
+			if(nodeType == COMMENT)
 				return indent + "<!--" +  _value + "-->";
 			
-			if(nodeType == "processing-instruction")
+			if(nodeType == PROCESSING_INSTRUCTION)
 				return indent + "<?" + name().localName + " " + _value + "?>";
 			
 			// We excluded the other types, so it's a normal element
@@ -3021,7 +3070,7 @@ package
 				return strArr.join("");
 			}
 			strArr.push(">");
-			var indentChildren:Boolean = len > 1 || (len == 1 && _children[0].nodeKind() != "text");
+			var indentChildren:Boolean = len > 1 || (len == 1 && (_children[0] as XML)._nodeKind != TEXT);
 			var nextIndentLevel:int;
 			if(XML.prettyPrinting && indentChildren)
 				nextIndentLevel = indentLevel + 1;
