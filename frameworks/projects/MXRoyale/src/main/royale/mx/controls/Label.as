@@ -680,6 +680,9 @@ public class Label extends UIComponent
 	 */
 	public function set text(value:String):void
 	{
+        if (!value)
+            value = "";
+        
 		COMPILE::SWF
 		{
 			ITextModel(model).text = value;
