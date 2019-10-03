@@ -217,6 +217,7 @@ package org.apache.royale.html
          */
         public function set currentState(value:String):void
         {
+			if (value == _currentState) return;
             var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
             _currentState = value;
             dispatchEvent(event);
