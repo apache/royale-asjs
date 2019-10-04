@@ -40,6 +40,10 @@ use namespace mx_internal;  // ListBase/setCurrentCaretIndex(index);
 */
 import mx.managers.IFocusManagerComponent;
 import spark.components.supportClasses.ListBase;
+import spark.layouts.supportClasses.LayoutBase;
+import org.apache.royale.core.ILayoutHost;
+import org.apache.royale.core.IStrand;
+import mx.core.IUIComponent;
 /**
  *  Defines the radius of the TabBar buttons' top-left and top-right corners for the default
  *  TabBarButton skin.
@@ -185,5 +189,16 @@ public class TabBar extends ListBase implements IFocusManagerComponent
         if (TabBar.createAccessibilityImplementation != null)
             TabBar.createAccessibilityImplementation(this);
     } */
+
+    override public function get measuredWidth():Number
+    {
+        var contentView:IUIComponent = (this.view as ILayoutHost).contentView as IUIComponent;
+        if (contentView)
+        {
+            (contentView.getBeadByType(LayoutBase) as LayoutBase).measure();
+            measuredWidth = contentView.measuredWidth;
+        }
+        return super.measuredWidth;
+    }
 }
 }
