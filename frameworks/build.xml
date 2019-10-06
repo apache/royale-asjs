@@ -154,6 +154,7 @@
         <antcall target="ReflectionTest"/>
         <antcall target="NetworkTest"/>
         <antcall target="XMLTest"/>
+        <antcall target="CollectionsTest"/>
     </target>
 
     <target name="fonts">
@@ -259,6 +260,10 @@
 
     <target name="Collections" description="Clean build of Collections.swc">
         <ant dir="${basedir}/projects/Collections"/>
+    </target>
+
+    <target name="CollectionsTest" description="Test of Collections.swc">
+        <ant dir="${basedir}/projects/Collections" target="test"/>
     </target>
 
     <target name="CreateJS" description="Clean build of CreateJS.swc">

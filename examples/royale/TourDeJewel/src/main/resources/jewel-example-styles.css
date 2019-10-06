@@ -112,9 +112,6 @@
 .navigation-section-group{
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
 }
-/* .navigation-section-group .navigationlink{
-    background-color:rgba(56, 172, 241, 0.31);
-} */
 
 .navSectionItemRenderer{
     IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
@@ -123,7 +120,4 @@
 {
     margin-right: 24px;
 }
-/* .navSectionItemRenderer.jewel.navigation{
-    background-color: aliceblue;
-} */
 

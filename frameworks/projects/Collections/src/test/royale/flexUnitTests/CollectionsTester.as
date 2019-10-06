@@ -18,35 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-    import flexUnitTests.xml.*
+    import flexUnitTests.language.*
     
     [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    /**
-     * @royalesuppresspublicvarwarning
-     */
-    public class XMLTester
+    [RunWith("org.apache.royale.test.runners.SuiteRunner")]
+    public class CollectionsTester
     {
-        public function XMLTester()
-        {
-            // for JS, force-link these classes in the output
-//            var arr:Array = [XMLTesterGeneralTest, XMLTesterStringifyTest, XMLListTesterGeneralTest, XMLNamespaceTest];
-        }
         
+        //language tests
+        public var testArrayLikeGetSet:LanguageTesterTestArraylikeGetSet;
+        public var testArrayLikeForEach:LanguageTesterTestForEach;
         
-        /*public var xmlTesterGeneralTest:XMLTesterGeneralTest;
-        
-        public var xmlTesterStringifyTest:XMLTesterStringifyTest;
-    
-        public var xmlListTesterGeneralTest:XMLListTesterGeneralTest;
-        
-        public var xmlNamespaceTest:XMLNamespaceTest;
-    
-        public var xmlNamespaceClassTest:XMLNamespaceClassTest;
-    
-        public var xmlQNameTest:XMLQNameTest;*/
-    
-        public var xmlNamespaceQueries:XMLTesterNamespaceQueries;
-
+      
     }
 }

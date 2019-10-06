@@ -16,37 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package flexUnitTests.language.support
 {
-    import flexUnitTests.xml.*
+    import org.apache.royale.collections.ArrayList;
     
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    /**
-     * @royalesuppresspublicvarwarning
-     */
-    public class XMLTester
+    public function checkArrayLikeFunc(val:ArrayList):String
     {
-        public function XMLTester()
-        {
-            // for JS, force-link these classes in the output
-//            var arr:Array = [XMLTesterGeneralTest, XMLTesterStringifyTest, XMLListTesterGeneralTest, XMLNamespaceTest];
-        }
-        
-        
-        /*public var xmlTesterGeneralTest:XMLTesterGeneralTest;
-        
-        public var xmlTesterStringifyTest:XMLTesterStringifyTest;
-    
-        public var xmlListTesterGeneralTest:XMLListTesterGeneralTest;
-        
-        public var xmlNamespaceTest:XMLNamespaceTest;
-    
-        public var xmlNamespaceClassTest:XMLNamespaceClassTest;
-    
-        public var xmlQNameTest:XMLQNameTest;*/
-    
-        public var xmlNamespaceQueries:XMLTesterNamespaceQueries;
-
+        val[0] = 'get and set from checkArrayLikeFunc';
+        return val[0] as String;
+       // return val.getItemAt(0) as String;
     }
 }

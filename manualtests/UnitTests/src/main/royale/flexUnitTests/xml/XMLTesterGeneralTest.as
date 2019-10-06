@@ -527,6 +527,10 @@ package flexUnitTests.xml
 
             assertEquals( 1, list.length(), 'Error in list length');
             assertEquals( list.toXMLString(),'<otherElement/>', 'Error in list length');
+    
+            list = xml.otherElement;
+            assertEquals( 1, list.length(), 'Error in list length');
+    
         }
     
         [Test]
