@@ -203,7 +203,7 @@
         <property name="no.thirdparty-downloads" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs,copy-compiler"
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,copy-externs,copy-compiler,create-config"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-compiler-home" unless="airsdk.found"
@@ -438,6 +438,7 @@ limitations under the License.
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="royale" />
         </ant>
+        <antcall target="tweak-for-jsonly" />
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="air" />
         </ant>
@@ -845,6 +846,7 @@ limitations under the License.
                 <exclude name="in/**"/>
                 <exclude name="out/**"/>
                 <exclude name="**/out/**"/>
+                <exclude name="**/target/**"/>
                 <exclude name="manualtests/**"/>
                 <exclude name="marmotinni/**"/>
                 <exclude name="mustella/**"/>

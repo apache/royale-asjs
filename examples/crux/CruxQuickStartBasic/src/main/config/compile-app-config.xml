@@ -23,10 +23,6 @@
     <js-default-initializers>true</js-default-initializers>
 
     <compiler>
-        <targets>
-            <target>JSRoyale</target>
-            <target>SWF</target>
-        </targets>
         <keep-as3-metadata>
             <name>Bindable</name>
             <name>Transient</name>
@@ -43,16 +39,6 @@
             <name>Inject</name>
         </keep-code-with-metadata>
 
-        <js-library-path append="true">
-            <path-element>../../../../../../frameworks/js/libs/BasicJS.swc</path-element>
-            <path-element>../../../../../../frameworks/js/libs/CruxJS.swc</path-element>
-            <path-element>../../../../../../frameworks/js/libs/MXRoyaleJS.swc</path-element>
-        </js-library-path>
-        <library-path append="true">
-            <path-element>../../../../../../frameworks/libs/Basic.swc</path-element>
-            <path-element>../../../../../../frameworks/libs/Crux.swc</path-element>
-            <path-element>../../../../../../frameworks/libs/MXRoyale.swc</path-element>
-        </library-path>
         <exclude-defaults-css-files>
             <filename>MXRoyaleJS.swc:defaults.css</filename>
         </exclude-defaults-css-files>
