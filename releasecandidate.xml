@@ -1186,7 +1186,7 @@ ${my.name}
         <replace file="${asjs}/build.properties"
             token="release.version = ${release.version}"
             value="release.version = ${new.release.version}" />
-        <replace file="${asks}/build.properties"
+        <replace file="${asjs}/build.properties"
             token="releaseversion = ${release.version}"
             value="releaseversion = ${new.release.version}" />
         <replace file="${asjs}/package.json"
