@@ -31,6 +31,8 @@ var FlashPlayerGlobal = module.exports = Object.create(events.EventEmitter.proto
 
 var flashPlayerGlobalURL = pjson.org_apache_royale.flash_player_global_url;
 var fileNameFlashPlayerGlobal = pjson.org_apache_royale.flash_player_global_file_name;
+var folderFlashPlayerGlobal = pjson.org_apache_royale.flash_player_global_folder;
+var playerversion = pjson.org_apache_royale.player_version;
 var flashPlayerGlobalPromptText = "\
 Apache Royale SWF support uses the Adobe Flash Player's playerglobal.swc to build Adobe Flash applications.\n\
 The playerglobal.swc file is subject to and governed by the\n\
@@ -80,8 +82,8 @@ FlashPlayerGlobal.downloadFlashPlayerGlobal = function()
     var downloadDetails = {
         url:flashPlayerGlobalURL,
         remoteFileName:fileNameFlashPlayerGlobal,
-        destinationPath:constants.DOWNLOADS_FOLDER,
-        destinationFileName:fileNameFlashPlayerGlobal,
+        destinationPath:constants.ROYALE_FOLDER + folderFlashPlayerGlobal,
+        destinationFileName:"playerglobal.swc",
         unzip:false
     };
 
@@ -92,6 +94,35 @@ FlashPlayerGlobal.downloadFlashPlayerGlobal = function()
 
 function handleInstallComplete(event)
 {
+	const replace = require('replace-in-file');
+    const options = {
+      files: [constants.ROYALE_FOLDER + 'royale-asjs/frameworks/royale-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/flex-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/royale-config-template.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/flex-config-template.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/air-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/air-config-template.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/airmobile-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/js-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/js-config-template.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/jquery-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/jquery-config-template.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/createjs-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/createjs-config-template.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/node-config.xml',
+	  constants.ROYALE_FOLDER + 'royale-asjs/frameworks/node-config-template.xml'
+	  ],
+      from: /target-player.*target-player/g,
+      to: "target-player>" + playerversion + "</target-player",
+    };
+	try {
+      const results = replace.sync(options);
+      console.log('update target-player in config.xml files');
+    }
+    catch (error) {
+      console.error('Error occurred:', error);
+    }
+	
     FlashPlayerGlobal.emit('complete');
 }
 

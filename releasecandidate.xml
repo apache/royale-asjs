@@ -1182,9 +1182,13 @@ ${my.name}
     </target>
     
     <target name="update.versions" depends="check-royale-asjs, check-royale-typedefs, check-royale-compiler,get-next-version" if="has.next.version">
+        <echo>updating royale-asjs</echo>
         <replace file="${asjs}/build.properties"
             token="release.version = ${release.version}"
             value="release.version = ${new.release.version}" />
+        <replace file="${asjs}/build.properties"
+            token="releaseversion = ${release.version}"
+            value="releaseversion = ${new.release.version}" />
         <replace file="${asjs}/package.json"
             token="version&quot;: &quot;${release.version}"
             value="version&quot;: &quot;${new.release.version}" />
@@ -1235,9 +1239,13 @@ ${my.name}
             <arg value="-m" />
             <arg value="update version to ${new.release.version}" />
         </exec>
+        <echo>updating royale-compiler</echo>
         <replace file="${compiler}/build.properties"
-            token="release.version = ${release.version}"
-            value="release.version = ${new.release.version}" />
+            token="release.version=${release.version}"
+            value="release.version=${new.release.version}" />
+        <replace file="${compiler}/build.properties"
+            token="releaseversion=${release.version}"
+            value="releaseversion=${new.release.version}" />
         <exec executable="${git}" dir="${compiler}" failonerror="true" >
             <arg value="add" />
             <arg value="." />
@@ -1247,6 +1255,7 @@ ${my.name}
             <arg value="-m" />
             <arg value="update version to ${new.release.version}" />
         </exec>
+        <echo>updating royale-typedefs</echo>
         <replaceregexp file="${typedefs}/pom.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.compiler.version&gt;.*&lt;"/>
             <substitution expression="royale.compiler.version&gt;${new.release.version}-SNAPSHOT&lt;"/>

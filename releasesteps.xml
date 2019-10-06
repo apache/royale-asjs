@@ -194,6 +194,7 @@
         
         <!-- build these modules -->
         <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="-Dgenerate.swf.swcs=true" />
             <arg value="clean" />
             <arg value="install" />
             <arg value="-P" />
@@ -219,7 +220,7 @@
         <delete file="${artifactfolder}/swcs.txt" />
         <!-- this is a comma-delimited, no spaces, no-line-breaks list used to decide which swcs
          to skip in the rat-check of the binaries and which swcs to examine before approval -->
-        <property name="swcs-list" value="Basic,Binding,Charts,Collections,Core,CreateJS,DragDrop,Effects,Express,Flat,FontAwesome,Formatters,GoogleMaps,Graphics,HTML,HTML5,Icons,JQuery,Jewel,Crux,Language,MXRoyale,MaterialDesignLite,Mobile,Network,Reflection,RoyaleSite,SparkRoyale,Storage,TLF,Text,XML,BasicTheme,JewelTheme"/>
+        <property name="swcs-list" value="Basic,Binding,Charts,Collections,Core,CreateJS,DragDrop,Effects,Express,Flat,FontAwesome,Formatters,GoogleMaps,Graphics,HTML,HTML5,Icons,JQuery,Jewel,Crux,Language,MXRoyale,MaterialDesignLite,Mobile,Network,Reflection,RoyaleUnit,RoyaleSite,SparkRoyale,Storage,TLF,Text,XML,BasicTheme,JewelTheme"/>
         <echo file="${artifactfolder}/swcs.txt" message="${swcs-list}"/>
     </target>
     
@@ -500,6 +501,9 @@
         </antcall>
         <antcall target="sign-swc-artifacts" >
             <param name="swcname" value="RoyaleSite" />
+        </antcall>
+		<antcall target="sign-swc-artifacts" >
+            <param name="swcname" value="RoyaleUnit" />
         </antcall>
         <antcall target="sign-swc-artifacts" >
             <param name="swcname" value="SparkRoyale" />
@@ -880,7 +884,7 @@
     
     <target name="build-ant-source" depends="check-air-home,check-playerglobal-home,check-runtime-env" >
         <mkdir dir="${artifactfolder}/sources" />
-        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/sources" >
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${release.version}-src.zip" dest="${artifactfolder}/sources" >
         </unzip>
         
         <ant dir="${artifactfolder}/sources/royale-asjs" target="all" />
@@ -891,21 +895,21 @@
         <exec executable="git" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="clone" />
             <arg value="--branch" />
-            <arg value="org.apache.royale.compiler-${releaseversion}-rc${rc}" />
+            <arg value="org.apache.royale.compiler-${release.version}-rc${rc}" />
             <arg value="https://github.com/apache/royale-compiler.git" />
             <arg value="royale-compiler" />
         </exec>
         <exec executable="git" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="clone" />
             <arg value="--branch" />
-            <arg value="org.apache.royale.typedefs-${releaseversion}-rc${rc}" />
+            <arg value="org.apache.royale.typedefs-${release.version}-rc${rc}" />
             <arg value="https://github.com/apache/royale-typedefs.git" />
             <arg value="royale-typedefs" />
         </exec>
         <exec executable="git" dir="${artifactfolder}/sources" failonerror="true" >
             <arg value="clone" />
             <arg value="--branch" />
-            <arg value="org.apache.royale.framework-${releaseversion}-rc${rc}" />
+            <arg value="org.apache.royale.framework-${release.version}-rc${rc}" />
             <arg value="https://github.com/apache/royale-asjs.git" />
             <arg value="royale-asjs" />
         </exec>
@@ -916,7 +920,7 @@
     <target name="validate-ant-source" description="do some tweaks so the clone is the same as maven source file set"  >
         <!-- unpack ant src which was generated from maven source package -->
         <mkdir dir="${artifactfolder}/artifacts/source" />
-        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/artifacts/source" />
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${release.version}-src.zip" dest="${artifactfolder}/artifacts/source" />
         <property name="artifactfolder" value="${artifactfolder}" />
         <!-- get the build date from flex-sdk-description and use it -->
         <xmlproperty file="${artifactfolder}/artifacts/source/royale-asjs/flex-sdk-description.xml" prefix="desc" />
@@ -948,14 +952,14 @@
     </target>
     
     <target name="compare-src-zips" >
-        <echo>releaseversion: ${releaseversion}</echo>
+        <echo>release.version: ${release.version}</echo>
         <echo>copy src-zip file to a separate folder</echo>
         <mkdir dir="${artifactfolder}/artifacts/srczip" />
-        <copy file="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip"
-            tofile="${artifactfolder}/artifacts/srczip/apache-royale-${releaseversion}-src.zip" />
+        <copy file="${artifactfolder}/artifacts/apache-royale-${release.version}-src.zip"
+            tofile="${artifactfolder}/artifacts/srczip/apache-royale-${release.version}-src.zip" />
         <mkdir dir="${artifactfolder}/sources/srczip" />
-        <copy file="${artifactfolder}/sources/royale-asjs/out/apache-royale-${releaseversion}-src.zip"
-            tofile="${artifactfolder}/sources/srczip/apache-royale-${releaseversion}-src.zip" />
+        <copy file="${artifactfolder}/sources/royale-asjs/out/apache-royale-${release.version}-src.zip"
+            tofile="${artifactfolder}/sources/srczip/apache-royale-${release.version}-src.zip" />
         <echo>running reproducible build plugin on ${artifactfolder}/artifacts/srczip</echo>
         <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
             <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
@@ -967,10 +971,10 @@
             <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/srczip" />
         </exec>
         <condition property="filesmatch" value="true">
-            <filesmatch file1="${artifactfolder}/artifacts/srczip/apache-royale-${releaseversion}-src.zip"
-            file2="${artifactfolder}/sources/srczip/apache-royale-${releaseversion}-src.zip" />
+            <filesmatch file1="${artifactfolder}/artifacts/srczip/apache-royale-${release.version}-src.zip"
+            file2="${artifactfolder}/sources/srczip/apache-royale-${release.version}-src.zip" />
         </condition>
-        <fail message="apache-royale-${releaseversion}-src.zip does not match" unless="filesmatch" />
+        <fail message="apache-royale-${release.version}-src.zip does not match" unless="filesmatch" />
     </target>
     
     <target name="validate-ant-bits">
@@ -980,16 +984,16 @@
         <mkdir dir="${artifactfolder}/artifacts/zip/js" />
         <mkdir dir="${artifactfolder}/artifacts/zip/swf" />
         <mkdir dir="${artifactfolder}/artifacts/zip/src" />
-        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.zip" dest="${artifactfolder}/artifacts/zip/src" />
-        <untar src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-src.tar.gz" dest="${artifactfolder}/artifacts/tar/src" compression="gzip">
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${release.version}-src.zip" dest="${artifactfolder}/artifacts/zip/src" />
+        <untar src="${artifactfolder}/artifacts/apache-royale-${release.version}-src.tar.gz" dest="${artifactfolder}/artifacts/tar/src" compression="gzip">
             <cutdirsmapper dirs="1" />
         </untar>
-        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js.zip" dest="${artifactfolder}/artifacts/zip/js" />
-        <untar src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js.tar.gz" dest="${artifactfolder}/artifacts/tar/js" compression="gzip">
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js.zip" dest="${artifactfolder}/artifacts/zip/js" />
+        <untar src="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js.tar.gz" dest="${artifactfolder}/artifacts/tar/js" compression="gzip">
             <cutdirsmapper dirs="1" />
         </untar>
-        <unzip src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js-swf.zip" dest="${artifactfolder}/artifacts/zip/swf" />
-        <untar src="${artifactfolder}/artifacts/apache-royale-${releaseversion}-bin-js-swf.tar.gz" dest="${artifactfolder}/artifacts/tar/swf" compression="gzip">
+        <unzip src="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js-swf.zip" dest="${artifactfolder}/artifacts/zip/swf" />
+        <untar src="${artifactfolder}/artifacts/apache-royale-${release.version}-bin-js-swf.tar.gz" dest="${artifactfolder}/artifacts/tar/swf" compression="gzip">
             <cutdirsmapper dirs="1" />
         </untar>
         <antcall target="validate-ant-jars" />

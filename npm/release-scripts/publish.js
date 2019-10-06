@@ -44,6 +44,13 @@ if (!type) {
 }
 
 try {
+	var RegClient = require('npm-registry-client');
+	var client = new RegClient();
+	client.adduser(npmURL, addUserParams, function(error) {
+		    if (error)
+			    throw new Error(error);
+	});
+	/*
     npm.load(null,function(loadError) {
         if (loadError) {
             throw new Error(loadError);
@@ -54,29 +61,33 @@ try {
                 throw new Error(addUserError);
             }
         });
+	*/
+    var metadata;
+    if(type == 'js-only') {
+        metadata = require('../js-only/package.json') ;
+    }
+    else if(type == 'js-swf') {
+        metadata = require('../js-swf/package.json') ;
+    }
+    var body = fs.createReadStream(pathToTarball);
+    var publishParams = {metadata: metadata, access: 'public', body: body, auth: auth};
 
-        var metadata;
-        if(type == 'js-only') {
-            metadata = require('../js-only/package.json') ;
-        }
-        else if(type == 'js-swf') {
-            metadata = require('../js-swf/package.json') ;
-        }
-        var body = fs.createReadStream(pathToTarball);
-        var publishParams = {metadata: metadata, access: 'public', body: body, auth: auth};
+    console.log('Publishing to NPM: ' + metadata.name + ' version: ' + metadata.version + '...');
 
-        console.log('Publishing to NPM: ' + metadata.name + ' version: ' + metadata.version + '...');
-
-        npm.registry.publish(npmURL, publishParams, function(publishError) {
+    client.publish(npmURL, publishParams, function(publishError) {
             if (publishError) {
                 throw new Error(publishError);
             }
             console.log('Successfully published: ' + metadata.name + ' version: ' + metadata.version);
         });
 
-    });
+/*    });
+	*/
 
 }
 catch (error) {
-    console.log('Failed to publish to npm ' +  metadata.name + ' version: ' + metadata.version + '\n error: ' + error);
+	if (metadata)
+	    console.log('Failed to publish to npm ' +  metadata.name + ' version: ' + metadata.version + '\n error: ' + error);
+	else
+		console.log('Failed to adduser ' + '\n error: ' + error);
 }

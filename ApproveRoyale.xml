@@ -88,7 +88,7 @@
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
 		
-        <target name="check-flash" if="use-flash">
+    <target name="check-flash" if="use-flash">
         <available file="${env.AIR_HOME}"
             type="dir" 
             property="AIR_HOME" value="${env.AIR_HOME}" />
@@ -557,6 +557,7 @@
                 <exclude name="royale-asjs/js/lib/jsc.jar"/>
                 <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
                 <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
+                <exclude name="royale-asjs/js/lib/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/lib/adt.jar"/>
                 <exclude name="royale-asjs/lib/compc.jar"/>
                 <exclude name="royale-asjs/lib/compiler-asc.jar"/>
@@ -777,7 +778,19 @@
         <antcall target="build_maven" />
     </target>
 
-    <target name="build_maven" >
+    <target name="build_maven">
+        <condition property="compiler_mvn_profiles" value="test-using-swf,main"
+            else="main">
+            <isset property="env.AIR_HOME" />
+        </condition>
+        <condition property="asjs_mvn_profiles" value="generate-swcs-for-swf,generate-swf,main"
+            else="main">
+            <isset property="env.AIR_HOME" />
+        </condition>
+        <condition property="asjs_mvn_defines" value="-Dgenerate.swf.swcs=true"
+            else="-Ddummy=true">
+            <isset property="env.AIR_HOME" />
+        </condition>
         <echo>Path is ${env.Path}</echo>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="-P" />
@@ -785,16 +798,21 @@
             <arg value="clean" />
             <arg value="install" />
         </exec>
-        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" inputstring="Yes">
             <arg value="clean" />
+            <arg value="-P" />
+            <arg value="${compiler_mvn_profiles}" />
             <arg value="install" />
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-typedefs" failonerror="true" >
             <arg value="clean" />
             <arg value="install" />
         </exec>
-        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" >
+        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" inputstring="Yes">
+            <arg value="${asjs_mvn_defines}" />
             <arg value="clean" />
+            <arg value="-P" />
+            <arg value="${asjs_mvn_profiles}" />
             <arg value="install" />
         </exec>
     </target>

@@ -27,6 +27,7 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+    <property name="config_arg" value="flex" />
 
     <include file="${basedir}/../../build_example.xml" />
     

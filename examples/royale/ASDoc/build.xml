@@ -116,7 +116,18 @@
         </fail>
     </target>
     
-    <target name="json.swf" unless="json.exists" >
+    <target name="check.swf.needed">
+        <condition property="swf.json.needed" value="true">
+            <and>
+                <not>
+                    <isset property="json.exists" />
+                </not>
+                <isset property="env.AIR_HOME" />
+            </and>
+        </condition>
+    </target>
+    
+    <target name="json.swf" depends="check.swf.needed" if="swf.json.needed" >
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCodeSWF"
             fork="true">
