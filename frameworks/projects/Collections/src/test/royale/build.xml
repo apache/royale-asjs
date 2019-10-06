@@ -27,7 +27,7 @@
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${env.ROYALE_HOME}"/>
     <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
-    <property name="target.name" value="Core-${release.version}.swc" />
+    <property name="target.name" value="Collections-${release.version}.swc" />
 
     <property name="report.dir" value="${basedir}/out" />
 
