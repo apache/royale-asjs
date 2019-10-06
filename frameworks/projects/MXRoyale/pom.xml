@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <artifactId>MXRoyale</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: MXRoyale</name>
@@ -40,7 +40,7 @@
         <artifactId>royale-maven-plugin</artifactId>
         <version>${royale.compiler.version}</version>
         <extensions>true</extensions>
-        <configuration>
+        <configuration combine.children="append">
           <namespaces>
             <namespace>
               <uri>library://ns.apache.org/royale/mx</uri>
@@ -57,6 +57,7 @@
               </include-file>
           </includeFiles>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
           <defines>
               <define>
                   <name>GOOG::DEBUG</name>
@@ -72,171 +73,184 @@
               </define>
           </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <additionalCompilerOptions>-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG;-js-compiler-define=ROYALE::DISPLAYOBJECT,IUIComponent;-js-compiler-define=ROYALE::PROXYVISIBILITY,public;-namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml</additionalCompilerOptions>
+          <additionalCompilerOptions>${project.compiler.options};-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG;-js-compiler-define=ROYALE::DISPLAYOBJECT,IUIComponent;-js-compiler-define=ROYALE::PROXYVISIBILITY,public;-namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+      <profile>
+          <id>swf-dependencies</id>
+          <activation>
+              <property>
+                  <name>generate.swf.swcs</name>
+              </property>
+          </activation>
+          <dependencies>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Core</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Binding</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Basic</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Graphics</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Collections</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>DragDrop</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Express</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Effects</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Charts</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Network</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Reflection</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+          </dependencies>
+      </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.4</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Binding</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.4</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Basic</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Basic</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Graphics</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Graphics</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Collections</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Collections</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>DragDrop</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>DragDrop</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Express</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Express</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Effects</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Effects</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Charts</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Charts</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Network</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Network</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>Reflection</artifactId>
-        <version>0.9.4</version>
-        <type>swc</type>
-        <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>Reflection</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>
     <dependency>
         <groupId>org.apache.royale.framework</groupId>
         <artifactId>XML</artifactId>
-        <version>0.9.4</version>
+        <version>0.9.6</version>
         <type>swc</type>
         <classifier>js</classifier>
     </dependency>

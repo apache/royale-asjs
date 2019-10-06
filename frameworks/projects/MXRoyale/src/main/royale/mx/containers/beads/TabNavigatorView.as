@@ -193,7 +193,7 @@ public class TabNavigatorView extends GroupView
     
     private function tabChangeHandler(event:Event):void
     {
-        dispatchEvent(new Event("layoutNeeded"));
+        (_strand as TabNavigator).selectedIndex = (tabBar as TabBar).selectedIndex;
     }
 
 }

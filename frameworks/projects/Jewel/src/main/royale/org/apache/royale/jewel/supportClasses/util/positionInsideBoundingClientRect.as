@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.util
 {
+    import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.geom.Point;
     import org.apache.royale.utils.PointUtils;
-    import org.apache.royale.core.IStrand;
 
     /**
      *  Determines the position of the popUp related to a point to avoid

@@ -78,6 +78,9 @@
         <ant dir="${basedir}/express/DataBindingExample"/>
         <ant dir="${basedir}/express/DataGridExample"/>
         <ant dir="${basedir}/express/GitHubCommitLogViewer"/>
+        <ant dir="${basedir}/crux/CruxQuickStart"/>
+        <ant dir="${basedir}/crux/CruxQuickStartBasic"/>
+        <ant dir="${basedir}/crux/CruxGitHubCommitLogViewer"/>
         <ant dir="${basedir}/royale/AccordionExample"/>
         <ant dir="${basedir}/royale/ASDoc"/>
         <ant dir="${basedir}/royale/CordovaCameraExample"/>
@@ -93,7 +96,8 @@
         <ant dir="${basedir}/royale/DragAndDropExample"/>
         <ant dir="${basedir}/royale/Flex2Royale"/>
         <ant dir="${basedir}/royale/JSON2ASVO"/>
-        <ant dir="${basedir}/royale/JewelExample"/>
+        <ant dir="${basedir}/royale/TourDeJewel"/>
+		<ant dir="${basedir}/royale/CreditCardValidatorExample"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL"/>
         <ant dir="${basedir}/royale/RoyaleWebsite"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer"/>
@@ -136,6 +140,9 @@
         <ant dir="${basedir}/express/DataBindingExample" target="clean"/>
         <ant dir="${basedir}/express/DataGridExample" target="clean"/>
         <ant dir="${basedir}/express/GitHubCommitLogViewer" target="clean"/>
+        <ant dir="${basedir}/crux/CruxQuickStart" target="clean"/>
+        <ant dir="${basedir}/crux/CruxQuickStartBasic" target="clean"/>
+        <ant dir="${basedir}/crux/CruxGitHubCommitLogViewer" target="clean"/>
         <ant dir="${basedir}/royale/AccordionExample" target="clean"/>
         <ant dir="${basedir}/royale/ASDoc" target="clean"/>
         <ant dir="${basedir}/royale/CordovaCameraExample" target="clean"/>
@@ -151,7 +158,7 @@
         <ant dir="${basedir}/royale/DragAndDropExample" target="clean"/>
         <ant dir="${basedir}/royale/Flex2Royale" target="clean"/>
         <ant dir="${basedir}/royale/JSON2ASVO" target="clean"/>
-        <ant dir="${basedir}/royale/JewelExample" target="clean"/>
+        <ant dir="${basedir}/royale/TourDeJewel" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleWebsite" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="clean"/>
@@ -182,6 +189,9 @@
     <target name="examine" description="Cleans all SWCs and their resource bundles">
         <ant dir="${basedir}/express/DataBindingExample" target="examine"/>
         <ant dir="${basedir}/express/DataGridExample" target="examine"/>
+        <ant dir="${basedir}/crux/CruxQuickStart" target="examine"/>
+        <ant dir="${basedir}/crux/CruxQuickStartBasic" target="examine"/>
+        <ant dir="${basedir}/crux/CruxGitHubCommitLogViewer" target="examine"/>
         <ant dir="${basedir}/royale/AccordionExample" target="examine"/>
         <ant dir="${basedir}/royale/ASDoc" target="examine"/>
         <ant dir="${basedir}/royale/CordovaCameraExample" target="examine"/>

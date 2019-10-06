@@ -67,7 +67,9 @@ package org.apache.royale.reflection
                 {
                     var name:String = data.names[0].qName;
                     var def:Object = getDefinitionByName(name);
-                    rdata = def.prototype.ROYALE_REFLECTION_INFO();
+                    if (def.prototype.ROYALE_REFLECTION_INFO)
+                        rdata = def.prototype.ROYALE_REFLECTION_INFO();
+                    else rdata = data;
                 }
                 else
                     rdata = data;

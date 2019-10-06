@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.beads.models.IDropDownListModel;
 	import org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer;
 
 	/**
@@ -57,8 +58,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			var ir:ISelectableItemRenderer;
 			var item:Object;
-
-			var offset:int = 1;
+			
+			var model:IDropDownListModel = _strand.getBeadByType(IDropDownListModel) as IDropDownListModel;
+			var offset:int = model.offset;
 
 			if(offset == 1)
 			{

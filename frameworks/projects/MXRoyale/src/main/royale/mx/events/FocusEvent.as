@@ -25,6 +25,11 @@ import flash.events.FocusEvent;
 import flash.display.InteractiveObject;      
 }
 /* import mx.events.Event;*/
+COMPILE::JS
+{
+import goog.events.BrowserEvent;
+}
+
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
 
@@ -42,6 +47,8 @@ import org.apache.royale.events.IRoyaleEvent;
 COMPILE::SWF
 public class FocusEvent extends flash.events.FocusEvent
 {
+    public static const FOCUS_IN:String = "focusIn";
+    public static const FOCUS_OUT:String = "focusOut";
 	public function FocusEvent(type:String, bubbles:Boolean = false,
                               cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none")
     {
@@ -104,7 +111,23 @@ public class FocusEvent extends org.apache.royale.events.Event
 	}
 	
 
-	
+    /**
+     * @type {?goog.events.FocusEvent}
+     */
+    private var wrappedEvent:Object;
+    
+    /**
+     * @type {FocusEvent}
+     */
+    private var nativeEvent:Object;
+    
+    public function wrapEvent(event:goog.events.BrowserEvent):void
+    {
+        wrappedEvent = event;
+        nativeEvent = event.getBrowserEvent();
+    }
+    
+
 
 	
 }

@@ -53,7 +53,7 @@ internal class MXRoyaleClasses
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
-	import mx.controls.beads.ToolTipBead; ToolTipBead;
+	import mx.controls.beads.AlertView; AlertView;
 	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
 	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
 	import mx.events.CloseEvent; CloseEvent;
@@ -68,10 +68,15 @@ internal class MXRoyaleClasses
 	import mx.effects.Tween; Tween;
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
+	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;
+	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
 	import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
+    import mx.controls.listClasses.VirtualDataItemRendererFactoryForICollectionViewData; VirtualDataItemRendererFactoryForICollectionViewData;
+    import mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData; VirtualDataItemRendererFactoryForIListData;
 	import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
+    import mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData; DataItemRendererFactoryForICollectionViewAdvancedDataGridData;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;
@@ -148,14 +153,24 @@ internal class MXRoyaleClasses
 	import mx.utils.ByteArray; mx.utils.ByteArray;
 	import mx.controls.RichTextEditor; RichTextEditor;
 	import mx.events.SecurityErrorEvent; SecurityErrorEvent;
-	import mx.events.IOErrorEvent; IOErrorEvent;
 	import mx.events.HTTPStatusEvent; HTTPStatusEvent;
 	import mx.net.FileReference; FileReference;
 	import mx.net.FileFilter; FileFilter;
 	import mx.events.ProgressEvent; ProgressEvent;
 	import mx.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridListArea; AdvancedDataGridListArea;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController; AdvancedDataGridSingleSelectionMouseController;
+    import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
+    import mx.controls.beads.DataGridView; DataGridView;
+    import mx.controls.beads.layouts.AdvancedDataGridLayout; AdvancedDataGridLayout;
+    import mx.controls.beads.layouts.DataGridLayout; DataGridLayout;
+    import mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout; AdvancedDataGridVirtualListVerticalLayout;
 	import mx.formatters.Formatter; Formatter;
 	import mx.formatters.IFormatter; IFormatter;
+	import mx.formatters.NumberBase; NumberBase;
+	import mx.formatters.NumberBaseRoundType; NumberBaseRoundType;
+	import mx.formatters.CurrencyFormatter; CurrencyFormatter;
 	import mx.events.CalendarLayoutChangeEvent; CalendarLayoutChangeEvent;
 	import mx.net.SharedObject; SharedObject;
 	import mx.modules.ModuleManager; ModuleManager;
@@ -190,7 +205,14 @@ internal class MXRoyaleClasses
 	import mx.rpc.CallResponder; CallResponder;
 	import mx.rpc.http.Operation; Operation;
 	import mx.events.TreeEvent; TreeEvent;
+	import mx.messaging.channels.URLVariables; URLVariables;
+	import mx.controls.Menu; Menu;
+	import mx.events.NumericStepperEvent; NumericStepperEvent;
+	import mx.controls.beads.DataProviderChangeNotifier; DataProviderChangeNotifier;
 	
+	import mx.controls.PopUpButton; PopUpButton;
+	import mx.controls.PopUpMenuButton; PopUpMenuButton;
+
 
 	COMPILE::JS
     {
@@ -204,10 +226,13 @@ internal class MXRoyaleClasses
 	import mx.controls.beads.CheckBoxView; CheckBoxView;
 	import mx.controls.beads.RadioButtonView; RadioButtonView;
 	}
+    import mx.controls.beads.ComboBoxView; ComboBoxView;
+	import mx.controls.beads.controllers.RadioButtonMouseController; RadioButtonMouseController;
     import mx.controls.beads.NumericStepperView; NumericStepperView;
     import mx.controls.beads.DateFieldView; DateFieldView;
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
-    import mx.controls.beads.controllers.MenuBarMouseController;
+    import mx.controls.beads.controllers.MenuBarMouseController; MenuBarMouseController;
+    import mx.controls.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
     
     import mx.containers.PanelTitleBar; PanelTitleBar;
     import mx.containers.beads.PanelView; PanelView;
@@ -217,9 +242,38 @@ internal class MXRoyaleClasses
     import mx.controls.beads.models.ComboBoxModel; ComboBoxModel;
     
     import mx.controls.beads.models.SingleSelectionICollectionViewModel; SingleSelectionICollectionViewModel;
+    import mx.controls.beads.models.DataGridICollectionViewModel; DataGridICollectionViewModel;
     import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
     import mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer; TextButtonDataGridColumnItemRenderer;
     
+    import mx.controls.menuClasses.MenuBarItemRenderer; MenuBarItemRenderer;
+    import mx.controls.menuClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
+
+    import mx.containers.beads.FormItemView; FormItemView;
+    import mx.containers.beads.FormItemContainer; FormItemContainer;
+
+
+	// --- RpcClassAliasInitializer
+	import org.apache.royale.reflection.registerClassAlias;
+
+	import mx.messaging.messages.AcknowledgeMessage;
+	import mx.messaging.messages.AsyncMessage;
+	import mx.messaging.messages.CommandMessage;
+	import mx.messaging.messages.RemotingMessage;
+	registerClassAlias("flex.messaging.messages.CommandMessage", CommandMessage);
+	registerClassAlias("flex.messaging.messages.AcknowledgeMessage", AcknowledgeMessage);
+	registerClassAlias("flex.messaging.messages.AsyncMessage", AsyncMessage);
+	registerClassAlias("flex.messaging.messages.RemotingMessage", RemotingMessage);  
+
+	import mx.messaging.messages.AcknowledgeMessageExt;
+	import mx.messaging.messages.AsyncMessageExt;
+	import mx.messaging.messages.CommandMessageExt;
+	registerClassAlias("DSK", AcknowledgeMessageExt);
+	registerClassAlias("DSA", AsyncMessageExt);
+	registerClassAlias("DSC", CommandMessageExt);
+	// RpcClassAliasInitializer ----------------------------------------
+    
+	import mx.net.URLLoader; URLLoader;
 }
 
 }

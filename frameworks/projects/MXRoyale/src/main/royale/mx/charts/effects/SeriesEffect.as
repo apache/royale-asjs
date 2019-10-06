@@ -85,6 +85,8 @@ public class SeriesEffect extends TweenEffect
     //  elementOffset
     //----------------------------------
 
+    private var _elementOffset:Number = 20;
+    
     [Inspectable(category="General", defaultValue="20")]
 
     /**
@@ -115,12 +117,21 @@ public class SeriesEffect extends TweenEffect
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var elementOffset:Number = 20;
+    public function get elementOffset():Number
+    {
+        return _elementOffset;
+    }
+    public function set elementOffset(value:Number):void
+    {
+        _elementOffset = value;
+    }
 
     //----------------------------------
     //  minimumElementDuration
     //----------------------------------
 
+    private var _minimumElementDuration:Number = 0;
+    
     [Inspectable(category="General", defaultValue="0")]
 
     /**
@@ -163,12 +174,21 @@ public class SeriesEffect extends TweenEffect
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var minimumElementDuration:Number = 0;
+    public function get minimumElementDuration():Number
+    {
+        return _minimumElementDuration;
+    }
+    public function set minimumElementDuration(value:Number):void
+    {
+        _minimumElementDuration = value;
+    }
 
     //----------------------------------
     //  offset
     //----------------------------------
 
+    private var _offset:Number = 0;
+    
     [Inspectable(category="General", defaultValue="0")]
 
     /**
@@ -184,11 +204,20 @@ public class SeriesEffect extends TweenEffect
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var offset:Number = 0;
+    public function get offset():Number
+    {
+        return _offset;
+    }
+    public function set offset(value:Number):void
+    {
+        _offset = value;
+    }
 
     //----------------------------------
     //  type
     //----------------------------------
+
+    private var _type:String = "show";
 
     [Inspectable(environment="none")]
 
@@ -202,7 +231,14 @@ public class SeriesEffect extends TweenEffect
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var type:String = "show";
+    public function get type():String
+    {
+        return _type;
+    }
+    public function set type(value:String):void
+    {
+        _type = value;
+    }
     
     //--------------------------------------------------------------------------
     //

@@ -22,14 +22,14 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.core.IDateChooserModel;
-	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
-	 * The DateFormatter class wraps an IFormatBead and adds an hour.
+	 * The DateFormatter class wraps an IFormatter and adds an hour.
 	 *  
 	 *  @royaleignoreimport org.apache.royale.core.IStrandWithModel
 	 * 
@@ -38,64 +38,11 @@ package org.apache.royale.html.accessories
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class DateAndTimeFormatter extends Strand implements IFormatBead
+	public class DateAndTimeFormatter extends Strand implements IFormatter
 	{
 
-		private var _formattedResult:String;
-		private var _originalFormatter:IFormatBead;
-		private var _model:IDateChooserModel;
+		private var _originalFormatter:IFormatter;
 		private var _strand:IStrand;
-		/**
-		 *  The name of the property on the model holding the value to be formatted.
-		 *  The default is selectedDate.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get propertyName():String
-		{
-			return _originalFormatter.propertyName;
-		}
-
-		public function set propertyName(value:String):void
-		{
-			_originalFormatter.propertyName = value;
-		}
-		
-		/**
-		 *  The name of the event dispatched when the property changes. The
-		 *  default is selectedDateChanged.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get eventName():String
-		{
-			return _originalFormatter.eventName;
-		}
-
-		public function set eventName(value:String):void
-		{
-			_originalFormatter.eventName = value;
-		}
-
-		/**
-		 *  The formatted result.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function get formattedString():String
-		{
-			return _formattedResult;
-		}
-		
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -110,53 +57,29 @@ package org.apache.royale.html.accessories
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			_model = IStrandWithModel(_strand).model as IDateChooserModel;
 			if (_originalFormatter)
 			{
 				addBead(_originalFormatter);
 			} else
 			{
-				_originalFormatter = getBeadByType(IFormatBead) as IFormatBead;
+				_originalFormatter = getBeadByType(IFormatter) as IFormatter;
 			}
-			IEventDispatcher(_originalFormatter).addEventListener('formatChanged', formatChangedHandler);
 		}
 		
-		/**
-		 *  @copy org.apache.royale.core.UIBase#model
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		override public function get model():IBeadModel
-		{
-			return _model;
-		}
 
 		override public function addBead(bead:IBead):void
 		{
-			if (model)
-			{
-				super.addBead(bead);
-			} else
-			{
-				_originalFormatter = bead as IFormatBead;
-			}
+			_originalFormatter = bead as IFormatter;
 		}
-
-		private function formatChangedHandler(event:Event):void
+		public function format(value:Object):String
 		{
-			var dateResult:String = _originalFormatter.formattedString;
-			var selectedDate:Date = _model.selectedDate;
-			_formattedResult = getFormattedResult(selectedDate);
-			dispatchEvent(new Event('formatChanged'));
+			return getFormattedResult(value as Date);
 		}
 
 		protected function getFormattedResult(date:Date):String
 		{
 			var formattedHour:String = getFormattedHour(date);
-			return _originalFormatter.formattedString + " " + formattedHour;
+			return _originalFormatter.format(date) + " " + formattedHour;
 		}
 		
 		private function getNumberAsPaddedString(value:Number):String

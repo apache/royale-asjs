@@ -30,6 +30,7 @@ package org.apache.royale.svg
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.createSVG;
     }
 
 	/**
@@ -132,7 +133,7 @@ package org.apache.royale.svg
             {
                 var style:String = this.getStyleStr();
 				if (_textElem == null) {
-                	_textElem = document.createElementNS('http://www.w3.org/2000/svg', 'text') as WrappedHTMLElement;
+                	_textElem = createSVG('text') as WrappedHTMLElement;
                 	_textElem.royale_wrapper = this;
 					element.appendChild(_textElem);
 				}

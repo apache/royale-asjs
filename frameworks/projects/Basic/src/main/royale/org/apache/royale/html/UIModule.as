@@ -18,17 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-    COMPILE::SWF
-    {
-        import flash.system.ApplicationDomain;        
-        import flash.utils.getQualifiedClassName;        
-    }
     import org.apache.royale.core.IFlexInfo;
     import org.apache.royale.core.IModule;
     import org.apache.royale.core.IValuesImpl;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.ValueChangeEvent;
+    import org.apache.royale.core.ValuesManager;
+    
+    COMPILE::SWF
+    {
+        import flash.system.ApplicationDomain;
+        import flash.utils.getQualifiedClassName;        
+    }
 
     /**
      *  Indicates that the state change has completed.  All properties

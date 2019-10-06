@@ -64,7 +64,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     {
         if(goog.DEBUG)
         {
-            if(bytes && typeof bytes.byteLength != "number")
+            if(bytes && typeof bytes.byteLength != "number" && bytes.buffer !== undefined)
                 throw new TypeError("BinaryData can only be initialized with ArrayBuffer");
         }
         ba = bytes ? bytes as ArrayBuffer : new ArrayBuffer(0);
@@ -179,13 +179,13 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::SWF
-    private var ba:ByteArray;
+	protected var ba:ByteArray;
 
     COMPILE::JS
-    private var ba:ArrayBuffer;
+	protected var ba:ArrayBuffer;
 
     COMPILE::JS
-    private var _position:int = 0;
+    protected var _position:int = 0;
 
     /**
      * Get the platform-specific data for sending.
@@ -279,28 +279,52 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     *
+     *  @royaleignorecoercion ArrayBuffer
      */
-    public function writeBytes(source:BinaryData, offset:uint = 0, length:uint = 0):void
+    public function writeBinaryData(bytes:BinaryData, offset:uint = 0, length:uint = 0):void
     {
+		if (!bytes) throw new TypeError('Error #2007: Parameter bytes must be non-null.');
+		if (bytes == this) throw new Error('Parameter bytes must be another instance.');
         COMPILE::SWF
         {
-            ba.writeBytes(source.ba,offset,length);
+            ba.writeBytes(bytes.ba,offset,length);
         }
 
         COMPILE::JS
         {
-
-            if (length == 0) length = source.length - offset ;
-            if (_position + length > _len) {
-                setBufferSize(_position + length);
-            }
-            var dest:Uint8Array = new Uint8Array(ba, _position, length);
-            var src:Uint8Array = new Uint8Array(source.ba, offset,length);
-            dest.set(src);
-            _position += length;
+			writeBytes(bytes.ba as ArrayBuffer,offset,length);
         }
 
     }
+    
+	COMPILE::SWF
+	public function writeBytes(bytes:ByteArray, offset:uint = 0, length:uint = 0):void {
+		ba.writeBytes(bytes, offset, length);
+	}
+ 
+	COMPILE::JS
+	public function writeBytes(bytes:ArrayBuffer, offset:uint = 0, length:uint = 0):void {
+		
+		if (!bytes) throw new TypeError('Error #2007: Parameter bytes must be non-null.')
+		if (offset > bytes.byteLength) {
+			//offset exceeds source length
+			throw new RangeError('Error #2006: The supplied index is out of bounds.');
+		}
+		if (length == 0) length = bytes.byteLength - offset ;
+		else if (length > bytes.byteLength - offset) {
+			//length exceeds source length
+			throw new RangeError('Error #2006: The supplied index is out of bounds.');
+		}
+		
+		if (_position + length > _len) {
+			setBufferSize(_position + length);
+		}
+		var dest:Uint8Array = new Uint8Array(ba, _position, length);
+		var src:Uint8Array = new Uint8Array(bytes, offset, length);
+		dest.set(src);
+		_position += length;
+	}
 
     /**
      *  Write a short integer (16 bits, typically represented by a 32 bit int parameter between -32768 and 65535)
@@ -392,7 +416,6 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
                 arr[_position++] = (val & 0x00ff0000) >> 16;
                 arr[_position++] = (val & 0xff000000) >> 24;
             }
-
         }
     }
 
@@ -465,7 +488,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         COMPILE::JS
         {
-            return !!getTypedArray()[_position++];// Boolean(readUnsignedByte());
+            return Boolean(getTypedArray()[_position++]);
         }
     }
 
@@ -518,7 +541,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  If length is omitted or is zero, all bytes are read following the current position to the end
      *  of this BinaryData. If offset is also omitted, it defaults to zero.
      *
-     *  @param {BinaryData} destination The destination BinaryData to write bytes into from the current position
+     *  @param {BinaryData} bytes The destination BinaryData to write bytes into from the current position
      *  @param {uint} offset The optional offset value of the starting bytes to write inside destination
      *  @param {uint} length The optional length value of the bytes to read
      *
@@ -527,31 +550,44 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function readBytes(destination:BinaryData, offset:uint = 0, length:uint = 0):void
+    public function readBinaryData(bytes:BinaryData, offset:uint = 0, length:uint = 0):void
     {
+		if (!bytes) throw new TypeError('Error #2007: Parameter bytes must be non-null.');
+        if (bytes == this) throw new Error('Parameter bytes must be another instance.');
         COMPILE::SWF
         {
-            ba.readBytes(destination.ba,offset,length);
+            ba.readBytes(bytes.ba,offset,length);
         }
 
         COMPILE::JS
         {
-            //do we need to check offset and length and sanitize or throw an error?
-
-            if (length == 0) length = _len - _position ;
-            //extend the destination length if necessary
-            var extra:int = offset + length - destination._len;
-            if (extra > 0)
-                destination.growBuffer(extra);
-            var src:Uint8Array = new Uint8Array(ba, _position,length);
-            var dest:Uint8Array = new Uint8Array(destination.ba, offset, length);
-
-            dest.set(src);
-            //todo: check position behavior vs. flash implementation (do either or both advance their internal position) :
-            _position+=length;
+			if (length == 0) length = _len - _position ;
+            bytes.mergeInToArrayBuffer(offset,new Uint8Array(ba, _position, length));
+			_position+=length;
         }
-
     }
+    
+    COMPILE::SWF
+    public function readBytes(bytes:ByteArray, offset:uint = 0, length:uint = 0):void {
+        ba.readBytes(bytes, offset, length);
+    }
+    
+	
+	COMPILE::JS
+    public function readBytes(bytes:ArrayBuffer, offset:uint = 0, length:uint = 0):void {
+		if (!bytes) throw new TypeError('Error #2007: Parameter bytes must be non-null.');
+        if(bytes == ba) throw new Error('cannot read into internal ArrayBuffer as both destination and source');
+		if (length == 0) length = _len - _position ;
+		//extend the destination length if necessary
+		var extra:int = offset + length - bytes.byteLength;
+        if (extra > 0)  throw new Error('cannot read into destination ArrayBuffer, insufficient fixed length');
+		var src:Uint8Array = new Uint8Array(ba, _position, length);
+		var dest:Uint8Array = new Uint8Array(bytes, offset, length);
+		
+		dest.set(src);
+		_position+=length;
+    }
+	
 
     /**
      *  Read a byte of binary data at the specified index. Does not change the <code>position</code> property.
@@ -577,10 +613,10 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::JS
-    private var _typedArray:Uint8Array;
+	protected var _typedArray:Uint8Array;
 
     COMPILE::JS
-    private function getTypedArray():Uint8Array
+    protected function getTypedArray():Uint8Array
     {
         if(_typedArray == null)
             _typedArray = new Uint8Array(ba);
@@ -588,10 +624,10 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::JS
-    private var _dataView:DataView;
+	protected var _dataView:DataView;
 
     COMPILE::JS
-    private function getDataView():DataView
+	protected function getDataView():DataView
     {
         if(!_dataView)
             _dataView = new DataView(ba);
@@ -767,7 +803,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::JS
-    private var _len:uint;
+    protected var _len:uint;
 
     /**
      *  The length of this BinaryData, in bytes.
@@ -807,7 +843,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::JS
-    protected function setBufferSize(newSize):void
+    protected function setBufferSize(newSize:uint):void
     {
         var n:uint = _len;
         if (n != newSize) {
@@ -945,7 +981,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
      *  from the BinaryData and returns a string.
      *  The <code>position</code> is advanced to the first byte following the string's bytes.
      *
-     *  @param {uint} length An unsigned short indicating the length of the UTF-8 bytes.
+     *  @param {uint} length An unsigned integer indicating the length of the UTF-8 bytes.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -963,6 +999,9 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         {
             // Code taken from GC
             // Use native implementations if/when available
+            if (_position + length > _len) {
+                throw new Error('Error #2030: End of file was encountered.');
+            }
             var bytes:Uint8Array = new Uint8Array(ba,_position,length);
             if('TextDecoder' in window)
             {
@@ -1069,13 +1108,18 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::JS
-    private function mergeInToArrayBuffer(offset:uint, newBytes:Uint8Array):uint {
+    protected function mergeInToArrayBuffer(offset:uint, newBytes:Uint8Array):uint {
         var newContentLength:uint = newBytes.length;
         var dest:Uint8Array;
-		var mergeUpperBound:uint = offset + newContentLength
+		var mergeUpperBound:uint = offset + newContentLength;
         if (mergeUpperBound > _len) {
-            dest = new Uint8Array(offset + newContentLength);
-            dest.set(new Uint8Array(ba, 0, offset));
+            dest = new Uint8Array(mergeUpperBound);
+            if (_len) {
+                var copyOffset:uint = Math.min(offset, _len);
+				if (copyOffset > 0){
+					dest.set(new Uint8Array(ba, 0, copyOffset));
+				}
+            }
             dest.set(newBytes, offset);
             ba = dest.buffer;
             _typedArray = dest;
@@ -1089,7 +1133,7 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
     }
 
     COMPILE::JS
-    private function getUTFBytes(str:String, prependLength:Boolean):Uint8Array {
+    protected function getUTFBytes(str:String, prependLength:Boolean):Uint8Array {
         // Code taken from GC
         // Use native implementations if/when available
         var bytes:Uint8Array;
@@ -1151,6 +1195,17 @@ public class BinaryData implements IBinaryDataInput, IBinaryDataOutput
         }
         return bytes;
     }
+    
+    //required for interface compatibility on swf
+    COMPILE::SWF
+    public function readMultiByte(length:uint, charSet:String):String {
+        return ba.readMultiByte(length, charSet);
+    }
+	
+	COMPILE::SWF
+	public function writeMultiByte(value:String, charSet:String):void{
+		ba.writeMultiByte(value, charSet);
+	}
 
 }
 }

@@ -21,7 +21,7 @@
 <!-- Note:
     If you modify this file you may have to make the same change in build_framework.xml.
     build_framework.xml is renamed to build.xml when it is packaged.
-    It is used to build the frameworks directory from the zip file. 
+    It is used to build the frameworks directory from the zip file.
 -->
 <project name="frameworksJS" default="main" basedir=".">
 
@@ -45,21 +45,21 @@
     </condition>
     <condition property="isWindows">
         <os family="windows" />
-    </condition>   
+    </condition>
     <condition property="isLinux">
         <and>
-          <os family="unix"/>    
+          <os family="unix"/>
           <not>
-            <os family="mac"/>    
+            <os family="mac"/>
           </not>
         </and>
-    </condition>  
+    </condition>
 
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}" />
- 
+
     <target name="main" depends="check-compile-env,clean,prepare,compile"
         description="Clean build of all SWCs"/>
 
@@ -67,12 +67,12 @@
         <ant antfile="${ROYALE_HOME}/build.xml" target="check-compile-env" dir="${ROYALE_HOME}"/>
     </target>
 
-    
+
     <target name="prepare" depends="thirdparty-downloads"/>
-            
+
     <target name="thirdparty-downloads" unless="no.thirdparty-downloads" description="Downloads all the required thirdparty code.">
     </target>
-    
+
     <target name="compile" description="Builds all SWCs but not their resource bundles">
         <!-- order may matter due to dependencies -->
         <antcall target="Language"/>
@@ -92,11 +92,11 @@
         <antcall target="HTML5"/>
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
-        <antcall target="Network"/>
         <antcall target="Reflection"/>
+        <antcall target="Network"/>
+        <antcall target="RoyaleUnit"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
-        <antcall target="Testing"/>
         <antcall target="Text"/>
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
@@ -104,28 +104,29 @@
         <antcall target="Jewel"/>
         <antcall target="MXRoyale"/>
         <antcall target="SparkRoyale"/>
+        <antcall target="Crux"/>
         <antcall target="Ace"/>
         <antcall target="RoyaleSite"/>
     </target>
-    
+
     <target name="other.locales" description ="Builds resource SWCs for all locales">
         <!--<ant dir="${basedir}/projects/RoyaleUI" target="other.locales"/>-->
     </target>
-    
+
     <target name="doc" >
         <ant dir="${basedir}/projects/Core" target="doc" />
     </target>
-   
+
     <!--
 		Cleanup
 	-->
 
     <target name="super-clean" depends="thirdparty-clean,clean" description="Cleans everything including thirdparty downloads."/>
-	
+
     <target name="thirdparty-clean" unless="no.thirdparty-clean" description="Removes all thirdparty downloads.">
         <ant antfile="${basedir}/downloads.xml" target="clean" dir="${basedir}"/>
     </target>
-    
+
     <target name="clean" description="Cleans all SWCs and their resource bundles">
         <!-- Delete output from SWC projects -->
         <ant dir="${basedir}/projects/BindingJS" target="clean"/>
@@ -150,14 +151,15 @@
         <ant dir="${basedir}/projects/MobileJS" target="clean"/>
         <ant dir="${basedir}/projects/NetworkJS" target="clean"/>
         <ant dir="${basedir}/projects/ReflectionJS" target="clean"/>
+        <ant dir="${basedir}/projects/RoyaleUnitJS" target="clean"/>
         <ant dir="${basedir}/projects/StorageJS" target="clean"/>
-        <ant dir="${basedir}/projects/TestingJS" target="clean"/>
         <ant dir="${basedir}/projects/TextJS" target="clean"/>
         <ant dir="${basedir}/projects/TLFJS" target="clean"/>
         <ant dir="${basedir}/projects/XMLJS" target="clean"/>
         <ant dir="${basedir}/projects/IconsJS" target="clean"/>
         <ant dir="${basedir}/projects/JewelJS" target="clean"/>
         <ant dir="${basedir}/projects/MXRoyaleJS" target="clean"/>
+        <ant dir="${basedir}/projects/CruxJS" target="clean"/>
         <ant dir="${basedir}/projects/SparkRoyaleJS" target="clean"/>
         <ant dir="${basedir}/projects/AceJS" target="clean"/>
         <ant dir="${basedir}/projects/RoyaleSiteJS" target="clean"/>
@@ -165,11 +167,11 @@
         <delete dir="${basedir}/libs"/>
         <delete dir="${basedir}/generated-sources"/>
     </target>
-    
+
     <target name="Binding" description="Clean build of BindingJS.swc">
         <ant dir="${basedir}/projects/BindingJS"/>
     </target>
-    
+
     <target name="Charts" description="Clean build of ChartsJS.swc">
         <ant dir="${basedir}/projects/ChartsJS"/>
     </target>
@@ -233,7 +235,7 @@
 	<target name="MaterialDesignLite" description="Clean build of MaterialDesignLiteJS.swc">
         <ant dir="${basedir}/projects/MaterialDesignLiteJS"/>
     </target>
-	
+
     <target name="Mobile" description="Clean build of MobileJS.swc">
         <ant dir="${basedir}/projects/MobileJS"/>
     </target>
@@ -246,16 +248,16 @@
         <ant dir="${basedir}/projects/ReflectionJS"/>
     </target>
 
+    <target name="RoyaleUnit" description="Clean build of RoyaleUnitJS.swc">
+        <ant dir="${basedir}/projects/RoyaleUnitJS"/>
+    </target>
+
     <target name="Storage" description="Clean build of StorageJS.swc">
         <ant dir="${basedir}/projects/StorageJS"/>
     </target>
 
     <target name="XML" description="Clean build of XMLJS.swc">
         <ant dir="${basedir}/projects/XMLJS"/>
-    </target>
-
-    <target name="Testing" description="Clean build of TestingJS.swc">
-        <ant dir="${basedir}/projects/TestingJS"/>
     </target>
 
     <target name="Text" description="Clean build of TextJS.swc">
@@ -281,11 +283,15 @@
     <target name="SparkRoyale" description="Clean build of SparkRoyaleJS.swc">
         <ant dir="${basedir}/projects/SparkRoyaleJS"/>
     </target>
-    
+
+    <target name="Crux" description="Clean build of CruxJS.swc">
+        <ant dir="${basedir}/projects/CruxJS"/>
+    </target>
+
     <target name="Ace" description="Clean build of AceJS.swc">
         <ant dir="${basedir}/projects/AceJS"/>
     </target>
-    
+
     <target name="RoyaleSite" description="Clean build of RoyaleSiteJS.swc">
         <ant dir="${basedir}/projects/RoyaleSiteJS"/>
     </target>

@@ -157,9 +157,21 @@ package org.apache.royale.utils
 
         COMPILE::JS
         {
+            /**
+             *  @royalesuppresspublicvarwarning
+             */
             public var get:Function = objectGet;
+            /**
+             *  @royalesuppresspublicvarwarning
+             */
             public var set:Function = objectSet;
+            /**
+             *  @royalesuppresspublicvarwarning
+             */
             public var has:Function = objectHas;
+            /**
+             *  @royalesuppresspublicvarwarning
+             */
             public var delete:Function = objectDelete;
         }
 

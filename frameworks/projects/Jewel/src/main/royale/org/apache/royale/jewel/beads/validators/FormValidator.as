@@ -20,9 +20,9 @@ package org.apache.royale.jewel.beads.validators
 {
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.Group;
 	import org.apache.royale.jewel.Snackbar;
+	import org.apache.royale.core.IStrand;
 
 	/**
 	 *  The FormValidator class is a specialty bead that can be used with
@@ -49,62 +49,25 @@ package org.apache.royale.jewel.beads.validators
 			super.requiredFieldError = null;
 		}
 
-		private var _trigger:IEventDispatcher;
-
-		public function get trigger():IEventDispatcher
-		{
-			return _trigger;
-		}
-
 		/**
-		 * Specifies the component generating the event that triggers the validator.
-		 * 
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		public function set trigger(value:IEventDispatcher):void
+		override public function set strand(value:IStrand):void
 		{
-			if (_triggerEvent) {
-				if (_trigger)
-					_trigger.removeEventListener(_triggerEvent, validate);
-
-				if (value)
-					value.addEventListener(_triggerEvent, validate);
-			}
-			_trigger = value;
-		}
-		private var _triggerEvent:String;
-
-		public function get triggerEvent():String
-		{
-			return _triggerEvent;
-		}
-		/**
-		 * Specifies the event that triggers the validation.
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function set triggerEvent(value:String):void
-		{
-			if (_trigger) {
-				if (_triggerEvent)
-					_trigger.removeEventListener(_triggerEvent, validate);
-				if (value)
-					_trigger.addEventListener(value, validate);
-			}
-			_triggerEvent = value;
+			hostComponent = value as UIBase;
 		}
 
 		private var _isError:Boolean;
 
 		/**
 		 *  Contains true if any validator in the form generated a validation failure.
-		 * 
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -116,8 +79,8 @@ package org.apache.royale.jewel.beads.validators
 
 		/**
 		 *  Override of the base class validate() method to call all validators in the form.
-		 *  dispatch invalid/valid event when validation fails/succeeds. 
-		 * 
+		 *  dispatch invalid/valid event when validation fails/succeeds.
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -125,30 +88,72 @@ package org.apache.royale.jewel.beads.validators
 		 */
 		override public function validate(event:Event = null):Boolean {
 			_isError = false;
-			validateAll(hostComponent as Group);
+            iterateAll(hostComponent as Group, true);
 			if (isError) {
                 if (requiredFieldError) Snackbar.show(requiredFieldError);
 				hostComponent.dispatchEvent(new Event("invalid"));
 			} else {
 				hostComponent.dispatchEvent(new Event("valid"));
 			}
-			
+
 			return !isError;
 		}
 
-		protected function validateAll(group:Group):void {
+		protected function iterateAll(group:Group, validateAction:Boolean, visibleOnly:Boolean = true):void {
 			for(var i:int=0; i < group.numElements; i++) {
 				var child:UIBase = group.getElementAt(i) as UIBase;
+				if (visibleOnly && !child.visible) continue;
 				var validator:Validator = child.getBeadByType(Validator) as Validator;
-				if (validator && !(validator is FormValidator)) {
-					if(!validator.validate()) {
-						_isError = true;
+                if (validator) {
+					if (validator == this) {
+						if (!validateAction) destroyErrorTip();
+					} else {
+                        if (validator is FormValidator) {
+                            if (validateAction) {
+                                if(!validator.validate()) {
+                                    _isError = true;
+                                }
+                            } else {
+                                FormValidator(validator).removeAllErrorTips();
+                            }
+                            continue;
+                        }
+
+                        if (validateAction) {
+                            if(!validator.validate()) {
+                                _isError = true;
+                            }
+                        } else {
+                            validator.destroyErrorTip();
+                        }
 					}
-				}
+                }
 				if (child is Group) {
-					validateAll(child as Group);
-				}	
+                    iterateAll(child as Group, validateAction, visibleOnly);
+				}
 			}
+		}
+
+        /**
+         *  Utility function to remove all error tips below an upper level which defaults
+		 *  to the host of this FormValidator bead. If an explicit group is passed as the upper
+		 *  level to iterate from, it should by convention be some child in the hierarchy below
+		 *  the host of this FormValidator bead, but that requirement is not enforced.
+		 *
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+		 *
+		 *  @royaleignorecoercion org.apache.royale.jewel.Group
+         */
+		public function removeAllErrorTips(below:Group = null, onlyVisible:Boolean = false):void{
+			if (!below) below = hostComponent as Group;
+			if (below == (hostComponent as Group)) {
+                destroyErrorTip();
+			}
+            iterateAll(below, false, onlyVisible);
 		}
 	}
 }

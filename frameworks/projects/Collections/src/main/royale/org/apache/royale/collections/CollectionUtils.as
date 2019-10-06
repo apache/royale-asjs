@@ -18,22 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.collections
 {
-	import org.apache.royale.collections.CollectionUtils;
 
 	public class CollectionUtils
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function CollectionUtils()
-		{
-			super();
-		}
 
         /**
 		 * Search for an index in a collection of objects, given the key and the value
@@ -43,7 +30,7 @@ package org.apache.royale.collections
 		 * @param value Any kind of object to perform the comparison
 		 *
 		 * @return an <code>int</code> that represents the index of the object in the collection
-		 * 
+		 *
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
@@ -53,17 +40,29 @@ package org.apache.royale.collections
         {
 			var index:int = -1;
 
-			if (collection)
+			if (collection && key && (key != "") && value !== undefined)
             {
 				var i:int;
-				var n:int = collection.length;
+				const n:int = collection.length;
+                const nan:Boolean = value is Number && isNaN(value);
 				for (i = 0; i < n; i++)
                 {
-					if (collection.getItemAt(i)[key] == value) // || (isNaN(value) && isNaN(collection.getItemAt(i)[key])))
-                    {
-						index = i;
-						break;
-					}
+                    var item:Object = collection.getItemAt(i);
+                    if (item) {
+                        COMPILE::SWF{
+                            if (item[key] == value || (nan && (item[key] is Number && isNaN(item[key])))) {
+                                index = i;
+                                break;
+                            }
+                        }
+                        COMPILE::JS{
+                            //on js, more checking is needed than swf to cover 'undefined' which can be assumed as Number initializer NaN value:
+                            if (item[key] == value || (nan && item[key] === undefined || (item[key] is Number && isNaN(item[key])))) {
+                                index = i;
+                                break;
+                            }
+                        }
+                    } //else ignore this item, it is probably null, but could be another falsey value like empty string or false
 				}
 			}
 
@@ -74,11 +73,11 @@ package org.apache.royale.collections
 		 * Get a item in a given collection given a key and a value
 		 *
 		 * @param collection The <code>ICollectionView</code> to inspect
-		 * @param key The <code>String</code> that will be use for search
-		 * @param value Any kind of object to perform the comparison
+		 * @param key The <code>String</code> that will be used for comparison field name
+		 * @param value Any kind of object to perform the comparison - a value of undefined is ignored
 		 *
-		 * @return The object if exists in the collection
-		 * 
+		 * @return The first object with a comparison field match to the value, if exists in the collection
+		 *
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
@@ -86,16 +85,27 @@ package org.apache.royale.collections
 		 */
 		public static function getItemByField(collection:ICollectionView, key:String, value:*):*
 		{
-			if (collection && key && (key != "") && value)
+			if (collection && key && (key != "") && value !== undefined)
 			{
 				var i:int;
-				var n:int = collection.length;
+				const n:int = collection.length;
+                const nan:Boolean = value is Number && isNaN(value);
 				for (i = 0; i < n; i++)
 				{
-					if (collection.getItemAt(i)[key] == value || (isNaN(value) && isNaN(collection.getItemAt(i)[key])))
-					{
-						return collection.getItemAt(i);
-					}
+					var item:Object = collection.getItemAt(i);
+					if (item) {
+						COMPILE::SWF{
+                            if (item[key] == value || (nan && (item[key] is Number && isNaN(item[key])))) {
+                                return item;
+                            }
+						}
+						COMPILE::JS{
+                            //on js, more checking is needed than swf to cover 'undefined' which can be assumed as Number initializer NaN value:
+                            if (item[key] == value || (nan && item[key] === undefined || (item[key] is Number && isNaN(item[key])))) {
+                                return item;
+                            }
+						}
+					} //else ignore this item, it is probably null, but could be another falsey value like empty string or false
 				}
 			}
 
@@ -104,16 +114,16 @@ package org.apache.royale.collections
 
 		/**
 		 * Tries to find the object or the propertyId in a collection and returns the index if found.
-		 * The comparation is based on 'id'
+		 * The comparison is based on 'id'
 		 * Supports nulls in property object and returns -1
-		 * For use with List components in bindinds with "selectedIndex"
-		 * 
-		 * @param collection a <code>ICollectionView</code> dataprovider where we need to look for
-		 * @param obj an <code>Object</code> with a subproperty used for comparation
-		 * @param property the <code>String</code> name of the subproperty. This could be and Obejct with an id or directly a propertyId
+		 * For use with List components in bindings with "selectedIndex"
 		 *
-		 * @return the index if was found, -1 if the object is null or not found
-		 * 
+		 * @param collection a <code>ICollectionView</code> dataprovider where we need to look for
+		 * @param obj an <code>Object</code> with a subproperty used for comparison
+		 * @param property the <code>String</code> name of the subproperty. This could be an Object with an id or directly a propertyId
+		 *
+		 * @return the index if found, -1 if the object is null or not found
+		 *
 		 * @langversion 3.0
          * @playerversion Flash 10.2
          * @playerversion AIR 2.6
@@ -121,7 +131,7 @@ package org.apache.royale.collections
 		 */
 		public static function findSelectedIndex(collection:ICollectionView, obj:Object, property:String):Number
 		{
-			var index :Number = -1;
+			var index :int = -1;
 
 			if (obj && obj[property])
 			{

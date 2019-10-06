@@ -21,9 +21,9 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.graphics.SolidColor;
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.beads.ITextItemRenderer;
-	import org.apache.royale.svg.Rect;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
+	import org.apache.royale.svg.Rect;
 
 	/**
 	 * The CascadingMenuItemRenderer is the itemRenderer class for the elements of a CascadingMenu.
@@ -81,12 +81,7 @@ package org.apache.royale.html.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-			
-			var isSeparator:Boolean = false;
-			
-			if (data.hasOwnProperty("type")) {
-				if (data["type"] == "separator") isSeparator = true;
-			}
+			var isSeparator:Boolean = getType() == "separator";
 			
 			if (isSeparator) {
 				if (separator == null) {
@@ -102,9 +97,9 @@ package org.apache.royale.html.supportClasses
 					addElement(label);
 				}
 				
-				label.text = getLabelFromData(this,value);
+				label.text = getLabel();
 				
-				if (value.hasOwnProperty("menu")) {
+				if (getHasMenu()) {
 					if (submenuIndicator == null) {
 						submenuIndicator = new Label();
 						submenuIndicator.text = "▶";
@@ -115,6 +110,21 @@ package org.apache.royale.html.supportClasses
 					}
 				} 
 			}
+		}
+		
+		protected function getHasMenu():Boolean
+		{
+			return data.hasOwnProperty("menu");
+		}
+		
+		protected function getLabel():String
+		{
+			return getLabelFromData(this,data);
+		}
+		
+		protected function getType():String
+		{
+			return data.hasOwnProperty("type") ? data["type"] : null; 
 		}
 		
 		/**

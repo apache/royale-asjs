@@ -92,6 +92,8 @@ public class ErrorMessage extends AcknowledgeMessage
     // 
     //--------------------------------------------------------------------------
 
+    private var _faultCode:String;
+    
     /**
      *  The fault code for the error.
      *  This value typically follows the convention of
@@ -104,8 +106,17 @@ public class ErrorMessage extends AcknowledgeMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var faultCode:String;
+    public function get faultCode():String
+    {
+        return _faultCode;
+    }
+    public function set faultCode(value:String):void
+    {
+        _faultCode = value;
+    }
 
+    private var _faultString:String;
+    
     /**
      *  A simple description of the error.
      *  
@@ -115,8 +126,17 @@ public class ErrorMessage extends AcknowledgeMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var faultString:String;
+    public function get faultString():String
+    {
+        return _faultString;
+    }
+    public function set faultString(value:String):void
+    {
+        _faultString = value;
+    }
 
+    private var _faultDetail:String;
+    
     /**
      *  Detailed description of what caused the error.
      *  This is typically a stack trace from the remote destination.
@@ -127,8 +147,17 @@ public class ErrorMessage extends AcknowledgeMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var faultDetail:String;
+    public function get faultDetail():String
+    {
+        return _faultDetail;
+    }
+    public function set faultDetail(value:String):void
+    {
+        _faultDetail = value;
+    }
 
+    private var _rootCause:Object;
+    
     /**
      *  Should a root cause exist for the error, this property contains those details.
      *  This may be an ErrorMessage, a NetStatusEvent info Object, or an underlying
@@ -140,7 +169,16 @@ public class ErrorMessage extends AcknowledgeMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var rootCause:Object;
+    public function get rootCause():Object
+    {
+        return _rootCause;
+    }
+    public function set rootCause(value:Object):void
+    {
+        _rootCause = value;
+    }
+    
+    private var _extendedData:Object;
     
     /**
      * Extended data that the remote destination has chosen to associate
@@ -152,7 +190,14 @@ public class ErrorMessage extends AcknowledgeMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var extendedData:Object;
+    public function get extendedData():Object
+    {
+        return _extendedData;
+    }
+    public function set extendedData(value:Object):void
+    {
+        _extendedData = value;
+    }
 
 
     //--------------------------------------------------------------------------

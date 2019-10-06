@@ -32,19 +32,81 @@ $top-app-bar-button-size: 48px
         flex-direction: column
         justify-content: space-between
         width: 100%
-        z-index: 4
+        z-index: $app-bars-zindex
         position: fixed
     
         &.fixed
             transition: box-shadow 200ms linear
 
-.jewel.topappbarrow 
+    .jewel.barrow 
+        display: flex
+        position: relative
+        width: 100%
+        height: $top-app-bar-row-height
+
+    .jewel.barsection 
+        display: inline-flex
+        flex: 1 1 auto
+        align-items: center
+        min-width: 0
+        z-index: 1
+        // justify-content: flex-start
+        order: -1
+
+        // &.alignRight
+        //     justify-content: flex-end
+        //     order: 1
+        
+        button
+            will-change: transform, opacity
+            display: flex
+            position: relative
+            flex-shrink: 0
+            align-items: center
+            justify-content: center
+            width: $top-app-bar-button-size
+            height: $top-app-bar-button-size
+            outline: none
+            text-decoration: none
+            opacity: 1
+            
+            .fonticon
+                margin-left: 0px
+                margin-right: 0px
+
+    .jewel.bartitle
+        -moz-osx-font-smoothing: grayscale
+        -webkit-font-smoothing: antialiased
+        white-space: nowrap
+        flex: 1 1 auto
+        overflow: hidden
+        z-index: 1
+        line-height: 2rem
+        letter-spacing: .0125em
+        text:
+            decoration: inherit
+            transform: inherit
+            overflow: ellipsis
+    
+j|TopAppBar
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+
+j|BarRow
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+
+j|BarSection
+    // IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+
+j|BarTitle
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+
+.jewel.barrow 
     display: flex
     position: relative
     width: 100%
     height: $top-app-bar-row-height
 
-.jewel.topappbarsection 
+.jewel.barsection 
     display: inline-flex
     flex: 1 1 auto
     align-items: center
@@ -53,91 +115,6 @@ $top-app-bar-button-size: 48px
     justify-content: flex-start
     order: -1
 
-    &.alignRight
-        justify-content: flex-end
-        order: 1
-    
-    button
-        will-change: transform, opacity
-        display: flex
-        position: relative
-        flex-shrink: 0
-        align-items: center
-        justify-content: center
-        width: $top-app-bar-button-size
-        height: $top-app-bar-button-size
-        outline: none
-        text-decoration: none
-        opacity: 1
-
-        // &:active, &:active:focus, &:focus
-        //     transition: opacity 0.4s 0ms
-        //     opacity: 0.5
-
-        // &:before
-        //     content: ""
-        //     background: #90EE90
-        //     display: block
-        //     position: absolute
-        //     padding-top: 300%
-        //     padding-left: 350%
-        //     margin-left: -20px!important
-        //     margin-top: -120%
-        //     opacity: 0
-        //     transition: all 0.8s
-        // &:after
-        //     content: ""
-        //     background: #90EE90
-        //     display: block
-        //     position: absolute
-        //     padding-top: 300%
-        //     padding-left: 350%
-        //     margin-left: -20px!important
-        //     margin-top: -120%
-        //     opacity: 0
-        //     transition: all 0.8s
-
-        // &:active:after 
-        //     padding: 0
-        //     margin: 0
-        //     opacity: 1
-        //     transition: 0s
-
-        // &:hover, &:hover:focus, &:active, &:active:focus, &:focus
-        //     background: transparent
-        //     box-shadow: none
-        //     border: none
-
-        // &[disabled]
-        //     background: transparent
-        //     box-shadow: none
-        //     border: none
-
-        .fonticon
-            margin-left: 0px
-            margin-right: 0px
-
-.jewel.topappbartitle
-    -moz-osx-font-smoothing: grayscale
-    -webkit-font-smoothing: antialiased
-    white-space: nowrap
-    overflow: hidden
-    z-index: 1
-    line-height: 2rem
-    letter-spacing: .0125em
-    text:
-        decoration: inherit
-        transform: inherit
-        overflow: ellipsis
-    
-j|TopAppBar
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
-
-j|TopAppBarRow
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
-
-j|TopAppBarSection
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
-
-j|TopAppBarTitle
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    // &.alignRight
+    //     justify-content: flex-end
+    //     order: 1

@@ -21,7 +21,7 @@
 
 <componentPackage>
 
-  <component id="Application" class="mx.core.Application" />   
+  <component id="Application" class="mx.core.Application" />
   <component id="Button" class="mx.controls.Button" />
   <component id="CheckBox" class="mx.controls.CheckBox" />
   <component id="ComboBox" class="mx.controls.ComboBox" />
@@ -49,14 +49,16 @@
 	<component id="VBox" class="mx.containers.VBox" />
 	<component id="VDividedBox" class="mx.containers.VDividedBox" />
   <component id="Panel" class="mx.containers.Panel" />
-	<component id="ViewStack" class="mx.containers.ViewStack" /> 
+	<component id="ViewStack" class="mx.containers.ViewStack" />
     <component id="TabNavigator" class="mx.containers.TabNavigator" />
 	<component id="ApplicationLayout" class="mx.containers.beads.ApplicationLayout" />
 	<component id="BoxLayout" class="mx.containers.beads.BoxLayout" />
 	<component id="CanvasLayout" class="mx.containers.beads.CanvasLayout" />
 	<component id="TitleWindow" class="mx.containers.TitleWindow"/>
+    <component id="PopUpButton" class="mx.controls.PopUpButton"/>
+    <component id="PopUpMenuButton" class="mx.controls.PopUpMenuButton"/>
 	<component id="ColorPicker" class="mx.controls.ColorPicker"/>
-	<component id="CompressedRemoteObject" class="mx.rpc.remoting.CompressedRemoteObject" />
+	<component id="CompressedRemoteObject" class="mx.rpc.remoting.mxml.CompressedRemoteObject" />
 	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
     <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation"/>
 	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
@@ -127,10 +129,10 @@
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
 	<component id="Tree" class="mx.controls.Tree"/>
 	<component id="LinkBar" class="mx.controls.LinkBar"/>
-    
+
 	<component id="AMFChannel" class="mx.messaging.channels.AMFChannel" />
 	<component id="ChannelSet" class="mx.messaging.ChannelSet" />
-    
+
 	<component id="ListCollectionView" class="mx.collections.ListCollectionView"/>
 	<component id="ArrayCollection" class="mx.collections.ArrayCollection"/>
 	<component id="Alert" class="mx.controls.Alert" />
@@ -203,4 +205,8 @@
 
     <component id="CartesianDataCanvas" class="mx.charts.chartClasses.CartesianDataCanvas"/>
     <component id="PolarDataCanvas" class="mx.charts.chartClasses.PolarDataCanvas"/>
+
+    <component id="GroupingCollection" class="mx.collections.GroupingCollection"/>
+    <component id="GroupingCollection2" class="mx.collections.GroupingCollection2"/>
+
 </componentPackage>

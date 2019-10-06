@@ -135,11 +135,11 @@ package org.apache.royale.html.accessories
 			var model:Object = UIBase(_strand).model;
 			
 			if (model.text != null && model.text.length > 0 ) {
-				if (promptAdded) UIBase(_strand).$removeChild(promptField);
+				if (promptAdded) UIBase(_strand).$sprite_removeChild(promptField);
 				promptAdded = false;
 			}
 			else {
-				if (!promptAdded) UIBase(_strand).$addChild(promptField);
+				if (!promptAdded) UIBase(_strand).$sprite_addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
                 promptField.x = 2;

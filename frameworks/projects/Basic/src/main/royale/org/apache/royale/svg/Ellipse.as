@@ -29,6 +29,7 @@ package org.apache.royale.svg
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.createSVG;
     }
 
     public class Ellipse extends GraphicShape implements IEllipse, IDrawable
@@ -138,7 +139,7 @@ package org.apache.royale.svg
             {
                 var style:String = getStyleStr();
                 if (_ellipse == null) {
-                    _ellipse = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse') as WrappedHTMLElement;
+                    _ellipse = createSVG('ellipse') as WrappedHTMLElement;
                     _ellipse.royale_wrapper = this;
                     element.appendChild(_ellipse);
                 }

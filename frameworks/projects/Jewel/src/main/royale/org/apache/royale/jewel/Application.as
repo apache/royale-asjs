@@ -516,7 +516,7 @@ package org.apache.royale.jewel
                     addChild(c as DisplayObject);
             }
             COMPILE::JS {
-                this.element.appendChild(c.element as HTMLElement);
+                element.appendChild(c.positioner);
                 (c as IUIBase).addedToParent();
             }
         }

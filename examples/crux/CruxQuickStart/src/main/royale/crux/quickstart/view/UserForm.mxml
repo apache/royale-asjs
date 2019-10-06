@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:GridCell xmlns:fx="http://ns.adobe.com/mxml/2009"
+			xmlns:j="library://ns.apache.org/royale/jewel"
+			xmlns:js="library://ns.apache.org/royale/basic"
+			desktopNumerator="1" desktopDenominator="2"
+			tabletNumerator="1" tabletDenominator="2"
+			phoneNumerator="1" phoneDenominator="1">
+
+	<j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+
+	<fx:Script>
+		<![CDATA[
+			import crux.quickstart.event.UserEvent;
+			import crux.quickstart.model.User;
+
+			[Bindable]
+
+			/**
+			 * We could inject the whole controller instance, but we only need
+			 * one property from the controller, the current user, so we just
+			 * inject that property.
+			 * Using setter style binding below instead of direct property binding Injection here (for variety in example)
+			 */
+			public var user : User;
+
+			//example of setter style binding Injection
+			[Inject( source = "userController.currentUser", bind = "true" )]
+			public function setUser(val:User):void{
+				this.user = val;
+			}
+
+			/**
+			 * Handle the user hitting the save button. We capture the form data
+			 * and dispatch a standard Flex event. No Crux-specific events or
+			 * special central dispatcher needed!
+			 */
+			private function saveUser() : void
+			{
+				user.firstName = firstName.text;
+				user.lastName = lastName.text;
+				user.email = email.text;
+				var event : UserEvent = new UserEvent( UserEvent.SAVE_USER_REQUESTED );
+				event.user = user;
+				dispatchEvent( event );
+			}
+		]]>
+	</fx:Script>
+	
+	<j:Form>
+		<j:FormHeading label="User Form (Crux Quickstart Example)"/>
+		<j:FormItem label="User ID: ">
+			<j:Label localId="userId" text="{isNaN( user.id ) ? 'N/A' : user.id}" />
+		</j:FormItem>
+		<j:FormItem label="First Name: ">
+			<j:TextInput id="firstName" text="{user.firstName}" />
+		</j:FormItem>
+		<j:FormItem label="Last Name: ">
+			<j:TextInput id="lastName" text="{user.lastName}" />
+		</j:FormItem>
+		<j:FormItem label="Email: ">
+			<j:TextInput id="email" text="{user.email}" />
+		</j:FormItem>
+		<j:FormItem>
+			<j:Button text="Save" emphasis="primary"  click="saveUser()" />
+		</j:FormItem>
+	</j:Form>
+	
+</j:GridCell>
+

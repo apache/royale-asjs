@@ -138,7 +138,9 @@ package org.apache.royale.html.beads
 				elem = elem.nextSibling as HTMLElement;
 			}
 		}
-
+		/**
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		private function throwChangeEvent():void
 		{
 			if (_strand)

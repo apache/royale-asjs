@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-    import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IStrand;
-    
 	/**
 	 *  The IComboBoxView interface provides the protocol for any bead that
 	 *  creates the visual parts for a org.apache.royale.html.ComboBox control.
@@ -30,7 +27,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public interface IComboBoxView extends IBeadView
+	public interface IComboBoxView extends IViewWithPopUp
 	{
 		/**
 		 *  The sub-component used for the input area of the ComboBox.
@@ -52,25 +49,5 @@ package org.apache.royale.html.beads
 		 */
 		function get popupButton():Object;
 		
-		/**
-		 *  The component housing the selection list.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		function get popUp():Object;
-		
-		/**
-		 *  Determines whether or not the pop-up with the selection list is visible or not.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		function get popUpVisible():Boolean;
-		function set popUpVisible(value:Boolean):void;
 	}
 }

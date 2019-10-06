@@ -37,6 +37,7 @@ import mx.core.IFlexModuleFactory;
 */
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
+import mx.events.MouseEvent;
 /*
 import mx.core.FlexVersion;
 import mx.core.IToggleButton;
@@ -225,6 +226,9 @@ public class RadioButton extends Button
     private var textNode:window.Text;
     COMPILE::JS
     private var rbicon:RadioButtonIcon;
+
+    private var clickHandlers:Vector.<Function>;
+    private var _initialized:Boolean;
     
     /**
      * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -237,7 +241,6 @@ public class RadioButton extends Button
     {
         rbicon = new RadioButtonIcon()
         rbicon.id = '_radio_' + RadioButton.radioCounter++;
-        rbicon.element.addEventListener("change", rbChangeHandler);
         
         textNode = document.createTextNode('') as window.Text;
         
@@ -252,15 +255,38 @@ public class RadioButton extends Button
         
         return element;
     }
-    
-    /**
-     * @royaleignorecoercion HTMLInputElement
-     */
-    COMPILE::JS
-    private function rbChangeHandler(event:Event):void
+
+    private function deferAddClickEventHandler(handler:Function):void
     {
-        selected = (rbicon.element as HTMLInputElement).checked    
+        if (!clickHandlers)
+        {
+            clickHandlers = new Vector.<Function>();
+        }
+        clickHandlers.push(handler);
     }
+
+    // as we don't have priorities to event handlers in Royale we use an override to make sure click events
+    // don't happen before controller has had a chance to take control.
+    COMPILE::SWF
+    override public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void
+    {
+        if (_initialized || type != MouseEvent.CLICK)
+        {
+            return super.addEventListener(type, listener, useCapture, priority, useWeakReference);
+        }
+        deferAddClickEventHandler(listener);
+    }
+    
+    COMPILE::JS
+    override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
+    {
+        if (_initialized || type != MouseEvent.CLICK)
+        {
+            return super.addEventListener(type, handler, opt_capture, opt_handlerScope);
+        }
+        deferAddClickEventHandler(handler);
+    }
+    
     
     COMPILE::JS
     override public function set id(value:String):void
@@ -292,7 +318,8 @@ public class RadioButton extends Button
         {
             (rbicon.element as HTMLInputElement).checked = value;
         }
-        group.setSelection(this, false);
+        if (group != null)
+            group.setSelection(this, false);
         dispatchEvent(new Event("selectedChanged"));
     }    
     
@@ -324,9 +351,9 @@ public class RadioButton extends Button
      */
     public function get group():RadioButtonGroup
     {
-        if (_group == null)
+        if (_group == null && mxmlDocument != null)
         {
-            _group = component[groupName];
+            _group = mxmlDocument[groupName];
         }
         return _group;
     }
@@ -444,9 +471,18 @@ public class RadioButton extends Button
     override public function addedToParent():void
     {
         super.addedToParent();
+        _initialized = true;
+        addClickEventHandlers();
         commitProperties();
     }
 
+    private function addClickEventHandlers():void
+    {
+        while (clickHandlers.length > 0)
+        {
+            super.addEventListener(MouseEvent.CLICK, clickHandlers.pop());
+        }
+    }
     /**
      *  @private
      *  Update properties before measurement/layout.
@@ -480,6 +516,14 @@ public class RadioButton extends Button
         if (g)
             g.addInstance(this);
         return g;
+    }
+
+    override public function get measuredWidth():Number
+    {
+        // on Safari, we seem to come up one pixel short sometimes
+        // causing the label to appear on another line if the
+        // width is set the the measuredWidth.  Probably a fractional error.
+        return super.measuredWidth + 1;
     }
 
 }

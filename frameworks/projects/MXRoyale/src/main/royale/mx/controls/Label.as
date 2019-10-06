@@ -79,7 +79,7 @@ import org.apache.royale.core.ITextModel;
  *  @playerversion AIR 2.6
  *  @productversion Royale 0.9.0
  */
-[Event(name="click", type="org.apache.royale.events.MouseEvent")]
+[Event(name="click", type="mx.events.MouseEvent")]
 
 
 //--------------------------------------

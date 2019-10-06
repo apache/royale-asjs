@@ -18,16 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.events.MouseEvent;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.core.ISelectionModel;
 
 	/**
-	 *  The Navigation class is a List used for navigate other organized content
+	 *  The TabBar class is a List used for navigate other organized content
 	 *  in a Royale Application. In HTML is represented by a <nav> tag in HTML and
 	 *  It parents a list of links.
 	 *  By default it uses TabBarButtonItemRenderer class to define each item.
@@ -53,6 +53,9 @@ package org.apache.royale.jewel
 
             typeNames = "jewel tabbar";
 
+			//TabBar is always selected, so selectedIndex can't be -1, at least it will default to 0
+			ISelectionModel(model).selectedIndex = 0;
+
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 
@@ -63,6 +66,35 @@ package org.apache.royale.jewel
 				// avoid a link tries to open a new page 
 				event.preventDefault();
 			}
+		}
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+		 */
+		COMPILE::JS
+		override protected function createElement():WrappedHTMLElement
+		{
+			addElementToWrapper(this,'div');
+			element.className = "content";
+			positioner = document.createElement('div') as WrappedHTMLElement;
+			return element;
+		}
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
 		}
 	}
 }

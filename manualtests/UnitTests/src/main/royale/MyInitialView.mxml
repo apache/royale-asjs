@@ -25,13 +25,33 @@ limitations under the License.
 >
 
 	<fx:Style>
-		.title {
+
+		@namespace "library://ns.apache.org/royale/basic";
+		Label {
 			font-size: 16px;
-			font-weight: bold;
+			font-family: sans-serif;
 		}
-		.body {
+
+		.title {
+			font-weight: bold;
+			font-family: sans-serif;
+		}
+
+		.output {
+			top:50px;
+			bottom: 5px;
+			display: flex;
+			flex-direction: column;
+			position: absolute;
+			overflow-y: scroll;
+			font-family: sans-serif;
+			font-size: 16px;
 			left:10px;
 			right:10px;
+		}
+
+		.royale .Label {
+			white-space: pre-wrap !important;
 		}
 	</fx:Style>
 
@@ -46,11 +66,29 @@ limitations under the License.
 		import testshim.RoyaleUnitTestRunner;
 		import testshim.TestResult;
 
+		//account for swf version variance in some test results due to fixed player bugs etc
+		public function getSwfVersion():uint{
+			COMPILE::SWF{
+				return this.stage.loaderInfo.bytes[3];
+
+			}
+			return 0;
+		}
+
+		public function getPlayerVersion():String{
+			COMPILE::SWF{
+				import flash.system.Capabilities;
+				return Capabilities.version;
+			}
+			return '';
+		}
 
 
 		private var _tests:Array;
 
 		public function runTests():void {
+			setPlatform();
+			RoyaleUnitTestRunner.swfVersion = getSwfVersion();
 			var label:Label;
 			var groups:Array = TestClasses.testClasses;
 			var spaces:String = PLATFORM == "JS" ? "\u00A0\u00A0\u00A0" : "   ";
@@ -158,31 +196,37 @@ limitations under the License.
 		}
 
 
-		private static function getPlatform():String {
-			try {
-				var check:* = getDefinitionByName("flash.system.Capabilities");
-			} catch (e:Error) {
-				return "JS";
+		private function setPlatform():void {
+			var platform:String;
+			var variant:String;
+			COMPILE::JS{
+				PLATFORM = "JS";
+				variant = ' ';
 			}
-			//if this next reference to 'check' is not included, then the above try/catch code
-			// appears to be optimized away in js-release mode
-			//[this issue was added to ObservedBugs Tests]
-			if (check == null) {
-				return "JS";
+			COMPILE::SWF{
+				PLATFORM = "SWF";
+				variant = ' [version:' + getSwfVersion()+'] ';
 			}
-			return "SWF";
+
+			PLATFORM_VARIANT = getPlayerVersion() ? variant + ' [player:'+getPlayerVersion()+'] ' : variant;
 		}
 
-		public static const PLATFORM:String = getPlatform();
+		[Bindable]
+		public var PLATFORM:String;
+
+		[Bindable]
+		public var PLATFORM_VARIANT:String = '';
 		]]>
 	</fx:Script>
 	<js:beads>
 		<js:ViewDataBinding/>
 	</js:beads>
-	<js:Group id="cont" height="50" className="body">
-		<js:Label text="{PLATFORM} Cross-compiled Unit Tests" className="title" />
+	<js:Group localId="cont" height="50" className="header">
+		<js:Label text="{PLATFORM}{PLATFORM_VARIANT}Cross-compiled Unit Tests" className="title" />
 	</js:Group>
-	<js:Group id="output" height="700" y="50" className="body">
+	<js:Group localId="output"
+			  y="50"
+			  className="output">
 		<js:beads>
 			<js:VerticalFlexLayout />
 		</js:beads>

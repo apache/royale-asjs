@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.ITextModel;
+    import org.apache.royale.events.Event;
     import org.apache.royale.html.beads.GroupView;
     import org.apache.royale.jewel.FormHeading;
     import org.apache.royale.jewel.Label;
@@ -86,6 +87,8 @@ package org.apache.royale.jewel.beads.views
             formHeading = value as FormHeading;
 
             model = _strand.getBeadByType(ITextModel) as ITextModel;
+			model.addEventListener("textChange", textChangeHandler);
+			model.addEventListener("htmlChange", textChangeHandler);
 
 			if (spacerLabel == null) {
 				spacerLabel = createLabel("");
@@ -105,6 +108,7 @@ package org.apache.royale.jewel.beads.views
 			
 			if (headingLabel == null) {
 				headingLabel = createLabel(model.text);
+				headingLabel.className="headingLabel";
 			}
 			if (headingLabel != null && headingLabel.parent == null) {
 				formHeading.addElement(headingLabel);
@@ -120,6 +124,14 @@ package org.apache.royale.jewel.beads.views
 			if(labelText != null)
 				l.text = labelText;
 			return l;
+		}
+
+		/**
+		 * 
+		 */
+		public function textChangeHandler(event:Event):void
+		{
+			headingLabel.text = model.text;
 		}
     }
 }

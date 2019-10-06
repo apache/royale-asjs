@@ -18,26 +18,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.observedbugs
 {
-    import flexunit.framework.Assert;
-    import org.apache.royale.reflection.*;
+    import org.apache.royale.test.asserts.*;
     
+    import org.apache.royale.reflection.*;
+    import org.apache.royale.test.asserts.assertTrue;
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class ObservedBugTests
-    {		
-       
+    {
+        
         public static var isJS:Boolean;
+        
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
             var js:Boolean = false;
-            try {
+            try
+            {
                 var check:* = getDefinitionByName("flash.system.Capabilities");
-            } catch (e:Error) {
+            } catch (e:Error)
+            {
                 js = true;
             }
-            //this was originally necessary to avoid a gcc-related bug in js for release mode only
-            if (check == null) {
+            //this was originally necessary to avoid a gcc-related bug in js for release mode only,
+            // appears to be resolved in GCC now:
+            /*if (check == null) {
                 js = true;
-            }
+            }*/
             isJS = js;
         }
         
@@ -45,8 +54,8 @@ package flexUnitTests.observedbugs
         public static function tearDownAfterClass():void
         {
         }
-		
-		 [Before]
+        
+        [Before]
         public function setUp():void
         {
         }
@@ -55,37 +64,41 @@ package flexUnitTests.observedbugs
         public function tearDown():void
         {
         }
-
-
+        
+        
         [Test]
         public function testTryCatchJSReleaseModeWorks_a():void
         {
             var js:int = 1;
-            try {
+            try
+            {
                 js = getDefinitionByName("flash.system.Capabilities") != null ? 1 : 0;
-            } catch (e:Error) {
+            } catch (e:Error)
+            {
                 js = 2;
             }
-			
-            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js == 2) : (js == 1)));
-
+            
+            assertTrue( (isJS ? (js == 2) : (js == 1)), "Unexpected value following try/catch");
+            
         }
-		
-		//This Observed bug is no longer present 0.9.0
-		//it may be related to a Google Closure Compiler update since it was originally observed
-		//leaving the tests in here for now...
-		//[TestVariance(variance="JS",description="Variance in test, this test fails in JS-Release mode only")]
+        
+        //This Observed bug is no longer present 0.9.0
+        //it may be related to a Google Closure Compiler update since it was originally observed
+        //leaving the tests in here for now...
+        //[TestVariance(variance="JS",description="Variance in test, this test fails in JS-Release mode only")]
         [Test]
         public function testTryCatchJSReleaseModeFails_b():void
         {
             var js:Boolean = false;
-            try {
+            try
+            {
                 var check:* = getDefinitionByName("flash.system.Capabilities");
-            } catch (e:Error) {
+            } catch (e:Error)
+            {
                 js = true;
             }
-
-            Assert.assertTrue("Unexpected value following try/catch",(isJS ? (js === true) : (js === false)));
+            
+            assertTrue( (isJS ? (js === true) : (js === false)), "Unexpected value following try/catch");
         }
     }
 }

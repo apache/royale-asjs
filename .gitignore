@@ -65,6 +65,7 @@ FXGException_*.properties
 FXGLog_*.properties
 FABridge.js
 frameworks/projects/spark/manifest.xml
+frameworks/ace-config.xml
 frameworks/air-config.xml
 frameworks/createjs-config.xml
 frameworks/flex-config.xml

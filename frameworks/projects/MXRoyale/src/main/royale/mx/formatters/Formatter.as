@@ -29,7 +29,7 @@ import mx.managers.SystemManager;
 
 use namespace mx_internal;
 
-[ResourceBundle("formatters")]
+// [ResourceBundle("formatters")]
 
 /**
  *  The Formatter class is the base class for all data formatters.
@@ -107,12 +107,12 @@ public class Formatter implements IFormatter
 	 *  @private
 	 *  Storage for the defaultInvalidFormatError property.
 	 */
-	//private static var _defaultInvalidFormatError:String
+	private static var _defaultInvalidFormatError:String
 	
     /**
 	 *  @private
 	 */
-	//private static var defaultInvalidFormatErrorOverride:String
+	private static var defaultInvalidFormatErrorOverride:String
 
 	/**
 	 *  Error message for an invalid format string specified to the formatter.
@@ -128,26 +128,26 @@ public class Formatter implements IFormatter
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	/* public static function get defaultInvalidFormatError():String
+	public static function get defaultInvalidFormatError():String
 	{
-		initialize();
+		// initialize();
 
 		return _defaultInvalidFormatError; 
-	} */
+	}
 
 	/**
 	 *  @private
 	 */
-	/* public static function set defaultInvalidFormatError(value:String):void
+	public static function set defaultInvalidFormatError(value:String):void
 	{
 		defaultInvalidFormatErrorOverride = value;
 		
 		 _defaultInvalidFormatError = 
 			value != null ?
-			value :
-			static_resourceManager.getString(
-				"formatters", "defaultInvalidFormatError"); 
-	} */
+			value : "Invalid format";
+			// static_resourceManager.getString(
+			// 	"formatters", "defaultInvalidFormatError"); 
+	}
 
 	//----------------------------------
 	//  defaultInvalidValueError
@@ -157,12 +157,12 @@ public class Formatter implements IFormatter
 	 *  @private
 	 *  Storage for the defaultInvalidValueError property.
 	 */
-	//private static var _defaultInvalidValueError:String
+	private static var _defaultInvalidValueError:String
 	
     /**
 	 *  @private
 	 */
-	//private static var defaultInvalidValueErrorOverride:String
+	private static var defaultInvalidValueErrorOverride:String
 
 	/**
 	 *  Error messages for an invalid value specified to the formatter. The
@@ -178,26 +178,26 @@ public class Formatter implements IFormatter
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	/* public static function get defaultInvalidValueError():String
+	public static function get defaultInvalidValueError():String
 	{
-		initialize();
+		// initialize();
 
 		return _defaultInvalidValueError; 
-	} */
+	}
 
 	/**
 	 *  @private
 	 */
-	/* public static function set defaultInvalidValueError(value:String):void
+	public static function set defaultInvalidValueError(value:String):void
 	{
 		defaultInvalidValueErrorOverride = value;
 
 		 _defaultInvalidValueError =
 			value != null ?
-			value :
-			static_resourceManager.getString(
-				"formatters", "defaultInvalidValueError"); 
-	} */
+			value : "Invalid value";
+			// static_resourceManager.getString(
+			// 	"formatters", "defaultInvalidValueError"); 
+	}
 	
 	//--------------------------------------------------------------------------
 	//
@@ -298,8 +298,10 @@ public class Formatter implements IFormatter
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
 	 */
-	//public var error:String;
+	public var error:String;
 
     //----------------------------------
     //  resourceManager

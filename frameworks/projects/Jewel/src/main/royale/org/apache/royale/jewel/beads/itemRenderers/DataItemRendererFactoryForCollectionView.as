@@ -200,27 +200,27 @@ package org.apache.royale.jewel.beads.itemRenderers
 		// 	var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
 		// 	if (!dp)
 		// 		return;
-			
+		
 		// 	var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 		// 	var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
 		// 	labelField = dataProviderModel.labelField;
-			
+		
 		// 	fillRenderer(event.index, event.item, ir, presentationModel);
-			
+		
 		// 	// update the index values in the itemRenderers to correspond to their shifted positions.
 		// 	var n:int = dataGroup.numElements;
 		// 	for (var i:int = event.index; i < n; i++)
 		// 	{
 		// 		ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
 		// 		ir.index = i;
-				
+		
 		// 		// could let the IR know its index has been changed (eg, it might change its
 		// 		// UI based on the index). Instead (PAYG), allow another bead to detect
 		// 		// this event and do this as not every IR will need to be updated.
 		// 		//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
 		// 		//if (ubase) ubase.updateRenderer()
 		// 	}
-			
+		
 		// 	(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
 		// 	(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		// }
@@ -239,24 +239,24 @@ package org.apache.royale.jewel.beads.itemRenderers
 		// 	var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
 		// 	if (!dp)
 		// 		return;
-			
+		
 		// 	var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
 		// 	dataGroup.removeItemRenderer(ir);
-			
+		
 		// 	// adjust the itemRenderers' index to adjust for the shift
 		// 	var n:int = dataGroup.numElements;
 		// 	for (var i:int = event.index; i < n; i++)
 		// 	{
 		// 		ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
 		// 		ir.index = i;
-				
+		
 		// 		// could let the IR know its index has been changed (eg, it might change its
 		// 		// UI based on the index). Instead (PAYG), allow another bead to detect
 		// 		// this event and do this as not every IR will need to be updated.
 		// 		//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
 		// 		//if (ubase) ubase.updateRenderer()
 		// 	}
-			
+		
 		// 	(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		// }
 		
@@ -288,8 +288,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 										itemRenderer:ISelectableItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
-			dataGroup.addItemRendererAt(itemRenderer, index);
-			
 			itemRenderer.labelField = labelField;
 			
 			if (presentationModel) {
@@ -301,6 +299,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 			
 			setData(itemRenderer, item, index);
+			dataGroup.addItemRendererAt(itemRenderer, index);
 		}
 		
 		/**

@@ -1989,13 +1989,13 @@ public class HorizontalLayout extends LayoutBase
      *  for the initial layout and then, if it has changed, we loop through 
      *  the layout items again and fix up the y/height values.
      */
-    private function updateDisplayListVirtual():void
+    private function updateDisplayListVirtual(targetWidth:Number, targetHeight:Number):void
     {
         var layoutTarget:GroupBase = target; 
         var eltCount:int = layoutTarget.numElements;
-        var targetHeight:Number = Math.max(0, layoutTarget.height - paddingTop - paddingBottom);
+        targetHeight = Math.max(0, targetHeight - paddingTop - paddingBottom);
         var minVisibleX:Number = layoutTarget.horizontalScrollPosition;
-        var maxVisibleX:Number = minVisibleX + layoutTarget.width;
+        var maxVisibleX:Number = minVisibleX + targetWidth;
        
         var contentWidth:Number;
         var paddedContentWidth:Number;
@@ -2070,7 +2070,7 @@ public class HorizontalLayout extends LayoutBase
 
         // Third pass: if neccessary, fix up x based on updated contentWidth
         contentWidth = llv.end(llv.length - 1) - paddingLeft;
-        var targetWidth:Number = Math.max(0, layoutTarget.width - paddingLeft - paddingRight);
+        targetWidth = Math.max(0, targetWidth - paddingLeft - paddingRight);
         if (contentWidth < targetWidth)
         {
             var excessWidth:Number = targetWidth - contentWidth;
@@ -2108,11 +2108,11 @@ public class HorizontalLayout extends LayoutBase
     /**
      *  @private 
      */
-    private function updateDisplayListReal():void
+    private function updateDisplayListReal(targetWidth:Number, targetHeight:Number):void
     {
         var layoutTarget:GroupBase = target;
-        var targetWidth:Number = Math.max(0, layoutTarget.width - paddingLeft - paddingRight);
-        var targetHeight:Number = Math.max(0, layoutTarget.height - paddingTop - paddingBottom);
+        targetWidth = Math.max(0, targetWidth - paddingLeft - paddingRight);
+        targetHeight = Math.max(0, targetHeight - paddingTop - paddingBottom);
         
         var layoutElement:ILayoutElement;
         var count:int = layoutTarget.numElements;
@@ -2357,9 +2357,9 @@ public class HorizontalLayout extends LayoutBase
         }
 
         if (useVirtualLayout) 
-            updateDisplayListVirtual();
+            updateDisplayListVirtual(unscaledWidth, unscaledHeight);
         else
-            updateDisplayListReal();
+            updateDisplayListReal(unscaledWidth, unscaledHeight);
     }
     
     /**

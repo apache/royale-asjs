@@ -43,6 +43,8 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Size;
 	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.events.IEventDispatcher;
 
 	/**
 	 * The ScrollingViewport extends the Viewport class by adding horizontal and
@@ -73,52 +75,46 @@ package org.apache.royale.html.supportClasses
 		
 		public function get verticalScrollPosition():Number
 		{
-			return this.contentView.positioner.scrollTop;
+			return contentArea.element.scrollTop;
 		}
 		public function set verticalScrollPosition(value:Number):void
 		{
-			this.contentView.positioner.scrollTop = value;
+			contentArea.element.scrollTop = value;
 		}
 		
 		public function get horizontalScrollPosition():Number
 		{
-			return this.contentView.positioner.scrollLeft;
+			return contentArea.element.scrollLeft;
 		}
 		public function set horizontalScrollPosition(value:Number):void
 		{
-			this.contentView.positioner.scrollLeft = value;
+			contentArea.element.scrollLeft = value;
 		}
 		
 		/**
-		 * @royaleignorecoercion HTMLElement
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * 
+     *  @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 */
-		override public function set strand(value:IStrand):void
+		override protected function setScrollStyle():void
 		{
-			super.strand = value;
-			var component:UIBase;
-			if (contentView == null) {
-				component = value as UIBase;
-			} else {
-				component = contentView as UIBase;
+			contentArea.element.style.overflow = "auto";
+			adaptContentArea();
+		}
+
+		/**
+		 * If the contentArea is not the same as the strand,
+		 * we need to size it to 100% for scrolling to work correctly.
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		protected function adaptContentArea():void
+		{
+			if(_strand != contentArea)
+			{
+				contentArea.percentHeight = 100;
+				contentArea.percentWidth = 100;
+				contentArea.element.style.position = "absolute";
 			}
-			component.element.style.overflow = "auto";
-		}
-		
-		/**
-		* @copy org.apache.royale.core.IViewport
-		*/
-		override public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
-		{
-			// does nothing for the JS platform
-		}
-		
-		/**
-		 * @copy org.apache.royale.core.IViewport
-		 */
-		override public function layoutViewportAfterContentLayout(contentSize:Size):void
-		{
-			// does nothing for the JS platform
+
 		}
 	}
 	

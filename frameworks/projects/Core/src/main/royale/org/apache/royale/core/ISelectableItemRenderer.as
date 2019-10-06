@@ -56,21 +56,6 @@ package org.apache.royale.core
 		function set index(value:int):void;
 		
         /**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		function get selectable():Boolean;
-		function set selectable(value:Boolean):void;
-        
-        /**
          *  <code>true</code> if the item renderer is rendering
          *  an item that is selected.
          * 
@@ -81,21 +66,6 @@ package org.apache.royale.core
          */
 		function get selected():Boolean;
 		function set selected(value:Boolean):void;
-        
-        /**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		function get hoverable():Boolean;
-		function set hoverable(value:Boolean):void;
 
         /**
          *  <code>true</code> if the item renderer is rendering

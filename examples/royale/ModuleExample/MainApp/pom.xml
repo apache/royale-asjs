@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale-ModuleExample</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <artifactId>MainApp</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: ModuleExample: MainApp</name>
@@ -49,16 +49,9 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <scope>theme</scope>
     </dependency>

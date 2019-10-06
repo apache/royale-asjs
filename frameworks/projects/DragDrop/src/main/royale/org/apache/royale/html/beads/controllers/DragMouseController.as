@@ -225,6 +225,7 @@ package org.apache.royale.html.beads.controllers
 //            trace("DRAG-MOUSE: dragMouseDown");
             IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
             IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
             mouseDownX = event.screenX;
             mouseDownY = event.screenY;
             event.preventDefault();
@@ -343,6 +344,7 @@ package org.apache.royale.html.beads.controllers
 
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
         }
 
 	}

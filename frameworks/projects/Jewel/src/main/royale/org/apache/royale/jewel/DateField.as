@@ -25,7 +25,7 @@ package org.apache.royale.jewel
     }
 	import org.apache.royale.core.IDateChooserModel;
 	import org.apache.royale.core.IDateControlConfigBead;
-	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -76,7 +76,7 @@ package org.apache.royale.jewel
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			loadBeadFromValuesManager(IFormatBead, "iFormatBead", this);
+			loadBeadFromValuesManager(IFormatter, "iFormatter", this);
 			
 			loadBeadFromValuesManager(IDateControlConfigBead, "iDateControlConfigBead", this);
 
@@ -99,6 +99,25 @@ package org.apache.royale.jewel
 		public function set selectedDate(value:Date):void
 		{
 			IDateChooserModel(model).selectedDate = value;
+		}
+		private var _dateFormat:String;
+
+		/**
+		 *  A Date format using D for Days, M for Months and Y for Year i.e. DD/MM/YYYY
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function get dateFormat():String
+		{
+			return _dateFormat;
+		}
+
+		public function set dateFormat(value:String):void
+		{
+			_dateFormat = value.toUpperCase();
 		}
 	}
 }

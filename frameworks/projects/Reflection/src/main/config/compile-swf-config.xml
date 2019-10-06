@@ -31,6 +31,7 @@
         <external-library-path>
             <path-element>${env.AIR_HOME}/frameworks/libs/air/airglobal.swc</path-element>
             <path-element>../../../../../libs/Core.swc</path-element>
+            <path-element>../../../../../libs/Language.swc</path-element>
         </external-library-path>
         
 		<mxml>
@@ -75,11 +76,10 @@
         
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
-    
-    <!-- TODO: Why this? -->
-    <include-sources>
-        <path-element>../royale</path-element>
-    </include-sources>
+
+    <include-classes>
+        <class>ReflectionClasses</class>
+    </include-classes>
     
     <include-namespaces>
        <uri>library://ns.apache.org/royale/basic</uri>

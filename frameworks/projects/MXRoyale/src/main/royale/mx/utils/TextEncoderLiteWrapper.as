@@ -31,7 +31,7 @@ package mx.utils
 		 * <script type="text/javascript" src="http://rawgit.com/coolaj86/TextEncoderLite/master/text-encoder-lite.min.js"></script>
 		 * </inject_html>
 		 */
-		public function TextEncoderLiteWrapper(encoding = "utf-8")
+		public function TextEncoderLiteWrapper(encoding:String = "utf-8")
 		{
 			_encoding = encoding ;
 		}

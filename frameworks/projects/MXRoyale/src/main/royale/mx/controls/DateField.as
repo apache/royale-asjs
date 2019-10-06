@@ -1179,16 +1179,16 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the displayedYear property.
      */
-  //  private var _displayedYear:int = (new Date()).getFullYear();
+    private var _displayedYear:int = (new Date()).getFullYear();
 
     /**
      *  @private
      */
-   /*  private var displayedYearChanged:Boolean = false;
+     private var displayedYearChanged:Boolean = false;
 
     [Bindable("displayedYearChanged")]
     [Inspectable(category="General")]
- */
+ 
     /**
      *  Used with the <code>displayedMonth</code> property,
      *  the <code>displayedYear</code> property determines
@@ -1516,12 +1516,12 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the maxYear property.
      */
-    //private var _maxYear:int = 2100;
+    private var _maxYear:int = 2100;
 
     /**
      *  @private
      */
-   // private var maxYearChanged:Boolean = false;
+    private var maxYearChanged:Boolean = false;
 
     /**
      *  The last year selectable in the control.
@@ -1534,18 +1534,18 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get maxYear():int
+     public function get maxYear():int
     {
         if (dropdown)
             return dropdown.maxYear;
         else
             return _maxYear;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set maxYear(value:int):void
+     public function set maxYear(value:int):void
     {
         if (_maxYear == value)
             return;
@@ -1554,7 +1554,7 @@ public class DateField extends ComboBase
         maxYearChanged = true;
 
         invalidateProperties();
-    } */
+    } 
 
     //----------------------------------
     //  minYear
@@ -1564,12 +1564,12 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the minYear property.
      */
-   // private var _minYear:int = 1900;
+    private var _minYear:int = 1900;
 
     /**
      *  @private
      */
-   // private var minYearChanged:Boolean = false;
+    private var minYearChanged:Boolean = false;
 
     /**
      *  The first year selectable in the control.
@@ -1582,18 +1582,18 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get minYear():int
+     public function get minYear():int
     {
         if (dropdown)
             return dropdown.minYear;
         else
             return _minYear;
-    } */
+    } 
 
     /**
      *  @private
      */
-   /*  public function set minYear(value:int):void
+     public function set minYear(value:int):void
     {
         if (_displayedYear == value)
             return;
@@ -1602,7 +1602,7 @@ public class DateField extends ComboBase
         minYearChanged = true;
 
         invalidateProperties();
-    } */
+    } 
 
     //----------------------------------
     //  monthNames

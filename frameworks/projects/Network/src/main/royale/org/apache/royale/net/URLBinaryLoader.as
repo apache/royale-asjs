@@ -124,6 +124,7 @@ package org.apache.royale.net
         
         private function errorFunction(stream:URLStream):void
         {
+			data = stream.response;
             dispatchEvent(new DetailEvent("communicationError",false,false,""+requestStatus));
             if(onError)
                 onError(this);

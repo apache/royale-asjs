@@ -20,12 +20,15 @@ package org.apache.royale.jewel.beads.controllers
 {	
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IDateFormatter;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
 	
@@ -54,7 +57,7 @@ package org.apache.royale.jewel.beads.controllers
 		}
 		
 		private var viewBead:DateFieldView;
-		private var daysTable:Table;
+		private var table:Table;
 		private var model:IDateChooserModel;
 
 		private var _strand:IStrand;
@@ -97,9 +100,9 @@ package org.apache.royale.jewel.beads.controllers
             // t.start();
 
 			// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-			daysTable = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).daysTable;
+			table = (viewBead.popUp.getBeadByType(DateChooserView) as DateChooserView).table;
 
-			IEventDispatcher(daysTable).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(table).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
         }
 
@@ -110,7 +113,7 @@ package org.apache.royale.jewel.beads.controllers
         
 		protected function removePopUpWhenClickOutside(event:MouseEvent = null):void
 		{
-			IEventDispatcher(daysTable).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(table).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
 			viewBead.popUpVisible = false;
@@ -122,7 +125,7 @@ package org.apache.royale.jewel.beads.controllers
 		private function changeHandler(event:Event):void
 		{
 			event.stopImmediatePropagation();
-			IEventDispatcher(daysTable).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
+			IEventDispatcher(table).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			IUIBase(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 			IEventDispatcher(viewBead.popUp).removeEventListener(Event.CHANGE, changeHandler);
             
@@ -147,8 +150,26 @@ package org.apache.royale.jewel.beads.controllers
 			var len:int = viewBead.textInput.text.length;
 			if(len == 10)
 			{
-				var date:Date = new Date(viewBead.textInput.text);
-				model.selectedDate = isValidDate(date) ? date : null;
+				var formatter:IDateFormatter = _strand.getBeadByType(IFormatter) as IDateFormatter; // 3.- Get the actual format and get a new correct date
+				var date:Date = formatter.getDateFromString(viewBead.textInput.text);
+				date = isValidDate(date) ? date : null; // 1.-checck date entered is valid
+				if(date != null)
+				{
+					// 2.-date must be between MAXIMUM_YEAR and MINIMUM_YEAR
+					if(DateChooserModel.MINIMUM_YEAR <= date.getFullYear() <= DateChooserModel.MAXIMUM_YEAR)
+					{
+						model.selectedDate = date;
+					} else if(date.getFullYear() < DateChooserModel.MINIMUM_YEAR)
+					{
+						model.selectedDate = new Date(DateChooserModel.MINIMUM_YEAR, date.getMonth(), date.getDate());
+					} else if(date.getFullYear() > DateChooserModel.MAXIMUM_YEAR)
+					{
+						model.selectedDate = new Date(DateChooserModel.MAXIMUM_YEAR, date.getMonth(), date.getDate());
+					}
+				}
+			} else
+			{
+				model.selectedDate = null;
 			}
 		}
         

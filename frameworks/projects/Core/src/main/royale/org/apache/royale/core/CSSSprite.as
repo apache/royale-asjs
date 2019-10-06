@@ -23,13 +23,11 @@ package org.apache.royale.core
     import flash.display.Graphics;
     import flash.display.Sprite;
     }
-    COMPILE::SWF {
-    import org.apache.royale.utils.CSSBorderUtils;
-    }
     
     import org.apache.royale.core.IChild;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.CSSBorderUtils;
     
     /**
      *  The Border class is a class used internally by many

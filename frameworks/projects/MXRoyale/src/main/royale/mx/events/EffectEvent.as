@@ -118,8 +118,8 @@ public class EffectEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-/*     public static const EFFECT_STOP:String = "effectStop";
- */    
+     public static const EFFECT_STOP:String = "effectStop";
+    
 	/**
      *  The <code>EffectEvent.EFFECT_START</code> constant defines the value of the 
      *  <code>type</code> property of the event object for an 

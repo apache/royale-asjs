@@ -28,7 +28,11 @@
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
-    
+    <tstamp>
+        <format property="royale.swc-date" pattern="MM/dd/yy HH:mm Z"/>
+    </tstamp>
+    <echo>swc-date is ${royale.swc-date}</echo>
+
     <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
@@ -50,9 +54,15 @@
                 <available file="${basedir}/src/test/royale/build.xml" />
             </not>
         </condition>
+        <!-- exclude from js-only build -->
+        <condition property="skip-tests" >
+            <not>
+                <isset property="env.AIR_HOME" />
+            </not>
+        </condition>
     </target>
     
-    <target name="test" depends="check-for-tests" unless="skip-tests">
+    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
     </target>
     
@@ -91,6 +101,9 @@
             <arg value="-warn-public-vars=false" />
             <arg value="-js-output-optimization=skipAsCoercions"/>
             <arg value="-compiler.targets=SWF,JSRoyale" />
+            <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />
+            <arg line="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
+            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />

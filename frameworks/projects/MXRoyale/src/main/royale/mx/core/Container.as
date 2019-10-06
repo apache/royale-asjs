@@ -392,6 +392,45 @@ public class Container extends UIComponent
 		typeNames = "Container";
     }
     
+    //----------------------------------
+    //  defaultButton
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the defaultButton property.
+     */
+    private var _defaultButton:IFlexDisplayObject;
+    
+    [Inspectable(category="General")]
+    
+    /**
+     *  The Button control designated as the default button
+     *  for the container.
+     *  When controls in the container have focus, pressing the
+     *  Enter key is the same as clicking this Button control.
+     *
+     *  @default null
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get defaultButton():IFlexDisplayObject
+    {
+        return _defaultButton;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set defaultButton(value:IFlexDisplayObject):void
+    {
+        _defaultButton = value;
+        //ContainerGlobals.focusedContainer = null;
+    }
+    
     
     //----------------------------------
     //  textDecoration
@@ -575,6 +614,8 @@ public class Container extends UIComponent
         trace("verticalGap not implemented");
     }
 	
+    private var _horizontalAlign:String;
+    
     /**
      *  horizontalAlign (was a style in Flex)
      * 
@@ -587,12 +628,11 @@ public class Container extends UIComponent
      */
     public function get horizontalAlign():String
     {
-        trace("Container:horizontalAlign not implemented");
-        return null;
+        return _horizontalAlign;
     }
     public function set horizontalAlign(value:String):void
     {
-        trace("Container:horizontalAlign not implemented");
+        _horizontalAlign = value;
     }
     
     
@@ -639,12 +679,11 @@ public class Container extends UIComponent
      */
     public function get backgroundColor():Object
     {
-        trace("backgroundColor not implemented");
-        return 0;
+        return ValuesManager.valuesImpl.getValue(this, "backgroundColor");
     }
     public function set backgroundColor(value:Object):void
     {
-        trace("backgroundColor not implemented");
+        setStyle("backgroundColor", value);
     }
     
     //----------------------------------
@@ -733,7 +772,6 @@ public class Container extends UIComponent
 	//--------------------------------------------------------------------------
 	
 	private var _mxmlDescriptor:Array;
-	private var _mxmlDocument:Object = this;
 	
 	override public function addedToParent():void
 	{
@@ -742,9 +780,6 @@ public class Container extends UIComponent
 			ValuesManager.valuesImpl.init(this);
 		}
 		
-        if (MXMLDescriptor)
-            component = this;
-        
 		super.addedToParent();		
 		
 		// Load the layout bead if it hasn't already been loaded.
@@ -781,6 +816,13 @@ public class Container extends UIComponent
         }
     }
     
+    override public function get mxmlDocument():Object
+    {
+        if (!_mxmlDocument && MXMLDescriptor != null)
+            _mxmlDocument = this;
+        return _mxmlDocument;
+    }
+    
 	/**
 	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
 	 *  
@@ -813,6 +855,8 @@ public class Container extends UIComponent
 	 */
 	public function generateMXMLAttributes(data:Array):void
 	{
+        if (!_mxmlDocument)
+            _mxmlDocument = this;
 		MXMLDataInterpreter.generateMXMLProperties(this, data);
 	}
 	
@@ -992,6 +1036,8 @@ public class Container extends UIComponent
 		o.top = vm.top + pd.top;
 		o.bottom = vm.bottom + pd.bottom;
 		
+        if (isNaN(o.left) || isNaN(o.top))
+            _viewMetricsAndPadding = null; // don't cache invalid entry
 		return o;
 	}
 	

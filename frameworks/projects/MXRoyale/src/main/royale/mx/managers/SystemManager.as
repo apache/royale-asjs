@@ -191,7 +191,7 @@ import org.apache.royale.geom.Rectangle;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.4
  */
-public class SystemManager extends SystemManagerBase implements ISystemManager, IFlexModuleFactory, IEventDispatcher, IPopUpHostParent, IChildList
+public class SystemManager extends SystemManagerBase implements ISystemManager, IFlexModuleFactory, IEventDispatcher, IPopUpHostParent, IPopUpHost, IChildList
 { //extends MovieClip implements IFlexDisplayObject,IFlexModuleFactory, ISystemManager
    // include "../core/Version.as";
 
@@ -272,6 +272,12 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             
     }
         
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
+    COMPILE::JS
+    public var measuringElement:HTMLSpanElement;
+    
     /**
      *  @royalesuppresspublicvarwarning
      */
@@ -817,9 +823,9 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
 
     /**
      *  @private
-     *  Storage for the component property.
+     *  Storage for the mxmlDocument property.
      */
-    private var _component:Object;
+    private var _mxmlDocument:Object;
 
     /**
      *  @inheritDoc
@@ -829,17 +835,17 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    public function get component():Object
+    public function get mxmlDocument():Object
     {
-        return _component;
+        return _mxmlDocument;
     }
 
     /**
      *  @private
      */
-    public function set component(value:Object):void
+    public function set mxmlDocument(value:Object):void
     {
-        _component = value;
+        _mxmlDocument = value;
     }
 
     //----------------------------------
@@ -1921,7 +1927,8 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         }
         COMPILE::JS
         {
-            return mainClassName ? new mainClassName() : null
+            if (mainClassName)
+                return new mainClassName();
         }
         return null;
     }
@@ -2724,7 +2731,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     private function kickOff():void
     {
         // already been here
-        if (component)
+        if (mxmlDocument)
             return;
 
         /*
@@ -2952,7 +2959,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
             var n:int = mixinList.length;
             for (var i:int = 0; i < n; ++i)
             {
-                mixinList[i].init(this);
+                mixinList[i]['init'](this);
             }
         }
         if (!SystemManagerGlobals.info)
@@ -2969,16 +2976,16 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      */
     private function initializeTopLevelWindow(event:Event):void
     {
-        component = IUIComponent(create());
+        mxmlDocument = IUIComponent(create());
         if (SystemManagerGlobals.parameters)
-            component["parameters"] = SystemManagerGlobals.parameters;
+            mxmlDocument["parameters"] = SystemManagerGlobals.parameters;
         
         // until preloader?
-        component.addEventListener("applicationComplete", applicationCompleteHandler);
-        component.moduleFactory = this;
-        addChild(component as IUIComponent);
+        mxmlDocument.addEventListener("applicationComplete", applicationCompleteHandler);
+        mxmlDocument.moduleFactory = this;
+        addChild(mxmlDocument as IUIComponent);
         var screen:Rectangle = this.screen;
-        component.setActualSize(screen.width, screen.height);            
+        mxmlDocument.setActualSize(screen.width, screen.height);            
     }
     
     private function applicationCompleteHandler(event:Event):void
@@ -3718,8 +3725,15 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      */
     public function get popUpHost():IPopUpHost
     {
-        return component as IPopUpHost;
+        return mxmlDocument as IPopUpHost;
     }
+	
+	// TODO is this right? Otherwise UIUtils.findPopUpHost() won't stop here.
+	public function get popUpParent():IPopUpHostParent
+	{
+		return this;
+	}
+
 
 }
 

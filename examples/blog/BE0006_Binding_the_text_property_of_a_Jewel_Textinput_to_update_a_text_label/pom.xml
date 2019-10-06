@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-blog</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <artifactId>BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0006: Binding the text property of a Jewel Textinput to update a text label</name>
@@ -41,40 +41,46 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>BE0006_Binding_the_text_property_of_a_Jewel_Textinput_to_update_a_text_label.mxml</mainClass>
-          <targets>JSRoyale,SWF</targets>
+          <targets>${royale.example.targets}</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+      <profile>
+          <id>swf-dependencies</id>
+          <activation>
+              <property>
+                  <name>generate.swf</name>
+              </property>
+          </activation>
+          <dependencies>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Jewel</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+          </dependencies>
+      </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.4</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Jewel</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Blue-Theme</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>

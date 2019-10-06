@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+			xmlns:js="library://ns.apache.org/royale/basic"
+			xmlns:html="library://ns.apache.org/royale/html"
+			>
+
+	<js:beads>
+		<js:ContainerDataBinding/>
+		<js:VerticalLayout />
+	</js:beads>
+
+	<fx:Script>
+		<![CDATA[
+			import crux.quickstart.event.UserEvent;
+			import crux.quickstart.model.User;
+
+			[Bindable]
+			[Inject( source = "userController.currentUser", bind = "true" )]
+			/**
+			 * We could inject the whole controller instance, but we only need
+			 * one property from the controller, the current user, so we just
+			 * inject that property.
+			 */
+			public var user : User;
+
+			/**
+			 * Handle the user hitting the save button. We capture the form data
+			 * and dispatch a standard Flex event. No Crux-specific events or
+			 * special central dispatcher needed!
+			 */
+			private function saveUser() : void
+			{
+				user.firstName = firstName.text;
+				user.lastName = lastName.text;
+				user.email = email.text;
+				var event : UserEvent = new UserEvent( UserEvent.SAVE_USER_REQUESTED );
+				event.user = user;
+				dispatchEvent( event );
+			}
+		]]>
+	</fx:Script>
+
+
+	<js:Label text="User Form (Crux Quickstart Example)"/>
+	<js:Spacer height="20" />
+	<js:Label text="User ID: "/>
+	<js:Label localId="userId" text="{isNaN( user.id ) ? 'N/A' : user.id}" />
+	<js:Label text="First Name: " />
+	<js:TextInput localId="firstName" text="{user.firstName}" />
+	<js:Label text="Last Name: " />
+	<js:TextInput localId="lastName" text="{user.lastName}" />
+	<js:Label text="Email: " />
+	<js:TextInput localId="email" text="{user.email}" />
+	<js:TextButton text="Save" click="saveUser()" width="200"/>
+</js:Group>
+

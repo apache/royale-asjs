@@ -26,6 +26,7 @@ package mx.containers.beads
 	import mx.core.Container;
 	import mx.core.EdgeMetrics;
 	import mx.core.IUIComponent;
+    import mx.core.UIComponent;
 	
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IStrand;
@@ -267,6 +268,7 @@ package mx.containers.beads
 				// vertical layout.
 				
 				var child:IUIComponent = layoutView.getElementAt(0) as IUIComponent;
+                var uic:UIComponent = child as UIComponent;
 				
 				var percentWidth:Number = child.percentWidth;
 				var percentHeight:Number = child.percentHeight;
@@ -278,6 +280,10 @@ package mx.containers.beads
 						Math.min(child.maxWidth,
 							((percentWidth >= 100) ? w : (w * percentWidth / 100))));
 				}
+                else if (uic != null && !isNaN(Number(uic.left)) && !isNaN(Number(uic.right)))
+                {
+                    width = w - Number(uic.left) - Number(uic.right);
+                }
 				else
 				{
 					width = child.getExplicitOrMeasuredWidth();
@@ -290,6 +296,10 @@ package mx.containers.beads
 						Math.min(child.maxHeight,
 							((percentHeight >= 100) ? h : (h * percentHeight / 100))));
 				}
+                else if (uic != null && !isNaN(Number(uic.top)) && !isNaN(Number(uic.bottom)))
+                {
+                    height = h - Number(uic.top) - Number(uic.bottom);
+                }
 				else
 				{
 					height = child.getExplicitOrMeasuredHeight();
@@ -464,7 +474,7 @@ package mx.containers.beads
 		 */
 		public function getHorizontalAlignValue():Number
 		{
-			var horizontalAlign:String = target.getStyle("horizontalAlign");
+			var horizontalAlign:String = target.horizontalAlign;
 			
 			if (horizontalAlign == "center")
 				return 0.5;

@@ -105,21 +105,25 @@ package
 		}
 
 		COMPILE::JS
-		public function toString():String
+		public function objectAccessFormat():String
 		{
 			var uriVal:String = _uri ? _uri : "*";
-			return uriVal + "::" + _localName;
+            uriVal = uriVal.replace(/:/g, "_");
+            uriVal = uriVal.replace(/\./g, "_");
+            uriVal = uriVal.replace(/\//g, "$");
+			return uriVal + "__" + _localName;
 		}
 
 		COMPILE::JS
 		public function equals(name:QName):Boolean
 		{
-			return this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
+			return name != null && this.uri == name.uri && this.localName == name.localName; // this.prefix == name.prefix &&
 		}
 		
-    	COMPILE::JS
+    COMPILE::JS
 		public function matches(name:QName):Boolean
 		{
+			if (name == null) return this.localName == "*";
 			if(this.uri == "*" || name.uri == "*")
 				return this.localName == "*" || name.localName == "*" || this.localName == name.localName;
 
@@ -170,7 +174,15 @@ package
 			return new Namespace(_prefix,_uri);
 		}
 
+		COMPILE::JS
+		public function toString():String
+		{
+			// This should cover "*" as well
+			if(_uri)
+				return _uri + "::" + _localName;
+
+			return _localName;
+		}
+
 	}
 }
-
-

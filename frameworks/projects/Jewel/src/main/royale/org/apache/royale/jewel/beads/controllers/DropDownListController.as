@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controllers
 {
 	// import flash.display.DisplayObject;
 	// import flash.geom.Point;
-	
+
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.jewel.beads.models.DropDownListModel;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.beads.views.DropDownListView;
 
     /**
@@ -39,7 +40,7 @@ package org.apache.royale.jewel.beads.controllers
      *  This controller watches for the click event and displays the
      *  dropdown/popup, and watches the dropdown/popup for change events
      *  and updates the selection model accordingly.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -49,7 +50,7 @@ package org.apache.royale.jewel.beads.controllers
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -58,10 +59,10 @@ package org.apache.royale.jewel.beads.controllers
 		public function DropDownListController()
 		{
 		}
-		
+
         /**
          *  The model.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -71,7 +72,7 @@ package org.apache.royale.jewel.beads.controllers
 
         /**
          *  The view.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -82,11 +83,12 @@ package org.apache.royale.jewel.beads.controllers
 		private var _strand:IStrand;
         /**
          *  @copy org.apache.royale.core.IBead#strand
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
+         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		public function set strand(value:IStrand):void
 		{
@@ -94,7 +96,13 @@ package org.apache.royale.jewel.beads.controllers
             model = value.getBeadByType(DropDownListModel) as DropDownListModel;
             IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
-            //IEventDispatcher(value).addEventListener(org.apache.royale.events.MouseEvent.CLICK, clickHandler);
+            if (model is IJewelSelectionModel) {
+                IJewelSelectionModel(model).dispatcher  = IEventDispatcher(value);
+            }
+            else {
+                IEventDispatcher(model).addEventListener('selectionChanged', modelChangeHandler);
+                IEventDispatcher(model).addEventListener('dataProviderChanged', modelChangeHandler);
+            }
 		}
 
         /**
@@ -104,7 +112,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
 		}
-		
+
         /**
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
@@ -118,9 +126,12 @@ package org.apache.royale.jewel.beads.controllers
             model.selectedIndex = event.index;
 			model.selectedItem = event.data;
             view.host.dispatchEvent(new Event(Event.CHANGE));
-            trace(model, model.selectedIndex, model.selectedItem, view.host);
         }
-		
+
+		protected function modelChangeHandler(event:Event):void{
+			IEventDispatcher(_strand).dispatchEvent(new Event(event.type));
+		}
+
         // private function clickHandler(event:org.apache.royale.events.MouseEvent):void
         // {
         //     var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
@@ -138,16 +149,16 @@ package org.apache.royale.jewel.beads.controllers
         //     IEventDispatcher(viewBead.popUp).addEventListener(Event.CHANGE, changeHandler);
         //     IUIBase(_strand).topMostEventDispatcher.addEventListener(org.apache.royale.events.MouseEvent.CLICK, dismissHandler);
         // }
-        
+
         // private function dismissHandler(event:org.apache.royale.events.MouseEvent):void
         // {
         //     if (event.target == _strand) return;
-            
+
         //     IUIBase(_strand).topMostEventDispatcher.removeEventListener(org.apache.royale.events.MouseEvent.CLICK, dismissHandler);
         //     var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
         //     viewBead.popUpVisible = false;
         // }
-        
+
         // private function changeHandler(event:Event):void
         // {
         //     var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;
@@ -157,6 +168,6 @@ package org.apache.royale.jewel.beads.controllers
         //     selectionModel.selectedIndex = popUpModel.selectedIndex;
 		// 	IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
         // }
-	
+
 	}
 }

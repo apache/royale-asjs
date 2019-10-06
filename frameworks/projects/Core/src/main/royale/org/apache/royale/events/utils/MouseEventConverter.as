@@ -22,10 +22,10 @@ package org.apache.royale.events.utils
         import flash.events.Event;
         import flash.events.IEventDispatcher;
         import flash.events.MouseEvent;
-        import org.apache.royale.events.utils.IHandlesOriginalEvent;
     }
     
     import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.events.utils.IHandlesOriginalEvent;
     
 	/**
 	 *  Mouse events conversion.

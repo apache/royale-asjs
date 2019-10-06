@@ -44,19 +44,19 @@ import org.apache.royale.reflection.getQualifiedClassName;
  *  The ObjectUtil class is an all-static class with methods for
  *  working with Objects within Flex.
  *  You do not create instances of ObjectUtil;
- *  instead you simply call static methods such as the 
+ *  instead you simply call static methods such as the
  *  <code>ObjectUtil.isSimple()</code> method.
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
 public class ObjectUtil
-{    
+{
     /**
     *  Array of properties to exclude from debugging output.
-    *  
+    *
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
@@ -71,7 +71,7 @@ public class ObjectUtil
     //--------------------------------------------------------------------------
 
     /**
-     *  Compares the Objects and returns an integer value 
+     *  Compares the Objects and returns an integer value
      *  indicating if the first item is less than, greater than, or equal to
      *  the second item.
      *  This method will recursively compare properties on nested objects and
@@ -84,25 +84,25 @@ public class ObjectUtil
      *
      *  @param b Object.
      *
-     *  @param depth Indicates how many levels should be 
+     *  @param depth Indicates how many levels should be
      *  recursed when performing the comparison.
-     *  Set this value to 0 for a shallow comparison of only the primitive 
+     *  Set this value to 0 for a shallow comparison of only the primitive
      *  representation of each property.
      *  For example:<pre>
      *  var a:Object = {name:"Bob", info:[1,2,3]};
      *  var b:Object = {name:"Alice", info:[5,6,7]};
      *  var c:int = ObjectUtil.compare(a, b, 0);</pre>
      *
-     *  <p>In the above example the complex properties of <code>a</code> and 
+     *  <p>In the above example the complex properties of <code>a</code> and
      *  <code>b</code> will be flattened by a call to <code>toString()</code>
      *  when doing the comparison.
      *  In this case the <code>info</code> property will be turned into a string
      *  when performing the comparison.</p>
      *
      *  @return Return 0 if a and b are equal, or both null or NaN.
-     *  Return 1 if a is null or greater than b. 
-     *  Return -1 if b is null or greater than a. 
-     *  
+     *  Return 1 if a is null or greater than b.
+     *  Return -1 if b is null or greater than a.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -114,27 +114,27 @@ public class ObjectUtil
 		return 0;
         //return internalCompare(a, b, 0, depth, new Dictionary(true));
     }
-    
+
     /**
      *  Copies the specified Object and returns a reference to the copy.
-     *  The copy is made using a native serialization technique. 
+     *  The copy is made using a native serialization technique.
      *  This means that custom serialization will be respected during the copy.
      *
-     *  <p>This method is designed for copying data objects, 
-     *  such as elements of a collection. It is not intended for copying 
-     *  a UIComponent object, such as a TextInput control. If you want to create copies 
-     *  of specific UIComponent objects, you can create a subclass of the component and implement 
+     *  <p>This method is designed for copying data objects,
+     *  such as elements of a collection. It is not intended for copying
+     *  a UIComponent object, such as a TextInput control. If you want to create copies
+     *  of specific UIComponent objects, you can create a subclass of the component and implement
      *  a <code>clone()</code> method, or other method to perform the copy.</p>
-     * 
+     *
      *  @param value Object that should be copied.
-     * 
+     *
      *  @return Copy of the specified Object.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
-     */ 
+     */
     public static function copy(value:Object):Object
     {
 		trace("copy not implemented");
@@ -148,26 +148,26 @@ public class ObjectUtil
 
     /**
      *  Clones the specified Object and returns a reference to the clone.
-     *  The clone is made using a native serialization technique. 
+     *  The clone is made using a native serialization technique.
      *  This means that custom serialization will be respected during the
      *  cloning.  clone() differs from copy() in that the uid property of
      *  each object instance is retained.
      *
-     *  <p>This method is designed for cloning data objects, 
-     *  such as elements of a collection. It is not intended for cloning 
+     *  <p>This method is designed for cloning data objects,
+     *  such as elements of a collection. It is not intended for cloning
      *  a UIComponent object, such as a TextInput control. If you want to clone
      *  specific UIComponent objects, you can create a subclass of the component
      *  and implement a <code>clone()</code> method.</p>
-     * 
+     *
      *  @param value Object that should be cloned.
-     * 
+     *
      *  @return Clone of the specified Object.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 4
-     */ 
+     */
     public static function clone(value:Object):Object
     {
 		trace("clone not implemented");
@@ -178,9 +178,9 @@ public class ObjectUtil
     }
 
     /**
-     *  Recursive helper used by the public clone method. 
+     *  Recursive helper used by the public clone method.
      *  @private
-     */    
+     */
     private static function cloneInternal(result:Object, value:Object):void
     {
 		trace("cloneInternal not implemented");
@@ -189,14 +189,14 @@ public class ObjectUtil
 //
 //        var classInfo:Object = getClassInfo(value);
 //        var v:Object;
-//        for each (var p:* in classInfo.properties) 
+//        for each (var p:* in classInfo.properties)
 //        {
 //            v = value[p];
-//            if (v && v.hasOwnProperty("uid")) 
+//            if (v && v.hasOwnProperty("uid"))
 //                cloneInternal(result[p], v);
 //        }
     }
-   
+
     /**
      *  Returns <code>true</code> if the object reference specified
      *  is a simple data type. The simple data types include the following:
@@ -214,7 +214,7 @@ public class ObjectUtil
      *
      *  @return <code>true</code> if the object specified
      *  is one of the types above; <code>false</code> otherwise.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -243,17 +243,17 @@ public class ObjectUtil
 
     /**
      *  Compares two numeric values.
-     * 
+     *
      *  @param a First number.
-     * 
+     *
      *  @param b Second number.
      *
-     *  @return 0 is both numbers are NaN. 
+     *  @return 0 is both numbers are NaN.
      *  1 if only <code>a</code> is a NaN.
      *  -1 if only <code>b</code> is a NaN.
      *  -1 if <code>a</code> is less than <code>b</code>.
      *  1 if <code>a</code> is greater than <code>b</code>.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -281,20 +281,20 @@ public class ObjectUtil
 
     /**
      *  Compares two String values.
-     * 
+     *
      *  @param a First String value.
-     * 
+     *
      *  @param b Second String value.
      *
-     *  @param caseInsensitive Specifies to perform a case insensitive compare, 
+     *  @param caseInsensitive Specifies to perform a case insensitive compare,
      *  <code>true</code>, or not, <code>false</code>.
      *
-     *  @return 0 is both Strings are null. 
+     *  @return 0 is both Strings are null.
      *  1 if only <code>a</code> is null.
      *  -1 if only <code>b</code> is null.
      *  -1 if <code>a</code> precedes <code>b</code>.
      *  1 if <code>b</code> precedes <code>a</code>.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -320,7 +320,7 @@ public class ObjectUtil
         }
 
         var result:int = a.localeCompare(b);
-        
+
         if (result < -1)
             result = -1;
         else if (result > 1)
@@ -330,8 +330,8 @@ public class ObjectUtil
     }
 
     /**
-     *  Compares the two Date objects and returns an integer value 
-     *  indicating if the first Date object is before, equal to, 
+     *  Compares the two Date objects and returns an integer value
+     *  indicating if the first Date object is before, equal to,
      *  or after the second item.
      *
      *  @param a Date object.
@@ -346,8 +346,8 @@ public class ObjectUtil
      *  (or <code>a</code> is <code>null</code>);
 	 *  0 is both dates getTime's are NaN;
      *  1 if only <code>a</code> getTime is a NaN;
-     *  -1 if only <code>b</code> getTime is a NaN.    
-     *  
+     *  -1 if only <code>b</code> getTime is a NaN.
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -366,25 +366,25 @@ public class ObjectUtil
 
         var na:Number = a.getTime();
         var nb:Number = b.getTime();
-        
+
         if (na < nb)
             return -1;
 
         if (na > nb)
             return 1;
-		
+
 		if (isNaN(na) && isNaN(nb))
 			return 0;
-		
+
 		if (isNaN(na))
 			return 1;
-		
+
 		if (isNaN(nb))
 			return -1;
 
         return 0;
     }
-        
+
     /**
      *  Pretty-prints the specified Object into a String.
      *  All properties will be in alpha ordering.
@@ -404,27 +404,27 @@ public class ObjectUtil
      *    public class MyCustomClass {
      *      public var clazz:Class;
      *    }</pre>
-     * 
+     *
      *  <p>With the <code>clazz</code> property assigned to <code>Date</code>
      *  will display as shown below:</p>
-     * 
+     *
      *  <pre>
      *   (somepackage::MyCustomClass)#0
      *      clazz = (Date)</pre>
      *
      *  @param value Object to be pretty printed.
-     * 
-     *  @param namespaceURIs Array of namespace URIs for properties 
+     *
+     *  @param namespaceURIs Array of namespace URIs for properties
      *  that should be included in the output.
      *  By default only properties in the public namespace will be included in
      *  the output.
-     *  To get all properties regardless of namespace pass an array with a 
+     *  To get all properties regardless of namespace pass an array with a
      *  single element of "*".
-     * 
-     *  @param exclude Array of the property names that should be 
+     *
+     *  @param exclude Array of the property names that should be
      *  excluded from the output.
      *  Use this to remove data from the formatted string.
-     * 
+     *
      *  @return String containing the formatted version
      *  of the specified object.
      *
@@ -523,7 +523,7 @@ public class ObjectUtil
      *      deeper2 = (Object)#6
      *        deeperStill = (Object)#7
      *          yetDeeper = (Object)#0
-     * 
+     *
      * // example 3 with Dictionary
      * var point:Point = new Point(100, 100);
      * var point2:Point = new Point(100, 100);
@@ -534,7 +534,7 @@ public class ObjectUtil
      * obj["two"] = { name: "2", num: 2};
      * obj[3] = 3;
      * trace(ObjectUtil.toString(obj));
-     * 
+     *
      * // will output to flashlog.txt
      * (flash.utils::Dictionary)#0
      *   {(flash.geom::Point)#1
@@ -552,40 +552,40 @@ public class ObjectUtil
      *   {"two"} = (Object)#4
      *     name = "2"
      *     num = 2
-     * 
+     *
      * </pre>
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public static function toString(value:Object, 
-                                    namespaceURIs:Array = null, 
+    public static function toString(value:Object,
+                                    namespaceURIs:Array = null,
                                     exclude:Array = null):String
     {
         if (exclude == null)
         {
             exclude = defaultToStringExcludes;
         }
-        
+
         refCount = 0;
         return internalToString(value, 0, null, namespaceURIs, exclude);
     }
-    
+
     /**
      *  This method cleans up all of the additional parameters that show up in AsDoc
      *  code hinting tools that developers shouldn't ever see.
      *  @private
      */
-    private static function internalToString(value:Object, 
+    private static function internalToString(value:Object,
                                              indent:int = 0,
 											 refs:Object = null,
-                                             namespaceURIs:Array = null, 
+                                             namespaceURIs:Array = null,
                                              exclude:Array = null):String
     {
 		trace("internalToString not implemented");
-        
+
         return "(unknown)";
     }
 
@@ -598,38 +598,38 @@ public class ObjectUtil
     {
         var result:String = str;
         result += "\n";
-        
+
         for (var i:int = 0; i < n; i++)
         {
             result += " ";
         }
         return result;
     }
-    
+
     private static function internalCompare(a:Object, b:Object,
                                             currentDepth:int, desiredDepth:int,
                                             /*refs:Dictionary*/ refs:Object):int
     {
         if (a == null && b == null)
             return 0;
-    
+
         if (a == null)
             return 1;
-    
+
         if (b == null)
             return -1;
-           
+
 //        if (a is ObjectProxy)
 //            a = ObjectProxy(a).object_proxy::object;
-//            
+//
 //        if (b is ObjectProxy)
 //            b = ObjectProxy(b).object_proxy::object;
-            
+
         var typeOfA:String = typeof(a);
         var typeOfB:String = typeof(b);
-        
+
         var result:int = 0;
-        
+
         if (typeOfA == typeOfB)
         {
             switch(typeOfA)
@@ -637,39 +637,39 @@ public class ObjectUtil
                 case "boolean":
                     result = numericCompare(Number(a), Number(b));
                 	break;
-                
+
                 case "number":
                     result = numericCompare(a as Number, b as Number);
                     break;
-                
+
                 case "string":
                     result = stringCompare(a as String, b as String);
                     break;
-                
+
                 case "object":
                     var newDepth:int = desiredDepth > 0 ? desiredDepth -1 : desiredDepth;
-                    
+
                     // refs help us avoid circular reference infinite recursion.
                     var aRef:Object = getRef(a,refs);
                     var bRef:Object = getRef(b,refs);
-                    
+
                     if (aRef == bRef)
                         return 0;
-                    // the cool thing about our dictionary is that if 
+                    // the cool thing about our dictionary is that if
                     // we've seen objects and determined that they are unequal, then
-                    // we would've already exited out of this compare() call.  So the 
+                    // we would've already exited out of this compare() call.  So the
                     // only info in the dictionary are sets of equal items
-                    
+
                     // let's first define them as equal
                     // this stops an "infinite loop" problem where A.i = B and B.i = A
-                    // if we later find that an object (one of the subobjects) is in fact unequal, 
+                    // if we later find that an object (one of the subobjects) is in fact unequal,
                     // then we will return false and quit out of everything.  These refs are thrown away
                     // so it doesn't matter if it's correct.
                     refs[bRef] = aRef;
-                    
+
                     if (desiredDepth != -1 && (currentDepth > desiredDepth))
                     {
-                        // once we try to go beyond the desired depth we should 
+                        // once we try to go beyond the desired depth we should
                         // toString() our way out
                         result = stringCompare(a.toString(), b.toString());
                     }
@@ -691,7 +691,7 @@ public class ObjectUtil
                         return 1;
                     }
                     break;
-				
+
 				default:
 					break;
             }
@@ -703,7 +703,7 @@ public class ObjectUtil
 
         return result;
     }
-    
+
     /**
      *  Returns information about the class, and properties of the class, for
      *  the specified Object.
@@ -711,28 +711,28 @@ public class ObjectUtil
      *  @param obj The Object to inspect.
      *
      *  @param excludes Array of Strings specifying the property names that should be
-     *  excluded from the returned result. For example, you could specify 
-     *  <code>["currentTarget", "target"]</code> for an Event object since these properties 
+     *  excluded from the returned result. For example, you could specify
+     *  <code>["currentTarget", "target"]</code> for an Event object since these properties
      *  can cause the returned result to become large.
      *
-     *  @param options An Object containing one or more properties 
-     *  that control the information returned by this method. 
+     *  @param options An Object containing one or more properties
+     *  that control the information returned by this method.
      *  The properties include the following:
      *
      *  <ul>
-     *    <li><code>includeReadOnly</code>: If <code>false</code>, 
-     *      exclude Object properties that are read-only. 
+     *    <li><code>includeReadOnly</code>: If <code>false</code>,
+     *      exclude Object properties that are read-only.
      *      The default value is <code>true</code>.</li>
-     *  <li><code>includeTransient</code>: If <code>false</code>, 
+     *  <li><code>includeTransient</code>: If <code>false</code>,
      *      exclude Object properties and variables that have <code>[Transient]</code> metadata.
      *      The default value is <code>true</code>.</li>
      *  <li><code>uris</code>: Array of Strings of all namespaces that should be included in the output.
-     *      It does allow for a wildcard of "~~". 
-     *      By default, it is null, meaning no namespaces should be included. 
-     *      For example, you could specify <code>["mx_internal", "mx_object"]</code> 
+     *      It does allow for a wildcard of "~~".
+     *      By default, it is null, meaning no namespaces should be included.
+     *      For example, you could specify <code>["mx_internal", "mx_object"]</code>
      *      or <code>["~~"]</code>.</li>
      *  </ul>
-     * 
+     *
      *  @return An Object containing the following properties:
      *  <ul>
      *    <li><code>name</code>: String containing the name of the class.</li>
@@ -740,7 +740,7 @@ public class ObjectUtil
      *    or references to the original key if the specified object is a Dictionary. The individual
      *    array elements are QName instances, which contain both the local name of the property as well as the URI.</li>
      *  </ul>
-    *  
+    *
     *  @langversion 3.0
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
@@ -749,29 +749,29 @@ public class ObjectUtil
     public static function getClassInfo(obj:Object,
                                         excludes:Array = null,
                                         options:Object = null):Object
-    {   
+    {
         COMPILE::SWF
         {
         var n:int;
         var i:int;
-        
+        var p:String;
         //if (obj is ObjectProxy)
         //    obj = ObjectProxy(obj).object_proxy::object;
-        
+
         if (options == null)
             options = { includeReadOnly: true, uris: null, includeTransient: true };
-        
+
         var result:Object;
         var propertyNames:Array = [];
         var cacheKey:String;
-        
+
         var className:String;
         var classAlias:String;
         var properties:XMLList;
         var prop:XML;
         var isDynamic:Boolean = false;
         var metadataInfo:Object;
-        
+
         if (typeof(obj) == "xml")
         {
             className = "XML";
@@ -786,15 +786,15 @@ public class ObjectUtil
             className = classInfo.@name.toString();
             classAlias = classInfo.@alias.toString();
             isDynamic = classInfo.@isDynamic.toString() == "true";
-            
+
             if (options.includeReadOnly)
                 properties = classInfo..accessor.(@access != "writeonly") + classInfo..variable;
             else
                 properties = classInfo..accessor.(@access == "readwrite") + classInfo..variable;
-            
+
             var numericIndex:Boolean = false;
         }
-        
+
         // If type is not dynamic, check our cache for class info...
         if (!isDynamic)
         {
@@ -803,14 +803,14 @@ public class ObjectUtil
             if (result != null)
                 return result;
         }
-        
+
         result = {};
         result["name"] = className;
         result["alias"] = classAlias;
         result["properties"] = propertyNames;
         result["dynamic"] = isDynamic;
 //        result["metadata"] = metadataInfo = recordMetadata(properties);
-        
+
         var excludeObject:Object = {};
         if (excludes)
         {
@@ -820,10 +820,10 @@ public class ObjectUtil
                 excludeObject[excludes[i]] = 1;
             }
         }
-        
+
         var isArray:Boolean = (obj is Array);
         /*var isDict:Boolean  = (obj is Dictionary);
-        
+
         if (isDict)
         {
             // dictionaries can have multiple keys of the same type,
@@ -836,7 +836,7 @@ public class ObjectUtil
         }
         else*/ if (isDynamic)
         {
-            for (var p:String in obj)
+            for (p in obj)
             {
                 if (excludeObject[p] != 1)
                 {
@@ -856,7 +856,7 @@ public class ObjectUtil
             }
             numericIndex = isArray && !isNaN(Number(p));
         }
-        
+
         if (isArray /*|| isDict */|| className == "Object")
         {
             // Do nothing since we've already got the dynamic members
@@ -882,17 +882,17 @@ public class ObjectUtil
                 prop = properties[i];
                 p = prop.@name.toString();
                 uri = prop.@uri.toString();
-                
+
                 if (excludeObject[p] == 1)
                     continue;
-                
+
                 //if (!options.includeTransient && internalHasMetadata(metadataInfo, p, "Transient"))
                 //    continue;
-                
+
                 if (uris != null)
                 {
                     if (uris.length == 1 && uris[0] == "*")
-                    {   
+                    {
                         qName = new QName(uri, p);
                         try
                         {
@@ -901,7 +901,7 @@ public class ObjectUtil
                         }
                         catch(e:Error)
                         {
-                            // don't keep property name 
+                            // don't keep property name
                         }
                     }
                     else
@@ -919,7 +919,7 @@ public class ObjectUtil
                                 }
                                 catch(e:Error)
                                 {
-                                    // don't keep property name 
+                                    // don't keep property name
                                 }
                             }
                         }
@@ -935,14 +935,14 @@ public class ObjectUtil
                     }
                     catch(e:Error)
                     {
-                        // don't keep property name 
+                        // don't keep property name
                     }
                 }
             }
         }
-        
+
         propertyNames.sort(Array.CASEINSENSITIVE | (numericIndex ? Array.NUMERIC : 0));
-        
+
         // dictionary keys can be indexed by an object reference
         // there's a possibility that two keys will have the same toString()
         // so we don't want to remove duplicates
@@ -961,7 +961,7 @@ public class ObjectUtil
                 }
             }
         //}
-        
+
         // For normal, non-dynamic classes we cache the class info
         // Don't cache XML as it can be dynamic
         if (!isDynamic && className != "XML")
@@ -969,29 +969,38 @@ public class ObjectUtil
             cacheKey = getCacheKey(obj, excludes, options);
             CLASS_INFO_CACHE[cacheKey] = result;
         }
-        
+
         return result;
         }
         COMPILE::JS
         {
             var n:int;
             var i:int;
-            
+            var p:String;
             //if (obj is ObjectProxy)
             //    obj = ObjectProxy(obj).object_proxy::object;
-            
+
             if (options == null)
                 options = { includeReadOnly: true, uris: null, includeTransient: true };
-            
+
             var result:Object;
             var propertyNames:Array = [];
             var cacheKey:String;
-            
+
             var className:String;
             var classAlias:String;
             var isDynamic:Boolean = false;
             var metadataInfo:Object;
-            
+            var excludeObject:Object = {};
+            if (excludes)
+            {
+                n = excludes.length;
+                for (i = 0; i < n; i++)
+                {
+                    excludeObject[excludes[i]] = 1;
+                }
+            }
+
             if (obj is XML)
             {
                 className = "XML";
@@ -1021,7 +1030,7 @@ public class ObjectUtil
                     className = classInfo.qualifiedName;
                     //classAlias = classInfo.@alias.toString();
                     //isDynamic = classInfo.@isDynamic.toString() == "true";
-                
+
                     var accessors:Array = classInfo.accessors;
                     for each (var accessor:AccessorDefinition in accessors)
                     {
@@ -1035,7 +1044,7 @@ public class ObjectUtil
                         else
                         {
                             if (accessor.access != "readwrite")
-                                propertyNames.push(accessor.name);                        
+                                propertyNames.push(accessor.name);
                         }
                     }
                     var variables:Array = classInfo.variables;
@@ -1045,11 +1054,11 @@ public class ObjectUtil
                             continue;
                         propertyNames.push(variable.name);
                     }
-                    
+
                     var numericIndex:Boolean = false;
                 }
             }
-            
+
             // If type is not dynamic, check our cache for class info...
             if (!isDynamic)
             {
@@ -1058,28 +1067,17 @@ public class ObjectUtil
                 if (result != null)
                     return result;
             }
-            
+
             result = {};
             result["name"] = className;
             result["alias"] = classAlias;
             result["properties"] = propertyNames;
             result["dynamic"] = isDynamic;
 //            result["metadata"] = metadataInfo = recordMetadata(properties);
-            
-            var excludeObject:Object = {};
-            if (excludes)
-            {
-                n = excludes.length;
-                for (i = 0; i < n; i++)
-                {
-                    excludeObject[excludes[i]] = 1;
-                }
-            }
-            
             var isArray:Boolean = (obj is Array);
             if (isDynamic)
             {
-                for (var p:String in obj)
+                for (p in obj)
                 {
                     if (excludeObject[p] != 1)
                     {
@@ -1099,9 +1097,9 @@ public class ObjectUtil
                 }
                 numericIndex = isArray && !isNaN(Number(p));
             }
-            
+
             propertyNames.sort(Array.CASEINSENSITIVE | (numericIndex ? Array.NUMERIC : 0));
-            
+
             // for Arrays, etc., on the other hand...
             // remove any duplicates, i.e. any items that can't be distingushed by toString()
             for (i = 0; i < propertyNames.length - 1; i++)
@@ -1114,7 +1112,7 @@ public class ObjectUtil
                     i--; // back up
                 }
             }
-            
+
             // For normal, non-dynamic classes we cache the class info
             // Don't cache XML as it can be dynamic
             if (!isDynamic && className != "XML")
@@ -1122,31 +1120,31 @@ public class ObjectUtil
                 cacheKey = getCacheKey(obj, excludes, options);
                 CLASS_INFO_CACHE[cacheKey] = result;
             }
-            
-            return result;            
+
+            return result;
         }
     }
 
     /**
      * Uses <code>getClassInfo</code> and examines the metadata information to
-     * determine whether a property on a given object has the specified 
+     * determine whether a property on a given object has the specified
      * metadata.
-     * 
+     *
      * @param obj The object holding the property.
      * @param propName The property to check for metadata.
      * @param metadataName The name of the metadata to check on the property.
      * @param excludes If any properties need to be excluded when generating class info. (Optional)
      * @param options If any options flags need to changed when generating class info. (Optional)
      * @return true if the property has the specified metadata.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public static function hasMetadata(obj:Object, 
-                propName:String, 
-                metadataName:String, 
+    public static function hasMetadata(obj:Object,
+                propName:String,
+                metadataName:String,
                 excludes:Array = null,
                 options:Object = null):Boolean
     {
@@ -1163,7 +1161,7 @@ public class ObjectUtil
      *  @param object The object.
      *
      *  @return <code>true</code> if the object is an instance of a dynamic class.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
@@ -1173,8 +1171,8 @@ public class ObjectUtil
     {
         try
         {
-            // this test for checking whether an object is dynamic or not is 
-            // pretty hacky, but it assumes that no-one actually has a 
+            // this test for checking whether an object is dynamic or not is
+            // pretty hacky, but it assumes that no-one actually has a
             // property defined called "wootHackwoot"
             var o:* = object["wootHackwoot"];
         }
@@ -1357,7 +1355,7 @@ public class ObjectUtil
     private static function getCacheKey(o:Object, excludes:Array = null, options:Object = null):String
     {
         var key:String = getQualifiedClassName(o);
-        
+
         if (excludes != null)
         {
             var length:int = excludes.length;
@@ -1368,7 +1366,7 @@ public class ObjectUtil
                     key += excl;
             }
         }
-        
+
         if (options != null)
         {
             for (var flag:String in options)
@@ -1428,17 +1426,17 @@ public class ObjectUtil
 
         return result;
     }
-    
+
     /**
      * @private
      */
 //    private static function byteArrayCompare(a:ByteArray, b:ByteArray):int
 //    {
 //        var result:int = 0;
-//        
+//
 //        if (a == b)
 //            return result;
-//            
+//
 //        if (a.length != b.length)
 //        {
 //            if (a.length < b.length)
@@ -1463,7 +1461,7 @@ public class ObjectUtil
     /**
      *  @private
      */
-    private static function listCompare(a:IList, b:IList, currentDepth:int, 
+    private static function listCompare(a:IList, b:IList, currentDepth:int,
                                         desiredDepth:int, /*refs:Dictionary*/ refs:Object):int
     {
         var result:int = 0;
@@ -1479,7 +1477,7 @@ public class ObjectUtil
         {
             for (var i:int = 0; i < a.length; i++)
             {
-                result = internalCompare(a.getItemAt(i), b.getItemAt(i), 
+                result = internalCompare(a.getItemAt(i), b.getItemAt(i),
                                          currentDepth+1, desiredDepth, refs);
                 if (result != 0)
                 {
@@ -1490,7 +1488,7 @@ public class ObjectUtil
 
         return result;
     }
-    
+
     /**
      * @private
      * This is the "find" for our union-find algorithm when doing object searches.
@@ -1498,7 +1496,7 @@ public class ObjectUtil
      */
     private static function getRef(o:Object, /*refs:Dictionary*/ refs:Object):Object
     {
-        var oRef:Object = refs[o]; 
+        var oRef:Object = refs[o];
         while (oRef && oRef != refs[oRef])
         {
             oRef = refs[oRef];
@@ -1507,10 +1505,10 @@ public class ObjectUtil
             oRef = o;
         if (oRef != refs[o])
             refs[o] = oRef;
-        
+
         return oRef;
     }
-    
+
     /**
      * @private
      */
@@ -1518,7 +1516,7 @@ public class ObjectUtil
 
     /**
      * @private
-     */ 
+     */
     private static var CLASS_INFO_CACHE:Object = {};
 }
 

@@ -129,11 +129,13 @@ package org.apache.royale.net
 					}
 					xhr.setRequestHeader(header.name, header.value);
 				}
-				if (!contentTypeSet)
+				if (!contentTypeSet && urlRequest.contentType)
 				{
 					xhr.setRequestHeader("Content-type", urlRequest.contentType);
 				}
-				var requestData:Object = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : HTTPUtils.encodeUrlVariables(urlRequest.data);
+				var requestData:Object = urlRequest.data is BinaryData ? (urlRequest.data as BinaryData).data : 
+					urlRequest.data is FormData ? urlRequest.data :
+					HTTPUtils.encodeUrlVariables(urlRequest.data);
 				send(requestData);
 			}
 			COMPILE::SWF 

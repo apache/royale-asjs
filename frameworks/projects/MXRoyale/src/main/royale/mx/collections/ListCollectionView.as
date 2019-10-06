@@ -1104,6 +1104,17 @@ public class ListCollectionView extends Proxy implements ICollectionView, IList 
         return null;
     }
 
+    COMPILE::JS
+    override public function propertyNames():Array
+    {
+        var nextNameArray:Array = [];
+        for (var i:int = 0; i < length; i++)
+        {
+            nextNameArray.push(i.toString());    
+        }
+        return nextNameArray;
+    }
+    
     //--------------------------------------------------------------------------
     //
     // EventDispatcher methods

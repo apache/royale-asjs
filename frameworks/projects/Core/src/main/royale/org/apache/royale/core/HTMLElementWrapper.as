@@ -23,35 +23,123 @@ package org.apache.royale.core
     COMPILE::SWF
     {
         import flash.display.Sprite;
+        import org.apache.royale.events.Event;
     }
         
     COMPILE::JS
     {
+        import org.apache.royale.events.Event;        
+        import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.events.IBrowserEvent;
+        import org.apache.royale.events.ElementEvents;
+        import org.apache.royale.events.EventDispatcher;
         import goog.events;
         import goog.events.BrowserEvent;
         import goog.events.EventTarget;
-
-        import org.apache.royale.events.BrowserEvent;
-        import org.apache.royale.events.ElementEvents;
-        import org.apache.royale.events.Event;
-        import org.apache.royale.events.EventDispatcher;
-        import org.apache.royale.events.IBrowserEvent;
-        import org.apache.royale.events.KeyboardEvent;
-        import org.apache.royale.events.MouseEvent;
+        import goog.DEBUG;
         import org.apache.royale.events.utils.EventUtils;
-        import org.apache.royale.events.utils.KeyboardEventConverter;
-        import org.apache.royale.events.utils.MouseEventConverter;
     }
 
     COMPILE::SWF
-    public class HTMLElementWrapper extends Sprite
+    public class HTMLElementWrapper extends Sprite implements IStrand, IEventDispatcher
     {
+        
+        private var _beads:Vector.<IBead>;
+    
         /**
-         * "abstract" method so we can override in JS
          * @param bead The new bead.
          */
         public function addBead(bead:IBead):void
-        {            
+        {
+            if (!_beads)
+            {
+                _beads = new Vector.<IBead>();
+            }
+            _beads.push(bead);
+        
+            if (bead is IBeadModel)
+            {
+                _model = bead as IBeadModel;
+            }
+        
+            bead.strand = this;
+        }
+    
+        /**
+         *  @copy org.apache.royale.core.IStrand#getBeadByType()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function getBeadByType(classOrInterface:Class):IBead
+        {
+            for each (var bead:IBead in _beads)
+            {
+                if (bead is classOrInterface)
+                    return bead;
+            }
+            return null;
+        }
+    
+    
+        /**
+         *  @copy org.apache.royale.core.IStrand#removeBead()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function removeBead(value:IBead):IBead
+        {
+            var n:int = _beads.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                var bead:IBead = _beads[i];
+                if (bead == value)
+                {
+                    _beads.splice(i, 1);
+                    return bead;
+                }
+            }
+            return null;
+        }
+    
+    
+    
+        /**
+         * allow access from overrides
+         */
+        protected var _model:IBeadModel;
+    
+        /**
+         * @royaleignorecoercion Class
+         * @royaleignorecoercion org.apache.royale.core.IBeadModel
+         */
+        public function get model():Object
+        {
+            if (_model == null)
+            {
+                // addbead will set _model
+                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
+            }
+            return _model;
+        }
+    
+        /**
+         * @private
+         * @royaleignorecoercion org.apache.royale.core.IBead
+         */
+        [Bindable("modelChanged")]
+        public function set model(value:Object):void
+        {
+            if (_model != value)
+            {
+                addBead(value as IBead);
+                dispatchEvent(new Event("modelChanged"));
+            }
         }
     }
     
@@ -72,22 +160,20 @@ package org.apache.royale.core
 		{
             var e:IBrowserEvent;
             var nativeEvent:Object = eventObject.getBrowserEvent();
-            switch(nativeEvent.constructor.name)
-            {
-                case "KeyboardEvent":
-                    e = KeyboardEventConverter.convert(nativeEvent);
-                    break;
-                case "MouseEvent":
-                    e = MouseEventConverter.convert(nativeEvent);
-                    break;
-                default:
-                    e = new org.apache.royale.events.BrowserEvent();
-                    break;
-            }
+            var converter:Object = converterMap[nativeEvent.constructor.name];
+            if (converter)
+                e = converter["convert"](nativeEvent);
+            else
+                e = new org.apache.royale.events.BrowserEvent();
 
 			e.wrapEvent(eventObject);
 			return HTMLElementWrapper.googFireListener(listener, e);
 		}
+        
+        /**
+         * @royalesuppresspublicvarwarning
+         */
+        static public var converterMap:Object = {};
 
         /**
          * Static initializer
@@ -139,7 +225,7 @@ package org.apache.royale.core
         /**
          * allow access from overrides
          */
-		protected var _model:Object;
+		protected var _model:IBeadModel;
         
         /**
          * @royaleignorecoercion Class 
@@ -160,6 +246,7 @@ package org.apache.royale.core
         
         /**
          * @royaleignorecoercion org.apache.royale.core.IBead
+         * @royaleignorecoercion org.apache.royale.core.IBeadModel
          */
         [Bindable("modelChanged")]
         public function set model(value:Object):void
@@ -169,12 +256,12 @@ package org.apache.royale.core
                 if (value is IBead)
                     addBead(value as IBead);
                 else
-                    _model = value;
+                    _model = IBeadModel(value);
                 dispatchEvent(new org.apache.royale.events.Event("modelChanged"));
             }
         }
-
-		protected var _beads:Vector.<IBead>;
+        
+		private var _beads:Array;
         
 		//--------------------------------------
 		//   Function
@@ -188,9 +275,9 @@ package org.apache.royale.core
 		{
 			if (!_beads)
 			{
-				_beads = new Vector.<IBead>();
+				_beads = [];
 			}
-
+            if (goog.DEBUG && !(bead is IBead)) throw new TypeError('Cannot convert '+bead+' to IBead')
 			_beads.push(bead);
 
 			if (bead is IBeadModel)

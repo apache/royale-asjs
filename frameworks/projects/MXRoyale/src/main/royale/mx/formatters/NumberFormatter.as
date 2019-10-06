@@ -585,14 +585,14 @@ public class NumberFormatter //extends Formatter
         var numArrTemp:Array = numStr.split(".");
         var numFraction:int = numArrTemp[1] ? String(numArrTemp[1]).length : 0;
 
-        if (precision < numFraction)
+        /*if (precision < numFraction)
         {
-           /* if (rounding != NumberBaseRoundType.NONE)
+            if (rounding != NumberBaseRoundType.NONE)
             {
                 numStr = dataFormatter.formatRoundingWithPrecision(
                     numStr, rounding, int(precision));
-            } */
-        }
+            } 
+        }*/
 
         var numValue:Number = Number(numStr);
         if (Math.abs(numValue) >= 1)

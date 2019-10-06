@@ -22,7 +22,9 @@ package org.apache.royale.svg
 
 	COMPILE::JS
 	{
-		import org.apache.royale.core.WrappedHTMLElement;            
+		import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addSvgElementToWrapper;
+    import org.apache.royale.html.util.createSVG;
 	}
     public class Image extends ImageBase
     {
@@ -45,7 +47,7 @@ package org.apache.royale.svg
 		COMPILE::JS
 		override protected function createElement():WrappedHTMLElement
 		{
-			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as WrappedHTMLElement;
+			addSvgElementToWrapper(this, 'svg') as WrappedHTMLElement;
 			element.setAttribute('x', 0);
 			element.setAttribute('y', 0);
 			//element.offsetParent = null;
@@ -63,7 +65,7 @@ package org.apache.royale.svg
 		protected function addImageElement():void
 		{
 			if (_image == null) {
-				_image = document.createElementNS('http://www.w3.org/2000/svg', 'image') as WrappedHTMLElement;
+				_image = createSVG('image') as WrappedHTMLElement;
 				_image.setAttribute("width", "100%");
 				_image.setAttribute("height", "100%");
 				_image.royale_wrapper = this;

@@ -139,6 +139,9 @@ package org.apache.royale.html.beads
 				
 		}
 		
+		/**
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		private function throwChangeEvent():void
 		{
 			if (_strand)

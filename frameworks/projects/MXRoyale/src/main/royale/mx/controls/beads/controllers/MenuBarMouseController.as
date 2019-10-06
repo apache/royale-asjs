@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads.controllers
 {
+    import mx.collections.XMLListCollection;
     import mx.controls.MenuBar;
     
     import org.apache.royale.core.IListPresentationModel;
@@ -48,7 +49,13 @@ package mx.controls.beads.controllers
 		{
 		}
 		
-		
+        override protected function getMenuDataProvider(obj:Object, fieldName:String):Object
+        {
+            if (obj is XML)
+                return new XMLListCollection((obj as XML).children());
+            return obj[fieldName];
+        }
+
         /**
          *  track menus for testing
          *  

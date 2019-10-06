@@ -1,6 +1,6 @@
 {
   "name": "@apache-royale/royale-js-swf",
-  "version": "0.9.4",
+  "version": "0.9.6",
   "description": "Apache Royale (formerly FlexJS)",
   "keywords": [
     "royale",
@@ -18,13 +18,16 @@
   "author": "Apache Royale <dev@royale.apache.org>",
   "license": "Apache-2.0",
   "dependencies": {
+    "dmg": "0.1.0",
     "eol": "^0.2.0",
     "fs-extra": "^0.26.3",
     "merge-dirs": "^0.2.1",
     "mkdirp": "^0.5.1",
+    "os": "^0.1.1",
     "prompt": "^0.2.14",
+    "replace-in-file": "4.1.3",
     "request": "^2.67.0",
-    "unzip": "^0.1.11"
+    "unzipper": "0.10.4"
   },
   "scripts": {
     "postinstall": "node royale-asjs/npm/js-swf/dependencies/download_dependencies.js"
@@ -38,10 +41,13 @@
     "externc": "./royale-asjs/js/bin/externcnpm"
   },
   "org_apache_royale": {
-    "flash_player_global_url": "http://download.macromedia.com/get/flashplayer/updaters/25/",
+    "flash_player_global_url": "http://fpdownload.macromedia.com/get/flashplayer/installers/archive/playerglobal/",
     "flash_player_global_file_name": "playerglobal25_0.swc",
+    "flash_player_global_folder": "royale-asjs/frameworks/libs/player/25.0/",
     "adobe_air_url": "http://airdownload.adobe.com/air/win/download/25.0/",
     "adobe_air_file_name": "AdobeAIRSDK.zip",
+    "adobe_air_url_mac": "http://airdownload.adobe.com/air/mac/download/25.0/",
+    "adobe_air_file_name_mac": "AdobeAIRSDK.dmg",
     "player_version": "25.0",
     "swf_version": "36",
     "swf_object_url": "http://github.com/swfobject/swfobject/archive/",

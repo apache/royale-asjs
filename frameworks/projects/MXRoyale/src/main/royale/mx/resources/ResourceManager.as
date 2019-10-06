@@ -28,7 +28,7 @@ import mx.core.IFlexModuleFactory;
 import mx.core.mx_internal;
 //import mx.core.Singleton;
 //import mx.events.ModuleEvent;
-import mx.events.ResourceEvent;
+//import mx.events.ResourceEvent;
 import mx.modules.IModuleInfo;
 import mx.modules.ModuleManager;
 import mx.utils.StringUtil;

@@ -78,18 +78,22 @@
 
     <target name="json" unless="json.exists" >
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
-        <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCode"
+        <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCodeJS"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Droyalelib='${ROYALE_HOME}/frameworks'"/>
             <arg value="+royalelib=${ROYALE_HOME}/frameworks" />
             <arg value="-external-library-path=${ROYALE_HOME}/js/libs/js.swc" />
-            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/GCL.swc" />
-            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/createjs.swc" />
-            <arg value="-external-library-path=${ROYALE_HOME}/js/libs/jquery.swc" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/ace-1.2.3.swc" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/cordova.swc" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/GCL.swc" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/createjs.swc" />
+            <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/jquery.swc" />
             <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
             <arg value="-load-config=${config.path}" />
+            <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,IUIComponent" />
+            <arg value="-compiler.define+=GOOG::DEBUG,goog.DEBUG" />
             <arg value="-debug=true" />
             <arg value="-output=${basedir}/bin-debug" />
             <arg value="-window-title=Apache Royale API Reference" />
@@ -100,12 +104,32 @@
             <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
         </java>
-
+        <fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${errorCodeJS}" arg2="0" />
+                        <equals arg1="${errorCodeJS}" arg2="2" />
+                    </or>
+                </not>
+            </condition>
+        </fail>
     </target>
     
-    <target name="json.swf" unless="json.exists" >
+    <target name="check.swf.needed">
+        <condition property="swf.json.needed" value="true">
+            <and>
+                <not>
+                    <isset property="json.exists" />
+                </not>
+                <isset property="env.AIR_HOME" />
+            </and>
+        </condition>
+    </target>
+    
+    <target name="json.swf" depends="check.swf.needed" if="swf.json.needed" >
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
-        <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCode"
+        <java jar="${ROYALE_COMPILER_HOME}/lib/asdoc.jar" resultProperty="errorCodeSWF"
             fork="true">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <jvmarg line="-Droyalelib='${ROYALE_HOME}/frameworks'"/>
@@ -114,6 +138,8 @@
             <arg value="-external-library-path+=${ROYALE_HOME}/js/libs/google_maps.swc" />
             <arg value="+frameworks_dir=${ROYALE_HOME}/frameworks" />
             <arg value="-load-config=${config.swf.path}" />
+            <arg value="-compiler.define+=GOOG::DEBUG,true" />
+            <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject" />
             <arg value="-debug=true" />
             <arg value="-output=${basedir}/bin-debug" />
             <arg value="-window-title=Apache Royale API Reference" />
@@ -124,6 +150,16 @@
             <arg value="-js-output-type=ROYALE" />
             <arg value="-closure-lib=${GOOG_HOME}" />
         </java>
+        <fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${errorCodeSWF}" arg2="0" />
+                        <equals arg1="${errorCodeSWF}" arg2="2" />
+                    </or>
+                </not>
+            </condition>
+        </fail>
     </target>
     
     <target name="examine" depends="build_example.get.browser">

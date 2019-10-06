@@ -18,6 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.core
 {
+COMPILE::SWF
+{
+    import flash.ui.Keyboard;
+}
+
 	/**
 	 *  This class holds constants for special keys
 	 *  See: 
@@ -30,6 +35,22 @@ package mx.core
 	 */
 	public class Keyboard
 	{
+        private static var _capsLock:Boolean;
+        
+        COMPILE::JS
+        public static function setCapsLock(value:Boolean):void
+        {
+            _capsLock = value;
+        }
+        
+        public static function get capsLock():Boolean
+        {
+            COMPILE::SWF
+            {
+                _capsLock = flash.ui.Keyboard.capsLock;
+            }
+            return _capsLock;
+        }
 		
 		/***
 		 * [static] Constant associated with the key code value for the A key (65).
@@ -68,7 +89,7 @@ package mx.core
 		
 		
 		/**
-		 * [static] Constant associated with the key code value for the \ key (220).
+		 * [static] Constant associated with the key code value for the &#92; key (220).
 		 */
 		public static const BACKSLASH : uint = 220;
 		

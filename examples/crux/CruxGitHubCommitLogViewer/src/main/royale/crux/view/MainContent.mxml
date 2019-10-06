@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:VView
+    xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:js="library://ns.apache.org/royale/express"
+    xmlns:basic="library://ns.apache.org/royale/basic"
+    xmlns:view="crux.view.*">
+
+    <fx:Script>
+<![CDATA[
+        import org.apache.royale.collections.ArrayList;
+        import org.apache.royale.events.Event;
+        import crux.event.ServiceEvent;
+
+        import crux.model.Project;
+        import crux.model.LogEntry;
+
+        [Bindable]
+        [Inject( source = "commitsController.commits.commits", bind = "true" )]
+        public var commits:Array = [];
+
+       /* [Inject( source = "commitsController.commits.commits", bind = "true" )]
+        public function updateData(contents:Array):void{
+            commits = contents;
+        }*/
+
+
+        [Bindable]
+        public var projectName:String;
+
+
+        [Inject( source = "configurationController.project", bind = "true" )]
+        public function updateProject(project:Project):void{
+            if (project) {
+                projectName = project.projectName;
+                dispatchEvent(new ServiceEvent(ServiceEvent.RESET_COMMITS));
+                for each(var repo:String in project.repos){
+                    var event:ServiceEvent = new ServiceEvent(ServiceEvent.REQUEST_REPO_COMMITS);
+                    event.repo = repo;
+                    trace('requesting ', repo);
+                    dispatchEvent(event);
+                }
+            } else {
+                projectName = '';
+                commits = [];
+            }
+        }
+
+        public function getSelectedMessage(index:int):String{
+            if (index == -1 || !dg) return '';
+            return LogEntry(commits[index]).message;
+        }
+
+
+        ]]>
+</fx:Script>
+
+    <js:Label text="{projectName} Commits Log"/>
+    <js:DataGrid id="dg" dataProvider="{commits}" width="600" height="300">
+        <js:columns>
+            <js:DataGridColumn label="Date" dataField="date" columnWidth="100"/>
+            <js:DataGridColumn label="Author" dataField="author" columnWidth="100"/>
+            <js:DataGridColumn label="Message" dataField="message" columnWidth="100%"/>
+        </js:columns>
+    </js:DataGrid>
+    <js:Label text="Selected Message:"/>
+    <js:MultilineLabel text="{getSelectedMessage(dg.selectedIndex)}" width="600"/>
+
+</js:VView>

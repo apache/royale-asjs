@@ -1,0 +1,127 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel Wizard
+
+// Wizard variables
+
+.jewel
+    &.wizard
+        &.main
+            align-items: center
+            width: 100%
+            height: 100%
+    &.label
+        &.wizardTitle
+    
+    &.precontent
+        position: relative
+        width: 100%
+        flex: 1 0
+
+    &.next, &.previous
+        z-index: 1
+        height: 100%
+        align-items: center
+        justify-content: center
+        cursor: pointer
+        flex: 0 0 0% //IE11
+        &:hover
+            
+        .jewel.button
+            position: relative
+            flex-direction: column
+
+    &.wizardcontent
+        height: 100%
+        flex-grow: 100
+        position: inherit
+        
+    &.wizardpage
+        position: absolute
+        top: 0px
+        bottom: 0px
+        width: 100%
+        display: none
+        // debug: border: 1px solid red
+
+        > *
+            margin: auto
+
+        &.is-selected
+            z-index: 1
+            display: block
+
+            &.transitions
+                opacity: 1
+                transform: translateX(0%)
+
+        &.transitions
+            opacity: 0
+            transition: transform .6s ease-out, opacity .6s ease-out
+            // will-change: transform, opacity
+            transform: translateX(100%)
+            display: block
+        
+            &.slideLeft
+                transform: translateX(-100%)
+            &.slideRight
+                transform: translateX(100%)
+                
+
+
+j|Wizard
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.WizardView")
+    IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.WizardController")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+    IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.WizardModel")
+    IWizardContentArea: ClassReference("org.apache.royale.jewel.WizardContent")
+
+j|WizardContent
+    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    // IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    // IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+
+j|WizardPage
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.NoViewport")
+
+// j|WizardNavigator
+//     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView")
+//     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
+//     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+//     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+//     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.WizardButtonItemRenderer")
+//     IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+//     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+//     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
+//     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
+
+// Jewel WizardButtonItemRenderer
+// $wizardbutton-margin: 0 !default
+// $wizardbutton-padding: 0.68em 1.12em !default
+
+// WizardButtonItemRenderer variables
+// .jewel.wizardbutton
+//     min-height: 48px
+//     margin: $wizardbutton-margin
+//     padding: $wizardbutton-padding
+
+// j|WizardButtonItemRenderer
+//     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")

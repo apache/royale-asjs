@@ -295,25 +295,20 @@ public class MXMLDataInterpreter
         if (comp is IDocument)
             comp.setDocument(document, id);
         
+        var knownIMXMLDoc:Boolean;
         var children:Array = data[i++];
         if (children && comp is IMXMLDocument)
         {
-            comp.setMXMLDescriptor(document, children);                
+            comp.setMXMLDescriptor(document, children);
+            knownIMXMLDoc = true;
         }
-        COMPILE::SWF
-        {
-            if (parent && comp is IChild)
-                parent.addElement(comp as IChild, !(parent is IContainer));
-        }
-        COMPILE::JS
-        {
-            if (parent && comp is IChild)
-                parent.addElement(comp as IChild, !(parent is IContainer));
-        }
+    
+        if (parent && comp is IChild)
+            parent.addElement(comp as IChild, !(parent is IContainer));
         
         if (children)
         {
-            if (!(comp is IMXMLDocument))
+            if (!(knownIMXMLDoc || comp is IMXMLDocument))
             {
                 generateMXMLInstances(document, comp as IParent, children);
             }

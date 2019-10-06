@@ -117,7 +117,7 @@ limitations under the License.
             		var c:int = hash.indexOf(delimiter);
                     if (c == -1)
                     {
-                        c == hash.indexOf("$");
+                        c = hash.indexOf("$");
                         if (c != -1)
                             delimiter = "$";
                     }
@@ -486,7 +486,7 @@ limitations under the License.
 		        </js:Group>
 	            <js:DataContainer id="attributes" className="attributeList" dataProvider="{ASDocModel(applicationModel).attributes}" 
 	                itemRenderer="AttributeRenderer" width="100%"/>
-	            <js:MultilineLabel id="description" className="description" text="{ASDocModel(applicationModel).description}" width="100%"/>
+	            <js:MultilineLabel id="description" className="description" html="{ASDocModel(applicationModel).description}" width="100%"/>
 	            <js:Label text="Public Properties" className="sectionLabel"/>
 	            <js:List className="summaryList" id="publicPropertyList" dataProvider="{ASDocModel(applicationModel).publicProperties}"
 	                     itemRenderer="SummaryRenderer" width="100%"/>

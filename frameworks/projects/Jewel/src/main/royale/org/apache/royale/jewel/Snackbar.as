@@ -63,8 +63,10 @@ package org.apache.royale.jewel
 		{
 			super();
 			
-			typeNames = "jewel snackbar layout itemsCenter";
+			typeNames = "jewel snackbar layout";
 		}
+
+		private var _isAddedToParent:Boolean;
 
 		/**
 		 *  Action event name.
@@ -187,18 +189,27 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function show(parent:Object = null) : void
+		public function show(parentContainer:Object = null) : void
 		{
             COMPILE::JS
 			{
-				var body:HTMLElement = document.getElementsByTagName('body')[0];
-				body.appendChild(element);
+				if (parentContainer)
+				{
+					_isAddedToParent = true;
+                    parentContainer.element.appendChild(element);
+				}
+				else
+				{
+					_isAddedToParent = false;
+					var body:HTMLElement = document.getElementsByTagName('body')[0];
+					body.appendChild(element);
+				}
 				addedToParent();
 			}
 
             COMPILE::SWF
 			{
-				parent.addElement(this);
+                parentContainer.addElement(this);
 			}
 		}
 
@@ -216,8 +227,17 @@ package org.apache.royale.jewel
 			{
 				removeAllListeners();
 
-				var body:HTMLElement = document.getElementsByTagName('body')[0];
-				body.removeChild(element);
+				if (_isAddedToParent)
+				{
+					parent["element"].removeChild(element);
+				}
+				else
+				{
+					var body:HTMLElement = document.getElementsByTagName('body')[0];
+					body.removeChild(element);
+				}
+
+				_isAddedToParent = false;
 			}
 		}
 	}

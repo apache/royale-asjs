@@ -25,17 +25,21 @@ package valueObjects
 		{
 		}
 
-		private var _id:String;
+		private var _id:int;
 
-        public function get id():String
+        public function get id():int
         {
             return _id;
         }
-        
-        public function set id(value:String):void
+
+        public function set id(value:int):void
         {
             _id = value;
         }
+		
+		public function toString():String{
+			return 'clientside representation (ClientValueObject) ' + id;
+		}
 
 	}
 }

@@ -42,7 +42,7 @@ button, input, textarea
 	font-size: 100%
 
 .cursor-pointer
-	cursor: pointer
+	cursor: pointer !important
 	
 j|View
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
@@ -55,7 +55,7 @@ j|ApplicationResponsiveView
 .applicationResponsiveView
 	display: inline-flex
 	width: 100%
-	min-height: 100% // can't have 100% height without prevents app scrolling
+	height: 100%
 
 j|ApplicationView
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView")
@@ -83,6 +83,10 @@ j|VGroup
 
 j|Grid
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridLayout")
+
+j|ScrollableGrid
+	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 
 j|GridCell
 	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.GridCellLayout")
@@ -114,8 +118,11 @@ j|DataContainer
 	IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
 
+j|Validator
+	ILocalizedValuesImpl: ClassReference("org.apache.royale.core.SimpleLocalizedValuesImpl")
+	
 j|Form
-	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+	IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.FormLayout")
 
 @media -royale-swf
 	j|View
@@ -127,6 +134,17 @@ j|Form
 		// --- IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead")
 		IContentView: ClassReference("org.apache.royale.html.supportClasses.ContainerContentArea")
 
+
+// -- Horizontal Rule (HR)
+hr
+	border: 0
+	height: 1px
+
+.jewel
+	&.multiline
+		white-space: pre-wrap !important
+		word-wrap: break-word
+		max-width: 100%
 
 .responsiveSizeMonitor
 	background: rgba(0,0,0,0.8)

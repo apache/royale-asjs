@@ -23,12 +23,12 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-framework-parent</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <groupId>org.apache.royale.examples</groupId>
   <artifactId>examples</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Examples</name>
@@ -38,7 +38,7 @@
     <compiler.output-dir-debug>${basedir}/target/javascript/bin/js-debug</compiler.output-dir-debug>
     <!-- In Release mode we only want to copy assets folder content to assets destination folder, the rest is managed by compiler -->
     <compiler.output-dir-release>${basedir}/target/javascript/bin/js-release</compiler.output-dir-release>
-    <royale.framework.version>0.9.4</royale.framework.version>
+    <royale.framework.version>0.9.6-SNAPSHOT</royale.framework.version>
   </properties>
 
   <modules>
@@ -49,6 +49,7 @@
     <module>native</module>
     <module>node</module>
     <module>amf</module>
+    <module>crux</module>
     <module>examples-tests</module>
     <module>examples-integrationtests</module>
   </modules>
@@ -103,6 +104,9 @@
           <artifactId>royale-maven-plugin</artifactId>
           <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
+          <configuration>
+              <targets>${royale.example.targets}</targets>
+          </configuration>
         </plugin>
         <plugin>
           <groupId>org.jboss.errai</groupId>

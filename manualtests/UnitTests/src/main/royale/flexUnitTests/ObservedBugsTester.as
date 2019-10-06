@@ -18,16 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-	import flexUnitTests.observedbugs.*
-	
+    import flexUnitTests.observedbugs.*
+    
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class ObservedBugsTester
     {
         public function ObservedBugsTester()
         {
             var arr:Array = [ObservedBugTests];
         }
+        
         public var observedBugsTest1:ObservedBugTests;
     }
 }

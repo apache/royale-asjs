@@ -1689,6 +1689,28 @@ public class Label extends TextBase
         if (firstLine)
             staticTextBlock.releaseLines(firstLine, lastLine);        
      } */
+    
+    COMPILE::JS
+    override public function get measuredWidth():Number
+    {
+        //when measuring, turn off wrapping
+        var oldValue:String = element.style.whiteSpace;
+        element.style.whiteSpace = "nowrap";
+        var mw:Number = super.measuredWidth;
+        element.style.whiteSpace = oldValue;
+        return mw + 1;
+    }
+    
+    COMPILE::JS
+    override public function get measuredHeight():Number
+    {
+        //when measuring, turn off wrapping
+        var oldValue:String = element.style.whiteSpace;
+        element.style.whiteSpace = "nowrap";
+        var mh:Number = super.measuredHeight;
+        element.style.whiteSpace = oldValue;
+        return mh;
+    }
 }
 
 }

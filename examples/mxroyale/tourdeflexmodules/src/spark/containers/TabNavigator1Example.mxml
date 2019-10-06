@@ -19,7 +19,8 @@
 -->
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.apache.org/royale/spark" 
-			   xmlns:mx="library://ns.apache.org/royale/mx" xmlns:local="*">
+			   xmlns:mx="library://ns.apache.org/royale/mx" xmlns:local="*"
+               width="100%" height="100%">
 	
 	<fx:Script>
 		<![CDATA[
@@ -44,7 +45,7 @@
 			
 			protected function dg_itemClickHandler(event:ListEvent):void
 			{
-				contact = dg.selectedItem as Contact;
+				//contact = dg.selectedItem as Contact;
 			}
 			
 		]]>
@@ -83,6 +84,7 @@
 			</s:NavigatorContent>
 			<s:NavigatorContent label="Contact List" width="100%" height="100%" >
 				<s:BorderContainer width="100%" height="100%" dropShadowVisible="false">
+                    <!--
 					<mx:DataGrid id="dg" dataProvider="{contacts}" x="5" y="5"  doubleClickEnabled="true" 
 								 doubleClick="{tabs.selectedIndex=0}" itemClick="dg_itemClickHandler(event)">
 						<mx:columns>
@@ -93,6 +95,7 @@
 							<mx:DataGridColumn headerText="Zip" dataField="zip"/>
 						</mx:columns>
 					</mx:DataGrid>
+                    -->
 				</s:BorderContainer>
 				
 			</s:NavigatorContent>

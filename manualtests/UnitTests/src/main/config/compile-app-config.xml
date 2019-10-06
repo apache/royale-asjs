@@ -17,9 +17,25 @@
 
 -->
 <royale-config>
-    <js-output-optimization>
+   <!--
+   <js-output-optimization>
         <optimization>skipFunctionCoercions</optimization>
     </js-output-optimization>
+    -->
+    <js-default-initializers>true</js-default-initializers>
+    <swf-version>30</swf-version>
+    <source-map>true</source-map>
     <compiler>
+        <keep-as3-metadata append="true">
+            <name>Test</name>
+            <name>BeforeClass</name>
+            <name>AfterClass</name>
+            <name>Before</name>
+            <name>After</name>
+            <name>TestVariance</name>
+            <name>Event</name>
+            <name>Bindable</name>
+            <name>TestMeta</name>
+        </keep-as3-metadata>
     </compiler>
 </royale-config>

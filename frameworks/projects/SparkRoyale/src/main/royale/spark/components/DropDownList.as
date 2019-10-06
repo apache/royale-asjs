@@ -32,6 +32,7 @@ import spark.utils.LabelUtil;
     
  */
  import spark.components.supportClasses.DropDownListBase;
+ import spark.components.beads.DropDownListView;
 
 
 //--------------------------------------
@@ -138,6 +139,7 @@ public class DropDownList extends DropDownListBase
     public function DropDownList()
     {
         super();
+        typeNames += " DropDownList";
     }
     
     //--------------------------------------------------------------------------
@@ -378,5 +380,35 @@ public class DropDownList extends DropDownListBase
                   labelDisplay.text = prompt;
 		}
     } */
+    
+    /**
+     *  @private
+     *  Because DropDown extends List which overrides numChildren to point to
+     *  the DataGroup, the default measurement code will be incorrect
+     *  
+     *  @royaleignorecoercion spark.components.beads.DropDownListView 
+     */
+    override public function get measuredWidth():Number
+    {
+        var mw:Number = super.measuredWidth;
+        if (mw == 0)
+            mw = (view as DropDownListView).label.measuredWidth;
+        return mw;
+    }
+    
+    /**
+     *  @private
+     *  Because DropDown extends List which overrides numChildren to point to
+     *  the DataGroup, the default measurement code will be incorrect
+     *  
+     *  @royaleignorecoercion spark.components.beads.DropDownListView 
+     */
+    override public function get measuredHeight():Number
+    {
+        var mh:Number = super.measuredHeight;
+        if (mh == 0)
+            mh = (view as DropDownListView).label.measuredHeight;
+        return mh;
+    }
 }
 }

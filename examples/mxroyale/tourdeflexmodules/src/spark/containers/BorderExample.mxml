@@ -21,7 +21,8 @@
 <s:Module name="Spark_Border_cornerRadius_test"
 			   xmlns:fx="http://ns.adobe.com/mxml/2009"
 			   xmlns:mx="library://ns.apache.org/royale/mx"
-			   xmlns:s="library://ns.apache.org/royale/spark">
+			   xmlns:s="library://ns.apache.org/royale/spark"
+               width="100%" height="100%">
 	
 	<s:Panel title="BorderContainer Sample" width="100%" height="100%">
 		

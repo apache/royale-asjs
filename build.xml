@@ -203,7 +203,7 @@
         <property name="no.thirdparty-downloads" value="set" />
     </target>
 
-    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,create-config,copy-externs,copy-compiler"
+    <target name="prebuild" depends="check-compile-env,thirdparty-downloads,create-description,copy-externs,copy-compiler,create-config"
         description="Stuff that needs to be done before any builds." unless="airsdk.found"/>
 
     <target name="check-compile-env" depends="check-playerglobal-home,check-air-home,check-compiler-home" unless="airsdk.found"
@@ -438,6 +438,7 @@ limitations under the License.
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="royale" />
         </ant>
+        <antcall target="tweak-for-jsonly" />
         <ant dir="${basedir}/frameworks" target="create-config">
             <property name="configname" value="air" />
         </ant>
@@ -577,6 +578,10 @@ limitations under the License.
         <delete file="${ROYALE_HOME}/frameworks/mxml-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/frameworks/spark-manifest.xml" failonerror="false"/>
         <delete file="${ROYALE_HOME}/ide/flashbuilder/flashbuilder-config.xml" failonerror="false"/>
+        <delete dir="${basedir}" failonerror="false">
+            <include name="**/*.log"/>
+            <include name="**/*.mdmp"/>
+        </delete>
     </target>
 
     <target name="thirdparty-clean" description="Removes all thirdparty downloads.">
@@ -624,7 +629,7 @@ limitations under the License.
 
     <target name="checkintests-clean">
         <delete file="${basedir}/mustella/tests/basicTests/BasicTestsApp.swf" failonerror="false"/>
-        <delete dir="${basedir}/mustella/tests/bin" failonerror="false" includeEmptyDirs="true"/>
+        <delete dir="${basedir}/mustella/tests/basicTests/bin" failonerror="false" includeEmptyDirs="true"/>
     </target>
 
     <target name="player-clean">
@@ -838,10 +843,10 @@ limitations under the License.
                 <exclude name=".DS_Store"/>
                 <exclude name="**/.DS_Store"/>
                 <exclude name=".git/**"/>
-                <exclude name=".mvn/**"/>
                 <exclude name="in/**"/>
                 <exclude name="out/**"/>
                 <exclude name="**/out/**"/>
+                <exclude name="**/target/**"/>
                 <exclude name="manualtests/**"/>
                 <exclude name="marmotinni/**"/>
                 <exclude name="mustella/**"/>
@@ -1055,6 +1060,8 @@ limitations under the License.
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
         tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" />
         <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
+        <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml" match="(\s+?)&lt;path-element&gt;libs\/[^\.]+\.swc&lt;\/path-element&gt;(\s+?)" replace="" flags ="g"/>
+        <replace file="${ROYALE_HOME}/frameworks/royale-config.xml" token="&lt;path-element&gt;libs/player/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}&lt;/path-element&gt;" value="&lt;path-element&gt;libs/KeepsFBFromHanging.swc&lt;/path-element&gt;"/>
     </target>
     
     <!--
@@ -1219,29 +1226,31 @@ limitations under the License.
         Tests: The current checkintests that must be run before every checkin
     -->
 
-    <target name="checkintests" depends="checkintests-clean,basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" />
+    <target name="checkintests" depends="checkintests-clean,basictests-mustella,basictests-marmotinni" description="Run these tests before every checkin" unless="skipTests" />
     
     <!--
      Tests: Marmotinni checkintests
      -->
     
-    <target name="basictests-marmotinni" depends="marmotinni-setup,basictests-js"/>
+    <target name="basictests-marmotinni" depends="marmotinni-setup,basictests-js" unless="skipTests"/>
 
-    <target name="marmotinni-setup"  description="download and set up marmotinni">
+    <target name="marmotinni-setup"  description="download and set up marmotinni" unless="skipTests">
         <subant target="main" >
             <fileset dir="${basedir}/marmotinni/java" includes="downloads.xml"/>
         </subant>
         <ant dir="${basedir}/mustella"/>
     </target>
     
-    <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" />
+    <target name="basictests-js" depends="basictests-compile-js,basictests-compile-java,basictests-run-js" unless="skipTests"/>
     
-    <target name="basictests-run-js" >
+    <target name="basictests-run-js" unless="skipTests" >
         <property name="profile_arg" value="dummy=false" />
+        <echo>GECKODRIVER_HOME=${env.GECKODRIVER_HOME}</echo>
         <echo>url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml</echo>
         <echo>script=${basedir}/mustella/tests/basicTests/halo/scripts/CheckBoxTestScript.mxml</echo>
 		<java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
+            <sysproperty key="webdriver.gecko.driver" value="${env.GECKODRIVER_HOME}" />
 		    <!--<arg value="browser=chrome" />-->
 		    <arg value="url=file://${basedir}/mustella/tests/basicTests/bin/js-debug/index.html" />
 		    <arg value="script=${basedir}/mustella/tests/basicTests/halo/scripts/ButtonTestScript.mxml" />
@@ -1249,58 +1258,12 @@ limitations under the License.
 		    <!--<arg value="showSteps=true" />-->
 		    <arg value="${profile_arg}" />
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.10.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-el-1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/client-combined-3.141.59.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/byte-buddy-1.8.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-io-2.4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.17.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.5.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.4.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.5.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-jmx-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-security-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-server-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlet-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlets-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-util-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-4.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-4.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jsp-api-2.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-4.12.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.22.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xercesImpl-2.11.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-25.0-jre.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/okhttp-3.11.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/okio-1.14.0.jar"/>
             </classpath>
 		</java>
 
@@ -1319,7 +1282,7 @@ limitations under the License.
             file="${basedir}/mustella/tests/basicTests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <targets>JSRoyale</targets>
-            <library-path dir="${ROYALE_HOME}" append="true">
+            <library-path dir="${ROYALE_HOME}">
                 <include name="mustella/mustella.swc"/>
             </library-path>
             <js-external-library-path dir="${basedir}">
@@ -1335,64 +1298,18 @@ limitations under the License.
         </mxmlc>
     </target>
     
-    <target name="basictests-compile-java" depends="marmotinni-setup">
+    <target name="basictests-compile-java" depends="marmotinni-setup" unless="skipTests">
         <delete dir="${basedir}/mustella/java/bin"/><!-- the old folder-->
         <delete dir="${basedir}/mustella/target/classes"/>
         <mkdir dir="${basedir}/mustella/target/classes"/>
         <javac srcdir="${basedir}/mustella/src/main/java" destdir="${basedir}/mustella/target/classes" debug="off" optimize="on">
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.10.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-el-1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/client-combined-3.141.59.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/byte-buddy-1.8.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-io-2.4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.17.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.5.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.4.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.5.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-jmx-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-security-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-server-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlet-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlets-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-util-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-4.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-4.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jsp-api-2.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-4.12.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.22.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xercesImpl-2.11.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-25.0-jre.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/okhttp-3.11.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/okio-1.14.0.jar"/>
             </classpath>
         </javac>
     </target>
@@ -1401,9 +1318,9 @@ limitations under the License.
         Tests: Mustella checkintests
     -->
 
-    <target name="basictests-mustella" depends="mustella-setup,basictests" if="env.AIR_HOME"/>
+    <target name="basictests-mustella" depends="mustella-setup,basictests" if="env.AIR_HOME" unless="skipTests"/>
 
-    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="env.AIR_HOME">
+    <target name="mustella-setup" depends="prebuild,runtime-setup" description="compile mustella java file"  if="env.AIR_HOME" unless="skipTests">
         <ant dir="${basedir}/mustella" />
     <!--
         <ant dir="${basedir}/mustella" target="makemustellaswc">
@@ -1454,7 +1371,7 @@ limitations under the License.
         <taskdef resource="flexTasks.tasks" classpath="${basedir}/js/lib/compiler-royaleTasks.jar"/>
     </target>
 
-    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME">
+    <target name="basictests" depends="load-task,basictests-compile-java" description="run basic tests using mustella"  if="env.AIR_HOME" unless="skipTests">
         <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
         <mxmlc fork="true" debug="true"
@@ -1507,7 +1424,7 @@ limitations under the License.
         <antcall target="mustellaresultsparser"/>
     </target>
 
-    <target name="mustellaresultsparser">
+    <target name="mustellaresultsparser" unless="skipTests">
         <java classname="mustella.MustellaResultsParser" failonerror="true">
             <sysproperty key="APPDATA" value="${env.APPDATA}"/>
             <classpath>
@@ -1534,7 +1451,7 @@ limitations under the License.
     <target name="mxtests" depends="load-task,mxtests-compile-java" description="run MX tests using mustella"  if="env.AIR_HOME">
         <property name="ROYALE_COMPILER_HOME" value="${basedir}/js" />
         <property name="ROYALE_HOME" value="${basedir}" />
-        <mxmlc fork="true" debug="true"
+        <mxmlc fork="true" debug="true" configname="flex"
                closure-lib="${env.GOOG_HOME}"
                file="${basedir}/mustella/tests/mxtests/basicTests/BasicTests.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
@@ -1591,7 +1508,9 @@ limitations under the License.
     <target name="mxtests-run-js" >
         <property name="profile_arg" value="dummy=false" />
         <echo>url=file://${basedir}/mustella/tests/mxtests/bin/js-debug/index.html</echo>
+        <echo>GECKODRIVER_HOME=${env.GECKODRIVER_HOME}</echo>
         <java classname="marmotinni.MarmotinniRunner" classpath="${basedir}/mustella/target/classes" fork="true" failonerror="yes">
+            <sysproperty key="webdriver.gecko.driver" value="${env.GECKODRIVER_HOME}" />
             <!--<arg value="browser=chrome" />-->
             <arg value="url=file://${basedir}/mustella/tests/mxtests/basicTests/bin/js-debug/index.html" />
             <arg value="script=${basedir}/mustella/tests/mxtests/basicTests/halo/scripts/ButtonTestScript.mxml" />
@@ -1609,58 +1528,12 @@ limitations under the License.
             <arg value="showScripts=true" />
             <arg value="${profile_arg}" />
             <classpath>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/selenium-java-2.53.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/apache-mime4j-0.6.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/bsh-2.0b4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cglib-nodep-2.1_3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-codec-1.10.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-collections-3.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-el-1.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/client-combined-3.141.59.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/byte-buddy-1.8.15.jar"/>
                 <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-exec-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-io-2.4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-jxpath-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-lang3-3.4.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/commons-logging-1.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/cssparser-0.9.16.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/gson-2.3.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-19.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-core-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/hamcrest-library-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-2.18.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/htmlunit-core-js-2.17.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpclient-4.5.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpcore-4.4.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/httpmime-4.5.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-compiler-jdt-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jasper-runtime-5.5.15.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/javax.servlet-api-3.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jcommander-1.48.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-continuation-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-http-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-io-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-jmx-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-security-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-server-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlet-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-servlets-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jetty-util-9.2.3.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-4.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jna-platform-4.1.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/jsp-api-2.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/junit-4.12.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/nekohtml-1.9.22.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/netty-3.5.7.Final.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/phantomjsdriver-1.2.1.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/sac-1.3.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/serializer-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/testng-6.9.9.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-api-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-client-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/websocket-common-9.2.13.v20150730.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xalan-2.7.2.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xercesImpl-2.11.0.jar"/>
-                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/xml-apis-1.4.01.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/guava-25.0-jre.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/okhttp-3.11.0.jar"/>
+                <pathelement location="${basedir}/marmotinni/java/lib/selenium/libs/okio-1.14.0.jar"/>
             </classpath>
         </java>
         
@@ -1674,7 +1547,7 @@ limitations under the License.
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         <echo message="GOOG_HOME: ${GOOG_HOME}"/>
         <delete dir="${basedir}/mustella/tests/mxtests/basicTests/bin" failonerror="false" />
-        <mxmlc fork="true" debug="true"
+        <mxmlc fork="true" debug="true" configname="flex"
             closure-lib="${env.GOOG_HOME}"
             file="${basedir}/mustella/tests/mxtests/BasicTestsApp.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>

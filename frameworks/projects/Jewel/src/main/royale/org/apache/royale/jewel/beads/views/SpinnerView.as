@@ -65,7 +65,13 @@ COMPILE::JS {
 		private var rangeModel:IRangeModel;
 
 		COMPILE::JS {
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
 		public var _increment:Button;
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
         public var _decrement:Button;
         private var controller:SpinnerMouseController;
 		}

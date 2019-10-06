@@ -18,10 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
+    import flexUnitTests.language.*
+    
     [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
+    [RunWith("org.apache.royale.test.runners.SuiteRunner")]
     public class CoreTester
     {
+        
+        //language tests
+        public var languageTestIs:LanguageTesterTestIs;
+        public var languageTestIntUint:LanguageTesterIntUint;
+        public var languageTestVector:LanguageTesterTestVector;
+        public var languageTestClass:LanguageTesterTestClass;
+        
+        
+        //core tests
         public var strandTesterTest:StrandTesterTest;
 		public var binaryDataTesterTest:BinaryDataTesterTest;
 		public var arrayUtilsTest:ArrayUtilsTest;

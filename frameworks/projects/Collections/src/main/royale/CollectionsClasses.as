@@ -34,6 +34,16 @@ internal class CollectionsClasses
 	import org.apache.royale.collections.LazyCollection; LazyCollection;
 	import org.apache.royale.collections.Collection; Collection;
 	import org.apache.royale.collections.TreeData; TreeData;
+	
+	import org.apache.royale.collections.ArrayListView; ArrayListView;
+	import org.apache.royale.collections.IArrayListView; IArrayListView;
+	import org.apache.royale.collections.ISort; ISort;
+	import org.apache.royale.collections.Sort; Sort;
+	import org.apache.royale.collections.ISortField; ISortField;
+	import org.apache.royale.collections.SortField; SortField;
+	import org.apache.royale.collections.SortFieldCompareTypes; SortFieldCompareTypes;
+	import org.apache.royale.collections.CompareUtils; CompareUtils;
+
 }
 
 }

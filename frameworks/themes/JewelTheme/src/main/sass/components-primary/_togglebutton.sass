@@ -17,11 +17,73 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel Button
+// Jewel ToggleButton
 
-// Button variables
+// ToggleButton variables
+$togglebutton-border-radius: $border-radius
+
+=togglebutton-theme($togglebutton-color, $text-color)
+	
+	+jewel-bg-border("normal", $togglebutton-color, $togglebutton-border-radius)
+	
+	color: $text-color
+		
+	@if not $flat and $text-color == $font-theme-color
+		text:
+			shadow: 0 -1px 0 rgba(darken($togglebutton-color, 30%), .7)
+	
+	&:hover, &:hover:focus
+		+jewel-bg-border("hover", $togglebutton-color)
+
+	&:active, &:active:focus
+		+jewel-bg-border("active", $togglebutton-color)
+
+	&:focus
+		+jewel-bg-border("focus", $togglebutton-color)
+		
+	&[disabled]
+		+jewel-bg-border("disabled", $togglebutton-color)
+		color: $disabled-font-color
+		text:
+			shadow: unset
+	
+	&.selected
+		+jewel-bg-border("selected", $togglebutton-color)
 
 .jewel.togglebutton
-    .fonticon
-        margin-left: 0px
-        margin-right: 8px
+	+togglebutton-theme($default-color, $default-font-color)
+
+
+	// -- TOGGLEBUTTON LABEL
+	font:
+		// family: $font-stack 
+		weight: bold
+	text:
+		transform: uppercase
+
+	@if $transitions-enable
+		transition:
+			duration: $transition-duration
+			timing-function: $transition-timing
+
+	&[disabled]
+		font:
+			weight: $font-weight-normal
+	
+	&.icon
+		i
+			margin-left: 0px
+			margin-right: 0px
+
+	&.iconLSpace
+		i
+			margin-left: 0px
+			margin-right: 8px
+	&.iconRSpace
+		i
+			margin-left: 8px
+			margin-right: 0px
+
+.jewel.togglebutton.primary
+	+togglebutton-theme($primary-color, $font-theme-color)
+

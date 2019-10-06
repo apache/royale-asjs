@@ -17,14 +17,14 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls
-{	
+{
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.StyledUIBase;
-	
+
 	/**
 	 *  The SizeControl bead class is a specialty bead that can be used to size a Jewel control.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -54,7 +54,7 @@ package org.apache.royale.jewel.beads.controls
 
         /**
          *  A size selector.
-         *  Sets the size of the button using one of the "size" 
+         *  Sets the size of the button using one of the "size"
          *  constants (XSMALL, SMALL, LARGE and XLARGE)
          *
          *  @langversion 3.0
@@ -67,8 +67,9 @@ package org.apache.royale.jewel.beads.controls
             return _size;
         }
 
-        public function set size(value:String):void
-        {
+		[Inspectable(category="General", enumeration="xsmall,small,large,xlarge")]
+		public function set size(value:String):void
+		{
 			COMPILE::JS
             {
 				_oldSize = _size;
@@ -80,10 +81,10 @@ package org.apache.royale.jewel.beads.controls
         }
 
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -107,7 +108,8 @@ package org.apache.royale.jewel.beads.controls
             {
 				if(_oldSize)
 					host.removeClass(_oldSize);
-                host.addClass(_size);
+				if (_size)
+                	host.addClass(_size);
             }
 		}
 	}

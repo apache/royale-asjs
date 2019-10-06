@@ -90,7 +90,7 @@ public class EffectTimer extends EventDispatcher implements IEffectTimer
     COMPILE::JS
     private var timerInterval:Number = -1;
 
-    public function start():int
+    public function start():Number
     {
         COMPILE::SWF
         {

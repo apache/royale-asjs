@@ -24,10 +24,8 @@ COMPILE::SWF
 {    
 import flash.display.DisplayObject;
 }
-import org.apache.royale.core.IChild;
-import org.apache.royale.events.Event;
-
 import mx.containers.beads.BoxLayout;
+import mx.containers.beads.FormItemView;
 import mx.containers.utilityClasses.Flex;
 import mx.controls.FormItemLabel;
 import mx.controls.Label;
@@ -35,9 +33,13 @@ import mx.core.Container;
 import mx.core.EdgeMetrics;
 import mx.core.IFlexDisplayObject;
 import mx.core.IUIComponent;
-import mx.core.mx_internal;
 import mx.core.ScrollPolicy;
+import mx.core.UIComponent;
+import mx.core.mx_internal;
 import mx.styles.CSSStyleDeclaration;
+
+import org.apache.royale.core.IChild;
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 
@@ -241,7 +243,8 @@ public class FormItem extends Container
     public function FormItem()
     {
         super();
-
+        typeNames += " FormItem";
+        
         /*
         _horizontalScrollPolicy = ScrollPolicy.OFF;
         _verticalScrollPolicy = ScrollPolicy.OFF;
@@ -249,6 +252,8 @@ public class FormItem extends Container
         
         verticalLayoutObject.target = this;
         verticalLayoutObject.direction = BoxDirection.VERTICAL;
+        
+        addBead(verticalLayoutObject);
     }
 
     //--------------------------------------------------------------------------
@@ -288,7 +293,7 @@ public class FormItem extends Container
      *  @private
      *  We use the VBox algorithm when direction="vertical" and make a few adjustments
      */
-    mx_internal var verticalLayoutObject:BoxLayout = new BoxLayout();
+    mx_internal var verticalLayoutObject:BoxLayout = new FormItemLayout(this);
 
     //--------------------------------------------------------------------------
     //
@@ -339,11 +344,14 @@ public class FormItem extends Container
         invalidateProperties();
         invalidateSize();
         invalidateDisplayList();
-
+        
         // Changing the label could affect the overall form label width
         // so we need to invalidate our parent's size here too
        if (parent is Form)
+       {
             Form(parent).invalidateLabelWidth();
+            commitProperties();
+       }
 
         dispatchEvent(new Event("labelChanged"));
     }
@@ -529,6 +537,7 @@ public class FormItem extends Container
             strandChildren.addElement(labelObj);
             dispatchEvent(new Event("itemLabelChanged"));
         }
+        commitProperties();
     }
     
     /**
@@ -627,6 +636,15 @@ public class FormItem extends Container
             measureVertical();
         else
             measureHorizontal();
+    }
+    
+    /**
+     * @private
+     * called from FormItemLayout
+     */
+    public function measureFormItem():void
+    {
+        measure();
     }
     
     private function measureVertical():void
@@ -884,6 +902,15 @@ public class FormItem extends Container
 
         // Position the "required" indicator.
         displayIndicator(x, y);
+    }
+    
+    /**
+     * @private
+     * called from FormItemLayout
+     */
+    public function updateFormItemDisplayList(w:Number, h:Number):void
+    {
+        updateDisplayList(w, h);   
     }
     
     private function updateDisplayListVerticalChildren(unscaledWidth:Number,
@@ -1455,6 +1482,162 @@ public class FormItem extends Container
         return 0;
     }
     
+    private var formItemLayout:FormItemLayout;
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        measure();
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var containerView:FormItemView = view as FormItemView;
+        if ((containerView.contentArea as UIComponent).systemManager == null)
+            (containerView.contentArea as UIComponent).systemManager = systemManager;
+        if (c == containerView.contentArea)
+        {
+            super.addElement(c, dispatchEvent);
+            return;
+        }
+        containerView.contentArea.addElement(c, dispatchEvent);
+        containerView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        var containerView:FormItemView = view as FormItemView;
+        if ((containerView.contentArea as UIComponent).systemManager == null)
+            (containerView.contentArea as UIComponent).systemManager = systemManager;
+        containerView.contentArea.addElementAt(c, index, dispatchEvent);
+        containerView.contentArea.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function getElementIndex(c:IChild):int
+    {
+        var containerView:FormItemView = view as FormItemView;
+        return containerView.contentArea.getElementIndex(c);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        var containerView:FormItemView = view as FormItemView;
+        containerView.contentArea.removeElement(c, dispatchEvent);
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function get numElements():int
+    {
+        var containerView:FormItemView = view as FormItemView;
+        return containerView.contentArea.numElements;
+    }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.FormItemView
+     */
+    override public function getElementAt(index:int):IChild
+    {
+        var containerView:FormItemView = view as FormItemView;
+        return containerView.contentArea.getElementAt(index);
+    }
+
+    /**
+     * @private
+     * lie about being sized to content.  The size of the form item
+     * is dictated by the form's layout, which is dictated by
+     * formItem measurement but at layout time, the BoxLayout
+     * should not use the measured size as it doesn't take into account
+     * the form item label
+     */
+    override public function isWidthSizedToContent():Boolean
+    {
+        return false;
+    }
+    
+    /**
+     * @private
+     * lie about being sized to content.  The size of the form item
+     * is dictated by the form's layout, which is dictated by
+     * formItem measurement but at layout time, the BoxLayout
+     * should not use the measured size as it doesn't take into account
+     * the form item label
+     */
+    override public function isHeightSizedToContent():Boolean
+    {
+        return false;
+    }
+    
 }
 
+}
+
+import mx.containers.FormItem;
+import mx.core.UIComponent;
+
+import mx.containers.beads.BoxLayout;
+
+class FormItemLayout extends BoxLayout
+{
+    private var formItem:FormItem;
+    
+    public function FormItemLayout(formItem:FormItem)
+    {
+        this.formItem = formItem;
+    }
+    
+    private var inMeasure:Boolean;
+    
+    override public function measure():void
+    {
+        if (inMeasure)
+            super.measure();
+        else
+        {
+            inMeasure = true;
+            formItem.measureFormItem();
+            inMeasure = false;
+        }
+    }
+    
+    private var inUpdateDisplayList:Boolean;
+    
+    override public function updateDisplayList(w:Number, h:Number):void
+    {
+        if (inUpdateDisplayList)
+            super.updateDisplayList(w, h);
+        else
+        {
+            inUpdateDisplayList = true;
+            formItem.updateFormItemDisplayList(w, h);
+            inUpdateDisplayList = false;
+        }
+    }
+    
 }

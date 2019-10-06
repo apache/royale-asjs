@@ -542,11 +542,11 @@ public class AMFChannel extends NetConnectionChannel
                 _log.debug("'{0}' fault handler called. {1}", id, msg.toString());
 
                 // Set the server assigned RoyaleClient Id.
-                if (RoyaleClient.getInstance().id == null && msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER] != null)
+                if (RoyaleClient.getInstance().id == null && msg["headers"] != undefined && msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER] != null)
                     RoyaleClient.getInstance().id = msg.headers[AbstractMessage.FLEX_CLIENT_ID_HEADER];
 
                 // Process the features advertised by the server endpoint.
-                if (msg.headers[CommandMessage.MESSAGING_VERSION] != null)
+                if (msg["headers"] != undefined && msg.headers[CommandMessage.MESSAGING_VERSION] != null)
                 {
                     var serverVersion:Number = msg.headers[CommandMessage.MESSAGING_VERSION] as Number;
                     handleServerMessagingVersion(serverVersion);

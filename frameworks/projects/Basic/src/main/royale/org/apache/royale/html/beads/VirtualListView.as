@@ -40,9 +40,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
-    COMPILE::SWF {
-        import org.apache.royale.geom.Size;
-    }
         
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List
@@ -55,7 +52,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class VirtualListView extends DataContainerView // was VirtualDataContainerView
+	public class VirtualListView extends VirtualDataContainerView
 	{
 		public function VirtualListView()
 		{
@@ -112,21 +109,5 @@ package org.apache.royale.html.beads
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
 		}
         
-        COMPILE::SWF
-        override protected function calculateContentSize():Size
-        {
-            return _lastContentSize;
-        }
-        
-        COMPILE::SWF
-        private var _lastContentSize:Size;
-        
-        COMPILE::SWF
-        public function set lastContentSize(value:Size):void
-        {
-            _lastContentSize = value;
-        }
-        
-
 	}
 }

@@ -18,14 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.IRangeModel;
-	import org.apache.royale.core.StyledUIBase;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.core.IRangeModel;
+	import org.apache.royale.core.StyledUIBase;
 
 	[Event(name="valueChange", type="org.apache.royale.events.Event")]
 
@@ -175,8 +174,7 @@ package org.apache.royale.jewel
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'div');
-            positioner = element;
-			return element;
+            return element;
         }
 	}
 }

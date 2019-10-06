@@ -29,7 +29,7 @@ package org.apache.royale.net
     }
     COMPILE::JS
     {
-        import org.apache.royale.net.events.HTTPStatusEvent;
+        import org.apache.royale.events.ValueEvent;
     }
     
     import org.apache.royale.events.DetailEvent;
@@ -175,6 +175,13 @@ package org.apache.royale.net
                     }
                 }
                 */
+				
+				var contentData:String = null;
+				if(request.data != null) {
+					if(request.method == HTTPConstants.POST) {
+						contentData = request.data as String;
+					}
+				}
                 
                 element.open(request.method, request.url, true);
                 // element.timeout = _timeout;
@@ -199,14 +206,12 @@ package org.apache.royale.net
                         HTTPHeader.CONTENT_TYPE, _contentType);
                 }
                 */
-                /*
+                
                 if (contentData) {
                     element.send(contentData);
-                } else {*/
+                } else {
                     element.send();
-                /*
                 }
-                */
             }
             
             dispatchEvent(new Event("postSend"));
@@ -270,7 +275,7 @@ package org.apache.royale.net
             var element:XMLHttpRequest = this.element as XMLHttpRequest;
             if (element.readyState == 2) {
                 dispatchEvent(HTTPConstants.RESPONSE_STATUS);
-                dispatchEvent( new HTTPStatusEvent(element.status) );
+                dispatchEvent( new ValueEvent(HTTPConstants.STATUS, element.status) );
             } else if (element.readyState == 4) {
                 if (element.status >= 400) // client error or server error
                 {

@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {	
+    import mx.core.UIComponent;
+    
     import org.apache.royale.core.IStrand;
     import org.apache.royale.html.beads.NumericStepperView;
 	
@@ -30,6 +32,8 @@ package mx.controls.beads
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
+     * 
+     *  @royaleignorecoercion mx.core.UIComponent
      */
 	public class NumericStepperView extends org.apache.royale.html.beads.NumericStepperView
 	{
@@ -43,6 +47,7 @@ package mx.controls.beads
             COMPILE::JS
             {
                 input.width = 44; // should be same as SWF after we adjust defaults for spinner
+                (value as UIComponent).measuredWidth = 60;
             }
         }
 	}

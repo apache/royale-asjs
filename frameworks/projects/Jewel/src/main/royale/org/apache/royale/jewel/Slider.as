@@ -20,12 +20,11 @@ package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IRangeModel;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.events.Event;
 
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	//--------------------------------------
@@ -192,23 +191,32 @@ package org.apache.royale.jewel
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion HTMLInputElement
 		 * @royaleignorecoercion HTMLDivElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-			var div:HTMLDivElement = document.createElement('div') as HTMLDivElement;
-            
-            var input:HTMLInputElement = addElementToWrapper(this,'input') as HTMLInputElement;
-            input.setAttribute('type', 'range');
-			
-			div.appendChild(input);
-
-            positioner = div as WrappedHTMLElement;
-            positioner.royale_wrapper = this;
-			
+			addElementToWrapper(this,'input');
+            element.setAttribute('type', 'range');
+			positioner = document.createElement('div') as WrappedHTMLElement;
 			return element;
         }
+
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
     }
 }

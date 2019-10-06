@@ -18,10 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    COMPILE::SWF
-	{
 	import flash.display.DisplayObject;
-	import flash.display.MovieClip;
+
+	COMPILE::SWF
+	{
+	    import flash.display.MovieClip;
 	}
 
 	COMPILE::SWF

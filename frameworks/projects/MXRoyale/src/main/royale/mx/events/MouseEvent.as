@@ -21,6 +21,7 @@ package mx.events
 {
 /* import mx.events.Event;*/
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.IRoyaleEvent;
 import org.apache.royale.events.MouseEvent;
 
@@ -84,7 +85,6 @@ public class MouseEvent extends org.apache.royale.events.MouseEvent
 		}
 		public function updateAfterEvent():void
 		{
-			super.updateAfterEvent();
 		}
 	}
 	
@@ -107,23 +107,59 @@ public class MouseEvent extends org.apache.royale.events.MouseEvent
 	 *  @param cancelable Specifies whether the behavior
 	 *  associated with the event can be prevented.
 	 *
-	 *  @param oldX The previous x coordinate of the object, in pixels.
+	 *  @param localX The x coordinate of the mouse relative to the target, in pixels.
 	 *
-	 *  @param oldY The previous y coordinate of the object, in pixels.
+	 *  @param localY The y coordinate of the mouse relative to the target, in pixels.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Royale 0.9.3
 	 */
+    COMPILE::SWF
 	public function MouseEvent(type:String, bubbles:Boolean = false,
 							  cancelable:Boolean = false,
-							  oldX:Number = NaN, oldY:Number = NaN)
+                              localX:Number = NaN, localY:Number = NaN,
+                              relatedObject:Object = null,
+                              ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
+                              buttonDown:Boolean = false, delta:int = 0,
+                              commandKey:Boolean = false, controlKey:Boolean = false,
+                              clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
 	{
-		super(type, bubbles, cancelable);
-
+		super(type, bubbles, cancelable, localX, localY, relatedObject,
+                ctrlKey, altKey, shiftKey, buttonDown, delta, commandKey, controlKey,
+                clickCount, targetBeforeBubbling);
 	}
 	
+    /**
+     *  Constructor.
+     *
+     *  @param type The event type; indicates the action that caused the event.
+     *
+     *  @param bubbles Specifies whether the event can bubble
+     *  up the display list hierarchy.
+     *
+     *  @param cancelable Specifies whether the behavior
+     *  associated with the event can be prevented.
+     *
+     *  @param localX The x coordinate of the mouse relative to the target, in pixels.
+     *
+     *  @param localY The y coordinate of the mouse relative to the target, in pixels.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    COMPILE::JS
+    public function MouseEvent(type:String, bubbles:Boolean = false,
+                               cancelable:Boolean = false,
+                               localX:Number = NaN, localY:Number = NaN)
+    {
+        super(type, bubbles, cancelable);
+        this.localX = localX;
+        this.localY = localY;        
+    }
 
 	
 

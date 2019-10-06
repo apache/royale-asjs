@@ -24,6 +24,8 @@ package mx.managers
 
 /**
  *  @private
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class SystemManagerGlobals
 {

@@ -76,7 +76,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-[Style(name="borderAlpha", type="Number", inherit="no", theme="spark", minValue="0.0", maxValue="1.0")]
+[Style(name="borderAlpha", type="Number", inherit="no", minValue="0.0", maxValue="1.0")]
 
 /**
  *  The color of the border for this component.
@@ -87,7 +87,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-//[Style(name="borderColor", type="uint", format="Color", inherit="no", theme="spark, mobile")]
+[Style(name="borderColor", type="uint", format="Color", inherit="no", "mobile")]
 
 /**
  *  Controls the visibility of the border for this component.
@@ -433,6 +433,35 @@ public class SkinnableTextBase extends SkinnableComponent
     {
         super();
     }
+    
+    private var _borderAlpha:Number;
+    private var _borderColor:uint;
+    
+    public function get borderAlpha():Number
+    {
+        return _borderAlpha;
+    } 
+    
+    /**
+     *  @private
+     */
+    public function set borderAlpha(value:Number):void
+    {
+        _borderAlpha = value;
+    } 
+	
+    public function get borderColor():uint
+    {
+        return _borderColor;
+    } 
+    /**
+     *  @private
+     */
+    public function set borderColor(value:uint):void
+    {
+        _borderColor = value;
+    } 
+    
     
     public function get contentBackgroundColor():uint
     {

@@ -29,6 +29,11 @@
     
     <property name="target.name" value="${ant.project.name}.swc" />
     
+    <tstamp>
+        <format property="royale.swc-date" pattern="MM/dd/yy HH:mm Z"/>
+    </tstamp>
+    <echo>swc-date is ${royale.swc-date}</echo>
+    
     <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc,test" description="Full build of ${ant.project.name}.swc">
     </target>
     
@@ -50,9 +55,15 @@
                 <available file="${basedir}/src/test/royale/build.xml" />
             </not>
         </condition>
+        <!-- exclude from js-only build -->
+        <condition property="skip-tests" >
+            <not>
+                <isset property="env.AIR_HOME" />
+            </not>
+        </condition>
     </target>
     
-    <target name="test" depends="check-for-tests" unless="skip-tests">
+    <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
     </target>
     
@@ -75,12 +86,19 @@
     </target>
     
     <target name="compile" description="Compiles .as files into .swc" if="env.AIR_HOME">
+        <!-- use antcall so that resultproperty can be used in other projects and
+             they don't collide when being run one after the other -->
+        <antcall target="compile-swf" />
+    </target>
+    
+    <target name="compile-swf">
         <echo message="Compiling libs/${ant.project.name}.swc"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
         <echo message="ROYALE_COMPILER_HOME: ${ROYALE_COMPILER_HOME}"/>
         
-        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true" >
+        <java jar="${ROYALE_COMPILER_HOME}/lib/compc.jar" fork="true"
+            resultproperty="compcoutput">
             <jvmarg value="-Xmx384m" />
             <jvmarg value="-Dsun.io.useCanonCaches=false" />
             <jvmarg value="-Droyalelib=${ROYALE_HOME}/frameworks" />
@@ -91,6 +109,9 @@
             <arg value="-compiler.targets=SWF,JSRoyale" />
             <arg value="-compiler.define+=GOOG::DEBUG,true" />
             <arg value="-compiler.define+=ROYALE::DISPLAYOBJECT,DisplayObject" />
+            <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />
+            <arg line="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
+            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-compiler-define+=ROYALE::DISPLAYOBJECT,IUIComponent" />
@@ -100,6 +121,16 @@
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />
             <arg value="-js-load-config+=${basedir}/../../js/projects/${ant.project.name}JS/src/main/config/compile-js-config.xml" />
         </java>
+        <fail>
+            <condition>
+                <not>
+                    <or>
+                        <equals arg1="${compcoutput}" arg2="0" />
+                        <equals arg1="${compcoutput}" arg2="2" />
+                    </or>
+                </not>
+            </condition>
+        </fail>
     </target>
     
     <target name="check-compiler" depends="check-compiler-home,check-transpiler-home">

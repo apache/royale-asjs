@@ -20,7 +20,12 @@ package org.apache.royale.file
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.Strand;
-	import org.apache.royale.file.beads.FileModel;
+	import org.apache.royale.utils.BinaryData;
+
+	COMPILE::SWF
+	{
+		import flash.net.FileReference;
+	}
 	
 	/**
 	 *  Indicates that the model has changed
@@ -68,7 +73,7 @@ package org.apache.royale.file
 		 */
 		public function get lastModified():uint
 		{
-			return (model as FileModel).lastModified;
+			return (model as IFileModel).lastModified;
 		}
 		
 		/**
@@ -76,7 +81,7 @@ package org.apache.royale.file
 		 */
 		public function get name():String
 		{
-			return (model as FileModel).name;
+			return (model as IFileModel).name;
 		}
 		
 		/**
@@ -84,7 +89,58 @@ package org.apache.royale.file
 		 */
 		public function get type():String
 		{
-			return (model as FileModel).type;
+			return (model as IFileModel).type;
+		}
+
+		/**
+		 *  @copy org.apache.royale.file.IFileModel#size
+		 */
+		public function get size():Number
+		{
+			return (model as IFileModel).size;
+		}
+
+		/**
+		 *  @copy org.apache.royale.file.IFileModel#blob
+		 */
+		public function get blob():Object
+		{
+			return (model as IFileModel).blob;
+		}
+
+		/**
+		 *  @copy org.apache.royale.file.IFileModel#fileContent
+		 */
+		public function set fileContent(value:BinaryData):void
+		{
+			(model as IFileModel).fileContent = value;
+		}
+		
+		/**
+		 *  @copy org.apache.royale.file.IFileModel#fileReference
+		 */
+		COMPILE::SWF
+		public function get fileReference():FileReference
+		{
+			return (model as IFileModel).fileReference;
+		}
+
+		COMPILE::JS
+		public function get fileReference():File
+		{
+			return (model as IFileModel).fileReference;
+		}
+		
+		COMPILE::SWF
+		public function set fileReference(value:FileReference):void
+		{
+			(model as IFileModel).fileReference = value;
+		}
+
+		COMPILE::JS
+		public function set fileReference(value:File):void
+		{
+			(model as IFileModel).fileReference = value;
 		}
 		
 	}

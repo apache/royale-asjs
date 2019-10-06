@@ -78,7 +78,7 @@ $combobox-item-min-heigh: 34px
     overflow: hidden
     contain: strict
 
-    z-index: 5
+    z-index: $app-control-popups-zindex
 
     color: rgba(0, 0, 0, 0.8)
 
@@ -109,7 +109,7 @@ $combobox-item-min-heigh: 34px
         bottom: auto
         top: calc(100% - #{$combobox-popup-margin-offset})
         left: 50%
-        touch-action: none
+        // touch-action: none
         box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7) !important
 
         // width: $combobox-input-width + $combobox-button-width
@@ -127,24 +127,16 @@ $combobox-item-min-heigh: 34px
             transition: animation-standard(transform, .4s), animation-standard(opacity, .4s)
             opacity: 1
 
-@media (max-width: $tablet)
+@media (max-width: ($tablet - 1))
     .combobox-popup
         .jewel.list
             width: 98% !important
-
-@media (min-width: $tablet) and (max-width: $desktop)
-    .combobox-popup
-        .jewel.list
-            width: 70% !important
-
-@media (max-width: $desktop)
-    .combobox-popup
-        .jewel.list
             max-height: ( $combobox-item-min-heigh + 14 ) * 5 !important
-    .jewel.item
-        height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
+            
+            .jewel.item
+                min-height: $combobox-item-min-heigh + 14 !important //this should match $item-min-heigh in _itemrenderer.sass
 
-@media (min-width: $desktop)
+@media (min-width: ($tablet - 1))
     .combobox-popup
         &::before
             background-color: rgba($combobox-popup-overlay-color, 0)
@@ -155,7 +147,7 @@ $combobox-item-min-heigh: 34px
             box-shadow: none !important
 
             .jewel.item
-                height: 0
+                // height: 0
                 overflow: hidden
                 transition: height 200ms ease-in
 
@@ -166,7 +158,7 @@ $combobox-item-min-heigh: 34px
                 left: auto
 
                 .jewel.item
-                    height: $combobox-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
+                    min-height: $combobox-item-min-heigh //this should match $item-min-heigh in _itemrenderer.sass
 
 
 // this is a StyledUIBase with a List inside

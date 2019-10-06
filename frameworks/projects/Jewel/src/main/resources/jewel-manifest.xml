@@ -22,12 +22,15 @@
 <componentPackage>
 
     <component id="Application" class="org.apache.royale.jewel.Application"/>
+    <component id="Module" class="org.apache.royale.jewel.Module"/>
+    <component id="ModuleLoader" class="org.apache.royale.jewel.ModuleLoader"/>
     <component id="View" class="org.apache.royale.jewel.View"/>
     <component id="Group" class="org.apache.royale.jewel.Group"/>
     <component id="HGroup" class="org.apache.royale.jewel.HGroup"/>
     <component id="VGroup" class="org.apache.royale.jewel.VGroup"/>
     <component id="Container" class="org.apache.royale.jewel.Container"/>
     <component id="Grid" class="org.apache.royale.jewel.Grid"/>
+    <component id="ScrollableGrid" class="org.apache.royale.jewel.ScrollableGrid"/>
     <component id="GridCell" class="org.apache.royale.jewel.GridCell"/>
 
     <component id="SimpleTable" class="org.apache.royale.jewel.SimpleTable"/>
@@ -40,6 +43,7 @@
     <component id="TableHeaderCell" class="org.apache.royale.jewel.supportClasses.table.TableHeaderCell"/>
     <component id="TableColumn" class="org.apache.royale.jewel.supportClasses.table.TableColumn"/>
 
+    <component id="SimpleButton" class="org.apache.royale.jewel.supportClasses.button.SimpleButton"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>
     <component id="IconButton" class="org.apache.royale.jewel.IconButton"/>
     <component id="ToggleButton" class="org.apache.royale.jewel.ToggleButton"/>
@@ -66,12 +70,13 @@
     <component id="DataContainer" class="org.apache.royale.jewel.DataContainer" />
     <component id="DataGroup" class="org.apache.royale.jewel.supportClasses.list.DataGroup" />
     <component id="ToolTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel" />
-    
+
     <component id="Form" class="org.apache.royale.jewel.Form"/>
     <component id="FormItem" class="org.apache.royale.jewel.FormItem"/>
     <component id="FormHeading" class="org.apache.royale.jewel.FormHeading"/>
     <component id="ErrorTipLabel" class="org.apache.royale.jewel.supportClasses.tooltip.ErrorTipLabel"/>
 	<component id="Snackbar" class="org.apache.royale.jewel.Snackbar"/>
+	<component id="PopUp" class="org.apache.royale.jewel.PopUp"/>
 
     <component id="Validator" class="org.apache.royale.jewel.beads.validators.Validator"/>
     <component id="FormValidator" class="org.apache.royale.jewel.beads.validators.FormValidator"/>
@@ -80,55 +85,80 @@
     <component id="SelectedItemNullValidator" class="org.apache.royale.jewel.beads.validators.SelectedItemNullValidator"/>
     <component id="CheckBoxValidator" class="org.apache.royale.jewel.beads.validators.CheckBoxValidator"/>
     <component id="RadioButtonValidator" class="org.apache.royale.jewel.beads.validators.RadioButtonValidator"/>
+    <component id="EmailValidator" class="org.apache.royale.jewel.beads.validators.EmailValidator"/>
+    <component id="CreditCardValidator" class="org.apache.royale.jewel.beads.validators.CreditCardValidator"/>
+
+    <component id="AssignTabContent" class="org.apache.royale.jewel.beads.controls.tabbar.AssignTabContent"/>
+    
+    <component id="HorizontalListScroll" class="org.apache.royale.jewel.beads.controls.list.HorizontalListScroll"/>
 
     <component id="TabBar" class="org.apache.royale.jewel.TabBar"/>
     <component id="TabBarButtonItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer"/>
+    <component id="TabBarButtonInidicatorRestrictedToContentItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonInidicatorRestrictedToContentItemRenderer"/>
     <component id="TabBarContent" class="org.apache.royale.jewel.TabBarContent"/>
     <component id="Navigation" class="org.apache.royale.jewel.Navigation"/>
     <component id="NavigationLinkItemRenderer" class="org.apache.royale.jewel.itemRenderers.NavigationLinkItemRenderer"/>
-    
+
     <component id="DateChooserModel" class="org.apache.royale.jewel.beads.models.DateChooserModel"/>
 
     <component id="ApplicationResponsiveView" class="org.apache.royale.jewel.ApplicationResponsiveView"/>
-    
+
+    <component id="Bar" class="org.apache.royale.jewel.Bar"/>
     <component id="TopAppBar" class="org.apache.royale.jewel.TopAppBar"/>
-    <component id="TopAppBarRow" class="org.apache.royale.jewel.supportClasses.topappbar.TopAppBarRow"/>
-    <component id="TopAppBarSection" class="org.apache.royale.jewel.supportClasses.topappbar.TopAppBarSection"/>
-    <component id="TopAppBarTitle" class="org.apache.royale.jewel.supportClasses.topappbar.TopAppBarTitle"/>
+    <component id="FooterBar" class="org.apache.royale.jewel.FooterBar"/>
+    <component id="BarRow" class="org.apache.royale.jewel.supportClasses.bar.BarRow"/>
+    <component id="BarSection" class="org.apache.royale.jewel.supportClasses.bar.BarSection"/>
+    <component id="BarTitle" class="org.apache.royale.jewel.supportClasses.bar.BarTitle"/>
 
     <component id="ApplicationMainContent" class="org.apache.royale.jewel.ApplicationMainContent"/>
     <component id="SectionContent" class="org.apache.royale.jewel.SectionContent"/>
-    
+    <component id="ScrollableSectionContent" class="org.apache.royale.jewel.ScrollableSectionContent"/>
+
     <component id="Drawer" class="org.apache.royale.jewel.Drawer"/>
     <component id="DrawerHeader" class="org.apache.royale.jewel.supportClasses.drawer.DrawerHeader"/>
     <component id="DrawerContent" class="org.apache.royale.jewel.supportClasses.drawer.DrawerContent"/>
 
+    <component id="HideDrawerOnMouseDown" class="org.apache.royale.jewel.beads.controls.drawer.HideDrawerOnMouseDown"/>
+
     <component id="Divider" class="org.apache.royale.jewel.Divider"/>
 
     <component id="Image" class="org.apache.royale.jewel.Image"/>
-    
+
     <component id="Card" class="org.apache.royale.jewel.Card"/>
-    
+
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList"/>
-    
+
+    <component id="Badge" class="org.apache.royale.jewel.beads.controls.Badge"/>
     <component id="ToolTip" class="org.apache.royale.jewel.beads.controls.ToolTip"/>
     <component id="Disabled" class="org.apache.royale.jewel.beads.controls.Disabled"/>
     <component id="SizeControl" class="org.apache.royale.jewel.beads.controls.SizeControl"/>
     <component id="TextAlign" class="org.apache.royale.jewel.beads.controls.TextAlign"/>
     <component id="ResponsiveVisibility" class="org.apache.royale.jewel.beads.layouts.ResponsiveVisibility"/>
-    
+
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
-    
+
+    <component id="MultiLine" class="org.apache.royale.jewel.beads.controls.MultiLine"/>
+    <component id="NavigationActionNotifier" class="org.apache.royale.jewel.beads.controls.NavigationActionNotifier"/>
+    <component id="CleanValidationErrors" class="org.apache.royale.jewel.beads.controls.application.CleanValidationErrors"/>
+
+    <component id="DispatchChangeOnStartup" class="org.apache.royale.jewel.beads.controls.DispatchChangeOnStartup"/>
     <component id="DropDownListTextPrompt" class="org.apache.royale.jewel.beads.controls.dropdownlist.DropDownListTextPrompt"/>
+    <component id="RequireSelection" class="org.apache.royale.jewel.beads.controls.dropdownlist.RequireSelection"/>
     <component id="ComboBoxTextPrompt" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTextPrompt"/>
+    <component id="SearchFilter" class="org.apache.royale.jewel.beads.controls.combobox.SearchFilter"/>
     <component id="DateFieldTextPrompt" class="org.apache.royale.jewel.beads.controls.datefield.DateFieldTextPrompt"/>
     <component id="SpanishDateComponentConfig" class="org.apache.royale.jewel.beads.controls.datefield.SpanishDateComponentConfig"/>
+    <component id="DateFieldDisabled" class="org.apache.royale.jewel.beads.controls.datefield.DateFieldDisabled"/>
     <component id="TextPrompt" class="org.apache.royale.jewel.beads.controls.textinput.TextPrompt"/>
     <component id="PasswordInput" class="org.apache.royale.jewel.beads.controls.textinput.PasswordInput"/>
     <component id="MaxNumberCharacters" class="org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters"/>
     <component id="Restrict" class="org.apache.royale.jewel.beads.controls.textinput.Restrict"/>
     <component id="UpperCase" class="org.apache.royale.jewel.beads.controls.textinput.UpperCase"/>
+    <component id="SearchFilterForList" class="org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList"/>
     <component id="LowerCase" class="org.apache.royale.jewel.beads.controls.textinput.LowerCase"/>
+    <component id="ComboUpperCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboUpperCase"/>
+    <component id="ComboLowerCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboLowerCase"/>
+    <component id="ComboBoxDisabled" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"/>
 
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
     <component id="NullLayout" class="org.apache.royale.jewel.beads.layouts.NullLayout"/>
@@ -136,6 +166,8 @@
     <component id="SimpleVerticalLayout" class="org.apache.royale.jewel.beads.layouts.SimpleVerticalLayout"/>
     <component id="HorizontalLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalLayout"/>
     <component id="VerticalLayout" class="org.apache.royale.jewel.beads.layouts.VerticalLayout"/>
+    <component id="FormLayout" class="org.apache.royale.jewel.beads.layouts.FormLayout"/>
+    <component id="FormItemLayout" class="org.apache.royale.jewel.beads.layouts.FormItemLayout"/>
     <component id="HorizontalCenteredLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalCenteredLayout"/>
     <component id="VerticalCenteredLayout" class="org.apache.royale.jewel.beads.layouts.VerticalCenteredLayout"/>
     <component id="HorizontalFlowLayout" class="org.apache.royale.jewel.beads.layouts.HorizontalFlowLayout"/>
@@ -144,14 +176,15 @@
     <component id="GridLayout" class="org.apache.royale.jewel.beads.layouts.GridLayout"/>
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     <component id="TableLayout" class="org.apache.royale.jewel.beads.layouts.TableLayout"/>
-    
+
     <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
     <component id="TableItemRenderer" class="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.jewel.itemRenderers.DateItemRenderer"/>
     <component id="DropDownListItemRenderer" class="org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer"/>
-    
+
     <component id="ScrollingViewport" class="org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport"/>
+    <component id="NoViewport" class="org.apache.royale.jewel.supportClasses.NoViewport"/>
 
     <component id="DataItemRendererFactoryForArrayData" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForArrayData"/>
     <component id="DataItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView"/>
@@ -161,16 +194,22 @@
     <component id="AddListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddListItemRendererForArrayListData" />
     <component id="RemoveListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveListItemRendererForArrayListData" />
     <component id="UpdateListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateListItemRendererForArrayListData" />
-    
+    <component id="CollectionChangeUpdateForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.CollectionChangeUpdateForArrayListData" />
+
     <component id="AddTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableRowForArrayListData" />
     <component id="RemoveTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveTableRowForArrayListData" />
     <component id="UpdateTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateTableRowForArrayListData" />
-    
-    <component id="RemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllItemRendererForArrayListData" />
-    
-    <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
-    
 
-     <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
+    <component id="RemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllItemRendererForArrayListData" />
+
+    <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
+
+    <component id="Wizard" class="org.apache.royale.jewel.Wizard"/>
+    <component id="WizardContent" class="org.apache.royale.jewel.WizardContent"/>
+    <component id="WizardPage" class="org.apache.royale.jewel.WizardPage"/>
+    <component id="WizardStep" class="org.apache.royale.jewel.beads.models.WizardStep"/>
+    <component id="WizardEvent" class="org.apache.royale.jewel.events.WizardEvent"/>
+
+    <component id="ResponsiveSizeMonitor" class="org.apache.royale.jewel.debugger.ResponsiveSizeMonitor"/>
 
 </componentPackage>

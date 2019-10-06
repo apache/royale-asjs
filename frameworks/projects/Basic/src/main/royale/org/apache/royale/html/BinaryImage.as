@@ -53,16 +53,16 @@ package org.apache.royale.html
 			super();
 		}
 		
+		/**
+		 * @royaleemitcoercion org.apache.royale.core.IBinaryImageLoader
+		 */
 		override public function addedToParent():void
 		{
 			var c:Class = ValuesManager.valuesImpl.getValue(this, "iBinaryImageLoader") as Class;
 			if (c)
 			{
-				if (c)
-				{
-					var loader:IBinaryImageLoader = (new c()) as IBinaryImageLoader;
-					addBead(loader);
-				}
+				var loader:IBinaryImageLoader = (new c()) as IBinaryImageLoader;
+				addBead(loader);
 			}
 			super.addedToParent();
 		}
@@ -74,12 +74,15 @@ package org.apache.royale.html
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.royale.core.IImageModel
+     *  @royaleignorecoercion org.apache.royale.core.IBinaryImageModel
 		 */
 		public function get binary():BinaryData
 		{
 			return (model as IBinaryImageModel).binary;
 		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IBinaryImageModel
+		 */
 		public function set binary(value:BinaryData):void
 		{
 			(model as IBinaryImageModel).binary = value;

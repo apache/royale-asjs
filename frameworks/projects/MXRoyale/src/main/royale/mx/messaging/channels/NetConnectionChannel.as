@@ -572,6 +572,8 @@ class NetConnectionMessageResponder extends MessageResponder
     {
         if (handled)
             return;
+        
+        var errorMsg:ErrorMessage;
             
         disconnect();
         if (msg is AsyncMessage)
@@ -596,7 +598,6 @@ class NetConnectionMessageResponder extends MessageResponder
         }
         else
         {
-            var errorMsg:ErrorMessage;
             errorMsg = new ErrorMessage();
             errorMsg.faultCode = "Server.Acknowledge.Failed";
             errorMsg.faultString = resourceManager.getString(
@@ -621,6 +622,8 @@ class NetConnectionMessageResponder extends MessageResponder
     {
         if (handled)
             return;
+        
+        var errorMsg:ErrorMessage;
             
         disconnect();
 
@@ -644,7 +647,6 @@ class NetConnectionMessageResponder extends MessageResponder
             }
             else
             {
-                var errorMsg:ErrorMessage;
                 errorMsg = new ErrorMessage();
                 errorMsg.faultCode = "Server.Acknowledge.Failed";
                 errorMsg.faultString = resourceManager.getString(

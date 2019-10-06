@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.beads.controls
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -26,9 +27,9 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.supportClasses.tooltip.ToolTipLabel;
+	import org.apache.royale.utils.OSUtils;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
-	import org.apache.royale.core.IParentIUIBase;
 
 	/**
 	 *  The ToolTip class is a specialty bead that can be used with
@@ -127,7 +128,11 @@ package org.apache.royale.jewel.beads.controls
 		{
 			_strand = value;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+			//ToolTip in iOS produces a bad behaviour, used in a button and user has to do a second touch to trigger click event
+			if(OSUtils.getOS() != OSUtils.IOS_OS)
+			{
+            	IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+			}
 		}
 
 		/**
@@ -151,7 +156,7 @@ package org.apache.royale.jewel.beads.controls
 
 			// add this before measuring or measurement is not accurate.
             host.popUpParent.addElement(tt, false); // don't trigger a layout
-            var pt:Point = determinePosition(event, event.target);
+            var pt:Point = determinePosition();
             tt.x = pt.x;
             tt.y = pt.y;
 		}
@@ -161,7 +166,7 @@ package org.apache.royale.jewel.beads.controls
 		 * Determines the position of the toolTip.
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
-		protected function determinePosition(event:MouseEvent, base:Object):Point
+		protected function determinePosition():Point
 		{
 			var ttWidth:Number = tt.width;
 			var ttHeight:Number = tt.height;

@@ -92,6 +92,8 @@
     <!--<include-namespaces>
         <uri>library://ns.apache.org/royale/jewel</uri>
     </include-namespaces>-->
+
+    <js-default-initializers>false</js-default-initializers>
         
 
 </royale-config>

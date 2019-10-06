@@ -156,12 +156,12 @@ public class SkinnableComponent extends UIComponent
     //  Properties
     //--------------------------------------------------------------------------
 	
-    public function get chromeColor():uint
+    override public function get chromeColor():uint
     {
        return null;
     }
         
-    public function set chromeColor(value:uint):void
+    override public function set chromeColor(value:uint):void
     {
       
     }
@@ -249,85 +249,6 @@ public class SkinnableComponent extends UIComponent
     }
 	
 	
-	//----------------------------------
-    //  dataProvider copied from SkinnableDataContainer
-    //----------------------------------    
-    
-    /**
-     *  @copy spark.components.DataGroup#dataProvider
-     *
-     *  @see #itemRenderer
-     *  @see #itemRendererFunction
-     *  @see mx.collections.IList
-     *  @see mx.collections.ArrayCollection
-     *  @see mx.collections.ArrayList
-     *  @see mx.collections.XMLListCollection
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    [Bindable("dataProviderChanged")]
-    [Inspectable(category="Data")]
-    
-    public function get dataProvider():IList
-    {       
-		return null;
-      /*   return (dataGroup) 
-            ? dataGroup.dataProvider 
-            : dataGroupProperties.dataProvider; */
-    }
-    
-    public function set dataProvider(value:IList):void
-    {
-      /*   if (dataGroup)
-        {
-            dataGroup.dataProvider = value;
-            dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
-                                                     DATA_PROVIDER_PROPERTY_FLAG, true);
-        }
-        else
-            dataGroupProperties.dataProvider = value;
-        dispatchEvent(new Event("dataProviderChanged")); */
-    }
-
-	//----------------------------------
-    //  itemRenderer copied from SkinnableDataContainer
-    //----------------------------------
-    
-    [Inspectable(category="Data")]
-    
-    /**
-     *  @copy spark.components.DataGroup#itemRenderer
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get itemRenderer():IFactory
-    {
-      /*   return (dataGroup) 
-            ? dataGroup.itemRenderer 
-            : dataGroupProperties.itemRenderer; */ return null;
-    }
-    
-    /**
-     *  @private
-     */
-    public function set itemRenderer(value:IFactory):void
-    {
-       /*  if (dataGroup)
-        {
-            dataGroup.itemRenderer = value;
-            dataGroupProperties = BitFlagUtil.update(dataGroupProperties as uint, 
-                                                     ITEM_RENDERER_PROPERTY_FLAG, true);
-        }
-        else
-            dataGroupProperties.itemRenderer = value; */
-    }
-    
 	
 	//----------------------------------
     //  skin

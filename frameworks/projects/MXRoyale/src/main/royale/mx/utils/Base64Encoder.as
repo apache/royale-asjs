@@ -145,7 +145,7 @@ public class Base64Encoder
     }
 
     COMPILE::JS
-    public function encode(data:String, encoding = "utf-8"):void
+    public function encode(data:String, encoding:String = "utf-8"):void
     {
         var bytes:Object = new TextEncoderLiteWrapper(encoding).encode(data);
         encodedString = new Base64JSWrapper().fromByteArray(bytes);

@@ -98,10 +98,10 @@ package org.apache.royale.storage.providers
 			COMPILE::JS {
 				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 				
-				window.resolveLocalFileSystemURL(fullPath, function (fileEntry):void {
-					fileEntry.file(function (file):void {
+				window.resolveLocalFileSystemURL(fullPath, function (fileEntry:FileEntry):void {
+					fileEntry.file(function (file:File):void {
 						var reader:FileReader = new FileReader();
-						reader.onloadend = function (e):void {
+						reader.onloadend = function (e:Event):void {
 							var newEvent:FileEvent = new FileEvent("READ");
 							newEvent.data = this.result;
 							_target.dispatchEvent(newEvent);
@@ -110,13 +110,13 @@ package org.apache.royale.storage.providers
 							_target.dispatchEvent(finEvent);
 						};
 						reader.readAsText(file);
-					}, function (e):void {
+					}, function (e:Event):void {
 						var err1Event:FileErrorEvent = new FileErrorEvent("ERROR");
 						err1Event.errorMessage = "Cannot open file for reading";
 						err1Event.errorCode = 2;
 						_target.dispatchEvent(err1Event);
 					});
-				}, function (e):void {
+				}, function (e:Event):void {
 					var err2Event:FileErrorEvent = new FileErrorEvent("ERROR");
 					err2Event.errorMessage = "File does not exist";
 					err2Event.errorCode = 1;
@@ -142,19 +142,19 @@ package org.apache.royale.storage.providers
 			COMPILE::JS {
 				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 				
-				window.resolveLocalFileSystemURL(fullPath, function (fileEntry):void {
-					fileEntry.file(function (file):void {
+				window.resolveLocalFileSystemURL(fullPath, function (fileEntry:FileEntry):void {
+					fileEntry.file(function (file:File):void {
 						var inputStream:DataInputStream = new DataInputStream(_target, file, new FileReader());
 						var newEvent:FileEvent = new FileEvent("READY");
 						newEvent.stream = inputStream;
 						_target.dispatchEvent(newEvent);
-					}, function (e):void {
+					}, function (e:Event):void {
 						var err1Event:FileErrorEvent = new FileErrorEvent("ERROR");
 						err1Event.errorMessage = "Cannot open file for reading";
 						err1Event.errorCode = 2;
 						_target.dispatchEvent(err1Event);
 					});
-				}, function (e):void {
+				}, function (e:Event):void {
 					var err2Event:FileErrorEvent = new FileErrorEvent("ERROR");
 					err2Event.errorMessage = "File does not exist";
 					err2Event.errorCode = 1;
@@ -182,9 +182,9 @@ package org.apache.royale.storage.providers
 			COMPILE::JS {
 				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 		
-				window.resolveLocalFileSystemURL(fullPath, function (fileEntry):void {
-						fileEntry.createWriter(function (fileWriter):void {
-							fileWriter.onwriteend = function (e):void {
+				window.resolveLocalFileSystemURL(fullPath, function (fileEntry:FileEntry):void {
+						fileEntry.createWriter(function (fileWriter:FileWriter):void {
+							fileWriter.onwriteend = function (e:Event):void {
 								var newEvent:FileEvent = new FileEvent("WRITE");
 								_target.dispatchEvent(newEvent);
 								
@@ -192,22 +192,22 @@ package org.apache.royale.storage.providers
 								_target.dispatchEvent(finEvent);
 							};
 							
-							fileWriter.onerror = function (e):void {
+							fileWriter.onerror = function (e:Event):void {
 								var newEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 								newEvent.errorMessage = "Failed to write the file.";
 								newEvent.errorCode = 3;
 								_target.dispatchEvent(newEvent);
 							};
 							
-							var blob:Blob = new Blob([text], { type: 'text/plain' });
+							var blob:Blob = new Blob([text], new BlobPlainTextOptions());
 							fileWriter.write(blob);
-						}, function(e):void {
+						}, function(e:Event):void {
 							var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 							errEvent.errorMessage = "Cannot open file for writing.";
 							errEvent.errorCode = 1;
 							_target.dispatchEvent(errEvent);
 						});
-					}, function(e):void {
+					}, function(e:Event):void {
 						var errEvent:FileErrorEvent = new FileErrorEvent("ERROR");
 						errEvent.errorMessage = "Cannot create file.";
 						errEvent.errorCode = 4;
@@ -233,9 +233,9 @@ package org.apache.royale.storage.providers
 			COMPILE::JS {
 				var fullPath:String = String(cordova["file"]["dataDirectory"]) + fileName;
 				
-				window.resolveLocalFileSystemURL(fullPath, function (directoryEntry):void {
-					directoryEntry.getFile(fileName, { 'create': true }, function (fileEntry):void {
-						fileEntry.createWriter(function (fileWriter):void {
+				window.resolveLocalFileSystemURL(fullPath, function (directoryEntry:DirectoryEntry):void {
+					directoryEntry.getFile(fileName, new FileSystemCreateFlags, function (fileEntry:FileEntry):void {
+						fileEntry.createWriter(function (fileWriter:FileWriter):void {
 							var outputStream:DataOutputStream = new DataOutputStream(_target, fileEntry, fileWriter);
 							var newEvent:FileEvent = new FileEvent("READY");
 							newEvent.stream = outputStream;
@@ -245,5 +245,43 @@ package org.apache.royale.storage.providers
 				});
 			}
 		}
-	}
+	}    
+}
+
+COMPILE::JS
+class BlobPlainTextOptions implements BlobPropertyBag
+{
+    public function get type():String
+    {
+        return "text/plain";
+    }
+    
+    public function set type(value:String):void
+    {
+        
+    }
+}
+
+COMPILE::JS
+class FileSystemCreateFlags implements FileSystemFlags
+{
+    public function get create():Boolean
+    {
+        return true;
+    }
+    
+    public function set create(value:Boolean):void
+    {
+        
+    }
+    
+    public function get exclusive():Boolean
+    {
+        return false;
+    }
+    
+    public function set exclusive(value:Boolean):void
+    {
+        
+    }
 }

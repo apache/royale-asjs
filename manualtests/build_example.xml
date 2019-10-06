@@ -164,11 +164,12 @@
         <property name="config_arg" value="royale" />
         <property name="file_suffix" value="mxml" />
         <property name="optional_arg" value="-define+=CONFIG::dummy,true" />
+        <property name="debug" value="true" />
         <!-- this is a dummy var placeholder in case some example needs to define a theme
             then they would set theme_arg=-theme=<path to theme> -->
         <property name="theme_arg" value="-define+=CONFIG::theme,false" />
 		<mxmlc fork="true"
-               debug="true"
+               debug="${debug}"
                configname="${config_arg}"
                swf-version="${swf.version}"
                closure-lib="${GOOG_HOME}"
@@ -188,6 +189,7 @@
 
         <antcall target="build_example.wrapper">
 			<param name="output" value="${destDir}"/>
+			<param name="templatebase" value="${html_template_base}"/>
 		</antcall>
 		
         <copy todir="${destDir}">
@@ -298,6 +300,7 @@
         
 		<antcall target="build_example.wrapper">
 			<param name="output" value="${destDir}"/>
+			<param name="templatebase" value="${html_template_base}"/>
 		</antcall>   
     </target>
  
@@ -350,14 +353,17 @@
 	
 	<target name="wrapper" depends="check-air" unless="is.air">
 		<property name="output" value="${basedir}/bin-debug"/>
+        <property name="templatebase" value="${ROYALE_HOME}/templates"/>
+        <echo>creating html-wrapper from ${templatebase}</echo>
         <html-wrapper
         height="100%"
         width="100%"
         bgcolor="#ffffff"
         name="${example}"
         versionmajor="11"
-        versionminor="1"
+        versionminor="5"
         versionrevision="0"
+        templatebase="${templatebase}"
         output="${output}"/>
     </target>
 	
@@ -365,7 +371,8 @@
         <copy toDir="${basedir}/bin-debug" file="${basedir}/${example}-app.xml" />
         <copy toDir="${basedir}/bin-release" file="${basedir}/${example}-app.xml" />
     </target>
-    
+
+    <property name="html_template_base" value="${ROYALE_HOME}/templates" />
     <macrodef name="html-wrapper">
         <attribute name="width"/>
         <attribute name="height"/>
@@ -375,16 +382,17 @@
         <attribute name="versionminor"/>
         <attribute name="versionrevision"/>
         <attribute name="output"/>
+        <attribute name="templatebase" default="${html_template_base}"/>
         <sequential>
             <copy toFile="@{output}/@{name}.html"
-            file="${ROYALE_HOME}/templates/swfobject/index.template.html" />
+            file="@{templatebase}/swfobject/index.template.html" />
             <copy toDir="@{output}/history">
-                <fileset dir="${ROYALE_HOME}/templates/swfobject/history">
+                <fileset dir="@{templatebase}/swfobject/history">
                     <include name="**"/>
                 </fileset>
             </copy>
             <copy toDir="@{output}">
-                <fileset dir="${ROYALE_HOME}/templates/swfobject">
+                <fileset dir="@{templatebase}/swfobject">
                     <include name="*"/>
                     <exclude name="index.template.html"/>
                 </fileset>

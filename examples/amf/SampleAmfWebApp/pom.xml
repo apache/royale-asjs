@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-amf-webapps</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
-  
+
   <artifactId>SampleAmfWebApp</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>war</packaging>
 
   <name>Apache Royale: Examples: AMF Web Apps: SampleAmfWebApp</name>
@@ -34,7 +34,7 @@
   <properties>
     <java.version>1.7</java.version>
   </properties>
-  
+
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>
     <plugins>
@@ -47,7 +47,7 @@
           <target>${java.version}</target>
         </configuration>
       </plugin>
-        
+
       <!-- Make Spring-Boot build an executable war -->
       <plugin>
         <groupId>org.springframework.boot</groupId>
@@ -84,7 +84,25 @@
           </overlays>
         </configuration>
       </plugin>
-
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <version>1.1</version>
+        <executions>
+          <execution>
+            <phase>install</phase>
+            <goals>
+              <goal>run</goal>
+            </goals>
+            <configuration>
+              <tasks>
+                <echo>To run, use:</echo>
+                <echo>java -jar target/${project.artifactId}-${project.version}-exec.war</echo>
+              </tasks>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
       <!-- Test create javadocs -->
       <!-- <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -128,14 +146,14 @@
     <!-- <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RemoteObjectAMFTest</artifactId>
-      <version>0.9.4-SNAPSHOT</version>
+      <version>0.9.6-SNAPSHOT</version>
       <type>war</type>
     </dependency> -->
-    
+
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>RemoteObjectAMFTest-MXRoyale</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>war</type>
     </dependency>
 

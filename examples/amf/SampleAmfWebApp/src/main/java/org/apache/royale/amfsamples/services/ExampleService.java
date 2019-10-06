@@ -124,4 +124,22 @@ public class ExampleService {
 
         return product;
     }
+
+    public String sendClientVO(ServerCustomType clientVO)
+    {
+        System.out.println("sendClientVO called!!");
+
+        System.out.println(clientVO);
+
+        return clientVO.toString();
+    }
+
+    public String sendSomeProduct(Product product)
+    {
+        System.out.println("sendSomeProduct called!!");
+
+        System.out.println(product);
+
+        return product.toString();
+    }
 }

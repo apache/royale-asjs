@@ -62,19 +62,21 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-        public function get align():String
-        {
-            return _align;
-        }
-        public function set align(value:String):void
-        {
+		public function get align():String
+		{
+				return _align;
+		}
+
+    [Inspectable(category="General", enumeration="left,right,center", defaultValue="left")]
+		public function set align(value:String):void
+		{
 			if(_align !== value)
             {
 				oldValue = _align;
 				_align = value;
                 updateHost();
 			}
-        }
+		}
 
 		private var _strand:IStrand;
 		

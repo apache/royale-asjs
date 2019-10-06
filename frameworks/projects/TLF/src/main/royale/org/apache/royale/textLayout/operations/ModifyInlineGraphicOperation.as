@@ -56,7 +56,7 @@ package org.apache.royale.textLayout.operations {
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0 
 		 */
-		function ModifyInlineGraphicOperation(operationState:SelectionState, source:Object, width:Object, height:Object, options:Object = null)
+		public function ModifyInlineGraphicOperation(operationState:SelectionState, source:Object, width:Object, height:Object, options:Object = null)
 		{
 			super(operationState);
 							

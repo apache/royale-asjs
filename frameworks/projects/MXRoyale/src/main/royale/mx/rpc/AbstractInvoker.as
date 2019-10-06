@@ -183,6 +183,8 @@ public class AbstractInvoker extends EventDispatcher
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var operationManager:Function;
 
@@ -195,6 +197,8 @@ public class AbstractInvoker extends EventDispatcher
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var resultType:Class;
 
@@ -210,6 +214,8 @@ public class AbstractInvoker extends EventDispatcher
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var resultElementType:Class;
     

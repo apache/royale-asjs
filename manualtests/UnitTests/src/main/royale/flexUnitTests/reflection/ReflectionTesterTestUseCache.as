@@ -18,27 +18,36 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection
 {
-    import flexunit.framework.Assert;
-	import flexUnitTests.reflection.support.*;
+    import org.apache.royale.test.asserts.*;
+    
+    import flexUnitTests.reflection.support.*;
+    
     import org.apache.royale.reflection.*;
     
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class ReflectionTesterTestUseCache
-    {		
-       
+    {
+        
         public static var isJS:Boolean;
+        
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
             var js:Boolean = false;
-            try {
+            try
+            {
                 var check:* = getDefinitionByName("flash.system.Capabilities");
-            } catch (e:Error) {
+            } catch (e:Error)
+            {
                 js = true;
             }
             //if this next reference to 'check' is not included, then the above try/catch code
             //appears to be optimized away in js-release mode
             //a separate test has been created for this
-            if (check == null) {
+            if (check == null)
+            {
                 js = true;
             }
             isJS = js;
@@ -48,8 +57,8 @@ package flexUnitTests.reflection
         public static function tearDownAfterClass():void
         {
         }
-		
-		 [Before]
+        
+        [Before]
         public function setUp():void
         {
             TypeDefinition.useCache = true;
@@ -62,32 +71,35 @@ package flexUnitTests.reflection
         {
             TypeDefinition.useCache = false;
         }
-
-        private static function retrieveItemWithName(collection:Array, name:String):DefinitionBase {
+        
+        private static function retrieveItemWithName(collection:Array, name:String):DefinitionBase
+        {
             var ret:DefinitionBase;
-            var i:uint=0,l:uint=collection.length;
-            for (;i<l;i++) {
-                if (collection[i].name==name) {
+            var i:uint = 0, l:uint = collection.length;
+            for (; i < l; i++)
+            {
+                if (collection[i].name == name)
+                {
                     ret = collection[i];
                     break;
                 }
             }
-
+            
             return ret;
         }
-
-
+        
+        
         [Test]
-        public function testBasicCache():void {
+        public function testBasicCache():void
+        {
             var def:TypeDefinition = describeType(TestClass2);
-
+            
             var def2:TypeDefinition = describeType(TestClass2);
-
-            Assert.assertEquals("cache not working",def,def2);
-
+            
+            assertEquals( def, def2, "cache not working");
+            
         }
-
-
-
+        
+        
     }
 }

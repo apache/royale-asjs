@@ -93,7 +93,7 @@ import org.apache.royale.events.Event;
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
  */ 
-//[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes", theme="spark")]
+[Style(name="contentBackgroundColor", type="uint", format="Color", inherit="yes")]
 
 /**
  *  Color of focus ring when the component is in focus
@@ -402,7 +402,22 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
      */
     private var _disableBead:DisableBead;
     private var _enabled:Boolean = false;
+    
+    private var _contentBackgroundColor:uint = 0xFFFFFF;
 
+    /**
+     *  @private
+     */
+    public function get contentBackgroundColor():uint{
+	
+        return _contentBackgroundColor;
+    }
+    
+    public function set contentBackgroundColor(value:uint):void
+    {
+       _contentBackgroundColor = value;
+    }
+    
     /**
      *  @private
      */

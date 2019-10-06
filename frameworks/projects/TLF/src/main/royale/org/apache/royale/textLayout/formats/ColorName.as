@@ -53,6 +53,13 @@ package org.apache.royale.textLayout.formats
 		public static const FUCHSIA:String = "fuchsia";//0xFF00FF;
 		public static const AQUA:String    = "aqua";   //0x00FFFF;
 		public static const MAGENTA:String = "magenta";//0xFF00FF;
-		public static const CYAN:String    = "cyan";   //0x00FFFF;	
+		public static const CYAN:String    = "cyan";   //0x00FFFF;
+		public static const ORANGE:String = "orange"; //0xFFA500;
+		public static const DARK_GREY:String = "darkgrey"; //0xA9A9A9;
+		public static const BROWN:String = "brown"; //0xA52A2A;
+		public static const TAN:String = "tan"; //0xD2B48C;
+		public static const LIGHT_GREY:String = "lightgrey"; //0xD3D3D3;
+		public static const DARK_GREEN:String = "darkgreen"; //0x006400;
+		
 	}
 }

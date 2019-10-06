@@ -30,37 +30,43 @@ import flash.events.SecurityErrorEvent;
 import flash.net.NetConnection;
 import flash.net.ObjectEncoding;
 }
-    
+
 import org.apache.royale.net.Responder;
 import org.apache.royale.net.remoting.messages.ActionMessage;
 import org.apache.royale.net.remoting.messages.MessageBody;
 import org.apache.royale.net.remoting.messages.MessageHeader;
-    
+
 /**
  *  Send data via AMF to a server.
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion BlazeDS 4
- *  @productversion LCDS 3 
+ *  @productversion LCDS 3
  */
 public class AMFNetConnection
 {
     //--------------------------------------------------------------------------
     //
     // Constructor
-    // 
+    //
     //--------------------------------------------------------------------------
     
+    
+	private static const UNKNOWN_CONTENT_LENGTH:int = 1;
+	private static const AMF0_BOOLEAN:int = 1;
+	private static const NULL_STRING:String = "null";
+	private static const AMF0_AMF3:int = 17;
+
     /**
      *  Constructor
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion LCDS 3
      */
     public function AMFNetConnection()
     {
@@ -72,37 +78,113 @@ public class AMFNetConnection
             nc.client = this;
         }
     }
-    
+
     /**
      *  The class to use to test if success or failure
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.5 
+     *  @productversion Royale 0.9.5
+     *
+     *  @royalesuppresspublicvarwarning
      */
     public var errorClass:Class;
-    
+
     private var url:String;
-    
+
     COMPILE::SWF
     private var nc:NetConnection;
-    
+
+
+	COMPILE::JS
+	private var callPoolSize :uint = 6;
+	COMPILE::JS
+	private var callPool:Array = [];
+	COMPILE::JS
+	private var requestQueue:Array  = [];
+	COMPILE::JS
+	private var queueBlocked:Boolean;
+
     //--------------------------------------------------------------------------
     //
     // Methods
-    // 
-    //--------------------------------------------------------------------------    
+    //
+    //--------------------------------------------------------------------------
+
+
+
+
+
+
+    //support xhr queuing so that the same AMFNetConnection can handle multiple call requests without conflicting calls
+    COMPILE::JS
+    private function _processQueue():void {
+        var i:int, call:Object;
+        if (queueBlocked) {
+            return;
+        }
+        for (i = 0; i < callPoolSize && requestQueue.length > 0; i++) {
+            if (callPool.length == i) {
+                call = {
+                    xhr: new XMLHttpRequest(),
+                    busy: false,
+                    item: null
+                };
+                call.xhr.onreadystatechange = getReadyStateCallback(call);
+                if (callPoolSize > 1) {
+                    callPool.push(call);
+                }
+            } else {
+                call = callPool[i];
+            }
+            if (!call.busy) {
+                _processCallItem(call);
+                if (sequence == 1 || queueBlocked) {
+                    return;
+                }
+            }
+        }
+    }
+    COMPILE::JS
+    private function getReadyStateCallback(call:Object):Function{
+        return function():void {
+	        onReadyStateChange(call);
+        }
+    }
+
+	COMPILE::JS
+    private function _processCallItem(call:Object):void{
+        call.busy = true;
+        const requestItem:Object = requestQueue.shift();
+        call.item = requestItem;
+        call.xhr.open("POST", requestItem.url, true);
+    }
+
+	COMPILE::JS
+    private function _relinquishCall(call:Object):void{
+        call.busy = false;
+        call.item = null;
+    }
+
+	COMPILE::JS
+    private function _startQueue():void{
+        setTimeout(_processQueue, 1);
+    }
+
+
+
+
 
     /**
      *  Connect to a server.  Pass in an http URL as the commmand for
      *  connection to AMF server.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion LCDS 3
      */
     public function connect(command:String, ... params):void
     {
@@ -125,26 +207,26 @@ public class AMFNetConnection
     {
         trace("statusHandler", event.info.code);
     }
-    
+
     COMPILE::SWF
     private function securityErrorHandler(event:SecurityErrorEvent):void
     {
         trace("securityErrorHandler", event);
     }
-    
+
     COMPILE::SWF
     private function ioErrorHandler(event:IOErrorEvent):void
     {
         trace("ioErrorHandler", event);
     }
-    
+
     COMPILE::SWF
     private function asyncErrorHandler(event:AsyncErrorEvent):void
     {
         trace("asyncErrorHandler", event);
     }
-    
-    
+
+
     /**
      *  @private
      *  Special handler for legacy AMF packet level header "AppendToGatewayUrl".
@@ -166,7 +248,7 @@ public class AMFNetConnection
             nc.close();
             trace("disconnecting returned from close()");
             // WSRP support - append any extra stuff on the wsrp-url, not the actual url.
-            
+
             // Do we have a wsrp-url?
             var i:int = url.indexOf("wsrp-url=");
             if (i != -1)
@@ -179,7 +261,7 @@ public class AMFNetConnection
                 {
                     temp = temp.substr(0, j);
                 }
-                
+
                 // Replace the wsrp-url with a version that has the extra stuff
                 url = url.replace(temp, temp + value);
             }
@@ -194,23 +276,16 @@ public class AMFNetConnection
             trace("reconnecting returned from connect()");
         }
     }
-    
-    COMPILE::JS
-    private var xhr:XMLHttpRequest;
 
-    private var responder:Responder;
 
-    COMPILE::JS
-    private var args:Array;
-    
     /**
      *  Call a server function.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion LCDS 3
      */
     public function call(command:String, responder:Responder, ... params):void
     {
@@ -223,27 +298,28 @@ public class AMFNetConnection
         }
         COMPILE::JS
         {
-            this.responder = responder;
-            this.args = params;
-            
-            if (!xhr)
-            {
-                xhr = new XMLHttpRequest();
-                xhr.onreadystatechange = onReadyStateChange;
-            }
-            
-            xhr.open("POST", url, true);
+            requestQueue.push(
+                    {
+                        url: url,
+                        responder: responder,
+                        args: params
+                    }
+            );
+            _startQueue();
         }
     }
-    
+
     private var sequence:int = 0;
-    
+
     /**
      * @royaleignorecoercion Array
      */
     COMPILE::JS
-    private function onReadyStateChange():void
+    private function onReadyStateChange(call:Object):void
     {
+        var xhr:XMLHttpRequest = call.xhr;
+        var responder:Responder = call.item.responder;
+        var args:Array = call.item.args;
         var readyState:int = xhr.readyState;
         if (readyState === 1)
         {
@@ -261,100 +337,111 @@ public class AMFNetConnection
         }
         else if (readyState === 4)
         {
-            try 
+            try
             {
                 if (xhr.status >= 200 && xhr.status <= 300
                     && xhr.responseType == "arraybuffer"
-                    && xhr.getResponseHeader("Content-type").indexOf("application/x-amf") > -1) 
+                    && xhr.getResponseHeader("Content-type").indexOf("application/x-amf") > -1)
                 {
                     var message:ActionMessage;
                     var body:MessageBody;
-                    var deserializer:AMFBinaryData = new AMFBinaryData(new Uint8Array(xhr.response) as Array);
-                    try 
+	                _relinquishCall(call);
+                    var deserializer:AMFBinaryData = new AMFBinaryData(xhr.response);
+                    try
                     {
                         message = readMessage(deserializer) as ActionMessage;
-                    } 
-                    catch (e) 
+                    }
+                    catch (e:Error)
                     {
                         responder.onFailure({code:-1001, message:"Failed decoding the response.", detail:null, data:null});
+	                    if (requestQueue.length) _processQueue();
                         return;
                     }
-                    for (var i:int in message.bodies)
+                    var l:uint = message.bodies.length;
+                    for (var i:int=0; i<l; i++)
                     {
                         body = message.bodies[i];
+                        //todo review this: consider what happens if an error is thrown in the responder callback(s),
+                        // this should (or should not?) be caught and trigger failure here? maybe not...
                         if (!(body.data is errorClass))
                             responder.onSuccess(body.data);
                         else
                             responder.onFailure(body.data);
                     }
-                } 
+                }
                 else if (xhr.status == 0 || xhr.responseType == "text")
                 {
+	                _relinquishCall(call);
                     responder.onFailure({code:-1004, message:"Invalid response type.", detail:"Invalid XMLHttpRequest response status or type.", data:null});
                 }
                 else
                 {
+	                _relinquishCall(call);
                     responder.onFailure({code:-1005, message:"Invalid response.", detail:"", data:null});
                 }
-            } 
-            catch (e) 
+            }
+            catch (e:Error)
             {
+	            _relinquishCall(call);
                 responder.onFailure({code:-1006, message:"Unknown error.", detail:e.message, data:null});
             }
-
+            if (requestQueue.length) _processQueue();
         }
     }
-        
+
     COMPILE::JS
     private function writeMessage(writer:AMFBinaryData, message:ActionMessage):void
     {
         try {
             writer.writeShort(message.version);
-            writer.writeShort(message.headers.length);
-            for (var header:MessageHeader in message.headers) {
-                this.writeHeader(writer, message.headers[header]);
+	        var l:uint = message.headers.length;
+            writer.writeShort(l);
+            var i:uint;
+            for (i=0; i<l; i++) {
+                this.writeHeader(writer, message.headers[i]);
             }
-            writer.writeShort(message.bodies.length);
-            for (var body:MessageBody in message.bodies) {
-                this.writeBody(writer, message.bodies[body]);
+            l = message.bodies.length;
+            writer.writeShort(l);
+            for (i=0; i<l; i++) {
+                this.writeBody(writer, message.bodies[i]);
             }
-        } catch (error) {
-            console.log(error);
+        } catch (e:Error) {
+            console.log(e);
         }
     }
-    
+
     COMPILE::JS
     private function writeHeader(writer:AMFBinaryData, header:MessageHeader):void
     {
         writer.writeUTF(header.name);
         writer.writeBoolean(header.mustUnderstand);
-        writer.writeInt(AMFBinaryData.UNKNOWN_CONTENT_LENGTH);
-        writer.reset();
+        writer.writeInt(UNKNOWN_CONTENT_LENGTH);
         //writer.writeObject(header.data);
-        writer.write(AMFBinaryData.AMF0_BOOLEAN);
+        trace('not sending header data:', header.data);
+        writer.writeByte(AMF0_BOOLEAN);
         writer.writeBoolean(true);
     }
-    
+
     COMPILE::JS
     private function writeBody(writer:AMFBinaryData, body:MessageBody):void
     {
         if (body.targetURI == null) {
-            writer.writeUTF(AMFBinaryData.NULL_STRING);
+            writer.writeUTF(NULL_STRING);
         } else {
             writer.writeUTF(body.targetURI);
         }
         if (body.responseURI == null) {
-            writer.writeUTF(AMFBinaryData.NULL_STRING);
+            writer.writeUTF(NULL_STRING);
         } else {
             writer.writeUTF(body.responseURI);
         }
-        writer.writeInt(AMFBinaryData.UNKNOWN_CONTENT_LENGTH);
-        writer.reset();
-        writer.write(AMFBinaryData.AMF0_AMF3);
+        writer.writeInt(UNKNOWN_CONTENT_LENGTH);
+ 
+        writer.writeByte(AMF0_AMF3);
         writer.writeObject(body.data);
 
     }
-    
+
     COMPILE::JS
     private function readMessage(reader:AMFBinaryData):ActionMessage
     {
@@ -370,33 +457,38 @@ public class AMFNetConnection
         }
         return message;
     }
-    
+
     COMPILE::JS
     private function readHeader(reader:AMFBinaryData):MessageHeader
     {
         var header:MessageHeader = new MessageHeader();
         header.name = reader.readUTF();
         header.mustUnderstand = reader.readBoolean();
-        reader.pos += 4; //length
-        reader.reset();
-        var type:uint = reader.read();
+        //reader.pos += 4; //length
+        //reader.reset();
+		var len:uint = reader.readUnsignedInt();
+		//trace('readHeader len',len);
+        var type:uint = reader.readUnsignedByte();
         if (type != 2) { //amf0 string
             throw "Only string header data supported.";
         }
         header.data = reader.readUTF();
+        //trace('readHeader data:',header.data);
         return header;
     }
-    
+
     COMPILE::JS
     private function readBody(reader:AMFBinaryData):MessageBody
     {
         var body:MessageBody = new MessageBody();
         body.targetURI = reader.readUTF();
         body.responseURI = reader.readUTF();
-        reader.pos += 4; //length
-        reader.reset();
+        //reader.pos += 4; //length
+        var len:uint = reader.readUnsignedInt();
+        //trace('readBody len',len);
+       //reader.reset();
         body.data = reader.readObject();
-        return body; 
+        return body;
     }
 }
 

@@ -57,8 +57,8 @@
 	<property name="rat.report" value="${basedir}/rat-report.txt"/>
     <property name="apache.rat.jar" value="apache-rat-0.11.jar" />
     <property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.11.jar" />
-    <property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
-    <property name="apache.rat.tasks.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
+    <property name="apache.rat.url" value="https://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
+    <property name="apache.rat.tasks.url" value="https://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
     
     <property file="${basedir}/env.properties" />
     <property environment="env"/>
@@ -646,7 +646,7 @@
             <arg value="-m" />
             <arg value="update other poms to next version" />
         </exec>
-        <echo>run git show in royale-asjs to double-check the last commit then run git-push</echo>
+        <echo>run git show in royale-typedefs to double-check the last commit then run git-push</echo>
     </target>
 
     <target name="maven.prepare.typedefs">
@@ -819,7 +819,7 @@
         <input
         message="At this point, the Maven artifacts should be ready to be posted on the staging repo.  Press a key and your browser will open to Nexus, the staging repository UI.  Login.  Then choose Staging Repositories in the left list.  Then find the orgapacheroyale repo in the top list.  Check the checkbox for orgapacheroyale then click on the 'close' button to post the artifacts."/>
         <exec executable="${browser}" spawn="true">
-            <arg value="http://repository.apache.org/" />
+            <arg value="https://repository.apache.org/" />
         </exec>
     </target>
     
@@ -833,6 +833,7 @@
     </target>
 
     <target name="make_branches" depends="check-empty-folder,use_develop_branch,maven.branch.compiler,maven.branch.typedefs, maven.branch.framework">
+        <echo>Don't forget to 'git push' royale-typedefs and royale-asjs</echo>
     </target>
 
     <target name="get-maven-source-artifacts" >
@@ -859,6 +860,8 @@
     </target>
     
     <target name="ant-artifacts">
+        <property name="ROYALE_COMPILER_REPO" value="${basedir}/royale-compiler" />
+        <property name="ROYALE_TYPEDEFS_HOME" value="${basedir}/royale-typedefs" />
 		<ant dir="${basedir}/royale-asjs" target="release" />
 		<ant dir="${basedir}/royale-asjs" target="create-SHA-512" />
         <ant dir="${basedir}/royale-asjs" target="create-SHA-512-jsonly" />
@@ -1110,10 +1113,10 @@ ${my.name}
         <!-- this is intended to merge the tag to master because it should have the right versions in it -->
         <antcall target="merge_rc_to_master" />
         <antcall target="get_head_of_rc_branches" />
+        <antcall target="release.npm" />
         <antcall target="update.versions" />
         <antcall target="merge_rc_to_develop" />
         <antcall target="release.maven.staging.repo" />
-        <echo>Also run the release.npm target</echo>
 	</target>
 
     <target name="release.tag" depends="check-royale-asjs, check-royale-typedefs, check-royale-compiler">
@@ -1357,7 +1360,7 @@ ${my.name}
         <input
         message="The Maven artifacts need to be released to Maven Central.  Press a key and your browser will open to Nexus, the staging repository UI.  Login.  Then choose Staging Repositories in the left list.  Then find the orgapacheroyale repo in the top list.  Check the checkbox for orgapacheroyale then click on the 'release' button to post the artifacts."/>
         <exec executable="${browser}" spawn="true">
-            <arg value="http://repository.apache.org/" />
+            <arg value="https://repository.apache.org/" />
         </exec>
     </target>
 

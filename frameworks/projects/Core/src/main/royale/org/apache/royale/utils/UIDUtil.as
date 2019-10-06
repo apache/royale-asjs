@@ -169,6 +169,7 @@ public class UIDUtil
                 UIDBuffer.writeByte(ALPHA_CHAR_CODES[(b & 0xF0) >>> 4]);
                 UIDBuffer.writeByte(ALPHA_CHAR_CODES[(b & 0x0F)]);
             }
+            UIDBuffer.position = 0;
             return UIDBuffer.readUTFBytes(UIDBuffer.length);//UIDBuffer.toString(); ??
         }
 

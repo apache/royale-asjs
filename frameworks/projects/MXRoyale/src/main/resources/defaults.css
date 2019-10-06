@@ -20,6 +20,8 @@
 @namespace "library://ns.apache.org/royale/mx";
 @namespace charts "mx.charts.chartClasses.*";
 @namespace core "mx.core.*";
+@namespace containerBeads "mx.containers.beads.*";
+@namespace adg "mx.controls.advancedDataGridClasses.*";
 
 .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
@@ -42,6 +44,7 @@ global {
 	verticalAlign: "top";
 	verticalGap: 6;
     padding : 0px;
+	errorColor: #CE2929;
 }
 
 /* -------------------------------------------------------
@@ -49,10 +52,11 @@ global {
  * -------------------------------------------------------
  */
 
-Basic|MenuItemRenderer
+Basic|CascadingMenu
 {
-	height: 16px;
-	margin-top: 4px;
+	IItemRenderer: ClassReference("mx.controls.menuClasses.CascadingMenuItemRenderer");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IBeadController: ClassReference("mx.controls.beads.controllers.CascadingMenuSelectionMouseController");
 }
 
 Basic|ComboBoxList
@@ -68,6 +72,53 @@ Basic|DataGridColumnList {
 
 Basic|DataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer");
+}
+
+AdvancedDataGrid
+{
+	alternatingItemColors: #F7F7F7, #FFFFFF;
+	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
+	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+	IBeadView: ClassReference("mx.controls.beads.AdvancedDataGridView");
+	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
+	IBeadLayout: ClassReference("mx.controls.beads.layouts.AdvancedDataGridLayout");
+	IDataProviderNotifier: ClassReference("mx.controls.beads.DataProviderChangeNotifier");
+	columnClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList");
+	columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar");
+	columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	listAreaClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridListArea");
+	
+	background-color: #FFFFFF;
+	border: 1px solid #222222;
+	width: 200px;
+	height: 200px;
+}
+
+adg|AdvancedDataGridColumnList {
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.VirtualListView");			
+	IBeadController: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController");
+	IBeadLayout: ClassReference("mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	border-style: none;
+	background-color: #FFFFFF;
+}
+
+Alert
+{
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IBeadView:  ClassReference("mx.controls.beads.AlertView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.AlertController");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
+
+	background-color: #FFFFFF;
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
 }
 
 Button
@@ -88,7 +139,7 @@ CheckBox
 ComboBox
 {
 	IBeadModel: ClassReference("mx.controls.beads.models.ComboBoxModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.ComboBoxView");
+	IBeadView: ClassReference("mx.controls.beads.ComboBoxView");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
 	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ComboBoxList");
 }
@@ -107,7 +158,7 @@ DataGrid
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
+	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
 	
 	background-color: #FFFFFF;
@@ -134,6 +185,18 @@ DateField {
 	IPopUp: ClassReference("mx.controls.dateFieldClasses.DateFieldDateChooser");
 }
 
+FormItem
+{
+	IBeadView: ClassReference("mx.containers.beads.FormItemView");
+	IContentView: ClassReference("mx.containers.beads.FormItemContainer");
+	indicatorGap: 0px;
+}
+
+containerBeads|FormItemContainer
+{
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+}
+
 Image
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
@@ -158,10 +221,10 @@ MenuBar {
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
 	IContentView: ClassReference("org.apache.royale.html.supportClasses.DataGroup");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.MenuBarItemRenderer");			
+	IItemRenderer: ClassReference("mx.controls.menuClasses.MenuBarItemRenderer");			
 	IBeadController: ClassReference("mx.controls.beads.controllers.MenuBarMouseController");
-	IMenuFactory: ClassReference("org.apache.royale.html.beads.MenuFactory");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IMenuFactory: ClassReference("org.apache.royale.html.beads.CascadingMenuFactory");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
@@ -266,6 +329,16 @@ TabNavigator
 	verticalGap: 0;	
 	background-color: #FFFFFF;
 	border: 1px solid #333333
+}
+
+
+TextInput
+{
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
+	font-size: 11px;
+	font-family: Arial;
 }
 
 Tree
@@ -570,6 +643,11 @@ GridLines
 	verticalTickAligned: true;
 }
 
+RadioButton
+{
+	IBeadController:  ClassReference("mx.controls.beads.controllers.RadioButtonMouseController");			
+}
+
 .bothGridLines
 {
 	gridDirection : "both";
@@ -635,6 +713,12 @@ charts|DataTip
 {
 	/* Global style declaration for Flash only.  This will effectively be the same
 	   as the browser defaults */
+	
+	Alert
+	{
+		IBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
+		IBorderBead: ClassReference("org.apache.royale.html.beads.SingleLineBorderBead");
+	}
 	
 	Button
 	{
@@ -703,6 +787,7 @@ charts|DataTip
 	{
 		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ValueToggleButtonModel");
 		IBeadView:  ClassReference("mx.controls.beads.RadioButtonView");			
+		IBeadController:  ClassReference("mx.controls.beads.controllers.RadioButtonMouseController");			
 	}
 	
 	TextArea

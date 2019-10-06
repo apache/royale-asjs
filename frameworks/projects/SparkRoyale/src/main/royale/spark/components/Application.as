@@ -40,7 +40,6 @@ import flash.utils.Dictionary;
 import flash.utils.setInterval; */
 /* 
 import mx.core.EventPriority;
-import mx.core.FlexGlobals;
 import mx.core.IInvalidating;
 import mx.core.InteractionMode;
 import mx.core.Singleton;
@@ -63,9 +62,15 @@ COMPILE::SWF {
 }
 
 import mx.core.mx_internal;
+import mx.core.FlexGlobals;
+import mx.events.utils.MouseEventConverter;
 import mx.managers.ISystemManager;
 
-import org.apache.royale.binding.ApplicationDataBinding;
+COMPILE::JS {
+    import org.apache.royale.core.HTMLElementWrapper;
+}
+
+import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IFlexInfo;
 import org.apache.royale.core.IParent;
@@ -303,9 +308,9 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
             Singleton.getInstance("mx.managers::ILayoutManager"));
         UIComponentGlobals.layoutManager.usePhasedInstantiation = true;
 
+		*/
         if (!FlexGlobals.topLevelApplication)
             FlexGlobals.topLevelApplication = this;
-		*/
         super();
 
         /* showInAutomationHierarchy = true;
@@ -313,7 +318,12 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         initResizeBehavior(); */
         
         this.valuesImpl = new AllCSSValuesImpl();
-        addBead(new ApplicationDataBinding());
+        addBead(new ContainerDataBinding());
+        
+        COMPILE::JS
+        {
+            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        }
     }
 
     

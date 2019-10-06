@@ -24,6 +24,16 @@
     align-items: stretch
     align-content: flex-start
     -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
+
+    &.no-chrome
+        background: transparent
+        border: none
+
+    &.horizontalScroll
+        align-items: baseline !important
+        
+        .jewel.item
+            overflow: initial
     
 j|List
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ListView")

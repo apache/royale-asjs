@@ -73,7 +73,21 @@ package org.apache.royale.core
 		
         private var mainClass:Object;
         
-		private var conditionCombiners:Object;
+        // utility object used in the "generateCSSStyleDeclarations" method
+        COMPILE::SWF
+		protected var _conditionCombiners:Object;
+        COMPILE::SWF
+        protected function get conditionCombiners() : Object
+        {
+            if (!_conditionCombiners)
+            {
+                _conditionCombiners = {};
+                _conditionCombiners["class"] = ".";
+                _conditionCombiners["id"] = "#";
+                _conditionCombiners["pseudo"] = ':';
+            }
+            return _conditionCombiners;
+        }
         
         private var lastIndex:int = 0;
 
@@ -209,7 +223,7 @@ package org.apache.royale.core
                 {
 					if (!conditionCombiners)
 					{
-						conditionCombiners = {};
+						_conditionCombiners = {};
 						conditionCombiners["class"] = ".";
 						conditionCombiners["id"] = "#";
 						conditionCombiners["pseudo"] = ':';    
@@ -769,7 +783,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          */
-        public static const inheritingStyles:Object = {
+        protected static const inheritingStyles:Object = {
             "color" : 1,
             "fontFamily" : 1,
             "fontSize" : 1,
@@ -781,7 +795,7 @@ package org.apache.royale.core
          * The styles that apply to each UI widget
          */
         COMPILE::JS
-        public static const perInstanceStyles:Object = {
+        private static const _perInstanceStyles:Object = {
             'backgroundColor': 1,
             'backgroundImage': 1,
             'color': 1,
@@ -790,27 +804,54 @@ package org.apache.royale.core
             'fontSize': 1,
             'fontStyle': 1
         };
+        COMPILE::JS
+        protected function get perInstanceStyles() : Object
+        {
+            return SimpleCSSValuesImpl._perInstanceStyles;
+        }
         
         
         /**
          * The styles that use color format #RRGGBB
          */
         COMPILE::JS
-        public static const colorStyles:Object = {
+        private static const _colorStyles:Object = {
+            'background' : 1, // if only a color is specified, otherwise value will be a string
             'backgroundColor': 1,
             'borderColor': 1,
             'color': 1
         };
+        COMPILE::JS
+        protected function get colorStyles() : Object
+        {
+            return SimpleCSSValuesImpl._colorStyles;
+        }
 
         
         /**
          * The properties that enumerate that we skip
          */
         COMPILE::JS
-        public static const skipStyles:Object = {
+        private static const _skipStyles:Object = {
             'constructor': 1
         };
+        COMPILE::JS
+        protected function get skipStyles() : Object
+        {
+            return SimpleCSSValuesImpl._skipStyles;
+        }
         
+        /**
+         * The styles that can use raw numbers
+         */
+        COMPILE::JS
+        private static const _numericStyles:Object = {
+        }
+        COMPILE::JS
+        protected function get numericStyles() : Object
+        {
+            return SimpleCSSValuesImpl._numericStyles;
+        }
         
 
         /**
@@ -821,11 +862,12 @@ package org.apache.royale.core
         COMPILE::JS
         public function applyStyles(thisObject:IUIBase, styles:Object):void
         {
-            var styleList:Object = SimpleCSSValuesImpl.perInstanceStyles;
-            var colorStyles:Object = SimpleCSSValuesImpl.colorStyles;
-            var skipStyles:Object = SimpleCSSValuesImpl.skipStyles;
+            var styleList:Object = this.perInstanceStyles;
+            var colorStyles:Object = this.colorStyles;
+            var skipStyles:Object = this.skipStyles;
+            var numericStyles:Object = this.numericStyles;
             var listObj:Object = styles;
-            if (styles.styleList)
+            if (styles && styles.styleList)
                 listObj = styles.styleList;
             for (var p:String in listObj) 
             {
@@ -838,10 +880,12 @@ package org.apache.royale.core
                 if (typeof(value) == 'number') {
                     if (colorStyles[p])
                         value = CSSUtils.attributeFromColor(value);
+                    else if (numericStyles[p])
+                        value = value.toString();
                     else
                         value = value.toString() + 'px';
                 }
-                else if (p == 'backgroundImage' && p.indexOf('url') != 0) {
+                else if (p == 'backgroundImage' && value.indexOf('url') != 0) {
                         value = 'url(' + value + ')';
                 }
                 (thisObject.element as HTMLElement).style[p] = value;

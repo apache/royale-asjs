@@ -25,7 +25,7 @@ import flash.events.Event;
  */
 import org.apache.royale.events.Event;
 
-//import mx.controls.AdvancedDataGridBaseEx;
+import mx.controls.AdvancedDataGrid; //BaseEx;
 import mx.controls.TextInput;
 //import mx.controls.listClasses.IListItemRenderer;
 import mx.core.ClassFactory;
@@ -40,6 +40,8 @@ import mx.core.mx_internal;
 //import mx.formatters.IFormatter;
 //import mx.styles.CSSStyleDeclaration;
 import mx.utils.StringUtil;
+
+import mx.controls.dataGridClasses.DataGridColumn;
 
 use namespace mx_internal;
 //--------------------------------------
@@ -199,7 +201,7 @@ use namespace mx_internal;
  *  @productversion Royale 0.9.3
  *  @royalesuppresspublicvarwarning
  */
-public class AdvancedDataGridColumn 
+public class AdvancedDataGridColumn extends DataGridColumn
 {//extends CSSStyleDeclaration implements IIMESupport
     //include "../../core/Version.as";
     
@@ -296,7 +298,7 @@ public class AdvancedDataGridColumn
      *  @private
      *  The AdvancedDataGrid that owns this column.
      */
-    //mx_internal var owner:AdvancedDataGridBaseEx;
+    mx_internal var owner:AdvancedDataGrid; //BaseEx;
 
     /**
      *  @private
@@ -404,117 +406,7 @@ public class AdvancedDataGridColumn
     {
         trace("textAlign not implemented");
     }
-    //----------------------------------
-    //  itemRenderer
-    //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the itemRenderer property.
-     */
-    private var _itemRenderer:IFactory;
-
-    [Bindable("itemRendererChanged")]
-    [Inspectable(category="Other")]
-
-    /**
-     *  The class factory for item renderer instances that display the 
-     *  data for each item in the column.
-     *  You can specify a drop-in item renderer,
-     *  an inline item renderer, or a custom item renderer component as the 
-     *  value of this property.
-     *
-     *  <p>The default item renderer is the AdvancedDataGridItemRenderer class,
-     *  which displays the item data as text. </p>
-     *
-     *  @see mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get itemRenderer():IFactory
-    {
-        return _itemRenderer;
-    }
-
-    /**
-     *  @private
-     */
-    public function set itemRenderer(value:IFactory):void
-    {
-        _itemRenderer = value;
-
-        // this is expensive... but unless set after init (not recommended), ok.
-     /*    if (owner)
-        {
-            owner.invalidateList();
-            owner.columnRendererChanged(this);
-        }
-
-        dispatchEvent(new Event("itemRendererChanged")); */
-    }
-
-    //----------------------------------
-    //  dataField
-    //----------------------------------
-    
-    /**
-     *  @private
-     *  Storage for the dataField property.
-     */
-    private var _dataField:String;
-
-    [Bindable("dataFieldChanged")]
-    [Inspectable(category="General", defaultValue="")]
-
-    /**
-     *  The name of the field or property in the data provider item associated 
-     *  with the column. 
-     *  Each AdvancedDataGridColumn control
-     *  requires this property and/or the <code>labelFunction</code> property 
-     *  to be set in order to calculate the displayable text for the item
-     *  renderer.
-     *  If the <code>dataField</code>
-     *  and <code>labelFunction</code> properties are set, 
-     *  the data is displayed using the <code>labelFunction</code> and sorted
-     *  using the <code>dataField</code>.  If the property named in the
-     *  <code>dataField</code> does not exist, the 
-     *  <code>sortCompareFunction</code> must be set for the sort to work
-     *  correctly.
-     *
-     *  <p>This value of this property is not necessarily the String that 
-     *  is displayed in the column header.  This property is
-     *  used only to access the data in the data provider. 
-     *  For more information, see the <code>headerText</code> property.</p>
-     *
-     *  @see #headerText 
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get dataField():String
-    {
-        return _dataField;
-    }
-
-    /**
-     *  @private
-     */
-    public function set dataField(value:String):void
-    {
-        _dataField = value;
-
-       /*  if (owner)
-        {
-            owner.invalidateList();
-        }
-
-        dispatchEvent(new Event("dataFieldChanged")); */
-    }
 
     //----------------------------------
     //  dataTipField
@@ -896,46 +788,6 @@ public class AdvancedDataGridColumn
         dispatchEvent(new Event("headerRendererChanged")); */
     }
 
-    //----------------------------------
-    //  headerText
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the headerText property.
-     */
-    private var _headerText:String;
-
-    [Bindable("headerTextChanged")]
-    [Inspectable(category="General")]
-
-    /**
-     *  Text for the header of this column. By default, the AdvancedDataGrid
-     *  control uses the value of the <code>dataField</code> property 
-     *  as the header text.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get headerText():String
-    {
-        return (_headerText != null) ? _headerText : dataField;
-    }
-
-    /**
-     *  @private
-     */
-    public function set headerText(value:String):void
-    {
-        _headerText = value;
-
-       /*  if (owner)
-            owner.invalidateList();
-
-        dispatchEvent(new Event("headerTextChanged")); */
-    }
 
     //----------------------------------
     //  headerWordWrap
@@ -1047,83 +899,6 @@ public class AdvancedDataGridColumn
         _imeMode = value;
     } */
 
-    //----------------------------------
-    //  rendererIsEditor
-    //----------------------------------
-
-    //[Inspectable(category="General", defaultValue="false")]
-
-    /**
-     *  A flag that indicates that the item renderer is also an item editor.
-     *  If this property is <code>true</code>, Flex
-     *  ignores the <code>itemEditor</code> property and uses the item
-     *  renderer for that item as the editor.
-     *
-     *  @default false
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public var rendererIsEditor:Boolean = false;
-
-    //----------------------------------
-    //  labelFunction
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the labelFunction property.
-     */
-    private var _labelFunction:Function;
-
-    [Bindable("labelFunctionChanged")]
-    [Inspectable(category="Other")]
-
-    /**
-     *  A function that determines the text to display in this column.  By default,
-     *  the column displays the text for the field in the data that matches the
-     *  column name.  However, sometimes you want to display text based on
-     *  more than one field in the data, or display something that does not
-     *  have the format that you want.
-     *  In such a case, you specify a callback function using <code>labelFunction</code>.
-     *
-     *  <p>For the AdvancedDataGrid control, the method signature has the following form:</p>
-     *
-     *  <pre>labelFunction(item:Object, column:AdvancedDataGridColumn):String</pre>
-     *
-     *  <p>where <code>item</code> contains the AdvancedDataGrid item object, and
-     *  <code>column</code> specifies the AdvancedDataGrid column.</p>
-     *
-     *  <p>A callback function might concatenate the firstName and
-     *  lastName fields in the data, or do some custom formatting on a Date,
-     *  or convert a number for the month into the string for the month.</p>
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get labelFunction():Function
-    {
-        return _labelFunction;
-    }
-
-    /**
-     *  @private
-     */
-    public function set labelFunction(value:Function):void
-    {
-        _labelFunction = value;
-
-      /*   if (owner)
-        {
-            owner.invalidateList();
-        }
-
-        dispatchEvent(new Event("labelFunctionChanged")); */
-    }
 
     //----------------------------------
     //  minWidth
@@ -1405,76 +1180,18 @@ public class AdvancedDataGridColumn
         {
             _visible = value;
 
-          /*   if (owner)
+            if (owner)
             {
-                owner.columnsInvalid = true;
+                owner.columnsInvalid();
                 
-                owner.invalidateProperties();
-                owner.invalidateSize();
-                owner.invalidateList();
-            } */
+                //owner.invalidateProperties();
+                //owner.invalidateSize();
+                //owner.invalidateList();
+            }
         }
     }
 
-    //----------------------------------
-    //  width
-    //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the width property.
-     */
-    private var _width:Number = 100;
-
-    [Bindable("widthChanged")]
-    [Inspectable(category="General", defaultValue="100")]
-
-    /**
-     *  The width of the column, in pixels. 
-     *  If the AdvancedDataGrid's <code>horizontalScrollPolicy</code> property 
-     *  is <code>false</code>, all visible columns must fit in the displayable 
-     *  area, and the AdvancedDataGrid will not always honor the width of
-     *  the columns if the total width of the columns is too
-     *  small or too large for the displayable area.
-     *
-     *  @default 100
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get width():Number
-    {
-        return _width;
-    }
-
-    /**
-     *  @private
-     */
-    public function set width(value:Number):void
-    {
-		/*
-        // remove any queued equal spacing commands
-        explicitWidth = value;
-        // use this value for future measurements
-        preferredWidth = value;
-         if (owner != null)
-        {
-            // if we aren't resizing as part of grid layout, resize it's column
-            var oldVal:Boolean = resizable;
-            // anchor this column to not accept any overflow width for accurate sizing
-            resizable = false;
-            owner.resizeColumn(colNum, value);
-            resizable = oldVal;
-        }
-        else
-        {
-            // otherwise, just store the size
-            _width = value;
-        }
-        dispatchEvent(new Event("widthChanged")); */
-    }
 
     //----------------------------------
     //  wordWrap
@@ -1737,11 +1454,11 @@ public class AdvancedDataGridColumn
      *  @private
      *  Internal function to allow the AdvancedDataGrid to set the width of the
      *  column without locking it as an explicitWidth
-     */
     mx_internal function setWidth(value:Number):void
     {
         _width = value;
     }
+     */
     
     /**
      * @private

@@ -18,17 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.events.Event;
-    
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
-
+	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
+	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
     
 	/**
 	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 
@@ -55,6 +53,7 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel tabbarbutton";
+			addClass("selectable");
 		}
 
 		private var _href:String = "#";
@@ -77,6 +76,7 @@ package org.apache.royale.jewel.itemRenderers
 
 		private var _text:String = "";
 
+		[Bindable(event="textChange")]
         /**
          *  The text of the navigation link
          *  
@@ -92,11 +92,18 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set text(value:String):void
 		{
-             _text = value;
+            if(value != _text) {
+				_text = value;
+				COMPILE::JS
+				{
+				if(MXMLDescriptor == null)
+				{
+					element.innerHTML = _text;
+				}
+				}
+				dispatchEvent(new Event('textChange'));
+			}
 		}
-
-		COMPILE::JS
-        private var textNode:Text;
 
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
@@ -110,59 +117,140 @@ package org.apache.royale.jewel.itemRenderers
 		 */
 		override public function set data(value:Object):void
 		{
-			super.data = value;
-
-			if(value == null) return;
-
-			if (labelField)
-			{
-                text = String(value[labelField]);
-            }
-			else if(value.label !== undefined)
-			{
-                text = String(value.label);
-			}
-			else
-			{
-				text = String(value);
-			}
-			// text = getLabelFromData(this, value);
+			text = getLabelFromData(this, value);
+            super.data = value;
 			
             if(value.href !== undefined)
 			{
                 href = String(value.href);
 			}
 
-			COMPILE::JS
-			{
-			if(textNode != null)
-			{
-				textNode.nodeValue = text;
-				(element as HTMLElement).setAttribute('href', href);
-			}	
-			}
-
-			dispatchEvent(new Event("dataChange"));
+			// COMPILE::JS
+			// {
+			// if(textNode != null)
+			// {
+			// 	textNode.nodeValue = text;
+			// 	(element as HTMLElement).setAttribute('href', href);
+			// }	
+			// }
 		}
+
+		COMPILE::JS
+		protected var span:HTMLSpanElement;
+		
+		COMPILE::JS
+		protected var indicator:HTMLSpanElement;
+		
+		COMPILE::JS
+		protected var indicator_content:HTMLSpanElement;
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion Text
+		 * @royaleignorecoercion HTMLSpanElement
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            var a:WrappedHTMLElement = addElementToWrapper(this, 'a');
-            a.setAttribute('href', href);
+            span = addElementToWrapper(this, 'span') as HTMLSpanElement;
+			span.className = "content";
+			positioner = document.createElement('button') as WrappedHTMLElement;
 
-			if(MXMLDescriptor == null)
-			{
-				textNode = document.createTextNode('') as Text;
-				a.appendChild(textNode);
-			}
+			indicator = document.createElement('span') as HTMLSpanElement;
+			indicator.className = "indicator";
+			addIndicator();
+			
+			indicator_content = document.createElement('span') as HTMLSpanElement;
+			indicator_content.className = "indicatorContent";
+			indicator.appendChild(indicator_content);
+            
+			//a.setAttribute('href', href);
+
+			// if(MXMLDescriptor == null)
+			// {
+			// 	textNode = document.createTextNode('') as Text;
+			// 	a.appendChild(textNode);
+			// }
 
             return element;
         }
+
+		/**
+		 * adding indicator to positioner makes the indicator fill all available space
+		 * adding to "span" HTMLElement restrict indicator to content.
+		 * Override this function in TabBarButtonItemRenderer subclasses
+		 */
+		COMPILE::JS
+		protected function addIndicator():void
+		{
+			positioner.appendChild(indicator);
+		}
+
+		COMPILE::JS
+		public function get getBoundingBox():ClientRect
+		{
+			return indicator.getBoundingClientRect();
+		}
+
+		COMPILE::JS
+		public function animateIndicator(positionDiff:Number, widthDiff:Number, duration:int, easingFunction:String):void
+		{
+			indicator_content["animate"](
+				[
+					{
+						transform: "translateX(" + positionDiff + "px) scaleX(" + widthDiff + ")"
+					},
+					{
+						transform: "none"
+					}
+				]
+				, 
+				{
+					duration: duration,
+					easing: easingFunction,
+					fill: 'both'
+				}
+			);
+		}
+		
+		COMPILE::JS
+		private var _positioner:WrappedHTMLElement;
+
+		COMPILE::JS
+		override public function get positioner():WrappedHTMLElement
+		{
+			return _positioner;
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			_positioner = value;
+            _positioner.royale_wrapper = this;
+			_positioner.appendChild(element);
+		}
+
+		private var _selectable:Boolean = true;
+		/**
+         *  <code>true</code> if the item renderer is can be selected
+         *  false otherwise. Use to configure a renderer to be non 
+         *  selectable.
+         *  
+         *  Defaults to true
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+		override public function get selectable():Boolean
+		{
+			return _selectable;
+		}
+		override public function set selectable(value:Boolean):void
+		{
+			_selectable = value;
+			toggleClass("selectable", _selectable);	
+		}
 
 		/**
 		 * @private
@@ -175,8 +263,9 @@ package org.apache.royale.jewel.itemRenderers
 			// there's no selection only hover state
 			if(hoverable)
             	toggleClass("hovered", hovered);
-			if(selectable)
+			if(selectable) {
             	toggleClass("selected", selected);
+			}
 		}
 	}
 }

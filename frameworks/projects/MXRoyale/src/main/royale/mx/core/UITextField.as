@@ -2944,6 +2944,7 @@ public class UITextField  extends UIComponent implements IUITextField
     
     /**
      *  @private
+	 */
      public function set selectable(value:Boolean):void
 		{
 		}
@@ -2952,7 +2953,7 @@ public class UITextField  extends UIComponent implements IUITextField
 		{
 			return true;
 		} 
-     */
+     
 	public function set getCharIndexAtPoint(value:int):void
 		{
 		}

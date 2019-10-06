@@ -22,6 +22,7 @@ package org.apache.royale.file.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.file.FileProxy;
+	import org.apache.royale.file.IFileModel;
 	import org.apache.royale.net.URLBinaryLoader;
 	import org.apache.royale.net.URLRequest;
 
@@ -61,6 +62,7 @@ package org.apache.royale.file.beads
 	public class FileUploader implements IBead
 	{
 		private var _strand:IStrand;
+		private var _contentType:String;
 		
 		/**
 		 *  Upload a file to the specified url.
@@ -75,12 +77,14 @@ package org.apache.royale.file.beads
 //			COMPILE::SWF
 //			{
 //				var flashURL:flash.net.URLRequest = new URLRequest(url.url);
-//				(host.model as FileModel).fileReference.upload(flashURL);
+//				(host.model as IFileModel).fileReference.upload(flashURL);
 //			}
 			var binaryUploader:URLBinaryLoader = new URLBinaryLoader();
 			var req:URLRequest = new URLRequest();
+				req.contentType = contentType;
+
 			req.method = "POST";
-			req.data = (host.model as FileModel).blob;
+			req.data = (host.model as IFileModel).blob;
 			req.url = url;
 			binaryUploader.addEventListener(Event.COMPLETE, completeHandler);
 			binaryUploader.load(req);
@@ -113,5 +117,23 @@ package org.apache.royale.file.beads
 			return _strand as FileProxy;
 		}
 		
+		
+		/**
+		 *  The content type. Default is the default in URLRequest.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function get contentType():String 
+		{
+			return _contentType;
+		}
+		
+		public function set contentType(value:String):void 
+		{
+			_contentType = value;
+		}
 	}
 }

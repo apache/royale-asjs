@@ -17,18 +17,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-
     COMPILE::JS
     {
-        import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import goog.events;
+
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
     /**
-     *  The TextArea class implements the basic control for
-     *  single-line text input.
+     *  The TextArea implements the jewel control for
+     *  multiline text field. It dispatches a change event
+     *  when the user input text.
+     *  
+     *  User can define number of rows and the max number
+     *  of rows.
      *
      *  @toplevel
      *  @langversion 3.0
@@ -75,7 +79,7 @@ package org.apache.royale.jewel
 
             COMPILE::JS 
             {
-                input.setAttribute('rows', _rows);
+            input.setAttribute('rows', _rows);
             }
         }
 
@@ -102,46 +106,28 @@ package org.apache.royale.jewel
 
             COMPILE::JS 
             {
-                input.setAttribute('maxrows', _maxrows);
+            input.setAttribute('maxrows', _maxrows);
             }
         }
         
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         * @royaleignorecoercion HTMLDivElement
          * @royaleignorecoercion HTMLInputElement
-         * @royaleignorecoercion HTMLLabelElement
-         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            div = document.createElement('div') as HTMLDivElement;
-            
             input = addElementToWrapper(this,'textarea') as HTMLInputElement;
             input.setAttribute('type', 'text');
             input.setAttribute('rows', rows);
-            //input.setAttribute('maxrows', maxrows);
             
             //attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
-            //label = document.createElement('label') as HTMLLabelElement;
-            //label.className = "jewel-textinput-label";
-
-            //textNode = document.createTextNode('') as Text;
-            //label.appendChild(textNode);
-            
-            div.appendChild(input);
-            //div.appendChild(label);
-
-            positioner = div as WrappedHTMLElement;
-            //(label as WrappedHTMLElement).royale_wrapper = this;
-            positioner.royale_wrapper = this;
+            positioner = document.createElement('div') as WrappedHTMLElement;
             
             return element;
         }
-
 	}
 }

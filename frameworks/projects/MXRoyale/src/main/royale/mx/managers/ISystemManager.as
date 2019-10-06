@@ -94,12 +94,12 @@ public interface ISystemManager extends IEventDispatcher, IChildList /*, IFlexMo
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    function get component():Object;
+    function get mxmlDocument():Object;
     
     /**
      *  @private
      */
-    function set component(value:Object):void;
+    function set mxmlDocument(value:Object):void;
     function get rawChildren():IChildList;
     function get numModalWindows():int;
     function set numModalWindows(value:int):void;

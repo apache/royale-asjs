@@ -90,7 +90,7 @@ import org.apache.royale.core.ILayoutHost;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-[Style(name="buttonWidth", type="Number", format="Length", inherit="no")]
+//[Style(name="buttonWidth", type="Number", format="Length", inherit="no")]
 
 
 	
@@ -223,7 +223,7 @@ public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayo
     public function ToggleButtonBar()
     {
         super();
-        widthType == ButtonBarModel.NATURAL_WIDTHS;
+        widthType = ButtonBarModel.NATURAL_WIDTHS;
     }
 
     /**
@@ -447,6 +447,30 @@ public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayo
         dispatchEvent(new Event("initComplete"));
     }
 
+    private var _buttonWidth:int;
+    
+    public function get buttonWidth():int
+    {
+        return _buttonWidth;
+    }
+    public function set buttonWidth(value:int):void
+    {
+        _buttonWidth = value;
+    }
+    
+    override public function get measuredWidth():Number
+    {
+        if (dataProvider)
+            return buttonWidth * dataProvider.length;
+        return 0;
+    }
+    
+    override public function get measuredHeight():Number
+    {
+        if (dataProvider)
+            return height; // do a better measurement someday
+        return 0;
+    }
 }
 
 }

@@ -53,7 +53,7 @@ import  org.apache.royale.html.List;
 			var last:Boolean = false;
 			if (itemRendererParent)
 			{
-				var n:int = (itemRendererParent as List).dataProvider.length;
+				var n:int = (parent as List).dataProvider.length;
 				last = n == index + 1; 
 			}
             COMPILE::SWF

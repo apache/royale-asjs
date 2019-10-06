@@ -223,6 +223,8 @@ public class DataTip extends UIComponent implements IDataRenderer
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public static var maxTipWidth:Number = 300;
 

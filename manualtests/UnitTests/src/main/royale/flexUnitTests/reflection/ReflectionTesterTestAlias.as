@@ -18,27 +18,36 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.reflection
 {
-    import flexunit.framework.Assert;
-	import flexUnitTests.reflection.support.*;
+    import org.apache.royale.test.asserts.*;
+    
+    import flexUnitTests.reflection.support.*;
+    
     import org.apache.royale.reflection.*;
     
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class ReflectionTesterTestAlias
-    {		
-       
+    {
+        
         public static var isJS:Boolean;
+        
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
             var js:Boolean = false;
-            try {
+            try
+            {
                 var check:* = getDefinitionByName("flash.system.Capabilities");
-            } catch (e:Error) {
+            } catch (e:Error)
+            {
                 js = true;
             }
             //if this next reference to 'check' is not included, then the above try/catch code
             //appears to be optimized away in js-release mode
             //a separate test has been created for this
-            if (check == null) {
+            if (check == null)
+            {
                 js = true;
             }
             isJS = js;
@@ -48,43 +57,41 @@ package flexUnitTests.reflection
         public static function tearDownAfterClass():void
         {
         }
-		
-		 [Before]
+        
+        [Before]
         public function setUp():void
         {
-
+        
         }
         
         [After]
         public function tearDown():void
         {
-
+        
         }
-
-
-
-
+        
+        
         [Test]
-        public function testBasicAlias():void {
+        public function testBasicAlias():void
+        {
             //no initial alias
-            Assert.assertNull(getAliasByClass(TestClass2));
+            assertNull(getAliasByClass(TestClass2));
             registerClassAlias("fjsTest", TestClass2);
             //alias is registered
-            Assert.assertEquals("unexpected Alias value","fjsTest",getAliasByClass(TestClass2));
+            assertEquals( "fjsTest", getAliasByClass(TestClass2), "unexpected Alias value");
             //register same alias for another class
             registerClassAlias("fjsTest", TestClass3);
             //original alias mapping is deregistered
-            Assert.assertNull(getAliasByClass(TestClass2));
+            assertNull(getAliasByClass(TestClass2));
             //alias is registered for new class
-            Assert.assertEquals("unexpected Alias value","fjsTest",getAliasByClass(TestClass3));
-
+            assertEquals( "fjsTest", getAliasByClass(TestClass3), "unexpected Alias value");
+            
             //class is retrievable by alias
-            Assert.assertEquals("unexpected Class value",TestClass3,getClassByAlias("fjsTest"));
-
-
+            assertEquals( TestClass3, getClassByAlias("fjsTest"), "unexpected Class value");
+            
+            
         }
-
-
-
+        
+        
     }
 }

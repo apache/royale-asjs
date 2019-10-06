@@ -28,6 +28,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.jewel.Button;
+	import org.apache.royale.jewel.HGroup;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 	import org.apache.royale.jewel.beads.views.TableView;
 	import org.apache.royale.jewel.itemRenderers.DateItemRenderer;
@@ -69,10 +70,14 @@ package org.apache.royale.jewel.beads.views
 
 			model = loadBeadFromValuesManager(IBeadModel, "iBeadModel", _strand) as DateChooserModel;
 
+			model.addEventListener("viewStateChanged", handleModelChange);//viewStateModelChange);
+
 			model.addEventListener("firstDayOfWeekChanged", handleModelChange);
 			model.addEventListener("dayNamesChanged", handleModelChange);
 			model.addEventListener("displayedMonthChanged", handleModelChange);
 			model.addEventListener("displayedYearChanged", handleModelChange);
+			model.addEventListener("yearChanged", handleModelChange);
+			model.addEventListener("monthChanged", handleModelChange);
 			
 			createChildren();
 			updateDisplay();
@@ -88,7 +93,7 @@ package org.apache.royale.jewel.beads.views
 			return _strand as UIBase;
 		}
 
-		private var _monthLabel:Button;
+		private var _viewSelector:Button;
 		/**
 		 *  The button to display month and year
 		 *  and select from a list of years
@@ -98,51 +103,51 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get monthLabel():Button
+		public function get viewSelector():Button
 		{
-			return _monthLabel;
+			return _viewSelector;
 		}
 
-		private var _prevMonthButton:Button;
+		private var _previousButton:Button;
 		/**
-		 *  The button that causes the previous month to be displayed by the DateChooser.
+		 *  The button that causes the previous month or year to be displayed by the DateChooser.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get prevMonthButton():Button
+		public function get previousButton():Button
 		{
-			return _prevMonthButton;
+			return _previousButton;
 		}
 		
-		private var _nextMonthButton:Button;
+		private var _nextButton:Button;
 		/**
-		 *  The button that causes the next month to be displayed by the DateChooser.
+		 *  The button that causes the next month or year to be displayed by the DateChooser.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get nextMonthButton():Button
+		public function get nextButton():Button
 		{
-			return _nextMonthButton;
+			return _nextButton;
 		}
 		
-		private var _daysTable:DateChooserTable;
+		private var _table:DateChooserTable;
 		/**
-		 *  The DateChooserTable of days to display
+		 *  The DateChooserTable of days or years to display
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get daysTable():DateChooserTable
+		public function get table():DateChooserTable
 		{
-			return _daysTable;
+			return _table;
 		}
 		
 		/**
@@ -151,69 +156,112 @@ package org.apache.royale.jewel.beads.views
 		private function createChildren():void
 		{
 			// HEADER BUTTONS
-			_monthLabel = new Button();
-			_monthLabel.className = "monthLabel";
+			_viewSelector = new Button();
+			_viewSelector.className = "viewSelector";
 			
-			_prevMonthButton = new Button();
-			_prevMonthButton.text = "<";
-			_prevMonthButton.className = "prevMonthButton";
+			_previousButton = new Button();
+			_previousButton.text = "<";
+			_previousButton.className = "previousButton";
 			
-			_nextMonthButton = new Button();
-			_nextMonthButton.text = ">";
-			_nextMonthButton.className = "nextMonthButton";
+			_nextButton = new Button();
+			_nextButton.text = ">";
+			_nextButton.className = "nextButton";
 
-			// DAYS
-			createColumns();
-
-			_daysTable = new DateChooserTable();
+			_table = new DateChooserTable();
 			COMPILE::SWF {
-			_daysTable.percentWidth = 100;
+			_table.percentWidth = 100;
 			}
-			getHost().addElement(_daysTable, false);
-			// var controller:TableCellSelectionMouseController = _daysTable.getBeadByType(IBeadController) as TableCellSelectionMouseController;
-			// _daysTable.removeBead(controller);
-			// _daysTable.addBead(new DateChooserTableCellSelectionMouseController());
+			getHost().addElement(_table, false);
+			// var controller:TableCellSelectionMouseController = _table.getBeadByType(IBeadController) as TableCellSelectionMouseController;
+			// _table.removeBead(controller);
+			// _table.addBead(new DateChooserTableCellSelectionMouseController());
 			
-			IEventDispatcher(_daysTable).dispatchEvent( new Event("itemsCreated") );
+			IEventDispatcher(_table).dispatchEvent( new Event("itemsCreated") );
 			model.addEventListener("selectedDateChanged", selectionChangeHandler);
 
 			createButtonsRow();
 		}
 
 		private var buttonsRow:TableRow;
+		private var tableHeader:TableHeaderCell;
 
 		private function createButtonsRow():void
 		{
-			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
+			var view:TableView = _table.getBeadByType(IBeadView) as TableView;
 			buttonsRow = new TableRow();
 
-			var tableHeader:TableHeaderCell = new TableHeaderCell();
+			tableHeader = new TableHeaderCell();
 			tableHeader.className = "buttonsRow";
-			tableHeader.addElement(_monthLabel);
-			tableHeader.expandColumns = 5;
-			buttonsRow.addElement(tableHeader);
-
-			tableHeader= new TableHeaderCell();
-			tableHeader.className = "buttonsRow";
-			tableHeader.addElement(_prevMonthButton);
-			buttonsRow.addElement(tableHeader);
+			tableHeader.expandColumns = 7;
 			
-			tableHeader= new TableHeaderCell();
-			tableHeader.className = "buttonsRow";
-			tableHeader.addElement(_nextMonthButton);
+			// left side (view selector)
+			tableHeader.addElement(_viewSelector);
+
+			// right side (navigation buttons)
+			var rgroup:HGroup = new HGroup();
+			rgroup.addElement(_previousButton);
+			rgroup.addElement(_nextButton);
+			tableHeader.addElement(rgroup);
+
 			buttonsRow.addElement(tableHeader);
 		}
-		
-		private var columns:Array;
-		private var dayNamesInit:Boolean;
 
+		/**
+		 * @private
+		 */
+		private function updateDisplay():void
+		{
+			viewSelectorDisplay();
+
+			createColumns(); // do this only if change view state from 0 to 1-2 or viceversa
+			
+			daysDisplay();
+			
+			fillTable();
+			
+			selectCurrentDate();
+		}
+
+		private function viewSelectorDisplay():void
+		{
+			if(model.viewState == 0)
+			{
+				// display "FEB 2019"
+				_viewSelector.text = model.monthNames[model.displayedMonth] + " " + String(model.displayedYear);
+				tableHeader.expandColumns = 7;
+			} else if(model.viewState == 1)
+			{
+				// display "2016-2039"
+				var minyear:int = DateChooserModel.MINIMUM_YEAR > model.navigateYears - DateChooserModel.NUM_YEARS_VIEW/2 ? DateChooserModel.MINIMUM_YEAR : model.navigateYears - DateChooserModel.NUM_YEARS_VIEW/2;
+				var maxyear:int = DateChooserModel.MAXIMUM_YEAR < model.navigateYears + DateChooserModel.NUM_YEARS_VIEW/2 ? DateChooserModel.MAXIMUM_YEAR : model.navigateYears + DateChooserModel.NUM_YEARS_VIEW/2;
+
+				_viewSelector.text = String(minyear) + "-" + String(maxyear);
+				tableHeader.expandColumns = 4;
+			} else
+			{
+				// display "2017"
+				_viewSelector.text = String(model.displayedYear);
+				tableHeader.expandColumns = 4;
+			}
+		}
+
+		private var columns:Array;
+		private var refreshColumns:Boolean;
+		public const NUM_COLS_DAYS:int = 7;
+		public const NUM_COLS_YEARS_OR_MONTHS:int = 4;
+
+		/**
+		 * Create 7 columns for calendar view (viewState = 0)
+		 * or 4 columns for years or months view (viewState = 1 or 2)
+		 */
 		public function createColumns():void
 		{
-			if(!dayNamesInit)
+			var numCols:int = model.viewState == 0 ? NUM_COLS_DAYS : NUM_COLS_YEARS_OR_MONTHS;
+			if(!refreshColumns)
 			{
 				columns = [];
 				var dateItemRenderer:ClassFactory = new ClassFactory(DateItemRenderer);
-				for (var i:int = 0; i < 7; i++)
+				for (var i:int = 0; i < numCols; i++)
 				{
 					var column:TableColumn = new TableColumn();
 					column.dataField = "d"+i;
@@ -221,50 +269,106 @@ package org.apache.royale.jewel.beads.views
 					column.itemRenderer = dateItemRenderer;
 					columns.push(column);
 				}
-
-				dayNamesInit = true;
+				//refreshColumns = true;
 			}
 		}
 
-		// cycle days array for offsetting when change firstDayOfWeek
-		private function cycleArray(array:Array, index:Number, n:Number):Number 
-		{
-			return ((index + n) % array.length + array.length) % array.length;
-		}
 		/**
-		 * @private
+		 *  Only display days if viewState is calendar view (== 0)
 		 */
-		private function updateDisplay():void
+		private function daysDisplay():void
 		{
-			_monthLabel.text = model.monthNames[model.displayedMonth] + " " + String(model.displayedYear);
-
-			var len:int = columns.length;
-			for(var index:int = 0; index < len; index++)
+			var index:int, column:TableColumn;
+			if(model.viewState == 0)
 			{
-				var column:TableColumn = columns[index];
-				column.columnLabelAlign = "center";
-				column.label = model.dayNames[cycleArray(model.dayNames, index, model.firstDayOfWeek)];
-			}
-
-			_daysTable.columns = columns;
-			
-			var currrentMonth:Array = [];
-			var dayIndex:int = 0;
-			for(var i:int = 0; i < model.days.length/7; i++)
-			{
-				currrentMonth[i] = {};
-				for(var j:int = 0; j < columns.length; j++)
+				for(index = 0; index < NUM_COLS_DAYS; index++)
 				{
-					currrentMonth[i]["d"+j] = model.days[dayIndex];
-					dayIndex++;
+					column = columns[index];
+					column.columnLabelAlign = "center";
+					column.label = model.dayNames[DateChooserModel.cycleArray(model.dayNames, index, model.firstDayOfWeek)];
 				}
+				_table.columns = columns;
+			} else
+			{ // viewState == 1 or 2
+				for(index = 0; index < NUM_COLS_YEARS_OR_MONTHS; index++)
+				{
+					column = columns[index];
+					column.label = null; // all column labels == null means hide header
+				}
+				_table.columns = columns;
 			}
-			_daysTable.dataProvider = new ArrayList(currrentMonth);
-			
-			var view:TableView = _daysTable.getBeadByType(IBeadView) as TableView;
+		}
+
+		/**
+		 *  Display days if viewState is calendar view (== 0)
+		 *  Display years if viewState is calendar view (== 1)
+		 *  Display months if viewState is calendar view (== 2)
+		 */
+		private function fillTable():void
+		{
+			var i:int, j:int;
+			if(model.viewState == 0)
+			{
+				// fill table content with all current month days
+				var currrentMonth:Array = [];
+				var dayIndex:int = 0;
+				for(i = 0; i < model.days.length/NUM_COLS_DAYS; i++)
+				{
+					currrentMonth[i] = {};
+					for(j = 0; j < columns.length; j++)
+					{
+						currrentMonth[i]["d"+j] = model.days[dayIndex];
+						dayIndex++;
+					}
+				}
+				_table.dataProvider = new ArrayList(currrentMonth);
+			} else if(model.viewState == 1) {
+				var currrentYearGroup:Array = [];
+				var yearIndex:int = 0;
+				for(i = 0; i < model.years.length/NUM_COLS_YEARS_OR_MONTHS; i++)
+				{
+					currrentYearGroup[i] = {};
+					for(j = 0; j < columns.length; j++)
+					{
+						if((model.years[yearIndex] as Date).getFullYear() >= DateChooserModel.MINIMUM_YEAR && (model.years[yearIndex]as Date).getFullYear() <= DateChooserModel.MAXIMUM_YEAR)
+						{
+							currrentYearGroup[i]["d"+j] = model.years[yearIndex];
+						} else
+						{
+							currrentYearGroup[i]["d"+j] = "";// create empty year cell where is not a year allowed
+						}
+						yearIndex++;
+					}
+				}
+				_table.dataProvider = new ArrayList(currrentYearGroup);
+			} else {
+				var currrentYear:Array = [];
+				var monthIndex:int = 0;
+				var extraEmptyRows:int = 1;
+				for(i = 0; i < model.months.length/NUM_COLS_YEARS_OR_MONTHS + extraEmptyRows; i++)
+				{
+					currrentYear[i] = {};
+					for(j = 0; j < columns.length; j++)
+					{
+						if(j < model.months.length)
+							currrentYear[i]["d"+j] = model.months[monthIndex];
+						else
+							currrentYear[i]["d"+j] = "";// create extra row with empty values to make rows less separated
+
+						monthIndex++;
+					}
+				}
+				_table.dataProvider = new ArrayList(currrentYear);
+			}
+
+			// first row with nav buttons
+			var view:TableView = _table.getBeadByType(IBeadView) as TableView;
 			view.thead.addElementAt(buttonsRow, 0, false);
-			
-			_daysTable.selectedIndex = model.getIndexForSelectedDate();
+		}
+
+		private function selectCurrentDate():void
+		{
+			_table.selectedIndex = model.getIndexForSelectedDate();
 		}
 
 		/**

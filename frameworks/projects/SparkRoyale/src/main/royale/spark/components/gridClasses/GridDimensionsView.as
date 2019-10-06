@@ -41,6 +41,8 @@ package spark.components.gridClasses
 	 *  @playerversion Flash 11
 	 *  @playerversion AIR 3
 	 *  @productversion Flex 5.0
+     * 
+     *  @royalesuppresspublicvarwarning
 	 */
 	public class GridDimensionsView
 	{

@@ -28,9 +28,20 @@ package mx.rpc
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class Fault extends Error
 {
+
+
+
+ COMPILE::JS{
+   public function getStackTrace():String
+   {
+       return null;
+   }
+ }
     /**
      * Creates a new Fault object.
      *

@@ -22,7 +22,8 @@
 // TabBar variables
 
 
-.jewel.tabbar
+.jewel
+    &.tabbar
 
 // Jewel TabBarButtonItemRenderer
 
@@ -30,20 +31,46 @@
 // Jewel NavigationLinkItemRenderer
 
 // NavigationLinkItemRenderer variables
-.jewel.tabbarbutton
-    margin: 0
-    padding: 0 $itemrenderer-padding
-    font:
-        family: $font-stack
-        size: $font-size
-        weight: $font-weight-normal + 100
+.jewel
+    &.tabbarbutton
+        // margin: 0
+        // padding: 0
+        font:
+            // family: $font-stack
+            size: $font-size
+            weight: $font-weight-normal + 100
+        
+        border: none
+        background: transparent
+        outline: none
+        color: rgba(black, 0.6)
 
-    color: rgba(black, 0.6)
-    
-    &.hovered:hover
-        //color: $font-theme-color
-        background: lighten($default-color, 10%) !important
+        text-transform: uppercase
+        text-decoration: none
+        letter-spacing: .1em
+        font-weight: 600
 
-    &.selected, &.selectable:active
-        color: $font-theme-color
-        background: lighten($primary-color, 5%) !important
+        transition: background-color .3s ease-in-out, color .3s ease-in-out
+        
+        > .content
+            padding-top: 12px
+            padding-bottom: 12px
+        
+        .indicator
+            > .indicatorContent
+                height: 2px
+                background-color: $primary-color
+                // transform-origin: left
+                // transition: transform .25s ease-in-out //cubic-bezier(.4,0,.2,1)
+                // animation-duration: .3s
+                // animation-timing-function: ease-in-out
+                // animation-fill-mode: both
+        &.hovered:hover
+            // color: $font-theme-color
+            background: rgba($primary-color, .2)
+            
+
+        &.selected, &.selectable:active
+            // color: $font-theme-color
+            color: darken($primary-color, 15%)
+            background: rgba($primary-color, .4)

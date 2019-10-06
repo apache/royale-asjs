@@ -893,6 +893,8 @@ public class PieSeries extends Series
     //  maxLabelRadius
     //----------------------------------
 
+    private var _maxLabelRadius:Number = 0.6;
+    
     [Inspectable(category="General")]
     
     /**
@@ -912,7 +914,14 @@ public class PieSeries extends Series
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var maxLabelRadius:Number = 0.6;
+    public function get maxLabelRadius():Number
+    {
+        return _maxLabelRadius;
+    }
+    public function set maxLabelRadius(value:Number):void
+    {
+        _maxLabelRadius = value;
+    }
 
     //----------------------------------
     //  nameField

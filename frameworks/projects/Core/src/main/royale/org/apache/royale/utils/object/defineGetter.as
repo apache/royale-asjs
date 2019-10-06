@@ -26,6 +26,7 @@ package org.apache.royale.utils.object
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
+    COMPILE::JS
     public function defineGetter(obj:Object,prop:String,getterFunction:Function):void
     {
             Object.defineProperty(obj, prop, {"get": getterFunction});

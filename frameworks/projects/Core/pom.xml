@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <artifactId>Core</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Core</name>
@@ -51,7 +51,9 @@
             <includeClass>CoreClasses</includeClass>
           </includeClasses>
           <skipExtern>true</skipExtern>
+          <skipAS>${royale.skipAS}</skipAS>
           <allowSubclassOverrides>true</allowSubclassOverrides>
+          <additionalCompilerOptions>-allow-abstract-classes;${project.compiler.options}</additionalCompilerOptions>
         </configuration>
         <!-- As a test, add asdoc generation to the compile step -->
         <executions>

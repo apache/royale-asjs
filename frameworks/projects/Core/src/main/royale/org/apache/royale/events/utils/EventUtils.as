@@ -18,6 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.events.utils
 {
+COMPILE::JS
+{
+    import org.apache.royale.conversions.createEventInit;
+    import window.Event;
+}
+
     /**
 	 *  Provides static methods for creating custom events in JS
      *  
@@ -35,7 +41,7 @@ package org.apache.royale.events.utils
 
            try
            {
-               customEvent = new window.Event(type, {bubbles: bubbles, cancelable: cancelable});
+               customEvent = new window.Event(type, createEventInit(bubbles, cancelable));
                return customEvent;
            }
            catch (e:Error)
@@ -50,40 +56,6 @@ package org.apache.royale.events.utils
            }
 
            return customEvent;
-       }
-
-       public static function createMouseEvent(type:String, bubbles:Boolean = false, cancelable = false,
-                                               params:Object = null):Object
-       {
-           var mouseEvent:Object = null;
-
-           if (!params)
-           {
-               params = {};
-           }
-
-           try
-           {
-               params.bubbles = bubbles;
-               params.cancelable = cancelable;
-
-               mouseEvent = new window.MouseEvent(type, params);
-               return mouseEvent;
-           }
-           catch (e:Error)
-           {
-
-           }
-
-           if (!mouseEvent)
-           {
-               mouseEvent = document.createEvent('MouseEvent');
-               mouseEvent.initMouseEvent(type, bubbles, cancelable, params.view,
-                       params.detail, params.screenX, params.screenY, params.clientX, params.clientY,
-                       params.ctrlKey, params.altKey, params.shiftKey, params.metaKey, params.button, params.relatedTarget);
-           }
-
-           return mouseEvent;
        }
     }
 }

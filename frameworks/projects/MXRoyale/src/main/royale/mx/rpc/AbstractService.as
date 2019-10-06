@@ -522,7 +522,7 @@ public dynamic class AbstractService extends Proxy implements IEventDispatcher
     }
 
     COMPILE::JS
-    override public function elementNames():Array
+    override public function propertyNames():Array
     {
         nextNameArray = [];
         for (var op:String in _operations)

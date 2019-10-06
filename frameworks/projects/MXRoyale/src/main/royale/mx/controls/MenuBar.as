@@ -30,6 +30,13 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.ui.Keyboard;
 import flash.xml.XMLNode; */
+
+import mx.collections.ArrayCollection;
+import mx.collections.IList;
+import mx.collections.ListCollectionView;
+import mx.collections.XMLListCollection;
+import org.apache.royale.core.ISelectionModel;
+
 import mx.collections.ICollectionView;
 import mx.core.IUIComponent;
 import mx.core.UIComponent;
@@ -52,6 +59,7 @@ import org.apache.royale.core.IParent;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
 use namespace mx_internal;
@@ -406,7 +414,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
     /**
      *  @private
      */
-   // private static const MARGIN_WIDTH:int = 10;
+   private static const MARGIN_WIDTH:int = 10;
 
     //--------------------------------------------------------------------------
     //
@@ -700,7 +708,42 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
      */
     public function set dataProvider(value:Object):void
     {
-        (model as MenuBarModel).dataProvider = value;
+       if (value is Array)
+            {
+                value = new ArrayCollection(value as Array);
+            }
+            else if (value is ICollectionView)
+            {
+                value = ICollectionView(value);
+            }
+            else if (value is IList)
+            {
+                value = new ListCollectionView(IList(value));
+            }
+            else if (value is XMLList)
+            {
+                value = new XMLListCollection(value as XMLList);
+            }
+            else if (value is XML)
+            {
+                var xl:XMLList = new XMLList();
+                xl += value;
+                value = new XMLListCollection(xl);
+            }
+            else
+            {
+                // convert it to an array containing this one item
+                var tmp:Array = [];
+                if (value != null)
+                    tmp.push(value);
+                value = new ArrayCollection(tmp);
+            }
+            (model as ISelectionModel).dataProvider = value;
+            
+            commitProperties();
+            measure();
+            if (isWidthSizedToContent())
+                (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
     }
 
     //----------------------------------
@@ -941,7 +984,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
         var arr:Array = [];
         COMPILE::SWF
         {
-            var itemHolder:UIBase = $getChildAt(0) as UIBase;
+            var itemHolder:UIBase = $sprite_getChildAt(0) as UIBase;
         }
         COMPILE::JS
         {
@@ -1262,7 +1305,7 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* override protected function measure():void
+    override protected function measure():void
     {
         super.measure();
 
@@ -1271,22 +1314,22 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
         measuredWidth = 0;
 
         // measured height is at least 22
-        measuredHeight = DEFAULT_MEASURED_MIN_HEIGHT; 
+        measuredHeight = 22; // DEFAULT_MEASURED_MIN_HEIGHT; 
         for (var i:int = 0; i < len; i++)
         {
-            measuredWidth += menuBarItems[i].getExplicitOrMeasuredWidth();
+            measuredWidth += menuBarItems[i].width; // getExplicitOrMeasuredWidth();
             measuredHeight = Math.max(
-                    measuredHeight, menuBarItems[i].getExplicitOrMeasuredHeight());
+                    measuredHeight, menuBarItems[i].height); // getExplicitOrMeasuredHeight());
         }
 
         if (len > 0)
             measuredWidth += 2 * MARGIN_WIDTH;
         else // else give it a default width, MARGIN_WIDTH = 10.
-            measuredWidth = DEFAULT_MEASURED_MIN_WIDTH; // setting it slightly more than the width
+            measuredWidth = 40; /// DEFAULT_MEASURED_MIN_WIDTH; // setting it slightly more than the width
 
         measuredMinWidth = measuredWidth;
         measuredMinHeight = measuredHeight;
-    } */
+    }
 
     /**
      *  @private
@@ -2178,6 +2221,9 @@ public class MenuBar extends UIComponent implements IFocusManagerComponent, ICon
        // were made; these are just defaults extracted from CSS.
        loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", this);
        loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", this);
+       
+       commitProperties();
+       measure();
        
        dispatchEvent(new Event("initComplete"));
    }

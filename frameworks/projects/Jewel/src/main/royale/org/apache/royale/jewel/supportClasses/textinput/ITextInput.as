@@ -19,31 +19,20 @@
 package org.apache.royale.jewel.supportClasses.textinput
 {
     /**
-     *  ITextInput is the interface that all text jewel classes.
+     *  ITextInput is the interface for all text input jewel classes.
      *  It's used mainly in org.apache.royale.jewel.supportClasses.textinput.TextInputBase
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 9.2
+     *  @productversion Royale 9.4
      */
     public interface ITextInput
     {
         COMPILE::JS
         {
             /**
-            * the textNode
-            *
-            * @langversion 3.0
-            * @playerversion Flash 10.2
-            * @playerversion AIR 2.6
-            * @productversion Royale 0.9.4
-            */
-            function get textNode():Text;
-            function set textNode(value:Text):void;
-
-            /**
-            * the input
+            * The input
             *
             * @langversion 3.0
             * @playerversion Flash 10.2
@@ -52,17 +41,6 @@ package org.apache.royale.jewel.supportClasses.textinput
             */
             function get input():HTMLInputElement;
             function set input(value:HTMLInputElement):void;
-
-            /**
-            * the label
-            *
-            * @langversion 3.0
-            * @playerversion Flash 10.2
-            * @playerversion AIR 2.6
-            * @productversion Royale 0.9.4
-            */
-            function get label():HTMLLabelElement;
-            function set label(value:HTMLLabelElement):void;
         }
     }
 }

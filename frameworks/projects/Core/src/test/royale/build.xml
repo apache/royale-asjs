@@ -29,42 +29,7 @@
     <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
     <property name="target.name" value="Core-${release.version}.swc" />
 
-	<condition property="browser" value="C:/Program Files/Internet Explorer/iexplore.exe">
-		<os family="windows"/>
-    </condition>
-    <condition property="browser" value="/Applications/Safari.app/Contents/MacOS/Safari">
-        <os family="mac"/>
-    </condition>
-
     <property name="report.dir" value="${basedir}/out" />
-    
-    <available file="${ROYALE_HOME}/in/flexunit"
-        type="dir"
-        property="FLEXUNIT_HOME"
-        value="${ROYALE_HOME}/in/flexunit" />
-    
-    <available file="${env.FLEXUNIT_HOME}"
-        type="dir"
-        property="FLEXUNIT_HOME"
-        value="${env.FLEXUNIT_HOME}"/>
-
-    <available file="${FLEXUNIT_HOME}/FlexUnit4/target"
-        type="dir"
-        property="FLEXUNIT_LIBPATH1"
-        value="-swf-library-path+=${FLEXUNIT_HOME}/FlexUnit4/target/flexunit-4.3.0-20140410-as3_4.12.0.swc" />
-    <property name="FLEXUNIT_LIBPATH1" value="-swf-library-path+=${FLEXUNIT_HOME}/flexunit" />
-
-    <available file="${FLEXUNIT_HOME}/FlexUnit4CIListener/target"
-        type="dir"
-        property="FLEXUNIT_LIBPATH2"
-        value="-swf-library-path+=${FLEXUNIT_HOME}/FlexUnit4CIListener/target" />
-    <property name="FLEXUNIT_LIBPATH2" value="-define+=CONFIG::dummy,false" />
-
-    <available file="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target"
-        type="dir"
-        property="FLEXUNIT_CLASSPATH"
-        value="${FLEXUNIT_HOME}/FlexUnit4AntTasks/target" />
-    <property name="FLEXUNIT_CLASSPATH" value="${FLEXUNIT_HOME}/flexunit" />
 
     <target name="main" depends="clean,compile,test" description="Clean test of ${target.name}">
     </target>
@@ -84,13 +49,13 @@
     
     <path id="lib.path">
       <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="compiler-royaleTasks.jar"/>
+      <fileset dir="${ROYALE_COMPILER_HOME}/lib" includes="royaleUnitTasks.jar"/>
     </path>
 
-    <target name="compile" description="Compiles FlexUnitApplication.swf">
+    <target name="compile" description="Compiles FlexUnitRoyaleApplication.swf">
         <echo message="Compiling FlexUnitRoyaleApplication.swf"/>
         <echo message="ROYALE_HOME: ${ROYALE_HOME}"/>
         <echo message="ROYALE_SWF_COMPILER_HOME: ${ROYALE_SWF_COMPILER_HOME}"/>
-        <echo message="FLEXUNIT_HOME: ${FLEXUNIT_HOME}"/>
         <echo message="playerglobal.version: ${playerglobal.version}"/>
 
         <!-- Load the <compc> task. We can't do this at the <project> level -->
@@ -121,32 +86,22 @@
             <arg value="-compiler.targets=SWF" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
-            <arg value="-swf-library-path+=${ROYALE_HOME}/frameworks/libs" />
-            <arg value="${FLEXUNIT_LIBPATH1}" />
-            <arg value="${FLEXUNIT_LIBPATH2}" />
         </mxmlc>
     </target>
 
     <target name="test">
-        <taskdef resource="flexUnitTasks.tasks">
-            <classpath>
-                <fileset dir="${FLEXUNIT_CLASSPATH}">
-                    <include name="flexUnitTasks*.jar" />
-                </fileset>
-            </classpath>
-        </taskdef>
+        <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
+        <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
+        <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
 		<mkdir dir="${report.dir}" />
-		<flexunit
+		<royaleunit
             swf="${basedir}/FlexUnitRoyaleApplication.swf"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"
-			haltonfailure="false"
+			haltonfailure="true"
 			verbose="true"
 			localTrusted="true"
-			timeout="90000">
-            <source dir="${ROYALE_HOME}/frameworks/projects/Core/src/main/royale" />
-            <library dir="${ROYALE_HOME}/frameworks/libs" />
-        </flexunit>
+			timeout="90000" />
         
 		<!-- Generate readable JUnit-style reports -->
 		<junitreport todir="${report.dir}">

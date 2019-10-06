@@ -20,32 +20,35 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-		//import org.apache.royale.jewel.beads.views.TextInputView;
-		import flash.text.TextFieldType;
-		import flash.utils.setTimeout;
-    }
-    import org.apache.royale.core.BeadViewBase;
-    import org.apache.royale.core.IBeadModel;
-    import org.apache.royale.core.IBeadView;
-    import org.apache.royale.core.IDateChooserModel;
-    import org.apache.royale.core.IFormatBead;
-    import org.apache.royale.core.IPopUpHost;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.IEventDispatcher;
+	import flash.text.TextFieldType;
+	import flash.utils.setTimeout;
+	}
+	COMPILE::JS
+	{
 	import org.apache.royale.geom.Point;
-    import org.apache.royale.jewel.Button;
-    import org.apache.royale.jewel.DateChooser;
-    import org.apache.royale.jewel.TextInput;
-    import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
-    import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
+	}
+	import org.apache.royale.core.BeadViewBase;
+	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IDateFormatter;
+	import org.apache.royale.core.IFormatter;
+	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.Button;
+	import org.apache.royale.jewel.DateChooser;
+	import org.apache.royale.jewel.DateField;
 	import org.apache.royale.jewel.Table;
+	import org.apache.royale.jewel.TextInput;
+	import org.apache.royale.jewel.beads.controls.datefield.DateFieldMaskedTextInput;
+	import org.apache.royale.jewel.beads.controls.textinput.MaxNumberCharacters;
 	import org.apache.royale.jewel.beads.views.DateChooserView;
-    import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.UIUtils;
 
 	/**
 	 * The DateFieldView class is a bead for DateField that creates the
@@ -122,15 +125,13 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
 			_textInput = new TextInput();
-			_textInput.addBead(new DateFieldMaskedTextInput());
-			
-			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
-			maxNumberCharacters.maxlength = 10;
-			_textInput.addBead(maxNumberCharacters);
 			
 			getHost().addElement(_textInput);
 
 			_button = new Button();
+			COMPILE::JS {
+                _button.element.setAttribute('tabindex', -1);
+			}
 			_button.text = "&darr;";
 			getHost().addElement(_button);
 
@@ -150,24 +151,34 @@ package org.apache.royale.jewel.beads.views
 			getHost().addEventListener("initComplete",handleInitComplete);
 		}
 
+		private var model:IDateChooserModel;
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDateFormatter
+		 * @royaleignorecoercion org.apache.royale.jewel.DateField
+		 */
 		private function handleInitComplete(event:Event):void
 		{
-			var formatter:IFormatBead = _strand.getBeadByType(IFormatBead) as IFormatBead;
-			formatter.addEventListener("formatChanged",handleFormatChanged);
-
-			var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+			model = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 			IEventDispatcher(model).addEventListener("selectedDateChanged", selectionChangeHandler);
+			var mask:DateFieldMaskedTextInput = new DateFieldMaskedTextInput();
+			_textInput.addBead(mask);
+			
+			var maxNumberCharacters:MaxNumberCharacters = new MaxNumberCharacters();
+			maxNumberCharacters.maxlength = 10;
+			_textInput.addBead(maxNumberCharacters);
+			
+			var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter;
+			var dateFormat:String = (_strand as DateField).dateFormat;
+			if(dateFormat)
+				(formatter as IDateFormatter).dateFormat = dateFormat;
+				
+			mask.formatter = formatter;
 		}
 		
 		private function handlePopUpInitComplete(event:Event):void
 		{
 			getHost().dispatchEvent(new Event("dateChooserInitComplete"));
-		}
-
-		private function handleFormatChanged(event:Event):void
-		{
-			var formatter:IFormatBead = event.target as IFormatBead;
-			_textInput.text = formatter.formattedString;
 		}
 
 		private var _popUp:DateChooser;
@@ -220,8 +231,7 @@ package org.apache.royale.jewel.beads.views
 					
 					_popUp.className = "datechooser-popup";
 					_popUp.addEventListener("initComplete", handlePopUpInitComplete);
-
-					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
+					
 					_popUp.selectedDate = model.selectedDate;
 					_popUp.model.dayNames = model.dayNames;
 					_popUp.model.monthNames = model.monthNames;
@@ -230,7 +240,7 @@ package org.apache.royale.jewel.beads.views
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost()) as IPopUpHost;
 					host.popUpParent.addElement(_popUp);
 					// viewBead.popUp is DateChooser that fills 100% of browser window-> We want Table inside
-					daysTable = (popUp.view as DateChooserView).daysTable;
+					table = (popUp.view as DateChooserView).table;
 
 					// rq = requestAnimationFrame(prepareForPopUp); // not work in Chrome/Firefox, while works in Safari, IE11, setInterval/Timer as well doesn't work right in Firefox
 					setTimeout(prepareForPopUp,  300);
@@ -276,9 +286,20 @@ package org.apache.royale.jewel.beads.views
 		private function selectionChangeHandler(event:Event = null):void
 		{
 			getHost().dispatchEvent(new Event("selectedDateChanged"));
+
+			if(model.selectedDate == null)
+			{
+				if(_textInput.text.length == 10)
+					_textInput.text = "";
+			}
+			else
+			{
+				var formatter:IFormatter = _strand.getBeadByType(IFormatter) as IFormatter;
+				_textInput.text = formatter.format(model.selectedDate);
+			}
 		}
 
-		private var daysTable:Table;
+		private var table:Table;
 		/**
 		 *  When set to "auto" this resize handler monitors the width of the app window
 		 *  and switch between fixed and float modes.
@@ -303,14 +324,14 @@ package org.apache.royale.jewel.beads.views
 				if(outerWidth > ResponsiveSizes.DESKTOP_BREAKPOINT)
 				{
 					var origin:Point = new Point(0, _button.y + _button.height - top);
-					var relocated:Point = positionInsideBoundingClientRect(_strand, daysTable, origin);
-					daysTable.x = relocated.x;
-					daysTable.y = relocated.y;
+					var relocated:Point = positionInsideBoundingClientRect(_strand, table, origin);
+					table.x = relocated.x;
+					table.y = relocated.y;
 				}
 				else
 				{
-					daysTable.positioner.style.left = '50%';
-					daysTable.positioner.style.top = 'calc(100% - 10px)';
+					table.positioner.style.left = '50%';
+					table.positioner.style.top = 'calc(100% - 10px)';
 				}
 			}
 		}

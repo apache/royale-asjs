@@ -20,7 +20,7 @@ package org.apache.royale.html
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDateChooserModel;
-	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -71,7 +71,7 @@ package org.apache.royale.html
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-			loadBeadFromValuesManager(IFormatBead, "iFormatBead", this);
+			loadBeadFromValuesManager(IFormatter, "IFormatter", this);
 
 			dispatchEvent(new Event("initComplete"));
 		}

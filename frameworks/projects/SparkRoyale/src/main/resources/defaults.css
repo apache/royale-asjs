@@ -55,7 +55,7 @@ ComboBox
 GroupBase
 {
 	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
-	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+	IBeadView: ClassReference("spark.components.beads.GroupView");
 }
 
 Image
@@ -65,18 +65,66 @@ Image
 }
 
 
-List
+DataGroup
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
-	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData");
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.VirtualDataContainerView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
-	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VirtualListVerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
+
+NonVirtualHDataGroup
+{
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView");			
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+NonVirtualVDataGroup
+{
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForIListData");
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.DataContainerView");			
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+DropDownList
+{
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
+	IBeadView: ClassReference("spark.components.beads.DropDownListView");
+	IBeadController: ClassReference("spark.components.beads.controllers.DropDownListController");
+}
+
+.DropDownDataGroup
+{
+	background-color: #FFFFFF;
+}
+
+List
+{
+	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
+	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IContentView: ClassReference("spark.components.DataGroup");
+}
+
 NumericStepper
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.RangeModel");
@@ -84,9 +132,9 @@ NumericStepper
 }
 Panel
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.PanelModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.PanelView");
-	IPanelLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
+	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
+	IBeadView: ClassReference("spark.components.beads.PanelView");
+	IPanelContentArea: ClassReference("spark.components.Group");	
 	
 	background-color: #FFFFFF;
 	border: 1px solid #333333
@@ -102,12 +150,35 @@ Panel .TitleBar
 	background-color: #FFFFFF;
 }
 
+Scroller
+{
+	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
+}
+
 SkinnableContainer
 {
-	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
-	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
+	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
+	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IContentView: ClassReference("spark.components.Group");
+}
+
+TabBar
+{
+	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
+	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IContentView: ClassReference("spark.components.NonVirtualHDataGroup");
+}
+
+TextArea
+{
+	border-style: solid;
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
 }
 
 /* -------------------------------------------------------

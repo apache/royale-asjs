@@ -22,9 +22,13 @@ COMPILE::SWF
 {
     import flash.utils.getDefinitionByName;
 }
+COMPILE::JS
+{
+    import goog.global;
+}
     
     /**
-     *  The equivalent of flash.utils.getQualifiedClassName.
+     *  The equivalent of flash.utils.getDefinitionByName.
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -35,16 +39,43 @@ COMPILE::SWF
 	{
         COMPILE::SWF
         {
+            //convenience 'top level' re-mapping for Vector names:
+            if (name.indexOf("Vector.<") == 0)
+            {
+                name = '__AS3__.vec.' + name;
+            }
+            if (name == '__AS3__.vec.Vector.<*>') {
+                //this does not work via native getDefinitionByName
+                return Vector.<*>;
+            }
             return flash.utils.getDefinitionByName(name);
         }
         COMPILE::JS
         {
             var parts:Array = name.split('.');
-            var n:int = parts.length;
-            var o:Object = window;
-            for (var i:int = 0; i < n; i++) {
-                o = o[parts[i]];
+            var o:Object;
+            if (parts[0] != 'Vector') {
+                var n:int = parts.length;
+                //use goog.global instead of window to support node too
+                o = goog.global;
+                for (var i:int = 0; i < n; i++) {
+                    o = o[parts[i]];
+                }
+            } else {
+                if (parts[1] != '<*>') {
+                    if (!ExtraData.hasData(name)) {
+                        //not already populated
+                        if (ExtraData.hasData('Vector.<*>')) {
+                            const newVectorData:Object = ExtraData.getData('Vector.<*>')['variant'](name);
+                            ExtraData.addExternDefintion(newVectorData);
+                            o = newVectorData['classRef']
+                        } //otherwise not possible
+                    } else {
+                        o = ExtraData.getData(name)['classRef'];
+                    }
+                }
             }
+            if (o == null && ExtraData.hasData(name)) o = ExtraData.getData(name)['classRef'];
             return o;
         }
     }

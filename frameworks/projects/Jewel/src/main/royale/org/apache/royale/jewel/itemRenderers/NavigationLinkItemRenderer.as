@@ -18,18 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
-	import org.apache.royale.events.Event;
-    
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.jewel.beads.controls.TextAlign;
+	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
 
-    
 	/**
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 
      *  Navigation List Component. It handles Objects with "label" and "href" data.
@@ -55,6 +53,12 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel navigationlink";
+			addClass("selectable");
+
+			if(MXMLDescriptor != null)
+			{
+				addClass("mxmlContent");
+			}
 		}
 
 		private var _href:String = "#";

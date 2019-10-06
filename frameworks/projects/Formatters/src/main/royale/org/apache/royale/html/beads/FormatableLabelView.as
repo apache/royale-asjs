@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IFormatBead;
+	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -49,7 +49,7 @@ package org.apache.royale.html.beads
 			super();
 		}
 		
-		private var _formatter:IFormatBead;
+		private var _formatter:IFormatter;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -70,21 +70,17 @@ package org.apache.royale.html.beads
 		 */
 		private function handleBeadsAdded(event:Event):void
 		{
-			_formatter = _strand.getBeadByType(IFormatBead) as IFormatBead;
-			_formatter.addEventListener("formatChanged",formatReadyHandler);
+			_formatter = _strand.getBeadByType(IFormatter) as IFormatter;
 			
 			// process any text set in the label at this moment
-			text = _formatter.formattedString;
+			super.text = _formatter.format(text);
 		}
 		
-		/**
-		 * @private
-		 */
-		private function formatReadyHandler(event:Event):void
+		override public function set text(value:String):void
 		{
-			if (_formatter) {
-				text = _formatter.formattedString;
-			}
+			if (_formatter)
+				value = _formatter.format(value);
+			super.text = value;
 		}
 	}
 }

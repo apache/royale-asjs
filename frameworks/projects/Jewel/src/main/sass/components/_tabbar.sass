@@ -21,30 +21,91 @@
 
 // TabBar variables
 
+.jewel
+    &.tabbar
+        // width: 100%
+        display: flex
+        overflow-y: hidden
+        overflow-x: scroll
+        -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
+        -ms-overflow-style: -ms-autohiding-scrollbar !important // IE 10+
+        scrollbar-width: none  // Firefox
+        &::-webkit-scrollbar 
+            display: none !important // Safari and Chrome
+            width: 0 !important
+            height: 0 !important
+            background-color: transparent
+        &::-webkit-scrollbar-thumb
+            display: none !important
 
-.jewel.tabbar
+        > .content
+            display: flex
+            
+            position: relative
+            flex: 1 0 auto 
+            transform: none
+            will-change: transform
 
 
 j|TabBar
-    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView")
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TabBarView")
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController")
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
     IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer")
-    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport")
     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ArrayListSelectionModel")
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView")
 
 // Jewel TabBarButtonItemRenderer
 $tabbarbutton-margin: 0 !default
-$tabbarbutton-padding: 0.68em 1.12em !default
+$tabbarbutton-padding: 0 24px !default
+// $tabbarbutton-margin-height: 48px
 
 // TabBarButtonItemRenderer variables
-.jewel.tabbarbutton
-    min-height: 48px
-    margin: $tabbarbutton-margin
-    padding: $tabbarbutton-padding
+.jewel
+    &.tabbarbutton
+        // height: $tabbarbutton-margin-height
+        // min-height: $tabbarbutton-margin-height
+        margin: $tabbarbutton-margin
+        padding: $tabbarbutton-padding
+        
+        position: relative
+        display: flex
+        flex: 1 0 auto
+        white-space: nowrap
+        justify-content: center
+        z-index: 1
+        overflow: initial
+
+        > .content
+            display: flex
+            position: relative
+            align-items: center
+            justify-content: center
+
+            height: inherit
+
+        .indicator
+            display: flex
+            position: absolute
+            top: 0
+            left: 0
+            width: 100%
+            height: 100%
+            pointer-events: none
+            z-index: 1
+
+            > .indicatorContent
+                align-self: flex-end
+                width: 100%
+                opacity: 0
+
+        &.selected
+            .indicator
+                > .indicatorContent
+                    opacity: 1
 
 j|TabBarButtonItemRenderer
     IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController")

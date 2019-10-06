@@ -1,0 +1,80 @@
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+               xmlns:js="library://ns.apache.org/royale/basic"
+               xmlns:crux="library://ns.apache.org/royale/crux"
+               xmlns:view="crux.quickstart.view.*"
+               xmlns:config="crux.quickstart.config.*"
+               initialize="setUp()">
+
+
+    <fx:Script>
+		<![CDATA[
+
+        public function setUp():void
+        {
+            tracer('application setUp stub');
+        }
+
+
+        ]]>
+	</fx:Script>
+
+    <js:beads>
+        <!-- support for simulated stage events in javascript (needed for Crux view processing)-->
+        <!-- packageExclusionFilter="_default_" avoids dispatching events for royale framework classes.
+             we can expect they will not have Crux metadata tags in any of them, so we would only avoid this
+             if we needed to use stage-like events for other reasons to emulate flash outside Crux...
+             -->
+        <crux:JSStageEvents packageExclusionFilter="_default_"/>
+        <!-- BeanProviders simply contain the non-display objects that Crux should process. -->
+        <crux:Crux>
+
+           <crux:beanProviders>
+                <config:Beans />
+
+               <!--<config:ASBeanProvider/>-->
+            </crux:beanProviders>
+
+            <crux:config>
+                <crux:CruxConfig>
+                    <crux:eventPackages>
+                        <fx:Array>
+                            <fx:String>crux.quickstart.event.*</fx:String>
+                        </fx:Array>
+                    </crux:eventPackages>
+                    <crux:viewPackages>
+                        <fx:Array>
+                            <fx:String>crux.quickstart.view.*</fx:String>
+                        </fx:Array>
+                    </crux:viewPackages>
+                </crux:CruxConfig>
+            </crux:config>
+        </crux:Crux>
+    </js:beads>
+
+    <js:valuesImpl>
+        <js:SimpleCSSValuesImpl />
+    </js:valuesImpl>
+
+
+    <js:initialView>
+        <view:MainContent />
+    </js:initialView>
+</js:Application>

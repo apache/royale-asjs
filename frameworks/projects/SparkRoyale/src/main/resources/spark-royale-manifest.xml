@@ -74,8 +74,8 @@
 	<component id="Image" class="spark.components.Image"/>
 	<component id="HorizontalLayout" class="spark.layouts.HorizontalLayout"/>
 	<component id="TileLayout" class="spark.layouts.TileLayout"/>
+    <component id="Module" class="spark.modules.Module" />
 
-    <component id="Module" class="mx.modules.Module" lookupOnly="true"/>
     <component id="ArrayCollection" class="mx.collections.ArrayCollection" lookupOnly="true"/>
 
     <!-- Text Layout Framework (TLF) -->
@@ -106,5 +106,12 @@
 	<component id="Parallel" class="mx.effects.Parallel" lookupOnly="true"/>
 	<component id="BasicLayout" class="spark.layouts.BasicLayout"/>
 	<component id="FormLayout" class="spark.layouts.FormLayout"/>
+	<component id="TabBar" class="spark.components.TabBar"/>
+	<component id="ButtonBar" class="spark.components.ButtonBar"/>
+	<component id="SkinnablePopUpContainer" class="spark.components.SkinnablePopUpContainer"/>
     
+    <component id="NonVirtualHDataGroup" class="spark.components.NonVirtualHDataGroup"/>
+    <component id="NonVirtualVDataGroup" class="spark.components.NonVirtualVDataGroup"/>
+
+	
 </componentPackage>

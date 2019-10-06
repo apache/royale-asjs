@@ -56,12 +56,8 @@
 	  
         <locale/>
         
-        <!-- overwrite the default library-path setting -->
-        <library-path>
-            <path-element>../../../../../../../js/libs/GCL.swc</path-element>
-            <!-- asjscompc won't 'link' these classes in, but will list their requires
-             if these swcs are on the external-library-path then their requires
-             will not be listed -->
+        <external-library-path append="true">
+            <path-element>../../../../../libs/LanguageJS.swc</path-element>
             <path-element>../../../../../libs/CoreJS.swc</path-element>
             <path-element>../../../../../libs/BindingJS.swc</path-element>
             <path-element>../../../../../libs/BasicJS.swc</path-element>
@@ -73,7 +69,7 @@
 	          <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
             <path-element>../../../../../libs/XMLJS.swc</path-element>
-        </library-path>
+        </external-library-path>
         
         <namespaces>
             <namespace>
@@ -93,14 +89,45 @@
         <warn-no-constructor>false</warn-no-constructor>
     </compiler>
     
+    <export-protected-symbols>true</export-protected-symbols>
+    
     <include-file>
         <name>defaults.css</name>
         <path>../../../../../../projects/MXRoyale/src/main/resources/defaults.css</path>
     </include-file>
-    
     <include-file>
+        <name>assets/icon_align_center.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_align_center.png</path>
     </include-file>
-
+    <include-file>
+        <name>assets/icon_align_justify.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_align_justify.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_align_left.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_align_left.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_align_right.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_align_right.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_bullet.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_bullet.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_style_bold.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_style_bold.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_style_italic.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_style_italic.png</path>
+    </include-file>
+    <include-file>
+        <name>assets/icon_style_underline.png</name>
+        <path>../../../../../../projects/MXRoyale/src/main/resources/assets/icon_style_underline.png</path>
+    </include-file>
+    
     <include-classes>
         <class>MXRoyaleClasses</class>
     </include-classes>
@@ -108,6 +135,12 @@
     <include-namespaces>
         <uri>library://ns.apache.org/royale/mx</uri>
     </include-namespaces>
+
+    <js-default-initializers>false</js-default-initializers>
+
+    <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
+    <js-resolve-uncertain>false</js-resolve-uncertain>
+    <js-vector-index-checks>false</js-vector-index-checks>
         
 
 </royale-config>

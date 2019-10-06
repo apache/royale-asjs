@@ -58,7 +58,7 @@ package org.apache.royale.core
          *  when the user is drag selecting the value
          *  or entering an arbitrary value.  For example,
          *  if the snapInterval is 0.5, then only integers
-         *  and values endnig in 0.5 are selectable.
+         *  and values ending in 0.5 are selectable.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

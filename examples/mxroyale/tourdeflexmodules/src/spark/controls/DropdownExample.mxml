@@ -19,7 +19,8 @@
 -->
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.apache.org/royale/spark" 
-			   xmlns:mx="library://ns.apache.org/royale/mx">
+			   xmlns:mx="library://ns.apache.org/royale/mx"
+               width="100%" height="100%">
 	
 	<fx:Script>
 		<![CDATA[
@@ -70,14 +71,11 @@
 		
 		<s:VGroup width="100%" height="100%" left="120" top="5">
 			<s:Label text="RJ's Warehouse Price Checker" fontSize="18" />
-			<!--<s:DropDownList id="list1" width="50%" dataProvider="{depts}" labelField="label" 
+			<s:DropDownList id="list1" width="50%" dataProvider="{depts}" labelField="label" 
 							prompt="Select Category"
-							change="handleDepartmentSelected(event)"/>-->
-            <s:DropDownList id="list1" width="50%" dataProvider="{depts}" labelField="label" 
-                            change="handleDepartmentSelected(event)"/>
+							change="handleDepartmentSelected(event)"/>
 			<s:Label id="text2"/>
-			<!--<s:DropDownList id="list2" width="50%" labelField="label" prompt="None"/>-->
-            <s:DropDownList id="list2" width="50%" labelField="label"/>
+			<s:DropDownList id="list2" width="50%" labelField="label" prompt="None"/>
 			<mx:Spacer height="10"/>
 			<s:Label fontSize="14" color="0x336699" text="The price of item: {list2.selectedItem.label} is: ${list1.selectedItem.data}" verticalAlign="bottom"/>
 		</s:VGroup>

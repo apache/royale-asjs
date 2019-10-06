@@ -478,88 +478,144 @@ package flexUnitTests {
 
 
         }
-
-
-    [Test]
-    public function testDoubleRoundTripping():void
-    {
-
-        var ble:BinaryData = new BinaryData();
-        //test LITTLE_ENDIAN round-tripping
-        ble.endian = Endian.LITTLE_ENDIAN;
-        ble.writeDouble(86.54);
-
-
-        assertEquals(ble.length, 8, "Error testing post writeDouble/readDouble round-tripping");
-        assertEquals(ble.position, 8, "Error testing post writeDouble/readDouble round-tripping");
-
-        //check bytes
-        assertTrue(bytesMatchExpectedData(ble,[195,245,40,92,143,162,85,64]), "Error testing post writeDouble/readDouble round-tripping");
-
-        var bbe:BinaryData = new BinaryData();
-        //test BIG_ENDIAN round-tripping
-        bbe.endian = Endian.BIG_ENDIAN;
-        bbe.writeDouble(86.54);
-
-
-        assertEquals(bbe.length, 8, "Error testing post writeDouble/readDouble round-tripping");
-        assertEquals(bbe.position, 8, "Error testing post writeDouble/readDouble round-tripping");
-        //check bytes
-
-        assertTrue(bytesMatchExpectedData(bbe,[64,85,162,143,92,40,245,195]), "Error testing post writeDouble/readDouble round-tripping");
-
-
-        ble.position = 0;
-        bbe.position = 0;
-        assertEquals(bbe.readDouble(), 86.54, "Error testing post writeDouble/readDouble round-tripping");
-        assertEquals(ble.readDouble(), 86.54, "Error testing post writeDouble/readDouble round-tripping");
-
-        assertEquals(bbe.position, 8, "Error testing post writeDouble/readDouble round-tripping");
-        assertEquals(ble.position, 8, "Error testing post writeDouble/readDouble round-tripping");
-
-    }
-
-
-
-    [Test]
-    public function testWriteBytes():void
-    {
-        var ba:BinaryData = new BinaryData();
-        for (var i:int=0;i<50;i++) ba.writeByte(i);
-
-
-        var newBa:BinaryData = new BinaryData();
-        newBa.writeBytes(ba);
-
-        assertEquals(50, newBa.length, "BinaryData writeBytes: length");
-        assertEquals(50, newBa.position, "BinaryData writeBytes: position");
-
-        for (i=0;i<50;i++) {
-            assertEquals(i, newBa.array[i], "BinaryData writeBytes: content check");
+    
+    
+        [Test]
+        public function testDoubleRoundTripping():void
+        {
+        
+            var ble:BinaryData = new BinaryData();
+            //test LITTLE_ENDIAN round-tripping
+            ble.endian = Endian.LITTLE_ENDIAN;
+            ble.writeDouble(86.54);
+        
+        
+            assertEquals(ble.length, 8, "Error testing post writeDouble/readDouble round-tripping");
+            assertEquals(ble.position, 8, "Error testing post writeDouble/readDouble round-tripping");
+        
+            //check bytes
+            assertTrue(bytesMatchExpectedData(ble,[195,245,40,92,143,162,85,64]), "Error testing post writeDouble/readDouble round-tripping");
+        
+            var bbe:BinaryData = new BinaryData();
+            //test BIG_ENDIAN round-tripping
+            bbe.endian = Endian.BIG_ENDIAN;
+            bbe.writeDouble(86.54);
+        
+        
+            assertEquals(bbe.length, 8, "Error testing post writeDouble/readDouble round-tripping");
+            assertEquals(bbe.position, 8, "Error testing post writeDouble/readDouble round-tripping");
+            //check bytes
+        
+            assertTrue(bytesMatchExpectedData(bbe,[64,85,162,143,92,40,245,195]), "Error testing post writeDouble/readDouble round-tripping");
+        
+        
+            ble.position = 0;
+            bbe.position = 0;
+            assertEquals(bbe.readDouble(), 86.54, "Error testing post writeDouble/readDouble round-tripping");
+            assertEquals(ble.readDouble(), 86.54, "Error testing post writeDouble/readDouble round-tripping");
+        
+            assertEquals(bbe.position, 8, "Error testing post writeDouble/readDouble round-tripping");
+            assertEquals(ble.position, 8, "Error testing post writeDouble/readDouble round-tripping");
+        
         }
-
-
-
-    }
-
-    [Test]
-    public function testReadBytes():void
-    {
-        var ba:BinaryData = new BinaryData();
-        for (var i:int=0;i<50;i++) ba.writeByte(i);
-        ba.position=0;
-        var newBa:BinaryData = new BinaryData();
-
-        ba.readBytes(newBa,5,10);
-        assertEquals(10, ba.position, "BinaryData readBytes: position");
-        assertEquals(15, newBa.length, "BinaryData readBytes: length");
-        assertEquals(0, newBa.position, "BinaryData readBytes: position");
-        var expected:Array = [0,0,0,0,0,0,1,2,3,4,5,6,7,8,9];
-        for (i=5;i<15;i++) {
-            assertEquals(expected[i], newBa.array[i], "BinaryData readBytes: content check");
+    
+    
+    
+        [Test]
+        public function testWriteBinaryData():void
+        {
+            var ba:BinaryData = new BinaryData();
+            for (var i:int=0;i<50;i++) ba.writeByte(i);
+        
+        
+            var newBa:BinaryData = new BinaryData();
+            newBa.writeBinaryData(ba);
+        
+            assertEquals(50, newBa.length, "BinaryData writeBinaryData: length");
+            assertEquals(50, newBa.position, "BinaryData writeBinaryData: position");
+        
+            for (i=0;i<50;i++) {
+                assertEquals(i, newBa.array[i], "BinaryData writeBinaryData: content check");
+            }
+        
+        
+        
         }
-    }
-
+        
+        [Test]
+        public function testReadBinaryData():void
+        {
+            var ba:BinaryData = new BinaryData();
+            for (var i:int = 0; i < 50; i++) ba.writeByte(i);
+            ba.position = 0;
+            var newBa:BinaryData = new BinaryData();
+            
+            ba.readBinaryData(newBa, 5, 10);
+            assertEquals(10, ba.position, "BinaryData readBinaryData: position");
+            assertEquals(15, newBa.length, "BinaryData readBinaryData: length");
+            assertEquals(0, newBa.position, "BinaryData readBinaryData: position");
+            var expected:Array = [0, 0, 0, 0, 0, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+            for (i = 0; i < 15; i++)
+            {
+                assertEquals(expected[i], newBa.array[i], "BinaryData readBinaryData: content check");
+            }
+            newBa.position = 15;
+            ba.readBinaryData(newBa, 5, 10);
+            expected = [0, 0, 0, 0, 0, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19];
+            for (i = 0; i < 15; i++)
+            {
+                assertEquals(expected[i], newBa.array[i], "BinaryData readBinaryData: content check");
+            }
+            assertEquals(15, newBa.length, "BinaryData readBinaryData: length");
+            assertEquals(15, newBa.position, "BinaryData readBinaryData: position");
+        }
+        
+        [Test]
+        public function testReadOddBytes():void
+        {
+            var ba:BinaryData = new BinaryData();
+            for (var i:int = 0; i < 50; i++) ba.writeByte(i);
+            ba.endian = Endian.BIG_ENDIAN;
+            ba.position = 0;
+            assertEquals( 0, ba.readByte(),"BinaryData readByte: should be 0");
+            assertEquals( 258, ba.readShort(),"BinaryData readShort: should be 258");
+            assertEquals( 50595078, ba.readInt(), "BinaryData readInt: should be 50595078");
+            ba.endian = Endian.LITTLE_ENDIAN;
+            ba.position = 0;
+            assertEquals( 0, ba.readByte(), "BinaryData readByte: should be 0");
+            assertEquals( 513, ba.readShort(),"BinaryData readShort: should be 513");
+            assertEquals(100992003, ba.readInt(), "BinaryData readInt: should be 100992003");
+        
+            ba = new BinaryData();
+            ba.writeByte(25);
+            ba.writeShort(65535);
+            ba.writeUnsignedInt(4294967295);
+            ba.position = 0;
+            assertEquals(25, ba.readByte(), "BinaryData readByte: should be 25");
+            assertEquals(65535, ba.readUnsignedShort(), "BinaryData readUnsignedShort: should be 65535");
+            assertEquals( 4294967295, ba.readUnsignedInt(), "BinaryData readInt: should be 4294967295");
+        
+            ba = new BinaryData();
+            ba.writeByte(-25);
+            ba.writeShort(-1029);
+            ba.writeInt(-131072);
+            ba.writeFloat(12345.2);
+            ba.writeDouble(3.1415927410);
+            ba.position = 0;
+            assertEquals(-25, ba.readByte(), "BinaryData readByte: should be -25");
+            assertEquals( -1029, ba.readShort(), "BinaryData readShort: should be -1029");
+            assertEquals( -131072, ba.readInt(), "BinaryData readInt: should be -131072");
+            assertEquals( 12345.2, Math.round(ba.readFloat() * 100) / 100, "BinaryData readFloat: should be 12345.2");
+            assertEquals( 3.1415927410, ba.readDouble(), "BinaryData readDouble: should be 3.1415927410");
+            ba = new BinaryData()
+            ba.writeFloat(12345.2);
+            ba.position = 0;
+            assertEquals( 12345.2, Math.round(ba.readFloat() * 100) / 100, "BinaryData readFloat: should be 12345.2");
+            ba.position = 0;
+            ba.writeDouble(3.1415927410);
+            ba.position = 0;
+            assertEquals( 3.1415927410, ba.readDouble(), "BinaryData readDouble: should be 3.1415927410");
+        }
 
 }
 }

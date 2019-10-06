@@ -17,15 +17,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel Button
+// Jewel ToggleButton
 
-// Button variables
-$button-margin: 0 !default
-$button-padding: 0.72em 1.12em !default
+// ToggleButton variables
+$togglebutton-margin: 0 !default
+$togglebutton-padding: 0.68em 1.12em !default
 
 .jewel.togglebutton
-    margin: $button-margin
-    padding: $button-padding
+    margin: $togglebutton-margin
+    padding: $togglebutton-padding
 
     cursor: pointer
     user-select: none
@@ -50,7 +50,10 @@ $button-padding: 0.72em 1.12em !default
     // &:focus
 
     &[disabled]
-        cursor: unset
+        cursor: default
+
+    .fonticon
+        cursor: inherit
 
 @media -royale-swf
     j|ToggleTextButton

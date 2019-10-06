@@ -178,6 +178,8 @@ public class Transition extends org.apache.royale.states.Transition
      */
     //public var toState:String = "*";
     
+    private var _autoReverse:Boolean = false;
+    
     /**
      *  Set to <code>true</code> to specify that this transition applies 
      *  to both the forward and reverse view state changes. 
@@ -210,7 +212,14 @@ public class Transition extends org.apache.royale.states.Transition
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var autoReverse:Boolean = false;
+    public function get autoReverse():Boolean
+    {
+        return _autoReverse;
+    }
+    public function set autoReverse(value:Boolean):void
+    {
+        _autoReverse = value;
+    }
     
     /**
      *  Flex does not support the playing of multiple transitions simultaneously. 

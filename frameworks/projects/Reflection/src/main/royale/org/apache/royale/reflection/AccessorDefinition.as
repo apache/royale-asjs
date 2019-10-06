@@ -17,6 +17,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.reflection {
+    
+    COMPILE::JS{
+        import goog.DEBUG;
+    }
+	
+	COMPILE::SWF{
+		import flash.utils.getDefinitionByName;
+	}
+    
     /**
      *  The description of a Class or Interface accessor (get and/or set)
      *
@@ -27,8 +36,9 @@ package org.apache.royale.reflection {
      */
     public class AccessorDefinition extends VariableDefinition
     {
-        public function AccessorDefinition(name:String, rawData:Object) {
-            super(name, rawData);
+        public function AccessorDefinition(name:String, isStatic:Boolean, owner:TypeDefinition, rawData:Object = null)
+        {
+            super(name,isStatic, owner, rawData);
         }
         /**
          * The type that defined this accessor
@@ -42,7 +52,7 @@ package org.apache.royale.reflection {
             COMPILE::JS{
                 var declareBy:String = _rawData.declaredBy;
             }
-            return TypeDefinition.getDefinition(declareBy);
+            return TypeDefinition.internalGetDefinition(declareBy);
         }
 
 
@@ -65,6 +75,49 @@ package org.apache.royale.reflection {
 
             return _access;
         }
+        
+        COMPILE::JS
+        override public function get getValue():Function{
+			if (_getter != null) return _getter;
+            if (isStatic || goog.DEBUG) {
+                var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
+            }
+            var fieldName:String = name;
+            if (isStatic) {
+                _getter = function():* {return cl[fieldName]}
+            } else {
+                _getter = function(instance:Object):* {
+                    if (goog.DEBUG) {
+                        if (arguments.length != 1 || (!(instance is cl))) throw 'invalid getValue parameters';
+                    }
+                    return instance[fieldName];
+                }
+            }
+			return _getter;
+		}
+	
+		COMPILE::JS
+		override public function get setValue():Function{
+			if (_setter != null) return _setter;
+            if (isStatic || goog.DEBUG) {
+                var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
+            }
+			var fieldName:String = name;
+			if (isStatic) {
+				_setter = function(value:*):* {
+					cl[fieldName] = value
+				}
+			} else {
+				_setter = function(instance:Object, value:*):* {
+					if (goog.DEBUG) {
+						if (arguments.length != 2 || (!(instance is cl))) throw 'invalid setValue parameters';
+					}
+					instance[fieldName] = value;
+				}
+			}
+			return _setter;
+		}
+        
 
         /**
          * A string representation of this accessor definition

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+                   xmlns:js="library://ns.apache.org/royale/basic" >
+
+	<fx:Declarations>
+		<js:FileProxy id="myFileProxy" modelChanged="modelChangedHandler(event)">
+			<js:beads>
+				<js:FileModel/>
+				<js:FileBrowser id="myBrowser"/>
+				<js:FileLoader id="myLoader"/>
+			</js:beads>
+		</js:FileProxy>
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
+			import org.apache.royale.html.SimpleAlert;
+			
+			protected function clickHandler(event:org.apache.royale.events.MouseEvent):void
+			{
+				myBrowser.browse();
+			}
+			
+			protected function modelChangedHandler(event:org.apache.royale.events.Event):void
+			{
+				myFileProxy.model.addEventListener("blobChanged", blobChangedHandler);
+				trace('loading: ' +  myFileProxy.name);
+				myLoader.load();
+			}
+			
+			private function blobChangedHandler(e:org.apache.royale.events.Event):void
+			{
+				var fileModel:FileModel = myFileProxy.model as FileModel;
+				SimpleAlert.show(myFileProxy.size + " bytes of " + fileModel.name + " were loaded", this);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	
+	<js:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</js:valuesImpl>	
+	
+	<js:initialView>
+		<js:View>
+			<js:TextButton text="Browse" click="clickHandler(event)"/>
+		</js:View>
+	</js:initialView>
+</js:Application>

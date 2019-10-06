@@ -22,6 +22,9 @@ COMPILE::SWF
 {
     import flash.utils.getQualifiedClassName;
 }
+COMPILE::JS{
+    import org.apache.royale.utils.Language
+}
     
     /**
      *  The equivalent of flash.utils.getQualifiedClassName.
@@ -35,25 +38,60 @@ COMPILE::SWF
 	{
         COMPILE::SWF
         {
-            return flash.utils.getQualifiedClassName(value);
+            //normalize for Vector:
+            return flash.utils.getQualifiedClassName(value).replace('__AS3__.vec::','').replace('::','.');
         }
         COMPILE::JS
         {
             var defName:String = typeof(value);
             if (defName === "string") return "String";
-            if (defName === "number") return "Number";
+            if (defName === "number") {
+                if (value === value>>0 && ExtraData.hasData('int') && (value >= -268435456 && value <= 268435455)) return 'int';
+                return "Number";
+            }
             if (defName === "boolean") return "Boolean";
             if (defName === "undefined") return null;
             if (value === null) return null;
-            if (Array.isArray(value)) return "Array";
-            
-            if (value.ROYALE_CLASS_INFO == null)
-            {
-                if (value.prototype == null || value.prototype.ROYALE_CLASS_INFO == null)
-                    return "Object";
-                value = value.prototype;
+            if (Array.isArray(value)) {
+                //exclude Vector emulation:
+                if (Language.SYNTH_TAG_FIELD in value) return value[Language.SYNTH_TAG_FIELD]['type'];
+                return "Array";
             }
-            return value.ROYALE_CLASS_INFO.names[0].qName;
+            var classInfo:Object = value.ROYALE_CLASS_INFO;
+            
+            if (!classInfo)
+            {
+                if (!value.prototype) {
+                    //instance
+                    if (ExtraData.hasData(value.constructor)) {
+                        //value is instance of a 'native class'
+                        classInfo =  ExtraData.getData(value.constructor)['ROYALE_CLASS_INFO'];
+                    } else {
+                        if (Language.isSynthType(value.constructor)) {
+                            return value.constructor['type'];
+                        }
+                    }
+                } else {
+                    //class
+                    classInfo = value.prototype.ROYALE_CLASS_INFO;
+                    if (!classInfo) {
+                        if (ExtraData.hasData(value)) {
+                            //value is a native 'class'
+                            classInfo =  ExtraData.getData(value)['ROYALE_CLASS_INFO'];
+                        }
+                    }
+                    if (!classInfo) {
+                        if (Language.isSynthType(value)) {
+                            return value['type'];
+                        }
+                    }
+                }
+                if (!classInfo) {
+                    //fallback
+                    return "Object";
+                }
+            }
+            return classInfo.names[0].qName;
         }
     }
 }

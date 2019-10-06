@@ -774,6 +774,8 @@ package spark.components
  *  @playerversion Flash 10
  *  @playerversion AIR 2.5
  *  @productversion Flex 4.5
+ * 
+ *  @royalesuppresspublicvarwarning
  */  
 public class DataGrid extends SkinnableContainerBase 
     implements IDataProviderEnhance, IFocusManagerComponent, IIMESupport
@@ -1465,7 +1467,7 @@ public class DataGrid extends SkinnableContainerBase
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-    override public function get dataProvider():IList
+    public function get dataProvider():IList
     {
         return getGridProperty("dataProvider");
     }
@@ -1473,7 +1475,7 @@ public class DataGrid extends SkinnableContainerBase
     /**
      *  @private
      */
-	override public function set dataProvider(value:IList):void
+	public function set dataProvider(value:IList):void
     {
         if (setGridProperty("dataProvider", value))
             dispatchChangeEvent("dataProviderChanged");
@@ -2077,7 +2079,7 @@ public class DataGrid extends SkinnableContainerBase
      *  @playerversion AIR 2.5
      *  @productversion Flex 4.5
      */
-	override public function get itemRenderer():IFactory
+	public function get itemRenderer():IFactory
     {
         return getGridProperty("itemRenderer");
     }
@@ -2085,7 +2087,7 @@ public class DataGrid extends SkinnableContainerBase
     /**
      *  @private
      */
-	override public function set itemRenderer(value:IFactory):void
+	public function set itemRenderer(value:IFactory):void
     {
         if (setGridProperty("itemRenderer", value))
             dispatchChangeEvent("itemRendererChanged");

@@ -223,8 +223,8 @@ package org.apache.royale.textLayout.events
 			var obj:Object;
 			
 			var elements:Array = [];
-			if (textFlow.interactiveObjectCount != 0 && startPos != endPos)	// check for empty container
-			{
+			// if (textFlow.interactiveObjectCount != 0 && startPos != endPos)	// check for empty container
+			// {
 //TODO commenting this out until we figure out what to do with interactive objects
 				// //New algorithm here to improve performance when there are link elements 
 				// var uniqueDictionary:ObjectMap = container.interactiveObjects;
@@ -249,19 +249,19 @@ package org.apache.royale.textLayout.events
 					
 				// }
 				
-				CONFIG::debug
-				{
-					if (elements.length)
-					{
-						for each (var elem:IFlowElement in elements)
-						{
+				// CONFIG::debug
+				// {
+					// if (elements.length)
+					// {
+						// for each (var elem:IFlowElement in elements)
+						// {
 							// trace(startPos,endPos,elem.defaultTypeName,elem.getAbsoluteStart(),elem.textLength);
-							assert(elem.getAbsoluteStart() < endPos,"updateHitTests bad absoluteStart");
-							assert(elem.getAbsoluteStart()+elem.textLength >= startPos,"updateHitTests bad absoluteEnd"); 
-						}
-					}
-				}
-			}
+							// assert(elem.getAbsoluteStart() < endPos,"updateHitTests bad absoluteStart");
+							// assert(elem.getAbsoluteStart()+elem.textLength >= startPos,"updateHitTests bad absoluteEnd"); 
+						// }
+					// }
+				// }
+			// }
 			
 			var newHitRects:Object;
 			var rectCount:int = 0;

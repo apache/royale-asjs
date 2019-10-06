@@ -18,24 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils.js
 {
-  /**
-   * Utility function to dynamically load Javascript in your application.
-   * The callback will be called (with no arguments) when the javascript is loaded.
-   * @param url The url of the js file.
-   * @param callback (optional) the function to be called when the code is laoded.
-   * @langversion 3.0
-   * @productversion Royale 0.9.4
-   * @royaleignorecoercion HTMLScriptElement
-   */
-  COMPILE::JS
-  public function loadJavascript(url:String,callback:Function=null):void
-  {
-    var script:HTMLScriptElement = document.createElement('script') as HTMLScriptElement;
-	if (callback)
+	/**
+	 * Utility function to dynamically load Javascript in your application.
+	 * The callback will be called (with no arguments) when the javascript is loaded.
+	 * @param url The url of the js file.
+	 * @param callback (optional) the function to be called when the code is loaded.
+	 * 
+	 * @langversion 3.0
+	 * @productversion Royale 0.9.4
+	 * @royaleignorecoercion HTMLScriptElement
+	 */
+	COMPILE::JS
+	public function loadJavascript(url:String, callback:Function = null):void
 	{
-		    script.onload = callback;
+		var script:HTMLScriptElement = document.createElement('script') as HTMLScriptElement;
+
+		if (callback)
+		{
+			script.onload = callback;
+		}
+
+		script.src = url;
+		document.head.appendChild(script);
 	}
-    script.src = url;
-    document.head.appendChild(script);
-  }
 }

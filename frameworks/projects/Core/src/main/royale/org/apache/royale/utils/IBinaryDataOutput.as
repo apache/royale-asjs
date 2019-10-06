@@ -17,8 +17,20 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.utils {
+COMPILE::SWF{
+    import flash.utils.ByteArray
+}
 public interface IBinaryDataOutput {
-    function writeBytes(bytes:BinaryData,offset:uint = 0,length:uint = 0):void;
+    
+    function writeBinaryData(bytes:BinaryData,offset:uint = 0,length:uint = 0):void;
+	
+	COMPILE::SWF{
+		function writeBytes(bytes:ByteArray, offset:uint = 0, length:uint = 0):void;
+	}
+	
+	COMPILE::JS{
+		function writeBytes(bytes:ArrayBuffer, offset:uint = 0, length:uint = 0):void;
+	}
 
     function writeBoolean(value:Boolean):void;
     function writeByte(value:int):void;
@@ -31,11 +43,7 @@ public interface IBinaryDataOutput {
   //  function writeMultiByte(value:String,charSet:String):void;
     function writeUTF(value:String):void;
     function writeUTFBytes(value:String):void;
-
-    // function writeObject(object:*):void;
-    // function get objectEncoding():uint;
-    // function set objectEncoding(version:uint):void;
-
+    
     function get endian():String;
     function set endian(type:String):void;
 }

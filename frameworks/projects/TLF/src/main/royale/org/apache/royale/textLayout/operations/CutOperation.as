@@ -55,7 +55,7 @@ package org.apache.royale.textLayout.operations {
 		 * @playerversion AIR 1.5
 	 	 * @langversion 3.0 
 		 */
-		function CutOperation(operationState:SelectionState, scrapToCut:TextScrap)
+		public function CutOperation(operationState:SelectionState, scrapToCut:TextScrap)
 		{
 			super(operationState);
 			if (absoluteStart < absoluteEnd)

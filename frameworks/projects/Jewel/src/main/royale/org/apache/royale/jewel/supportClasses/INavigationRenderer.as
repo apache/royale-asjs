@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses
 {
+    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+
     /**
      *  INavigationRenderer is the interface that all item renderers used with
      *  Navigation List component must implement.
@@ -30,7 +32,7 @@ package org.apache.royale.jewel.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public interface INavigationRenderer
+    public interface INavigationRenderer extends ITextItemRenderer
     {
         /**
          *  the navigation link url
@@ -42,16 +44,5 @@ package org.apache.royale.jewel.supportClasses
          */
         function get href():String;
         function set href(value:String):void;
-
-        /**
-         *  The text of the navigation link
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        function get text():String;
-        function set text(value:String):void;
     }
 }

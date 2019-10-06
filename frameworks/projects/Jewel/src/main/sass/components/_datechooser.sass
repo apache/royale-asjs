@@ -21,55 +21,48 @@
 
 // DateChooser variables
 $datechooser-button-size: 22px
-$datechooser-button-xoffset: calc(50% - #{$datechooser-button-size/2})
-$datechooser-button-yoffset: calc(50% - #{$datechooser-button-size/2})
 $datechooser-tableitem-size: 38px
 
 .jewel.datechooser
 
     .jewel.table
+        min-width: 324px
+        min-height: 364px
 
         .jewel.tableheadercell
             padding: 12px 0px
             
         .jewel.tableheadercell.buttonsRow
             
-            .prevMonthButton::before, .nextMonthButton::before
-                margin: 0
-                padding: 0
-                
-                line-height: $datechooser-button-size
-                content: ' '
-                position: absolute
-
-                left: $datechooser-button-xoffset
-                top: $datechooser-button-yoffset
-
-                width: $datechooser-button-size
-                height: $datechooser-button-size
+            & > .layout.horizontal //makes the HGroup that holds prev and next btns align to right
+                float: right
             
-            .prevMonthButton::after, .nextMonthButton::after
+            .viewSelector::after, 
+                content: ' '
+            .previousButton::after, .nextButton::after
                 content: ' '
                 position: absolute
-
+            .viewSelector::after
+                width: $datechooser-button-size
+                height: $datechooser-button-size - 6px
+            .previousButton::after, .nextButton::after
                 width: $datechooser-button-size
                 height: $datechooser-button-size
 
-                left: $datechooser-button-xoffset
-                top: $datechooser-button-yoffset
+                top: calc(50% - #{$datechooser-button-size/2})
+            .previousButton::after
+                left: calc(50% - #{$datechooser-button-size/2 + 2px})
+            .nextButton::after
+                left: calc(50% - #{$datechooser-button-size/2 - 2px})
         
         .jewel.tableheadercell.buttonsRow
             padding: 4px
 
         // td
         .jewel.tableitem
-            width: $datechooser-tableitem-size
+            // width: $datechooser-tableitem-size
             height: $datechooser-tableitem-size
-            .jewel.tableitem
-                padding: 2px
-                width: $datechooser-tableitem-size
-                height: $datechooser-tableitem-size
-    
+
 .calendar
     &.item
         padding: 10px

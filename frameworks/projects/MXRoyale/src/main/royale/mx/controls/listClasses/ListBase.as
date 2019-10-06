@@ -754,7 +754,7 @@ use namespace mx_internal;
             return _strandChildren;
         }
         
-        public function scrollToIndex(index):void
+        public function scrollToIndex(index:int):void
         {
 
             trace("ListBase:scrollToIndex not implemented");
@@ -1250,6 +1250,77 @@ use namespace mx_internal;
                 return "null";
             return UIDUtil.getUID(data);
         }
-                
+
+        //--------------------------------------------------------------------------
+        //
+        //  Methods: Item fields
+        //
+        //--------------------------------------------------------------------------
+        
+        /**
+         *  Returns the string the renderer would display for the given data object
+         *  based on the labelField and labelFunction properties.
+         *  If the method cannot convert the parameter to a string, it returns a
+         *  single space.
+         *
+         *  @param data Object to be rendered.
+         *
+         *  @return The string to be displayed based on the data.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function itemToLabel(data:Object):String
+        {
+            if (data == null)
+                return " ";
+            
+            /*
+            if (labelFunction != null)
+                return labelFunction(data);
+            */
+            
+            if (data is XML)
+            {
+                try
+                {
+                    if ((data as XML)[labelField].length() != 0)
+                        data = (data as XML)[labelField];
+                    //by popular demand, this is a default XML labelField
+                    //else if (data.@label.length() != 0)
+                    //  data = data.@label;
+                }
+                catch(e:Error)
+                {
+                }
+            }
+            else if (data is Object)
+            {
+                try
+                {
+                    if (data[labelField] != null)
+                        data = data[labelField];
+                }
+                catch(e:Error)
+                {
+                }
+            }
+            
+            if (data is String)
+                return String(data);
+            
+            try
+            {
+                return data.toString();
+            }
+            catch(e:Error)
+            {
+            }
+            
+            return " ";
+        }
+
     }
 }

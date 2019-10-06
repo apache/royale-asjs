@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.core
 {
-    import flexunit.framework.Assert;
-    
+    import org.apache.royale.test.asserts.*;
     import org.apache.royale.core.Strand;
     
     public class StrandTesterTest
-    {		
+    {
         [Before]
         public function setUp():void
         {
@@ -49,7 +48,7 @@ package flexUnitTests.core
         {
             var strand:Strand = new Strand();
             strand.id = "foo";
-            Assert.assertEquals("Error testing Srand.id", "foo",strand.id);
-        }        
+            assertEquals(strand.id, "foo", "Error testing Srand.id");
+        }
     }
 }

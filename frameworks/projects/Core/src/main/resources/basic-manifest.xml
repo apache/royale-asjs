@@ -27,6 +27,7 @@
     <component id="EventLoggingBead" class="org.apache.royale.core.EventLoggingBead" />
     <component id="BrowserScroller" class="org.apache.royale.core.BrowserScroller"/>
     <component id="BrowserResizeHandler" class="org.apache.royale.core.BrowserResizeListener"/>
+    <component id="BrowserOrientation" class="org.apache.royale.core.BrowserOrientation"/>
     <component id="SimpleValuesImpl" class="org.apache.royale.core.SimpleValuesImpl"/>
     <component id="SimpleStatesImpl" class="org.apache.royale.core.SimpleStatesImpl"/>
     <component id="MXMLDragInitiator" class="org.apache.royale.core.MXMLDragInitiator" />
@@ -51,4 +52,7 @@
     <component id="StyleChangeNotifier" class="org.apache.royale.core.StyleChangeNotifier"/>
     
     <component id="State" class="org.apache.royale.states.State"/>
+    
+    <component id="CompoundAsyncTask" class="org.apache.royale.utils.async.CompoundAsyncTask"/>
+    <component id="SequentialAsyncTask" class="org.apache.royale.utils.async.SequentialAsyncTask"/>
 </componentPackage>

@@ -46,6 +46,7 @@ package org.apache.royale.jewel
             typeNames = "jewel formitem";
 		}
 
+		[Bindable(event="change")]
 		/**
          *  @copy org.apache.royale.html.Label#text
          *
@@ -58,7 +59,6 @@ package org.apache.royale.jewel
 		{
             return ITextModel(model).text;
 		}
-
         /**
          *  @private
          */
@@ -67,6 +67,7 @@ package org.apache.royale.jewel
             ITextModel(model).text = value;
 		}
 
+		[Bindable(event="change")]
 		/**
          *  @copy org.apache.royale.html.Label#html
          *
@@ -79,7 +80,6 @@ package org.apache.royale.jewel
 		{
             return ITextModel(model).html;
 		}
-
         /**
          *  @private
          */

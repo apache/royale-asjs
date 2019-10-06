@@ -19,6 +19,9 @@
 
 package mx.collections
 {
+import org.apache.royale.events.Event;
+import org.apache.royale.utils.Timer;
+
 /* 
 import flash.events.TimerEvent;
 import flash.utils.Dictionary;
@@ -29,7 +32,7 @@ import flash.xml.XMLNode;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.events.CollectionEventKind;
-//import mx.utils.UIDUtil;
+import mx.utils.UIDUtil;
 
 use namespace mx_internal;
 
@@ -108,10 +111,11 @@ use namespace mx_internal;
  *  @playerversion Flash 10
  *  @playerversion AIR 1.5
  *  @productversion Flex 4
+ *  @royalesuppresspublicvarwarning
  */
-public class GroupingCollection2 
+public class GroupingCollection2 extends HierarchicalData implements IGroupingCollection2
 {
-//extends HierarchicalData implements IGroupingCollection2
+
 
     //include "../core/Version.as";
     
@@ -131,14 +135,17 @@ public class GroupingCollection2
      */
     public function GroupingCollection2()
     {
-       /*  super();
+        super();
         
         newCollection = new ArrayCollection();
         super.source = newCollection;
         
+        /*
         objectSummaryMap = new Dictionary(false);
+        */
+        objectSummaryMap = {};
         
-        parentMap = {}; */
+        parentMap = {};
     }
     
     //--------------------------------------------------------------------------
@@ -152,19 +159,19 @@ public class GroupingCollection2
      *  
      *  denotes if the refresh is asynchronous.
      */
-   // private var async:Boolean = false;
+    private var async:Boolean = false;
     
     /**
      *  @private
      *  
      *  if true, dispatch collection change events 
      */
-   // private var dispatchCollectionEvents:Boolean = false;
+    private var dispatchCollectionEvents:Boolean = false;
     
     /**
      *  @private
      */
-    //private var newCollection:ArrayCollection;
+    private var newCollection:ArrayCollection;
     
     /**
      *  @private
@@ -178,95 +185,96 @@ public class GroupingCollection2
      *  keeps summaries corresponding to different objects
      */
    // private var objectSummaryMap:Dictionary;
+    private var objectSummaryMap:Object;
     
     /**
      *  @private
      *  
      *  the original sort applied to the source collection 
      */
-    //private var oldSort:Sort;
+    private var oldSort:Sort;
     
     /**
      *  @private
      */
-    //private var prepared:Boolean = false;
+    private var prepared:Boolean = false;
     
     /**
      *  @private
      */
-    //private var flatView:ICollectionView;
+    private var flatView:ICollectionView;
     
     /**
      *  @private
      */
-    //private var flatCursor:IViewCursor;
+    private var flatCursor:IViewCursor;
     
     /**
      *  @private
      */
-    //private var hView:ICollectionView;
+    private var hView:ICollectionView;
     
     /**
      *  @private
      */
-    //private var currentPosition:CursorBookmark = CursorBookmark.FIRST;
+    private var currentPosition:CursorBookmark = CursorBookmark.FIRST;
     
     /**
      *  @private
      */
-    //private var gf:Array;
+    private var gf:Array;
     
     /**
      *  @private
      */
-   // private var fieldCount:int;
+    private var fieldCount:int;
     
     /**
      *  @private
      *  
      *  contains current data being compared
      */
-   // private var currentData:Object;
+    private var currentData:Object;
     
     /**
      *  @private
      *  
      *  contains current group objects for different group fields
      */
-   // private var currentGroups:Array;
+    private var currentGroups:Array;
     
     /**
      *  @private
      *  
      *  contains current group labels for different group fields
      */
-    //private var currentGroupLabels:Array;
+    private var currentGroupLabels:Array;
     
     /**
      *  @private
      *  
      *  contains next index for different group fields
      */
-    //private var currentIndices:Array;
+    private var currentIndices:Array;
     
     /**
      *  @private
      *  
      *  item index
      */
-    //private var itemIndex:int;
+    private var itemIndex:int;
     
     /**
      *  @private
      *  
      *  the children array for the group
      */
-    //private var childrenArray:Array;
+    private var childrenArray:Array;
     
     /**
      *  @private
      */
-    //private var summaryPresent:Boolean;
+    private var summaryPresent:Boolean;
     
     /**
      *  The timer which is associated with an asynchronous refresh operation.
@@ -282,26 +290,27 @@ public class GroupingCollection2
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.3
      */
-    //protected var timer:Timer;
+    protected var timer:Timer;
     
     /**
      *  @private
      *  Mapping of UID to parents.  Must be maintained as things get removed/added
      *  This map is created as objects are visited
      */
-    //protected var parentMap:Object;
+    protected var parentMap:Object;
     
     /**
      *  @private
      *  A Dictionary to maintain summaries
      */
     //private var summariesTracker:Dictionary;
+    private var summariesTracker:Object;
     
     /**
      *  @private
      *  An array to store all the summary fields.
      */
-    //private var summaryFields:Array;
+    private var summaryFields:Array;
     
     //--------------------------------------------------------------------------
     //
@@ -393,7 +402,7 @@ public class GroupingCollection2
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.3
      */
-    //public var summaries:Array; 
+    public var summaries:Array; 
 
     //--------------------------------------------------------------------------
     //
@@ -412,14 +421,14 @@ public class GroupingCollection2
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.3
      */
-    /* override */ public function get source():Object
+    override public function get source():Object
     {
         return _sourceCol;
     }
     
-    /* override */ public function set source(value:Object):void
+    override public function set source(value:Object):void
     {
-        /* if (_sourceCol)
+        if (_sourceCol)
             _sourceCol.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
         
         if (!value)
@@ -431,13 +440,13 @@ public class GroupingCollection2
         _sourceCol = getCollection(value);
         
         if(_sourceCol is ICollectionView)
-            _sourceCol.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler); */
+            _sourceCol.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
     }
     
     /**
      * @private
      */ 
-    /* override public function getChildren(node:Object):Object
+    override public function getChildren(node:Object):Object
     {
         var children:Object = super.getChildren(node);
         
@@ -465,7 +474,7 @@ public class GroupingCollection2
         }
         
         return children;
-    } */
+    }
     
     /**
      *  Return <code>super.source</code>, if the <code>grouping</code> property is set, 
@@ -478,11 +487,11 @@ public class GroupingCollection2
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.3
      */
-    /* override public function getRoot():Object
+    override public function getRoot():Object
     {
         return super.source;
     }
-     */
+    
     //--------------------------------------------------------------------------
     //
     //  Methods
@@ -499,7 +508,9 @@ public class GroupingCollection2
      */
     public function refresh(async:Boolean = false, dispatchCollectionEvents:Boolean = false):Boolean
     {
-       /*  this.async = async;
+        if (!async && _sourceCol == null)
+            async = true;
+        this.async = async;
         this.dispatchCollectionEvents = async ? true : dispatchCollectionEvents;
         
         var resetEvent:CollectionEvent;
@@ -532,7 +543,8 @@ public class GroupingCollection2
         parentMap = {};
         
         // reset the object summary map
-        objectSummaryMap = new Dictionary(false);
+        //objectSummaryMap = new Dictionary(false);
+        objectSummaryMap = {};
         
         // reset the summaryTracker
         summariesTracker = null;
@@ -540,13 +552,20 @@ public class GroupingCollection2
         // check if any summary is specified
         summaryPresent = false;
         prepareSummaryFields();
-        */     
+        
         var grouped:Boolean;
-        /*if(source && grouping)
+        if(source && grouping)
         {
             grouped = makeGroupedCollection();
         }
-        */
+        else if (async)
+        {
+            timer = new Timer(1);
+            timer.addEventListener(Timer.TIMER, timerHandler);
+            timer.start();
+        }
+
+       
         return grouped; 
     }
     
@@ -558,15 +577,17 @@ public class GroupingCollection2
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.3
      */
-    /* public function cancelRefresh():void
+    public function cancelRefresh():void
     {
+        /*
         if (timer)
         {
             timer.stop();
             timer = null;
             cleanUp();
         }
-    } */
+        */
+    }
     
     /**
      *  @private
@@ -574,7 +595,7 @@ public class GroupingCollection2
      *  check for the existing groups if they can accomodate the item
      *  otherwise create new group and place the item.
      */  
-    /* private function addItem(node:Object, depth:int = 0):void
+    private function addItem(node:Object, depth:int = 0):void
     {   
         var coll:ICollectionView = super.source as ICollectionView;
         var parent:Object = null;
@@ -629,7 +650,7 @@ public class GroupingCollection2
             updateSummary(node);
         }
         
-    } */
+    }
     
     /**
      *  @private
@@ -637,7 +658,7 @@ public class GroupingCollection2
      *  check for existence of the groups for an item in the collection
      *  and return all the parent of that item.
      */  
-   /*  private function checkForParentExistence(coll:ICollectionView, node:Object, depth:int):Object
+    private function checkForParentExistence(coll:ICollectionView, node:Object, depth:int):Object
     {
         var cursor:IViewCursor = coll.createCursor();
         
@@ -656,7 +677,7 @@ public class GroupingCollection2
         }
         
         return null;
-    } */
+    }
     
     /**
      *  @private
@@ -664,7 +685,7 @@ public class GroupingCollection2
      *  creating the group for the item in the collection
      *  and placing it there.
      */  
-   /*  private function createGroupsAndInsertItem(coll:ICollectionView, node:Object, depth:int = 0):void
+    private function createGroupsAndInsertItem(coll:ICollectionView, node:Object, depth:int = 0):void
     {
         var parent:Object;
         var n:int = grouping.fields.length;
@@ -710,20 +731,22 @@ public class GroupingCollection2
                 }
             }
         }
-    } */
+    }
     
     /**
      * @private
      * 
      * returns the collection view of the given object
      */ 
-    /* private function getCollection(value:Object):ICollectionView
+    private function getCollection(value:Object):ICollectionView
     {
         // handle strings and xml
         if (typeof(value)=="string")
             value = new XML(value);
+        /*
         else if (value is XMLNode)
             value = new XML(XMLNode(value).toString());
+        */
         else if (value is XMLList)
             value = new XMLListCollection(value as XMLList);
         
@@ -755,13 +778,13 @@ public class GroupingCollection2
             return new ArrayCollection();
         }
     }
-     */
+    
     /**
      *  @private
      *  get the data label from user specified function.
      *  otherwise get the label from the data.
      */ 
-   /*  private function getDataLabel(data:Object,field:GroupingField):String
+    private function getDataLabel(data:Object,field:GroupingField):String
     {
         if (field.groupingFunction != null)
             return field.groupingFunction(data, field);
@@ -769,7 +792,7 @@ public class GroupingCollection2
         // should we create a defaultGroupLabelValue property
         return data.hasOwnProperty(field.name) ? data[field.name] : "Not Available";
     }
-     */
+    
     /**
      *  Returns the parent of a node.  
      *  The parent of a top-level node is <code>null</code>.
@@ -785,31 +808,31 @@ public class GroupingCollection2
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.3
      */
-    /* protected function getParent(node:Object):*
+    protected function getParent(node:Object):*
     {
         var uid:String = UIDUtil.getUID(node);
         if (parentMap.hasOwnProperty(uid))
             return parentMap[uid];
             
         return undefined;
-    } */
+    }
     
     /**
      *  @private
      *  Generate the root level summaries
      */
-   /*  private function generateRootSummaries(flatData:Boolean = false):void
+    private function generateRootSummaries(flatData:Boolean = false):void
     {
         var coll:ICollectionView = super.source as ICollectionView;
         
         getSummaries(coll, -1);
-    } */
+    }
     
     /**
      *  @private
      *  Calculate summaries for a node.
      */
-    /* private function getSummariesForRow(node:Object, collection:ICollectionView, depth:int):void
+    private function getSummariesForRow(node:Object, collection:ICollectionView, depth:int):void
     {
         // calculate the summary at the last level
         var hd:HierarchicalData = new HierarchicalData(collection);
@@ -822,7 +845,8 @@ public class GroupingCollection2
         var i:int = 0;
         
         var defaultSummaryCalculator:DefaultSummaryCalculator = new DefaultSummaryCalculator();
-        var summaryMap:Dictionary = new Dictionary(false);
+        //var summaryMap:Dictionary = new Dictionary(false);
+        var summaryMap:Object = {};
         var summaryField:SummaryField2;
         var summaryCalculator:ISummaryCalculator;
         
@@ -872,51 +896,51 @@ public class GroupingCollection2
             
             populateSummary(node, summaryField, summaryMap[summaryField], summary);
         }
-    } */
+    }
     
     /**
      *  @private
      *  Store the summary in a dictionary for later use.
      */
-   /*  private function populateSummary(node:Object, summaryField:SummaryField2, summaryObject:Object, summary:Number):void
+    private function populateSummary(node:Object, summaryField:SummaryField2, summaryObject:Object, summary:Number):void
     {
         var op:String = summaryField.summaryOperation.toString();
         
         if (summariesTracker == null)
-            summariesTracker = new Dictionary(false);
+            summariesTracker = {}; // new Dictionary(false);
         
-        if (summariesTracker[node] == undefined)
-            summariesTracker[node] = new Dictionary(false);
-        if (summariesTracker[node][op] == undefined)
-            summariesTracker[node][op] = new Dictionary(false);
-        if (summariesTracker[node][op][summaryField.dataField] == undefined)
-            summariesTracker[node][op][summaryField.dataField] = new Dictionary(false);
+        if (summariesTracker[UIDUtil.getUID(node)] == undefined)
+            summariesTracker[UIDUtil.getUID(node)] = {}; // new Dictionary(false);
+        if (summariesTracker[UIDUtil.getUID(node)][op] == undefined)
+            summariesTracker[UIDUtil.getUID(node)][op] = {}; // new Dictionary(false);
+        if (summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] == undefined)
+            summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] = {}; // new Dictionary(false);
         
-        summariesTracker[node][op][summaryField.dataField] = {summaryObject:summaryObject, value:summary};
+        summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] = {summaryObject:summaryObject, value:summary};
     }
-     */
+    
     /**
      *  @private
      *  Get the summary from the dictionary 
      */
-    /* private function getSummary(node:Object, summaryField:SummaryField2):Object
+    private function getSummary(node:Object, summaryField:SummaryField2):Object
     {
         var op:String = summaryField.summaryOperation.toString();
         
         if (summariesTracker == null || 
-            summariesTracker[node] == undefined ||
-            summariesTracker[node][op] == undefined ||
-            summariesTracker[node][op][summaryField.dataField] == undefined)
+            summariesTracker[UIDUtil.getUID(node)] == undefined ||
+            summariesTracker[UIDUtil.getUID(node)][op] == undefined ||
+            summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField] == undefined)
         return null;
         
-        return summariesTracker[node][op][summaryField.dataField];
-    } */
+        return summariesTracker[UIDUtil.getUID(node)][op][summaryField.dataField];
+    }
     
     /**
      *  @private
      *  Calcualte and insert summary for a node
      */
-   /*  private function getSummaries(node:Object, depth:int):void
+    private function getSummaries(node:Object, depth:int):void
     {
         if (depth > grouping.fields.length - 1)
             return;
@@ -941,7 +965,7 @@ public class GroupingCollection2
             
             var defaultSummaryCalculator:DefaultSummaryCalculator = new DefaultSummaryCalculator();
             var summaryField:SummaryField2;
-            var summaryMap:Dictionary = new Dictionary(false);
+            var summaryMap:Object = {} // Dictionary = new Dictionary(false);
             var summaryCalculator:ISummaryCalculator;
             
             while (!cursor.afterLast)
@@ -1005,8 +1029,8 @@ public class GroupingCollection2
         else
             insertSummaries(node, depth);
     }
-     */
-    /* private function insertSummaries(node:Object, depth:int, rootSummary:Boolean = false):void
+    
+    private function insertSummaries(node:Object, depth:int, rootSummary:Boolean = false):void
     {
         var summaries:Array = this.summaries;
         
@@ -1044,10 +1068,10 @@ public class GroupingCollection2
                 }
             }
             // populate the object summary map
-            if (objectSummaryMap[node] == undefined)
-                objectSummaryMap[node] = [];
+            if (objectSummaryMap[UIDUtil.getUID(node)] == undefined)
+                objectSummaryMap[UIDUtil.getUID(node)] = [];
             
-            objectSummaryMap[node].push(summaryObj[i]);
+            objectSummaryMap[UIDUtil.getUID(node)].push(summaryObj[i]);
         }
         
         // insert the summary
@@ -1057,14 +1081,14 @@ public class GroupingCollection2
             insertSummary(node, summaryObj, summaries);
         
     }
-     */
+    
     /**
      *  @private
      * 
      *  initialize the variables
      * 
      */
-   /*  private function initialize():void
+    private function initialize():void
     {
         currentData = null;
         currentGroups = [];
@@ -1073,7 +1097,7 @@ public class GroupingCollection2
         currentIndices = [] ;
         
         childrenArray = null;
-    } */
+    }
     
     /**
      *  @private
@@ -1081,7 +1105,7 @@ public class GroupingCollection2
      *  insert the root summaries
      * 
      */  
-    /* private function insertRootSummary(summaryObj:Array):void
+    private function insertRootSummary(summaryObj:Array):void
     {
         var coll:ICollectionView = super.source as ICollectionView;
         
@@ -1103,14 +1127,14 @@ public class GroupingCollection2
                 IList(coll).addItem(summaryObj[i]);
             }
         }
-    } */
+    }
     
     /**
      *  @private
      *  
      *  inserts the summaries in the children collection of the parent node
      */  
-    /* private function insertSummary(parent:Object, summaryObj:Array, summaries:Array):void
+    private function insertSummary(parent:Object, summaryObj:Array, summaries:Array):void
     {
         var n:int = summaries.length;
         for (var i:int = 0; i < n; i++)
@@ -1137,12 +1161,12 @@ public class GroupingCollection2
                     children.addItem(summaryObj[i]);
             }
         }
-    } */
+    }
     
     /**
      *  @private
      */
-    /* private function makeGroupedCollection():Boolean
+    private function makeGroupedCollection():Boolean
     {
         // save the sorting information of the source collection
         // sort the source collection and create a grouped collection
@@ -1176,21 +1200,20 @@ public class GroupingCollection2
         if (async)
         {
             timer = new Timer(1);
-            timer.addEventListener(TimerEvent.TIMER, timerHandler);
+            timer.addEventListener(Timer.TIMER, timerHandler);
             timer.start();
         }
         else
         {
             return buildGroups();
         }
-        
         return true;
-    } */
+    }
     
     /**
      *  @private
      */
-    /* private function timerHandler(event:TimerEvent):void
+    private function timerHandler(event:Event):void
     {
         if (buildGroups())
         {
@@ -1199,13 +1222,13 @@ public class GroupingCollection2
         }
         
     }
-     */
+    
     /**
      *  @private
      *  
      *  Start building the groups
      */
-    /* private function buildGroups():Boolean
+    private function buildGroups():Boolean
     {
         if (!prepared)
         {
@@ -1214,7 +1237,7 @@ public class GroupingCollection2
             // initialize the variables
             initialize();
         
-            if ((source as ICollectionView).length == 0)
+            if (source == null || (source as ICollectionView).length == 0)
                 return false;
             
             if (dispatchCollectionEvents)
@@ -1321,13 +1344,14 @@ public class GroupingCollection2
                 }
             }
 
-            try
-            {
+            //try
+            //{
                 flatCursor.moveNext();
                 currentPosition = flatCursor.bookmark;
                 // return in case of async refresh
                 if (async)
                     return false;
+                /*
             }
             catch (e:ItemPendingError)
             {
@@ -1341,7 +1365,7 @@ public class GroupingCollection2
                     {
                         //no-op
                     }));
-            }
+            }*/
         }
         if (currentPosition == CursorBookmark.LAST)
         {
@@ -1383,12 +1407,12 @@ public class GroupingCollection2
         }
         return true;
     }
-     */
+    
     /**
      *  @private
      *  Get all the summary fields and store them in an Array
      */
-    /* private function prepareSummaryFields():void
+    private function prepareSummaryFields():void
     {
         summaryFields = [];
         
@@ -1435,14 +1459,14 @@ public class GroupingCollection2
             }
         }
     }
-     */
+
     /**
      *  @private
      *  
      *  Restores the original sort in the source collection
      *  and clean up all the variables.
      */
-    /* private function cleanUp():void
+    private function cleanUp():void
     {
         source.sort = oldSort;
         source.refresh();
@@ -1452,13 +1476,13 @@ public class GroupingCollection2
         oldSort = null;
         flatCursor = null;
     }
-     */
+    
     /**
      *  @private
      *  
      *  It will call the function func on each node of the collection.
      */  
-    /* private function applyFunctionForParentNodes(coll:ICollectionView, func:Function, depth:int = 0):void
+    private function applyFunctionForParentNodes(coll:ICollectionView, func:Function, depth:int = 0):void
     {   
         if (coll.length > 0)
         {
@@ -1490,7 +1514,7 @@ public class GroupingCollection2
                 masterCursor.moveNext();
             }
         }
-    } */
+    }
     
     /**
      *  @private
@@ -1499,7 +1523,7 @@ public class GroupingCollection2
      *  generates them again.
      * 
      */  
-    /* private function regenerateRootSummaries():void
+    private function regenerateRootSummaries():void
     {
         if(!summaries)
             return;
@@ -1508,7 +1532,7 @@ public class GroupingCollection2
         if (!grouping)
             coll = coll.createCursor().current as ICollectionView;
         
-        var summaryObj:Array = objectSummaryMap[coll];
+        var summaryObj:Array = objectSummaryMap[UIDUtil.getUID(coll)];
         
         // for the first time there will be no summaries
         // so, this check will fail and root summaries wont
@@ -1527,22 +1551,22 @@ public class GroupingCollection2
                 IList(coll).removeItemAt(index);
         }
         
-        delete objectSummaryMap[coll];
+        delete objectSummaryMap[UIDUtil.getUID(coll)];
         
         // generate the root level summaries
         generateRootSummaries(grouping == null);
     }
-     */
+
     /**
      *  @private
      *  
      *  removes all the summaries from the collection
      */  
-    /* private function removeAllSummaries():void
+    private function removeAllSummaries():void
     {
         // call generate summary with remove summary function as parameter
         applyFunctionForParentNodes(super.source as ICollectionView, removeSummary);
-    } */
+    }
     
     /**
      *  @private
@@ -1551,7 +1575,7 @@ public class GroupingCollection2
      *  return the parents of the node going one level up each time.
      * 
      */  
-    /* private function removeItemAndSummaries(coll:ICollectionView, node:Object, removeItem:Boolean = false):Array
+    private function removeItemAndSummaries(coll:ICollectionView, node:Object, removeItem:Boolean = false):Array
     {
         var parentNodes:Array = [];
         var parent:Object = getParent(node);
@@ -1580,9 +1604,9 @@ public class GroupingCollection2
                             }
                         }
                         
-                        if (objectSummaryMap[parent])
+                        if (objectSummaryMap[UIDUtil.getUID(parent)])
                         {
-                            var temp:Array = objectSummaryMap[parent];
+                            var temp:Array = objectSummaryMap[UIDUtil.getUID(parent)];
                             var n:int = temp.length;
                             for (var i:int = 0; i < n; i++)
                             {
@@ -1594,11 +1618,11 @@ public class GroupingCollection2
                                 }
                             }
                             // delete summary from parent summary map
-                            delete objectSummaryMap[parent];
+                            delete objectSummaryMap[UIDUtil.getUID(parent)];
                         }
                         
-                        if (summariesTracker != null && summariesTracker[parent])
-                            summariesTracker[parent] = new Dictionary(false);
+                        if (summariesTracker != null && summariesTracker[UIDUtil.getUID(parent)])
+                            summariesTracker[UIDUtil.getUID(parent)] = {}; // new Dictionary(false);
                         
                         if (removeItem)
                         {
@@ -1639,7 +1663,7 @@ public class GroupingCollection2
             }
         }
         return null;
-    } */
+    }
     
     /**
      *  @private
@@ -1647,7 +1671,7 @@ public class GroupingCollection2
      *  removes the summaries from the parent node and all its children.
      * 
      */  
-    /* private function removeSummary(parent:Object, depth:int):void
+    private function removeSummary(parent:Object, depth:int):void
     {   
         var children:ICollectionView = this.getChildren(parent) as ArrayCollection;
         
@@ -1656,18 +1680,18 @@ public class GroupingCollection2
         
         // remove summaries from the parents of the current object
         removeItemAndSummaries(super.source as ICollectionView, children.createCursor().current);
-    } */
+    }
     
     /**
      *  @private
      *  
      *  updates the parent map
      */ 
-    /* private function updateParentMap(parent:Object, node:Object):void
+    private function updateParentMap(parent:Object, node:Object):void
     {
         var uid:String = UIDUtil.getUID(node);
         parentMap[uid] = parent;
-    } */
+    }
     
     /**
      *  @private
@@ -1676,7 +1700,7 @@ public class GroupingCollection2
      *  and its parents.
      *  optionally removes the item from the group also.
      */  
-    /* private function updateSummary(node:Object, removeItem:Boolean = false):void
+    private function updateSummary(node:Object, removeItem:Boolean = false):void
     {       
         var coll:ICollectionView = super.source as ICollectionView;
         
@@ -1692,7 +1716,7 @@ public class GroupingCollection2
                 getSummaries(parentNodes[i], i);
             }
         }
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -1706,7 +1730,7 @@ public class GroupingCollection2
      *  collection change handler.
      * 
      */  
-    /* private function collectionChangeHandler(event:CollectionEvent):void
+    private function collectionChangeHandler(event:CollectionEvent):void
     {
         if (!grouping)
             return;
@@ -1787,7 +1811,7 @@ public class GroupingCollection2
         
         // generate the root summaries
         regenerateRootSummaries();
-    } */
+    }
 }
 
 }

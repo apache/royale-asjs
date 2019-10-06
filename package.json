@@ -1,6 +1,6 @@
 {
   "name": "apache-royale-swf",
-  "version": "0.9.4",
+  "version": "0.9.6",
   "description": "Apache Royale (formerly FlexJS) with SWF support",
   "keywords": [
     "royale",
@@ -23,10 +23,8 @@
     "merge-dirs": "^0.2.1",
     "mkdirp": "^0.5.1",
     "prompt": "^0.2.14",
-    "replace": "^0.3.0",
     "request": "^2.67.0",
-    "unzip": "^0.1.11",
-    "wrench": "^1.5.8"
+    "unzipper": "0.10.4"
   },
   "scripts": {
     "postinstall": "node npm/dependencies/download_dependencies.js"
@@ -40,7 +38,7 @@
     "externc": "./royale-asjs/js/bin/externcnpm"
   },
   "org_apache_royale": {
-    "flash_player_global_url": "http://download.macromedia.com/get/flashplayer/updaters/25/",
+    "flash_player_global_url": "http://fpdownload.macromedia.com/get/flashplayer/installers/archive/playerglobal/",
     "flash_player_global_file_name": "playerglobal25_0.swc",
     "adobe_air_url": "http://airdownload.adobe.com/air/win/download/25.0/",
     "adobe_air_file_name": "AdobeAIRSDK.zip",

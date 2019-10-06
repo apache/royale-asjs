@@ -21,7 +21,7 @@
 var request = require('request');
 var fs = require('fs');
 var events = require('events');
-var unzip = require('unzip');
+var unzip = require('unzipper');
 var mkdirp = require('mkdirp');
 var pjson = require('../package');
 var prompt = require('prompt');
@@ -34,7 +34,7 @@ var FlatUI = module.exports = Object.create(events.EventEmitter.prototype);
 var flatUIURL = pjson.org_apache_royale.flatui_url;
 var fileNameFlatUI = pjson.org_apache_royale.flatui_file_name;
 var promptText =
-"Apache FlexJS includes an optional component set\n\
+"Apache Royale includes an optional component set\n\
 that uses fonts from designmodo.com.  The font\n\
 files are subject to and governed by the\n\
 Creative Commons Attribution-NonCommercial-NoDerivs 3.0\n\
@@ -88,7 +88,7 @@ function extract()
     var fontsDir = 'frameworks/fonts/';
     try
     {
-        mkdirp(constants.FLEXJS_FOLDER + fontsDir);
+        mkdirp(constants.ROYALE_FOLDER + fontsDir);
     }
     catch(e)
     {
@@ -100,19 +100,19 @@ function extract()
         .on('entry', function (entry) {
             var fileName = entry.path;
             if (fileName === 'Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.eot') {
-                entry.pipe(fs.createWriteStream(constants.FLEXJS_FOLDER + fontsDir + 'flat-ui-icons-regular.eot'));
+                entry.pipe(fs.createWriteStream(constants.ROYALE_FOLDER + fontsDir + 'flat-ui-icons-regular.eot'));
             }
             else if (fileName === 'Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.ttf') {
-                entry.pipe(fs.createWriteStream(constants.FLEXJS_FOLDER + fontsDir + 'flat-ui-icons-regular.ttf'));
+                entry.pipe(fs.createWriteStream(constants.ROYALE_FOLDER + fontsDir + 'flat-ui-icons-regular.ttf'));
             }
             else if (fileName === 'Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.svg') {
-                entry.pipe(fs.createWriteStream(constants.FLEXJS_FOLDER + fontsDir + 'flat-ui-icons-regular.svg'));
+                entry.pipe(fs.createWriteStream(constants.ROYALE_FOLDER + fontsDir + 'flat-ui-icons-regular.svg'));
             }
             else if (fileName === 'Flat-UI-2.2.2/fonts/glyphicons/flat-ui-icons-regular.woff') {
-                entry.pipe(fs.createWriteStream(constants.FLEXJS_FOLDER + fontsDir + 'flat-ui-icons-regular.woff'));
+                entry.pipe(fs.createWriteStream(constants.ROYALE_FOLDER + fontsDir + 'flat-ui-icons-regular.woff'));
             }
             else if (fileName === 'Flat-UI-2.2.2/README.md') {
-                entry.pipe(fs.createWriteStream(constants.FLEXJS_FOLDER + fontsDir + 'README.md'));
+                entry.pipe(fs.createWriteStream(constants.ROYALE_FOLDER + fontsDir + 'README.md'));
             }
             else {
                 entry.autodrain();

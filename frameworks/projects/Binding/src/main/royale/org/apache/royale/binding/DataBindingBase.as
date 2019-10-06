@@ -27,7 +27,7 @@ package org.apache.royale.binding
     /**
      *  The DataBindingBase class is the base class for custom data binding
      *  implementations that can be cross-compiled.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -37,7 +37,7 @@ package org.apache.royale.binding
 	{
         /**
          *  Constructor.
-         *  
+         *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
@@ -49,7 +49,7 @@ package org.apache.royale.binding
 
 		protected var _strand:IStrand;
 
-        protected var deferredBindings:Object = {};
+        protected var deferredBindings:Object;
 
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -96,14 +96,42 @@ package org.apache.royale.binding
                 }
                 else
                 {
+                    if (!deferredBindings) {
+						deferredBindings = {};
+						IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
+                    }
                     deferredBindings[bindingObject.destination[0]] = binding;
-                    IEventDispatcher(_strand).addEventListener("valueChange", deferredBindingsHandler);
                 }
             }
+        }
+        
+        private function watcherChildrenRelevantToIndex(children:Object, index:int):Boolean{
+            var watchers:Array = children ? children.watchers : null;
+			var hasValidWatcherChild:Boolean = false;
+            if (watchers) {
+                var l:uint = watchers.length;
+                while (l--) {
+					var watcher:Object = watchers[l];
+					if (typeof(watcher.bindings) == "number")
+					{
+						hasValidWatcherChild = (watcher.bindings == index);
+					}
+					else
+					{
+						hasValidWatcherChild = (watcher.bindings.indexOf(index) != -1);
+					}
+                    if (!hasValidWatcherChild && watcher.children){
+						hasValidWatcherChild = watcherChildrenRelevantToIndex(watcher.children, index);
+                    }
+                    if (hasValidWatcherChild) break;
+                }
+            }
+            return hasValidWatcherChild;
         }
 
         /**
          * @royaleignorecoercion Function
+         * @royaleignorecoercion String
          */
         protected function setupWatchers(gb:GenericBinding, index:int, watchers:Array, parentWatcher:WatcherBase):void
         {
@@ -125,7 +153,8 @@ package org.apache.royale.binding
 
                 if (isValidWatcher)
                 {
-                    var type:String = watcher.type;
+                    var hasWatcherChildren:Boolean = watcherChildrenRelevantToIndex(watcher.children, index);
+                    var type:String = watcher.type as String;
                     var parentObj:Object = _strand;
                     switch (type)
                     {
@@ -140,7 +169,7 @@ package org.apache.royale.binding
                         case "property":
                         {
                             var getterFunction:Function = watcher.getterFunction;
-                            if (typeof(gb.source) === "function" && watcher.children == null)
+                            if (typeof(gb.source) === "function" && !hasWatcherChildren)
                             {
                                getterFunction = gb.source as Function;
                             }
@@ -164,7 +193,7 @@ package org.apache.royale.binding
                                 parentWatcher.addChild(pw);
                             }
 
-                            if (watcher.children == null)
+                            if (!hasWatcherChildren)
                             {
                                 pw.addBinding(gb);
                             }
@@ -174,7 +203,7 @@ package org.apache.royale.binding
                         }
                     }
 
-                    if (watcher.children)
+                    if (hasWatcherChildren)
                     {
                         setupWatchers(gb, index, watcher.children.watchers, watcher.watcher);
                     }
@@ -187,11 +216,11 @@ package org.apache.royale.binding
                 // so just force an update via parentWatcher (if it is set, null if not)
                 if (parentWatcher)
                 {
-                    gb.valueChanged(parentWatcher.value);
+                    gb.valueChanged(parentWatcher.value, true);
                 }
                 else
                 {
-                    gb.valueChanged(null);
+                    gb.valueChanged(null, true);
                 }
             }
         }

@@ -57,8 +57,8 @@
     <property name="doc.rat.report" value="${basedir}/rat-report-doc.txt"/>
 	<property name="apache.rat.jar" value="apache-rat-0.11.jar" />
 	<property name="apache.rat.tasks.jar" value="apache-rat-tasks-0.11.jar" />
-	<property name="apache.rat.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
-    <property name="apache.rat.tasks.url" value="http://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
+	<property name="apache.rat.url" value="https://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat/0.11" />
+    <property name="apache.rat.tasks.url" value="https://search.maven.org/remotecontent?filepath=org/apache/rat/apache-rat-tasks/0.11" />
 	   
     <property file="${basedir}/approveroyale.properties"/>
     
@@ -88,7 +88,7 @@
     <fail message="The ANT_HOME environment variable is not set."
         unless="env.ANT_HOME"/>
 		
-        <target name="check-flash" if="use-flash">
+    <target name="check-flash" if="use-flash">
         <available file="${env.AIR_HOME}"
             type="dir" 
             property="AIR_HOME" value="${env.AIR_HOME}" />
@@ -475,6 +475,7 @@
                 <exclude name="royale-asjs/frameworks/libs/HTML5.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Icons.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/jQuery.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/Crux.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Jewel.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/JewelTheme.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Language.swc"/>
@@ -484,10 +485,10 @@
                 <exclude name="royale-asjs/frameworks/libs/Network.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Reflection.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/RoyaleSite.swc"/>
+                <exclude name="royale-asjs/frameworks/libs/RoyaleUnit.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/SparkRoyale.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Storage.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/TLF.swc"/>
-                <exclude name="royale-asjs/frameworks/libs/Testing.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/Text.swc"/>
                 <exclude name="royale-asjs/frameworks/libs/XML.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/AceJS.swc"/>
@@ -509,6 +510,7 @@
                 <exclude name="royale-asjs/frameworks/js/libs/HTML5JS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/IconsJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/JewelJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/CruxJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/jQueryJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/LanguageJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/MaterialDesignLiteJS.swc"/>
@@ -517,10 +519,10 @@
                 <exclude name="royale-asjs/frameworks/js/libs/NetworkJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/ReflectionJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/RoyaleSiteJS.swc"/>
+                <exclude name="royale-asjs/frameworks/js/libs/RoyaleUnitJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/SparkRoyaleJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/StorageJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TLFJS.swc"/>
-                <exclude name="royale-asjs/frameworks/js/libs/TestingJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/TextJS.swc"/>
                 <exclude name="royale-asjs/frameworks/js/libs/XMLJS.swc"/>
                 <exclude name="royale-asjs/frameworks/themes/Halo/Halo.swc"/>
@@ -555,6 +557,7 @@
                 <exclude name="royale-asjs/js/lib/jsc.jar"/>
                 <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
                 <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
+                <exclude name="royale-asjs/js/lib/dom4j-LICENSE.txt"/>
                 <exclude name="royale-asjs/lib/adt.jar"/>
                 <exclude name="royale-asjs/lib/compc.jar"/>
                 <exclude name="royale-asjs/lib/compiler-asc.jar"/>
@@ -775,7 +778,19 @@
         <antcall target="build_maven" />
     </target>
 
-    <target name="build_maven" >
+    <target name="build_maven">
+        <condition property="compiler_mvn_profiles" value="test-using-swf,main"
+            else="main">
+            <isset property="env.AIR_HOME" />
+        </condition>
+        <condition property="asjs_mvn_profiles" value="generate-swcs-for-swf,generate-swf,main"
+            else="main">
+            <isset property="env.AIR_HOME" />
+        </condition>
+        <condition property="asjs_mvn_defines" value="-Dgenerate.swf.swcs=true"
+            else="-Ddummy=true">
+            <isset property="env.AIR_HOME" />
+        </condition>
         <echo>Path is ${env.Path}</echo>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="-P" />
@@ -785,6 +800,8 @@
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
             <arg value="clean" />
+            <arg value="-P" />
+            <arg value="${compiler_mvn_profiles}" />
             <arg value="install" />
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-typedefs" failonerror="true" >
@@ -792,7 +809,10 @@
             <arg value="install" />
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" >
+            <arg value="${asjs_mvn_defines}" />
             <arg value="clean" />
+            <arg value="-P" />
+            <arg value="${asjs_mvn_profiles}" />
             <arg value="install" />
         </exec>
     </target>

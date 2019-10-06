@@ -17,18 +17,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
-
     COMPILE::JS
     {
-        import goog.events;
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import goog.events;
+
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 
     /**
-     *  The TextInput class implements the basic control for
-     *  single-line text input.
+     *  The TextInput implements the jewel control for
+     *  single-line text field. It dispatches a change event
+     *  when the user input text.
      *
      *  @toplevel
      *  @langversion 3.0
@@ -55,16 +56,11 @@ package org.apache.royale.jewel
         
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         * @royaleignorecoercion HTMLDivElement
          * @royaleignorecoercion HTMLInputElement
-         * @royaleignorecoercion HTMLLabelElement
-         * @royaleignorecoercion Text
          */
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-            div = document.createElement('div') as HTMLDivElement;
-            
             input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'text');
             
@@ -72,21 +68,9 @@ package org.apache.royale.jewel
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
             
-            //label = document.createElement('label') as HTMLLabelElement;
-            //label.className = "jewel-textinput-label";
-
-            //textNode = document.createTextNode('') as Text;
-            //label.appendChild(textNode);
-            
-            div.appendChild(input);
-            //div.appendChild(label);
-
-            positioner = div as WrappedHTMLElement;
-            //(label as WrappedHTMLElement).royale_wrapper = this;
-            positioner.royale_wrapper = this;
+            positioner = document.createElement('div') as WrappedHTMLElement;
             
             return element;
         }
-
 	}
 }

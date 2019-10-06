@@ -75,7 +75,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			_strand = value;
 			IEventDispatcher(value).addEventListener("initComplete", initComplete);
 		}
-		
+
 		/**
 		 *  finish setup
 		 *
@@ -87,16 +87,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 		protected function initComplete(event:Event):void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
-			
+
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			labelField = _dataProviderModel.labelField;
 
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
+			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
 			// invoke now in case "dataProviderChanged" has already been dispatched.
 			dataProviderChangeHandler(null);
 		}
-		
+
 		private var dp:IEventDispatcher;
 		/**
 		 * @private
@@ -110,7 +110,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
-			
+
 			// listen for individual items being added in the future.
 			dp.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
 		}
@@ -124,6 +124,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
@@ -131,13 +132,18 @@ package org.apache.royale.jewel.beads.itemRenderers
             var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
 
             fillRenderer(event.index, event.item, ir, presentationModel);
-			
+
+
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
 				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
+			}
+            //adjust the model's selectedIndex, if applicable
+			if (event.index <= ISelectionModel(_dataProviderModel).selectedIndex) {
+                ISelectionModel(_dataProviderModel).selectedIndex = ISelectionModel(_dataProviderModel).selectedIndex + 1;
 			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));

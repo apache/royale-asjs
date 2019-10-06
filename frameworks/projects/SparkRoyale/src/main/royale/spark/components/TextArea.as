@@ -337,6 +337,7 @@ package spark.components
 		public function TextArea()
 		{
 			super();
+            typeNames += " TextArea";
 		}
 		
 		//--------------------------------------------------------------------------
@@ -375,6 +376,8 @@ package spark.components
 		 *  @playerversion Flash 10
 		 *  @playerversion AIR 1.5
 		 *  @productversion Royale 0.9.4
+         * 
+         *  @royalesuppresspublicvarwarning
 		 */
 		public var scroller:Scroller;
 		

@@ -27,20 +27,20 @@ package org.apache.royale.core
         import org.apache.royale.events.utils.MouseEventConverter;
     }
 	
+    import org.apache.royale.core.IId;
+    import org.apache.royale.core.IStyleObject;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+
     COMPILE::JS
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
     }
 
-    import org.apache.royale.core.IId;
-    import org.apache.royale.events.Event;
-    import org.apache.royale.events.FocusEvent;
-    import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.ValueChangeEvent;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
-
-	
 	/**
 	 *  Set a different class for click events so that
 	 *  there aren't dependencies on the flash classes
@@ -409,7 +409,9 @@ package org.apache.royale.core
         COMPILE::JS
         public function get width():Number
         {
-            if(!isNaN(_explicitWidth))
+            if (!isNaN(_width))
+                return _width;
+            if (!isNaN(_explicitWidth))
                 return _explicitWidth;
             var pixels:Number;
             var strpixels:String = element.style.width as String;
@@ -503,7 +505,9 @@ package org.apache.royale.core
         COMPILE::JS
         public function get height():Number
         {
-            if(!isNaN(_explicitHeight))
+            if (!isNaN(_height))
+                return _height;
+            if (!isNaN(_explicitHeight))
                 return _explicitHeight;
             var pixels:Number;
             var strpixels:String = element.style.height as String;
@@ -877,7 +881,7 @@ package org.apache.royale.core
         public function set visible(value:Boolean):void
         {
             var oldValue:Boolean = positioner.style.display !== 'none';
-            if (value !== oldValue) 
+            if (Boolean(value) !== oldValue)
             {
                 if (!value) 
                 {
@@ -904,43 +908,6 @@ package org.apache.royale.core
         {
             return element.childNodes as Array;
         }
-        
-        COMPILE::SWF
-		private var _model:IBeadModel;
-
-        /**
-         *  An IBeadModel that serves as the data model for the component.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        COMPILE::SWF
-        public function get model():Object
-		{
-            if (_model == null)
-            {
-                // addbead will set _model
-                addBead(new (ValuesManager.valuesImpl.getValue(this, "iBeadModel")) as IBead);
-            }
-			return _model;
-		}
-
-        COMPILE::SWF
-        /**
-         * @private
-         * @royaleignorecoercion org.apache.royale.core.IBead
-         */
-        [Bindable("modelChanged")]
-		public function set model(value:Object):void
-		{
-			if (_model != value)
-			{
-				addBead(value as IBead);
-				dispatchEvent(new Event("modelChanged"));
-			}
-		}
 		
         private var _view:IBeadView;
         
@@ -1033,10 +1000,13 @@ package org.apache.royale.core
             {
                 if (value is String)
                 {
+                    // parse the string into a simple object that contains style properties
                     _style = ValuesManager.valuesImpl.parseStyles(value as String);
                 }
                 else
+                {
                     _style = value;
+                }
                 if (!isNaN(_y))
                     _style.top = _y;
                 if (!isNaN(_x))
@@ -1047,6 +1017,10 @@ package org.apache.royale.core
 						ValuesManager.valuesImpl.applyStyles(this, _style);
 				}
                 dispatchEvent(new Event("stylesChanged"));
+
+                // if the new style is an IStyleObject, set the reference back to us to get updates
+                var styleObject : IStyleObject = _style as IStyleObject;
+                if (styleObject) styleObject.object = this;
             }
         }
         
@@ -1150,8 +1124,6 @@ package org.apache.royale.core
          */
 		public var beads:Array;
 		
-        COMPILE::SWF
-		private var _beads:Vector.<IBead>;
         
         /**
          *  @copy org.apache.royale.core.IStrand#addBead()
@@ -1166,64 +1138,16 @@ package org.apache.royale.core
 		override public function addBead(bead:IBead):void
 		{
             var isView:Boolean;
-			if (!_beads)
-				_beads = new Vector.<IBead>;
-			_beads.push(bead);
-			if (bead is IBeadModel)
-				_model = bead as IBeadModel;
-            else if (bead is IBeadView)
-            {
-                _view = bead as IBeadView;
-                isView = true
-            }
-			bead.strand = this;
+			
+			super.addBead(bead);
+			if (this._model !== bead && bead is IBeadView) {
+				_view = bead as IBeadView;
+				isView = true
+			}
 			
 			if (isView) {
 				dispatchEvent(new Event("viewChanged"));
 			}
-		}
-		
-        /**
-         *  @copy org.apache.royale.core.IStrand#getBeadByType()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        COMPILE::SWF
-		public function getBeadByType(classOrInterface:Class):IBead
-		{
-			for each (var bead:IBead in _beads)
-			{
-				if (bead is classOrInterface)
-					return bead;
-			}
-			return null;
-		}
-		
-        /**
-         *  @copy org.apache.royale.core.IStrand#removeBead()
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        COMPILE::SWF
-		public function removeBead(value:IBead):IBead	
-		{
-			var n:int = _beads.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				var bead:IBead = _beads[i];
-				if (bead == value)
-				{
-					_beads.splice(i, 1);
-					return bead;
-				}
-			}
-			return null;
 		}
 		
         /**
@@ -1242,13 +1166,13 @@ package org.apache.royale.core
                 if (c is IUIBase)
                 {
                     if (c is IRenderedObject)
-                        $addChild(IRenderedObject(c).$displayObject);
+                        $sprite_addChild(IRenderedObject(c).$displayObject);
                     else
-                        $addChild(c as DisplayObject);                        
+                        $sprite_addChild(c as DisplayObject);                        
                     IUIBase(c).addedToParent();
                 }
                 else
-                    $addChild(c as DisplayObject);
+                    $sprite_addChild(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1273,13 +1197,13 @@ package org.apache.royale.core
                 if (c is IUIBase)
                 {
                     if (c is IRenderedObject)
-                        $addChildAt(IUIBase(c).$displayObject, index);
+                        $sprite_addChildAt(IUIBase(c).$displayObject, index);
                     else
-                        $addChildAt(c as DisplayObject, index);
+                        $sprite_addChildAt(c as DisplayObject, index);
                     IUIBase(c).addedToParent();
                 }
                 else
-                    $addChildAt(c as DisplayObject, index);
+                    $sprite_addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS
             {
@@ -1307,7 +1231,7 @@ package org.apache.royale.core
         {
             COMPILE::SWF
             {
-                return $getChildAt(index) as IChild;
+                return $sprite_getChildAt(index) as IChild;
             }
             COMPILE::JS
             {
@@ -1333,9 +1257,9 @@ package org.apache.royale.core
             COMPILE::SWF
             {
                 if (c is IRenderedObject)
-                    return $getChildIndex(IRenderedObject(c).$displayObject);
+                    return $sprite_getChildIndex(IRenderedObject(c).$displayObject);
                 else
-                    return $getChildIndex(c as DisplayObject);
+                    return $sprite_getChildIndex(c as DisplayObject);
             }
             COMPILE::JS
             {
@@ -1343,7 +1267,7 @@ package org.apache.royale.core
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
-                    if (children[i] === c.element)
+                    if (children[i] === c.positioner)
                         return i;
                 }
                 return -1;                
@@ -1364,13 +1288,13 @@ package org.apache.royale.core
             COMPILE::SWF
             {
                 if (c is IRenderedObject)
-                    $removeChild(IRenderedObject(c).$displayObject);
+                    $sprite_removeChild(IRenderedObject(c).$displayObject);
                 else
-                    $removeChild(c as DisplayObject);
+                    $sprite_removeChild(c as DisplayObject);
             }
             COMPILE::JS
             {
-                element.removeChild(c.element as HTMLElement);
+                element.removeChild(c.positioner as HTMLElement);
             }
         }
 		
@@ -1386,7 +1310,7 @@ package org.apache.royale.core
         {
             COMPILE::SWF
             {
-                return $numChildren;
+                return $sprite_numChildren;
             }
             COMPILE::JS
             {
@@ -1395,6 +1319,7 @@ package org.apache.royale.core
             }
         }
         
+        private var onceAdded:Boolean;
         /**
          *  The method called when added to a parent.  This is a good
          *  time to set up beads.
@@ -1408,6 +1333,9 @@ package org.apache.royale.core
          */
         public function addedToParent():void
         {
+            if(onceAdded)
+                return;
+            onceAdded = true;
             var c:Class;
 			
             COMPILE::JS
@@ -1580,21 +1508,11 @@ package org.apache.royale.core
             return alpha;
         }
         
+        [Inspectable(category="General", defaultValue="0.5", minValue="0", maxValue="1.0")]
         COMPILE::JS
         public function set alpha(value:Number):void
         {
             positioner.style.opacity = value;
-        }
-
-        /**
-         * @param value The event containing new style properties.
-         */
-        COMPILE::JS
-        protected function styleChangeHandler(value:ValueChangeEvent):void
-        {
-            var newStyle:Object = {};
-            newStyle[value.propertyName] = value.newValue;
-            ValuesManager.valuesImpl.applyStyles(this, newStyle);
         }
 
         /**
@@ -1640,52 +1558,52 @@ package org.apache.royale.core
         }
         
         COMPILE::SWF
-        public function $addChild(child:DisplayObject):DisplayObject
+        public function $sprite_addChild(child:DisplayObject):DisplayObject
         {
             return super.addChild(child);
         }
         COMPILE::SWF
-        public function $addChildAt(child:DisplayObject, index:int):DisplayObject
+        public function $sprite_addChildAt(child:DisplayObject, index:int):DisplayObject
         {
             return super.addChildAt(child, index);
         }
         COMPILE::SWF
-        public function $removeChildAt(index:int):DisplayObject
+        public function $sprite_removeChildAt(index:int):DisplayObject
         {
             return super.removeChildAt(index);
         }
         COMPILE::SWF
-        public function $removeChild(child:DisplayObject):DisplayObject
+        public function $sprite_removeChild(child:DisplayObject):DisplayObject
         {
             return super.removeChild(child);
         }
         COMPILE::SWF
-        public function $getChildAt(index:int):DisplayObject
+        public function $sprite_getChildAt(index:int):DisplayObject
         {
             return super.getChildAt(index);
         }
         COMPILE::SWF
-        public function $setChildIndex(index:int):void
+        public function $sprite_setChildIndex(index:int):void
         {
             super.setChildIndex(index);
         }
         COMPILE::SWF
-        public function $getChildIndex(child:DisplayObject):int
+        public function $sprite_getChildIndex(child:DisplayObject):int
         {
             return super.getChildIndex(child);
         }
         COMPILE::SWF
-        public function $getChildByName(name:String):DisplayObject
+        public function $sprite_getChildByName(name:String):DisplayObject
         {
             return super.getChildByName(name);
         }
         COMPILE::SWF
-        public function get $numChildren():int
+        public function get $sprite_numChildren():int
         {
             return super.numChildren;
         }
         COMPILE::SWF
-        public function get $parent():DisplayObjectContainer
+        public function get $sprite_parent():DisplayObjectContainer
         {
             return super.parent;
         }

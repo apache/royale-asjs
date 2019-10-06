@@ -39,7 +39,7 @@ package org.apache.royale.html.accessories
 		 */
 		public function DateFormatDDMMYYYY()
 		{
-			format = "DD/MM/YYYY";
+			dateFormat = "DD/MM/YYYY";
 		}
 	}
 }

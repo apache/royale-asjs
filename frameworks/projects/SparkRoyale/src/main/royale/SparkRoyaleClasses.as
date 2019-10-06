@@ -71,6 +71,14 @@ internal class SparkRoyaleClasses
 	import spark.components.FormItem; FormItem;
 	import spark.core.IDisplayText; IDisplayText;
 	import spark.events.PopUpEvent; PopUpEvent;
+	import spark.modules.Module; Module;
+	import spark.components.SkinnablePopUpContainer; SkinnablePopUpContainer;
+    
+    import spark.components.beads.PanelView; PanelView;
+    import spark.components.beads.GroupView; GroupView;
+    import spark.components.beads.SkinnableContainerView; SkinnableContainerView;
+    import spark.components.beads.DropDownListView; DropDownListView;
+    import spark.components.beads.controllers.DropDownListController; DropDownListController;
 	
 }
 

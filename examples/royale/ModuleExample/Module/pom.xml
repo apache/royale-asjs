@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale-ModuleExample</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <artifactId>Module</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: ModuleExample: Module</name>
@@ -44,21 +44,84 @@
           <additionalCompilerOptions>-js-compiler-option=--variable_map_input_file ../../../../../MainApp/target/javascript/bin/js-release/gccvars.txt;-js-compiler-option+=--property_map_input_file ../../../../../MainApp/target/javascript/bin/js-release/gccprops.txt</additionalCompilerOptions>
         </configuration>
       </plugin>
+
+      <!-- copy module files from Module target folder to Application target folder-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-resources-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <!-- for js-release (copy all to 'modules' folder)-->
+          <execution>
+            <id>copy-resources-release</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/target/javascript/bin/js-release/</directory>
+                </resource>
+              </resources>
+              <outputDirectory>${project.basedir}/../MainApp/target/javascript/bin/js-release/modules/</outputDirectory>
+            </configuration>
+          </execution>
+          <!-- for js-debug (copy all to js-debug but will need a next step later (check **))-->
+          <execution>
+            <id>copy-resources-debug</id>
+            <phase>install</phase>
+            <goals>
+              <goal>copy-resources</goal>
+            </goals>
+            <configuration>
+              <resources>
+                <resource>
+                  <directory>${project.basedir}/target/javascript/bin/js-debug/</directory>
+                </resource>
+              </resources>
+              <outputDirectory>${project.basedir}/../MainApp/target/javascript/bin/js-debug/</outputDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+      <!-- (**) for js-debug: we need to move two files from 'target/js-debug' to 'target/js-debug/modules' since Application expect to find it there -->
+      <plugin>
+        <groupId>com.coderplus.maven.plugins</groupId>
+        <artifactId>copy-rename-maven-plugin</artifactId>
+        <version>1.0</version>
+        <executions>
+          <execution>
+            <id>debug-move-files</id>
+            <phase>install</phase>
+            <goals>
+              <goal>rename</goal>
+            </goals>
+            <configuration>
+              <fileSets>
+                <fileSet>
+                  <sourceFile>${project.basedir}/../MainApp/target/javascript/bin/js-debug/${project.artifactId}__deps.js</sourceFile>
+                  <destinationFile>${project.basedir}/../MainApp/target/javascript/bin/js-debug/modules/${project.artifactId}__deps.js</destinationFile>
+                </fileSet>
+                <fileSet>
+                  <sourceFile>${project.basedir}/../MainApp/target/javascript/bin/js-debug/${project.artifactId}.css</sourceFile>
+                  <destinationFile>${project.basedir}/../MainApp/target/javascript/bin/js-debug/modules/${project.artifactId}.css</destinationFile>
+                </fileSet>
+              </fileSets>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
     </plugins>
   </build>
 
   <dependencies>
     <dependency>
-      <groupId>com.adobe.flash.framework</groupId>
-      <artifactId>playerglobal</artifactId>
-      <version>${flash.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <scope>theme</scope>
     </dependency>

@@ -406,10 +406,10 @@ public class CursorManager
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* public static function setBusyCursor():void 
+    public static function setBusyCursor():void 
     {
-        impl.setBusyCursor();
-    } */
+        // impl.setBusyCursor();
+    }
 
     /**
      *  Removes the busy cursor from the cursor list.

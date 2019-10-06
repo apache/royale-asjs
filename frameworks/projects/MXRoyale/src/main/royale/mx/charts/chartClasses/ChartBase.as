@@ -37,7 +37,6 @@ import mx.collections.XMLListCollection;
 import mx.core.DragSource;
 import mx.core.EventPriority;
 import mx.core.FlexGlobals;
-//import mx.core.FlexShape;
 import mx.core.IDataRenderer;
 import mx.core.IFlexDisplayObject;
 import mx.core.IFlexModuleFactory;
@@ -960,6 +959,7 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
     
     /**
      *  @private
+     *  @royalesuppresspublicvarwarning
      */
     public var dataTipItemsSet:Boolean = false;
     
@@ -1223,6 +1223,8 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
     //  dataTipFunction
     //----------------------------------
 
+    private var _dataTipFunction:Function;
+    
     [Inspectable(category="Data")]
     
     /**
@@ -1240,7 +1242,14 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var dataTipFunction:Function;
+    public function get dataTipFunction():Function
+    {
+        return _dataTipFunction;
+    }
+    public function set dataTipFunction(value:Function):void
+    {
+        _dataTipFunction = value;
+    }
 
     //----------------------------------
     //  dataTipLayerIndex
@@ -1566,7 +1575,9 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
     //----------------------------------
     //  mouseSensitivity
     //----------------------------------
-
+    
+    private var _mouseSensitivity:Number = 5;
+    
     /**
      *  Specifies the distance, in pixels, that Flex considers a data point
      *  to be under the mouse pointer when the pointer moves around a chart.
@@ -1581,7 +1592,14 @@ public class ChartBase extends UIComponent implements IFocusManagerComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var mouseSensitivity:Number = 5;
+    public function get mouseSensitivity():Number
+    {
+        return _mouseSensitivity;
+    }
+    public function set mouseSensitivity(value:Number):void
+    {
+        _mouseSensitivity = value;
+    }
 
     //----------------------------------
     //  selectedChartItem

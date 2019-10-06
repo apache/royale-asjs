@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <artifactId>XML</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: XML</name>
@@ -47,39 +47,55 @@
               <manifest>${project.basedir}/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
           </namespaces>
-          <includeSources>true</includeSources>
+          <includeClasses>
+            <includeClass>XMLClasses</includeClass>
+          </includeClasses>
+          <skipAS>${royale.skipAS}</skipAS>
           <skipExtern>true</skipExtern>
         </configuration>
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+      <profile>
+          <id>swf-dependencies</id>
+          <activation>
+              <property>
+                  <name>generate.swf.swcs</name>
+              </property>
+          </activation>
+          <dependencies>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Core</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.royale.framework</groupId>
+                  <artifactId>Language</artifactId>
+                  <version>0.9.6</version>
+                  <type>swc</type>
+                  <classifier>swf</classifier>
+              </dependency>
+          </dependencies>
+      </profile>
+  </profiles>
 
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.4</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Core</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
-      <version>0.9.4</version>
-      <type>swc</type>
-      <classifier>swf</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Language</artifactId>
-      <version>0.9.4</version>
+      <version>0.9.6</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>

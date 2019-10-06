@@ -48,6 +48,15 @@
     <component id="DynamicList" class="org.apache.royale.html.DynamicList"/>
     <component id="PopUpList" class="org.apache.royale.html.PopUpList"/>
     <component id="SimpleList" class="org.apache.royale.html.SimpleList"/>
+    <component id="ColorPalette" class="org.apache.royale.html.supportClasses.ColorPalette"/>
+    <component id="ColorSpectrum" class="org.apache.royale.html.supportClasses.ColorSpectrum"/>
+    <component id="ColorPicker" class="org.apache.royale.html.ColorPicker"/>
+    <component id="HueSelector" class="org.apache.royale.html.HueSelector"/>
+    <component id="ColorPickerPopUpWithPalette" class="org.apache.royale.html.supportClasses.ColorPickerPopUpWithPalette"/>
+    <component id="ColorPickerPopUp" class="org.apache.royale.html.supportClasses.ColorPickerPopUp"/>
+    <component id="ColorPickerView" class="org.apache.royale.html.beads.ColorPickerView"/>
+    <component id="ColorPickerWithEmptyView" class="org.apache.royale.html.beads.ColorPickerWithEmptyView"/>
+    <component id="HideColorSpectrumThumbWhenEmpty" class="org.apache.royale.html.beads.HideColorSpectrumThumbWhenEmpty"/>
     <component id="CheckBox" class="org.apache.royale.html.CheckBox"/>
     <component id="CSSCheckBox" class="org.apache.royale.html.CSSCheckBox"/>
     <component id="RadioButton" class="org.apache.royale.html.RadioButton"/>
@@ -74,13 +83,16 @@
     <component id="TitleBarTitle" class="org.apache.royale.html.beads.TitleBarTitle"/>
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
+    <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>
+    <component id="NoLayout" class="org.apache.royale.html.beads.layouts.NoLayout"/>
     <component id="BasicLayout" class="org.apache.royale.html.beads.layouts.BasicLayout"/>
     <component id="RemovableBasicLayout" class="org.apache.royale.html.beads.layouts.RemovableBasicLayout"/>
     <component id="LayoutChangeNotifier" class="org.apache.royale.html.beads.layouts.LayoutChangeNotifier"/>
     <component id="VerticalLayout" class="org.apache.royale.html.beads.layouts.VerticalLayout"/>
+    <component id="VirtualDataContainerView" class="org.apache.royale.html.beads.VirtualDataContainerView"/>
     <component id="VirtualListView" class="org.apache.royale.html.beads.VirtualListView"/>
     <component id="VirtualListVerticalLayout" class="org.apache.royale.html.beads.layouts.VirtualListVerticalLayout"/>
     <component id="VerticalLayoutWithPaddingAndGap" class="org.apache.royale.html.beads.layouts.VerticalLayoutWithPaddingAndGap"/>
@@ -92,11 +104,13 @@
     <component id="HorizontalFlowLayout" class="org.apache.royale.html.beads.layouts.HorizontalFlowLayout" />
     <component id="HorizontalSliderLayout" class="org.apache.royale.html.beads.layouts.HorizontalSliderLayout" />
     <component id="TileLayout" class="org.apache.royale.html.beads.layouts.TileLayout"/>
+    <component id="UseMaxChildForTileCellDimensions" class="org.apache.royale.html.beads.layouts.UseMaxChildForTileCellDimensions"/>
     <component id="ListView" class="org.apache.royale.html.beads.ListView"/>
     <component id="AccordionView" class="org.apache.royale.html.beads.AccordionView"/>
     <component id="CenterElement" class="org.apache.royale.html.beads.CenterElement"/>
     <component id="StyleInheritanceBead" class="org.apache.royale.html.beads.StyleInheritanceBead"/>
     <component id="HideComboPopupOnMouseDownBead" class="org.apache.royale.html.beads.HideComboPopupOnMouseDownBead"/>
+    <component id="KeepComboPopupWithinParentBounds" class="org.apache.royale.html.beads.KeepComboPopupWithinParentBounds"/>
     <component id="StyleInheritanceWithObserverBead" class="org.apache.royale.html.beads.StyleInheritanceWithObserverBead"/>
     <component id="CrossBrowserFireListenerOverrideBead" class="org.apache.royale.html.beads.CrossBrowserFireListenerOverrideBead" />
     <component id="AccessibilityAltBead" class="org.apache.royale.html.beads.AccessibilityAltBead" />
@@ -120,6 +134,7 @@
     <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
     <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
+    <component id="ColorItemRenderer" class="org.apache.royale.html.supportClasses.ColorItemRenderer"/>
     <component id="AccordionItemRenderer" class="org.apache.royale.html.supportClasses.AccordionItemRenderer"/>
     <component id="AccordionCollapseBead" class="org.apache.royale.html.beads.AccordionCollapseBead"/>
     <component id="DispatchInputFinishedBead" class="org.apache.royale.html.beads.DispatchInputFinishedBead"/>
@@ -146,6 +161,8 @@
     <component id="UnselectableElementBead" class="org.apache.royale.html.beads.UnselectableElementBead"/>
     <component id="DisableBead" class="org.apache.royale.html.beads.DisableBead" />
     <component id="DisabledAlphaBead" class="org.apache.royale.html.beads.DisabledAlphaBead" />
+    <component id="DisableLoaderBead" class="org.apache.royale.html.beads.DisableLoaderBead" />
+    <component id="ShrinkableDisableLoaderBead" class="org.apache.royale.html.beads.ShrinkableDisableLoaderBead" />
     <component id="DisableChildrenBead" class="org.apache.royale.html.beads.DisableChildrenBead" />
     <component id="NumericOnlyTextInputBead" class="org.apache.royale.html.accessories.NumericOnlyTextInputBead" />
     <component id="PasswordInputBead" class="org.apache.royale.html.accessories.PasswordInputBead" />
@@ -199,6 +216,7 @@
     <component id="TextItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.TextItemRendererFactoryForArrayData" />
     <component id="TextItemRendererFactoryForStringVectorData" class="org.apache.royale.html.beads.TextItemRendererFactoryForStringVectorData" />
     <component id="VirtualDataItemRendererFactoryForArrayData" class="org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData" />
+    <component id="CollectionChangeUpdateForArrayListData" class="org.apache.royale.html.beads.CollectionChangeUpdateForArrayListData" />
 
     <component id="DateChooser" class="org.apache.royale.html.DateChooser"/>
     <component id="DateChooserList" class="org.apache.royale.html.supportClasses.DateChooserList" />
@@ -217,6 +235,7 @@
     <component id="OneFlexibleChildHorizontalLayout" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayout"/>
     <component id="OneFlexibleChildVerticalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildVerticalLayoutForOverflow"/>
     <component id="OneFlexibleChildHorizontalLayoutForOverflow" class="org.apache.royale.html.beads.layouts.OneFlexibleChildHorizontalLayoutForOverflow"/>
+    <component id="ScrollingFlexibleChild" class="org.apache.royale.html.beads.layouts.ScrollingFlexibleChild"/>
 
     <component id="SubAppLoader" class="org.apache.royale.html.SubAppLoader" />
 
@@ -247,5 +266,8 @@
     <component id="CascadingMenuItemRenderer" class="org.apache.royale.html.supportClasses.CascadingMenuItemRenderer" />
 
     <component id="CascadingMenuFactory" class="org.apache.royale.html.beads.CascadingMenuFactory" />
+
+    <component id="ModalDisplay" class="org.apache.royale.html.beads.plugin.ModalDisplay"/>
+    <component id="ModalOverlay" class="org.apache.royale.html.beads.plugin.ModalOverlay"/>
 
 </componentPackage>

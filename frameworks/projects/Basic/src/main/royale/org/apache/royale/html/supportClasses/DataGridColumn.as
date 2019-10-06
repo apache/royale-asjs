@@ -85,7 +85,8 @@ package org.apache.royale.html.supportClasses
 		private var _columnWidth:Number = Number.NaN;
 		
 		/**
-		 *  The width of the column (default is 100 pixels).
+		 *  The width of the column.  If not set,
+         *  the columns will be sized to fit.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

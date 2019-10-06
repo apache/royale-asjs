@@ -53,7 +53,7 @@ package org.apache.royale.jewel.itemRenderers
             typeNames = "jewel item";
         }
 
-        private var item:Option;
+        protected var item:Option;
 
         /**
          *  Sets the data value and uses the String version of the data for display.

@@ -28,6 +28,7 @@
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     <property name="opt1_arg" value="-html-template=${basedir}/src/main/resources/mdl-js-index-template.html" />
+    <property name="config_arg" value="flex"/>
 
     <include file="${basedir}/../../build_example.xml" />
     

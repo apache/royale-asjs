@@ -490,6 +490,8 @@ public class CartesianChart extends ChartBase
     //  horizontalAxisRatio
     //----------------------------------
 
+    private var _horizontalAxisRatio:Number = 0.33;
+    
     [Inspectable(category="Data")]
     
     /**
@@ -503,7 +505,14 @@ public class CartesianChart extends ChartBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var horizontalAxisRatio:Number = 0.33;
+    public function get horizontalAxisRatio():Number
+    {
+        return _horizontalAxisRatio;
+    }
+    public function set horizontalAxisRatio(value:Number):void
+    {
+        _horizontalAxisRatio = value
+    }
     
     //----------------------------------
     //  horizontalAxisRenderer
@@ -665,6 +674,8 @@ public class CartesianChart extends ChartBase
     //  verticalAxisRatio
     //----------------------------------
     
+    private var _verticalAxisRatio:Number = 0.33;
+    
     [Inspectable(category="Data")]
     
     /**
@@ -678,7 +689,14 @@ public class CartesianChart extends ChartBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var verticalAxisRatio:Number = 0.33;
+    public function get verticalAxisRatio():Number
+    {
+        return _verticalAxisRatio;
+    }
+    public function set verticalAxisRatio(value:Number):void
+    {
+        _verticalAxisRatio = value;
+    }
 
     //----------------------------------
     //  verticalAxisRenderer

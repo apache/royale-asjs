@@ -18,25 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.accessories
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDateChooserModel;
-	import org.apache.royale.core.IFormatBead;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModel;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.FormatBase;
+	import org.apache.royale.core.IDateFormatter;
 	
 	/**
-	 * The DateFormatter class formats the display of a DateField using a format.
+	 * The DateFormatter class formats the display of a DateField using a dateFormat.
 	 *  
      *  @royaleignoreimport org.apache.royale.core.IStrandWithModel
      * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
+	 *  @productversion Royale 0.9.6
 	 */
-	public class SimpleDateFormatter extends EventDispatcher implements IBead, IFormatBead
+	public class SimpleDateFormatter extends FormatBase implements IDateFormatter
 	{
 		/**
 		 * constructor.
@@ -50,173 +45,140 @@ package org.apache.royale.html.accessories
 		{
 		}
 
-		private var _format:String;
-		private var _seperator:String;
-		private var _propertyName:String;
-		private var _eventName:String;
-		private var _formattedResult:String;
+		private var _dateFormat:String;
+		protected var _separator:String;
 		
 		/**
-		 *  The name of the property on the model holding the value to be formatted.
-		 *  The default is selectedDate.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get propertyName():String
-		{
-			if (_propertyName == null) {
-				return "selectedDate";
-			}
-			return _propertyName;
-		}
-		public function set propertyName(value:String):void
-		{
-			_propertyName = value;
-		}
-		
-		/**
-		 *  The name of the event dispatched when the property changes. The
-		 *  default is selectedDateChanged.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get eventName():String
-		{
-			if (_eventName == null) {
-				return propertyName+"Changed";
-			}
-			return _eventName;
-		}
-
-		public function set eventName(value:String):void
-		{
-			_eventName = value;
-		}
-
-		/**
-		 *  The format of the date string.
+		 *  The dateFormat of the date string.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.6
 		 */
-		public function get format():String
+		public function get dateFormat():String
 		{
-			if (_format == null) {
-                _format = "YYYY/MM/DD";
-                _seperator = "/";
+			if (_dateFormat == null) {
+                _dateFormat = "YYYY/MM/DD";
+                _separator = "/";
             }
-			return _format;
+			return _dateFormat;
 		}
 
-		public function set format(value:String):void
+		public function set dateFormat(value:String):void
 		{
-			if (_format != value) {
-                _format = value;
+			if (_dateFormat != value) {
+                _dateFormat = value;
 
-				var length:int = _format.length;
+				var length:int = _dateFormat.length;
 
                 for (var i:int = 0; i < length; i++) {
-					var letter:String = _format.charAt(i);
+					var letter:String = _dateFormat.charAt(i);
                     // assumes a single separator
                     if (letter != 'M' && letter != 'Y' && letter != 'D') {
-                        _seperator = letter;
+                        _separator = letter;
 						break;
                     }
                 }
-                _format = value;
+                _dateFormat = value;
             }
 		}
 		
+
 		/**
-		 *  The formatted result.
-		 *  
+		 *  The formatted date
+		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.6
+         *  @royaleignorecoercion Date
 		 */
-		public function get formattedString():String
+		override public function format(value:Object):String
 		{
-			return _formattedResult;
-		}
-		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
-         * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
 			
-			var model:IDateChooserModel = IStrandWithModel(_strand).model as IDateChooserModel;
-			model.addEventListener(propertyName+"Changed",handleTextChange);
-		}
-		
-		/**
-		 * @private
-         * 
-         * @royaleignorecoercion org.apache.royale.core.IStrandWithModel
-		 */
-		private function handleTextChange(event:Event):void
-		{
-			var model:IDateChooserModel = IStrandWithModel(_strand).model as IDateChooserModel;
-			
-			var selectedDate:Date = model.selectedDate;
+			var selectedDate:Date = value as Date;
+			var result:String = "";
+
 			if (selectedDate != null) {
 				var month:String = String(selectedDate.getMonth()+1);
 				var day:String = String(selectedDate.getDate());
 				var year:String = String(selectedDate.getFullYear());
-				var tokens:Array = _format.split(_seperator);
+				var tokens:Array = dateFormat.split(_separator);
 				var length:int = tokens.length;
 
-				_formattedResult = "";
 				
 				for (var i:int = 0; i < length; i++) {
                     switch (tokens[i]) {
                         case "YYYY":
-                            _formattedResult += year;
+                            result += year;
                             break;
                         case "YY":
-							_formattedResult += year.slice(2,3);
+							result += year.slice(2,3);
                             break;
                         case "MM":
                             if (Number(month) < 10)
                                 month = "0" + month;
                         case "M":
-							_formattedResult += month;
+							result += month;
                             break;
                         case "DD":
                             if (Number(day) < 10)
                                 day = "0" + day;
                         case "D":
-							_formattedResult += day;
+							result += day;
                             break;
                     }
 
                     if (i <= length - 2) {
-						_formattedResult += _seperator;
+						result += _separator;
 					}
 				}
 
-				dispatchEvent(new Event("formatChanged") );
 			}
+			return result;
 		}
 		
+		/**
+		 *  Returns a Date created from a date string
+		 *  
+		 *  @param str, the date formated string. Some examples of valid formats are MM/DD/YYYY, DD/MM/YYYY
+		 *  @return the date object generated from the string or null
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		public function getDateFromString(str:String):Date
+		{
+			if (str != null) {
+				var month:int;
+				var day:int;
+				var year:int;
+				var tokens:Array = dateFormat.split(_separator);
+				var strtokens:Array = str.split(_separator);
+				var length:int = tokens.length;
+				
+				for (var i:int = 0; i < length; i++) {
+                    switch (tokens[i]) {
+                        case "YYYY":
+                            year = int(strtokens[i]);
+				            break;
+                        case "YY":
+							year = 2000 + int(strtokens[i]);
+				            break;
+                        case "MM" || "M":
+							month = int(strtokens[i]) - 1;
+				            break;
+                        case "DD" || "D":
+							day = int(strtokens[i]);
+				            break;
+                    }
+				}
+				
+				return new Date(year, month, day);
+			}
+			return null;
+		}
 	}
 }

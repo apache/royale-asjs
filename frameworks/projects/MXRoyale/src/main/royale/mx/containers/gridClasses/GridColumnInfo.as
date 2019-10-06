@@ -29,6 +29,8 @@ import mx.core.UIComponent;
  *  @private
  *  Internal helper class used to exchange information between
  *  Grid and GridRow.
+ * 
+ *  @royalesuppresspublicvarwarning
  */
 public class GridColumnInfo extends FlexChildInfo
 {

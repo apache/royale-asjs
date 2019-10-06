@@ -41,7 +41,7 @@
 
       <!-- Specifies the locales for internationalization. -->
       <locale>
-          <locale-element>en_US</locale-element>
+          <!--<locale-element>en_US</locale-element>-->
       </locale>
 
       <!-- List of path elements that form the roots of ActionScript class hierarchies. -->
@@ -52,6 +52,7 @@
       </source-path>
       -->
       <source-path>
+          <path-element>${frameworks_dir}/projects/Ace/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Binding/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Charts/src/main/royale</path-element>
@@ -66,18 +67,23 @@
           <path-element>${frameworks_dir}/projects/Formatters/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Graphics/src/main/royale</path-element>
-          <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/HTML/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/HTML5/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Icons/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/Jewel/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/JQuery/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Language/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/MaterialDesignLite/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Mobile/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Network/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Reflection/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/RoyaleSite/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/RoyaleUnit/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/SparkRoyale/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Storage/src/main/royale</path-element>
-          <path-element>${frameworks_dir}/projects/TLF/src/main/royale</path-element>
           <path-element>${frameworks_dir}/projects/Text/src/main/royale</path-element>
+          <path-element>${frameworks_dir}/projects/TLF/src/main/royale</path-element>
           <!-- leave out XML.  In the SWF compile it confuses the compiler because
                airglobal.swc also has an XML definition
           <path-element>${frameworks_dir}/projects/XML/src/main/royale</path-element> -->
@@ -135,11 +141,19 @@
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
-         <path-element>{playerglobalHome}/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}</path-element>
+          <path-element>${frameworks_dir}/js/libs/XMLJS.swc</path-element>
       </library-path>
 
         <!-- namespace declaration for asdoc -->
         <namespaces>
+            <namespace>
+                <uri>http://ns.adobe.com/mxml/2009</uri>
+                <manifest>${frameworks_dir}/mxml-2009-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/ace</uri>
+                <manifest>${frameworks_dir}/projects/Ace/src/main/resources/ace-manifest.xml</manifest>
+            </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Basic/src/main/resources/basic-manifest.xml</manifest>
@@ -197,8 +211,24 @@
                 <manifest>${frameworks_dir}/projects/HTML5/src/main/resources/html5-manifest.xml</manifest>
             </namespace>
             <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>${frameworks_dir}/projects/Icons/src/main/resources/icons-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/jewel</uri>
+                <manifest>${frameworks_dir}/projects/Jewel/src/main/resources/jewel-manifest.xml</manifest>
+            </namespace>
+            <namespace>
                 <uri>library://ns.apache.org/royale/jquery</uri>
                 <manifest>${frameworks_dir}/projects/JQuery/src/main/resources/jquery-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/mdl</uri>
+                <manifest>${frameworks_dir}/projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/mx</uri>
+                <manifest>${frameworks_dir}/projects/MXRoyale/src/main/resources/mx-royale-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
@@ -207,6 +237,26 @@
             <namespace>
                 <uri>library://ns.apache.org/royale/basic</uri>
                 <manifest>${frameworks_dir}/projects/Network/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>${frameworks_dir}/projects/Reflection/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/spark</uri>
+                <manifest>${frameworks_dir}/projects/SparkRoyale/src/main/resources/spark-royale-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>${frameworks_dir}/projects/Storage/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>${frameworks_dir}/projects/Text/src/main/resources/basic-manifest.xml</manifest>
+            </namespace>
+            <namespace>
+                <uri>library://ns.apache.org/royale/basic</uri>
+                <manifest>${frameworks_dir}/projects/TLF/src/main/resources/basic-manifest.xml</manifest>
             </namespace>
             <namespace>
                 <uri>library://ns.apache.org/royale/svg</uri>
@@ -487,6 +537,8 @@
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/ITextFieldView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/ImageAndTextButtonView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/CheckBoxView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/CloseButtonView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/ControlBarMeasurementBead.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/CSSButtonView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/CSSTextButtonView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/CSSToggleButtonView.as</path-element>
@@ -508,6 +560,8 @@
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/HScrollBarTrackView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/VRuleView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/HRuleView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/SolidBackgroundBead.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/SolidBackgroundWithChangeListenerBead.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/TextInputView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/TextInputWithBorderView.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/TextAreaView.as</path-element>
@@ -522,9 +576,70 @@
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/supportClasses/VScrollBar.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/supportClasses/HScrollBar.as</path-element>
        <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/supportClasses/ScrollBar.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/controllers/ButtonAutoRepeatController.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/beads/controllers/DropDownListController.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/supportClasses/TextFieldItemRenderer.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/supportClasses/VScrollBar.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/supportClasses/HScrollBar.as</path-element>
+       <path-element>${frameworks_dir}/projects/Basic/src/main/royale/org/apache/royale/html/supportClasses/ScrollBar.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/CSSShape.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/CSSSprite.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/IBorderModel.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/StageProxy.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/StyleableCSSTextField.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/WrappedMovieClip.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/WrappedShape.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/WrappedSprite.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/WrappedTextField.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/core/UIButtonBase.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/utils/CSSBorderUtils.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/utils/PNGEncoder.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/utils/SolidBorderUtil.as</path-element>
+       <path-element>${frameworks_dir}/projects/Core/src/main/royale/org/apache/royale/utils/dbg/DOMPathUtil.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/AdvancedLayoutFeatures.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/CompoundTransform.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/IAssetLayoutFeatures.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/MatrixUtil.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/PathHelper.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/TransformOffsets.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/ColorShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/ColorBurnShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/ColorDodgeShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/ExclusionShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/HueShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/LuminosityShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/LuminosityMaskShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/SaturationShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/SoftLightShader.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/supportClasses/scrollbar/VScrollBar.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/supportClasses/scrollbar/HScrollBar.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/supportClasses/scrollbar/ScrollBar.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/models/ScrollBarModel.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/ButtonView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/CheckBoxView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/RadioButtonView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/TextFieldView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/SliderTrackView.as</path-element>
+       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/SliderThumbView.as</path-element>
        <path-element>${frameworks_dir}/projects/Formatters/src/main/royale/org/apache/royale/html/beads/FormatableTextInputView.as</path-element>
        <path-element>${frameworks_dir}/projects/Formatters/src/main/royale/org/apache/royale/html/beads/FormatableLabelView.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/core/IDisplayObjectInterface.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/controls/beads/RadioButtonView.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/controls/beads/CheckBoxView.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/controls/beads/CSSImageAndTextButtonView.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/charts/styles/metadata/FillStrokeStyles.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/charts/styles/metadata/GapStyles.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/charts/styles/metadata/ItemRendererStyles.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/charts/styles/metadata/LeadingStyle.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/charts/styles/metadata/MarginStyles.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/charts/styles/metadata/TextStyles.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/charts/skins/halo/SelectionSkin.as</path-element>
+       <!--<path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/effects/Parallel.as</path-element>-->
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/effects/effectClasses/ParallelInstance.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/events/ResourceEvent.as</path-element>
+       <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale/mx/utils/RPCObjectUtil.as</path-element>
        <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/org/apache/royale/maps/google/beads/MapView_original.as</path-element>
+       <path-element>${frameworks_dir}/projects/Storage/src/main/royale/org/apache/royale/storage/file/LocalFile.as</path-element>
     </exclude-sources>
    
    <!-- source path for asdoc -->
@@ -532,15 +647,20 @@
             <!-- namespaces to include in asdoc -->
             <doc-namespaces>
                 <uri>library://ns.apache.org/royale/basic</uri>
+                <uri>library://ns.apache.org/royale/jewel</uri>
                 <uri>library://ns.apache.org/royale/createjs</uri>
                 <uri>library://ns.apache.org/royale/express</uri>
                 <uri>library://ns.apache.org/royale/google</uri>
                 <uri>library://ns.apache.org/royale/html5</uri>
                 <uri>library://ns.apache.org/royale/jquery</uri>
+                <uri>library://ns.apache.org/royale/mx</uri>
+                <uri>library://ns.apache.org/royale/spark</uri>
             </doc-namespaces>
             
             <!-- classes to include in asdoc -->
             <doc-sources>
+                <path-element>${frameworks_dir}/projects/Ace/src/main/royale</path-element>
+                <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
                 <path-element>${frameworks_dir}/projects/Binding/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/Charts/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/Collections/src/main/royale</path-element>
@@ -552,13 +672,21 @@
             <path-element>${frameworks_dir}/projects/Formatters/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/org</path-element>
             <path-element>${frameworks_dir}/projects/Graphics/src/main/royale</path-element>
-            <path-element>${frameworks_dir}/projects/Basic/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/HTML/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/HTML5/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Icons/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Jewel/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/JQuery/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/MaterialDesignLite/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/Mobile/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/MXRoyale/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/Network/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/Reflection/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/RoyaleUnit/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/SparkRoyale/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Storage/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/TLF/src/main/royale</path-element>
+            <path-element>${frameworks_dir}/projects/Text/src/main/royale</path-element>
             <path-element>${frameworks_dir}/projects/GoogleMaps/src/main/royale/google/maps/LatLng.as</path-element>
             </doc-sources>
             

@@ -18,13 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.core.IStyleableObject
+	import org.apache.royale.core.IStyleObject;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.ValueChangeEvent;
 
     /**
      *  The BindableCSSStyles class contains CSS style
      *  properties supported by SimpleCSSValuesImpl but
      *  dispatch change events when modified
+     *
+     *  The class implements IStyleObject which means the
+     *  host object sets a reference onto this one, allowing
+     *  us to reapply the styles to the host component when
+     *  the style is changed.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -32,7 +41,7 @@ package org.apache.royale.core
      *  @productversion Royale 0.0
      */
     [Bindable]
-	public class BindableCSSStylesWithFlex extends EventDispatcher
+	public class BindableCSSStylesWithFlex extends EventDispatcher implements IStyleObject
 	{
         /**
          *  Constructor.
@@ -47,6 +56,53 @@ package org.apache.royale.core
 			super();
 		}
 		
+        /**
+         * @private
+         */
+        private var _hostObject : IStyleableObject;
+
+        /**
+         *  @copy org.apache.royale.core.IStyleObject#object
+         *  Sets the host object's reference so that we can update the HTML
+         *  element styles on this if our properties are changed in the future.
+         */
+        public function set object(value:IStyleableObject):void
+        {
+            _hostObject = value;
+            COMPILE::JS
+            {
+                // listen to ourselves in case one of the styles is changed programmatically
+                this.addEventListener(ValueChangeEvent.VALUE_CHANGE, styleChangeHandler);
+            }
+        }
+
+        /**
+         * Handles a single style value being updated, and applies this to the host object
+         * @param value The event containing new style properties.
+         */
+        COMPILE::JS
+        protected function styleChangeHandler(value:ValueChangeEvent):void
+        {
+            // ensure that we are still assigned to this styleable object; if a different object
+            // has been set then we don't want to update it any more and can remove the listener
+            if (!_hostObject || (this != _hostObject.style))
+            {
+                this.removeEventListener(ValueChangeEvent.VALUE_CHANGE, styleChangeHandler);
+                _hostObject = null;
+            }
+            else
+            {
+                // apply the new style based on what just changed
+                var uiObject : IUIBase = _hostObject as IUIBase;
+                if (uiObject)
+                {
+                    var newStyle:Object = {};
+                    newStyle[value.propertyName] = value.newValue;
+                    ValuesManager.valuesImpl.applyStyles(uiObject, newStyle);
+                }
+            }
+        }
+
         public var styleList:Object = {
             "top": 1,
             "bottom": 1,

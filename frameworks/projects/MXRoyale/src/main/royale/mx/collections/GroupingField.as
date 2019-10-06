@@ -131,9 +131,9 @@ public class GroupingField
         super();
 
         _name = name;
-        //_caseInsensitive = caseInsensitive;
-       // _descending = descending;
-       // _numeric = numeric;
+        _caseInsensitive = caseInsensitive;
+        _descending = descending;
+        _numeric = numeric;
     }
     
     //--------------------------------------------------------------------------
@@ -150,10 +150,9 @@ public class GroupingField
      *  @private
      *  Storage for the caseInsensitive property.
      */
-   /*  private var _caseInsensitive:Boolean;
+    private var _caseInsensitive:Boolean;
 
     [Inspectable(category="General")]
- */
     /**
      *  Set to <code>true</code> if the sort for this field should be case-insensitive.
      *
@@ -164,21 +163,21 @@ public class GroupingField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public function get caseInsensitive():Boolean
+    public function get caseInsensitive():Boolean
     {
         return _caseInsensitive;
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  public function set caseInsensitive(value:Boolean):void
+    public function set caseInsensitive(value:Boolean):void
     {
         if (value != _caseInsensitive)
         {
             _caseInsensitive = value;
         }
-    } */
+    }
 
     //---------------------------------
     //  compareFunction
@@ -188,10 +187,9 @@ public class GroupingField
      *  @private
      *  Storage for the compareFunction property.
      */
-  /*   private var _compareFunction:Function;
+    private var _compareFunction:Function;
 
     [Inspectable(category="General")]
- */
     /**
      *  The function that compares two items during a sort of items for the
      *  associated collection. If you specify a <code>compareFunction</code>
@@ -223,18 +221,18 @@ public class GroupingField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public function get compareFunction():Function
+    public function get compareFunction():Function
     {
         return _compareFunction;
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  public function set compareFunction(c:Function):void
+    public function set compareFunction(c:Function):void
     {
         _compareFunction = c;
-    } */
+    }
     
     //---------------------------------
     //  descending
@@ -244,9 +242,9 @@ public class GroupingField
      *  @private
      *  Storage for the descending property.
      */
-  /*   private var _descending:Boolean;
+    private var _descending:Boolean;
 
-    [Inspectable(category="General")] */
+    [Inspectable(category="General")]
 
     /**
      *  Set to <code>true</code> if the sort for this field should be 
@@ -259,21 +257,21 @@ public class GroupingField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-  /*   public function get descending():Boolean
+    public function get descending():Boolean
     {
         return _descending;
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  public function set descending(value:Boolean):void
+    public function set descending(value:Boolean):void
     {
         if (_descending != value)
         {
             _descending = value;
         }
-    } */
+    }
 
     //---------------------------------
     //  name
@@ -318,10 +316,9 @@ public class GroupingField
      *  @private
      *  Storage for the numeric property.
      */
-    /* private var _numeric:Boolean;
+    private var _numeric:Boolean;
 
     [Inspectable(category="General")]
- */
     /**
      *  Specifies that if the field being sorted contains numeric
      *  (Number/int/uint) values, or String representations of numeric values, 
@@ -337,21 +334,21 @@ public class GroupingField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-  /*   public function get numeric():Boolean
+    public function get numeric():Boolean
     {
         return _numeric;
     }
- */
+    
     /**
      *  @private
      */
-  /*   public function set numeric(value:Boolean):void
+    public function set numeric(value:Boolean):void
     {
         if (_numeric != value)
         {
             _numeric = value;
         }
-    } */
+    }
     
     //---------------------------------
     //  groupingFunction
@@ -394,8 +391,8 @@ public class GroupingField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public var groupingFunction:Function;
-     */
+    public var groupingFunction:Function;
+    
     //---------------------------------
     //  groupingObjectFunction
     //---------------------------------
@@ -434,8 +431,8 @@ public class GroupingField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public var groupingObjectFunction:Function;
-    */ 
+    public var groupingObjectFunction:Function;
+    
     //---------------------------------
     //  summaries
     //---------------------------------
@@ -488,8 +485,7 @@ public class GroupingField
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-/*     public var summaries:Array;
- */
- }
+    public var summaries:Array;
+}
 
 }

@@ -23,7 +23,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IParent;
@@ -31,7 +30,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.events.CollectionEvent;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
@@ -40,9 +38,9 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.controls.TextAlign;
-    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
     import org.apache.royale.jewel.beads.models.TableModel;
     import org.apache.royale.jewel.beads.views.TableView;
+    import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
@@ -54,7 +52,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
      * and generates the appropiate table structure with thead, tbody and table rows and cells
      * to hold the columns and data in cells.
-     * 
 	 */
 	public class TableItemRendererFactoryForCollectionView extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
 	{
@@ -185,7 +182,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			labelField = model.labelField;
 			
             var column:TableColumn;
-            var ir:ITextItemRenderer;
+            var ir:TableItemRenderer;
 
 			var n:int = dp.length;
 			var index:int = 0;
@@ -197,10 +194,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 					
 			        if(column.itemRenderer != null)
                     {
-						ir = column.itemRenderer.newInstance() as ITextItemRenderer;
+						ir = column.itemRenderer.newInstance() as TableItemRenderer;
                     } else
                     {
-                        ir = itemRendererFactory.createItemRenderer(tbody) as ITextItemRenderer;
+                        ir = itemRendererFactory.createItemRenderer(tbody) as TableItemRenderer;
                     }
 
 					labelField =  column.dataField;

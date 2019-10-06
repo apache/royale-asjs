@@ -67,6 +67,8 @@ package mx.messaging.errors
 		//
 		//--------------------------------------------------------------------------
 		
+        private var _fault:ErrorMessage;
+        
 		/**
 		 *  Provides specific information about the fault that occurred and for
 		 *  which message.
@@ -77,7 +79,14 @@ package mx.messaging.errors
 		 *  @productversion BlazeDS 4
 		 *  @productversion LCDS 3 
 		 */
-		public var fault:ErrorMessage;
+		public function get fault():ErrorMessage
+        {
+            return _fault;
+        }
+        public function set fault(value:ErrorMessage):void
+        {
+            _fault = value;
+        }
 	}
 	
 }

@@ -32,7 +32,7 @@ import mx.core.ContainerCreationPolicy;
 import mx.core.EdgeMetrics;
 import mx.core.IInvalidating;
 import mx.core.INavigatorContent;
-//import mx.core.ISelectableList;
+import mx.core.ISelectableList;
 import mx.core.IUIComponent;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
@@ -49,6 +49,8 @@ import mx.events.PropertyChangeEvent;
 //import mx.geom.RoundedRectangle;
 //import mx.managers.HistoryManager;
 //import mx.managers.IHistoryManagerClient;
+
+import org.apache.royale.core.IChild;
 
 use namespace mx_internal;
 
@@ -249,7 +251,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ViewStack extends Container // implements IHistoryManagerClient, ISelectableList
+public class ViewStack extends Container implements /*IHistoryManagerClient,*/ ISelectableList
 {
 //    include "../core/Version.as";
 
@@ -724,6 +726,12 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
         // child, if no value has yet been proposed.
         proposedSelectedIndex = value;
         invalidateProperties();
+        if (parent)
+        {
+            commitProperties();
+            measure();
+            updateDisplayList(width, height);
+        }
 
         // Set a flag which will cause the HistoryManager to save state
         // the next time measure() is called.
@@ -978,15 +986,24 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
                     newHeight = child.explicitHeight;
             }
 
+            COMPILE::JS
+            {
+                // must set visible=true otherwise child has display:none
+                // and measurements of its children will not be correct
+                child.visible = true;
+            }
             // Don't send events for the size/move. The set visible below
             if (child.width != newWidth || child.height != newHeight)
                 child.setActualSize(newWidth, newHeight);
             if (child.x != left || child.y != top)
                 child.move(left, top);
 
-            // Now that the child is properly sized and positioned it
-            // can be shown.
-            child.visible = true;
+            COMPILE::SWF
+            {
+                // Now that the child is properly sized and positioned it
+                // can be shown.
+                child.visible = true;
+            }
         }
     }
 
@@ -1426,30 +1443,39 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
         }
     }
   
-
     /**
      *  @private
      */
-    override public function addChildAt(item:IUIComponent, index:int):IUIComponent
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         addingChildren = true;
-        var obj:IUIComponent = super.addChildAt(item, index);
-        internalDispatchEvent(CollectionEventKind.ADD, obj, index);
-        childAddHandler(item);
+        super.addElement(c, dispatchEvent);
+        internalDispatchEvent(CollectionEventKind.ADD, c, numElements);
+        childAddHandler(c as IUIComponent);
         addingChildren = false;
-        return obj;
+    }
+    
+    /**
+     *  @private
+     */
+    override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+    {
+        addingChildren = true;
+        super.addElementAt(c, index, dispatchEvent);
+        internalDispatchEvent(CollectionEventKind.ADD, c, index);
+        childAddHandler(c as IUIComponent);
+        addingChildren = false;
     }
 
     /**
      *  @private
      */
-    override public function removeChild(item:IUIComponent):IUIComponent
+    override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
     {
-        var index:int = getChildIndex(item);
-        var obj:IUIComponent = super.removeChild(item);
-        internalDispatchEvent(CollectionEventKind.REMOVE, obj, index);
-        childRemoveHandler(item, index);
-        return obj;
+        var index:int = getElementIndex(c);
+        super.removeElement(c, dispatchEvent);
+        internalDispatchEvent(CollectionEventKind.REMOVE, c, index);
+        childRemoveHandler(c as IUIComponent, index);
     }
 
     /**
@@ -1644,7 +1670,19 @@ public class ViewStack extends Container // implements IHistoryManagerClient, IS
         return result;
     }
     
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        commitProperties();
+        measure();
+    }
     
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+
 }
 
 }

@@ -32,16 +32,16 @@
             selenium (2.32.0) - Apache 2.0
 	-->
 	
-    <property name="selenium2.jar.dir.name" value="2.53"/>
-    <property name="selenium2.jar.name" value="selenium-java-2.53.1"/>
-    <property name="selenium2.dir.name" value="selenium-2.53.1"/>
+    <property name="selenium3.version" value="3.141.59"/>
+    <property name="selenium3.jar.download.url" value="https://bit.ly/2zm3ZzF"/>
+    <property name="selenium3.jar.name" value="client-combined-${selenium3.version}"/>
 	
     <!-- 
         Because the downloads requires a network connection and the JARs don't change very often, 
         they are each downloaded only if they don't already exist. 
     -->
     
-	<target name="main" depends="prepare, selenium2-jar" 
+	<target name="main" depends="prepare, selenium3-jar" 
 		description="Downloads all the required thirdparty JARs"/>
 
     <target name="prepare" >
@@ -75,7 +75,8 @@
         
         <mkdir dir="${download.dir}"/>        
     	
-        <get src="${srcUrl}/${zipFile}" dest="${download.dir}/${zipFile}"/>
+        <!--<get src="${srcUrl}/${zipFile}" dest="${download.dir}/${zipFile}"/>-->
+        <get src="${srcUrl}" dest="${download.dir}/${zipFile}"/>
 
         <condition property="zip.compressed">
             <matches string="${zipFile}" pattern="^*.zip$"/>      
@@ -170,20 +171,20 @@
 	    Selenium 2 - Web application test framework
 	-->
 	
-	<target name="selenium2-jar-check" description="Checks if selenium jar exists.">
-	    <available file="${lib.dir}/selenium/${selenium2.jar.name}.jar" property="selenium2.jar.exists" />
+	<target name="selenium3-jar-check" description="Checks if selenium jar exists.">
+	    <available file="${lib.dir}/selenium/${selenium3.jar.name}.jar" property="selenium3.jar.exists" />
 	</target>
 	
-	<target name="selenium2-jar" depends="selenium2-jar-check" unless="selenium2.jar.exists" 
+	<target name="selenium3-jar" depends="selenium3-jar-check" unless="selenium3.jar.exists" 
 	    description="Copies the selenium build jars.">
 		<mkdir dir="${lib.dir}/selenium" />
 	    <antcall target="download-zip">
-	      <param name="srcUrl" value="http://selenium-release.storage.googleapis.com/${selenium2.jar.dir.name}"/>
-	      <param name="zipFile" value="${selenium2.jar.name}.zip"/>
+	      <param name="srcUrl" value="${selenium3.jar.download.url}"/>
+	      <param name="zipFile" value="${selenium3.jar.name}.zip"/>
 	    </antcall>
 	    <get src="http://www.apache.org/licenses/LICENSE-2.0" dest="${lib.dir}/selenium/selenium-LICENSE.txt"/>
 	    <copy todir="${lib.dir}/selenium">
-	        <fileset dir="${download.dir}/temp/${selenium2.dir.name}">
+	        <fileset dir="${download.dir}/temp">
 	            <include name="**/*"/>
 	        </fileset>
 	    </copy>

@@ -22,10 +22,21 @@ package
 	public class XMLList
 	{
 		import org.apache.royale.debugging.throwError;
+		
+		
+		/**
+		 *  mimics the top-level XMLList function (supports 'this' correctly)
+		 *
+		 *  @royalesuppressexport
+		 */
+		public static function conversion(val:* = null):XMLList{
+			return new XMLList(val);
+		}
+		
 		public function XMLList(expression:Object = null)
 		{
 			addIndex(0);
-			if(expression)
+			if(expression != null)
 				parseExpression(expression);
 		}
 		private function parseExpression(expression:Object):void
@@ -48,7 +59,9 @@ package
             {
                 try
                 {
-    				this[0] = new XML(expression);
+					var item:XML = new XML(expression);
+					if (item.nodeKind() == 'text' && item.getValue() == '') return;
+    				this[0] = item;
                 }
                 catch (e:Error)
                 {
@@ -603,6 +616,28 @@ package
 			    i. Let i = i + 1
 			3. Return list
 			*/
+			var len:uint = _xmlArray.length;
+            var textAccumulator:XML;
+			for (var i:int=0; i<len; i++) {
+				var node:XML = XML(_xmlArray[i]);
+				var nodeKind:String = node.nodeKind();
+				if (nodeKind == 'element' ) {
+                    node.normalize();
+                    textAccumulator = null;
+				} else if (nodeKind == 'text') {
+					if (textAccumulator) {
+                        textAccumulator.setValue(textAccumulator.getValue() + node.getValue());
+                        removeChildAt(i);
+						i--;
+						len--;
+					} else {
+                        textAccumulator = node;
+					}
+				} else {
+                    textAccumulator = null;
+				}
+			}
+			
 			return this;
 		}
 		
@@ -973,26 +1008,38 @@ package
 				if(str)
 					retVal.push(str);
 			}
-			return retVal.join("");
+			return retVal.join("\n");
 		}
 		
 		/**
 		 * Returns a string representation of all the XML objects in an XMLList object.
 		 * 
 		 * @return 
-		 * 
+		 *
+		 * @royaleignorecoercion XML
 		 */
 		public function toString():String
 		{
+			if(isSingle())
+				return _xmlArray[0].toString();
 			var retVal:Array = [];
 			var len:int = _xmlArray.length;
+			var cumulativeText:String = '';
 			for (var i:int=0;i<len;i++)
 			{
 				var str:String = _xmlArray[i].toString();
-				if(str)
-					retVal.push(str);
+				if (XML(_xmlArray[i]).nodeKind() == 'text') {
+					cumulativeText += _xmlArray[i].toString();
+				} else {
+					if (cumulativeText) {
+						retVal.push(cumulativeText);
+						cumulativeText = '';
+					}
+					retVal.push(_xmlArray[i].toXMLString());
+				}
 			}
-			return retVal.join("");
+			if (cumulativeText) retVal.push(cumulativeText);
+			return retVal.join("\n");
 		}
 		
 		/**
@@ -1131,7 +1178,7 @@ package
 		{
 			return isSingle() ? _xmlArray[0].toExponential(fractionDigits) : NaN;
 		}
-		public function toFixed(digits:*=undefined):Number
+		public function toFixed(digits:int=0):Number
 		{
 			return isSingle() ? _xmlArray[0].toFixed(digits) : NaN;
 		}

@@ -139,7 +139,7 @@ package org.apache.royale.html.supportClasses
 				else if (hovered)
 					element.style.backgroundColor = '#ECECEC';
 				else
-					element.style.backgroundColor = null;
+					element.style.backgroundColor = 'transparent';
 			}
 		}
 

@@ -47,7 +47,7 @@ package mx.validators
  *    and <code>property</code> properties to specify the String.
  *    The String can contain digits and the formatting characters
  *    specified by the <code>allowedFormatChars</code> property,
- *    which include the "/\-. " characters. 
+ *    which include the "/&#92;-. " characters. 
  *    By default, the input format of the date in a String field
  *    is "MM/DD/YYYY" where "MM" is the month, "DD" is the day,
  *    and "YYYY" is the year. 
@@ -69,7 +69,7 @@ package mx.validators
  *  
  *  <pre>
  *  &lt;mx:DateValidator 
- *    allowedFormatChars="/\-. " 
+ *    allowedFormatChars="/&#92;-. " 
  *    dayListener="<i>Object specified by daySource</i>"
  *    dayProperty="<i>No default</i>"
  *    daySource="<i>No default</i>"

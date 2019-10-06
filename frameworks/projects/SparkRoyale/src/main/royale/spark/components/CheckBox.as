@@ -28,6 +28,14 @@ import org.apache.royale.events.MouseEvent;
 import mx.core.mx_internal;
 
 import spark.components.supportClasses.ToggleButtonBase;
+COMPILE::JS
+{
+    
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.supportClasses.CheckBoxIcon;
+    import org.apache.royale.html.util.addElementToWrapper;
+}
 
 use namespace mx_internal;
 
@@ -312,6 +320,67 @@ public class CheckBox extends ToggleButtonBase
         if (CheckBox.createAccessibilityImplementation != null)
             CheckBox.createAccessibilityImplementation(this);
     } */
+
+    COMPILE::JS
+    private var _label:WrappedHTMLElement;
+    COMPILE::JS
+    private var _icon:CheckBoxIcon;
+    
+    COMPILE::JS
+    private static var _checkNumber:Number = 0;
+    
+    /**
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
+    COMPILE::JS
+    override protected function createElement():WrappedHTMLElement
+    {
+        var cb:HTMLInputElement;
+        addElementToWrapper(this,'label');
+        _label = element;
+        _icon = new CheckBoxIcon();
+        element.appendChild(_icon.element);
+        
+        element.appendChild(document.createTextNode(''));
+        //positioner.style.position = 'relative';
+        _icon.element.royale_wrapper = this;
+        
+        typeNames = 'CheckBox CheckBoxIcon';
+        
+        return element;
+    }
+    
+    COMPILE::JS
+    override public function get label():String
+    {
+        return _label.childNodes.item(1).nodeValue;
+    }
+    
+    COMPILE::JS
+    override public function set label(value:String):void
+    {
+        _label.childNodes.item(1).nodeValue = value;
+    }
+    
+    [Bindable("change")]
+    COMPILE::JS
+    override public function get selected():Boolean
+    {
+        return (_icon.element as HTMLInputElement).checked;
+    }
+    
+    COMPILE::JS
+    override public function set selected(value:Boolean):void
+    {
+        (_icon.element as HTMLInputElement).checked = value;
+    }
+    
+    COMPILE::JS
+    override public function get measuredWidth():Number
+    {
+        var mw:Number = super.measuredWidth;
+        return mw + 1; // factor in gap between icon and label?
+    }
 
 }
 

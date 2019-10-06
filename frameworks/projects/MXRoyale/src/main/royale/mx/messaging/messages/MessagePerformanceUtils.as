@@ -45,6 +45,7 @@ package mx.messaging.messages
      * @productversion BlazeDS 4
      * @productversion LCDS 3     
      * 
+     *  @royalesuppresspublicvarwarning
      */ 
     public class MessagePerformanceUtils
     {   

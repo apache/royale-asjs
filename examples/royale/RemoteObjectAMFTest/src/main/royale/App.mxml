@@ -21,19 +21,27 @@ limitations under the License.
                xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:j="library://ns.apache.org/royale/jewel"
                xmlns:html="library://ns.apache.org/royale/html"
+               initialize="onInitialize(event)"
                xmlns:local="*">
 
     <fx:Style source="../../main/resources/styles.css"/>
 
     <fx:Script>
 		<![CDATA[
-			import org.apache.royale.net.events.FaultEvent;
+            import org.apache.royale.events.Event;
+            import org.apache.royale.net.events.FaultEvent;
 			import org.apache.royale.net.events.ResultEvent;
             import valueObjects.ClientValueObject;
             import valueObjects.Product;
             import valueObjects.Zone;
             import org.apache.royale.collections.ArrayList;
             import org.apache.royale.net.remoting.messages.RoyaleClient;
+            import org.apache.royale.reflection.registerClassAlias;
+
+            private function onInitialize(event:Event):void{
+                //treat ArrayCollection locally as royale ArrayList
+                registerClassAlias("flex.messaging.io.ArrayCollection", ArrayList);
+            }
 
             protected function sendName():void
 			{
@@ -44,7 +52,7 @@ limitations under the License.
 			{
                 simpleService.send("echo", [nameSimple_txt.text]);
 			}
-			
+
 			private function onResult(evt:ResultEvent):void
 			{
 				trace("[Client:" + RoyaleClient.getInstance().id + "] Result= " + evt.data);
@@ -67,7 +75,7 @@ limitations under the License.
                     var index:int;
                     for(index = 0; index < len; index++)
                     {
-                        zone = product.zones[index];
+                        zone = product.zones.getItemAt(index) as Zone;
                         received3.text += "[" + zone.id + ", " + zone.name + "], ";
                     }
 
@@ -76,7 +84,7 @@ limitations under the License.
                     len = product.flavors.length;
                     for(index = 0; index < len; index++)
                     {
-                        received3.text += "[" + product.flavors[index] + "], ";
+                        received3.text += "[" + product.flavors.getItemAt(index) + "], ";
                     }
                 } else
               	{
@@ -84,7 +92,7 @@ limitations under the License.
                     list.dataProvider = arr;
 				}
 			}
-			
+
             private function onResultSimple(evt:ResultEvent):void
 			{
 				if (evt.data is String)
@@ -97,7 +105,7 @@ limitations under the License.
 				for(var key:String in evt["message"])
 				{
 					var element:Object = evt["message"][key];
-					trace(key + ", " + element);					
+					trace(key + ", " + element);
 				}
 				//trace("Fault = " + evt.message);
 			}
@@ -111,7 +119,7 @@ limitations under the License.
 			{
                 service.send("getSomeZone", []);
 			}
-            
+
             protected function getSomeProduct():void
 			{
                 service.send("getSomeProduct", []);
@@ -122,7 +130,7 @@ limitations under the License.
                 var vo:ClientValueObject = list.selectedItem as ClientValueObject;
                 received2.text = "Selected: " + vo.id;
             }
-			
+
             protected function getSomeCompressedProduct():void
 			{
                 compressedService.send("getSomeCompressedProduct", []);
@@ -187,11 +195,11 @@ limitations under the License.
 
             <j:Card width="400">
                 <j:Button text="Get Array of ValueObjects" emphasis="emphasized" click="getVOs()" width="100%"/>
-                <j:List id="list" labelField="id" width="100%" height="200" 
+                <j:List id="list" labelField="id" width="100%" height="200"
                             change="reportChange()"/>
                 <j:Label id="received2" text="Selected:"/>
             </j:Card>
-            
+
             <j:Card width="400">
                 <j:Button text="Get Some Product" emphasis="primary" click="getSomeProduct()"/>
                 <j:Button text="Get Some Compressed Product" emphasis="emphasized" click="getSomeCompressedProduct()"/>
@@ -200,5 +208,5 @@ limitations under the License.
 
         </j:View>
     </j:initialView>
-    
+
 </j:Application>

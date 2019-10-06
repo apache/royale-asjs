@@ -47,6 +47,7 @@
     <component id="Option" class="org.apache.royale.html.elements.Option"/>
     <component id="P" class="org.apache.royale.html.elements.P" />
     <component id="Pre" class="org.apache.royale.html.elements.Pre" />
+    <component id="Progress" class="org.apache.royale.html.elements.Progress" />
     <component id="S" class="org.apache.royale.html.elements.S" />
     <component id="Select" class="org.apache.royale.html.elements.Select"/>
     <component id="Small" class="org.apache.royale.html.elements.Small"/>

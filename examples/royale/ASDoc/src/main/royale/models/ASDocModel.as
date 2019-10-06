@@ -169,6 +169,79 @@ package models
             else
             {
                 filterPackageList();
+                platformList = platforms.slice();
+                currentPlatform = platformList.shift();
+                middle = "." + currentPlatform;
+                app.service.addEventListener("complete", classesCompleteHandler);
+                app.service.url = "classes" + middle + ".json";
+                app.service.send();                
+            }
+        }
+        
+        /**
+         * @royaleignorecoercion ASDocClass 
+         */
+        private function classesCompleteHandler(event:Event):void
+        {
+            app.service.removeEventListener("complete", classesCompleteHandler);
+            if (!masterData["filterData"])
+                masterData["filterData"] = {};
+            var allNames:Array = allClasses;
+            var moreData:Object = JSON.parse(app.service.data);
+            var arr:Array = moreData["classes"];
+            var n:int = arr.length;
+            var item:ASDocClass;
+            for (var i:int = 0; i < n; i++)
+            {
+                var cname:String = arr[i].name;
+                item = masterData["filterData"][cname] as ASDocClass;
+                if (item)
+                {
+                    addTags(item, arr[i]["tags"]);
+                }
+                else
+                {
+                    item = new ASDocClass();
+                    item.qname = cname;
+                    item.description = arr[i]["description"];
+                    addTags(item, arr[i]["tags"]);
+                    masterData["filterData"][cname] = item;
+                }
+            }
+            if (platformList.length)
+            {
+                currentPlatform = platformList.shift();
+                var middle:String = "." + currentPlatform;
+                app.service.addEventListener("complete", classesCompleteHandler);
+                app.service.url = "classes" + middle + ".json";
+                app.service.send();
+            }
+        }
+        
+        private function addTags(item:ASDocClass, tags:Array):void
+        {
+            var tag:Object;
+            if (!tags) return;
+            if (!item.tags)
+            {
+                item.tags = tags;
+            }
+            else
+            {
+                for each (tag in tags)
+                {
+                    var foundit:Boolean = false;
+                    for each (var t:Object in item.tags)
+                    {
+                        if (t["tagName"] == tag["tagName"])
+                        {
+                            foundit = true;
+                            break;
+                        }
+                    }
+                    if (!foundit)
+                        item.tags.push(tag);
+                }
             }
         }
         
@@ -236,7 +309,7 @@ package models
                 {
                     if (filter == null)
                         arr.push({ label: p, href: value + DELIMITER + p});
-                    else if (filter(packageData[p]))
+                    else if (filter(value == "Top Level" ? p : value + "." + p))
                         arr.push({ label: p, href: value + DELIMITER + p});
                 }
                 arr.sort();
@@ -420,6 +493,9 @@ package models
             }
         }
         
+        /**
+         * @royalesuppresscompleximplicitcoercion true
+         */
         private function addIfNeededAndMakeAttributes(arr:Array, data:ASDocClassEvents):void
         {
         	var n:int = arr.length;
@@ -455,6 +531,9 @@ package models
         	arr.push(data);
         }
 
+        /**
+         * @royalesuppresscompleximplicitcoercion true
+         */
 		private function addAttributes(dest:ASDocClassEvents, src:ASDocClassEvents):void
 		{
 			if (!src.tags) return;
@@ -783,7 +862,7 @@ package models
             var packageData:Object = allPackages[p];
             for (var pd:String in packageData)
             {
-                if (filter(packageData[pd]))
+                if (filter(p == "Top Level" ? pd : p + "." + pd))
                     return true;
             }
             return false;
@@ -811,8 +890,12 @@ package models
             filterPackageList();
         }
 
-        public function filterByTags(classData:ASDocClass):Boolean
+        /**
+         * @royalesuppresscompleximplicitcoercion true
+         */
+        public function filterByTags(className:String):Boolean
         {
+            var classData:ASDocClass = masterData["filterData"][className];
             var tags:Array = classData.tags;
             if (!tags) return false;
             for each (var tag:Object in tags)

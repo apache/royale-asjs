@@ -17,6 +17,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.file.beads
 {
+	COMPILE::SWF
+	{
+		import flash.net.FileReference;
+	}
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -61,26 +65,35 @@ package org.apache.royale.file.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function FileModel(data:Object)
+		public function FileModel()
 		{
-			COMPILE::SWF
-			{
-				_data = data as FileReference;			
-			}
-			COMPILE::JS
-			{
-				_data = data as File;			
-			}
 		}
 		
+		COMPILE::JS
+		public function set fileReference(value:File):void
+		{
+			_data = value;
+		}
 		
+		COMPILE::SWF
+		public function set fileReference(value:FileReference):void
+		{
+			_data = value;
+		}
 		
 		/**
 		 *  @copy org.apache.royale.file.IFileModel#size
 		 */
 		public function get size():Number
 		{
-			return _data.size;
+			COMPILE::SWF 
+			{
+				return _data.size;
+			}
+			COMPILE::JS 
+			{
+				return blob ? blob.length : -1;
+			}
 		}
 		
 		/**
@@ -137,10 +150,10 @@ package org.apache.royale.file.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.6
 		 */
 		COMPILE::JS
-		public function get file():File
+		public function get fileReference():File
 		{
 			return _data as File;
 		}
@@ -150,14 +163,14 @@ package org.apache.royale.file.beads
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
+         *  @productversion Royale 0.9.6
          */
-		public function get blob():BinaryData
+		public function get blob():Object
 		{
 			return _blob;
 		}
 		
-		public function set blob(value:BinaryData):void
+		public function set fileContent(value:BinaryData):void
 		{
 			_blob = value;
 			dispatchEvent(new Event("blobChanged"));

@@ -24,6 +24,7 @@
 	<fx:Script>
 		<![CDATA[
 
+            import mx.collections.ArrayCollection;
 			import mx.controls.*;
 			import mx.events.*;
 
@@ -38,7 +39,7 @@
 				myMenu.selectedIndex = 0;       
 				myMenu.addEventListener("itemClick", itemClickHandler);
 				popB.popUp = myMenu;
-				popB.label = "Put in: " + myMenu.dataProvider[myMenu.selectedIndex].label;
+				popB.label = "Put in: " + (myMenu.dataProvider as ArrayCollection)[myMenu.selectedIndex].label;
 			}
 
 			// Define the event listener for the Menu control's itemClick event. 

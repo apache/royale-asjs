@@ -120,7 +120,7 @@ package org.apache.royale.textLayout.edit
  	 * @see org.apache.royale.textLayout.elements.TextFlow
  	 * @see flashx.undo.UndoManager
 	 *
-	 *  examples\EditManager_example.as -noswf
+	 *  examples/EditManager_example.as -noswf
 	 * 
 	 * @playerversion Flash 10
 	 * @playerversion AIR 1.5

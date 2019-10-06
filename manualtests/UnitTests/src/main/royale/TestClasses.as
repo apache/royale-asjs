@@ -22,15 +22,18 @@ package
 	import flexUnitTests.*;
 
 
-	public class TestClasses 
+	public class TestClasses
 	{
 		
 		public static function get testClasses():Array {
 			return [
+						LanguageTester,
 						CoreTester,
 						ReflectionTester,
 						ObservedBugsTester,
-						JiraIssuesTester
+						GithubIssuesTester,
+						NetworkTester,
+						XMLTester
 					];
 		}
 	}

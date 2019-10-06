@@ -62,6 +62,10 @@ package org.apache.royale.html.beads
         private var _strand:IStrand;
 		
 		private var _model:IBinaryImageModel;
+		/**
+     * @royaleignorecoercion org.apache.royale.core.IBinaryImageModel
+		 * 
+		 */
 		private function get model():IBinaryImageModel
 		{
 			if(!_model)
@@ -86,33 +90,35 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
-         * @royaleignorecoercion Object
-         * @royaleignorecoercion UIBase
+		 * @royaleignorecoercion org.apache.royale.core.IBinaryImageModel
+		 * @royaleignorecoercion org.apache.royale.core.IImageView
 		 */
-        private function handleBinaryChange(event:Event):void
-        {
-            var m:IBinaryImageModel = model;
+		private function handleBinaryChange(event:Event):void
+		{
+			var m:IBinaryImageModel = model;
 			var imageView:IImageView = _strand.getBeadByType(IImageView) as IImageView;
-           COMPILE::SWF
-            {
-                if (m.binary) {
+			COMPILE::SWF
+			{
+				if (m.binary)
+				{
 					imageView.setupLoader();
 					imageView.loader.loadBytes(m.binary.array);
-                }                    
-            }
-            COMPILE::JS
-            {
-                if (m.binary) {
+				}
+			}
+			COMPILE::JS
+			{
+				if (m.binary)
+				{
 					imageView.setupLoader();
-                    if(_objectURL)
-                        URLUtils.revokeObjectURL(_objectURL);
-                    var blob:Blob = new Blob([m.binary.array]);
-// I don't think we need to specify the type.
+					if(_objectURL)
+						URLUtils.revokeObjectURL(_objectURL);
+					var blob:Blob = new Blob([m.binary.array]);
+					// I don't think we need to specify the type.
 //                    var blob = new Blob([response], {type: "image/png"});
-                    _objectURL = URLUtils.createObjectURL(blob);
-                    (_strand as IBinaryImage).applyImageData(_objectURL);
-                }
-            }
-        }
+					_objectURL = URLUtils.createObjectURL(blob);
+					(_strand as IBinaryImage).applyImageData(_objectURL);
+				}
+			}
+		}
 	}
 }

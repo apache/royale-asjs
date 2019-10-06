@@ -20,6 +20,7 @@
 <s:Module xmlns:fx="http://ns.adobe.com/mxml/2009" 
 			   xmlns:s="library://ns.apache.org/royale/spark" 
 			   xmlns:mx="library://ns.apache.org/royale/mx"
+               width="100%" height="100%"
 			   creationComplete="init()">
 	
 <!-- This sample is based on this page: http://help.adobe.com/en_US/ActionScript/3.0_ProgrammingAS3_Flex/WS0d70b2a8565d75766ba6608d121cc29f375-8000.html -->

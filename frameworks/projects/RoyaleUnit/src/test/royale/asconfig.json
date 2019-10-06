@@ -1,0 +1,35 @@
+{
+	"config": "node",
+	"compilerOptions": {
+		"keep-as3-metadata": [
+			"Test",
+			"Before",
+			"After",
+			"BeforeClass",
+			"AfterClass",
+			"Ignore",
+			"Suite",
+			"RunWith"
+		],
+		"source-map": true,
+		"source-path": [
+			".",
+		],
+		"library-path": [
+			
+			"${royalelib}/libs/Language.swc",
+			"${royalelib}/libs/Core.swc",
+			"${royalelib}/libs/Reflection.swc",
+			"${royalelib}/libs/RoyaleUnit.swc"
+		],
+		"js-library-path": [
+			"${royalelib}/js/libs/LanguageJS.swc",
+			"${royalelib}/js/libs/CoreJS.swc",
+			"${royalelib}/js/libs/ReflectionJS.swc",
+			"${royalelib}/js/libs/RoyaleUnitJS.swc"
+		]
+	},
+	"files":[
+		"NodeTests.as"
+	]
+}

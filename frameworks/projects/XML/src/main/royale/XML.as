@@ -19,6 +19,9 @@
 package
 {
 	COMPILE::JS
+	/**
+	 * @royalesuppresspublicvarwarning
+	 */
 	public class XML
 	{
 		import org.apache.royale.debugging.assert;
@@ -29,6 +32,8 @@ package
 		 * Additionally, it has a namespaceURI. Otherwise the namespaceURI is null.
 		 * the prefix together with the namespaceURI form a QName
 		*/
+		
+
 
 		/**
 		 * Memory optimization.
@@ -56,6 +61,11 @@ package
 			}
 			return qname;
 		}
+		
+		/**
+		 * regex to match the xml declaration
+		 */
+		private static const xmlDecl:RegExp = /^\s*<\?xml[^?]*\?>/im;
 
 		/**
 		 * Method to free up references to shared QName objects.
@@ -80,26 +90,26 @@ package
 
 		/**
 		 * [static] Determines whether XML comments are ignored when XML objects parse the source XML data.
-		 *  
+		 *
 		 */
 		static public var ignoreComments:Boolean = true;
 		
 		/**
 		 * [static] Determines whether XML processing instructions are ignored when XML objects parse the source XML data.
-		 *  
+		 *
 		 */
 		static public var ignoreProcessingInstructions:Boolean = true;
 		
 		/**
 		 * [static] Determines whether white space characters at the beginning and end of text nodes are ignored during parsing.
-		 *  
+		 *
 		 */
 		static public var ignoreWhitespace:Boolean = true;
 		
 		static private var _prettyIndent:int = 2;
 		/**
 		 * [static] Determines the amount of indentation applied by the toString() and toXMLString() methods when the XML.prettyPrinting property is set to true.
-		 * 
+		 *
 		 */
 		static public function set prettyIndent(value:int):void
 		{
@@ -121,13 +131,12 @@ package
 		
 		/**
 		 * [static] Determines whether the toString() and toXMLString() methods normalize white space characters between some tags.
-		 * 
+		 *
 		 */
 		static public var prettyPrinting:Boolean = true;
 		
 		static private function escapeAttributeValue(value:String):String
 		{
-			var outArr:Array = [];
 			var arr:Array = String(value).split("");
 			var len:int = arr.length;
 			for(var i:int=0;i<len;i++)
@@ -135,61 +144,55 @@ package
 				switch(arr[i])
 				{
 					case "<":
-						outArr[i] = "&lt;";
+						arr[i] = "&lt;";
 						break;
 					case "&":
-						if(arr[i+1] == "#")
-							outArr[i] = "&";
-						else
-							outArr[i] = "&amp;";
+						if(arr[i+1] != "#")
+							arr[i] = "&amp;";
 						break;
 					case '"':
-						outArr[i] = "&quot;";
+						arr[i] = "&quot;";
 						break;
 					case "\u000A":
-						outArr[i] = "&#xA;";
+						arr[i] = "&#xA;";
 						break;
 					case "\u000D":
-						outArr[i] = "&#xD;";
+						arr[i] = "&#xD;";
 						break;
 					case "\u0009":
-						outArr[i] = "&#x9;";
+						arr[i] = "&#x9;";
 						break;
 					default:
-						outArr[i] = arr[i];
 						break;
 				}
 			}
-			return outArr.join("");
+			return arr.join("");
 		}
 
 		static private function escapeElementValue(value:String):String
 		{
 			var i:int;
-			var outArr:Array = [];
 			var arr:Array = value.split("");
-			for(i=0;i<arr.length;i++)
+			const len:uint = arr.length;
+			for(i=0;i<len;i++)
 			{
 				switch(arr[i])
 				{
 					case "<":
-						outArr[i] = "&lt;";
+						arr[i] = "&lt;";
 						break;
 					case ">":
-						outArr[i] = "&gt;";
+						arr[i] = "&gt;";
 						break;
 					case "&":
-						if(arr[i+1] == "#")
-							outArr[i] = "&";
-						else
-							outArr[i] = "&amp;";
+						if(arr[i+1] != "#")
+							arr[i] = "&amp;";
 						break;
 					default:
-						outArr[i] = arr[i];
 						break;
 				}
 			}
-			return outArr.join("");
+			return arr.join("");
 		}
 
 		static private function insertAttribute(att:Attr,parent:XML):XML
@@ -208,9 +211,15 @@ package
 			// add attributes
 			var attrs:* = node.attributes;
 			var len:int = node.attributes.length;
+			
 			for(i=0;i<len;i++)
 			{
-				insertAttribute(attrs[i],xml);
+				var att:Attr = attrs[i];
+				if (att.prefix == 'xmlns' && att.namespaceURI == 'http://www.w3.org/2000/xmlns/') {
+					//from e4x spec: NOTE Although namespaces are declared using attribute syntax in XML, they are not represented in the [[Attributes]] property.
+					xml.addNamespace(new Namespace(att.localName, att.nodeValue));
+				}
+				else insertAttribute(att,xml);
 			}
 			// loop through childNodes which will be one of:
 			// text, cdata, processing instrution or comment and add them as children of the element
@@ -218,18 +227,26 @@ package
 			len = childNodes.length;
 			for(i=0;i<len;i++)
 			{
-				var child:XML = fromNode(childNodes[i]);
-				xml.addChildInternal(child);
+				var nativeNode:Node = childNodes[i];
+				const nodeType:Number = nativeNode.nodeType;
+				if ((nodeType == 7 && XML.ignoreProcessingInstructions) ||
+					(nodeType == 8 && XML.ignoreComments)) {
+					continue;
+				}
+				var child:XML = fromNode(nativeNode);
+				if (child)
+					xml.addChildInternal(child);
 			}
 		}
 		/**
 		* returns an XML object from an existing node without the need to parse the XML.
 		* The new XML object is not normalized
+		*
+		* @royaleignorecoercion Element
 		*/
-		static private function fromNode(node:Element):XML
+		static private function fromNode(node:Node):XML
 		{
 			var xml:XML;
-			var i:int;
 			var data:* = node.nodeValue;
 			var localName:String = node.nodeName;
 			var prefix:String = node.prefix;
@@ -245,22 +262,24 @@ package
 					xml = new XML();
 					xml.setNodeKind("element");
 					xml.setName(qname);
-					iterateElement(node,xml);
+					iterateElement(node as Element,xml);
 					break;
 				//case 2:break;// ATTRIBUTE_NODE (handled separately)
 				case 3:
 					//TEXT_NODE
+					if (XML.ignoreWhitespace) {
+						data = data.trim();
+						if (!data) return null;
+					}
 					xml = new XML();
 					xml.setNodeKind("text");
-					xml.setName(qname);
-					if(XML.ignoreWhitespace)
-						data = data.trim();
+					//xml.setName(qname); e4X: the name must be null (text node rules)
 					xml.setValue(data);
 					break;
 				case 4:
 					//CDATA_SECTION_NODE
 					xml = new XML();
-					xml.setName(qname);
+					//xml.setName(qname); e4X: the name must be null (text node rules)
 					xml.setNodeKind("text");
 					data = "<![CDATA[" + data + "]]>";
 					xml.setValue(data);
@@ -276,8 +295,10 @@ package
 					break;
 				case 8:
 					//COMMENT_NODE
+					
 					xml = new XML();
 					xml.setNodeKind("comment");
+					//e4X: the name must be null (comment node rules)
 					xml.setValue(data);
 					break;
 				//case 9:break;//DOCUMENT_NODE
@@ -316,8 +337,8 @@ package
 
 		/**
 		 * [static] Returns an object with the following properties set to the default values: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		static public function defaultSettings():Object
 		{
@@ -333,7 +354,7 @@ package
 		/**
 		 * [static] Sets values for the following XML properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
 		 * @param rest
-		 * 
+		 *
 		 */
 		static public function setSettings(value:Object):void
 		{
@@ -349,9 +370,9 @@ package
 		
 		/**
 		 * [static] Retrieves the following properties: ignoreComments, ignoreProcessingInstructions, ignoreWhitespace, prettyIndent, and prettyPrinting.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		static public function settings():Object
 		{
@@ -367,13 +388,15 @@ package
         /**
          *  mimics the top-level XML function
          *  @royaleignorecoercion XMLList
+		 *
+		 *  @royalesuppressexport
          */
         public static function conversion(xml:*):XML
         {
             if (xml == null)
             {
-                // throw TypeError
-                return null;
+				//as3 docs say this is a TypeError, but it is actually not (in AVM), return an empty text node
+                return new XML('');
             }
             else if (xml.ROYALE_CLASS_INFO != null)
             {
@@ -396,9 +419,9 @@ package
 		{
 			// _origStr = xml;
 			// _children = [];
-			if(xml)
+			if(xml != null)
 			{
-				var xmlStr:String = "" + xml;
+				var xmlStr:String = ignoreWhitespace ? trimXMLWhitespace("" + xml) : "" + xml;
 				if(xmlStr.indexOf("<") == -1)
 				{
 					_nodeKind = "text";
@@ -408,21 +431,32 @@ package
 				{
 					parseXMLStr(xmlStr);
 				}
+			} else {
+				//_nodeKind = "text";
+				//_value = '';
 			}
+
 			Object.defineProperty(this,"0",
-				{
-					"get": function():* { return this; },
-					"set": function(newValue:*):void {
-					},
-					enumerable: true,
-					configurable: true
-				}
+					{
+						"get": function():* { return this; },
+						"set": function(newValue:*):void {
+						},
+						enumerable: true,
+						configurable: true
+					}
 			);
+
 			
 		}
 		private static var xmlRegEx:RegExp = /&(?![\w]+;)/g;
+		private static var isWhitespace:RegExp = /^\s+$/;
 		private static var parser:DOMParser;
 		private static var errorNS:String;
+		
+		/**
+		 *
+		 * @royaleignorecoercion Element
+		 */
 		private function parseXMLStr(xml:String):void
 		{
 			//escape ampersands
@@ -440,6 +474,13 @@ package
 					errorNS = "na";
 				}
 			}
+			
+			var decl:String = xmlDecl.exec(xml);
+			if (decl) xml = xml.replace(decl,'');
+			if (ignoreWhitespace) xml = trimXMLWhitespace( xml) ;
+			//various node types not supported directly
+			//when parsing, always wrap (e4x ref p34, 'Semantics' of e4x-Ecma-357.pdf)
+			xml = '<parseRoot>'+xml+'</parseRoot>';
 			try
 			{
 				var doc:Document = parser.parseFromString(xml, "application/xml");
@@ -453,28 +494,94 @@ package
 			var errorNodes:NodeList = doc.getElementsByTagNameNS(errorNS, 'parsererror');
 			if(errorNodes.length > 0)
 				throw new Error(errorNodes[0].innerHTML);
-			for(var i:int=0;i<doc.childNodes.length;i++)
+
+			//parseRoot wrapper
+			doc = doc.childNodes[0];
+
+			var childCount:uint = doc.childNodes.length;
+			//var rootError:Boolean;
+			var foundRoot:Boolean;
+			var foundCount:uint = 0;
+			for(var i:int=0;i<childCount;i++)
 			{
-				var node:Element = doc.childNodes[i];
+				var node:Node = doc.childNodes[i];
 				if(node.nodeType == 1)
 				{
-					_version = doc.xmlVersion;
-					_encoding = doc.xmlEncoding;
+					if (foundRoot) {
+						foundCount++;
+						//we have at least 2 root tags... definite error
+						break;
+					}
+					foundRoot = true;
+					foundCount = 1; //top level root tag wins
+
+					if (foundCount != 0) {
+						//reset any earlier settings
+						this.setNodeKind('element');
+						this.setValue(null);
+					}
 					_name = getQName(node.localName,node.prefix,node.namespaceURI,false);
-					// _name = new QName();
-					// _name.prefix = node.prefix;
-					// _name.uri = node.namespaceURI;
-					// _name.localName = node.localName;
-					iterateElement(node,this);
+					iterateElement(node as Element,this);
 				}
 				else
 				{
-					// Do we record the nodes which are probably processing instructions?
-//						var child:XML = XML.fromNode(node);
-//						addChild(child);
+					if (foundRoot) continue; // if we already found a root, then everything else is ignored outside it, regardless of XML settings, so only continue to check for multiple root tags (an error)
+					if (node.nodeType == 7) {
+						if (XML.ignoreProcessingInstructions) {
+							if (!foundCount) {
+								this.setNodeKind('text');
+								//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
+								_name = null;
+								this.setValue('');
+							}
+						} else {
+							this.setNodeKind('processing-instruction');
+							this.setName(node.nodeName);
+							this.setValue(node.nodeValue);
+							foundCount++;
+						}
+					} else if (node.nodeType == 4) {
+						if (!foundCount) {
+							this.setNodeKind('text');
+							//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
+							_name = null;
+							this.setValue('<![CDATA[' + node.nodeValue + ']]>');
+						}
+						foundCount++;
+					} else if (node.nodeType == 8) {
+						//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
+						_name = null;
+						if (XML.ignoreComments) {
+							if (!foundCount) {
+								this.setNodeKind('text');
+								this.setValue('');
+							}
+						} else {
+							if (!foundCount) {
+								this.setNodeKind('comment');
+								this.setValue(node.nodeValue);
+							}
+							foundCount++;
+						}
+					}
+					else if (node.nodeType == 3) {
+						var whiteSpace:Boolean = isWhitespace.test(node.nodeValue);
+						if (!whiteSpace || !XML.ignoreWhitespace) {
+							if (!foundCount) {
+								this.setNodeKind('text');
+								this.setValue(node.nodeValue);
+							}
+							foundCount++;
+						} else {
+							//do nothing
+						}
+					}
 				}
 			}
-			normalize();
+			
+			if (foundCount > 1) throw new TypeError('Error #1088: The markup in the document following the root element must be well-formed.');
+			//normalize seems wrong here:
+			//normalize();
 		//need to deal with errors https://bugzilla.mozilla.org/show_bug.cgi?id=45566
 		// get rid of nodes we do not want
 		//loop through the child nodes and build XML obejcts for each.
@@ -482,12 +589,11 @@ package
 		
 		private var _children:Array;
 		private var _attributes:Array;
-		private var _processingInstructions:Array;
 		private var _parent:XML;
 		private var _value:String;
-		private var _version:String;
-		private var _encoding:String;
-		private var _appliedNamespace:Namespace;
+		//private var _version:String;
+		//private var _encoding:String;
+
 		/**
 		 * Memory optimization: Don't create the array unless needed.
 		 */
@@ -499,15 +605,13 @@ package
 			
 			return _namespaces;
 		}
-		private var _origStr:String;
-
 
 		/**
 		 * @private
-		 * 
+		 *
 		 * Similar to appendChild, but accepts all XML types (text, comment, processing-instruction, attribute, or element)
 		 *
-		 * 	
+		 *
 		 */
 		public function addChild(child:XML):void
 		{
@@ -523,13 +627,7 @@ package
 			child.setParent(this);
 			if(child.nodeKind() =="attribute")
 				getAttributes().push(child);
-            else if (child.nodeKind() == "comment" && XML.ignoreComments)
-            {
-                // don't add child
-            }
-			else				
-				getChildren().push(child);
-			
+            else getChildren().push(child);
 		}
 
 		private function getChildren():Array
@@ -552,8 +650,8 @@ package
 		 * Adds a namespace to the set of in-scope namespaces for the XML object.
 		 *
 		 * @param ns
-		 * @return 
-		 * 	
+		 * @return
+		 *
 		 */
 		public function addNamespace(ns:Namespace):XML
 		{
@@ -612,36 +710,40 @@ package
 		 * Appends the given child to the end of the XML object's properties.
 		 *
 		 * @param child
-		 * @return 
-		 * 
+		 * @return
+		 *
+		 * @royaleignorecoercion XML
+		 *
 		 */
 		public function appendChild(child:*):XML
 		{
 			/*
-				[[Insert]] (P, V)
-				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return
-				2. Let i = ToUint32(P)
-				3. If (ToString(i) is not equal to P), throw a TypeError exception
-				4. If Type(V) is XML and (V is x or an ancestor of x) throw an Error exception
-				5. Let n = 1
-				6. If Type(V) is XMLList, let n = V.[[Length]]
-				7. If n == 0, Return
-				8. For j = x.[[Length]]-1 downto i, rename property ToString(j) of x to ToString(j + n)
-				9. Let x.[[Length]] = x.[[Length]] + n
-				10. If Type(V) is XMLList
-				  a. For j = 0 to V.[[Length-1]]
-				    i. V[j].[[Parent]] = x
-				    ii. x[i + j] = V[j]
-				11. Else
-				  a. Call the [[Replace]] method of x with arguments i and V
-				12. Return
+			1. Let children be the result of calling the [[Get]] method of x with argument "*"
+			2. Call the [[Put]] method of children with arguments children.[[Length]] and child
+			3. Return x
+		
 			*/
 			var childType:String = typeof child;
-			if(childType != "object")
-				child = xmlFromStringable(child);
+			
+			if(childType != "object") {
+        		const last:uint = childrenLength();
+				const lastChild:XML = last ? _children[last-1] : null;
+				if (lastChild && lastChild.nodeKind() == 'element') {
+					
+					const wrapper:XML = new XML();
+					child = new XML(child.toString());
+					wrapper.setName(lastChild.name());
+                    child.setParent(wrapper);
+                    wrapper.getChildren().push(child);
+					child = wrapper;
+				} else {
+                    child = xmlFromStringable(child);
+				}
+			}
 			
 			appendChildInternal(child);
-			normalize();
+			//normalize seems not correct here:
+			//normalize();
 			return this;
 		}
 		
@@ -667,8 +769,8 @@ package
 		 * Returns the XML value of the attribute that has the name matching the attributeName parameter.
 		 *
 		 * @param attributeName
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function attribute(attributeName:*):XMLList
 		{
@@ -692,8 +794,8 @@ package
 		/**
 		 * Returns a list of attribute values for the given XML object.
 		 *
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function attributes():XMLList
 		{
@@ -711,13 +813,13 @@ package
 		 * Lists the children of an XML object.
 		 *
 		 * @param propertyName
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function child(propertyName:Object):XMLList
 		{
 			/*
-			 * 
+			 *
 			When the [[Get]] method of an XML object x is called with property name P, the following steps are taken:
 			1. If ToString(ToUint32(P)) == P
 			  a. Let list = ToXMLList(x)
@@ -758,9 +860,10 @@ package
 			else
 			{
 				len = childrenLength();
+				var all:Boolean = propertyName.localName == "*";
 				for(i=0;i<len;i++)
 				{
-					if(propertyName.matches(_children[i].name()))
+					if(all || propertyName.matches(_children[i].name()))
 						list.append(_children[i]);
 				}
 			}
@@ -772,8 +875,8 @@ package
 		/**
 		 * Identifies the zero-indexed position of this XML object within the context of its parent.
 		 *
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function childIndex():int
 		{
@@ -786,8 +889,8 @@ package
 		/**
 		 * Lists the children of the XML object in the sequence in which they appear.
 		 *
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function children():XMLList
 		{
@@ -795,7 +898,9 @@ package
 			var list:XMLList = new XMLList();
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
+			{
 				list.append(_children[i]);
+			}
 
 			list.targetObject = this;
 			return list;
@@ -804,8 +909,8 @@ package
 		/**
 		 * Lists the properties of the XML object that contain XML comments.
 		 *
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function comments():XMLList
 		{
@@ -845,8 +950,8 @@ package
 		 * Compares the XML object against the given value parameter.
 		 *
 		 * @param value
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function contains(value:*):Boolean
 		{
@@ -857,9 +962,9 @@ package
 		
 		/**
 		 * Returns a copy of the given XML object.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function copy():XML
 		{
@@ -904,10 +1009,6 @@ package
 
 		private function deleteChildAt(idx:int):void
 		{
-			if(idx < 0)
-				return;
-			if(idx >= childrenLength())
-				return;
 			var child:XML = _children[idx];
 			child._parent = null;
 			_children.splice(idx,1);
@@ -915,10 +1016,10 @@ package
 		
 		/**
 		 * Returns all descendants (children, grandchildren, great-grandchildren, and so on) of the XML object that have the given name parameter.
-		 * 
+		 *
 		 * @param name
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function descendants(name:Object = "*"):XMLList
 		{
@@ -961,17 +1062,17 @@ package
 						list.append(_children[i]);
 
 					list.concat(_children[i].descendants(name));
-				} 
+				}
 			}
 			return list;
 		}
 		
 		/**
 		 * Lists the elements of an XML object. (handles E4X dot notation)
-		 * 
+		 *
 		 * @param name
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function elements(name:Object = "*"):XMLList
 		{
@@ -1116,11 +1217,11 @@ package
 
 		public function getAttributeArray():Array
 		{
-			return _attributes ? _attributes.slice() : [];
+			return _attributes ? _attributes : [];
 		}
 		public function getChildrenArray():Array
 		{
-			return _children ? _children.slice() : [];
+			return _children ? _children : [];
 		}
 
 		public function getIndexOf(elem:XML):int
@@ -1176,9 +1277,9 @@ package
 		}
 		/**
 		 * Checks to see whether the XML object contains complex content.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function hasComplexContent():Boolean
 		{
@@ -1245,12 +1346,12 @@ package
 			}
 			return false;
 		}
-				
+		
 		/**
 		 * Checks to see whether the XML object contains simple content.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function hasSimpleContent():Boolean
 		{
@@ -1275,9 +1376,9 @@ package
 		
 		/**
 		 * Lists the namespaces for the XML object, based on the object's parent.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function inScopeNamespaces():Array
 		{
@@ -1317,11 +1418,11 @@ package
 		}
 		/**
 		 * Inserts the given child2 parameter after the child1 parameter in this XML object and returns the resulting object.
-		 * 
+		 *
 		 * @param child1
 		 * @param child2
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function insertChildAfter(child1:XML, child2:XML):XML
 		{
@@ -1353,11 +1454,11 @@ package
 		
 		/**
 		 * Inserts the given child2 parameter before the child1 parameter in this XML object and returns the resulting object.
-		 * 
+		 *
 		 * @param child1
 		 * @param child2
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function insertChildBefore(child1:XML, child2:XML):XML
 		{
@@ -1372,7 +1473,7 @@ package
 				i. If x[i] is the same object as child1
 				1. Call the [[Insert]] method of x with arguments ToString(i) and child2
 				2. Return x
-				4. Return			
+				4. Return
 			*/
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind == "attribute")
 				return null;
@@ -1392,9 +1493,9 @@ package
 		
 		/**
 		 * For XML objects, this method always returns the integer 1.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function length():int
 		{
@@ -1403,36 +1504,36 @@ package
 		
 		/**
 		 * Gives the local name portion of the qualified name of the XML object.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function localName():String
 		{
-			return name().localName;
+			return _name? _name.localName : null;
 		}
 
 		private var _name:QName;
 		
 		/**
 		 * Gives the qualified name for the XML object.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function name():QName
 		{
-			if(!_name)
-				_name = getQName("","","",false);
+			/*if(!_name)
+				_name = getQName("","","",false);*/
 			return _name;
 		}
 		
 		/**
 		 * If no parameter is provided, gives the namespace associated with the qualified name of this XML object.
-		 * 
+		 *
 		 * @param prefix
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function namespace(prefix:String = null):*
 		{
@@ -1474,9 +1575,9 @@ package
 		
 		/**
 		 * Lists namespace declarations associated with the XML object in the context of its parent.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function namespaceDeclarations():Array
 		{
@@ -1501,7 +1602,6 @@ package
 				  b. Let i = i + 1
 				10. Return a
 			*/
-			var i:int;
 			var retVal:Array = [];
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
 				return retVal;
@@ -1512,11 +1612,11 @@ package
 				var parentNS:Array = parent.inScopeNamespaces();
 				var idx:int;
 				var pIdx:int;
-				for(pIdx=0;i<parentNS.length;pIdx++)
+				for(pIdx=0;pIdx<parentNS.length;pIdx++)
 				{
 					var uri:String = parentNS[pIdx].uri;
 					var prefix:String = parentNS[pIdx].prefix;
-					for(idx=0;i<declaredNS.length;idx++)
+					for(idx=0;idx<declaredNS.length;idx++)
 					{
 						if(declaredNS[idx].uri == uri && declaredNS[idx].prefix == prefix)
 						{
@@ -1534,8 +1634,8 @@ package
 		private var _nodeKind:String = "element";
 		/**
 		 * Specifies the type of node: text, comment, processing-instruction, attribute, or element.
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function nodeKind():String
 		{
@@ -1544,9 +1644,9 @@ package
 		
 		/**
 		 * For the XML object and all descendant XML objects, merges adjacent text nodes and eliminates empty text nodes.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function normalize():XML
 		{
@@ -1569,7 +1669,10 @@ package
 						deleteChildAt(i+1);
 					}
 					if(!child.s())
+                    {
 						deleteChildAt(i);
+                        continue; //don't set last child if we removed it
+                    }
 				}
 				lastChild = child;
 			}
@@ -1578,9 +1681,9 @@ package
 		
 		/**
 		 * Returns the parent of the XML object.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function parent():*
 		{
@@ -1605,8 +1708,8 @@ package
 		/**
 		 * Inserts the provided child object into the XML element before any existing XML properties for that element.
 		 * @param value
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function prependChild(child:XML):XML
 		{
@@ -1640,10 +1743,10 @@ package
 		
 		/**
 		 * If a name parameter is provided, lists all the children of the XML object that contain processing instructions with that name.
-		 * 
+		 *
 		 * @param name
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function processingInstructions(name:String = "*"):XMLList
 		{
@@ -1661,10 +1764,10 @@ package
 		
 		/**
 		 * Removes the given chid for this object and returns the removed child.
-		 * 
+		 *
 		 * @param child
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function removeChild(child:XML):Boolean
 		{
@@ -1746,6 +1849,9 @@ package
 			len = childrenLength() - 1;
 			for(i=len;i>=0;i--)
 			{
+				if(_children[i].nodeKind() != "element"){
+					continue;
+				}
 				if(_children[i].name().matches(name))
 				{
 					child = _children[i];
@@ -1754,6 +1860,7 @@ package
 					removedItem = true;
 				}
 			}
+			normalize();
 			return removedItem;
 		}
 		public function removeChildAt(index:int):void
@@ -1778,10 +1885,10 @@ package
 
 		/**
 		 * Removes the given namespace for this object and all descendants.
-		 * 
+		 *
 		 * @param ns
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function removeNamespace(ns:*):XML
 		{
@@ -1843,11 +1950,11 @@ package
 		
 		/**
 		 * Replaces the properties specified by the propertyName parameter with the given value parameter.
-		 * 
+		 *
 		 * @param propertyName
 		 * @param value
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function replace(propertyName:Object, value:*):*
 		{
@@ -1867,7 +1974,7 @@ package
 				    ii. Let i = k
 				8. If i == undefined, return x
 				9. Call the [[Replace]] method of x with arguments ToString(i) and c
-				10. Return x			
+				10. Return x
 			*/
 		
 			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction" || _nodeKind ==  "attribute")
@@ -2028,16 +2135,16 @@ package
 		/**
 		 * Replaces the child properties of the XML object with the specified name with the specified XML or XMLList.
 		 * This is primarily used to support dot notation assignment of XML.
-		 * 
+		 *
 		 * @param value
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function setChild(elementName:*, elements:Object):Object
 		{
 			
 			/*
-			 * 
+			 *
 			1. If ToString(ToUint32(P)) == P, throw a TypeError exception NOTE this operation is reserved for future versions of E4X.
 			2. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return
 			3. If (Type(V) ∉ {XML, XMLList}) or (V.[[Class]] ∈ {"text", "attribute"})
@@ -2154,7 +2261,9 @@ package
 					// remove the children
 					// adjust the childIndexes
 				}
-				var curChild:XML = getChildren()[childIdx];
+				if(chldrn.length()){
+					var curChild:XML = getChildren()[childIdx];
+				}
 				// Now add them in.
 				len = elements.length();
 				for(i=0;i<len;i++)
@@ -2181,10 +2290,10 @@ package
 
 		/**
 		 * Replaces the child properties of the XML object with the specified set of XML properties, provided in the value parameter.
-		 * 
+		 *
 		 * @param value
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		public function setChildren(value:Object):XML
 		{
@@ -2237,9 +2346,9 @@ package
 		
 		/**
 		 * Changes the local name of the XML object to the given name parameter.
-		 * 
+		 *
 		 * @param name
-		 * 
+		 *
 		 */
 		public function setLocalName(name:String):void
 		{
@@ -2252,12 +2361,26 @@ package
 		
 		/**
 		 * Sets the name of the XML object to the given qualified name or attribute name.
-		 * 
+		 *
 		 * @param name
-		 * 
+		 *
 		 */
 		public function setName(name:*):void
 		{
+			//@todo add tests to review against the following:
+			/*1. If x.[[Class]] ∈ {"text", "comment"}, return
+			2. If (Type(name) is Object) and (name.[[Class]] == "QName") and (name.uri == null)
+			a. Let name = name.localName
+			3. Let n be a new QName created if by calling the constructor new QName(name)
+			4. If x.[[Class]] == "processing-instruction", let n.uri be the empty string
+			5. Let x.[[Name]] = n
+			6. Let ns be a new Namespace created as if by calling the constructor new Namespace(n.prefix, n.uri)
+			7. If x.[[Class]] == "attribute"
+			a. If x.[[Parent]] == null, return
+			b. Call x.[[Parent]].[[AddInScopeNamespace]](ns)
+			8. If x.[[Class]] == "element"
+			a. Call x.[[AddInScopeNamespace]](ns)*/
+			if (_nodeKind == 'text' || _nodeKind == 'comment') return; //e4x, see 1 above
 			var nameRef:QName;
 			if(name is QName)
 				nameRef = name;
@@ -2269,34 +2392,35 @@ package
 		
 		/**
 		 * Sets the namespace associated with the XML object.
-		 * 
+		 *
 		 * @param ns
-		 * 
+		 *
 		 */
 		public function setNamespace(ns:Object):void
 		{
-			if(_nodeKind == "text" || _nodeKind == "comment" || _nodeKind == "processing-instruction")
+			var kind:String = _nodeKind;
+			if(kind == "text" || kind == "comment" || kind == "processing-instruction")
 				return;
 			var ns2:Namespace = new Namespace(ns);
 			var nameRef:QName = new QName(ns2,name());
 			
-			if(_nodeKind == "attribute")
+			if(kind == "attribute")
 			{
-				nameRef.isAttribute = true;
 				if(_parent == null)
 					return;
+				nameRef.isAttribute = true;
 				_parent.addNamespace(ns2);
 			}
-
+			
 			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,nameRef.isAttribute);
 
-			if(_nodeKind == "element")
+			if(kind == "element")
 				addNamespace(ns2);
 		}
 
 		/**
 		 * @private
-		 * 
+		 *
 		 */
 		public function setNodeKind(value:String):void
 		{
@@ -2322,7 +2446,7 @@ package
 
 		/**
 		 * @private
-		 * 
+		 *
 		 * Allows XMLList to get the targetObject of its targetObject and not error when it gets the XML
 		 */
 		public function get targetObject():*
@@ -2332,9 +2456,9 @@ package
 		
 		/**
 		 * Returns an XMLList object of all XML properties of the XML object that represent XML text nodes.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function text():XMLList
 		{
@@ -2352,10 +2476,10 @@ package
 		
 		/**
 		 * Provides an overridable method for customizing the JSON encoding of values in an XML object.
-		 * 
+		 *
 		 * @param k
-		 * @return 
-		 * 
+		 * @return
+		 *
 		 */
 		 /*
 		override public function toJSON(k:String):String
@@ -2366,16 +2490,18 @@ package
 
 		/**
 		 * Returns a string representation of the XML object.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function toString():String
 		{
 			var i:int;
 			// text, comment, processing-instruction, attribute, or element
-			if(_nodeKind == "text" || _nodeKind == "attribute")
+			if( _nodeKind == "attribute")
 				return _value;
+			if(_nodeKind == "text")
+				return _value && _value.indexOf('<![CDATA[') == 0 ? _value.substring(9, _value.length-3): _value;
 			if(_nodeKind == "comment")
 				return "";
 			if(_nodeKind == "processing-instruction")
@@ -2459,9 +2585,9 @@ package
 		
 		/**
 		 * Returns a string representation of the XML object.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		public function toXMLString(indentLevel:int=0,ancestors:Array=null):String
 		{
@@ -2542,7 +2668,7 @@ package
 				  a. Let s be the result of concatenating s, namespace.prefix and the string ":"
 				26. Let s be the result of concatenating s, x.[[Name]].localName and the string ">"
 				27. Return s
-				NOTE Implementations may also preserve insignificant whitespace (e.g., inside and between element tags) and attribute quoting conventions in ToXMLString().			
+				NOTE Implementations may also preserve insignificant whitespace (e.g., inside and between element tags) and attribute quoting conventions in ToXMLString().
 			*/
 			var i:int;
 			var len:int;
@@ -2554,26 +2680,28 @@ package
 				indentArr.push(_indentStr);
 
 			var indent:String = indentArr.join("");
-			if(this.nodeKind() == "text")
+			const nodeType:String = this.nodeKind();
+			if(nodeType == "text") //4.
 			{
 				if(prettyPrinting)
 				{
 					var v:String = trimXMLWhitespace(_value);
-					if(name().localName == "#cdata-section")
+					if (v.indexOf('<![CDATA[') == 0) {
 						return indent + v;
+					}
 					return indent + escapeElementValue(v);
 				}
-				if(name().localName == "#cdata-section")
+				if (_value.indexOf('<![CDATA[') == 0)
 					return _value;
 				return escapeElementValue(_value);
 			}
-			if(this.nodeKind() == "attribute")
+			if(nodeType == "attribute")
 				return indent + escapeAttributeValue(_value);
 
-			if(this.nodeKind() == "comment")
+			if(nodeType == "comment")
 				return indent + "<!--" +  _value + "-->";
 
-			if(this.nodeKind() == "processing-instruction")
+			if(nodeType == "processing-instruction")
 				return indent + "<?" + name().localName + " " + _value + "?>";
 
 			// We excluded the other types, so it's a normal element
@@ -2606,32 +2734,16 @@ package
 				ns.prefix = "";
 				declarations.push(ns);
 			}
-			if(XML.prettyPrinting)
+			if(XML.prettyPrinting && indentLevel > 0)
 			{
-				strArr.push(new Array(indentLevel).join(' '));
+				strArr.push(new Array(indentLevel + 1).join(_indentStr));
 			}
 			strArr.push("<");
 			if(ns.prefix)
 				strArr.push(ns.prefix+":");
 			strArr.push(name().localName);
-
+			
 			//attributes and namespace declarations... (15-16)
-			for(i=0;i<declarations.length;i++)
-			{
-				var decVal:String = escapeAttributeValue(declarations[i].uri);
-				if(decVal)
-				{
-					strArr.push(" xmlns");
-					if(declarations[i].prefix)
-					{
-						strArr.push(":");
-						strArr.push(declarations[i].prefix);
-					}
-					strArr.push('="');
-					strArr.push(decVal);
-					strArr.push('"');
-				}
-			}
 			len = attributeLength();
 			for(i=0;i<len;i++)
 			{
@@ -2650,6 +2762,24 @@ package
 				strArr.push(escapeAttributeValue(_attributes[i].getValue()));
 				strArr.push('"');
 			}
+			// see 15. namespace declarations is after
+			for(i=0;i<declarations.length;i++)
+			{
+				var decVal:String = escapeAttributeValue(declarations[i].uri);
+				if(decVal)
+				{
+					strArr.push(" xmlns");
+					if(declarations[i].prefix)
+					{
+						strArr.push(":");
+						strArr.push(declarations[i].prefix);
+					}
+					strArr.push('="');
+					strArr.push(decVal);
+					strArr.push('"');
+				}
+			}
+			
 			// now write elements or close the tag if none exist
 			len = childrenLength();
 			if(len == 0)
@@ -2661,7 +2791,7 @@ package
 			var indentChildren:Boolean = len > 1 || (len == 1 && _children[0].nodeKind() != "text");
 			var nextIndentLevel:int;
 			if(XML.prettyPrinting && indentChildren)
-				nextIndentLevel = indentLevel + prettyIndent;
+				nextIndentLevel = indentLevel + 1;
 			else
 				nextIndentLevel = 0;
 			for(i=0;i<len;i++)
@@ -2674,7 +2804,8 @@ package
 			if(XML.prettyPrinting && indentChildren)
 			{
 				strArr.push("\n");
-				strArr.push(new Array(indentLevel + 1).join(' '));
+				if (indentLevel > 0)
+					strArr.push(new Array(indentLevel + 1).join(_indentStr));
 			}
 			strArr.push("</");
 			if(ns.prefix)
@@ -2690,9 +2821,9 @@ package
 		
 		/**
 		 * Returns the XML object.
-		 * 
-		 * @return 
-		 * 
+		 *
+		 * @return
+		 *
 		 */
 		override public function valueOf():*
 		{
@@ -2700,14 +2831,17 @@ package
 			if(str == "")
 				return str;
 			var num:Number = Number(str);
-			return isNaN(num) ? str : num;
+			if("" + num == str){
+				return  num;
+			}
+			return str;
 		}
 
 		////////////////////////////////////////////////////////////////
 		///
 		///
 		/// METHODS to allow XML to behave as if it's a string or number
-		/// 
+		///
 		///
 		////////////////////////////////////////////////////////////////
 		
@@ -2760,19 +2894,19 @@ Moved this logic (partially) into the other replace method
 		}
 		public function slice(beginSlice:Number, endSlice:*=undefined):String
 		{
-			return s().slice(beginSlice,endSlice);
+			return s()["slice"](beginSlice,endSlice);
 		}
 		public function split(separator:*=undefined,limit:*=undefined):Array
 		{
-			return s().split(separator,limit);
+			return s()["split"](separator,limit);
 		}
 		public function substr(start:Number, length:*=undefined):String
 		{
-			return s().substr(start,length);
+			return s()["substr"](start,length);
 		}
 		public function substring(indexStart:Number, indexEnd:*=undefined):String
 		{
-			return s().substring(indexStart,indexEnd);
+			return s()["substring"](indexStart,indexEnd);
 		}
 		public function toLocaleLowerCase():String
 		{
@@ -2802,12 +2936,12 @@ Moved this logic (partially) into the other replace method
         */
 		public function toExponential(fractionDigits:*=undefined):Number
 		{
-			return v().toExponential(fractionDigits) as Number;
+			return v()["toExponential"](fractionDigits) as Number;
 		}
         /**
          * @royaleignorecoercion Number
         */
-		public function toFixed(digits:*=undefined):Number
+		public function toFixed(digits:int=0):Number
 		{
 			return v().toFixed(digits) as Number;
 		}
@@ -2816,7 +2950,7 @@ Moved this logic (partially) into the other replace method
         */
 		public function toPrecision(precision:*=undefined):Number
 		{
-			return v().toPrecision(precision) as Number;
+			return v()["toPrecision"](precision) as Number;
 		}
 		private function s():String
 		{

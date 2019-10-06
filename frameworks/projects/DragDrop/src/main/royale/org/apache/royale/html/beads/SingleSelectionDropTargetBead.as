@@ -21,6 +21,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.DropType;
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
@@ -129,6 +130,7 @@ package org.apache.royale.html.beads
 		}
 
 		private var _dropController:DropMouseController;
+		private var _itemRendererParent:IItemRendererParent;
 		private var _dropIndicatorBead:SingleSelectionDropIndicatorBead;
 		private var _dropIndicator:UIBase;
 		private var lastItemVisited:Object;
@@ -146,10 +148,10 @@ package org.apache.royale.html.beads
 			_dropController = new DropMouseController();
 			_strand.addBead(_dropController);
 
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_OVER, handleDragOver);
-			IEventDispatcher(_dropController).addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
+			_dropController.addEventListener(DragEvent.DRAG_ENTER, handleDragEnter);
+			_dropController.addEventListener(DragEvent.DRAG_EXIT, handleDragExit);
+			_dropController.addEventListener(DragEvent.DRAG_OVER, handleDragOver);
+			_dropController.addEventListener(DragEvent.DRAG_DROP, handleDragDrop);
 		}
 
 		private var _dropDirection: String = "horizontal";
@@ -185,6 +187,15 @@ package org.apache.royale.html.beads
 				}
 			}
 			return _indicatorParent;
+		}
+		/**
+		 * @private
+		 */
+		private function get itemRendererParent():IItemRendererParent
+		{
+			if (!_itemRendererParent)
+				_itemRendererParent = _strand.getBeadByType(IItemRendererParent) as IItemRendererParent;
+			return _itemRendererParent;
 		}
 
 		/**
@@ -224,6 +235,11 @@ package org.apache.royale.html.beads
 			if (startHere is IItemRenderer) {
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				lastItemVisited = ir;
+			} else if (itemRendererParent && itemRendererParent.numItemRenderers > 0)
+			{
+				// as long as we're assuming the last item is dropped into in case there's no item renderer under mouse
+				// this is needed
+				lastItemVisited = itemRendererParent.getItemRendererAt(itemRendererParent.numItemRenderers - 1);
 			}
 
 			if (lastItemVisited && !indicatorVisible && indicatorParent) {
@@ -299,7 +315,7 @@ package org.apache.royale.html.beads
 			}
 
 			var targetIndex:int = -1; // indicates drop beyond length of items
-			var itemRendererParent:IParent;
+			var contentViewAsParent:IParent;
 
 			var startHere:Object = event.relatedObject;
 			while( !(startHere is IItemRenderer) && startHere != null) {
@@ -310,8 +326,8 @@ package org.apache.royale.html.beads
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				//trace("-- dropping onto an existing object: "+ir.data.toString());
 
-				itemRendererParent = (ir.itemRendererParent as ILayoutHost).contentView as IParent;
-				targetIndex = itemRendererParent.getElementIndex(ir);
+				contentViewAsParent = (ir.itemRendererParent as ILayoutHost).contentView as IParent;
+				targetIndex = contentViewAsParent.getElementIndex(ir);
 			}
 
 			var downPoint:Point = new Point(event.clientX, event.clientY);
@@ -397,11 +413,13 @@ package org.apache.royale.html.beads
 		COMPILE::JS
 		private function displayDropIndicator(item:IUIBase):void
 		{
+			var pt:Point = PointUtils.localToGlobal(new Point(0,0), item);
+			pt = PointUtils.globalToLocal(pt,indicatorParent);
 			if (dropDirection == "horizontal") {
 				_dropIndicator.x = 0;
-				_dropIndicator.y = item.y;
+				_dropIndicator.y = pt.y;
 			} else {
-				_dropIndicator.x = item.x;
+				_dropIndicator.x = pt.x;
 				_dropIndicator.y = 0;
 			}
 		}

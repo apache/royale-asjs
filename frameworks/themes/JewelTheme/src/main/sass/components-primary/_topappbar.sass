@@ -51,47 +51,38 @@ $top-app-bar-button-padding: 12px
         //&.fixed
             // transition: box-shadow 200ms linear
 
-.jewel.topappbarrow 
-    
-.jewel.topappbarsection 
-    padding: $top-app-bar-section-vertical-padding $top-app-bar-section-horizontal-padding
-    
-    &.alignRight
-    
-    button
-        background: transparent
-        box-shadow: none
-        border: none
-        padding: $top-app-bar-button-padding
-        fill: $font-theme-color
-        color: inherit
+    .jewel.barrow 
         
-        @if not $flat //and $text-color == $font-theme-color
-            text:
-                shadow: 0 -1px 0 rgba(darken($primary-color, 30%), .7)
-                
-        &:hover, &:hover:focus, &:active, &:active:focus, &:focus
+    .jewel.barsection 
+        padding: $top-app-bar-section-vertical-padding $top-app-bar-section-horizontal-padding
+        
+        button
             background: transparent
             box-shadow: none
             border: none
+            padding: $top-app-bar-button-padding
+            fill: $font-theme-color
+            color: inherit
+            
+            @if not $flat //and $text-color == $font-theme-color
+                text:
+                    shadow: 0 -1px 0 rgba(darken($primary-color, 30%), .7)
+                    
+            &:hover, &:hover:focus, &:active, &:active:focus, &:focus
+                background: transparent
+                box-shadow: none
+                border: none
 
-        &[disabled]
-            background: transparent
-            box-shadow: none
-            border: none
+            &[disabled]
+                background: transparent
+                box-shadow: none
+                border: none
 
-.jewel.topappbartitle
-    font:
-        family: $font-stack
-        size: $font-size-xlarge !important
-        weight: $font-weight-normal * 2
-    padding-left: 20px
-    padding-right: 0
+    .jewel.bartitle
+        font:
+            // family: $font-stack
+            size: $font-size-xlarge !important
+            weight: $font-weight-normal * 2
+        padding-left: 20px
+        padding-right: 0
     
-j|ToolBar
-
-j|ToolBarRow
-
-j|ToolBarSection
-
-j|ToolBarTitle

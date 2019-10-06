@@ -33,6 +33,9 @@ $gap-size: 10px !default
 	&.scroll
 		overflow: auto
 
+	&.visible
+		overflow: visible
+
 // Basic
 .layout.basic
 	position: relative
@@ -43,39 +46,9 @@ $gap-size: 10px !default
 	display: flex
 	//position: relative
 
-	// Vertical Items Align
-	&.itemsSameHeight
-		//align-items: stretch  --> this doen't seems to work as expected
-		> *
-			> *
-				min-height: 100%
-	&.itemsCentered
-		align-items: center !important
-	&.itemsTop
-		align-items: flex-start !important
-	&.itemsBottom
-		align-items: flex-end !important
-
-	// Horizontal Items Align
-	&.itemsLeft
-		justify-content: flex-start !important
-	&.itemsCenter
-		justify-content: center !important
-	&.itemsRight
-		justify-content: flex-end !important
-	&.itemsSpaceBetween
-		justify-content: space-between !important
-	&.itemsSpaceAround
-		justify-content: space-around !important
-
-	&.itemsExpand
-		width: 100%
-		> *
-			flex: 1 0 auto !important
-
 	// Horizontal
 	&.horizontal
-		flex-direction: row !important
+		flex-direction: row
 		flex-wrap: nowrap
 		align-items: flex-start
 	
@@ -84,6 +57,7 @@ $gap-size: 10px !default
 
 		&.flow
 			flex-wrap: wrap
+			max-width: 100%
 
 		&.centered
 			justify-content: center
@@ -92,6 +66,13 @@ $gap-size: 10px !default
 			height: 100%
 			> *
 				flex: 0 0 auto
+
+		// FormItemLayout
+		&.formitem
+			width: 100%
+			// flex-wrap: wrap
+			align-items: flex-start
+			// justify-content: center
 
 		@for $i from 1 through $gaps
 			&.gap-#{$i}x#{$gap-step}px
@@ -102,7 +83,7 @@ $gap-size: 10px !default
 
 	// Vertical
 	&.vertical
-		flex-direction: column !important
+		flex-direction: column
 		flex-wrap: nowrap
 		align-items: flex-start
 
@@ -118,6 +99,14 @@ $gap-size: 10px !default
 			align-content: center
 			flex-direction: column
 			height: 100%
+
+		// FormLayout (consider for now Forms are always vertical)
+		&.form
+			width: 100%
+		
+		// FormItemLayout
+		// &.formitem
+		// 	width: 100%
 
 		@for $i from 1 through $gaps
 			&.gap-#{$i}x#{$gap-step}px
@@ -146,10 +135,10 @@ $gap-size: 10px !default
 	&.grid
 		flex-flow: row wrap
 		width: 100%
-		height: 100%
+		// height: 100%
 		
 		> *
-			flex: 0 0 auto // flex-grow, flex-shrink and flex-basis
+			flex: 1 1 auto // flex-grow, flex-shrink and flex-basis
 			max-width: 100%
 			width: 100%
 			
@@ -169,6 +158,37 @@ $gap-size: 10px !default
 						@for $j from 1 through $i
 							.#{$size}-col-#{$j}-#{$i}
 								width: calc(#{percentage($j / $i)} - #{$gap-size})
+
+	&.horizontal, &.vertical, &.grid
+		// Vertical Items Align
+		&.itemsSameHeight
+			//align-items: stretch  --> this doen't seems to work as expected
+			> *
+				> *
+					min-height: 100%
+		&.itemsCentered
+			align-items: center
+		&.itemsTop
+			align-items: flex-start
+		&.itemsBottom
+			align-items: flex-end
+
+		// Horizontal Items Align
+		&.itemsLeft
+			justify-content: flex-start
+		&.itemsCenter
+			justify-content: center
+		&.itemsRight
+			justify-content: flex-end
+		&.itemsSpaceBetween
+			justify-content: space-between
+		&.itemsSpaceAround
+			justify-content: space-around
+			
+		&.itemsExpand
+			width: 100%
+			> *
+				flex: 1 0 auto
 
 	&.table
 		display: table

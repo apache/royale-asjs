@@ -54,15 +54,22 @@ import flash.display.StageQuality;
 import flash.display.StageScaleMode;
 import flash.system.ApplicationDomain;
 import flash.utils.getQualifiedClassName;
-import org.apache.royale.events.utils.MouseEventConverter;
 }
 
 import mx.containers.beads.ApplicationLayout;
 import mx.containers.beads.BoxLayout;
+import mx.events.KeyboardEvent;
+import mx.events.utils.FocusEventConverter;
+import mx.events.utils.KeyboardEventConverter;
+import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
 
-import org.apache.royale.binding.ApplicationDataBinding;
+COMPILE::JS {
+    import org.apache.royale.core.HTMLElementWrapper;
+    import org.apache.royale.events.ElementEvents;
+}
+
 import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.core.AllCSSValuesImpl;
 import org.apache.royale.core.IBead;
@@ -305,7 +312,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         typeNames += " Application";
 		
 		this.valuesImpl = new AllCSSValuesImpl();
-		addBead(new ApplicationDataBinding());
+		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
 		addBead(new ApplicationLayout());
 
         instanceParent = this;
@@ -343,7 +350,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
     [SWFOverride(returns="flash.display.DisplayObjectContainer")]
     override public function get parent():IParent
     {
-        var p:* = $parent;
+        var p:* = $sprite_parent;
         return p;
     }
     }
@@ -556,6 +563,11 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 
     override protected function createChildren():void
     {
+        COMPILE::JS
+        {
+            ElementEvents.elementEvents["focusin"] = 1;
+            ElementEvents.elementEvents["focusout"] = 1;
+        }
         super.createChildren();        
         dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
     }
@@ -571,6 +583,13 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	protected var startupTimer:Timer;
 	
+    COMPILE::JS
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        start();
+    }
+    
 	/**
 	 * @royaleignorecoercion org.apache.royale.core.IBead
 	 */
@@ -605,6 +624,11 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
+        HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+        HTMLElementWrapper.converterMap["FocusEvent"] = FocusEventConverter;
+        addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
+        
         initManagers();
         
 //		if (initialView)
@@ -624,6 +648,12 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
 	}
 	
+    COMPILE::JS
+    public function keyDownForCapsLockHandler(event:KeyboardEvent):void
+    {
+        
+    }
+
 	//--------------------------------------------------------------------------
 	//
 	//  Other overrides

@@ -35,8 +35,17 @@ package mx.rpc.remoting
      * It deserializes the compressed ByteArray in order to optimize the transfer time.
      * TODO improve to serialize the sending.
      */
-    public class CompressedRemoteObject extends RemoteObject
+    public dynamic class CompressedRemoteObject extends RemoteObject
     {
+        /**
+         * disable the compression if true
+         *
+         * defaults to false
+         *
+         * @royalesuppresspublicvarwarning
+         */
+        public static var disableCompression:Boolean;
+
         [ArrayElementType("String")]
         /**
          * @royalesuppresspublicvarwarning
@@ -104,24 +113,28 @@ package mx.rpc.remoting
                 } else if (parameter is IList && IList(parameter).length > 0) {
                     parameter = parameter[0];
                 }
-                var parameterClassName:String = getQualifiedClassName(parameter).replace("::", ".");
-                var included:Boolean;
-                if (includePackages && includePackages.length > 0) {
-                    //var lastDotIndex:int = parameterClassName.lastIndexOf(".");
-                    //var packageName:String = lastDotIndex != -1 ? parameterClassName.slice(0, lastDotIndex) : "";
-					for each (var includePackage:String in includePackages) {
-						if (parameterClassName.indexOf(includePackage) >= 0) {
-							included = true;
-							break;
-						}
-					}
+                var parameterClassName:String = getQualifiedClassName(parameter);
+                if (parameterClassName) {
+                    parameterClassName = parameterClassName.replace("::", ".");
+                    var included:Boolean;
+                    if (includePackages && includePackages.length > 0) {
+                        //var lastDotIndex:int = parameterClassName.lastIndexOf(".");
+                        //var packageName:String = lastDotIndex != -1 ? parameterClassName.slice(0, lastDotIndex) : "";
+                        for each (var includePackage:String in includePackages) {
+                            if (parameterClassName.indexOf(includePackage) >= 0) {
+                                included = true;
+                                break;
+                            }
+                        }
+                    }
+                    if (!included && includeClasses && includeClasses.length > 0) {
+                        included = includeClasses.indexOf(parameterClassName) != -1;
+                    }
+                    if (included && excludeClasses && excludeClasses.length > 0) {
+                        included = excludeClasses.indexOf(parameterClassName) == -1;
+                    }
                 }
-                if (!included && includeClasses && includeClasses.length > 0) {
-                    included = includeClasses.indexOf(parameterClassName) != -1;
-                }
-                if (included && excludeClasses && excludeClasses.length > 0) {
-                    included = excludeClasses.indexOf(parameterClassName) == -1;
-                }
+
                 // if (included) {
                 //     COMPILE::SWF{
                 //     var byteArray:ByteArray = new ByteArray();
@@ -140,35 +153,36 @@ package mx.rpc.remoting
             }
             return parameters;
         }
-
-        private function deserializeResult(result:*, operation:AbstractOperation):* // NO PMD
+	
+		/**
+		 * @royaleignorecoercion org.apache.royale.net.remoting.amf.AMFBinaryData
+		 */
+		private function deserializeResult(result:*, operation:AbstractOperation):* // NO PMD
         {
             COMPILE::SWF{
-            if (result is ByteArray) {
-                var byteArray:ByteArray = result as ByteArray;
-                byteArray.uncompress();
-                return byteArray.readObject();
-            } else {
-                return result;
-            }
+                if (!disableCompression && result is ByteArray) {
+                    var byteArray:ByteArray = result as ByteArray;
+                    byteArray.uncompress();
+                    return byteArray.readObject();
+                } else {
+                    return result;
+                }
             }
 
             COMPILE::JS
             {
-            if (result is Array)
-            {
-                // --- Transform the number array into a bytearray
-                var bytearray:Uint8Array = new Uint8Array(result);
-                // --- uncompress the bytearray to get the real object (tree) and create the AMFBinaryData with it
-                var data:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](bytearray));
-                // --- store the inflated data object in result
-                result = data.readObject();
-                return result;
-            }
-            else
-            {
-                return result;
-            }
+                if (!disableCompression && result is AMFBinaryData)
+                {
+					var original:AMFBinaryData = result as AMFBinaryData;
+					// --- uncompress the original bytes to get the real object (tree) and create a new AMFBinaryData with it
+					var uncompressed:AMFBinaryData = new AMFBinaryData(window["pako"]["inflate"](original.array).buffer);
+                    // --- return the inflated data object as result
+					return uncompressed.readObject();
+                }
+                else
+                {
+                    return result;
+                }
             }
         }
     }

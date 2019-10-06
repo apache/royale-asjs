@@ -21,7 +21,17 @@ limitations under the License.
                xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:mx="library://ns.apache.org/royale/mx"
                xmlns:local="*">
-
+    <fx:Metadata>
+        [ResourceBundle("messages")]
+    </fx:Metadata>
+    
+    <!-- Core requires Flex resources on library-path
+    <fx:Metadata>
+        [ResourceBundle("messages")]
+        [ResourceBundle("core")]
+    </fx:Metadata>
+    -->
+    
     <fx:Script>
 		<![CDATA[
             import mx.collections.ArrayList;
@@ -43,7 +53,11 @@ limitations under the License.
 
     <mx:Label text="ResourceManager Test"/>
 
-    <mx:Button label="Test" click="test()"/>
+    <mx:Button label="{resourceManager.getString('messages', 'userName')}" click="test()"/>
+    
+    <!-- this one requires Flex resources on library-path
+    <mx:Button label="{resourceManager.getString('core', 'userName')}" click="test()"/>
+    -->
     
     <mx:Label id="output" text="output goes here"/>
 </mx:Application>

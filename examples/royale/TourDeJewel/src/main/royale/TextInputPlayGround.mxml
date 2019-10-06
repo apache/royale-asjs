@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="TextInputPlayGround.mxml">
+	
+	<fx:Script>
+		<![CDATA[
+            private function onValueChange(event:Event):void
+			{
+				// trace("onValueChange"); // if target IE11 you must use this event handler
+				textinput.width = slider_w.value;
+				// button.height = slider_h.value;
+			}
+
+			private function textInputChange(event:Event):void
+			{
+				textToChange.text = event.target.text;
+			}
+		]]>
+	</fx:Script>
+
+	<j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel TextInput"/>
+
+				<j:Group>
+					<j:beads>
+						<j:HorizontalLayout gap="3"/>
+					</j:beads>
+					<j:Button text="Check it!" emphasis="primary"/>
+					<j:TextInput text="A TextInput" change="textInputChange(event)"/>
+				</j:Group>
+
+				<j:Group>
+					<j:beads>
+						<j:HorizontalLayout gap="3"/>
+					</j:beads>
+					<j:TextInput id="textToChange">
+						<j:beads>
+							<j:TextPrompt prompt="With prompt..."/>
+						</j:beads>
+					</j:TextInput>
+					<j:Button text="Send" emphasis="secondary"/>
+				</j:Group>
+
+				<j:TextInput text="Disabled with text...">
+					<j:beads>
+						<j:TextPrompt prompt="Disabled TextInput..."/>
+						<j:Disabled/>
+					</j:beads>
+				</j:TextInput>
+
+				<j:TextInput text="{textToChange.text}">
+					<j:beads>
+						<j:TextPrompt prompt="Disabled with prompt..."/>
+						<j:Disabled/>
+					</j:beads>
+				</j:TextInput>
+
+				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
+					<j:TextInput id="textinput">
+						<j:beads>
+							<j:TextPrompt prompt="Slider resize..."/>
+						</j:beads>
+					</j:TextInput>
+					<j:Label text="A label to check layout"/>
+				</j:HGroup>
+
+				<j:Slider id="slider_w" width="350" value="211" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:Label text="textinput.width='{textinput.width}'"/>
+
+				<j:VGroup gap="3">
+					<j:TextInput text="Bead for text UPPER case">
+						<js:beads>
+							<j:UpperCase/>
+						</js:beads>
+					</j:TextInput>
+					<j:TextInput text="Bead for text LOWER case">
+						<js:beads>
+							<j:LowerCase/>
+						</js:beads>
+					</j:TextInput>
+					<j:TextInput>
+						<js:beads>
+							<j:TextPrompt prompt="Only characters"/>
+							<j:Restrict pattern="[^a-zA-Z]"/>
+						</js:beads>
+					</j:TextInput>
+					<j:TextInput>
+						<js:beads>
+							<j:TextPrompt prompt="Only numbers"/>
+							<j:Restrict pattern="[^0-9]"/>
+						</js:beads>
+					</j:TextInput>
+					<j:TextInput>
+						<js:beads>
+							<j:TextPrompt prompt="Only letters and numbers"/>
+							<j:Restrict pattern="[^0-9a-zA-Z]"/>
+						</js:beads>
+					</j:TextInput>
+				</j:VGroup>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="100%">
+				<html:H4 text="TextInput Sizes"/>
+				<j:TextInput>
+					<j:beads>
+						<j:TextPrompt prompt="Size xsmall"/>
+						<j:SizeControl size="xsmall"/>
+					</j:beads>
+				</j:TextInput>
+
+				<j:TextInput>
+					<j:beads>
+						<j:TextPrompt prompt="Size small"/>
+						<j:SizeControl size="small"/>
+					</j:beads>
+				</j:TextInput>
+
+				<j:TextInput>
+					<j:beads>
+						<j:TextPrompt prompt="Size normal"/>
+					</j:beads>
+				</j:TextInput>
+
+				<j:TextInput>
+					<j:beads>
+						<j:TextPrompt prompt="Size large"/>
+						<j:SizeControl size="large"/>
+					</j:beads>
+				</j:TextInput>
+
+				<j:TextInput>
+					<j:beads>
+						<j:TextPrompt prompt="Size xlarge"/>
+						<j:SizeControl size="xlarge"/>
+					</j:beads>
+				</j:TextInput>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="100%">
+				<html:H4 text="Jewel TextArea"/>
+
+				<j:TextArea text="A TextArea with 5 rows" rows="5"/>
+
+				<j:TextArea>
+					<j:beads>
+						<j:TextPrompt prompt="With prompt..."/>
+					</j:beads>
+				</j:TextArea>
+
+				<j:TextArea text="A TextArea">
+					<j:beads>
+						<j:TextPrompt prompt="with prompt..."/>
+						<j:Disabled/>
+					</j:beads>
+				</j:TextArea>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+	<j:Grid gap="true">
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel IconTextInput"/>
+
+				<j:IconTextInput text="Searching something">
+					<j:icon>
+						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+					</j:icon>
+				</j:IconTextInput>
+
+				<j:IconTextInput rightPosition="true">
+					<j:beads>
+						<j:TextPrompt prompt="Search..."/>
+					</j:beads>
+					<j:icon>
+						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+					</j:icon>
+				</j:IconTextInput>
+
+				<j:IconTextInput>
+					<j:beads>
+						<j:TextPrompt prompt="Search Disabled..."/>
+						<j:Disabled/>
+					</j:beads>
+					<j:icon>
+						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+					</j:icon>
+				</j:IconTextInput>
+
+				<j:IconTextInput rightPosition="true">
+					<j:beads>
+						<j:TextPrompt prompt="Search Disabled..."/>
+						<j:Disabled/>
+					</j:beads>
+					<j:icon>
+						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+					</j:icon>
+				</j:IconTextInput>
+
+				<j:IconTextInput text="Searching something">
+					<j:beads>
+						<j:SizeControl size="xlarge"/>
+					</j:beads>
+					<j:icon>
+						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+					</j:icon>
+				</j:IconTextInput>
+			</j:Card>
+		</j:GridCell>
+
+		<!-- <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+
+			</j:Card>
+		</j:GridCell> -->
+	</j:Grid>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

@@ -36,7 +36,7 @@
 			background: linear-gradient($bg-color, darken($bg-color, 10%))
 			border: 1px solid darken($bg-color, 20%)
 	
-	@else if ($state == "active")
+	@else if ($state == "active") or ($state == "selected")
 		@if $flat
 			background: darken($bg-color, 15%)
 			border: 0px solid
@@ -55,9 +55,9 @@
 	
 	@else if ($state == "disabled")
 		@if $flat
-			background: $disabled-color
-			border: 0px solid
+			background: $disabled-color !important
+			border: 0px solid !important
 		@else
-			background: $disabled-color
-			border: 1px solid $disabled-border-color
-		box-shadow: none
+			background: $disabled-color !important
+			border: 1px solid $disabled-border-color !important
+		box-shadow: none !important

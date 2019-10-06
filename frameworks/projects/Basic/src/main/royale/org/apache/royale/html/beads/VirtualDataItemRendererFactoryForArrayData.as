@@ -186,7 +186,7 @@ package org.apache.royale.html.beads
             delete rendererMap[index];
         }
         
-        private var rendererMap:Object = {};
+        protected var rendererMap:Object = {};
         
         /**
          *  Get an item renderer for a given index.

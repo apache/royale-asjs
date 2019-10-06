@@ -20,7 +20,8 @@ package flexunit.framework
  	
 	/**
 	 * A set of assert methods.  Messages are only displayed when an assert fails.
-	 */
+     * @royalesuppresspublicvarwarning
+     */
 	public class Assert
 	{
 		/**
@@ -81,6 +82,20 @@ package flexunit.framework
 			else
 				failNotEquals( "", rest[0], rest[1] );
 		}
+		
+		/**
+		 * Asserts that the provided values are not loosely equal (equivalent to
+		 * the <code>!=</code> operator).
+		 */
+		public static function assertNotEquals(... rest):void
+		{
+			_assertCount++;
+			if ( rest.length == 3 )
+				failEquals( rest[0], rest[1], rest[2] );
+			else
+				failEquals( "", rest[0], rest[1] );
+		}
+		
 	
         /**
          * @private
@@ -89,6 +104,19 @@ package flexunit.framework
 		{
 			if ( expected != actual )
 			   failWithUserMessage( message, "expected:<" + expected + "> but was:<" + actual + ">" );
+		}
+		
+		
+		/**
+		 * Fails if the values are loosely equal.
+		 * @private
+		 */
+		public static function failEquals(message:String, expected:Object, actual:Object):void
+		{
+			if(actual == expected)
+			{
+				failWithUserMessage(message,"expected: <" + expected + "> not to be equal to <" + actual + ">");
+			}
 		}
 	
 		/**
@@ -112,6 +140,32 @@ package flexunit.framework
 				failNotStrictlyEquals( rest[0], rest[1], rest[2] );
 			else
 				failNotStrictlyEquals( "", rest[0], rest[1] );
+		}
+		
+		/**
+		 * Asserts that the provided values are not strictly equal (equivalent
+		 * to the <code>!==</code> operator).
+		 */
+		public static function assertNotStrictlyEquals(... rest):void
+		{
+			_assertCount++;
+			if ( rest.length == 3 )
+				failStrictlyEquals( rest[0], rest[1], rest[2] );
+			else
+				failStrictlyEquals( "", rest[0], rest[1] );
+			
+		}
+		
+		
+		/**
+		 * Fails if the values are strictly equal.
+		 */
+		public static function failStrictlyEquals(message:String, expected:Object, actual:Object):void
+		{
+			if(actual === expected)
+			{
+				failWithUserMessage(message,"expected: <" + expected + "> not to be strictly equal to <" + actual + ">");
+			}
 		}
 	
         /**

@@ -18,21 +18,35 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-	import flexUnitTests.reflection.*;
-	
+    import flexUnitTests.reflection.*;
+    
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
+    /**
+     * @royalesuppresspublicvarwarning
+     */
     public class ReflectionTester
     {
         public function ReflectionTester()
         {
             // see notes in CoreTester
-            var arr:Array = [ReflectionTesterTest, ReflectionTesterTestUseCache, ReflectionTesterTestAlias];
+            var arr:Array = [
+                ReflectionTesterTest,
+                ReflectionTesterTestUseCache,
+                ReflectionTesterTestAlias,
+                ReflectionTesterTestDynamic,
+                ReflectionTesterNativeTypes
+            ];
         }
         
         public var reflectionTesterCacheTest:ReflectionTesterTestUseCache;
         public var reflectionTesterTest:ReflectionTesterTest;
         
         public var reflectionTesterAliasTest:ReflectionTesterTestAlias;
+        
+        
+        public var reflectionTesterDynamicTest:ReflectionTesterTestDynamic;
+    
+        public var reflectionTesterNativeTypes:ReflectionTesterNativeTypes;
     }
 }

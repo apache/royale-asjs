@@ -30,6 +30,8 @@ internal class BasicClasses
 	COMPILE::JS
 	{
 		import org.apache.royale.html.util.addElementToWrapper; addElementToWrapper;
+		import org.apache.royale.html.util.addSvgElementToWrapper; addSvgElementToWrapper;
+		import org.apache.royale.html.util.createSVG; createSVG;
 	}
     import org.apache.royale.html.ToolTip; ToolTip;
 	import org.apache.royale.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
@@ -39,7 +41,10 @@ internal class BasicClasses
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;
     import org.apache.royale.html.beads.AlertView; AlertView;
+    import org.apache.royale.html.beads.ColorSpectrumView; ColorSpectrumView;
+    import org.apache.royale.html.supportClasses.ColorPickerPopUp; ColorPickerPopUp;
     import org.apache.royale.html.beads.controllers.AlertController; AlertController;
+    import org.apache.royale.html.beads.controllers.ColorSpectrumMouseController; ColorSpectrumMouseController;
 	
 	import org.apache.royale.html.beads.DividedContainerView; DividedContainerView;
 	import org.apache.royale.html.beads.models.DividedContainerModel; DividedContainerModel;
@@ -61,6 +66,7 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.MenuFactory; MenuFactory;
 	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
 	import org.apache.royale.html.supportClasses.MenuItemRenderer; MenuItemRenderer;
+	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
 	import org.apache.royale.html.CascadingMenu; CascadingMenu;
 	import org.apache.royale.html.beads.CascadingMenuFactory; CascadingMenuFactory;
 	import org.apache.royale.html.beads.models.CascadingMenuModel; CascadingMenuModel;
@@ -79,6 +85,7 @@ internal class BasicClasses
 		import org.apache.royale.html.beads.CheckBoxView; CheckBoxView;
 	}
     import org.apache.royale.html.beads.ComboBoxView; ComboBoxView;
+    import org.apache.royale.html.beads.ColorPickerView; ColorPickerView;
     import org.apache.royale.html.MXMLBeadView; MXMLBeadView;
     import org.apache.royale.html.beads.GroupView; GroupView;
 	import org.apache.royale.html.beads.ContainerView; ContainerView;
@@ -160,6 +167,9 @@ internal class BasicClasses
 	{
 	    import org.apache.royale.html.beads.models.SingleLineBorderModel; SingleLineBorderModel;
 	}
+
+	import org.apache.royale.html.beads.models.ColorModel; ColorModel;
+	import org.apache.royale.html.beads.models.ColorSpectrumModel; ColorSpectrumModel;
 	import org.apache.royale.html.beads.models.TextModel; TextModel;
     import org.apache.royale.html.beads.models.NonNullTextModel; NonNullTextModel;
     import org.apache.royale.html.beads.models.TitleBarModel; TitleBarModel;

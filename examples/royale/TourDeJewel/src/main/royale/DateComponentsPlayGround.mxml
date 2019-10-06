@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" sourceCodeUrl="DateComponentsPlayGround.mxml">
+	
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.html.accessories.DateFormatDDMMYYYY;
+
+			private function dateChooserDefaultChanged():void
+			{
+				dateChooserDefaultSelectedDate.html = "<strong>DateChooser selected date:</strong> " + dateChooserDefault.selectedDate;
+				dateFieldDefault.selectedDate = dateChooserDefault.selectedDate;
+			}
+			
+			private function dateFieldDefaultChanged():void
+			{
+				dateFieldDefaultSelectedDate.html = "<strong>DateField selected date:</strong> " + dateFieldDefault.selectedDate;
+				dateChooserDefault.selectedDate = dateFieldDefault.selectedDate;
+			}
+			
+			private function dateFieldToToday():void
+			{
+				dateFieldDefault.selectedDate = new Date();
+			}
+			private function dateFieldToNull():void
+			{
+				dateFieldDefault.selectedDate = null;
+			}
+			
+			// -- DateChooser Spanish
+
+			private function dateChooserESChanged():void
+			{
+				dateChooserESSelectedDate.html = "<strong>DateChooser fecha seleccionada:</strong> " + dateChooserES.selectedDate;
+				dateFieldES.selectedDate = dateChooserES.selectedDate;
+			}
+
+			private function dateFieldESChanged():void
+			{
+				dateFieldESSelectedDate.html = "<strong>DateField fecha seleccionada:</strong> " + dateFieldES.selectedDate;
+				dateChooserES.selectedDate = dateFieldES.selectedDate;
+			}
+			
+			private function dateFieldESToToday():void
+			{
+				dateFieldES.selectedDate = new Date();
+			}
+
+			private function configDateChooserToES():void
+			{
+				dateChooserES.model.dayNames = ['D','L','M','X','J','V','S'];
+				dateChooserES.model.monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+				dateChooserES.model.firstDayOfWeek = 1;
+			}
+			
+			private function configDateFieldToES():void
+			{
+				dateFieldES.dateFormat = "DD/MM/YYYY";
+
+				dateFieldES.model.dayNames = ['D','L','M','X','J','V','S'];
+				dateFieldES.model.monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
+				dateFieldES.model.firstDayOfWeek = 1;
+			}
+
+			[Bindable]
+			public var someDate:Date = new Date (1973,3,5);
+		]]>
+	</fx:Script>
+
+	<j:beads>
+		<js:ContainerDataBinding/>
+	</j:beads>
+
+	<j:Grid gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateChooser (Default)"/>
+				<j:DateChooser id="dateChooserDefault" change="dateChooserDefaultChanged()"/>
+				<j:Label id="dateChooserDefaultSelectedDate" multiline="true" html="&lt;strong>DateChooser selected date:&lt;/strong> " width="275"/>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateChooser (Spanish)"/>
+				<j:DateChooser id="dateChooserES" change="dateChooserESChanged()" initComplete="configDateChooserToES()"/>
+				<j:Label id="dateChooserESSelectedDate" multiline="true" html="&lt;strong>DateChooser fecha seleccionada:&lt;/strong> " width="275"/>
+			</j:Card>
+		</j:GridCell>
+
+	</j:Grid>
+
+	<j:Grid gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateField (Default)"/>
+
+				<j:HGroup gap="3">
+					<j:DateField id="dateFieldDefault" change="dateFieldDefaultChanged()" dateFormat="MM/DD/YYYY">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="MM/DD/YYYY"/>
+						</j:beads>
+					</j:DateField>
+					<j:Button text="Select today" click="dateFieldToToday()" emphasis="primary"/>
+					<j:Button text="Date to null" click="dateFieldToNull()" />
+				</j:HGroup>
+				<j:Label id="dateFieldDefaultSelectedDate" multiline="true" html="&lt;strong>DateField selected date:&lt;/strong> "/>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateField (Spanish)"/>
+
+				<j:HGroup gap="3">
+					<j:DateField id="dateFieldES" change="dateFieldESChanged()" beadsAdded="configDateFieldToES()">
+						<j:beads>
+							<j:DateFieldTextPrompt prompt="DD/MM/YYYY"/>
+						</j:beads>
+					</j:DateField>
+					<j:Button text="Selecciona Hoy" click="dateFieldESToToday()" emphasis="primary"/>
+				</j:HGroup>
+				<j:Label id="dateFieldESSelectedDate" multiline="true" html="&lt;strong>DateField fecha seleccionada:&lt;/strong> "/>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+	<j:Grid gap="true">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateChooser - selectedDate: {someDate}"/>
+				<j:DateChooser id="dateChooserSelectedDate" change="dateChooserDefaultChanged()" selectedDate="{someDate}"/>
+				<j:Label multiline="true" html="&lt;strong>DateChooser selected date:&lt;/strong> {dateChooserSelectedDate.selectedDate}" width="275"/>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DateField Disabled"/>
+				<j:DateField>
+					<j:beads>
+						<j:DateFieldDisabled/>
+						<j:DateFieldTextPrompt prompt="Disabled..."/>
+					</j:beads>
+				</j:DateField>
+				
+				<html:H3 text="Jewel DateChooser Disabled"/>
+				<j:DateChooser>
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:DateChooser>
+			</j:Card>
+		</j:GridCell>
+
+	</j:Grid>
+
+</c:ExampleAndSourceCodeTabbedSectionContent>

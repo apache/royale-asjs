@@ -32,6 +32,7 @@ package org.apache.royale.svg
 		import org.apache.royale.core.IContainer;
 		import org.apache.royale.core.UIBase;
 		import org.apache.royale.events.Event;
+		import org.apache.royale.html.util.addSvgElementToWrapper;
 	}
 
 	/**
@@ -57,7 +58,7 @@ package org.apache.royale.svg
 		COMPILE::JS
 		override protected function createElement():org.apache.royale.core.WrappedHTMLElement
 		{
-			element = document.createElementNS('http://www.w3.org/2000/svg', 'svg') as org.apache.royale.core.WrappedHTMLElement;
+			element = addSvgElementToWrapper(this,'svg');
 
 			// absolute positioned children need a non-null
 			// position value in the parent.  It might
@@ -263,7 +264,10 @@ package org.apache.royale.svg
 }
 
 import org.apache.royale.core.GroupBase;
-
+COMPILE::JS
+{
+	import org.apache.royale.html.util.addSvgElementToWrapper;
+}
 class GraphicGroup extends GroupBase
 {
 	/**
@@ -272,7 +276,7 @@ class GraphicGroup extends GroupBase
 	COMPILE::JS
 	override protected function createElement():org.apache.royale.core.WrappedHTMLElement
 	{
-		element = document.createElementNS('http://www.w3.org/2000/svg', 'g') as org.apache.royale.core.WrappedHTMLElement;
+		return addSvgElementToWrapper(this, 'g');
 
 		// absolute positioned children need a non-null
 		// position value in the parent.  It might
@@ -284,7 +288,5 @@ class GraphicGroup extends GroupBase
 		runLayoutHandler);
 		addEventListener('elementRemoved',
 		runLayoutHandler);*/
-
-		return element;
 	}
 }

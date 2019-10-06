@@ -164,6 +164,9 @@ public class TabBar extends ListBase implements IFocusManagerComponent
     public function TabBar()
     {
         super();
+        
+        typeNames += " TabBar";
+        
        // requireSelection = true;
        // mouseFocusEnabled = false;        
     }

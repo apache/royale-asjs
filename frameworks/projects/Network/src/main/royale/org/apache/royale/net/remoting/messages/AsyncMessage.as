@@ -19,9 +19,16 @@
 
 package org.apache.royale.net.remoting.messages
 {
-
-import org.apache.royale.net.utils.IDataInput;
-import org.apache.royale.net.utils.IDataOutput;
+	
+	COMPILE::SWF{
+		import flash.utils.IDataInput;
+		import flash.utils.IDataOutput;
+	}
+	
+	COMPILE::JS{
+		import org.apache.royale.utils.net.IDataInput;
+		import org.apache.royale.utils.net.IDataOutput;
+	}
 import org.apache.royale.utils.BinaryData;
 import org.apache.royale.utils.UIDUtil;
 
@@ -31,37 +38,37 @@ import org.apache.royale.utils.UIDUtil;
  *  AsyncMessage is the base class for all asynchronous messages.
  *  Note: readExternal and writeExternal methods compile but are not tested and maybe not work
  *  but is an initial work
- *  
+ *
  *  @langversion 3.0
  *  @playerversion Flash 9
  *  @playerversion AIR 1.1
  *  @productversion BlazeDS 4
- *  @productversion LCDS 3 
+ *  @productversion LCDS 3
  */
 public class AsyncMessage extends AbstractMessage implements ISmallMessage
 {
     //--------------------------------------------------------------------------
     //
     // Static Constants
-    // 
+    //
     //--------------------------------------------------------------------------
     
 	/**
 	 *  Messages sent by a MessageAgent with a defined <code>subtopic</code>
 	 *  property indicate their target subtopic in this header.
-	 *  
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion BlazeDS 4
-	 *  @productversion LCDS 3 
+	 *  @productversion LCDS 3
 	 */
-	public static const SUBTOPIC_HEADER:String = "DSSubtopic";    
+	public static const SUBTOPIC_HEADER:String = "DSSubtopic";
 
     //--------------------------------------------------------------------------
     //
     // Private Static Constants for Serialization
-    // 
+    //
     //--------------------------------------------------------------------------
 
     private static const CORRELATION_ID_FLAG:uint = 1;
@@ -70,7 +77,7 @@ public class AsyncMessage extends AbstractMessage implements ISmallMessage
     //--------------------------------------------------------------------------
     //
     // Constructor
-    // 
+    //
     //--------------------------------------------------------------------------
 
     /**
@@ -81,16 +88,16 @@ public class AsyncMessage extends AbstractMessage implements ISmallMessage
      *  <code>var msg:AsyncMessage = new AsyncMessage("Body text");</code>
      *  An example that provides both the body and headers is:
      *  <code>var msg:AsyncMessage = new AsyncMessage("Body text", {"customerHeader":"customValue"});</code>
-     * 
+     *
      *  @param body The optional body to assign to the message.
-     * 
+     *
      *  @param headers The optional headers to assign to the message.
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion LCDS 3
      */
     public function AsyncMessage(body:Object = null, headers:Object = null)
     {
@@ -100,14 +107,14 @@ public class AsyncMessage extends AbstractMessage implements ISmallMessage
         if (body != null)
             this.body = body;
             
-        if (headers != null)      
+        if (headers != null)
             this.headers = headers;
     }
 
     //--------------------------------------------------------------------------
     //
     // Variables
-    // 
+    //
     //--------------------------------------------------------------------------
 
 	//----------------------------------
@@ -131,12 +138,12 @@ public class AsyncMessage extends AbstractMessage implements ISmallMessage
      *  previous message that this message refers to.
      *
      *  @see mx.messaging.messages.AbstractMessage#messageId
-     *  
+     *
      *  @langversion 3.0
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion BlazeDS 4
-     *  @productversion LCDS 3 
+     *  @productversion LCDS 3
      */
     public function get correlationId():String
     {
@@ -155,7 +162,7 @@ public class AsyncMessage extends AbstractMessage implements ISmallMessage
     //--------------------------------------------------------------------------
     //
     // Overridden Methods
-    // 
+    //
     //--------------------------------------------------------------------------
 
     /**

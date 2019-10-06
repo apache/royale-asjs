@@ -37,7 +37,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IIconSupport; IIconSupport;
 	import org.apache.royale.html.beads.IListView; IListView;
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
-import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
+	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.html.beads.IDropDownListView; IDropDownListView;
 
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
@@ -102,7 +102,8 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.core.IBinaryImageModel; IBinaryImageModel;
     import org.apache.royale.core.IDocument; IDocument;
 	import org.apache.royale.core.IDragInitiator; IDragInitiator;
-    import org.apache.royale.core.IFormatBead; IFormatBead;
+    import org.apache.royale.core.IFormatter; IFormatter;
+	import org.apache.royale.core.IDateFormatter; IDateFormatter;
     import org.apache.royale.core.IDateControlConfigBead; IDateControlConfigBead;
     import org.apache.royale.core.IImage; IImage;
     import org.apache.royale.core.IImageModel; IImageModel;
@@ -119,6 +120,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.core.IParentIUIBase; IParentIUIBase;
     import org.apache.royale.core.IPopUp; IPopUp;
     import org.apache.royale.core.IRangeModel; IRangeModel;
+    import org.apache.royale.core.IState; IState;
     import org.apache.royale.core.ISWFApplication; ISWFApplication;
 	import org.apache.royale.core.ITransformModel; ITransformModel;
 	import org.apache.royale.core.ITransformHost; ITransformHost;
@@ -127,6 +129,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	{
 	    import org.apache.royale.core.IScrollBarModel; IScrollBarModel;
 	}
+    import org.apache.royale.core.IRuntimeSelectableItemRenderer; IRuntimeSelectableItemRenderer;
     import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
     import org.apache.royale.core.ISelectable; ISelectable;
     import org.apache.royale.core.ISelectionModel; ISelectionModel;
@@ -135,6 +138,8 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
     import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
     import org.apache.royale.core.ITextModel; ITextModel;
+    import org.apache.royale.core.IColorModel; IColorModel;
+    import org.apache.royale.core.IColorSpectrumModel; IColorSpectrumModel;
     import org.apache.royale.core.ITitleBarModel; ITitleBarModel;
     import org.apache.royale.core.IToggleButtonModel; IToggleButtonModel;
     import org.apache.royale.core.IUIBase; IUIBase;
@@ -185,6 +190,15 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
     import org.apache.royale.geom.Rectangle; Rectangle;
     import org.apache.royale.utils.AnimationUtil; AnimationUtil;
     import org.apache.royale.utils.BinaryData; BinaryData;
+	import org.apache.royale.utils.IBinaryDataInput; IBinaryDataInput;
+	import org.apache.royale.utils.IBinaryDataOutput; IBinaryDataOutput;
+	
+	import org.apache.royale.utils.net.IDataInput; IDataInput;
+	import org.apache.royale.utils.net.IDataOutput; IDataOutput;
+	import org.apache.royale.utils.net.IExternalizable; IExternalizable;
+	import org.apache.royale.utils.net.IDynamicPropertyWriter; IDynamicPropertyWriter;
+	import org.apache.royale.utils.net.IDynamicPropertyOutput; IDynamicPropertyOutput;
+	
 	import org.apache.royale.utils.BrowserInfo; BrowserInfo;
 	COMPILE::SWF
 	{
@@ -263,6 +277,7 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 		import org.apache.royale.utils.object.defineProperty; defineProperty;
 		import org.apache.royale.utils.object.defineSimpleProperty; defineSimpleProperty;
 		import org.apache.royale.utils.js.loadJavascript; loadJavascript;
+		import org.apache.royale.utils.css.loadCSS; loadCSS;
 	}
 	//Package Level Functions
 	import org.apache.royale.debugging.assert; assert;
@@ -274,6 +289,9 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 
 	import org.apache.royale.utils.measureComponent; measureComponent;
 	import org.apache.royale.utils.loadBeadFromValuesManager; loadBeadFromValuesManager;
+	import org.apache.royale.utils.HSV; HSV;
+	import org.apache.royale.utils.rgbToHsv; rgbToHsv;
+	import org.apache.royale.utils.hsvToHex; hsvToHex;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 
@@ -291,7 +309,17 @@ import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.utils.date.addSeconds; addSeconds;
 	import org.apache.royale.utils.date.addYears; addYears;
 
+	import org.apache.royale.utils.async.CompoundAsyncTask; CompoundAsyncTask;
+	import org.apache.royale.utils.async.SequentialAsyncTask; SequentialAsyncTask;
+
 	import org.apache.royale.utils.css.addDynamicSelector; addDynamicSelector;
+
+	COMPILE::JS
+	{
+	import org.apache.royale.utils.css.transitionEventAvailable; transitionEventAvailable;
+	}
+	
+	import org.apache.royale.utils.replaceBead; replaceBead;
 
     import org.apache.royale.core.TextLineMetrics; TextLineMetrics;
     import org.apache.royale.utils.ClassSelectorList; ClassSelectorList;

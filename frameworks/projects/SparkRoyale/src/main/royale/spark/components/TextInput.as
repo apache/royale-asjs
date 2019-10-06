@@ -31,6 +31,7 @@ COMPILE::JS
 	import org.apache.royale.html.util.addElementToWrapper;
 }
 
+import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
@@ -292,11 +293,41 @@ public class TextInput extends SkinnableTextBase
      */
     override public function set text(value:String):void
     {
+        // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
+        COMPILE::SWF
+		{
+			inSetter = true;
+			ITextModel(model).text = value;
+			inSetter = false;
+		}
+		
+		COMPILE::JS
+		{
+			(element as HTMLInputElement).value = value;
+		}
+        // END
+
         super.text = value;
-        
         // Trigger bindings to textChanged.
         dispatchEvent(new Event("textChanged"));
     }
+
+    // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
+    /**
+     *  @private
+     */
+    override public function get text():String
+    {
+        COMPILE::SWF
+		{
+			return ITextModel(model).text;
+		}
+		COMPILE::JS
+		{
+			return (element as HTMLInputElement).value;
+		}
+    }
+    // END
     
     COMPILE::JS
 	override protected function createElement():WrappedHTMLElement

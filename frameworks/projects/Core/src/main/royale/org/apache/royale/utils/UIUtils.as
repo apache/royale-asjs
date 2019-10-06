@@ -21,7 +21,7 @@ package org.apache.royale.utils
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
-    import org.apache.royale.core.IPopUpHostParent;
+  import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.core.IUIBase;
 
 	/**
@@ -77,7 +77,8 @@ package org.apache.royale.utils
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IChild
-		 *  @royaleemitcoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IPopUpHostParent
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 *  @royaleemitcoercion org.apache.royale.core.IPopUpHost
 		 */
 		public static function findPopUpHost(start:IUIBase):IPopUpHost
@@ -99,10 +100,26 @@ package org.apache.royale.utils
 		}
 		
 		/**
+		 *  Adds the given component to the IPopUpHost. 
+		 * 
+		 *  @param popUp the component that popups
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IChild
+		 *  @royaleignorecoercion org.apache.royale.core.IPopUpHostParent
+		 */
+		public static function addPopUp(popUp:IChild, host:IUIBase):void
+		{
+			(findPopUpHost(host) as IPopUpHostParent).popUpHost.popUpParent.addElement(popUp);
+		}
+
+		/**
 		 *  Removes the given component from the IPopUpHost. 
 		 * 
-		 *  @param start A component to start the search.
-		 *  @return A component that implements IPopUpHost or null.
+		 *  @param popUp the component that popups
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

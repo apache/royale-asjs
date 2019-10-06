@@ -54,14 +54,15 @@
         <manifest>../../../../../../projects/MaterialDesignLite/src/main/resources/mdl-manifest.xml</manifest>
       </namespace>
     </namespaces>
-    <library-path>
+    <external-library-path append="true">
+      <path-element>../../../../../libs/LanguageJS.swc</path-element>
       <path-element>../../../../../libs/CoreJS.swc</path-element>
       <path-element>../../../../../libs/BindingJS.swc</path-element>
       <path-element>../../../../../libs/GraphicsJS.swc</path-element>
       <path-element>../../../../../libs/CollectionsJS.swc</path-element>
       <path-element>../../../../../libs/HTMLJS.swc</path-element>
       <path-element>../../../../../libs/BasicJS.swc</path-element>
-    </library-path>
+    </external-library-path>
     <source-path>
       <path-element>../../../../../../projects/MaterialDesignLite/src/main/royale</path-element>
     </source-path>
@@ -78,4 +79,9 @@
   <include-namespaces>
     <uri>library://ns.apache.org/royale/mdl</uri>
   </include-namespaces>
+  <js-default-initializers>false</js-default-initializers>
+
+    <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
+    <js-resolve-uncertain>false</js-resolve-uncertain>
+    <js-vector-index-checks>false</js-vector-index-checks>
 </royale-config>

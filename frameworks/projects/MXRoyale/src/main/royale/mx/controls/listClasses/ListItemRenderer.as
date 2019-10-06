@@ -19,9 +19,19 @@
 
 package mx.controls.listClasses
 {
+import mx.core.UIComponent;
+import mx.events.ListEvent;
+
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IBeadView;
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.IStrand;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.core.layout.EdgeData;
+import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.MouseEvent;
 import org.apache.royale.html.supportClasses.StringItemRenderer;
 
 /**
@@ -35,6 +45,39 @@ import org.apache.royale.html.supportClasses.StringItemRenderer;
 
 public class ListItemRenderer extends StringItemRenderer
 {
+    public function ListItemRenderer()
+    {
+        addEventListener("click", clickHandler);    
+    }
+    
+    /**
+     * @royaleignorecoercion mx.core.UIComponent
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     */
+    private function clickHandler(event:MouseEvent):void
+    {
+        var le:ListEvent = new ListEvent("itemClick");
+        le.rowIndex = rowIndex;
+        le.columnIndex = 0;
+        le.itemRenderer = this;
+        getComponentDispatcher().dispatchEvent(le);
+    }
+
+    protected function getComponentDispatcher():IEventDispatcher
+    {
+        var irp:Object = itemRendererParent;
+        var p:IParent = parent;
+        while (p)
+        {
+            if (p is IStrand)
+            {
+                var b:IBead = (p as IStrand).getBeadByType(IBeadView);
+                if (b == irp) return p as IEventDispatcher;
+            }
+            p = (p as IChild).parent;
+        }
+        return null;
+    }
     override public function set text(value:String):void
     {
         super.text = value;

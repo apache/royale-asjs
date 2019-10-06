@@ -23,13 +23,17 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>frameworks</artifactId>
-    <version>0.9.4</version>
+    <version>0.9.6</version>
   </parent>
 
   <artifactId>projects</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>pom</packaging>
 
+  <properties>
+      <project.compiler.options>${repo.compiler.options}-js-default-initializers=false;-source-map=${source.map};-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false</project.compiler.options>
+  </properties>
+  
   <name>Apache Royale: Framework: Libs</name>
 
   <modules>
@@ -37,6 +41,7 @@
     <module>Charts</module>
     <module>Collections</module>
     <module>Core</module>
+    <module>Crux</module>
     <module>Basic</module>
     <module>CreateJS</module>
     <module>DragDrop</module>
@@ -64,17 +69,8 @@
     <module>Icons</module>
     <module>SparkRoyale</module>
     <module>Jewel</module>
+    <module>RoyaleUnit</module>
   </modules>
-
-  <profiles>
-    <profile>
-      <id>brokenmodules</id>
-      <modules>
-          <!-- Seems to be missing a flexunit? -->
-          <module>Testing</module>
-      </modules>
-    </profile>
-  </profiles>
 
   <build>
     <plugins>
@@ -85,20 +81,13 @@
         <configuration>
           <!-- We don't want dependencies to be linked into the resulting libraries -->
           <forceSwcExternalLibraryPath>true</forceSwcExternalLibraryPath>
+          <additionalCompilerOptions>${project.compiler.options}</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
   </build>
 
   <dependencies>
-    <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
-
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-gcl</artifactId>

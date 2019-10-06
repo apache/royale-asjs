@@ -733,13 +733,15 @@ package org.apache.royale.textLayout.conversion
 			paragraph.backgroundColor = 0xFF0000;
 			paragraph.addChild(span);
 			
+            /*
 			if (editable) {
 				//textFlowContent.interactionManager = new EditManager(new UndoManager);
 			}
 			else if (selectable) {
 				//textFlowContent.interactionManager = new SelectionManager();
 			}
-			
+			*/
+            
 			textFlowContent.addChild(paragraph);
 			
 			return textFlowContent;

@@ -26,7 +26,7 @@
 			  paddingBottom="10" paddingTop="10" paddingLeft="10" paddingRight="10"
 			  height="100%" width="100%">
 		<s:HGroup>
-			<s:Image source="apache/assets/ApacheFlexLogo.png" width="50" height="50" />
+			<s:Image source="mx/controls/assets/ApacheFlexLogo.png" width="50" height="50" />
 			<s:VGroup height="100%" verticalAlign="middle">
 				<s:Label text="Apache Tour De Flex" fontSize="20" fontWeight="bold" />
 			</s:VGroup>	

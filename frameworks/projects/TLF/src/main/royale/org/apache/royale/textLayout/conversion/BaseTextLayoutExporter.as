@@ -465,12 +465,14 @@ package org.apache.royale.textLayout.conversion
 		{
 			var output:XMLList = exportContainerFormattedElement(exporter, textFlow);
 			
+            /*
 			if (exporter.config.whiteSpaceCollapse) {
 				// TextLayout will use PRESERVE on output
 //TODO @
 				// output.@[TextLayoutFormat.whiteSpaceCollapseProperty.name] = exporter.config.whiteSpaceCollapse;
 			}
-			
+			*/
+            
 			// TextLayout adds version information
 			output.@version = TextLayoutVersion.getVersionString(TextLayoutVersion.CURRENT_VERSION);
 						

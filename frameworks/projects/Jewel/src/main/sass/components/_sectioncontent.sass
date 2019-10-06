@@ -22,14 +22,24 @@
 // SectionContent variables
 
 .jewel.section
-    //padding: 40px
     display: none
     flex-flow: column nowrap
+    height: 100%
+
+    > *
+        flex: 0 0 auto
     
-    &.is-active
+    &.is-selected
         display: flex
 
 j|SectionContent
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    // IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
+    // gap: 3
+
+j|ScrollableSectionContent
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
     // IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout")
     // gap: 3

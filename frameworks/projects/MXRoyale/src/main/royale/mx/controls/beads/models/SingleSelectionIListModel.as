@@ -98,7 +98,7 @@ package mx.controls.beads.models
 
 		private var _selectedIndex:int = -1;
 		private var _rollOverIndex:int = -1;
-		private var _labelField:String = null;
+		private var _labelField:String = "label";
 
         /**
          *  @copy org.apache.royale.core.ISelectionModel#labelField

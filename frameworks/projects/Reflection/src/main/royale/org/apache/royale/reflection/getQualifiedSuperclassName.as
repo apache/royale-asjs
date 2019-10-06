@@ -35,7 +35,7 @@ COMPILE::SWF
 	{
         COMPILE::SWF
         {
-            return flash.utils.getQualifiedSuperclassName(value);
+            return flash.utils.getQualifiedSuperclassName(value).replace('::','.');
         }
         COMPILE::JS
         {

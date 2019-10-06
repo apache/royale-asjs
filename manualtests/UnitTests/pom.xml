@@ -23,19 +23,19 @@
 	<parent>
 		<groupId>org.apache.royale.manualtests</groupId>
 		<artifactId>manualtests</artifactId>
-		<version>0.9.4</version>
+		<version>0.9.6</version>
 	</parent>
 	<artifactId>UnitTests</artifactId>
-	<version>0.9.4</version>
+	<version>0.9.6</version>
 	<packaging>swf</packaging>
 	<name>Apache Royale: ManualTests: UnitTests</name>
-	
-	<properties> 
+
+	<properties>
 		<title>${project.artifactId}</title>
-		<bgcolor>#ffffff</bgcolor> 
+		<bgcolor>#ffffff</bgcolor>
 		<useBrowserHistory>--</useBrowserHistory>
 		<version_major>11</version_major>
-		<version_minor>1</version_minor>
+		<version_minor>5</version_minor>
 		<version_revision>0</version_revision>
 		<expressInstallSwf>expressInstall.swf</expressInstallSwf>
 		<application>${project.artifactId}</application>
@@ -52,15 +52,22 @@
 				<artifactId>royale-maven-plugin</artifactId>
 				<extensions>true</extensions>
 				<configuration>
-					<targets>SWF</targets>
+					<targets>SWF,JSRoyale</targets>
 					<mainClass>${project.artifactId}.mxml</mainClass>
                     <removeCirculars>true</removeCirculars>
-					<debug>true</debug>
-					<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
-					<outputDirectory>${basedir}/target/bin-debug</outputDirectory>
-					<flashOutputFileName>${project.artifactId}.swf</flashOutputFileName>
+					<debug>false</debug>
+					<additionalCompilerOptions>
+						-swf-version=30;
+						-js-default-initializers;
+						-source-map=true;
+						-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta;
+						-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta;
+					</additionalCompilerOptions>
+					<outputDirectory>${basedir}/target</outputDirectory>
+					<flashOutputFileName>swf/${project.artifactId}.swf</flashOutputFileName>
+					<javascriptOutputDirectoryName>javascript</javascriptOutputDirectoryName>
 				</configuration>
-				<executions>
+				<!--<executions>
 					<execution>
 						<id>compile-js</id>
 						<phase>process-sources</phase>
@@ -71,12 +78,13 @@
 							<targets>JSRoyale</targets>
 							<mainClass>${project.artifactId}.mxml</mainClass>
 							<debug>false</debug>
-							<additionalCompilerOptions>-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta -keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
+							<additionalCompilerOptions>-js-default-initializers;-source-map=true;-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta;-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta</additionalCompilerOptions>
 							<outputDirectory>${basedir}/target</outputDirectory>
 						</configuration>
 					</execution>
-				</executions>	
+				</executions>-->
 			</plugin>
+            <!-- AJH couldn't figure out how this was supposed to work so disabled it to try to get the release to work
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
@@ -88,12 +96,12 @@
 							<goal>copy-resources</goal>
 						</goals>
 						<configuration>
-							<outputDirectory>${basedir}/target/bin-debug</outputDirectory>
+							<outputDirectory>${basedir}/target/swf</outputDirectory>
 							<includeEmptyDirs>true</includeEmptyDirs>
 							<resources>
 								<resource>
-									<directory>${basedir}/../../templates/swfobject</directory>
-									<filtering>true</filtering>									
+									<directory>${basedir}/src/main/resources/swfobject</directory>
+									<filtering>true</filtering>
 								</resource>
 							</resources>
 						</configuration>
@@ -112,13 +120,13 @@
 							<goal>rename</goal>
 						</goals>
 						<configuration>
-							<sourceFile>${basedir}/target/bin-debug/index.template.html</sourceFile>
-							<destinationFile>${basedir}/target/bin-debug/${project.artifactId}.html</destinationFile>
+							<sourceFile>${basedir}/target/swf/index.template.html</sourceFile>
+							<destinationFile>${basedir}/target/swf/${project.artifactId}.html</destinationFile>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
-
+             -->
 
 			<!--<plugin>
          <groupId>com.google.code.maven-replacer-plugin</groupId>
@@ -135,7 +143,7 @@
                <file>${basedir}/bin-debug/index.template.html</file>
 			   <regex>false</regex>
                <replacements>
-               
+
                </replacements>
              </configuration>
            </execution>
@@ -155,14 +163,42 @@
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.4</version>
+			<version>0.9.6</version>
 			<type>swc</type>
 			<classifier>swf</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>
 			<artifactId>Reflection</artifactId>
-			<version>0.9.4</version>
+			<version>0.9.6</version>
+			<type>swc</type>
+			<classifier>js</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.royale.framework</groupId>
+			<artifactId>Network</artifactId>
+			<version>0.9.6</version>
+			<type>swc</type>
+			<classifier>swf</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.royale.framework</groupId>
+			<artifactId>Network</artifactId>
+			<version>0.9.6</version>
+			<type>swc</type>
+			<classifier>js</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.royale.framework</groupId>
+			<artifactId>XML</artifactId>
+			<version>0.9.6</version>
+			<type>swc</type>
+			<classifier>swf</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.royale.framework</groupId>
+			<artifactId>XML</artifactId>
+			<version>0.9.6</version>
 			<type>swc</type>
 			<classifier>js</classifier>
 		</dependency>

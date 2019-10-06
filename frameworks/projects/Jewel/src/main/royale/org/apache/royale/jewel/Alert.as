@@ -18,15 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-    import org.apache.royale.jewel.Group;
-	import org.apache.royale.core.IAlertModel;
-	import org.apache.royale.core.IPopUp;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IAlertModel;
+    import org.apache.royale.core.IPopUp;
+    import org.apache.royale.events.CloseEvent;
+    import org.apache.royale.jewel.Group;
 
     [Event(name="close", type="org.apache.royale.events.CloseEvent")]
 	/**
@@ -46,6 +46,7 @@ package org.apache.royale.jewel
 	 *  To ensure support across all modern browsers, we use use dialogPolyfill extern or creating your own.
 	 *  The required Dialog Polyfill lines are injected in the constructor
 	 * 
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
@@ -95,12 +96,7 @@ package org.apache.royale.jewel
 		
 		/**
 		 *  constructor.
-		 *
-         *  <inject_html>
-         *  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.css">
-         *  <script src="https://cdnjs.cloudflare.com/ajax/libs/dialog-polyfill/0.4.9/dialog-polyfill.min.js"></script>
-         *  </inject_html>
-         * 
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -114,7 +110,7 @@ package org.apache.royale.jewel
 		}
 
 		/**
-		 *  The tile of the Alert.
+		 *  The title of the Alert.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -221,7 +217,7 @@ package org.apache.royale.jewel
 					
 					if (!("showModal" in dialog))
 					{
-						window["dialogPolyfill"]["registerDialog"](dialog);
+						dialogPolyfill.registerDialog(dialog);
 					}
 
 					//avoid scroll in html
@@ -319,13 +315,10 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function close():void
+		public function close(buttonFlag:uint = 0x000004):void
 		{
-			COMPILE::JS
-			{
-				document.body.classList.remove("viewport");
-				dialog.close();
-			}
+			var closeEvent:CloseEvent = new CloseEvent("close", false, false, buttonFlag);
+			dispatchEvent(closeEvent);
 		}
 	}
 }

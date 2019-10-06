@@ -27,15 +27,15 @@ package mx.rpc.http
 	import mx.core.mx_internal;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
-	// import mx.managers.CursorManager;
 	import mx.messaging.ChannelSet;
 	import mx.messaging.channels.DirectHTTPChannel;
 	import mx.messaging.config.LoaderConfig;
+	import mx.messaging.errors.ArgumentError;
 	import mx.messaging.events.MessageEvent;
 	import mx.messaging.messages.AsyncMessage;
 	import mx.messaging.messages.HTTPRequestMessage;
-	import mx.netmon.NetworkMonitor;
 	import mx.messaging.messages.IMessage;
+	import mx.netmon.NetworkMonitor;
 	import mx.resources.IResourceManager;
 	import mx.resources.ResourceManager;
 	import mx.rpc.AbstractService;
@@ -44,14 +44,10 @@ package mx.rpc.http
 	import mx.rpc.Fault;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.mxml.Concurrency;
-	// import mx.rpc.xml.SimpleXMLDecoder;
-	// import mx.rpc.xml.SimpleXMLEncoder;
 	import mx.utils.ObjectProxy;
 	import mx.utils.ObjectUtil;
 	import mx.utils.StringUtil;
 	import mx.utils.URLUtil;
-	
-	import mx.messaging.errors.ArgumentError;
 	
 	use namespace mx_internal;
 	
@@ -229,6 +225,8 @@ package mx.rpc.http
 		// Properties
 		//---------------------------------
 		
+        private var _argumentNames:Array;
+        
 		/**
 		 * An ordered list of the names of the arguments to pass to a method invocation.  Since the arguments object is
 		 * a hashmap with no guaranteed ordering, this array helps put everything together correctly.
@@ -239,8 +237,15 @@ package mx.rpc.http
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var argumentNames:Array;
-		
+		public function get argumentNames():Array
+        {
+            return _argumentNames;
+        }
+		public function set argumentNames(value:Array):void
+        {
+            _argumentNames = value;
+        }
+        
 		//----------------------------------
 		//  method
 		//----------------------------------
@@ -415,6 +420,8 @@ package mx.rpc.http
 			_resultFormat = value;
 		}
 		
+        private var _serializationFilter:SerializationFilter;
+        
 		/**
 		 * A SerializationFilter can control how the arguments are formatted to form the content
 		 * of the HTTP request.  It also controls how the results are converted into ActionScript
@@ -426,7 +433,14 @@ package mx.rpc.http
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var serializationFilter:SerializationFilter;
+		public function get serializationFilter():SerializationFilter
+        {
+            return _serializationFilter;
+        }
+        public function set serializationFilter(value:SerializationFilter):void
+        {
+            _serializationFilter = value;
+        }
 		
 		/** 
 		 *  Returns the serialization filter.
@@ -444,6 +458,8 @@ package mx.rpc.http
 		//  request
 		//----------------------------------
 		
+        private var _request:Object = {};
+        
 		[Inspectable(defaultValue="undefined", category="General")]
 		/**
 		 *  Object of name-value pairs used as parameters to the URL. If
@@ -454,7 +470,14 @@ package mx.rpc.http
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var request:Object = {};
+		public function get request():Object
+        {
+            return _request;
+        }
+        public function set request(value:Object):void
+        {
+            _request = value;
+        }
 		
 		
 		//----------------------------------
@@ -542,7 +565,9 @@ package mx.rpc.http
 		//----------------------------------
 		//  xmlDecode
 		//----------------------------------
-		
+        
+		private var _xmlDecode:Function;
+        
 		[Inspectable(defaultValue="undefined", category="General")]
 		/**
 		 *  ActionScript function used to decode a service result from XML.
@@ -589,12 +614,21 @@ package mx.rpc.http
 		 *  @productversion Flex 3
 		 
 		 */
-		public var xmlDecode:Function;
+		public function get xmlDecode():Function
+        {
+            return _xmlDecode;
+        }
+        public function set xmlDecode(value:Function):void
+        {
+            _xmlDecode = value;
+        }
 		
 		//----------------------------------
 		//  xmlEncode
 		//----------------------------------
 		
+        private var _xmlEncode:Function;
+        
 		[Inspectable(defaultValue="undefined", category="General")]
 		/**
 		 *  ActionScript function used to encode a service request as XML.
@@ -641,12 +675,21 @@ package mx.rpc.http
 		 *  @productversion Flex 3
 		 
 		 */
-		public var xmlEncode:Function;
+		public function get xmlEncode():Function
+        {
+            return _xmlEncode;
+        }
+        public function set xmlEncode(value:Function):void
+        {
+            _xmlEncode = value;
+        }
 		
 		//----------------------------------
 		//  headers
 		//----------------------------------
-		
+        
+        private var _headers:Object = {};
+        
 		[Inspectable(defaultValue="undefined", category="General")]
 		/**
 		 *  Custom HTTP headers to be sent to the third party endpoint. If multiple headers need to
@@ -657,7 +700,14 @@ package mx.rpc.http
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public var headers:Object = {};
+		public function get headers():Object
+        {
+            return _headers;
+        }
+        public function set headers(value:Object):void
+        {
+            _headers = value;
+        }
 		
 		//----------------------------------
 		//  contentType
@@ -760,10 +810,10 @@ package mx.rpc.http
 		 */
 		override public function cancel(id:String = null):AsyncToken
 		{
-			if (showBusyCursor)
-			{
+			//if (showBusyCursor)
+			//{
 				// CursorManager.removeBusyCursor();
-			}
+			//}
 			return super.cancel(id);
 		}
 		
@@ -806,12 +856,15 @@ package mx.rpc.http
 			}
 			
 			if (ctype == CONTENT_TYPE_XML)
-			{/*
+			{
+				
 				if (parameters is String && xmlEncode == null)
 				{
-				paramsToSend = parameters as String;
+					paramsToSend = parameters as String;
+				} else { 
+					paramsToSend = parameters.toXMLString();	
 				}
-				else if (!(parameters is XMLNode) && !(parameters is XML))
+				/*else if (!(parameters is XMLNode) && !(parameters is XML))
 				{
 				if (xmlEncode != null)
 				{
@@ -1095,10 +1148,10 @@ package mx.rpc.http
 		
 		override mx_internal function invoke(message:IMessage, token:AsyncToken = null):AsyncToken
 		{
-			if (showBusyCursor)
-			{
+			//if (showBusyCursor)
+			//{
 				// CursorManager.setBusyCursor();
-			}
+			//}
 			
 			return super.invoke(message, token);
 		}
@@ -1108,10 +1161,10 @@ package mx.rpc.http
 		*/
 		override mx_internal function preHandle(event:MessageEvent):AsyncToken
 		{
-			if (showBusyCursor)
-			{
+			//if (showBusyCursor)
+			//{
 				// CursorManager.removeBusyCursor();
-			}
+			//}
 			
 			var wasLastCall:Boolean = activeCalls.wasLastCall(AsyncMessage(event.message).correlationId);
 			var token:AsyncToken = super.preHandle(event);

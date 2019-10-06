@@ -175,6 +175,14 @@ public class Wipe extends Tween implements IDocument
                 actualTarget.positioner.style.height = this.startValue+"px";
 			}
 		}
+        else
+        {
+            actualTarget.height = endValue;
+            COMPILE::JS {
+                //reset height in js
+                actualTarget.positioner.style.height = this.endValue+"px";
+            }
+        }
 
         wiper.target = null;
 	}

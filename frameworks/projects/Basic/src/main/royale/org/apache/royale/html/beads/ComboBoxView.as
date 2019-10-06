@@ -89,7 +89,7 @@ package org.apache.royale.html.beads
 			return button;
 		}
 		
-		private var list:UIBase;
+		protected var list:UIBase;
 		
 		/**
 		 *  The pop-up list component of the ComboBox.

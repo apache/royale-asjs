@@ -96,7 +96,7 @@ package org.apache.royale.html.beads
 					
 					bitmap = Bitmap(LoaderInfo(e.target).content);
 					
-					host.$addChildAt(bitmap,0);
+					host.$sprite_addChildAt(bitmap,0);
 					
 					if (isNaN(host.explicitWidth) && isNaN(host.percentWidth))
 						host.setWidth(loader.content.width);

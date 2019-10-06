@@ -125,6 +125,11 @@ $alert-footer-height: 50px
     + .backdrop
         //background-color: rgba(0, 0, 0, $alert-modal-opacity)
 
+//hack to fix IE display in Alert:
+@media all and (-ms-high-contrast: none)
+    .jewel.alert
+        display: table
+		
 @media (min-width: $tablet)
     .jewel.alert
         min-width: $alert-min-width + 100

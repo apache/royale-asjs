@@ -30,7 +30,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.4</version>
+  <version>0.9.6</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -43,10 +43,10 @@
   -->
 
   <scm>
-    <connection>scm:git:git@github.com:apache/royale-asjs.git</connection>
-    <developerConnection>scm:git:git@github.com:apache/royale-asjs.git</developerConnection>
-    <url>scm:git:git@github.com:apache/royale-asjs.git</url>
-    <tag>org.apache.royale.framework-0.9.4-rc2</tag>
+    <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
+    <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
+    <url>scm:git:https://github.com/apache/royale-asjs.git</url>
+    <tag>org.apache.royale.framework-0.9.6-rc3</tag>
   </scm>
 
   <properties>
@@ -55,19 +55,27 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
-    <royale.compiler.version>0.9.4</royale.compiler.version>
-    <royale.typedefs.version>0.9.4</royale.typedefs.version>
+    <royale.compiler.version>0.9.6</royale.compiler.version>
+    <royale.typedefs.version>0.9.6</royale.typedefs.version>
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
+    <royale.swc-date>9/24/19 9:06 -0800</royale.swc-date>
 
+    <royale.example.targets>JSRoyale</royale.example.targets>
+    
+    <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
+    <repo.compiler.options />
+    
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
     <air.version>20.0</air.version>
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
     <swf.version>31</swf.version>
-
+    <source.map>true</source.map>
+    
     <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
+    <skipgpg>false</skipgpg>
 
     <!-- URL of the ASF SonarQube server -->
     <sonar.host.url>https://builds.apache.org/analysis</sonar.host.url>
@@ -105,14 +113,16 @@
     </mailingList>
   </mailingLists>
 
-  <modules>
-    <module>frameworks</module>
-    <module>archetypes</module>
-  </modules>
-
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-gpg-plugin</artifactId>
+          <configuration>
+            <skip>${skipgpg}</skip><!--true to skip gpg if building release on CI server -->
+          </configuration>
+        </plugin>
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
           <artifactId>royale-maven-plugin</artifactId>
@@ -193,7 +203,7 @@
       <plugin>
         <groupId>org.apache.rat</groupId>
         <artifactId>apache-rat-plugin</artifactId>
-        <version>0.12</version>
+        <version>0.13</version>
         <executions>
           <execution>
             <id>license-check</id>
@@ -221,7 +231,7 @@
             <!-- Should probably also be removed -->
             <exclude>js/*jshint*</exclude>
             <!-- FlashBuilder settings. frameworks/fb.properties contains Alex' path entries and should be removed -->
-            <exclude>fb.properties</exclude>
+            <exclude>**/fb.properties</exclude>
             <!-- FlashBuilder / Eclipse settings. If checked in, they should have apache headers -->
             <exclude>**/.settings/**</exclude>
             <!-- Ignore IntelliJ IDEA project files -->
@@ -240,6 +250,9 @@
                 target directories. We don't want that.
             -->
             <exclude>**/target/**</exclude>
+
+            <exclude>**/src/test/royale/out/**</exclude>
+            <exclude>lib/external/*.html</exclude>
           </excludes>
         </configuration>
         <dependencies>
@@ -320,10 +333,42 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>2.5.3</version>
+          <configuration>
+              <providerImplementations>
+                  <git>jgit</git>
+              </providerImplementations>
+          </configuration>
+          <dependencies>
+              <dependency>
+                  <groupId>org.apache.maven.scm</groupId>
+                  <artifactId>maven-scm-provider-jgit</artifactId>
+                  <version>1.11.2-SNAPSHOT</version>
+              </dependency>
+              <dependency>
+                  <groupId>org.apache.maven.scm</groupId>
+                  <artifactId>maven-scm-api</artifactId>
+                  <version>1.11.2-SNAPSHOT</version>
+              </dependency>
+          </dependencies>
+      </plugin>
     </plugins>
   </build>
 
   <profiles>
+    <profile>
+      <id>main</id>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
+      <modules>
+          <module>frameworks</module>
+          <module>archetypes</module>
+      </modules>
+    </profile>
     <profile>
       <id>release</id>
       <properties>
@@ -357,6 +402,80 @@
       <modules>
         <module>testsuite</module>
       </modules>
+    </profile>
+    <profile>
+        <id>upload-release-to-staging</id>
+        <activation>
+            <activeByDefault>false</activeByDefault>
+        </activation>
+        <modules><!-- only run on top-level, not for each module -->
+        </modules>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>wagon-maven-plugin</artifactId>
+                    <version>2.0.0</version>
+                    <configuration>
+                        <serverId>apache.releases.https</serverId>
+                        <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
+    </profile>
+    
+    <profile>
+        <id>generate-swf</id>
+        <properties>
+            <royale.example.targets>SWF,JSRoyale</royale.example.targets>
+        </properties>
+        <dependencies>
+            <dependency>
+                <groupId>com.adobe.flash.framework</groupId>
+                <artifactId>playerglobal</artifactId>
+                <version>${flash.version}</version>
+                <type>swc</type>
+                <scope>runtime</scope>
+            </dependency>
+        </dependencies>
+    </profile>
+    
+    <profile>
+      <id>generate-swcs-for-swf</id>
+      <properties>
+          <royale.skipAS>false</royale.skipAS>
+      </properties>
+      <dependencies>
+          <dependency>
+              <groupId>com.adobe.air.framework</groupId>
+              <artifactId>airglobal</artifactId>
+              <version>${air.version}</version>
+              <type>swc</type>
+              <scope>runtime</scope>
+          </dependency>
+      </dependencies>
+    </profile>
+    
+    <profile>
+        <id>release-swcs</id>
+        <properties>
+            <repo.compiler.options>-metadata.date="${royale.swc-date}";-metadata.dateFormat="MM/dd/yy HH:mm Z";-swf-debugfile-alias=/org/apache/royale/0.9.6;</repo.compiler.options>
+            <source.map>false</source.map>
+        </properties>
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.royale.compiler</groupId>
+                    <artifactId>royale-maven-plugin</artifactId>
+                    <version>${royale.compiler.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </build>
     </profile>
   </profiles>
 

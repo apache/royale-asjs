@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package
-{   
+{
     /**
     *  @private
     *  This class is used to link additional classes into Network.swc
@@ -25,33 +25,31 @@ package
     *  from the classes specified in manifest.xml.
     */
     internal class NetworkClasses
-    {	
+    {
         import org.apache.royale.net.URLLoader; URLLoader;
         import org.apache.royale.net.URLBinaryLoader; URLBinaryLoader;
         import org.apache.royale.net.HTTPConstants; HTTPConstants;
         import org.apache.royale.net.URLBinaryUploader; URLBinaryUploader;
         import org.apache.royale.net.events.ResultEvent; ResultEvent;
         import org.apache.royale.net.events.FaultEvent; FaultEvent;
-        COMPILE::JS
-        {
-            import org.apache.royale.net.events.HTTPStatusEvent; HTTPStatusEvent;
-        }
         
         import org.apache.royale.net.remoting.messages.AcknowledgeMessage; AcknowledgeMessage;
-        import org.apache.royale.net.remoting.messages.AcknowledgeMessageExt;
+        // import org.apache.royale.net.remoting.messages.AcknowledgeMessageExt;
         import org.apache.royale.net.remoting.messages.AsyncMessage; AsyncMessage;
-        import org.apache.royale.net.remoting.messages.AsyncMessageExt;
+        // import org.apache.royale.net.remoting.messages.AsyncMessageExt;
         import org.apache.royale.net.remoting.messages.CommandMessage; CommandMessage;
-        import org.apache.royale.net.remoting.messages.CommandMessageExt;
+        // import org.apache.royale.net.remoting.messages.CommandMessageExt;
         import org.apache.royale.net.remoting.messages.RemotingMessage; RemotingMessage;
 
         import org.apache.royale.net.remoting.messages.RoyaleClient; RoyaleClient;
+	
+		import org.apache.royale.net.remoting.amf.AMFBinaryData; AMFBinaryData;
         
-        import org.apache.royale.reflection.registerClassAlias;
-        //RpcClassAliasInitializer
-        registerClassAlias("DSK", AcknowledgeMessageExt);
-        registerClassAlias("DSA", AsyncMessageExt);
-        registerClassAlias("DSC", CommandMessageExt);
+        // import org.apache.royale.reflection.registerClassAlias;
+        // //RpcClassAliasInitializer
+        // registerClassAlias("DSK", AcknowledgeMessageExt);
+        // registerClassAlias("DSA", AsyncMessageExt);
+        // registerClassAlias("DSC", CommandMessageExt);
         
     }
 }

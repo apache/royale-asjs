@@ -573,6 +573,7 @@ public class Panel extends Container
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  @royaleignorecoercion mx.containers.beads.models.PanelModel
      */
     public function get layout():String
     {
@@ -581,6 +582,7 @@ public class Panel extends Container
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.containers.beads.models.PanelModel
      */
     public function set layout(value:String):void
     {
@@ -664,18 +666,20 @@ public class Panel extends Container
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  @royaleignorecoercion mx.containers.beads.models.PanelModel
      */
     public function get title():String
     {
-        return PanelModel(model).title;
+        return (model as PanelModel).title;
     }
 
     /**
      *  @private
+     *  @royaleignorecoercion mx.containers.beads.models.PanelModel
      */
     public function set title(value:String):void
     {
-        PanelModel(model).title = value;
+        (model as PanelModel).title = value;
     }
     
     /**
@@ -700,12 +704,17 @@ public class Panel extends Container
     
     /**
      * @private
-     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
-        panelView.contentArea.addElement(c, dispatchEvent);
+        if ((panelView.contentArea as UIComponent).systemManager == null)
+            (panelView.contentArea as UIComponent).systemManager = systemManager;
+        if (panelView.contentArea == this)
+            super.addElement(c, dispatchEvent);
+        else
+            panelView.contentArea.addElement(c, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
@@ -713,12 +722,17 @@ public class Panel extends Container
     
     /**
      * @private
-     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
-        panelView.contentArea.addElementAt(c, index, dispatchEvent);
+        if ((panelView.contentArea as UIComponent).systemManager == null)
+            (panelView.contentArea as UIComponent).systemManager = systemManager;
+        if (panelView.contentArea == this)
+            super.addElementAt(c, index, dispatchEvent);
+        else
+            panelView.contentArea.addElementAt(c, index, dispatchEvent);
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
             this.dispatchEvent(new Event("layoutNeeded"));
@@ -726,50 +740,64 @@ public class Panel extends Container
     
     /**
      * @private
-     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function getElementIndex(c:IChild):int
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.getElementIndex(c);
         return panelView.contentArea.getElementIndex(c);
     }
     
     /**
      * @private
-     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            super.removeElement(c, dispatchEvent);
         panelView.contentArea.removeElement(c, dispatchEvent);
     }
     
     /**
      * @private
-     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function get numElements():int
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.numElements;
         return panelView.contentArea.numElements;
     }
     
     /**
      * @private
-     * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function getElementAt(index:int):IChild
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.getElementAt(index);
         return panelView.contentArea.getElementAt(index);
     }
 
     // override and proxy to content area.  Otherwise Panel's TitleBar and other chrome will
     // have this padding between the border and chrome
     
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function get paddingLeft():Object
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.paddingLeft;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingLeft;
     }
@@ -778,6 +806,7 @@ public class Panel extends Container
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
      * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function set paddingLeft(value:Object):void
     {
@@ -787,14 +816,26 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingLeft = value;
+                return;
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingLeft = value;
         }
     }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function get paddingRight():Object
     {
         var panelView:PanelView = view as PanelView;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
+        if (panelView.contentArea == this)
+            return super.paddingRight;
         return contentView.paddingRight;
     }
     
@@ -802,6 +843,7 @@ public class Panel extends Container
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
      * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function set paddingRight(value:Object):void
     {
@@ -811,13 +853,24 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingRight = value;
+                return;
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingRight = value;
         }
     }
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function get paddingTop():Object
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.paddingTop;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingTop;
     }
@@ -826,6 +879,7 @@ public class Panel extends Container
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
      * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function set paddingTop(value:Object):void
     {
@@ -835,13 +889,25 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingTop = value;
+                return;
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingTop = value;
         }
     }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function get paddingBottom():Object
     {
         var panelView:PanelView = view as PanelView;
+        if (panelView.contentArea == this)
+            return super.paddingBottom;
         var contentView:UIComponent = panelView.contentArea as UIComponent;
         return contentView.paddingBottom;
     }
@@ -850,6 +916,7 @@ public class Panel extends Container
      * @royaleignorecoercion mx.core.UIComponent 
      * @royaleignorecoercion String
      * @royaleignorecoercion mx.containers.beads.models.PanelModel 
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function set paddingBottom(value:Object):void
     {
@@ -860,6 +927,11 @@ public class Panel extends Container
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+            {
+                super.paddingBottom = value;
+                return;                
+            }
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.paddingBottom = value;
         }
@@ -868,42 +940,69 @@ public class Panel extends Container
     // because padding creates the view early, the setuplayout logic
     // may get run before percentWidth/Height are set, so we have
     // to make sure the contentArea gets set up correctly
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function set percentWidth(value:Number):void
     {
         super.percentWidth = value;
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentWidth = 100;
         }
     }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function set explicitWidth(value:Number):void
     {
         super.explicitWidth = value;
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentWidth = 100;
         }
     }
+
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function set percentHeight(value:Number):void
     {
         super.percentHeight = value;
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentHeight = 100;
         }
     }
+    
+    /**
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
+     */
     override public function set explicitHeight(value:Number):void
     {
         super.explicitHeight = value;
         if (parent)
         {
             var panelView:PanelView = view as PanelView;
+            if (panelView.contentArea == this)
+                return;                
             var contentView:UIComponent = panelView.contentArea as UIComponent;
             contentView.percentHeight = 100;
         }
@@ -911,7 +1010,8 @@ public class Panel extends Container
     
 
     /**
-     *  @private
+     * @private
+     * @royaleignorecoercion mx.containers.beads.PanelView
      */
     override public function childrenAdded():void
     {

@@ -313,6 +313,16 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+The following is relative to the royale-compiler folder:
+
+The following .java files in 
+compiler-jx/src/main/java/com/google/javascript/jscomp
+are derived from the files in the Google Closure Compiler which are available 
+under Apache License 2.0.
+
+RoyaleClosurePassConfig.java
+Files with names ending with WithModuleSupport.java
+
 TourDeFlex Subcomponents:
 
 The examples/mxroyale/tourdeflexmodules includes a number of subcomponents with
@@ -326,9 +336,35 @@ see src/mx/effects/assets.
 The ping sound effect (ping.mp3) in src/mx/effects/assets is
 licensed under Creative Commons Attribution 3.0 (CC BY 3.0).
 
-The summaries of each version of Apache Flex in src/apache are
-licensed under Creative Commons Attribution-ShareAlike 3.0 Unported
-License (CC BY-SA 3.0).
-
 /src/swfobject.js from SWFObject 2.2, is available under a MIT license.
 For details, see https://code.google.com/p/swfobject.
+
+Portions of the file frameworks/projects/Basic/src/main/royale/org/apache/royale/html/LoadIndicator.as
+are from http://samherbert.net/svg-loaders/ which is available under an
+MIT License.
+
+The MIT License (MIT)
+
+Copyright (c) 2014 Sam Herbert
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+Most of the .as files in frameworks/projects/Crux/src/main/royale
+are derived from the files in the Swiz framework which are available
+under Apache License 2.0.

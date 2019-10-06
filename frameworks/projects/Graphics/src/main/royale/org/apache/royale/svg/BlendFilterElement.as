@@ -40,7 +40,7 @@ package org.apache.royale.svg
 	{
 		private var _strand:IStrand;
 		private var _in2:String;
-
+		private var _mode:String = "normal";
 		public function BlendFilterElement()
 		{
 		}
@@ -54,7 +54,7 @@ package org.apache.royale.svg
 			{
 				super.build();
 				filterElement.setAttribute("in2", in2);
-				filterElement.setAttribute("mode", "normal");
+				filterElement.setAttribute("mode", mode);
 			}
 		}
 
@@ -80,6 +80,16 @@ package org.apache.royale.svg
 		override protected function get filterElementType():String
 		{
 			return "feBlend";
+		}
+
+		public function get mode():String  
+		{
+			return _mode;
+		}
+		
+		public function set mode(value:String ):void 
+		{
+			_mode = value;
 		}
 	}
 }

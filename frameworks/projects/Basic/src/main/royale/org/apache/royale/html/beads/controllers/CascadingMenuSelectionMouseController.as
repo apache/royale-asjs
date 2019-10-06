@@ -26,7 +26,11 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.html.CascadingMenu;
 	import org.apache.royale.html.beads.models.CascadingMenuModel;
-	
+	import org.apache.royale.html.beads.models.MenuModel;
+	import org.apache.royale.html.Menu;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.UIBase;
+
 	COMPILE::JS {
 		import org.apache.royale.events.BrowserEvent;
 	}
@@ -82,7 +86,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.6
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{
@@ -90,12 +94,27 @@ package org.apache.royale.html.beads.controllers
 			
 			var model:CascadingMenuModel = _strand.getBeadByType(IBeadModel) as CascadingMenuModel;
 			
-			if (node.hasOwnProperty(model.submenuField)) {
+			if (getHasMenu(node, model)) {
 				var component:IUIBase = event.target as IUIBase;
 				var menu:IMenu = new CascadingMenu();
-				menu.dataProvider = node[model.submenuField];
+				menu.dataProvider = getSubMenuDataProvider(node, model);
 				menu.labelField = model.labelField;
 				menu.parentMenuBar = (_strand as IMenu).parentMenuBar;
+				// selected item holds the currently open submenu data 
+				// check to see if that exists and hide it if it does
+				if (model.selectedItem)
+				{
+					var dp:Object = getSubMenuDataProvider(model.selectedItem, model);
+					if (dp)
+					{
+						var nextMenu:CascadingMenu = getMenuWithDataProvider(MenuModel.menuList, dp);
+						if (nextMenu)
+						{
+							clearSubmenusOnSameLevel(nextMenu, nextMenu.model as ISelectionModel);
+						}
+					}
+				}
+				model.selectedItem = event.data;
 				menu.show(component, component.width, 0);
 			}
 			else {
@@ -103,5 +122,71 @@ package org.apache.royale.html.beads.controllers
 				hideOpenMenus();
 			}
 		}
+
+		private function clearSubmenusOnSameLevel(menuToBeRemoved:UIBase, model:ISelectionModel):void
+		{
+			var selectedItem:Object = model.selectedItem;
+			if (!selectedItem)
+			{
+				return removeMenu(menuToBeRemoved);
+			}
+			var menuList:Array = MenuModel.menuList;
+			for (var i:int = 0; i < menuList.length; i++)
+			{
+				var menu:UIBase = menuList[i] as UIBase;
+				var menuModel:ISelectionModel = menu.model as ISelectionModel;
+				if (menuModel && menuModel.selectedItem == selectedItem)
+				{
+					var dp:Object = getSubMenuDataProvider(selectedItem, menuModel as CascadingMenuModel);
+					if (dp)
+					{
+						// though this is being called in a loop, performance shouldn't be a big issue as
+						// number of open nested menus is expected to be small
+						var nextMenu:CascadingMenu = getMenuWithDataProvider(menuList, dp);
+						if (nextMenu)
+						{
+							clearSubmenusOnSameLevel(nextMenu, nextMenu.model as ISelectionModel);
+							break;
+						}
+					}
+				}
+			}
+			removeMenu(menuToBeRemoved);
+		}
+
+		/**
+		 * @private
+		 * 
+		 *  Search for an open menu strand according to the given data provider.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		protected function getMenuWithDataProvider(menuList:Array, dp:Object):CascadingMenu
+		{
+			// go over open menus and return the one with the given data provider
+			for (var i:int = 0; i < menuList.length; i++)
+			{
+				var cascadingMenu:CascadingMenu = menuList[i] as CascadingMenu;
+				if (cascadingMenu && cascadingMenu.dataProvider == dp)
+				{
+					return cascadingMenu;
+				}
+			}
+			return null;
+		}
+
+		protected function getSubMenuDataProvider(node:Object, model:CascadingMenuModel):Object
+		{
+			return node[model.submenuField];
+		}
+		
+		protected function getHasMenu(node:Object, model:CascadingMenuModel):Boolean
+		{
+			return node.hasOwnProperty(model.submenuField);
+		}
+		
 	}
 }

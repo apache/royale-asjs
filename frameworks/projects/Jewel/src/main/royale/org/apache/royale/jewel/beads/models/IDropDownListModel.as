@@ -30,6 +30,6 @@ package org.apache.royale.jewel.beads.models
     {
 
         function get offset():int;
-        function setProcessingInteractiveChange(value:Boolean):void;
+        function set offset(value:int):void;
     }
 }

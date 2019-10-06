@@ -20,24 +20,26 @@ package org.apache.royale.utils
 {
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.utils.PointUtils;
 	
 	COMPILE::SWF
 	{
-		import flash.display.Loader;
 		import flash.display.DisplayObjectContainer;
-        import flash.events.Event;
-		import flash.system.LoaderContext;
-		import flash.system.ApplicationDomain;
+		import flash.display.Loader;
+		import flash.events.Event;
 		import flash.net.URLRequest;
+		import flash.system.ApplicationDomain;
+		import flash.system.LoaderContext;
 	}
 	
     COMPILE::JS
     {
+        import goog.DEBUG;
         import goog.global;
-        import org.apache.royale.core.WrappedHTMLElement;   
+
+        import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.events.Event;
+        import org.apache.royale.geom.Point;
+        import org.apache.royale.utils.PointUtils;
     }
     
     /**
@@ -185,8 +187,11 @@ package org.apache.royale.utils
 				}
 			}
 			COMPILE::JS {
-                loadCSS(modulePath ? modulePath + "/" + moduleName + ".css" :
-                    moduleName + ".css");
+                var suffix:String = ".min.css";
+                if (goog.DEBUG)
+                    suffix = ".css";
+                loadCSS(modulePath ? modulePath + "/" + moduleName + suffix :
+                    moduleName + suffix);
             }
         }
         

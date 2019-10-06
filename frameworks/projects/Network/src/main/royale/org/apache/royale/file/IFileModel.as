@@ -18,6 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.file
 {
+	import org.apache.royale.utils.BinaryData;
+	COMPILE::SWF
+	{
+		import flash.net.FileReference;
+	}
+
 	public interface IFileModel
 	{
 		/**
@@ -30,6 +36,16 @@ package org.apache.royale.file
 		 */
 		function get type():String;
 		
+		/**
+		 *  The size of the file
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		function get size():Number;
+
 		/**
 		 *  The last modified time of the file, in millisecond since the UNIX epoch (January 1st, 1970 at Midnight).
 		 * 
@@ -50,6 +66,44 @@ package org.apache.royale.file
 		 */
 		function get name():String;
 
+		/**
+		 *  A representation of the file model in binary format
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		function get blob():Object;
+
+		/**
+		 *  The file content
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		function set fileContent(value:BinaryData):void;
+
+		/**
+		 *  The file reference containing meta data on the file
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		COMPILE::SWF
+		function set fileReference(value:FileReference):void;
+
+		COMPILE::JS
+		function set fileReference(value:File):void;
 		
+		COMPILE::SWF
+		function get fileReference():FileReference;
+
+		COMPILE::JS
+		function get fileReference():File;
 	}
 }

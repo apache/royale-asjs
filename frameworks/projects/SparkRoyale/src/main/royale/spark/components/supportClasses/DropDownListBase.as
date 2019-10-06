@@ -38,6 +38,8 @@ import spark.components.List;
 //import spark.events.DropDownEvent;
 import spark.events.IndexChangeEvent;
 
+import org.apache.royale.core.ISelectionModel;
+
 import mx.core.mx_internal;
 use namespace mx_internal;
 
@@ -317,7 +319,9 @@ public class DropDownListBase extends List
         if (dataProvider === value)
             return;
             
-        super.dataProvider = value;
+        super.dataProvider = value; // this passes it to DataGroup
+        
+        (model as ISelectionModel).dataProvider = value;
        // labelChanged = true;
         invalidateProperties();
     }
@@ -367,15 +371,14 @@ public class DropDownListBase extends List
     /**
      *  @private
      */
-    /* override public function set labelField(value:String):void
+    override public function set labelField(value:String):void
     {
-        if (labelField == value)
-            return;
-            
-        super.labelField = value;
-        labelChanged = true;
-        invalidateProperties();
-    } */
+        super.labelField = value; // this passes it to DataGroup
+        
+        (model as ISelectionModel).labelField = value;
+        //labelChanged = true;
+        //invalidateProperties();
+    }
     
     //----------------------------------
     //  labelFunction

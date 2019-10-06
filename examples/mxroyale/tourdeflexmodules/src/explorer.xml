@@ -105,8 +105,7 @@
 					<node label="Panel" module="mx/containers/SimplePanelExample" />
 					<node label="TabNavigator" module="mx/containers/TabNavigatorExample" />
 					<node label="Tile" module="mx/containers/TileLayoutExample" />
-					<node label="TitleWindow" module="mx/containers/TitleWindowApp"
-						src="mx/containers/SimpleTitleWindowExample.mxml" />
+					<node label="TitleWindow" module="mx/containers/TitleWindowApp" src="mx/containers/SimpleTitleWindowExample.mxml" />
 					<node label="VBox" module="mx/containers/VBoxExample" />
 					<node label="VDividedBox" module="mx/containers/VDividedBoxExample" />
 					<node label="ViewStack" module="mx/containers/ViewStackExample" />
@@ -118,8 +117,7 @@
                  -->
 			</node>
 			<node label="Print Controls">
-				<node label="FlexPrintJob, PrintDataGrid" module="mx/printing/PrintDataGridExample"
-					src="mx/printing/FormPrintView.mxml&amp;mx/printing/FormPrintHeader.mxml&amp;mx/printing/FormPrintFooter.mxml" />
+				<node label="FlexPrintJob, PrintDataGrid" module="mx/printing/PrintDataGridExample" src="mx/printing/FormPrintView.mxml&amp;mx/printing/FormPrintHeader.mxml&amp;mx/printing/FormPrintFooter.mxml" />
 			</node>
 			<node label="Validators and Formatters">
 				<node label="Validators">
@@ -231,7 +229,7 @@
 						<node label="SeriesZoom" module="mx/charts/SeriesZoomExample" />
 					</node>
 				</node>
-				<node label="AdancedDataGrid">
+				<node label="AdvancedDataGrid">
 					<node label="AdvancedDataGrid" module="mx/controls/AdvancedDataGridExample" />
 				</node>
                 <!--
@@ -366,13 +364,17 @@
 					<node label="Border" module="spark/containers/BorderExample"/>
                      -->
 					<node label="DataGroup" module="spark/controls/DataGroupExample" />
+                    <!--
 					<node label="Form" module="spark/controls/FormExample" />
+                     -->
 					<node label="HGroup" module="spark/containers/SampleHGroup" />
 					<node label="Group" module="spark/containers/GroupExample"/>
 					<node label="Panel" module="spark/containers/PanelExample"/>
                     <!--
 					<node label="SkinnableDataContainer" module="spark/containers/SkinnableDataContainerExample" />
+                     -->
 					<node label="TabNavigator" module="spark/containers/TabNavigator1Example" />
+                     <!--
 					<node label="TabNavigator" module="spark/containers/TabNavigator2Example" />
                      -->
 					<node label="TileGroup" module="spark/containers/TileGroupExample" />

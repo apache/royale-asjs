@@ -19,12 +19,12 @@
 package org.apache.royale.reflection
 {
 COMPILE::SWF {
-  import flash.utils.describeType;
+    import flash.utils.describeType;
 }
     
     /**
      *  The description of a Class or Interface
-     * 
+     *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
@@ -106,10 +106,23 @@ COMPILE::SWF {
          * is discouraged.
          * @param name the qualified name of the definition,
          * @param rawData (optional) the reflection data if already available
+         * @param clazz (optional) a class reference to store internally for performance of getClass method
          * @return a TypeDefinition representing the class or interface represented by the parameters
          */
-        public static function getDefinition(name:String, rawData:Object = null):TypeDefinition {
+        public static function getDefinition(name:String, rawData:Object = null, clazz:Class = null):TypeDefinition {
             if (rawData == null) return null;
+            const def:TypeDefinition = internalGetDefinition(name, rawData);
+            if (clazz) {
+                def._class = clazz;
+            }
+            return def;
+        }
+        
+        internal static function internalGetDefinition(name:String, rawData:Object = null):TypeDefinition{
+            COMPILE::SWF {
+                //normalize Vector naming
+                if (name.indexOf('__AS3__.vec::') == 0) name = name.substr(13);
+            }
             return _cache ? (_cache[name] || new TypeDefinition(name, rawData)) : new TypeDefinition(name, rawData);
         }
 
@@ -121,6 +134,10 @@ COMPILE::SWF {
          */
         public function TypeDefinition(name:String, rawData:Object = null)
         {
+            COMPILE::SWF {
+                //normalize Vector naming
+                if (name.indexOf('__AS3__.vec::') == 0) name = name.substr(13);
+            }
             if (_cache) _cache[name] = this;
 
 			var c:int;
@@ -135,10 +152,11 @@ COMPILE::SWF {
 					_packageName = "";
                 //this definition sets a flag for where to find the metadata:
                 useFactory = true;
+                
 			}
 			COMPILE::JS{
 				c = name.lastIndexOf(".");
-				if (c > -1)
+				if (c > -1 && name.indexOf('Vector.') != 0)
 				{
 					_packageName = name.substr(0, c);
 					name = name.substr(c+1);
@@ -146,7 +164,7 @@ COMPILE::SWF {
 				else
 					_packageName = "";
 			}
-            _specialCase = _packageName=="" && SC.indexOf(name) != -1;
+            _specialCase = _packageName == "" && SC.indexOf(name) != -1;
             super(name, rawData);
         }
 
@@ -213,6 +231,20 @@ COMPILE::SWF {
             if (_packageName.length) return _packageName + "." + _name;
             else return _name;
         }
+        
+        private var _class:Class;
+        
+        /**
+         * convenience method to access the class definition from this TypeDefinition
+         * @return the original class (or interface) described by this TypeDefinition
+         * 
+         * @royaleignorecoercion Class
+         */
+        public function getClass():Class{
+            if (!_class)
+                _class = getDefinitionByName(qualifiedName) as Class;
+            return _class;
+        }
 
         /**
          * @private
@@ -224,7 +256,7 @@ COMPILE::SWF {
                 if (_rawData == null)
                 {
                     if (_packageName.length)
-                        def = getDefinitionByName(_packageName + "::" + _name);
+                        def = getDefinitionByName(_packageName + "." + _name);
                     else def = getDefinitionByName(_name);
                     _rawData = flash.utils.describeType(def);
 
@@ -238,6 +270,9 @@ COMPILE::SWF {
                         def = getDefinitionByName(_packageName + "." + _name);
                     else def = getDefinitionByName(_name);
                     _rawData = def.prototype.ROYALE_CLASS_INFO;
+                    if (_rawData == null) {
+                        _rawData = ExtraData.hasData(def) ? ExtraData.getData(def)['ROYALE_CLASS_INFO'] : null;
+                    }
                 }
             }
             return _rawData;
@@ -256,13 +291,15 @@ COMPILE::SWF {
                 if (!_constructorMethod) {
                     var source:XML = rawData.factory.constructor[0];//['constructor'][0];
                     var declaredBy:String = _packageName.length? _packageName+"::"+_name : _name;
+                    var xmlName:String = _name.replace('<', '&lt;');
+                    declaredBy = declaredBy.replace('<', '&lt;');
                     if (source ==null) {
                         //constructor with no params
                         _constructorMethod =
-                                new MethodDefinition(_name, XML('<method name="'+_name+'" declaredBy="'+declaredBy+'" returnType="" />'));
+                                new MethodDefinition(_name, false, this, XML('<method name="'+xmlName+'" declaredBy="'+declaredBy+'" returnType="" />'));
                     } else {
                         var params:XMLList = source.parameter;
-                        _constructorMethod=new MethodDefinition(_name, XML('<method name="'+_name+'" declaredBy="'+declaredBy+'" returnType="">'+params.toXMLString()+'</method>'))
+                        _constructorMethod=new MethodDefinition(_name, false, this, XML('<method name="'+xmlName+'" declaredBy="'+declaredBy+'" returnType="">'+params.toXMLString()+'</method>'))
                     }
                 }
             }
@@ -290,7 +327,7 @@ COMPILE::SWF {
          * For a "class" kind TypeDefinition, this returns the TypeDefinitions
          * of the base classes (inheritance chain). This may differ between
          * javascript and flash platform targets for some classes.
-         *  @royaleignorecoercion XML 
+         *  @royaleignorecoercion XML
          */
         public function get baseClasses():Array
         {
@@ -322,7 +359,7 @@ COMPILE::SWF {
                 {
                     var item:XML = data[i] as XML;
                     var qname:String = item.@type;
-                    results.push(TypeDefinition.getDefinition(qname));
+                    results.push(TypeDefinition.internalGetDefinition(qname));
                 }
             }
             COMPILE::JS
@@ -337,7 +374,7 @@ COMPILE::SWF {
                 {
                     if (superClass.ROYALE_CLASS_INFO !== undefined) {
                         qname = superClass.ROYALE_CLASS_INFO.names[0].qName;
-                        results.push(TypeDefinition.getDefinition(qname));
+                        results.push(TypeDefinition.internalGetDefinition(qname));
                         def = getDefinitionByName(qname);
                         superClass = def.superClass_;
                         //todo: support for when superClass is not a royale 'class'
@@ -388,7 +425,7 @@ COMPILE::SWF {
                 {
                     var item:XML = data[i] as XML;
                     var qname:String = item.@type;
-                    results.push(TypeDefinition.getDefinition(qname));
+                    results.push(TypeDefinition.internalGetDefinition(qname));
                 }
             }
             COMPILE::JS
@@ -433,7 +470,7 @@ COMPILE::SWF {
                 _interfaces = results;
                 results = results.slice();
             }
-            return results;            
+            return results;
         }
 
 
@@ -566,7 +603,7 @@ COMPILE::SWF {
                 _variables = results;
                 results = results.slice();
             }
-            return results;        
+            return results;
         }
         
         private var _accessors:Array;
@@ -606,7 +643,7 @@ COMPILE::SWF {
                 _accessors = results;
                 results = results.slice();
             }
-            return results;            
+            return results;
         }
 
         
@@ -644,7 +681,7 @@ COMPILE::SWF {
             {
                 results = getCollection("methods");
                 //special case, remove constructor method:
-                var i:int=0, l:int=results.length;
+                var i:uint=0, l:uint=results.length;
                 for (;i<l;i++) {
                     if (results[i].name==this.name) {
                         //trace('found constructor '+results[i].toString());
@@ -658,7 +695,7 @@ COMPILE::SWF {
                 _methods = results;
                 results = results.slice();
             }
-            return results;            
+            return results;
         }
 
 
@@ -680,7 +717,7 @@ COMPILE::SWF {
             {
                 var item:XML = data[i] as XML;
                 var qname:String = item.@name;
-                results[i]= new itemClass(qname, item);
+                results[i]= new itemClass(qname,isStatic, this, item);
             }
             return results;
         }
@@ -700,8 +737,9 @@ COMPILE::SWF {
            var data:Object = rawData;
            var qname:String = data.names[0].qName;
            var def:Object = getDefinitionByName(qname);
-           var rdata:* =  def.prototype.ROYALE_REFLECTION_INFO();
-
+            
+           const infoDataSource:Function =  def.prototype.ROYALE_REFLECTION_INFO || ExtraData.getData(qname)['ROYALE_REFLECTION_INFO'];
+           var rdata:* =  infoDataSource();
            var itemClass:Class = lookups[collection];
 
            var l:int, i:int = 0;
@@ -714,7 +752,7 @@ COMPILE::SWF {
                else data = null;
 
                if (data) {
-                   results = TypeDefinition.getDefinition(data.names[0].qName,data)[collection];
+                   results = TypeDefinition.getDefinition(data.names[0].qName, data)[collection];
                    l=results.length;
                    for (i=0;i<l;i++) oldNames[i]=results[i].name;
                } else results=[];
@@ -722,7 +760,7 @@ COMPILE::SWF {
            //get the local definitions
             if (rdata !== undefined)
             {
-                var items:Object = rdata[collection]();
+                var items:Object = rdata[collection] ? rdata[collection]() : null;
                 if (items)
                 {
                     for (var item:String in items)
@@ -730,7 +768,7 @@ COMPILE::SWF {
                         var itemDef:Object = items[item];
                         if (isStatic) {
                             //we are looking for static members only
-							if (item.charAt(0)=="|") results[i++] = new itemClass(item.substr(1), itemDef);
+							if (item.charAt(0)=="|") results[i++] = new itemClass(item.substr(1), true, this, itemDef);
 							
                            // if ( itemDef.isStatic) results[i++] = new itemClass(item, itemDef);
                         } else {
@@ -738,10 +776,10 @@ COMPILE::SWF {
 							if (item.charAt(0)=="|") continue;
                             //if (itemDef.isStatic) continue;
                             //instance member:
-                            var itemClassDef:DefinitionWithMetaData = new itemClass(item, itemDef);
+                            var itemClassDef:MemberDefinitionBase = new itemClass(item, false, this, itemDef);
                             if (resolve) {
                                 //resolve against older versions ("overrides")
-                                var oldIdx:uint = oldNames.indexOf(itemClassDef.name);
+                                var oldIdx:int = oldNames.indexOf(itemClassDef.name);
                                 if (oldIdx != -1) {
                                     //we have an override of an ancestor's definition, replace it
                                     results[oldIdx] = itemClassDef;

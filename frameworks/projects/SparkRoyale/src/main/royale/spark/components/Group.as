@@ -498,13 +498,15 @@ public class Group extends GroupBase /*implements IVisualElementContainer,
         // if there's old content and it's different than what 
         // we're trying to set it to, then let's remove all the old 
         // elements first.
+        /*
         if (_mxmlContent != null && _mxmlContent != value)
         {
-            /*for (i = _mxmlContent.length - 1; i >= 0; i--)
+            for (i = _mxmlContent.length - 1; i >= 0; i--)
             {
                 elementRemoved(_mxmlContent[i], i);
-            }*/
+            }
         }
+        */
         
         _mxmlContent = (value) ? value.concat() : null;  // defensive copy
         

@@ -27,18 +27,36 @@ limitations under the License.
 
     <fx:Script>
 		<![CDATA[
-            import valueObjects.ClientValueObject;
-            import valueObjects.Product;
-            import valueObjects.Zone;
+            import mx.rpc.AsyncToken;
+            import mx.rpc.Responder;
             import mx.rpc.events.FaultEvent;
             import mx.rpc.events.ResultEvent;
             import mx.rpc.remoting.Operation;
-            import mx.rpc.AsyncToken;
-            import mx.rpc.Responder;
+            import mx.collections.ArrayCollection;
+
+      //      import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.events.Event;
+            import org.apache.royale.reflection.registerClassAlias;
+            import org.apache.royale.reflection.getAliasByClass;
+
+            import valueObjects.ClientValueObject;
+            import valueObjects.Product;
+            import valueObjects.Zone;
+            import valueObjects.Taxonomy;
+
+
+            private function iniApp(event:Event):void{
+                //swap in ArrayCollection for ArrayList
+   //             registerClassAlias(getAliasByClass(ArrayCollection), ArrayList);
+
+                // Test CompressedRemoteObject
+                // trace("init CompressedRemoteObject.includePackages");
+                // CompressedRemoteObject.includePackages = ["valueObjects."];
+            }
 
 			private function onFault(evt:FaultEvent):void
 			{
-                trace("[onFault]", evt);				
+                trace("[onFault]", evt);
 			}
 
             // Test AsyncToken - Responder
@@ -54,13 +72,7 @@ limitations under the License.
                 trace("[onEchoResult]", event);
                 result_txt.text = event.result as String;
             }
-            
-            // Test CompressedRemoteObject
-			private function iniApp(evt:Event):void
-			{
-                // trace("init CompressedRemoteObject.includePackages");
-                // CompressedRemoteObject.includePackages = ["valueObjects."];
-            }
+
 
             // private function compressedSendEcho(evt:MouseEvent):void
 			// {
@@ -74,6 +86,87 @@ limitations under the License.
             //     trace("[onCompressEchoResult]", event);
             //     resultCompress_txt.text = event.result as String;
             // }
+
+            /**
+             * create a complex object in royale and send to java
+             */
+            public function sendClientVO(event:MouseEvent):void
+            {
+                trace("sendClientVO called");
+
+                var clientVO:ClientValueObject = new ClientValueObject();
+                clientVO.id = Math.round(Math.random()*100);
+
+                var r:Responder = new Responder(sendClientVOResult, onFault);
+                var t:AsyncToken = serviceResp.sendClientVO(clientVO);
+                t.addResponder(r);
+                trace("the token: ", t);
+            }
+
+            private function sendClientVOResult(event:ResultEvent):void
+			{
+                trace("[sendClientVOResult]", event);
+                result2_txt.text = event.result as String;
+            }
+
+            /**
+             * create a complex object in royale and send to java
+             */
+            public function sendSomeProduct(event:MouseEvent):void
+            {
+                trace("sendSomeProduct called");
+
+                var product:Product = new Product();
+                product.name = "Some royale product";
+                product.description = "This product is only a clientside created test typed value object to test AMF strong types";
+
+                var taxonomy:Taxonomy = new Taxonomy();
+                taxonomy.type = "a clientside taxonomy type";
+                taxonomy.description = "a clientside taxonomy for this product";
+
+                product.taxonomy = taxonomy;
+
+                var zones:ArrayCollection = new ArrayCollection();
+
+                var zone:Zone= new Zone();
+                zone.id = 1;
+                zone.name = 'Europe';
+
+                zones.addItem(zone);
+                zone = new Zone();
+                zone.id = 2;
+                zone.name = 'USA';
+
+                zones.addItem(zone);
+
+                zone = new Zone();
+                zone.id = 3;
+                zone.name = 'Asia-Pacific';
+
+                zones.addItem(zone);
+
+                var flavors:ArrayCollection = new ArrayCollection();
+
+                flavors.addItem('X');
+                flavors.addItem('Y');
+                flavors.addItem('Z');
+
+                product.flavors = flavors;
+
+                product.zones = zones;
+
+
+                var r:Responder = new Responder(onSendSomeProductResult, onFault);
+                var t:AsyncToken = serviceResp.sendSomeProduct(product);
+                t.addResponder(r);
+                trace("the token: ", t);
+            }
+
+            private function onSendSomeProductResult(event:ResultEvent):void
+			{
+                trace("[onSendSomeProductResult]", event);
+                result3_txt.text = event.result as String;
+            }
 		]]>
 	</fx:Script>
 
@@ -94,11 +187,13 @@ limitations under the License.
         <mx:RemoteObject id="serviceResp" fault="onFault(event)"
                          endpoint="http://localhost:8080/messagebroker/websocket-amf"
                          destination="exampleService"/>
-        <!-- <mx:CompressedRemoteObject id="compressedService" fault="onFault(event)"
+        <mx:CompressedRemoteObject id="compressedService" fault="onFault(event)"
                          endpoint="http://localhost:8080/messagebroker/websocket-amf"
-                         destination="compressedService"/> -->
+                         destination="compressedService">
+
+        </mx:CompressedRemoteObject>
     </fx:Declarations>
-    
+
     <mx:beads>
         <js:ClassAliasBead />
     </mx:beads>
@@ -109,40 +204,45 @@ limitations under the License.
         <mx:HBox>
             <mx:VBox>
                 <mx:Label text="Name to send via AMF"/>
-                <mx:TextInput id="name_txt"/>                
+                <mx:TextInput id="name_txt"/>
             </mx:VBox>
-            <mx:Button label="Send to Name" click="service.echo()"/>        
-        </mx:HBox>        
-        <mx:Label text="{(service.echo as Operation).lastResult}"/>
+            <mx:Button label="Send to Name" click="service.echo()"/>
+        </mx:HBox>
+        <mx:Label text="{(service.echo as Operation).lastResult}" height="15"/>
     </mx:VBox>
     <mx:VBox width="400">
         <mx:HBox>
             <mx:VBox>
                 <mx:Label text="Name to send via AMF (With Responder)"/>
-                <mx:TextInput id="nameResp_txt"/>                
+                <mx:TextInput id="nameResp_txt"/>
             </mx:VBox>
-            <mx:Button label="Send to Name (With Responder)" click="sendEcho(event)"/>        
-        </mx:HBox>        
-        <mx:Label id="result_txt"/>
+            <mx:Button label="Send to Name (With Responder)" click="sendEcho(event)"/>
+        </mx:HBox>
+        <mx:Label id="result_txt" height="15"/>
     </mx:VBox>
-    <!-- <mx:VBox width="400">
-        <mx:HBox>
-            <mx:VBox>
-                <mx:Label text="Name to send via AMF (With Compression)"/>
-                <mx:TextInput id="nameCompress_txt"/>                
-            </mx:VBox>
-            <mx:Button label="Send to Name (With Compression)" click="compressedSendEcho(event)"/>
-        </mx:HBox>        
-        <mx:Label id="resultCompress_txt"/>
-    </mx:VBox> -->
     <mx:VBox width="400">
         <mx:Button label="Get Array Of Objects" click="service.getObjectArray1()"/>
-        <mx:List id="list" labelField="id" width="100%" height="200" 
+        <mx:List id="list" labelField="id" width="100%" height="200"
                  dataProvider="{(service.getObjectArray1 as Operation).lastResult}" />
-        <mx:Label text="{list.selectedItem}"/>
+        <mx:Label text="{list.selectedItem}" height="15"/>
     </mx:VBox>
     <mx:VBox width="400">
         <mx:Button label="Get Some Product" click="service.getSomeProduct()"/>
-        <mx:Label text="{((service.getSomeProduct as Operation).lastResult as Product).name}"/>
+        <mx:Label text="{((service.getSomeProduct as Operation).lastResult as Product).name}"  height="15"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="(CompressedRO) Get Some Product" click="compressedService.getSomeCompressedProduct()"/>
+        <mx:Label text="{((compressedService.getSomeCompressedProduct as Operation).lastResult as Product).name}"  height="15"/>
+    </mx:VBox>
+
+    <mx:VBox width="400">
+        <mx:Button label="Send client vo to java" click="sendClientVO(event)"/>
+        <!-- <mx:Label text="{(service.sendSomeProduct as Operation).lastResult as String}"/> -->
+        <mx:Label id="result2_txt"  height="15"/>
+    </mx:VBox>
+    <mx:VBox width="400">
+        <mx:Button label="Send complex object to java" click="sendSomeProduct(event)"/>
+        <!-- <mx:Label text="{(service.sendSomeProduct as Operation).lastResult as String}"/> -->
+        <mx:Text id="result3_txt"  height="45" width="400"/>
     </mx:VBox>
 </mx:Application>

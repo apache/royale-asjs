@@ -39,7 +39,7 @@ package org.apache.royale.core
         /**
          *  Add a bead to the strand.
          *
-         *  @param bead The bead to be added.
+         *  @param bead The bead (IBead instance) to be added.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -49,7 +49,7 @@ package org.apache.royale.core
 		function addBead(bead:IBead):void;
         
         /**
-         *  Find a bead on the strand.
+         *  Find a bead (IBead instance) on the strand.
          *
          *  @param classOrInterface The class or interface to use
          *                                to search for the bead
@@ -65,7 +65,7 @@ package org.apache.royale.core
         /**
          *  Remove a bead from the strand.
          *
-         *  @param IBead bead The bead to be removed.
+         *  @param bead The bead (IBead instance) to be removed.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2

@@ -69,6 +69,7 @@ import mx.core.IVisualElementContainer;
 import mx.managers.IFocusManagerComponent;
 
 import org.apache.royale.events.Event;
+import org.apache.royale.core.IChild;
 
 use namespace mx_internal;
 /* 
@@ -548,6 +549,8 @@ public class Scroller extends SkinnableComponent
     public function Scroller()
     {
         super();
+        typeNames = "Scroller";
+        
        /*  hasFocusableChildren = true;
         focusEnabled = false;
 
@@ -1087,9 +1090,9 @@ public class Scroller extends SkinnableComponent
         if (value == _viewport)
             return;
         
-       // uninstallViewport();
+       uninstallViewport();
         _viewport = value;
-       // installViewport();
+       installViewport();
         dispatchEvent(new Event("viewportChanged"));
     }
     
@@ -1097,10 +1100,15 @@ public class Scroller extends SkinnableComponent
      *  @private
      *  This is used to disable thinning for automated testing.
      */
-   /*  mx_internal static var dragEventThinning:Boolean = true;
+    //mx_internal static var dragEventThinning:Boolean = true;
     
+    /**
+     *  @private
+     *  @royaleignorecoercion org.apache.royale.core.IChild
+     */
     private function installViewport():void
     {
+        /*  SWF?
         if (skin && viewport)
         {
             viewport.clipAndEnableScrolling = true;
@@ -1112,10 +1120,20 @@ public class Scroller extends SkinnableComponent
             verticalScrollBar.viewport = viewport;
         if (horizontalScrollBar)
             horizontalScrollBar.viewport = viewport;
+        */
+        COMPILE::JS
+        {
+            addElement(viewport as IChild);
+        }
     } 
     
+    /**
+     *  @private
+     *  @royaleignorecoercion org.apache.royale.core.IChild
+     */
     private function uninstallViewport():void
     {
+        /*
         if (horizontalScrollBar)
             horizontalScrollBar.viewport = null;
         if (verticalScrollBar)
@@ -1127,8 +1145,13 @@ public class Scroller extends SkinnableComponent
             viewport.removeEventListener(PropertyChangeEvent.PROPERTY_CHANGE, viewport_propertyChangeHandler);
             viewport.removeEventListener(Event.RESIZE, viewport_resizeHandler);
         }
+        */
+        COMPILE::JS
+        {
+            if (viewport)
+                removeElement(viewport as IChild);
+        }
     }
-    */
     
     //----------------------------------
     //  minViewportInset

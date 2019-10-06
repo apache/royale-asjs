@@ -45,6 +45,7 @@ package org.apache.royale.textLayout.elements
 				case LeadingModel.IDEOGRAPHIC_CENTER_DOWN:
 					return org.apache.royale.text.engine.TextBaseline.IDEOGRAPHIC_CENTER;
 			}
+            return null; // makes closure compiler 20181210 happy
 		}
 
 		/** @private */
@@ -67,6 +68,7 @@ package org.apache.royale.textLayout.elements
 				case LeadingModel.IDEOGRAPHIC_CENTER_DOWN:
 					return false;
 			}
+            return true; // makes closure compiler 20181210 happy
 		}
 	}
 }

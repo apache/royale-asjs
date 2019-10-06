@@ -36,6 +36,8 @@ package mx.events
 	 *  @playerversion Flash 9
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
 	 */
 	public class ToolTipEvent extends Event
 	{

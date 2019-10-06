@@ -29,10 +29,10 @@
     <property name="ROYALE_HOME" value="${env.ROYALE_HOME}" />
 
 	<property name="download.dir" value="${ROYALE_HOME}/in"/>
-    <property name="pixelbender.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
+    <property name="pixelbender.url" value="https://www.apache.org/dyn/mirrors/mirrors.cgi" />
     <property name="pixelbender.folder" value="flex/pixelbender/1.0/binaries" />
     <property name="pixelbender.bin.zip" value="apache-flex-sdk-pixel-bender-1.0.0-bin.zip" />
-    <property name="flexunit.url" value="http://www.apache.org/dyn/mirrors/mirrors.cgi" />
+    <property name="flexunit.url" value="https://www.apache.org/dyn/mirrors/mirrors.cgi" />
     <property name="flexunit.folder" value="flex/flexunit/4.2.0/binaries" />
     <property name="flexunit.bin.zip" value="apache-flex-flexunit-4.2.0-4.12.0-bin.zip" />
    
@@ -262,7 +262,7 @@
 	<!-- Google Closure Library -->
     <target name="gcl-download" depends="check-goog-home" unless="GOOG_HOME" description="Downloads Google Closure Library">
     	<mkdir dir="${download.dir}"/>
-    	<get src="https://github.com/google/closure-library/archive/v20170910.zip"
+    	<get src="https://github.com/google/closure-library/archive/v20180910.zip"
     	        dest="${download.dir}/google-closure-library-master.zip"
     	        verbose="false" ignoreerrors="true"/>
     	

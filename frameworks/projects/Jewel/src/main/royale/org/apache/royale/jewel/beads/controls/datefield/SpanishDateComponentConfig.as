@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls.datefield
     import org.apache.royale.core.IDateControlConfigBead;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.jewel.beads.models.DateChooserModel;
+    import org.apache.royale.jewel.DateField;
 
     /**
 	 *  The SpanishDateFieldConfig class is a specialty bead that is used
@@ -60,11 +61,13 @@ package org.apache.royale.jewel.beads.controls.datefield
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
+			
 			var model:DateChooserModel = _strand.getBeadByType(DateChooserModel) as DateChooserModel;
             model.dayNames = ['D', 'L', 'M', 'X', 'J', 'V', 'S'];
-            model.monthNames = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Deciembre"];
+            model.monthNames = ["ENE", "FEB", "MAR", "ABR", "MAY", "JUN", "JUL", "AGO", "SEP", "OCT", "NOV", "DIC"];
             model.firstDayOfWeek = 1;
+
+			(_strand as DateField).dateFormat = "DD/MM/YYYY";
 		}
     }
 }

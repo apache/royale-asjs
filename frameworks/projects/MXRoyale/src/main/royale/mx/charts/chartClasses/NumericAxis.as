@@ -254,6 +254,8 @@ public class NumericAxis extends AxisBase implements IAxis
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var computedMaximum:Number;
     
@@ -274,6 +276,8 @@ public class NumericAxis extends AxisBase implements IAxis
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var computedMinimum:Number;
     

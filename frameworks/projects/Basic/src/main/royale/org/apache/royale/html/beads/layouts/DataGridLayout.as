@@ -25,9 +25,9 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.geom.Rectangle;
@@ -60,7 +60,7 @@ package org.apache.royale.html.beads.layouts
 		{
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -84,7 +84,7 @@ package org.apache.royale.html.beads.layouts
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		private function get uiHost():UIBase
+		protected function get uiHost():UIBase
 		{
 			return _strand as UIBase;
 		}
@@ -112,6 +112,10 @@ package org.apache.royale.html.beads.layouts
 		public function layout():Boolean
 		{
 			var header:IUIBase = (uiHost.view as IDataGridView).header;
+            // fancier DG's will filter invisible columns and only put visible columns
+            // in the bbmodel, so do all layout based on the bbmodel, not the set
+            // of columns that may contain invisible columns
+            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
 			var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
 			
 			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
@@ -122,11 +126,11 @@ package org.apache.royale.html.beads.layouts
 			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			
 			var xpos:Number = 0;
-			var defaultColumnWidth:Number = (useWidth) / model.columns.length;
+			var defaultColumnWidth:Number = (useWidth) / bbmodel.dataProvider.length;
 			var columnWidths:Array = [];
 			
-			for(var i:int=0; i < displayedColumns.length; i++) {
-				var columnDef:IDataGridColumn = model.columns[i] as IDataGridColumn;
+			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
+				var columnDef:IDataGridColumn = bbmodel.dataProvider[i] as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
 				
 				// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
@@ -135,7 +139,7 @@ package org.apache.royale.html.beads.layouts
 				
 				var columnWidth:Number = defaultColumnWidth;
 				if (!isNaN(columnDef.columnWidth)) {
-					columnWidth = (columnDef.columnWidth / uiHost.width) * useWidth;
+					columnWidth = columnDef.columnWidth;
 				}
 				
 				columnList.width = columnWidth;
@@ -144,23 +148,26 @@ package org.apache.royale.html.beads.layouts
 				xpos += columnList.width;
 			}
 			
-			var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
 			bbmodel.buttonWidths = columnWidths;
 			
-			header.x = borderMetrics.left;
-			header.y = borderMetrics.top;
 			COMPILE::SWF {
+                header.y = borderMetrics.top;
+                header.x = borderMetrics.left;
 				header.width = useWidth;
 			}
 			COMPILE::JS {
 				(header as UIBase).percentWidth = 100;
 				listArea.element.style.position = "absolute";
+                if (!(uiHost.element.style.position == 'absolute' ||
+                      uiHost.element.style.position == 'relative' ||
+                      uiHost.element.style.position == 'fixed'))
+                    uiHost.element.style.position = 'relative';
 			}
 			// header's height is set in CSS
 			
-			listArea.x = borderMetrics.left;
-			listArea.y = header.height + header.y;
+            listArea.y = header.height + header.y;
 			COMPILE::SWF {
+                listArea.x = borderMetrics.left;
 				listArea.width = useWidth;
 			}
 			COMPILE::JS {

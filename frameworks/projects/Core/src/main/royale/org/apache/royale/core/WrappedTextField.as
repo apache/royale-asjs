@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	import flash.display.DisplayObject;
 
 	COMPILE::SWF
 	{
-	import flash.display.DisplayObject;
-	import flash.text.TextField;
+	    import flash.text.TextField;
 	}
 
 	COMPILE::SWF

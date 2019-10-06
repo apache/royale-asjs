@@ -38,29 +38,6 @@ $datechooser-buttons-border-radius: 50%
             border: none
             box-shadow: none
 
-        .jewel.tableheadercell.buttonsRow
-            border-bottom: 1px solid $default-color
-
-            .prevMonthButton, .nextMonthButton
-                border-radius: $datechooser-buttons-border-radius
-                color: transparent
-                &:hover
-                    background: lighten($default-color, 10%)
-                &:active
-                    background: lighten($default-color, 5%)
-
-            .prevMonthButton::before, .nextMonthButton::before
-                
-            .prevMonthButton::after, .nextMonthButton::after
-                background-size: 40%
-
-            .prevMonthButton::after
-                background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero'></path></g></g></svg>") no-repeat center center
-
-
-            .nextMonthButton::after
-                background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '></path></g></g></svg>") no-repeat center center
-
         .jewel.tableheadercell
             @if $flat
                 background: lighten($default-color, 20%)
@@ -68,12 +45,76 @@ $datechooser-buttons-border-radius: 50%
                 background: lighten($default-color, 20%)
                 box-shadow: none
             border-left: 0px
-        
+
+            &.buttonsRow
+                border-bottom: 1px solid $default-color
+                .previousButton, .nextButton
+                    border-radius: $datechooser-buttons-border-radius
+                    color: transparent
+                .viewSelector, .previousButton, .nextButton
+                    &:hover
+                        background: lighten($default-color, 10%)
+                    &:active
+                        background: lighten($default-color, 5%)
+
+                .viewSelector::after
+                    background-size: 54%
+                .previousButton::after, .nextButton::after
+                    background-size: 40%
+
+                .viewSelector::after
+                    background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
+                    background-position: right 0 center
+                    background-repeat: no-repeat
+                .previousButton::after
+                    background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero'></path></g></g></svg>") no-repeat center center
+                .nextButton::after
+                    background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '></path></g></g></svg>") no-repeat center center
+
         .jewel.tablecell
             border-top: 0px
             border-left: 0px
             padding: 4px
 
+    &[disabled]
+        pointer-events: none
+        
+        .jewel.table
+            color: $disabled-font-color
+            text:
+                shadow: unset
+            @if $flat
+                background: $disabled-color
+                border: 0px solid
+            @else
+                background: $disabled-color
+                border: 1px solid $disabled-border-color
+        
+            .jewel.button
+                color: $disabled-font-color
+                text:
+                    shadow: unset
+                font-weight: normal
+
+            .jewel.tableheadercell
+                background: none
+                color: $disabled-font-color
+                text:
+                    shadow: unset
+
+                &.buttonsRow
+                    .viewSelector::after
+                        background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{darken($disabled-color, 15%)}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")                    
+                    .previousButton::after, .nextButton::after
+                        background-size: 40%
+                    .previousButton::after
+                        background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{darken($disabled-color, 15%)}' fill-rule='nonzero'></path></g></g></svg>") no-repeat center center
+                    .nextButton::after
+                        background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{darken($disabled-color, 15%)}' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '></path></g></g></svg>") no-repeat center center
+        
+        .jewel.tableitem
+            &.selected, &.selectable:active
+                background: darken($disabled-color, 15%)
 
 .calendar
     &.item

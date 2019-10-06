@@ -30,6 +30,7 @@ package org.apache.royale.svg
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.html.util.createSVG;
     }
 
 	public class Rect extends GraphicShape implements IRect, IDrawable, ITransformHost
@@ -131,7 +132,7 @@ package org.apache.royale.svg
                 var style:String = this.getStyleStr();
 				
 				if (_rect == null) {
-                	_rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect') as WrappedHTMLElement;
+                	_rect = createSVG('rect') as WrappedHTMLElement;
                 	_rect.royale_wrapper = this;
 					element.appendChild(_rect);
 				}

@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.core
 {
-    import flexunit.framework.Assert;
+    import org.apache.royale.test.asserts.*;
     
     import org.apache.royale.utils.MD5;
     
     public class MD5Test
-    {		
+    {
         [Before]
         public function setUp():void
         {
@@ -47,9 +47,9 @@ package flexUnitTests.core
         [Test]
         public function testHash():void
         {
-            Assert.assertEquals("Error testing foobaz", "80338e79d2ca9b9c090ebaaa2ef293c7",MD5.hash("foobaz"));
-            Assert.assertEquals("Error testing bazfoo", "b6a013d5e2c00f894584ad577249dbc7",MD5.hash("bazfoo"));
-            Assert.assertEquals("Error testing password1234", "bdc87b9c894da5168059e00ebffb9077",MD5.hash("password1234"));
-        }        
+            assertEquals( "80338e79d2ca9b9c090ebaaa2ef293c7", MD5.hash("foobaz"), "Error testing foobaz");
+            assertEquals("b6a013d5e2c00f894584ad577249dbc7", MD5.hash("bazfoo"), "Error testing bazfoo");
+            assertEquals("bdc87b9c894da5168059e00ebffb9077", MD5.hash("password1234"), "Error testing password1234");
+        }
     }
 }

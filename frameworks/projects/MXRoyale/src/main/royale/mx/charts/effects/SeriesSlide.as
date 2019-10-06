@@ -94,6 +94,8 @@ public class SeriesSlide extends SeriesEffect
 	//  direction
 	//----------------------------------
 
+    private var _direction:String = "left";
+    
 	[Inspectable(category="General", enumeration="left,right,up,down", defaultValue="left")]
 
 	/**
@@ -107,7 +109,14 @@ public class SeriesSlide extends SeriesEffect
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var direction:String = "left";
+	public function get direction():String
+    {
+        return _direction;
+    }
+    public function set direction(value:String):void
+    {
+        _direction = value;
+    }
 
     //--------------------------------------------------------------------------
     //

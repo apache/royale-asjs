@@ -47,10 +47,13 @@ import spark.layouts.supportClasses.LayoutBase;
 import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.binding.DataBindingBase;
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IContainer;
 import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
+import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.ValueEvent;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -329,7 +332,7 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class GroupBase extends UIComponent implements ILayoutParent
+public class GroupBase extends UIComponent implements ILayoutParent, IContainer
 { //implements IViewport
 
     //--------------------------------------------------------------------------
@@ -352,6 +355,31 @@ public class GroupBase extends UIComponent implements ILayoutParent
         //showInAutomationHierarchy = false;
     }
         
+    /*
+    * IContainer
+    */
+    
+    /**
+     *  @private
+     */
+    public function childrenAdded():void
+    {
+        dispatchEvent(new ValueEvent("childrenAdded"));
+    }
+    
+    /**
+     * @copy org.apache.royale.core.IContentViewHost#strandChildren
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get strandChildren():IParent
+    {
+        return this;
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Overridden properties: UIComponent
@@ -1159,9 +1187,6 @@ public class GroupBase extends UIComponent implements ILayoutParent
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
         }
-        
-        if (MXMLDescriptor)
-            component = this;
         
         super.addedToParent();		
         

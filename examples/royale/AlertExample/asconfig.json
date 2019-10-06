@@ -1,0 +1,14 @@
+{
+    "config": "royale",
+    "compilerOptions": {
+        "debug": false,
+        "targets": ["JSRoyale"],
+        "source-map": true
+    },
+    "copySourcePathAssets": true,
+    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
+    "files":
+    [
+        "src/main/royale/AlertExample.mxml"
+    ]
+}

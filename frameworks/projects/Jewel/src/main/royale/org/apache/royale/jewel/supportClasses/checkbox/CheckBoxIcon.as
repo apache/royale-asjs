@@ -34,7 +34,13 @@ package org.apache.royale.jewel.supportClasses.checkbox
 		}
 
 		COMPILE::JS {
+			/**
+			 * @royalesuppresspublicvarwarning
+			 */
             public var element:WrappedHTMLElement;
+			/**
+			 * @royalesuppresspublicvarwarning
+			 */
             public var positioner:WrappedHTMLElement;
 		}
 

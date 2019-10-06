@@ -20,10 +20,13 @@
 package mx.controls
 {
 
+    import org.apache.royale.core.IAlertModel;
+    import org.apache.royale.core.IChild;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.CloseEvent;
 	import mx.containers.Panel;
 	import mx.managers.ISystemManager;
+    import mx.managers.PopUpManager;
 	import mx.core.IUIComponent;
 	import mx.core.FlexGlobals;
 	/*
@@ -41,7 +44,6 @@ import mx.core.mx_internal;
 import mx.events.CloseEvent;
 import mx.events.FlexEvent;
 import mx.managers.ISystemManager;
-import mx.managers.PopUpManager;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 
@@ -285,8 +287,10 @@ public class Alert extends Panel
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
+     * 
+     *  @royalesuppresspublicvarwarning
      */
-    //public static var buttonWidth:Number = 65;
+    public static var buttonWidth:Number = 65;
     
     //----------------------------------
     //  cancelLabel
@@ -463,17 +467,17 @@ public class Alert extends Panel
 
         if (!parent)
         {
-            var sm:ISystemManager = ISystemManager(FlexGlobals.topLevelApplication.systemManager);
+            // var sm:ISystemManager = ISystemManager(FlexGlobals.topLevelApplication.systemManager);
             // no types so no dependencies
-            var mp:Object; //= sm.getImplementation("mx.managers::IMarshalSystemManager");
-            //if (mp && mp.useSWFBridge())
+            // var mp:Object; //= sm.getImplementation("mx.managers::IMarshalSystemManager");
+            // if (mp && mp.useSWFBridge())
             //    parent = Sprite(sm.getSandboxRoot());
             //else
             //    parent = Sprite(FlexGlobals.topLevelApplication);
+            parent = FlexGlobals.topLevelApplication as IUIComponent;
         }
         
         var alert:Alert = new Alert();
-		/*
         if (flags & Alert.OK||
             flags & Alert.CANCEL ||
             flags & Alert.YES ||
@@ -481,17 +485,18 @@ public class Alert extends Panel
         {
             alert.buttonFlags = flags;
         }
-        
+        else
+            /*
         if (defaultButtonFlag == Alert.OK ||
             defaultButtonFlag == Alert.CANCEL ||
             defaultButtonFlag == Alert.YES ||
-            defaultButtonFlag == Alert.NO)
+            defaultButtonFlag == Alert.NO)*/
         {
-            alert.defaultButtonFlag = defaultButtonFlag;
+            alert.buttonFlags = defaultButtonFlag;
         }
         
         alert.text = text;
-        alert.title = title;*/
+        alert.title = title;
         //alert.iconClass = iconClass;
             
         if (closeHandler != null)
@@ -515,7 +520,8 @@ public class Alert extends Panel
         }
 
         alert.addEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
-        PopUpManager.addPopUp(alert, parent, modal);*/
+        */
+        PopUpManager.addPopUp(alert, parent, true);
 
         return alert;
     }
@@ -540,6 +546,7 @@ public class Alert extends Panel
 
         // Panel properties.
         //title = "";
+        typeNames = "Alert";
     }
 
     //--------------------------------------------------------------------------
@@ -582,7 +589,27 @@ public class Alert extends Panel
      *  @productversion Royale 0.9.3
 	 *	@royalesuppresspublicvarwarning
      */
-    //public var buttonFlags:uint = OK;
+    /**
+     *  The buttons to display on the Alert as bit-mask values.
+     *
+     *  Alert.YES
+     *  Alert.NO
+     *  Alert.OK
+     *  Alert.CANCEL
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get buttonFlags():uint
+    {
+        return IAlertModel(model).flags;
+    }
+    public function set buttonFlags(value:uint):void
+    {
+        IAlertModel(model).flags = value;
+    }
     
     //----------------------------------
     //  defaultButtonFlag
@@ -644,8 +671,33 @@ public class Alert extends Panel
      *  @productversion Royale 0.9.3
 	 *	@royalesuppresspublicvarwarning
      */
-    //public var text:String = "";
-        
+    /**
+     *  The message to display in the Alert body.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get text():String
+    {
+        return IAlertModel(model).message;
+    }
+    public function set text(value:String):void
+    {
+        IAlertModel(model).message = value;
+    }
+    
+
+    /**
+     * @private
+     * @royaleignorecoercion mx.core.IUIComponent
+     */
+    override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+    {
+        $uibase_addChild(c as IUIComponent);
+    }
+    
 }
 
 }

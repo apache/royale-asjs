@@ -46,7 +46,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function start():int;
+		function start():Number;
 		
         /**
          *  Stop getting update events.  Current time

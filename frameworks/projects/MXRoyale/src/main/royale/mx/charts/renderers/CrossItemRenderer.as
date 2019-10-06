@@ -126,6 +126,8 @@ public class CrossItemRenderer extends ProgrammaticSkin implements IDataRenderer
 	//  thickness
     //----------------------------------
 
+    private var _thickness:Number = 3;
+    
 	[Inspectable]
 
 	/**
@@ -138,7 +140,14 @@ public class CrossItemRenderer extends ProgrammaticSkin implements IDataRenderer
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public var thickness:Number = 3;
+	public function get thickness():Number
+    {
+        return _thickness;
+    }
+    public function set thickness(value:Number):void
+    {
+        _thickness = value;
+    }
 	
     //--------------------------------------------------------------------------
     //

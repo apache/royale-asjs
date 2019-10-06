@@ -25,6 +25,8 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+    <property name="debug_flag" value="false"/>
+    
 
     <condition property="ROYALE_COMPILER_HOME" value="${env.ROYALE_COMPILER_HOME}">
         <and>
@@ -85,19 +87,46 @@
     <macrodef name="compile-mxml">
     	 <attribute name="example"/>
          <attribute name="folder"/>
+         <attribute name="relmap"/>
         
         <sequential>
-   			<mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="true"
+   			<mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="${debug_flag}"
             	output="${basedir}/bin-debug/@{folder}@{example}.swf"
                 fork="true" failonerror="true">
-				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
+				<load-config filename="${ROYALE_HOME}/frameworks/flex-config.xml"/>
                 <arg value="-module-output=@{folder}" />
+                <arg value="-load-externs=${basedir}/bin-debug/link_report-js.xml" />
+                <arg value="-js-compiler-option=--variable_map_input_file @{relmap}gcc_variablemap.txt" />
+                <arg value="-js-compiler-option+=--property_map_input_file @{relmap}gcc_propertymap.txt" />
+                <arg value="-js-compiler-option+=--externs ${basedir}/bin/js-debug/externs_report.js" />
                 <arg value="+playerglobal.version=${playerglobal.version}" />
                 <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
                 <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
 			</mxmlc>
 		</sequential>
-	</macrodef>	
+	</macrodef>
+    
+    <macrodef name="compile-main">
+        <attribute name="example"/>
+        <attribute name="folder"/>
+        
+        <sequential>
+            <mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="${debug_flag}"
+                output="${basedir}/bin-debug/@{folder}@{example}.swf"
+                fork="true" failonerror="true">
+                <load-config filename="${ROYALE_HOME}/frameworks/flex-config.xml"/>
+                <arg value="-module-output=@{folder}" />
+                <arg value="-js-compiler-option=--variable_map_output_file gcc_variablemap.txt" />
+                <arg value="-js-compiler-option+=--property_map_output_file gcc_propertymap.txt" />
+                <arg value="-externs-report=${basedir}/bin/js-debug/externs_report.js" />
+                <!-- the JSROYALE compilation will produce a file called link_report-js.xml -->
+                <arg value="-link-report=${basedir}/bin-debug/link_report.xml" />
+                <arg value="+playerglobal.version=${playerglobal.version}" />
+                <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
+                <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
+            </mxmlc>
+        </sequential>
+    </macrodef>	
 	
     <macrodef name="compile-mxml-locales">
     	 <attribute name="example"/>
@@ -113,24 +142,37 @@
    				<locale>el_GR</locale>
    				<locale>de_CH</locale>
    				<locale>pt_PT</locale>
-				<load-config filename="${ROYALE_HOME}/frameworks/royale-config.xml"/>
+				<load-config filename="${ROYALE_HOME}/frameworks/flex-config.xml"/>
 			</mxmlc>
 		</sequential>
 	</macrodef>
 	
 	<target name="compile" description="compile all examples and the explorer shell" depends="compile-shell,compile-mx,compile-spark,compile-spark2,compile-spark3,compile-apache">
 	</target>
+    
+    <target name="compile-explorer" description="compile only explorer">
+        <compile-main folder="/" example="explorer"/>
+    </target>
 	
 	<target name="compile-shell" description="compile explorer shell">
-		<compile-mxml folder="/" example="explorer"/>
+		<compile-main folder="/" example="explorer"/>
 		<!-- not sure why these were compiled, they are not apps or modules
          <compile-mxml-locales folder="/" example-"loaderPanel"/>
 		<compile-mxml folder="/" example="SourceTab"/>
          -->
-		<compile-mxml folder="/" example="Welcome"/>
+		<compile-mxml folder="/" relmap="" example="Welcome"/>
         <copy file="${basedir}/src/3rdparty.xml" toFile="${basedir}/bin/js-debug/3rdparty.xml" />
+        <condition property="js-release" value="true">
+            <available file="${basedir}/bin/js-release" type="dir" />
+        </condition>
+
         <antcall target="copy-mxml" />
-        <!--<copy file="${basedir}/src/3rdparty.xml" toFile="${basedir}/bin/js-release/3rdparty.xml" />-->
+        <antcall target="copy-mxml-release" />
+        <antcall target="copy-3p-release" />
+    </target>
+    
+    <target name="copy-3p-release" if="js-release">
+        <copy file="${basedir}/src/3rdparty.xml" toFile="${basedir}/bin/js-release/3rdparty.xml" />
 	</target>
     
     <target name="copy-mxml" >
@@ -140,426 +182,432 @@
             </fileset>
         </copy>
     </target>
+    <target name="copy-mxml-release" if="js-release">
+        <copy todir="${basedir}/bin/js-release" >
+            <fileset dir="${basedir}/src" >
+                <include name="**/*.mxml" />
+            </fileset>
+        </copy>
+    </target>
 	
 	<target name="compile-mx" description="compile mx examples">
         <!--
-		<compile-mxml folder="/mx/charts/" example="BubbleChartExample"/>
-		<compile-mxml folder="/mx/charts/" example="CandlestickChartExample"/>
-		<compile-mxml folder="/mx/charts/" example="Column_BarChartExample"/>
-		<compile-mxml folder="/mx/charts/" example="DateTimeAxisExample"/>
-		<compile-mxml folder="/mx/charts/" example="GridLinesExample"/>
-		<compile-mxml folder="/mx/charts/" example="HLOCChartExample"/>
-		<compile-mxml folder="/mx/charts/" example="Line_AreaChartExample"/>
-		<compile-mxml folder="/mx/charts/" example="LogAxisExample"/>
-		<compile-mxml folder="/mx/charts/" example="PieChartExample"/>
-		<compile-mxml folder="/mx/charts/" example="PlotChartExample"/>
-		<compile-mxml folder="/mx/charts/" example="SeriesInterpolateExample"/>
-		<compile-mxml folder="/mx/charts/" example="SeriesSlideExample"/>
-		<compile-mxml folder="/mx/charts/" example="SeriesZoomExample"/>
-		<compile-mxml folder="/mx/containers/" example="AccordionExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="BubbleChartExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="CandlestickChartExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="Column_BarChartExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="DateTimeAxisExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="GridLinesExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="HLOCChartExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="Line_AreaChartExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="LogAxisExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="PieChartExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="PlotChartExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="SeriesInterpolateExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="SeriesSlideExample"/>
+		<compile-mxml folder="/mx/charts/" relmap="../../" example="SeriesZoomExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="AccordionExample"/>
          -->
-		<compile-mxml folder="/mx/containers/" example="DividedBoxExample"/>
-		<compile-mxml folder="/mx/containers/" example="FormExample"/>
-		<compile-mxml folder="/mx/containers/" example="GridLayoutExample"/>
-		<compile-mxml folder="/mx/containers/" example="HBoxExample"/>
-		<compile-mxml folder="/mx/containers/" example="HDividedBoxExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="DividedBoxExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="FormExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="GridLayoutExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="HBoxExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="HDividedBoxExample"/>
         <!--
-		<compile-mxml folder="/mx/containers/" example="SimpleApplicationControlBarExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="SimpleApplicationControlBarExample"/>
          -->
-		<compile-mxml folder="/mx/containers/" example="SimpleBoxExample"/>
-		<compile-mxml folder="/mx/containers/" example="SimpleCanvasExample"/>
-		<compile-mxml folder="/mx/containers/" example="SimpleControlBarExample"/>
-		<compile-mxml folder="/mx/containers/" example="SimplePanelExample"/>
-		<compile-mxml folder="/mx/containers/" example="SimpleTitleWindowExample"/>
-		<compile-mxml folder="/mx/containers/" example="TabNavigatorExample"/>
-		<compile-mxml folder="/mx/containers/" example="TileLayoutExample"/>
-		<compile-mxml folder="/mx/containers/" example="TitleWindowApp"/>
-		<compile-mxml folder="/mx/containers/" example="VBoxExample"/>
-		<compile-mxml folder="/mx/containers/" example="VDividedBoxExample"/>
-		<compile-mxml folder="/mx/containers/" example="ViewStackExample"/>
-		<compile-mxml folder="/mx/controls/" example="AdvancedDataGridExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="SimpleBoxExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="SimpleCanvasExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="SimpleControlBarExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="SimplePanelExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="TabNavigatorExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="TileLayoutExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="TitleWindowApp"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="VBoxExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="VDividedBoxExample"/>
+		<compile-mxml folder="/mx/containers/" relmap="../../" example="ViewStackExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="AdvancedDataGridExample"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="ButtonBarExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="ButtonBarExample"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="ButtonExample"/>
-		<compile-mxml folder="/mx/controls/" example="CheckBoxExample"/>
-		<compile-mxml folder="/mx/controls/" example="ColorPickerExample"/>
-		<compile-mxml folder="/mx/controls/" example="DateChooserExample"/>
-		<compile-mxml folder="/mx/controls/" example="DateFieldExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="ButtonExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="CheckBoxExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="ColorPickerExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="DateChooserExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="DateFieldExample"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="HorizontalListExample"/>
-		<compile-mxml folder="/mx/controls/" example="HScrollBarExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="HorizontalListExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="HScrollBarExample"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="LabelExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="LabelExample"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="LinkBarExample"/>
-		<compile-mxml folder="/mx/controls/" example="LinkButtonExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="LinkBarExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="LinkButtonExample"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="Local"/>
-		<compile-mxml folder="/mx/controls/" example="MenuBarExample"/>
-		<compile-mxml folder="/mx/controls/" example="NumericStepperExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="Local"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="MenuBarExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="NumericStepperExample"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="OLAPDataGridExample"/>
-		<compile-mxml folder="/mx/controls/" example="PopUpButtonExample"/>
-		<compile-mxml folder="/mx/controls/" example="PopUpButtonMenuExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="OLAPDataGridExample"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="RadioButtonExample"/>
-		<compile-mxml folder="/mx/controls/" example="RadioButtonGroupExample"/>
-		<compile-mxml folder="/mx/controls/" example="RichTextEditorExample"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleAlert"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleComboBox"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleDataGrid"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleHRule"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleImage"/>
+        <compile-mxml folder="/mx/controls/" relmap="../../" example="PopUpButtonExample"/>
+        <compile-mxml folder="/mx/controls/" relmap="../../" example="PopUpButtonMenuExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="RadioButtonExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="RadioButtonGroupExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="RichTextEditorExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleAlert"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleComboBox"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleDataGrid"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleHRule"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleImage"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="SimpleImageHSlider"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleImageVSlider"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleImageHSlider"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleImageVSlider"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="SimpleList"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleList"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="SimpleLoader"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleMenuExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleLoader"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleMenuExample"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="SimpleProgressBar"/>
-		<compile-mxml folder="/mx/controls/" example="SimpleVRule"/>
-		<compile-mxml folder="/mx/controls/" example="SpacerExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleProgressBar"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SimpleVRule"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="SpacerExample"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="TabBarExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="TabBarExample"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="TextAreaExample"/>
-		<compile-mxml folder="/mx/controls/" example="TextExample"/>
-		<compile-mxml folder="/mx/controls/" example="TextInputExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="TextAreaExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="TextExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="TextInputExample"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="TileListExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="TileListExample"/>
          -->
-		<compile-mxml folder="/mx/controls/" example="ToggleButtonBarExample"/>
-		<compile-mxml folder="/mx/controls/" example="TreeExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="ToggleButtonBarExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="TreeExample"/>
         <!--
-		<compile-mxml folder="/mx/controls/" example="VideoDisplayExample"/>
-		<compile-mxml folder="/mx/controls/" example="VScrollBarExample"/>
-		<compile-mxml folder="/mx/core/" example="RepeaterExample"/>
-        <compile-mxml folder="/mx/core/" example="SimpleApplicationExample"/>
-		<compile-mxml folder="/mx/effects/" example="AddItemActionEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="AnimatePropertyEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="BlurEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="CompositeEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="DefaultListEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="DefaultTileListEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="DissolveEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="FadeEffectExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="VideoDisplayExample"/>
+		<compile-mxml folder="/mx/controls/" relmap="../../" example="VScrollBarExample"/>
+		<compile-mxml folder="/mx/core/" relmap="../../" example="RepeaterExample"/>
+        <compile-mxml folder="/mx/core/" relmap="../../" example="SimpleApplicationExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="AddItemActionEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="AnimatePropertyEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="BlurEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="CompositeEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="DefaultListEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="DefaultTileListEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="DissolveEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="FadeEffectExample"/>
          -->
-		<compile-mxml folder="/mx/effects/" example="GlowEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="GlowEffectExample"/>
         <!--
-		<compile-mxml folder="/mx/effects/" example="IrisEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="IrisEffectExample"/>
          -->
-		<compile-mxml folder="/mx/effects/" example="MoveEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="ParallelEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="MoveEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="ParallelEffectExample"/>
         <!--
-		<compile-mxml folder="/mx/effects/" example="PauseEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="PauseEffectExample"/>
          -->
-		<compile-mxml folder="/mx/effects/" example="ResizeEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="ResizeEffectExample"/>
         <!--
-		<compile-mxml folder="/mx/effects/" example="RotateEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="RotateEffectExample"/>
          -->
-        <compile-mxml folder="/mx/effects/" example="SequenceEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="SimpleEffectExample"/>
-		<compile-mxml folder="/mx/effects/" example="SimpleTweenEffectExample"/>
+        <compile-mxml folder="/mx/effects/" relmap="../../" example="SequenceEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="SimpleEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="SimpleTweenEffectExample"/>
         <!--
-		<compile-mxml folder="/mx/effects/" example="SoundEffectExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="SoundEffectExample"/>
          -->
-		<compile-mxml folder="/mx/effects/" example="WipeDownExample"/>
-		<compile-mxml folder="/mx/effects/" example="WipeLeftExample"/>
-		<compile-mxml folder="/mx/effects/" example="WipeRightExample"/>
-		<compile-mxml folder="/mx/effects/" example="WipeUpExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="WipeDownExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="WipeLeftExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="WipeRightExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="WipeUpExample"/>
         <!--
-		<compile-mxml folder="/mx/effects/" example="ZoomEffectExample"/>
-		<compile-mxml folder="/mx/formatters/" example="CurrencyFormatterExample"/>
+		<compile-mxml folder="/mx/effects/" relmap="../../" example="ZoomEffectExample"/>
+		<compile-mxml folder="/mx/formatters/" relmap="../../" example="CurrencyFormatterExample"/>
          -->
-		<compile-mxml folder="/mx/formatters/" example="DateFormatterExample"/>
-		<compile-mxml folder="/mx/formatters/" example="NumberFormatterExample"/>
+		<compile-mxml folder="/mx/formatters/" relmap="../../" example="DateFormatterExample"/>
+		<compile-mxml folder="/mx/formatters/" relmap="../../" example="NumberFormatterExample"/>
         <!--
-		<compile-mxml folder="/mx/formatters/" example="PhoneFormatterExample"/>
-		<compile-mxml folder="/mx/formatters/" example="SimpleFormatterExample"/>
-		<compile-mxml folder="/mx/formatters/" example="SwitchSymbolFormatterExample"/>
-		<compile-mxml folder="/mx/formatters/" example="ZipCodeFormatterExample"/>
-		<compile-mxml folder="/mx/printing/" example="AdvancedPrintDataGridExample"/>
-		<compile-mxml folder="/mx/printing/" example="FormPrintFooter"/>
-		<compile-mxml folder="/mx/printing/" example="FormPrintHeader"/>
-		<compile-mxml folder="/mx/printing/" example="FormPrintView"/>
-		<compile-mxml folder="/mx/printing/" example="PrintDataGridExample"/>
+		<compile-mxml folder="/mx/formatters/" relmap="../../" example="PhoneFormatterExample"/>
+		<compile-mxml folder="/mx/formatters/" relmap="../../" example="SimpleFormatterExample"/>
+		<compile-mxml folder="/mx/formatters/" relmap="../../" example="SwitchSymbolFormatterExample"/>
+		<compile-mxml folder="/mx/formatters/" relmap="../../" example="ZipCodeFormatterExample"/>
+		<compile-mxml folder="/mx/printing/" relmap="../../" example="AdvancedPrintDataGridExample"/>
+		<compile-mxml folder="/mx/printing/" relmap="../../" example="FormPrintFooter"/>
+		<compile-mxml folder="/mx/printing/" relmap="../../" example="FormPrintHeader"/>
+		<compile-mxml folder="/mx/printing/" relmap="../../" example="FormPrintView"/>
+		<compile-mxml folder="/mx/printing/" relmap="../../" example="PrintDataGridExample"/>
          -->
-		<compile-mxml folder="/mx/states/" example="StatesExample"/>
-		<compile-mxml folder="/mx/states/" example="TransitionExample"/>
+		<compile-mxml folder="/mx/states/" relmap="../../" example="StatesExample"/>
+		<compile-mxml folder="/mx/states/" relmap="../../" example="TransitionExample"/>
         <!--
-		<compile-mxml folder="/mx/validators/" example="CreditCardValidatorExample"/>
-		<compile-mxml folder="/mx/validators/" example="CurrencyValidatorExample"/>
-		<compile-mxml folder="/mx/validators/" example="DateValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="CreditCardValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="CurrencyValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="DateValidatorExample"/>
          -->
-		<compile-mxml folder="/mx/validators/" example="EmailValidatorExample"/>
-		<compile-mxml folder="/mx/validators/" example="NumberValidatorExample"/>
-		<compile-mxml folder="/mx/validators/" example="PhoneNumberValidatorExample"/>
-		<compile-mxml folder="/mx/validators/" example="RegExValidatorExample"/>
-		<compile-mxml folder="/mx/validators/" example="SimpleValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="EmailValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="NumberValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="PhoneNumberValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="RegExValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="SimpleValidatorExample"/>
         <!--
-		<compile-mxml folder="/mx/validators/" example="SocialSecurityValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="SocialSecurityValidatorExample"/>
          -->
-		<compile-mxml folder="/mx/validators/" example="StringValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="StringValidatorExample"/>
         <!--
-		<compile-mxml folder="/mx/validators/" example="ZipCodeValidatorExample"/>
+		<compile-mxml folder="/mx/validators/" relmap="../../" example="ZipCodeValidatorExample"/>
          -->
 	</target>
 		
 	<target name="compile-spark" description="compile first set of spark examples">
         <!--
-		<compile-mxml folder="/spark/controls/" example="AccordionExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="AccordionExample"/>
          -->
-		<compile-mxml folder="/spark/controls/" example="AdvancedDatagridExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="AdvancedDatagridExample"/>
         <!--
-		<compile-mxml folder="/spark/controls/" example="ColorPickerExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ColorPickerExample"/>
          -->
-		<compile-mxml folder="/spark/controls/" example="ComboBoxExample"/>
-		<compile-mxml folder="/spark/controls/" example="DataGridExample"/>
-		<compile-mxml folder="/spark/controls/" example="DataGroupExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ComboBoxExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGroupExample"/>
         <!--
-		<compile-mxml folder="/spark/controls/" example="MenuExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="MenuExample"/>
          -->
-		<compile-mxml folder="/spark/controls/" example="RichEditableTextExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="RichEditableTextExample"/>
+        <compile-mxml folder="/spark/controls/" relmap="../../" example="ImageExample"/>
         <!--
-		<compile-mxml folder="/spark/controls/" example="DateChooserExample"/>
-		<compile-mxml folder="/spark/controls/" example="DateFieldExample"/>
-		<compile-mxml folder="/spark/controls/" example="FormExample"/>
-		<compile-mxml folder="/spark/controls/" example="ImageExample"/>
-		<compile-mxml folder="/spark/controls/" example="LinkBarExample"/>
-		<compile-mxml folder="/spark/controls/" example="LinkButtonExample"/>
-		<compile-mxml folder="/spark/controls/" example="OLAPDataGridExample"/>
-		<compile-mxml folder="/spark/controls/" example="PopupButtonExample"/>
-		<compile-mxml folder="/spark/controls/" example="ProgressBarExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DateChooserExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DateFieldExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="FormExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="LinkBarExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="LinkButtonExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="OLAPDataGridExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="PopupButtonExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ProgressBarExample"/>
          -->
-		<!-- Currently broken <compile-mxml folder="/spark/controls/" example="SWFLoaderExample"/> -->
-		<compile-mxml folder="/spark/controls/" example="TitleWindowExample"/>
-		<compile-mxml folder="/spark/controls/" example="ToggleButtonBarExample"/>
+		<!-- Currently broken <compile-mxml folder="/spark/controls/" relmap="../../" example="SWFLoaderExample"/> -->
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TitleWindowExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ToggleButtonBarExample"/>
         <!--
-		<compile-mxml folder="/spark/controls/" example="ToolTipExample"/>
-		<compile-mxml folder="/spark/controls/" example="TreeExample"/>
-		<compile-mxml folder="/spark/controls/" example="ViewStackExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ToolTipExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TreeExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ViewStackExample"/>
          -->
-		<compile-mxml folder="/spark/controls/" example="TextAreaExample"/>
-		<compile-mxml folder="/spark/controls/" example="TextInputExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TextAreaExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TextInputExample"/>
         <!--
-		<compile-mxml folder="/spark/controls/" example="TextLayout1Example"/>
-		<compile-mxml folder="/spark/controls/" example="TextLayout2Example"/>
-		<compile-mxml folder="/spark/controls/" example="TextLayout3Example"/>
-		<compile-mxml folder="/spark/controls/" example="TextLayout4Example"/>
-		<compile-mxml folder="/spark/controls/" example="VideoDisplayExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TextLayout1Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TextLayout2Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TextLayout3Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="TextLayout4Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="VideoDisplayExample"/>
 		
-		<compile-mxml folder="/spark/css/" example="CSSDescendantSelectorExample"/>
-		<compile-mxml folder="/spark/css/" example="CSSTypeClassSelectorExample"/>
+		<compile-mxml folder="/spark/css/" relmap="../../" example="CSSDescendantSelectorExample"/>
+		<compile-mxml folder="/spark/css/" relmap="../../" example="CSSTypeClassSelectorExample"/>
 		
-		<compile-mxml folder="/spark/layouts/" example="CustomLayoutAnimatedExample"/>
-		<compile-mxml folder="/spark/layouts/" example="CustomLayoutFlickrWheelExample"/>
-		<compile-mxml folder="/spark/layouts/" example="CustomLayoutFlowExample"/>
-		<compile-mxml folder="/spark/layouts/" example="CustomLayoutHBaselineExample"/>
-         -->
+		<compile-mxml folder="/spark/layouts/" relmap="../../" example="CustomLayoutAnimatedExample"/>
+		<compile-mxml folder="/spark/layouts/" relmap="../../" example="CustomLayoutFlickrWheelExample"/>
+		<compile-mxml folder="/spark/layouts/" relmap="../../" example="CustomLayoutFlowExample"/>
+		<compile-mxml folder="/spark/layouts/" relmap="../../" example="CustomLayoutHBaselineExample"/>
 		
-		<compile-mxml folder="/spark/itemRenderers/" example="ItemRenderer1Example"/>
-		<compile-mxml folder="/spark/itemRenderers/" example="ItemRenderer2Example"/>
+		<compile-mxml folder="/spark/itemRenderers/" relmap="../../" example="ItemRenderer1Example"/>
+		<compile-mxml folder="/spark/itemRenderers/" relmap="../../" example="ItemRenderer2Example"/>
 		
-        <!--
-		<compile-mxml folder="/spark/fxg/" example="BitmapImageExample"/>
-		<compile-mxml folder="/spark/fxg/" example="EclipseExample"/>
-		<compile-mxml folder="/spark/fxg/" example="LineExample"/>
-		<compile-mxml folder="/spark/fxg/" example="RectExample"/>
-		<compile-mxml folder="/spark/fxg/" example="RichTextExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="BitmapImageExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="EclipseExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="LineExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="RectExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="RichTextExample"/>
          -->
 		
-		<compile-mxml folder="/spark/containers/" example="SampleHGroup"/>
-		<compile-mxml folder="/spark/containers/" example="SampleVGroup"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="SampleHGroup"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="SampleVGroup"/>
         <!--
-		<compile-mxml folder="/spark/containers/" example="SampleVerticalHorizontalAlign"/>
-		<compile-mxml folder="/spark/containers/" example="SkinnableDataContainerExample"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="SampleVerticalHorizontalAlign"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="SkinnableDataContainerExample"/>
          -->
-		<compile-mxml folder="/spark/containers/" example="TileGroupExample"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="TileGroupExample"/>
 		
         <!--
-		<compile-mxml folder="/spark/effects/" example="Move3DExample"/>
-		<compile-mxml folder="/spark/effects/" example="WipeExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="Move3DExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="WipeExample"/>
 		
-		<compile-mxml folder="/spark/charts/" example="AreaChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="BarChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="BubbleChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="CandleStickChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="ColumnChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="HLOCChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="LineChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="PieChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="PlotChartExample"/>
-		<compile-mxml folder="/spark/charts/" example="SeriesInterpolateExample"/>
-		<compile-mxml folder="/spark/charts/" example="SeriesSlideExample"/>
-		<compile-mxml folder="/spark/charts/" example="SeriesZoomExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="AreaChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="BarChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="BubbleChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="CandleStickChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="ColumnChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="HLOCChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="LineChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="PieChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="PlotChartExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="SeriesInterpolateExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="SeriesSlideExample"/>
+		<compile-mxml folder="/spark/charts/" relmap="../../" example="SeriesZoomExample"/>
         
-		<compile-mxml folder="/spark/components/" example="SearchExample"/>
-		<compile-mxml folder="/spark/components/" example="VideoPlayerExample"/>
+		<compile-mxml folder="/spark/components/" relmap="../../" example="SearchExample"/>
+		<compile-mxml folder="/spark/components/" relmap="../../" example="VideoPlayerExample"/>
 		
-		<compile-mxml folder="/spark/validators/" example="CreditCardValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="CurrencyValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="DateValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="EmailValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="NumberValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="RegExpValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="SocialSecurityValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="StringValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="FormValidatorExample"/>
-		<compile-mxml folder="/spark/validators/" example="ZipCodeValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="CreditCardValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="CurrencyValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="DateValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="EmailValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="NumberValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="RegExpValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="SocialSecurityValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="StringValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="FormValidatorExample"/>
+		<compile-mxml folder="/spark/validators/" relmap="../../" example="ZipCodeValidatorExample"/>
 		
-		<compile-mxml folder="/spark/formatters/" example="CurrencyFormatterExample"/>
-		<compile-mxml folder="/spark/formatters/" example="DateFormatterExample"/>
-		<compile-mxml folder="/spark/formatters/" example="NumberFormatterExample"/>
-		<compile-mxml folder="/spark/formatters/" example="PhoneFormatterExample"/>
-		<compile-mxml folder="/spark/formatters/" example="SwitchFormatterExample"/>
-		<compile-mxml folder="/spark/formatters/" example="ZipCodeFormatterExample"/>
+		<compile-mxml folder="/spark/formatters/" relmap="../../" example="CurrencyFormatterExample"/>
+		<compile-mxml folder="/spark/formatters/" relmap="../../" example="DateFormatterExample"/>
+		<compile-mxml folder="/spark/formatters/" relmap="../../" example="NumberFormatterExample"/>
+		<compile-mxml folder="/spark/formatters/" relmap="../../" example="PhoneFormatterExample"/>
+		<compile-mxml folder="/spark/formatters/" relmap="../../" example="SwitchFormatterExample"/>
+		<compile-mxml folder="/spark/formatters/" relmap="../../" example="ZipCodeFormatterExample"/>
 		
-		<compile-mxml folder="/spark/other/" example="Cursor1Example"/>
-		<compile-mxml folder="/spark/other/" example="Cursor2Example"/>
-		<compile-mxml folder="/spark/other/" example="DragAndDrop1Example"/>
-		<compile-mxml folder="/spark/other/" example="DragAndDrop2Example"/>
-		<compile-mxml folder="/spark/other/" example="FilterExample"/>
-		<compile-mxml folder="/spark/other/" example="RepeaterExample"/>
-		<compile-mxml folder="/spark/other/" example="ScrollBarsExample"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="Cursor1Example"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="Cursor2Example"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="DragAndDrop1Example"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="DragAndDrop2Example"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="FilterExample"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="RepeaterExample"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="ScrollBarsExample"/>
 		
-		<compile-mxml folder="/spark/events/" example="EventExample1"/>
-		<compile-mxml folder="/spark/events/" example="EventExample2"/>
-		<compile-mxml folder="/spark/events/" example="EventExample3"/>
-		<compile-mxml folder="/spark/events/" example="EventExample4"/>
-		<compile-mxml folder="/spark/events/" example="EventExample5"/>
-		<compile-mxml folder="/spark/events/" example="EventExample6"/>
+		<compile-mxml folder="/spark/events/" relmap="../../" example="EventExample1"/>
+		<compile-mxml folder="/spark/events/" relmap="../../" example="EventExample2"/>
+		<compile-mxml folder="/spark/events/" relmap="../../" example="EventExample3"/>
+		<compile-mxml folder="/spark/events/" relmap="../../" example="EventExample4"/>
+		<compile-mxml folder="/spark/events/" relmap="../../" example="EventExample5"/>
+		<compile-mxml folder="/spark/events/" relmap="../../" example="EventExample6"/>
 		
-		<compile-mxml folder="/spark/modules/" example="ModuleExample"/>
-		<compile-mxml folder="/spark/modules/" example="Module1"/>
-		<compile-mxml folder="/spark/modules/" example="Module2"/>
+		<compile-mxml folder="/spark/modules/" relmap="../../" example="ModuleExample"/>
+		<compile-mxml folder="/spark/modules/" relmap="../../" example="Module1"/>
+		<compile-mxml folder="/spark/modules/" relmap="../../" example="Module2"/>
          -->
 
-		<!-- currently broken <compile-mxml folder="/spark/tlf/" example="TextLayoutEditorSample"/> -->
+		<!-- currently broken <compile-mxml folder="/spark/tlf/" relmap="../../" example="TextLayoutEditorSample"/> -->
 	</target>
 	
 	<target name="compile-spark2" description="compile second set of spark examples">
         <!--
-		<compile-mxml folder="/spark/i18n/" example="SparkCollatorExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkCollator2Example"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkCurrencyValidatorExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkCurrencyValidator2Example"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkNumberValidatorExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkNumberValidator2Example"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkDateTimeFormatterExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkDateTimeFormatter2Example"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkCurrencyFormatterExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkCurrencyFormatter2Example"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkNumberFormatterExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkNumberFormatter2Example"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkSortandSortFieldExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkSortandSortField2Example"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkStringToolsExample"/>
-		<compile-mxml folder="/spark/i18n/" example="SparkFormatterExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkCollatorExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkCollator2Example"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkCurrencyValidatorExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkCurrencyValidator2Example"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkNumberValidatorExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkNumberValidator2Example"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkDateTimeFormatterExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkDateTimeFormatter2Example"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkCurrencyFormatterExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkCurrencyFormatter2Example"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkNumberFormatterExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkNumberFormatter2Example"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkSortandSortFieldExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkSortandSortField2Example"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkStringToolsExample"/>
+		<compile-mxml folder="/spark/i18n/" relmap="../../" example="SparkFormatterExample"/>
 		
-		<compile-mxml folder="/spark/controls/" example="DataGridCustomRendererExample"/>
-		<compile-mxml folder="/spark/controls/" example="DataGridCustomRendererPrepareExample"/>
-		<compile-mxml folder="/spark/controls/" example="DataGridCustomSkinExample"/>
-		<compile-mxml folder="/spark/controls/" example="DataGridExample2"/>
-		<compile-mxml folder="/spark/controls/" example="DataGridSimpleColumnsExample"/>
-		<compile-mxml folder="/spark/controls/" example="DataGridSimpleNoWrapExample"/>
-		<compile-mxml folder="/spark/controls/" example="DataGridSizingExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridCustomRendererExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridCustomRendererPrepareExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridCustomSkinExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridExample2"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridSimpleColumnsExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridSimpleNoWrapExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DataGridSizingExample"/>
 		
-		<compile-mxml folder="/spark/controls/" example="ListDataPagingExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ListDataPagingExample"/>
 				
-		<compile-mxml folder="/spark/controls/" example="SampleHelpFormExample"/>
-		<compile-mxml folder="/spark/controls/" example="SampleSequenceFormExample"/>
-		<compile-mxml folder="/spark/controls/" example="SampleSimpleFormExample"/>
-		<compile-mxml folder="/spark/controls/" example="SampleStackedFormExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="SampleHelpFormExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="SampleSequenceFormExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="SampleSimpleFormExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="SampleStackedFormExample"/>
 		
-		<compile-mxml folder="/spark/controls/" example="OSMFExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="OSMFExample"/>
          -->
 	</target>
 	
 	<target name="compile-spark3" description="compile third set of spark examples">
         <!--
-		<compile-mxml folder="/spark/other/" example="BidirectionalBinding1Example"/>
-		<compile-mxml folder="/spark/other/" example="BidirectionalBinding2Example"/>
-		<compile-mxml folder="/spark/other/" example="ControllingViewportExample"/>
-		<compile-mxml folder="/spark/itemRenderers/" example="ListItemRendererExample"/>
-		<compile-mxml folder="/spark/effects/" example="AnimatePropertiesExample"/>
-		<compile-mxml folder="/spark/effects/" example="AnimateTransformExample"/>
-		<compile-mxml folder="/spark/effects/" example="CrossFadeExample"/>
-		<compile-mxml folder="/spark/effects/" example="FadeExample"/>
-		<compile-mxml folder="/spark/effects/" example="Rotate3DExample"/>
-		<compile-mxml folder="/spark/effects/" example="Scale3DExample"/>
-		<compile-mxml folder="/spark/fxg/" example="EllipseTransformExample"/>
-		<compile-mxml folder="/spark/fxg/" example="DropShadowGraphicExample"/>
-		<compile-mxml folder="/spark/fxg/" example="LinearGradientsSpreadMethodExample"/>
-		<compile-mxml folder="/spark/fxg/" example="StaticFXGExample"/>
-		<compile-mxml folder="/spark/containers/" example="BorderExample"/>
-		<compile-mxml folder="/spark/containers/" example="GroupExample"/>
-		<compile-mxml folder="/spark/containers/" example="PanelExample"/>
-		<compile-mxml folder="/spark/containers/" example="TabNavigator1Example"/>
-		<compile-mxml folder="/spark/containers/" example="TabNavigator2Example"/>
-		<compile-mxml folder="/spark/skinning/" example="ButtonWithIconExample"/>
-		<compile-mxml folder="/spark/skinning/" example="SkinningApplication1Example"/>
-		<compile-mxml folder="/spark/skinning/" example="SkinningApplication2Example"/>
-		<compile-mxml folder="/spark/skinning/" example="SkinningApplication3Example"/>
-		<compile-mxml folder="/spark/skinning/" example="SkinningContainerExample"/>
-		<compile-mxml folder="/spark/css/" example="CSSIDSelectorExample"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="BidirectionalBinding1Example"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="BidirectionalBinding2Example"/>
+		<compile-mxml folder="/spark/other/" relmap="../../" example="ControllingViewportExample"/>
+		<compile-mxml folder="/spark/itemRenderers/" relmap="../../" example="ListItemRendererExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="AnimatePropertiesExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="AnimateTransformExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="CrossFadeExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="FadeExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="Rotate3DExample"/>
+		<compile-mxml folder="/spark/effects/" relmap="../../" example="Scale3DExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="EllipseTransformExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="DropShadowGraphicExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="LinearGradientsSpreadMethodExample"/>
+		<compile-mxml folder="/spark/fxg/" relmap="../../" example="StaticFXGExample"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="BorderExample"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="GroupExample"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="PanelExample"/>
          -->
-		<compile-mxml folder="/spark/controls/" example="ButtonExample"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="TabNavigator1Example"/>
         <!--
-		<compile-mxml folder="/spark/controls/" example="ButtonBarExample"/>
-		<compile-mxml folder="/spark/controls/" example="PopUpAnchor1Example"/>
-		<compile-mxml folder="/spark/controls/" example="PopUpAnchor2Example"/>
+		<compile-mxml folder="/spark/containers/" relmap="../../" example="TabNavigator2Example"/>
+		<compile-mxml folder="/spark/skinning/" relmap="../../" example="ButtonWithIconExample"/>
+		<compile-mxml folder="/spark/skinning/" relmap="../../" example="SkinningApplication1Example"/>
+		<compile-mxml folder="/spark/skinning/" relmap="../../" example="SkinningApplication2Example"/>
+		<compile-mxml folder="/spark/skinning/" relmap="../../" example="SkinningApplication3Example"/>
+		<compile-mxml folder="/spark/skinning/" relmap="../../" example="SkinningContainerExample"/>
+		<compile-mxml folder="/spark/css/" relmap="../../" example="CSSIDSelectorExample"/>
          -->
-		<compile-mxml folder="/spark/controls/" example="ToggleButtonExample"/>
-		<compile-mxml folder="/spark/controls/" example="CheckboxExample"/>
-		<compile-mxml folder="/spark/controls/" example="DropdownExample"/>
-		<compile-mxml folder="/spark/controls/" example="NumericStepperExample"/>
-		<compile-mxml folder="/spark/controls/" example="RadioButtonExample"/>
-		<compile-mxml folder="/spark/controls/" example="ToggleButton2Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ButtonExample"/>
         <!--
-		<compile-mxml folder="/spark/controls/" example="ScrollBarExample"/>
-		<compile-mxml folder="/spark/controls/" example="Scroller1Example"/>
-		<compile-mxml folder="/spark/controls/" example="Scroller2Example"/>
-		<compile-mxml folder="/spark/controls/" example="SliderExample"/>
-		<compile-mxml folder="/spark/controls/" example="SpinnerExample"/>
-		<compile-mxml folder="/spark/controls/" example="VideoPlayerExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ButtonBarExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="PopUpAnchor1Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="PopUpAnchor2Example"/>
          -->
-		<compile-mxml folder="/spark/controls/" example="ListExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ToggleButtonExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="CheckboxExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="DropdownExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="NumericStepperExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="RadioButtonExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ToggleButton2Example"/>
+        <!--
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ScrollBarExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="Scroller1Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="Scroller2Example"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="SliderExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="SpinnerExample"/>
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="VideoPlayerExample"/>
+         -->
+		<compile-mxml folder="/spark/controls/" relmap="../../" example="ListExample"/>
 	</target>
 	
 	<target name="compile-apache" description="compile apache examples">
         <!--
-		<compile-mxml folder="/apache/" example="ApacheFlex4_8_0"/>
-		<compile-mxml folder="/apache/" example="ApacheFlex4_9_0"/>
-		<compile-mxml folder="/apache/" example="ApacheFlex4_10_0"/>
-		<compile-mxml folder="/apache/" example="ApacheFlex4_11_0"/>
-		<compile-mxml folder="/apache/" example="ApacheFlex4_12_1"/>
-		<compile-mxml folder="/apache/" example="ApacheFlex4_13_0"/>
+		<compile-mxml folder="/apache/" relmap="../../" example="ApacheFlex4_8_0"/>
+		<compile-mxml folder="/apache/" relmap="../../" example="ApacheFlex4_9_0"/>
+		<compile-mxml folder="/apache/" relmap="../../" example="ApacheFlex4_10_0"/>
+		<compile-mxml folder="/apache/" relmap="../../" example="ApacheFlex4_11_0"/>
+		<compile-mxml folder="/apache/" relmap="../../" example="ApacheFlex4_12_1"/>
+		<compile-mxml folder="/apache/" relmap="../../" example="ApacheFlex4_13_0"/>
          -->
-		<!-- <compile-mxml folder="/apache/" example="ApacheFlex4_13_0"/> -->
+		<!-- <compile-mxml folder="/apache/" relmap="../../" example="ApacheFlex4_13_0"/> -->
 		
         <!--
-		<compile-mxml folder="/apache/formatters/" example="PostCodeFormatterExample"/>
-		<compile-mxml folder="/apache/validators/" example="PostCodeValidatorExample"/>
-		<compile-mxml-locales folder="/apache/i18n/" example="LocaleExample"/>
-		<compile-mxml folder="/apache/i18n/" example="DateExample"/>
-		<compile-mxml folder="/apache/i18n/" example="TimeZoneExample"/>
-		<compile-mxml folder="/apache/i18n/" example="MillisecondExample"/>
-		<compile-mxml folder="/apache/i18n/" example="ScientificExample"/>
-		<compile-mxml folder="/apache/i18n/" example="NumericStepperExample"/>
-		<compile-mxml folder="/apache/containers/" example="CalloutExample"/>
-		<compile-mxml folder="/apache/controls/" example="MaskedTextInputExample"/>
+		<compile-mxml folder="/apache/formatters/" relmap="../../" example="PostCodeFormatterExample"/>
+		<compile-mxml folder="/apache/validators/" relmap="../../" example="PostCodeValidatorExample"/>
+		<compile-mxml-locales folder="/apache/i18n/" relmap="../../" example="LocaleExample"/>
+		<compile-mxml folder="/apache/i18n/" relmap="../../" example="DateExample"/>
+		<compile-mxml folder="/apache/i18n/" relmap="../../" example="TimeZoneExample"/>
+		<compile-mxml folder="/apache/i18n/" relmap="../../" example="MillisecondExample"/>
+		<compile-mxml folder="/apache/i18n/" relmap="../../" example="ScientificExample"/>
+		<compile-mxml folder="/apache/i18n/" relmap="../../" example="NumericStepperExample"/>
+		<compile-mxml folder="/apache/containers/" relmap="../../" example="CalloutExample"/>
+		<compile-mxml folder="/apache/controls/" relmap="../../" example="MaskedTextInputExample"/>
          -->
 		
 		<!-- Uncomment when Flex 4.14 is released -->
-		<!-- compile-mxml folder="/apache/controls/" example="SparkRichTextEditorExample"/-->
+		<!-- compile-mxml folder="/apache/controls/" relmap="../../" example="SparkRichTextEditorExample"/-->
 	</target>
 	
     <target name="compile-one" description="compile one example">
-        <compile-mxml folder="${folder}" example="${example}"/>
+        <compile-mxml folder="${folder}" relmap="${relmap}" example="${example}"/>
     </target>
     
     <!--- don't worry about squiggly for now -->

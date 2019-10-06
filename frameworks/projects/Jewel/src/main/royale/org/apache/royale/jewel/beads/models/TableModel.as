@@ -37,6 +37,7 @@ package org.apache.royale.jewel.beads.models
 		public function set columns(value:Array):void
 		{
 			_columns = value;
+			dispatchEvent( new Event("columnsChanged") );
 		}
 
 		private var _selectedItemProperty:Object;
@@ -63,15 +64,20 @@ package org.apache.royale.jewel.beads.models
             if (value == _selectedItemProperty) return;
 
 			_selectedItemProperty = value;
-			var n:int = dataProvider.length;
-			for (var i:int = 0; i < n; i++)
+
+			if (dataProvider)
 			{
-				if (dataProvider.getItemAt(i) == selectedItem && dataProvider.getItemAt(i)[labelField] == value)
+				var n:int = dataProvider.length;
+				for (var i:int = 0; i < n; i++)
 				{
-					selectedIndex = i;
-					break;
+					if(dataProvider.getItemAt(i) == selectedItem && dataProvider.getItemAt(i)[labelField] == value)
+					{
+						selectedIndex = i;
+						break;
+					}
 				}
 			}
+
 			dispatchEvent(new Event("selectedItemPropertyChanged"));
 		}
 

@@ -143,6 +143,9 @@ package spark.components
 		//
 		//--------------------------------------------------------------------------
 		
+        /**
+         *  @royalesuppresspublicvarwarning
+         */
 		mx_internal var _invalidElements:Array = [];
 		
 		/**

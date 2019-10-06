@@ -94,7 +94,7 @@ package org.apache.royale.html.beads
             IEventDispatcher(_strand).addEventListener("widthChanged", widthChangeHandler);
             IEventDispatcher(_strand).addEventListener("heightChanged", heightChangeHandler);
             IEventDispatcher(_strand).addEventListener("sizeChanged", sizeChangeHandler);
-			UIBase(value).$addChild(_textField);
+			UIBase(value).$sprite_addChild(_textField);
 
             var ilc:ILayoutChild = host as ILayoutChild;
             autoHeight = ilc.isHeightSizedToContent();

@@ -20,6 +20,7 @@ package org.apache.royale.file.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.file.FileProxy;
+	import org.apache.royale.file.IFileModel;
 	import org.apache.royale.utils.BinaryData;
 
 	COMPILE::SWF
@@ -67,7 +68,7 @@ package org.apache.royale.file.beads
 			{
 				var reader:FileReader = new FileReader();
 				goog.events.listen(reader, 'load', fileLoadHandler);
-				reader.readAsArrayBuffer(fileModel.file);
+				reader.readAsArrayBuffer(fileModel.fileReference);
 			}
 		}
 		
@@ -75,13 +76,13 @@ package org.apache.royale.file.beads
 		protected function fileLoadHandler(event:flash.events.Event):void
 		{
 			fileModel.fileReference.removeEventListener(Event.COMPLETE, fileLoadHandler);
-			fileModel.blob = new BinaryData(fileModel.fileReference.data);
+			fileModel.fileContent = new BinaryData(fileModel.fileReference.data);
 		}
 		
 		COMPILE::JS 
 		protected function fileLoadHandler(event:Event):void
 		{
-			fileModel.blob = new BinaryData(event.target.result);
+			fileModel.fileContent = new BinaryData(event.target.result);
 		}
 		
 		/**
@@ -97,9 +98,9 @@ package org.apache.royale.file.beads
 			_strand = value;
 		}
 		
-		private function get fileModel():FileModel
+		private function get fileModel():IFileModel
 		{
-			return (_strand as FileProxy).model as FileModel;
+			return (_strand as FileProxy).model as IFileModel;
 		}
 		
 	}

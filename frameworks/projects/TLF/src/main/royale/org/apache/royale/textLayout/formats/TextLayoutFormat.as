@@ -93,7 +93,7 @@ package org.apache.royale.textLayout.formats
 		static public function get colorProperty():Property
 		{
 			if (!_colorProperty)
-				_colorProperty = PropertyFactory.uintOrEnum("color", 0, true, Vector.<String>([Category.CHARACTER]), ColorName.BLACK, ColorName.GREEN, ColorName.GRAY, ColorName.BLUE, ColorName.SILVER, ColorName.LIME, ColorName.OLIVE, ColorName.WHITE, ColorName.YELLOW, ColorName.MAROON, ColorName.NAVY, ColorName.RED, ColorName.PURPLE, ColorName.TEAL, ColorName.FUCHSIA, ColorName.AQUA, ColorName.MAGENTA, ColorName.CYAN);
+				_colorProperty = PropertyFactory.uintOrEnum("color", 0, true, Vector.<String>([Category.CHARACTER]), ColorName.BLACK, ColorName.GREEN, ColorName.GRAY, ColorName.BLUE, ColorName.SILVER, ColorName.LIME, ColorName.OLIVE, ColorName.WHITE, ColorName.YELLOW, ColorName.MAROON, ColorName.NAVY, ColorName.RED, ColorName.PURPLE, ColorName.TEAL, ColorName.FUCHSIA, ColorName.AQUA, ColorName.MAGENTA, ColorName.CYAN,ColorName.ORANGE,ColorName.DARK_GREY,ColorName.BROWN,ColorName.TAN,ColorName.LIGHT_GREY,ColorName.DARK_GREEN);
 			return _colorProperty;
 		}
 

@@ -18,17 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.ITextModel;
-	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
-
+	import org.apache.royale.core.ITextModel;
+	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.events.Event;
+	
     /**
      *  Dispatched when the user clicks on a Label.
      *
@@ -115,7 +113,7 @@ package org.apache.royale.jewel
                 {
                     _text = value;
                     textNode.nodeValue = value;
-                    this.dispatchEvent('textChange');
+                    dispatchEvent(new Event('textChange'));
                 }
             }
 
@@ -153,8 +151,8 @@ package org.apache.royale.jewel
             }
             COMPILE::JS
             {
-                this.element.innerHTML = value;
-                this.dispatchEvent('textChange');
+                element.innerHTML = value;
+                dispatchEvent(new Event('textChange'));
             }
         }
 
@@ -204,8 +202,6 @@ package org.apache.royale.jewel
             textNode = document.createTextNode(_text) as Text;
             element.appendChild(textNode);
             
-            positioner = element;
-
             return element;
         }
 

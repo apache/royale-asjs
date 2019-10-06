@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.table
 {
-	import org.apache.royale.jewel.Group;
-	
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.jewel.Group;
 	
 	/**
 	 *  The TableCell class defines a table data cell in the Table component. This element
@@ -103,6 +102,37 @@ package org.apache.royale.jewel.supportClasses.table
 				COMPILE::JS
 				{
 					element.setAttribute('rowspan', _expandRows);
+				}
+			}
+		}
+		
+		public static const LEFT:String = "left";
+		public static const CENTER:String = "center";
+		public static const RIGHT:String = "right";
+
+		private var _align:String = "left";
+        /**
+         *  The align this cell will apply to its content
+		 *  can be "left", "center" or "right". defaults to "left"
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.6
+         */
+		public function get align():String
+		{
+            return _align;
+		}
+		public function set align(value:String):void
+		{
+			if(_align != value)
+			{
+            	_align = value;
+
+				COMPILE::JS
+				{
+					element.setAttribute('align', _align);
 				}
 			}
 		}

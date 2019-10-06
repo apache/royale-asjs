@@ -169,6 +169,8 @@ public class Operation extends AbstractOperation
     }
 
 
+    private var _argumentNames:Array;
+    
     /**
      * An ordered list of the names of the arguments to pass to a method invocation.  Since the arguments object is
      * a hashmap with no guaranteed ordering, this array helps put everything together correctly.
@@ -179,7 +181,14 @@ public class Operation extends AbstractOperation
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public var argumentNames:Array;
+    public function get argumentNames():Array
+    {
+        return _argumentNames;
+    }
+    public function set argumentNames(value:Array):void
+    {
+        _argumentNames = value;
+    }
 
 
     //--------------------------------------------------------------------------

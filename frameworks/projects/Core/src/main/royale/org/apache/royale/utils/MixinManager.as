@@ -104,7 +104,7 @@ public class MixinManager implements IBead
                         var n:int = mixins.length;
                         for (var i:int = 0; i < n; i++) 
                         {
-                            mixins[i].init(value);
+                            mixins[i]['init'](value);
                         }
                     }
 				}

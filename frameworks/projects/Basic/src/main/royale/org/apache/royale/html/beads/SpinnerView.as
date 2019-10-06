@@ -20,6 +20,7 @@ package org.apache.royale.html.beads
 {
 COMPILE::SWF {
 	import flash.display.DisplayObject;
+    import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
 }
 
     import org.apache.royale.core.BeadViewBase;
@@ -32,7 +33,6 @@ COMPILE::SWF {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Button;
-	import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
 
 COMPILE::JS {
 	import org.apache.royale.html.beads.controllers.SpinnerMouseController;
@@ -102,8 +102,8 @@ COMPILE::JS {
 				Button(_decrement).x = 0;
 				Button(_decrement).y = Button(_increment).height;
 
-				UIBase(_strand).$addChild(_decrement);
-				UIBase(_strand).$addChild(_increment);
+				UIBase(_strand).$sprite_addChild(_decrement);
+				UIBase(_strand).$sprite_addChild(_increment);
 				rangeModel = _strand.getBeadByType(IBeadModel) as IRangeModel;
 			}
 			IEventDispatcher(value).addEventListener("widthChanged",sizeChangeHandler);

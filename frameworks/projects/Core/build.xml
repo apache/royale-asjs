@@ -28,6 +28,12 @@
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     
     <property name="target.name" value="${ant.project.name}.swc" />
+    
+    <tstamp>
+        <format property="royale.swc-date" pattern="MM/dd/yy HH:mm Z"/>
+    </tstamp>
+    <echo>swc-date is ${royale.swc-date}</echo>
+    
     <!-- test needs to be run after Basic is built -->
     <target name="main" depends="clean,check-compiler,compile,compile-js,copy-swc" description="Full build of ${ant.project.name}.swc">
     </target>
@@ -50,6 +56,7 @@
                 <available file="${basedir}/src/test/royale/build.xml" />
             </not>
         </condition>
+        <!-- exclude from js-only build -->
         <condition property="skip-tests" >
             <not>
                 <isset property="env.AIR_HOME" />
@@ -59,6 +66,15 @@
     
     <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
+        <antcall target="test-js" />
+    </target>
+    
+    <target name="test-js">
+        <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" target="test">
+            <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
+            <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
+            <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+        </ant>
     </target>
     
     <target name="clean">
@@ -94,6 +110,9 @@
             <arg value="+env.AIR_HOME=${env.AIR_HOME}" />
             <arg value="-compiler.strict-xml=true" />
             <arg value="-compiler.targets=SWF,JSRoyale" />
+            <arg line="-metadata.date=&quot;${royale.swc-date}&quot;" />
+            <arg line="-metadata.dateFormat=&quot;MM/dd/yy HH:mm Z&quot;" />
+            <arg line="-swf-debugfile-alias=&quot;/org/apache/royale/${release.version}&quot;" />
             <arg value="-output=${basedir}/target/${target.name}" />
             <arg value="-load-config=${basedir}/src/main/config/compile-swf-config.xml" />
             <arg value="-js-load-config=${ROYALE_HOME}/frameworks/js-config.xml" />

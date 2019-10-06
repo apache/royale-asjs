@@ -19,6 +19,14 @@
 
 package spark.primitives
 {
+import mx.display.Graphics;
+import org.apache.royale.geom.Rectangle;
+
+import mx.graphics.IFill;
+import mx.graphics.IStroke;
+import mx.graphics.SolidColorStroke;
+
+
 /* import flash.display.Graphics;
 import flash.geom.Matrix;
 import flash.geom.Point;
@@ -31,8 +39,7 @@ import spark.primitives.supportClasses.FilledElement;
 
  */
 import mx.core.mx_internal;
-import mx.graphics.IStroke;
-import mx.graphics.IFill;
+import mx.core.UIComponent;
 
 import org.apache.royale.events.EventDispatcher;
 use namespace mx_internal;
@@ -55,7 +62,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class Rect  extends EventDispatcher
+public class Rect extends UIComponent
 { //extends FilledElement
    // include "../core/Version.as";
 
@@ -783,391 +790,7 @@ public class Rect  extends EventDispatcher
         
         return boundingBox;
     } */
-	//----------------------------------
-    //  visible copied from GraphicElement
-    //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the visible property.
-     */
-    private var _visible:Boolean = true;
-    
-    
-    /**
-     *  @private
-     *  The actual 'effective' visibility of this
-     *  element, one that considers the visibility of
-     *  the owning design layer parent (if any).
-     */
-   // protected var _effectiveVisibility:Boolean = true;
-    
-    /**
-     *  @private
-     */
-  //  private var visibleChanged:Boolean;
-
-    [Inspectable(category="General")]
-
-    /**
-     *  @inheritDoc
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     *  @royalesuppresspublicvarwarning
-	*/
-    public function get visible():Boolean
-    {
-        return _visible;
-    }
-
-    /**
-     *  @private
-     */
-    public function set visible(value:Boolean):void
-    {
-        _visible = value;
-        
-        /* if (designLayer && !designLayer.effectiveVisibility)
-            value = false; 
-        
-        if (_effectiveVisibility == value)
-            return;
-        
-        _effectiveVisibility = value;
-        visibleChanged = true;
-        invalidateProperties(); */
-    }
-    //----------------------------------
-    //  height copied from GraphicElement
-    //----------------------------------
-    
-    /**
-     *  @private
-     *  Storage for the height property.
-     */
-    /* mx_internal */ private var _height:Number = 0;
-
-    [Bindable("propertyChange")]
-    [Inspectable(category="General")]
-    [PercentProxy("percentHeight")]
-
-    /**
-     *  The height of the graphic element.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     *  @royalesuppresspublicvarwarning
-	 */
-    public function get height():Number
-    {
-        return _height;
-    }
-
-    /**
-     *  @private
-     */
-    
-    public function set height(value:Number):void
-    {
-       // explicitHeight = value;
-
-        if (_height == value)
-            return;
-
-        var oldValue:Number = _height;
-        _height = value;
-       // dispatchPropertyChangeEvent("height", oldValue, value);
-
-        // Invalidate the display list, since we're changing the actual height
-        // and we're not going to correctly detect whether the layout sets
-        // new actual height different from our previous value.
-       // invalidateDisplayList();
-    }
-    //----------------------------------
-    //  width copied from GraphicElement
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the width property.
-     */
-     /* mx_internal */ private var _width:Number = 0;
-	 
-	 [Bindable("propertyChange")]
-	 [Inspectable(category="General")]
-	 [PercentProxy("percentWidth")]
-
-    /**
-     *  The width of the graphic element.
-     *
-     *  @default 0
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     *  @royalesuppresspublicvarwarning
-	*/
-    public function get width():Number
-    {
-        return _width;
-    }
-
-    /**
-     *  @private
-     */
-    public function set width(value:Number):void
-    {
-       // explicitWidth = value;
-
-        if (_width == value)
-            return;
-
-        var oldValue:Number = _width;
-        _width = value;
-
-        // The width is needed for the mirroring transform.
-      /*   if (layoutFeatures)
-        {
-            layoutFeatures.layoutWidth = value;
-            invalidateTransform();
-        }        
-
-        dispatchPropertyChangeEvent("width", oldValue, value);
-
-        // Invalidate the display list, since we're changing the actual width
-        // and we're not going to correctly detect whether the layout sets
-        // new actual width different from our previous value.
-        invalidateDisplayList(); */
-    }
-	
-	//----------------------------------
-    //  alpha copied from GraphicElement
-    //----------------------------------
-    
-    /**
-     *  @private
-     *  Storage for the alpha property.
-     */
-    private var _alpha:Number = 1.0;
-   // private var _effectiveAlpha:Number = 1.0;
-    
-    /**
-     *  @private
-     */
-   // private var alphaChanged:Boolean = false;
-    
-    [Inspectable(category="General", minValue="0.0", maxValue="1.0")]
-
-    /**
-     *  The level of transparency of the graphic element. Valid values are decimal values between
-     *  0 (fully transparent) and 1 (fully opaque). For example, a value of .25 means that the 
-     *  element has 25% opacity.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get alpha():Number
-    {
-        return _alpha;
-    }
-
-    /**
-     *  @private
-     */
-    public function set alpha(value:Number):void
-    {    
-        if (_alpha == value)
-            return;
-        
-       // var previous:Boolean = needsDisplayObject;
-        _alpha = value;
-        
-    // The product of _alpha and the designLayer's 
-    // alpha is the effectiveAlpha which is 
-    // committed in commitProperties() 
-       /*  if (designLayer)
-            value = value * designLayer.effectiveAlpha; 
-
-        if (_blendMode == "auto")
-        {
-            // If alpha changes from an opaque/transparent (1/0) and translucent
-            // (0 < value < 1), then trigger a blendMode change
-            if ((value > 0 && value < 1 && (_effectiveAlpha == 0 || _effectiveAlpha == 1)) ||
-                ((value == 0 || value == 1) && (_effectiveAlpha > 0 && _effectiveAlpha < 1)))
-            {
-                blendModeChanged = true;
-            }
-        }
-        
-        _effectiveAlpha = value;
-        
-        // Clear the colorTransform flag since alpha was explicitly set
-        var mxTransform:mx.geom.Transform = _transform as mx.geom.Transform;
-        if (mxTransform)
-            mxTransform.applyColorTransformAlpha = false;        
-        
-        if (previous != needsDisplayObject)
-            invalidateDisplayObjectSharing();    
-
-        alphaChanged = true;
-        invalidateProperties(); */
-    }
-    //----------------------------------
-    //  left copied from GraphicElement
-    //----------------------------------
-    
-    /**
-     *  @private
-     *  Storage for the left property.
-     */
-    private var _left:Object;
-
-    [Inspectable(category="General")]
-
-    /**
-     *  @inheritDoc
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get left():Object
-    {
-        return _left;
-    }
-
-    /**
-     *  @private
-     */
-    public function set left(value:Object):void
-    {
-        if (_left == value)
-            return;
-
-        _left = value;
-       // invalidateParentSizeAndDisplayList();
-    }
-	
-    //----------------------------------
-    //  right copied from GraphicElement
-    //----------------------------------
-    
-    /**
-     *  @private
-     *  Storage for the right property.
-     */
-    private var _right:Object;
-
-    [Inspectable(category="General")]
-
-    /**
-     *  @inheritDoc
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get right():Object
-    {
-        return _right;
-    }
-
-    /**
-     *  @private
-     */
-    public function set right(value:Object):void
-    {
-        if (_right == value)
-            return;
-
-        _right = value;
-        //invalidateParentSizeAndDisplayList();
-    }
-	//----------------------------------
-    //  top copied from GraphicElement
-    //----------------------------------
-    
-    /**
-     *  @private
-     *  Storage for the top property.
-     */
-    private var _top:Object;
-
-    [Inspectable(category="General")]
-
-    /**
-     *  @inheritDoc
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get top():Object
-    {
-        return _top;
-    }
-
-    /**
-     *  @private
-     */
-    public function set top(value:Object):void
-    {
-        if (_top == value)
-            return;
-
-        _top = value;
-       // invalidateParentSizeAndDisplayList();
-    }
-	
-	//----------------------------------
-    //  bottom copied from GraphicElement
-    //----------------------------------
-    
-    /**
-     *  @private
-     *  Storage for the bottom property.
-     */
-    private var _bottom:Object;
-
-    [Inspectable(category="General")]
-
-    /**
-     *  @inheritDoc
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
-     */
-    public function get bottom():Object
-    {
-        return _bottom;
-    }
-
-    /**
-     *  @private
-     */
-    public function set bottom(value:Object):void
-    {
-        if (_bottom == value)
-            return;
-
-        _bottom = value;
-       // invalidateParentSizeAndDisplayList();
-    }
 	//----------------------------------
     //  stroke copied from StrokedElement
     //----------------------------------
@@ -1276,46 +899,34 @@ public class Rect  extends EventDispatcher
         invalidateDisplayList(); */
     }
 	
-	//----------------------------------
-	//  percentWidth
-	//----------------------------------
-	
-	/**
-	 *  @private
-	 *  Storage for the percentWidth property.
-	 */
-	private var _percentWidth:Number;
-	
-	[Inspectable(category="General")]
-	
-	/**
-	 *  @copy mx.core.UIComponent#percentWidth
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10
-	 *  @playerversion AIR 1.5
-	 *  @productversion Flex 4
-	 */
-	public function get percentWidth():Number
-	{
-		return _percentWidth;
-	}
-	
-	/**
-	 *  @private
-	 */
-	public function set percentWidth(value:Number):void
-	{
-		if (_percentWidth == value)
-			return;
-		
-		/*if (!isNaN(value))
-			explicitWidth = NaN;*/
-		
-		_percentWidth = value;
-		
-		// invalidateParentSizeAndDisplayList();
-	}
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        updateDisplayList(w, h);
+    }
+    
+    override protected function updateDisplayList(unscaledWidth:Number,
+                                                  unscaledHeight:Number):void
+    {
+        super.updateDisplayList(unscaledWidth,unscaledHeight);
+        var g:Graphics = graphics;
+        g.clear();
+        
+        if (fill)
+            fill.begin(g, new Rectangle(0, 0, unscaledWidth, unscaledHeight), null);
+
+        if (stroke)
+            stroke.apply(g, new Rectangle(0, 0, unscaledWidth, unscaledHeight), null);
+        
+        g.drawRoundRect(0, 0, unscaledWidth, unscaledHeight, radiusX, radiusY);
+    }
+
 
 }
 

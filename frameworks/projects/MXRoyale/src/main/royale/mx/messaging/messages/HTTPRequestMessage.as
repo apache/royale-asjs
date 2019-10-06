@@ -67,6 +67,8 @@ public class HTTPRequestMessage extends AbstractMessage
     // 
     //--------------------------------------------------------------------------
 
+    private var _contentType:String;
+    
     /**
      *  Indicates the content type of this message.
      *  This value must be understood by the destination this request is sent to.
@@ -85,8 +87,17 @@ public class HTTPRequestMessage extends AbstractMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var contentType:String;
+    public function get contentType():String
+    {
+        return _contentType;
+    }
+    public function set contentType(value:String):void
+    {
+        _contentType = value;
+    }
 
+    private var _httpHeaders:Object;
+    
     /**
      *  Contains specific HTTP headers that should be placed on the request made
      *  to the destination.
@@ -97,7 +108,16 @@ public class HTTPRequestMessage extends AbstractMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var httpHeaders:Object;
+    public function get httpHeaders():Object
+    {
+        return _httpHeaders;
+    }
+    public function set httpHeaders(value:Object):void
+    {
+        _httpHeaders = value;
+    }
+    
+    private var _recordHeaders:Boolean;    
     
     /**
      * Only used when going through the proxy, should the proxy 
@@ -110,7 +130,16 @@ public class HTTPRequestMessage extends AbstractMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var recordHeaders:Boolean;    
+    public function get recordHeaders():Boolean
+    {
+        return _recordHeaders;
+    }
+    public function set recordHeaders(value:Boolean):void
+    {
+        _recordHeaders = value;
+    }
+    
+    private var _url:String;
     
     [Inspectable(defaultValue="undefined", category="General")]
     /**
@@ -132,7 +161,14 @@ public class HTTPRequestMessage extends AbstractMessage
      *  @productversion BlazeDS 4
      *  @productversion LCDS 3 
      */
-    public var url:String;    
+    public function get url():String
+    {
+        return _url;
+    }
+    public function set url(value:String):void
+    {
+        _url = value;
+    }
 
     /**
      *  @private

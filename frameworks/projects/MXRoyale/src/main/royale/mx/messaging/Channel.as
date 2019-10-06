@@ -231,6 +231,8 @@ public class Channel extends EventDispatcher implements IMXMLObject
      * A channel specific override to determine whether small messages should
      * be used. If set to false, small messages will not be used even if they
      * are supported by an endpoint.
+     * 
+     *  @royalesuppresspublicvarwarning
      */
     public var enableSmallMessages:Boolean = true;
 
@@ -1465,7 +1467,7 @@ public class Channel extends EventDispatcher implements IMXMLObject
             {                                
                 // Apply exponential backoff.
                 var delay:int = 1000; // 1 second.
-                delay << ++_reliableReconnectAttempts;
+                delay = delay << ++_reliableReconnectAttempts;
                 if (delay < remaining)
                 {
                     new AsyncDispatcher(reconnect, null, delay);

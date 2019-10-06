@@ -58,6 +58,7 @@
       <!-- linking.                                                             -->
       <external-library-path>
           <path-element>../js/libs/royale-typedefs-js-${royale.typedefs.version}-typedefs.swc</path-element>
+          <path-element>../js/libs/royale-typedefs-gcl-${royale.typedefs.version}-typedefs.swc</path-element>
           <path-element>../js/libs/royale-typedefs-jquery-${royale.typedefs.version}-typedefs.swc</path-element>
       </external-library-path>
 
@@ -75,8 +76,7 @@
 
       <!-- List of SWC files or directories that contain SWC files. -->
       <library-path>
-         <path-element>libs/Language-${version}.swc</path-element>
-         <path-element>../js/libs/royale-typedefs-gcl-${royale.typedefs.version}-typedefs.swc</path-element>
+          <path-element>libs/Language-${version}.swc</path-element>
       </library-path>
 
       <allow-subclass-overrides>true</allow-subclass-overrides>

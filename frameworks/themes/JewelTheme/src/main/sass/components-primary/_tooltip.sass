@@ -30,14 +30,51 @@
         &.error
             background: $error-color
 
-            &::before
-                border-top-color: $error-color //this the arrow
-                border: solid 8px transparent
+        &::before
+            border: solid 8px transparent
 
-            @keyframes slide-up
-                0%
-                    opacity: 0
-                    transform: translateY(20px)
-                100%
-                    opacity: 1
-                    transform: translateY(0)
+        //this the arrow position and color
+        &.left-top
+            &::before
+                left: 8px
+                border-top-color: $error-color 
+        &.middle-top
+            &::before
+                margin-bottom: -8px
+                margin-left: -8px
+                border-top-color: $error-color
+        &.right-top
+            &::before
+                
+        &.left-middle
+            &::before
+                margin-top: -8px
+                margin-right: -8px
+                border-left-color: $error-color 
+        &.middle-middle
+            &::before
+                
+        &.right-middle
+            &::before
+                margin-top: -8px
+                margin-left: -8px
+                border-right-color: $error-color
+
+        &.left-bottom
+            &::before
+                
+        &.middle-bottom
+            &::before
+                margin-top: -8px
+                margin-left: -8px
+                border-bottom-color: $error-color
+        &.right-bottom
+            &::before
+                
+        @keyframes slide-up
+            0%
+                opacity: 0
+                transform: translateY(20px)
+            100%
+                opacity: 1
+                transform: translateY(0)

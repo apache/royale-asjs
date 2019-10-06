@@ -19,7 +19,9 @@ package org.apache.royale.file.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.file.FileProxy;
+	import org.apache.royale.file.IFileModel;
 
 	COMPILE::SWF 
 	{
@@ -97,7 +99,8 @@ package org.apache.royale.file.beads
 		COMPILE::SWF
 		protected function fileSelectHandler(event:flash.events.Event):void
 		{
-			host.model = new FileModel(delegate);
+			(host.model as IFileModel).fileReference = delegate;
+			host.dispatchEvent(new org.apache.royale.events.Event("modelChanged"));
 			// delegate reference passed to model, so cleanup this bead to keep encapsulation
 			delegate.removeEventListener(flash.events.Event.SELECT, fileSelectHandler);
 			createDelegate();
@@ -151,7 +154,9 @@ package org.apache.royale.file.beads
 		COMPILE::JS
 		private function fileChangeHandler(e:org.apache.royale.events.Event):void
 		{
-			host.model = new FileModel((delegate as HTMLInputElement).files[0]);
+			var fileModel:IFileModel = host.model as IFileModel;
+			fileModel.fileReference = (delegate as HTMLInputElement).files[0];
+			host.dispatchEvent(new Event("modelChanged"));
 		}
 		
 	}

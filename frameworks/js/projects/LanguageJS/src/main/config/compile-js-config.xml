@@ -54,10 +54,8 @@
 	  
         <locale/>
 
-        <!-- overwrite the default library-path setting -->
-        <library-path>
-          <path-element>../../../../../../../js/libs/GCL.swc</path-element>
-        </library-path>
+        <!-- clear the default library-path because it contains this library -->
+        <library-path />
         
         <source-path>
           <path-element>../../../../../../projects/Language/src/main/royale</path-element>
@@ -78,6 +76,12 @@
     <include-classes>
         <class>LanguageClasses</class>
     </include-classes>
+
+    <js-default-initializers>false</js-default-initializers>
+
+    <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
+    <js-resolve-uncertain>false</js-resolve-uncertain>
+    <js-vector-index-checks>false</js-vector-index-checks>
     
 
 </royale-config>

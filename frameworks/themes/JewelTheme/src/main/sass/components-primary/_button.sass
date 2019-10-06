@@ -44,13 +44,15 @@ $button-border-radius: $border-radius
 	&[disabled]
 		+jewel-bg-border("disabled", $button-color)
 		color: $disabled-font-color
+		text:
+			shadow: unset
 
 .jewel.button
 	+button-theme($default-color, $default-font-color)
 
 	// -- BUTTON LABEL
 	font:
-		family: $font-stack 
+		// family: $font-stack 
 		weight: bold
 	text:
 		transform: uppercase
@@ -63,18 +65,20 @@ $button-border-radius: $border-radius
 	&[disabled]
 		font:
 			weight: $font-weight-normal
-		text:
-			shadow: unset
 	
 	&.icon
 		i
 			margin-left: 0px
 			margin-right: 0px
 
-	&.iconWithSpace
+	&.iconLSpace
 		i
 			margin-left: 0px
 			margin-right: 8px
+	&.iconRSpace
+		i
+			margin-left: 8px
+			margin-right: 0px
 
 .jewel.button.primary
 	+button-theme($primary-color, $font-theme-color)
