@@ -84,7 +84,7 @@
 					</execution>
 				</executions>-->
 			</plugin>
-            <!-- AJH couldn't figure out how this was supposed to work so disabled it to try to get the release to work
+
 			<plugin>
 				<artifactId>maven-resources-plugin</artifactId>
 				<version>3.1.0</version>
@@ -126,7 +126,7 @@
 					</execution>
 				</executions>
 			</plugin>
-             -->
+
 
 			<!--<plugin>
          <groupId>com.google.code.maven-replacer-plugin</groupId>
