@@ -896,6 +896,8 @@
             <arg value="clone" />
             <arg value="--branch" />
             <arg value="org.apache.royale.compiler-${release.version}-rc${rc}" />
+            <arg value="--config" />
+            <arg value="core.autocrlf=input" />
             <arg value="https://github.com/apache/royale-compiler.git" />
             <arg value="royale-compiler" />
         </exec>
@@ -903,6 +905,8 @@
             <arg value="clone" />
             <arg value="--branch" />
             <arg value="org.apache.royale.typedefs-${release.version}-rc${rc}" />
+            <arg value="--config" />
+            <arg value="core.autocrlf=input" />
             <arg value="https://github.com/apache/royale-typedefs.git" />
             <arg value="royale-typedefs" />
         </exec>
@@ -910,6 +914,8 @@
             <arg value="clone" />
             <arg value="--branch" />
             <arg value="org.apache.royale.framework-${release.version}-rc${rc}" />
+            <arg value="--config" />
+            <arg value="core.autocrlf=input" />
             <arg value="https://github.com/apache/royale-asjs.git" />
             <arg value="royale-asjs" />
         </exec>
@@ -937,8 +943,26 @@
         <copy file="${artifactfolder}/artifacts/source/royale-typedefs/DEPENDENCIES"
         tofile="${artifactfolder}/sources/royale-typedefs/DEPENDENCIES" />
         
-        <!-- build compiler and typedefs via "all" target -->
-        <ant dir="${artifactfolder}/sources/royale-asjs" target="all" />
+        <!-- the artifact has unix line endings so convert everything to unix
+        <fixcrlf srcdir="${artifactfolder}/sources/royale-compiler" eol="unix" fixlast="false">
+            <include name="**"/>
+            <exclude name="**/*.png"/>
+            <exclude name="**/*.jpg"/>
+        </fixcrlf>
+        <fixcrlf srcdir="${artifactfolder}/sources/royale-typedefs" eol="unix" fixlast="false">
+            <include name="**"/>
+            <exclude name="**/*.png"/>
+            <exclude name="**/*.jpg"/>
+        </fixcrlf>
+        <fixcrlf srcdir="${artifactfolder}/sources/royale-asjs" eol="unix" fixlast="false">
+            <include name="**"/>
+            <exclude name="**/*.png"/>
+            <exclude name="**/*.jpg"/>
+        </fixcrlf>-->
+
+        <!-- build compiler and typedefs so we can run royale-asjs "release" -->
+        <ant dir="${artifactfolder}/sources/royale-compiler" target="main" />
+        <ant dir="${artifactfolder}/sources/royale-typedefs" target="main" />
         <!-- delete all royale-asjs stuff -->
         <ant dir="${artifactfolder}/sources/royale-asjs" target="super-clean" />
         <!-- delete frameworks/libs empty folder -->
@@ -1043,153 +1067,159 @@
       </exec>
       <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
           <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
-          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/royale-asjs/lib" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/royale-compiler/compiler/lib" />
           <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
       </exec>
       <exec executable="${mvn}" dir="${artifactfolder}" failonerror="true" >
           <arg value="io.github.zlika:reproducible-build-maven-plugin:0.10:strip-jar" />
-          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/royale-asjs/js/lib" />
+          <arg value="-Dreproducible.outputDirectory=${artifactfolder}/sources/royale-compiler/compiler-jx/lib" />
           <arg value="-Dreproducible.newLineTextFiles=META-INF/NOTICE,META-INF/LICENSE" />
       </exec>
       <antcall target="compare-ant-jars" />
     </target>
     
     <target name="compare-ant-jars">
+      <!-- we compare some jars from royale-compiler because on Windows
+           they have been locked for use by prior steps so can't be stripped -->
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="compiler-asc.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="compiler-common.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="compiler-compc.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="compiler-mxmlc.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="compiler-optimizer.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="compiler-swfdump.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="compiler.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
-          <param name="fileName" value="compc.jar"/>
-      </antcall>
-      <antcall target="compare-jar">
-          <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="fdb.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="flex-compiler-oem.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/lib" />
-          <param name="fileName" value="mxmlc.jar"/>
-      </antcall>
-      <antcall target="compare-jar">
-          <param name="folderName" value="royale-asjs/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler/lib" />
           <param name="fileName" value="swfutils.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler-jx/lib" />
           <param name="fileName" value="asdoc.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/js/lib" />
-          <param name="fileName" value="asdoc.jar"/>
-      </antcall>
-      <antcall target="compare-jar">
-          <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler-jx/lib" />
           <param name="fileName" value="compc.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler-jx/lib" />
           <param name="fileName" value="compiler-royaletasks.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler-jx/lib" />
           <param name="fileName" value="externc.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler-jx/lib" />
           <param name="fileName" value="mxmlc.jar"/>
       </antcall>
       <antcall target="compare-jar">
           <param name="folderName" value="royale-asjs/js/lib" />
+          <param name="srcFolderName" value="royale-compiler/compiler-jx/lib" />
           <param name="fileName" value="jsc.jar"/>
       </antcall>
     </target>
     
     <target name="compare-jar">
         <condition property="filesmatch" value="true">
-            <filesmatch file1="${artifactfolder}/tar/js/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/tar/js/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${srcFolderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match tar/js" unless="filesmatch" />
+        <fail message="${srcFolderName}/${filename} does not match tar/js" unless="filesmatch" />
         <condition property="filesmatch1" value="true">
-            <filesmatch file1="${artifactfolder}/tar/swf/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/tar/swf/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${srcFolderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match tar/swf" unless="filesmatch1" />
+        <fail message="${srcFolderName}/${filename} does not match tar/swf" unless="filesmatch1" />
         <condition property="filesmatch2" value="true">
-            <filesmatch file1="${artifactfolder}/zip/swf/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/zip/swf/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${srcFolderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match zip/swf" unless="filesmatch2" />
+        <fail message="${srcFolderName}/${filename} does not match zip/swf" unless="filesmatch2" />
         <condition property="filesmatch3" value="true">
-            <filesmatch file1="${artifactfolder}/zip/js/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/zip/js/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${srcFolderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match zip/js" unless="filesmatch3" />
+        <fail message="${srcFolderName}/${filename} does not match zip/js" unless="filesmatch3" />
     </target>
 
     <target name="compare-swf-swc">
         <condition property="filesmatch" value="true">
-            <filesmatch file1="${artifactfolder}/tar/js/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/tar/js/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${folderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match tar/js" unless="filesmatch" />
+        <fail message="${folderName}/${filename} does not match tar/js" unless="filesmatch" />
         <condition property="filesmatch1" value="true">
-            <filesmatch file1="${artifactfolder}/tar/swf/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/tar/swf/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${folderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match tar/swf" unless="filesmatch1" />
+        <fail message="${folderName}/${filename} does not match tar/swf" unless="filesmatch1" />
         <condition property="filesmatch2" value="true">
-            <filesmatch file1="${artifactfolder}/zip/swf/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/zip/swf/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${folderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match zip/swf" unless="filesmatch2" />
+        <fail message="${folderName}/${filename} does not match zip/swf" unless="filesmatch2" />
         <condition property="filesmatch3" value="true">
-            <filesmatch file1="${artifactfolder}/zip/js/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/zip/js/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${folderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match zip/js" unless="filesmatch3" />
+        <fail message="${folderName}/${filename} does not match zip/js" unless="filesmatch3" />
     </target>
     
     <target name="compare-js-swc">
         <condition property="filesmatch" value="true">
-            <filesmatch file1="${artifactfolder}/tar/js/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/tar/js/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${folderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match tar/js" unless="filesmatch" />
+        <fail message="${folderName}/${filename} does not match tar/js" unless="filesmatch" />
         <condition property="filesmatch3" value="true">
-            <filesmatch file1="${artifactfolder}/zip/js/${folderPath}/${filename}"
-            file2="${artifactfolder}/sources/${folderPath}/${filename}" />
+            <filesmatch file1="${artifactfolder}/zip/js/${folderName}/${filename}"
+            file2="${artifactfolder}/sources/${folderName}/${filename}" />
         </condition>
-        <fail message="${folderPath}/${filename} does not match zip/js" unless="filesmatch3" />
+        <fail message="${folderName}/${filename} does not match zip/js" unless="filesmatch3" />
     </target>
 
     <target name="validate-ant-swcs">
@@ -1533,7 +1563,8 @@
         <available file="${svn.dist.dev}"
         type="dir"
         property="dist.dev" value="${svn.dist.dev}" />
-        
+        <echo>${svn.dist.dev}</echo>
+        <echo>${dist.dev}</echo>
         <fail message="The svn.dist.dev property is not set to the working copy for https://dist.apache.org/repos/dist/dev."
         unless="dist.dev"/>
     </target>
