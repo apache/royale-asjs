@@ -1210,6 +1210,9 @@ ${my.name}
                 <include name="royale/StorageExample/StorageExample-app.xml" />
             </fileset>
         </replace>
+        <replace file="${asjs}/pom.xml"
+            token="-swf-debugfile-alias=/org/apache/royale/${release.version}"
+            value="-swf-debugfile-alias=/org/apache/royale/${new.release.version}" />
         <replaceregexp file="${asjs}/pom.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.compiler.version&gt;.*&lt;"/>
             <substitution expression="royale.compiler.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
