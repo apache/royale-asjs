@@ -40,7 +40,7 @@ package flexUnitTests
     
         public var xmlListTesterGeneralTest:XMLListTesterGeneralTest;
     
-        public var xmlNamespaceTest:XMLNamespaceTest;
+        //public var xmlNamespaceTest:XMLNamespaceTest;
     
         public var xmlNamespaceClassTest:XMLNamespaceClassTest;
     
