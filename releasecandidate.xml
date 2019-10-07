@@ -1256,6 +1256,12 @@ ${my.name}
             <arg value="update version to ${new.release.version}" />
         </exec>
         <echo>updating royale-typedefs</echo>
+        <replace file="${typedefs}/build.properties"
+        token="release.version=${release.version}"
+        value="release.version=${new.release.version}" />
+        <replace file="${typedefs}/build.properties"
+        token="releaseversion=${release.version}"
+        value="releaseversion=${new.release.version}" />
         <replaceregexp file="${typedefs}/pom.xml" byline="true" encoding="UTF-8">
             <regexp pattern="royale.compiler.version&gt;.*&lt;"/>
             <substitution expression="royale.compiler.version&gt;${new.release.version}-SNAPSHOT&lt;"/>
