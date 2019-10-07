@@ -40,7 +40,7 @@ limitations under the License.
 
         <j:Image src="assets/apache-royale-logo.svg" height="300"/>
 
-        <html:H1 text="Welcome to Apache Royale Tour de Jewel Component Explorer v.0.9.6">
+        <html:H1 text="Welcome to Apache Royale Tour de Jewel Component Explorer v.0.9.7">
             <html:beads>
                 <j:TextAlign align="center"/>
             </html:beads>

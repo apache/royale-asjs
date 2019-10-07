@@ -460,7 +460,7 @@
     <profile>
         <id>release-swcs</id>
         <properties>
-            <repo.compiler.options>-metadata.date="${royale.swc-date}";-metadata.dateFormat="MM/dd/yy HH:mm Z";-swf-debugfile-alias=/org/apache/royale/0.9.6;</repo.compiler.options>
+            <repo.compiler.options>-metadata.date="${royale.swc-date}";-metadata.dateFormat="MM/dd/yy HH:mm Z";-swf-debugfile-alias=/org/apache/royale/0.9.7;</repo.compiler.options>
             <source.map>false</source.map>
         </properties>
         <build>

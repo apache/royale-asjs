@@ -145,7 +145,7 @@
     <!-- <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Blue-Theme</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -153,7 +153,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Secondary-Topaz-Theme</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -161,7 +161,7 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
     </dependency> -->
