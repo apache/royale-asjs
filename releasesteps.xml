@@ -1563,7 +1563,8 @@
         <available file="${svn.dist.dev}"
         type="dir"
         property="dist.dev" value="${svn.dist.dev}" />
-        
+        <echo>${svn.dist.dev}</echo>
+        <echo>${dist.dev}</echo>
         <fail message="The svn.dist.dev property is not set to the working copy for https://dist.apache.org/repos/dist/dev."
         unless="dist.dev"/>
     </target>
