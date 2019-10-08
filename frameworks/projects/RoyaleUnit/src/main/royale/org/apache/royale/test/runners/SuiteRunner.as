@@ -25,8 +25,13 @@ package org.apache.royale.test.runners
 	import org.apache.royale.reflection.getQualifiedClassName;
 
 	/**
-	 * A runner for test suites. Suites should be annotated with
-	 * <code>[Suite]</code> and <code>[RunWith]</code> metadata.
+	 * A runner for test suites.
+	 * 
+	 * <p>Test suites should be annotated with <code>[Suite]</code> and
+	 * <code>[RunWith("org.apache.royale.test.runners.SuiteRunner")]</code>
+	 * metadata. To add test classes to the suite, define a public variable for
+	 * each class, using the class as the variable type. You may also add other
+	 * suite classes in the same way.</p>
 	 */
 	public class SuiteRunner extends ParentRunner implements ITestRunner
 	{

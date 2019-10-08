@@ -31,8 +31,14 @@ package org.apache.royale.test.async
 	COMPILE::SWF
 	public class AsyncLocator
 	{
+		/**
+		 * @private
+		 */
 		private static var handlers:Dictionary;
 
+		/**
+		 * Called by the test runner before an async test has started.
+		 */
 		public static function setAsyncHandlerForTest(test:Object, handler:IAsyncHandler):void
 		{
 			if(!handlers)
@@ -42,6 +48,10 @@ package org.apache.royale.test.async
 			handlers[test] = handler;
 		}
 
+		/**
+		 * Returns the current async handler for the specified test, or throws
+		 * an exception if there is none.
+		 */
 		public static function getAsyncHandlerForTest(test:Object):IAsyncHandler
 		{
 			if(!handlers || !hasAsyncHandlerForTest(test))
@@ -51,6 +61,9 @@ package org.apache.royale.test.async
 			return handlers[test];
 		}
 
+		/**
+		 * Called by the test runner after an async test has completed.
+		 */
 		public static function clearAsyncHandlerForTest(test:Object):void
 		{
 			if(!handlers || !hasAsyncHandlerForTest(test))
@@ -60,6 +73,9 @@ package org.apache.royale.test.async
 			delete handlers[test];
 		}
 
+		/**
+		 * Indicates if there is an async handler for the specified test.
+		 */
 		public static function hasAsyncHandlerForTest(test:Object):Boolean
 		{
 			return test in handlers;
@@ -72,13 +88,23 @@ package org.apache.royale.test.async
 	COMPILE::JS
 	public class AsyncLocator
 	{
+		/**
+		 * @private
+		 */
 		private static var handlers:Map = new Map();
 
+		/**
+		 * Called by the test runner before an async test has started.
+		 */
 		public static function setAsyncHandlerForTest(test:Object, handler:IAsyncHandler):void
 		{
 			handlers.set(test, handler);
 		}
 
+		/**
+		 * Returns the current async handler for the specified test, or throws
+		 * an exception if there is none.
+		 */
 		public static function getAsyncHandlerForTest(test:Object):IAsyncHandler
 		{
 			if(!handlers || !hasAsyncHandlerForTest(test))
@@ -88,6 +114,9 @@ package org.apache.royale.test.async
 			return IAsyncHandler(handlers.get(test));
 		}
 
+		/**
+		 * Called by the test runner after an async test has completed.
+		 */
 		public static function clearAsyncHandlerForTest(test:Object):void
 		{
 			if(!handlers || !hasAsyncHandlerForTest(test))
@@ -97,6 +126,9 @@ package org.apache.royale.test.async
 			handlers.delete(test);
 		}
 
+		/**
+		 * Indicates if there is an async handler for the specified test.
+		 */
 		public static function hasAsyncHandlerForTest(test:Object):Boolean
 		{
 			return handlers.has(test);

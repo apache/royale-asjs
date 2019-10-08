@@ -38,7 +38,9 @@ package org.apache.royale.test.runners
 
 	/**
 	 * Provides a base implementation of a runner with children, and intended to
-	 * be subclassed.
+	 * be subclassed, similar to <code>SuiteRunner</code>.
+	 * 
+	 * @see org.apache.royale.test.runners.SuiteRunner
 	 */
 	public class ParentRunner implements ITestRunner
 	{

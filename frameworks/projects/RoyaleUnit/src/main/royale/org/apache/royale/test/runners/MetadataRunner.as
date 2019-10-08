@@ -44,9 +44,21 @@ package org.apache.royale.test.runners
 	 * <li>Tests with <code>[Ignore]</code> metdata should be ignored (skipped).</li>
 	 * <li>Methods with <code>[Before]</code> metadata are run before every individual test.</li>
 	 * <li>Methods with <code>[After]</code> metadata are run after every individual test.</li>
-	 * <li>Methods with <code>[BeforeClass]</code> metadata are run one time, before the first test.</li>
-	 * <li>Methods with <code>[AfterClass]</code> metadata are run one time, after the final test.</li>
+	 * <li>Static methods with <code>[BeforeClass]</code> metadata are run one time, before the first test.</li>
+	 * <li>Static methods with <code>[AfterClass]</code> metadata are run one time, after the final test.</li>
 	 * </ul>
+	 * 
+	 * <p>To test asynchronous functionality, add the <code>async</code>
+	 * modifier to the <code>[Test]</code> metadata, and use the static methods
+	 * on the <code>org.apache.royale.test.async.Async</code> class to set up a
+	 * context for testing asynchronously.</p>
+	 * 
+	 * <p>By default, asynchronous tests fail if they do not complete within 500
+	 * milliseconds. Set the <code>timeout</code> modifier on the
+	 * <code>[Test]</code> metadata to customize this duration (measured in
+	 * milliseconds).</p>
+	 * 
+	 * @see org.apache.royale.test.async.Async
 	 */
 	public class MetadataRunner implements ITestRunner
 	{
@@ -441,9 +453,9 @@ package org.apache.royale.test.runners
 					qualifiedName += lastPart;
 					testName = qualifiedName + "." + method.name;
 					testFunction = _target[method.name];
-					if(testTag.getArgsByKey("async").length > 0)
+					if(testTag.getArgsByKey(TestMetadata.TEST__ASYNC).length > 0)
 					{
-						var timeoutArgs:Array = testTag.getArgsByKey("timeout");
+						var timeoutArgs:Array = testTag.getArgsByKey(TestMetadata.TEST__TIMEOUT);
 						if(timeoutArgs.length > 0)
 						{
 							asyncTimeout = parseFloat(timeoutArgs[0].value);
@@ -453,7 +465,7 @@ package org.apache.royale.test.runners
 							asyncTimeout = DEFAULT_ASYNC_TIMEOUT;
 						}
 					}
-					var expectedArgs:Array = testTag.getArgsByKey("expected");
+					var expectedArgs:Array = testTag.getArgsByKey(TestMetadata.TEST__EXPECTED);
 					if(expectedArgs.length > 0)
 					{
 						expected = expectedArgs[0].value;

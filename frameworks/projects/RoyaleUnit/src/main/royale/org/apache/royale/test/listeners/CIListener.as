@@ -34,6 +34,10 @@ package org.apache.royale.test.listeners
 		import flash.net.XMLSocket;
 	}
 	
+	/**
+	 * Communicates with a socket server to integrate RoyaleUnit tests with a
+	 * build system, such as <a href="https://apache.github.io/royale-docs/testing/royaleunit/run-unit-tests-with-ant">Apache Ant</a>.
+	 */
 	public class CIListener extends EventDispatcher implements IAsyncStartupRunListener
 	{
 		/**
