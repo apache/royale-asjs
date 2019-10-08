@@ -41,7 +41,7 @@ package org.apache.royale.test.runners
 	 * <p>Also supports the following optional metadata:</p>
 	 * 
 	 * <ul>
-	 * <li>Tests with <code>[Ignore]</code> metdata should be ignored (skipped).</li>
+	 * <li>Tests with <code>[Ignore]</code> metadata should be ignored (skipped).</li>
 	 * <li>Methods with <code>[Before]</code> metadata are run before every individual test.</li>
 	 * <li>Methods with <code>[After]</code> metadata are run after every individual test.</li>
 	 * <li>Static methods with <code>[BeforeClass]</code> metadata are run one time, before the first test.</li>
@@ -53,10 +53,20 @@ package org.apache.royale.test.runners
 	 * on the <code>org.apache.royale.test.async.Async</code> class to set up a
 	 * context for testing asynchronously.</p>
 	 * 
+	 * <pre><code>[Test(async)]</code></pre>
+	 * 
 	 * <p>By default, asynchronous tests fail if they do not complete within 500
 	 * milliseconds. Set the <code>timeout</code> modifier on the
 	 * <code>[Test]</code> metadata to customize this duration (measured in
 	 * milliseconds).</p>
+	 * 
+	 * <pre><code>[Test(async,timeout="2000")]</code></pre>
+	 * 
+	 * <p>To require that a specific exception is thrown while a test is
+	 * running, set the `expected` modifier on the `[Test]` metadata to the name
+	 * of the exception class.</p>
+	 * 
+	 * <pre><code>[Test(expected="RangeError")]</code></pre>
 	 * 
 	 * @see org.apache.royale.test.async.Async
 	 */
