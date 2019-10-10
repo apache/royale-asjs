@@ -106,17 +106,28 @@ package mx.controls.beads.models
             if (index == 0)
             {
                 if (lastIndex == 1)
-                    _cursor.movePrevious();
+				{
+					_cursor.movePrevious();
+				}
                 else
-                    _cursor.seek(CursorBookmark.FIRST);
+				{
+					_cursor.seek(CursorBookmark.FIRST);
+				}
                 lastIndex = 0;
             }
             else if (index + 1 == lastIndex)
-                _cursor.movePrevious();
+			{
+				_cursor.movePrevious();
+			}
             else if (lastIndex + 1 == index)
-                _cursor.moveNext();
+			{
+				_cursor.moveNext();
+			}
             else
-                _cursor.seek(CursorBookmark.FIRST, index);
+			{
+				_cursor.seek(CursorBookmark.FIRST, index);
+			}
+
             return _cursor.current;                
         }
         
@@ -168,8 +179,21 @@ package mx.controls.beads.models
 		{
             if (value == _selectedIndex) return;
 
+			lastIndex = _selectedIndex;
 			_selectedIndex = value;
-			_selectedItem = (value == -1 || _dataProvider == null) ? null : (value < _dataProvider.length) ? getItemAt(value) : null;
+			if (value == -1 || dataProvider == null)
+			{
+				_selectedItem = null;
+			}
+			else if (value < dataProvider.length)
+			{
+				_selectedItem = getItemAt(value);
+			}
+			else
+			{
+				_selectedItem = null;
+			}
+
 			dispatchEvent(new Event("selectedIndexChanged"));
 		}
 

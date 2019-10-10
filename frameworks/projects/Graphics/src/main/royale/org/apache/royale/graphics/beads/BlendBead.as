@@ -21,14 +21,6 @@ package org.apache.royale.graphics.beads
 	
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.graphics.utils.shaderClasses.ColorBurnShader;
-	import org.apache.royale.graphics.utils.shaderClasses.ColorDodgeShader;
-	import org.apache.royale.graphics.utils.shaderClasses.ColorShader;
-	import org.apache.royale.graphics.utils.shaderClasses.ExclusionShader;
-	import org.apache.royale.graphics.utils.shaderClasses.HueShader;
-	import org.apache.royale.graphics.utils.shaderClasses.LuminosityShader;
-	import org.apache.royale.graphics.utils.shaderClasses.SaturationShader;
-	import org.apache.royale.graphics.utils.shaderClasses.SoftLightShader;
 
 	COMPILE::SWF
 	{
@@ -37,6 +29,14 @@ package org.apache.royale.graphics.beads
 		import org.apache.royale.core.IRenderedObject;
 		import org.apache.royale.core.IStyleableObject;
 		import org.apache.royale.core.ValuesManager;
+        import org.apache.royale.graphics.utils.shaderClasses.ColorBurnShader;
+        import org.apache.royale.graphics.utils.shaderClasses.ColorDodgeShader;
+        import org.apache.royale.graphics.utils.shaderClasses.ColorShader;
+        import org.apache.royale.graphics.utils.shaderClasses.ExclusionShader;
+        import org.apache.royale.graphics.utils.shaderClasses.HueShader;
+        import org.apache.royale.graphics.utils.shaderClasses.LuminosityShader;
+        import org.apache.royale.graphics.utils.shaderClasses.SaturationShader;
+        import org.apache.royale.graphics.utils.shaderClasses.SoftLightShader;
 	}
 	
 	/**

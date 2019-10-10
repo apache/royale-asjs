@@ -1,3 +1,15 @@
+Apache Royale 0.9.6
+===================
+
+- Compiles faster
+- Many additional components available.
+- Emulations of many other components available.
+- For applications targeting JavaScript, you can now incorporate the
+  vast resources available in existing, free JavaScript libraries.
+- Dozens of bugs reported, investigated, and squashed. For details of
+  closed bug reports see https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed
+
+
 Apache Royale 0.9.4
 ===================
 
@@ -11,9 +23,9 @@ Apache Royale 0.9.2
 
 This release contains:
 
-- Virtual item renderer management for fixed row height vertical lists.
+- Virtual item renderer management for fixed row height vertical lists
 - Improved Theme support. The compiler will copy all resources in "assets" 
-  folder to target.
+  folder to target
 - JSON deserialization to ActionScript objects
 - JSON2ASVO utility to generate ActionScript Value Objects from a JSON result
 
@@ -22,7 +34,7 @@ Apache Royale 0.9.1
 
 This release contains:
 
-- fixes to NPM packaging 
+- Fixes to NPM packaging 
 - GitHubCommitsLogViewer example that provides the source code for a tutorial in the documentation
 - NestedStringItemRenderer for displaying data from sub-objects in DataGrids
 

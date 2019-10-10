@@ -30,7 +30,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.6-SNAPSHOT</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -46,7 +46,7 @@
     <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
     <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
     <url>scm:git:https://github.com/apache/royale-asjs.git</url>
-    <tag>HEAD</tag>
+    <tag>release/0.9.6</tag>
   </scm>
 
   <properties>
@@ -55,16 +55,16 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
-    <royale.compiler.version>0.9.6-SNAPSHOT</royale.compiler.version>
-    <royale.typedefs.version>0.9.6-SNAPSHOT</royale.typedefs.version>
+    <royale.compiler.version>0.9.7-SNAPSHOT</royale.compiler.version>
+    <royale.typedefs.version>0.9.7-SNAPSHOT</royale.typedefs.version>
     <royale.build-tools.version>1.0.0</royale.build-tools.version>
-    <royale.swc-date>2/10/19 9:06 -0800</royale.swc-date>
+    <royale.swc-date>9/24/19 9:06 -0800</royale.swc-date>
 
     <royale.example.targets>JSRoyale</royale.example.targets>
     
     <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
-    <repo.compiler.options></repo.compiler.options>
+    <repo.compiler.options />
     
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
@@ -460,7 +460,7 @@
     <profile>
         <id>release-swcs</id>
         <properties>
-            <repo.compiler.options>-metadata.date="${royale.swc-date}";-metadata.dateFormat="MM/dd/yy HH:mm Z";-swf-debugfile-alias=/org/apache/royale/0.9.6;</repo.compiler.options>
+            <repo.compiler.options>-metadata.date="${royale.swc-date}";-metadata.dateFormat="MM/dd/yy HH:mm Z";-swf-debugfile-alias=/org/apache/royale/0.9.7;</repo.compiler.options>
             <source.map>false</source.map>
         </properties>
         <build>

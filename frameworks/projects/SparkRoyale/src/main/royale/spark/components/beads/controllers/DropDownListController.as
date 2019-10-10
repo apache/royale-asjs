@@ -70,15 +70,19 @@ public class DropDownListController implements IBead, IBeadController
         var popUpModel:ISelectionModel = UIBase(viewBead.popUp).model as ISelectionModel;
         IUIBase(viewBead.popUp).width = IUIBase(_strand).width;
         popUpModel.dataProvider = selectionModel.dataProvider;
-        popUpModel.labelField = selectionModel.labelField;
-        viewBead.popUpVisible = true; // adds to display list as well
+        popUpModel.labelField = selectionModel.labelField;// adds to display list as well
         popUpModel.selectedIndex = selectionModel.selectedIndex;
-        var pt:Point = new Point(0, IUIBase(_strand).height);
-        pt = PointUtils.localToGlobal(pt, _strand);
-        IUIBase(viewBead.popUp).x = pt.x;
-        IUIBase(viewBead.popUp).y = pt.y;
-        IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
-        UIComponent(viewBead.popUp).callLater(registerDismissHandler);
+        viewBead.popUpVisible = !viewBead.popUpVisible;
+        
+        if (viewBead.popUpVisible)
+        {
+            var pt:Point = new Point(0, IUIBase(_strand).height);
+            pt = PointUtils.localToGlobal(pt, _strand);
+            IUIBase(viewBead.popUp).x = pt.x;
+            IUIBase(viewBead.popUp).y = pt.y;
+            IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+            UIComponent(viewBead.popUp).callLater(registerDismissHandler);
+        }
     }
     
     // The browser send clicks to listeners added as the event is being dispatched, so if we don't
@@ -90,7 +94,7 @@ public class DropDownListController implements IBead, IBeadController
     
     private function dismissHandler(event:org.apache.royale.events.MouseEvent):void
     {
-        if (event.target == _strand) return;
+        if (event.target == _strand || event.target.parent == _strand) return;
         
         IUIBase(_strand).topMostEventDispatcher.removeEventListener(org.apache.royale.events.MouseEvent.CLICK, dismissHandler);
         var viewBead:IDropDownListView = _strand.getBeadByType(IDropDownListView) as IDropDownListView;

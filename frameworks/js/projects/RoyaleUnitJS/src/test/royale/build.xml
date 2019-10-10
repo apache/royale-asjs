@@ -105,6 +105,11 @@
                 <include name="**/**"/>
             </fileset>
         </delete>
+        <delete failonerror="false" includeemptydirs="true">
+            <fileset dir="${basedir}/target/bin">
+                <include name="**/**"/>
+            </fileset>
+        </delete>
     </target>
     
     <path id="lib.path">

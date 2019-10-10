@@ -18,14 +18,12 @@ limitations under the License.
 
 -->
 <base:TopMenuBase xmlns:fx="http://ns.adobe.com/mxml/2009"
-                 xmlns="library://ns.apache.org/royale/html"
-                 xmlns:js="library://ns.apache.org/royale/basic"
                  xmlns:rs="library://ns.apache.org/royale/site"
                  xmlns:base="org.apache.royale.site.*">
-        <rs:TopMenuButton href="http://royale.apache.org/features/">FEATURES</rs:TopMenuButton>
-        <rs:TopMenuButton href="http://royale.apache.org/getting-started/">GET STARTED</rs:TopMenuButton>
-        <rs:TopMenuButton href="http://royale.apache.org/download/">DOWNLOAD</rs:TopMenuButton>
-        <rs:TopMenuButton href="http://royale.apache.org/docs/">DOCS</rs:TopMenuButton>
-        <rs:TopMenuButton href="http://royale.apache.org/blog/">BLOG</rs:TopMenuButton>
+        <rs:TopMenuButton href="https://royale.apache.org/features/">FEATURES</rs:TopMenuButton>
+        <rs:TopMenuButton href="https://apache.github.io/royale-docs/get-started">GET STARTED</rs:TopMenuButton>
+        <rs:TopMenuButton href="https://royale.apache.org/download/">DOWNLOAD</rs:TopMenuButton>
+        <rs:TopMenuButton href="https://royale.apache.org/docs/">DOCS</rs:TopMenuButton>
+        <rs:TopMenuButton href="https://royale.apache.org/blog/">BLOG</rs:TopMenuButton>
         <rs:TopMenuButton href="https://github.com/apache/royale-asjs/wiki/Apache-Royale-Source-Code-Repositories">GITHUB</rs:TopMenuButton>
 </base:TopMenuBase>

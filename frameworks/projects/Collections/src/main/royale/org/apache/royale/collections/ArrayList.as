@@ -34,7 +34,6 @@ package org.apache.royale.collections
 		import flash.utils.IDataInput;
 		import flash.utils.IDataOutput;
 	}
-	
 
     //--------------------------------------
     //  Events
@@ -90,6 +89,7 @@ package org.apache.royale.collections
 	 *  @productversion Royale 0.0
 	 */
 	[Event(name="itemUpdated", type="org.apache.royale.events.CollectionEvent")]
+	
 
     /**
      *  The ArrayList class provides an event-driven wrapper for the

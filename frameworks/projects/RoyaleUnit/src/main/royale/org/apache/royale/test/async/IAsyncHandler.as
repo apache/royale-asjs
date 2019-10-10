@@ -28,6 +28,9 @@ package org.apache.royale.test.async
 		 */
 		function get bodyExecuting():Boolean;
 
+		/**
+		 * Sets the function to call after a delay.
+		 */
 		function asyncHandler(eventListener:Function, delay:int):void;
 	}
 }

@@ -19,8 +19,11 @@
 package org.apache.royale.test.runners
 {
 	/**
-	 * @private
-	 * Metadata used by tests.
+	 * Metadata name constants used by <code>MetadataRunner</code> and
+	 * <code>SuiteRunner</code>.
+	 * 
+	 * @see org.apache.royale.test.runners.MetadataRunner
+	 * @see org.apache.royale.test.runners.SuiteRunner
 	 */
 	internal class TestMetadata
 	{
@@ -28,6 +31,23 @@ package org.apache.royale.test.runners
 		 * Indicates that a method is a test.
 		 */
 		public static const TEST:String = "Test";
+
+		/**
+		 * Indicates that a <code>[Test]</code> method is asyncronous.
+		 */
+		public static const TEST__ASYNC:String = "async";
+
+		/**
+		 * Indicates that an asynchronous <code>[Test]</code> method has a
+		 * custom timeout.
+		 */
+		public static const TEST__TIMEOUT:String = "timeout";
+
+		/**
+		 * Indicates that an <code>[Test]</code> method has an expected
+		 * exception type.
+		 */
+		public static const TEST__EXPECTED:String = "expected";
 
 		/**
 		 * Indicates that a <code>[Test]</code> method should be skipped.
@@ -57,10 +77,20 @@ package org.apache.royale.test.runners
 		public static const AFTER_CLASS:String = "AfterClass";
 
 		/**
-		 * Indicates which <code>ITestRunner</code> should be used to run the
-		 * tests in the class.
+		 * Indicates that a class is a test suite. Must be combined with
+		 * <code>[RunWith]</code>.
 		 * 
-		 * <pre><code>[RunWith("org.apache.test.runners.SuiteRunner")]</code></pre>
+		 * <pre><code>[Suite]
+		 * [RunWith("org.apache.test.runners.SuiteRunner")]</code></pre>
+		 */
+		public static const SUITE:String = "Suite";
+
+		/**
+		 * Indicates which <code>ITestRunner</code> should be used to run the
+		 * tests in the class. Must be combined with <code>[Suite]</code>.
+		 * 
+		 * <pre><code>[Suite]
+		 * [RunWith("org.apache.test.runners.SuiteRunner")]</code></pre>
 		 */
 		public static const RUN_WITH:String = "RunWith";
 	}

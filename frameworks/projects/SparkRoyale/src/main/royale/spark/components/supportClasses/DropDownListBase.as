@@ -307,9 +307,14 @@ public class DropDownListBase extends List
     //----------------------------------
     //  dataProvider
     //----------------------------------
-    
+
+    [Bindable("dataProviderChanged")]
     [Inspectable(category="Data")]
-    
+    override public function get dataProvider():IList
+    {
+        return (model as ISelectionModel).dataProvider as IList;
+    }
+
     /**
      *  @private
      *  Update the label if the dataProvider has changed
@@ -367,19 +372,61 @@ public class DropDownListBase extends List
     //----------------------------------
     
     //[Inspectable(category="Data", defaultValue="label")]
-    
+
+    override public function get labelField():String
+    {
+        return (model as ISelectionModel).labelField;
+    }
+
     /**
      *  @private
      */
     override public function set labelField(value:String):void
     {
-        super.labelField = value; // this passes it to DataGroup
-        
         (model as ISelectionModel).labelField = value;
+        super.labelField = value; // this passes it to DataGroup
+
         //labelChanged = true;
         //invalidateProperties();
     }
-    
+
+    [Bindable("change")]
+    [Bindable("valueCommit")]
+    [Inspectable(category="General", defaultValue="-1")]
+    override public function get selectedIndex():int
+    {
+        /*  if (_proposedSelectedIndex != NO_PROPOSED_SELECTION)
+             return _proposedSelectedIndex; */
+
+        return (model as ISelectionModel).selectedIndex;
+    }
+
+    /**
+     *  @private
+     */
+    override public function set selectedIndex(value:int):void
+    {
+        (model as ISelectionModel).selectedIndex = value;
+        super.selectedIndex = value;
+        /*  setSelectedIndex(value, false); */
+    }
+
+    [Bindable("change")]
+    [Bindable("valueCommit")]
+    [Inspectable(category="General", defaultValue="null")]
+    override public function get selectedItem():*
+    {
+        return (model as ISelectionModel).selectedItem;
+    }
+
+    /**
+     *  @private
+     */
+    override public function set selectedItem(value:*):void
+    {
+        (model as ISelectionModel).selectedItem = value;
+        super.selectedItem = value;
+    }
     //----------------------------------
     //  labelFunction
     //----------------------------------

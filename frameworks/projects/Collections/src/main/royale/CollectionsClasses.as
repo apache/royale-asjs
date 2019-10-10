@@ -43,6 +43,8 @@ internal class CollectionsClasses
 	import org.apache.royale.collections.SortField; SortField;
 	import org.apache.royale.collections.SortFieldCompareTypes; SortFieldCompareTypes;
 	import org.apache.royale.collections.CompareUtils; CompareUtils;
+	
+	import org.apache.royale.language.iterator.arrayLike;arrayLike;
 
 }
 

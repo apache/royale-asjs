@@ -20,6 +20,7 @@ package org.apache.royale.html.beads
 {
 COMPILE::SWF {
 	import flash.display.DisplayObject;
+    import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
 }
 
     import org.apache.royale.core.BeadViewBase;
@@ -32,7 +33,6 @@ COMPILE::SWF {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.Button;
-	import org.apache.royale.html.beads.controllers.ButtonAutoRepeatController;
 
 COMPILE::JS {
 	import org.apache.royale.html.beads.controllers.SpinnerMouseController;

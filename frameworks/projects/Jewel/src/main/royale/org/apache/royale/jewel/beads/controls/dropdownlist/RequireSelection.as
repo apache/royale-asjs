@@ -62,6 +62,8 @@ package org.apache.royale.jewel.beads.controls.dropdownlist
 		{
 			ddl = value as DropDownList;
 			ddl.addEventListener('selectionChanged', selectionChangeHandler);
+			ddl.addEventListener('dataProviderChanged', selectionChangeHandler);
+
 			if(needUpdate)
 			{
 				needUpdate = false;
@@ -120,13 +122,20 @@ package org.apache.royale.jewel.beads.controls.dropdownlist
 			}
 		}
 
-		private function selectionChangeHandler(event:Event):void {
+		private function selectionChangeHandler(event:Event):void
+		{
 			forceSelection();
 		}
 
-		private function forceSelection():void {
+		private function forceSelection():void
+		{
 			if(_requireSelection && ddl.selectedIndex == -1)
 			{
+				if (!ddl.dataProvider || ddl.dataProvider.length == 0)
+				{
+					return;
+				}
+
 				ddl.selectedIndex = 0;
 			}	
 		}

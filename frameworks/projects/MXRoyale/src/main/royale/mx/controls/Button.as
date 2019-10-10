@@ -612,28 +612,6 @@ public class Button extends UIComponent implements IDataRenderer
 		dispatchEvent(new Event("toggleChanged"));
 	}
 	
-	
-	//----------------------------------
-	//  enabled
-	//----------------------------------
-	
-	/**
-	 *  @private
-	 */
-	
-	[Inspectable(category="General", enumeration="true,false", defaultValue="true")]
-	
-	/**
-	 *  @private
-	 *  This is called whenever the enabled state changes.
-	 */
-	override public function set enabled(value:Boolean):void
-	{
-		// TBD: redirect to bead
-		trace("Button.enabled not implemented properly.");
-	}
-	
-	
 	//----------------------------------
 	//  internal
 	//----------------------------------

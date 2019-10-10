@@ -1,7 +1,7 @@
 Apache Royale
 =============
 
-Apache Royale is a next-generation of the Apache Flex&trade; SDK: . Royale has the goal of allowing applications developed in MXML and ActionScript to not only run in the Flash/AIR runtimes, but also to run natively in the browser without Flash, on mobile devices as a PhoneGap/Cordova application, and in embedded JS environments such as Chromium Embedded Framework. Royale has the potential to allow your MXML and ActionScript code to run in even more places than Flash currently does.
+Apache Royale is the next generation of the Apache Flex SDK. Royale lets you develop applications in MXML and ActionScript and compile them to run not only on the Flash/AIR runtimes, but also in modern browsers without Flash, on mobile devices as a PhoneGap/Cordova application, and in embedded JavaScript environments such as Chromium Embedded Framework. 
 
 For detailed information about using Royale, visit:
 
@@ -11,7 +11,7 @@ For more information about the Apache Royale project, visit:
 
 <http://royale.apache.org>
 
-This README file is used for the top-level source and binary packages.  The 
+This README file applies to the top-level source and binary packages.  The 
 individual folders (royale-compiler, royale-typedefs, royale-asjs) each have their own
 README file specific to the contents of those folders.
 
@@ -20,28 +20,22 @@ Getting Royale
 
 Official Apache Royale releases are in the form of a source package, which needs to
 be built by Apache Ant or Apache Maven before it can be used to build applications
-that produce JS or SWF output.  Royale also provides pre-built packages (often referred
-to as "binary convenience packages") for users that find it inconvenient to build
-Royale from sources before using.
+that produce JS or SWF output. Royale also provides pre-built packages (often referred
+to as "binary convenience packages") for users who choose not to compile Royale from sourc.
 
-In addition to that, Royale compiled source is available as Maven artifacts and 
-through Node Package Manager (NPM).  If you want to use NPM, see "Getting Royale with NPM"
-below.
+Royale compiled binaries are available as Maven artifacts and through Node Package Manager (NPM).  If you want to use NPM, see "Getting Royale with NPM" below.
 
 This document is the README for the source and binary convenience packages.
 
-This package contains sources from 3 git repositories.  Royale source code is organized into these repos as follows:
+This package contains sources from three Git repositories. Royale source code is organized into these repos as follows:
 
-   royale-compiler:  Java source code for the Royale Compiler that converts 
-                     ActionScript and MXML to JS or SWF output.
+   royale-compiler:  Java source code for the Royale compiler that converts ActionScript and MXML to JS or SWF output.
 
-   royale-typedefs:  Javascript (and some ActionScript) definitions for common 
-                     JavaScript libraries.
+   royale-typedefs:  JavaScript (and some ActionScript) definitions for common JavaScript libraries.
 
-   royale-asjs:      ActionScript source code for a framework of UI and other components.
+   royale-asjs:      ActionScript source code for a framework for the user interface and other components.
 
-Each folder has its own README, RELEASE_NOTES, LICENSE and NOTICE with information
-specific to the sources contained within that folder.
+Each folder has its own README, RELEASE_NOTES, LICENSE and NOTICE with information specific to the sources contained within that folder.
 
 Building Royale
 ===============
@@ -113,9 +107,9 @@ the results of the build, see the next section.
 Using the Binary Convenience Package
 ====================================
 
-There are two packages containing compiled binaries.  The packages ending with -bin-js only supports JavaScript output.  The packages ending with bin-js-swf supports both JavaScript and SWF output.
+There are two packages containing compiled binaries for each release. The package ending with -bin-js only supports JavaScript output. The package ending with bin-js-swf supports both JavaScript and SWF output.
 
-These packages can be used in IDEs that support Royale.  The bin-js package can be uncompressed and used directly.  The bin-js-swf package requires the downloading of SWF-related libraries from Adobe Systems Inc.  There is an Ant script called InstallAdobeSDKs.xml that you can run via:
+These packages can be used in IDEs that support Royale. The bin-js package can be uncompressed and used directly. The bin-js-swf package requires downloading of SWF-related libraries from Adobe Systems Inc. There is an Ant script called InstallAdobeSDKs.xml that you can run via:
 
   ant -f InstallAdobeSDKs.xml
 
@@ -129,7 +123,7 @@ On Windows, run:
 On Mac, run: 
   royale-asjs/js/bin/mxmlc
 
-See documentation for details on how to use mxmlc.  In order to get started using Royale, you are invited to follow along with the Quick Start Guide at https://github.com/apache/royale-asjs/wiki/Quick-Start.
+See documentation for details on how to use mxmlc. 
 
 
 Additional Prerequisites For SWF Output
@@ -140,7 +134,7 @@ playerglobal.swc
 
 The Adobe Flash Player playerglobal.swc (version 11.1) can be downloaded from:
 
-<http://download.macromedia.com/get/flashplayer/updaters/11/playerglobal11_1.swc>
+<http://fpdownload.macromedia.com/get/flashplayer/installers/archive/playerglobal/playerglobal11_1.swc>
 
 First, create the following directory structure:
 
@@ -209,7 +203,7 @@ or for both JS and SWF output:
 Using Royale
 ============
 
-In order to get started using Royale, you are invited to follow along with the Quick Start Guide at https://github.com/apache/royale-asjs/wiki/Quick-Start.
+To get started using Royale, follow along with the Quick Start Guide at https://github.com/apache/royale-asjs/wiki/Quick-Start, and the tutorials at the <a href="https://royale.codeoscopic.com/" target="_blank">Royale website</a>.
 
 Thanks for using Apache Royale.  Enjoy!
 

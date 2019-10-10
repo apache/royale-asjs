@@ -23,11 +23,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.6-SNAPSHOT</version>
+    <version>0.9.7-SNAPSHOT</version>
   </parent>
 
   <artifactId>CreditCardValidatorExample</artifactId>
-  <version>0.9.6-SNAPSHOT</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: CreditCardValidatorExample</name>
@@ -53,14 +53,14 @@
    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
 	<dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>JewelTheme</artifactId>
-      <version>0.9.6-SNAPSHOT</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>

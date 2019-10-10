@@ -20,6 +20,8 @@ package flexUnitTests.xml
 {
     
     
+    import flexUnitTests.xml.support.NamespaceTest;
+    
     import org.apache.royale.test.asserts.*;
     
     import testshim.RoyaleUnitTestRunner;
@@ -30,6 +32,7 @@ package flexUnitTests.xml
     public class XMLNamespaceTest
     {
     
+        private namespace atom = "http://www.w3.org/2005/Atom";
         public static var ATOM_NS:Namespace = new Namespace("http://www.w3.org/2005/Atom");
 
         
@@ -37,7 +40,7 @@ package flexUnitTests.xml
     
         private var settings:Object;
         
-        internal var source:String;
+        private var source:String;
         
         [Before]
         public function setUp():void
@@ -87,8 +90,60 @@ package flexUnitTests.xml
         {
         }
     
+        [Test]
+        public function testMinimalDefault():void{
+            default xml namespace = 'test';
+            var xml:XML = <root/>;
+            
+            var ns:Namespace = xml.namespace();
+            assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value');
+            assertEquals(ns.uri, 'test', 'unexpected uri value from specific default namespace');
+            
+            //try top level function
+            xml = XML('<root/>');
+            ns= xml.namespace();
+            assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value');
+            assertEquals(ns.uri, 'test', 'unexpected uri value from specific default namespace');
+            
+        }
+        
     
-        private var atom:Namespace = ATOM_NS;
+        [Test]
+        public function basicNamespaceChecks():void{
+            var ns:Namespace = new Namespace();
+            
+            assertStrictlyEquals(ns.uri,'', 'unexpected namespace uri value');
+            assertStrictlyEquals(ns.prefix,'', 'unexpected namespace prefix value');
+            ns = new Namespace('');
+            assertStrictlyEquals(ns.uri,'', 'unexpected namespace uri value');
+            assertStrictlyEquals(ns.prefix,'', 'unexpected namespace prefix value');
+            ns = new Namespace("http://royale/");
+            assertStrictlyEquals(ns.uri,"http://royale/", 'unexpected namespace uri value');
+            assertStrictlyEquals(ns.prefix,undefined, 'unexpected namespace prefix value');
+            ns = new Namespace("royale", "http://royale/");
+            assertStrictlyEquals(ns.uri,"http://royale/", 'unexpected namespace uri value');
+            assertStrictlyEquals(ns.prefix,"royale", 'unexpected namespace prefix value');
+            
+            var ns2:Namespace = new Namespace(ns);
+            assertStrictlyEquals(ns.uri,ns2.uri, 'unexpected namespace uri value');
+            assertStrictlyEquals(ns.prefix,ns2.prefix, 'unexpected namespace prefix value');
+            var err:Boolean = false;
+            try{
+                ns =  new Namespace("ns", "");
+            } catch(e:Error){
+                err = true;
+            }
+            assertTrue(err, 'expected an error')
+        }
+        
+        
+        
+        //private var atom:Namespace = ATOM_NS;
+        
+        
+        
+        
+        
         
         
         [Test]
@@ -98,68 +153,266 @@ package flexUnitTests.xml
             
             var atomLinks:XMLList = xml.rss.channel.atom::link;
             assertEquals(atomLinks.length(),2, 'unexpected results from namespace based child query');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
+            assertEquals(atomLinks.toString().length, 459, 'unexpected list content length');
             
-            //@todo:
-            //RoyaleUnitTestRunner.consoleOut('atomLinks');
-            //RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
-            //SWF Output includes ancestor namespaces:
-            /*
-            <atom10:link rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/AnonymizedName" xmlns:atom10="http://www.w3.org/2005/Atom" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0"/>
-            <atom10:link rel="hub" href="http://pubsubhubbub.appspot.com/" xmlns:atom10="http://www.w3.org/2005/Atom" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0"/>
-           
-             */
-            //JS Output does not (yet) include ancestor namespaces:
-            /*
-            <atom10:link rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/AnonymizedName" xmlns:atom10="http://www.w3.org/2005/Atom"/>
-            <atom10:link rel="hub" href="http://pubsubhubbub.appspot.com/" xmlns:atom10="http://www.w3.org/2005/Atom"/>
-            
-            */
+            /*RoyaleUnitTestRunner.consoleOut('atomLinks');
+            RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
+            RoyaleUnitTestRunner.consoleOut(atomLinks.toString().length+'');*/
             
         }
     
     
         [Test]
         public function testDescendantsQueryWithNamespace():void{
-        
             var xml:XML = new XML(source);
         
             var atomLinks:XMLList = xml..atom::link;
-            assertEquals(atomLinks.length(),2, 'unexpected results from namespace based descendants query');
-        
-            //@todo:
-            RoyaleUnitTestRunner.consoleOut('dscendants atomLinks');
+            assertEquals(atomLinks.length(),2, 'unexpected results from namespace based child query');
+            //account for browser DOMParser variation to order of 'attributes' - use length comparison
+           // RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
+            assertEquals(atomLinks.toString().length, 459, 'unexpected list content length');
+      
+            /*RoyaleUnitTestRunner.consoleOut('descendants atomLinks');
             RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
-            //SWF Output includes ancestor namespaces:
-            /*
-            <atom10:link rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/AnonymizedName" xmlns:atom10="http://www.w3.org/2005/Atom" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0"/>
-            <atom10:link rel="hub" href="http://pubsubhubbub.appspot.com/" xmlns:atom10="http://www.w3.org/2005/Atom" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:feedburner="http://rssnamespace.org/feedburner/ext/1.0"/>
-           
-             */
-            //JS Output does not (yet) include ancestor namespaces:
-            /*
-            <atom10:link rel="self" type="application/rss+xml" href="http://feeds.feedburner.com/AnonymizedName" xmlns:atom10="http://www.w3.org/2005/Atom"/>
-            <atom10:link rel="hub" href="http://pubsubhubbub.appspot.com/" xmlns:atom10="http://www.w3.org/2005/Atom"/>
+            RoyaleUnitTestRunner.consoleOut(atomLinks.toString().length+'');*/
             
-            */
+        }
+    
+        [Test]
+        public function testInscopeNamespaces():void{
+            //needs a local var in the output
+            namespace atom = "http://www.w3.org/2005/Atom"
+    
+            var feed:XML = new XML(
+                    '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:m="nothing">\n' +
+                    '  <link rel="self" type="application/atom+xml" href="config/blahblah/user/123123" xmlns:blah="blah"/>'+
+                    '  <link rel="customer" href="customer/999973324764966"/>\n' +
+                    '  <link rel="domain" href="customer/443512501473324764966/domain/"/>\n' +
+                    '  <link rel="tags" href="config/45545/domain/"/>\n' +
+                    '  <m:link rel="nothing" href="config/45545/domain/"/>\n' +
+                    '</feed>\n');
+    
+    
+            var inscopes:Array = feed.inScopeNamespaces();
+            
+            assertEquals(inscopes.length, 2, 'unexpected namespace count');
+            //account for browser DOMParser variation to order of 'attributes' - use length comparison
+            assertEquals(inscopes.toString().length, 'http://www.w3.org/2005/Atom,nothing'.length, 'unexpected namespace content');
+           /* RoyaleUnitTestRunner.consoleOut(inscopes.length+":"+inscopes.toString());
+            for each(var ns:Namespace in inscopes) {
+                RoyaleUnitTestRunner.consoleOut('prefix:\''+ns.prefix+'\', '+ns.uri);
+            }*/
+            
+            var links:XMLList = feed.atom::link;
+            var link1:XML = links[0];
+    
+            inscopes = link1.inScopeNamespaces();
+    
+            assertEquals(inscopes.length, 3, 'unexpected namespace count');
+            //account for browser DOMParser variation to order of 'attributes' - use length comparison
+            assertEquals(inscopes.toString().length, 'blah,http://www.w3.org/2005/Atom,nothing'.length, 'unexpected namespace content');
+           /* RoyaleUnitTestRunner.consoleOut(inscopes.length+":"+inscopes.toString());
+            for each(var ns:Namespace in inscopes) {
+                RoyaleUnitTestRunner.consoleOut('prefix:\''+ns.prefix+'\', '+ns.uri);
+            }*/
+        }
+    
+        [Test]
+        public function testNamespaceDeclarations():void{
+            namespace atom = "http://www.w3.org/2005/Atom"
+        
+            var feed:XML = new XML(
+                    '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:m="nothing">\n' +
+                    '  <link rel="self" type="application/atom+xml" href="config/blahblah/user/123123" xmlns:blah="blah"/>'+
+                    '  <link rel="customer" href="customer/999973324764966"/>\n' +
+                    '  <link rel="domain" href="customer/443512501473324764966/domain/"/>\n' +
+                    '  <link rel="tags" href="config/45545/domain/"/>\n' +
+                    '  <m:link rel="nothing" href="config/45545/domain/"/>\n' +
+                    '</feed>\n');
+        
+        
+            var declarations:Array = feed.namespaceDeclarations();
+        
+            assertEquals(declarations.length, 2, 'unexpected namespace count');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(declarations.toString().length, 'http://www.w3.org/2005/Atom,nothing'.length, 'unexpected namespace content');
+    
+        
+            var links:XMLList = feed.atom::link;
+            var link1:XML = links[0];
+    
+            declarations = link1.namespaceDeclarations();
+        
+            assertEquals(declarations.length, 1, 'unexpected namespace count');
+            assertEquals(declarations.toString(), 'blah', 'unexpected namespace content');
+
+        }
+        
+        [Test]
+        public function testAddNamespace():void{
+    
+            var test1:Namespace = new Namespace('what',"what");
+            var test2:Namespace = new Namespace('what',"what1");
+            var feed:XML = new XML(
+                    '<feed xmlns:delim="delimiter" xmlns="http://www.w3.org/2005/Atom" xmlns:what="what" xmlns:m="nothing" >\n' +
+                    '  <link rel="self" type="application/atom+xml" href="config/blahblah/user/123123" xmlns:blah="blah"/>'+
+                    '</feed>\n');
+            
+            var originalDeclarations:Array = feed.namespaceDeclarations();
+    
+            assertEquals(originalDeclarations.length, 4, 'unexpected namespace count');
+    
+            feed.addNamespace(test1);
+            
+            assertEquals(feed.inScopeNamespaces().indexOf(test1), -1, 'unexpected inScopeNamespaces presence');
+            var latest:Array = feed.namespaceDeclarations();
+            assertEquals(latest.indexOf(test1), 4, 'unexpected namespaceDeclarations location');
+            assertEquals(latest.length, 5, 'unexpected namespaceDeclarations location');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(latest.toString().length, 'delimiter,http://www.w3.org/2005/Atom,what,nothing,what'.length, 'unexpected namespaceDeclarations location');
+            
+            feed.addNamespace(test2);
+            latest = feed.namespaceDeclarations();
+            assertEquals(latest.indexOf(test1), -1, 'unexpected namespaceDeclarations presence');
+            assertEquals(latest.indexOf(test2), 4, 'unexpected namespaceDeclarations location');
+            assertEquals(latest.length, 5, 'unexpected namespaceDeclarations location');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(latest.toString().length, 'delimiter,http://www.w3.org/2005/Atom,what,nothing,what1'.length, 'unexpected namespaceDeclarations location');
+    
+    
+        }
+        
+    
+        [Test]
+        public function testUseNamespaceVariationsInsideClass():void{
+           var testInstance:NamespaceTest = new NamespaceTest();
+            
+            var list:XMLList = testInstance.test1();
+            
+            assertEquals(list.length(), 4, 'unexpected list length');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(list.toXMLString().length, 466, 'unexpected list content');
+            
+
+            list = testInstance.test2();
+           /* RoyaleUnitTestRunner.consoleOut(list);
+            RoyaleUnitTestRunner.consoleOut('2 end -----------------'+list.length());
+            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
+    
+            assertEquals(list.length(), 5, 'unexpected list length');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(list.toXMLString().length, 572, 'unexpected list content');
+            
+            
+            list = testInstance.test3();
+           /* RoyaleUnitTestRunner.consoleOut(list);
+            RoyaleUnitTestRunner.consoleOut('3 end -----------------'+list.length());
+            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
+    
+            assertEquals(list.length(), 4, 'unexpected list length');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(list.toXMLString().length, 466, 'unexpected list content');
+    
+    
+          
+            list = testInstance.test4();
+            /*RoyaleUnitTestRunner.consoleOut(list);
+            RoyaleUnitTestRunner.consoleOut('4 end -----------------'+list.length());
+            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
+    
+            assertEquals(list.length(), 4, 'unexpected list length');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(list.toXMLString().length, 466, 'unexpected list content');
+            
+     
+            list = testInstance.test11();
+            assertEquals(list.length(), 5, 'unexpected list length');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(list.toXMLString().length, 618, 'unexpected list content');
+            
+           /* RoyaleUnitTestRunner.consoleOut(list);
+            RoyaleUnitTestRunner.consoleOut('11 end -----------------'+list.length());
+            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
+            
+            
+            list = testInstance.test12();
+            assertEquals(list.length(), 6, 'unexpected list length');
+            //account for browser DOMParser variation to order of 'attrributes' - use length comparison
+            assertEquals(list.toXMLString().length, 729, 'unexpected list content');
+           /* RoyaleUnitTestRunner.consoleOut(list);
+            RoyaleUnitTestRunner.consoleOut('12 end -----------------'+list.length());
+            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
+            
+            
+            list = testInstance.test13();
+            assertEquals(list.length(), 4, 'unexpected list length');
+            assertEquals(list.toXMLString().length, 506, 'unexpected list content');
+         //   RoyaleUnitTestRunner.consoleOut(list);
+         //   RoyaleUnitTestRunner.consoleOut('13 end -----------------'+list.length()+","+list.toXMLString().length);
+            list = testInstance.test14();
+            assertEquals(list.length(), 5, 'unexpected list length');
+            assertEquals(list.toXMLString().length, 618, 'unexpected list content');
+            
+           /*
+            RoyaleUnitTestRunner.consoleOut(list);
+            RoyaleUnitTestRunner.consoleOut('14 end -----------------'+list.length()+","+list.toXMLString().length);
+      */
         
         }
     
     
         [Test]
+        [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
+        public function testUseNamespace():void{
+            use namespace atom;
+            namespace royale = "https://royale.apache.org"
+            use namespace royale;
+            var feed:XML = new XML(
+                    '<feed xmlns="http://www.w3.org/2005/Atom" xmlns:royale="https://royale.apache.org">\n' +
+                    '  <link rel="self" type="application/atom+xml" href="config/blahblah/user/123123"/>'+
+                    '  <link rel="customer" href="customer/999973324764966"/>\n' +
+                    '  <royale:link rel="self" href="customer/443512501473324764966/domain/"/>\n' +
+                    '  <link rel="tags" royale:rel="self" href="config/45545/domain/"/>\n' +
+                    '</feed>\n');
+        
+        
+            //try filtered content;
+        
+            var url:String = feed.link.(@rel=="self").@href;
+        
+            RoyaleUnitTestRunner.consoleOut('testUseNamespace::'+feed.link.(@rel=="self").@href);
+            RoyaleUnitTestRunner.consoleOut('testUseNamespace::'+url);
+            assertEquals(url, 'config/blahblah/user/123123customer/443512501473324764966/domain/', 'unexpected query result');
+        
+            var links:XMLList = feed.link;
+            assertEquals(links.toString().length, 581, 'unexpected query result');
+    
+            //RoyaleUnitTestRunner.consoleOut('testUseNamespace::'+links);
+            //IE11/Edge failure because of order
+            /*assertEquals(links.toString(), '<link rel="self" type="application/atom+xml" href="config/blahblah/user/123123" xmlns="http://www.w3.org/2005/Atom" xmlns:royale="https://royale.apache.org"/>\n' +
+                    '<link rel="customer" href="customer/999973324764966" xmlns="http://www.w3.org/2005/Atom" xmlns:royale="https://royale.apache.org"/>\n' +
+                    '<royale:link rel="self" href="customer/443512501473324764966/domain/" xmlns="http://www.w3.org/2005/Atom" xmlns:royale="https://royale.apache.org"/>\n' +
+                    '<link rel="tags" royale:rel="self" href="config/45545/domain/" xmlns="http://www.w3.org/2005/Atom" xmlns:royale="https://royale.apache.org"/>', 'unexpected query result');*/
+        
+        }
+    
+        [Test]
         public function testQueryWithAnyNamespace():void{
             var xml:XML = new XML(source);
-            
+        
             var anyLinks:XMLList = xml..*::link;
             assertEquals(anyLinks.length(),5, 'unexpected results from *any* namespace based descendants query');
-           /* RoyaleUnitTestRunner.consoleOut('descendants any * Links');
-            RoyaleUnitTestRunner.consoleOut(anyLinks.toString());*/
+            /* RoyaleUnitTestRunner.consoleOut('descendants any * Links');
+             RoyaleUnitTestRunner.consoleOut(anyLinks.toString());*/
         }
     
     
         [Test]
         public function testUnusualLanguageNamespaces():void{
             var xml:XML = new XML(source);
-        
+            
             //public: (seems to behave like 'default')
             var unusualLinks:XMLList = xml..public::link;
             assertEquals(unusualLinks.length(),3, 'unexpected results from public namespace based descendants query');
@@ -185,9 +438,7 @@ package flexUnitTests.xml
             assertEquals(unusualLinks.length(),0, 'unexpected results from private namespace based descendants query');
             /* RoyaleUnitTestRunner.consoleOut('descendants private Links');
              RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
-            
+        
         }
-        
-        
     }
 }

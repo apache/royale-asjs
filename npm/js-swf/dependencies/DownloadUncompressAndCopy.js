@@ -28,6 +28,8 @@ var DownloadUncompressAndCopy = module.exports = Object.create(events.EventEmitt
 
 DownloadUncompressAndCopy.downloadFile = function(item)
 {
+	var inClose = false;
+	
     console.log('Downloading: ' + item.url + item.remoteFileName);
     request
         .get(item.url + item.remoteFileName)
@@ -39,8 +41,10 @@ DownloadUncompressAndCopy.downloadFile = function(item)
             }
             else
             {
-                response.pipe(fs.createWriteStream(constants.DOWNLOADS_FOLDER + item.remoteFileName)
+                response.pipe(fs.createWriteStream(constants.DOWNLOADS_FOLDER + item.remoteFileName, {emitClose:true})
                     .on('close', function(){
+						if (inClose) return;
+						inClose = true;
                         console.log('Finished downloading: ' + item.url + item.remoteFileName);
                         if(item.unzip)
                         {//Unzip
@@ -71,7 +75,10 @@ DownloadUncompressAndCopy.downloadFile = function(item)
                             }
                             else
                             {
-                                fs.createReadStream(constants.DOWNLOADS_FOLDER + item.remoteFileName)
+								if (!fs.existsSync(item.destinationPath)) {
+									fs.ensureDirSync(item.destinationPath);
+								}
+                                fs.createReadStream(constants.DOWNLOADS_FOLDER + item.remoteFileName, {emitClose:true})
                                     .pipe(fs.createWriteStream(item.destinationPath + item.destinationFileName))
                                     .on('close', function(){
                                         console.log("Copied " + constants.DOWNLOADS_FOLDER + item.remoteFileName + " to " +

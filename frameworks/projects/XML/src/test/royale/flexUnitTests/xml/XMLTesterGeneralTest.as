@@ -191,6 +191,13 @@ package flexUnitTests.xml
             
         }
         
+        [Test]
+        public function testMinimum():void{
+            var xml:XML = new XML();
+            assertEquals(xml.nodeKind(), 'text', 'unexpected default nodeKind');
+            assertEquals(xml.toString(), '', 'unexpected default stringification');
+        }
+        
         
         [Test]
         public function testXMLMethods1():void
@@ -504,23 +511,57 @@ package flexUnitTests.xml
         [Test]
         public function testChildList():void{
             var xml:XML = <root> asdasdas <element/> asdasqdasd<otherElement/></root>;
-    
-    
+            
             var list:XMLList = xml.*;
-    
-            //var list:XMLList = xml.child('*')
-    
+
             assertEquals( 4, list.length(), 'Error in list length');
-            //trace(list.length());
+            assertEquals( list.toXMLString(), 'asdasdas\n' + '<element/>\n' +'asdasqdasd\n' +'<otherElement/>', 'Error in list length');
+            
             list = xml.element;
             assertEquals( 1, list.length(), 'Error in list length');
-            //list = xml.child('element')
-    
-           // trace(list.length())
+            assertEquals( list.toXMLString(),'<element/>', 'Error in list length');
+
             list = xml.otherElement;
-            //list = xml.child('otherElement')
+
             assertEquals( 1, list.length(), 'Error in list length');
+            assertEquals( list.toXMLString(),'<otherElement/>', 'Error in list length');
+    
+            list = xml.otherElement;
+            assertEquals( 1, list.length(), 'Error in list length');
+    
+        }
+    
+        [Test]
+        [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
+        public function testChildVariants():void{
+            var xml:XML = <root xmlns:foo="foo" xmlns:other="other"> asdasdas <element/> asdasqdasd<otherElement/><foo:otherElement/><other:otherElement/></root>;
         
+            var list:XMLList = xml.*::*;
+        
+            assertEquals( 4, list.length(), 'Error in list length');
+            //IE11/Edge issues
+            /*assertEquals( list.toXMLString(), '<element xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<foo:otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<other:otherElement xmlns:foo="foo" xmlns:other="other"/>', 'Error in list content');*/
+            assertEquals( list.toXMLString().length, 212, 'Error in list content');
+        
+            list = xml.otherElement;
+            assertEquals( 1, list.length(), 'Error in list length');
+            //IE11/Edge issues
+           /* assertEquals( list.toXMLString(),'<otherElement xmlns:foo="foo" xmlns:other="other"/>', 'Error in list content');*/
+            assertEquals( list.toXMLString().length,51, 'Error in list content');
+        
+            list = xml.*;
+        
+            assertEquals( 6, list.length(), 'Error in list length');
+           /* assertEquals( list.toXMLString(),'asdasdas\n' +
+                    '<element xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    'asdasqdasd\n' +
+                    '<otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<foo:otherElement xmlns:foo="foo" xmlns:other="other"/>\n' +
+                    '<other:otherElement xmlns:foo="foo" xmlns:other="other"/>', 'Error in list content');*/
+            assertEquals( list.toXMLString().length,232, 'Error in list content');
         }
     
     
@@ -570,7 +611,7 @@ package flexUnitTests.xml
             assertTrue( caughtError, 'Unexpected Error state with duplicate attribute declarations');
         
         }
-        
+    
         [Test]
         public function testParsingWhitespaceSetting1():void{
             var originalSetting:Boolean = XML.ignoreWhitespace;
@@ -718,11 +759,10 @@ package flexUnitTests.xml
         }
         
         [Test]
-        [TestVariance(variance="JS",description="Some browsers can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
+        [TestVariance(variance="JS",description="Some browsers (IE11/Edge legacy) can parse to a different order of attributes and namespace declarations (which affects stringified content comparisons)")]
         public function testLargeComplex():void{
             var xmlString:String = xml.toXMLString();
-            
-            
+
             //IE and MS Edge: inlcude alternate output check
             //account for variation in output order of attributes and namespace declarations (from native DOMParser)
             assertTrue(  xmlString.length == 2060, 'unexpected complex stringify results');
@@ -992,7 +1032,7 @@ package flexUnitTests.xml
             assertTrue( localXml == sizes[0], 'XML content was unexpected');
             
         }
-    
+        
         [Test]
         public function testChildren():void{
             XML.setSettings(XML.defaultSettings());
@@ -1038,9 +1078,9 @@ package flexUnitTests.xml
                     '  <!-- comment -->\n' +
                     '  surrounded With Whitespace\n' +
                     '</root>' , 'unexpected parsing with ignoreComments = false and ignoreProcessingInstructions= false and ignoreWhitespace= false string output');
-        
+            
             //try something different
-        
+    
             XML.ignoreComments = true;
             xml = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
             //because ignoreComments is true, the following is parsed as an empty test node:
@@ -1055,7 +1095,7 @@ package flexUnitTests.xml
                     '  surrounded With Whitespace\n' +
                     '  \n' +
                     '</root>' , 'unexpected parsing with ignoreComments = true and ignoreProcessingInstructions= false and ignoreWhitespace= false and appending comment... string output');
-        
+    
             XML.ignoreComments = false;
             var comment:XML = <xml><!-- appended comment --></xml>;
             comment = comment.comments()[0];
@@ -1064,7 +1104,7 @@ package flexUnitTests.xml
             xml = <root>   <test/><?foo bar?>Something<!-- comment --> surrounded With Whitespace </root>;
             //because ignoreComments is true, the following is parsed as an empty test node:
             xml.appendChild(comment);
-        
+            
             assertEquals(xml.children().length(),6 , 'unexpected parsing with ignoreComments = true and ignoreProcessingInstructions= false and ignoreWhitespace= false and appending comment... children length');
             assertEquals(xml.toXMLString(),
                     '<root>\n' +
@@ -1075,9 +1115,9 @@ package flexUnitTests.xml
                     '  surrounded With Whitespace\n' +
                     '  <!-- appended comment -->\n' +
                     '</root>' , 'unexpected parsing with ignoreComments = true and ignoreProcessingInstructions= false and ignoreWhitespace= false and appending comment... string output');
-        
-        
-        
+            
+            
+    
             XML.setSettings(XML.defaultSettings());
         }
     }
