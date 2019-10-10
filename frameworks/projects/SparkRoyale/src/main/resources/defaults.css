@@ -171,6 +171,7 @@ TabBar
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	IContentView: ClassReference("spark.components.NonVirtualHDataGroup");
+	IBeadController: ClassReference("spark.components.beads.controllers.TabBarController")
 }
 
 TextArea
