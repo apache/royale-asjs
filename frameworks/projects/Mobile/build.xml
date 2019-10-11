@@ -26,6 +26,7 @@
     <property environment="env"/>
     <property name="swf.version" value="17" />
     <property name="playerglobal.version" value="11.4" />
+    <property file="${ROYALE_HOME}/local.properties"/>
 	<property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
     

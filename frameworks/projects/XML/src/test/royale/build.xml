@@ -24,6 +24,7 @@
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
+    <property file="${ROYALE_HOME}/local.properties"/>
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${env.ROYALE_HOME}"/>
     <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
