@@ -74,7 +74,7 @@
         <fail message="${file2} not found" unless="file2.found"/>
         
         <condition property="royale-config-matches">
-            <filesmatch file1="${file1}" file2="${file2}" />
+            <filesmatch file1="${file1}" file2="${file2}" textfile="true"/>
         </condition>
         <fail message="royale-config.xml does not match" unless="royale-config-matches" />
     </target>
