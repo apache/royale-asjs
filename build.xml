@@ -1062,6 +1062,11 @@ limitations under the License.
         <copy file="${ROYALE_HOME}/js/libs/js.swc"
         tofile="${ROYALE_HOME}/frameworks/libs/KeepsFBFromHanging.swc" failonerror="false"/>
         <copy file="${basedir}/npm/js-only/package.json" todir="${basedir}/temp" overwrite="true"/>
+        <antcall target="fixup-royale-config" />
+        <property name="royale-config-fixed" value="true" />
+    </target>
+    
+    <target name="fixup-royale-config" unless="royale-config-fixed">
         <replaceregexp file="${ROYALE_HOME}/frameworks/royale-config.xml" match="(\s+?)&lt;path-element&gt;libs\/[^\.]+\.swc&lt;\/path-element&gt;(\s+?)" replace="" flags ="g"/>
         <replace file="${ROYALE_HOME}/frameworks/royale-config.xml" token="&lt;path-element&gt;libs/player/{targetPlayerMajorVersion}.{targetPlayerMinorVersion}&lt;/path-element&gt;" value="&lt;path-element&gt;libs/KeepsFBFromHanging.swc&lt;/path-element&gt;"/>
     </target>
