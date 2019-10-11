@@ -38,6 +38,9 @@
     <property environment="env"/>
     <property file="${ROYALE_HOME}/local.properties"/>
     <property file="${ROYALE_HOME}/build.properties"/>
+    
+    <property name="file1" value="jsonly/royale-asjs/frameworks/royale-config.xml" />
+    <property name="file2" value="jsswf/royale-asjs/frameworks/royale-config.xml" />
 
     <!--
         Notes: If you're running the main target, then there is no need to call clean first.
@@ -57,8 +60,21 @@
         <get src="${JSSWF_URL}/lastSuccessfulBuild/artifact/out/apache-royale-${release.version}-bin-js.zip" dest="jsswf/apache-royale-${release.version}-bin-js.zip" />
         <unzip src="jsonly/apache-royale-${release.version}-bin-js.zip" dest="jsonly"/>
         <unzip src="jsswf/apache-royale-${release.version}-bin-js.zip" dest="jsswf"/>
+        
+        <available file="${file1}"
+        type="file"
+        property="file1.found"/>
+        
+        <fail message="${file1} not found" unless="file1.found"/>
+        
+        <available file="${file2}"
+        type="file"
+        property="file2.found"/>
+        
+        <fail message="${file2} not found" unless="file2.found"/>
+        
         <condition property="royale-config-matches">
-            <filesmatch file1="jsonly/royale-asjs/frameworks/royale-config.xml" file2="jsswf/royale-asjs/frameworks/royale-config.xml" />
+            <filesmatch file1="${file1}" file2="${file2}" />
         </condition>
         <fail message="royale-config.xml does not match" unless="royale-config-matches" />
     </target>
