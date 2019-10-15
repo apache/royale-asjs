@@ -99,10 +99,5 @@ package org.apache.royale.events
 			}
 			return false;
 		}
-        
-        public function toString():String
-        {
-            return "EventDispatcher";
-        }
 	}
 }
