@@ -23,6 +23,11 @@ package
 	{
 		import org.apache.royale.debugging.throwError;
 		
+		/**
+		 * regex to match the xml declaration
+		 */
+		private static const xmlDecl:RegExp = /^\s*<\?xml[^?]*\?>/im;
+		
 		
 		/**
 		 *  mimics the top-level XMLList function (supports 'this' correctly)
@@ -67,6 +72,8 @@ package
                 {
                     if (typeof(expression) === "string")
                     {
+						var decl:String = xmlDecl.exec(expression);
+						if (decl) expression = expression.replace(decl,'');
                         // try adding a wrapping node and then grab the children
                         expression = "<root>" + expression + "</root>";
                         try
