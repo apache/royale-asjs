@@ -112,6 +112,7 @@
     
     <component id="NonVirtualHDataGroup" class="spark.components.NonVirtualHDataGroup"/>
     <component id="NonVirtualVDataGroup" class="spark.components.NonVirtualVDataGroup"/>
+    <component id="MXAdvancedDataGridItemRenderer" class="spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer"/>
 
 	
 </componentPackage>
