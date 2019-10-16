@@ -84,6 +84,10 @@ hr {
   font-size: 1.4em !important;
 }
 
+.jewel.imagebutton {
+  outline: 0;
+}
+
 .jewel.badge.secondary {
   background: #662C90;
   color: #FFFFFF;
