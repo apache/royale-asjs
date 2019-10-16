@@ -19,12 +19,11 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.supportClasses.StyledImageBase;
-	import org.apache.royale.events.MouseEvent;
 
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
-		import org.apache.royale.html.util.addElementToWrapper;
+        import org.apache.royale.html.util.addElementToWrapper;
     }
 
 	  /**
