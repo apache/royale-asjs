@@ -42,6 +42,9 @@
     <property name="file1" value="jsonly/royale-asjs/frameworks/royale-config.xml" />
     <property name="file2" value="jsswf/royale-asjs/frameworks/royale-config.xml" />
 
+    <echo>HomeDrive is ${env.HOMEDRIVE}</echo>
+    <echo>HomePath is ${env.HOMEPATH}</echo>
+
     <!--
         Notes: If you're running the main target, then there is no need to call clean first.
         Each of the main targets for the modules will call clean themselves before proceeding.
