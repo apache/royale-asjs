@@ -1266,13 +1266,16 @@ package
 		{
 			if(!name)
 				name = "*";
+            var all:Boolean = (name == "*");
+                
 			name = toXMLName(name);
 			var i:int;
 			var list:XMLList = new XMLList();
 			var len:int = childrenLength();
 			for(i=0;i<len;i++)
 			{
-				if((_children[i] as XML)._nodeKind == ELEMENT && name.matches((_children[i] as XML).name()))
+				if((_children[i] as XML)._nodeKind == ELEMENT && (all || name.matches((_children[i] as XML).name())))
+				if(_children[i].nodeKind() == "element" && (all || name.matches(_children[i].name())))
 					list.append(_children[i]);
 			}
 			

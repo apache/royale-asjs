@@ -82,6 +82,7 @@ import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IValuesImpl;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.reflection.beads.ClassAliasBead;
 
 use namespace mx_internal; 
 
@@ -319,6 +320,7 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         
         this.valuesImpl = new AllCSSValuesImpl();
         addBead(new ContainerDataBinding());
+        addBead(new ClassAliasBead());
         
         COMPILE::JS
         {

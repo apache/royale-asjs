@@ -244,7 +244,19 @@ package org.apache.royale.binding
                     }
                     else
                     {
-                        value = source[propertyName];
+                        COMPILE::JS
+                        {
+                            // someday have Proxy swap out PropertyWatcher?
+                            if (typeof source["getProperty"] === "function")
+                                value = source["getProperty"](propertyName);
+                            else
+                                value = source[propertyName];
+                            
+                        }
+                        COMPILE::SWF
+                        {
+                            value = source[propertyName];
+                        }
                     }
                 }
             }

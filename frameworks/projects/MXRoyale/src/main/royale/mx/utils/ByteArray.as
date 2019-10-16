@@ -24,7 +24,11 @@ COMPILE::SWF{
 }
 COMPILE::JS{
 import org.apache.royale.utils.BinaryData;
+import org.apache.royale.utils.net.IDataInput;
+import org.apache.royale.utils.net.IDataOutput;
+
 }
+
 COMPILE::SWF{
 	public class ByteArray extends flash.utils.ByteArray
 	{	
@@ -36,7 +40,7 @@ COMPILE::SWF{
 }
 
 COMPILE::JS{
-	public class ByteArray extends org.apache.royale.utils.BinaryData
+	public class ByteArray extends org.apache.royale.utils.BinaryData implements IDataInput, IDataOutput
 	{	
 		public function ByteArray()
 		{

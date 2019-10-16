@@ -383,6 +383,8 @@ public class ServerConfig
                 endpoint = channelConfig.endpoint;
                 // uri might be undefined when client-load-balancing urls are specified.
                 dsUri = endpoint.length() > 0? endpoint[0].attribute(URI_ATTR).toString() : null;
+                if (!dsUri)
+                    dsUri = endpoint.length() > 0? endpoint[0].attribute("url").toString() : null;
                 if (dsUri != null)
                     dsUris.push(dsUri);
             }
@@ -569,16 +571,24 @@ public class ServerConfig
         var channels:XMLList = xml.channels.channel.(@id == channelId);
         if (channels.length() == 0)
         {
-            message = resourceManager.getString(
-                "messaging", "unknownChannelWithId", [ channelId ]);
-            throw new InvalidChannelError(message);
+            channels = xml.channels["channel-definition"].(@id == channelId);
+            if (channels.length() == 0)
+            {
+                message = resourceManager.getString(
+                    "messaging", "unknownChannelWithId", [ channelId ]);
+                throw new InvalidChannelError(message);
+            }
         }
 
         var channelConfig:XML = channels[0];
         var className:String = channelConfig.attribute(CLASS_ATTR).toString();
+        if (!className)
+            className = channelConfig.attribute("class").toString();
         var endpoint:XMLList = channelConfig.endpoint;
         /// uri might be undefined when client-load-balancing urls are specified.
         var uri:String = endpoint.length() > 0? endpoint[0].attribute(URI_ATTR).toString() : null;
+        if (!uri)
+            uri = endpoint.length() > 0? endpoint[0].attribute("url").toString() : null;
         var channel:Channel = null;
         try
         {
@@ -652,6 +662,9 @@ public class ServerConfig
         }
     }
 
+    /**
+     * @royaleignorecoercion XML
+     */
     private static function getChannelIds(destinationConfig:XML):Array
     {
         var result:Array = [];
@@ -660,6 +673,15 @@ public class ServerConfig
         for (var i:int = 0; i < n; i++)
         {
             result.push(channels[i].@ref.toString());
+        }
+        if (n == 0)
+        {
+            channels = (destinationConfig.parent() as XML)["default-channels"].channel;
+            n = channels.length();
+            for (i = 0; i < n; i++)
+            {
+                result.push(channels[i].@ref.toString());
+            }
         }
         return result;
     }

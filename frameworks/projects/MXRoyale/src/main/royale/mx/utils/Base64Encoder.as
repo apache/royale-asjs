@@ -20,10 +20,7 @@
 package mx.utils
 {
 
-COMPILE::SWF
-{
-	import mx.utils.ByteArray;
-}
+import mx.utils.ByteArray;
 
 
 /**
@@ -64,7 +61,6 @@ public class Base64Encoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    COMPILE::SWF
     public static var newLine:int = 10;
 
     //--------------------------------------------------------------------------
@@ -81,17 +77,13 @@ public class Base64Encoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-	COMPILE::SWF
     public function Base64Encoder()
     {
         super();
-        reset();
-    }
-
-	COMPILE::JS
-    public function Base64Encoder()
-    {
-        super();
+        COMPILE::SWF
+        {
+            reset();
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -112,7 +104,6 @@ public class Base64Encoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    COMPILE::SWF
     public var insertNewLines:Boolean = true;
 
     //--------------------------------------------------------------------------
@@ -243,7 +234,6 @@ public class Base64Encoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-	COMPILE::SWF
 	public function encodeBytes(data:ByteArray, offset:uint=0, length:uint=0):void
     {
         if (length == 0)
@@ -279,7 +269,6 @@ public class Base64Encoder
     /**
      * @private
      */
-    COMPILE::SWF
     public function flush():String
     {
         if (_count > 0)
@@ -298,7 +287,6 @@ public class Base64Encoder
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    COMPILE::SWF
     public function reset():void
     {
         _buffers = [];
@@ -343,7 +331,6 @@ public class Base64Encoder
     /**
      * @private
      */
-    COMPILE::SWF
     private function encodeBlock():void
     {
         var currentBuffer:Array = _buffers[_buffers.length - 1] as Array;

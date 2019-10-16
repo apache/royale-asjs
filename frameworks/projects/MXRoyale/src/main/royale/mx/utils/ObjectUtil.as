@@ -33,6 +33,8 @@ import flash.utils.describeType;
 COMPILE::JS
 {
     import org.apache.royale.reflection.describeType;
+    import org.apache.royale.reflection.getAliasByClass;
+    import org.apache.royale.reflection.getDefinitionByName;
     import org.apache.royale.reflection.TypeDefinition;
     import org.apache.royale.reflection.AccessorDefinition;
     import org.apache.royale.reflection.VariableDefinition;
@@ -745,6 +747,8 @@ public class ObjectUtil
     *  @playerversion Flash 9
     *  @playerversion AIR 1.1
     *  @productversion Flex 3
+    * 
+    *  @royaleignorecoercion Class
     */
     public static function getClassInfo(obj:Object,
                                         excludes:Array = null,
@@ -1028,7 +1032,7 @@ public class ObjectUtil
                 else
                 {
                     className = classInfo.qualifiedName;
-                    //classAlias = classInfo.@alias.toString();
+                    classAlias = getAliasByClass(getDefinitionByName(classInfo.qualifiedName) as Class);
                     //isDynamic = classInfo.@isDynamic.toString() == "true";
 
                     var accessors:Array = classInfo.accessors;
@@ -1043,7 +1047,7 @@ public class ObjectUtil
                         }
                         else
                         {
-                            if (accessor.access != "readwrite")
+                            if (accessor.access == "readwrite")
                                 propertyNames.push(accessor.name);
                         }
                     }

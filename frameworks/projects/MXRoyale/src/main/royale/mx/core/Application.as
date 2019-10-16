@@ -88,6 +88,7 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.ValueChangeEvent;
+import org.apache.royale.reflection.beads.ClassAliasBead;
 import org.apache.royale.states.State;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.MixinManager;
@@ -314,6 +315,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		this.valuesImpl = new AllCSSValuesImpl();
 		addBead(new ContainerDataBinding()); // ApplicationDataBinding fires too soon
 		addBead(new ApplicationLayout());
+        addBead(new ClassAliasBead());
 
         instanceParent = this;
         

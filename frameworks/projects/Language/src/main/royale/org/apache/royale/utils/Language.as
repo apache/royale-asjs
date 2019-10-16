@@ -368,7 +368,7 @@ package org.apache.royale.utils
          * @param names
          * @param opt
          */
-        public static function sortOn(arr:Array, names:Object, opt:Object = 0):void
+        public static function sortOn(arr:Array, names:Object, opt:Object = 0):Array
         {
             if (names is Array)
             {
@@ -390,6 +390,11 @@ package org.apache.royale.utils
                 opt2 = /*opt as int*/ (int(opt) == opt) ? int(opt) : 0;
             }
             muler = (Array.DESCENDING & opt2) > 0 ? -1 : 1;
+            var orig:Array;               
+            if (opt2 & Array.RETURNINDEXEDARRAY)
+            {
+                orig = arr.slice();                
+            }
             if (opt2 & Array.NUMERIC)
             {
                 arr.sort(compareNumber);
@@ -400,6 +405,18 @@ package org.apache.royale.utils
             {
                 arr.sort(compareString);
             }
+            if (opt2 & Array.RETURNINDEXEDARRAY)
+            {
+                var retArr:Array = [];
+                var n:int = arr.length;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var item:Object = orig[i];
+                    retArr.push(arr.indexOf(item));
+                }
+                return retArr;
+            }
+            return arr;
         }
         
         private static function compareStringCaseinsensitive(a:Object, b:Object):int

@@ -62,6 +62,8 @@
 	<component id="RemoteObject" class="mx.rpc.remoting.mxml.RemoteObject" />
     <component id="RemoteObjectOperation" class="mx.rpc.remoting.mxml.Operation"/>
 	<component id="HTTPService" class="mx.rpc.http.mxml.HTTPService" />
+    <component id="WebService" class="mx.rpc.soap.mxml.WebService" />
+    <component id="WebServiceOperation" class="mx.rpc.soap.mxml.Operation" />
 	<component id="NumberValidator" class="mx.validators.NumberValidator"/>
 	<component id="PhoneNumberValidator" class="mx.validators.PhoneNumberValidator"/>
 	<component id="DateValidator" class="mx.validators.DateValidator"/>
