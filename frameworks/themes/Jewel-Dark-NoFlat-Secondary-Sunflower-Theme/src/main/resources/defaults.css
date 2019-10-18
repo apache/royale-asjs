@@ -65,23 +65,23 @@ hr {
 }
 
 .jewel.xsmall {
-  font-size: 0.6em !important;
+  font-size: 0.6em;
 }
 
 .jewel.small {
-  font-size: 0.8em !important;
+  font-size: 0.8em;
 }
 
 .jewel {
-  font-size: 1em !important;
+  font-size: 1em;
 }
 
 .jewel.large {
-  font-size: 1.2em !important;
+  font-size: 1.2em;
 }
 
 .jewel.xlarge {
-  font-size: 1.4em !important;
+  font-size: 1.4em;
 }
 
 .jewel.imagebutton {
