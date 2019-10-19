@@ -96,7 +96,7 @@ public class SharedObject extends org.apache.royale.events.EventDispatcher
                if (!_data)
                {
                    _data = {};
-                   var allCookies:String = document.cookie;
+                   var allCookies:String = String(document.cookie);
                    var arrCookies:Array = allCookies.split(';');
                    for each (var s:String in arrCookies)
                    {
