@@ -330,6 +330,10 @@ package org.apache.royale.core
 	                                childrenAdded = true;
 								}
                             }
+							else if (ai.position == "first")
+							{
+								parent.addElementAt(item, 0);
+							}
                             else
                             {
                                 parent.addElement(item);
