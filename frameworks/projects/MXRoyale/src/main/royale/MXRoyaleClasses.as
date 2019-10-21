@@ -213,13 +213,6 @@ internal class MXRoyaleClasses
 	import mx.controls.PopUpButton; PopUpButton;
 	import mx.controls.PopUpMenuButton; PopUpMenuButton;
 
-
-	COMPILE::JS
-    {
-		import mx.utils.TextEncoderLiteWrapper; TextEncoderLiteWrapper;
-		import mx.utils.Base64JSWrapper; Base64JSWrapper;
-	}
-
 	COMPILE::SWF
 	{
 	import mx.controls.beads.CSSImageAndTextButtonView; CSSImageAndTextButtonView;
