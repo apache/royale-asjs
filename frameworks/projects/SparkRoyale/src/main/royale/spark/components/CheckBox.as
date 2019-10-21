@@ -342,8 +342,6 @@ public class CheckBox extends ToggleButtonBase
         element.appendChild(_icon.element);
         
         element.appendChild(document.createTextNode(''));
-        //positioner.style.position = 'relative';
-        _icon.element.royale_wrapper = this;
         
         typeNames = 'CheckBox CheckBoxIcon';
         
