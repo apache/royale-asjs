@@ -63,6 +63,7 @@ import mx.styles.IStyleClient;
 import mx.styles.IStyleManager2;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
+import org.apache.royale.utils.MXMLDataInterpreter;
 use namespace mx_internal;
 
 import org.apache.royale.core.CallLaterBead;
@@ -89,6 +90,7 @@ import org.apache.royale.utils.loadBeadFromValuesManager;
 import mx.validators.IValidatorListener;
 import mx.validators.ValidationResult;
 import mx.events.ValidationResultEvent;
+import org.apache.royale.utils.MXMLDataInterpreter;
 
 /**
  *  Set a different class for click events so that
@@ -1864,6 +1866,8 @@ COMPILE::JS
      */
     public function get mxmlDocument():Object
     {
+        if (!_mxmlDocument && MXMLDescriptor != null)
+            _mxmlDocument = this;
         return _mxmlDocument;
     }
     
@@ -3626,8 +3630,59 @@ COMPILE::JS
      */
     protected function createChildren():void
     {
+        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
     }
     
+    private var _mxmlDescriptor:Array;
+    
+    /**
+     *  @copy org.apache.royale.core.Application#MXMLDescriptor
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get MXMLDescriptor():Array
+    {
+        return _mxmlDescriptor;
+    }
+    
+    /**
+     *  @private
+     */
+    public function setMXMLDescriptor(document:Object, value:Array):void
+    {
+        _mxmlDocument = document;
+        _mxmlDescriptor = value;
+    }
+    
+    /**
+     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function generateMXMLAttributes(data:Array):void
+    {
+        if (!_mxmlDocument)
+            _mxmlDocument = this;
+        MXMLDataInterpreter.generateMXMLProperties(this, data);
+    }
+    
+    /**
+     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     * 
+     *  @royalesuppresspublicvarwarning
+     */
+    public var mxmlContent:Array;
 
     //--------------------------------------------------------------------------
     //

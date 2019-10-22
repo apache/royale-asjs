@@ -40,7 +40,6 @@ package mx.core
     import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.events.ValueEvent;
     import org.apache.royale.states.State;
-    import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.loadBeadFromValuesManager;
 
 COMPILE::JS
@@ -771,8 +770,6 @@ public class Container extends UIComponent
 	//
 	//--------------------------------------------------------------------------
 	
-	private var _mxmlDescriptor:Array;
-	
 	override public function addedToParent():void
 	{
 		if (!initialized) {
@@ -792,8 +789,8 @@ public class Container extends UIComponent
 	
     override protected function createChildren():void
     {
-        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
-
+        super.createChildren();
+        
         if (getBeadByType(DataBindingBase) == null)
             addBead(new ContainerDataBinding());
 
@@ -816,61 +813,6 @@ public class Container extends UIComponent
         }
     }
     
-    override public function get mxmlDocument():Object
-    {
-        if (!_mxmlDocument && MXMLDescriptor != null)
-            _mxmlDocument = this;
-        return _mxmlDocument;
-    }
-    
-	/**
-	 *  @copy org.apache.royale.core.Application#MXMLDescriptor
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 */
-	public function get MXMLDescriptor():Array
-	{
-		return _mxmlDescriptor;
-	}
-	
-	/**
-	 *  @private
-	 */
-	public function setMXMLDescriptor(document:Object, value:Array):void
-	{
-		_mxmlDocument = document;
-		_mxmlDescriptor = value;
-	}
-	
-	/**
-	 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 */
-	public function generateMXMLAttributes(data:Array):void
-	{
-        if (!_mxmlDocument)
-            _mxmlDocument = this;
-		MXMLDataInterpreter.generateMXMLProperties(this, data);
-	}
-	
-	/**
-	 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
-	 * 
-	 *  @royalesuppresspublicvarwarning
-	 */
-	public var mxmlContent:Array;
 	
 	/*
 	* IContainer
