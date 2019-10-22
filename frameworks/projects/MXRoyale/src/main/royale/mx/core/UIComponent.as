@@ -41,6 +41,7 @@ import mx.controls.beads.ToolTipBead;
 import mx.core.mx_internal;
 COMPILE::SWF
 {
+import flash.display.DisplayObject;
 import flash.display.Graphics;
 }
 import mx.display.Graphics;
@@ -3454,8 +3455,23 @@ COMPILE::JS
     { override }
     public function contains(child:IUIComponent):Boolean
     {
-        trace("contains not implemented");
-        return true;
+        COMPILE::SWF
+        {
+            return super.contains(child as DisplayObject);
+        }
+        COMPILE::JS
+        {
+            var children:NodeList = element.childNodes;
+            var n:int = children.length;
+            var e:Object = child.element;
+            
+            for (var i:int = 0; i < n; i++)
+            {
+                if (children[i] == e)
+                    return true;
+            }
+            return false;
+        }
     }
     
     /**
