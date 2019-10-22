@@ -21,6 +21,8 @@ package mx.utils
 {
 
 import mx.utils.ByteArray;
+import org.apache.royale.utils.Base64;
+import org.apache.royale.utils.BinaryData;
 
 /*
 import mx.resources.IResourceManager;
@@ -87,10 +89,9 @@ public class Base64Decoder
     COMPILE::JS
     public function decode(data:String):String
     {
-
-		var bytes:Object = new Base64JSWrapper().toByteArray(data);
-		decodedString = new TextEncoderLiteWrapper('utf-8').decode(bytes);
-
+        var bytes:BinaryData = Base64.decode(data);
+        bytes.readUTFBytes(bytes.length);
+		decodedString = bytes.readUTFBytes(bytes.length);
 		return decodedString;
     }
 
