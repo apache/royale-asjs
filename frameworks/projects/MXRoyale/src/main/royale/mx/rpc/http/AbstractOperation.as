@@ -1039,16 +1039,21 @@ package mx.rpc.http
 				if (/*resultFormat == RESULT_FORMAT_XML || */resultFormat == RESULT_FORMAT_OBJECT 
 					|| resultFormat == RESULT_FORMAT_ARRAY)
 				{
-					
+					var oldSettings:Object = XML.settings();
 					try{
+						XML.setSettings(XML.defaultSettings());
 						var temp:XMLList = new XMLList(String(body));
 						var tmp:XML = new XML('<root>'+temp.toXMLString()+'</root>');
 					} catch(parseError:Error)
 					{
+						//restore whatever settings were active
+						XML.setSettings(oldSettings);
 						var fault:Fault = new Fault(ERROR_DECODING, parseError.message);
 						dispatchRpcEvent(FaultEvent.createEvent(fault, token, message));
 						return false;
 					}
+					//restore whatever settings were active
+					XML.setSettings(oldSettings);
 					if (resultFormat == RESULT_FORMAT_OBJECT || resultFormat == RESULT_FORMAT_ARRAY)
 					{
 						var decoded:Object;
