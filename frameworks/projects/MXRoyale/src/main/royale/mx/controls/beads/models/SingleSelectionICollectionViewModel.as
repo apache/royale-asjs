@@ -91,7 +91,8 @@ package mx.controls.beads.models
             if (value == _dataProvider) return;
 
             _dataProvider = value as ICollectionView;
-            _cursor = _dataProvider.createCursor();
+            if (_dataProvider)
+                _cursor = _dataProvider.createCursor();
 			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
 				_selectedIndex = -1;
             

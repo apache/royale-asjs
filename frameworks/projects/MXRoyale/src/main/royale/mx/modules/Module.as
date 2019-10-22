@@ -20,6 +20,9 @@
 package mx.modules
 {
 import mx.core.Container;
+
+import org.apache.royale.core.IFlexInfo;
+
 //import mx.core.LayoutContainer;
 
 //[Frame(factoryClass="mx.core.FlexModuleFactory")]
@@ -66,7 +69,7 @@ import mx.core.Container;
  *    verticalAlign="top|bottom|middle"
  *    verticalScrollPolicy="auto|on|off"
  */
-public class Module extends Container implements IModule //extends LayoutContainer 
+public class Module extends Container implements IModule, IFlexInfo //extends LayoutContainer 
 {
     //include "../core/Version.as";
 
@@ -196,6 +199,14 @@ public class Module extends Container implements IModule //extends LayoutContain
             return obj.cssData;
         
         return obj.ROYALE_CLASS_INFO;
+    }
+
+    /**
+     *  @private
+     */
+    public function info():Object
+    {
+        return {};
     }
 
 }

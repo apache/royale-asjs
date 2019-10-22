@@ -277,7 +277,12 @@ public class ModuleLoader extends VBox
      *  @productversion Royale 0.9.3
 	 *	@royalesuppresspublicvarwarning
      */
-    public var child:Object; //DisplayObject;
+    public function get child():Object //DisplayObject
+    {
+        if (numElements)
+            return getElementAt(numElements - 1);
+        return null;
+    }
 
     //----------------------------------
     //  trustContent

@@ -2186,6 +2186,8 @@ public class ListBase  extends SkinnableContainer
         if (!getBeadByType(IBeadLayout))
             addBead(new ListBaseLayout());
         super.addedToParent();
+        if (requireSelection && selectedIndex == -1)
+            selectedIndex = 0;
         setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
     }
     

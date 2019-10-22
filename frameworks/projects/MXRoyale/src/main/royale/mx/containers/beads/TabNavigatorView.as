@@ -167,7 +167,14 @@ public class TabNavigatorView extends GroupView
         }
         (tabBar as TabBar).dataProvider = tabDP;
         if ((tabBar.model as ISelectionModel).selectedIndex == -1)
+        {
             (tabBar.model as ISelectionModel).selectedIndex = 0;
+            var tabNavigator:TabNavigator = _strand as TabNavigator;
+            if (tabNavigator)
+            {
+                tabNavigator.selectedIndex = 0;
+            }
+        }
     }
     
     private var _panelLayoutProxy:PanelLayoutProxy;
