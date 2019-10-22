@@ -1217,7 +1217,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer
         if (!layout)
             layout = new BasicLayout();
         
-        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        super.createChildren();
         
         if (getBeadByType(DataBindingBase) == null)
             addBead(new ContainerDataBinding());
@@ -1225,56 +1225,6 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer
         dispatchEvent(new Event("initBindings"));
     }
 
-    private var _mxmlDescriptor:Array;
-    private var _mxmlDocument:Object = this;
-
-    /**
-     *  @copy org.apache.royale.core.Application#MXMLDescriptor
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function get MXMLDescriptor():Array
-    {
-        return _mxmlDescriptor;
-    }
-    
-    /**
-     *  @private
-     */
-    public function setMXMLDescriptor(document:Object, value:Array):void
-    {
-        _mxmlDocument = document;
-        _mxmlDescriptor = value;
-    }
-    
-    /**
-     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function generateMXMLAttributes(data:Array):void
-    {
-        MXMLDataInterpreter.generateMXMLProperties(this, data);
-    }
-    
-    /**
-     *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     * 
-     *  @royalesuppresspublicvarwarning
-     */
-    public var mxmlContent:Array;
-    
     /**
      *  @private
      */ 

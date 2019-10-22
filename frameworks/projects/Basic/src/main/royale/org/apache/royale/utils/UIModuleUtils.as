@@ -172,7 +172,7 @@ package org.apache.royale.utils
 		{
             this.host = host;
             
-            if (moduleInstance)
+            if (moduleInstance && moduleInstance.parent == host)
                 host.removeElement(moduleInstance);
             
 			createLoader();

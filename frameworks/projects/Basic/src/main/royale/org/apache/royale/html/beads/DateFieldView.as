@@ -34,6 +34,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.PointUtils;
     import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.geom.Point;
+    import org.apache.royale.html.beads.IComboBoxView;
 	import org.apache.royale.html.supportClasses.IDateChooser;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TextInput;
@@ -54,7 +55,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateFieldView extends BeadViewBase implements IBeadView
+	public class DateFieldView extends BeadViewBase implements IBeadView, IComboBoxView
 	{
 		/**
 		 *  constructor.
@@ -79,7 +80,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get menuButton():TextButton
+		public function get popupButton():Object
 		{
 			return _button;
 		}
@@ -92,7 +93,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get textInput():TextInput
+		public function get textInputField():Object
 		{
 			return _textInput;
 		}
@@ -161,7 +162,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get popUp():IDateChooser
+		public function get popUp():Object
 		{
 			return _popUp;
 		}

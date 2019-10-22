@@ -49,6 +49,7 @@ import mx.utils.ObjectUtil;
 use namespace mx_internal;
 
 import org.apache.royale.core.IDateChooserModel;
+import org.apache.royale.html.TextInput;
 
 //--------------------------------------
 //  Events
@@ -2868,7 +2869,7 @@ public class DateField extends ComboBase
      */
     override public function get text():String
     {
-        var s:String = (view as DateFieldView).textInput.text;
+        var s:String = ((view as DateFieldView).textInputField as org.apache.royale.html.TextInput).text;
         return s == null ? "" : s;
     }
    

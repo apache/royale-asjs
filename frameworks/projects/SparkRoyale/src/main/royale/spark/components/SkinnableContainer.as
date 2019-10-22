@@ -728,18 +728,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
     }
      */
      
-     /**
-      *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-      *  
-      *  @langversion 3.0
-      *  @playerversion Flash 10.2
-      *  @playerversion AIR 2.6
-      *  @productversion Royale 0.8
-      * 
-      *  @royalesuppresspublicvarwarning
-      */
-     public var mxmlContent:Array;
-
     /**
      *  override setting of children
      */
@@ -902,41 +890,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
         currentContentGroup.removeAllElements(); */
     } 
     
-    /**
-     *  @copy org.apache.royale.core.Application#MXMLDescriptor
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function get MXMLDescriptor():Array
-    {
-        return _mxmlDescriptor;
-    }
-    
-    /**
-     *  @private
-     */
-    public function setMXMLDescriptor(document:Object, value:Array):void
-    {
-        _mxmlDocument = document;
-        _mxmlDescriptor = value;
-    }
-    
-    /**
-     *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function generateMXMLAttributes(data:Array):void
-    {
-        MXMLDataInterpreter.generateMXMLProperties(this, data);
-    }
-    
     /*
     * IContainer
     */
@@ -1026,7 +979,7 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
     
     override protected function createChildren():void
     {
-        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        super.createChildren();
         
         if (getBeadByType(DataBindingBase) == null)
             addBead(new ContainerDataBinding());
