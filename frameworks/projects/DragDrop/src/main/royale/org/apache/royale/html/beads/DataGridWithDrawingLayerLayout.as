@@ -86,7 +86,7 @@ package org.apache.royale.html.beads
 			if (result && layerBead != null && layerBead.layer != null) {
 				
 				var view:IDataGridView = UIBase(_strand).view as IDataGridView;
-				var listArea:UIBase = view.listArea;
+				var listArea:UIBase = view.listArea as UIBase;
 				
 				UIBase(_strand).removeElement(layerBead.layer);
 				UIBase(_strand).addElement(layerBead.layer); // always keep it on top
