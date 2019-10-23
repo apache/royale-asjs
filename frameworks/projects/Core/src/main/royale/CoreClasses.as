@@ -296,7 +296,8 @@ internal class CoreClasses
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 
-	import org.apache.royale.utils.string.Base64; Base64;
+	import org.apache.royale.utils.string.Base64; org.apache.royale.utils.string.Base64;
+	import org.apache.royale.utils.Base64; org.apache.royale.utils.Base64;
 	import org.apache.royale.utils.string.contains; contains;
 	import org.apache.royale.utils.string.isWhitespace; isWhitespace;
 	import org.apache.royale.utils.string.trim; trim;
