@@ -22,18 +22,21 @@ package mx.controls.listClasses
 import mx.core.UIComponent;
 import mx.events.ListEvent;
 
-import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadView;
+import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IParent;
+import org.apache.royale.core.ISelectableItemRenderer;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.core.layout.EdgeData;
 import org.apache.royale.events.IEventDispatcher;
+import org.apache.royale.events.ItemClickedEvent;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.html.supportClasses.StringItemRenderer;
 import org.apache.royale.html.util.getLabelFromData;
+
 COMPILE::SWF
 {
     import flash.text.TextFieldAutoSize;
@@ -50,7 +53,7 @@ COMPILE::SWF
  *  @productversion Flex 3
  */
 
-public class ListItemRenderer extends UIComponent implements IListItemRenderer
+public class ListItemRenderer extends UIComponent implements IListItemRenderer, ISelectableItemRenderer
 {
     public function ListItemRenderer()
     {
@@ -62,6 +65,11 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer
             textField.autoSize = TextFieldAutoSize.LEFT;
             textField.selectable = false;
             textField.parentDrawsBackground = true;
+        }
+        COMPILE::JS
+        {
+            typeNames = "ListItemRenderer";
+            isAbsolute = false;
         }
     }
 
@@ -208,6 +216,12 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer
         le.columnIndex = 0;
         le.itemRenderer = this;
         getComponentDispatcher().dispatchEvent(le);
+        // not sure why this doesn't use ItemRendererMouseController
+        // selection controller is looking for clicked
+        var ice:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+        ice.index = rowIndex;
+        ice.data = data;
+        dispatchEvent(ice);
     }
 
     private var _itemRendererParent:Object;
@@ -306,7 +320,10 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer
             }
             return getLabelFromData(this,value);
         }
-        		private var _data:Object;
+        
+    private var _data:Object;
+    private var _listData:Object;
+    private var _index:int;
 		
     [Bindable("__NoChangeEvent__")]
     /**
@@ -329,6 +346,46 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer
         text = dataToString(value);
     }
 
+    [Bindable("__NoChangeEvent__")]
+    /**
+     *  The extra data being represented by this itemRenderer. This can be something simple like a String or
+     *  a Number or something very complex.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get listData():Object
+    {
+        return _listData;
+    }
+    
+    public function set listData(value:Object):void
+    {
+        _listData = value;
+    }
+    
+    [Bindable("__NoChangeEvent__")]
+    /**
+     *  The index being represented by this itemRenderer. This can be something simple like a String or
+     *  a Number or something very complex.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    public function get index():int
+    {
+        return _index;
+    }
+    
+    public function set index(value:int):void
+    {
+        _index = value;
+    }
+    
     public function get nestLevel():int
     {
     	throw new Error("Method not implemented.");

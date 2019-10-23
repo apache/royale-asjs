@@ -24,6 +24,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
@@ -31,7 +33,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.Tree;
@@ -71,7 +72,7 @@ package org.apache.royale.html.beads
 		
 		private var _strand:IStrand;
 		private var _header:DataGridButtonBar;
-		private var _listArea:Container;
+		private var _listArea:IUIBase;
 		
 		private var _lists:Array;
 		
@@ -87,7 +88,7 @@ package org.apache.royale.html.beads
 		 * The area used to hold the columns
 		 *
 		 */
-		public function get listArea():Container
+		public function get listArea():IUIBase
 		{
 			return _listArea;
 		}
@@ -138,6 +139,7 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IBeadModel
+		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
@@ -162,7 +164,7 @@ package org.apache.royale.html.beads
 			sharedModel.headerModel = _header.model as IBeadModel;
 			
 			_listArea = new TreeGridListArea();
-			_listArea.percentWidth = 100;
+			(_listArea as ILayoutChild).percentWidth = 100;
 				
 			createColumns();
 			
@@ -258,6 +260,7 @@ package org.apache.royale.html.beads
 		 * @private
 		 * @royaleignorecoercion Class
 		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 * @royaleignorecoercion org.apache.royale.core.IParent
 		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
          * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
@@ -302,7 +305,7 @@ package org.apache.royale.html.beads
 				column.addBead(new Viewport());
 				column.addEventListener('change', handleColumnListChange);
 				
-				_listArea.addElement(column);
+				(_listArea as IParent).addElement(column);
 				_lists.push(column);
 				
 			}

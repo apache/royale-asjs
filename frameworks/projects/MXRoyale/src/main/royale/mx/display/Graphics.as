@@ -55,7 +55,7 @@ package mx.display
             fillInProgress = false;
             COMPILE::SWF
             {
-                displayObject.graphics.clear();
+                displayObject.flashgraphics.clear();
             }
             COMPILE::JS
             {
@@ -76,7 +76,7 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.beginFill(color, alpha);
+                displayObject.flashgraphics.beginFill(color, alpha);
             }
             COMPILE::JS
             {
@@ -95,7 +95,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.endFill();
+                displayObject.flashgraphics.endFill();
             }
             COMPILE::JS
             {
@@ -189,7 +189,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.lineStyle(thickness, color, alpha);
+                displayObject.flashgraphics.lineStyle(thickness, color, alpha);
             }
             COMPILE::JS
             {
@@ -203,7 +203,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.moveTo(x, y);
+                displayObject.flashgraphics.moveTo(x, y);
             }
             COMPILE::JS
             {
@@ -217,7 +217,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.lineTo(x, y);
+                displayObject.flashgraphics.lineTo(x, y);
             }
             COMPILE::JS
             {
@@ -231,7 +231,7 @@ package mx.display
 		{
             COMPILE::SWF
             {
-                displayObject.graphics.curveTo(controlX, controlY, anchorX, anchorY);
+                displayObject.flashgraphics.curveTo(controlX, controlY, anchorX, anchorY);
             }
             COMPILE::JS
             {
@@ -248,7 +248,7 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawEllipse(x, y, width, height);
+                displayObject.flashgraphics.drawEllipse(x, y, width, height);
             }
             COMPILE::JS
             {
@@ -279,7 +279,7 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawRoundRect(x, y, width, height, radiusX, radiusY);
+                displayObject.flashgraphics.drawRoundRect(x, y, width, height, radiusX, radiusY);
             }
             COMPILE::JS
             {
@@ -315,7 +315,7 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawRect(x, y, width, height);
+                displayObject.flashgraphics.drawRect(x, y, width, height);
             }
             COMPILE::JS
             {
@@ -346,7 +346,7 @@ package mx.display
         {
             COMPILE::SWF
             {
-                displayObject.graphics.drawCircle(x, y, radius);
+                displayObject.flashgraphics.drawCircle(x, y, radius);
             }
             COMPILE::JS
             {
