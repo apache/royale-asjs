@@ -736,6 +736,12 @@ public class UIComponent extends UIBase
             return _graphics;
         }            
             
+        COMPILE::SWF
+        public function get flashgraphics():flash.display.Graphics
+        {
+            return super.graphics;
+        }            
+        
     COMPILE::JS{
 	private var _mask:UIComponent;
 		 public function set mask(value:UIComponent):void
@@ -1903,14 +1909,20 @@ COMPILE::JS
         _mxmlDocument = value;
     }
     
+    /**
+     * If the component is going to be used in an absolute positioning layout
+     */
+    COMPILE::JS
+    protected var isAbsolute:Boolean = true;
     
     override public function addedToParent():void
     {
         COMPILE::JS
         {
-            // Flex layouts don't use percentages the way the browser
-            // does, so we have to absolute position everything.
-            element.style.position = "absolute";
+            if (isAbsolute)
+                // Flex layouts don't use percentages the way the browser
+                // does, so we have to absolute position everything.
+                element.style.position = "absolute";
         }
         super.addedToParent();
         

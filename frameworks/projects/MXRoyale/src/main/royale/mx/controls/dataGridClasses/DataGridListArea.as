@@ -16,24 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads
+
+package mx.controls.dataGridClasses
 {
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IUIBase;
-	
-	/**
-	 *  The IDataGridView interface marks as a component as being the bead that
-	 *  can create the visual pieces for a org.apache.royale.html.DataGrid. 
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
-	 */
-	public interface IDataGridView extends IBeadView
-	{
-		function get columnLists():Array;
-		function get listArea():IUIBase;
-		function get header():IUIBase;
-	}
+    import mx.core.Container;
+
+    public class DataGridListArea extends Container
+    {
+        public function DataGridListArea()
+        {
+            super();
+            COMPILE::JS
+            {
+                typeNames = 'Container DataGridListArea';
+            }
+                
+        }
+    }
+
 }

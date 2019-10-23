@@ -150,6 +150,7 @@ Container
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.BasicLayout");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	align-items: flex-start;
 }
 
 DataGrid
@@ -159,12 +160,29 @@ DataGrid
 	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
-	columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
+	columnClass: ClassReference("mx.controls.dataGridClasses.DataGridColumnList");
+	columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar");
+	columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	listAreaClass: ClassReference("mx.controls.dataGridClasses.DataGridListArea");
 	
 	background-color: #FFFFFF;
 	border: 1px solid #222222;
 	width: 200px;
 	height: 200px;
+}
+
+DataGridColumnList {
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	border-style: none;
+	background-color: #FFFFFF;
+}
+
+DataGridListArea {
+	background-color: #FFFFFF;
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	flex-grow: 1;
 }
 
 DateChooser 
@@ -214,6 +232,15 @@ List
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+ListItemRenderer
+{
+	padding-top: 4px;
+	padding-bottom: 4px;
+	flex-shrink: 0;
+	flex-grow: 1;
+	cursor: pointer;
 }
 
 MenuBar {

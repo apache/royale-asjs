@@ -160,6 +160,8 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridListArea; AdvancedDataGridListArea;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController; AdvancedDataGridSingleSelectionMouseController;
+    import mx.controls.dataGridClasses.DataGridColumnList; DataGridColumnList;
+    import mx.controls.dataGridClasses.DataGridListArea; DataGridListArea;
     import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
     import mx.controls.beads.DataGridView; DataGridView;
     import mx.controls.beads.layouts.AdvancedDataGridLayout; AdvancedDataGridLayout;

@@ -23,15 +23,16 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
+    import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.debugging.assert;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.Container;
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.html.supportClasses.IDataGridColumnList;
@@ -65,7 +66,7 @@ package org.apache.royale.html.beads
 			}
 
 			private var _header:DataGridButtonBar;
-			private var _listArea:Container;
+			private var _listArea:IUIBase;
 
 			private var _lists:Array;
 
@@ -81,7 +82,7 @@ package org.apache.royale.html.beads
 			 * The area used to hold the columns
 			 *
 			 */
-			public function get listArea():Container
+			public function get listArea():IUIBase
 			{
 				return _listArea;
 			}
@@ -106,6 +107,8 @@ package org.apache.royale.html.beads
 			 * @royaleignorecoercion org.apache.royale.core.IBead
 			 * @royaleignorecoercion org.apache.royale.core.IBeadModel
 			 * @royaleignorecoercion org.apache.royale.core.IChild
+			 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+			 * @royaleignorecoercion org.apache.royale.core.IUIBase
 			 * @royaleignorecoercion org.apache.royale.html.DataGrid
 			 */
 			override protected function handleInitComplete(event:Event):void
@@ -128,8 +131,8 @@ package org.apache.royale.html.beads
 
                 var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
                 assert(listAreaClass != null,"listAreaClass for DataGrid must be set!")
-				_listArea = new listAreaClass() as DataGridListArea;
-				_listArea.percentWidth = 100;
+				_listArea = new listAreaClass() as IUIBase;
+				(_listArea as ILayoutChild).percentWidth = 100;
 
 				createLists();
 
@@ -218,6 +221,7 @@ package org.apache.royale.html.beads
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
 			 * @royaleignorecoercion org.apache.royale.core.IBead
 			 * @royaleignorecoercion org.apache.royale.core.IChild
+			 * @royaleignorecoercion org.apache.royale.core.IParent
 			 * @royaleignorecoercion org.apache.royale.core.IDataGrid
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 			 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
@@ -261,7 +265,7 @@ package org.apache.royale.html.beads
 					list.addEventListener('change',handleColumnListChange);
 					list.addBead(presentationModel as IBead);
 
-					_listArea.addElement(list as IChild);
+					(_listArea as IParent).addElement(list as IChild);
 					_lists.push(list);
 				}
 

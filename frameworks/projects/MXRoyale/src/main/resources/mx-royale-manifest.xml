@@ -27,6 +27,8 @@
   <component id="ComboBox" class="mx.controls.ComboBox" />
   <component id="DataGrid" class="mx.controls.DataGrid" />
   <component id="DataGridColumn" class="mx.controls.dataGridClasses.DataGridColumn" />
+  <component id="DataGridColumnList" class="mx.controls.dataGridClasses.DataGridColumnList" />
+  <component id="DataGridListArea" class="mx.controls.dataGridClasses.DataGridListArea" />
 	<component id="DateChooser" class="mx.controls.DateChooser" />
 	<component id="Image" class="mx.controls.Image" />
 	<component id="Label" class="mx.controls.Label" />
