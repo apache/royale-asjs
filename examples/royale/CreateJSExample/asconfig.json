@@ -26,6 +26,6 @@
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "src/main/royale/DataBindingExample.mxml"
+        "src/main/royale/CreateJSExample.mxml"
     ]
 }
