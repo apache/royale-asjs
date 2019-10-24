@@ -22,8 +22,10 @@ package mx.controls.beads
     {
         import flash.display.Sprite;
     }
+    import org.apache.royale.html.Button;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.html.beads.DateFieldView;
+    import mx.controls.TextInput;
 	
     /**
      *  The NumericStepperView class overrides the Basic
@@ -44,6 +46,16 @@ package mx.controls.beads
                 var host:Sprite = getHost() as Sprite;
                 host.stage.focus = host;
             }
+        }
+        
+        override public function set strand(value:IStrand):void
+        {
+            _textInput = new TextInput();
+            COMPILE::JS
+            {
+                (_textInput as TextInput).isAbsolute = false;
+            }
+            super.strand = value;
         }
 
 	}

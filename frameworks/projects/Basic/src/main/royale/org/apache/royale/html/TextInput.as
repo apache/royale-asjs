@@ -18,6 +18,7 @@
 package org.apache.royale.html
 {
 	import org.apache.royale.core.ITextModel;
+    import org.apache.royale.core.ITextInput;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
     COMPILE::JS
@@ -47,7 +48,7 @@ package org.apache.royale.html
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class TextInput extends UIBase
+	public class TextInput extends UIBase implements ITextInput
 	{
         /**
          *  Constructor.

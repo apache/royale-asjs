@@ -26,6 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ITextInput;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -69,7 +70,7 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		private var _textInput:TextInput;
+		protected var _textInput:ITextInput;
 		private var _button:TextButton;
 
 		/**
@@ -118,7 +119,8 @@ package org.apache.royale.html.beads
 		{
 			super.strand = value;
 
-			_textInput = new TextInput();
+            if (!_textInput)
+    			_textInput = new TextInput();
 			getHost().addElement(_textInput);
 			_textInput.width = 100;
 			_textInput.height = 18;

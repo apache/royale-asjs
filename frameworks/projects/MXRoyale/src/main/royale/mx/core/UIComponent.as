@@ -1913,7 +1913,7 @@ COMPILE::JS
      * If the component is going to be used in an absolute positioning layout
      */
     COMPILE::JS
-    protected var isAbsolute:Boolean = true;
+    public var isAbsolute:Boolean = true;
     
     override public function addedToParent():void
     {

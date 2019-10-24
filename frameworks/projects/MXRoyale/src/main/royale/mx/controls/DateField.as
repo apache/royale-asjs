@@ -49,7 +49,8 @@ import mx.utils.ObjectUtil;
 use namespace mx_internal;
 
 import org.apache.royale.core.IDateChooserModel;
-import org.apache.royale.html.TextInput;
+import org.apache.royale.core.IUIBase;
+import mx.controls.TextInput;
 
 //--------------------------------------
 //  Events
@@ -2224,9 +2225,20 @@ public class DateField extends ComboBase
         super.commitProperties();
     } */
 
-    /**
-     *  @private
-     */
+    override public function get measuredHeight():Number
+    {
+        _measuredHeight = Math.max(((view as DateFieldView).textInputField as TextInput).height,
+            ((view as DateFieldView).popupButton as IUIBase).height);
+        return _measuredHeight;
+    }
+    
+    override public function get measuredWidth():Number
+    {
+        _measuredWidth = ((view as DateFieldView).textInputField as TextInput).width +
+            ((view as DateFieldView).popupButton as IUIBase).width;        
+        return _measuredWidth;
+    }
+    
     /* override protected function measure():void
     {
         // skip base class, we do our own calculation here
@@ -2869,7 +2881,7 @@ public class DateField extends ComboBase
      */
     override public function get text():String
     {
-        var s:String = ((view as DateFieldView).textInputField as org.apache.royale.html.TextInput).text;
+        var s:String = ((view as DateFieldView).textInputField as TextInput).text;
         return s == null ? "" : s;
     }
    
