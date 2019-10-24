@@ -170,7 +170,7 @@ package org.apache.royale.html.beads
 			var host:DataGrid = _strand as DataGrid;
 			var view:IDataGridView = host.view as IDataGridView;
 
-			_listArea = view.listArea;
+			_listArea = view.listArea as UIBase;
 
 			if (allowDrag) {
 				dragSourceBead = new SingleSelectionDragSourceBead();
