@@ -102,6 +102,8 @@ package org.apache.royale.core
             if (!sawInitComplete)
                 return;
             
+            transitionEffects = [];
+            
             var doc:IStatesObject = _strand as IStatesObject;
             var transitions:Array = doc.transitions;
             if (transitions && transitions.length > 0)
@@ -112,12 +114,12 @@ package org.apache.royale.core
                     {
                         if (t.toState == "*" || t.toState == event.newValue)
                         {
-                            transitionEffects = t.effects.slice();
-                            for each (var e:Effect in transitionEffects)
+                            var theseEffects:Array = t.effects.slice();
+                            for each (var e:Effect in theseEffects)
                             {
                                 e.captureStartValues();
                             }
-                            break;
+                            transitionEffects = transitionEffects.concat.apply(transitionEffects, theseEffects);
                         }
                     }
                 }
