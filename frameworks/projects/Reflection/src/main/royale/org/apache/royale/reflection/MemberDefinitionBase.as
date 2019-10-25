@@ -32,9 +32,31 @@ package org.apache.royale.reflection
 	{
         public function MemberDefinitionBase(name:String, isStatic:Boolean, owner:TypeDefinition, rawData:Object = null)
         {
+            COMPILE::JS{
+                var nsCheck:int = name.lastIndexOf('::');
+                if (nsCheck != -1) {
+                    _uri = name.substr(0, nsCheck);
+                    name = name.substr(nsCheck + 2);
+                }
+            }
+           
             super(name, rawData);
             _isStatic = isStatic;
             _owner = owner;
+        }
+        
+        COMPILE::JS
+        private var _uri:String = '';
+        COMPILE::SWF
+        private var _uri:String;
+        public function get uri():String{
+            COMPILE::SWF
+            {
+                if (_uri == null) {
+                    _uri = rawData.@uri.toString();
+                }
+            }
+            return _uri;
         }
 
         private var _isStatic:Boolean;

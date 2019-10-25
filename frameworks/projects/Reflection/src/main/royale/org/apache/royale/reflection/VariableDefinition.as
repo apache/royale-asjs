@@ -63,7 +63,9 @@ package org.apache.royale.reflection
 		public function get getValue():Function{
             if (_getter != null) return _getter;
             COMPILE::SWF{
-				var fieldName:String = this.name;
+				var fieldName:Object = this.name;
+				var uri:String = this.uri;
+				if (uri) fieldName = new QName(uri,fieldName);
 				var cl:Class = flash.utils.getDefinitionByName(owner.qualifiedName) as Class;
                 if (isStatic) {
 					_getter = function():* {return cl[fieldName]}
@@ -101,7 +103,9 @@ package org.apache.royale.reflection
 		public function get setValue():Function{
 			if (_setter != null) return _setter;
 			COMPILE::SWF{
-				var fieldName:String = this.name;
+				var fieldName:Object = this.name;
+				var uri:String = this.uri;
+				if (uri) fieldName = new QName(uri,fieldName);
 				var cl:Class = flash.utils.getDefinitionByName(owner.qualifiedName) as Class;
 				if (isStatic) {
 					_setter = function(value:*):* {
@@ -143,7 +147,9 @@ package org.apache.royale.reflection
          * A string representation of this variable definition
          */
         public function toString():String {
-            var s:String = "variable: '"+name+"', type:"+type.qualifiedName;
+			var uriNS:String = uri;
+			if (uriNS) uriNS = ', uri=\''+ uriNS +'\'';
+            var s:String = "variable: '"+name+"'" + uriNS + ", type:"+type.qualifiedName;
             var meta:Array = metadata;
             var i:uint;
             var l:uint = meta.length;

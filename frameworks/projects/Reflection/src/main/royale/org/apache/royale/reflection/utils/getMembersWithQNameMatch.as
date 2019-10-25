@@ -22,12 +22,11 @@ package org.apache.royale.reflection.utils
 	
 	
     /**
-     *  A utility method to retrieve all members with a name that matches via the matcher argument
+     *  A utility method to retrieve members with a name that matches via the matcher QName argument
 	 *  
      *  @param memberCollection the collection (an Array) of member definitions to check
-	 *  @param matcher *must be* either a String or a Regexp instance to use for testing
+	 *  @param matcher a QName to check against definitions. An undefined uri represents any namespace, a '*' represents any local name.
 	 *  @param collate an optional array to collate into, if passed externally
-	 *  @param includeCustomNamespaces set to true if you wish to include members with custom namespaces. defaults to false.
 	 *  
 	 *  @returns an Array (the collate parameter if it was used, otherwise a new Array)
      *
@@ -38,19 +37,29 @@ package org.apache.royale.reflection.utils
 	 *  
 	 *  @royaleignorecoercion RegExp
      */
-    public function getMembersWithNameMatch(memberCollection:Array,  matcher:Object = null, collate:Array = null, includeCustomNamespaces:Boolean = false):Array
+    public function getMembersWithQNameMatch(memberCollection:Array, matcher:QName = null, collate:Array = null):Array
 	{
         var ret:Array = collate ? collate : [];
-		var regexp:RegExp;
-		if (matcher is String) {
-			regexp = new RegExp('^' + matcher + '$');
-		} else {
-			regexp = matcher as RegExp;
+		if (matcher == null) {
+			matcher = new QName('*');
 		}
 		if (memberCollection) {
 			for each(var item:MemberDefinitionBase in memberCollection) {
-				if (item.uri && !includeCustomNamespaces) continue;
-				if (!regexp || regexp.test(item.name)) ret.push(item);
+				if (!matcher.uri) {
+					if (matcher.uri == '') {
+						if (item.uri =='') {
+							if (matcher.localName == '*' || matcher.localName == item.name) ret.push(item);
+						}
+					} else {
+						//any uri
+						if (matcher.localName == '*' || matcher.localName == item.name) ret.push(item);
+					}
+				} else {
+					//specific uri
+					if (matcher.uri == item.uri) {
+						if (matcher.localName == '*' || matcher.localName == item.name) ret.push(item);
+					}
+				}
 			}
 		}
 

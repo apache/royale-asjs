@@ -18,38 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests
 {
-    import flexUnitTests.reflection.*;
+    import flexUnitTests.mxroyale.*
     
     [Suite]
     [RunWith("org.flexunit.runners.Suite")]
     /**
      * @royalesuppresspublicvarwarning
      */
-    public class ReflectionTester
+    public class MXRoyaleTester
     {
-        public function ReflectionTester()
+        public function MXRoyaleTester()
         {
-            // see notes in CoreTester
-           /* var arr:Array = [
-                ReflectionTesterTest,
-                ReflectionTesterTestUseCache,
-                ReflectionTesterTestAlias,
-                ReflectionTesterTestDynamic,
-                ReflectionTesterNativeTypes
-            ];*/
+            // for JS, force-link these classes in the output
+//            var arr:Array = [XMLTesterGeneralTest, XMLTesterStringifyTest, XMLListTesterGeneralTest, XMLNamespaceTest];
         }
         
-        public var reflectionTesterCacheTest:ReflectionTesterTestUseCache;
-        public var reflectionTesterTest:ReflectionTesterTest;
         
-        public var reflectionTesterAliasTest:ReflectionTesterTestAlias;
-        
-        
-        public var reflectionTesterDynamicTest:ReflectionTesterTestDynamic;
-    
-        public var reflectionTesterNativeTypes:ReflectionTesterNativeTypes;
-    
-        public var reflectionTesterTestEdgeCases:ReflectionTesterTestEdgeCases;
-        
+        public var objectUtilTest:ObjectUtilTest;
+       
     }
 }

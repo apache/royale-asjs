@@ -201,8 +201,8 @@ package flexUnitTests.language
             assertEquals(check,'get and set from checkArrayLikeFunc', 'unexpected get/set result');
             assertEquals(arrayList.getItemAt(0),'get and set from checkArrayLikeFunc', 'unexpected get/set result');
         }
-        
-        
+    
+        [Test]
         public function testBinaryData():void{
             var bd:BinaryData = new BinaryData();
             bd.length = 100;

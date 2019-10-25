@@ -16,26 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.mxroyale.support
 {
-	//test groups
-	import flexUnitTests.*;
 
-
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					];
-		}
-	}
+    
+    public class TestClass4 extends TestClass3
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing reflection into it
+        
+        public function TestClass4()
+        {
+        
+        }
+        
+        
+    }
 }

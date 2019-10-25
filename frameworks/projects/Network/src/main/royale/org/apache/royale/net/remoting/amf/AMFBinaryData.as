@@ -167,6 +167,9 @@ import org.apache.royale.utils.net.IDataOutput;
 
 
 COMPILE::JS
+/**
+ * @royalesuppressexport
+ */
 class SerializationContext extends BinaryData  implements IDataInput, IDataOutput, IDynamicPropertyOutput {
 	import goog.DEBUG;
 	
@@ -490,6 +493,8 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		for (fieldName in fieldSet) {
 			//exclude all static props
 			if (fieldName.charAt(0) == '|') continue;
+			//exclude all non-public namespaces (identified by '::' between uri and name)
+			if (fieldName.indexOf('::') != -1) continue;
 			var field:Object = fieldSet[fieldName];
 			exclude = false;
 			if (asAccessors) {
@@ -1258,6 +1263,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 COMPILE::JS
 /**
  *  @royalesuppresspublicvarwarning
+ *  @royalesuppressexport
  */
 class Traits {
 	import goog.DEBUG;

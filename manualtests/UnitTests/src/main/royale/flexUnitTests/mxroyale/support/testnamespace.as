@@ -16,26 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.mxroyale.support
 {
-	//test groups
-	import flexUnitTests.*;
+    
+    
 
-
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					];
-		}
-	}
+    public namespace testnamespace = 'http://testnamespace.com/mxroyale';
+   
 }

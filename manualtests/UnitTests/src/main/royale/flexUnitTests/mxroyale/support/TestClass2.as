@@ -16,40 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package flexUnitTests.mxroyale.support
 {
-    import flexUnitTests.reflection.*;
+
     
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    /**
-     * @royalesuppresspublicvarwarning
-     */
-    public class ReflectionTester
+    public class TestClass2 extends TestClass1
     {
-        public function ReflectionTester()
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing against it
+        
+        public function TestClass2()
         {
-            // see notes in CoreTester
-           /* var arr:Array = [
-                ReflectionTesterTest,
-                ReflectionTesterTestUseCache,
-                ReflectionTesterTestAlias,
-                ReflectionTesterTestDynamic,
-                ReflectionTesterNativeTypes
-            ];*/
+        
+        }
+    
+       public function get something():Boolean{
+            return true;
         }
         
-        public var reflectionTesterCacheTest:ReflectionTesterTestUseCache;
-        public var reflectionTesterTest:ReflectionTesterTest;
+        /*override internal function set something(value:Boolean):void{
         
-        public var reflectionTesterAliasTest:ReflectionTesterTestAlias;
+        }*/
+      /*  private function set something(value:Boolean):void{
         
-        
-        public var reflectionTesterDynamicTest:ReflectionTesterTestDynamic;
-    
-        public var reflectionTesterNativeTypes:ReflectionTesterNativeTypes;
-    
-        public var reflectionTesterTestEdgeCases:ReflectionTesterTestEdgeCases;
-        
+        }*/
+       
     }
 }

@@ -39,7 +39,7 @@ package org.apache.royale.reflection {
 	 *          detected properties.
 	 * @param checkFirst an optional check to verify that the inspect parameter is dynamic
 	 *        before inspecting it for dynamic properties. This should normally be left at its default value of true.
-	 *        If it is know that the object is dynamic before calling this method, setting this to false
+	 *        If it is known that the object is dynamic before calling this method, setting this to false
 	 *        could improve performance in performance-sensitive code.
 	 *        The results of calling this method on non-dynamic objects may be less reliable or less consistent
 	 *        across target platforms if checkFirst is false
