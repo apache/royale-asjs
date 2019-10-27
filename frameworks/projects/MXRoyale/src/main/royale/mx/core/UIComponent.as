@@ -4996,20 +4996,19 @@ COMPILE::JS
     {
         COMPILE::JS
         {
-        var oldValue:Boolean = positioner.style.display !== 'none';
-        if (value !== oldValue) 
-        {
-            if (!value) 
+            var oldValue:Boolean = (!positioner.style.visibility) ||
+                                    positioner.style.visibility == 'visible';
+            if (Boolean(value) !== oldValue)
             {
-                displayStyleForLayout = positioner.style.display;
-                positioner.style.display = 'none';
-            } 
-            else 
-            {
-                if (displayStyleForLayout != null)
-                    positioner.style.display = displayStyleForLayout;
+                if (!value) 
+                {
+                    positioner.style.visibility = 'hidden';
+                } 
+                else 
+                {
+                    positioner.style.visibility = 'visible';
+                }
             }
-        }
         }
         COMPILE::SWF
         {
