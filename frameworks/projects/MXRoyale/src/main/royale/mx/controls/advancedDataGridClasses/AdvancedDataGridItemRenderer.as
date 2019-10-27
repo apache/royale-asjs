@@ -27,7 +27,10 @@ import flash.utils.getQualifiedClassName;
 import flash.utils.getQualifiedSuperclassName; */
 
 //import mx.controls.AdvancedDataGrid;
-import mx.controls.listClasses.BaseListData;
+    import mx.controls.AdvancedDataGrid;
+    import mx.controls.beads.models.DataGridICollectionViewModel;
+    import mx.controls.dataGridClasses.DataGridColumn;
+    import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.core.IFlexDisplayObject;
@@ -128,9 +131,20 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
      */
     override public function set data(value:Object):void
     {
-        super.data = value;
-        
         var treeListData:AdvancedDataGridListData = listData as AdvancedDataGridListData;
+        var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
+        var adgModel:DataGridICollectionViewModel = owner.getBeadByType(DataGridICollectionViewModel) as DataGridICollectionViewModel;
+        var column:DataGridColumn = adgModel.columns[treeListData.columnIndex];
+
+        if (column.labelFunction)
+        {
+            super.data = column.labelFunction(value, column);
+        }
+        else
+        {
+            super.data = value;
+        }
+
         var indentSpace:String = "    ";
         var extraSpace:String = " ";
         
@@ -154,6 +168,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         COMPILE::JS {
             element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
         }
+
         this.text = indent + this.text;
     }
 

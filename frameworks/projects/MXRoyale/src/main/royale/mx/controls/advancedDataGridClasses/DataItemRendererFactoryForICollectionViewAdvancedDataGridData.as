@@ -22,7 +22,8 @@ package mx.controls.advancedDataGridClasses
 	import mx.collections.IViewCursor;
     import mx.collections.CursorBookmark;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
-	import mx.core.IUIComponent;
+    import mx.controls.beads.models.DataGridColumnICollectionViewModel;
+    import mx.core.IUIComponent;
 	
 	import org.apache.royale.collections.FlattenedList;
 	import org.apache.royale.collections.HierarchicalData;
@@ -141,23 +142,26 @@ package mx.controls.advancedDataGridClasses
 		 */
 		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
 		{
-            if (!(_strand as AdvancedDataGridColumnList).adg) return;
-            
-			var depth:int = (_strand as AdvancedDataGridColumnList).adg.getDepth(data);
-			var isOpen:Boolean = (_strand as AdvancedDataGridColumnList).adg.isItemOpen(data);
-			var hasChildren:Boolean = (_strand as AdvancedDataGridColumnList).adg.hasChildren(data);
-            var listID:String = (_strand as AdvancedDataGridColumnList).id;
-            var firstColumn:Boolean =  listID == "dataGridColumn0";
-			
+            var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
+
+            if (!adgColumnList.adg) return;
+
+            var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
+
+			var depth:int = adgColumnList.adg.getDepth(data);
+			var isOpen:Boolean = adgColumnList.adg.isItemOpen(data);
+			var hasChildren:Boolean = adgColumnList.adg.hasChildren(data);
+            var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
+
 			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", firstColumn ? 0 : 1, "", (_strand as AdvancedDataGridColumnList).adg, index);
+			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", adgColumnListModel.columnIndex, "", adgColumnList.adg, index);
 			treeListData.depth = depth;
 			treeListData.open = isOpen;
 			treeListData.hasChildren = hasChildren;
 			
 			ir.listData = treeListData;
-            if (firstColumn && (_strand as AdvancedDataGridColumnList).adg.groupLabelField)
-                ir.labelField = (_strand as AdvancedDataGridColumnList).adg.groupLabelField;
+            if (firstColumn && adgColumnList.adg.groupLabelField)
+                ir.labelField = adgColumnList.adg.groupLabelField;
 			
 			ir.data = data;
             ir.index = index;
