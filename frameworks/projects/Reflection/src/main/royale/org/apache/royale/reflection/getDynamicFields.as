@@ -43,11 +43,14 @@ package org.apache.royale.reflection {
 	 *        could improve performance in performance-sensitive code.
 	 *        The results of calling this method on non-dynamic objects may be less reliable or less consistent
 	 *        across target platforms if checkFirst is false
+	 * @param numericFields if true, numeric fields will be returned as numeric values
 	 *
 	 * @return the dynamic fields as Strings in an Array
+	 *
+	 * @royaleignorecoercion Map
 	 */
 	COMPILE::JS
-	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true):Array {
+	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true, numericFields:Boolean = false):Array {
 		var arr:Array;
 		var i:uint = 0;
 		var assumeDynamic:Boolean = checkFirst ? isDynamicObject(inspect) : true;
@@ -150,6 +153,15 @@ package org.apache.royale.reflection {
 						while (l--) {
 							excludeFields.push(instanceExcludes[l]);
 						}
+					} else {
+						if (inspect.constructor == Map) {
+							arr = [];
+							(inspect as Map).forEach(
+								function(value:Object, key:Object, inst:Map):void{
+									arr.push(key);
+								}
+							)
+						}
 					}
 					
 					if (excludeFields) {
@@ -166,6 +178,14 @@ package org.apache.royale.reflection {
 				if (checkIncludes) {
 					arr = arr.filter(includePredicate);
 				}
+				if (numericFields) {
+				 	//arr.forEach(numericise)
+					arr.forEach(function (value:String, index:uint, array:Array):void{
+						var numVal:Number = Number(value);
+						if (''+numVal == value) array[index]=numVal;
+					})
+					
+				}
 		} else {
 			//it's not considered dynamic...
 			//so assume zero dynamic fields (even if technically in js
@@ -177,17 +197,23 @@ package org.apache.royale.reflection {
 	}
 	
 	COMPILE::SWF
-	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true):Array {
+	public function getDynamicFields(inspect:Object, includePredicate:Function = null, checkFirst:Boolean = true, numericFields:Boolean = false):Array {
 		
 		var i:uint = 0;
 		var assumeDynamic:Boolean = checkFirst ? isDynamicObject(inspect) : true;
 		var checkIncludes:Boolean = includePredicate != null;
-		var prop:String;
 		var arr:Array = [];
 		if (assumeDynamic) {
-			for (prop in inspect) {
-				if (!checkIncludes || includePredicate(prop))
-					arr[i++] = prop;
+			if (numericFields) {
+				for (var propObj:Object in inspect) {
+					if (!checkIncludes || includePredicate(propObj))
+						arr[i++] = propObj;
+				}
+			} else {
+				for (var prop:String in inspect) {
+					if (!checkIncludes || includePredicate(prop))
+						arr[i++] = prop;
+				}
 			}
 		}
 		
@@ -195,3 +221,11 @@ package org.apache.royale.reflection {
 	}
 	
 }
+
+
+/*COMPILE::JS{
+	function numericise(value:String, index:uint, array:Array):void{
+		var numVal:Number = Number(value);
+		if (''+numVal == value) array[index]=numVal;
+	}
+}*/

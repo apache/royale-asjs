@@ -24,7 +24,7 @@ package flexUnitTests.mxroyale
     
     import org.apache.royale.test.asserts.*;
     import flexUnitTests.mxroyale.support.*;
-    import testshim.RoyaleUnitTestRunner;
+    //import testshim.RoyaleUnitTestRunner;
     
     
     COMPILE::SWF
@@ -357,12 +357,12 @@ package flexUnitTests.mxroyale
         }
     
     
-        [Test]
+        /*[Test]
         public function testCloning():void{
             var item:TestClass6 = new TestClass6();
         
             
-        }
+        }*/
         
     }
 }

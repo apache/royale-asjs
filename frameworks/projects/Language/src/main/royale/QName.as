@@ -60,11 +60,14 @@ package
 		 * a QName instance
 		 */
 		public static function getAsObjectAccessFormat(uri:String, localName:String):String{
-			var uriVal:String = uri ? uri : "*";
-			uriVal = uriVal.replace(/:/g, "_");
-			uriVal = uriVal.replace(/\./g, "_");
-			uriVal = uriVal.replace(/\//g, "$");
-			return uriVal + "__" + localName;
+			var uriVal:String = uri;
+			if (uriVal) {
+				uriVal = uriVal.replace(/:/g, "_");
+				uriVal = uriVal.replace(/\./g, "_");
+				uriVal = uriVal.replace(/\//g, "$");
+				return uriVal + "__" + localName;
+			}
+			return localName;
 		}
 		
 		

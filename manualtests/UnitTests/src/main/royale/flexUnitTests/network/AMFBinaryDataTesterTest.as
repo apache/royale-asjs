@@ -545,9 +545,13 @@ package flexUnitTests.network
             ba.writeObject(test);
             ba.position = 0;
             assertEquals(ba.length, 50, 'unexpected serialized content with custom namespaces')
+            //cover variation in order
+            const validOptions:Array = [
+                    '0a23010b6d79566172156d794163636573736f7206177075626c69634d79566172061f7075626c6963206163636573736f72',
+                    '0a2301156d794163636573736f720b6d79566172061f7075626c6963206163636573736f7206177075626c69634d79566172'
+            ];
             
-            assertEquals(getBytesOut(ba),
-                    '0a2301156d794163636573736f720b6d79566172061f7075626c6963206163636573736f7206177075626c69634d79566172','unexpected byte content with custom namespace content')
+            assertTrue(validOptions.indexOf(getBytesOut(ba)) != -1, 'unexpected byte content with custom namespace content');
             
             var restored:Object = ba.readObject();
             

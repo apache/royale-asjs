@@ -16,28 +16,11 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package flexUnitTests.mxroyale.support
 {
-    import flexUnitTests.mxroyale.*
-    
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    /**
-     * @royalesuppresspublicvarwarning
-     */
-    public class MXRoyaleTester
-    {
-        public function MXRoyaleTester()
-        {
-           }
-        
-        
-        public var objectUtilTest:ObjectUtilTest;
-        public var flexSDK_ObjectUtilTests:FlexSDK_ObjectUtil_Tests;
-        public var flexSDK_ObjectUtil_FLEX_34852_Tests:FlexSDK_ObjectUtil_FLEX_34852_Tests;
-        public var flexSDK_ObjectUtil_Compare_Tests:FlexSDK_ObjectUtil_Compare_Tests;
-        
-    }
     
     
+
+    public namespace testnamespace = 'http://testnamespace.com/mxroyale';
+   
 }

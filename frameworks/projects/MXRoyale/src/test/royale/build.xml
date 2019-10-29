@@ -19,7 +19,7 @@
 -->
 
 
-<project name="XML.test" default="main" basedir=".">
+<project name="MXRoyale.test" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../../../../.."/>
     
     <property file="${ROYALE_HOME}/env.properties"/>
@@ -28,7 +28,7 @@
     <property file="${ROYALE_HOME}/build.properties"/>
     <property name="ROYALE_HOME" value="${env.ROYALE_HOME}"/>
     <property name="ROYALE_SWF_COMPILER_HOME" value="${env.ROYALE_SWF_COMPILER_HOME}"/>
-    <property name="target.name" value="XML-${release.version}.swc" />
+    <property name="target.name" value="MXRoyale-${release.version}.swc" />
 
     <property name="report.dir" value="${basedir}/out" />
 
@@ -83,7 +83,11 @@
             <jvmarg value="-Xnoagent" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8763,server=y,suspend=y" />
              -->
-            <arg value="-debug" />
+            <!--<arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css" />
+            <arg value="-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-swf.swc:defaults.css" />-->
+            <arg value="-compiler.exclude-defaults-css-files=MXRoyale.swc:defaults.css" />
+            <!-- this swf test is not run in a debug build, because there are too many strange metadata tags added-->
+            <!--<arg value="-debug" />-->
             <arg value="-compiler.targets=SWF" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
             <arg value="+env.PLAYERGLOBAL_HOME=${env.PLAYERGLOBAL_HOME}" />
@@ -99,7 +103,7 @@
         <condition property="command" value="${env.FLASHPLAYER_DEBUGGER}" else="">
             <isset property="env.FLASHPLAYER_DEBUGGER" />
         </condition>
-        <royaleunit
+		<royaleunit
             command="${command}"
             swf="${basedir}/FlexUnitRoyaleApplication.swf"
 		    workingDir="${basedir}"

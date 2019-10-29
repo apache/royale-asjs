@@ -21,7 +21,7 @@ package flexUnitTests
     import flexUnitTests.mxroyale.*
     
     [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
+    [RunWith("org.apache.royale.test.runners.SuiteRunner")]
     /**
      * @royalesuppresspublicvarwarning
      */

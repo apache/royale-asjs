@@ -824,7 +824,7 @@ public class ObjectUtil
     }
     /**
      *  @royaleignorecoercion WeakMap
-     *
+     *  @royaleignorecoercion BinaryData
      */
     private static function internalCompare(a:Object, b:Object,
                                             currentDepth:int, desiredDepth:int,
@@ -869,7 +869,12 @@ public class ObjectUtil
 
                 case "object":
                     var newDepth:int = desiredDepth > 0 ? desiredDepth -1 : desiredDepth;
-
+                    COMPILE::SWF{
+                        const byteArrayClass:Class = flash.utils.ByteArray;
+                    }
+                    COMPILE::JS{
+                        const byteArrayClass:Class = BinaryData;
+                    }
                     // refs help us avoid circular reference infinite recursion.
                     var aRef:Object = getRef(a,refs);
                     var bRef:Object = getRef(b,refs);
@@ -910,6 +915,50 @@ public class ObjectUtil
                     else if ((a is IList) && (b is IList))
                     {
                         result = listCompare(a as IList, b as IList, currentDepth, desiredDepth, refs);
+                    }
+                    else if ((a is byteArrayClass) && (b is byteArrayClass))
+                    {
+                        COMPILE::SWF{
+                            result = byteArrayCompare(a as flash.utils.ByteArray, b as flash.utils.ByteArray);
+                        }
+                        COMPILE::JS{
+                            result = byteArrayCompare(a as BinaryData, b as BinaryData);
+                        }
+                        
+                    }
+                    else if (getQualifiedClassName(a) == getQualifiedClassName(b))
+                    {
+                        var aProps:Array = getClassInfo(a).properties;
+                        var bProps:Array;
+    
+                        // if the objects are dynamic they could have different
+                        // # of properties and should be treated on that basis first
+                        var isObjectDynamic:Boolean = isDynamicObject(a);
+    
+                        // if it's dynamic, check to see that they have all the same properties
+                        if (isObjectDynamic)
+                        {
+                            bProps = getClassInfo(b).properties;
+                            result = arrayCompare(aProps, bProps, currentDepth, newDepth, refs);
+                            if (result != 0)
+                                return result;
+                        }
+    
+                        // now that we know we have the same properties, let's compare the values
+                        var propName:QName;
+                        var aProp:Object;
+                        var bProp:Object;
+                        for (var i:int = 0; i < aProps.length; i++)
+                        {
+                            propName = aProps[i];
+                            aProp = a[propName];
+                            bProp = b[propName];
+                            result = internalCompare(aProp, bProp, currentDepth+1, newDepth, refs);
+                            if (result != 0)
+                            {
+                                return result;
+                            }
+                        }
                     }
                     else
                     {
@@ -1618,7 +1667,7 @@ public class ObjectUtil
      */
     public static function getEnumerableProperties(object:Object):Array
     {
-        return getDynamicFields(object);
+        return getDynamicFields(object, null, true, true);
     }
 
 
@@ -1691,8 +1740,17 @@ public class ObjectUtil
 
         var result:* = obj;
         var i:int = -1;
-        while(++i < path.length && result)
-            result = result.hasOwnProperty(path[i]) ? result[path[i]] : undefined;
+        COMPILE::SWF{
+            while(++i < path.length && result)
+                result = result.hasOwnProperty(path[i]) ? result[path[i]] : undefined;
+        }
+        COMPILE::JS{
+            while(++i < path.length && result) {
+                //@todo: this works for public accessors, but need to use reflection here for safety (including vars)
+                result = path[i] in result ? result[path[i]] : undefined;
+            }
+            
+        }
 
         return result;
     }
@@ -1724,10 +1782,20 @@ public class ObjectUtil
             return false;
 
         var secondToLastLink:* = getValue(obj, path.slice(0, -1));
-        if(secondToLastLink && secondToLastLink.hasOwnProperty(path[path.length - 1]))
-        {
-            secondToLastLink[path[path.length - 1]] = newValue;
-            return true;
+        COMPILE::SWF{
+            if(secondToLastLink && secondToLastLink.hasOwnProperty(path[path.length - 1]))
+            {
+                secondToLastLink[path[path.length - 1]] = newValue;
+                return true;
+            }
+        }
+        COMPILE::JS{
+            //@todo: this works for public accessors, but need to use reflection here for safety (including vars)
+            if(secondToLastLink && (path[path.length - 1] in secondToLastLink))
+            {
+                secondToLastLink[path[path.length - 1]] = newValue;
+                return true;
+            }
         }
 
         return false;
