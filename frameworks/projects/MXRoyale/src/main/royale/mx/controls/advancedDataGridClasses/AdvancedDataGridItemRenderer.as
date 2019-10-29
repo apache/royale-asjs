@@ -136,14 +136,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         var adgModel:DataGridICollectionViewModel = owner.getBeadByType(DataGridICollectionViewModel) as DataGridICollectionViewModel;
         var column:DataGridColumn = adgModel.columns[treeListData.columnIndex];
 
-        if (column.labelFunction)
-        {
-            super.data = column.labelFunction(value, column);
-        }
-        else
-        {
-            super.data = value;
-        }
+        super.data = value;
 
         var indentSpace:String = "    ";
         var extraSpace:String = " ";
@@ -169,7 +162,14 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
         }
 
-        this.text = indent + this.text;
+        if (column.labelFunction)
+        {
+            this.text = column.labelFunction(value, column);
+        }
+        else
+        {
+            this.text = indent + this.text;
+        }
     }
 
     /**
