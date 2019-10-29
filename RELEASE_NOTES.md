@@ -1,3 +1,14 @@
+Apache Royale 0.9.7
+===================
+
+- Added 'URLVariables' emulation to Network library
+- Reflection support improved (supports access to custom namespaces)
+- Added a 'getTimer' emulation to Core library, similar to 'flash.utils.getTimer'
+- Added support for using Command pattern to Crux
+- added [RoyaleArrayLike] implementation support added to Royale Collections, and BinaryData
+- improvements to XML/E4X conformance, and memory footprint (tbc @harbs)
+- [add support for legacy HttpService decoding format](https://github.com/apache/royale-asjs/issues/466)
+
 Apache Royale 0.9.6
 ===================
 

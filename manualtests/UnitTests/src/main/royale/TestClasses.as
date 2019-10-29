@@ -27,13 +27,14 @@ package
 		
 		public static function get testClasses():Array {
 			return [
-						LanguageTester,
-						CoreTester,
-						ReflectionTester,
-						ObservedBugsTester,
-						GithubIssuesTester,
-						NetworkTester,
-						XMLTester
+				  LanguageTester
+					,CoreTester
+					,ReflectionTester
+					,ObservedBugsTester
+					,GithubIssuesTester
+					,NetworkTester
+					,XMLTester
+					,MXRoyaleTester
 					];
 		}
 	}

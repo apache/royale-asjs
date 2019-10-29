@@ -30,13 +30,13 @@ package flexUnitTests
         public function ReflectionTester()
         {
             // see notes in CoreTester
-            var arr:Array = [
+           /* var arr:Array = [
                 ReflectionTesterTest,
                 ReflectionTesterTestUseCache,
                 ReflectionTesterTestAlias,
                 ReflectionTesterTestDynamic,
                 ReflectionTesterNativeTypes
-            ];
+            ];*/
         }
         
         public var reflectionTesterCacheTest:ReflectionTesterTestUseCache;
@@ -48,5 +48,8 @@ package flexUnitTests
         public var reflectionTesterDynamicTest:ReflectionTesterTestDynamic;
     
         public var reflectionTesterNativeTypes:ReflectionTesterNativeTypes;
+    
+        public var reflectionTesterTestEdgeCases:ReflectionTesterTestEdgeCases;
+        
     }
 }

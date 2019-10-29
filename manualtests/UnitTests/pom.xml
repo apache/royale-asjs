@@ -60,6 +60,8 @@
 						-swf-version=30;
 						-js-default-initializers;
 						-source-map=true;
+						-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css;
+						-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-swf.swc:defaults.css;
 						-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta;
 						-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta;
 					</additionalCompilerOptions>
@@ -159,6 +161,20 @@
 			<version>${flash.version}</version>
 			<type>swc</type>
 			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.royale.framework</groupId>
+			<artifactId>MXRoyale</artifactId>
+			<version>0.9.7-SNAPSHOT</version>
+			<type>swc</type>
+			<classifier>swf</classifier>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.royale.framework</groupId>
+			<artifactId>MXRoyale</artifactId>
+			<version>0.9.7-SNAPSHOT</version>
+			<type>swc</type>
+			<classifier>js</classifier>
 		</dependency>
 		<dependency>
 			<groupId>org.apache.royale.framework</groupId>

@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.reflection
 {
+    COMPILE::JS{
+        import org.apache.royale.utils.Language;
+    }
     
     /**
      *  The description of a method inside a class or interface
@@ -76,10 +79,11 @@ package org.apache.royale.reflection
                 if (rawData.parameters != null) {
                     var data:Array = rawData.parameters();
                     var n:int = data.length;
-                    for (var i:int = 0; i < n; i++)
+                    for (var i:int = 0; i < n; i+=2)
                     {
-                        var item:Object = data[i];
-                        results.push(new ParameterDefinition(uint(item.index),item));
+                        var index:uint = (i*.5) + 1;
+                        var item:Object = {type:data[i], optional:data[i+1], index:index};
+                        results.push(new ParameterDefinition(index,item));
                     }
                 }
             }
@@ -102,6 +106,42 @@ package org.apache.royale.reflection
 
             return TypeDefinition.internalGetDefinition(returnType);
         }
+        
+        /**
+         * Provides easy access to the method described by this definition
+         * For instance member definitions it requires the instance to be passed as a single argument
+         * For static member definitions it requires no argument
+         *
+         * @param inst an instance of this definition's owner class - required argument if this definition is for instance scope
+         *
+         * @return a function reference to the method that this definition describes
+         */
+        public function getMethod(inst:Object=null):Function{
+            COMPILE::SWF{
+                var methodName:Object = this.name;
+                if (uri) methodName = new QName(uri, methodName);
+            }
+            COMPILE::JS{
+                var methodName:String = this.name;
+                var closureName:String = methodName;
+                if (uri) {
+                    closureName = uri+'::'+methodName; // same as QName instance toString()
+                    methodName = QName.getAsObjectAccessFormat(uri, methodName); // same as QName instance.objectAccessFormat();
+                }
+            }
+            const clazz:Class = getDefinitionByName(owner.qualifiedName);
+            if (isStatic) {
+                return clazz[methodName];
+            } else {
+                if (!inst || !(inst is clazz)) throw new Error('getMethod argument for instance MethodDefinition must be an instance of '+owner.qualifiedName);
+                COMPILE::SWF{
+                    return inst[methodName];
+                }
+                COMPILE::JS{
+                    return Language.closure(inst[methodName], inst, closureName);
+                }
+            }
+        }
 
         /**
          * A string representation of this method definition
@@ -109,7 +149,9 @@ package org.apache.royale.reflection
         public function toString():String{
             var retType:String=returnType.qualifiedName;
             if (retType=="") retType ="''";
-            var s:String="method: '"+name +"', returnType:"+retType+" declaredBy:"+declaredBy.qualifiedName;
+            var uriNS:String = uri;
+            if (uriNS) uriNS = ', uri=\''+ uriNS +'\'';
+            var s:String="method: '"+name +"'" + uriNS + ", returnType:"+retType+" declaredBy:"+declaredBy.qualifiedName;
             var params:Array = parameters;
             var i:uint;
             var l:uint = params.length;
@@ -128,6 +170,5 @@ package org.apache.royale.reflection
             }
             return s;
         }
-        
     }
 }

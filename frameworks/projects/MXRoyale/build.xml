@@ -66,6 +66,15 @@
     
     <target name="test" depends="check-for-tests,check-compiler" unless="skip-tests">
         <ant dir="src/test/royale" />
+        <antcall target="test-js" />
+    </target>
+
+    <target name="test-js">
+        <ant dir="${ROYALE_HOME}/frameworks/js/projects/${ant.project.name}JS/" inheritAll="false" target="test">
+            <property name="ROYALE_SWF_COMPILER_HOME" value="${ROYALE_SWF_COMPILER_HOME}"/>
+            <property name="ROYALE_COMPILER_HOME" value="${ROYALE_COMPILER_HOME}"/>
+            <property name="ROYALE_HOME" value="${ROYALE_HOME}"/>
+        </ant>
     </target>
     
     <target name="clean">

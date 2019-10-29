@@ -28,7 +28,7 @@ package org.apache.royale.reflection.nativejs {
         ret['name'] = 'Array';
         ret['NATIVE_TYPE'] = true;
     
-        ret['ROYALE_CLASS_INFO'] = { names: [{ name: 'Array', qName: 'Array', kind: 'class' }] };
+        ret['ROYALE_CLASS_INFO'] = { names: [{ name: 'Array', qName: 'Array', kind: 'class', isDynamic: true }] };
     
         ret['ROYALE_REFLECTION_INFO'] = function():Object {
             return {

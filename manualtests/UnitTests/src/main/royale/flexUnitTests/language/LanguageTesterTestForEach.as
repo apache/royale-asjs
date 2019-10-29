@@ -172,7 +172,7 @@ package flexUnitTests.language
         }
         
         
-       [Test]
+       /* [Test]
         public function testXML():void{
             var xm:XML = <test><child><child/></child></test>;
             RoyaleUnitTestRunner.consoleOut('xml' );
@@ -184,7 +184,7 @@ package flexUnitTests.language
                 RoyaleUnitTestRunner.consoleOut(thing.toXMLString() );
             }
             assertTrue(true)
-        }
+        }*/
     
     
         [Test]

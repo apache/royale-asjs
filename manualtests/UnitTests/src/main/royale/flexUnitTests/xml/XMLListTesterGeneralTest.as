@@ -190,6 +190,14 @@ package flexUnitTests.xml
             assertTrue( xmllist.toXMLString().length == 1431, 'XMLList length was unexpected');
         }
         
+        [Test]
+        public function testWithDecl():void{
+            
+            var list:XMLList = new XMLList('<?xml version="1.0" encoding="utf-8"?><success>false</success><retryable>false</retryable><localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>');
+            assertEquals(list.length(), 3, 'unexpected parsing result for list content');
+            
+        }
+        
         
     }
 }

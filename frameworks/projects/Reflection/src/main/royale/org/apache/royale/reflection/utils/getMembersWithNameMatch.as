@@ -27,6 +27,7 @@ package org.apache.royale.reflection.utils
      *  @param memberCollection the collection (an Array) of member definitions to check
 	 *  @param matcher *must be* either a String or a Regexp instance to use for testing
 	 *  @param collate an optional array to collate into, if passed externally
+	 *  @param includeCustomNamespaces set to true if you wish to include members with custom namespaces. defaults to false.
 	 *  
 	 *  @returns an Array (the collate parameter if it was used, otherwise a new Array)
      *
@@ -37,7 +38,7 @@ package org.apache.royale.reflection.utils
 	 *  
 	 *  @royaleignorecoercion RegExp
      */
-    public function getMembersWithNameMatch(memberCollection:Array,  matcher:Object = null, collate:Array = null):Array
+    public function getMembersWithNameMatch(memberCollection:Array,  matcher:Object = null, collate:Array = null, includeCustomNamespaces:Boolean = false):Array
 	{
         var ret:Array = collate ? collate : [];
 		var regexp:RegExp;
@@ -48,6 +49,7 @@ package org.apache.royale.reflection.utils
 		}
 		if (memberCollection) {
 			for each(var item:MemberDefinitionBase in memberCollection) {
+				if (item.uri && !includeCustomNamespaces) continue;
 				if (!regexp || regexp.test(item.name)) ret.push(item);
 			}
 		}

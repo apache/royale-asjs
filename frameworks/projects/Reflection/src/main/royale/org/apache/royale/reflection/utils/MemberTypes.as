@@ -34,6 +34,7 @@ package org.apache.royale.reflection.utils {
         public static const VARIABLES:uint = 1;
         public static const ACCESSORS:uint = 2;
         public static const METHODS:uint = 4;
+        public static const STATIC_ONLY:uint = 8;
     }
     
     

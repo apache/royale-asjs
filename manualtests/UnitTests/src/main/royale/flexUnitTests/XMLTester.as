@@ -34,7 +34,7 @@ package flexUnitTests
         }
         
         
-        /*public var xmlTesterGeneralTest:XMLTesterGeneralTest;
+        public var xmlTesterGeneralTest:XMLTesterGeneralTest;
         
         public var xmlTesterStringifyTest:XMLTesterStringifyTest;
     
@@ -44,7 +44,7 @@ package flexUnitTests
     
         public var xmlNamespaceClassTest:XMLNamespaceClassTest;
     
-        public var xmlQNameTest:XMLQNameTest;*/
+        public var xmlQNameTest:XMLQNameTest;
     
         public var xmlNamespaceQueries:XMLTesterNamespaceQueries;
 

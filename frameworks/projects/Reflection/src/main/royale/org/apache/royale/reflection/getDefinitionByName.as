@@ -35,7 +35,7 @@ COMPILE::JS
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function getDefinitionByName(name:String):Object
+    public function getDefinitionByName(name:String):*
 	{
         COMPILE::SWF
         {
@@ -76,6 +76,10 @@ COMPILE::JS
                 }
             }
             if (o == null && ExtraData.hasData(name)) o = ExtraData.getData(name)['classRef'];
+            if (o == null) {
+                if (name == 'undefined') return undefined;
+                throw new ReferenceError('Error #1065: Variable '+name+' is not defined.')
+            }
             return o;
         }
     }

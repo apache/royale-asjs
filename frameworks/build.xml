@@ -155,6 +155,7 @@
         <antcall target="NetworkTest"/>
         <antcall target="XMLTest"/>
         <antcall target="CollectionsTest"/>
+        <antcall target="MXRoyaleTest"/>
     </target>
 
     <target name="fonts">
@@ -385,6 +386,10 @@
     <target name="MXRoyale" description="Clean build of MXRoyale.swc">
         <ant dir="${basedir}/projects/MXRoyale"/>
     </target>
+    <target name="MXRoyaleTest" description="Test of MXRoyale.swc">
+        <ant dir="${basedir}/projects/MXRoyale" target="test"/>
+    </target>
+
     <target name="SparkRoyale" description="Clean build of SparkRoyale.swc">
         <ant dir="${basedir}/projects/SparkRoyale"/>
     </target>
