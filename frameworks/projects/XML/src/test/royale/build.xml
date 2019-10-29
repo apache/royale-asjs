@@ -95,7 +95,12 @@
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
         <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
 		<mkdir dir="${report.dir}" />
-		<royaleunit
+        <!-- Use the env var if it is set, otherwise default to 'system' flash debugger  -->
+        <condition property="command" value="${env.FLASHPLAYER_DEBUGGER}" else="">
+            <isset property="env.FLASHPLAYER_DEBUGGER" />
+        </condition>
+        <royaleunit
+            command="${command}"
             swf="${basedir}/FlexUnitRoyaleApplication.swf"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"

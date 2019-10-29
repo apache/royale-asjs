@@ -60,11 +60,13 @@ COMPILE::SWF
 			}
             if (constructor) {
                 //instance
-                if (constructor === Object || constructor === Array) return true;
+                if (constructor === Object || constructor === Array || constructor == Map) return true;
 				var prototype:Object = constructor.prototype;
                 if (prototype && prototype.ROYALE_CLASS_INFO) {
-                    return Boolean(prototype.ROYALE_CLASS_INFO.names[0].isDynamic);
+					var name:Object = prototype.ROYALE_CLASS_INFO.names[0];
+                    return name.qName == 'XML' || name.qName == "XMLList" || Boolean(prototype.ROYALE_CLASS_INFO.names[0].isDynamic);
                 }
+				//@todo this needs work in js... swf logic not applicable here:
 				var dyncheck:Boolean = false;
 				try {
 		

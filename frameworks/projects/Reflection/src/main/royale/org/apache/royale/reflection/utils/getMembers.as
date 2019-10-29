@@ -44,6 +44,10 @@ package org.apache.royale.reflection.utils
 			if ((memberTypes & MemberTypes.ACCESSORS) !=0) ret = ret.concat(fromDefinition.staticAccessors);
 			if ((memberTypes & MemberTypes.METHODS) !=0) ret = ret.concat(fromDefinition.staticMethods);
 		}
+		if ((memberTypes & MemberTypes.STATIC_ONLY) != 0) {
+			if (!includeStatics) throw new Error('Request for only static values requires includeStatics to be true');
+			return ret;
+		}
 		if ((memberTypes & MemberTypes.VARIABLES) !=0) ret = ret.concat(fromDefinition.variables);
 		if ((memberTypes & MemberTypes.ACCESSORS) !=0) ret = ret.concat(fromDefinition.accessors);
 		if ((memberTypes & MemberTypes.METHODS) !=0) ret = ret.concat(fromDefinition.methods);

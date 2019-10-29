@@ -90,20 +90,49 @@ package flexUnitTests.xml
         {
         }
     
+        public function getPlayerVersion():Number{
+            COMPILE::SWF{
+                import flash.system.Capabilities;
+                var parts:Array = Capabilities.version.split(' ')[1].split(',');
+                return Number( parts[0]+'.'+parts[1])
+            }
+            //something for js, indicating javascript 'playerversion' is consistent with more recent flash player versions:
+            return 30;
+        }
+        
+    
         [Test]
+        [TestVariance(variance="SWF",description="Standalone players on Windows between 11.2 and 20.0 were verified to have incorrect results with 'default xml namespace' in certain cases")]
         public function testMinimalDefault():void{
             default xml namespace = 'test';
             var xml:XML = <root/>;
-            
+    
             var ns:Namespace = xml.namespace();
-            assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value');
-            assertEquals(ns.uri, 'test', 'unexpected uri value from specific default namespace');
-            
+            var playerVersion:Number = getPlayerVersion();
+            //account for what appears to be a player bug in a range of player versions (not verified on Mac)
+            // Javascript conforms to the latest swf behavior
+            var permitEmptyString:Boolean  = playerVersion >= 11.2 && playerVersion <= 20.0;
+            var prefix:* = ns.prefix;
+            var testIsOK:Boolean = permitEmptyString ? prefix === '' || prefix === undefined : prefix === undefined;
+            //assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value ');
+            assertTrue(testIsOK, 'unexpected prefix value ');
+    
+            var uri:String = ns.uri;
+            testIsOK = permitEmptyString ? uri == '' || uri == 'test' : uri == 'test';
+            //assertEquals(ns.uri, 'test', 'unexpected uri value from specific default namespace');
+            assertTrue(testIsOK, 'unexpected uri value from specific default namespace');
+    
             //try top level function
             xml = XML('<root/>');
             ns= xml.namespace();
-            assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value');
-            assertEquals(ns.uri, 'test', 'unexpected uri value from specific default namespace');
+            prefix = ns.prefix;
+            testIsOK = permitEmptyString ? prefix === '' || prefix === undefined : prefix === undefined;
+            //assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value');
+            assertTrue(testIsOK, 'unexpected prefix value ');
+            uri = ns.uri;
+            testIsOK = permitEmptyString ? uri == '' || uri == 'test' : uri == 'test';
+            //assertEquals(ns.uri, 'test', 'unexpected uri value from specific default namespace');
+            assertTrue(testIsOK, 'unexpected uri value from specific default namespace');
             
         }
         

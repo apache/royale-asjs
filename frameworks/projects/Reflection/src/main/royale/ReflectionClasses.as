@@ -51,6 +51,7 @@ internal class ReflectionClasses
 	import org.apache.royale.reflection.utils.MemberTypes; MemberTypes;
 	import org.apache.royale.reflection.utils.getStaticConstantsByConvention; getStaticConstantsByConvention;
 	import org.apache.royale.reflection.utils.getMembersWithNameMatch; getMembersWithNameMatch;
+	import org.apache.royale.reflection.utils.getMembersWithQNameMatch; getMembersWithQNameMatch;
 	import org.apache.royale.reflection.utils.filterForMetaTags; filterForMetaTags;
 	
 	import org.apache.royale.reflection.ExtraData; ExtraData;

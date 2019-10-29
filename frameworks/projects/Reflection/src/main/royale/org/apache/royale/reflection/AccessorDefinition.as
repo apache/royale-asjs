@@ -76,13 +76,29 @@ package org.apache.royale.reflection {
             return _access;
         }
         
+        COMPILE::SWF{
+            override public function get getValue():Function{
+                if (access.indexOf('read') == -1) return invalidGetter;
+                return super.getValue;
+            }
+        }
+        COMPILE::SWF{
+            override public function get setValue():Function{
+                if (access.indexOf('write') == -1) return invalidSetter;
+                return super.setValue;
+            }
+        }
+        
+        
         COMPILE::JS
         override public function get getValue():Function{
 			if (_getter != null) return _getter;
+            if (access.indexOf('read') == -1) return (_getter = invalidGetter);
             if (isStatic || goog.DEBUG) {
                 var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
             }
             var fieldName:String = name;
+            if (uri) fieldName = QName.getAsObjectAccessFormat(uri, fieldName);
             if (isStatic) {
                 _getter = function():* {return cl[fieldName]}
             } else {
@@ -99,10 +115,12 @@ package org.apache.royale.reflection {
 		COMPILE::JS
 		override public function get setValue():Function{
 			if (_setter != null) return _setter;
+            if (access.indexOf('write') == -1) return (_setter = invalidSetter);
             if (isStatic || goog.DEBUG) {
                 var cl:Class = getDefinitionByName(owner.qualifiedName) as Class;
             }
 			var fieldName:String = name;
+            if (uri) fieldName = QName.getAsObjectAccessFormat(uri, fieldName);
 			if (isStatic) {
 				_setter = function(value:*):* {
 					cl[fieldName] = value
@@ -123,7 +141,9 @@ package org.apache.royale.reflection {
          * A string representation of this accessor definition
          */
         override public function toString():String{
-            var s:String = "accessor: '"+name+"' access:"+access+", type:"+type.qualifiedName+", declaredBy:"+declaredBy.qualifiedName;
+            var uriNS:String = uri;
+            if (uriNS) uriNS = ', uri=\''+ uriNS +'\'';
+            var s:String = "accessor: '"+name+"'" + uriNS +" access:"+access+", type:"+type.qualifiedName+", declaredBy:"+declaredBy.qualifiedName;
             var meta:Array = metadata;
             var i:uint;
             var l:uint = meta.length;
@@ -136,4 +156,11 @@ package org.apache.royale.reflection {
             return s;
         }
     }
+}
+
+function invalidSetter(inst:Object=null, val:*=undefined):void{
+    throw new Error('write not possible for readOnly accessor');
+}
+function invalidGetter(inst:Object=null):*{
+    throw new Error('read not possible for writeOnly accessor');
 }

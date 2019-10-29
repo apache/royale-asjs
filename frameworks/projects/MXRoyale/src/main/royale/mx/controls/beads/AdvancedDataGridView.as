@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+    import mx.controls.beads.models.DataGridColumnICollectionViewModel;
+
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.UIBase;
@@ -65,7 +67,6 @@ package mx.controls.beads
         
         private function handleColumnsInvalid(event:Event):void
         {
-            
             var host:IDataGrid = _strand as IDataGrid;
             var sharedModel:IDataGridModel = (host.model as IDataGridModel);
             
@@ -73,6 +74,8 @@ package mx.controls.beads
             for (var i:int=0; i < columnLists.length; i++)
             {
                 var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
+                var adgColumnListModel:DataGridColumnICollectionViewModel = list.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
+                adgColumnListModel.columnIndex = i;
                 list.visible = (sharedModel.columns[i] as AdvancedDataGridColumn).visible;
                 list.addEventListener(ItemClickEvent.ITEM_CLICK, itemClickHandler);
                 if (list.visible)
