@@ -79,10 +79,11 @@ package org.apache.royale.reflection
                 if (rawData.parameters != null) {
                     var data:Array = rawData.parameters();
                     var n:int = data.length;
-                    for (var i:int = 0; i < n; i++)
+                    for (var i:int = 0; i < n; i+=2)
                     {
-                        var item:Object = data[i];
-                        results.push(new ParameterDefinition(uint(item.index),item));
+                        var index:uint = (i*.5) + 1;
+                        var item:Object = {type:data[i], optional:data[i+1], index:index};
+                        results.push(new ParameterDefinition(index,item));
                     }
                 }
             }

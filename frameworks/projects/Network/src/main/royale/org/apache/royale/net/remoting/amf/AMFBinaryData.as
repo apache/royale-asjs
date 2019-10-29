@@ -554,11 +554,12 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		return into;
 	}
 	
+	private const nothing:Object = {};
 	private function populateSerializableMembers(reflectionInfo:Object, accessChecks:Object, localTraits:Traits):Array {
 		if (!reflectionInfo) return localTraits.props;
-		var fields:Object = reflectionInfo.variables();
+		var fields:Object = reflectionInfo.variables ? reflectionInfo.variables() : nothing;
 		filterSerializableMembers(fields, accessChecks, localTraits, false, true);
-		fields = reflectionInfo.accessors();
+		fields = reflectionInfo.accessors ? reflectionInfo.accessors() : nothing;
 		filterSerializableMembers(fields, accessChecks, localTraits, true, true);
 		return localTraits.props;
 	}
