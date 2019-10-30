@@ -15,7 +15,7 @@
  */
 package org.apache.royale.crux
 {
-	import org.apache.royale.core.ApplicationBase;
+	import org.apache.royale.core.IFlexInfo;
 	import org.apache.royale.core.IRoyaleElement;
 	import org.apache.royale.core.UIBase;
 	COMPILE::SWF{
@@ -508,7 +508,7 @@ package org.apache.royale.crux
 					if( removedDisplayObjects.length == 0 )
 					{
 						//like 'removing' enterframe event listener...
-						simulatedSingleEnterFrame(ApplicationBase(crux.dispatcher), enterFrameHandler, true);
+						simulatedSingleEnterFrame(IFlexInfo(crux.dispatcher), enterFrameHandler, true);
 						isListeningForEnterFrame = false;
 					}
 					
@@ -570,7 +570,7 @@ package org.apache.royale.crux
 			if( !isListeningForEnterFrame )
 			{
 		 		//crux.dispatcher.addEventListener( Event.ENTER_FRAME, enterFrameHandler, false, 0, true );
-				simulatedSingleEnterFrame(ApplicationBase(crux.dispatcher), enterFrameHandler, false);
+				simulatedSingleEnterFrame(IFlexInfo(crux.dispatcher), enterFrameHandler, false);
 		 		isListeningForEnterFrame = true;
 		 	}
 		 }
