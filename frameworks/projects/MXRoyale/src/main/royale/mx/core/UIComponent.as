@@ -4640,14 +4640,17 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get uid():Object
+    private var _uid:String;
+    public function get uid():String
     {
-        trace("uid not implemented");
-        return 0;
+        if (!_uid)
+            _uid = toString();
+
+        return _uid;
     }
-    public function set uid(value:Object):void
+    public function set uid(uid:String):void
     {
-        trace("uid not implemented");
+        this._uid = uid;
     }
 	[Inspectable(category="General")]
 	

@@ -20,46 +20,84 @@
 package spark.components.beads
 {
 
-import spark.components.SkinnableContainer;
-import org.apache.royale.events.Event;
-import org.apache.royale.core.IStrand;
-import spark.core.IGapLayout;
-
-/**
- *  @private
- *  The SkinnableContainerView for emulation.
- */
-public class TabBarView extends SkinnableContainerView
-{
-	//--------------------------------------------------------------------------
-	//
-	//  Constructor
-	//
-	//--------------------------------------------------------------------------
+	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IStrand;
+	import spark.core.IGapLayout;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IItemRendererParent;
+	import spark.components.supportClasses.ListBase;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.IViewport;
+	import org.apache.royale.core.IParent;
 
 	/**
-	 *  Constructor.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
+	 *  @private
+	 *  The SkinnableContainerView for emulation.
 	 */
-	public function TabBarView()
+	public class TabBarView extends SkinnableContainerView
 	{
-		super();
-	}
+		//--------------------------------------------------------------------------
+		//
+		//  Constructor
+		//
+		//--------------------------------------------------------------------------
 
-	override protected function handleInitComplete(event:Event):void
-	{
-		super.handleInitComplete();
-		var gapLayout:IGapLayout = (contentView as IStrand).getBeadByType(IGapLayout) as IGapLayout;
-		if (gapLayout)
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Flex 3
+		 */
+		public function TabBarView()
 		{
-			gapLayout.gap = 0;
+			super();
 		}
+
+
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 */
+		override protected function handleInitComplete(event:Event):void
+		{
+            var eventDispatcher:IEventDispatcher = (_strand.getBeadByType(IViewport) as IViewport).contentView as IEventDispatcher;
+            eventDispatcher.addEventListener("itemsCreated", handleDataProviderChanged);
+			var gapLayout:IGapLayout = (contentView as IStrand).getBeadByType(IGapLayout) as IGapLayout;
+			if (gapLayout)
+			{
+				gapLayout.gap = 0;
+			}
+			super.handleInitComplete(event);
+		}
+
+		private function handleDataProviderChanged(event:Event):void
+		{
+			var eventDispatcher:IEventDispatcher = (_strand as ListBase).dataProvider;
+			eventDispatcher.addEventListener("valueChange", valueChangeHandler);
+		}
+
+		/**
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 */
+		protected function valueChangeHandler(event:ValueChangeEvent):void
+		{
+			if (event.propertyName != "selectedIndex")
+			{
+				return;
+			}
+			var ir:ISelectableItemRenderer = (contentView as IParent).getElementAt(int(event.oldValue)) as ISelectableItemRenderer;
+			if(ir)
+				ir.selected = false;
+			ir = (contentView as IParent).getElementAt(int(event.newValue)) as ISelectableItemRenderer;
+			if(ir)
+				ir.selected = true;
+		}
+
 	}
-    
-}
 
 }

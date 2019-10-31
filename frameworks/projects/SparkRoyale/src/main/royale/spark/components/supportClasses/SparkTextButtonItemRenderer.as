@@ -31,7 +31,6 @@ package spark.components.supportClasses
     import spark.components.supportClasses.ToggleButtonBase;
     import mx.controls.listClasses.IListItemRenderer;
     import mx.events.ListEvent;
-    import org.apache.royale.core.IBeadModel;
 
     /**
      *  The TextButtonItemRenderer is the default renderer for TabBar
