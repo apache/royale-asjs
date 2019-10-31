@@ -524,7 +524,7 @@ public class RadioButtonGroup extends EventDispatcher
     /**
      *  @private
      */
-    mx_internal function setSelection(value:RadioButton, fireChange:Boolean = true):void
+    public function setSelection(value:RadioButton, fireChange:Boolean = true):void
     {
          if (inSetSelection) return;
         
