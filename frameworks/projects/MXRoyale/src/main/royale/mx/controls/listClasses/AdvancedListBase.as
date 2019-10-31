@@ -1055,7 +1055,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   // protected var selectedData:Object = {};
+     protected var selectedData:Object = {};
 
     /**
      *  A hash table of selection indicators.  This table allows the component
@@ -4795,7 +4795,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function isItemSelected(data:Object):Boolean
+    public function isItemSelected(data:Object):Boolean
     {
         if (data == null)
             return false;
@@ -4804,7 +4804,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             return (selectedData[data] != undefined)
 
         return selectedData[itemToUID(data)] != undefined;
-    } */
+    } 
     
     /**
      *  Determines if the item renderer for a data provider item 

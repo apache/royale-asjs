@@ -15,8 +15,7 @@
  */
 package org.apache.royale.crux
 {
-
-	import org.apache.royale.core.ApplicationBase;
+	import org.apache.royale.core.IFlexInfo;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.crux.processors.IProcessor;
     import org.apache.royale.crux.processors.IMetadataProcessor;
@@ -85,7 +84,7 @@ package org.apache.royale.crux
 			{
 				var crux:ICrux = ICrux( cruxes[ i ] );
 
-				if (applicationContains(ApplicationBase( crux.dispatcher ), view))
+				if (applicationContains(IFlexInfo( crux.dispatcher ), view))
 				{
 					setUpView( view, crux );
 					return;

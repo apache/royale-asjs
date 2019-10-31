@@ -27,8 +27,6 @@ package org.apache.royale.crux.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.core.IRenderedObject;
-    import org.apache.royale.core.ApplicationBase;
     import org.apache.royale.core.UIBase;
     
     COMPILE::JS {
