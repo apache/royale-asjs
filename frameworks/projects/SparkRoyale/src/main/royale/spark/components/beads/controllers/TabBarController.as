@@ -21,28 +21,17 @@ package spark.components.beads.controllers
 {
 
 
-import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadController;
-import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.IStrand;
-import org.apache.royale.core.IUIBase;
-import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.MouseEvent;
-import org.apache.royale.utils.PointUtils;
 
-import mx.core.UIComponent;
-import mx.collections.IList;
 import mx.core.ISelectableList;
-import org.apache.royale.core.IContentView;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.IChild;
-import org.apache.royale.html.List;
 import spark.components.supportClasses.ListBase;
-import spark.components.supportClasses.SkinnableComponent;
 import org.apache.royale.core.IViewport;
-import org.apache.royale.core.IStrandWithModel;
 
 /**
  *  @private
@@ -75,7 +64,7 @@ import org.apache.royale.core.IStrandWithModel;
         {
             var parent:IParent = (event.target as IChild).parent;
             var index:int = parent.getElementIndex(event.target as IChild);
-            var list:IList = (_strand as ListBase).dataProvider;
+            var list:IEventDispatcher = (_strand as ListBase).dataProvider as IEventDispatcher;
             if (list is ISelectableList)
             {
                 (list as ISelectableList).selectedIndex = index;
