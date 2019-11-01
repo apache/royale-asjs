@@ -30,8 +30,8 @@ package flexUnitTests
         public function MXRoyaleTester()
         {
            }
-        
-        
+    
+        public var sharedObjectTest:SharedObjectTest;
         public var objectUtilTest:ObjectUtilTest;
         public var flexSDK_ObjectUtilTests:FlexSDK_ObjectUtil_Tests;
         public var flexSDK_ObjectUtil_FLEX_34852_Tests:FlexSDK_ObjectUtil_FLEX_34852_Tests;

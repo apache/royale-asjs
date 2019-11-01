@@ -25,32 +25,29 @@ package mx.net
         import flash.net.SharedObject;
     }
     
-    COMPILE::JS{
-        import org.apache.royale.net.remoting.amf.AMFBinaryData;
-    }
-    
     import org.apache.royale.events.EventDispatcher;
     
     /**
-     * An emulation class to support the swf based Local SharedObject support.
-     * This implementation supports AMF encoded content (requires registerClassAlias before reading and writing to roundtrip instances of custom classes)
+     * An lighter weight emulation class to support the swf based Local SharedObject support.
+     * This implementation does not support AMF encoded content. It is intended for javascript 
+     * implementations that require persistence, but do not already have the AMF support dependency as part of the application
      */
-    public class SharedObject extends org.apache.royale.events.EventDispatcher
+    public class SharedObjectJSON extends org.apache.royale.events.EventDispatcher
     {
         private static const map:Object = {};
         private static var unlocked:Boolean;
         
-        public static function getLocal(name:String, localPath:String = null, secure:Boolean = false):mx.net.SharedObject
+        public static function getLocal(name:String, localPath:String = null, secure:Boolean = false):mx.net.SharedObjectJSON
         {
             var pathKey:String = localPath == null ? '$null$' : localPath;
             COMPILE::JS {
                 localPath = pathKey;
             }
-            var cached:mx.net.SharedObject = map[pathKey + '::' + name];
+            var cached:mx.net.SharedObjectJSON = map[pathKey + '::' + name];
             if (!cached)
             {
                 unlocked = true;
-                cached = new mx.net.SharedObject();
+                cached = new mx.net.SharedObjectJSON();
                 unlocked = false;
                 map[pathKey + '::' + name] = cached;
                 cached.setName(name);
@@ -60,9 +57,9 @@ package mx.net
             return cached;
         }
         
-        public function SharedObject()
+        public function SharedObjectJSON()
         {
-            if (!unlocked) throw new Error('ArgumentError: Error #2012: SharedObject class cannot be instantiated.')
+            if (!unlocked) throw new Error('ArgumentError: Error #2012: SharedObjectJSON class cannot be instantiated.')
         }
         
         COMPILE::SWF
@@ -78,22 +75,24 @@ package mx.net
             {
                 if (_data)
                 {
-                    var amf:AMFBinaryData = new AMFBinaryData();
-                    amf.writeObject(_data);
-                    var base64:String = window['btoa'](String.fromCharCode.apply(null, amf.array));
-                    _ls.setItem(_localPath + "::" + _name, base64);
+                    _ls.setItem(_localPath + "::" + _name, JSON.stringify(_data));
                 }
                 return SharedObjectFlushStatus.FLUSHED;
             }
             COMPILE::SWF
             {
+                if (_data) {
+                    _so.data['jsonContent'] = JSON.stringify(_data);
+                }
                 return _so.flush(minDiskSpace);
             }
         }
         
         public function clear():void{
             COMPILE::SWF{
-                _so.clear();
+                _so.data['jsonContent'] = '{}';
+                _so.flush();
+                _data = {};
             }
             COMPILE::JS{
                 if (_data) {
@@ -105,14 +104,23 @@ package mx.net
             }
         }
         
-        COMPILE::JS
+
         private var _data:Object;
         
         public function get data():Object
         {
             COMPILE::SWF
             {
-                return _so.data;
+                if (!_data) {
+                    if (_so.data['jsonContent']) {
+                        try{
+                            _data = JSON.parse(_so.data['jsonContent']);
+                        } catch(e:Error) {
+                            throw new Error('Error #2134: Bad data. Cannot create SharedObjectJSON.')
+                        }
+                    } else _data = {};
+                }
+                return _data;
             }
             COMPILE::JS
             {
@@ -129,7 +137,7 @@ package mx.net
         {
             COMPILE::JS{
                 //apply same limits as swf
-                if (/[~%&\\;:"',<>?#\s]/.test(name)) throw new Error('Error #2134: Cannot create SharedObject.')
+                if (/[~%&\\;:"',<>?#\s]/.test(name)) throw new Error('Error #2134: Cannot create SharedObjectJSON.')
             }
             _name = name;
         }
@@ -137,6 +145,9 @@ package mx.net
         private var _localPath:String;
         private function setLocalPath(localPath:String):void
         {
+            COMPILE::JS{
+                localPath+='$jsonContent$';
+            }
             _localPath = localPath;
         }
         
@@ -144,6 +155,7 @@ package mx.net
         {
             COMPILE::SWF{
                 _so = flash.net.SharedObject.getLocal(_name, _localPath, secure);
+                
             }
             COMPILE::JS{
                 _ls = window.localStorage;
@@ -156,21 +168,13 @@ package mx.net
                 if (!_ls) {
                     throw new Error('local storage not supported');
                 }
-                var base64:String = _ls.getItem(_localPath + "::" + _name);
-                if (base64)
-                {
-                    var binary_string:String = window['atob'](base64);
-                    var arr:Uint8Array = new Uint8Array(
-                            binary_string.split('')
-                                    .map(
-                                            function (charStr:String):uint
-                                            {
-                                                return charStr.charCodeAt(0);
-                                            }
-                                    )
-                    );
-                    var amf:AMFBinaryData = new AMFBinaryData(arr.buffer);
-                    _data = amf.readObject();
+                var json:String = _ls.getItem(_localPath + "::" + _name);
+                if (json) {
+                    try{
+                        _data = JSON.parse(json);
+                    } catch(e:Error) {
+                        throw new Error('Error #2134: Bad data. Cannot create SharedObjectJSON.')
+                    }
                 }
             }
         }

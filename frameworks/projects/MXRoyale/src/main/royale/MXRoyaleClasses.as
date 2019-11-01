@@ -174,6 +174,7 @@ internal class MXRoyaleClasses
 	import mx.formatters.CurrencyFormatter; CurrencyFormatter;
 	import mx.events.CalendarLayoutChangeEvent; CalendarLayoutChangeEvent;
 	import mx.net.SharedObject; SharedObject;
+	import mx.net.SharedObjectJSON; SharedObjectJSON;
 	import mx.modules.ModuleManager; ModuleManager;
 	import mx.events.DragEvent; DragEvent;
 	import mx.formatters.DateBase; DateBase;
