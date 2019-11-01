@@ -73,7 +73,18 @@
               </define>
           </defines>
           <allowSubclassOverrides>true</allowSubclassOverrides>
-          <additionalCompilerOptions>${project.compiler.options};-js-compiler-define=COMPILE::JS,true;-js-compiler-define=COMPILE::SWF,false;-js-compiler-define=GOOG::DEBUG,goog.DEBUG;-js-compiler-define=ROYALE::DISPLAYOBJECT,IUIComponent;-js-compiler-define=ROYALE::PROXYVISIBILITY,public;-namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;-compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml</additionalCompilerOptions>
+          <additionalCompilerOptions>
+              ${project.compiler.options};
+              -js-compiler-define=COMPILE::JS,true;
+              -js-compiler-define=COMPILE::SWF,false;
+              -js-compiler-define=GOOG::DEBUG,goog.DEBUG;
+              -js-compiler-define=ROYALE::DISPLAYOBJECT,IUIComponent;
+              -js-compiler-define=ROYALE::PROXYVISIBILITY,public;
+              -namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;
+              -compiler.js-namespaces.namespace+=http://ns.adobe.com/mxml/2009,${project.basedir}/../../mxml-2009-manifest.xml;
+              -compiler.js-namespaces.namespace+=library://ns.apache.org/royale/mx,${project.basedir}/src/main/resources/mx-royale-manifest.xml;
+              -compiler.warn-instance-of-changes=false;
+          </additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>

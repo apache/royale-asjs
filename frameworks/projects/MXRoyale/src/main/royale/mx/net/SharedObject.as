@@ -147,7 +147,7 @@ package mx.net
             }
             COMPILE::JS{
                 _ls = window.localStorage;
-                if (!_ls && typeof Storage != undefined) {
+                if (!_ls && typeof Storage != "undefined") {
                     //this gets around an issue with local testing with file:// protocol in IE11
                     var p:String = window.location.pathname.replace(/(^..)(:)/, "$1$$");
                     window.location.href = window.location.protocol + "//127.0.0.1" + p;
