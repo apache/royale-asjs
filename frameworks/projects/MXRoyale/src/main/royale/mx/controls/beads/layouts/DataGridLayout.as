@@ -74,12 +74,19 @@ package mx.controls.beads.layouts
             
             var totalWidths:Number = 0;
             var unspecifiedWidths:int = 0;
-            for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
-                var columnDef:DataGridColumn = bbmodel.dataProvider[i] as DataGridColumn;
-                if (!isNaN(columnDef.width))
-                    totalWidths += columnDef.width;
-                else
-                    unspecifiedWidths++;
+            if (bbmodel.dataProvider)
+            {
+                for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
+                    var columnDef:DataGridColumn = bbmodel.dataProvider[i] as DataGridColumn;
+                    if (!isNaN(columnDef.width))
+                        totalWidths += columnDef.width;
+                    else
+                        unspecifiedWidths++;
+                }
+            }
+            else
+            {
+                return true;
             }
             
             if (unspecifiedWidths > 0 && totalWidths > 0)

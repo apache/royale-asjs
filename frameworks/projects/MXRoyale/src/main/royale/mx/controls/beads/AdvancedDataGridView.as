@@ -67,6 +67,8 @@ package mx.controls.beads
         
         private function handleColumnsInvalid(event:Event):void
         {
+            if (!columnLists) return;
+            
             var host:IDataGrid = _strand as IDataGrid;
             var sharedModel:IDataGridModel = (host.model as IDataGridModel);
             

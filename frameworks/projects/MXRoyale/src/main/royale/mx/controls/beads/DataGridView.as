@@ -18,15 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+    import mx.collections.CursorBookmark;
+    import mx.collections.ICollectionView;
+    import mx.collections.IViewCursor;
+    import mx.controls.AdvancedDataGrid;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
+    import mx.events.CollectionEvent;
+    import mx.utils.ObjectUtil;
+    
+    import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IDataGrid;
+    import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.DataGridView;
-    
-    import mx.events.CollectionEvent;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
-    import mx.controls.AdvancedDataGrid;
+    import org.apache.royale.html.DataGridButtonBar;
+    import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	
     /**
      *  The AlertView class.
@@ -52,9 +61,14 @@ package mx.controls.beads
 
         override protected function handleInitComplete(event:Event):void
         {
-            super.handleInitComplete(event);
-            
             var host:IDataGrid = _strand as IDataGrid;
+            
+            if (host.model.columns == null && host.model.dataProvider != null)
+            {
+                generateCols();
+            }
+            
+            super.handleInitComplete(event);
             
             IEventDispatcher(host).addEventListener(CollectionEvent.COLLECTION_CHANGE, handleCollectionChanged);
             if (host.model.dataProvider != null && host.model.dataProvider.length > 0)
@@ -78,6 +92,94 @@ package mx.controls.beads
             }
             host.dispatchEvent(new Event("layoutNeeded"));
             
+        }
+        
+        /**
+         * @private
+         */
+        override protected function handleDataProviderChanged(event:Event):void
+        {
+            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            if (sharedModel.columns == null && sharedModel.dataProvider != null)
+            {
+                generateCols();
+                createLists();
+                (header as DataGridButtonBar).dataProvider = sharedModel.columns;
+            }
+            if (sharedModel.columns == null)
+                return;
+            super.handleDataProviderChanged(event);
+        }
+
+        /**
+         *  @private
+         *  Searches the iterator to determine columns.
+         */
+        private function generateCols():void
+        {
+            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            if (sharedModel.dataProvider.length > 0)
+            {
+                var col:AdvancedDataGridColumn;
+                var newCols:Array = [];
+                var cols:Array;
+                if (sharedModel.dataProvider)
+                {
+                    var iterator:IViewCursor = sharedModel.dataProvider.createCursor();
+                    //try
+                    //{
+                        iterator.seek(CursorBookmark.FIRST);
+                    //}
+                    /*
+                    catch (e:ItemPendingError)
+                    {
+                        lastSeekPending = new ListBaseSeekPending(CursorBookmark.FIRST, 0);
+                        e.addResponder(new ItemResponder(generateColumnsPendingResultHandler, seekPendingFailureHandler,
+                            lastSeekPending));
+                        iteratorValid = false;
+                        return;
+                    }
+                        */
+                    var info:Object =
+                        ObjectUtil.getClassInfo(iterator.current,
+                            ["uid", "mx_internal_uid"]);
+                    
+                    if(info)
+                        cols = info.properties;
+                }
+                
+                if (!cols)
+                {
+                    // introspect the first item and use its fields
+                    var itmObj:Object = iterator.current;
+                    for (var p:String in itmObj)
+                    {
+                        if (p != "uid")
+                        {
+                            col = new AdvancedDataGridColumn();
+                            col.dataField = p;
+                            newCols.push(col);
+                        }
+                    }
+                }
+                else
+                {
+                    // this is an old recordset - use its columns
+                    var n:int = cols.length;
+                    var colName:Object;
+                    for (var i:int = 0; i < n; i++)
+                    {
+                        colName = cols[i];
+                        if (colName is QName)
+                            colName = QName(colName).localName;
+                        col = new AdvancedDataGridColumn();
+                        col.dataField = String(colName);
+                        newCols.push(col);
+                    }
+                }
+                sharedModel.columns = newCols;
+                //generatedColumns = true;
+            }
         }
 	}
 }

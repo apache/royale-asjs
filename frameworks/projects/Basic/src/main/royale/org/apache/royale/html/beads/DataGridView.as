@@ -134,7 +134,8 @@ package org.apache.royale.html.beads
 				_listArea = new listAreaClass() as IUIBase;
 				(_listArea as ILayoutChild).percentWidth = 100;
 
-				createLists();
+                if (sharedModel.columns)
+    				createLists();
 
                 var columnLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "columnLayoutClass") as Class;
                 assert(columnLayoutClass != null,"columnLayoutClass for DataGrid must be set!")
@@ -165,7 +166,7 @@ package org.apache.royale.html.beads
 			/**
 			 * @private
 			 */
-			private function handleDataProviderChanged(event:Event):void
+			protected function handleDataProviderChanged(event:Event):void
 			{
                 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
                 for (var i:int=0; i < _lists.length; i++)
@@ -226,7 +227,7 @@ package org.apache.royale.html.beads
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 			 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
 			 */
-			private function createLists():void
+			protected function createLists():void
 			{
 				var host:IDataGrid = _strand as IDataGrid;
 				
