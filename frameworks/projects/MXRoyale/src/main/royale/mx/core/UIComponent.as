@@ -3477,16 +3477,7 @@ COMPILE::JS
         }
         COMPILE::JS
         {
-            var children:NodeList = element.childNodes;
-            var n:int = children.length;
-            var e:Object = child.element;
-            
-            for (var i:int = 0; i < n; i++)
-            {
-                if (children[i] == e)
-                    return true;
-            }
-            return false;
+            return element.contains(child.element);
         }
     }
     
