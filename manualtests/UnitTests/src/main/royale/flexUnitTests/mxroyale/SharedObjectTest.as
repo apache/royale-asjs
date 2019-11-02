@@ -126,5 +126,31 @@ package flexUnitTests.mxroyale
             so.data['test'] = {'name':'an Object'};
             so.flush();
         }
+    
+    
+        [Test]
+        public function testSharedObjectNoFlush():void{
+            var so:SharedObject = SharedObject.getLocal('myUnflushedObject');
+           
+
+            RoyaleUnitTestRunner.consoleOut('testSharedObjectNoFlush content is '+JSON.stringify(so.data));
+            //content should either be empty object or the last saved from page refresh. It should be saved on page 'unload' ('pagehide')
+            var validContents:Array = [ '{"myUnflushedObject":{"name":"myUnflushedObject"}}', '{}'];
+            assertTrue(validContents.indexOf(JSON.stringify(so.data)) != -1, 'contents not considered valid');
+            so.data['myUnflushedObject'] = {'name':'myUnflushedObject'};
+
+        }
+    
+        [Test]
+        public function testSharedObjectJSONNoFlush():void{
+            var so:SharedObjectJSON = SharedObjectJSON.getLocal('myUnflushedJSONObject');
+            
+            RoyaleUnitTestRunner.consoleOut('testSharedObjectJSONNoFlush content is '+JSON.stringify(so.data));
+            //content should either be empty object or the last saved from page refresh. It should be saved on page 'unload' ('pagehide')
+            var validContents:Array = [ '{"myUnflushedJSONObject":{"name":"myUnflushedJSONObject"}}', '{}'];
+            assertTrue(validContents.indexOf(JSON.stringify(so.data)) != -1, 'contents not considered valid');
+            so.data['myUnflushedJSONObject'] = {'name':'myUnflushedJSONObject'};
+        
+        }
     }
 }

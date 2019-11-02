@@ -23,8 +23,11 @@ package mx.net
     COMPILE::SWF
     {
         import flash.net.SharedObject;
+        import flash.events.Event;
+        import flash.events.NetStatusEvent;
+        import flash.events.Event;
     }
-    
+    import mx.events.NetStatusEvent;
     import org.apache.royale.events.EventDispatcher;
     
     /**
@@ -54,7 +57,25 @@ package mx.net
                 cached.setLocalPath(localPath);
                 cached.createSO(secure);
             }
+            COMPILE::JS{
+                if (!map['#']) {
+                    window.addEventListener('pagehide', unloadHandler);
+                    map['#'] = true;
+                }
+            }
             return cached;
+        }
+    
+        COMPILE::JS
+        private static function unloadHandler(event:PageTransitionEvent):void{
+            //@todo consider whether we do anything different if event.persisted is true or false
+            for (var key:String in map) {
+                if (key != '#') {
+                    var so:SharedObject = map[key];
+                    //@todo what to do with errors here:
+                    so.flush();
+                }
+            }
         }
         
         public function SharedObjectJSON()
@@ -67,22 +88,40 @@ package mx.net
         
         COMPILE::JS
         private var _ls:Storage;
-        
-        
+    
+        /**
+         *
+         * @param minDiskSpace ignored for javascript targets
+         * @return a string indicating the flush status. This can be (on swf) SharedObjectFlushStatus.FLUSHED or SharedObjectFlushStatus.PENDING on swf. For JS is it SharedObjectFlushStatus.FLUSHED or SharedObjectFlushStatus.FAILED
+         *
+         * @throws Error #2044: Unhandled NetStatusEvent
+         */
         public function flush(minDiskSpace:int = 0):String
         {
             COMPILE::JS
             {
                 if (_data)
                 {
-                    _ls.setItem(_localPath + "::" + _name, JSON.stringify(_data));
+                    try{
+                        _ls.setItem(_localPath + "::" + _name, JSON.stringify(_data));
+                    } catch(e:Error) {
+                        if (hasEventListener(NetStatusEvent.NET_STATUS)) {
+                            var event:NetStatusEvent = new NetStatusEvent(NetStatusEvent.NET_STATUS);
+                            event.info = {"code":"SharedObject.Flush.Failed","level":"error"};
+                            dispatchEvent(event);
+                            return SharedObjectFlushStatus.FAILED;
+                        } else {
+                            throw new Error('Error #2044: Unhandled NetStatusEvent:. level=error, code=SharedObject.Flush.Failed');
+                        }
+                    }
                 }
+                //js never returns pending, because there is no way for the user to accept or decline the byte size storage limits
                 return SharedObjectFlushStatus.FLUSHED;
             }
             COMPILE::SWF
             {
                 if (_data) {
-                    _so.data['jsonContent'] = JSON.stringify(_data);
+                    _so.data['jsonContent'] = _data;
                 }
                 return _so.flush(minDiskSpace);
             }
@@ -90,9 +129,9 @@ package mx.net
         
         public function clear():void{
             COMPILE::SWF{
-                _so.data['jsonContent'] = '{}';
-                _so.flush();
                 _data = {};
+                _so.data['jsonContent'] = _data;
+                _so.flush();
             }
             COMPILE::JS{
                 if (_data) {
@@ -104,21 +143,17 @@ package mx.net
             }
         }
         
-
         private var _data:Object;
-        
         public function get data():Object
         {
             COMPILE::SWF
             {
                 if (!_data) {
-                    if (_so.data['jsonContent']) {
-                        try{
-                            _data = JSON.parse(_so.data['jsonContent']);
-                        } catch(e:Error) {
-                            throw new Error('Error #2134: Bad data. Cannot create SharedObjectJSON.')
-                        }
-                    } else _data = {};
+                    _data = _so.data['jsonContent'];
+                    if (!_data) {
+                        _data = {};
+                        _so.data['jsonContent'] = _data;
+                    }
                 }
                 return _data;
             }
@@ -150,12 +185,30 @@ package mx.net
             }
             _localPath = localPath;
         }
+    
+        COMPILE::SWF
+        private function handleNativeEvent(event:flash.events.Event):void{
+            if (event is flash.events.NetStatusEvent) {
+                var nse:flash.events.NetStatusEvent = flash.events.NetStatusEvent(event);
+                var mxnse:mx.events.NetStatusEvent = new mx.events.NetStatusEvent(nse.type,false, false, nse.info);
+                dispatchEvent(mxnse);
+            } else {
+                //just redispatch?
+                dispatchEvent(event.clone());
+            }
+        }
         
         private function createSO(secure:Boolean):void
         {
             COMPILE::SWF{
-                _so = flash.net.SharedObject.getLocal(_name, _localPath, secure);
-                
+                try{
+                    _so = flash.net.SharedObject.getLocal(_name, _localPath, secure);
+                    _so.addEventListener('netStatus', handleNativeEvent);
+                    _so.addEventListener('asyncError', handleNativeEvent); //not sure about this one for LSO..
+                    //_so.addEventListener('sync', redispatch); //only relevant for RSO, not LSO
+                } catch(e:Error) {
+                    throw new Error('Error #2134: Cannot create SharedObjectJSON.');
+                }
             }
             COMPILE::JS{
                 _ls = window.localStorage;
@@ -178,6 +231,9 @@ package mx.net
                 }
             }
         }
+        
+        public function toJSON():Object{
+            return data;
+        }
     }
-    
 }
