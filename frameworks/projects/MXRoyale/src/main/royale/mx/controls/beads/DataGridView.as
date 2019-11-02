@@ -100,7 +100,7 @@ package mx.controls.beads
         override protected function handleDataProviderChanged(event:Event):void
         {
             var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-            if (sharedModel.columns == null && sharedModel.dataProvider != null)
+            if (sharedModel.columns == null && sharedModel.dataProvider != null && sharedModel.dataProvider.length > 0)
             {
                 generateCols();
                 createLists();
