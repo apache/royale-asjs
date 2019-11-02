@@ -100,6 +100,7 @@ package mx.controls.beads.layouts
                 var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
                 var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
                 var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
+                if (!displayedColumns) return retval;
                 var n:int = displayedColumns.length;
                 var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
                 COMPILE::JS
