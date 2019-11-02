@@ -84,6 +84,8 @@ package mx.controls.beads
         
         private function handleCollectionChanged(event:Event):void
         {
+            if (columnLists == null) return;
+            
             for (var i:int=0; i < columnLists.length; i++)
             {
                 var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
