@@ -68,54 +68,6 @@
       </plugin>
     </plugins>
   </build>
-  
-  <profiles>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf.swcs</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Core</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Binding</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Graphics</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Collections</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Basic</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
 
   <dependencies>
     <dependency>
@@ -147,5 +99,41 @@
       <classifier>js</classifier>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Core</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Graphics</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Collections</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

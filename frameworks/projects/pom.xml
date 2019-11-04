@@ -37,39 +37,40 @@
   <name>Apache Royale: Framework: Libs</name>
 
   <modules>
+    <!--module>Ace</module-->
+    <module>Basic</module>
     <module>Binding</module>
     <module>Charts</module>
     <module>Collections</module>
     <module>Core</module>
-    <module>Crux</module>
-    <module>Basic</module>
     <module>CreateJS</module>
+    <module>Crux</module>
     <module>DragDrop</module>
     <module>Effects</module>
     <module>Express</module>
     <module>Flat</module>
-    <module>Formatters</module>
     <module>FontAwesome</module>
+    <module>Formatters</module>
     <module>GoogleMaps</module>
     <module>Graphics</module>
     <module>HTML</module>
     <module>HTML5</module>
+    <module>Icons</module>
+    <module>Jewel</module>
     <module>JQuery</module>
     <module>Language</module>
     <module>MaterialDesignLite</module>
     <module>Mobile</module>
-    <module>Reflection</module>
+    <module>MXRoyale</module>
     <module>Network</module>
+    <module>Reflection</module>
+    <module>RoyaleSite</module>
+    <module>RoyaleUnit</module>
+    <module>SparkRoyale</module>
     <module>Storage</module>
-    <module>XML</module>
     <module>Text</module>
     <module>TLF</module>
-    <module>RoyaleSite</module>
-    <module>MXRoyale</module>
-    <module>Icons</module>
-    <module>SparkRoyale</module>
-    <module>Jewel</module>
-    <module>RoyaleUnit</module>
+    <module>XML</module>
   </modules>
 
   <build>
@@ -77,7 +78,6 @@
       <plugin>
         <groupId>org.apache.royale.compiler</groupId>
         <artifactId>royale-maven-plugin</artifactId>
-        <version>${royale.compiler.version}</version>
         <configuration>
           <!-- We don't want dependencies to be linked into the resulting libraries -->
           <forceSwcExternalLibraryPath>true</forceSwcExternalLibraryPath>

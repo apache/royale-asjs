@@ -24,7 +24,7 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>18</version>
+    <version>21</version>
     <relativePath />
   </parent>
 
@@ -55,10 +55,12 @@
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
 
+    <!-- Timestamp for the reproducible builds -->
+    <project.build.outputTimestamp>2019-11-01T10:30:00Z</project.build.outputTimestamp>
+
+    <royale.build-tools.version>1.1.0</royale.build-tools.version>
     <royale.compiler.version>0.9.7-SNAPSHOT</royale.compiler.version>
     <royale.typedefs.version>0.9.7-SNAPSHOT</royale.typedefs.version>
-    <royale.build-tools.version>1.0.0</royale.build-tools.version>
-    <royale.swc-date>9/24/19 9:06 -0800</royale.swc-date>
 
     <royale.example.targets>JSRoyale</royale.example.targets>
     
@@ -76,11 +78,6 @@
     <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
     <skipgpg>false</skipgpg>
-
-    <!-- URL of the ASF SonarQube server -->
-    <sonar.host.url>https://builds.apache.org/analysis</sonar.host.url>
-    <!-- Exclude all generated code -->
-    <sonar.exclusions>file:**/generated-sources/**</sonar.exclusions>
   </properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
@@ -113,15 +110,23 @@
     </mailingList>
   </mailingLists>
 
+  <modules>
+    <module>frameworks</module>
+    <module>archetypes</module>
+  </modules>
+
   <build>
     <pluginManagement>
       <plugins>
         <plugin>
+          <groupId>com.googlecode.maven-download-plugin</groupId>
+          <artifactId>download-maven-plugin</artifactId>
+          <version>1.4.2</version>
+        </plugin>
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-gpg-plugin</artifactId>
-          <configuration>
-            <skip>${skipgpg}</skip><!--true to skip gpg if building release on CI server -->
-          </configuration>
+          <artifactId>maven-war-plugin</artifactId>
+          <version>3.2.3</version>
         </plugin>
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
@@ -165,12 +170,6 @@
           <groupId>nl.geodienstencentrum.maven</groupId>
           <artifactId>sass-maven-plugin</artifactId>
           <version>3.6.0</version>
-        </plugin>
-
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-war-plugin</artifactId>
-          <version>3.2.0</version>
         </plugin>
 
         <plugin>
@@ -255,127 +254,11 @@
             <exclude>lib/external/*.html</exclude>
           </excludes>
         </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.doxia</groupId>
-            <artifactId>doxia-core</artifactId>
-            <version>1.6</version>
-            <exclusions>
-              <exclusion>
-                <groupId>xerces</groupId>
-                <artifactId>xercesImpl</artifactId>
-              </exclusion>
-            </exclusions>
-          </dependency>
-        </dependencies>
-      </plugin>
-
-      <!-- Configure the Site generation -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <!-- Downgraded to 3.4 as 3.5 and 3.5.1 seem to have issues with the velocity tools -->
-        <version>3.7.1</version>
-        <configuration>
-          <generateReports>true</generateReports>
-          <generateSitemap>true</generateSitemap>
-          <relativizeDecorationLinks>false</relativizeDecorationLinks>
-          <locales>en</locales>
-          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-          <outputEncoding>${project.reporting.outputencoding}</outputEncoding>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-            <version>2.6</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.maven.doxia</groupId>
-            <artifactId>doxia-core</artifactId>
-            <version>1.8</version>
-          </dependency>
-          <!-- All dependencies needed by the reflow skin -->
-          <dependency>
-            <groupId>lt.velykis.maven.skins</groupId>
-            <artifactId>reflow-velocity-tools</artifactId>
-            <version>1.1.1</version>
-          </dependency>
-          <dependency>
-            <groupId>org.apache.velocity</groupId>
-            <artifactId>velocity</artifactId>
-            <version>1.7</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-
-      <!--
-        Make the maven-site-plugin stage the output in the "asf-site" branch
-      -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-scm-publish-plugin</artifactId>
-        <version>3.0.0</version>
-        <executions>
-          <execution>
-            <id>scm-publish</id>
-            <phase>site-deploy</phase>
-            <!-- deploy site with maven-scm-publish-plugin -->
-            <goals>
-              <goal>publish-scm</goal>
-            </goals>
-            <configuration>
-              <!-- mono-module doesn't require site:stage -->
-              <content>${project.build.directory}/site</content>
-              <!-- branch where to deploy -->
-              <scmBranch>asf-site</scmBranch>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
-          <configuration>
-              <providerImplementations>
-                  <git>jgit</git>
-              </providerImplementations>
-          </configuration>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.maven.scm</groupId>
-                  <artifactId>maven-scm-provider-jgit</artifactId>
-                  <version>1.11.2-SNAPSHOT</version>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.maven.scm</groupId>
-                  <artifactId>maven-scm-api</artifactId>
-                  <version>1.11.2-SNAPSHOT</version>
-              </dependency>
-          </dependencies>
       </plugin>
     </plugins>
   </build>
 
   <profiles>
-    <profile>
-      <id>main</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
-      <modules>
-          <module>frameworks</module>
-          <module>archetypes</module>
-      </modules>
-    </profile>
-    <profile>
-      <id>release</id>
-      <properties>
-        <royale.debug>false</royale.debug>
-      </properties>
-    </profile>
-
     <profile>
       <id>build-examples</id>
       <modules>
@@ -403,32 +286,11 @@
         <module>testsuite</module>
       </modules>
     </profile>
-    <profile>
-        <id>upload-release-to-staging</id>
-        <activation>
-            <activeByDefault>false</activeByDefault>
-        </activation>
-        <modules><!-- only run on top-level, not for each module -->
-        </modules>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>wagon-maven-plugin</artifactId>
-                    <version>2.0.0</version>
-                    <configuration>
-                        <serverId>apache.releases.https</serverId>
-                        <url>https://repository.apache.org/service/local/staging/deploy/maven2</url>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
-    </profile>
-    
+
     <profile>
         <id>generate-swf</id>
         <properties>
-            <royale.example.targets>SWF,JSRoyale</royale.example.targets>
+          <royale.example.targets>SWF,JSRoyale</royale.example.targets>
         </properties>
         <dependencies>
             <dependency>
@@ -440,7 +302,8 @@
             </dependency>
         </dependencies>
     </profile>
-    
+
+    <!-- What is this used for? -->
     <profile>
       <id>generate-swcs-for-swf</id>
       <properties>
@@ -456,50 +319,30 @@
           </dependency>
       </dependencies>
     </profile>
-    
+
     <profile>
-        <id>release-swcs</id>
-        <properties>
-            <repo.compiler.options>-metadata.date="${royale.swc-date}";-metadata.dateFormat="MM/dd/yy HH:mm Z";-swf-debugfile-alias=/org/apache/royale/0.9.7;</repo.compiler.options>
-            <source.map>false</source.map>
-        </properties>
-        <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.apache.royale.compiler</groupId>
-                    <artifactId>royale-maven-plugin</artifactId>
-                    <version>${royale.compiler.version}</version>
-                    <extensions>true</extensions>
-                    <configuration>
-                        <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </build>
+      <id>apache-release</id>
+      <properties>
+        <source.map>false</source.map>
+        <royale.debug>false</royale.debug>
+      </properties>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.royale.compiler</groupId>
+            <artifactId>royale-maven-plugin</artifactId>
+            <version>${royale.compiler.version}</version>
+            <extensions>true</extensions>
+            <configuration>
+              <additionalCompilerOptions>-metadata.date=${project.build.outputTimestamp};-metadata.dateFormat=yyyy-MM-dd'T'HH:mm:ss'Z'</additionalCompilerOptions>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
     </profile>
   </profiles>
 
   <repositories>
-    <repository>
-      <id>apache-release</id>
-      <url>https://repository.apache.org/content/repositories/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-    <repository>
-      <id>apache-snapshots</id>
-      <url>https://repository.apache.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </repository>
     <repository>
       <id>jspresso</id>
       <url>http://repository.jspresso.org/maven2/</url>
@@ -510,30 +353,6 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
-
   </repositories>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>apache-plugins-release</id>
-      <url>https://repository.apache.org/content/repositories/releases</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </pluginRepository>
-    <pluginRepository>
-      <id>apache-plugins-snapshots</id>
-      <url>https://repository.apache.org/content/repositories/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-        <enabled>true</enabled>
-      </snapshots>
-    </pluginRepository>
-  </pluginRepositories>
 
 </project>

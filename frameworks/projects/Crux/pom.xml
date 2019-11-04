@@ -61,94 +61,7 @@
     </plugins>
   </build>
   
-  <profiles>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf.swcs</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Core</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Basic</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Reflection</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Binding</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>MXRoyale</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Network</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
-
-
   <dependencies>
-
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Reflection</artifactId>
-      <version>0.9.7-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Binding</artifactId>
-      <version>0.9.7-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>MXRoyale</artifactId>
-      <version>0.9.7-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
-
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Network</artifactId>
-      <version>0.9.7-SNAPSHOT</version>
-      <type>swc</type>
-      <classifier>js</classifier>
-    </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
@@ -165,10 +78,96 @@
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Reflection</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Binding</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>MXRoyale</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Network</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
       <artifactId>Language</artifactId>
       <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Core</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Reflection</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Binding</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>MXRoyale</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Network</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Language</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
 </project>
