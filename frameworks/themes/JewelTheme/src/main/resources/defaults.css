@@ -816,45 +816,6 @@ j|FormItem {
   border-radius: 3px;
 }
 
-.vslider {
-  min-width: 27px;
-  min-height: 150px;
-  position: relative;
-  display: inline-block;
-}
-.vslider .transform-container {
-  height: 100%;
-  display: inline-block;
-  position: absolute;
-  margin-left: calc(50% - 13.5px);
-}
-.vslider .sizer {
-  height: 100%;
-  visibility: hidden;
-}
-.vslider .jewel.slider {
-  transform: "translate(-50%, -50%) rotate(270deg) translate(-50%, 50%)";
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 27px;
-  position: absolute;
-}
-.vslider .jewel.slider input {
-  margin-left: 0;
-  margin-right: 0;
-  width: 100%;
-}
-.vslider .slider-track-container {
-  margin-top: 0;
-  margin-right: 0;
-  padding-left: 5px;
-  margin-bottom: 0;
-  margin-left: 0px;
-  width: 100%;
-  padding-right: 5px;
-}
-
 .jewel.snackbar {
   will-change: transform;
   transform: translate(0, 100%);

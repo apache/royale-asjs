@@ -19,39 +19,45 @@
 
 // Jewel VSlider
 
+// VSlider variables
+@import "slider"
+//I could not get "$slider-container-height / 2" , so recalculating from components :
+$vslider-half-width: #{($slider-thumb-size + round($slider-thumb-size/2))/2}
+$vslider-margin-left: calc(50% - #{$vslider-half-width})
+$vslider-container-min-height: 150px
+
+// Jewel VSlider
+
 //mainly uses the base (horizontal) 'slider' styles, but has various extras to override or set styles to support the
 //layout via internal rotation transform of the original component approach in nested div elements
 //there is some tricky use of a non-visual img element to get layout working with the css transform approach
 .vslider
-    min-width: 27px
-    min-height: 150px
-    position: relative
-    display: inline-block
-    .transform-container
-        height: 100%
-        display: inline-block
-        position: absolute
-        margin-left: calc(50% - 13.5px)
-    .sizer
-        height: 100%
-        visibility: hidden
-    .jewel.slider
-        transform: 'translate(-50%, -50%) rotate(270deg) translate(-50%, 50%)'
-        left: 0
-        right: 0
-        top: 0
-        height: 27px
-        position: absolute
-        input
-            margin-left: 0
-            margin-right: 0
-            width: 100%
-    .slider-track-container
-        margin-top: 0
-        margin-right: 0
-        padding-left: 5px
-        margin-bottom: 0
-        margin-left: 0px
-        width: 100%
-        padding-right: 5px
+	min-width: $slider-container-height
+	min-height: $vslider-container-min-height
+	position: relative
+	display: inline-block
+	.transform-container
+		height: 100%
+		display: inline-block
+		position: absolute
+		margin-left: $vslider-margin-left
+	.sizer
+		height: 100%
+		visibility: hidden
+	.jewel.slider
+		transform: 'translate(-50%, -50%) rotate(270deg) translate(-50%, 50%)'
+		left: 0
+		right: 0
+		top: 0
+		height: $slider-container-height
+		position: absolute
+		input
+			margin-left: 0
+			margin-right: 0
+			width: 100%
+	.slider-track-container
+		margin: 0
+		width: 100%
+		padding-left: 5px
+		padding-right: 5px
 
