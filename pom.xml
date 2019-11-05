@@ -50,7 +50,7 @@
   </scm>
 
   <properties>
-    <java.version>1.6</java.version>
+    <java.version>1.7</java.version>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputencoding>UTF-8</project.reporting.outputencoding>
     <maven.version>3.5.4</maven.version>
@@ -325,6 +325,15 @@
         <source.map>false</source.map>
         <royale.debug>false</royale.debug>
       </properties>
+    </profile>
+
+    <profile>
+      <id>reproducible-build</id>
+      <activation>
+        <property>
+          <name>project.build.outputTimestamp</name>
+        </property>
+      </activation>
       <build>
         <plugins>
           <plugin>
@@ -340,18 +349,5 @@
       </build>
     </profile>
   </profiles>
-
-  <repositories>
-    <repository>
-      <id>jspresso</id>
-      <url>http://repository.jspresso.org/maven2/</url>
-      <releases>
-        <enabled>true</enabled>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-    </repository>
-  </repositories>
 
 </project>
