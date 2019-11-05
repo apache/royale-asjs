@@ -144,7 +144,7 @@ package org.apache.royale.jewel.beads.views
 				sliderTrackContainer.appendChild(sliderTrackFill);
 				sliderTrackContainer.appendChild(sliderTrack);
 
-				host.positioner.appendChild(sliderTrackContainer);
+				host.transformElement.appendChild(sliderTrackContainer);
             }
 
 			// listen for changes to the model and adjust the UI accordingly.

@@ -188,6 +188,14 @@ package org.apache.royale.jewel
         {
             IRangeModel(model).stepSize = value;
         }
+		
+		
+		
+		COMPILE::JS
+		override public function get transformElement():WrappedHTMLElement
+		{
+			return positioner;
+		}
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -203,7 +211,7 @@ package org.apache.royale.jewel
         }
 
 		COMPILE::JS
-		private var _positioner:WrappedHTMLElement;
+		protected var _positioner:WrappedHTMLElement;
 
 		COMPILE::JS
 		override public function get positioner():WrappedHTMLElement

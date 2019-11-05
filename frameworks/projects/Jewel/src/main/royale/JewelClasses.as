@@ -122,7 +122,8 @@ package
 
         COMPILE::JS
         {
-        import dialogPolyfill; dialogPolyfill;
+            import dialogPolyfill; dialogPolyfill;
+            import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
         }
     }
 }

@@ -1,0 +1,57 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Jewel VSlider
+
+//mainly uses the base (horizontal) 'slider' styles, but has various extras to override or set styles to support the
+//layout via internal rotation transform of the original component approach in nested div elements
+//there is some tricky use of a non-visual img element to get layout working with the css transform approach
+.vslider
+    min-width: 27px
+    min-height: 150px
+    position: relative
+    display: inline-block
+    .transform-container
+        height: 100%
+        display: inline-block
+        position: absolute
+        margin-left: calc(50% - 13.5px)
+    .sizer
+        height: 100%
+        visibility: hidden
+    .jewel.slider
+        transform: 'translate(-50%, -50%) rotate(270deg) translate(-50%, 50%)'
+        left: 0
+        right: 0
+        top: 0
+        height: 27px
+        position: absolute
+        input
+            margin-left: 0
+            margin-right: 0
+            width: 100%
+    .slider-track-container
+        margin-top: 0
+        margin-right: 0
+        padding-left: 5px
+        margin-bottom: 0
+        margin-left: 0px
+        width: 100%
+        padding-right: 5px
+

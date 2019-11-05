@@ -55,6 +55,7 @@
     <component id="Spinner" class="org.apache.royale.jewel.Spinner" />
     <component id="NumericStepper" class="org.apache.royale.jewel.NumericStepper" />
     <component id="Slider" class="org.apache.royale.jewel.Slider"/>
+    <component id="VSlider" class="org.apache.royale.jewel.VSlider"/>
     <component id="RadioButton" class="org.apache.royale.jewel.RadioButton"/>
     <component id="CheckBox" class="org.apache.royale.jewel.CheckBox"/>
     <component id="Alert" class="org.apache.royale.jewel.Alert"/>
