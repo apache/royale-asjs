@@ -46,46 +46,13 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>JSON2ASVO.mxml</mainClass>
+          <targets>${royale.example.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>
     </plugins>
   </build>
   
-  <profiles>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Storage</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Reflection</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Basic</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
-
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
@@ -94,7 +61,6 @@
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
-
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Reflection</artifactId>
@@ -102,7 +68,6 @@
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
-
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
@@ -111,12 +76,41 @@
       <classifier>js</classifier>
     </dependency>
     <dependency>
-        <groupId>org.apache.royale.framework</groupId>
-        <artifactId>BasicTheme</artifactId>
-        <version>0.9.7-SNAPSHOT</version>
-        <type>swc</type>
-        <scope>theme</scope>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>BasicTheme</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+      <type>swc</type>
+      <scope>theme</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Storage</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Reflection</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

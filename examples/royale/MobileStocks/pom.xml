@@ -46,6 +46,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>MobileStocks.mxml</mainClass>
+          <targets>${royale.example.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>
@@ -55,54 +56,6 @@
       </plugin>
     </plugins>
   </build>
-  
-  <profiles>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Charts</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Mobile</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Network</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Storage</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>XML</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
 
   <dependencies>
     <dependency>
@@ -148,5 +101,48 @@
       <scope>theme</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Charts</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Mobile</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Network</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Storage</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>XML</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

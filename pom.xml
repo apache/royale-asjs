@@ -63,7 +63,7 @@
     <royale.typedefs.version>0.9.7-SNAPSHOT</royale.typedefs.version>
 
     <royale.example.targets>JSRoyale</royale.example.targets>
-    
+
     <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
     <repo.compiler.options />
@@ -77,7 +77,6 @@
     
     <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
-    <skipgpg>false</skipgpg>
   </properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->

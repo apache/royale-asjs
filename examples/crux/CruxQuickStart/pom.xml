@@ -54,33 +54,6 @@
     </plugins>
   </build>
 
-  <profiles>
-    <profile>
-      <id>generate-swf</id>
-      <properties>
-        <!-- no point building the swf target -->
-        <royale.example.targets>JSRoyale</royale.example.targets>
-      </properties>
-    </profile>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Jewel</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
-
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
@@ -98,5 +71,26 @@
       <classifier>js</classifier>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-swf</id>
+
+      <properties>
+        <!-- no point building the swf target -->
+        <royale.example.targets>JSRoyale</royale.example.targets>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Jewel</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

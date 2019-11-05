@@ -62,7 +62,6 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.1.0</version>
           <executions>
             <execution>
               <id>copy-resources-debug</id>
@@ -102,19 +101,16 @@
         <plugin>
           <groupId>org.apache.royale.compiler</groupId>
           <artifactId>royale-maven-plugin</artifactId>
-          <version>${royale.compiler.version}</version>
           <extensions>true</extensions>
-          <configuration>
-              <targets>${royale.example.targets}</targets>
-          </configuration>
         </plugin>
         <plugin>
           <groupId>org.jboss.errai</groupId>
           <artifactId>cordova-maven-plugin</artifactId>
-          <version>4.0.0.Beta2</version>
+          <version>4.0.0.Beta3</version>
         </plugin>
       </plugins>
     </pluginManagement>
+
     <plugins>
       <!-- Makes it possible to run the example directly by running 'mvn tomcat7:run' -->
       <plugin>
@@ -136,7 +132,6 @@
   <profiles>
     <profile>
       <id>release</id>
-
       <properties>
         <compiler.output-dir>${basedir}/target/javascript/bin/js-release</compiler.output-dir>
       </properties>

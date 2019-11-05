@@ -70,26 +70,6 @@
   </build>
   -->
   
-  <profiles>
-      <profile>
-          <id>swf-dependencies-modules</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Basic</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
-
   <dependencies>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
@@ -106,5 +86,20 @@
       <scope>theme</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>generate-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>
