@@ -121,3 +121,7 @@
     margin-right: 24px;
 }
 
+.tabBarWithNavigation {
+	IBeadView: ClassReference("org.apache.royale.jewel.beads.views.TabBarWithNavigationView");
+}
+
