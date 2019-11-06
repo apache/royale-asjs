@@ -1143,10 +1143,13 @@ public class HierarchicalCollectionView extends EventDispatcher
             var item:Object = cursor.current;
             var collectionEvent:org.apache.royale.events.CollectionEvent = new org.apache.royale.events.CollectionEvent(type);
             collectionEvent.item = item;
-            collectionEvent.index = index++;
+            collectionEvent.index = index;
             dispatchEvent(collectionEvent);
             if (adding)
+			{
                 currentLength++;
+				index++;
+			}
             else
                 currentLength--;
             if (isOpen(item))
