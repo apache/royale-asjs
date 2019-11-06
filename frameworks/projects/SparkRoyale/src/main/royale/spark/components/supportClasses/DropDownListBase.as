@@ -221,7 +221,8 @@ public class DropDownListBase extends List
     public function DropDownListBase()
     {
         super();
-
+	if((model as ISelectionModel).labelField == null) 
+		labelField("label");
        // dropDownController = new DropDownController();
     }
     
