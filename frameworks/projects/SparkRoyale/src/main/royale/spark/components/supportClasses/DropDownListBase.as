@@ -222,7 +222,7 @@ public class DropDownListBase extends List
     {
         super();
 	if((model as ISelectionModel).labelField == null) 
-		labelField("label");
+			labelField =  "label";
        // dropDownController = new DropDownController();
     }
     
