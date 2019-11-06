@@ -183,6 +183,7 @@ import mx.managers.IFocusManagerComponent;
  */
 //[Style(name="touchDelay", type="Number", format="Time", inherit="yes", minValue="0.0")]
 
+[Style(name="direction", type="String", inherit="yes")]
 //--------------------------------------
 //  Events
 //--------------------------------------
