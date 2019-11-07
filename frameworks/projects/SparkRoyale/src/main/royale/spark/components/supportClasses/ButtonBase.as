@@ -475,6 +475,22 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
     public function set textDecoration(val:String):void
     {
     }
+    
+   private var _direction:String = "LTR";
+
+    /**
+     *  @private
+     */
+    public function get direction():String{
+	
+        return _direction;
+    }
+    
+    public function set direction(value:String):void
+    {
+       _direction = value;
+    }
+
 
 }
 
