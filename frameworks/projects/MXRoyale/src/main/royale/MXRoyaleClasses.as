@@ -157,6 +157,7 @@ internal class MXRoyaleClasses
 	import mx.net.FileReference; FileReference;
 	import mx.net.FileFilter; FileFilter;
 	import mx.events.ProgressEvent; ProgressEvent;
+	import mx.events.ColorPickerEvent; ColorPickerEvent;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList; AdvancedDataGridColumnList;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridListArea; AdvancedDataGridListArea;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController; AdvancedDataGridSingleSelectionMouseController;
