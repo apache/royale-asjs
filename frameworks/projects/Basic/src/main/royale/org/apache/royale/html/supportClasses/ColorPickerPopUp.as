@@ -27,6 +27,7 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.HueSelector;
 	import org.apache.royale.utils.hsvToHex;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IBead;
 
 	/**
 	 *  The ColorPickerPopUp class is used in ColorPicker. It contains a set of controls for picking a color.
@@ -38,7 +39,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp
+	public class ColorPickerPopUp extends UIBase implements IColorPickerPopUp, IBead
 	{
 		protected var colorSpectrum:ColorSpectrum;
 		protected var hueSelector:HueSelector;
