@@ -81,6 +81,7 @@ internal class SparkRoyaleClasses
     import spark.components.beads.controllers.DropDownListController; DropDownListController;
     import spark.components.beads.controllers.TabBarController; TabBarController;
     import spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
+    import spark.events.DropDownEvent; DropDownEvent;
 	
 }
 

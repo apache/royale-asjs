@@ -973,16 +973,16 @@ public class UIComponent extends UIBase
 	}
     }
     
-    
+    private var _accessibilityEnabled:Boolean = true;
+
     public function get accessibilityEnabled():Boolean
     {
-        trace("accessibilityEnabled not implemented");
-        return false;
+        return _accessibilityEnabled;
     }
     
     public function set accessibilityEnabled(value:Boolean):void
     {
-        trace("accessibilityEnabled not implemented");
+      _accessibilityEnabled = value;
     }
     
     /**
