@@ -122,7 +122,11 @@ package org.apache.royale.reflection
    
 			COMPILE::JS {
 				var f:Function = _rawData.get_set;
-				var valueClass:Class = getDefinitionByName(_rawData.type);
+				var valueClass:Class;
+				var type:String = _rawData.type;
+				if (type && type != '*') {
+					valueClass = getDefinitionByName(type);
+				}
 				if (isStatic) {
 					_setter = function(value:*):* {
                         if (goog.DEBUG) {
@@ -130,7 +134,7 @@ package org.apache.royale.reflection
 							//todo: more robust runtime checking of value here for debug mode
                         }
 						//coerce
-						value = Language.as(value, valueClass, true);
+						if (valueClass) value = Language.as(value, valueClass, true);
                         f(value);
                     }
 				} else {
@@ -140,7 +144,7 @@ package org.apache.royale.reflection
 							//todo: more robust runtime checking of value here for debug mode
 						}
 						//coerce
-						value = Language.as(value, valueClass, true);
+						if (valueClass) value = Language.as(value, valueClass, true);
 						f(instance, value);
 					}
 				}

@@ -296,6 +296,8 @@ package flexUnitTests.reflection
             assertEquals( TestClass6.testnamespace::myStaticAccessor,'setViaCustomNSReflection', 'unexpected accessor post-write access result');
         
         }
+        
+        public static var anything:*;
     
         [Test]
         public function testWrongSetValueType():void{
@@ -315,6 +317,13 @@ package flexUnitTests.reflection
             var accessorTestDef:AccessorDefinition = subset[0];
             accessorTestDef.setValue(inst, 0.0);
             assertStrictlyEquals(inst.accessorTest, '0', 'unexpected assigned value');
+            
+            def = describeType(this);
+            collection = getMembers(def,true,MemberTypes.VARIABLES|MemberTypes.STATIC_ONLY);
+            subset = getMembersWithNameMatch(collection,'anything');
+            testVarDef = subset[0];
+            testVarDef.setValue('anything');
+            assertStrictlyEquals(ReflectionTesterTestEdgeCases.anything, 'anything', 'unexpected assigned value');
         }
         
     }

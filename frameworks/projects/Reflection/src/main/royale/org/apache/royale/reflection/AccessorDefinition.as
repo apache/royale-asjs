@@ -122,11 +122,15 @@ package org.apache.royale.reflection {
             }
 			var fieldName:String = name;
             if (uri) fieldName = QName.getAsObjectAccessFormat(uri, fieldName);
-            var valueClass:Class = getDefinitionByName(_rawData.type);
+            var valueClass:Class;
+            var type:String = _rawData.type;
+            if (type && type != '*') {
+                valueClass = getDefinitionByName(type);
+            }
 			if (isStatic) {
 				_setter = function(value:*):* {
                     //coerce
-                    value = Language.as(value, valueClass, true);
+                    if (valueClass) value = Language.as(value, valueClass, true);
 					cl[fieldName] = value
 				}
 			} else {
@@ -135,7 +139,7 @@ package org.apache.royale.reflection {
 						if (arguments.length != 2 || (!(instance is cl))) throw 'invalid setValue parameters';
 					}
                     //coerce
-                    value = Language.as(value, valueClass, true);
+                    if (valueClass) value = Language.as(value, valueClass, true);
 					instance[fieldName] = value;
 				}
 			}
