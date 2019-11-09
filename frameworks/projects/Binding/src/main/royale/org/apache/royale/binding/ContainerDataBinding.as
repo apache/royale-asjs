@@ -141,9 +141,12 @@ package org.apache.royale.binding
                             _strand.addBead(chb);
                         }
                      }
-                     else
+                     else if (binding.destination is Array)
                      {
                         makeConstantBinding(binding);
+                     }
+                     else  {
+                         makeGenericBinding(binding, i, watchers);
                      }
                 }
                 else if (binding.source is String && binding.destination is Array)
