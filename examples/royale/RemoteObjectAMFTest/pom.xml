@@ -53,7 +53,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <!-- <debug>false</debug> -->
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>

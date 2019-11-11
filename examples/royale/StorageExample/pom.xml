@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>StorageExample.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
         </configuration>
       </plugin>
       <plugin>

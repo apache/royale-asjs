@@ -50,7 +50,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>MapSearch.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>

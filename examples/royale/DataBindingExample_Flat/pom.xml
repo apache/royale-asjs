@@ -54,7 +54,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>

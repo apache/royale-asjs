@@ -46,7 +46,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DesktopMap.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>

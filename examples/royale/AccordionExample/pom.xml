@@ -46,7 +46,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>AccordionExample.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <namespaces>
             <namespace>
               <uri>http://ns.adobe.com/mxml/2009</uri>

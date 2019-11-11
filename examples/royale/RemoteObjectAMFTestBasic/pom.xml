@@ -47,7 +47,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>App.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>true</debug>
         </configuration>
       </plugin>

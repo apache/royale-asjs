@@ -82,6 +82,7 @@
           <!-- We don't want dependencies to be linked into the resulting libraries -->
           <forceSwcExternalLibraryPath>true</forceSwcExternalLibraryPath>
           <additionalCompilerOptions>${project.compiler.options}</additionalCompilerOptions>
+          <targets>${royale.targets}</targets>
         </configuration>
       </plugin>
     </plugins>

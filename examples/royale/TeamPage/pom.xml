@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>TeamPage.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
           <!-- Not a config option of royale-maven-plugin -->
           <!--flashVersion>20.0</flashVersion-->

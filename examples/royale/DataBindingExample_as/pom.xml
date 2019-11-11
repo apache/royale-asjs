@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.as</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
           <defines>
             <define>

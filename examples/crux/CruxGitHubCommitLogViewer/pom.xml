@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>CruxGitHubCommitLogViewer.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>false</debug>
           <additionalCompilerOptions>
             -js-default-initializers=true;
@@ -125,7 +125,7 @@
       <id>option-with-swf</id>
       <properties>
         <!-- no point building the swf target yet, there is a bug in mx ObjectUtil somewhere -->
-        <royale.example.targets>JSRoyale</royale.example.targets>
+        <royale.targets>JSRoyale</royale.targets>
       </properties>
 
       <dependencies>

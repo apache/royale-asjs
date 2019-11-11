@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>HelloWorld.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <additionalCompilerOptions>
             -js-complex-implicit-coercions=false;
             -js-vector-index-checks=false;

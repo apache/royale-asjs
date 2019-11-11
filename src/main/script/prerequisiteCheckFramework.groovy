@@ -211,6 +211,13 @@ if(uiTestsuiteEnabled) {
     checkGeckoDriver()
 }
 
+if(distributionEnabled) {
+    if(!optionWithSwfEnabled) {
+        println "If the 'with-distribution' profile is enabled the 'option-with-swf' profile must be enabled too, as the distribution bundles both swf and js artifacts."
+        allConditionsMet = false
+    }
+}
+
 if(!allConditionsMet) {
     throw new RuntimeException("Not all conditions met, see log for details.")
 }

@@ -46,7 +46,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>TodoListSampleApp.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
         </configuration>
       </plugin>
     </plugins>

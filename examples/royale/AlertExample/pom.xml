@@ -42,7 +42,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>AlertExample.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
         </configuration>
       </plugin>
     </plugins>

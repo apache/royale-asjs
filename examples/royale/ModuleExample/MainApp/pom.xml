@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>MainApp.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>false</debug>
           <additionalCompilerOptions>-js-compiler-option=--variable_map_output_file gccvars.txt;-js-compiler-option+=--property_map_output_file gccprops.txt</additionalCompilerOptions>
         </configuration>

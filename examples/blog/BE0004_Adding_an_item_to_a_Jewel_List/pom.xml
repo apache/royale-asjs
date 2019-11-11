@@ -41,7 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>BE0004_Adding_an_item_to_a_Jewel_List.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
         </configuration>

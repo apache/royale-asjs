@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>CruxQuickStart.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>false</debug>
           <additionalCompilerOptions>
             -js-default-initializers=true;
@@ -78,7 +78,7 @@
 
       <properties>
         <!-- no point building the swf target -->
-        <royale.example.targets>JSRoyale</royale.example.targets>
+        <royale.targets>JSRoyale</royale.targets>
       </properties>
 
       <dependencies>

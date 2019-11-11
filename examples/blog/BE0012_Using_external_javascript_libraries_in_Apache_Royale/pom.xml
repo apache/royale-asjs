@@ -41,7 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>BE0012_Using_external_javascript_libraries_in_Apache_Royale.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
           <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>

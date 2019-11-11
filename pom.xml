@@ -62,9 +62,7 @@
     <royale.compiler.version>0.9.7-SNAPSHOT</royale.compiler.version>
     <royale.typedefs.version>0.9.7-SNAPSHOT</royale.typedefs.version>
 
-    <royale.example.targets>JSRoyale</royale.example.targets>
-    <webdriver.gecko.driver />
-
+    <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
     <repo.compiler.options />
@@ -75,7 +73,9 @@
     <!-- For SWF versions see: http://www.adobe.com/devnet/articles/flashplayer-air-feature-list.html -->
     <swf.version>31</swf.version>
     <source.map>true</source.map>
-    
+
+    <!-- This parameter has to be provided from the outside -->
+    <webdriver.gecko.driver />
     <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
   </properties>
@@ -309,42 +309,28 @@
 
     <profile>
       <id>with-ui-testsuite</id>
-      <modules>
+      <!-- Disabled for now till I find out what the module is about -->
+      <!--modules>
         <module>testsuite</module>
-      </modules>
+      </modules-->
     </profile>
 
     <profile>
         <id>option-with-swf</id>
         <properties>
-          <royale.example.targets>SWF,JSRoyale</royale.example.targets>
+          <royale.targets>SWF,JSRoyale</royale.targets>
+          <royale.skipAS>false</royale.skipAS>
         </properties>
         <dependencies>
-            <dependency>
-                <groupId>com.adobe.flash.framework</groupId>
-                <artifactId>playerglobal</artifactId>
-                <version>${flash.version}</version>
-                <type>swc</type>
-                <scope>runtime</scope>
-            </dependency>
+          <dependency>
+            <groupId>com.adobe.air.framework</groupId>
+            <artifactId>airglobal</artifactId>
+            <version>${air.version}</version>
+            <type>swc</type>
+            <scope>runtime</scope>
+          </dependency>
         </dependencies>
     </profile>
-
-    <!--profile>
-      <id>option-with-swf</id>
-      <properties>
-          <royale.skipAS>false</royale.skipAS>
-      </properties>
-      <dependencies>
-          <dependency>
-              <groupId>com.adobe.air.framework</groupId>
-              <artifactId>airglobal</artifactId>
-              <version>${air.version}</version>
-              <type>swc</type>
-              <scope>runtime</scope>
-          </dependency>
-      </dependencies>
-    </profile-->
 
     <profile>
       <id>apache-release</id>
