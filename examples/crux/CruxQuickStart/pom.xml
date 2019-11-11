@@ -74,7 +74,7 @@
 
   <profiles>
     <profile>
-      <id>generate-swf</id>
+      <id>option-with-swf</id>
 
       <properties>
         <!-- no point building the swf target -->

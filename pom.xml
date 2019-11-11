@@ -188,12 +188,6 @@
           <artifactId>maven-scm-plugin</artifactId>
           <version>1.10.0</version>
         </plugin>
-<!--
-        <plugin>
-          <groupId>org.sonarsource.scanner.maven</groupId>
-          <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.2</version>
-        </plugin>-->
       </plugins>
     </pluginManagement>
     <plugins>
@@ -259,35 +253,35 @@
 
   <profiles>
     <profile>
-      <id>build-examples</id>
+      <id>with-examples</id>
       <modules>
         <module>examples</module>
       </modules>
     </profile>
 
     <profile>
-      <id>build-distribution</id>
+      <id>with-distribution</id>
       <modules>
         <module>distribution</module>
       </modules>
     </profile>
 
     <profile>
-      <id>build-manualtests</id>
+      <id>with-manualtests</id>
       <modules>
         <module>manualtests</module>
       </modules>
     </profile>
 
     <profile>
-      <id>run-testsuite</id>
+      <id>with-ui-testsuite</id>
       <modules>
         <module>testsuite</module>
       </modules>
     </profile>
 
     <profile>
-        <id>generate-swf</id>
+        <id>option-with-swf</id>
         <properties>
           <royale.example.targets>SWF,JSRoyale</royale.example.targets>
         </properties>
@@ -302,9 +296,8 @@
         </dependencies>
     </profile>
 
-    <!-- What is this used for? -->
-    <profile>
-      <id>generate-swcs-for-swf</id>
+    <!--profile>
+      <id>option-with-swf</id>
       <properties>
           <royale.skipAS>false</royale.skipAS>
       </properties>
@@ -317,7 +310,7 @@
               <scope>runtime</scope>
           </dependency>
       </dependencies>
-    </profile>
+    </profile-->
 
     <profile>
       <id>apache-release</id>
@@ -328,7 +321,7 @@
     </profile>
 
     <profile>
-      <id>reproducible-build</id>
+      <id>_reproducible-build</id>
       <activation>
         <property>
           <name>project.build.outputTimestamp</name>

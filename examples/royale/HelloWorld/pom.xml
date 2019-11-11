@@ -70,7 +70,7 @@
 
   <profiles>
     <profile>
-      <id>generate-swf</id>
+      <id>option-with-swf</id>
       <dependencies>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>

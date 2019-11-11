@@ -127,11 +127,11 @@
   </build>
 
   <!--
-        When doing a release build tell the war plugin to package a different directory.
+        When doing a build for release artifacts, tell the war plugin to package a different directory.
   -->
   <profiles>
     <profile>
-      <id>release</id>
+      <id>apache-release</id>
       <properties>
         <compiler.output-dir>${basedir}/target/javascript/bin/js-release</compiler.output-dir>
       </properties>
@@ -145,7 +145,7 @@
             <plugin>
               <groupId>org.jboss.errai</groupId>
               <artifactId>cordova-maven-plugin</artifactId>
-              <version>4.0.0.Beta2</version>
+              <version>4.0.0.Beta3</version>
               <executions>
                 <execution>
                   <id>build</id>

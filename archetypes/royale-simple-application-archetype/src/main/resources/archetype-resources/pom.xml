@@ -89,7 +89,7 @@
 
   <profiles>
     <profile>
-      <id>release</id>
+      <id>apache-release</id>
       <properties>
         <compiler.debug>false</compiler.debug>
       </properties>

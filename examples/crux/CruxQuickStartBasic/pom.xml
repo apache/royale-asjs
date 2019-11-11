@@ -75,7 +75,7 @@
 
   <profiles>
     <profile>
-      <id>generate-swf</id>
+      <id>option-with-swf</id>
       <properties>
         <title>${project.artifactId}</title>
         <bgcolor>#ffffff</bgcolor>

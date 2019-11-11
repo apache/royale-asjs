@@ -172,11 +172,11 @@
       <classifier>js</classifier>
     </dependency>
   </dependencies>
+
   <profiles>
     <profile>
-      <id>release</id>
+      <id>apache-release</id>
       <properties>
-	  <compiler.debug>false</compiler.debug>
         <compiler.output-dir>${basedir}/target/javascript/bin/js-release</compiler.output-dir>
       </properties>
     </profile>
