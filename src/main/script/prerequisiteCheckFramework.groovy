@@ -170,16 +170,19 @@ def activeProfiles = session.request.activeProfiles
 for (def activeProfile : activeProfiles) {
     if(activeProfile == "with-distribution") {
         distributionEnabled = true
-        println "distribution"
+        println "with-distribution"
     } else if(activeProfile == "with-examples") {
         examplesEnabled = true
-        println "examples"
+        println "with-examples"
     } else if(activeProfile == "with-manualtests") {
         manualtestsEnabled = true
-        println "manualtests"
+        println "with-manualtests"
     } else if(activeProfile == "with-ui-testsuite") {
         uiTestsuiteEnabled = true
-        println "ui-testsuite"
+        println "with-ui-testsuite"
+    } else if(activeProfile == "option-with-swf") {
+        optionWithSwfEnabled = true
+        println "option-with-swf"
     }
 }
 println ""
