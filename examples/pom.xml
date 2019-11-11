@@ -51,7 +51,6 @@
     <module>amf</module>
     <module>crux</module>
     <module>examples-tests</module>
-    <module>examples-integrationtests</module>
   </modules>
 
   <build>
@@ -135,6 +134,13 @@
       <properties>
         <compiler.output-dir>${basedir}/target/javascript/bin/js-release</compiler.output-dir>
       </properties>
+    </profile>
+
+    <profile>
+      <id>with-ui-testsuite</id>
+      <modules>
+        <module>examples-integrationtests</module>
+      </modules>
     </profile>
 
     <profile>

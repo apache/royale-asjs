@@ -27,10 +27,12 @@ allConditionsMet = true
 baseDirectory = project.model.pomFile.parent
 
 def checkTotalMemory(long requiredMaxMegs) {
-    print "Checking available memory:  "
+    print "Checking available memory:               "
     long curMaxMegs = (long) (Runtime.runtime.maxMemory() / (1024*1024))
     if(curMaxMegs < requiredMaxMegs) {
-        println "Failed: To little memory available. "
+        println "Failed:"
+        println ""
+        println "Too little memory available. "
         println "Please set the MAVEN_OPTS environment variable to allow at least " + requiredMaxMegs + "MB of ram."
         println "Example:"
         if(os == "win") {
@@ -38,9 +40,60 @@ def checkTotalMemory(long requiredMaxMegs) {
         } else {
             println "export MAVEN_OPTS=-Xmx" + requiredMaxMegs + "m"
         }
+        println ""
         allConditionsMet = false
+    } else {
+        println "OK (" + curMaxMegs + " MB)"
     }
-    return true
+}
+
+def checkGeckoDriver() {
+    print "Checking Gecko WebDriver configuration:  "
+    String webdriverGeckoDriverPath = geckoProperty
+    if(webdriverGeckoDriverPath == null || webdriverGeckoDriverPath.isEmpty()) {
+        println "Failed"
+        println ""
+        println "When running the 'with-ui-testsuite' profile it is mandatory to pass along the path to the Gecko Webdriver in the 'webdriver.gecko.driver' variable."
+        println "Get versions from: https://github.com/mozilla/geckodriver/releases"
+        if(os == "win") {
+            println "Pass the location to the 'geckodriver.exe' executable by adding '-Dwebdriver.gecko.driver={path-to-geckodriver.exe}' to your maven build command"
+        } else {
+            println "Pass the location to the 'geckodriver' executable by adding '-Dwebdriver.gecko.driver={path-to-geckodriver}' to your maven build command"
+        }
+        println ""
+        allConditionsMet = false
+        return
+    }
+    // If the property is specified with surrounding double-quotes, remove them.
+    if(webdriverGeckoDriverPath.startsWith("\"") && webdriverGeckoDriverPath.endsWith("\"")) {
+        flashplayerDebuggerPath = webdriverGeckoDriverPath.substring(1, webdriverGeckoDriverPath.length() - 1)
+    }
+
+    File webdriverGeckoDriverFile = new File(webdriverGeckoDriverPath)
+    if(webdriverGeckoDriverFile.exists()) {
+        if(webdriverGeckoDriverFile.exists()) {
+            if(!webdriverGeckoDriverFile.isFile()) {
+                println "Failed: 'webdriver.gecko.driver' must point to a file"
+                allConditionsMet = false
+                return
+            }
+
+            def output = (webdriverGeckoDriverPath + " --version").execute().text
+            Matcher matcher = extractVersion(output)
+            if(matcher.size() > 0) {
+                def curVersion = matcher[0][1]
+                println "OK (Gecko Version " + curVersion + ")"
+            } else {
+                println "Failed"
+                println ""
+                println "not a valid Gecko WebDriver executable at " + webdriverGeckoDriverPath
+                allConditionsMet = false
+            }
+        } else {
+            println "Failed: File referenced by 'webdriver.gecko.driver' does not exist. " + webdriverGeckoDriverPath
+            allConditionsMet = false
+        }
+    }
 }
 
 /*
@@ -100,6 +153,9 @@ println "Detected minimum Flash version: " + flashVersion
 airVersion = project.properties['air.version']
 println "Detected minimum Air version:   " + airVersion
 
+// Save the gecko property (Somehow the groovy maven plugin doesn't like overridden properties)
+geckoProperty = properties['geckoProperty']
+
 /////////////////////////////////////////////////////
 // Find out which profiles are enabled.
 /////////////////////////////////////////////////////
@@ -148,6 +204,11 @@ if(os == "win") {
 if(examplesEnabled) {
     // Check at least 1024 mb of memory are available to the build.
     checkTotalMemory(1024)
+}
+
+if(uiTestsuiteEnabled) {
+    // Check if the gecko driver is configured and available in the right version.
+    checkGeckoDriver()
 }
 
 if(!allConditionsMet) {
