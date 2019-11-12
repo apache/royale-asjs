@@ -205,8 +205,8 @@ if(os == "win") {
 /////////////////////////////////////////////////////
 
 if(examplesEnabled) {
-    // Check at least 1024 mb of memory are available to the build.
-    checkTotalMemory(1024)
+    // Check at least 1536MB of memory are available to the build.
+    checkTotalMemory(1536)
 }
 
 if(uiTestsuiteEnabled) {
