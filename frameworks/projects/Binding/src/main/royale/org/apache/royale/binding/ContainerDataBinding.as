@@ -141,9 +141,12 @@ package org.apache.royale.binding
                             _strand.addBead(chb);
                         }
                      }
-                     else
+                     else if (binding.destination is Array)
                      {
                         makeConstantBinding(binding);
+                     }
+                     else  {
+                         makeGenericBinding(binding, i, watchers);
                      }
                 }
                 else if (binding.source is String && binding.destination is Array)
@@ -169,11 +172,19 @@ package org.apache.royale.binding
                     }
                     else if (fieldWatcher.eventNames is String)
                     {
-                        sb = new SimpleBinding();
+                        var isStatic:Boolean = fieldWatcher.type == "static";
+                        sb = new SimpleBinding(isStatic);
                         sb.destinationPropertyName = binding.destination[1];
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourcePropertyName = binding.source;
-                        sb.setDocument(_strand);
+                        if (isStatic)
+                        {
+                            sb.setDocument(fieldWatcher.parentObj);
+                        }
+                        else
+                        {
+                            sb.setDocument(_strand);
+                        }
 
                         prepareCreatedBinding(sb as IBinding, binding);
                     }

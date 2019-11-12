@@ -20,6 +20,7 @@ package org.apache.royale.reflection {
     
     COMPILE::JS{
         import goog.DEBUG;
+        import org.apache.royale.utils.Language;
     }
 	
 	COMPILE::SWF{
@@ -121,8 +122,15 @@ package org.apache.royale.reflection {
             }
 			var fieldName:String = name;
             if (uri) fieldName = QName.getAsObjectAccessFormat(uri, fieldName);
+            var valueClass:Class;
+            var type:String = _rawData.type;
+            if (type && type != '*') {
+                valueClass = getDefinitionByName(type);
+            }
 			if (isStatic) {
 				_setter = function(value:*):* {
+                    //coerce
+                    if (valueClass) value = Language.as(value, valueClass, true);
 					cl[fieldName] = value
 				}
 			} else {
@@ -130,6 +138,8 @@ package org.apache.royale.reflection {
 					if (goog.DEBUG) {
 						if (arguments.length != 2 || (!(instance is cl))) throw 'invalid setValue parameters';
 					}
+                    //coerce
+                    if (valueClass) value = Language.as(value, valueClass, true);
 					instance[fieldName] = value;
 				}
 			}
