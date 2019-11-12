@@ -2999,6 +2999,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
      */
     private function resizeHandler(event:Event):void
     {
+        _screen = null;
         var screen:Rectangle = this.screen;
         mxmlDocument.setActualSize(screen.width, screen.height);        
     }

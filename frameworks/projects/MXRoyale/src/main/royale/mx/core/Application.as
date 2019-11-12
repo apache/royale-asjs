@@ -585,11 +585,17 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	protected var startupTimer:Timer;
 	
+    private var _started:Boolean = false;
+    
     COMPILE::JS
     override public function setActualSize(w:Number, h:Number):void
     {
         super.setActualSize(w, h);
-        start();
+        if (!_started)
+        {
+            start();
+            _started = true;
+        }
     }
     
 	/**
