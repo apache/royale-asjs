@@ -63,10 +63,7 @@ package mx.controls.beads.layouts
         }
         
         COMPILE::JS
-        protected var topSpacer:HTMLDivElement;
-        
-        COMPILE::JS
-        protected var bottomSpacer:HTMLDivElement;
+        protected var spacer:HTMLDivElement;
         
         COMPILE::JS
         private var listening:Boolean;
@@ -108,6 +105,22 @@ package mx.controls.beads.layouts
                 var topSpacerHeight:Number = Math.floor(listArea.element.scrollTop / presentationModel.rowHeight)
                     * presentationModel.rowHeight;
                 }
+                var model:IDataGridModel = uiHost.model as IDataGridModel;
+                if (model.dataProvider && model.dataProvider.length)
+                {
+                    var totalHeight:Number = model.dataProvider.length * presentationModel.rowHeight;
+                    COMPILE::JS
+                    {
+                        if (!spacer)
+                        {
+                            spacer = document.createElement("div") as HTMLDivElement;
+                            listArea.element.appendChild(spacer);
+                        }
+                        // the lists are "absolute" so they float over the spacer
+                        spacer.style.height = totalHeight.toString() + "px";
+                        topSpacerHeight = Math.min(topSpacerHeight, totalHeight - useHeight);
+                    }
+                }
                 for (var i:int = 0; i < n; i++)
                 {
                     var columnList:UIBase = displayedColumns[i] as UIBase;
@@ -117,26 +130,6 @@ package mx.controls.beads.layouts
                         columnList.element.style.position = "absolute";
                         columnList.element.style.top = (topSpacerHeight + 1).toString() + 'px';
                         columnList.dispatchEvent(new Event("layoutNeeded"));
-                    }
-                }
-                var model:IDataGridModel = uiHost.model as IDataGridModel;
-                if (model.dataProvider && model.dataProvider.length)
-                {
-                    var totalHeight:Number = model.dataProvider.length * presentationModel.rowHeight;
-                    COMPILE::JS
-                    {
-                        if (!topSpacer)
-                        {
-                            topSpacer = document.createElement("div") as HTMLDivElement;
-                            listArea.element.insertBefore(topSpacer, (listArea as UIBase).internalChildren()[0]);
-                        }
-                        topSpacer.style.height = topSpacerHeight.toString() + "px";
-                        if (!bottomSpacer)
-                        {
-                            bottomSpacer = document.createElement("div") as HTMLDivElement;
-                            listArea.element.appendChild(bottomSpacer);
-                        }
-                        bottomSpacer.style.height = (totalHeight - useHeight - topSpacerHeight).toString() + "px";  
                     }
                 }
             }            

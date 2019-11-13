@@ -23,6 +23,7 @@ package mx.controls.advancedDataGridClasses
 /* import flash.display.DisplayObject;
 import flash.events.Event;
  */
+import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
 
 import mx.controls.AdvancedDataGrid; //BaseEx;
@@ -300,6 +301,8 @@ public class AdvancedDataGridColumn extends DataGridColumn
      */
     mx_internal var owner:AdvancedDataGrid; //BaseEx;
 
+    mx_internal var list:UIBase; //BaseEx;
+    
     /**
      *  @private
      */

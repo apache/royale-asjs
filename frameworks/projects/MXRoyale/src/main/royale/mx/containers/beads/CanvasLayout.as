@@ -26,6 +26,7 @@ package mx.containers.beads
 	
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Rectangle;
 
 /*
@@ -211,6 +212,7 @@ public class CanvasLayout extends LayoutBase
 			for (i=0; i < n; i++) {
 				var child:IUIComponent = target.getLayoutChildAt(i);
 				child.positioner.style.position = "absolute";
+                child.dispatchEvent(new Event("layoutNeeded"));
 			}
 			
 			return true;

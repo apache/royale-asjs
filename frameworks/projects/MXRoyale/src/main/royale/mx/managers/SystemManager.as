@@ -2985,7 +2985,23 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
         mxmlDocument.moduleFactory = this;
         addChild(mxmlDocument as IUIComponent);
         var screen:Rectangle = this.screen;
-        mxmlDocument.setActualSize(screen.width, screen.height);            
+        mxmlDocument.setActualSize(screen.width, screen.height);
+        
+        COMPILE::JS
+        {
+            window.addEventListener('resize',
+                this.resizeHandler, false);        
+        }
+    }
+    
+    /**
+     * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+     */
+    private function resizeHandler(event:Event):void
+    {
+        _screen = null;
+        var screen:Rectangle = this.screen;
+        mxmlDocument.setActualSize(screen.width, screen.height);        
     }
     
     private function applicationCompleteHandler(event:Event):void
