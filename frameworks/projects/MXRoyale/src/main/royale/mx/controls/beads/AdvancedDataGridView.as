@@ -33,6 +33,9 @@ package mx.controls.beads
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
     import mx.controls.AdvancedDataGrid;
 	
+    import mx.core.mx_internal;
+    use namespace mx_internal;
+
     /**
      *  The AlertView class.
      * 
@@ -73,15 +76,19 @@ package mx.controls.beads
             var sharedModel:IDataGridModel = (host.model as IDataGridModel);
             
             var visibleColumns:Array = [];
-            for (var i:int=0; i < columnLists.length; i++)
+            columnLists.length = 0;
+            for (var i:int=0; i < sharedModel.columns.length; i++)
             {
-                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
+                var list:AdvancedDataGridColumnList = (sharedModel.columns[i] as AdvancedDataGridColumn).list as AdvancedDataGridColumnList;
                 var adgColumnListModel:DataGridColumnICollectionViewModel = list.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
                 adgColumnListModel.columnIndex = i;
                 list.visible = (sharedModel.columns[i] as AdvancedDataGridColumn).visible;
                 list.addEventListener(ItemClickEvent.ITEM_CLICK, itemClickHandler);
                 if (list.visible)
+                {
                     visibleColumns.push(sharedModel.columns[i]);
+                    columnLists.push(list);
+                }
             }
             (header as DataGridButtonBar).dataProvider = visibleColumns;
             
@@ -92,5 +99,18 @@ package mx.controls.beads
         {
             host.dispatchEvent(event);
         }
+        
+        override protected function createLists():void
+        {
+            super.createLists();
+            var host:IDataGrid = _strand as IDataGrid;
+            var sharedModel:IDataGridModel = (host.model as IDataGridModel);
+            
+            for (var i:int=0; i < sharedModel.columns.length; i++)
+            {
+                (sharedModel.columns[i] as AdvancedDataGridColumn).list = columnLists[i];
+            }
+        }
+
 	}
 }
