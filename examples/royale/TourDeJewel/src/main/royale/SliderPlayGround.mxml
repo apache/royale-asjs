@@ -101,6 +101,11 @@ limitations under the License.
 		<j:HGroup localId="hg" gap="3"  width="300">
 			<j:VSlider localId="vslider_w"  height="250" value="150" minimum="50" maximum="220" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
 			<j:VSlider localId="vslider_h"  height="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+			<j:VSlider localId="vslider_dis"  height="250" value="70" minimum="0" maximum="300">
+				<j:beads>
+					<j:Disabled/>
+				</j:beads>
+			</j:VSlider>
 			<j:Button localId="button2" text="Slider to 190x160" width="150" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
 		</j:HGroup>
 	</j:Card>
