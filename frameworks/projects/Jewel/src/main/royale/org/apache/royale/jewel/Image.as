@@ -27,7 +27,8 @@ package org.apache.royale.jewel
     }
 
 	  /**
-	   *  Load Images. For button images use ImageButton
+	   *  The Jewel Image is a simple component that loads an Image.
+	   *  For button images use ImageButton
 	   *
 	   *  @toplevel
 	   *  @langversion 3.0
