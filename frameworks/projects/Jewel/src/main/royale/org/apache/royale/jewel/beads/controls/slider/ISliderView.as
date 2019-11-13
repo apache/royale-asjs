@@ -23,7 +23,7 @@ package org.apache.royale.jewel.beads.controls.slider
 	
 	/**
 	 *  The ISliderView interface provides the protocol for any bead that
-	 *  creates the visual parts for a org.apache.royale.html.Slider control.
+	 *  creates the visual parts for a org.apache.royale.jewel.HSlider control.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -33,7 +33,7 @@ package org.apache.royale.jewel.beads.controls.slider
 	public interface ISliderView extends IBead
 	{
 		/**
-		 *  The component used for the track area of the org.apache.royale.html.Slider.
+		 *  The component used for the track area of the org.apache.royale.jewel.HSlider.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -43,7 +43,7 @@ package org.apache.royale.jewel.beads.controls.slider
 		function get track():IUIBase;
 		
 		/**
-		 *  The component used for the thumb button of the org.apache.royale.html.Slider.
+		 *  The component used for the thumb button of the org.apache.royale.jewel.HSlider.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

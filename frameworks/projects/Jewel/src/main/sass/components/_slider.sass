@@ -17,9 +17,9 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel Slider
+// Jewel HSlider
 
-// Slider variables
+// HSlider variables
 $slider-margin: 20px
 $slider-padding: 0
 $slider-min-width: calc(100% - #{2 * $slider-margin})
@@ -117,7 +117,7 @@ $slider-container-height: #{$slider-thumb-size + round($slider-thumb-size/2)}
 	padding: 0
 
 
-j|Slider
+j|HSlider
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel")
 	IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.SliderView")
 	//IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalSliderLayout")
@@ -131,7 +131,7 @@ j|Slider
 //	border-radius: 15px
 
 @media -royale-swf
-	j|Slider
+	j|HSlider
 		iThumbView: ClassReference("org.apache.royale.jewel.beads.views.SliderThumbView")
 		iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView")
 

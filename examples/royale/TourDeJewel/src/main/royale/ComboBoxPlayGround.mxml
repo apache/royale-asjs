@@ -145,7 +145,7 @@ limitations under the License.
 					<j:Label text="Width: {cmb.width}px"/>
 				</j:HGroup>
 
-				<j:Slider id="slider_w" width="250" value="200" minimum="100" maximum="400" valueChange="onValueChange(event)"/>
+				<j:HSlider id="slider_w" width="250" value="200" minimum="100" maximum="400" valueChange="onValueChange(event)"/>
 
 			</j:Card>
 		</j:GridCell>

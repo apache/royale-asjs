@@ -3434,14 +3434,14 @@ j|ScrollableSectionContent {
   padding: 0;
 }
 
-j|Slider {
+j|HSlider {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SliderView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SliderMouseController");
 }
 
 @media -royale-swf {
-  j|Slider {
+  j|HSlider {
     iThumbView: ClassReference("org.apache.royale.jewel.beads.views.SliderThumbView");
     iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }

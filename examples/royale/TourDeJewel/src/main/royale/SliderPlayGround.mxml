@@ -82,18 +82,18 @@ limitations under the License.
 		<j:HorizontalCenteredLayout gap="3"/>
 	</j:beads>
 	<j:Card width="450">
-		<html:H3 text="Jewel Slider"/>
+		<html:H3 text="Jewel HSlider"/>
 
-		<j:Slider localId="slider_w" width="250" value="250" minimum="100" maximum="420" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
-		<j:Slider localId="slider_h" width="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+		<j:HSlider localId="slider_w" width="250" value="250" minimum="100" maximum="420" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+		<j:HSlider localId="slider_h" width="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
 
-		<j:Slider localId="slider_dis" width="250" value="70" minimum="0" maximum="100">
+		<j:HSlider localId="slider_dis" width="250" value="70" minimum="0" maximum="100">
 			<j:beads>
 				<j:Disabled/>
 			</j:beads>
-		</j:Slider>
+		</j:HSlider>
 
-		<j:Button localId="button1" text="Slider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
+		<j:Button localId="button1" text="HSlider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
 
 	</j:Card>
 	<j:Card width="350" height="400">
@@ -106,7 +106,7 @@ limitations under the License.
 					<j:Disabled/>
 				</j:beads>
 			</j:VSlider>
-			<j:Button localId="button2" text="Slider to 190x160" width="150" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
+			<j:Button localId="button2" text="VSlider to 190x160" width="150" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
 		</j:HGroup>
 	</j:Card>
 </j:Group>

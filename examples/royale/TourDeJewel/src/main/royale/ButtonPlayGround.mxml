@@ -131,8 +131,8 @@ limitations under the License.
 					<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{Button.PRIMARY}"/>
 					<j:Button text="check layout"/>
 				</j:HGroup>
-				<j:Slider id="slider_w" width="350" value="96" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
-				<j:Slider id="slider_h" width="350" value="38" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:HSlider id="slider_w" width="350" value="96" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:HSlider id="slider_h" width="350" value="38" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
 				<j:Label text="Resize button to: '{reizableButton.width}x{reizableButton.height}'"/>
 			</j:Card>
 		</j:GridCell>

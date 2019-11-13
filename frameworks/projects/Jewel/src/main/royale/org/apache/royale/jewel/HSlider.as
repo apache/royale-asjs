@@ -77,7 +77,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Slider extends StyledUIBase
+	public class HSlider extends StyledUIBase
 	{
 		/**
 		 *  constructor.
@@ -87,7 +87,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function Slider()
+		public function HSlider()
 		{
 			super();
 
