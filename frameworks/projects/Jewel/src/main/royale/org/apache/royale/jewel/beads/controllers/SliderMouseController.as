@@ -29,20 +29,21 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.slider.ISliderView;
-    import org.apache.royale.jewel.beads.views.SliderView;
-    import org.apache.royale.jewel.Slider;
 
     COMPILE::JS
     {
         import goog.events;
         import goog.events.EventType;
+
         import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.jewel.HSlider;
+        import org.apache.royale.jewel.beads.views.SliderView;
     }
 	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
-	 *  org.apache.royale.jewel.Slider's component parts (thumb and track) and 
-	 *  dispatches change events on behalf of the Slider (as well as co-ordinating visual 
+	 *  org.apache.royale.jewel.HSlider's component parts (thumb and track) and 
+	 *  dispatches change events on behalf of the HSlider (as well as co-ordinating visual 
 	 *  changes (such as moving the thumb when the track has been tapped or clicked). Use
 	 *  this controller for horizontally oriented Sliders.
 	 *  
@@ -169,7 +170,7 @@ package org.apache.royale.jewel.beads.controllers
         COMPILE::JS
         private function handleChange(event:BrowserEvent):void
         {
-            var host:Slider = _strand as Slider;
+            var host:HSlider = _strand as HSlider;
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
@@ -189,7 +190,7 @@ package org.apache.royale.jewel.beads.controllers
         COMPILE::JS
         private function handleInput(event:BrowserEvent):void
         {
-            var host:Slider = _strand as Slider;
+            var host:HSlider = _strand as HSlider;
 
             rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
 
@@ -280,7 +281,7 @@ package org.apache.royale.jewel.beads.controllers
         private function handleTrackClick(event:MouseEvent):void
         {
 			var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
-            var host:Slider = _strand as Slider;
+            var host:HSlider = _strand as HSlider;
             var xloc:Number = bevent.offsetX;
 			var useWidth:Number = parseInt(track.element.style.width, 10) * 1.0;
             var p:Number = xloc / useWidth;
@@ -300,7 +301,7 @@ package org.apache.royale.jewel.beads.controllers
         // private function handleThumbDown(event:MouseEvent):void
         // {
 		// 	var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
-        //     var host:Slider = _strand as Slider;
+        //     var host:HSlider = _strand as HSlider;
         //     goog.events.listen(host.element, goog.events.EventType.MOUSEUP,
         //         handleThumbUp, false, this);
         //     goog.events.listen(host.element, goog.events.EventType.MOUSEMOVE,
@@ -325,7 +326,7 @@ package org.apache.royale.jewel.beads.controllers
         // private function handleThumbUp(event:MouseEvent):void
         // {
 		// 	var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
-        //     var host:Slider = _strand as Slider;
+        //     var host:HSlider = _strand as HSlider;
         //     goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
         //         handleThumbUp, false, this);
         //     goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,
@@ -347,7 +348,7 @@ package org.apache.royale.jewel.beads.controllers
         // private function handleThumbMove(event:MouseEvent):void
         // {
 		// 	var bevent:BrowserEvent = event["wrappedEvent"] as BrowserEvent;
-        //     var host:Slider = _strand as Slider;
+        //     var host:HSlider = _strand as HSlider;
         //     var lastValue:Number = rangeModel.value;
         //     calcValFromMousePosition(bevent, false);
             
@@ -359,7 +360,7 @@ package org.apache.royale.jewel.beads.controllers
 		// COMPILE::JS
 		// private function handleThumbLeave(event:MouseEvent):void
 		// {
-		// 	var host:Slider = _strand as Slider;
+		// 	var host:HSlider = _strand as HSlider;
 		// 	goog.events.unlisten(host.element, goog.events.EventType.MOUSEUP,
 		// 		handleThumbUp, false, this);
 		// 	goog.events.unlisten(host.element, goog.events.EventType.MOUSEMOVE,

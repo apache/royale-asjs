@@ -61,7 +61,7 @@ limitations under the License.
 					<j:Button text="0" />
 				</j:HGroup>
 
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
@@ -75,7 +75,7 @@ limitations under the License.
 					<j:Button text="0"/>
 				</j:VGroup>
 
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
@@ -94,7 +94,7 @@ limitations under the License.
 					<j:Button text="0" />
 				</j:Group>
 
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hcl.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hcl.gap = event.target.value"/>
 
 			</j:Card>
 		</j:GridCell>
@@ -113,7 +113,7 @@ limitations under the License.
 					<j:Button text="0" />
 				</j:Group>
 
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vcl.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vcl.gap = event.target.value"/>
 
 			</j:Card>
 		</j:GridCell>
@@ -134,7 +134,7 @@ limitations under the License.
 					<j:Button text="0" width="60"/>
 				</j:Group>
 
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hfl.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hfl.gap = event.target.value"/>
 
 			</j:Card>
 		</j:GridCell>
@@ -153,7 +153,7 @@ limitations under the License.
 					<j:Button text="0" width="60"/>
 				</j:Group>
 
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vfl.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vfl.gap = event.target.value"/>
 
 			</j:Card>
 		</j:GridCell>
@@ -169,7 +169,7 @@ limitations under the License.
 					<j:Button text="0" />
 				</j:HGroup>
 				
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell> -->
 
@@ -184,7 +184,7 @@ limitations under the License.
 					<j:Button text="0"/>
 				</j:VGroup>
 
-				<j:Slider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
+				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell> -->
 	</j:Grid>

@@ -3434,16 +3434,16 @@ j|ScrollableSectionContent {
   padding: 0;
 }
 
-j|Slider {
+j|HSlider {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SliderView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SliderMouseController");
 }
 
 @media -royale-swf {
-  j|Slider {
-    iThumbView: ClassReference("org.apache.royale.jewel.beads.views.SliderThumbView");
-    iTrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
+  j|HSlider {
+    IThumbView: ClassReference("org.apache.royale.jewel.beads.views.SliderThumbView");
+    ITrackView: ClassReference("org.apache.royale.jewel.beads.views.SliderTrackView");
   }
 }
 .vslider {
@@ -3456,7 +3456,7 @@ j|Slider {
   height: 100%;
   display: inline-block;
   position: absolute;
-  margin-left: calc(50% - 13.5px);
+  margin-left: calc(50% - 27px/2);
 }
 .vslider .sizer {
   height: 100%;

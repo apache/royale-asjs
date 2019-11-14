@@ -34,7 +34,7 @@ package models
             new IconListVO("Label", MaterialIconType.LABEL),
             new IconListVO("List", MaterialIconType.LIST_ALT),
             new IconListVO("RadioButton", MaterialIconType.RADIO_BUTTON_CHECKED),
-            new IconListVO("Slider", MaterialIconType.STORAGE),
+            new IconListVO("HSlider", MaterialIconType.STORAGE),
             new IconListVO("Text", MaterialIconType.SUBJECT),
             new IconListVO("TextInput", MaterialIconType.TEXT_FIELDS)            
         ]);

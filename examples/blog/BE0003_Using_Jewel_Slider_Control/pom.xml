@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Blog: 0003: Using Jewel Slider Control</name>
+  <name>Apache Royale: Examples: Blog: 0003: Using Jewel HSlider Control</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>

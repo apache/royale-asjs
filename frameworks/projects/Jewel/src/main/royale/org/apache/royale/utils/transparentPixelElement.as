@@ -20,7 +20,7 @@ package org.apache.royale.utils{
     
     /**
      *
-     * @rroyaleignorecoercion HTMLImageElement
+     * @royaleignorecoercion HTMLImageElement
      */
     COMPILE::JS
     public function transparentPixelElement(className:String=null):HTMLImageElement{

@@ -18,27 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-
-
     COMPILE::JS
     {
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
 	import org.apache.royale.utils.transparentPixelElement;
     }
-
-	//--------------------------------------
-    //  Events
-    //--------------------------------------
-
 	
-
 	/**
 	 *  The VSlider class is a component that displays a range of values using a
-	 *  track and a thumb control vertically. The Slider uses the following bead types:
+	 *  track and a thumb control vertically. The VSlider uses the following bead types:
 	 *
-	 *  org.apache.royale.core.IBeadModel: the data model, typically an IRangeModel, that holds the Slider values.
-	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the Slider.
+	 *  org.apache.royale.core.IBeadModel: the data model, typically an IRangeModel, that holds the VSlider values.
+	 *  org.apache.royale.core.IBeadView:  the bead that constructs the visual parts of the VSlider.
 	 *  org.apache.royale.core.IBeadController: the bead that handles input.
 	 *  org.apache.royale.core.IThumbValue: the bead responsible for the display of the thumb control.
 	 *  org.apache.royale.core.ITrackView: the bead responsible for the display of the track.
@@ -49,7 +41,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class VSlider extends Slider
+	public class VSlider extends HSlider
 	{
 		/**
 		 *  constructor.
