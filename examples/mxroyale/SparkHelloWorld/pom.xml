@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>HelloWorld.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>false</debug>
         </configuration>
       </plugin>

@@ -17,7 +17,8 @@
   limitations under the License.
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
@@ -35,88 +36,88 @@
   <modules>
     <module>Basic</module>
     <module>MDL</module>
-	<module>MXRoyale</module>
+    <module>MXRoyale</module>
 
     <module>JewelTheme</module>
-    
-    	<module>Jewel-Light-NoFlat-Primary-Amethyst-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Blue-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Emerald-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Green-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Orange-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Red-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Sapphire-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Sunflower-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Topaz-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Turquoise-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Violet-Theme</module>
-    	<module>Jewel-Light-NoFlat-Primary-Yellow-Theme</module>
-    	
-    	<module>Jewel-Light-NoFlat-Secondary-Amethyst-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Blue-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Emerald-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Green-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Orange-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Red-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Sapphire-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Sunflower-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Topaz-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Turquoise-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Violet-Theme</module>
-    	<module>Jewel-Light-NoFlat-Secondary-Yellow-Theme</module>
-    	
-    	<module>Jewel-Light-NoFlat-Emphasized-Amethyst-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Blue-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Green-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Orange-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Red-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Sapphire-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Sunflower-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Topaz-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Turquoise-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Violet-Theme</module>
-    	<module>Jewel-Light-NoFlat-Emphasized-Yellow-Theme</module>
 
-      <module>Jewel-Dark-NoFlat-Primary-Amethyst-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Blue-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Emerald-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Green-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Orange-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Red-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Sapphire-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Sunflower-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Topaz-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Turquoise-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Violet-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Primary-Yellow-Theme</module>
-    	
-    	<module>Jewel-Dark-NoFlat-Secondary-Amethyst-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Blue-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Emerald-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Green-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Orange-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Red-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Sapphire-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Sunflower-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Topaz-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Turquoise-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Violet-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Secondary-Yellow-Theme</module>
-    	
-    	<module>Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Blue-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Emerald-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Green-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Orange-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Red-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Topaz-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Violet-Theme</module>
-    	<module>Jewel-Dark-NoFlat-Emphasized-Yellow-Theme</module>
-    	
+    <module>Jewel-Light-NoFlat-Primary-Amethyst-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Emerald-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Green-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Orange-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Red-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Sapphire-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Sunflower-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Topaz-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Turquoise-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Violet-Theme</module>
+    <module>Jewel-Light-NoFlat-Primary-Yellow-Theme</module>
+
+    <module>Jewel-Light-NoFlat-Secondary-Amethyst-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Emerald-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Green-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Orange-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Red-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Sapphire-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Sunflower-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Topaz-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Turquoise-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Violet-Theme</module>
+    <module>Jewel-Light-NoFlat-Secondary-Yellow-Theme</module>
+
+    <module>Jewel-Light-NoFlat-Emphasized-Amethyst-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Blue-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Emerald-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Green-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Orange-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Red-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Sapphire-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Sunflower-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Topaz-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Turquoise-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Violet-Theme</module>
+    <module>Jewel-Light-NoFlat-Emphasized-Yellow-Theme</module>
+
+    <module>Jewel-Dark-NoFlat-Primary-Amethyst-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Blue-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Emerald-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Green-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Orange-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Red-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Sapphire-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Sunflower-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Topaz-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Turquoise-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Violet-Theme</module>
+    <module>Jewel-Dark-NoFlat-Primary-Yellow-Theme</module>
+
+    <module>Jewel-Dark-NoFlat-Secondary-Amethyst-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Blue-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Emerald-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Green-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Orange-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Red-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Sapphire-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Sunflower-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Topaz-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Turquoise-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Violet-Theme</module>
+    <module>Jewel-Dark-NoFlat-Secondary-Yellow-Theme</module>
+
+    <module>Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Blue-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Emerald-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Green-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Orange-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Red-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Sapphire-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Sunflower-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Topaz-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Violet-Theme</module>
+    <module>Jewel-Dark-NoFlat-Emphasized-Yellow-Theme</module>
+
   </modules>
 
   <dependencies>
@@ -127,7 +128,7 @@
       <type>swc</type>
       <scope>provided</scope>
     </dependency>
-    
+
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-gcl</artifactId>
