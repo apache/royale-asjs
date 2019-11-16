@@ -22,7 +22,7 @@ package mx.controls.buttonBarClasses
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 use namespace mx_internal;
-import mx.controls.beads.DataGridView;
+import org.apache.royale.html.beads.DataGridView;
 import mx.controls.dataGridClasses.DataGridColumn;
 
 import org.apache.royale.html.DataGridButtonBar;
