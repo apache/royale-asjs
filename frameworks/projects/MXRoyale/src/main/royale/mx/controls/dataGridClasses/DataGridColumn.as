@@ -34,12 +34,14 @@ import mx.core.IFactory;
 import mx.core.IFlexModuleFactory;
 import mx.core.IIMESupport;
 import mx.core.Singleton;
-import mx.core.mx_internal;
 import mx.styles.StyleManager;
 import mx.utils.StringUtil;
 
-use namespace mx_internal;
 */
+import mx.core.UIComponent;
+import mx.core.mx_internal;
+use namespace mx_internal;
+
 import org.apache.royale.html.supportClasses.DataGridColumn;
     
 //--------------------------------------
@@ -395,6 +397,9 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
         _width = value;
     }
 
+    public var sortDescending:Boolean = false;
+    
+    mx_internal var owner:UIComponent;
 }
 
 }

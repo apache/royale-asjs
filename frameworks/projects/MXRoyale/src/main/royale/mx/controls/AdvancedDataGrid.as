@@ -45,9 +45,15 @@ package mx.controls
     import mx.collections.IHierarchicalCollectionViewCursor;
     import mx.collections.IHierarchicalData;
     import mx.collections.IViewCursor;
+    import mx.collections.ISort;
+    import mx.collections.Sort;
+    import mx.collections.SortField;
+    import mx.controls.beads.AdvancedDataGridSortBead;
+    import mx.controls.beads.AdvancedDataGridView;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.controls.listClasses.AdvancedListBase;
     import mx.core.mx_internal;
+    import mx.events.AdvancedDataGridEvent;
     import mx.events.CollectionEvent;
     import mx.events.CollectionEventKind;
     
@@ -57,6 +63,7 @@ package mx.controls
     import org.apache.royale.core.IDataGridPresentationModel;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
+    import org.apache.royale.html.DataGridButtonBar;
 
 use namespace mx_internal;
 //--------------------------------------
@@ -9366,6 +9373,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     public function set columns(value:Array):void
     {
         IDataGridModel(model).columns = value;
+        for each (var col:DataGridColumn in value)
+        {
+            col.owner = this;
+        }
     }
 
 	//----------------------------------
@@ -9712,6 +9723,34 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 	
 	}
 	
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        
+        addBead(new AdvancedDataGridSortBead());            
+        addEventListener(AdvancedDataGridEvent.SORT, sortHandler);
+    }
+    
+    protected function sortHandler(event:AdvancedDataGridEvent):void
+    {
+        var oldSort:ISort = collection.sort;
+        
+        var sort:Sort = new Sort();
+        var sortField:SortField = new SortField();
+        sortField.name = event.dataField;
+        var column:DataGridColumn = columns[event.columnIndex] as DataGridColumn;
+        if (oldSort && oldSort.fields[0].name == sortField.name)
+            column.sortDescending = !column.sortDescending;
+        sortField.descending = column.sortDescending;
+        
+        sort.fields = [ sortField ];
+        collection.sort = sort;
+        collection.refresh();
+        // force redraw of column headers
+        ((view as AdvancedDataGridView).header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
+    }
+    
+
 }
 
 }
