@@ -50,6 +50,7 @@ package mx.controls
     import mx.collections.SortField;
     import mx.controls.beads.AdvancedDataGridSortBead;
     import mx.controls.beads.AdvancedDataGridView;
+    import mx.controls.beads.DataGridLinesBeadForICollectionView;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.controls.listClasses.AdvancedListBase;
     import mx.core.mx_internal;
@@ -650,6 +651,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                          false, EventPriority.DEFAULT_HANDLER);
 
         addEventListener(FlexEvent.UPDATE_COMPLETE, updateCompleteHandler); */
+        
+        addBead(new DataGridLinesBeadForICollectionView());
     }
 
     //--------------------------------------------------------------------------
