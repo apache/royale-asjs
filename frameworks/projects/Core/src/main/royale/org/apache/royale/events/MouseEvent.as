@@ -507,7 +507,7 @@ package org.apache.royale.events
         
         public function get localX():Number
         {
-            return clientX;
+            return wrappedEvent ? wrappedEvent.clientX - wrappedEvent.currentTarget.getBoundingClientRect().left : _localX;
         }
         
         private var _localX:Number;
@@ -533,7 +533,7 @@ package org.apache.royale.events
         
         public function get localY():Number
         {
-            return clientY;
+            return wrappedEvent ? wrappedEvent.clientY - wrappedEvent.currentTarget.getBoundingClientRect().top : _localY;
         }
         
         private var _localY:Number;
