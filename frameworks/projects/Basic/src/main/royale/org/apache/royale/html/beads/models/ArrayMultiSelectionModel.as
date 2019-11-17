@@ -25,7 +25,7 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.events.EventDispatcher;
 			
     /**
-     *  The ArraySelectionModel class is a selection model for
+     *  The ArrayMultiSelectionModel class is a selection model for
      *  a dataProvider that is an array. It assumes that items
      *  can be fetched from the dataProvider
      *  dataProvider[index].  Other selection models
