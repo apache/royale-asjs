@@ -24,7 +24,7 @@
     <extension>
         <groupId>org.apache.flex.utilities.converter</groupId>
         <artifactId>flex-sdk-converter-maven-extension</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </extension>
 
 </extensions>
