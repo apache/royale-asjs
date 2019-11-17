@@ -23,26 +23,16 @@ package mx.controls.advancedDataGridClasses
 /* import flash.display.DisplayObject;
 import flash.events.Event;
  */
-import org.apache.royale.core.UIBase;
-import org.apache.royale.events.Event;
-
-import mx.controls.AdvancedDataGrid; //BaseEx;
+import mx.controls.AdvancedDataGrid;
 import mx.controls.TextInput;
-//import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.dataGridClasses.DataGridColumn;
 import mx.core.ClassFactory;
-//import mx.core.ContextualClassFactory;
-//import mx.core.IEmbeddedFontRegistry;
 import mx.core.IFactory;
-//import mx.core.IFlexModuleFactory;
-//import mx.core.IIMESupport;
-//import mx.core.Singleton;
 import mx.core.mx_internal;
-//import mx.formatters.Formatter;
-//import mx.formatters.IFormatter;
-//import mx.styles.CSSStyleDeclaration;
 import mx.utils.StringUtil;
 
-import mx.controls.dataGridClasses.DataGridColumn;
+import org.apache.royale.core.UIBase;
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 //--------------------------------------
@@ -294,12 +284,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
     //  Variables
     //
     //--------------------------------------------------------------------------
-
-    /**
-     *  @private
-     *  The AdvancedDataGrid that owns this column.
-     */
-    mx_internal var owner:AdvancedDataGrid; //BaseEx;
 
     mx_internal var list:UIBase; //BaseEx;
     
@@ -1185,7 +1169,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
 
             if (owner)
             {
-                owner.columnsInvalid();
+                (owner as AdvancedDataGrid).columnsInvalid();
                 
                 //owner.invalidateProperties();
                 //owner.invalidateSize();

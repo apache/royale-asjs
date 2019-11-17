@@ -720,7 +720,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const SORT:String = "sort";
+    public static const SORT:String = "sort";
 
     //--------------------------------------------------------------------------
     //

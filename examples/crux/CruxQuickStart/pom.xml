@@ -40,7 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>CruxQuickStart.mxml</mainClass>
-          <targets>${royale.example.targets}</targets>
+          <targets>${royale.targets}</targets>
           <debug>false</debug>
           <additionalCompilerOptions>
             -js-default-initializers=true;
@@ -53,33 +53,6 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>generate-swf</id>
-      <properties>
-        <!-- no point building the swf target -->
-        <royale.example.targets>JSRoyale</royale.example.targets>
-      </properties>
-    </profile>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Jewel</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
 
   <dependencies>
     <dependency>
@@ -98,5 +71,26 @@
       <classifier>js</classifier>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>option-with-swf</id>
+
+      <properties>
+        <!-- no point building the swf target -->
+        <royale.targets>JSRoyale</royale.targets>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Jewel</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

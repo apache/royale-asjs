@@ -32,6 +32,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.graphics.SolidColorStroke;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.html.beads.DataGridView;
 	import org.apache.royale.html.beads.models.DataGridPresentationModel;
 	import org.apache.royale.html.supportClasses.DataGridColumn;
 	
@@ -66,8 +67,10 @@ package org.apache.royale.html.beads
 			stroke = lineStroke;
 		}
 		
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
+        private var _view:DataGridView;
+        
 		/**
 		 * @copy org.apache.royale.core.UIBase#strand
 	     *  
@@ -79,10 +82,12 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+            var host:UIBase = _strand as UIBase;
+            _view = host.view as DataGridView; // need to get its initComplete handler to run first
+
 			_overlay = new CompoundGraphic();
 			
-			IEventDispatcher(_strand).addEventListener("beadsAdded", handleBeadsAdded);
+			IEventDispatcher(_strand).addEventListener("initComplete", handleInitComplete);
 		}
 		
 		private var _stroke:IStroke;
@@ -104,8 +109,8 @@ package org.apache.royale.html.beads
 			_stroke = value;
 		}
 		
-		private var _overlay:CompoundGraphic;
-		private var _area:UIBase;
+		protected var _overlay:CompoundGraphic;
+		protected var _area:UIBase;
 		
 		/**
 		 * Invoked when all of the beads have been added to the DataGrid. This
@@ -118,18 +123,11 @@ package org.apache.royale.html.beads
 	     *  @playerversion AIR 2.6
 	     *  @productversion Royale 0.0
 		 */
-		private function handleBeadsAdded(event:Event):void
+		protected function handleInitComplete(event:Event):void
 		{
 			var host:UIBase = _strand as UIBase;
-			var n:int = host.numElements;
-			for (var i:int=0; i < n; i++) {
-				var child:UIBase = host.getElementAt(i) as UIBase;
-				if (child.id == "dataGridListArea") {
-					_area = child;
-					_area.addElement(_overlay);
-					break;
-				}
-			}
+            _area = _view.listArea as UIBase;
+			_area.addElement(_overlay);
 			
 			// Now set up listeners to handle changes in the size of the DataGrid.
 			IEventDispatcher(_strand).addEventListener("sizeChanged", drawLines);
@@ -143,6 +141,13 @@ package org.apache.royale.html.beads
 			IEventDispatcher(model).addEventListener("dataProviderChanged", drawLines);
 		}
 		
+        protected function getDataProviderLength():int
+        {
+            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var arrayList:ArrayList = sharedModel.dataProvider as ArrayList;
+            return arrayList.length;            
+        }
+        
 		/**
 		 * This event handler is invoked whenever something happens to the DataGrid. This
 		 * function draws the lines either using a default stroke or the one specified by
@@ -153,7 +158,7 @@ package org.apache.royale.html.beads
 	     *  @playerversion AIR 2.6
 	     *  @productversion Royale 0.0
 		 */
-		private function drawLines(event:Event):void
+		protected function drawLines(event:Event):void
 		{
 			var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
 			var presentationModel:DataGridPresentationModel = _strand.getBeadByType(DataGridPresentationModel) as DataGridPresentationModel;
@@ -161,10 +166,9 @@ package org.apache.royale.html.beads
 			var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
 			
 			var columns:Array = sharedModel.columns;			
-			var arrayList:ArrayList = sharedModel.dataProvider as ArrayList;
 			var rowHeight:Number = presentationModel.rowHeight;
-			
-			var totalHeight:Number = arrayList.length * rowHeight;
+            var n:int = getDataProviderLength();
+			var totalHeight:Number = n * rowHeight;
 			var columnWidth:Number = _area.width / columns.length;
 			
 			// translate the stroke to a fill since rectangles are used for the grid
@@ -187,8 +191,6 @@ package org.apache.royale.html.beads
 				columnWidth = (columns[i] as DataGridColumn).columnWidth;
 				xpos += isNaN(columnWidth) ? _area.width / columns.length : columnWidth;
 			}
-			
-			var n:int = arrayList.length;
 			
 			// draw the horizontals
 			for (i=1; i < n+1; i++) {

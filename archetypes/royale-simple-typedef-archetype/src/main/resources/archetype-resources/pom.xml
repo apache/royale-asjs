@@ -29,10 +29,6 @@
   <version>${version}</version>
   <packaging>swc</packaging>
 
-  <properties>
-    <git.executable>git</git.executable>
-  </properties>
-
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
     <plugins>

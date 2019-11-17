@@ -46,41 +46,6 @@
     <war.source.directory>${project.build.directory}/javascript/bin/js-debug</war.source.directory>
   </properties>
 
-  <profiles>
-    <profile>
-      <id>release</id>
-
-      <properties>
-        <war.source.directory>${project.build.directory}/javascript/bin/js-release</war.source.directory>
-      </properties>
-    </profile>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Flat</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>Network</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
-
-
   <build>
     <plugins>
       <plugin>
@@ -89,6 +54,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.mxml</mainClass>
+          <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>
       </plugin>
@@ -145,5 +111,34 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>apache-release</id>
+      <properties>
+        <war.source.directory>${project.build.directory}/javascript/bin/js-release</war.source.directory>
+      </properties>
+    </profile>
+    
+    <profile>
+      <id>option-with-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Flat</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Network</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
 
 </project>

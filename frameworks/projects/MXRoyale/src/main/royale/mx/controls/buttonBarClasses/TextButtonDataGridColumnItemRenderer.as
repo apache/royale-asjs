@@ -19,8 +19,13 @@
 
 package mx.controls.buttonBarClasses
 {
+import mx.core.UIComponent;
+import mx.core.mx_internal;
+use namespace mx_internal;
+import org.apache.royale.html.beads.DataGridView;
 import mx.controls.dataGridClasses.DataGridColumn;
 
+import org.apache.royale.html.DataGridButtonBar;
 import org.apache.royale.html.supportClasses.TextButtonItemRenderer;
 
 /**
@@ -36,7 +41,17 @@ public class TextButtonDataGridColumnItemRenderer extends TextButtonItemRenderer
 {
     override protected function updateButtonLabelFromData():void
     {
-        text = data ? (data as DataGridColumn).headerText : "";
+        var s:String = data ? (data as DataGridColumn).headerText : "";
+        if (data)
+        {
+            var column:DataGridColumn = data as DataGridColumn;
+            var dg:UIComponent = column.owner;
+            if (index == ((dg.view as DataGridView).header as DataGridButtonBar).selectedIndex)
+            {
+                s += " " + (column.sortDescending ? "▼" : "▲");
+            }
+        }
+        text = s;
     }
 
 }

@@ -44,6 +44,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataGridExample.mxml</mainClass>
+          <targets>${royale.targets}</targets>
         </configuration>
       </plugin>
     </plugins>

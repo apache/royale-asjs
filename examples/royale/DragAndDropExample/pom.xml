@@ -44,30 +44,11 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DragAndDropExample.mxml</mainClass>
+          <targets>${royale.targets}</targets>
         </configuration>
       </plugin>
     </plugins>
   </build>
-  
-  <profiles>
-      <profile>
-          <id>swf-dependencies</id>
-          <activation>
-              <property>
-                  <name>generate.swf</name>
-              </property>
-          </activation>
-          <dependencies>
-              <dependency>
-                  <groupId>org.apache.royale.framework</groupId>
-                  <artifactId>DragDrop</artifactId>
-                  <version>0.9.7-SNAPSHOT</version>
-                  <type>swc</type>
-                  <classifier>swf</classifier>
-              </dependency>
-          </dependencies>
-      </profile>
-  </profiles>
 
   <dependencies>
     <dependency>
@@ -85,4 +66,20 @@
       <scope>theme</scope>
     </dependency>
   </dependencies>
+
+  <profiles>
+    <profile>
+      <id>option-with-swf</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>DragDrop</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+      </dependencies>
+    </profile>
+  </profiles>
+
 </project>
