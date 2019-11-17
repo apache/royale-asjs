@@ -83,6 +83,7 @@
     <component id="TitleBarTitle" class="org.apache.royale.html.beads.TitleBarTitle"/>
     <component id="ImageModel" class="org.apache.royale.html.beads.models.ImageModel"/>
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
+    <component id="ArrayMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayMultiSelectionModel"/>
     <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
