@@ -25,6 +25,7 @@ package mx.controls.beads
     import org.apache.royale.core.ILayoutHost;
     import org.apache.royale.core.IParentIUIBase;
     import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.graphics.SolidColor;
     import org.apache.royale.graphics.SolidColorStroke;
     import org.apache.royale.html.beads.DataGridLinesBead;
@@ -37,6 +38,14 @@ package mx.controls.beads
 		{
 			super();
 		}
+        
+        override protected function handleInitComplete(event:Event):void
+        {
+            super.handleInitComplete(event);
+            // column resizing
+            IEventDispatcher(_strand).addEventListener("layoutNeeded", drawLines);
+        }
+
 		
         override protected function getDataProviderLength():int
         {

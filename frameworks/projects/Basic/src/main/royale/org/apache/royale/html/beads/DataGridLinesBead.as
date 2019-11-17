@@ -123,7 +123,7 @@ package org.apache.royale.html.beads
 	     *  @playerversion AIR 2.6
 	     *  @productversion Royale 0.0
 		 */
-		private function handleInitComplete(event:Event):void
+		protected function handleInitComplete(event:Event):void
 		{
 			var host:UIBase = _strand as UIBase;
             _area = _view.listArea as UIBase;
