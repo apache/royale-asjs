@@ -56,8 +56,12 @@ package mx.controls.beads
 		 */
 		private function mouseClickHandler(event:MouseEvent):void
 		{
+            var buttonBar:DataGridButtonBar = ((adg.view as DataGridView).header as DataGridButtonBar);
+            // probably down on one button and up on another button
+            // so the ButtonBar won't change selection
+            if (event.target == buttonBar) return;
             var adgEvent:AdvancedDataGridEvent = new AdvancedDataGridEvent(AdvancedDataGridEvent.SORT);
-            adgEvent.columnIndex = ((adg.view as DataGridView).header as DataGridButtonBar).selectedIndex;
+            adgEvent.columnIndex = buttonBar.selectedIndex;
             adgEvent.dataField = adg.columns[adgEvent.columnIndex].dataField;
             adg.dispatchEvent(adgEvent);
 		}
