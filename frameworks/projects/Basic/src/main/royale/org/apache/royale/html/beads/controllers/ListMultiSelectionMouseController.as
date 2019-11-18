@@ -30,80 +30,80 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.IListView;
-	
+
 	import org.apache.royale.events.ItemClickedEvent;
 
-    /**
-     *  The ListMultiSelectionMouseController class is a controller for
-     *  org.apache.royale.html.List.  Controllers
-     *  watch for events from the interactive portions of a View and
-     *  update the data model or dispatch a semantic event.
-     *  This controller watches for events from the item renderers
-     *  and updates an IMultiSelectionModel (which supports multi
-     *  selection).      
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
+	/**
+	 *  The ListMultiSelectionMouseController class is a controller for
+	 *  org.apache.royale.html.List.  Controllers
+	 *  watch for events from the interactive portions of a View and
+	 *  update the data model or dispatch a semantic event.
+	 *  This controller watches for events from the item renderers
+	 *  and updates an IMultiSelectionModel (which supports multi
+	 *  selection).      
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
 	public class ListMultiSelectionMouseController implements IBeadController
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function ListMultiSelectionMouseController()
 		{
 		}
-		
-        /**
-         *  The model.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+
+		/**
+		 *  The model.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		protected var listModel:IMultiSelectionModel;
 
-        /**
-         *  The view.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-        protected var listView:IListView;
+		/**
+		 *  The view.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		protected var listView:IListView;
 
-        /**
-         *  The parent of the item renderers.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-        protected var dataGroup:IItemRendererParent;
+		/**
+		 *  The parent of the item renderers.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		protected var dataGroup:IItemRendererParent;
 
 		private var _strand:IStrand;
-		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
-         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-         */
+
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.core.IMultiSelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -112,52 +112,53 @@ package org.apache.royale.html.beads.controllers
 			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
 			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
 		}
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleItemAdded(event:ItemAddedEvent):void
 		{
 			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
 		}
-		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleItemRemoved(event:ItemRemovedEvent):void
 		{
 			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
 			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
-		
+
 		protected function selectedHandler(event:ItemClickedEvent):void
-        {
-            var selectedIndices:Array = [];
-            if (!event.multipleSelection || !listModel.selectedIndices)
-            {
-                listModel.selectedIndices = [event.index];
-            } else
-            {
-               var indices:Array = listModel.selectedIndices;
-               var locationInSelectionList:int = indices.indexOf(event.index);
-               if (locationInSelectionList < 0)
-               {
-                   indices.push(event.index);
-               } else
-               {
-                   indices.removeAt(locationInSelectionList);
-               }
-               listModel.selectedIndices = indices;
-            }
-            listView.host.dispatchEvent(new Event("change"));
-        }
-		
+		{
+			var selectedIndices:Array = [];
+			if (!event.multipleSelection || !listModel.selectedIndices)
+			{
+				listModel.selectedIndices = [event.index];
+			} else
+			{
+				// concat is so we have a new instance, avoiding code that might presume no change was made according to instance
+				var indices:Array = listModel.selectedIndices.concat();
+				var locationInSelectionList:int = indices.indexOf(event.index);
+				if (locationInSelectionList < 0)
+				{
+					indices.push(event.index);
+				} else
+				{
+					indices.removeAt(locationInSelectionList);
+				}
+				listModel.selectedIndices = indices;
+			}
+			listView.host.dispatchEvent(new Event("change"));
+		}
+
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
-         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloverHandler(event:Event):void
 		{
@@ -166,10 +167,10 @@ package org.apache.royale.html.beads.controllers
 				IRollOverModel(listModel).rollOverIndex = renderer.index;
 			}
 		}
-		
+
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
-         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloutHandler(event:Event):void
 		{
@@ -180,6 +181,6 @@ package org.apache.royale.html.beads.controllers
 				IRollOverModel(listModel).rollOverIndex = -1;
 			}
 		}
-	
+
 	}
 }
