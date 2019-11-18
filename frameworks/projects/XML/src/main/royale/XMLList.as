@@ -44,6 +44,10 @@ package
 			if(expression != null)
 				parseExpression(expression);
 		}
+        
+        /**
+         * @royaleignorecoercion String
+         */
 		private function parseExpression(expression:Object):void
 		{
 			if(expression is XMLList)
@@ -62,6 +66,13 @@ package
 			}
 			else 
             {
+                if (typeof(expression) === "string")
+                {
+                    var expstr:String = expression as String;
+                    if (expstr.indexOf("<>") == 0 &&
+                        expstr.indexOf("</>") == expstr.length - 3)
+                        expression = expstr.substr(2, expstr.length - 5);
+                }
                 try
                 {
 					var item:XML = new XML(expression);
