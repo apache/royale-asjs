@@ -1,3 +1,4 @@
+
 /*
  *
  *  Licensed to the Apache Software Foundation (ASF) under one or more
@@ -386,6 +387,19 @@ VContainer
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+}
+
+MultiSelectionList
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayMultiSelectionModel");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.MultiSelectionListView");			
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController");
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 List

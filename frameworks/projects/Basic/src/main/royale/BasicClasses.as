@@ -109,6 +109,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.BinaryImageModel; BinaryImageModel;
 
 	import org.apache.royale.html.beads.ListView; ListView;
+	
+	import org.apache.royale.html.beads.MultiSelectionListView; MultiSelectionListView;
 	import org.apache.royale.html.beads.NumericStepperView; NumericStepperView;
     import org.apache.royale.html.beads.PanelView; PanelView;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
@@ -188,6 +190,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.AccordionItemRendererMouseController; AccordionItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
+    import org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
     import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;
