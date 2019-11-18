@@ -24,42 +24,43 @@ package org.apache.royale.html.beads.models
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 			
-    /**
-     *  The ArrayMultiSelectionModel class is a selection model for
-     *  a dataProvider that is an array. It assumes that items
-     *  can be fetched from the dataProvider
-     *  dataProvider[index].  Other selection models
-     *  would support other kinds of data providers.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion 0.9.7
-     */
+	/**
+	 *  The ArrayMultiSelectionModel class is a selection model for
+	 *  a dataProvider that is an array. It assumes that items
+	 *  can be fetched from the dataProvider
+	 *  dataProvider[index].  Other selection models
+	 *  would support other kinds of data providers.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion 0.9.7
+	 */
+
 	public class ArrayMultiSelectionModel extends EventDispatcher implements IMultiSelectionModel, IRollOverModel
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function ArrayMultiSelectionModel()
 		{
 		}
 
 		private var _strand:IStrand;
 		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -67,22 +68,22 @@ package org.apache.royale.html.beads.models
 		
 		private var _dataProvider:Object;
         
-        /**
-         *  @copy org.apache.royale.core.IMultiSelectionModel#dataProvider
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  @copy org.apache.royale.core.IMultiSelectionModel#dataProvider
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function get dataProvider():Object
 		{
 			return _dataProvider;
 		}
 
-        /**
-         *  @private
-         */
+		/**
+		 *  @private
+		 */
 		public function set dataProvider(value:Object):void
 		{
 			if (value == _dataProvider) return;
@@ -108,22 +109,22 @@ package org.apache.royale.html.beads.models
 		private var _rollOverIndex:int = -1;
 		private var _labelField:String = null;
 		
-        /**
-         *  @copy org.apache.royale.core.IMultiSelectionModel#labelField
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  @copy org.apache.royale.core.IMultiSelectionModel#labelField
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function get labelField():String
 		{
 			return _labelField;
 		}
 
-        /**
-         *  @private
-         */
+		/**
+		 *  @private
+		 */
 		public function set labelField(value:String):void
 		{
 			if (value != _labelField) {
@@ -132,25 +133,25 @@ package org.apache.royale.html.beads.models
 			}
 		}
 		
-        /**
-         *  @copy org.apache.royale.core.IMultiSelectionModel#selectedIndices
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  @copy org.apache.royale.core.IMultiSelectionModel#selectedIndices
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function get selectedIndices():Array
 		{
 			return _selectedIndices;
 		}
 
-        /**
-         *  @private
-         */
+		/**
+		 *  @private
+		 */
 		public function set selectedIndices(value:Array):void
 		{
-            if (value == _selectedIndices) return;
+			if (value == _selectedIndices) return;
 			_selectedIndices = value;
 			if (value == null || dataProvider == null)
 			{
@@ -163,22 +164,22 @@ package org.apache.royale.html.beads.models
 			dispatchEvent(new Event("selectedIndicesChanged"));
 		}
 		
-        /**
-         *  @copy org.apache.royale.core.IRollOverModel#rollOverIndex
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  @copy org.apache.royale.core.IRollOverModel#rollOverIndex
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function get rollOverIndex():int
 		{
 			return _rollOverIndex;
 		}
 
-        /**
-         *  @private
-         */
+		/**
+		 *  @private
+		 */
 		public function set rollOverIndex(value:int):void
 		{
 			_rollOverIndex = value;
@@ -187,26 +188,26 @@ package org.apache.royale.html.beads.models
 		
 		private var _selectedItems:Array;
 		
-        /**
-         *  @copy org.apache.royale.core.IMultiSelectionModel#selectedItems
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  @copy org.apache.royale.core.IMultiSelectionModel#selectedItems
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function get selectedItems():Array
 		{
 			return _selectedItems;
 		}
 
-        /**
-         *  @private
-         */
+		/**
+		 *  @private
+		 */
 		public function set selectedItems(value:Array):void
 		{
-            if (value == _selectedItems) return;
-            
+			if (value == _selectedItems) return;
+
 			_selectedItems = value;	
 			_selectedIndices = [];
 			var dp:Array = _dataProvider as Array;
