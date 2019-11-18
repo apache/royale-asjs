@@ -72,7 +72,7 @@ package org.apache.royale.html.beads
 		override protected function handleInitComplete(event:Event):void
 		{
 			listModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
-			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
+			listModel.addEventListener("selectedIndicesChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 
 			super.handleInitComplete(event);
