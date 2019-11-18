@@ -109,6 +109,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.BinaryImageModel; BinaryImageModel;
 
 	import org.apache.royale.html.beads.ListView; ListView;
+	
+	import org.apache.royale.html.beads.MultiSelectionListView; MultiSelectionListView;
 	import org.apache.royale.html.beads.NumericStepperView; NumericStepperView;
     import org.apache.royale.html.beads.PanelView; PanelView;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy; PanelLayoutProxy;
