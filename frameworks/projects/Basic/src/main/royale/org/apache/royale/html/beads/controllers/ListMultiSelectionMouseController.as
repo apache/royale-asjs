@@ -136,7 +136,7 @@ package org.apache.royale.html.beads.controllers
 		protected function selectedHandler(event:ItemClickedEvent):void
 		{
 			var selectedIndices:Array = [];
-			if (!event.multipleSelection || !listModel.selectedIndices)
+			if (!event.ctrlKey || !listModel.selectedIndices)
 			{
 				listModel.selectedIndices = [event.index];
 			} else

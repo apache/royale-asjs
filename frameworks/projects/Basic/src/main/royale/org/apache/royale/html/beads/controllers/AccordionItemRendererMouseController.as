@@ -62,7 +62,8 @@ package org.apache.royale.html.beads.controllers
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 			newEvent.data = accordionItemRenderer.data;
-			newEvent.multipleSelection = event.shiftKey;
+			newEvent.shiftKey = event.shiftKey;
+			newEvent.ctrlKey = event.ctrlKey;
 			newEvent.index = accordionItemRenderer.index;
 			
 			accordionItemRenderer.dispatchEvent(newEvent);

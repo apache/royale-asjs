@@ -160,7 +160,8 @@ COMPILE::JS {
                 
                 var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
                 newEvent.data = target.data;
-                newEvent.multipleSelection = event.shiftKey;
+                newEvent.shiftKey = event.shiftKey;
+                newEvent.ctrlKey = event.ctrlKey;
                 newEvent.index = target.index;
                 
                 target.dispatchEvent(newEvent);
@@ -183,7 +184,8 @@ COMPILE::JS {
 
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
-				newEvent.multipleSelection = event.shiftKey;
+				newEvent.shiftKey = event.shiftKey;
+				newEvent.ctrlKey = event.ctrlKey;
 				newEvent.index = target.index;
 
 				target.dispatchEvent(newEvent);
@@ -202,7 +204,8 @@ COMPILE::JS {
 			{				
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
-				newEvent.multipleSelection = event.shiftKey;
+				newEvent.shiftKey = event.shiftKey;
+				newEvent.ctrlKey = event.ctrlKey;
 				newEvent.index = target.index;
 				
                 target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);                
@@ -222,7 +225,8 @@ COMPILE::JS {
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
-				newEvent.multipleSelection = event.shiftKey;
+				newEvent.shiftKey = event.shiftKey;
+				newEvent.ctrlKey = event.ctrlKey;
 				newEvent.index = target.index;
 
 				target.dispatchEvent(newEvent);
@@ -241,7 +245,8 @@ COMPILE::JS {
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseUp");
 				newEvent.data = target.data;
-				newEvent.multipleSelection = event.shiftKey;
+				newEvent.shiftKey = event.shiftKey;
+				newEvent.ctrlKey = event.ctrlKey;
 				newEvent.index = target.index;
 
 				target.dispatchEvent(newEvent);

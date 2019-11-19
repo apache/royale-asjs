@@ -66,7 +66,8 @@ package org.apache.royale.events
 			
 			index = -1;
 			data = null;
-			multipleSelection = false;
+			shiftKey = false;
+			ctrlKey = false;
 		}
 		
 		/**
@@ -92,25 +93,35 @@ package org.apache.royale.events
 		public var data:Object;
 		
 		/**
-		 * Whether or not this click is part of a multi-selection sequence.
+		 * Whether or not this click was done while holding the shift key
 		 *
 		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.0
+		 * @productversion Royale 0.9.7
 		 */
-		public var multipleSelection:Boolean;
-		
+
+		public var shiftKey:Boolean;
 		/**
-		 * @private
+		 * Whether or not this click was done while holding the control key
+		 *
+		 * @export
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.7
 		 */
+		public var ctrlKey:Boolean;
+
+
 		override public function cloneEvent():IRoyaleEvent
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent(type);
 			newEvent.index = index;
 			newEvent.data = data;
-			newEvent.multipleSelection = multipleSelection;
+			newEvent.shiftKey = shiftKey;
+			newEvent.ctrlKey = ctrlKey;
 			return newEvent;
 		}
 	}
