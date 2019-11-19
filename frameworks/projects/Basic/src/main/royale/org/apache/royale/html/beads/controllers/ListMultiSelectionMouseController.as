@@ -136,24 +136,62 @@ package org.apache.royale.html.beads.controllers
 		protected function selectedHandler(event:ItemClickedEvent):void
 		{
 			var selectedIndices:Array = [];
-			if (!event.ctrlKey || !listModel.selectedIndices)
+			var newIndices:Array;
+			if (!(event.ctrlKey || event.shiftKey) || !listModel.selectedIndices || listModel.selectedIndices.length == 0)
 			{
-				listModel.selectedIndices = [event.index];
-			} else
+				newIndices = [event.index];
+			} else if (event.ctrlKey)
 			{
 				// concat is so we have a new instance, avoiding code that might presume no change was made according to instance
-				var indices:Array = listModel.selectedIndices.concat();
-				var locationInSelectionList:int = indices.indexOf(event.index);
+				newIndices = listModel.selectedIndices.concat();
+				var locationInSelectionList:int = newIndices.indexOf(event.index);
 				if (locationInSelectionList < 0)
 				{
-					indices.push(event.index);
+					newIndices.push(event.index);
 				} else
 				{
-					indices.removeAt(locationInSelectionList);
+					newIndices.removeAt(locationInSelectionList);
 				}
-				listModel.selectedIndices = indices;
+			} else if (event.shiftKey)
+			{
+				newIndices = [];
+				var min:int = getMin(listModel.selectedIndices);
+				var max:int = getMax(listModel.selectedIndices);
+				var from:int = Math.min(min, event.index);
+				var to:int = event.index > min ? event.index : min;
+				while (from <= to)
+				{
+					newIndices.push(from++);
+				}
 			}
+			listModel.selectedIndices = newIndices;
 			listView.host.dispatchEvent(new Event("change"));
+		}
+
+		private function getMin(value:Array):int
+		{
+			var result:int = int(value[0]);
+			for (var i:int = 0; i < value.length; i++)
+			{
+				if (value[i] < result)
+				{
+					result = value[i];
+				}
+			}
+			return result;
+		}
+
+		private function getMax(value:Array):int
+		{
+			var result:int = int(value[0]);
+			for (var i:int = 0; i < value.length; i++)
+			{
+				if (value[i] > result)
+				{
+					result = value[i];
+				}
+			}
+			return result;
 		}
 
 		/**
@@ -181,6 +219,5 @@ package org.apache.royale.html.beads.controllers
 				IRollOverModel(listModel).rollOverIndex = -1;
 			}
 		}
-
 	}
 }
