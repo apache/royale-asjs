@@ -189,7 +189,8 @@ package org.apache.royale.jewel.beads.controllers
 			{				
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
-				newEvent.multipleSelection = event.shiftKey;
+				newEvent.shiftKey = event.shiftKey;
+				newEvent.ctrlKey = event.ctrlKey;
 				newEvent.index = target.index;
 				
                 target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);                
@@ -210,7 +211,8 @@ package org.apache.royale.jewel.beads.controllers
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 				newEvent.data = target.data;
-				newEvent.multipleSelection = event.shiftKey;
+				newEvent.shiftKey = event.shiftKey;
+				newEvent.ctrlKey = event.ctrlKey;
 				newEvent.index = target.index;
 
 				target.dispatchEvent(newEvent);
