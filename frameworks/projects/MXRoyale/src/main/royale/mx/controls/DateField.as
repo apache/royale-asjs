@@ -851,6 +851,11 @@ public class DateField extends ComboBase
        // invalidateProperties();
     }
 
+    override protected function set textInput(value:Object):void
+    {
+        (view as DateFieldView).textInputField = value;
+    }
+
     
     //--------------------------------------------------------------------------
     //

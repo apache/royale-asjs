@@ -24,6 +24,7 @@ package mx.controls.beads
     }
     import org.apache.royale.html.Button;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ITextInput;
     import org.apache.royale.html.beads.DateFieldView;
     import mx.controls.TextInput;
 	
@@ -56,6 +57,11 @@ package mx.controls.beads
                 (_textInput as TextInput).isAbsolute = false;
             }
             super.strand = value;
+        }
+        
+        public function set textInputField(value:Object):void
+        {
+            _textInput = value as ITextInput;
         }
 
 	}
