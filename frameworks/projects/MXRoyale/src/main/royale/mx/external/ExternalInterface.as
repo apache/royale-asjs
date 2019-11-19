@@ -168,7 +168,17 @@ package mx.external
             COMPILE::JS
             {
                 // find a function with the name...
-                var fnc : Function = window[functionName];
+                // if function is referencing a method of a subobject, split and request them from window separately
+                // e.g. not window["BrowserHistory.getUrl"], but window["BrowserHistory"]["getUrl"]
+                var functionNamePart:Array = functionName.split('.');
+                var functionParent:Object = window;
+                var fnc : Function;
+                for (var i : uint = 0; i < functionNamePart.length; i++) {
+                    // recurse into parent, until we arrive at the final function in the chain
+                    fnc = functionParent[functionNamePart[i]];
+                    functionParent = fnc;
+                }
+                
                 if (fnc)
                 {
                     return fnc.apply(null, args);
