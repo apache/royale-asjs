@@ -128,7 +128,11 @@ package org.apache.royale.html.beads
 			var host:UIBase = _strand as UIBase;
             _area = _view.listArea as UIBase;
 			_area.addElement(_overlay);
-			
+            COMPILE::JS
+            {
+                _overlay.element.style.pointerEvents = "none";        
+            }
+
 			// Now set up listeners to handle changes in the size of the DataGrid.
 			IEventDispatcher(_strand).addEventListener("sizeChanged", drawLines);
 			IEventDispatcher(_strand).addEventListener("widthChanged", drawLines);
