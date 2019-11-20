@@ -1395,11 +1395,12 @@ public class DateField extends ComboBase
     {
         formatStringOverride = value;
 
-       /*  _formatString = value != null ?
+        _formatString = value /* != null ?
                         value :
                         resourceManager.getString(
-                            "SharedResources", "dateFormat");
+                            "SharedResources", "dateFormat")*/;
 
+        /*
         updateDateFiller = true;
 
         invalidateProperties();
