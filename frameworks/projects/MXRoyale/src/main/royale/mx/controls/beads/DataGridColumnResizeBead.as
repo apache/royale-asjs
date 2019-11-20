@@ -177,7 +177,7 @@ package mx.controls.beads
             
             var firstOne:Boolean = true;
             // draw the verticals
-            for (var i:int=0; i < columns.length - 1; i++) {
+            for (var i:int=0; i < columns.length; i++) {
                 var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
                 if (column.visible)
                 {
