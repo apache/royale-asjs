@@ -19,6 +19,8 @@
 package mx.controls.beads
 {
     import mx.collections.ICollectionView;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.core.UIComponent;
     
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IDataGridModel;
@@ -30,7 +32,6 @@ package mx.controls.beads
     import org.apache.royale.graphics.SolidColorStroke;
     import org.apache.royale.html.beads.DataGridLinesBead;
     import org.apache.royale.html.beads.models.DataGridPresentationModel;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
     
 	public class DataGridLinesBeadForICollectionView extends DataGridLinesBead
 	{
@@ -75,6 +76,8 @@ package mx.controls.beads
             var rowHeight:Number = presentationModel.rowHeight;
             var n:int = getDataProviderLength();
             var totalHeight:Number = n * rowHeight;
+            if (totalHeight < contentView.height)
+                totalHeight = contentView.height;
             
             // translate the stroke to a fill since rectangles are used for the grid
             // lines and not lines.
@@ -93,6 +96,23 @@ package mx.controls.beads
             
             _overlay.clear();
             
+            // draw the horizontals
+            if (contentView.height > n * rowHeight)
+            {
+                var bgColors:Array = (_strand as UIComponent).getStyle("alternatingItemColors");
+                var yy:Number = n * rowHeight;
+                
+                var bgFill0:SolidColor = new SolidColor();
+                bgFill0.color = bgColors[0];
+                var bgFill1:SolidColor = new SolidColor();
+                bgFill1.color = bgColors[1];
+                for (i=n; yy < contentView.height; i++, yy += rowHeight) {
+                    _overlay.fill = (i % 2 == 1) ? bgFill1 : bgFill0;
+                    _overlay.drawRect(0, yy, _area.width, rowHeight);
+                }                
+            }
+            
+            _overlay.fill = lineFill;            
             // draw the verticals
             for (var i:int=0; i < columns.length - 1; i++) {
                 var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
@@ -103,12 +123,6 @@ package mx.controls.beads
                 }
             }
             
-            /*
-            // draw the horizontals
-            for (i=1; i < n+1; i++) {
-                _overlay.drawRect(0, i*rowHeight, _area.width, weight);
-            }
-            */
         }
 
 	}
