@@ -408,6 +408,10 @@ public class CursorManager
      */
     public static function setBusyCursor():void 
     {
+        COMPILE::JS
+        {
+            document.body.style.cursor = "wait";        
+        }
         // impl.setBusyCursor();
     }
 
@@ -425,7 +429,11 @@ public class CursorManager
      */
     public static function removeBusyCursor():void 
     {
-        impl.removeBusyCursor();
+        COMPILE::JS
+        {
+            document.body.style.cursor = "auto";        
+        }
+        //impl.removeBusyCursor();
     }
             
     
