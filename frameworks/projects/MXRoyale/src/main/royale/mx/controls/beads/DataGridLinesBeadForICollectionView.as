@@ -92,6 +92,7 @@ package mx.controls.beads
                 _overlay.element.style.position = "absolute";        
             }
             
+            var i:int;
             var xpos:Number = 0;
             
             _overlay.clear();
@@ -114,7 +115,7 @@ package mx.controls.beads
             
             _overlay.fill = lineFill;            
             // draw the verticals
-            for (var i:int=0; i < columns.length - 1; i++) {
+            for (i=0; i < columns.length - 1; i++) {
                 var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
                 if (column.visible)
                 {
