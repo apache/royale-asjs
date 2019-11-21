@@ -510,6 +510,20 @@ limitations under the License.
                 <include name="**"/>
             </fileset>
         </copy>
+        <!--
+            compiler-jx has some optional scripts that override the ones from
+            compiler. the core SWF compiler doesn't understand our
+            royale-config.xml because it sets a number of JS-related compiler
+            options, so its original scripts will fail when executed and report
+            unknown tag errors. the override scripts call compiler-jx with
+            -targets=SWF to preserve the original behavior while handling the
+            extended options included in royale-config.xml.
+        -->
+        <copy todir="${basedir}/bin" overwrite="true">
+            <fileset dir="${ROYALE_COMPILER_REPO}/compiler-jx/src/assembly/compiler-override-scripts">
+                <include name="**"/>
+            </fileset>
+        </copy>
         <chmod dir="${basedir}/bin" excludes="**/*.bat" perm="+x" />
         <mkdir dir="${basedir}/js/lib" />
         <echo>Copying Transpiler from ${ROYALE_COMPILER_REPO}</echo>
