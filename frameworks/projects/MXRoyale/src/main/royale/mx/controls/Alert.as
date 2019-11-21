@@ -18,10 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 package mx.controls
-{
-
-    import flash.events.EventPhase;
-    
+{    
     import mx.containers.Panel;
     import mx.core.FlexGlobals;
     import mx.core.IFlexDisplayObject;
