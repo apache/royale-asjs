@@ -20,15 +20,21 @@
 package mx.controls
 {
 
+    import flash.events.EventPhase;
+    
+    import mx.containers.Panel;
+    import mx.core.FlexGlobals;
+    import mx.core.IFlexDisplayObject;
+    import mx.core.IUIComponent;
+    import mx.events.FlexEvent;
+    import mx.managers.ISystemManager;
+    import mx.managers.PopUpManager;
+    
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IChild;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.CloseEvent;
-	import mx.containers.Panel;
-	import mx.managers.ISystemManager;
-    import mx.managers.PopUpManager;
-	import mx.core.IUIComponent;
-	import mx.core.FlexGlobals;
+    import org.apache.royale.events.CloseEvent;
+    import org.apache.royale.events.Event;
+
 	/*
 import flash.events.Event;
 import flash.events.EventPhase;
@@ -519,13 +525,31 @@ public class Alert extends Panel
                 alert.document = FlexGlobals.topLevelApplication.document;
         }
 
-        alert.addEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
         */
+        
+        alert.addEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
+
         PopUpManager.addPopUp(alert, parent, true);
 
         return alert;
     }
 
+    /**
+     *  @private
+     */
+    private static function static_creationCompleteHandler(event:FlexEvent):void
+    {
+        if (event.target is Alert /*IFlexDisplayObject && event.eventPhase == EventPhase.AT_TARGET*/)
+        {
+            var alert:Alert = Alert(event.target);
+            alert.removeEventListener(FlexEvent.CREATION_COMPLETE, static_creationCompleteHandler);
+            
+            //alert.setActualSize(alert.getExplicitOrMeasuredWidth(),
+            //    alert.getExplicitOrMeasuredHeight());
+            PopUpManager.centerPopUp(IFlexDisplayObject(alert));
+        }
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Constructor
