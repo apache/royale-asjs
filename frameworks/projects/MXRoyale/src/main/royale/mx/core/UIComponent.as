@@ -74,6 +74,8 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+import org.apache.royale.core.styles.BorderStyles;
 import org.apache.royale.effects.IEffect;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
@@ -1132,6 +1134,10 @@ public class UIComponent extends UIBase
         oldErrorString = _errorString;
         _errorString = value;
         
+        toolTip = value;
+        if (_toolTipBead)
+            _toolTipBead.isError = value != null && value != "";
+        
         //errorStringChanged = true;
         setBorderColorForErrorString();
         dispatchEvent(new Event("errorStringChanged"));
@@ -1181,6 +1187,18 @@ public class UIComponent extends UIBase
                 {
                     saveBorderColor = false;
                     origBorderColor = getStyle("borderColor");
+                    COMPILE::JS
+                    {
+                        if (isNaN(origBorderColor))
+                        {
+                            var borderImpl:IBorderPaddingMarginValuesImpl = ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl;
+                            if (borderImpl)
+                            {
+                                var bs:BorderStyles = borderImpl.getBorderStyles(this);
+                                origBorderColor = bs.color;
+                            }
+                        }
+                    }                    
                 }
                 
                 setStyle("borderColor", getStyle("errorColor"));

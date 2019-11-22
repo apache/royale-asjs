@@ -135,7 +135,7 @@ public class Validator extends EventDispatcher
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */ 
-   // protected static const DECIMAL_DIGITS:String = "0123456789";
+    protected static const DECIMAL_DIGITS:String = "0123456789";
     
     //--------------------------------------------------------------------------
     //
@@ -678,7 +678,7 @@ public class Validator extends EventDispatcher
      *  @private
      *  Storage for the requiredFieldError property.
      */
-    private var _requiredFieldError:String;    
+    private var _requiredFieldError:String = "This field is required";    
     /**
      *  @private
      */
