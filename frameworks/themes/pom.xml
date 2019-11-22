@@ -33,6 +33,10 @@
 
   <name>Apache Royale: Framework: Themes</name>
 
+  <properties>
+    <project.compiler.options>${repo.compiler.options}-js-default-initializers=false;-source-map=${source.map};-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false</project.compiler.options>
+  </properties>
+
   <modules>
     <module>Basic</module>
     <module>MDL</module>
@@ -117,18 +121,27 @@
     <module>Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</module>
     <module>Jewel-Dark-NoFlat-Emphasized-Violet-Theme</module>
     <module>Jewel-Dark-NoFlat-Emphasized-Yellow-Theme</module>
-
   </modules>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.adobe.air.framework</groupId>
-      <artifactId>airglobal</artifactId>
-      <version>${air.version}</version>
-      <type>swc</type>
-      <scope>provided</scope>
-    </dependency>
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.royale.compiler</groupId>
+        <artifactId>royale-maven-plugin</artifactId>
+        <configuration>
+          <!-- We don't want dependencies to be linked into the resulting libraries -->
+          <forceSwcExternalLibraryPath>true</forceSwcExternalLibraryPath>
+          <additionalCompilerOptions>${project.compiler.options}</additionalCompilerOptions>
+          <targets>${royale.targets}</targets>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
+          <skipAS>${royale.skipAS}</skipAS>
+          <skipExtern>true</skipExtern>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
+  <dependencies>
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-gcl</artifactId>
@@ -137,10 +150,10 @@
       <classifier>typedefs</classifier>
     </dependency>
     <!--
-     By declaring this dependency here, we force the royale-externs-js to be
-     added to the external library path of all modules. Without this it would
-     have gone to the library path.
-     -->
+      By declaring this dependency here, we force the royale-externs-js to be
+      added to the external library path of all modules. Without this it would
+      have gone to the library path.
+    -->
     <dependency>
       <groupId>org.apache.royale.typedefs</groupId>
       <artifactId>royale-typedefs-js</artifactId>
@@ -150,4 +163,5 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
+
 </project>
