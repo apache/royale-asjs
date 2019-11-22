@@ -25,6 +25,7 @@ package spark.components.beads
     import mx.managers.PopUpManager;
 
     import spark.components.Button;
+    import spark.components.supportClasses.DropDownListButton;
     import spark.components.DropDownList;
 
     import org.apache.royale.core.IBead;
@@ -89,7 +90,7 @@ package spark.components.beads
             var chost:IContainer = host as IContainer;
             chost.strandChildren.removeElement(viewport.contentView);
 
-            label = new Button();
+            label = new DropDownListButton();
             if (selectionModel.selectedIndex == -1)
                 label.label = (host as DropDownList).prompt;
             chost.strandChildren.addElement(label);
