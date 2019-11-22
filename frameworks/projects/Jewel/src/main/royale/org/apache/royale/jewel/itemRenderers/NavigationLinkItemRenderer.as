@@ -139,11 +139,20 @@ package org.apache.royale.jewel.itemRenderers
 			}
 			// text = getLabelFromData(this, value);
 			
-            if(value.href !== undefined)
-			{
-				if (value.href === null) _href = "#";
-                else _href = String(value.href);
-			} else _href = "#";
+            if(value.href === undefined || value.href === null) 
+				_href = "#";
+			else {
+				// check if link is absolute
+				if (String(value.href).indexOf("http://") == 0 || String(value.href).indexOf("https://") == 0)
+					_href = String(value.href);
+				else {
+					// if we have a relative link, make sure it's prefixed with '#' to stay on the app page 
+					if (String(value.href).indexOf[0] != '#')
+						_href = '#' + String(value.href);
+					else
+						_href = String(value.href);
+				}
+			}
 
 			COMPILE::JS
 			{
