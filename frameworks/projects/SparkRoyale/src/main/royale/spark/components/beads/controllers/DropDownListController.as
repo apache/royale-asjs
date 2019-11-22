@@ -21,6 +21,8 @@ package spark.components.beads.controllers
 {
 
 
+import mx.core.UIComponent;
+
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadController;
 import org.apache.royale.core.ISelectionModel;
@@ -30,12 +32,9 @@ import org.apache.royale.core.UIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.MouseEvent;
-import org.apache.royale.html.beads.IDropDownListView;
 import org.apache.royale.geom.Point;
+import org.apache.royale.html.beads.IDropDownListView;
 import org.apache.royale.utils.PointUtils;
-import org.apache.royale.events.MouseEvent;
-
-import mx.core.UIComponent;
 
 /**
  *  @private
@@ -78,6 +77,7 @@ public class DropDownListController implements IBead, IBeadController
         {
             var pt:Point = new Point(0, IUIBase(_strand).height);
             pt = PointUtils.localToGlobal(pt, _strand);
+            pt = PointUtils.globalToLocal(pt, IUIBase(viewBead.popUp).parent);
             IUIBase(viewBead.popUp).x = pt.x;
             IUIBase(viewBead.popUp).y = pt.y;
             IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);

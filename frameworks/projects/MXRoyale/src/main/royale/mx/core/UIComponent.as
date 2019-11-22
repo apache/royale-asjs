@@ -85,6 +85,7 @@ import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.html.beads.DisabledAlphaBead;
 import org.apache.royale.html.supportClasses.ContainerContentArea;
 import org.apache.royale.utils.PointUtils;
+import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
 import mx.validators.IValidatorListener;
@@ -4883,6 +4884,9 @@ COMPILE::JS
 		return value;
     }
 
+    private var _backgroundAlpha:Number = NaN;
+    private var _backgroundColor:String = null;
+    
     /**
      *  Sets a style property on this component instance.
      *
@@ -4902,13 +4906,38 @@ COMPILE::JS
      */
     public function setStyle(styleProp:String, newValue:*):void
     {
-        if (!style)
-            style = new FlexCSSStyles();
-        style[styleProp] = newValue;
+        if (styleProp == "backgroundAlpha")
+            _backgroundAlpha = Number(newValue);
+        else
+        {
+            if (styleProp == "backgroundColor")
+            {
+                if (typeof(newValue) === 'number')
+                    _backgroundColor = CSSUtils.attributeFromColor(newValue);
+                else
+                    _backgroundColor = String(newValue);
+            }
+            if (!style)
+                style = new FlexCSSStyles();
+            style[styleProp] = newValue;
+            COMPILE::JS
+            {
+                if (initialized)
+                {
+                    ValuesManager.valuesImpl.applyStyles(this, style);
+                }
+            }
+        }
         COMPILE::JS
         {
-        if (initialized)
-            ValuesManager.valuesImpl.applyStyles(this, style);
+            if (!isNaN(_backgroundAlpha) && _backgroundColor !== null)
+            {
+                var red:Number = parseInt("0x" + _backgroundColor.substring(1, 3));
+                var green:Number = parseInt("0x" + _backgroundColor.substring(3, 5));
+                var blue:Number = parseInt("0x" + _backgroundColor.substring(5, 7));
+                var rgba:String = "rgba(" + red + "," + green + "," + blue + "," + _backgroundAlpha + ")";
+                (element as HTMLElement).style['backgroundColor'] = rgba;
+            }                
         }
     }
 

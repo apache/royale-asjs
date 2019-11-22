@@ -851,6 +851,11 @@ public class DateField extends ComboBase
        // invalidateProperties();
     }
 
+    override protected function set textInput(value:Object):void
+    {
+        (view as DateFieldView).textInputField = value;
+    }
+
     
     //--------------------------------------------------------------------------
     //
@@ -1390,11 +1395,12 @@ public class DateField extends ComboBase
     {
         formatStringOverride = value;
 
-       /*  _formatString = value != null ?
+        _formatString = value /* != null ?
                         value :
                         resourceManager.getString(
-                            "SharedResources", "dateFormat");
+                            "SharedResources", "dateFormat")*/;
 
+        /*
         updateDateFiller = true;
 
         invalidateProperties();

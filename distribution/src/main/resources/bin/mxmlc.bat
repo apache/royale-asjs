@@ -28,6 +28,6 @@ if "x%ROYALE_COMPILER_HOME%"=="x"  (set ROYALE_COMPILER_HOME=%~dp0..) else echo 
 
 if "x%ROYALE_HOME%"=="x" (set ROYALE_HOME=%~dp0..) else echo Using Royale SDK: %ROYALE_HOME%
 
-@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m  -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\lib\compiler-mxmlc.jar" %*
+@java -Dsun.io.useCanonCaches=false -Xms32m -Xmx512m  -Droyalelib="%ROYALE_HOME%\frameworks" -jar "%ROYALE_COMPILER_HOME%\js\lib\mxmlc.jar" --targets=SWF %*
 
 

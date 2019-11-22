@@ -24,6 +24,9 @@ package mx.controls.beads
     }
     import org.apache.royale.html.Button;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ITextInput;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.html.supportClasses.IDateChooser;
     import org.apache.royale.html.beads.DateFieldView;
     import mx.controls.TextInput;
 	
@@ -57,6 +60,21 @@ package mx.controls.beads
             }
             super.strand = value;
         }
+        
+        public function set textInputField(value:Object):void
+        {
+            _textInput = value as ITextInput;
+        }
+        
+        override public function get popUp():Object
+        {
+            if (!_popUp)
+            {
+                _popUp = ValuesManager.valuesImpl.newInstance(_strand, "iPopUp") as IDateChooser;
+            }
+            return _popUp;
+        }
+
 
 	}
 }

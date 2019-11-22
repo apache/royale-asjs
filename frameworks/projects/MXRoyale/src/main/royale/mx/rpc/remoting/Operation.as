@@ -20,6 +20,7 @@
 package mx.rpc.remoting
 {
 import mx.core.mx_internal;
+import mx.managers.CursorManager;
 import mx.messaging.events.MessageEvent;
 import mx.messaging.messages.AsyncMessage;
 import mx.messaging.messages.IMessage;
@@ -283,10 +284,10 @@ public class Operation extends AbstractOperation
      */
     override public function cancel(id:String = null):AsyncToken
     {
-        // if (showBusyCursor)
-        // {
-//            CursorManager.removeBusyCursor();
-        // }
+        if (showBusyCursor)
+        {
+            CursorManager.removeBusyCursor();
+        }
         return super.cancel(id);
     }
 
@@ -298,10 +299,10 @@ public class Operation extends AbstractOperation
 
     override mx_internal function invoke(message:IMessage, token:AsyncToken = null):AsyncToken
     {
-        // if (showBusyCursor)
-        // {
-//            CursorManager.setBusyCursor();
-        // }
+        if (showBusyCursor)
+        {
+            CursorManager.setBusyCursor();
+        }
 
         return super.invoke(message, token);
     }
@@ -311,10 +312,10 @@ public class Operation extends AbstractOperation
      */
     override mx_internal function preHandle(event:MessageEvent):AsyncToken
     {
-        // if (showBusyCursor)
-        // {
-//            CursorManager.removeBusyCursor();
-        // }
+        if (showBusyCursor)
+        {
+            CursorManager.removeBusyCursor();
+        }
 
         var wasLastCall:Boolean = activeCalls.wasLastCall(AsyncMessage(event.message).correlationId);
         var token:AsyncToken = super.preHandle(event);

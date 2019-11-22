@@ -154,7 +154,7 @@ package org.apache.royale.html.beads
 		}
 
 
-		private var _popUp:IDateChooser;
+		protected var _popUp:IDateChooser;
 
 		/**
 		 *  The pop-up component that holds the selection list.
