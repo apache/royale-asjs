@@ -1184,9 +1184,10 @@ public class SkinnableTextBase extends SkinnableComponent
 
     //----------------------------------
     //  maxChars
-    //----------------------------------
+    //---------------------------------
     
-    [Inspectable(category="General", defaultValue="0")]    
+    private var _maxChars:int = 0;
+   // [Inspectable(category="General", defaultValue="0")]    
 
     /**
      *  @copy flash.text.TextField#maxChars
@@ -1206,7 +1207,9 @@ public class SkinnableTextBase extends SkinnableComponent
         // want the default to be 0
         var v:* = textDisplayProperties.maxChars;
         return (v === undefined) ? 0 : v; */
-		return 0;
+	
+        return _maxChars;
+
     }     
     /**
      *  @private
@@ -1225,7 +1228,17 @@ public class SkinnableTextBase extends SkinnableComponent
         }
 
         // Generate an UPDATE_COMPLETE event.
-        invalidateProperties();   */                  
+        invalidateProperties();   */
+	
+	if (value == _maxChars)
+            return;
+            
+        _maxChars = value;
+		COMPILE::JS
+		{
+			(element as HTMLInputElement).maxLength = value;
+			//dispatchEvent(new Event('htmlTextChanged'));
+		}  
     } 
 
     //----------------------------------
