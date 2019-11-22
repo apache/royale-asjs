@@ -150,8 +150,9 @@ package org.apache.royale.jewel.itemRenderers
 			if(textNode != null)
 			{
 				textNode.nodeValue = _text;
-				(element as HTMLElement).setAttribute('href', _href);
-			}	
+			}
+			// href is independent of underlying textNode
+			(element as HTMLElement).setAttribute('href', _href);
 			}
 			//super.data setter will dispatch dataChange
 			super.data = value;
