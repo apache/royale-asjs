@@ -2958,6 +2958,8 @@ COMPILE::JS
         if (_alpha != value)
         {
             _alpha = value;
+            
+            super.alpha = value;
         
            /*  if (designLayer)
                 value = value * designLayer.effectiveAlpha; 
