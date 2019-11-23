@@ -180,6 +180,15 @@ SparkTextButtonItemRenderer
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
 }
 
+TextInput
+{
+	border-color: #000000;
+	border-width: 1px;
+	background-color: #FFFFFF;
+	font-size: 11px;
+	font-family: Arial;
+}
+
 TextArea
 {
 	border-style: solid;

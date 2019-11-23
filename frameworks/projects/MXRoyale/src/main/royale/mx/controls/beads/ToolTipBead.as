@@ -43,7 +43,6 @@ package mx.controls.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{
-            if (value == null) return;
 			super.strand = value;
 			IEventDispatcher(value).addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler, false);
 		}

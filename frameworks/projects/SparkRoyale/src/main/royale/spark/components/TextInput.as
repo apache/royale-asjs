@@ -254,6 +254,7 @@ public class TextInput extends SkinnableTextBase
     public function TextInput()
     {
         super();
+        typeNames = "TextInput";
     }
 
     //--------------------------------------------------------------------------

@@ -3285,8 +3285,6 @@ COMPILE::JS
 			addBead(_toolTipBead);
 		}
 		else if ((_toolTip == null || _toolTip == "") && _toolTipBead != null) {
-			removeBead(_toolTipBead);
-			_toolTipBead = null;
 		}
 		
 		if (_toolTipBead) {
