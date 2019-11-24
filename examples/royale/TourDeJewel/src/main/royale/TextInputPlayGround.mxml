@@ -36,6 +36,11 @@ limitations under the License.
 			{
 				textToChange.text = event.target.text;
 			}
+			
+			private function enterPress(event:Event):void
+			{
+				trace("enter pressed");
+			}
 		]]>
 	</fx:Script>
 
@@ -53,7 +58,7 @@ limitations under the License.
 						<j:HorizontalLayout gap="3"/>
 					</j:beads>
 					<j:Button text="Check it!" emphasis="primary"/>
-					<j:TextInput text="A TextInput" change="textInputChange(event)"/>
+					<j:TextInput text="A TextInput" change="textInputChange(event)" enter="enterPress(event)"/>
 				</j:Group>
 
 				<j:Group>
@@ -169,7 +174,7 @@ limitations under the License.
 			<j:Card width="100%">
 				<html:H4 text="Jewel TextArea"/>
 
-				<j:TextArea text="A TextArea with 5 rows" rows="5"/>
+				<j:TextArea text="A TextArea with 5 rows" rows="5" enter="enterPress(event)"/>
 
 				<j:TextArea>
 					<j:beads>

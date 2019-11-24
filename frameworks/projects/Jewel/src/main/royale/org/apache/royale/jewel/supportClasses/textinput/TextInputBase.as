@@ -44,6 +44,18 @@ package org.apache.royale.jewel.supportClasses.textinput
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
     /**
+     *  Dispatched when the user presses the Enter key.
+     *
+     *  @eventType mx.events.FlexEvent.ENTER
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.7
+     */
+    [Event(name="enter", type="org.apache.royale.events.Event")]
+
+    /**
      *  The TextInputBase class is the base class for TextInput and TextArea Jewel controls.
      *  Implements text and html properties and change event.
      *  
@@ -171,6 +183,26 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             dispatchEvent(new Event(Event.CHANGE));
 		}
+
+        /**
+         *  dispatch change event in response to a textChange event
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        protected function enterEventHandler(event:Event):void
+        {
+            COMPILE::JS
+            {
+            if (event['key'] === 'Enter') {
+                // Cancel the default action, if needed
+                event.preventDefault();
+                dispatchEvent(new Event("enter"));
+            }
+            }
+        }
 
         COMPILE::JS
         private var _input:HTMLInputElement;
