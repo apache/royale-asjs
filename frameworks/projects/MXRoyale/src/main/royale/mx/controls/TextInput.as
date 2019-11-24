@@ -1624,6 +1624,7 @@ public class TextInput extends UIComponent implements ITextInput
 		//attach input handler to dispatch royale change event when user write in textinput
 		//goog.events.listen(element, 'change', killChangeHandler);
 		goog.events.listen(element, 'input', textChangeHandler);
+        goog.events.listen(element, 'keypress', enterEventHandler);
 		return element;
 	}
 	
@@ -1646,6 +1647,24 @@ public class TextInput extends UIComponent implements ITextInput
         }
 	}
 
+    /**
+     *  dispatch change event in response to a textChange event
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    COMPILE::JS
+    public function enterEventHandler(event:Event):void
+    {
+        if (event['key'] === 'Enter') {
+            // Cancel the default action, if needed
+            event.preventDefault();
+            dispatchEvent(new Event(FlexEvent.ENTER));
+        }
+    }
+    
     //--------------------------------------------------------------------------
     //
     //  Methods
