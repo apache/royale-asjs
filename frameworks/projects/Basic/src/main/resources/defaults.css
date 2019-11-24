@@ -396,7 +396,7 @@ MultiSelectionList
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData");
-	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.html.beads.MultiSelectionItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");

@@ -31,7 +31,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.IListView;
 
-	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.events.MultiSelectionItemClickedEvent;
 
 	/**
 	 *  The ListMultiSelectionMouseController class is a controller for
@@ -133,7 +133,7 @@ package org.apache.royale.html.beads.controllers
 			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
 		}
 
-		protected function selectedHandler(event:ItemClickedEvent):void
+		protected function selectedHandler(event:MultiSelectionItemClickedEvent):void
 		{
 			var selectedIndices:Array = [];
 			var newIndices:Array;

@@ -99,8 +99,6 @@ package org.apache.royale.html.supportClasses
 		protected function handleClickEvent(event:MouseEvent):void
 		{
 			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
-			newEvent.shiftKey = event.shiftKey;
-			newEvent.ctrlKey = event.ctrlKey;
 			newEvent.index = index;
 			newEvent.data = data;
 			dispatchEvent(newEvent);

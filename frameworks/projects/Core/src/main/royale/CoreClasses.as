@@ -43,6 +43,7 @@ internal class CoreClasses
 
 	import org.apache.royale.events.ItemAddedEvent; ItemAddedEvent;
 	import org.apache.royale.events.ItemClickedEvent; ItemClickedEvent;
+	import org.apache.royale.events.MultiSelectionItemClickedEvent; MultiSelectionItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent; ItemRemovedEvent;
 	import org.apache.royale.events.ItemRendererEvent; ItemRendererEvent;
 

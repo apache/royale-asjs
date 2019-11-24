@@ -191,6 +191,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
     import org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
+    import org.apache.royale.html.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
     import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;

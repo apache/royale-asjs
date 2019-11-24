@@ -21,22 +21,22 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
-COMPILE::SWF {
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.MouseEvent;
-}
-COMPILE::JS {
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.events.BrowserEvent;
-	import goog.events.Event;
-	import goog.events.EventType;
-    import goog.events;
-}
-	import org.apache.royale.events.ItemClickedEvent;
+	COMPILE::SWF {
+		import org.apache.royale.events.Event;
+		import org.apache.royale.events.MouseEvent;
+	}
+	COMPILE::JS {
+		import org.apache.royale.core.UIBase;
+		import org.apache.royale.core.WrappedHTMLElement;
+		import org.apache.royale.events.BrowserEvent;
+		import goog.events.Event;
+		import goog.events.EventType;
+		import goog.events;
+	}
+	import org.apache.royale.events.MultiSelectionItemClickedEvent;
 
 	/**
-	 *  The ItemRendererMouseController class can mouse events in itemRenderers. This
+	 *  The MultiSelectionItemRendererMouseController class can mouse events in itemRenderers. This
 	 *  includes roll-overs, mouse down, and mouse up. These platform-specific events are then
 	 *  re-dispatched as Royale events.
 	 *  
@@ -46,7 +46,8 @@ COMPILE::JS {
 	 *  @productversion Royale 0.9
 	 *  @royaleignoreimport goog.events.Event
 	 */
-	public class ItemRendererMouseController implements IBeadController
+
+	public class MultiSelectionItemRendererMouseController implements IBeadController
 	{
 		/**
 		 *  constructor.
@@ -56,13 +57,13 @@ COMPILE::JS {
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		public function ItemRendererMouseController()
+		public function MultiSelectionItemRendererMouseController()
 		{
 		}
-		
-        private var renderer:ISelectableItemRenderer;
+
+		private var renderer:ISelectableItemRenderer;
 		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -76,26 +77,26 @@ COMPILE::JS {
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            renderer = value as ISelectableItemRenderer;
-			
+			renderer = value as ISelectableItemRenderer;
+
 			COMPILE::SWF {
-	            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
-	            renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+				renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+				renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 				renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 				renderer.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
-				
+
 			COMPILE::JS {
 				var element:WrappedHTMLElement = (_strand as UIBase).element;
-				
+
 				goog.events.listen(element, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
 				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
 				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
 				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseClick);
-                goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
+				goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -108,7 +109,7 @@ COMPILE::JS {
 				target.dispatchEvent(new Event("itemRollOver",true));
 			}
 		}
-		
+
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
@@ -120,7 +121,7 @@ COMPILE::JS {
 				target.dispatchEvent(new Event("itemRollOver",true));
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -133,7 +134,7 @@ COMPILE::JS {
 				target.dispatchEvent(new Event("itemRollOut",true));
 			}
 		}
-		
+
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
@@ -156,17 +157,19 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
-                target.down = true;
-                
-                var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
-                newEvent.data = target.data;
-                newEvent.index = target.index;
-                
-                target.dispatchEvent(newEvent);
+				target.down = true;
+
+				var newEvent:MultiSelectionItemClickedEvent = new MultiSelectionItemClickedEvent("itemMouseDown", true, true);
+				newEvent.shiftKey = event.shiftKey;
+				newEvent.ctrlKey = event.ctrlKey;
+				newEvent.data = target.data;
+				newEvent.index = target.index;
+
+				target.dispatchEvent(newEvent);
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 		}
-		
+
 		/**
 		 * @private
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
@@ -180,14 +183,14 @@ COMPILE::JS {
 				target.down = true;
 				target.hovered = false;
 
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
+				var newEvent:MultiSelectionItemClickedEvent = MultiSelectionItemClickedEvent.createMultiSelectionItemClickedEvent("itemMouseDown", event);
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
 				target.dispatchEvent(newEvent);
 			}
 		}
-		
+
 		/**
 		 * @private
 		 */
@@ -198,15 +201,16 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{				
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+				var newEvent:MultiSelectionItemClickedEvent = new MultiSelectionItemClickedEvent("itemClicked", true, true);
+				newEvent.ctrlKey = event.ctrlKey;
+				newEvent.shiftKey = event.shiftKey;
 				newEvent.data = target.data;
 				newEvent.index = target.index;
-				
-                target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);                
+				target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 				target.dispatchEvent(newEvent);
 			}			
 		}
-		
+
 		/**
 		 * @private
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
@@ -217,7 +221,7 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+				var newEvent:MultiSelectionItemClickedEvent = MultiSelectionItemClickedEvent.createMultiSelectionItemClickedEvent("itemClicked", event);
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
@@ -235,7 +239,7 @@ COMPILE::JS {
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseUp");
+				var newEvent:MultiSelectionItemClickedEvent = MultiSelectionItemClickedEvent.createMultiSelectionItemClickedEvent("itemMouseUp", event);
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 

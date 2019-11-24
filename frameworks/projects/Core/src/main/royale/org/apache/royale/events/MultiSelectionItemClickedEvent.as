@@ -20,10 +20,14 @@
 package org.apache.royale.events
 {
 
-	import org.apache.royale.events.CustomEvent;
+	import org.apache.royale.utils.OSUtils;
+	COMPILE::JS
+	{
+		import org.apache.royale.events.BrowserEvent;
+	}
 
 	/**
-	 * The ItemClickedEvent is a custom event issued by an itemRenderer to
+	 * The MultiSelectionItemClickedEvent is a custom event issued by a multi selection itemRenderer to
 	 * convey information about itself when it has determined that the
 	 * event(s) happening to it constitute a 'click' on itself.
 	 *
@@ -34,7 +38,7 @@ package org.apache.royale.events
 	 * 
 	 *  @royalesuppresspublicvarwarning
 	 */
-	public class ItemClickedEvent extends CustomEvent
+	public class MultiSelectionItemClickedEvent extends ItemClickedEvent
 	{
 
 		//--------------------------------------
@@ -53,7 +57,7 @@ package org.apache.royale.events
 		 * @playerversion AIR 2.6
 		 * @productversion Royale 0.9.7
 		 */
-		public function ItemClickedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
+		public function MultiSelectionItemClickedEvent(type:String, bubbles:Boolean=false, cancelable:Boolean=false)
 		{
 			COMPILE::SWF
 			{
@@ -63,32 +67,8 @@ package org.apache.royale.events
 			{
 				super(type);
 			}
-
-			index = -1;
-			data = null;
 		}
 
-		/**
-		 * The index of the item beginning with zero.
-		 *
-		 * @export
-		 * @langversion 3.0
-		 * @playerversion Flash 10.2
-		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.0
-		 */
-		public var index:Number;
-
-		/**
-		 * The data of the item.
-		 *
-		 * @export
-		 * @langversion 3.0
-		 * @playerversion Flash 10.2
-		 * @playerversion AIR 2.6
-		 * @productversion Royale 0.0
-		 */
-		public var data:Object;
 
 		/**
 		 * Whether or not this click was done while holding the shift key
@@ -100,13 +80,52 @@ package org.apache.royale.events
 		 * @productversion Royale 0.9.7
 		 */
 
+		public var shiftKey:Boolean;
+		/**
+		 * Whether or not this click was done while holding the control key
+		 *
+		 * @export
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.9.7
+		 */
+		public var ctrlKey:Boolean;
+
 
 		override public function cloneEvent():IRoyaleEvent
 		{
-			var newEvent:ItemClickedEvent = new ItemClickedEvent(type);
+			var newEvent:MultiSelectionItemClickedEvent = new MultiSelectionItemClickedEvent(type);
 			newEvent.index = index;
 			newEvent.data = data;
+			newEvent.shiftKey = shiftKey;
+			newEvent.ctrlKey = ctrlKey;
 			return newEvent;
+		}
+
+		/**
+		 *  Factory for MultiSelectionItemClickedEvents.
+		 *  
+		 *  @param type The name of the event.
+		 *  @param event The MouseEvent properties to copy into the MultiSelectionItemClickedEvent.
+		 *  @return The new MultiSelectionItemClickedEvent.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.events.MultiSelectionItemClickedEvent
+		 *  @royaleignorecoercion window.Event
+		 *  @royaleignorecoercion Event
+		 */
+		COMPILE::JS
+		public static function createMultiSelectionItemClickedEvent(type:String, event:BrowserEvent):MultiSelectionItemClickedEvent
+		{
+			var msice:MultiSelectionItemClickedEvent = new MultiSelectionItemClickedEvent(type, true, true);
+			var ctrlKey:Boolean = OSUtils.getOS() == OSUtils.MAC_OS || OSUtils.getOS() == OSUtils.IOS_OS ? event.nativeEvent["metaKey"] : event.ctrlKey;
+			msice.ctrlKey = ctrlKey;
+			msice.shiftKey = event.shiftKey;
+			return msice;
 		}
 	}
 }
