@@ -103,7 +103,6 @@ package
         import org.apache.royale.jewel.supportClasses.Viewport; Viewport;
         import org.apache.royale.jewel.supportClasses.NoViewport; NoViewport;
         import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
-        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;

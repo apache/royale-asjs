@@ -457,6 +457,18 @@ j|ComboBoxPopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
 }
 
+j|DataGrid {
+  IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
+  IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+  IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
+  columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
+  columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar");
+  columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+  listAreaClass: ClassReference("org.apache.royale.html.beads.DataGridListArea");
+}
+
 .jewel.datechooser .jewel.table {
   min-width: 324px;
   min-height: 364px;
