@@ -2912,7 +2912,7 @@ public class DateField extends ComboBase
     override public function addedToParent():void
     {
         super.addedToParent();
-        loadBeadFromValuesManager(IFormatter, "IFormatter", this);
+        loadBeadFromValuesManager(IFormatter, "iFormatter", this);
         
         dispatchEvent(new Event("initComplete"));
     }
