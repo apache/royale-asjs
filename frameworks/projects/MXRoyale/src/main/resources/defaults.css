@@ -199,7 +199,7 @@ DateField {
 	IBeadView:   ClassReference("mx.controls.beads.DateFieldView");
 	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateFieldMouseController");
-	IFormatBead: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
+	IFormatter: ClassReference("org.apache.royale.html.accessories.DateFormatYYYYMMDD");
 	IPopUp: ClassReference("mx.controls.dateFieldClasses.DateFieldDateChooser");
 }
 
