@@ -50,6 +50,7 @@ use namespace mx_internal;
 
 import org.apache.royale.core.IDateChooserModel;
 import org.apache.royale.core.IUIBase;
+import org.apache.royale.events.Event;
 import mx.controls.TextInput;
 
 //--------------------------------------
@@ -2895,6 +2896,12 @@ public class DateField extends ComboBase
     {
         return (view as DateFieldView).setFocus();
         
+    }
+    
+    override public function set initialized(value:Boolean):void
+    {
+        super.initialized = value;
+        dispatchEvent(new Event("initComplete"));
     }
 }
 
