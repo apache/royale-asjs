@@ -534,16 +534,16 @@ public class RadioButtonGroup extends EventDispatcher
      *  Add a radio button to the group.  This can be called by
      *  RadioButton or via the addedHandler when applying a state.
      */
-    /* mx_internal function addInstance(instance:RadioButton):void
+    mx_internal function addInstance(instance:RadioButton):void
     {
         // During a state transition, called when rb is removed from 
         // display list.
-        instance.addEventListener(Event.REMOVED, radioButton_removedHandler);
+        //instance.addEventListener(Event.REMOVED, radioButton_removedHandler);
         
         radioButtons.push(instance);
 
 		// Apply group indices in "tab order" or "breadth-first" order.
-        radioButtons.sort(readOrderCompare);
+        //radioButtons.sort(readOrderCompare);
         for (var i:int = 0; i < radioButtons.length; i++)
             radioButtons[i].indexNumber = i;
         
@@ -560,14 +560,14 @@ public class RadioButtonGroup extends EventDispatcher
         instance.invalidateSkinState();
         
         dispatchEvent(new Event("numRadioButtonsChanged"));
-    } */
+    }
 
     /**
      *  @private
      *  Remove a radio button from the group.  This can be called by
      *  RadioButton or via the removedHandler when removing a state.
      */
-    /* private function removeInstance(instance:RadioButton):void
+    private function removeInstance(instance:RadioButton):void
     {
         if (instance)
         {
@@ -585,7 +585,7 @@ public class RadioButtonGroup extends EventDispatcher
                 {
                     // During a state transition, called when rb is added back 
                     // to display list.
-                    instance.addEventListener(Event.ADDED, radioButton_addedHandler);
+                    //instance.addEventListener(Event.ADDED, radioButton_addedHandler);
         
                     // Don't set the group to null.  If this is being removed
                     // because the state changed, the group will be needed
@@ -613,12 +613,12 @@ public class RadioButtonGroup extends EventDispatcher
             if (foundInstance)
                 dispatchEvent(new Event("numRadioButtonsChanged"));
         }
-    } */
+    }
 
     /**
      *  @private
      */
-    public function setSelection(value:RadioButton, fireChange:Boolean = true):void
+    mx_internal function setSelection(value:RadioButton, fireChange:Boolean = true):void
     {
         if (_selection == value)
             return;
