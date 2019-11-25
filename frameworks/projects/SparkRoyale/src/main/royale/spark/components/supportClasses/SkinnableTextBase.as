@@ -1234,11 +1234,6 @@ public class SkinnableTextBase extends SkinnableComponent
             return;
             
         _maxChars = value;
-		COMPILE::JS
-		{
-			(element as HTMLInputElement).maxLength = value;
-			//dispatchEvent(new Event('htmlTextChanged'));
-		}  
     } 
 
     //----------------------------------
