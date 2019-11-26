@@ -49,7 +49,10 @@ import mx.utils.ObjectUtil;
 use namespace mx_internal;
 
 import org.apache.royale.core.IDateChooserModel;
+import org.apache.royale.core.IFormatter;
 import org.apache.royale.core.IUIBase;
+import org.apache.royale.events.Event;
+import org.apache.royale.utils.loadBeadFromValuesManager;
 import mx.controls.TextInput;
 
 //--------------------------------------
@@ -2895,6 +2898,23 @@ public class DateField extends ComboBase
     {
         return (view as DateFieldView).setFocus();
         
+    }
+    
+    /**
+     * The method called when added to a parent. The DateField class uses
+     * this opportunity to install additional beads.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     */
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        loadBeadFromValuesManager(IFormatter, "iFormatter", this);
+        
+        dispatchEvent(new Event("initComplete"));
     }
 }
 

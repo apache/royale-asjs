@@ -330,6 +330,16 @@ public class TextInput extends SkinnableTextBase
     }
     // END
     
+    override public function set maxChars(value:int):void
+    {
+        super.maxChars = value;
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).maxLength = value;
+            //dispatchEvent(new Event('htmlTextChanged'));
+        }  
+    }
+
     COMPILE::JS
 	override protected function createElement():WrappedHTMLElement
 	{
