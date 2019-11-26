@@ -131,7 +131,6 @@ package org.apache.royale.jewel.beads.views
             sharedModel.headerModel = _header.model as IBeadModel;
 
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
-            trace("listAreaClass: " + listAreaClass);
             assert(listAreaClass != null,"listAreaClass for DataGrid must be set!")
             _listArea = new listAreaClass() as IUIBase;
             (_listArea as ILayoutChild).percentWidth = 100;
