@@ -395,18 +395,18 @@ limitations under the License.
 		    <local:AlternatingBackgroundColorHashAnchorStringItemRenderer backgroundColor0="#ffffff" backgroundColor1="#ffeeee" />
 		</fx:Component>
 	</fx:Declarations>
-	<js:states>
+	<rs:states>
 	  <js:State name="packages" />
       <js:State name="loading" />
 	  <js:State name="classDetail" />
-	</js:states>
-    <js:beads>
+	</rs:states>
+    <rs:beads>
         <js:ViewDataBinding />
         <js:OneFlexibleChildVerticalLayoutForOverflow flexibleChild="topContainer" />
         <js:HashChangeNotifierBeadWithTitle id="router" hashChange="hashChanged()" />                
         <js:EscapedFragmentBead id="efb" ready="paramsReady()" />                
         <js:CallLaterBead id="clb" />
-    </js:beads>
+    </rs:beads>
     <rs:DocTopBar />
     <rs:DocTagline />
     <js:Group width="100%" id="titleGroup" className="titleGroup">
