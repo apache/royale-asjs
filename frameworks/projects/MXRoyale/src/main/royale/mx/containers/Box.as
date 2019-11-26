@@ -133,18 +133,22 @@ public class Box extends Container
 		
 		// For Flex compatibility, the BoxLayout is immediately created and added
 		// rather than being loaded from a style
-		_layout = new BoxLayout();
-		_layout.direction = _direction;
+        createLayout();
+        _layout.direction = _direction;
 		addBead(_layout);
     }
 
+    protected function createLayout():void
+    {
+        _layout = new BoxLayout();
+    }
     //--------------------------------------------------------------------------
     //
     //  Variables
     //
     //--------------------------------------------------------------------------
 	
-	private var _layout:BoxLayout;
+	protected var _layout:BoxLayout;
     
     protected function get layoutObject():BoxLayout
     {
