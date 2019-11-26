@@ -59,10 +59,6 @@ package org.apache.royale.jewel
 			super();
 			
 			typeNames = "jewel datagrid";
-			
-			// set a reasonable default size
-			width = 200;
-			height = 200;
 		}
 		
 		/**
