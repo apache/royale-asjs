@@ -462,6 +462,16 @@ j|ComboBoxPopUp {
   height: 290px;
 }
 
+.jewel.list.column {
+  border-radius: 0px;
+}
+.jewel.list.column.first {
+  border-right: 0px;
+}
+.jewel.list.column.last {
+  border-left: 0px;
+}
+
 j|DataGrid {
   IChangePropagator: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator");
   IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel");

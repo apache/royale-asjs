@@ -36,9 +36,9 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
-	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.Viewport;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.

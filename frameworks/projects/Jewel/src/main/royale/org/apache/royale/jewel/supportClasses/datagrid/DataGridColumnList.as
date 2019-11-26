@@ -57,7 +57,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		public function DataGridColumnList()
 		{
 			super();
-			//typeNames = "jewel dataGridColumnList";
+			typeNames = "jewel list column";
 		}
 		
         /**

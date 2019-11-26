@@ -25,6 +25,13 @@
     width: 200px
     height: 290px
 
+.jewel.list.column
+    border-radius: 0px
+    &.first
+        border-right: 0px
+    &.last
+        border-left: 0px
+
 j|DataGrid
     IChangePropagator: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator")
     IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel")
