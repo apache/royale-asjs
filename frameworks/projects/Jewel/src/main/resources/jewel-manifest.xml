@@ -45,6 +45,7 @@
 
     <component id="DataGrid" class="org.apache.royale.jewel.DataGrid"/>
     <component id="DataGridColumn" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn"/>
+    <component id="DataGridListArea" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea"/>
 
     <component id="SimpleButton" class="org.apache.royale.jewel.supportClasses.button.SimpleButton"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>

@@ -22,17 +22,57 @@
 // DataGrid variables
 
 .jewel.datagrid
+    width: 200px
+    height: 290px
 
 j|DataGrid
-    IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator")
-    IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel")
-    IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView")
-    IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel")
-    IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout")
-    columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList")
+    IChangePropagator: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator")
+    IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel")
+    IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView")
+    IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout")
+    columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList")
     columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar")
     columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout")
-    listAreaClass: ClassReference("org.apache.royale.html.beads.DataGridListArea")
+    listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea")
+
+j|DataGridListArea
+    IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView")
+    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout")
+    IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport")
+    IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+//align-items: flex-start
+// DataGridListArea {
+// background-color: #FFFFFF
+// IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout")
+// IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport")
+// IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+// flex-grow: 1
+// }
+
+// j|DataGridColumnList
+//     IBeadView:  ClassReference("org.apache.royale.html.beads.ListView")			
+//     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController")
+//     IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout")
+//     IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory")
+//     IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer")
+//     IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel")
+//     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.DataItemRendererFactoryForArrayData")
+//     IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport")
+//     IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
+
+
+// DynamicDataGrid {
+// IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator")
+// IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel")
+// IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView")
+// IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel")
+// IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout")
+// ColumnClass: ClassReference("org.apache.royale.html.supportClasses.DynamicDataGridColumnList")
+
+// background-color: #FFFFFF
+// border: 1px solid #222222
+// }
 
 // DataGridButtonBar
 // {
@@ -64,25 +104,7 @@ j|DataGrid
 // background-color: #FFFFFF
 // }
 
-// DataGridListArea {
-// background-color: #FFFFFF
-// IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.HorizontalLayout")
-// IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport")
-// IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel")
-// flex-grow: 1
-// }
 
-// DynamicDataGrid {
-// IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator")
-// IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel")
-// IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView")
-// IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel")
-// IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout")
-// ColumnClass: ClassReference("org.apache.royale.html.supportClasses.DynamicDataGridColumnList")
-
-// background-color: #FFFFFF
-// border: 1px solid #222222
-// }
 
 // DynamicDataGridColumnList {
 // IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel")

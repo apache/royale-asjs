@@ -457,16 +457,28 @@ j|ComboBoxPopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
 }
 
+.jewel.datagrid {
+  width: 200px;
+  height: 290px;
+}
+
 j|DataGrid {
-  IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
-  IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
-  IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
-  IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
-  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.DataGridLayout");
-  columnClass: ClassReference("org.apache.royale.html.supportClasses.DataGridColumnList");
+  IChangePropagator: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator");
+  IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout");
+  columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList");
   columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar");
   columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
-  listAreaClass: ClassReference("org.apache.royale.html.beads.DataGridListArea");
+  listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea");
+}
+
+j|DataGridListArea {
+  IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.datechooser .jewel.table {

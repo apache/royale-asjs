@@ -45,6 +45,8 @@
         <configuration>
           <mainClass>DataGridExample.mxml</mainClass>
           <targets>${royale.targets}</targets>
+          <debug>false</debug>
+          <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>
         </configuration>
       </plugin>
     </plugins>
