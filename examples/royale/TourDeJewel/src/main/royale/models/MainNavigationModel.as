@@ -57,7 +57,7 @@ package models
             new NavigationLinkVO("Layouts", "layouts_panel", MaterialIconType.VIEW_QUILT),
             new NavigationLinkVO("Grid", "grid_panel", MaterialIconType.GRID_ON),
             new NavigationLinkVO("DataGrid", "datagrid_panel", MaterialIconType.VIEW_LIST),
-            new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_LIST),
+            new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_COMFY),
             new NavigationLinkVO("TabBar", "tabbar_panel", MaterialIconType.TAB),
             new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.CHORME_READER_MODE),
             new NavigationLinkVO("Wizard", "wizards_panel", MaterialIconType.MOVIE_FILTER)

@@ -21,6 +21,7 @@ package models
 	import org.apache.royale.collections.ArrayList;
 	import vos.Product;
 
+	[Bindable]
 	public class ProductModel
 	{
 		private var _productList:ArrayList = new ArrayList([
@@ -34,19 +35,6 @@ package models
 		public function get productList():ArrayList
 		{
 			return _productList;
-		}
-		
-		private var _productArray:Array = [
-			new Product("ps100","Blueberries",44,200,"assets/smallbluerect.jpg"),
-			new Product("tx200","Kiwis",5,285,"assets/smallgreenrect.jpg"),
-			new Product("rz300","Bananas",80,105,"assets/smallyellowrect.jpg"),
-			new Product("dh440","Strawberries",10,340,"assets/smallredrect.jpg"),
-			new Product("ps220","Oranges",35,190,"assets/smallorangerect.jpg")
-		];
-		
-		public function get productArray():Array
-		{
-			return _productArray;
 		}
 	}
 }

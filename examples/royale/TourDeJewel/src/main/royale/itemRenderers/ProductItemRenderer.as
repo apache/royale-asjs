@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package itemRenderers
 {
-	import org.apache.royale.html.Image;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
-
+	import org.apache.royale.jewel.Image;
+	
 	public class ProductItemRenderer extends DataItemRenderer
 	{
 		public function ProductItemRenderer()
@@ -28,14 +28,11 @@ package itemRenderers
 			super();
 		}
 
-		private var image:Image;
+		private var image:Image = new Image();
 
 		override public function addedToParent():void
 		{
 			super.addedToParent();
-
-			// add an image and two labels
-			image = new Image();
 			addElement(image);
 		}
 
@@ -43,7 +40,6 @@ package itemRenderers
 		{
 			return super.data;
 		}
-
 		override public function set data(value:Object):void
 		{
 			super.data = value;
