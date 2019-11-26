@@ -122,9 +122,9 @@ package org.apache.royale.events
 		public static function createMultiSelectionItemClickedEvent(type:String, event:BrowserEvent):MultiSelectionItemClickedEvent
 		{
 			var msice:MultiSelectionItemClickedEvent = new MultiSelectionItemClickedEvent(type, true, true);
-			var ctrlKey:Boolean = OSUtils.getOS() == OSUtils.MAC_OS || OSUtils.getOS() == OSUtils.IOS_OS ? event.nativeEvent["metaKey"] : event.ctrlKey;
+			var ctrlKey:Boolean = OSUtils.getOS() == OSUtils.MAC_OS || OSUtils.getOS() == OSUtils.IOS_OS ? event.nativeEvent["metaKey"] : event.nativeEvent["ctrlKey"];
 			msice.ctrlKey = ctrlKey;
-			msice.shiftKey = event.shiftKey;
+			msice.shiftKey = event.nativeEvent["shiftKey"];
 			return msice;
 		}
 	}
