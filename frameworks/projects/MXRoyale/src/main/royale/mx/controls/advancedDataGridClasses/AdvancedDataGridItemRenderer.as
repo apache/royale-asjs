@@ -31,15 +31,15 @@ import flash.utils.getQualifiedSuperclassName; */
     import mx.controls.beads.models.DataGridICollectionViewModel;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.controls.listClasses.BaseListData;
-import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.core.IDataRenderer;
-import mx.core.IFlexDisplayObject;
-import mx.core.IToolTip;
-import mx.core.UITextField;
-import mx.core.mx_internal;
-import mx.events.FlexEvent;
-import mx.managers.ISystemManager;
-import mx.styles.CSSStyleDeclaration;
+    import mx.controls.listClasses.IDropInListItemRenderer;
+    import mx.core.IDataRenderer;
+    import mx.core.IFlexDisplayObject;
+    import mx.core.IToolTip;
+    import mx.core.UITextField;
+    import mx.core.mx_internal;
+    import mx.events.FlexEvent;
+    import mx.managers.ISystemManager;
+    import mx.styles.CSSStyleDeclaration;
 //import mx.styles.IStyleClient;
 //import mx.styles.StyleProtoChain;
 use namespace mx_internal;
@@ -157,9 +157,16 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         }
         var bgColors:Array = (treeListData.owner as UIComponent).getStyle("alternatingItemColors");
         backgroundColor = ((treeListData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
+        if (treeListData.rowIndex == (treeListData.owner as AdvancedDataGrid).selectedIndex)
+        {
+            selected = true;
+        }
 
         COMPILE::JS {
-            element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
+            if (selected)
+                element.style.backgroundColor = '#9C9C9C';
+            else
+                element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
         }
 
         if (column.labelFunction)
