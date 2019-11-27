@@ -37,9 +37,9 @@ limitations under the License.
         ]]>
     </fx:Script>
 
-    <mdl:beads>
+    <j:beads>
         <js:ItemRendererDataBinding/>
-    </mdl:beads>
+    </j:beads>
 
     <j:IconButton emphasis="primary" width="24" height="24" style="padding: 0px; border-radius: 50%" click="clickCloseButton()">
         <j:icon>

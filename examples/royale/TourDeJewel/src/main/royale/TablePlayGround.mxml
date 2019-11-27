@@ -24,13 +24,13 @@ limitations under the License.
 	xmlns:c="components.*" 
 	xmlns:models="models.*" sourceCodeUrl="TablePlayGround.mxml">
 	
-	<j:model>
+	<c:model>
 		<models:TablesModel id="tablesModel"/>
-	</j:model>
+	</c:model>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
+	</c:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">

@@ -23,9 +23,9 @@ limitations under the License.
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:c="components.*" sourceCodeUrl="MiscelaneaPlayGound.mxml">
 
-    <j:beads>
+    <c:beads>
         <js:ContainerDataBinding/>
-    </j:beads>
+    </c:beads>
 
     <j:Group>
         <j:beads>

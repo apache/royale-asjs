@@ -82,9 +82,9 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
+	</c:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
