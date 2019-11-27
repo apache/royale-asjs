@@ -33,6 +33,7 @@ COMPILE::JS
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.RestrictTextInputBead;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
     
@@ -339,13 +340,31 @@ public class TextInput extends SkinnableTextBase
             //dispatchEvent(new Event('htmlTextChanged'));
         }  
     }
+    
+    private var restrictBead:RestrictTextInputBead;
+    
+    override public function get restrict():String 
+    {
+        if (!restrictBead) return null;
+        return restrictBead.restrict;
+    }
 
+    override public function set restrict(value:String):void
+    {
+        if (!restrictBead)
+        {
+            restrictBead = new RestrictTextInputBead();
+            addBead(restrictBead);
+        }
+        restrictBead.restrict = value;
+    }
+    
     COMPILE::JS
 	override protected function createElement():WrappedHTMLElement
 	{
 		addElementToWrapper(this,'input');
 		element.setAttribute('type', 'text');
-		
+        
 		//attach input handler to dispatch royale change event when user write in textinput
 		//goog.events.listen(element, 'change', killChangeHandler);
 		goog.events.listen(element, 'input', textChangeHandler);

@@ -1,0 +1,155 @@
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.html.accessories
+{
+	COMPILE::JS
+	{
+		import goog.events.BrowserEvent;
+	}
+	COMPILE::SWF
+	{
+		import flash.events.TextEvent;
+		
+		import org.apache.royale.core.CSSTextField;			
+	}
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	COMPILE::SWF
+	{
+		import org.apache.royale.html.beads.ITextFieldView;			
+	}
+	
+	/**
+	 *  The RestrictTextInputBead class is a specialty bead that can be used with
+	 *  any TextInput control. The bead prevents certain characters from being 
+     *  entered into the text input
+	 *  area.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.8
+	 */
+	public class RestrictTextInputBead implements IBead
+	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function RestrictTextInputBead()
+		{
+		}
+		
+		private var _strand:IStrand;
+		
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		public function set strand(value:IStrand):void
+		{
+			_strand = value;
+			
+			COMPILE::SWF
+			{
+				IEventDispatcher(value).addEventListener("viewChanged",viewChangeHandler);					
+			}
+			COMPILE::JS
+			{
+                var host:UIBase = _strand as UIBase;
+                host.element.addEventListener("keypress", validateInput, false);
+			}
+		}
+		
+		private var _restrict:String;
+		
+		/**
+		 *  The characters allowed or denied.  Uses flash.text.TextField.restrict syntax
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get restrict():String
+		{
+			return _restrict;
+		}
+		public function set restrict(value:String):void
+		{
+			if (_restrict != value) {
+                _restrict = value;
+			}
+		}
+		
+
+        /**
+		 * @private
+		 */
+		COMPILE::SWF
+		private function viewChangeHandler(event:Event):void
+		{			
+			// get the ITextFieldView bead, which is required for this bead to work
+			var textView:ITextFieldView = _strand.getBeadByType(ITextFieldView) as ITextFieldView;
+			if (textView) {
+				var textField:CSSTextField = textView.textField;
+				textField.restrict = restrict;
+			}
+			else {
+				// throw new Error("RestrictTextInputBead requires strand to have an ITextFieldView bead");
+			}
+		}
+				
+		COMPILE::JS
+		private function validateInput(event:BrowserEvent):void
+		{
+			var code:int = event.charCode;
+			
+			// backspace or delete
+			if (event.keyCode == 8 || event.keyCode == 46) return;
+			
+			// tab or return/enter
+			if (event.keyCode == 9 || event.keyCode == 13) return;
+			
+			// left or right cursor arrow
+			if (event.keyCode == 37 || event.keyCode == 39) return;
+			
+			var key:String = String.fromCharCode(code);
+			
+			var regex:RegExp = new RegExp("[" + restrict + "]");
+			if (!regex.test(key)) {
+				event["returnValue"] = false;
+				if (event.preventDefault) event.preventDefault();
+				return;
+			}
+		}
+	}
+}

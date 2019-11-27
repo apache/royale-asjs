@@ -34,6 +34,7 @@ import mx.events.FlexEvent;
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.RestrictTextInputBead;
 import org.apache.royale.html.accessories.PasswordInputBead;
 import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.core.TextLineMetrics;
@@ -1091,47 +1092,22 @@ public class TextInput extends UIComponent implements ITextInput
     //  restrict
     //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the restrict property.
-     */
-    private var _restrict:String;
-
-    /**
-     *  @private
-     */
-    private var restrictChanged:Boolean = false;
-
-    [Bindable("restrictChanged")]
-    [Inspectable(category="General")]
-
-    /**
-     *  @inheritDoc
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get restrict():String
+    private var restrictBead:RestrictTextInputBead;
+    
+    public function get restrict():String 
     {
-        return _restrict;
+        if (!restrictBead) return null;
+        return restrictBead.restrict;
     }
-
-    /**
-     *  @private
-     */
+    
     public function set restrict(value:String):void
     {
-        if (value == _restrict)
-            return;
-
-        _restrict = value;
-        restrictChanged = true;
-
-        invalidateProperties();
-
-        dispatchEvent(new Event("restrictChanged"));
+        if (!restrictBead)
+        {
+            restrictBead = new RestrictTextInputBead();
+            addBead(restrictBead);
+        }
+        restrictBead.restrict = value;
     }
 
     //----------------------------------
