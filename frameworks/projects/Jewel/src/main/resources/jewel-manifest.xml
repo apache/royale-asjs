@@ -46,6 +46,7 @@
     <component id="DataGrid" class="org.apache.royale.jewel.DataGrid"/>
     <component id="DataGridColumn" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn"/>
     <component id="DataGridListArea" class="org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea"/>
+    <component id="ButtonBarItemRenderer" class="org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer"/>
 
     <component id="SimpleButton" class="org.apache.royale.jewel.supportClasses.button.SimpleButton"/>
     <component id="Button" class="org.apache.royale.jewel.Button"/>
@@ -97,6 +98,7 @@
     
     <component id="HorizontalListScroll" class="org.apache.royale.jewel.beads.controls.list.HorizontalListScroll"/>
 
+    <component id="ButtonBar" class="org.apache.royale.jewel.ButtonBar"/>
     <component id="TabBar" class="org.apache.royale.jewel.TabBar"/>
     <component id="TabBarButtonItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonItemRenderer"/>
     <component id="TabBarButtonInidicatorRestrictedToContentItemRenderer" class="org.apache.royale.jewel.itemRenderers.TabBarButtonInidicatorRestrictedToContentItemRenderer"/>

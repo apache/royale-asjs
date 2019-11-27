@@ -79,6 +79,7 @@ package
         import org.apache.royale.jewel.beads.views.FormItemView; FormItemView;
         import org.apache.royale.jewel.beads.views.FormHeadingView; FormHeadingView;
         import org.apache.royale.jewel.beads.views.WizardView; WizardView;
+        import org.apache.royale.jewel.beads.views.ButtonBarView; ButtonBarView;
 
         COMPILE::SWF
 	    {

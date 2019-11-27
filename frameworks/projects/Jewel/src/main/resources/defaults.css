@@ -260,6 +260,21 @@ j|Alert {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView");
   }
 }
+j|ButtonBar {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer");
+}
+
+@media -royale-swf {
+  j|ButtonBar {
+    IContentView: ClassReference("org.apache.royale.jewel.supportClasses.list.DataGroup");
+  }
+}
 .jewel.card {
   min-width: 240px;
   min-height: 52px;
