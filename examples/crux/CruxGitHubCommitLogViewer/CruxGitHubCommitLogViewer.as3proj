@@ -23,7 +23,7 @@
     <movie height="600"/>
     <movie disabled="False"/>
     <movie background="#FFFFFF"/>
-    <movie path="bin-debug/CruxQuickStart.swf"/>
+    <movie path="bin-debug/CruxGitHubCommitLogViewer.swf"/>
     <movie width="800"/>
     <movie platform="Flash Player"/>
     <movie version="11"/>
@@ -36,7 +36,9 @@
   <classpaths>
     <class path="src/main/royale"/>
   </classpaths>
-  <moonshineResourcePaths></moonshineResourcePaths>
+  <moonshineResourcePaths>
+    <class path="src/main/resources"/>
+  </moonshineResourcePaths>
   <moonshineNativeExtensionPaths></moonshineNativeExtensionPaths>
   <build>
     <option es="False"/>
@@ -84,7 +86,7 @@
   </intrinsics>
   <library></library>
   <compileTargets>
-    <compile path="src/main/royale/CruxQuickStart.mxml"/>
+    <compile path="src/main/royale/CruxGitHubCommitLogViewer.mxml"/>
   </compileTargets>
   <hiddenPaths></hiddenPaths>
   <preBuildCommand>null</preBuildCommand>
