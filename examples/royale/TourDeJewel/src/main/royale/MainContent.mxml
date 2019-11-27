@@ -192,9 +192,9 @@ limitations under the License.
         <j:BarRow>
             <j:BarSection>
                 <j:IconButton click="drawer.isOpen ? drawer.close() : drawer.open()">
-                    <js:beads>
+                    <j:beads>
                         <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false" />
-                    </js:beads>
+                    </j:beads>
                     <j:icon>
                         <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
                     </j:icon>
