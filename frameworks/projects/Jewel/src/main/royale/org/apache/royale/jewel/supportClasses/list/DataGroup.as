@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.list
 {
-	import org.apache.royale.html.supportClasses.DataGroup;
 	import org.apache.royale.html.DataContainer;
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
