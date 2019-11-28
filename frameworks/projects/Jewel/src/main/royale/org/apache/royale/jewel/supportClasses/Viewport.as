@@ -18,11 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses
 {
+	COMPILE::JS
+	{
 	import org.apache.royale.core.IContentView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
-	import org.apache.royale.html.supportClasses.Viewport;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	}
+	import org.apache.royale.html.supportClasses.Viewport;
 
     /**
      * A Viewport is the area of a Container set aside for displaying

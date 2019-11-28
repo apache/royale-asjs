@@ -205,11 +205,11 @@ package org.apache.royale.jewel.supportClasses.button
             {
                 if(_emphasis)
                 {
-                    classSelectorList.toggle(_emphasis, false);
+                    toggleClass(_emphasis, false);
                 }
                 _emphasis = value;
 
-                classSelectorList.toggle(_emphasis, value);
+                toggleClass(_emphasis, value);
             }
         }
 
