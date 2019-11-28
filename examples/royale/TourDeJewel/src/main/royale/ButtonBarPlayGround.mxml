@@ -60,6 +60,7 @@ limitations under the License.
 				<html:H4 text="ButtonBar"/>
 
 				<j:ButtonBar localId="bb2" change="bb2_label.text = bb2.selectedItem as String"
+					emphasis="{ButtonBar.SECONDARY}"
 					dataProvider="{three_options}">
 					<!-- <js:dataProvider>
 						<fx:Array>

@@ -18,17 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
+	COMPILE::JS
+	{
+	import org.apache.royale.core.WrappedHTMLElement;
+	}
+
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.Button;
-
-	COMPILE::JS
-	{
-	import org.apache.royale.core.WrappedHTMLElement;
-	}
+	import org.apache.royale.jewel.ButtonBar;
+	import org.apache.royale.jewel.beads.views.ButtonBarView;
 
 	/**
 	 * The ButtonBarItemRenderer class extends Button and turns it into an itemRenderer
@@ -47,7 +49,8 @@ package org.apache.royale.jewel.itemRenderers
 
 			style = new SimpleCSSStylesWithFlex();
 
-			addEventListener('click',handleClickEvent);
+			addEventListener('click', handleClickEvent);
+
 		}
 
 		private var _data:Object;
@@ -71,6 +74,9 @@ package org.apache.royale.jewel.itemRenderers
 			_data = value;
 
 			updateButtonLabelFromData();
+
+			var buttonBar:ButtonBar = (itemRendererParent as ButtonBarView).buttonBar;
+			emphasis = buttonBar.emphasis;
 		}
 
 		/**
@@ -86,7 +92,9 @@ package org.apache.royale.jewel.itemRenderers
 				valueAsString = "" + data["title"];
 			}
 
-			if (valueAsString) text = valueAsString;
+			if (valueAsString) {
+				text = valueAsString;
+			}
 		}
 
 		/**

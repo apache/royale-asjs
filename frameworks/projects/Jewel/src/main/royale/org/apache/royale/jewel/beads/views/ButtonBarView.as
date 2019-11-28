@@ -19,10 +19,11 @@
 package org.apache.royale.jewel.beads.views
 {
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.jewel.ButtonBar;
 
 	/**
-	 *  The ButtonBarView class creates the visual elements of the org.apache.royale.html.ButtonBar 
-	 *  component. A ButtonBar is a type of List and ButtonBarView extends the ListView bead, adding a border.
+	 *  The ButtonBarView class creates the visual elements of the org.apache.royale.jewel.ButtonBar 
+	 *  component. A ButtonBar is a type of List and ButtonBarView extends the ListView bead.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -43,7 +44,8 @@ package org.apache.royale.jewel.beads.views
 		{
 			super();
 		}
-				
+		
+		public var buttonBar:ButtonBar;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -54,8 +56,8 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
 			super.strand = value;
+			buttonBar = value as ButtonBar;
 		}		
 	}
 }
