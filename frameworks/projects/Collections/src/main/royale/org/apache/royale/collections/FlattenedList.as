@@ -132,7 +132,7 @@ package org.apache.royale.collections
 				addChildren(node, arr);
 				var i:int = getItemIndex(node);
 				while (arr.length) {
-					addItemAt(arr.shift(), ++i);
+					super.addItemAt(arr.shift(), ++i);
 				}
 			}
 			updateNode(node);
@@ -164,7 +164,7 @@ package org.apache.royale.collections
 				addChildren(node, arr);
 				i = getItemIndex(node) + 1;
 				while (arr.length) {
-					removeItemAt(i);
+					super.removeItemAt(i);
 					arr.shift();
 				}
 			}
@@ -211,6 +211,41 @@ package org.apache.royale.collections
 			}
 			
 			return -1;
+		}
+		/**
+		 * When adding items from outside FlattenedList, it needs to be added to the data structure as well.
+		 */
+		override public function addItemAt(item:Object, index:int):void{
+			super.addItemAt(item,index);
+			var topLevel:Array = hdata.source.children;
+			var len:int = topLevel.length;
+			if (index < len && index > 0)
+				topLevel.splice(index, 0, item);
+
+			else if (index == len)
+				topLevel.push(item);
+
+			else if (index == 0)
+				topLevel.unshift(item);
+		}
+
+		override public function removeItemAt(index:int):Object{
+			var topLevel:Array = hdata.source.children;
+			var upperIdx:int = topLevel.length - 1;
+			if (index > 0 && index < upperIdx)
+			{
+				topLevel.splice(index, 1);
+			}
+			else if (index == upperIdx)
+			{
+				topLevel.pop();
+			}
+			else if (index == 0)
+			{
+				topLevel.shift();
+			}
+			
+			return super.removeItemAt(index);
 		}
 
 	}
