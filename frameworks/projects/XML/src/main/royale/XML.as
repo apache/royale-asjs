@@ -1362,6 +1362,7 @@ package
 			else
 			{
 				name = new QName(nameOrXML);
+				name.setIsAttribute(true);
 			}
 			var i:int;
 			var len:int = attributeLength();
