@@ -47,7 +47,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		public function DataGridButtonBar()
 		{
 			super();
-			typeNames = "jewel dataGridButtonBar";
+			typeNames = "jewel buttonbar header";
 		}
 	}
 }
