@@ -906,6 +906,7 @@ package
 				if (lastChild && lastChild._nodeKind == ELEMENT) {
 					
 					const wrapper:XML = new XML();
+					wrapper._nodeKind = ELEMENT;
 					child = new XML(child.toString());
 					wrapper.setName(lastChild.name());
 					child.setParent(wrapper);
