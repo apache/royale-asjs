@@ -248,6 +248,7 @@ limitations under the License.
         <local:TextInputPlayGround name="textinput_panel"/>
         <local:GridPlayGround name="grid_panel"/>
         <local:CardPlayGround name="card_panel"/>
+        <local:ButtonBarPlayGround name="buttonbar_panel"/>
         <local:DataGridPlayGround name="datagrid_panel"/>
         <local:TablePlayGround name="tables_panel"/>
         <local:FormsValidationPlayGround name="form_validation_panel"/>
