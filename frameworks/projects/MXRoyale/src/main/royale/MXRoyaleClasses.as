@@ -52,7 +52,7 @@ internal class MXRoyaleClasses
 	import mx.events.ValidationResultEvent; ValidationResultEvent;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
-	import mx.containers.beads.DividedBoxLayout; DividedBoxLayout;
+    import mx.containers.beads.DividedBoxLayout; DividedBoxLayout;
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
     import mx.containers.beads.layouts.BasicLayout; BasicLayout;
 	import mx.controls.beads.AlertView; AlertView;
