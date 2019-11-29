@@ -367,7 +367,7 @@ package org.apache.royale.textLayout.conversion
 		
 		// Descriptors - ordered list of all FormatDescriptors
 		/** @private */
-		static public var _descriptors:Array = [];
+		static private var _descs:Array = [];
 
 		// register standard importers and exporters
 		setFormatsToDefault();
@@ -375,10 +375,18 @@ package org.apache.royale.textLayout.conversion
 		/** @private */
 		static public function setFormatsToDefault():void	// No PMD
 		{
-			_descriptors = [];
-			addFormat(TEXT_LAYOUT_FORMAT, TextLayoutImporter, TextLayoutExporter, TEXT_LAYOUT_FORMAT);
-			addFormat(TEXT_FIELD_HTML_FORMAT, TextFieldHtmlImporter,  TextFieldHtmlExporter, null);
-			addFormat(PLAIN_TEXT_FORMAT, PlainTextImporter, PlainTextExporter, "air:text");
+			_descs = [];
+			addFormat(TEXT_LAYOUT_FORMAT, TextLayoutImporter, TextLayoutExporter, TEXT_LAYOUT_FORMAT, _descs);
+			addFormat(TEXT_FIELD_HTML_FORMAT, TextFieldHtmlImporter,  TextFieldHtmlExporter, null, _descs);
+			addFormat(PLAIN_TEXT_FORMAT, PlainTextImporter, PlainTextExporter, "air:text", _descs);
+		}
+		
+		static public function get descArray():Array
+		{
+			if(_descs.length == 0) {
+				setFormatsToDefault();
+			}
+			return _descs;
 		}
 		
 		/** 
@@ -490,7 +498,7 @@ package org.apache.royale.textLayout.conversion
 			var i:int = findFormatIndex(format);
 			if (i >= 0)
 			{
-				var descriptor:FormatDescriptor = _descriptors[i];
+				var descriptor:FormatDescriptor = descArray[i];
 				if (descriptor && descriptor.importerClass)
 				{
 					importer = new descriptor.importerClass();
@@ -529,7 +537,7 @@ package org.apache.royale.textLayout.conversion
 			var i:int = findFormatIndex(format);
 			if (i >= 0)
 			{
-				var descriptor:FormatDescriptor = _descriptors[i];
+				var descriptor:FormatDescriptor = descArray[i];
 				if (descriptor && descriptor.exporterClass)
 					exporter = new descriptor.exporterClass();
 			}
@@ -553,10 +561,16 @@ package org.apache.royale.textLayout.conversion
 		 * @param format         The format string tagging the converter classes
 		 * @param clipboardFormat	The string used as the clipboard format when converting to/from the clipboard. Make this null if the format doesn't support clipboard access.
 		 */
-		public static function addFormatAt(index:int, format:String, importerClass:Class, exporterClass:Class = null, clipboardFormat:String = null):void
+		public static function addFormatAt(index:int, format:String, importerClass:Class, exporterClass:Class = null, clipboardFormat:String = null, arr:Array = null):void
 		{
 			var descriptor:FormatDescriptor = new FormatDescriptor(format, importerClass, exporterClass, clipboardFormat);
-			_descriptors.splice(index, 0, descriptor);
+			
+			if(arr != null) {
+				arr.splice(index, 0, descriptor);
+			} else {
+				descArray.splice(index, 0, descriptor);
+			}
+			//descArray.splice(index, 0, descriptor);
 		}
 		
 		/**
@@ -574,9 +588,14 @@ package org.apache.royale.textLayout.conversion
 		 * @param format         The format string tagging the converter classes. Formats can be any name, but must be unique. 
 		 * @param clipboardFormat	The string used as the clipboard format when converting to/from the clipboard. Make this null if the format doesn't support clipboard access.
 		 */
-		public static function addFormat(format:String, importerClass:Class, exporterClass:Class, clipboardFormat:String):void
+		public static function addFormat(format:String, importerClass:Class, exporterClass:Class, clipboardFormat:String, arr:Array = null):void
 		{
-			addFormatAt(_descriptors.length, format, importerClass, exporterClass, clipboardFormat);
+			if(arr != null) {
+				addFormatAt(arr.length, format, importerClass, exporterClass, clipboardFormat, arr);
+			} else {
+				addFormatAt(descArray.length, format, importerClass, exporterClass, clipboardFormat);
+			}
+			// addFormatAt(arr.length, format, importerClass, exporterClass, clipboardFormat);
 		}
 		
 		/**
@@ -589,15 +608,15 @@ package org.apache.royale.textLayout.conversion
 		 */
 		public static function removeFormatAt(index:int):void
 		{
-			if (index >= 0 && index < _descriptors.length)
-				_descriptors.splice(index, 1);
+			if (index >= 0 && index < descArray.length)
+				descArray.splice(index, 1);
 		}
 
 		private static function findFormatIndex(format:String):int
 		{
 			for (var i:int = 0; i < numFormats; i++)
 			{
-				if (_descriptors[i].format == format)
+				if (descArray[i].format == format)
 					return i;
 			}
 			return -1;
@@ -623,7 +642,7 @@ package org.apache.royale.textLayout.conversion
 	     */
 		public static function getFormatAt(index:int):String
 		{
-			return _descriptors[index].format;
+			return descArray[index].format;
 		}
 
 		/** Returns the FormatDescriptor for the index'th format. 
@@ -633,7 +652,7 @@ package org.apache.royale.textLayout.conversion
 		*/
 		public static function getFormatDescriptorAt(index:int):FormatDescriptor
 		{
-			return _descriptors[index];
+			return descArray[index];
 		}
 	
 		/** Number of formats.
@@ -643,7 +662,7 @@ package org.apache.royale.textLayout.conversion
 		*/
 		public static function get numFormats():int
 		{
-			return _descriptors.length;
+			return descArray.length;
 		}
 	}
 }

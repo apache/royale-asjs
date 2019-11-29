@@ -52,7 +52,6 @@ internal class MXRoyaleClasses
 	import mx.events.ValidationResultEvent; ValidationResultEvent;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
-    import mx.containers.beads.DividedBoxLayout; DividedBoxLayout;
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
     import mx.containers.beads.layouts.BasicLayout; BasicLayout;
 	import mx.controls.beads.AlertView; AlertView;
@@ -137,6 +136,7 @@ internal class MXRoyaleClasses
 	import mx.collections.ISort; ISort;
 	import mx.utils.Base64Encoder; Base64Encoder;
 	import mx.utils.Base64Decoder; Base64Decoder;
+	import mx.utils.BitFlagUtil; BitFlagUtil;
 	import mx.events.IndexChangedEvent; IndexChangedEvent;
 	import mx.events.ItemClickEvent; ItemClickEvent;
 	import mx.events.ModuleEvent; ModuleEvent;

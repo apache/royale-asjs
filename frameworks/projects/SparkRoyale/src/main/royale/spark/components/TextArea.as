@@ -21,6 +21,7 @@ package spark.components
 {
 	
 	import org.apache.royale.textLayout.elements.TextFlow;
+	import org.apache.royale.events.Event;
 	/* import flash.events.Event;
 	
 	import flashx.textLayout.formats.TextLayoutFormat;
@@ -417,15 +418,15 @@ package spark.components
 		/**
 		 *  @private
 		 */
-		/* override public function set text(value:String):void
+		override public function set text(value:String):void
 		{
-		// Of 'text', 'textFlow', and 'content', the last one set wins.
+			// Of 'text', 'textFlow', and 'content', the last one set wins.
 		
-		super.text = value;
+			super.text = value;
 		
-		// Trigger bindings to textChanged.
-		dispatchEvent(new Event("textChanged"));        
-		} */
+			// Trigger bindings to textChanged.
+			dispatchEvent(new Event("textChanged"));        
+		}
 		
 		//--------------------------------------------------------------------------
 		//
@@ -489,20 +490,20 @@ package spark.components
 		 *  @playerversion AIR 1.5
 		 *  @productversion Royale 0.9.4
 		 */
-		/* public function get content():Object
+		public function get content():Object
 		{
-		return textFlow;
-		} */
+			return textFlow;
+		}
 		
 		/**
 		 *  @private
 		 */   
-		/* public function set content(value:Object):void
+		public function set content(value:Object):void
 		{
-		// Of 'text', 'textFlow', and 'content', the last one set wins.
+			// Of 'text', 'textFlow', and 'content', the last one set wins.
 		
-		setContent(value);
-		} */
+			setContent(value);
+		}
 		
 		//----------------------------------
 		//  heightInLines
@@ -568,9 +569,9 @@ package spark.components
 		 */
 		public function get textFlow():TextFlow
 		{
-			trace("TextArea textFlow not implemented");
-			//return getTextFlow();
-			return null;
+			//trace("TextArea textFlow not implemented");
+			return getTextFlow();
+			//return null;
 		}
 		
 		/**
@@ -580,7 +581,7 @@ package spark.components
 		{
 			// Of 'text', 'textFlow', and 'content', the last one set wins.
 			
-			// setTextFlow(value);
+			setTextFlow(value);
 		} 
 		
 		//----------------------------------
