@@ -31,6 +31,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.ButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
+	import org.apache.royale.core.IItemRendererParent;
 
 	/**
 	 * The ButtonBarItemRenderer class extends Button and turns it into an itemRenderer
@@ -74,9 +75,6 @@ package org.apache.royale.jewel.itemRenderers
 			_data = value;
 
 			updateButtonLabelFromData();
-
-			var buttonBar:ButtonBar = (itemRendererParent as ButtonBarView).buttonBar;
-			emphasis = buttonBar.emphasis;
 		}
 
 		/**
@@ -129,6 +127,9 @@ package org.apache.royale.jewel.itemRenderers
 		public function set itemRendererParent(value:Object):void
 		{
 			_itemRendererParent = value;
+
+			var buttonBar:ButtonBar = (itemRendererParent as ButtonBarView).buttonBar;
+			emphasis = buttonBar.emphasis;
 		}
 
 		private var _labelField:String = null;
@@ -191,6 +192,19 @@ package org.apache.royale.jewel.itemRenderers
 		public function set index(value:int):void
 		{
 			_index = value;
+
+			if(_index == 0)
+			{
+				addClass("first");
+			} 
+			else if( _index == ( itemRendererParent as IItemRendererParent).numItemRenderers - 1 )
+			{
+				addClass("last");
+			}
+			else
+			{
+				addClass("middle");
+			}
 		}
 
 		private var _selectable:Boolean = true;

@@ -260,6 +260,10 @@ j|Alert {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView");
   }
 }
+.jewel.buttonbar .jewel.button {
+  border-radius: 0;
+}
+
 j|ButtonBar {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");

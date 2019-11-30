@@ -30,7 +30,7 @@ limitations under the License.
 			public var two_options:Array = ["Features", "Support"];
 			
 			[Bindable]
-			public var three_options:Array = ["Features", "Support", "Service & Operations"];
+			public var three_options:Array = ["Features", "Support", "Service & Operations", "four"];
 		]]>
 	</fx:Script>
 
