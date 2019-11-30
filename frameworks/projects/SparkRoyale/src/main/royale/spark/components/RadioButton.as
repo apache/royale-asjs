@@ -255,7 +255,9 @@ public class RadioButton extends ToggleButtonBase
     COMPILE::JS
     private function rbChangeHandler(event:Event):void
     {
-        selected = (rbicon.element as HTMLInputElement).checked    
+        selected = (rbicon.element as HTMLInputElement).checked;
+        if (group)
+            group.setSelection(this);
     }
     
     COMPILE::JS
@@ -533,6 +535,7 @@ public class RadioButton extends ToggleButtonBase
     
     /**
      *  @private
+     *  @royaleignorecoercion HTMLInputElement
      */
     public function set groupName(value:String):void
     {
@@ -548,6 +551,11 @@ public class RadioButton extends ToggleButtonBase
         
         // Make sure get group recalculates the group.
         _group = null;
+        
+        COMPILE::JS
+        {
+            (rbicon.element as HTMLInputElement).name = value;        
+        }
 
         // Make sure this gets added to it's RadioButtonGroup
         //groupChanged = true;
