@@ -18,19 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Jewel DataGrid
+$border-radius: .25rem
 
 // DataGrid variables
-
 .jewel.datagrid
     width: 200px
     height: 290px
 
-.jewel.list.column
-    border-radius: 0px
-    &.first
-        border-right: 0px
-    &.last
-        border-left: 0px
+    .jewel.buttonbar.header
+        .jewel.button
+            &.first
+                border-bottom-left-radius: 0
+
+            &.last
+                border-bottom-right-radius: 0
+
+    .jewel.list.column
+        border-radius: 0px
+        &.first
+            border-right: 0px
+            border-bottom-left-radius: $border-radius
+        &.last
+            border-left: 0px
+            border-bottom-right-radius: $border-radius
 
 j|DataGrid
     IChangePropagator: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator")

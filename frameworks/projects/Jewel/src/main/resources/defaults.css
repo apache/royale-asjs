@@ -488,15 +488,22 @@ j|ComboBoxPopUp {
   width: 200px;
   height: 290px;
 }
-
-.jewel.list.column {
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.first {
+  border-bottom-left-radius: 0;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.last {
+  border-bottom-right-radius: 0;
+}
+.jewel.datagrid .jewel.list.column {
   border-radius: 0px;
 }
-.jewel.list.column.first {
+.jewel.datagrid .jewel.list.column.first {
   border-right: 0px;
+  border-bottom-left-radius: 0.25rem;
 }
-.jewel.list.column.last {
+.jewel.datagrid .jewel.list.column.last {
   border-left: 0px;
+  border-bottom-right-radius: 0.25rem;
 }
 
 j|DataGrid {

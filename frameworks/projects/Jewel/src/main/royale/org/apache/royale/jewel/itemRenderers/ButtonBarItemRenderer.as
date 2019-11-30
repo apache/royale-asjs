@@ -176,7 +176,6 @@ package org.apache.royale.jewel.itemRenderers
 		}
 
 		private var _index:int;
-
 		/**
 		 *  The position with the dataProvider being shown by the itemRenderer instance.
 		 *
