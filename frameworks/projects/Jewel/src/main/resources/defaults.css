@@ -263,6 +263,14 @@ j|Alert {
 .jewel.buttonbar .jewel.button {
   border-radius: 0;
 }
+.jewel.buttonbar .jewel.button.first {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.jewel.buttonbar .jewel.button.last {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
 
 j|ButtonBar {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");

@@ -197,7 +197,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("first");
 			} 
-			else if( _index == ( itemRendererParent as IItemRendererParent).numItemRenderers - 1 )
+			else if( _index == (itemRendererParent as ButtonBarView).buttonBar.dataProvider.length - 1 )
 			{
 				addClass("last");
 			}

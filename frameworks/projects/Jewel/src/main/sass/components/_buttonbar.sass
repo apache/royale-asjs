@@ -18,12 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Jewel ButtonBar
+$border-radius: .25rem
 
 // ButtonVar variables
 .jewel.buttonbar
     .jewel.button
         border-radius: 0
-    
+
+        &.first
+            border-top-left-radius: $border-radius
+            border-bottom-left-radius: $border-radius
+
+        &.last
+            border-top-right-radius: $border-radius
+            border-bottom-right-radius: $border-radius
+
 
 j|ButtonBar
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel")
