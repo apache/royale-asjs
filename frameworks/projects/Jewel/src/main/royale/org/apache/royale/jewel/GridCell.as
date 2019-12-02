@@ -18,8 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.beads.layouts.GridCellLayout;
+	COMPILE::JS
+	{
 	import org.apache.royale.utils.StringUtil;
+	}
+	import org.apache.royale.jewel.beads.layouts.GridCellLayout;
 
 	/**
 	 *  The GridCell class is the inmediate container in a Grid Layout

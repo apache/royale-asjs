@@ -19,8 +19,8 @@
 package org.apache.royale.jewel.beads.layouts
 {
 	COMPILE::JS {
-        import org.apache.royale.core.UIBase;
-        import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.WrappedHTMLElement;
     }
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;

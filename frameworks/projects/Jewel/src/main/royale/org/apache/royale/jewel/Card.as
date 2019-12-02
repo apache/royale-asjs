@@ -19,7 +19,6 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.jewel.Group;
-	import org.apache.royale.core.IBeadLayout;
 
 	/**
 	 *  The Card class is a container that surronds other components.
