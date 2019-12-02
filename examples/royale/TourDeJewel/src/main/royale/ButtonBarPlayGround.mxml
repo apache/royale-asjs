@@ -44,7 +44,7 @@ limitations under the License.
 				</j:ButtonBar>
 
 				<j:ButtonBar localId="bb" change="bb_label.text = bb.selectedItem.label"
-					emphasis="primary"
+					emphasis="primary" width="100%"
 					dataProvider="{listModel.suravengers}"/>
 
 				<j:Label localId="bb_label"/>
@@ -55,9 +55,9 @@ limitations under the License.
 				<html:H4 text="ButtonBar"/>
 
 				<j:ButtonBar localId="bb2" change="bb2_label.text = bb2.selectedItem as String"
-					emphasis="secondary">
+					emphasis="secondary" width="100%">
 					<j:dataProvider>
-						<js:ArrayList source="[Features, Support, Service and Operations, four]" />
+						<js:ArrayList source="[Features, Support, Operations, Service]" />
 					</j:dataProvider>
 				</j:ButtonBar>
 

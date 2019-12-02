@@ -23,11 +23,14 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.events.Event;
 
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the button
-	 *  elements that make up a org.apache.royale.jewel.ButtonBar. This bead arranges the Buttons
-	 *  horizontally and makes them all the same width unless the buttonWidths property has been set in which case
+	 *  elements that make up a org.apache.royale.jewel.ButtonBar.
+	 *  
+	 *  This bead arranges the Buttons horizontally and makes them all the same width 
+	 *  unless the buttonWidths property has been set in which case
 	 *  the values stored in that array are used.
 	 *
 	 *  @langversion 3.0
@@ -48,6 +51,33 @@ package org.apache.royale.jewel.beads.layouts
 		public function ButtonBarLayout()
 		{
 			super();
+		}
+
+		/**
+		 * @royalesuppresspublicvarwarning
+		 */
+		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal samewidth";
+
+		/**
+		 *  Add class selectors when the component is addedToParent
+		 *  Otherwise component will not get the class selectors when 
+		 *  perform "removeElement" and then "addElement"
+		 * 
+ 		 *  @langversion 3.0
+ 		 *  @playerversion Flash 10.2
+ 		 *  @playerversion AIR 2.6
+ 		 *  @productversion Royale 0.9.4
+ 		 */
+		override public function beadsAddedHandler(event:Event = null):void
+		{
+			super.beadsAddedHandler();
+
+			COMPILE::JS
+			{
+				if (hostClassList.contains("samewidth"))
+					hostClassList.remove("samewidth");
+				hostClassList.add("samewidth");
+			}
 		}
 
 		private var _widthType:Number = ButtonBarModel.PIXEL_WIDTHS;
@@ -97,48 +127,48 @@ package org.apache.royale.jewel.beads.layouts
 				if (!(ilc is IStyleableObject)) continue;
 				
 				COMPILE::SWF {
-					if (buttonWidths) {
-						var widthValue:* = buttonWidths[i];
+				if (buttonWidths) {
+					var widthValue:* = buttonWidths[i];
 
-						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
-							if (widthValue != null) ilc.width = Number(widthValue);
-							IStyleableObject(ilc).style.flexGrow = 0;
-						}
-						else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
-							if (widthValue != null) {
-								IStyleableObject(ilc).style.flexGrow = Number(widthValue);
-							}
-						}
-						else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
-							if (widthValue != null) ilc.percentWidth = Number(widthValue);
-							IStyleableObject(ilc).style.flexGrow = 0;
-						}
-					} else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
-						IStyleableObject(ilc).style.flexGrow = 1;
+					if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
+						if (widthValue != null) ilc.width = Number(widthValue);
+						IStyleableObject(ilc).style.flexGrow = 0;
 					}
+					else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
+						if (widthValue != null) {
+							IStyleableObject(ilc).style.flexGrow = Number(widthValue);
+						}
+					}
+					else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
+						if (widthValue != null) ilc.percentWidth = Number(widthValue);
+						IStyleableObject(ilc).style.flexGrow = 0;
+					}
+				} else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
+					IStyleableObject(ilc).style.flexGrow = 1;
+				}
 				}
 
-				COMPILE::JS {
-					// otherwise let the flexbox layout handle matters on its own.
-					if (buttonWidths) {
-						var widthValue:* = buttonWidths[i];
+				// COMPILE::JS {
+				// // otherwise let the flexbox layout handle matters on its own.
+				// if (buttonWidths) {
+				// 	var widthValue:* = buttonWidths[i];
 
-						if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
-							if (widthValue != null) ilc.width = Number(widthValue);
-						}
-						else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
-							if (widthValue != null) ilc.element.style["flex-grow"] = String(widthValue);
-						}
-						else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
-							if (widthValue != null) ilc.percentWidth = Number(widthValue);
-						}
-					} else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
-						ilc.element.style["flex-grow"] = "1";
-					}
+				// 	if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
+				// 		if (widthValue != null) ilc.width = Number(widthValue);
+				// 	}
+				// 	else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
+				// 		if (widthValue != null) ilc.element.style["flex-grow"] = String(widthValue);
+				// 	}
+				// 	else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
+				// 		if (widthValue != null) ilc.percentWidth = Number(widthValue);
+				// 	}
+				// } else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
+				// 	ilc.element.style["flex-grow"] = "1";
+				// }
 
-                    if (!host.isHeightSizedToContent())
-    					ilc.height = contentView.height;
-				}
+				// if (!host.isHeightSizedToContent())
+				// 	ilc.height = contentView.height;
+				// }
 			}
 
 			// now let the horizontal layout take care of things.
