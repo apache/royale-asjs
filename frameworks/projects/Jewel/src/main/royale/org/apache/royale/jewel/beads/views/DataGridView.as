@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.ILayoutChild;
@@ -38,6 +38,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGrid;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 
     /**
@@ -96,10 +97,10 @@ package org.apache.royale.jewel.beads.views
             return _header;
         }
 
-        public function refreshContent():void
-        {
-            handleInitComplete(null);
-        }
+        // public function refreshContent():void
+        // {
+        //     handleInitComplete(null);
+        // }
 
         /**
          * @private
@@ -126,7 +127,8 @@ package org.apache.royale.jewel.beads.views
             _header = new columnContainerClass() as DataGridButtonBar;
             // header's height is set in CSS
             _header.percentWidth = 100;
-            _header.dataProvider = sharedModel.columns;
+            _header.dataProvider = new ArrayList(sharedModel.columns);
+            _header.emphasis = host.emphasis;
             _header.labelField = "label";
             sharedModel.headerModel = _header.model as IBeadModel;
 
@@ -234,7 +236,7 @@ package org.apache.royale.jewel.beads.views
             
             // get the name of the class to use for the columns
             var columnClass:Class = ValuesManager.valuesImpl.getValue(host, "columnClass") as Class;
-            assert(columnClass != null,"ColumnClass for DataGrid must be set!")
+            assert(columnClass != null, "ColumnClass for DataGrid must be set!")
 
             var sharedModel:IDataGridModel = host.model as IDataGridModel;
             var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;

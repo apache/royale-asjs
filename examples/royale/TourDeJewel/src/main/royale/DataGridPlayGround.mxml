@@ -56,7 +56,8 @@ limitations under the License.
 
 				<j:DataGrid localId="dataGrid" width="100%" height="100%" 
 					change="dataGridChange(dataGrid, output1)" 
-					rowHeight="40" className="PercentageColumnWidths">
+					rowHeight="40" className="PercentageColumnWidths"
+					emphasis="primary">
 					<j:beads>
 						<js:ConstantBinding
 							sourceID="productModel"
@@ -64,7 +65,7 @@ limitations under the License.
 							destinationPropertyName="dataProvider" />
 					</j:beads>
 					<j:columns>
-						<j:DataGridColumn label="Image" dataField="image" columnWidth="15" itemRenderer="itemRenderers.ProductItemRenderer"/>
+						<j:DataGridColumn label="Images and Pictures" dataField="image" columnWidth="15" itemRenderer="itemRenderers.ProductItemRenderer"/>
 						<j:DataGridColumn label="Title" dataField="title" columnWidth="60" />
 						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
 					</j:columns>

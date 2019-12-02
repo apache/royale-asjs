@@ -24,12 +24,12 @@ package org.apache.royale.jewel.beads.models
 	
 	/**
 	 *  The DataGridPresentationModel class contains the data to label the columns
-	 *  of the org.apache.royale.html.DataGrid along with the height of the rows. 
+	 *  of the org.apache.royale.jewel.DataGrid along with the height of the rows. 
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.7
 	 */
 	public class DataGridPresentationModel extends ListPresentationModel implements IDataGridPresentationModel
 	{
@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 */
 		public function DataGridPresentationModel()
 		{
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 */
 		public function get columnLabels():Array
 		{
@@ -78,7 +78,7 @@ package org.apache.royale.jewel.beads.models
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 */
 		override public function set strand(value:IStrand):void
 		{

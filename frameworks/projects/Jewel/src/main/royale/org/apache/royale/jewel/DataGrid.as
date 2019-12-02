@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.GroupBase;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IChangePropagator;
-	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGrid;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
@@ -44,7 +43,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DataGrid extends GroupBase implements IDataGrid
+	public class DataGrid extends Group implements IDataGrid
 	{
 		/**
 		 *  constructor.
@@ -186,7 +185,37 @@ package org.apache.royale.jewel
 		{
 			loadBeadFromValuesManager(IChangePropagator, "iChangePropagator", this);
 			super.addedToParent();
-			dispatchEvent(new Event("initComplete"));
 		}
+
+		private var _emphasis:String;
+        /**
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get emphasis():String
+        {
+            return _emphasis;
+        }
+        [Inspectable(category="General", enumeration="primary,secondary,emphasized")]
+        public function set emphasis(value:String):void
+        {
+            if (_emphasis != value)
+            {
+                if(_emphasis)
+                {
+					toggleClass(_emphasis, false);
+                }
+                _emphasis = value;
+
+                toggleClass(_emphasis, value);
+            }
+        }
 	}
 }
