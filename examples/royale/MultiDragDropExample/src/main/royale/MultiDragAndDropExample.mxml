@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+-->
+<js:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:js="library://ns.apache.org/royale/basic"
+	applicationComplete="applicationCompleteHandler()"
+	>
+
+	<fx:Script>
+		<![CDATA[
+		import org.apache.royale.collections.ArrayList;
+		private function applicationCompleteHandler():void
+		{
+			var dp:Array = [];
+			dp.push("Item 1");
+			dp.push("Item 2");
+			dp.push("Item 3");
+			dp.push("Item 4");
+			dp.push("Item 5");
+			dp.push("Item 6");
+			dp.push("Item 7");
+			dp.push("Item 8");
+			dp.push("Item 9");
+			dp.push("Item 10");
+			dp.push("Item 11");
+			dp.push("Item 12");
+			dp.push("Item 13");
+			dp.push("Item 14");
+			dp.push("Item 15");
+			dp.push("Item 16");
+			dp.push("Item 17");
+			dp.push("Item 18");
+			dp.push("Item 19");
+			dp.push("Item 20");
+			dp.push("Item 21");
+			dp.push("Item 22");
+			myList1.dataProvider = dp;
+			myList2.dataProvider = [];
+		}
+		]]>
+	</fx:Script>
+	<js:valuesImpl>
+		<js:SimpleCSSValuesImpl />
+	</js:valuesImpl>
+	<js:initialView>
+		<js:View>
+			<js:HContainer width="1200">
+				<js:MultiSelectionList id="myList1" width="600" height="400">
+					<js:beads>
+						<js:MultiSelectionDragSourceBead dragType="move" />
+						<js:MultiSelectionDragImageBead />
+					</js:beads>
+				</js:MultiSelectionList>
+				<js:MultiSelectionList id="myList2" width="600" height="400">
+					<js:beads>
+						<js:SensitiveMultiSelectionDropTargetBead />
+						<js:SingleSelectionDropIndicatorBead />
+					</js:beads>
+				</js:MultiSelectionList>
+			</js:HContainer>
+		</js:View>
+	</js:initialView>
+</js:Application>
