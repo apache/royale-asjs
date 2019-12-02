@@ -21,11 +21,14 @@
 
 <componentPackage>
 
+	<component id="MultiSelectionDragImageBead" class="org.apache.royale.html.beads.MultiSelectionDragImageBead" />
+	<component id="MultiSelectionDragSourceBead" class="org.apache.royale.html.beads.MultiSelectionDragSourceBead" />
 	<component id="SingleSelectionDragImageBead" class="org.apache.royale.html.beads.SingleSelectionDragImageBead" />
 	<component id="SingleSelectionDragSourceBead" class="org.apache.royale.html.beads.SingleSelectionDragSourceBead" />
 	<component id="SingleSelectionDropIndicatorBead" class="org.apache.royale.html.beads.SingleSelectionDropIndicatorBead"/>
 	<component id="SingleSelectionDropTargetBead" class="org.apache.royale.html.beads.SingleSelectionDropTargetBead" />
 	<component id="SensitiveSingleSelectionDropTargetBead" class="org.apache.royale.html.beads.SensitiveSingleSelectionDropTargetBead" />
+	<component id="SensitiveMultiSelectionDropTargetBead" class="org.apache.royale.html.beads.SensitiveMultiSelectionDropTargetBead" />
     <component id="DragMouseController" class="org.apache.royale.html.beads.controllers.DragMouseController" />
     <component id="DropMouseController" class="org.apache.royale.html.beads.controllers.DropMouseController" />
     	
