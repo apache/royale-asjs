@@ -276,8 +276,8 @@ j|ButtonBar {
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
-  IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
-  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer");
 }

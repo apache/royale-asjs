@@ -18,13 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.html.beads.models.ButtonBarModel;
-	
     COMPILE::JS
     {
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
+	import org.apache.royale.html.beads.models.ButtonBarModel;
 
 	/**
 	 *  The ButtonBar class is a component that displays a set of Buttons. The ButtonBar
@@ -71,7 +70,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
 		 */
 		public function get buttonWidths():Array
@@ -92,7 +91,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
 		 */
 		public function get widthType():Number
@@ -107,7 +106,7 @@ package org.apache.royale.jewel
 			ButtonBarModel(model).widthType = value;
 		}
 
-		private var _emphasis:String = "primary";
+		private var _emphasis:String;
         /**
 		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
          *  Colors are defined in royale jewel theme CSS.
@@ -117,7 +116,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
+		 *  @productversion Royale 0.9.7
 		 */
         public function get emphasis():String
         {

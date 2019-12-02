@@ -23,16 +23,6 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic"
 	xmlns:models="models.*" 
 	xmlns:c="components.*" sourceCodeUrl="ButtonBarPlayGround.mxml">
-	
-	<fx:Script>
-		<![CDATA[
-			[Bindable]
-			public var two_options:Array = ["Features", "Support"];
-			
-			[Bindable]
-			public var three_options:Array = ["Features", "Support", "Service & Operations", "four"];
-		]]>
-	</fx:Script>
 
 	<c:beads>
 		<js:ContainerDataBinding/>
@@ -43,16 +33,19 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel ButtonBar"/>
 
-				<j:ButtonBar localId="bb1" change="bb1_label.text = bb1.selectedItem as String"
-					dataProvider="{two_options}">
-					<!-- <j:dataProvider>
-						<fx:Array>
-							<fx:String>Features</fx:String>
-							<fx:String>Support</fx:String>
-						</fx:Array>
-					</j:dataProvider> -->
+				<j:ButtonBar localId="bb1" change="bb_label.text = bb1.selectedItem as String">
+					<j:dataProvider>
+						<js:ArrayList source="[Features, Support]" />
+					</j:dataProvider>
 				</j:ButtonBar>
-				<j:Label localId="bb1_label"/>
+
+				<j:ButtonBar localId="bb" change="bb_label.text = bb.selectedItem as String"
+					emphasis="primary">
+					<j:dataProvider>
+						<js:ArrayList source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
+					</j:dataProvider>
+				</j:ButtonBar>
+				<j:Label localId="bb_label"/>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
@@ -60,16 +53,12 @@ limitations under the License.
 				<html:H4 text="ButtonBar"/>
 
 				<j:ButtonBar localId="bb2" change="bb2_label.text = bb2.selectedItem as String"
-					emphasis="{ButtonBar.SECONDARY}"
-					dataProvider="{three_options}">
-					<!-- <js:dataProvider>
-						<fx:Array>
-							<fx:String>Features</fx:String>
-							<fx:String>Support</fx:String>
-							<fx:String>Control</fx:String>
-						</fx:Array>
-					</js:dataProvider> -->
+					emphasis="secondary">
+					<j:dataProvider>
+						<js:ArrayList source="[Features, Support, Service and Operations, four]" />
+					</j:dataProvider>
 				</j:ButtonBar>
+
 				<j:Label localId="bb2_label"/>
 			</j:Card>
 		</j:GridCell>

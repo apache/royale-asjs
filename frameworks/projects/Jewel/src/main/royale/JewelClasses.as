@@ -118,6 +118,7 @@ package
         import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList; DataGridColumnList;
         import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator; DataGridColumnChangePropagator;
         import org.apache.royale.jewel.beads.layouts.DataGridLayout; DataGridLayout;
+        import org.apache.royale.jewel.beads.layouts.ButtonBarLayout; ButtonBarLayout;
 
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 
@@ -129,8 +130,8 @@ package
 
         COMPILE::JS
         {
-            import dialogPolyfill; dialogPolyfill;
-            import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
+        import dialogPolyfill; dialogPolyfill;
+        import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
         }
     }
 }

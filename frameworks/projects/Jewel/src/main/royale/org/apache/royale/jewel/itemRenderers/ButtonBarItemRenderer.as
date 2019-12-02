@@ -31,7 +31,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.ButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
-	import org.apache.royale.core.IItemRendererParent;
 
 	/**
 	 * The ButtonBarItemRenderer class extends Button and turns it into an itemRenderer
@@ -129,7 +128,10 @@ package org.apache.royale.jewel.itemRenderers
 			_itemRendererParent = value;
 
 			var buttonBar:ButtonBar = (itemRendererParent as ButtonBarView).buttonBar;
-			emphasis = buttonBar.emphasis;
+			if(buttonBar.emphasis != null)
+			{
+				emphasis = buttonBar.emphasis;
+			}
 		}
 
 		private var _labelField:String = null;
