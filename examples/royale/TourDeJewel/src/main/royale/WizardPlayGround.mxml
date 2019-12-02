@@ -48,9 +48,9 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
+	</c:beads>
 
 	<j:Card width="600">
 		<j:Wizard id="wizard" width="100%" height="500">
@@ -75,9 +75,9 @@ limitations under the License.
 			</j:nextButton>
 
 			<j:WizardPage name="page1" exitPage="formaExample.formValidator.removeAllErrorTips()">
-				<views:step>
+				<j:step>
 					<j:WizardStep name="page1" nextStep="page2" initialPage="true" stepLabel="Page 1"/>
-				</views:step>
+				</j:step>
 
 				<j:Group>
 					<j:beads>
@@ -89,9 +89,9 @@ limitations under the License.
 			</j:WizardPage>
 
 			<j:WizardPage name="page2">
-				<views:step>
+				<j:step>
 					<j:WizardStep id="sl" name="page2" previousStep="page1" nextStep="page3" stepLabel="Page 2"/>
-				</views:step>
+				</j:step>
 
 				<j:Group>
 					<j:beads>
@@ -104,9 +104,9 @@ limitations under the License.
 			</j:WizardPage>
 
 			<j:WizardPage name="page3" localId="page3">
-				<views:step>
+				<j:step>
 					<j:WizardStep name="page3" previousStep="page2" nextStep="page4" stepLabel="Page 3"/>
-				</views:step>
+				</j:step>
 
 				<j:Group>
 					<j:beads>
@@ -124,9 +124,9 @@ limitations under the License.
 			</j:WizardPage>
 
 			<j:WizardPage localId="page4" name="page4">
-				<views:step>
+				<j:step>
 					<j:WizardStep name="page4" previousStep="page3" nextStep="page5" stepLabel="Page 4"/>
-				</views:step>
+				</j:step>
 
 				<j:Group>
 					<j:beads>
@@ -140,9 +140,9 @@ limitations under the License.
 			</j:WizardPage>
 
 			<j:WizardPage name="page5">
-				<views:step>
+				<j:step>
 					<j:WizardStep name="page5" previousStep="page4" nextStep="page6" stepLabel="Page 5"/>
-				</views:step>
+				</j:step>
 
 				<j:beads>
 					<j:ScrollingViewport/>
@@ -167,9 +167,9 @@ limitations under the License.
 			</j:WizardPage>
 
 			<j:WizardPage name="page6">
-				<views:step>
+				<j:step>
 					<j:WizardStep name="page6" previousStep="page5" stepLabel="Page 6"/>
-				</views:step>
+				</j:step>
 
 				<j:beads>
 					<j:ScrollingViewport/>

@@ -38,9 +38,9 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
+	</c:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
@@ -189,45 +189,45 @@ limitations under the License.
 				<html:H3 text="Buttons with Badges"/>
 
 				<j:Button text="Badge Top-Right">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="tr" emphasis="secondary"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 				<j:Button text="Badge Bottom-Right">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="br" emphasis="secondary" subindex="true"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 				<j:Button text="Badge Top-Left">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="tl" emphasis="secondary" preindex="true"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 				<j:Button text="Badge Bottom-Left">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="bl" emphasis="secondary" subindex="true" preindex="true"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 
 				<j:Button text="Badge Top-Right (Overlap)" emphasis="primary">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="tr" emphasis="emphasized" overlap="true"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 				<j:Button text="Badge Bottom-Right (Overlap)" emphasis="primary">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="br" emphasis="emphasized" subindex="true" overlap="true"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 				<j:Button text="Badge Top-Left (Overlap)" emphasis="primary">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="tl" emphasis="emphasized" preindex="true" overlap="true"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 				<j:Button text="Badge Bottom-Left (Overlap)" emphasis="primary">
-					<js:beads>
+					<j:beads>
 						<j:Badge text="bl" emphasis="emphasized" subindex="true" preindex="true" overlap="true"/>
-					</js:beads>
+					</j:beads>
 				</j:Button>
 			</j:Card>
 		</j:GridCell>

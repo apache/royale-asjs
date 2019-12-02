@@ -62,8 +62,11 @@ import mx.controls.RadioButtonGroup;
             {
                 radioButton.selected = true;
             }
-	    if(group != null)
-            group.dispatchEvent(itemClickEvent);
+    	    if(group != null)
+            {
+                group.dispatchEvent(itemClickEvent);
+                group.setSelection(radioButton);
+            }
         }
 
         private function getRadioIndex(radioButton:RadioButton, group:RadioButtonGroup):int

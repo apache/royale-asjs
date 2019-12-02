@@ -29,9 +29,9 @@ limitations under the License.
         ]]>
     </fx:Script>
 
-    <j:beads>
+    <c:beads>
         <js:ContainerDataBinding/>
-    </j:beads>
+    </c:beads>
 
     <j:Group>
         <j:beads>

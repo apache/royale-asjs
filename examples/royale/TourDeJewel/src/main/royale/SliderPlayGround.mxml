@@ -74,41 +74,42 @@ limitations under the License.
     	]]>
 	</fx:Script>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
-<j:Group>
-	<j:beads>
-		<j:HorizontalCenteredLayout gap="3"/>
-	</j:beads>
-	<j:Card width="450">
-		<html:H3 text="Jewel HSlider"/>
+	</c:beads>
 
-		<j:HSlider localId="slider_w" width="250" value="250" minimum="100" maximum="420" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
-		<j:HSlider localId="slider_h" width="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+	<j:Group>
+		<j:beads>
+			<j:HorizontalCenteredLayout gap="3"/>
+		</j:beads>
+		<j:Card width="450">
+			<html:H3 text="Jewel HSlider"/>
 
-		<j:HSlider localId="slider_dis" width="250" value="70" minimum="0" maximum="100">
-			<j:beads>
-				<j:Disabled/>
-			</j:beads>
-		</j:HSlider>
+			<j:HSlider localId="slider_w" width="250" value="250" minimum="100" maximum="420" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+			<j:HSlider localId="slider_h" width="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
 
-		<j:Button localId="button1" text="HSlider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
-
-	</j:Card>
-	<j:Card width="350" height="400">
-		<html:H3 text="Jewel VSlider"/>
-		<j:HGroup localId="hg" gap="3"  width="300">
-			<j:VSlider localId="vslider_w"  height="250" value="150" minimum="50" maximum="220" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
-			<j:VSlider localId="vslider_h"  height="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
-			<j:VSlider localId="vslider_dis"  height="250" value="70" minimum="0" maximum="300">
+			<j:HSlider localId="slider_dis" width="250" value="70" minimum="0" maximum="100">
 				<j:beads>
 					<j:Disabled/>
 				</j:beads>
-			</j:VSlider>
-			<j:Button localId="button2" text="VSlider to 190x160" width="150" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
-		</j:HGroup>
-	</j:Card>
-</j:Group>
+			</j:HSlider>
+
+			<j:Button localId="button1" text="HSlider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
+
+		</j:Card>
+		<j:Card width="350" height="400">
+			<html:H3 text="Jewel VSlider"/>
+			<j:HGroup localId="hg" gap="3"  width="300">
+				<j:VSlider localId="vslider_w"  height="250" value="150" minimum="50" maximum="220" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+				<j:VSlider localId="vslider_h"  height="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+				<j:VSlider localId="vslider_dis"  height="250" value="70" minimum="0" maximum="300">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:VSlider>
+				<j:Button localId="button2" text="VSlider to 190x160" width="150" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
+			</j:HGroup>
+		</j:Card>
+	</j:Group>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>

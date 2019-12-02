@@ -44,6 +44,7 @@ import org.apache.royale.binding.ContainerDataBinding;
 import org.apache.royale.binding.DataBindingBase;
 import org.apache.royale.core.ContainerBaseStrandChildren;
 import org.apache.royale.core.IBeadLayout;
+import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.IContainerBaseStrandChildrenHost;
@@ -1307,6 +1308,12 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
       */
      override public function get numElements():int
      {
+         // the view getter below will instantiate the view which can happen
+         // earlier than we would like (when setting mxmlDocument) so we
+         // see if the view bead exists on the strand.  If not, nobody
+         // has added any children so numElements must be 0
+         if (!getBeadByType(IBeadView))
+             return 0;
          var layoutHost:ILayoutHost = view as ILayoutHost;
          if (!layoutHost) return 0; // view is null when called in addingChild from MXMLDataInterpreter before children are added
          var contentView:IParent = layoutHost.contentView as IParent;

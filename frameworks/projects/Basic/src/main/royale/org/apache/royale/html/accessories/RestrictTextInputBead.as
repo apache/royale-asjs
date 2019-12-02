@@ -144,12 +144,15 @@ package org.apache.royale.html.accessories
 			
 			var key:String = String.fromCharCode(code);
 			
-			var regex:RegExp = new RegExp("[" + restrict + "]");
-			if (!regex.test(key)) {
-				event["returnValue"] = false;
-				if (event.preventDefault) event.preventDefault();
-				return;
-			}
+            if (restrict)
+            {
+    			var regex:RegExp = new RegExp("[" + restrict + "]");
+    			if (!regex.test(key)) {
+    				event["returnValue"] = false;
+    				if (event.preventDefault) event.preventDefault();
+    				return;
+    			}
+            }
 		}
 	}
 }

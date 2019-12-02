@@ -70,13 +70,13 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
+	</c:beads>
 
-	<j:model>
+	<c:model>
 		<models:ListsModel id="listModel"/>
-	</j:model>
+	</c:model>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 

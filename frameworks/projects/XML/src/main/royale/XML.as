@@ -906,7 +906,7 @@ package
 				if (lastChild && lastChild._nodeKind == ELEMENT) {
 					
 					const wrapper:XML = new XML();
-					wrapper._nodeKind = ELEMENT;
+					delete wrapper._nodeKind;
 					child = new XML(child.toString());
 					wrapper.setName(lastChild.name());
 					child.setParent(wrapper);
@@ -1169,7 +1169,7 @@ package
 			*/
 			var i:int;
 			var xml:XML = new XML();
-			xml._nodeKind = _nodeKind;
+			xml.setNodeKind(_nodeKind);
 			xml.setName(name());
 			xml.setValue(_value);
 			var len:int;
@@ -1362,6 +1362,7 @@ package
 			else
 			{
 				name = new QName(nameOrXML);
+				name.setIsAttribute(true);
 			}
 			var i:int;
 			var len:int = attributeLength();
@@ -1871,7 +1872,7 @@ package
 			return declaredNS;
 		}
 		
-		private var _nodeKind:String = ELEMENT;
+		private var _nodeKind:String = "element";
 		/**
 		 * Specifies the type of node: text, comment, processing-instruction, attribute, or element.
 		 * @return

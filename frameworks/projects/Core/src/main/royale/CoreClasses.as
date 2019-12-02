@@ -306,6 +306,7 @@ internal class CoreClasses
 	import org.apache.royale.utils.string.trim; trim;
 	import org.apache.royale.utils.string.trimRight; trimRight;
 	import org.apache.royale.utils.string.trimLeft; trimLeft;
+	import org.apache.royale.utils.string.cacheBust; cacheBust;
 
 	import org.apache.royale.utils.date.addDays; addDays;
 	import org.apache.royale.utils.date.addHours; addHours;

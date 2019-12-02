@@ -126,13 +126,13 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:model>
+	<c:model>
 		<models:ListsModel id="listModel"/>
-	</j:model>
+	</c:model>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
+	</c:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">

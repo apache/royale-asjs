@@ -37,9 +37,9 @@ limitations under the License.
     	]]>
 	</fx:Script>
 
-	<j:beads>
+	<c:beads>
         <js:ContainerDataBinding/>
-    </j:beads>
+    </c:beads>
 
 	<j:Card width="350">
 		<html:H3 text="Jewel Label"/>

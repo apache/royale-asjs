@@ -44,9 +44,9 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:beads>
+	<c:beads>
 		<js:ContainerDataBinding/>
-	</j:beads>
+	</c:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
@@ -101,32 +101,32 @@ limitations under the License.
 
 				<j:VGroup gap="3">
 					<j:TextInput text="Bead for text UPPER case">
-						<js:beads>
+						<j:beads>
 							<j:UpperCase/>
-						</js:beads>
+						</j:beads>
 					</j:TextInput>
 					<j:TextInput text="Bead for text LOWER case">
-						<js:beads>
+						<j:beads>
 							<j:LowerCase/>
-						</js:beads>
+						</j:beads>
 					</j:TextInput>
 					<j:TextInput>
-						<js:beads>
+						<j:beads>
 							<j:TextPrompt prompt="Only characters"/>
 							<j:Restrict pattern="[^a-zA-Z]"/>
-						</js:beads>
+						</j:beads>
 					</j:TextInput>
 					<j:TextInput>
-						<js:beads>
+						<j:beads>
 							<j:TextPrompt prompt="Only numbers"/>
 							<j:Restrict pattern="[^0-9]"/>
-						</js:beads>
+						</j:beads>
 					</j:TextInput>
 					<j:TextInput>
-						<js:beads>
+						<j:beads>
 							<j:TextPrompt prompt="Only letters and numbers"/>
 							<j:Restrict pattern="[^0-9a-zA-Z]"/>
-						</js:beads>
+						</j:beads>
 					</j:TextInput>
 				</j:VGroup>
 			</j:Card>
