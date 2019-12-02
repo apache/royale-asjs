@@ -60,6 +60,16 @@ package models
 			return _avengers;
 		}
 		
+		private var _suravengers:ArrayList = new ArrayList([
+			new IconListVO("Hulk", MaterialIconType.WEB_ASSET),
+			new IconListVO("Thor", MaterialIconType.WEB_ASSET),
+			new IconListVO("Hawkeye", MaterialIconType.WEB_ASSET)
+		]);
+		
+		public function get suravengers():ArrayList
+		{
+			return _suravengers;
+		}
 
 		
 		/**

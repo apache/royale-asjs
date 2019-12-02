@@ -28,6 +28,10 @@ limitations under the License.
 		<js:ContainerDataBinding/>
 	</c:beads>
 
+	<c:model>
+		<models:ListsModel id="listModel"/>
+	</c:model>
+
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
@@ -39,12 +43,10 @@ limitations under the License.
 					</j:dataProvider>
 				</j:ButtonBar>
 
-				<j:ButtonBar localId="bb" change="bb_label.text = bb.selectedItem as String"
-					emphasis="primary">
-					<j:dataProvider>
-						<js:ArrayList source="[Iron Man, Hulk, Thor, Captain America, Black Widow]" />
-					</j:dataProvider>
-				</j:ButtonBar>
+				<j:ButtonBar localId="bb" change="bb_label.text = bb.selectedItem.label"
+					emphasis="primary"
+					dataProvider="{listModel.suravengers}"/>
+
 				<j:Label localId="bb_label"/>
 			</j:Card>
 		</j:GridCell>

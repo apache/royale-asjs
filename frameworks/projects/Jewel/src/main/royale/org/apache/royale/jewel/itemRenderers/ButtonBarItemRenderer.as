@@ -110,7 +110,6 @@ package org.apache.royale.jewel.itemRenderers
 		 */
 
 		private var _itemRendererParent:Object;
-
 		/**
 		 * The parent container for the itemRenderer instance.
 		 *
