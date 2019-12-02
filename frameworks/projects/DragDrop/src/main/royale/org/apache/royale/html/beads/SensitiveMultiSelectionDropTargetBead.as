@@ -17,14 +17,12 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// TODO:yishayw rename this class
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.DropType;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IMultiSelectionModel;
-	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -335,11 +333,12 @@ package org.apache.royale.html.beads
 			}
 
 			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
+			var myTargetIndex:int = calculatedTargetIndex > -1 ? calculatedTargetIndex : 0;
 			if (dataProviderModel.dataProvider is Array) {
 				var dataArray:Array = dataProviderModel.dataProvider as Array;
 				for (i = 0; i < dragSource.length; i++)
 				{
-					dataArray.insertAt(calculatedTargetIndex++, dragSource[i]);
+					dataArray.insertAt(myTargetIndex++, dragSource[i]);
 				}
 				var newArray:Array = dataArray.slice()
 				dataProviderModel.dataProvider = newArray;
@@ -348,7 +347,7 @@ package org.apache.royale.html.beads
 				var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
 				for (i = 0; i < dragSource.length; i++)
 				{
-					dataList.addItemAt(dragSource[i], calculatedTargetIndex++);
+					dataList.addItemAt(dragSource[i], myTargetIndex++);
 				}
 			}
 
