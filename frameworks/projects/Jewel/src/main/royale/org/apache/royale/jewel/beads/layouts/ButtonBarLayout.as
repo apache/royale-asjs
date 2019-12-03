@@ -22,8 +22,8 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
-	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.beads.models.ButtonBarModel;
 
 	/**
 	 *  The ButtonBarLayout class bead sizes and positions the button
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.layouts
 		/**
 		 * @royalesuppresspublicvarwarning
 		 */
-		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal samewidth";
+		public static const LAYOUT_TYPE_NAMES:String = "layout horizontal";
 
 		/**
 		 *  Add class selectors when the component is addedToParent
@@ -66,7 +66,7 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @langversion 3.0
  		 *  @playerversion Flash 10.2
  		 *  @playerversion AIR 2.6
- 		 *  @productversion Royale 0.9.4
+ 		 *  @productversion Royale 0.9.7
  		 */
 		override public function beadsAddedHandler(event:Event = null):void
 		{
@@ -74,9 +74,54 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				if (hostClassList.contains("samewidth"))
-					hostClassList.remove("samewidth");
-				hostClassList.add("samewidth");
+				if(proportionalWidths)
+				{
+					hostClassList.add("proportinalWidths");
+				} else 
+				{
+					hostClassList.add("sameWidths");
+				}
+			}
+		}
+
+		private var _proportionalWidths:Boolean;
+		/**
+		 *  Switch between "proportionalWidth" and "sameWidths".
+		 *  Default is false (sameWidths) and all buttons are has the same width.
+		 *  True to make all buttons fill all size available proportionally.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get proportionalWidths():Boolean
+        {
+            return _proportionalWidths;
+        }
+
+        public function set proportionalWidths(value:Boolean):void
+        {
+			if (_proportionalWidths != value)
+            {
+                COMPILE::JS
+                {
+				if(hostComponent)
+				{
+					if(value)
+					{
+						if (hostClassList.contains("sameWidths"))
+							hostClassList.remove("sameWidths");
+						hostClassList.add("proportinalWidths");
+					} else 
+					{
+						if (hostClassList.contains("proportinalWidths"))
+							hostClassList.remove("proportinalWidths");
+						hostClassList.add("sameWidths");
+					}
+				}
+				}
+				_proportionalWidths = value;
 			}
 		}
 
@@ -126,27 +171,27 @@ package org.apache.royale.jewel.beads.layouts
 				if (ilc == null || !ilc.visible) continue;
 				if (!(ilc is IStyleableObject)) continue;
 				
-				COMPILE::SWF {
-				if (buttonWidths) {
-					var widthValue:* = buttonWidths[i];
+				// COMPILE::SWF {
+				// if (buttonWidths) {
+				// 	var widthValue:* = buttonWidths[i];
 
-					if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
-						if (widthValue != null) ilc.width = Number(widthValue);
-						IStyleableObject(ilc).style.flexGrow = 0;
-					}
-					else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
-						if (widthValue != null) {
-							IStyleableObject(ilc).style.flexGrow = Number(widthValue);
-						}
-					}
-					else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
-						if (widthValue != null) ilc.percentWidth = Number(widthValue);
-						IStyleableObject(ilc).style.flexGrow = 0;
-					}
-				} else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
-					IStyleableObject(ilc).style.flexGrow = 1;
-				}
-				}
+				// 	if (_widthType == ButtonBarModel.PIXEL_WIDTHS) {
+				// 		if (widthValue != null) ilc.width = Number(widthValue);
+				// 		IStyleableObject(ilc).style.flexGrow = 0;
+				// 	}
+				// 	else if (_widthType == ButtonBarModel.PROPORTIONAL_WIDTHS) {
+				// 		if (widthValue != null) {
+				// 			IStyleableObject(ilc).style.flexGrow = Number(widthValue);
+				// 		}
+				// 	}
+				// 	else if (_widthType == ButtonBarModel.PERCENT_WIDTHS) {
+				// 		if (widthValue != null) ilc.percentWidth = Number(widthValue);
+				// 		IStyleableObject(ilc).style.flexGrow = 0;
+				// 	}
+				// } else if (!_widthType == ButtonBarModel.NATURAL_WIDTHS) {
+				// 	IStyleableObject(ilc).style.flexGrow = 1;
+				// }
+				// }
 
 				// COMPILE::JS {
 				// // otherwise let the flexbox layout handle matters on its own.

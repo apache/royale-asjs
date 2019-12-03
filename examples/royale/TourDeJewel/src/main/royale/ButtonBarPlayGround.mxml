@@ -76,7 +76,7 @@ limitations under the License.
 				<j:ButtonBar localId="bb3" change="bb2_label.text = bb3.selectedItem as String"
 					emphasis="primary">
 					<j:beads>
-						<j:HorizontalLayout/>
+						<j:ButtonBarLayout proportionalWidths="true"/>
 					</j:beads>
 					<j:dataProvider>
 						<js:ArrayList source="[Home, Support, Operations, Service]" />
@@ -88,12 +88,15 @@ limitations under the License.
 				<j:ButtonBar localId="bb4" change="bb2_label.text = bb4.selectedItem as String"
 					emphasis="secondary" width="100%">
 					<j:beads>
-						<j:HorizontalLayout gap="3"/>
+						<j:ButtonBarLayout localId="ppw" proportionalWidths="true" gap="3"/>
 					</j:beads>
 					<j:dataProvider>
 						<js:ArrayList source="[Home, Support, Operations, Service]" />
 					</j:dataProvider>
 				</j:ButtonBar>
+
+				<j:CheckBox change="ppw.proportionalWidths = !ppw.proportionalWidths" selected="true"
+					text="Proportional Widths (true) / Same Widths (false)"/>
 
 				<j:Label localId="bb2_label"/>
 			</j:Card>

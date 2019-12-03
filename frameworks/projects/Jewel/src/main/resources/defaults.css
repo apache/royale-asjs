@@ -1070,10 +1070,10 @@ j|Label {
 .layout.horizontal.gap-10x3px > * {
   margin: 0px 0px 0px 30px;
 }
-.layout.horizontal.samewidth > * {
+.layout.horizontal.sameWidths > * {
   flex: 1 0;
 }
-.layout.horizontal.nosamewidth > * {
+.layout.horizontal.proportinalWidths > * {
   flex: 1 0 auto;
 }
 .layout.vertical {

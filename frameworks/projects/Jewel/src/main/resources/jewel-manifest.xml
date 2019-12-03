@@ -185,6 +185,7 @@
     <component id="GridLayout" class="org.apache.royale.jewel.beads.layouts.GridLayout"/>
     <component id="GridCellLayout" class="org.apache.royale.jewel.beads.layouts.GridCellLayout"/>
     <component id="TableLayout" class="org.apache.royale.jewel.beads.layouts.TableLayout"/>
+    <component id="ButtonBarLayout" class="org.apache.royale.jewel.beads.layouts.ButtonBarLayout"/>
 
     <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
