@@ -95,7 +95,7 @@ package mx.controls.beads.layouts
                 // do the proportional sizing of columns
                 var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
                 var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
-                var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom) - header.height;
+                var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom) - header.height - 1;
                 var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
                 if (!displayedColumns) return retval;
                 var n:int = displayedColumns.length;
