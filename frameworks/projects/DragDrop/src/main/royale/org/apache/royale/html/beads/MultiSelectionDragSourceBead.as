@@ -173,11 +173,15 @@ package org.apache.royale.html.beads
 		{
 			//trace("MultiSelectionDragSourceBead received the DragStart");
 
+			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
+			if (!dataProviderModel.selectedItems)
+			{
+				return;
+			}
 			DragEvent.dragInitiator = this;
 			DragMouseController.dragImageOffsetX = 0;
 			DragMouseController.dragImageOffsetY = -30;
 
-			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
 			DragEvent.dragSource = dataProviderModel.selectedItems;
 
 			var newEvent:Event = new Event("start", false, true);

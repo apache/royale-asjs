@@ -122,7 +122,7 @@ package org.apache.royale.html.beads
 				dragImage.addBead(new HorizontalLayout())
 			}
 			var itemRendererParent:IItemRendererParent = (_strand.getBeadByType(IBeadView) as IListView).dataGroup as IItemRendererParent;
-			var selectedIndices:Array = (_strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel).selectedIndices;
+			var selectedIndices:Array = getSelectedIndices();
 			for (var i:int = 0; i < selectedIndices.length; i++)
 			{
 				var ir:IItemRenderer = itemRendererParent.getItemRendererForIndex(selectedIndices[i]);
@@ -141,13 +141,21 @@ package org.apache.royale.html.beads
 			return dragImage;
 		}
 
+		private function getSelectedIndices():Array
+		{
+			return (_strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel).selectedIndices;
+		}
+
 		/**
 		 * @private
 		 *
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
-			DragMouseController.dragImage = createDragImage();
+			if (getSelectedIndices())
+			{
+				DragMouseController.dragImage = createDragImage();
+			}
 		}
 	}
 }
