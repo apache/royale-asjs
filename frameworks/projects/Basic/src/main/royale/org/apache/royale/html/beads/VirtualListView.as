@@ -24,15 +24,15 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IParent;
-    import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IRollOverModel;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.Strand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
@@ -75,6 +75,21 @@ package org.apache.royale.html.beads
 			super.handleInitComplete(event);
 		}
 
+        override public function getItemRendererForIndex(index:int):IItemRenderer
+        {
+            if (contentView.numElements == 0)
+                return null;
+            
+            var firstIndex:int = (contentView.getElementAt(1) as ISelectableItemRenderer).index;
+            
+            if (index < firstIndex) 
+                return null;
+            if (index > (firstIndex + contentView.numElements))
+                return null;
+            
+            return contentView.getElementAt(index - firstIndex + 1) as IItemRenderer;            
+        }
+        
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
