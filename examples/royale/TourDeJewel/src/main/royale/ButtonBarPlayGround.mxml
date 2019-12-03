@@ -37,27 +37,61 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel ButtonBar"/>
 
-				<j:ButtonBar localId="bb1" change="bb_label.text = bb1.selectedItem as String">
+				<j:Label text="All buttons has same widths"/>
+				
+				<html:H4 text="No Width"/>
+
+				<j:ButtonBar localId="bb" change="bb_label.text = bb.selectedItem as String">
 					<j:dataProvider>
 						<js:ArrayList source="[Features, Support]" />
 					</j:dataProvider>
 				</j:ButtonBar>
+				
+				<html:H4 text="Width: 100% and primary color"/>
 
-				<j:ButtonBar localId="bb" change="bb_label.text = bb.selectedItem.label"
+				<j:ButtonBar localId="bb1" change="bb_label.text = bb1.selectedItem.label"
 					emphasis="primary" width="100%"
 					dataProvider="{listModel.suravengers}"/>
+				
+				<html:H4 text="Width: 70% and emphasized color"/>
+
+				<j:ButtonBar localId="bb2" change="bb_label.text = bb2.selectedItem as String"
+					emphasis="emphasized" width="70%">
+					<j:dataProvider>
+						<js:ArrayList source="[First, Second, Third]" />
+					</j:dataProvider>
+				</j:ButtonBar>
 
 				<j:Label localId="bb_label"/>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H4 text="ButtonBar"/>
+				<html:H4 text="Jewel ButtonBar"/>
 
-				<j:ButtonBar localId="bb2" change="bb2_label.text = bb2.selectedItem as String"
-					emphasis="secondary" width="100%">
+				<j:Label text="Different button widths"/>
+				
+				<html:H4 text="No Width"/>
+
+				<j:ButtonBar localId="bb3" change="bb2_label.text = bb3.selectedItem as String"
+					emphasis="primary">
+					<j:beads>
+						<j:HorizontalLayout/>
+					</j:beads>
 					<j:dataProvider>
-						<js:ArrayList source="[Features, Support, Operations, Service]" />
+						<js:ArrayList source="[Home, Support, Operations, Service]" />
+					</j:dataProvider>
+				</j:ButtonBar>
+
+				<html:H4 text="Width 100%, With gap"/>
+
+				<j:ButtonBar localId="bb4" change="bb2_label.text = bb4.selectedItem as String"
+					emphasis="secondary" width="100%">
+					<j:beads>
+						<j:HorizontalLayout gap="3"/>
+					</j:beads>
+					<j:dataProvider>
+						<js:ArrayList source="[Home, Support, Operations, Service]" />
 					</j:dataProvider>
 				</j:ButtonBar>
 
