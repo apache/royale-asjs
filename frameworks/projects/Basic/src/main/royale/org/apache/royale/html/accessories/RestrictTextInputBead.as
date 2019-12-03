@@ -133,15 +133,6 @@ package org.apache.royale.html.accessories
 		{
 			var code:int = event.charCode;
 			
-			// backspace or delete
-			if (event.keyCode == 8 || event.keyCode == 46) return;
-			
-			// tab or return/enter
-			if (event.keyCode == 9 || event.keyCode == 13) return;
-			
-			// left or right cursor arrow
-			if (event.keyCode == 37 || event.keyCode == 39) return;
-			
 			var key:String = String.fromCharCode(code);
 			
             if (restrict)
