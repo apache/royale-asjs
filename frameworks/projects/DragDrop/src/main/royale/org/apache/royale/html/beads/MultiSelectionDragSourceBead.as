@@ -19,6 +19,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IChild;
@@ -162,8 +163,7 @@ package org.apache.royale.html.beads
 		 */
 		public function get dragSourceIndices():Array
 		{
-			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
-			return dataProviderModel.selectedIndices;
+			return model.selectedIndices;
 		}
 
 		/**
@@ -173,22 +173,34 @@ package org.apache.royale.html.beads
 		{
 			//trace("MultiSelectionDragSourceBead received the DragStart");
 
-			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
-			if (!dataProviderModel.selectedItems)
+			var relatedObject:Object = event.relatedObject;
+			var itemRenderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
+			if (itemRenderer && !model.selectedItems)
 			{
+				model.selectedItems = [itemRenderer.data];
+			}
+			if (!model.selectedItems || !itemRenderer || model.selectedItems.indexOf(itemRenderer.data) < 0)
+			{
+				DragEvent.dragInitiator = this;
+				DragEvent.dragSource = null;
 				return;
 			}
 			DragEvent.dragInitiator = this;
 			DragMouseController.dragImageOffsetX = 0;
 			DragMouseController.dragImageOffsetY = -30;
 
-			DragEvent.dragSource = dataProviderModel.selectedItems;
+			DragEvent.dragSource = model.selectedItems;
 
 			var newEvent:Event = new Event("start", false, true);
 			dispatchEvent(newEvent);
 			if (newEvent.defaultPrevented) {
 				continueDragOperation = false;
 			}
+		}
+
+		private function get model():IMultiSelectionModel
+		{
+			return (_strand as IStrandWithModel).model as IMultiSelectionModel;
 		}
 
 		/**
@@ -226,15 +238,12 @@ package org.apache.royale.html.beads
 			dispatchEvent(newEvent);
 			if (newEvent.defaultPrevented) return;
 			
-			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
-			if (dataProviderModel is ISelectionModel) {
-				(dataProviderModel as IMultiSelectionModel).selectedIndices = null;
-			}
+			model.selectedIndices = null;
 
 			if (dragType == "copy") return;
 			var dragSource:Array = DragEvent.dragSource as Array;
-			if (dataProviderModel.dataProvider is Array) {
-				var dataArray:Array = dataProviderModel.dataProvider as Array;
+			if (model.dataProvider is Array) {
+				var dataArray:Array = model.dataProvider as Array;
 
 				for (var i:int = 0; i < dragSource.length; i++)
 				{
@@ -243,10 +252,10 @@ package org.apache.royale.html.beads
 
 				// refresh the dataProvider model
 				var newArray:Array = dataArray.slice()
-				dataProviderModel.dataProvider = newArray;
+				model.dataProvider = newArray;
 			}
-			else if (dataProviderModel.dataProvider is ArrayList) {
-				var dataList:ArrayList = dataProviderModel.dataProvider as ArrayList;
+			else if (model.dataProvider is ArrayList) {
+				var dataList:ArrayList = model.dataProvider as ArrayList;
 
 				for (i = 0; i < dragSource.length; i++)
 				{
@@ -265,8 +274,7 @@ package org.apache.royale.html.beads
 		 */
 		public function acceptedDrop(dropTarget:Object, type:String):void
 		{
-			var dataProviderModel:IMultiSelectionModel = _strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel;
-			dataProviderModel.selectedIndices = null;
+			model.selectedIndices = null;
 			dispatchEvent(new Event("complete"));
 		}
 

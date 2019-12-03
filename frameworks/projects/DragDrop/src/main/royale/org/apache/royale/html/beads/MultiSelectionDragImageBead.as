@@ -19,6 +19,9 @@
 package org.apache.royale.html.beads
 {
 
+	import org.apache.royale.core.IMultiSelectionModel;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadLayout;
@@ -35,7 +38,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.Lookalike;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.html.IListView;
 	import org.apache.royale.events.DragEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
@@ -101,7 +103,6 @@ package org.apache.royale.html.beads
 		/**
 		 * Creates an example/temporary component to be dragged and returns it.
 		 *
-		 * @param ir IItemRenderer The itemRenderer to be used as a template.
 		 * @return UIBase The "dragImage" to use.
 		 *
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -122,7 +123,7 @@ package org.apache.royale.html.beads
 				dragImage.addBead(new HorizontalLayout())
 			}
 			var itemRendererParent:IItemRendererParent = (_strand.getBeadByType(IBeadView) as IListView).dataGroup as IItemRendererParent;
-			var selectedIndices:Array = getSelectedIndices();
+			var selectedIndices:Array = model.selectedIndices;
 			for (var i:int = 0; i < selectedIndices.length; i++)
 			{
 				var ir:IItemRenderer = itemRendererParent.getItemRendererForIndex(selectedIndices[i]);
@@ -141,21 +142,27 @@ package org.apache.royale.html.beads
 			return dragImage;
 		}
 
-		private function getSelectedIndices():Array
-		{
-			return (_strand.getBeadByType(IMultiSelectionModel) as IMultiSelectionModel).selectedIndices;
-		}
-
 		/**
 		 * @private
 		 *
 		 */
 		private function handleDragStart(event:DragEvent):void
 		{
-			if (getSelectedIndices())
+			var relatedObject:Object = event.relatedObject;
+			var itemRenderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
+			if (itemRenderer && !model.selectedItems)
+			{
+				model.selectedItems = [itemRenderer.data];
+			}
+			if (model.selectedItems && (itemRenderer && model.selectedItems.indexOf(itemRenderer.data) > -1))
 			{
 				DragMouseController.dragImage = createDragImage();
 			}
+		}
+
+		private function get model():IMultiSelectionModel
+		{
+			return (_strand as IStrandWithModel).model as IMultiSelectionModel;
 		}
 	}
 }
