@@ -1028,11 +1028,10 @@ public class TextInput extends UIComponent implements ITextInput
             return;
 
         _maxChars = value;
-        maxCharsChanged = true;
-
-        invalidateProperties();
-
-        dispatchEvent(new Event("maxCharsChanged"));
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).maxLength = value;
+        }  
     }
 
     //----------------------------------

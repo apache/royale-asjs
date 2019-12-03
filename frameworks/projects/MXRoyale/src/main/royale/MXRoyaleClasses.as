@@ -137,6 +137,7 @@ internal class MXRoyaleClasses
 	import mx.collections.ISort; ISort;
 	import mx.utils.Base64Encoder; Base64Encoder;
 	import mx.utils.Base64Decoder; Base64Decoder;
+	import mx.utils.BitFlagUtil; BitFlagUtil;
 	import mx.events.IndexChangedEvent; IndexChangedEvent;
 	import mx.events.ItemClickEvent; ItemClickEvent;
 	import mx.events.ModuleEvent; ModuleEvent;

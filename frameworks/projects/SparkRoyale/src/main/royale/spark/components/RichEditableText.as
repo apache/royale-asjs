@@ -93,6 +93,7 @@ package spark.components
     
     use namespace mx_internal;
     use namespace tlf_internal; */
+	import org.apache.royale.textLayout.elements.TextFlow;
     import mx.events.FlexEvent;
 	import mx.core.UIComponent;
 	import mx.managers.IFocusManagerComponent;
@@ -2159,7 +2160,7 @@ package spark.components
          *  @private
          *  Storage for the textFlow property.
          */
-        //private var _textFlow:TextFlow;
+        private var _textFlow:TextFlow;
         
         /**
          *  @private
@@ -2225,8 +2226,8 @@ package spark.components
          *  @playerversion AIR 2.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get textFlow():TextFlow
-        {
+        public function get textFlow():TextFlow
+        {/*
             // Note: this could be called before all properties are committed.
             
             // We might not have a valid _textFlow for two reasons:
@@ -2260,15 +2261,15 @@ package spark.components
                 _textContainerManager.beginInteraction();
                 _textContainerManager.endInteraction();
             }
-            
+            */
             return _textFlow;
-        } */
+        } 
         
         /**
          *  @private
          */
-        /* public function set textFlow(value:TextFlow):void
-        {
+        public function set textFlow(value:TextFlow):void
+        {/*
             // Treat setting the 'textFlow' to null
             // as if 'text' were being set to the empty String
             // (which is the default state).
@@ -2297,8 +2298,9 @@ package spark.components
             invalidateSize();
             invalidateDisplayList();
             
-            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));                                   
-        } */
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+			*/
+        }
         
         //----------------------------------
         //  typicalText
