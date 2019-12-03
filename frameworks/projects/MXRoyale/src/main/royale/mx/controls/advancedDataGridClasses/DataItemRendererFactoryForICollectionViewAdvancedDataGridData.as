@@ -115,7 +115,7 @@ package mx.controls.advancedDataGridClasses
                 return;
             
             cursor = dp.createCursor();
-            currentIndex = 0;
+            currentIndex = (dp.length > 0) ? 0 : -1;
             
             // listen for individual items being added in the future.
             //var dped:IEventDispatcher = dp as IEventDispatcher;
@@ -206,7 +206,11 @@ package mx.controls.advancedDataGridClasses
                 UIBase(ir).percentWidth = 100;
             }
             var delta:int = index - currentIndex;
-            if (delta == -1)
+            if (currentIndex == -1)
+            {
+                cursor.seek(CursorBookmark.FIRST, index);                
+            }
+            else if (delta == -1)
             {
                 cursor.movePrevious();
             }
