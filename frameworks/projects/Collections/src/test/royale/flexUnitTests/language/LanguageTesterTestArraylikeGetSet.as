@@ -105,6 +105,15 @@ package flexUnitTests.language
         }
     
         [Test]
+        public function testVariable():void{
+            var original:ArrayList = new ArrayList(['dog', 'cat','mouse','gerbil']);
+        
+            var content:Object = original[0];
+            assertEquals(content, 'dog', 'bad arraylike access');
+        
+        }
+    
+        [Test]
         public function testSubClass():void{
             //test 'inheritance' via class (ArrayListView in this case)
             arrayList= new ArrayList(['dog', 'cat','mouse','gerbil']);
