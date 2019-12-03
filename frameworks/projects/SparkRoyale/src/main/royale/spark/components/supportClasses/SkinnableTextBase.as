@@ -40,18 +40,22 @@ import mx.core.InteractionMode;
 import mx.events.FlexEvent;
 import mx.events.SandboxMouseEvent;
 import mx.events.TouchInteractionEvent;
-import mx.utils.BitFlagUtil;
 import mx.utils.Platform;
 
 import spark.components.Application;
-import spark.components.RichEditableText;
 import spark.components.TextSelectionHighlighting;
 import spark.core.IDisplayText;
-import spark.core.IEditableText;
 import spark.core.IProxiedStageTextWrapper;
 import spark.core.ISoftKeyboardHintClient;
 import spark.events.TextOperationEvent;
  */
+	
+import org.apache.royale.textLayout.elements.TextFlow;
+import mx.utils.BitFlagUtil;
+
+import spark.components.RichEditableText;
+import spark.core.IEditableText;
+	
 import mx.managers.IFocusManagerComponent;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
@@ -323,7 +327,7 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-   // private static const CONTENT_PROPERTY_FLAG:uint = 1 << 0;
+    private static const CONTENT_PROPERTY_FLAG:uint = 1 << 0;
 
     /**
      *  @private
@@ -378,7 +382,7 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-  //  private static const TEXT_FLOW_PROPERTY_FLAG:uint = 1 << 12;
+    private static const TEXT_FLOW_PROPERTY_FLAG:uint = 1 << 12;
     
     /**
      *  @private
@@ -606,7 +610,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-  //  public var textDisplay:IEditableText;
+  	public var textDisplay:IEditableText;
 
     /**
      *  @private
@@ -625,7 +629,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  properties.  When textDisplay is around, textDisplayProperties stores 
      *  booleans as to whether these properties have been explicitly set or not.
      */
-   // private var textDisplayProperties:Object = {};
+    private var textDisplayProperties:Object = {};
    
     //--------------------------------------------------------------------------
     //
@@ -798,8 +802,8 @@ public class SkinnableTextBase extends SkinnableComponent
      */
     override public function set enabled(value:Boolean):void
     {
-        /* if (textDisplay)
-            textDisplay.enabled = value; */
+        if (textDisplay)
+            textDisplay.enabled = value;
         
         if (value == super.enabled)
             return;
@@ -1234,6 +1238,11 @@ public class SkinnableTextBase extends SkinnableComponent
             return;
             
         _maxChars = value;
+		COMPILE::JS
+		{
+			(element as HTMLInputElement).maxLength = value;
+			//dispatchEvent(new Event('htmlTextChanged'));
+		}  
     } 
 
     //----------------------------------
@@ -2094,7 +2103,7 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-    /* mx_internal function setContent(value:Object):void
+    public /*mx_internal*/ function setContent(value:Object):void
     {        
         if (textDisplay)
         {
@@ -2120,7 +2129,7 @@ public class SkinnableTextBase extends SkinnableComponent
 
         // Generate an UPDATE_COMPLETE event.
         invalidateProperties();                    
-     } */
+     }
 
     /**
      *  @private
@@ -2204,7 +2213,7 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private  
      */
-   /*  mx_internal function getTextFlow():TextFlow 
+    public /*mx_internal*/ function getTextFlow():TextFlow 
     {
         var richEditableText:RichEditableText = textDisplay as RichEditableText;
         
@@ -2217,12 +2226,12 @@ public class SkinnableTextBase extends SkinnableComponent
         // want the default to be null
         var v:* = textDisplay ? undefined : textDisplayProperties.textFlow;
         return (v === undefined) ? null : v;
-    } */
+    }
     
     /**
      *  @private
      */
-   /*  mx_internal function setTextFlow(value:TextFlow):void
+    public /*mx_internal*/ function setTextFlow(value:TextFlow):void
     {
         if (textDisplay)
         {
@@ -2248,7 +2257,7 @@ public class SkinnableTextBase extends SkinnableComponent
         // Generate an UPDATE_COMPLETE event.
         invalidateProperties();
         invalidateSkinState();
-    } */
+    }
 
     /**
      *  @see RichEditableText#typicalText
