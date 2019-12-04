@@ -65,9 +65,6 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
     {
         titleBar = new PanelTitleBar();
         super.strand = value;
-        var host:SkinnableContainer = _strand as SkinnableContainer;
-        var model:PanelModel = host.model as PanelModel;
-        model.showCloseButton = true;
     }
     
     /**
