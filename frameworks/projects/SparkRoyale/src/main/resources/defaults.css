@@ -197,6 +197,11 @@ TextArea
 	background-color: #FFFFFF;
 }
 
+TitleWindow
+{
+	IBeadView: ClassReference("spark.components.beads.TitleWindowView");
+}
+
 /* -------------------------------------------------------
 * SWF specific styles
 * -------------------------------------------------------

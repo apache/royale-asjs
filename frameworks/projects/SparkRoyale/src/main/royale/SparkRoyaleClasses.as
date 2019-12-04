@@ -78,6 +78,7 @@ internal class SparkRoyaleClasses
     import spark.components.beads.GroupView; GroupView;
     import spark.components.beads.SkinnableContainerView; SkinnableContainerView;
     import spark.components.beads.DropDownListView; DropDownListView;
+    import spark.components.beads.TitleWindowView; TitleWindowView;
     import spark.components.beads.controllers.DropDownListController; DropDownListController;
     import spark.components.beads.controllers.TabBarController; TabBarController;
     import spark.controls.advancedDataGridClasses.MXAdvancedDataGridItemRenderer; MXAdvancedDataGridItemRenderer;
