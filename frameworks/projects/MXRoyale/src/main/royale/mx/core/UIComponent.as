@@ -1945,6 +1945,19 @@ COMPILE::JS
         }
         super.addedToParent();
         
+        COMPILE::JS
+        {
+            if (!isNaN(_backgroundAlpha) && _backgroundColor !== null)
+            {
+                var red:Number = parseInt("0x" + _backgroundColor.substring(1, 3));
+                var green:Number = parseInt("0x" + _backgroundColor.substring(3, 5));
+                var blue:Number = parseInt("0x" + _backgroundColor.substring(5, 7));
+                var rgba:String = "rgba(" + red + "," + green + "," + blue + "," + _backgroundAlpha + ")";
+                (element as HTMLElement).style['backgroundColor'] = rgba;
+            }                
+        }
+
+        
         if (!initialized)
         {
             initialize();
