@@ -73,7 +73,7 @@ package mx.controls.beads
             var contentView:IParentIUIBase = layoutParent.contentView as IParentIUIBase;
             
             var columns:Array = sharedModel.columns;			
-            var rowHeight:Number = presentationModel.rowHeight;
+            var rowHeight:Number = presentationModel.rowHeight + presentationModel.separatorThickness;
             var n:int = getDataProviderLength();
             var totalHeight:Number = n * rowHeight;
             if (totalHeight < contentView.height)

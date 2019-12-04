@@ -100,15 +100,17 @@ package mx.controls.beads.layouts
                 if (!displayedColumns) return retval;
                 var n:int = displayedColumns.length;
                 var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
+                var actualRowHeight:Number = presentationModel.rowHeight 
+                    + presentationModel.separatorThickness;
                 COMPILE::JS
                 {
-                var topSpacerHeight:Number = Math.floor(listArea.element.scrollTop / presentationModel.rowHeight)
-                    * presentationModel.rowHeight;
+                var topSpacerHeight:Number = Math.floor(listArea.element.scrollTop / actualRowHeight)
+                    * actualRowHeight;
                 }
                 var model:IDataGridModel = uiHost.model as IDataGridModel;
                 if (model.dataProvider && model.dataProvider.length)
                 {
-                    var totalHeight:Number = model.dataProvider.length * presentationModel.rowHeight;
+                    var totalHeight:Number = model.dataProvider.length * actualRowHeight;
                     COMPILE::JS
                     {
                         if (!spacer)

@@ -247,7 +247,8 @@ package mx.controls.beads.layouts
                         return true;
                     }
                     var presentationModel:IListPresentationModel = (host as IStrandWithPresentationModel).presentationModel as IListPresentationModel;
-                    var totalHeight:Number = presentationModel.rowHeight * dp.length;
+                    var actualRowHeight:Number = presentationModel.rowHeight + presentationModel.separatorThickness;
+                    var totalHeight:Number = actualRowHeight * dp.length;
                     var viewportTop:Number = getVerticalScrollPosition();
                     // correct overscroll on Safari?
                     var top:String = host.element.style.top;
@@ -263,9 +264,9 @@ package mx.controls.beads.layouts
                     }
                     // end correct overscroll on Safari
                     var viewportHeight:Number = contentView.element.clientHeight;
-                    var startIndex:int = Math.floor(viewportTop / presentationModel.rowHeight);
+                    var startIndex:int = Math.floor(viewportTop / actualRowHeight);
                     var factory:IDataProviderVirtualItemRendererMapper = host.getBeadByType(IDataProviderVirtualItemRendererMapper) as IDataProviderVirtualItemRendererMapper;
-                    var endIndex:int = Math.ceil((viewportTop + viewportHeight) / presentationModel.rowHeight);
+                    var endIndex:int = Math.ceil((viewportTop + viewportHeight) / actualRowHeight);
                     var freeIndex:int;
                     var firstIndex:int;
                     var lastIndex:int;
