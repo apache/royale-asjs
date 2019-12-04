@@ -86,7 +86,7 @@ package org.apache.royale.html.beads
             
             if (index < firstIndex) 
                 return null;
-            if (index > (firstIndex + contentView.numElements))
+            if (index >= (firstIndex + contentView.numElements))
                 return null;
             
             return contentView.getElementAt(index - firstIndex + firstElementIndex) as IItemRenderer;            
