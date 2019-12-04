@@ -75,19 +75,21 @@ package org.apache.royale.html.beads
 			super.handleInitComplete(event);
 		}
 
+        protected var firstElementIndex:int = 1;
+        
         override public function getItemRendererForIndex(index:int):IItemRenderer
         {
             if (contentView.numElements == 0)
                 return null;
             
-            var firstIndex:int = (contentView.getElementAt(1) as ISelectableItemRenderer).index;
+            var firstIndex:int = (contentView.getElementAt(firstElementIndex) as ISelectableItemRenderer).index;
             
             if (index < firstIndex) 
                 return null;
             if (index > (firstIndex + contentView.numElements))
                 return null;
             
-            return contentView.getElementAt(index - firstIndex + 1) as IItemRenderer;            
+            return contentView.getElementAt(index - firstIndex + firstElementIndex) as IItemRenderer;            
         }
         
 		/**

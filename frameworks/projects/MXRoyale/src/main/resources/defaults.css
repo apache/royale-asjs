@@ -97,7 +97,7 @@ AdvancedDataGrid
 adg|AdvancedDataGridColumnList {
 	IBeadModel: ClassReference("mx.controls.beads.models.DataGridColumnICollectionViewModel");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData");
-	IBeadView:  ClassReference("org.apache.royale.html.beads.VirtualListView");			
+	IBeadView:  ClassReference("mx.containers.beads.AdvancedDataGridListVirtualListView");			
 	IBeadController: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
