@@ -202,6 +202,13 @@ TitleWindow
 	IBeadView: ClassReference("spark.components.beads.TitleWindowView");
 }
 
+.TitleBarCloseButton
+{
+	position: absolute;
+	right: 17px;
+	top: 8px;
+}
+
 /* -------------------------------------------------------
 * SWF specific styles
 * -------------------------------------------------------
