@@ -27,22 +27,28 @@ import flash.events.MouseEvent;
 import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.text.TextLineMetrics;
-
+*/
 import mx.controls.AdvancedDataGrid;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.listClasses.IListItemRenderer; */
+import mx.controls.listClasses.IListItemRenderer;
 import mx.core.ClassFactory;
-//import mx.core.IDataRenderer;
+import mx.core.IDataRenderer;
 import mx.core.IFactory;
 import mx.core.IInvalidating;
 import mx.core.IToolTip;
-//import mx.core.IUITextField;
+import mx.core.IUITextField;
 import mx.core.UIComponent;
-//import mx.core.UITextField;
+import mx.core.UITextField;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
-//import mx.events.ToolTipEvent;
+import mx.events.ToolTipEvent;
+import mx.core.IUIComponent;
+import org.apache.royale.geom.Point;
+import org.apache.royale.core.TextLineMetrics;
+import org.apache.royale.geom.Rectangle;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.MouseEvent;
 
 use namespace mx_internal;
 
@@ -65,7 +71,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-//[Event(name="dataChange", type="mx.events.FlexEvent")]
+[Event(name="dataChange", type="mx.events.FlexEvent")]
 
 //--------------------------------------
 //  Styles
@@ -154,13 +160,10 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class AdvancedDataGridHeaderRenderer
-       extends UIComponent
+public class AdvancedDataGridHeaderRenderer extends UIComponent implements IDataRenderer,
+ IDropInListItemRenderer, IListItemRenderer
       
 {
- /* implements IDataRenderer,
-                  IDropInListItemRenderer,
-                  IListItemRenderer */
    // include "../../core/Version.as";
     
     //--------------------------------------------------------------------------
@@ -182,9 +185,9 @@ public class AdvancedDataGridHeaderRenderer
         super();
 
         // InteractiveObject variables.
-      /*   tabEnabled   = false;
+        tabEnabled   = false;
 
-        addEventListener(ToolTipEvent.TOOL_TIP_SHOW, toolTipShowHandler); */
+        addEventListener(ToolTipEvent.TOOL_TIP_SHOW, toolTipShowHandler); 
     }
     
     //--------------------------------------------------------------------------
@@ -196,28 +199,28 @@ public class AdvancedDataGridHeaderRenderer
     /**
      *  @private
      */
-  //  private var grid:AdvancedDataGrid;
+    private var grid:AdvancedDataGrid;
 
     /**
      *  @private
      *  The value of the unscaledWidth parameter during the most recent
      *  call to updateDisplayList
      */
-  //  private var oldUnscaledWidth:Number = -1;
+    private var oldUnscaledWidth:Number = -1;
 
     /**
      *  @private
      *  header separator skin
      */
- //   private var partsSeparatorSkinClass:Class;
-  //  private var partsSeparatorSkin:DisplayObject;
+    private var partsSeparatorSkinClass:Class;
+    private var partsSeparatorSkin:IUIComponent;
     
     /**
      *  @private
      *  Storage for the sortItemRenderer property
      */
-  //  private var sortItemRendererInstance:UIComponent;
-  //  private var sortItemRendererChanged:Boolean = false;
+    private var sortItemRendererInstance:UIComponent;
+    private var sortItemRendererChanged:Boolean = false;
     
     /**
      *  The internal UITextField that displays the text in this renderer.
@@ -227,7 +230,7 @@ public class AdvancedDataGridHeaderRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-  //  protected var label:IUITextField;
+    protected var label:IUITextField;
 
     /**
      *  This background is used as a mouseShield so that the mouse clicks do not pass
@@ -238,7 +241,7 @@ public class AdvancedDataGridHeaderRenderer
      *
      *  @private
      */
-  //  protected var background:Sprite;
+    protected var background:UIComponent;
 
     //--------------------------------------------------------------------------
     //
@@ -253,10 +256,11 @@ public class AdvancedDataGridHeaderRenderer
     /**
      *  @private
      */
-  /*   override public function get baselinePosition():Number
+    override public function get baselinePosition():Number
     {
-        return label.baselinePosition;
-    } */
+        // return label.baselinePosition;
+        return 0;
+    } 
 
     //--------------------------------------------------------------------------
     //
@@ -272,10 +276,10 @@ public class AdvancedDataGridHeaderRenderer
      *  @private
      *  Storage for the data property.
      */
-   /*  private var _data:Object;
+    private var _data:Object;
 
     [Bindable("dataChange")]
- */
+ 
     /**
      *  The implementation of the <code>data</code> property
      *  as defined by the IDataRenderer interface.
@@ -289,30 +293,31 @@ public class AdvancedDataGridHeaderRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-  /*   public function get data():Object
+    public function get data():Object
     {
         return _data;
     }
- */
+ 
     /**
      *  @private
      */
-   /*  public function set data(value:Object):void
+    public function set data(value:Object):void
     {
         _data = value;
 
         invalidateProperties();
+        commitProperties();
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
-    } */
+    } 
 
     //----------------------------------
     //  sortItemRenderer
     //----------------------------------
 
-  /*   private var _sortItemRenderer:IFactory;
+    private var _sortItemRenderer:IFactory;
 
-    [Inspectable(category="Data")] */
+    [Inspectable(category="Data")] 
     /**
      *  Specifies a custom sort item renderer.
      *  By default, the AdvancedDataGridHeaderRenderer class uses 
@@ -329,24 +334,24 @@ public class AdvancedDataGridHeaderRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get sortItemRenderer():IFactory
+    public function get sortItemRenderer():IFactory
     {
             return _sortItemRenderer;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set sortItemRenderer(value:IFactory):void
+    public function set sortItemRenderer(value:IFactory):void
     {
             _sortItemRenderer = value;
 
             sortItemRendererChanged = true;
             invalidateSize();
             invalidateDisplayList();
-
+	    updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
             dispatchEvent(new Event("sortItemRendererChanged"));
-    } */
+    } 
 
     //----------------------------------
     //  listData
@@ -356,9 +361,9 @@ public class AdvancedDataGridHeaderRenderer
      *  @private
      *  Storage for the listData property.
      */
-    /* private var _listData:AdvancedDataGridListData;
+    private var _listData:AdvancedDataGridListData;
 
-    [Bindable("dataChange")] */
+    [Bindable("dataChange")] 
 
     /**
      *  The implementation of the <code>listData</code> property
@@ -371,21 +376,21 @@ public class AdvancedDataGridHeaderRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get listData():BaseListData
+    public function get listData():BaseListData
     {
         return _listData;
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* public function set listData(value:BaseListData):void
+    public function set listData(value:BaseListData):void
     {
         _listData = AdvancedDataGridListData(value);
         grid      = AdvancedDataGrid(_listData.owner);
 
         invalidateProperties();
-    } */
+    } 
 
     //--------------------------------------------------------------------------
     //
@@ -396,14 +401,14 @@ public class AdvancedDataGridHeaderRenderer
     /**
      *  @private
      */
-    /* override protected function createChildren():void
+    override protected function createChildren():void
     {
         super.createChildren();
 
         if (!label)
         {
             label = IUITextField(createInFontContext(UITextField));
-            addChild(DisplayObject(label));
+            addChild(IUIComponent(label));
         }
 
         if (!background)
@@ -411,7 +416,7 @@ public class AdvancedDataGridHeaderRenderer
             background = new UIComponent();
             addChild(background);
         }
-    } */
+    } 
 
     /**
      *  @private
@@ -419,7 +424,7 @@ public class AdvancedDataGridHeaderRenderer
      *  Create an instance of the sort item renderer if specified,
      *  and set the text into the text field.
      */
-    /* override protected function commitProperties():void
+    override protected function commitProperties():void
     {
         super.commitProperties();
 
@@ -428,8 +433,8 @@ public class AdvancedDataGridHeaderRenderer
 
         if (!sortItemRendererInstance || sortItemRendererChanged)
         {
-            if (!sortItemRenderer)
-                sortItemRenderer = ClassFactory(grid.sortItemRenderer);
+            // if (!sortItemRenderer)
+            //     sortItemRenderer = ClassFactory(grid.sortItemRenderer);
 
             if (sortItemRenderer)
             {
@@ -440,7 +445,7 @@ public class AdvancedDataGridHeaderRenderer
                 //
                 // sortItemRendererInstance.owner = grid;
 
-                addChild( DisplayObject(sortItemRendererInstance) );
+                addChild( IUIComponent(sortItemRendererInstance) );
             }
 
              sortItemRendererChanged = false;
@@ -469,15 +474,15 @@ public class AdvancedDataGridHeaderRenderer
         if (_data != null)
         {
             label.text      = listData.label ? listData.label : " ";
-            label.multiline = grid.variableRowHeight;
-            if( _data is AdvancedDataGridColumn)
-                label.wordWrap = grid.columnHeaderWordWrap(_data as AdvancedDataGridColumn);
+            // label.multiline = grid.variableRowHeight;
+            // if( _data is AdvancedDataGridColumn)
+            //     label.wordWrap = grid.columnHeaderWordWrap(_data as AdvancedDataGridColumn);
                 
                 
 //             if (listData.columnIndex > -1)
 //                 label.wordWrap = grid.columnHeaderWordWrap(grid.columns[listData.columnIndex]);
-            else
-                label.wordWrap = grid.wordWrap;
+            // else
+            //     label.wordWrap = grid.wordWrap;
 
             if (_data is AdvancedDataGridColumn)
             {
@@ -491,16 +496,16 @@ public class AdvancedDataGridHeaderRenderer
                     dataTips = false;
                 if (dataTips)
                 {
-                    if (label.textWidth > label.width 
-                        || column.dataTipFunction || column.dataTipField 
-                        || grid.dataTipFunction || grid.dataTipField)
-                    {
-                        toolTip = column.itemToDataTip(_data);
-                    }
-                    else
-                    {
-                        toolTip = null;
-                    }
+                    // if (label.textWidth > label.width 
+                    //     || column.dataTipFunction || column.dataTipField 
+                    //     || grid.dataTipFunction || grid.dataTipField)
+                    // {
+                    //     toolTip = column.itemToDataTip(_data);
+                    // }
+                    // else
+                    // {
+                    //     toolTip = null;
+                    // }
                 }
                 else
                 {
@@ -516,12 +521,12 @@ public class AdvancedDataGridHeaderRenderer
 
         if (sortItemRendererInstance is IInvalidating)
             IInvalidating(sortItemRendererInstance).invalidateProperties();
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* override protected function measure():void
+    override protected function measure():void
     {
         super.measure();
 
@@ -586,12 +591,12 @@ public class AdvancedDataGridHeaderRenderer
         // Set required width and height
         measuredMinWidth  = measuredWidth  = w;
         measuredMinHeight = measuredHeight = h;
-    } */
+    } 
     
     /**
      *  @private
      */
-    /* override protected function updateDisplayList(unscaledWidth:Number,
+    override protected function updateDisplayList(unscaledWidth:Number,
                                                   unscaledHeight:Number):void
     {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -653,8 +658,8 @@ public class AdvancedDataGridHeaderRenderer
         label.setActualSize(labelWidth, labelHeight);
         
         // truncate only if the truncate flag is set
-        if (truncate && !label.multiline)
-            label.truncateToFit();
+        // if (truncate && !label.multiline)
+        //     label.truncateToFit();
 
         // Calculate position of label, by default center it
         var labelX:Number;
@@ -740,8 +745,8 @@ public class AdvancedDataGridHeaderRenderer
         {
             if (!enabled)
                 labelColor = getStyle("disabledColor");
-            else if (grid.isItemHighlighted(listData.uid))
-                labelColor = getStyle("textRollOverColor");
+            // else if (grid.isItemHighlighted(listData.uid))
+            //     labelColor = getStyle("textRollOverColor");
             else if (grid.isItemSelected(listData.uid))
                 labelColor = getStyle("textSelectedColor");
             else
@@ -757,9 +762,9 @@ public class AdvancedDataGridHeaderRenderer
             background.graphics.beginFill(0xFFFFFF, 0.0); // transparent
             background.graphics.drawRect(0, 0, unscaledWidth, unscaledHeight);
             background.graphics.endFill();
-            setChildIndex( DisplayObject(background), 0 );
+            setChildIndex( IUIComponent(background), 0 );
         }
-    } */
+    } 
 
     //--------------------------------------------------------------------------
     //
@@ -787,19 +792,20 @@ public class AdvancedDataGridHeaderRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function mouseEventToHeaderPart(event:MouseEvent):String
+    public function mouseEventToHeaderPart(event:MouseEvent):String
     {
-        if(sortItemRendererInstance == null)
-            return AdvancedDataGrid.HEADER_TEXT_PART;
+        return null;
+        // if(sortItemRendererInstance == null)
+        //     return AdvancedDataGrid.HEADER_TEXT_PART;
 
-        var point:Point = new Point(event.stageX, event.stageY);
-        point = globalToLocal(point);
+        // var point:Point = new Point(event.stageX, event.stageY);
+        // point = globalToLocal(point);
 
-        // Needs to be in sync with the logic in measure() and updateDisplayList()
-        return point.x < sortItemRendererInstance.x
-                         ? AdvancedDataGrid.HEADER_TEXT_PART
-                         : AdvancedDataGrid.HEADER_ICON_PART;
-    } */
+        // // Needs to be in sync with the logic in measure() and updateDisplayList()
+        // return point.x < sortItemRendererInstance.x
+        //                  ? AdvancedDataGrid.HEADER_TEXT_PART
+        //                  : AdvancedDataGrid.HEADER_ICON_PART;
+    } 
 
     /**
      *  Returns the sort information for this column from the AdvancedDataGrid control
@@ -818,10 +824,12 @@ public class AdvancedDataGridHeaderRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  protected function getFieldSortInfo():SortInfo
+    // protected function getFieldSortInfo():SortInfo
+    protected function getFieldSortInfo():Object
     {
-       	return grid.getFieldSortInfo(grid.mx_internal::rawColumns[listData.columnIndex]);
-    } */
+       	// return grid.getFieldSortInfo(grid.mx_internal::rawColumns[listData.columnIndex]);
+       	return null;
+    } 
 
     //--------------------------------------------------------------------------
     //
@@ -839,15 +847,15 @@ public class AdvancedDataGridHeaderRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  protected function toolTipShowHandler(event:ToolTipEvent):void
+    protected function toolTipShowHandler(event:ToolTipEvent):void
     {
         var toolTip:IToolTip = event.toolTip;
-		var xPos:int = DisplayObject(systemManager).mouseX + 11;
-        var yPos:int = DisplayObject(systemManager).mouseY + 22;
+		var xPos:int = IUIComponent(systemManager).mouseX + 11;
+        var yPos:int = IUIComponent(systemManager).mouseY + 22;
         // Calculate global position of label.
         var pt:Point = new Point(xPos, yPos);
-        pt = DisplayObject(systemManager).localToGlobal(pt);
-        pt = DisplayObject(systemManager.getSandboxRoot()).globalToLocal(pt);           
+        pt = UIComponent(systemManager).localToGlobal(pt);
+        pt = UIComponent(systemManager.getSandboxRoot()).globalToLocal(pt);           
         
         toolTip.move(pt.x, pt.y + (height - toolTip.height) / 2);
             
@@ -856,16 +864,46 @@ public class AdvancedDataGridHeaderRenderer
         if (toolTip.x + toolTip.width > screenRight)
             toolTip.move(screenRight - toolTip.width, toolTip.y);
 
-    } */
+    } 
 
     /**
      *  @private
      */
-    /* mx_internal function getLabel():IUITextField
+    mx_internal function getLabel():IUITextField
     {
         return label;
-    } */
+    } 
 
+
+    public function get nestLevel():int
+    {
+    	throw new Error("Method not implemented.");
+    }
+
+    public function set nestLevel(value:int):void
+    {
+    	throw new Error("Method not implemented.");
+    }
+
+    public function get processedDescriptors():Boolean
+    {
+    	throw new Error("Method not implemented.");
+    }
+
+    public function set processedDescriptors(value:Boolean):void
+    {
+    	throw new Error("Method not implemented.");
+    }
+
+    public function get updateCompletePendingFlag():Boolean
+    {
+    	throw new Error("Method not implemented.");
+    }
+
+    public function set updateCompletePendingFlag(value:Boolean):void
+    {
+    	throw new Error("Method not implemented.");
+    }
 } // end class
 
 } // end package
