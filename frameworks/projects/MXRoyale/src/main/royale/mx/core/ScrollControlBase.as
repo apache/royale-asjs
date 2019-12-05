@@ -1475,5 +1475,14 @@ public class ScrollControlBase extends UIComponent
 	{
 
 	}
+    
+    COMPILE::JS
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        if (_horizontalScrollPolicy == ScrollPolicy.OFF)
+            element.style["overflow-x"] = "hidden";
+            
+    }
 }
 }

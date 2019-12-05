@@ -128,6 +128,8 @@ package mx.controls.beads.layouts
                             var numVisibleRows:int = Math.floor(useHeight / actualRowHeight);
                             useHeight = actualRowHeight * (numVisibleRows + 1);
                         }
+                        if (uiHost.element.style["overflow-x"] == "hidden")
+                            listArea.element.style["overflow-x"] = "hidden";
                     }
                 }
                 for (var i:int = 0; i < n; i++)
