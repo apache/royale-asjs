@@ -168,7 +168,13 @@ package mx.controls.beads
             COMPILE::JS
             {
                 _overlay.element.style.position = "absolute";        
-                _overlay.element.style.pointerEvents = "none";        
+                _overlay.element.style.pointerEvents = "none";
+                // turn off drag select of header text
+                _header.element.style["user-select"] = "none";
+                _header.element.style["-webkit-touch-callout"] = "none";
+                _header.element.style["-webkit-user-select"] = "none";
+                _header.element.style["-moz-user-select"] = "none";
+                _header.element.style["-ms-user-select"] = "none";
             }
             
             var xpos:Number = 0;
@@ -336,6 +342,7 @@ package mx.controls.beads
             columns[columnIndex + 1].columnWidth -= deltaWidth;
             columns[columnIndex + 1].width -= deltaWidth;
             adg.dispatchEvent(new Event("layoutNeeded"));
+            drawLines(null);
         }
         
 	}
