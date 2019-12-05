@@ -186,13 +186,14 @@ package mx.controls.beads.models
 			{
 				_selectedItem = null;
 			}
-			else if (value < dataProvider.length)
-			{
-				_selectedItem = getItemAt(value);
-			}
 			else
 			{
-				_selectedItem = null;
+                if (value >= dataProvider.length)
+                {
+                    value = dataProvider.length - 1;
+                    _selectedIndex = value;
+                }
+				_selectedItem = getItemAt(value);
 			}
 
 			dispatchEvent(new Event("selectedIndexChanged"));
