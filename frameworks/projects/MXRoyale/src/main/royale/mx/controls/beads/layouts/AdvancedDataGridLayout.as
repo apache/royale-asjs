@@ -121,6 +121,13 @@ package mx.controls.beads.layouts
                         // the lists are "absolute" so they float over the spacer
                         spacer.style.height = totalHeight.toString() + "px";
                         topSpacerHeight = Math.min(topSpacerHeight, totalHeight - useHeight);
+                        // if we have enough to scroll, then make the columns a row taller because
+                        // the virtual scrolling neds to shift the column lists
+                        if (totalHeight > useHeight)
+                        {
+                            var numVisibleRows:int = Math.floor(useHeight / actualRowHeight);
+                            useHeight = actualRowHeight * (numVisibleRows + 1);
+                        }
                     }
                 }
                 for (var i:int = 0; i < n; i++)
