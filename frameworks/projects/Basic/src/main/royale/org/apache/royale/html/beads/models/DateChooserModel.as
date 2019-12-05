@@ -192,6 +192,12 @@ package org.apache.royale.html.beads.models
 		}
 		public function set selectedDate(value:Date):void
 		{
+            COMPILE::JS
+            {
+                // in JS, date compare does not compare values, only if same instance
+                if (value != null && _selectedDate != null && value.getTime() == _selectedDate.getTime())
+                    return;
+            }
 			if (value != _selectedDate) {
 				_selectedDate = value;
 				
