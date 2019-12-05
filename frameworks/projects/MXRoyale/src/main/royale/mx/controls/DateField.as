@@ -49,9 +49,13 @@ import mx.utils.ObjectUtil;
 use namespace mx_internal;
 
 import org.apache.royale.core.IDateChooserModel;
+import org.apache.royale.core.IBead;
 import org.apache.royale.core.IFormatter;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.DateFormatMMDDYYYY;
+import org.apache.royale.html.accessories.DateFormatDDMMYYYY;
+import org.apache.royale.html.accessories.DateFormatYYYYMMDD;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import mx.controls.TextInput;
 
@@ -1359,7 +1363,7 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the formatString property.
      */
-    private var _formatString:String = null;
+    private var _formatString:String = "MM/DD/YYYY";
 
     [Bindable("formatStringChanged")]
     [Inspectable(defaultValue="null")]
@@ -1398,11 +1402,23 @@ public class DateField extends ComboBase
     {
         formatStringOverride = value;
 
-        _formatString = value /* != null ?
+        if (value != _formatString)
+        {
+            _formatString = value /* != null ?
                         value :
                         resourceManager.getString(
                             "SharedResources", "dateFormat")*/;
-
+            var formatter:IBead = getBeadByType(IFormatter);
+            if (formatter)
+                removeBead(formatter);
+            if (value == "MM/DD/YYYY")
+                addBead(new DateFormatMMDDYYYY());
+            else if (value == "DD/MM/YYYY")
+                addBead(new DateFormatDDMMYYYY());
+            else if (value == "YYYY/MM/DD")
+                addBead(new DateFormatYYYYMMDD());
+        }
+        
         /*
         updateDateFiller = true;
 
