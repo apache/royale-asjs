@@ -1616,7 +1616,7 @@ public class TextInput extends UIComponent implements ITextInput
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
 	 */
-	public function textChangeHandler(event:KeyboardEvent):void
+	public function textChangeHandler(event:Event):void
 	{
         if (!inSetter)
         {

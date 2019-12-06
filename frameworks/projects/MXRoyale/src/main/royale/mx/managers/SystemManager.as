@@ -2950,7 +2950,7 @@ public class SystemManager extends SystemManagerBase implements ISystemManager, 
     {
         var body:HTMLElement = document.getElementsByTagName('body')[0];
         body.appendChild(element);
-        element.className = "Application";  // to pick up box-model
+        element.className = "royale";  // to pick up box-model
         
         SystemManagerGlobals.info = info();
         
