@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {	
+    import org.apache.royale.collections.ArrayList;
     import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IDataGridModel;
@@ -103,76 +104,76 @@ package org.apache.royale.jewel.beads.layouts
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView
 		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
-		 * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumn
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn
 		 */
 		public function layout():Boolean
 		{
-		// 	var header:IUIBase = (uiHost.view as IDataGridView).header;
-        //     // fancier DG's will filter invisible columns and only put visible columns
-        //     // in the bbmodel, so do all layout based on the bbmodel, not the set
-        //     // of columns that may contain invisible columns
-        //     var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
-		// 	var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
+			var header:IUIBase = (uiHost.view as IDataGridView).header;
+            // fancier DG's will filter invisible columns and only put visible columns
+            // in the bbmodel, so do all layout based on the bbmodel, not the set
+            // of columns that may contain invisible columns
+            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+			var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
 			
-		// 	var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
-		// 	var model:IDataGridModel = uiHost.model as IDataGridModel;
+			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
+			var model:IDataGridModel = uiHost.model as IDataGridModel;
 			
-		// 	var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
-		// 	var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
-		// 	var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
+			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
+			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
+			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			
-		// 	var xpos:Number = 0;
-		// 	var defaultColumnWidth:Number = (useWidth) / bbmodel.dataProvider.length;
-		// 	var columnWidths:Array = [];
+			// var xpos:Number = 0;
+			var defaultColumnWidth:Number = (useWidth) / bbmodel.dataProvider.length;
+			var columnWidths:Array = [];
 			
-		// 	for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
-		// 		var columnDef:IDataGridColumn = bbmodel.dataProvider[i] as IDataGridColumn;
-		// 		var columnList:UIBase = displayedColumns[i] as UIBase;
+			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
+				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
+				var columnList:UIBase = displayedColumns[i] as UIBase;
 				
-		// 		// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
-		// 		columnList.x = xpos;
-		// 		columnList.y = 0;
+				// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
+				// columnList.x = xpos;
+				// columnList.y = 0;
 				
-		// 		var columnWidth:Number = defaultColumnWidth;
-		// 		if (!isNaN(columnDef.columnWidth)) {
-		// 			columnWidth = columnDef.columnWidth;
-		// 		}
+				var columnWidth:Number = defaultColumnWidth;
+				if (!isNaN(columnDef.columnWidth)) {
+					columnWidth = columnDef.columnWidth;
+				}
 				
-		// 		columnList.width = columnWidth;
-		// 		columnWidths.push(columnWidth);
+				columnList.width = columnWidth;
+				columnWidths.push(columnWidth);
 				
-		// 		xpos += columnList.width;
-		// 	}
+				// xpos += columnList.width;
+			}
 			
-		// 	bbmodel.buttonWidths = columnWidths;
+			bbmodel.buttonWidths = columnWidths;
 			
-		// 	COMPILE::SWF {
-        //         header.y = borderMetrics.top;
-        //         header.x = borderMetrics.left;
-		// 		header.width = useWidth;
-		// 	}
-		// 	COMPILE::JS {
-		// 		(header as UIBase).percentWidth = 100;
-		// 		listArea.element.style.position = "absolute";
-        //         if (!(uiHost.element.style.position == 'absolute' ||
-        //               uiHost.element.style.position == 'relative' ||
-        //               uiHost.element.style.position == 'fixed'))
-        //             uiHost.element.style.position = 'relative';
-		// 	}
-		// 	// header's height is set in CSS
+			// COMPILE::SWF {
+            //     header.y = borderMetrics.top;
+            //     header.x = borderMetrics.left;
+			// 	header.width = useWidth;
+			// }
+			// COMPILE::JS {
+			// 	(header as UIBase).percentWidth = 100;
+			// 	listArea.element.style.position = "absolute";
+            //     if (!(uiHost.element.style.position == 'absolute' ||
+            //           uiHost.element.style.position == 'relative' ||
+            //           uiHost.element.style.position == 'fixed'))
+            //         uiHost.element.style.position = 'relative';
+			// }
+			// header's height is set in CSS
 			
-        //     listArea.y = header.height + header.y;
-		// 	COMPILE::SWF {
-        //         listArea.x = borderMetrics.left;
-		// 		listArea.width = useWidth;
-		// 	}
-		// 	COMPILE::JS {
-		// 		(listArea as UIBase).percentWidth = 100;
-		// 	}
-		// 	listArea.height = useHeight - header.height;
+            // listArea.y = header.height + header.y;
+			// COMPILE::SWF {
+            //     listArea.x = borderMetrics.left;
+			// 	listArea.width = useWidth;
+			// }
+			// COMPILE::JS {
+			// 	(listArea as UIBase).percentWidth = 100;
+			// }
+			// listArea.height = useHeight - header.height;
 			
-		// 	header.dispatchEvent(new Event("layoutNeeded"));
-		// 	listArea.dispatchEvent(new Event("layoutNeeded"));
+			header.dispatchEvent(new Event("layoutNeeded"));
+			listArea.dispatchEvent(new Event("layoutNeeded"));
 			
 			return true;
 		}

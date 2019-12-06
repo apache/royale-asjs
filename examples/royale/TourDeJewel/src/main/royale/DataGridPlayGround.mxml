@@ -65,9 +65,9 @@ limitations under the License.
 							destinationPropertyName="dataProvider" />
 					</j:beads>
 					<j:columns>
-						<j:DataGridColumn label="Images and Pictures" dataField="image" columnWidth="15" itemRenderer="itemRenderers.ProductItemRenderer"/>
-						<j:DataGridColumn label="Title" dataField="title" columnWidth="60" />
-						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="25" />
+						<j:DataGridColumn label="Images and Pictures" dataField="image" columnWidth="45" itemRenderer="itemRenderers.ProductItemRenderer"/>
+						<j:DataGridColumn label="Title" dataField="title" columnWidth="120" />
+						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="50" />
 					</j:columns>
 				</j:DataGrid>
 
