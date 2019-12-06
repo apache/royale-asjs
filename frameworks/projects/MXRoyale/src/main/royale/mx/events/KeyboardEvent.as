@@ -68,6 +68,11 @@ public class KeyboardEvent extends flash.events.KeyboardEvent
 	{
 	} 
 	
+    public function get key():String
+    {
+        return String.fromCharCode(charCode);
+    }
+    
 	private static function platformConstant(s:uint):uint
         {
             return s;

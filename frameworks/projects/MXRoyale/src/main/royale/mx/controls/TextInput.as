@@ -31,6 +31,8 @@ import mx.core.ITextInput;
 import mx.core.UIComponent;
 import mx.core.UITextField;
 import mx.events.FlexEvent;
+import mx.events.KeyboardEvent;
+import mx.events.TextEvent;
 
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
@@ -1613,7 +1615,7 @@ public class TextInput extends UIComponent implements ITextInput
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
 	 */
-	public function textChangeHandler(event:Event):void
+	public function textChangeHandler(event:KeyboardEvent):void
 	{
         if (!inSetter)
         {
@@ -1637,6 +1639,13 @@ public class TextInput extends UIComponent implements ITextInput
             // Cancel the default action, if needed
             event.preventDefault();
             dispatchEvent(new Event(FlexEvent.ENTER));
+        }
+        else
+        {
+            var textEvent:TextEvent = new TextEvent(TextEvent.TEXT_INPUT, false, true);
+            textEvent.text = event['key'];
+            if (!dispatchEvent(textEvent))
+                event.preventDefault();
         }
     }
     

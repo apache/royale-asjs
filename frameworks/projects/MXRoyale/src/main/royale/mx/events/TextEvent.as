@@ -37,7 +37,7 @@ import org.apache.royale.events.IRoyaleEvent;
  *  @royalesuppresspublicvarwarning
  */
 COMPILE::SWF
-public class TextEvent extends flash.events.TextEvent
+public class TextEvent extends org.apache.royale.events.Event
 {
 	private static function platformConstant(s:String):String
         {
@@ -48,7 +48,18 @@ public class TextEvent extends flash.events.TextEvent
 		
 	public function TextEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, text:String = "")
     {
-        super(type, bubbles, cancelable,text);
+        super(type, bubbles, cancelable);
+        this.text = text;
+    }
+    
+    private var _text:String;
+    public function get text():String
+    {
+        return _text;
+    }
+    public function set text(value:String):void
+    {
+        _text = value;
     }
 }
 
