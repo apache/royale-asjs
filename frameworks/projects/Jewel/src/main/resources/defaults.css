@@ -505,6 +505,9 @@ j|ComboBoxPopUp {
   border-left: 0px;
   border-bottom-right-radius: 0.25rem;
 }
+.jewel.datagrid .jewel.list.column .jewel.item {
+  border-bottom: 1px solid #efefef;
+}
 
 j|DataGrid {
   IChangePropagator: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator");
