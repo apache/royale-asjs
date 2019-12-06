@@ -120,19 +120,13 @@ package org.apache.royale.jewel.beads.layouts
 			
 			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
 			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
-			var useHeight:Number = uiHost.height - (borderMetrics.top + borderMetrics.bottom);
 			
-			// var xpos:Number = 0;
 			var defaultColumnWidth:Number = (useWidth) / bbmodel.dataProvider.length;
 			var columnWidths:Array = [];
 			
 			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
-				
-				// probably do not need to set (x,y), but if the Container's layout requires it, they will be set.
-				// columnList.x = xpos;
-				// columnList.y = 0;
 				
 				var columnWidth:Number = defaultColumnWidth;
 				if (!isNaN(columnDef.columnWidth)) {
@@ -141,36 +135,9 @@ package org.apache.royale.jewel.beads.layouts
 				
 				columnList.width = columnWidth;
 				columnWidths.push(columnWidth);
-				
-				// xpos += columnList.width;
 			}
 			
 			bbmodel.buttonWidths = columnWidths;
-			
-			// COMPILE::SWF {
-            //     header.y = borderMetrics.top;
-            //     header.x = borderMetrics.left;
-			// 	header.width = useWidth;
-			// }
-			// COMPILE::JS {
-			// 	(header as UIBase).percentWidth = 100;
-			// 	listArea.element.style.position = "absolute";
-            //     if (!(uiHost.element.style.position == 'absolute' ||
-            //           uiHost.element.style.position == 'relative' ||
-            //           uiHost.element.style.position == 'fixed'))
-            //         uiHost.element.style.position = 'relative';
-			// }
-			// header's height is set in CSS
-			
-            // listArea.y = header.height + header.y;
-			// COMPILE::SWF {
-            //     listArea.x = borderMetrics.left;
-			// 	listArea.width = useWidth;
-			// }
-			// COMPILE::JS {
-			// 	(listArea as UIBase).percentWidth = 100;
-			// }
-			// listArea.height = useHeight - header.height;
 			
 			header.dispatchEvent(new Event("layoutNeeded"));
 			listArea.dispatchEvent(new Event("layoutNeeded"));
