@@ -238,12 +238,17 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 		return _err;
 	}
 	
+	/**
+	 * @royaleignorecoercion Class
+	 */
 	public function SerializationContext(ownerReference:AMFBinaryData){
 		owner = ownerReference;
 		reset();
 		if (!_xmlChecked) {
 			_xmlChecked = true;
-			_xmlClass = getDefinitionByName('XML') as Class;
+			try{
+				_xmlClass = getDefinitionByName('XML') as Class;
+			} catch(e:Error){}
 		}
 		super();
 	}
