@@ -42,6 +42,7 @@ import mx.core.UIComponent;
 import mx.core.mx_internal;
 use namespace mx_internal;
 
+import org.apache.royale.events.Event;
 import org.apache.royale.html.supportClasses.DataGridColumn;
     
 //--------------------------------------
@@ -280,6 +281,7 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     {
         _headerText = value;
         label = value;
+        dispatchEvent(new Event("headerTextChanged"));
     }
 
 

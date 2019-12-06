@@ -79,10 +79,12 @@ package mx.controls.beads
             columnLists.length = 0;
             for (var i:int=0; i < sharedModel.columns.length; i++)
             {
-                var list:AdvancedDataGridColumnList = (sharedModel.columns[i] as AdvancedDataGridColumn).list as AdvancedDataGridColumnList;
+                var col:AdvancedDataGridColumn = sharedModel.columns[i] as AdvancedDataGridColumn;
+                col.addEventListener("headerTextChanged", updateHeader);
+                var list:AdvancedDataGridColumnList = col.list as AdvancedDataGridColumnList;
                 var adgColumnListModel:DataGridColumnICollectionViewModel = list.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
                 adgColumnListModel.columnIndex = i;
-                list.visible = (sharedModel.columns[i] as AdvancedDataGridColumn).visible;
+                list.visible = col.visible;
                 list.addEventListener(ItemClickEvent.ITEM_CLICK, itemClickHandler);
                 if (list.visible)
                 {
@@ -93,6 +95,11 @@ package mx.controls.beads
             (header as DataGridButtonBar).dataProvider = visibleColumns;
             
             host.dispatchEvent(new Event("layoutNeeded"));
+        }
+        
+        private function updateHeader(event:Event):void
+        {
+            (header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
         }
         
         private function itemClickHandler(event:ItemClickEvent):void
