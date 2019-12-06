@@ -35,16 +35,17 @@ import mx.events.KeyboardEvent;
 import mx.events.TextEvent;
 
 import org.apache.royale.core.ITextModel;
-import org.apache.royale.events.Event;
-import org.apache.royale.html.accessories.RestrictTextInputBead;
-import org.apache.royale.html.accessories.PasswordInputBead;
-import org.apache.royale.html.beads.DisableBead;
 import org.apache.royale.core.TextLineMetrics;
+import org.apache.royale.events.Event;
+import org.apache.royale.html.accessories.PasswordInputBead;
+import org.apache.royale.html.accessories.RestrictTextInputBead;
+import org.apache.royale.html.beads.DisableBead;
 
 COMPILE::SWF {
 	import org.apache.royale.html.beads.TextInputView;
 }
 import mx.core.mx_internal;
+
 use namespace mx_internal;
 
 /*
@@ -1717,6 +1718,7 @@ public class TextInput extends UIComponent implements ITextInput
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
+     *  @royaleignorecoercion HTMLInputElement
      */
     public function setSelection(beginIndex:int, endIndex:int):void
     {
@@ -1725,6 +1727,12 @@ public class TextInput extends UIComponent implements ITextInput
         selectionChanged = true;
 
         invalidateProperties();
+        
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).setSelectionRange(beginIndex, endIndex);        
+        }
+          
     }
 
     /**
