@@ -20,6 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.html.List;
 
 	/**
@@ -34,7 +35,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataGridColumn implements IDataGridColumn
+	public class DataGridColumn extends EventDispatcher implements IDataGridColumn
 	{
 		/**
 		 *  constructor.
