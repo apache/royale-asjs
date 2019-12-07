@@ -28,7 +28,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IDataGridModel extends ISelectionModel
+	public interface IDataGridModel extends ISelectionModel, IRollOverModel
 	{
         /**
          *  The set of DataGridColumns.

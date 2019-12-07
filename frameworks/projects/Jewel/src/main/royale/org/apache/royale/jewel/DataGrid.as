@@ -29,9 +29,9 @@ package org.apache.royale.jewel
 	/**
 	 *  The DataGrid class displays a collection of data using columns and rows. Each
 	 *  column represents a specific field in the data set; each row represents a specific
-	 *  datum. The DataGrid is a composite component built with a org.apache.royale.html.ButtonBar 
-	 *  for the column headers and a org.apache.royale.html.List for each column. The DataGrid's 
-	 *  view bead (usually org.apache.royale.html.beads.DataGridView) constructs these parts while 
+	 *  datum. The DataGrid is a composite component built with a org.apache.royale.jewel.ButtonBar 
+	 *  for the column headers and a org.apache.royale.jewel.List for each column. The DataGrid's 
+	 *  view bead (usually org.apache.royale.jewel.beads.views.DataGridView) constructs these parts while 
 	 *  itemRenderer factories contruct the elements to display the data in each cell.
 	 *  
      *  @toplevel
@@ -58,13 +58,13 @@ package org.apache.royale.jewel
 		}
 		
 		/**
-		 *  The array of org.apache.royale.html.supportClasses.DataGridColumns used to 
+		 *  The array of org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn used to 
 		 *  describe each column.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
 		public function get columns():Array
@@ -80,12 +80,12 @@ package org.apache.royale.jewel
 		}
 		
 		/**
-		 *  The object used to provide data to the org.apache.royale.html.DataGrid.
+		 *  The object used to provide data to the org.apache.royale.jewel.DataGrid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
 		public function get dataProvider():Object
@@ -106,10 +106,10 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
 		 */
-		[Bindable("change")]
+		[Bindable("selectionChanged")]
 		public function get selectedIndex():int
 		{
 			return IDataGridModel(model).selectedIndex;
@@ -121,7 +121,52 @@ package org.apache.royale.jewel
 		{
 			IDataGridModel(model).selectedIndex = value;
 		}
+
+		[Bindable("rollOverIndexChanged")]
+		/**
+		 *  The index of the item currently below the pointer.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 */
+        public function get rollOverIndex():int
+		{
+			return IDataGridModel(model).rollOverIndex;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 */
+		public function set rollOverIndex(value:int):void
+		{
+			IDataGridModel(model).rollOverIndex = value;
+		}
 		
+		/**
+		 *  The item currently selected. Changing this value also
+		 *  changes the selectedIndex property.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 */
+        [Bindable("selectionChanged")]
+		public function get selectedItem():Object
+		{
+			return IDataGridModel(model).selectedItem;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+		 */
+		public function set selectedItem(value:Object):void
+		{
+			IDataGridModel(model).selectedItem = value;
+		}
+
 		/**
 		 * @private
 		 */
@@ -133,7 +178,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.IBead
 		 */
@@ -163,7 +208,7 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 */
 		public function get rowHeight():Number

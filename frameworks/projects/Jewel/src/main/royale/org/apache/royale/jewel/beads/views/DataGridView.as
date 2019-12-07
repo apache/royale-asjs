@@ -35,11 +35,11 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
-	import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGrid;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -105,13 +105,12 @@ package org.apache.royale.jewel.beads.views
         /**
          * @private
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          * @royaleignorecoercion org.apache.royale.core.IBead
          * @royaleignorecoercion org.apache.royale.core.IBeadModel
          * @royaleignorecoercion org.apache.royale.core.IChild
          * @royaleignorecoercion org.apache.royale.core.ILayoutChild
          * @royaleignorecoercion org.apache.royale.core.IUIBase
-         * @royaleignorecoercion org.apache.royale.html.DataGrid
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         override protected function handleInitComplete(event:Event):void
         {
@@ -168,6 +167,8 @@ package org.apache.royale.jewel.beads.views
 
         /**
          * @private
+         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
          */
         protected function handleDataProviderChanged(event:Event):void
         {
@@ -183,7 +184,7 @@ package org.apache.royale.jewel.beads.views
         /**
          * @private
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-         * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumnList
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
          */
         private function handleSelectedIndexChanged(event:Event):void
         {
@@ -200,7 +201,7 @@ package org.apache.royale.jewel.beads.views
         /**
          * @private
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-         * @royaleignorecoercion org.apache.royale.html.supportClasses.IDataGridColumnList
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
          */
         private function handleColumnListChange(event:Event):void
         {
@@ -217,10 +218,29 @@ package org.apache.royale.jewel.beads.views
 
             host.dispatchEvent(new Event('change'));
         }
+        /**
+         * @private
+         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
+         */
+        private function handleColumnListRollOverChange(event:Event):void
+        {
+            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
+            var list:IDataGridColumnList = event.target as IDataGridColumnList;
+            sharedModel.rollOverIndex = list.rollOverIndex;
+
+            for(var i:int=0; i < _lists.length; i++) {
+                if (list != _lists[i]) {
+                    var otherList:IDataGridColumnList = _lists[i] as IDataGridColumnList;
+                    otherList.rollOverIndex = list.rollOverIndex;
+                }
+            }
+
+            host.dispatchEvent(new Event('rollOverIndex'));
+        }
 
         /**
          * @private
-         * @royaleignorecoercion String
          * @royaleignorecoercion Class
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
          * @royaleignorecoercion org.apache.royale.core.IBead
@@ -266,7 +286,8 @@ package org.apache.royale.jewel.beads.views
                 list.dataProvider = sharedModel.dataProvider;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
-                list.addEventListener('change', handleColumnListChange);
+                list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
+                list.addEventListener('selectionChanged', handleColumnListChange);
                 list.addBead(presentationModel as IBead);
 
                 (_listArea as IParent).addElement(list as IChild);
