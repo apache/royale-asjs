@@ -131,7 +131,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
-		 * * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
