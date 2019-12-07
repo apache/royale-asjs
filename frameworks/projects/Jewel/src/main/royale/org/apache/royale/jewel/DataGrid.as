@@ -19,12 +19,9 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IChangePropagator;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGrid;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
@@ -179,12 +176,6 @@ package org.apache.royale.jewel
 		public function set rowHeight(value:Number):void
 		{
 			(presentationModel as IDataGridPresentationModel).rowHeight = value;
-		}
-		
-		override public function addedToParent():void
-		{
-			loadBeadFromValuesManager(IChangePropagator, "iChangePropagator", this);
-			super.addedToParent();
 		}
 
 		private var _emphasis:String;

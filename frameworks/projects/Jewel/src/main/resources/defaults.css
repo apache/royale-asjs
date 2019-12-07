@@ -512,7 +512,6 @@ j|ComboBoxPopUp {
 }
 
 j|DataGrid {
-  IChangePropagator: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnChangePropagator");
   IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
