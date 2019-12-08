@@ -671,20 +671,6 @@ public class Container extends UIComponent
     }
 	[Inspectable(category="General")]
 	
-	/*	  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    public function get backgroundColor():Object
-    {
-        return ValuesManager.valuesImpl.getValue(this, "backgroundColor");
-    }
-    public function set backgroundColor(value:Object):void
-    {
-        setStyle("backgroundColor", value);
-    }
     
     //----------------------------------
     //  icon

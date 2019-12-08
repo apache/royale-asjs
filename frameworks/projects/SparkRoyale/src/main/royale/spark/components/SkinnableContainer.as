@@ -35,6 +35,8 @@ import mx.core.IVisualElement;
 import mx.core.mx_internal;
 
 import spark.components.supportClasses.SkinnableComponent;
+import spark.components.supportClasses.GroupBase;
+import spark.components.beads.SkinnableContainerView;
 import spark.layouts.supportClasses.LayoutBase;
 import spark.layouts.BasicLayout;
 
@@ -443,12 +445,6 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
 	
 	}
     
-     public function get backgroundColor():uint {
-		return 0;
-
-	}
-	public function set backgroundColor(val:uint):void {
-	}
 	
 	public function get contentBackgroundColor():uint{
 	return 0;
@@ -669,6 +665,8 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
     
     /**
      * @private
+     * @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     * @royaleignorecoercion spark.components.supportClasses.GroupBase
      */
     public function set layout(value:LayoutBase):void
     {
@@ -683,6 +681,10 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
             contentGroupProperties.layout = value;
         */
         _layout = value;
+        if (getBeadByType(IBeadView))
+        {
+            ((view as SkinnableContainerView).contentView as GroupBase).layout = value;
+        }
     }
     
     //----------------------------------

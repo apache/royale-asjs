@@ -2217,6 +2217,8 @@ COMPILE::JS
                     this.positioner.style.width = oldWidth;
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
                     this.positioner.style.left = oldLeft;
+                if (!isNaN(percentWidth))
+                    _measuredMinWidth = mw;
                 return mw;
 			}
 		}
@@ -2289,6 +2291,8 @@ COMPILE::JS
                     this.positioner.style.height = oldHeight;
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates width
                     this.positioner.style.top = oldTop;
+                if (!isNaN(percentHeight))
+                    _measuredMinHeight = mh;
                 return mh;
             }
 		}
@@ -4917,6 +4921,22 @@ COMPILE::JS
 
     private var _backgroundAlpha:Number = NaN;
     private var _backgroundColor:String = null;
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get backgroundColor():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "backgroundColor");
+    }
+    public function set backgroundColor(value:Object):void
+    {
+        setStyle("backgroundColor", value);
+    }
+
     
     /**
      *  Sets a style property on this component instance.

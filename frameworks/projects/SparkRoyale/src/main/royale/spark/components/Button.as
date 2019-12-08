@@ -20,8 +20,9 @@
 package spark.components
 {
 
-import org.apache.royale.events.Event;
 import spark.components.supportClasses.ButtonBase;
+
+import org.apache.royale.events.Event;
 //import mx.core.IButton;
 
 
@@ -167,7 +168,19 @@ public class Button extends ButtonBase // implements IButton
     //  Overridden methods
     //
     //--------------------------------------------------------------------------
+    override public function get measuredWidth():Number
+    {
+        var mw:Number = super.measuredWidth;
+        if (mw < 70) mw = 70;
+        return mw;
+    }
     
+    override public function get measuredHeight():Number
+    {
+        var mw:Number = super.measuredHeight;
+        if (mw < 21) mw = 21;
+        return mw;
+    }
     
     //--------------------------------------------------------------------------
     //
