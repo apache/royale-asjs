@@ -135,6 +135,9 @@ package mx.controls.beads
             // grid lines.
             var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
             IEventDispatcher(model).addEventListener("dataProviderChanged", drawLines);
+            
+            // if the headerText gets changed, the overlay is removed, so re-apply it
+            IEventDispatcher(_header.model).addEventListener("dataProviderChanged", handleInitComplete);
         }
         
 
