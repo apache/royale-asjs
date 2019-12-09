@@ -330,7 +330,23 @@ public class TextInput extends SkinnableTextBase
 		}
     }
     // END
-    
+	
+    private var _editable:Boolean = true;
+    override public function get editable():Boolean{
+	return _editable;
+    }
+    override public function set editable(value:Boolean):void{
+	_editable = value;
+	COMPILE::JS
+	{
+		if(value == false) {
+			(element as HTMLInputElement).readOnly = true;
+		}
+		else {
+			 (element as HTMLInputElement).readOnly = value;
+		}
+	}
+   }
     override public function set maxChars(value:int):void
     {
         super.maxChars = value;
