@@ -621,7 +621,18 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function set editable(value:Boolean):void
     {
-        if (value == _editable)
+        _editable = value;
+	COMPILE::JS
+	{
+		if(value == false) {
+			(element as HTMLInputElement).readOnly = true;
+		}
+		else {
+			 (element as HTMLInputElement).readOnly = value;
+		}
+	}
+	
+     /*   if (value == _editable)
             return;
 
         _editable = value;
@@ -629,7 +640,7 @@ public class TextInput extends UIComponent implements ITextInput
 
         invalidateProperties();
 
-        dispatchEvent(new Event("editableChanged"));
+        dispatchEvent(new Event("editableChanged")); */
     }
 
     //----------------------------------
