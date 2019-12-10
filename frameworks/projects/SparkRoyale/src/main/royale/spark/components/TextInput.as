@@ -293,6 +293,17 @@ public class TextInput extends SkinnableTextBase
     /**
      *  @private
      */
+    override public function get text():String
+    {
+		COMPILE::SWF
+		{
+			return ITextModel(model).text;
+		}
+		COMPILE::JS
+		{
+			return (element as HTMLInputElement).value;
+		}
+    }
     override public function set text(value:String):void
     {
         // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
@@ -309,9 +320,10 @@ public class TextInput extends SkinnableTextBase
 		}
         // END
 
-        super.text = value;
+      /*  super.text = value; */
         // Trigger bindings to textChanged.
         dispatchEvent(new Event("textChanged"));
+	dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
 
     // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
