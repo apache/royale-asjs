@@ -22,7 +22,8 @@ package
   {
     public function XMLText()
     {
-      
+      super();
+			resetNodeKind();
     }
 		override protected function getNodeRef():String{
 			return "t";
@@ -33,7 +34,7 @@ package
 			var i:int;
 			var xml:XML = new XMLText();
 			xml.setName(name());
-			xml.setValue(_value);
+			if(_value)xml.setValue(_value);
 			var len:int;
 			len = namespaceLength();
 			for(i=0;i<len;i++)

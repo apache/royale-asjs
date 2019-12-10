@@ -560,7 +560,9 @@ package
 		
 		private static var _defaultNS:String;
 		private static var _internal:Boolean;
-		
+		/**
+		 * @royaleignorecoercion XML
+		 */
 		public function XML(xml:* = null)
 		{
 			// _origStr = xml;
@@ -583,24 +585,21 @@ package
 					_value = '';
 				}
 			}
-			
-			Object.defineProperty(this,"0",
-					{
-						"get": _zeroIndexGetter,
-						"set": _zeroIndexSetter,
-						enumerable: true,
-						configurable: true
-					}
-			);
+			if(!_class_initialized)
+			{
+				Object.defineProperty(XML.prototype,"0",
+						{
+							"get": function():XML{return this as XML},
+							"set": function():void{},
+							enumerable: true,
+							configurable: true
+						}
+				);
+				_class_initialized = true;
+			}
 		}
-		
-		private function _zeroIndexGetter():XML {
-			return this;
-		}
-		private function _zeroIndexSetter():void {
-			//do nothing
-		}
-		
+
+		private static var _class_initialized:Boolean = false;
 		
 		private static const xmlRegEx:RegExp = /&(?![\w]+;)/g;
 		private static const isWhitespace:RegExp = /^\s+$/;
@@ -672,9 +671,8 @@ package
 					foundCount = 1; //top level root tag wins
 					
 					if (foundCount != 0) {
-						//reset any earlier settings
-						delete this._nodeKind;
-						delete this._value;
+						//reset any earlier settings\
+						resetNodeKind();
 					}
 					_name = getQName(node.localName,node.prefix,node.namespaceURI,false);
 					_internal = true;
@@ -740,7 +738,11 @@ package
 			if (foundCount > 1) throw new TypeError('Error #1088: The markup in the document following the root element must be well-formed.');
 
 		}
-		
+		protected function resetNodeKind():void{
+			delete this._nodeKind;
+			delete this._value;
+			delete this._name;
+		}
 		protected var _children:Array;
 		protected var _attributes:Array;
 		private var _parent:XML;
@@ -898,7 +900,7 @@ package
 				if (lastChild && lastChild.getNodeRef() == ELEMENT) {
 					
 					const wrapper:XML = new XML();
-					delete wrapper._nodeKind;
+					wrapper.resetNodeKind();
 					child = new XML(child.toString());
 					wrapper.setName(lastChild.name());
 					child.setParent(wrapper);
@@ -1161,9 +1163,12 @@ package
 			*/
 			var i:int;
 			var xml:XML = new XML();
+			xml.resetNodeKind();
 			xml.setNodeKind(getNodeKindInternal());
 			xml.setName(name());
-			xml.setValue(_value);
+			if(_value){
+				xml.setValue(_value);
+			}
 			var len:int;
 			len = namespaceLength();
 			for(i=0;i<len;i++)
@@ -1743,7 +1748,7 @@ package
 			return _name? _name.localName : null;
 		}
 		
-		private var _name:QName;
+		protected var _name:QName;
 		
 		/**
 		 * Gives the qualified name for the XML object.

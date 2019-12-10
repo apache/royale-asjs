@@ -22,7 +22,8 @@ package
   {
     public function XMLAttribute()
     {
-      
+      super();
+			resetNodeKind();
     }
 		override protected function getNodeRef():String{
 			return "a";
@@ -32,7 +33,8 @@ package
 			var i:int;
 			var xml:XML = new XMLAttribute();
 			xml.setName(name());
-			xml.setValue(_value);
+			if(_value)xml.setValue(_value);
+			
 			var len:int;
 			len = namespaceLength();
 			for(i=0;i<len;i++)
