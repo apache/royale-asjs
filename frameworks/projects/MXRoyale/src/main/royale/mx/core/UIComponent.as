@@ -3112,7 +3112,12 @@ COMPILE::JS
         addEventListener("stateChangeComplete", stateChangeCompleteHandler);
         dispatchEvent(event);
     }
-
+    
+    public function setCurrentState(stateName:String, playTransition:Boolean=true):void
+    {
+        currentState = stateName;
+    }
+    
     private function stateChangeCompleteHandler(event:Event):void
     {
         callLater(dispatchUpdateComplete); 
@@ -4679,6 +4684,52 @@ COMPILE::JS
     {
         this._uid = uid;
     }
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get showErrorSkin():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "showErrorSkin");
+    }
+    public function set showErrorSkin(value:Object):void
+    {
+        setStyle("showErrorSkin", value);
+    }
+
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get showErrorTip():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "showErrorTip");
+    }
+    public function set showErrorTip(value:Object):void
+    {
+        setStyle("showErrorTip", value);
+    }
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get baseline():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "baseline");
+    }
+    public function set baseline(value:Object):void
+    {
+        setStyle("baseline", value);
+    }
+    
 	[Inspectable(category="General")]
 	
 	/*	  
@@ -4695,6 +4746,23 @@ COMPILE::JS
     {
         setStyle("fontSize", value);
     }
+    [Inspectable(category="General")]
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get fontStyle():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "fontStyle");
+    }
+    public function set fontStyle(value:Object):void
+    {
+        setStyle("fontStyle", value);
+    }
+    
 	[Inspectable(category="General")]
 	
 	/*	  

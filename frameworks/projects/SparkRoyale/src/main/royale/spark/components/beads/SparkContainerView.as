@@ -22,19 +22,19 @@ package spark.components.beads
 
 import spark.components.SkinnableContainer;
 import spark.components.supportClasses.GroupBase;
-import spark.components.supportClasses.SkinnableComponent;
 
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IContainer;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
+import org.apache.royale.html.beads.ContainerView;
 
 /**
  *  @private
- *  The SkinnableContainerView for emulation.
+ *  The SparkContainerView for emulation.
  */
-public class SkinnableContainerView extends SparkContainerView
+public class SparkContainerView extends ContainerView
 {
 	//--------------------------------------------------------------------------
 	//
@@ -50,18 +50,25 @@ public class SkinnableContainerView extends SparkContainerView
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function SkinnableContainerView()
+	public function SparkContainerView()
 	{
 		super();
 	}
 
-    override protected function addViewport():void
+    /**
+     */
+    override public function set strand(value:IStrand):void
     {
-        var chost:IContainer = host as IContainer;
-        var skinhost:SkinnableComponent = host as SkinnableComponent;
-        if (chost != null && chost != viewport.contentView) {
-            chost.addElement(skinhost.skin);
-        }            
+        super.strand = value;
+        var host:SkinnableContainer = _strand as SkinnableContainer;
+        var g:GroupBase = (contentView as GroupBase);
+        g.layout = host.layout;
+        
+        if (!host.isWidthSizedToContent())
+            g.percentWidth = 100;
+        if (!host.isHeightSizedToContent())
+            g.percentHeight = 100;
+
     }
 
 }

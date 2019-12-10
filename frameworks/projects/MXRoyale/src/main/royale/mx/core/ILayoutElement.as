@@ -224,13 +224,14 @@ public interface ILayoutElement extends IEventDispatcher
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
-    function get baseline():Object;
      */
+    function get baseline():Object;
+     
     
     /**
      *  @private
-    function set baseline(value:Object):void;
      */
+    function set baseline(value:Object):void;
 
     /**
      *  The y-coordinate of the baseline

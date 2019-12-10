@@ -27,12 +27,12 @@ import flash.events.Event;
 import flash.events.IEventDispatcher;
 */
 import mx.core.IInvalidating;
-/*
 import mx.core.mx_internal;
+use namespace mx_internal;
+/*
 import mx.core.IMXMLObject;
 import flash.events.EventDispatcher;
 
-use namespace mx_internal;
 */
 	
 /**
@@ -75,7 +75,7 @@ public class ConstraintRow extends EventDispatcher //implements IMXMLObject
 	//  Variables
 	//
 	//--------------------------------------------------------------------------
-	protected var contentSize:Boolean = false;
+	mx_internal var contentSize:Boolean = false;
 	
 	
 	//--------------------------------------------------------------------------

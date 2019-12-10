@@ -369,7 +369,7 @@ package spark.layouts
 		 *  percent widths.
 		 */
 		private function constrainPercentColumnWidths(colWidths:Vector.<Number>, constrainedWidth:Number, formItems:Vector.<ILayoutElement>):void
-		{/*
+		{
 			if (formItems.length == 0)
 				return;
 			
@@ -378,7 +378,7 @@ package spark.layouts
 			const constraintColumns:Vector.<ConstraintColumn> = fiLayout.constraintColumns;
 			const numCols:int = constraintColumns.length;
 			var col:ConstraintColumn;
-			var childInfoArray:Array*/ /* of ColumnFlexChildInfo *//* = [];
+			var childInfoArray:Array /* of ColumnFlexChildInfo */ = [];
 			var childInfo:ColumnFlexChildInfo;
 			var remainingWidth:Number = constrainedWidth;
 			var percentMinWidths:Number = 0;
@@ -430,7 +430,7 @@ package spark.layouts
 					remainingWidth -= colWidth;
 				}
 				// TODO (klin): What do we do if there's remainingWidth after all this?
-			}*/
+			}
 		}
 	}
 }

@@ -32,16 +32,16 @@ import flash.utils.*;
 import mx.core.FlexVersion;
 import mx.core.ILayoutElement;
 import mx.core.IVisualElement;
-import mx.core.mx_internal;
 import mx.events.PropertyChangeEvent;
 
 import spark.events.SkinPartEvent;
 import spark.utils.FTETextUtil;
 
-use namespace mx_internal;
 */
 import mx.core.IFactory;
+import mx.core.mx_internal;
 import mx.collections.IList;
+use namespace mx_internal;
 
 import mx.core.UIComponent;
 import spark.components.DataGroup;
@@ -282,7 +282,7 @@ public class SkinnableComponent extends UIComponent
      *  Setter for the skin instance.  This is so the bindable event
      *  is dispatched
      */ 
-    private function setSkin(value:UIComponent):void
+    mx_internal function setSkin(value:UIComponent):void
     {
         if (value === _skin)
            return;

@@ -451,15 +451,6 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
         return element;
     }
 
-	public function set fontStyle(value:String):void
-    {
-       
-    }
-	public function get fontStyle():String          
-    {
-        return "NORMAL";
-    }
-    
     public function get lineThrough():Boolean
     {
 	return true;

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+<!--- The default skin class for a Spark Form container.  
+
+This skin defines a contentGroup for the Form container with a 
+FormLayout as its layout object. The FormLayout is a VerticalLayout
+that has additional logic to align the columns of FormItems.
+
+@see spark.components.Form
+@see spark.layouts.FormLayout
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4.5
+-->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+        xmlns:s="library://ns.apache.org/royale/spark" 
+        alpha.disabled="0.5">
+    
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+        * @copy spark.skins.spark.ApplicationSkin#hostComponent
+        */
+        [HostComponent("spark.components.Form")]
+        ]]>
+    </fx:Metadata> 
+    <fx:Script >
+    
+        <![CDATA[         
+            /**
+             *  @private
+             */
+            override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number) : void
+            {
+                // Push backgroundColor and backgroundAlpha directly.
+                // Handle undefined backgroundColor by hiding the background object.
+                if (isNaN(getStyle("backgroundColor")))
+                {
+                    background.visible = false;
+                }
+                else
+                {
+                    background.visible = true;
+                    bgFill.color = getStyle("backgroundColor");
+                    bgFill.alpha = getStyle("backgroundAlpha");
+                }
+                
+                super.updateDisplayList(unscaledWidth, unscaledHeight);
+            }
+        ]]>        
+    </fx:Script>
+    
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="error" />
+        <s:State name="disabled" />
+    </s:states>
+    
+    <!--- Defines the appearance of the Form class's background. -->
+    <s:Rect id="background" left="0" right="0" top="0" bottom="0">
+        <s:fill>
+            <!--- @private -->
+            <s:SolidColor id="bgFill" color="#FFFFFF"/>
+        </s:fill>
+    </s:Rect>
+    <!--- @copy spark.components.SkinnableContainer#contentGroup -->
+    <!-- We set Form's showErrorTip and showErrorSkin to false, so we set them back 
+         to true for the Form's elements -->
+    <s:Group id="contentGroup" showErrorSkin="true" showErrorTip="true" 
+             left="10" right="10" top="10" bottom="10">
+        <s:layout>
+            <s:FormLayout gap="7"/>
+        </s:layout>
+    </s:Group>
+    
+    
+</s:Skin>
