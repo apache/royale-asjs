@@ -147,12 +147,12 @@ package org.apache.royale.jewel.beads.controls
 
             IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 
-            var comp:IUIBase = _strand as IUIBase
+            var comp:IUIBase = _strand as IUIBase;
             host = UIUtils.findPopUpHost(comp);
 			if (tt) host.popUpParent.removeElement(tt);
 
             tt = new ToolTipLabel();
-            tt.text = toolTip;
+            tt.html = toolTip;
 
 			// add this before measuring or measurement is not accurate.
             host.popUpParent.addElement(tt, false); // don't trigger a layout
