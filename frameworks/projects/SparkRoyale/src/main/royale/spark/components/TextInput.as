@@ -288,7 +288,22 @@ public class TextInput extends SkinnableTextBase
     //[Bindable("textChanged")]
     
     // Compiler will strip leading and trailing whitespace from text string.
-
+    [CollapseWhiteSpace]
+       
+    /**
+     *  @private
+     */
+    override public function get text():String
+    {
+		COMPILE::SWF
+		{
+			return ITextModel(model).text;
+		}
+		COMPILE::JS
+		{
+			return (element as HTMLInputElement).value;
+		}
+    }
     override public function set text(value:String):void
     {
         // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
