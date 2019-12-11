@@ -53,27 +53,48 @@
 			dp.push("Item 22");
 			myList1.dataProvider = dp;
 			myList2.dataProvider = [];
+			myList3.dataProvider = [];
+			outOfApplicationBead.addEventListener("drop", dropHandler);
 		}
+
+		private function dropHandler(e:Event):void
+		{
+			myList3.dataProvider = DragEvent.dragSource as Array;
+		}
+
 		]]>
 	</fx:Script>
 	<js:valuesImpl>
 		<js:SimpleCSSValuesImpl />
 	</js:valuesImpl>
+	<js:beads>
+		<js:OutOfApplicationDropTargetBead id="outOfApplicationBead"/>
+	</js:beads>
 	<js:initialView>
 		<js:View>
-			<js:HContainer width="1200">
-				<js:MultiSelectionList id="myList1" width="600" height="400">
-					<js:beads>
-						<js:MultiSelectionDragSourceBead dragType="move" />
-						<js:MultiSelectionDragImageBead />
-					</js:beads>
-				</js:MultiSelectionList>
-				<js:MultiSelectionList id="myList2" width="600" height="400">
-					<js:beads>
-						<js:SensitiveMultiSelectionDropTargetBead />
-						<js:SingleSelectionDropIndicatorBead />
-					</js:beads>
-				</js:MultiSelectionList>
+			<js:HContainer width="1800">
+				<js:VContainer width="400" height="320">
+					<js:Label text="Drag From Here" height="20"/>
+					<js:MultiSelectionList id="myList1" width="400" height="300">
+						<js:beads>
+							<js:MultiSelectionDragSourceBead dragType="move" />
+							<js:MultiSelectionDragImageBead />
+						</js:beads>
+					</js:MultiSelectionList>
+				</js:VContainer>
+				<js:VContainer width="400" height="320">
+					<js:Label text="Drop here" height="20"/>
+					<js:MultiSelectionList id="myList2" width="400" height="300">
+						<js:beads>
+							<js:SensitiveMultiSelectionDropTargetBead />
+							<js:SingleSelectionDropIndicatorBead />
+						</js:beads>
+					</js:MultiSelectionList>
+				</js:VContainer>
+				<js:VContainer width="400" height="320">
+					<js:Label height="20" text="Or drop out of application"/>
+					<js:List id="myList3" width="400" height="300"/>
+				</js:VContainer>
 			</js:HContainer>
 		</js:View>
 	</js:initialView>
