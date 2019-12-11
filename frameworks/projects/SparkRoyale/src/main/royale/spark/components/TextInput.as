@@ -338,7 +338,7 @@ public class TextInput extends SkinnableTextBase
 			(element as HTMLInputElement).readOnly = true;
 		}
 		else {
-			 (element as HTMLInputElement).readOnly = value;
+			 (element as HTMLInputElement).readOnly = false;
 		}
 	}
    }
