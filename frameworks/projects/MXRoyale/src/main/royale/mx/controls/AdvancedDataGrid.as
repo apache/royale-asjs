@@ -9702,7 +9702,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
      *  @royaleignorecoercion org.apache.royale.core.IBead
      */
-    public function get presentationModel():IBead
+    override public function get presentationModel():IBead
     {
         if (_presentationModel == null) {
             var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
@@ -9755,6 +9755,15 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         ((view as AdvancedDataGridView).header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
     }
     
+    override public function set rowHeight(value:Number):void
+    {
+        super.rowHeight = value;
+        if ((view as AdvancedDataGridView).header)
+        {
+            (view as AdvancedDataGridView).header.height = value;
+            dispatchEvent(new Event("layoutNeeded"));
+        }
+    }
 
 }
 

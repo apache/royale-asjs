@@ -810,7 +810,7 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
      *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
      *  @royaleignorecoercion org.apache.royale.core.IBead
      */
-    public function get presentationModel():IBead
+    override public function get presentationModel():IBead
     {
         if (_presentationModel == null) {
             var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");

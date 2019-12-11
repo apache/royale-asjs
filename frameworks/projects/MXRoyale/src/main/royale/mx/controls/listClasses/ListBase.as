@@ -34,6 +34,7 @@ import mx.utils.UIDUtil;
 import mx.core.ScrollControlBase;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
+import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IChild;
@@ -46,6 +47,7 @@ import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
 import org.apache.royale.core.ILayoutView;
+import org.apache.royale.core.IListPresentationModel;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ValuesManager;
@@ -783,6 +785,34 @@ use namespace mx_internal;
             return view as ILayoutHost;
         }
         
+        /**
+         * @private
+         */
+        private var _presentationModel:IListPresentationModel;
+        
+        /**
+         *  The DataGrid's presentation model
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         *  @royaleignorecoercion org.apache.royale.core.IBead
+         */
+        public function get presentationModel():IBead
+        {
+            if (_presentationModel == null) {
+                var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
+                if (c) {
+                    _presentationModel = new c() as IListPresentationModel;
+                    addBead(_presentationModel as IBead);
+                }
+            }
+            
+            return _presentationModel;
+        }
+        
         /*
         * The following functions are for the SWF-side only and re-direct element functions
         * to the content area, enabling scrolling and clipping which are provided automatically
@@ -1093,6 +1123,7 @@ use namespace mx_internal;
         
         /**
          *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
          */
         public function set rowHeight(value:Number):void
         {
@@ -1102,6 +1133,7 @@ use namespace mx_internal;
             {
                 _rowHeight = value;
                 
+                (presentationModel as IListPresentationModel).rowHeight = value;
                 /*
                 invalidateSize();
                 itemsSizeChanged = true;

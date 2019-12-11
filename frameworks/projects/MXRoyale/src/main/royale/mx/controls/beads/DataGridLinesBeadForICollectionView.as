@@ -101,7 +101,7 @@ package mx.controls.beads
             if (contentView.height > n * rowHeight)
             {
                 var bgColors:Array = (_strand as UIComponent).getStyle("alternatingItemColors");
-                var yy:Number = n * (rowHeight + presentationModel.separatorThickness);
+                var yy:Number = n * rowHeight;
                 
                 var bgFill0:SolidColor = new SolidColor();
                 bgFill0.color = bgColors[0];

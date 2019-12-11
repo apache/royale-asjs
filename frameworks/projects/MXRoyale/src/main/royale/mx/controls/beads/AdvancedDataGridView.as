@@ -63,6 +63,7 @@ package mx.controls.beads
             super.handleInitComplete(event);
             
             var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
+            header.height = host.rowHeight;
             
             IEventDispatcher(host).addEventListener("columnsInvalid", handleColumnsInvalid);
             handleColumnsInvalid(null);
