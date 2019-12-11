@@ -54,7 +54,6 @@
 			myList1.dataProvider = dp;
 			myList2.dataProvider = [];
 			myList3.dataProvider = [];
-			outOfApplicationBead.addEventListener("drop", dropHandler);
 		}
 
 		private function dropHandler(e:Event):void
@@ -74,7 +73,7 @@
 		<js:SimpleCSSValuesImpl />
 	</js:valuesImpl>
 	<js:beads>
-		<js:OutOfApplicationDropTargetBead id="outOfApplicationBead"/>
+		<js:OutOfApplicationDropTargetBead drop="dropHandler(event)"/>
 	</js:beads>
 	<js:initialView>
 		<js:View>
