@@ -59,7 +59,13 @@
 
 		private function dropHandler(e:Event):void
 		{
-			myList3.dataProvider = DragEvent.dragSource as Array;
+			var newDp:Array = (myList3.dataProvider as Array).concat();
+			var dragSource:Array = DragEvent.dragSource as Array;
+			for (var i:int = 0; i < dragSource.length; i++)
+			{
+				newDp.push(dragSource[i]);
+			}
+			myList3.dataProvider = newDp;
 		}
 
 		]]>
