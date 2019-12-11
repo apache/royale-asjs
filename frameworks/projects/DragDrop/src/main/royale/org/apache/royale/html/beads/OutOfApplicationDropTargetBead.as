@@ -145,6 +145,11 @@ package org.apache.royale.html.beads
 				return;
 			}
 
+			if (DragEvent.dragInitiator) {
+				DragEvent.dragInitiator.acceptingDrop(_strand, "object");
+			}
+
+
 			// Let the dragInitiator know the drop has been completed.
 			if (DragEvent.dragInitiator) {
 				DragEvent.dragInitiator.acceptedDrop(_strand, "object");
