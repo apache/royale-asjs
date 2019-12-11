@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.css2
 {
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.IRenderedObject;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.MouseEvent;
@@ -98,11 +101,11 @@ package org.apache.royale.css2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public static function getCursor(obj:IUIBase):String
+		public static function getCursor(obj:IRenderedObject):String
 		{
             COMPILE::SWF
             {
-                var cursorData:CursorData =  obj.getBeadByType(CursorData) as CursorData;
+                var cursorData:CursorData =  (obj as IStrand).getBeadByType(CursorData) as CursorData;
                 if (cursorData)
                     return cursorData.cursor;
                 return Mouse.cursor;
@@ -116,17 +119,17 @@ package org.apache.royale.css2
         /**
          *  @private
          */
-		public static function setCursor(obj:IUIBase, cursor:String):void
+		public static function setCursor(obj:IRenderedObject, cursor:String):void
 		{
             COMPILE::SWF
             {
-                var cursorData:CursorData =  obj.getBeadByType(CursorData) as CursorData;
+                var cursorData:CursorData =  (obj as IStrand).getBeadByType(CursorData) as CursorData;
                 if (!cursorData)
                 {
                     cursorData = new CursorData();
-                    obj.addBead(cursorData);
-                    obj.addEventListener(MouseEvent.MOUSE_OVER, overHandler);
-                    obj.addEventListener(MouseEvent.MOUSE_OUT, outHandler);
+                    (obj as IStrand).addBead(cursorData);
+                    (obj as IEventDispatcher).addEventListener(MouseEvent.MOUSE_OVER, overHandler);
+                    (obj as IEventDispatcher).addEventListener(MouseEvent.MOUSE_OUT, outHandler);
                 }
                 if (builtinCursors.indexOf(cursor) == -1)
                 {
