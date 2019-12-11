@@ -85,7 +85,7 @@ package org.apache.royale.html.beads.controllers
 		/**
 		 * @private
 		 */
-        private function alertCloseHandler(event:CloseEvent):void
+        protected function alertCloseHandler(event:CloseEvent):void
         {
 			COMPILE::SWF
             {

@@ -201,10 +201,8 @@ public class PopUpManager
         var popUpHost:IPopUpHost = UIUtils.findPopUpHost(parent as IUIBase);
         if (modal)
         {
-            var appStrand:IStrand = FlexGlobals.topLevelApplication as IStrand;
-            var modalBead:IModalDisplay = appStrand.getBeadByType(IModalDisplay) as IModalDisplay;
-            if (modalBead)
-                modalBead.show(popUpHost);
+            PopUpManagerModal.show(popUpHost as IUIBase);
+            modalWindows.push(window);
         }
         if (popUpHost is UIComponent)
             (window as UIComponent).systemManager = (popUpHost as UIComponent).systemManager;
@@ -232,6 +230,8 @@ public class PopUpManager
         UIUtils.center(popUp as IUIBase, (popUp.parent as IPopUpHostParent).popUpHost as IUIBase);
     }
 	
+    private static var modalWindows:Array = [];
+    
     /**
      *  Removes a popup window popped up by 
      *  the <code>createPopUp()</code> or <code>addPopUp()</code> method.
@@ -243,10 +243,12 @@ public class PopUpManager
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-	
     public static function removePopUp(popUp:IFlexDisplayObject):void
     {
-		UIUtils.removePopUp(popUp as IChild)
+        var popUpHost:IUIBase = (popUp.parent as IPopUpHostParent).popUpHost as IUIBase;
+		UIUtils.removePopUp(popUp as IChild);
+        if (modalWindows.length > 0 && modalWindows[modalWindows.length - 1] == popUp)
+            PopUpManagerModal.remove(popUpHost);
     }
 } // class
 } // package

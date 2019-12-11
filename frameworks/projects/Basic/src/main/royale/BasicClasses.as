@@ -91,6 +91,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.GroupView; GroupView;
 	import org.apache.royale.html.beads.ContainerView; ContainerView;
 	import org.apache.royale.core.supportClasses.StyledImageBase; StyledImageBase;
+    import org.apache.royale.html.beads.plugin.ModalDisplay; ModalDisplay;
 
 
 	COMPILE::SWF

@@ -22,6 +22,7 @@
 @namespace core "mx.core.*";
 @namespace containerBeads "mx.containers.beads.*";
 @namespace adg "mx.controls.advancedDataGridClasses.*";
+@namespace pop "mx.managers.*";
 
 .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
@@ -112,7 +113,7 @@ Alert
 {
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");
 	IBeadView:  ClassReference("mx.controls.beads.AlertView");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.AlertController");
+	IBeadController: ClassReference("mx.controls.beads.controllers.AlertMouseController");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.AlertModel");
 
 	background-color: #FFFFFF;
@@ -354,6 +355,17 @@ PanelTitleBar
 	padding-left: 1px;
 	padding-right: 1px;
 	border-bottom: 1px solid #333333;
+}
+
+pop|PopUpManagerModal
+{
+	background-color: #E2E2E2;
+	position: fixed;
+	opacity: 0.2;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
 }
 
 TabNavigator
