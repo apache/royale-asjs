@@ -325,23 +325,6 @@ public class TextInput extends SkinnableTextBase
         dispatchEvent(new Event("textChanged"));
 	dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
     }
-
-    // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
-    /**
-     *  @private
-     */
-    override public function get text():String
-    {
-        COMPILE::SWF
-		{
-			return ITextModel(model).text;
-		}
-		COMPILE::JS
-		{
-			return (element as HTMLInputElement).value;
-		}
-    }
-    // END
 	
     private var _editable:Boolean = true;
     override public function get editable():Boolean{
