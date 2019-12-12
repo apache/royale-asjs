@@ -26,9 +26,13 @@ package org.apache.royale.jewel
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 
 	/**
-	 *  The ButtonBar class is a component that displays a set of Buttons. The ButtonBar
+	 *  The Jewel ButtonBar class is a component that displays a set of Buttons. The ButtonBar
 	 *  is actually a List with a default horizontal layout and an itemRenderer that
-	 *  produces Buttons. The ButtonBar uses the following beads:
+	 *  produces Jewel Buttons.
+	 *  
+	 *  By default buttons are equally sized, by setting `widthType` to NaN.
+	 *  
+	 *  The ButtonBar uses the following beads:
 	 *
 	 *  org.apache.royale.core.IBeadModel: the data model for the ButtonBar, including the dataProvider.
 	 *  org.apache.royale.core.IBeadView: constructs the parts of the component.
@@ -94,17 +98,17 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
 		 */
-		public function get widthType():Number
-		{
-			return ButtonBarModel(model).widthType;
-		}
+		// public function get widthType():Number
+		// {
+		// 	return ButtonBarModel(model).widthType;
+		// }
 		/**
 		 * @royaleignorecoercion org.apache.royale.html.beads.models.ButtonBarModel
 		 */
-		public function set widthType(value:Number):void
-		{
-			ButtonBarModel(model).widthType = value;
-		}
+		// public function set widthType(value:Number):void
+		// {
+		// 	ButtonBarModel(model).widthType = value;
+		// }
 
 		private var _emphasis:String;
         /**
