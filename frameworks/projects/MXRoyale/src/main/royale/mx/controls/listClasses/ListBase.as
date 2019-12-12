@@ -26,12 +26,12 @@ import mx.collections.ListCollectionView;
 import mx.collections.XMLListCollection;
 import mx.core.EdgeMetrics;
 import mx.core.IUIComponent;
+import mx.core.ScrollControlBase;
 import mx.core.ScrollPolicy;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.CollectionEvent;
 import mx.utils.UIDUtil;
-import mx.core.ScrollControlBase;
 
 import org.apache.royale.core.ContainerBaseStrandChildren;
 import org.apache.royale.core.IBead;
@@ -803,10 +803,16 @@ use namespace mx_internal;
         public function get presentationModel():IBead
         {
             if (_presentationModel == null) {
-                var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
-                if (c) {
-                    _presentationModel = new c() as IListPresentationModel;
-                    addBead(_presentationModel as IBead);
+                var bead:IBead = getBeadByType(IListPresentationModel);
+                if (bead)
+                    _presentationModel = bead as IListPresentationModel;
+                else
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
+                    if (c) {
+                        _presentationModel = new c() as IListPresentationModel;
+                        addBead(_presentationModel as IBead);
+                    }
                 }
             }
             
