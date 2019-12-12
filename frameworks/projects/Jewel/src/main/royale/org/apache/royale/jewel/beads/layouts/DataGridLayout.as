@@ -20,13 +20,10 @@ package org.apache.royale.jewel.beads.layouts
 {	
     import org.apache.royale.collections.ArrayList;
     import org.apache.royale.core.IBeadLayout;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IDataGridView;
@@ -113,24 +110,26 @@ package org.apache.royale.jewel.beads.layouts
             // in the bbmodel, so do all layout based on the bbmodel, not the set
             // of columns that may contain invisible columns
             var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            var bblayout:ButtonBarLayout = header.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
+			// (header as ButtonBar).widthType = ButtonBarModel.PROPORTIONAL_WIDTHS;
 			var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
 			
 			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
 			var model:IDataGridModel = uiHost.model as IDataGridModel;
 			
-			var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
-			var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
-			
-			var defaultColumnWidth:Number = (useWidth) / bbmodel.dataProvider.length;
+			var defaultColumnWidth:Number = (uiHost.percentWidth) / bbmodel.dataProvider.length;
 			var columnWidths:Array = [];
 			
 			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
 				
+				//temporal- if only 1 isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
+				var pixelflag:Boolean = false;
 				var columnWidth:Number = defaultColumnWidth;
 				if (!isNaN(columnDef.columnWidth)) {
 					columnWidth = columnDef.columnWidth;
+					pixelflag = true;
 				}
 				
 				columnList.width = columnWidth;
@@ -138,6 +137,12 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			
 			bbmodel.buttonWidths = columnWidths;
+			if(pixelflag)
+			{
+				// bbmodel.widthType = ButtonBarModel.PIXEL_WIDTHS;
+				bblayout.widthType = ButtonBarModel.PIXEL_WIDTHS;
+				// bblayout.layout();
+			}
 			
 			header.dispatchEvent(new Event("layoutNeeded"));
 			listArea.dispatchEvent(new Event("layoutNeeded"));

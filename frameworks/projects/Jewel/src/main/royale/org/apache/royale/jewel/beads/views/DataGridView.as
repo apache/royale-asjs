@@ -25,26 +25,29 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
-	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.debugging.assert;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
-	import org.apache.royale.html.beads.layouts.ButtonBarLayout;
+	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGrid;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
-
+	import org.apache.royale.core.UIBase;
+    
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
      *  This class constructs the items that make the DataGrid: Lists for each column and a
      *  org.apache.royale.jewel.ButtonBar for the column headers.
+     * 
+     *  Columns without specific columnWidths gets 1/n of the maximun space available where n is the
+     *  number of columns.
      *
      *  @viewbead
      *  @langversion 3.0
@@ -67,10 +70,59 @@ package org.apache.royale.jewel.beads.views
             super();
         }
 
+        private var _dg:IDataGrid = _strand as IDataGrid;
+        private var _sharedModel:IDataGridModel;
         private var _header:DataGridButtonBar;
         private var _listArea:IUIBase;
-
         private var _lists:Array;
+
+        COMPILE::JS
+        private var rq:int;
+        
+        override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+
+            _dg = _strand as IDataGrid;
+            _dg.addEventListener("widthChanged", handleSizeChanges);
+            _dg.addEventListener("heightChanged", handleSizeChanges);
+            
+            // see if there is a presentation model already in place. if not, add one.
+            _sharedModel = _dg.model as IDataGridModel;
+            IEventDispatcher(_sharedModel).addEventListener("dataProviderChanged", handleDataProviderChanged);
+            IEventDispatcher(_sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
+
+            createChildren();
+		}
+
+        /**
+		 * @private
+		 */
+		private function createChildren():void
+		{
+            // header
+            var headerClass:Class = ValuesManager.valuesImpl.getValue(host, "headerClass") as Class;
+            _header = new headerClass() as DataGridButtonBar;
+            _header.dataProvider = new ArrayList(_sharedModel.columns);
+            _header.emphasis = _dg.emphasis;
+            _header.labelField = "label";
+            var headerLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "headerLayoutClass") as Class;
+            var bblayout:ButtonBarLayout = new headerLayoutClass() as ButtonBarLayout;
+            _header.addBead(bblayout as IBead);
+            _header.addBead(new Viewport() as IBead);
+            _sharedModel.headerModel = _header.model as IBeadModel;
+            _dg.strandChildren.addElement(_header as IChild);
+
+            // columns
+            var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
+            _listArea = new listAreaClass() as IUIBase;
+            _dg.strandChildren.addElement(_listArea as IChild);
+
+            if (_sharedModel.columns)
+                createLists();
+            
+            handleDataProviderChanged(null);
+        }
 
         /**
          * An array of List objects the comprise the columns of the DataGrid.
@@ -82,7 +134,6 @@ package org.apache.royale.jewel.beads.views
 
         /**
          * The area used to hold the columns
-         *
          */
         public function get listArea():IUIBase
         {
@@ -97,63 +148,19 @@ package org.apache.royale.jewel.beads.views
             return _header;
         }
 
-        // public function refreshContent():void
-        // {
-        //     handleInitComplete(null);
-        // }
-
         /**
          * @private
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
          * @royaleignorecoercion org.apache.royale.core.IBead
          * @royaleignorecoercion org.apache.royale.core.IBeadModel
          * @royaleignorecoercion org.apache.royale.core.IChild
-         * @royaleignorecoercion org.apache.royale.core.ILayoutChild
          * @royaleignorecoercion org.apache.royale.core.IUIBase
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         override protected function handleInitComplete(event:Event):void
         {
-            var host:IDataGrid = _strand as IDataGrid;
-
-            // see if there is a presentation model already in place. if not, add one.
-            var sharedModel:IDataGridModel = host.model as IDataGridModel;
-            IEventDispatcher(sharedModel).addEventListener("dataProviderChanged", handleDataProviderChanged);
-            IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
-
-            var columnContainerClass:Class = ValuesManager.valuesImpl.getValue(host, "columnContainerClass") as Class;
-            assert(columnContainerClass != null,"columnContainerClass for DataGrid must be set!")
-            _header = new columnContainerClass() as DataGridButtonBar;
-            // header's height is set in CSS
-            _header.percentWidth = 100;
-            _header.dataProvider = new ArrayList(sharedModel.columns);
-            _header.emphasis = host.emphasis;
-            _header.labelField = "label";
-            sharedModel.headerModel = _header.model as IBeadModel;
-
-            var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
-            assert(listAreaClass != null,"listAreaClass for DataGrid must be set!")
-            _listArea = new listAreaClass() as IUIBase;
-            (_listArea as ILayoutChild).percentWidth = 100;
-
-            if (sharedModel.columns)
-                createLists();
-
-            var columnLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "columnLayoutClass") as Class;
-            assert(columnLayoutClass != null,"columnLayoutClass for DataGrid must be set!")
-            var bblayout:ButtonBarLayout = new columnLayoutClass() as ButtonBarLayout;
-            _header.addBead(bblayout as IBead);
-            _header.addBead(new Viewport() as IBead);
-            host.strandChildren.addElement(_header as IChild);
-
-            host.strandChildren.addElement(_listArea as IChild);
-
-            handleDataProviderChanged(event);
-
-            host.addEventListener("widthChanged", handleSizeChanges);
-            host.addEventListener("heightChanged", handleSizeChanges);
-
-            host.dispatchEvent(new Event("dataGridViewCreated"));
+            // _header.dispatchEvent(new Event("layoutNeeded"));
+            // _listArea.dispatchEvent(new Event("layoutNeeded"));
         }
 
         /**
@@ -161,8 +168,8 @@ package org.apache.royale.jewel.beads.views
          */
         private function handleSizeChanges(event:Event):void
         {
-            _header.dispatchEvent(new Event("layoutChanged"));
-            _listArea.dispatchEvent(new Event("layoutChanged"));
+            _header.dispatchEvent(new Event("layoutNeeded"));
+            _listArea.dispatchEvent(new Event("layoutNeeded"));
         }
 
         /**
@@ -172,11 +179,10 @@ package org.apache.royale.jewel.beads.views
          */
         protected function handleDataProviderChanged(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
             for (var i:int=0; i < _lists.length; i++)
             {
                 var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
-                list.dataProvider = sharedModel.dataProvider;
+                list.dataProvider = _sharedModel.dataProvider;
             }
             host.dispatchEvent(new Event("layoutNeeded"));
         }
@@ -188,8 +194,7 @@ package org.apache.royale.jewel.beads.views
          */
         private function handleSelectedIndexChanged(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-            var newIndex:int = sharedModel.selectedIndex;
+            var newIndex:int = _sharedModel.selectedIndex;
 
             for (var i:int=0; i < _lists.length; i++)
             {
@@ -205,9 +210,8 @@ package org.apache.royale.jewel.beads.views
          */
         private function handleColumnListChange(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
-            sharedModel.selectedIndex = list.selectedIndex;
+            _sharedModel.selectedIndex = list.selectedIndex;
 
             for(var i:int=0; i < _lists.length; i++) {
                 if (list != _lists[i]) {
@@ -225,9 +229,8 @@ package org.apache.royale.jewel.beads.views
          */
         private function handleColumnListRollOverChange(event:Event):void
         {
-            var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
-            sharedModel.rollOverIndex = list.rollOverIndex;
+            _sharedModel.rollOverIndex = list.rollOverIndex;
 
             for(var i:int=0; i < _lists.length; i++) {
                 if (list != _lists[i]) {
@@ -252,20 +255,15 @@ package org.apache.royale.jewel.beads.views
          */
         protected function createLists():void
         {
-            var host:IDataGrid = _strand as IDataGrid;
-            
             // get the name of the class to use for the columns
             var columnClass:Class = ValuesManager.valuesImpl.getValue(host, "columnClass") as Class;
-            assert(columnClass != null, "ColumnClass for DataGrid must be set!")
-
-            var sharedModel:IDataGridModel = host.model as IDataGridModel;
-            var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
+            var presentationModel:IDataGridPresentationModel = _dg.presentationModel as IDataGridPresentationModel;
 
             _lists = [];
 
-            for (var i:int=0; i < sharedModel.columns.length; i++)
+            for (var i:int=0; i < _sharedModel.columns.length; i++)
             {
-                var dataGridColumn:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
+                var dataGridColumn:IDataGridColumn = _sharedModel.columns[i] as IDataGridColumn;
 
                 var list:IDataGridColumnList = new columnClass();
                 
@@ -273,7 +271,7 @@ package org.apache.royale.jewel.beads.views
                 {
                     list.className = "first";
                 }
-                else if (i == sharedModel.columns.length-1)
+                else if (i == _sharedModel.columns.length-1)
                 {
                     list.className = "last";
                 }
@@ -282,8 +280,8 @@ package org.apache.royale.jewel.beads.views
                     list.className = "middle";
                 }
                 
-                list.id = "dataGridColumn" + i;
-                list.dataProvider = sharedModel.dataProvider;
+                // by default make columns get the 1/n of the maximun space available
+                (list as UIBase).percentWidth = 100 / _sharedModel.columns.length;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
@@ -293,8 +291,6 @@ package org.apache.royale.jewel.beads.views
                 (_listArea as IParent).addElement(list as IChild);
                 _lists.push(list);
             }
-
-            host.dispatchEvent(new Event("layoutNeeded"));
         }
     }
 }

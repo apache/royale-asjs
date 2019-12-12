@@ -26,10 +26,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
         {
             super();
 
-            // COMPILE::JS
-			// {
-			// 	typeNames = 'jewel dataGridListArea';
-			// }
+			typeNames = 'listarea';
         }
     }
 }
