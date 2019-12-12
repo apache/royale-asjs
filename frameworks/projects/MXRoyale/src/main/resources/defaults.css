@@ -109,6 +109,10 @@ adg|AdvancedDataGridColumnList {
 	background-color: #FFFFFF;
 }
 
+adg|AdvancedDataGridItemRenderer {
+    margin-left: 5px;
+}
+
 Alert
 {
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");

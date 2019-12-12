@@ -47,6 +47,7 @@ use namespace mx_internal;
 import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.html.supportClasses.StringItemRenderer;
 import mx.core.UIComponent;
+import mx.collections.IHierarchicalData;
 
 //--------------------------------------
 //  Events
@@ -112,6 +113,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     public function AdvancedDataGridItemRenderer()
     {
         super();
+        typeNames += " AdvancedDataGridItemRenderer";
     }
 
     //--------------------------------------------------------------------------
@@ -147,7 +149,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         }
             
         var indent:String = "";
-        if (treeListData.columnIndex == 0)
+        if (treeListData.columnIndex == 0 && owner._rootModel is IHierarchicalData)
         {
             for (var i:int=0; i < treeListData.depth - 1; i++) {
                 indent += indentSpace;
