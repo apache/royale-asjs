@@ -1101,7 +1101,7 @@ use namespace mx_internal;
          *  @private
          *  Storage for the rowHeight property.
          */
-        private var _rowHeight:Number;
+        private var _rowHeight:Number = 0;
         
         /**
          *  @private
@@ -1124,7 +1124,7 @@ use namespace mx_internal;
          */
         public function get rowHeight():Number
         {
-            return _rowHeight;
+            return (presentationModel as IListPresentationModel).rowHeight;
         }
         
         /**

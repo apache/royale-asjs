@@ -281,7 +281,7 @@ public class List extends ListBase // implements IIMESupport
     public function List()
     {
         super();
-
+        typeNames = "List";
     }
 
 
