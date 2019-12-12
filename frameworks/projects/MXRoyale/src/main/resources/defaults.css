@@ -31,7 +31,7 @@
 }
 
 * {
-	font-family:	Verdana;
+	font-family:	Arial;
 	font-size:		12px;
 
 }
@@ -231,6 +231,7 @@ List
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
+	IListPresentationModel: ClassReference("org.apache.royale.html.beads.models.ListPresentationModel");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
