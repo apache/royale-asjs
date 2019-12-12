@@ -90,6 +90,7 @@
          <attribute name="relmap"/>
         
         <sequential>
+            <mkdir dir="${basedir}/bin/js-debug" />
    			<mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="${debug_flag}"
             	output="${basedir}/bin-debug/@{folder}@{example}.swf"
                 fork="true" failonerror="true">
@@ -111,6 +112,7 @@
         <attribute name="folder"/>
         
         <sequential>
+            <mkdir dir="${basedir}/bin/js-debug" />
             <mxmlc file="${basedir}/src/@{folder}@{example}.mxml" debug="${debug_flag}"
                 output="${basedir}/bin-debug/@{folder}@{example}.swf"
                 fork="true" failonerror="true">
@@ -133,6 +135,7 @@
     	 <attribute name="locales" default="en_US"/>
         
         <sequential>
+            <mkdir dir="${basedir}/bin/js-debug" />
    			<mxmlc file="${basedir}/src/@{example}.mxml"
             	output="${basedir}/src/@{example}.swf" fork="true" failonerror="true">
    				<locale>en_US</locale>
