@@ -488,11 +488,17 @@ j|ComboBoxPopUp {
   width: 200px;
   height: 290px;
 }
+.jewel.datagrid .jewel.buttonbar.header {
+  width: 100%;
+}
 .jewel.datagrid .jewel.buttonbar.header .jewel.button.first {
   border-bottom-left-radius: 0;
 }
 .jewel.datagrid .jewel.buttonbar.header .jewel.button.last {
   border-bottom-right-radius: 0;
+}
+.jewel.datagrid .listarea {
+  width: 100%;
 }
 .jewel.datagrid .jewel.list.column {
   border-radius: 0px;
@@ -516,10 +522,10 @@ j|DataGrid {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout");
-  columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList");
-  columnContainerClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar");
-  columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+  headerClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar");
+  headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
   listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea");
+  columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList");
 }
 
 j|DataGridListArea {
@@ -1077,8 +1083,17 @@ j|Label {
 .layout.horizontal.sameWidths > * {
   flex: 1 0;
 }
+.layout.horizontal.pixelWidths > * {
+  flex: none;
+}
 .layout.horizontal.proportinalWidths > * {
+  flex: 1 0;
+}
+.layout.horizontal.percentWidths > * {
   flex: 1 0 auto;
+}
+.layout.horizontal.naturalWidths > * {
+  flex: none;
 }
 .layout.vertical {
   flex-direction: column;

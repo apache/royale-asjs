@@ -80,13 +80,21 @@ $gap-size: 10px !default
 					margin: 0px
 				> *
 					margin: 0px 0px 0px ($gap + $i * $gap-step)
-
 		&.sameWidths
 			> *
 				flex: 1 0
+		&.pixelWidths
+			> *
+				flex: none
 		&.proportinalWidths
 			> *
+				flex: 1 0
+		&.percentWidths
+			> *
 				flex: 1 0 auto
+		&.naturalWidths
+			> *
+				flex: none
 
 	// Vertical
 	&.vertical
