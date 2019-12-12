@@ -133,5 +133,22 @@ package models
 		{
 			return _iconLDetailistDataSource.slice();
 		}
+
+
+		/**
+		 * Used in the ButtonBar example. Commented options need to be implemented
+		 */
+		private var _bblayout_options:ArrayList = new ArrayList([
+			{label: "PIXEL_WIDTHS", value: 0},
+			// {label: "PROPORTIONAL_WIDTHS", value: 1},
+			{label: "PERCENT_WIDTHS", value: 2},
+			// {label: "NATURAL_WIDTHS", value: 3},
+			{label: "SAME_WIDTHS", value: NaN}
+		]);
+		
+		public function get bblayout_options():ArrayList
+		{
+			return _bblayout_options;
+		}
 	}
 }
