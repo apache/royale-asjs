@@ -143,7 +143,7 @@ package org.apache.royale.binding
                      }
                      else if (binding.destination is Array)
                      {
-                        makeConstantBinding(binding);
+                         makeConstantBinding(binding);
                      }
                      else  {
                          makeGenericBinding(binding, i, watchers);
@@ -177,14 +177,7 @@ package org.apache.royale.binding
                         sb.destinationPropertyName = binding.destination[1];
                         sb.eventName = fieldWatcher.eventNames as String;
                         sb.sourcePropertyName = binding.source;
-                        if (isStatic)
-                        {
-                            sb.setDocument(fieldWatcher.parentObj);
-                        }
-                        else
-                        {
-                            sb.setDocument(_strand);
-                        }
+                        sb.setDocument(isStatic ? fieldWatcher.parentObj : _strand);
 
                         prepareCreatedBinding(sb as IBinding, binding);
                     }
