@@ -60,6 +60,16 @@ package models
 			return _avengers;
 		}
 		
+		private var _suravengers:ArrayList = new ArrayList([
+			new IconListVO("Hulk", MaterialIconType.WEB_ASSET),
+			new IconListVO("Thor", MaterialIconType.WEB_ASSET),
+			new IconListVO("Hawkeye", MaterialIconType.WEB_ASSET)
+		]);
+		
+		public function get suravengers():ArrayList
+		{
+			return _suravengers;
+		}
 
 		
 		/**
@@ -122,6 +132,23 @@ package models
 		public function get iconDetailListDataSource():Array
 		{
 			return _iconLDetailistDataSource.slice();
+		}
+
+
+		/**
+		 * Used in the ButtonBar example. Commented options need to be implemented
+		 */
+		private var _bblayout_options:ArrayList = new ArrayList([
+			{label: "PIXEL_WIDTHS", value: 0},
+			// {label: "PROPORTIONAL_WIDTHS", value: 1},
+			{label: "PERCENT_WIDTHS", value: 2},
+			// {label: "NATURAL_WIDTHS", value: 3},
+			{label: "SAME_WIDTHS", value: NaN}
+		]);
+		
+		public function get bblayout_options():ArrayList
+		{
+			return _bblayout_options;
 		}
 	}
 }

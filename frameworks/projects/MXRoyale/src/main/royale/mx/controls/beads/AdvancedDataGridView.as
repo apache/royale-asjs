@@ -22,6 +22,7 @@ package mx.controls.beads
 
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
+    import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
@@ -63,7 +64,10 @@ package mx.controls.beads
             super.handleInitComplete(event);
             
             var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
-            header.height = host.rowHeight;
+            if (!isNaN(host.rowHeight))
+                header.height = host.rowHeight;
+            else
+                header.height = (host.presentationModel as IListPresentationModel).rowHeight;
             
             IEventDispatcher(host).addEventListener("columnsInvalid", handleColumnsInvalid);
             handleColumnsInvalid(null);

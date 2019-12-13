@@ -576,7 +576,7 @@ j|FormItem {
 .jewel.item {
   padding: 8px;
 }
-.jewel.item.hovered:hover {
+.jewel.item.hovered {
   color: #FFFFFF;
   background: #E2D70B;
 }
@@ -622,7 +622,7 @@ j|FormItem {
   font-weight: 500;
   color: rgba(0, 0, 0, 0.6);
 }
-.jewel.navigationlink.hovered:hover {
+.jewel.navigationlink.hovered {
   background: #737373 !important;
 }
 .jewel.navigationlink .hint.fonticon {
@@ -884,7 +884,7 @@ j|FormItem {
   height: 2px;
   background-color: #E2D70B;
 }
-.jewel.tabbarbutton.hovered:hover {
+.jewel.tabbarbutton.hovered {
   background: rgba(226, 215, 11, 0.2);
 }
 .jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
@@ -960,7 +960,7 @@ j|FormItem {
   box-shadow: inset 0 1px 0 #a6a6a6;
 }
 
-.jewel.tableitem.hovered:hover {
+.jewel.tableitem.hovered {
   color: #FFFFFF;
   background: #E2D70B;
 }

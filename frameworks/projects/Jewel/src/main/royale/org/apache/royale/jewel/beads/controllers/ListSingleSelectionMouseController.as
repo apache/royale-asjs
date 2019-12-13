@@ -118,6 +118,7 @@ package org.apache.royale.jewel.beads.controllers
                  IJewelSelectionModel(listModel).dispatcher = IEventDispatcher(value);
 			}
             else {
+				IEventDispatcher(listModel).addEventListener('rollOverIndexChanged', modelChangeHandler);
 				IEventDispatcher(listModel).addEventListener('selectionChanged', modelChangeHandler);
                 IEventDispatcher(listModel).addEventListener('dataProviderChanged', modelChangeHandler);
             }

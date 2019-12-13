@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic"
+	xmlns:models="models.*" 
+	xmlns:c="components.*" sourceCodeUrl="DataGridPlayGround.mxml">
+	
+	<fx:Script>
+		<![CDATA[
+        import models.ProductModel;
+
+        private function dataGridChange(grid:DataGrid, output:Label) : void
+		{
+			output.text = "Clicked on row " + grid.selectedIndex;
+		}
+
+		private function refreshGrid(grid:DataGrid):void
+		{
+			grid.dataProvider = null;
+			grid.dataProvider = (productModel as ProductModel).productList;
+		}
+		]]>
+	</fx:Script>
+
+	<c:model>
+		<models:ProductModel localId="productModel"/>
+	</c:model>
+	
+	<c:beads>
+		<js:ContainerDataBinding/>
+	</c:beads>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DataGrid"/>
+				
+				<j:Label text="Basic configuration, width = 100%, no column widths"/>
+
+				<j:DataGrid localId="datagrid" width="100%" height="100%" 
+					change="dataGridChange(event.target as DataGrid, datagrid_lb)">
+					<j:beads>
+						<js:ConstantBinding
+							sourceID="productModel"
+							sourcePropertyName="productList"
+							destinationPropertyName="dataProvider" />
+					</j:beads>
+					<j:columns>
+						<j:DataGridColumn label="Images" dataField="image" 
+											itemRenderer="itemRenderers.ImageListItemRenderer"/>
+						<j:DataGridColumn label="Title" dataField="title"/>
+						<j:DataGridColumn label="Sales" dataField="sales"/>
+					</j:columns>
+				</j:DataGrid>
+
+				<j:Label id="datagrid_lb" text="DagaGrid selection will be shown here"/>
+				<!-- <j:Button text="Refresh Grid" click="refreshGrid(datagrid)" emphasis="primary"/> -->
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DataGrid"/>
+				
+				<j:Label text="Using specific column widths"/>
+
+				<j:DataGrid localId="datagrid2" width="100%" height="100%"
+					rowHeight="40" emphasis="primary" 
+					change="dataGridChange(event.target as DataGrid, datagrid2_lb)"
+					dataProvider="{productModel.productList}">
+					<j:columns>
+						<j:DataGridColumn label="Images" dataField="image" columnWidth="90" 
+											itemRenderer="itemRenderers.ImageListItemRenderer"/>
+						<j:DataGridColumn label="Title" dataField="title" columnWidth="120" />
+						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70" />
+					</j:columns>
+				</j:DataGrid>
+
+				<j:Label id="datagrid2_lb" text="DagaGrid selection will be shown here"/>
+				<j:Button text="Refresh Grid" click="refreshGrid(datagrid2)" emphasis="primary"/>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+	
+</c:ExampleAndSourceCodeTabbedSectionContent>

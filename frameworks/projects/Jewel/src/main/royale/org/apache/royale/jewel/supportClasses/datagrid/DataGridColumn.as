@@ -32,7 +32,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.7
 	 */
 	public class DataGridColumn implements IDataGridColumn
 	{
@@ -42,7 +42,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		public function DataGridColumn()
 		{
@@ -55,7 +55,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		public function createColumn():IUIBase
 		{
@@ -71,7 +71,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		public function get itemRenderer():IFactory
 		{
@@ -90,7 +90,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		public function get columnWidth():Number
 		{
@@ -109,7 +109,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		public function get label():String
 		{
@@ -129,7 +129,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		public function get dataField():String
 		{
@@ -149,7 +149,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		public function get className():String
 		{

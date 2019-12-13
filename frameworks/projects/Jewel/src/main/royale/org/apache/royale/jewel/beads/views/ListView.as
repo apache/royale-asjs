@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	COMPILE::JS
+	{
+	import org.apache.royale.events.IEventDispatcher;
+	}
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IRollOverModel;
@@ -25,7 +29,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.DataContainerView;
 
 	/**
@@ -98,7 +101,7 @@ package org.apache.royale.jewel.beads.views
 
 		/**
 		 * @private
-		 * Ensure the list selects the selectedItem if someone is set by the user at creation time
+		 * Ensure the list selects the selectedItem if some is set by the user at creation time
 		 */
 		override protected function itemsCreatedHandler(event:Event):void
 		{
@@ -128,7 +131,7 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
-		 * * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{

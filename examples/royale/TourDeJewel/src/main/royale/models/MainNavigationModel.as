@@ -56,7 +56,9 @@ package models
             new NavigationLinkVO("Card", "card_panel", MaterialIconType.WEB_ASSET),
             new NavigationLinkVO("Layouts", "layouts_panel", MaterialIconType.VIEW_QUILT),
             new NavigationLinkVO("Grid", "grid_panel", MaterialIconType.GRID_ON),
-            new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_LIST),
+            new NavigationLinkVO("ButtonBar", "buttonbar_panel", MaterialIconType.VIEW_CAROUSEL),
+            new NavigationLinkVO("DataGrid", "datagrid_panel", MaterialIconType.VIEW_LIST),
+            new NavigationLinkVO("Tables", "tables_panel", MaterialIconType.VIEW_COMFY),
             new NavigationLinkVO("TabBar", "tabbar_panel", MaterialIconType.TAB),
             new NavigationLinkVO("View States", "viewstates_panel", MaterialIconType.CHORME_READER_MODE),
             new NavigationLinkVO("Wizard", "wizards_panel", MaterialIconType.MOVIE_FILTER)

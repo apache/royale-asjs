@@ -260,6 +260,33 @@ j|Alert {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView");
   }
 }
+.jewel.buttonbar .jewel.button {
+  border-radius: 0;
+}
+.jewel.buttonbar .jewel.button.first {
+  border-top-left-radius: 0.25rem;
+  border-bottom-left-radius: 0.25rem;
+}
+.jewel.buttonbar .jewel.button.last {
+  border-top-right-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+}
+
+j|ButtonBar {
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView");
+  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DataItemRendererFactoryForCollectionView");
+  IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ButtonBarItemRenderer");
+}
+
+@media -royale-swf {
+  j|ButtonBar {
+    IContentView: ClassReference("org.apache.royale.jewel.supportClasses.list.DataGroup");
+  }
+}
 .jewel.card {
   min-width: 240px;
   min-height: 52px;
@@ -455,6 +482,57 @@ j|ComboBox {
 }
 j|ComboBoxPopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
+}
+
+.jewel.datagrid {
+  width: 200px;
+  height: 290px;
+}
+.jewel.datagrid .jewel.buttonbar.header {
+  width: 100%;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.first {
+  border-bottom-left-radius: 0;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.last {
+  border-bottom-right-radius: 0;
+}
+.jewel.datagrid .listarea {
+  width: 100%;
+}
+.jewel.datagrid .jewel.list.column {
+  border-radius: 0px;
+  border-top-width: 0px;
+  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+.jewel.datagrid .jewel.list.column.first {
+  border-right: 0px;
+  border-bottom-left-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column.last {
+  border-left: 0px;
+  border-bottom-right-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column .jewel.item {
+  border-bottom: 1px solid #efefef;
+}
+
+j|DataGrid {
+  IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel");
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
+  IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout");
+  headerClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar");
+  headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
+  listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea");
+  columnClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList");
+}
+
+j|DataGridListArea {
+  IBeadView: ClassReference("org.apache.royale.html.beads.ContainerView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.datechooser .jewel.table {
@@ -1001,6 +1079,21 @@ j|Label {
 }
 .layout.horizontal.gap-10x3px > * {
   margin: 0px 0px 0px 30px;
+}
+.layout.horizontal.sameWidths > * {
+  flex: 1 0;
+}
+.layout.horizontal.pixelWidths > * {
+  flex: none;
+}
+.layout.horizontal.proportinalWidths > * {
+  flex: 1 0;
+}
+.layout.horizontal.percentWidths > * {
+  flex: 1 0 auto;
+}
+.layout.horizontal.naturalWidths > * {
+  flex: none;
 }
 .layout.vertical {
   flex-direction: column;

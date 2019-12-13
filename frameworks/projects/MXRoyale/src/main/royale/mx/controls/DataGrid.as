@@ -729,6 +729,7 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     public function DataGrid()
     {
         super();
+        typeNames = "DataGrid";
     }
 
     //--------------------------------------------------------------------------

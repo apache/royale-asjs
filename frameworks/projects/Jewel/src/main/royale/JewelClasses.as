@@ -42,6 +42,8 @@ package
         import org.apache.royale.jewel.beads.models.WizardModel; WizardModel;
         import org.apache.royale.jewel.beads.models.WizardStep; WizardStep;
         import org.apache.royale.jewel.beads.models.PopUpModel; PopUpModel;
+        import org.apache.royale.jewel.beads.models.ListPresentationModel; ListPresentationModel;
+        import org.apache.royale.jewel.beads.models.DataGridPresentationModel; DataGridPresentationModel;
 
         import org.apache.royale.jewel.beads.controllers.PopUpMouseController; PopUpMouseController;
         import org.apache.royale.jewel.beads.controllers.SpinnerMouseController; SpinnerMouseController;
@@ -77,6 +79,7 @@ package
         import org.apache.royale.jewel.beads.views.FormItemView; FormItemView;
         import org.apache.royale.jewel.beads.views.FormHeadingView; FormHeadingView;
         import org.apache.royale.jewel.beads.views.WizardView; WizardView;
+        import org.apache.royale.jewel.beads.views.ButtonBarView; ButtonBarView;
 
         COMPILE::SWF
 	    {
@@ -103,7 +106,6 @@ package
         import org.apache.royale.jewel.supportClasses.Viewport; Viewport;
         import org.apache.royale.jewel.supportClasses.NoViewport; NoViewport;
         import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;
-        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn; DataGridColumn;
         import org.apache.royale.jewel.supportClasses.datechooser.DateChooserTable; DateChooserTable;
         import org.apache.royale.jewel.supportClasses.table.TBodyContentArea; TBodyContentArea;
         import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp; ComboBoxPopUp;
@@ -111,6 +113,10 @@ package
         import org.apache.royale.jewel.supportClasses.formitem.FormItemLayoutProxy; FormItemLayoutProxy;
         import org.apache.royale.jewel.supportClasses.wizard.WizardLayoutProxy; WizardLayoutProxy;
         import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase; SelectableButtonBase;
+        
+        import org.apache.royale.jewel.beads.views.DataGridView; DataGridView;
+        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList; DataGridColumnList;
+        import org.apache.royale.jewel.beads.layouts.DataGridLayout; DataGridLayout;
 
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
 
@@ -122,8 +128,8 @@ package
 
         COMPILE::JS
         {
-            import dialogPolyfill; dialogPolyfill;
-            import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
+        import dialogPolyfill; dialogPolyfill;
+        import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
         }
     }
 }

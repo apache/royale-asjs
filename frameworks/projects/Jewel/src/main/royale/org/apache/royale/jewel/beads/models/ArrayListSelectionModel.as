@@ -18,6 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
+	COMPILE::SWF{
+	import flash.events.Event;
+	}
 	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IStrand;
@@ -25,10 +28,6 @@ package org.apache.royale.jewel.beads.models
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
-
-	COMPILE::SWF{
-		import flash.events.Event;
-	}
 
     /**
      *  The ArrayListSelectionModel class is a selection model for
