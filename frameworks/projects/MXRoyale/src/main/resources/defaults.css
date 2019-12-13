@@ -196,7 +196,7 @@ DateChooser
 	IBeadModel:  ClassReference("org.apache.royale.html.beads.models.DateChooserModel");			
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalFlexLayout");	
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.DateChooserMouseController");
-	width:  280px;
+	width:  200px;
 	height: 240px;
 }
 
