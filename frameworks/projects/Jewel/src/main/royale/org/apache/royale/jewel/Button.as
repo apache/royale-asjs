@@ -22,9 +22,13 @@ package org.apache.royale.jewel
     {
     import org.apache.royale.core.ITextModel;
     }
-    //Below is needed to avoid dispatching native JS Event, which seems to still work in Chrome and probably other browsers,
+    COMPILE::JS
+    {
+    //@gregdove: Below is needed to avoid dispatching native JS Event, which seems to still work in Chrome and probably other browsers,
     //but IE11 will break if the following import is removed:
+    //@carlosrovira: Probably the above issue is due to the need to be in COMPILE::JS, so IDEs organizing imports don't remove this one
     import org.apache.royale.events.Event;
+    }
     import org.apache.royale.jewel.supportClasses.button.SimpleButton;
 
     [DefaultProperty("text")]
