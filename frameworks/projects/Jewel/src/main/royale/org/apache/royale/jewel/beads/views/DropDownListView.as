@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-COMPILE::JS
-{
+    COMPILE::JS
+    {
     import org.apache.royale.html.elements.Select;
-}
+    }
     import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;

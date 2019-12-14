@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	COMPILE::SWF
-	{
-		import flash.text.TextFieldAutoSize;
-	}
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 
 	/**

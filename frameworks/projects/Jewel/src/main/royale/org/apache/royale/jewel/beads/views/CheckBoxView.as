@@ -32,8 +32,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	
     /**
-     *  The CheckBoxView class is the default view for
-     *  the org.apache.royale.html.CheckBox class.
+     *  The CheckBoxView class is the default view for SWF platform
+     *  in the org.apache.royale.jewel.CheckBox class.
      *  It displays a simple checkbox with an 'x' if checked,
      *  and a label on the right.  There are no styles or
      *  properties to configure the look of the 'x' or the

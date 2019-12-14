@@ -20,7 +20,6 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-	import flash.text.TextFieldType;
 	import flash.utils.setTimeout;
 	}
 	COMPILE::JS

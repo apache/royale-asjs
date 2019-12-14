@@ -18,12 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	COMPILE::SWF
-	{
 	import flash.display.Graphics;
 	import flash.display.Shape;
 	import flash.display.SimpleButton;
-	}
 
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IBeadView;
@@ -35,7 +32,7 @@ package org.apache.royale.jewel.beads.views
 	
 	/**
 	 *  The SliderTrackView class creates the track area for the org.apache.royale.jewel.HSlider
-	 *  component.
+	 *  component for the SWF platform.
 	 *  
 	 *  @viewbead
 	 *  @langversion 3.0

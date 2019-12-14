@@ -18,15 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-    import org.apache.royale.html.elements.Option;
-    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
-    import org.apache.royale.jewel.beads.views.DropDownListView;
-
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;            
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.jewel.beads.views.DropDownListView;            
     }
-	
+    import org.apache.royale.html.elements.Option;
+    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
+
     /**
      *  The DropDownListItemRenderer class creates a DropDownList menu item
      *

@@ -18,26 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-COMPILE::SWF {
+	COMPILE::SWF {
 	import flash.display.DisplayObject;
-}
-
-    import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IRangeModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.jewel.Button;
-	// import org.apache.royale.jewel.beads.controllers.ButtonAutoRepeatController;
-    import org.apache.royale.jewel.beads.controls.spinner.ISpinnerView
-
-COMPILE::JS {
+	}
+	COMPILE::JS {
 	import org.apache.royale.jewel.beads.controllers.SpinnerMouseController;
-}
+	}
+    import org.apache.royale.core.BeadViewBase;
+    import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IBeadView;
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IRangeModel;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.jewel.Button;
+    import org.apache.royale.jewel.beads.controls.spinner.ISpinnerView;
+
 
 	/**
 	 *  The SpinnerView class creates the visual elements of the org.apache.royale.jewel.Spinner

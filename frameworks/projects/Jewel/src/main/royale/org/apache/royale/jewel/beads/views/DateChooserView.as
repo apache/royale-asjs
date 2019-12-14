@@ -37,8 +37,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.table.TableHeaderCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	// import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController;
-	// import org.apache.royale.jewel.beads.controllers.DateChooserTableCellSelectionMouseController;
 
 	/**
 	 * The DateChooserView class is a view bead for the DateChooser.

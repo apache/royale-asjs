@@ -20,9 +20,8 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-		import flash.utils.setTimeout;
+	import flash.utils.setTimeout;
     }
-	
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IChild;

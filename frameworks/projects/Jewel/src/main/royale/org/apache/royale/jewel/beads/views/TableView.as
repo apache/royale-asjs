@@ -20,13 +20,13 @@ package org.apache.royale.jewel.beads.views
 {
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.beads.views.ListView;
 	import org.apache.royale.jewel.supportClasses.table.TFoot;
 	import org.apache.royale.jewel.supportClasses.table.THead;
-	import org.apache.royale.core.IStrandWithModel;
 	
 	/**
 	 *  The TableView class creates the visual elements of the org.apache.royale.jewel.Table component.
