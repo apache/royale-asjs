@@ -124,6 +124,17 @@ package org.apache.royale.binding
          *  @productversion Royale 0.0
          */                
         public var getterFunction:Function;
+        
+        
+        /**
+         *  Support for function return binding on a chain
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public var funcProps:Object;
 		
         /**
          *  The event handler that gets called when
@@ -231,7 +242,19 @@ package org.apache.royale.binding
                 }
                 else
                 {
-                    if (getterFunction != null)
+                    if (funcProps != null) {
+                        if (funcProps.functionGetter != null)
+                        {
+                            value = funcProps.functionGetter(funcProps.functionName).apply(source,
+                                    funcProps.paramFunction.apply(document));
+                        }
+                        else
+                        {
+                            value = source[funcProps.functionName].apply(source,
+                                    funcProps.paramFunction.apply(document));
+                        }
+                    }
+                    else if (getterFunction != null)
                     {
                         try
                         {

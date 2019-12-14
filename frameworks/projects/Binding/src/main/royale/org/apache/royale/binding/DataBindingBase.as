@@ -156,6 +156,8 @@ package org.apache.royale.binding
                     var hasWatcherChildren:Boolean = watcherChildrenRelevantToIndex(watcher.children, index);
                     var type:String = watcher.type as String;
                     var parentObj:Object = _strand;
+                    var processWatcher:Boolean = false;
+                    var pw:PropertyWatcher;
                     switch (type)
                     {
                         case "static":
@@ -173,36 +175,47 @@ package org.apache.royale.binding
                             {
                                getterFunction = gb.source as Function;
                             }
-
-                            var pw:PropertyWatcher = new PropertyWatcher(_strand,
+                            pw = new PropertyWatcher(_strand,
                                     watcher.propertyName,
                                     watcher.eventNames,
                                     getterFunction);
-                            watcher.watcher = pw;
-                            if (parentWatcher)
-                            {
-                                pw.parentChanged(parentWatcher.value);
-                            }
-                            else
-                            {
-                                pw.parentChanged(parentObj);
-                            }
-
-                            if (parentWatcher)
-                            {
-                                parentWatcher.addChild(pw);
-                            }
-
-                            if (!hasWatcherChildren)
-                            {
-                                pw.addBinding(gb);
-                            }
-
-                            foundWatcher = true;
+                            processWatcher = true;
+                            break;
+                        }
+                        case 'function': {
+                            pw = new PropertyWatcher(_strand,
+                                        watcher.propertyName,
+                                        watcher.eventNames, null);
+                            pw.funcProps = {};
+                            pw.funcProps.functionName = watcher.functionName;
+                            pw.funcProps.paramFunction = watcher.paramFunction;
+                            processWatcher = true;
                             break;
                         }
                     }
-
+                    if (processWatcher)
+                    {
+                        foundWatcher = true;
+                        watcher.watcher = pw;
+                        if (parentWatcher)
+                        {
+                            pw.parentChanged(parentWatcher.value);
+                        }
+                        else
+                        {
+                            pw.parentChanged(parentObj);
+                        }
+    
+                        if (parentWatcher)
+                        {
+                            parentWatcher.addChild(pw);
+                        }
+                        if (!hasWatcherChildren)
+                        {
+                            pw.addBinding(gb);
+                        }
+                    }
+                    
                     if (hasWatcherChildren)
                     {
                         setupWatchers(gb, index, watcher.children.watchers, watcher.watcher);

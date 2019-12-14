@@ -123,7 +123,7 @@ package org.apache.royale.binding
          *  @productversion Royale 0.0
          */
         public var isStatic:Boolean;
-        public var staticRoot:Object
+        public var staticRoot:Object;
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
