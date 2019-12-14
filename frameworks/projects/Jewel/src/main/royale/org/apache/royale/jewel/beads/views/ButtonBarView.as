@@ -45,7 +45,25 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
 		
-		public var buttonBar:ButtonBar;
+		private var _buttonBar:ButtonBar;
+		/**
+		 *  the ButtonBar associated to this view
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get buttonBar():ButtonBar
+		{
+			return _buttonBar;
+		}
+
+		public function set buttonBar(value:ButtonBar):void
+		{
+			_buttonBar = value;
+		}
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
