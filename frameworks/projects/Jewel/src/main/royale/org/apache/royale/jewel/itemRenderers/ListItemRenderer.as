@@ -25,10 +25,10 @@ package org.apache.royale.jewel.itemRenderers
     }
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.beads.controls.TextAlign;
 	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.

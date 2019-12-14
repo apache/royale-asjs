@@ -31,10 +31,10 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.html.util.addElementToWrapper;
     }
     import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.html.util.getLabelFromData;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
-    import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
 
 	/**
 	 *  The StringItemRenderer class displays data in string form using the data's toString()

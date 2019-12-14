@@ -20,8 +20,16 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-		import flash.utils.setTimeout;
+	import flash.utils.setTimeout;
     }
+	COMPILE::JS
+	{
+	import org.apache.royale.geom.Point;
+	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
+	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
+	import org.apache.royale.utils.BrowserInfo;
+	import org.apache.royale.utils.PointUtils;
+	}
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.core.IPopUpHost;
@@ -31,18 +39,13 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.geom.Point;
-	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
-	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.TextInput;
-	import org.apache.royale.jewel.supportClasses.util.getLabelFromData;
+	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
+	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
-	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
-	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
-	import org.apache.royale.utils.BrowserInfo;
-	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
 
 	/**
