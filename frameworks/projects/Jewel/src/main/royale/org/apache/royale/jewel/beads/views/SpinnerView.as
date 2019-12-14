@@ -36,7 +36,6 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.Button;
     import org.apache.royale.jewel.beads.controls.spinner.ISpinnerView;
 
-
 	/**
 	 *  The SpinnerView class creates the visual elements of the org.apache.royale.jewel.Spinner
 	 *  component.

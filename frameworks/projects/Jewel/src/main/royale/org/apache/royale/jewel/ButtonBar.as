@@ -24,6 +24,7 @@ package org.apache.royale.jewel
     import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.jewel.supportClasses.IEmphasis;
 
 	/**
 	 *  The Jewel ButtonBar class is a component that displays a set of Buttons. The ButtonBar
@@ -47,7 +48,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBar extends List
+	public class ButtonBar extends List implements IEmphasis
 	{
 		public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";

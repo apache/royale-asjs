@@ -19,10 +19,11 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.jewel.supportClasses.datagrid.IDataGrid;
+	import org.apache.royale.jewel.supportClasses.IEmphasis;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
@@ -40,7 +41,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DataGrid extends Group implements IDataGrid
+	public class DataGrid extends Group implements IDataGrid, IEmphasis
 	{
 		/**
 		 *  constructor.
