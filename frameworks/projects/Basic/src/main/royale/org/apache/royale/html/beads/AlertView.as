@@ -140,8 +140,9 @@ package org.apache.royale.html.beads
 			label.text = alertModel.message;
 			
 			labelContent = new Group();
-			labelContent.percentWidth = 100;
-			labelContent.percentHeight = 100;
+            labelContent.className = "AlertContent";
+			//labelContent.percentWidth = 100;
+			//labelContent.percentHeight = 100;
 
 			labelContent.addElement(label);
 			
@@ -150,9 +151,9 @@ package org.apache.royale.html.beads
 			COMPILE::JS
 			{
                 label.element.style["white-space"] = "unset";
-				labelContent.element.style["minHeight"] = "30px";
+				//labelContent.element.style["minHeight"] = "30px";
 				controlBar.element.style["flex-direction"] = "row";
-				controlBar.element.style["justify-content"] = "flex-end";
+				controlBar.element.style["justify-content"] = "center";
 				controlBar.element.style["border"] = "none";
 				controlBar.element.style["background-color"] = "#FFFFFF";
 			}
@@ -180,6 +181,7 @@ package org.apache.royale.html.beads
             if( flags & Alert.OK )
             {
                 okButton = new TextButton();
+                okButton.className = "AlertButton";
                 okButton.text = alertModel.okLabel;
                 okButton.addEventListener("click",handleOK);
 
@@ -187,6 +189,7 @@ package org.apache.royale.html.beads
 
                 COMPILE::JS
                 {
+                    okButton.element.style["height"] = "intrinsic";
                     okButton.element.style["margin-left"] = "2px";
                     okButton.element.style["margin-right"] = "2px";
                 }
@@ -194,6 +197,7 @@ package org.apache.royale.html.beads
             if( flags & Alert.CANCEL )
             {
                 cancelButton = new TextButton();
+                cancelButton.className = "AlertButton";
                 cancelButton.text = alertModel.cancelLabel;
                 cancelButton.addEventListener("click",handleCancel);
 
@@ -201,6 +205,7 @@ package org.apache.royale.html.beads
 
                 COMPILE::JS
                 {
+                    cancelButton.element.style["height"] = "intrinsic";
                     cancelButton.element.style["margin-left"] = "2px";
                     cancelButton.element.style["margin-right"] = "2px";
                 }
@@ -208,6 +213,7 @@ package org.apache.royale.html.beads
             if( flags & Alert.YES )
             {
                 yesButton = new TextButton();
+                yesButton.className = "AlertButton";
                 yesButton.text = alertModel.yesLabel;
                 yesButton.addEventListener("click",handleYes);
 
@@ -215,6 +221,7 @@ package org.apache.royale.html.beads
 
                 COMPILE::JS
                 {
+                    yesButton.element.style["height"] = "intrinsic";
                     yesButton.element.style["margin-left"] = "2px";
                     yesButton.element.style["margin-right"] = "2px";
                 }
@@ -222,6 +229,7 @@ package org.apache.royale.html.beads
             if( flags & Alert.NO )
             {
                 noButton = new TextButton();
+                noButton.className = "AlertButton";
                 noButton.text = alertModel.noLabel;
                 noButton.addEventListener("click",handleNo);
 
@@ -229,6 +237,7 @@ package org.apache.royale.html.beads
 
                 COMPILE::JS
                 {
+                    noButton.element.style["height"] = "intrinsic";
                     noButton.element.style["margin-left"] = "2px";
                     noButton.element.style["margin-right"] = "2px";
                 }

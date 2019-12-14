@@ -719,6 +719,32 @@ public class Alert extends Panel
         $uibase_addChild(c as IUIComponent);
     }
     
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        COMPILE::JS
+        {
+            // make the buttons the same width
+            var buttonWidth:Number = 0;
+            var controlBar:HTMLElement = element.childNodes[2];
+            var numButtons:int = controlBar.childNodes.length;
+            for (var i:int = 0; i < numButtons; i++)
+            {
+                buttonWidth = Math.max(buttonWidth, controlBar.childNodes[i].offsetWidth);
+            }
+            for (i = 0; i < numButtons; i++)
+            {
+                controlBar.childNodes[i].style.minWidth = buttonWidth.toString() + "px";
+            }
+            // set a max on the content of 2 x (max of buttons or title)
+            var maxContentWidth:Number = buttonWidth * numButtons;
+            maxContentWidth = Math.max(element.childNodes[0].childNodes[0].clientWidth);
+            maxContentWidth += maxContentWidth;
+            element.childNodes[1].style.maxWidth = maxContentWidth.toString() + "px";
+            
+        }
+    }
+    
 }
 
 }

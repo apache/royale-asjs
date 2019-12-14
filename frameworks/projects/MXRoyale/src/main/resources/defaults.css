@@ -126,6 +126,18 @@ Alert
 	border-width: 1px;
 }
 
+.AlertButton
+{
+	padding-top: 3px;
+	padding-bottom: 3px;
+}
+
+.AlertContent
+{
+	margin: auto;
+	padding: 8px;
+}
+
 Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
@@ -342,13 +354,6 @@ Panel .TitleBar
 .PanelContent
 {
 	background-color: #FFFFFF;
-}
-
-.TitleBarTitle
-{
-	position: absolute;
-	left: 6px;
-	top: 6px;
 }
 
 PanelTitleBar
