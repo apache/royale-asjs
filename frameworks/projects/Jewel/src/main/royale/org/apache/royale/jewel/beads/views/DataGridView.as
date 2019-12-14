@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
+	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.IParent;
@@ -34,9 +35,9 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
+	import org.apache.royale.jewel.supportClasses.IEmphasis;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
-	import org.apache.royale.jewel.supportClasses.datagrid.IDataGrid;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.core.UIBase;
@@ -104,7 +105,7 @@ package org.apache.royale.jewel.beads.views
             var headerClass:Class = ValuesManager.valuesImpl.getValue(host, "headerClass") as Class;
             _header = new headerClass() as DataGridButtonBar;
             _header.dataProvider = new ArrayList(_sharedModel.columns);
-            _header.emphasis = _dg.emphasis;
+            _header.emphasis = (_dg as IEmphasis).emphasis;
             _header.labelField = "label";
             var headerLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "headerLayoutClass") as Class;
             var bblayout:ButtonBarLayout = new headerLayoutClass() as ButtonBarLayout;
