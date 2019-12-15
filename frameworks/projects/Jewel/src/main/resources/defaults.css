@@ -287,6 +287,10 @@ j|ButtonBar {
     IContentView: ClassReference("org.apache.royale.jewel.supportClasses.list.DataGroup");
   }
 }
+j|IconButtonBar {
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.IconButtonBarItemRenderer");
+}
+
 .jewel.card {
   min-width: 240px;
   min-height: 52px;

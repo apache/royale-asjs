@@ -22,17 +22,20 @@ package org.apache.royale.jewel.itemRenderers
 	{
 	import org.apache.royale.core.WrappedHTMLElement;
 	}
+	import org.apache.royale.core.IIcon;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.ButtonBar;
+	import org.apache.royale.jewel.IconButton;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
+	import org.apache.royale.jewel.supportClasses.IEmphasis;
+	import org.apache.royale.jewel.IconButtonBar;
 
 	/**
-	 *  The ButtonBarItemRenderer class extends Button and turns it into an itemRenderer
+	 *  The IconButtonBarItemRenderer class extends IconButton and turns it into an itemRenderer
 	 *  suitable for use in most DataContainer/List/DataGrid applications.
      *
      *  @langversion 3.0
@@ -40,9 +43,9 @@ package org.apache.royale.jewel.itemRenderers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBarItemRenderer extends Button implements ITextItemRenderer
+	public class IconButtonBarItemRenderer extends IconButton implements ITextItemRenderer
 	{
-		public function ButtonBarItemRenderer()
+		public function IconButtonBarItemRenderer()
 		{
 			super();
 
@@ -71,6 +74,15 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_data = value;
 			text = getLabelFromData(this, value);
+			rightPosition = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).rightPosition;
+			if(value.icon)
+			{
+				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererParent as ButtonBarView).buttonBar, "iconClass") as Class;
+				var fontIcon:IIcon = new iconClass(); 
+				fontIcon.material = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).material;
+				fontIcon.text = value[((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).iconField];
+				icon = fontIcon;
+			}
 		}
 
 		/**
@@ -104,7 +116,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_itemRendererParent = value;
 
-			var buttonBar:ButtonBar = (itemRendererParent as ButtonBarView).buttonBar;
+			var buttonBar:IEmphasis = (itemRendererParent as ButtonBarView).buttonBar;
 			if(buttonBar.emphasis != null)
 			{
 				emphasis = buttonBar.emphasis;

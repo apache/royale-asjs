@@ -150,5 +150,21 @@ package models
 		{
 			return _bblayout_options;
 		}
+
+		/**
+		 * Used in the IconButtonBar example.
+		 */
+		private var _iconButtonData:ArrayList = new ArrayList([
+            new IconListVO("Alert", MaterialIconType.WEB_ASSET),
+            new IconListVO("Button", MaterialIconType.CROP_7_5),
+            new IconListVO("List", MaterialIconType.LIST_ALT),
+            new IconListVO("CheckBox", MaterialIconType.CHECK_BOX),
+            new IconListVO("Label", MaterialIconType.LABEL)
+        ]);
+
+		public function get iconButtonData():ArrayList
+		{
+			return _iconButtonData;
+		}
 	}
 }
