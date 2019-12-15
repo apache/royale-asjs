@@ -260,14 +260,14 @@ j|Alert {
     IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView");
   }
 }
-.jewel.buttonbar .jewel.button {
+.jewel.buttonbar .jewel.button, .jewel.buttonbar .jewel.togglebutton {
   border-radius: 0;
 }
-.jewel.buttonbar .jewel.button.first {
+.jewel.buttonbar .jewel.button.first, .jewel.buttonbar .jewel.togglebutton.first {
   border-top-left-radius: 0.25rem;
   border-bottom-left-radius: 0.25rem;
 }
-.jewel.buttonbar .jewel.button.last {
+.jewel.buttonbar .jewel.button.last, .jewel.buttonbar .jewel.togglebutton.last {
   border-top-right-radius: 0.25rem;
   border-bottom-right-radius: 0.25rem;
 }
@@ -289,6 +289,10 @@ j|ButtonBar {
 }
 j|IconButtonBar {
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.IconButtonBarItemRenderer");
+}
+
+j|ToggleButtonBar {
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.ToggleButtonBarItemRenderer");
 }
 
 .jewel.card {
