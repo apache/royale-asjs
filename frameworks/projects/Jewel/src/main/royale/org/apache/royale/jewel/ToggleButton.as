@@ -20,12 +20,12 @@ package org.apache.royale.jewel
 {
     COMPILE::SWF
     {
-        import flash.events.MouseEvent;
+    import flash.events.MouseEvent;
     }
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.events.MouseEvent;
     }
 	import org.apache.royale.core.IIcon;
 	import org.apache.royale.core.ISelectable;

@@ -34,7 +34,6 @@ $border-radius: .25rem
             border-top-right-radius: $border-radius
             border-bottom-right-radius: $border-radius
 
-
 j|ButtonBar
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ButtonBarModel")
     IBeadView:  ClassReference("org.apache.royale.jewel.beads.views.ButtonBarView")			
@@ -47,3 +46,7 @@ j|ButtonBar
 @media -royale-swf
     j|ButtonBar
         IContentView: ClassReference("org.apache.royale.jewel.supportClasses.list.DataGroup")
+
+j|IconButtonBar
+    IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.IconButtonBarItemRenderer")
+    // this requires in App to define in CSS -> iconClass: ClassReference("org.apache.royale.icons.FontIcon")

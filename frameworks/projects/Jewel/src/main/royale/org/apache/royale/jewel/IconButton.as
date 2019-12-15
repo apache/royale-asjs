@@ -20,12 +20,15 @@ package org.apache.royale.jewel
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
+    }
+    COMPILE::JS
+    {
+    import org.apache.royale.events.Event;
     }
     import org.apache.royale.core.IIcon;
     import org.apache.royale.core.IIconSupport;
-    import org.apache.royale.events.Event;
     
     public class IconButton extends Button implements IIconSupport
 	{
