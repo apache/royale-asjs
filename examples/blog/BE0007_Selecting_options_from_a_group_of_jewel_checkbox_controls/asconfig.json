@@ -20,12 +20,14 @@
     "config": "royale",
     "compilerOptions": {
         "debug": false,
-        "targets": ["JSRoyale","SWF"],
-        "source-map": true
+        "targets": ["JSRoyale"],
+        "source-map": true,
+        "html-template": "src/main/resources/jewel-example-index-template.html",
+        "theme": "${royalelib}/themes/Jewel-Light-NoFlat-Primary-Blue-Theme/src/main/resources/defaults.css"
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "src/main/royale/App.mxml"
+        "src/main/royale/BE0007_Selecting_options_from_a_group_of_jewel_checkbox_controls.mxml"
     ]
 }

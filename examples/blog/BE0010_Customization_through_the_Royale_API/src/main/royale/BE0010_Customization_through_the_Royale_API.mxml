@@ -83,9 +83,9 @@
 
     <j:initialView>
         <j:View>
-            <js:beads>
+            <j:beads>
                 <j:HorizontalCenteredLayout/>
-            </js:beads>
+            </j:beads>
 
             <j:Card width="350">
                 <html:H3 text="Customization through Royale API"/>

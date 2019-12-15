@@ -37,9 +37,9 @@
 
     <j:initialView>
         <j:View>
-            <js:beads>
+            <j:beads>
                 <j:HorizontalCenteredLayout/>
-            </js:beads>
+            </j:beads>
 
             <j:Card percentWidth="90">
                 <html:H3 text="Dividing an Apache Royale application with modules"/>
