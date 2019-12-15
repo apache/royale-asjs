@@ -24,13 +24,13 @@ limitations under the License.
                    applicationComplete="seq.play()"
                    >
 
-    <js:valuesImpl>
+    <cjs:valuesImpl>
         <js:SimpleCSSValuesImpl />
-    </js:valuesImpl>
+    </cjs:valuesImpl>
     
-    <js:beads>
+    <cjs:beads>
         <js:ApplicationDataBinding />
-    </js:beads>
+    </cjs:beads>
     
     <fx:Declarations>
     	<cjs:Sequence id="seq" target="circle" loop="true">
@@ -54,16 +54,16 @@ limitations under the License.
     	]]>
     </fx:Script>
     
-    <js:initialView>
+    <cjs:initialView>
         <cjs:View>
 
 			<cjs:Circle id="circle" x="100" y="100" radius="50">
-				<js:fill>
+				<cjs:fill>
 					<js:SolidColor color="#26C9FF" />
-				</js:fill>
+				</cjs:fill>
 			</cjs:Circle>
    		    
         </cjs:View>
-    </js:initialView>
+    </cjs:initialView>
 
 </cjs:Application>

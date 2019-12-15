@@ -24,13 +24,13 @@ limitations under the License.
 
 	<fx:Style source="../../main/resources/mdl-styles.css"/>
 
-	<js:valuesImpl>
+	<mdl:valuesImpl>
 		<js:SimpleCSSValuesImpl/>
-	</js:valuesImpl>
+	</mdl:valuesImpl>
 
-	<js:initialView>
+	<mdl:initialView>
 		<js:View>
 			<views:InitialView/>
 		</js:View>
-	</js:initialView>
+	</mdl:initialView>
 </mdl:Application>
