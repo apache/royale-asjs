@@ -39,25 +39,25 @@
 	</fx:Script>
     
     <j:beads>
-        <js:ApplicationDataBinding />
+        <js:ApplicationDataBinding/>
         <js:HTTPService id="codeTextLoader" url="as3code.txt" complete="code_txt = codeTextLoader.data;"/>
     </j:beads>
 
     <j:initialView>
         <j:View>
-            <js:beads>
+            <j:beads>
                 <j:HorizontalCenteredLayout/>
-            </js:beads>
+            </j:beads>
 
             <j:Card percentWidth="90">
                 <html:H3 text="Using external Javascript Libraries"/>
                 
-                 <j:Label html="This example uses hljs library to highligh a piece of code"/>
+                <j:Label html="This example uses hljs library to highligh a piece of code"/>
 
                 <html:Pre height="300" percentWidth="100" style="background-color: white">
-                    <js:beads>
+                    <html:beads>
                         <j:ScrollingViewport/>
-                    </js:beads>
+                    </html:beads>
                     <html:Code id="sourceCodeMXMLText" text="{code_txt}"/>
                 </html:Pre>
                 
