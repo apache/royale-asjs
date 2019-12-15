@@ -119,17 +119,17 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel IconButtonBar"/>
 
-				<j:Label text="Use icons in the buttons"/>
+				<j:Label html="Use icons in the buttons. At Application level CSS you need to specify the icon class with a declaration for &lt;strong>&lt;i>j|IconButtonBar&lt;i>&lt;/strong> like this: &lt;strong>&lt;i>iconClass: ClassReference('org.apache.royale.icons.FontIcon')&lt;/i>&lt;/strong>"/>
 
 				<html:H4 text="Width 100% and emphasized color"/>
 
-				<j:IconButtonBar localId="ibb" change="ibb_label.text = ibb.selectedItem as String"
+				<j:IconButtonBar localId="ibb" change="ibb_label.text = ibb.selectedItem.label + ' (icon: ' + ibb.selectedItem.icon + ')'"
 					emphasis="primary" width="100%" material="true"
 					dataProvider="{listModel.iconButtonData}"/>
 				
 				<html:H4 text="No Width and icons to the right"/>
 
-				<j:IconButtonBar localId="ibb2" change="ibb_label.text = ibb2.selectedItem as String"
+				<j:IconButtonBar localId="ibb2" change="ibb_label.text = ibb2.selectedItem.label + ' (icon: ' + ibb2.selectedItem.icon + ')'"
 					emphasis="secondary" rightPosition="true" material="true" iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				
