@@ -139,10 +139,11 @@ limitations under the License.
 
 				<j:Label html="Is a IconButtonBar"/>
 
-				<html:H4 text="Width 100% and emphasized color"/>
+				<html:H4 text="Width 100% and emphasized color, selectedIndex=2"/>
 
 				<j:ToggleButtonBar localId="tbb" 
 					change="tbbChangeHandler(event)"
+					selectedIndex="2"
 					emphasis="primary" width="100%" material="true"
 					dataProvider="{listModel.iconButtonData}"/>
 				
@@ -150,6 +151,7 @@ limitations under the License.
 
 				<j:ToggleButtonBar localId="tbb2" 
 					change="tbbChangeHandler(event)"
+					selectedIndex="0"
 					emphasis="emphasized" rightPosition="true" material="true" iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				
