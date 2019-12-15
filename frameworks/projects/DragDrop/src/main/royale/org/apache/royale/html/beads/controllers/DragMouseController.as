@@ -223,9 +223,19 @@ package org.apache.royale.html.beads.controllers
         private function dragMouseDownHandler(event:MouseEvent):void
         {
 //            trace("DRAG-MOUSE: dragMouseDown");
-            IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
-            IUIBase(_strand).topMostEventDispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
+            (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+            COMPILE::SWF
+            {
+                (_strand as IUIBase).topMostEventDispatcher.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
+            /**
+             * In browser, we need to listen to window to get mouseup events outside the window
+             */
+            COMPILE::JS
+            {
+                window.addEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
             mouseDownX = event.screenX;
             mouseDownY = event.screenY;
             event.preventDefault();
@@ -343,8 +353,18 @@ package org.apache.royale.html.beads.controllers
             dragImage = null;
 
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_MOVE, dragMouseMoveHandler);
-            IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
             IUIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.CLICK, dragMouseUpHandler);
+
+            COMPILE::SWF
+            {
+                (_strand as IUIBase).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
+            
+            COMPILE::JS
+            {
+                window.removeEventListener(MouseEvent.MOUSE_UP, dragMouseUpHandler);
+            }
+
         }
 
 	}
