@@ -143,7 +143,10 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel ToggleButton"/>
 
-				<j:ToggleButton text="Default"/>
+				<j:HGroup gap="3">
+					<j:ToggleButton text="Default" change="tb_lb.text = 'selected? ' + event.target.selected"/>
+					<j:Label localId="tb_lb"/>
+				</j:HGroup>
 				<j:ToggleButton text="Disabled">
 					<j:beads>
 						<j:Disabled/>

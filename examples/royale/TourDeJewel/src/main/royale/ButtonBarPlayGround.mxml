@@ -24,12 +24,6 @@ limitations under the License.
 	xmlns:models="models.*" 
 	xmlns:c="components.*" sourceCodeUrl="ButtonBarPlayGround.mxml">
 
-	<fx:Script>
-		<![CDATA[
-			import org.apache.royale.html.beads.models.ButtonBarModel;
-		]]>
-	</fx:Script>
-
 	<c:beads>
 		<js:ContainerDataBinding/>
 	</c:beads>
@@ -147,14 +141,15 @@ limitations under the License.
 
 				<html:H4 text="Width 100% and emphasized color"/>
 
-				<j:ToggleButtonBar localId="tbb" change="tbb_label.text = tbb.selectedItem.label + ' (icon: ' + tbb.selectedItem.icon + '). isSelected? ' + tbb.selectedItem.selected"
+				<j:ToggleButtonBar localId="tbb" 
+					change="tbbChangeHandler(event)"
 					emphasis="primary" width="100%" material="true"
 					dataProvider="{listModel.iconButtonData}"/>
 				
 				<html:H4 text="No Width and icons to the right"/>
 
 				<j:ToggleButtonBar localId="tbb2" 
-					change="tbb_label.text = tbb2.selectedItem.label + ' (icon: ' + tbb2.selectedItem.icon + '). isSelected? ' + tbb2.selectedItem.selected"
+					change="tbbChangeHandler(event)"
 					emphasis="emphasized" rightPosition="true" material="true" iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				
@@ -162,5 +157,19 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
-	
+
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.core.ISelectable;
+			import org.apache.royale.events.Event;
+			import org.apache.royale.html.beads.models.ButtonBarModel;
+
+			public function tbbChangeHandler(event:Event):void
+			{
+				var selected:Boolean = (event.target.getElementAt(event.target.selectedIndex) as ISelectable).selected;
+				tbb_label.text = event.target.selectedItem.label + ' (icon: ' + event.target.selectedItem.icon + '). isSelected? ' + selected;
+			}
+		]]>
+	</fx:Script>
+
 </c:ExampleAndSourceCodeTabbedSectionContent>

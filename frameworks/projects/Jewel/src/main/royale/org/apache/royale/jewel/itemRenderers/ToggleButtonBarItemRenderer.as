@@ -22,17 +22,17 @@ package org.apache.royale.jewel.itemRenderers
 	{
 	import org.apache.royale.core.WrappedHTMLElement;
 	}
+	import org.apache.royale.core.IIcon;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
+	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.jewel.ToggleButton;
 	import org.apache.royale.jewel.ButtonBar;
+	import org.apache.royale.jewel.ToggleButton;
+	import org.apache.royale.jewel.ToggleButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.IIcon;
-	import org.apache.royale.jewel.IconButtonBar;
 
 	/**
 	 *  The ButtonBarItemRenderer class extends Button and turns it into an itemRenderer
@@ -74,13 +74,13 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_data = value;
 			text = getLabelFromData(this, value);
-			rightPosition = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).rightPosition;
+			rightPosition = ((itemRendererParent as ButtonBarView).buttonBar as ToggleButtonBar).rightPosition;
 			if(value.icon)
 			{
 				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererParent as ButtonBarView).buttonBar, "iconClass") as Class;
 				var fontIcon:IIcon = new iconClass(); 
-				fontIcon.material = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).material;
-				fontIcon.text = value[((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).iconField];
+				fontIcon.material = ((itemRendererParent as ButtonBarView).buttonBar as ToggleButtonBar).material;
+				fontIcon.text = value[((itemRendererParent as ButtonBarView).buttonBar as ToggleButtonBar).iconField];
 				icon = fontIcon;
 			}
 		}
@@ -261,25 +261,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_hovered = value;
 		}
-
-		// private var _selected:Boolean;
-
-		// /**
-		//  *  Whether or not the itemRenderer is in a selected state.
-		//  *
-		//  *  @langversion 3.0
-		//  *  @playerversion Flash 10.2
-		//  *  @playerversion AIR 2.6
-		//  *  @productversion Royale 0.9.7
-		//  */
-		// public function get selected():Boolean
-		// {
-		// 	return _selected;
-		// }
-		// public function set selected(value:Boolean):void
-		// {
-		// 	_selected = value;
-		// }
 
 		private var _down:Boolean;
 
