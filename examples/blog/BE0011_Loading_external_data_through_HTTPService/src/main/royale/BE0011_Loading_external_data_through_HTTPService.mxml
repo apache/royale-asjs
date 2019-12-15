@@ -45,25 +45,27 @@
 		]]>
 	</fx:Script>
     
-    <services:GitHubService id="service" 
-                            sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/blog/BE0011_Loading_external_data_through_HTTPService/src/main/royale/BE0011_Loading_external_data_through_HTTPService.mxml"
-                            dataReady="dataReadyHandler(event)"/>
+    <fx:Declarations>
+        <services:GitHubService id="service" 
+            sourceCodeUrl="https://api.github.com/repos/apache/royale-asjs/contents/examples/blog/BE0011_Loading_external_data_through_HTTPService/src/main/royale/BE0011_Loading_external_data_through_HTTPService.mxml"
+            dataReady="dataReadyHandler(event)"/> 
+    </fx:Declarations>
 
     <j:initialView>
         <j:View>
-            <js:beads>
+            <j:beads>
                 <j:HorizontalCenteredLayout/>
-            </js:beads>
+            </j:beads>
 
             <j:Card percentWidth="90">
                 <html:H3 text="Loading Github external data through HTTPService"/>
                 
                 <j:Label text="This example loads its source code in the text code panel:"/>
 
-                <html:Pre height="300" percentWidth="100" style="background-color: white">
-                    <js:beads>
+                 <html:Pre height="300" percentWidth="100" style="background-color: white">
+                    <html:beads>
                         <j:ScrollingViewport/>
-                    </js:beads>
+                    </html:beads>
                     <html:Code id="sourceCodeMXMLText"/>
                 </html:Pre>
                 
