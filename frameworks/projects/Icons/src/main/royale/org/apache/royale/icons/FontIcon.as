@@ -46,7 +46,6 @@ package org.apache.royale.icons
             typeNames = "fonticon";
         }
         
-        protected var _text:String = "";
         /**
          *  The text of the icon
          *  
@@ -55,13 +54,9 @@ package org.apache.royale.icons
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.3
          */
-		public function get text():String
+        override public function set text(value:String):void
 		{
-            return _text;            
-		}
-        public function set text(value:String):void
-		{
-            _text = value;
+            super.text = value;
 
 			COMPILE::JS
 			{
