@@ -24,6 +24,12 @@ limitations under the License.
 	xmlns:models="models.*" 
 	xmlns:c="components.*" sourceCodeUrl="ButtonBarPlayGround.mxml">
 
+	<fx:Script>
+		<![CDATA[
+			import org.apache.royale.html.beads.models.ButtonBarModel;
+		]]>
+	</fx:Script>
+
 	<c:beads>
 		<js:ContainerDataBinding/>
 	</c:beads>
@@ -33,7 +39,7 @@ limitations under the License.
 	</c:model>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ButtonBar"/>
 
@@ -65,7 +71,7 @@ limitations under the License.
 				<j:Label localId="bb_label"/>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Jewel ButtonBar"/>
 
@@ -76,7 +82,7 @@ limitations under the License.
 				<j:ButtonBar localId="bb3" change="bb2_label.text = bb3.selectedItem as String"
 					emphasis="primary">
 					<j:beads>
-						<j:ButtonBarLayout/>
+						<j:ButtonBarLayout widthType="{ButtonBarModel.PIXEL_WIDTHS}"/>
 					</j:beads>
 					<j:dataProvider>
 						<js:ArrayList source="[Home, Support, Operations, Service]" />
@@ -88,7 +94,7 @@ limitations under the License.
 				<j:ButtonBar localId="bb4" change="bb2_label.text = bb4.selectedItem as String"
 					emphasis="secondary" width="100%">
 					<j:beads>
-						<j:ButtonBarLayout localId="ppw" gap="3"/>
+						<j:ButtonBarLayout localId="ppw" gap="3" widthType="{ButtonBarModel.PERCENT_WIDTHS}"/>
 					</j:beads>
 					<j:dataProvider>
 						<js:ArrayList source="[Home, Support, Operations, Service]" />
@@ -96,7 +102,7 @@ limitations under the License.
 				</j:ButtonBar>
 
 				<j:DropDownList dataProvider="{listModel.bblayout_options}"
-					labelField="label" selectedIndex="2" width="230"
+					labelField="label" selectedIndex="1" width="230"
 					change="ppw.widthType = event.target.selectedItem.value">
 					<j:beads>
 						<j:RequireSelection requireSelection="true"/> 
@@ -104,6 +110,30 @@ limitations under the License.
 				</j:DropDownList>
 
 				<j:Label localId="bb2_label"/>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+	
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel IconButtonBar"/>
+
+				<j:Label text="Use icons in the buttons"/>
+
+				<html:H4 text="Width 100% and emphasized color"/>
+
+				<j:IconButtonBar localId="ibb" change="ibb_label.text = ibb.selectedItem as String"
+					emphasis="primary" width="100%" material="true"
+					dataProvider="{listModel.iconButtonData}"/>
+				
+				<html:H4 text="No Width and icons to the right"/>
+
+				<j:IconButtonBar localId="ibb2" change="ibb_label.text = ibb2.selectedItem as String"
+					emphasis="secondary" rightPosition="true" material="true" iconField="icon"
+					dataProvider="{listModel.iconButtonData}"/>
+				
+				<j:Label localId="ibb_label"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

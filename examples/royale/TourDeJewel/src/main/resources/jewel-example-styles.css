@@ -22,6 +22,11 @@
 @namespace "http://www.w3.org/1999/xhtml";
 @namespace j "library://ns.apache.org/royale/jewel";
 
+j|IconButtonBar 
+{
+    iconClass: ClassReference("org.apache.royale.icons.FontIcon")
+}
+
 .tableStyle
 {
     IItemRenderer: ClassReference("itemRenderers.TableStyleListItemRenderer");
