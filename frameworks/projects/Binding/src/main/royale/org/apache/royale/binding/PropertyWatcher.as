@@ -243,15 +243,20 @@ package org.apache.royale.binding
                 else
                 {
                     if (funcProps != null) {
-                        if (funcProps.functionGetter != null)
+                        try{
+                            if (funcProps.functionGetter != null)
+                            {
+                                value = funcProps.functionGetter(funcProps.functionName).apply(source,
+                                        funcProps.paramFunction.apply(document));
+                            }
+                            else
+                            {
+                                value = source[funcProps.functionName].apply(source,
+                                        funcProps.paramFunction.apply(document));
+                            }
+                        } catch (e:Error)
                         {
-                            value = funcProps.functionGetter(funcProps.functionName).apply(source,
-                                    funcProps.paramFunction.apply(document));
-                        }
-                        else
-                        {
-                            value = source[funcProps.functionName].apply(source,
-                                    funcProps.paramFunction.apply(document));
+                            value = null;
                         }
                     }
                     else if (getterFunction != null)
