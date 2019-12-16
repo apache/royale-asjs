@@ -17,34 +17,33 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<cordova:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+<c:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 					  xmlns:local="*"
 					  xmlns:models="models.*"
 					  xmlns:views="views.*"
 					  xmlns:js="library://ns.apache.org/royale/basic" 
-				      xmlns:cordova="library://ns.apache.org/royale/cordova"
-					  >
+				      xmlns:c="library://ns.apache.org/royale/cordova">
+					  
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
-	<js:valuesImpl>
+	<c:valuesImpl>
 		<js:SimpleCSSValuesImpl />
-	</js:valuesImpl>
+	</c:valuesImpl>
 	
-	<js:model>
+	<c:model>
 		<models:ProductsModel />
-	</js:model>
+	</c:model>
 	
-	<js:initialView>
+	<c:initialView>
 		<local:MyInitialView width="100%" height="100%" className="InitalView" />
-	</js:initialView>
+	</c:initialView>
 	
-	<js:beads>
-		<cordova:Weinre guid="aharui" />
+	<c:beads>
+		<c:Weinre guid="aharui" />
 		<js:MixinManager />
 		<js:DeviceSizeBead />
-	</js:beads>
-	
-	
-</cordova:Application>
+	</c:beads>
+
+</c:Application>

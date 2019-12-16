@@ -43,10 +43,9 @@
 
     <j:initialView>
         <j:View>
-            <js:beads>
+            <j:beads>
                 <j:HorizontalCenteredLayout/>
-                <js:ApplicationDataBinding/>
-            </js:beads>
+            </j:beads>
 
             <j:Card width="270">
                 <html:H3 text="Jewel List With ItemRenderer"/>
@@ -56,7 +55,7 @@
 						<js:ConstantBinding
 							sourceID="listModel"
 							sourcePropertyName="iconListData"
-							destinationPropertyName="dataProvider" />
+							destinationPropertyName="dataProvider"/>
 					</j:beads>
 				</j:List>
             </j:Card>

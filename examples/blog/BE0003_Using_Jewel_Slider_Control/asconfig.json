@@ -21,11 +21,13 @@
     "compilerOptions": {
         "debug": false,
         "targets": ["JSRoyale","SWF"],
-        "source-map": true
+        "source-map": true,
+        "html-template": "src/main/resources/jewel-example-index-template.html",
+        "theme": "${royalelib}/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme/src/main/resources/defaults.css"
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "src/main/royale/App.mxml"
+        "src/main/royale/BE0003_Using_Jewel_Slider_Control.mxml"
     ]
 }

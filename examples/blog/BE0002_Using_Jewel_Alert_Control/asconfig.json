@@ -23,7 +23,7 @@
         "targets": ["JSRoyale"],
         "source-map": true,
         "html-template": "src/main/resources/jewel-example-index-template.html",
-        "theme": "${royalelib}/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme/src/main/resources/defaults.css"
+        "theme": "${royalelib}/themes/Jewel-Light-NoFlat-Primary-Topaz-Theme/src/main/resources/defaults.css"
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
