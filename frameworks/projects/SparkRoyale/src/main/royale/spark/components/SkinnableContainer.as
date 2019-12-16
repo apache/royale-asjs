@@ -27,13 +27,13 @@ import mx.core.IVisualElementContainer;
 import mx.events.FlexEvent;
 import mx.utils.BitFlagUtil;
 
-import spark.components.supportClasses.SkinnableContainerBase;
 import spark.events.ElementExistenceEvent;
 */
 import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
 
+import spark.components.supportClasses.SkinnableContainerBase;
 import spark.components.supportClasses.SkinnableComponent;
 import spark.components.supportClasses.GroupBase;
 import spark.components.beads.SkinnableContainerView;
@@ -366,7 +366,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class SkinnableContainer extends SkinnableComponent implements IContainer, IContainerBaseStrandChildrenHost
+public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost
 {// SkinnableContainerBase 
  //    implements IDeferredContentOwner, IVisualElementContainer
    // include "../core/Version.as";

@@ -125,6 +125,8 @@ package spark.components
 		public function Form()
 		{
 			super();
+            typeNames += " Form";
+            
 			// addEventListener(FlexEvent.VALID, validHandler, true);
 			// addEventListener(FlexEvent.INVALID, invalidHandler, true);
 			

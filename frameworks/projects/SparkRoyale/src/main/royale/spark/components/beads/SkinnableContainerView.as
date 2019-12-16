@@ -59,9 +59,11 @@ public class SkinnableContainerView extends SparkContainerView
     {
         var chost:IContainer = host as IContainer;
         var skinhost:SkinnableComponent = host as SkinnableComponent;
-        if (chost != null && chost != viewport.contentView) {
+        if (chost != null && chost != viewport.contentView && skinhost.skin) {
             chost.addElement(skinhost.skin);
-        }            
+        }
+        else
+            super.addViewport();
     }
 
 }

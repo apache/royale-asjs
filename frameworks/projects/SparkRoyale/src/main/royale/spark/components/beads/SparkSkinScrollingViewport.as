@@ -33,6 +33,7 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.IViewport;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
 import org.apache.royale.geom.Size;
 
 COMPILE::SWF
@@ -90,9 +91,14 @@ public class SparkSkinScrollingViewport implements IViewport
         
         var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
         host.setSkin(new c());
+        host.skin.addEventListener("initComplete", initCompleteHandler);
+        contentArea = host.skin; // temporary assigment so that SkinnableContainer.addElement can add the skin
         
+    }
+    
+    private function initCompleteHandler(event:Event):void
+    {
         contentArea = host.skin["contentGroup"];
-        
         COMPILE::JS
         {
             setScrollStyle();

@@ -255,7 +255,8 @@ public class ConstraintLayout extends LayoutBase
     //  constraintColumns
     //----------------------------------
     
-    private var _constraintColumns:Vector.<ConstraintColumn> = new Vector.<ConstraintColumn>(0, true);
+    // MXML assignment of vector not working right now
+    private var _constraintColumns:Array = []; //Vector.<ConstraintColumn> = new Vector.<ConstraintColumn>(0, true);
     // An associative array of column id --> column index
     private var columnsObject:Object = {};
     
@@ -269,7 +270,7 @@ public class ConstraintLayout extends LayoutBase
      *  @playerversion AIR 1.5
      *  @productversion Flex 4.5
      */
-    public function get constraintColumns():Vector.<ConstraintColumn>
+    public function get constraintColumns():Array //Vector.<ConstraintColumn>
     {
         // make defensive copy
         return _constraintColumns.slice();
@@ -278,19 +279,19 @@ public class ConstraintLayout extends LayoutBase
     /**
      *  @private
      */
-    public function set constraintColumns(value:Vector.<ConstraintColumn>):void
+    public function set constraintColumns(value:Array /*Vector.<ConstraintColumn>*/):void
     {   
         // clear constraintColumns
         if (value == null)
         {
-            _constraintColumns = new Vector.<ConstraintColumn>(0, true);
+            _constraintColumns = []; // new Vector.<ConstraintColumn>(0, true);
             columnsObject = {};
             return;
         }
         
         var n:int = value.length;
         var col:ConstraintColumn;
-        var temp:Vector.<ConstraintColumn> = value.slice();
+        var temp:Array /*Vector.<ConstraintColumn>*/ = value.slice();
         var obj:Object = {};
         
         for (var i:int = 0; i < n; i++)
@@ -314,7 +315,7 @@ public class ConstraintLayout extends LayoutBase
     //  constraintRows
     //----------------------------------
     
-    private var _constraintRows:Vector.<ConstraintRow> = new Vector.<ConstraintRow>(0, true);
+    private var _constraintRows:Array = [] // Vector.<ConstraintRow> = new Vector.<ConstraintRow>(0, true);
     // An associative array of row id --> row index
     private var rowsObject:Object = {};
     
@@ -328,7 +329,7 @@ public class ConstraintLayout extends LayoutBase
      *  @playerversion AIR 1.5
      *  @productversion Flex 4.5
      */
-    public function get constraintRows():Vector.<ConstraintRow> 
+    public function get constraintRows():Array //Vector.<ConstraintRow> 
     {
         return _constraintRows.slice();
     }
@@ -336,19 +337,19 @@ public class ConstraintLayout extends LayoutBase
     /**
      *  @private
      */
-    public function set constraintRows(value:Vector.<ConstraintRow>):void
+    public function set constraintRows(value:Array /*Vector.<ConstraintRow>*/):void
     {
         // clear constraintRows
         if (value == null)
         {
-            _constraintRows = new Vector.<ConstraintRow>(0, true);
+            _constraintRows = []; //new Vector.<ConstraintRow>(0, true);
             rowsObject = {};
             return;
         }
         
         var n:int = value.length;
         var row:ConstraintRow;
-        var temp:Vector.<ConstraintRow> = value.slice();
+        var temp:Array /*Vector.<ConstraintRow>*/ = value.slice();
         var obj:Object = {};
         rowBaselines = new Vector.<Array>();
         
@@ -616,7 +617,7 @@ public class ConstraintLayout extends LayoutBase
         if (value == null)
             return;
         
-        var constraintColumns:Vector.<ConstraintColumn> = this._constraintColumns;
+        var constraintColumns:Array /*Vector.<ConstraintColumn>*/ = this._constraintColumns;
         var numCols:int = constraintColumns.length;
         var totalWidth:Number = 0;
         
@@ -637,7 +638,7 @@ public class ConstraintLayout extends LayoutBase
         if (value == null)
             return;
         
-        var constraintRows:Vector.<ConstraintRow> = this._constraintRows;
+        var constraintRows:Array /*Vector.<ConstraintRow>*/ = this._constraintRows;
         var numRows:int = constraintRows.length;
         var totalHeight:Number = 0;
         

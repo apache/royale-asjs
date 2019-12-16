@@ -375,7 +375,7 @@ package spark.layouts
 			
 			// TODO (klin): What happens when the form items have different types of columns?
 			const fiLayout:FormItemLayout = getElementLayout(formItems[0]) as FormItemLayout;
-			const constraintColumns:Vector.<ConstraintColumn> = fiLayout.constraintColumns;
+			const constraintColumns:Array /*Vector.<ConstraintColumn>*/ = fiLayout.constraintColumns;
 			const numCols:int = constraintColumns.length;
 			var col:ConstraintColumn;
 			var childInfoArray:Array /* of ColumnFlexChildInfo */ = [];

@@ -120,11 +120,13 @@ DropDownList
 Form
 {
 	skinClass: ClassReference("spark.skins.spark.FormSkin");
+	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
 }
 
 FormItem
 {
 	skinClass: ClassReference("spark.skins.spark.FormItemSkin");
+	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
 }
 
 List
