@@ -49,7 +49,7 @@ import spark.core.IProxiedStageTextWrapper;
 import spark.core.ISoftKeyboardHintClient;
 import spark.events.TextOperationEvent;
  */
-	
+import org.apache.royale.html.accessories.PasswordInputBead;
 import org.apache.royale.textLayout.elements.TextFlow;
 import mx.utils.BitFlagUtil;
 
