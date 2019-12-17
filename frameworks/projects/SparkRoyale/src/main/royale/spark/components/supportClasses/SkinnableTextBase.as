@@ -1002,28 +1002,40 @@ public class SkinnableTextBase extends SkinnableComponent
     //----------------------------------
     //  displayAsPassword
     //----------------------------------
-    
-    //[Inspectable(category="General", defaultValue="false")]
+    /**
+     *  @private
+     *  Storage for the displayAsPassword property.
+     */
+    private var _displayAsPassword:Boolean = false;
 
     /**
-     *  @copy flash.text.TextField#displayAsPassword
-     * 
-     *  @default false
-     * 
-     *  @langversion 3.0
-     *  @playerversion Flash 10
-     *  @playerversion AIR 1.5
-     *  @productversion Royale 0.9.4
+     *  @private
      */
-     public function get displayAsPassword():Boolean
-    {
-        /* if (textDisplay)
-            return textDisplay.displayAsPassword;
+	private var _passwordBead:PasswordInputBead;
+    private var displayAsPasswordChanged:Boolean = false;
 
-        // want the default to be false
-        var v:* = textDisplayProperties.displayAsPassword
-        return (v === undefined) ? false : v; */
-		return false;
+    [Bindable("displayAsPasswordChanged")]
+    [Inspectable(category="General", defaultValue="false")]
+
+    /**
+     *  Indicates whether this control is used for entering passwords.
+     *  If <code>true</code>, the field does not display entered text,
+     *  instead, each text character entered into the control
+     *  appears as the  character "&#42;".
+     *
+     *  @default false
+     *  @tiptext Specifies whether to display '*'
+     *  instead of the actual characters
+     *  @helpid 3197
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get displayAsPassword():Boolean
+    {
+        return _displayAsPassword;
     }
 
     /**
@@ -1031,21 +1043,28 @@ public class SkinnableTextBase extends SkinnableComponent
      */
     public function set displayAsPassword(value:Boolean):void
     {
-        /* if (textDisplay)
-        {
-            textDisplay.displayAsPassword = value;
-            textDisplayProperties = BitFlagUtil.update(
-                                    uint(textDisplayProperties), 
-                                    DISPLAY_AS_PASSWORD_PROPERTY_FLAG, true);
-        }
-        else
-        {
-            textDisplayProperties.displayAsPassword = value;
-        }
+        if (value == _displayAsPassword)
+            return;
 
-        // Generate an UPDATE_COMPLETE event.
-        invalidateProperties();      */               
-    } 
+        _displayAsPassword = value;
+//        displayAsPasswordChanged = true;
+//
+//        invalidateProperties();
+//        invalidateSize();
+//        invalidateDisplayList();;
+		
+		if (_displayAsPassword && _passwordBead == null) {
+			_passwordBead = new PasswordInputBead();
+			addBead(_passwordBead);
+		}
+		else if (!_displayAsPassword && _passwordBead != null) {
+			removeBead(_passwordBead);
+			_passwordBead = null;
+		}
+
+        dispatchEvent(new Event("displayAsPasswordChanged"));
+    }
+    
 
     //----------------------------------
     //  editable
