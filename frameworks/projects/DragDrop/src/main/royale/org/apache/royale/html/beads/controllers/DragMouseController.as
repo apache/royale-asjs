@@ -23,6 +23,10 @@ package org.apache.royale.html.beads.controllers
 	import flash.display.DisplayObjectContainer;
 	}
 
+    COMPILE::JS
+    {
+        import goog.events.BrowserEvent;
+    }
 
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDragInitiator;
@@ -329,7 +333,12 @@ package org.apache.royale.html.beads.controllers
             if (dragging && event.target)
             {
                 //trace("DRAG-MOUSE: sending dragEnd via: "+event.target.toString());
-
+                COMPILE::JS
+                {
+                    var googEv:goog.events.BrowserEvent = new goog.events.BrowserEvent(event,event["currentTarget"]);
+                    event = new MouseEvent(event["type"]);
+                    event.wrapEvent(googEv);
+                }
 				var screenPoint:Point = new Point(event.screenX, event.screenY);
 				var newPoint:Point = PointUtils.globalToLocal(screenPoint, event.target);
 				dragEvent = DragEvent.createDragEvent("dragEnd", event);
