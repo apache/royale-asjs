@@ -66,6 +66,7 @@
     <module>Reflection</module>
     <module>RoyaleSite</module>
     <module>RoyaleUnit</module>
+    <module>RoyaleUnitUI</module>
     <module>SparkRoyale</module>
     <module>Storage</module>
     <module>Text</module>
