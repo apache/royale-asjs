@@ -114,11 +114,19 @@ package mx.controls.beads
         
         override protected function createLists():void
         {
-            super.createLists();
-            var host:IDataGrid = _strand as IDataGrid;
+            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
             var sharedModel:IDataGridModel = (host.model as IDataGridModel);
+            if (host.itemRenderer != null)
+            {
+                for (var i:int=0; i < sharedModel.columns.length; i++)
+                {
+                    if ((sharedModel.columns[i] as AdvancedDataGridColumn).itemRenderer == null)
+                        (sharedModel.columns[i] as AdvancedDataGridColumn).itemRenderer = host.itemRenderer;
+                }
+            }        
+            super.createLists();
             
-            for (var i:int=0; i < sharedModel.columns.length; i++)
+            for (i=0; i < sharedModel.columns.length; i++)
             {
                 (sharedModel.columns[i] as AdvancedDataGridColumn).list = columnLists[i];
             }
