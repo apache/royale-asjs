@@ -113,7 +113,8 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel IconButtonBar"/>
 
-				<j:Label html="Is a ButtonBar. Use icons in the buttons. At Application level CSS you need to specify the icon class with a declaration for &lt;strong>&lt;i>j|IconButtonBar&lt;i>&lt;/strong> like this: &lt;strong>&lt;i>iconClass: ClassReference('org.apache.royale.icons.FontIcon')&lt;/i>&lt;/strong>"/>
+				<j:Label html="Is a ButtonBar with IconButtons as item renderers. At Application level CSS you need to specify the icon class with a declaration for &lt;strong>j|IconButtonBar&lt;/strong> like this: &lt;strong>iconClass: ClassReference('org.apache.royale.icons.FontIcon')&lt;/strong>"
+				 		multiline="true"/>
 
 				<html:H4 text="Width 100% and emphasized color"/>
 
@@ -137,9 +138,9 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel ToggleButtonBar"/>
 
-				<j:Label html="Is a IconButtonBar"/>
+				<j:Label html="Is a IconButtonBar with ToggleButtons as item renderers"/>
 
-				<html:H4 text="Width 100% and emphasized color, selectedIndex=2"/>
+				<html:H4 text="Width 100% and emphasized color, selectedIndex is 2"/>
 
 				<j:ToggleButtonBar localId="tbb" 
 					change="tbbChangeHandler(event)"
@@ -147,7 +148,7 @@ limitations under the License.
 					emphasis="primary" width="100%" material="true"
 					dataProvider="{listModel.iconButtonData}"/>
 				
-				<html:H4 text="No Width and icons to the right"/>
+				<html:H4 text="No Width and icons to the right, selectedIndex is 0"/>
 
 				<j:ToggleButtonBar localId="tbb2" 
 					change="tbbChangeHandler(event)"
