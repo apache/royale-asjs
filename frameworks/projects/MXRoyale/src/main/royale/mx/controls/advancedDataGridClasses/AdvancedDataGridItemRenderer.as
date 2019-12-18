@@ -181,6 +181,9 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         }
     }
 
+    private var textSelectedColor:String = "#000000";
+    private var textRollOverColor:String = "#000000";
+    
     /**
      * @private
      */
@@ -193,11 +196,22 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         COMPILE::JS
         {
             if (selected)
+            {
                 element.style.backgroundColor = '#9C9C9C';
+                element.style.color = textSelectedColor;
+            }
             else if (hovered)
+            {
                 element.style.backgroundColor = '#ECECEC';
+                element.style.color = textRollOverColor;
+            }
             else
+            {
+                var treeListData:AdvancedDataGridListData = listData as AdvancedDataGridListData;
+                var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
                 element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
+                element.style.color = CSSUtils.attributeFromColor((treeListData.owner as UIComponent).getStyle("color"));
+            }
         }
     }
 
@@ -218,6 +232,19 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             }
         }
         super.text = value;
+    }
+    
+    public function setStyle(styleName:String, value:Object):void
+    {
+        COMPILE::JS
+        {
+            if (styleName == "textRollOverColor")
+                textRollOverColor = String(value);
+            else if (styleName == "textSelectedColor")
+                textSelectedColor = String(value);
+            else
+                element.style[styleName] = value;        
+        }
     }
 }
 
