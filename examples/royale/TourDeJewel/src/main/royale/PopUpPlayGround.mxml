@@ -26,6 +26,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 		import org.apache.royale.events.Event;
+		import components.FormExample;
 
 		public function openPopUpHandler(event:Event):void
 		{
@@ -34,6 +35,24 @@ limitations under the License.
 		public function closePopUpHandler(event:Event):void
 		{
 			trace("[closePopUp] ", event.target, popup1.content);
+		}
+
+		private var programaticPopup:PopUp;
+		public function createProgramaticPopup(event:Event):void
+		{
+			if(!programaticPopup)
+			{
+				var fe:FormExample = new FormExample();
+				fe.width = 490;
+				fe.height = 392;
+				fe.label = "AS3 Form Instance"
+
+				programaticPopup = new PopUp();
+				programaticPopup.content = fe;
+				addElement(programaticPopup);
+			}
+
+			programaticPopup.open = true; 
 		}
 		]]>
 	</fx:Script>
@@ -67,6 +86,10 @@ limitations under the License.
 						 closePopUp="popupFormContent.formValidator.removeAllErrorTips()">
 					<c:FormExample localId="popupFormContent" label="Form example in a PopUp" width="490" height="392"/>
 				</j:PopUp>
+
+				<html:H3 text="Jewel PopUp (Declared in AS3)"/>
+				<j:Button text="Create Programatic Popup" emphasis="primary"
+                   click="createProgramaticPopup(event)"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
