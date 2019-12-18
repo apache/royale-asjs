@@ -324,7 +324,7 @@ package
 		
 		static private function insertAttribute(att:Attr,parent:XML):XML
 		{
-			var xml:XML = new XMLAttribute();
+			var xml:XML = new XML();
 			xml._parent = parent;
 			xml._name = getQName(att.localName, '', att.namespaceURI, true);
 			xml._value = att.value;
@@ -407,12 +407,12 @@ package
 						data = data.trim();
 						if (!data) return null;
 					}
-					xml = new XMLText();
+					xml = new XML();
 					xml.setValue(data);
 					break;
 				case 4:
 					//CDATA_SECTION_NODE
-					xml = new XMLText();
+					xml = new XML();
 					data = "<![CDATA[" + data + "]]>";
 					xml.setValue(data);
 					break;
@@ -540,8 +540,6 @@ package
 				var className:String = xml.ROYALE_CLASS_INFO.names[0].name;
 				switch(className){
 					case "XML":
-					case "XMLAttribute":
-					case "XMLText":
 						return xml;
 					case "XMLList":
 						var xmlList:XMLList = xml as XMLList;
@@ -572,7 +570,7 @@ package
 				var xmlStr:String = ignoreWhitespace ? trimXMLWhitespace("" + xml) : "" + xml;
 				if(xmlStr.indexOf("<") == -1)
 				{
-					_nodeKind = TEXT;
+					// _nodeKind = TEXT;
 					_value = xmlStr;
 				}
 				else
@@ -581,7 +579,7 @@ package
 				}
 			} else {
 				if (!_internal) {
-					_nodeKind = TEXT;
+					// _nodeKind = TEXT;
 					_value = '';
 				}
 			}
@@ -685,7 +683,7 @@ package
 					if (node.nodeType == 7) {
 						if (XML.ignoreProcessingInstructions) {
 							if (!foundCount) {
-								this._nodeKind = TEXT;
+								// this._nodeKind = TEXT;
 								//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
 								delete this._name;
 								this.setValue('');
@@ -698,7 +696,7 @@ package
 						}
 					} else if (node.nodeType == 4) {
 						if (!foundCount) {
-							this._nodeKind = TEXT;
+							// this._nodeKind = TEXT;
 							//e4x: The value of the [[Name]] property is null if and only if the XML object represents an XML comment or text node
 							delete this._name;
 							this.setValue('<![CDATA[' + node.nodeValue + ']]>');
@@ -709,7 +707,7 @@ package
 						delete this._name;
 						if (XML.ignoreComments) {
 							if (!foundCount) {
-								this._nodeKind = TEXT;
+								// this._nodeKind = TEXT;
 								this.setValue('');
 							}
 						} else {
@@ -724,7 +722,8 @@ package
 						var whiteSpace:Boolean = isWhitespace.test(node.nodeValue);
 						if (!whiteSpace || !XML.ignoreWhitespace) {
 							if (!foundCount) {
-								this._nodeKind = TEXT;
+								delete this._name;
+								// this._nodeKind = TEXT;
 								this.setValue(node.nodeValue);
 							}
 							foundCount++;
@@ -902,7 +901,7 @@ package
 					const wrapper:XML = new XML();
 					wrapper.resetNodeKind();
 					child = new XML(child.toString());
-					wrapper.setName(lastChild.name());
+					wrapper._name = lastChild._name;
 					child.setParent(wrapper);
 					wrapper.getChildren().push(child);
 					child = wrapper;
@@ -1165,7 +1164,7 @@ package
 			var xml:XML = new XML();
 			xml.resetNodeKind();
 			xml.setNodeKind(getNodeKindInternal());
-			xml.setName(name());
+			xml._name = _name;
 			if(_value){
 				xml.setValue(_value);
 			}
@@ -1880,7 +1879,14 @@ package
 		}
 
 		protected function getNodeRef():String{
-			return _nodeKind ? _nodeKind : ELEMENT;
+			if(_nodeKind)
+				return _nodeKind;
+			if(!_name)
+				return TEXT;
+			if(_name.isAttribute){
+				return ATTRIBUTE;
+			}
+			return ELEMENT;
 		}
 
 		private static const kindNameLookup:Object = {
@@ -1967,7 +1973,7 @@ package
 		private function xmlFromStringable(value:*):XML
 		{
 			var str:String = value.toString();
-			var xml:XML = new XMLText();
+			var xml:XML = new XML();
 			xml.setValue(str);
 			return xml;
 		}
@@ -2060,16 +2066,26 @@ package
 				7. Return true.
 			*/
 			var i:int;
+			var len:int;
 			var removed:XML;
 			if(!child)
 				return false;
-			
+			if(child is XMLList){
+				var val:Boolean = false;
+				len = child.length();
+				for(i=len-1;i>=0;i--){
+					if(removeChild(child[i])){
+						val = true;
+					}
+				}
+				return val;
+			}
 			if(!(child is XML))
 				return removeChildByName(child);
 			
 			if(child.getNodeRef() == ATTRIBUTE)
 			{
-				var len:int = attributeLength();
+				len = attributeLength();
 				for(i=0;i<len;i++)
 				{
 					if(child.equals(_attributes[i]))
@@ -2397,8 +2413,9 @@ package
 			else
 			{
 				//it's a regular attribute string
-				var attrXML:XML = new XMLAttribute();
-				attrXML.setName(toAttributeName(attr));
+				var attrXML:XML = new XML();
+				var nameRef:QName = toAttributeName(attr);
+				attrXML._name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,true);
 				attrXML.setValue(value);
 				len = attributeLength();
 				for(i=0;i<len;i++)

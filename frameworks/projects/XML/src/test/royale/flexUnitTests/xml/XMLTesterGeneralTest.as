@@ -1130,6 +1130,10 @@ package flexUnitTests.xml
             assertEquals(xml.toString(),'<root><baz name="baz1"/><baz name="baz2"/></root>',"name attribute should have been removed.");
             delete xml.baz[0];
             assertEquals(xml.toString(),'<root><baz name="baz2"/></root>',"the first baz element should have been removed.");
+            xml = <root name="foo"><baz name="baz1"/><baz name="baz2"/></root>;
+            delete xml.baz;
+            // delete xml.baz[0];
+            assertEquals(xml.toXMLString(),'<root name="foo"/>',"the first baz element should have been removed.");
             XML.setSettings(XML.defaultSettings());
         }
     }
