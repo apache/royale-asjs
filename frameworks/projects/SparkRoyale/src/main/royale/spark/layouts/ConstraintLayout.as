@@ -679,7 +679,7 @@ public class ConstraintLayout extends LayoutBase
         COMPILE::JS
         {                
         if (layoutElement['constraintElementId'] == null)
-            layoutElement['constraintElementId'] = constraintElementId.toString();
+            layoutElement['constraintElementId'] = (constraintElementId++).toString();
         var elementInfo:ElementConstraintInfo = constraintCache[layoutElement['constraintElementId']];
         }
         COMPILE::SWF
@@ -1733,6 +1733,8 @@ public class ConstraintLayout extends LayoutBase
         }
         COMPILE::JS
         {
+            if (layoutElement['constraintElementId'] == null)
+                layoutElement['constraintElementId'] = (constraintElementId++).toString();
             constraintCache[layoutElement['constraintElementId']] = elementInfo;                
             
         }

@@ -55,6 +55,7 @@ import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.ValueEvent;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -658,8 +659,8 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
             ? contentGroup.layout 
             : contentGroupProperties.layout;
         */
-        if (!_layout)
-            _layout = new BasicLayout();
+        //if (!_layout)
+        //    _layout = new BasicLayout();
         return _layout;
     }
     
@@ -902,6 +903,11 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      */
     public function childrenAdded():void
     {
+        if (skin)
+        {
+            var skinDispatcher:IEventDispatcher = (view as SkinnableContainerView).contentView as IEventDispatcher;
+            skinDispatcher.dispatchEvent(new ValueEvent("childrenAdded"));
+        }
         dispatchEvent(new ValueEvent("childrenAdded"));
     }
     
@@ -998,10 +1004,11 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-     protected function partAdded(partName:String, instance:Object):void
-    { //override
-        /* super.partAdded(partName, instance);
+    override protected function partAdded(partName:String, instance:Object):void
+    { 
+        super.partAdded(partName, instance);
 
+        /* 
         if (instance == contentGroup)
         {
             if (_contentModified)
@@ -1264,6 +1271,8 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
          if (c == contentView)
          {
              super.addElement(c); // ContainerView uses addElement to add inner contentView
+             if (c == skin)
+                 findSkinParts();
              return;
          }
          contentView.addElement(c, dispatchEvent);

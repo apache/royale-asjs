@@ -23,6 +23,8 @@ package spark.components.beads
 import spark.components.SkinnableContainer;
 import spark.components.supportClasses.GroupBase;
 import spark.components.supportClasses.SkinnableComponent;
+import spark.components.supportClasses.Skin;
+import spark.layouts.BasicLayout;
 
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IContainer;
@@ -55,6 +57,35 @@ public class SkinnableContainerView extends SparkContainerView
 		super();
 	}
 
+    /**
+     *  Adjusts the size of the host after the layout has been run if needed
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.UIBase
+     */
+    override public function beforeLayout():void
+    {
+        var host:SkinnableContainer = _strand as SkinnableContainer;
+        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
+        {
+            if (host.skin)
+            {
+                (host.skin as Skin).layout.measure();
+                host.measuredHeight = host.skin.measuredHeight;
+                host.measuredWidth = host.skin.measuredWidth;
+            }
+            else 
+            {
+                if (host.layout == null)
+                    host.layout = new BasicLayout();
+                host.layout.measure();
+            }
+        }
+    }
+    
     override protected function addViewport():void
     {
         var chost:IContainer = host as IContainer;

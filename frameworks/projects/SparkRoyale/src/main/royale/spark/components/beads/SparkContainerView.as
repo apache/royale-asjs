@@ -22,6 +22,7 @@ package spark.components.beads
 
 import spark.components.SkinnableContainer;
 import spark.components.supportClasses.GroupBase;
+import spark.layouts.BasicLayout;
 
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IContainer;
@@ -29,6 +30,8 @@ import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.html.beads.ContainerView;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 
 /**
  *  @private
@@ -62,7 +65,10 @@ public class SparkContainerView extends ContainerView
         super.strand = value;
         var host:SkinnableContainer = _strand as SkinnableContainer;
         var g:GroupBase = (contentView as GroupBase);
-        g.layout = host.layout;
+        if (host.layout != null)
+            g.layout = host.layout;
+        if (g.layout == null)
+            g.layout = new BasicLayout();
         
         if (!host.isWidthSizedToContent())
             g.percentWidth = 100;
@@ -70,6 +76,48 @@ public class SparkContainerView extends ContainerView
             g.percentHeight = 100;
 
     }
+    
+    /**
+     *  Adjusts the size of the host after the layout has been run if needed
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.UIBase
+     */
+    override public function beforeLayout():void
+    {
+        var host:SkinnableContainer = _strand as SkinnableContainer;
+        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
+        {
+            host.layout.measure();
+        }
+    }
+    
+    /**
+     *  Adjusts the size of the host after the layout has been run if needed
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.UIBase
+     */
+    override public function afterLayout():void
+    {
+        var host:SkinnableContainer = _strand as SkinnableContainer;
+        if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
+        {
+            // request re-run layout on the parent.  In theory, we should only
+            // end up in afterLayout if the content size changed.
+            if (host.parent)
+            {
+                (host.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));   
+            }
+        }
+    }
+
 
 }
 

@@ -4350,6 +4350,41 @@ COMPILE::JS
         invalidateDisplayListFlag = false;
     }
 
+    override public function isWidthSizedToContent():Boolean
+    {
+        if (!isNaN(_explicitWidth))
+            return false;
+        if (!isNaN(percentWidth))
+            return false;
+        var left:* = ValuesManager.valuesImpl.getValue(this, "left");
+        var right:* = ValuesManager.valuesImpl.getValue(this, "right");
+        if (typeof(left) === "string" && String(left).indexOf(":") != -1)
+            left = undefined;
+        if (typeof(right) === "string" && String(right).indexOf(":") != -1)
+            right = undefined;        
+        if (left === undefined || right === undefined) return true;
+        if (parent is UIComponent)
+            return (parent as UIComponent).isWidthSizedToContent();
+        return false;
+    }
+
+    override public function isHeightSizedToContent():Boolean
+    {
+        if (!isNaN(_explicitHeight))
+            return false;
+        if (!isNaN(percentHeight))
+            return false;
+        var top:* = ValuesManager.valuesImpl.getValue(this, "top");
+        var bottom:* = ValuesManager.valuesImpl.getValue(this, "bottom");
+        if (typeof(top) === "string" && String(top).indexOf(":") != -1)
+            top = undefined;
+        if (typeof(bottom) === "string" && String(bottom).indexOf(":") != -1)
+            bottom = undefined;        
+        if (top === undefined || bottom === undefined) return true;
+        if (parent is UIComponent)
+            return (parent as UIComponent).isHeightSizedToContent();
+        return false;
+    }
     
     [Inspectable(category="General")]
 
