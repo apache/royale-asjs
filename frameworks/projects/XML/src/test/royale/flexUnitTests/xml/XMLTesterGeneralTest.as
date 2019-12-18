@@ -1120,5 +1120,17 @@ package flexUnitTests.xml
     
             XML.setSettings(XML.defaultSettings());
         }
+
+        [Test]
+        public function testDelete():void{
+            XML.setSettings(XML.defaultSettings());
+            XML.prettyPrinting = false;
+            var xml:XML = <root name="foo"><baz name="baz1"/><baz name="baz2"/></root>;
+            delete xml.@name;
+            assertEquals(xml.toString(),'<root><baz name="baz1"/><baz name="baz2"/></root>',"name attribute should have been removed.");
+            delete xml.baz[0];
+            assertEquals(xml.toString(),'<root><baz name="baz2"/></root>',"the first baz element should have been removed.");
+            XML.setSettings(XML.defaultSettings());
+        }
     }
 }
