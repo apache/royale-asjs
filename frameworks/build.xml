@@ -116,6 +116,7 @@
         <antcall target="RoyaleUnit"/>
         <antcall target="Collections"/>
         <antcall target="Basic"/>
+        <antcall target="RoyaleUnitUI"/>
 
         <antcall target="Ace"/>
         <antcall target="HTML"/>
@@ -204,6 +205,7 @@
         <ant dir="${basedir}/projects/Mobile" target="clean"/>
         <ant dir="${basedir}/projects/Reflection" target="clean"/>
         <ant dir="${basedir}/projects/RoyaleUnit" target="clean"/>
+        <ant dir="${basedir}/projects/RoyaleUnitUI" target="clean"/>
         <ant dir="${basedir}/projects/Network" target="clean"/>
         <ant dir="${basedir}/projects/Storage" target="clean"/>
         <ant dir="${basedir}/projects/XML" target="clean"/>
@@ -361,6 +363,10 @@
 
     <target name="RoyaleUnitTest" description="Test of RoyaleUnit.swc">
         <ant dir="${basedir}/projects/RoyaleUnit" target="test"/>
+    </target>
+
+    <target name="RoyaleUnitUI" description="Clean build of RoyaleUnitUI.swc">
+        <ant dir="${basedir}/projects/RoyaleUnitUI"/>
     </target>
 
     <target name="Storage" description="Clean build of Storage.swc">
