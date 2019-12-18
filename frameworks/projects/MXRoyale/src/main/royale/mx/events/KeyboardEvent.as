@@ -103,7 +103,7 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 		
 		public function get keyCode():uint
 		{
-		return 0;
+		    return nativeEvent["keyCode"];
 		}
 		
 		public function set keyCode(val:uint):void
