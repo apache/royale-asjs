@@ -1196,6 +1196,10 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function get selectionBeginIndex():int
     {
+        COMPILE::JS
+        {
+            _selectionBeginIndex = (element as HTMLInputElement).selectionStart;        
+        }
         return _selectionBeginIndex;
     }
 
@@ -1205,6 +1209,10 @@ public class TextInput extends UIComponent implements ITextInput
     public function set selectionBeginIndex(value:int):void
     {
         _selectionBeginIndex = value;
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).selectionStart = value;        
+        }
     }
 
     //----------------------------------
@@ -1241,6 +1249,10 @@ public class TextInput extends UIComponent implements ITextInput
      */
     public function get selectionEndIndex():int
     {
+        COMPILE::JS
+        {
+            _selectionEndIndex = (element as HTMLInputElement).selectionEnd;        
+        }
         return _selectionEndIndex;
     }
 
@@ -1253,6 +1265,10 @@ public class TextInput extends UIComponent implements ITextInput
         selectionChanged = true;
 
         invalidateProperties();
+        COMPILE::JS
+        {
+            (element as HTMLInputElement).selectionEnd = value;        
+        }
     }
 
     //----------------------------------
@@ -1308,7 +1324,13 @@ public class TextInput extends UIComponent implements ITextInput
 		
 		COMPILE::JS
 		{
+            // Flash does not reset selection when setting text
+            // but browser does
+            _selectionBeginIndex = (element as HTMLInputElement).selectionStart;
+            _selectionEndIndex = (element as HTMLInputElement).selectionEnd;
 			(element as HTMLInputElement).value = value;
+            (element as HTMLInputElement).selectionStart = _selectionBeginIndex;
+            (element as HTMLInputElement).selectionEnd = _selectionEndIndex;
 		}
 
         dispatchEvent(new Event('textChanged'));
