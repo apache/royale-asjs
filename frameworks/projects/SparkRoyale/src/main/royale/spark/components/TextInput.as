@@ -306,24 +306,36 @@ public class TextInput extends SkinnableTextBase
     }
     override public function set text(value:String):void
     {
+        var changed:Boolean = false;
         // BEGIN - this code shouldn't exist once SkinnableTextBase is fixed
         COMPILE::SWF
 		{
-			inSetter = true;
-			ITextModel(model).text = value;
-			inSetter = false;
+            if (value != ITextModel(model).text)
+            {
+    			inSetter = true;
+    			ITextModel(model).text = value;
+    			inSetter = false;
+                changed = true;
+            }
 		}
 		
 		COMPILE::JS
 		{
-			(element as HTMLInputElement).value = value;
+            if (value != (element as HTMLInputElement).value)
+            {
+    			(element as HTMLInputElement).value = value;
+                changed = true;
+            }
 		}
         // END
 
       /*  super.text = value; */
         // Trigger bindings to textChanged.
-        dispatchEvent(new Event("textChanged"));
-	dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+        if (changed)
+        {
+            dispatchEvent(new Event("textChanged"));
+            dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));            
+        }
     }
 	
     private var _editable:Boolean = true;
