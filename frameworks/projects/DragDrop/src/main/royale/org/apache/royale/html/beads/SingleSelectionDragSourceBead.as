@@ -187,6 +187,7 @@ package org.apache.royale.html.beads
 			}
 
 			var newEvent:Event = new Event("start", false, true);
+			continueDragOperation = true;
 			dispatchEvent(newEvent);
 			if (newEvent.defaultPrevented) {
 				continueDragOperation = false;
