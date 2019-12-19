@@ -73,7 +73,8 @@ package org.apache.royale.core
         {
             COMPILE::JS
             {
-            classSelectorList.add(name);
+            if(name != "" && name != null)
+                classSelectorList.add(name);
             }
         }
 
