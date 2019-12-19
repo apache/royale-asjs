@@ -738,7 +738,11 @@ public class Container extends UIComponent
     }
     public function set label(value:String):void
     {
-        _label = value;
+        if (value != _label)
+        {
+            _label = value;
+            dispatchEvent(new Event("labelChanged"));
+        }        
     }
 
 	[Inspectable(category="General")]

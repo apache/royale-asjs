@@ -164,6 +164,8 @@ public class TabNavigatorView extends GroupView
         {
             var child:Container = contentArea.getElementAt(i) as Container;
             tabDP.push({ label: child.label});
+            // run this again if the label changes
+            child.addEventListener("labelChanged", childrenAddedHandler);
         }
         (tabBar as TabBar).dataProvider = tabDP;
         if ((tabBar.model as ISelectionModel).selectedIndex == -1)
