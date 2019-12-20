@@ -95,7 +95,7 @@ package mx.events.utils
 			var newEvent:KeyboardEvent = new KeyboardEvent(type, key, code, nativeEvent["shiftKey"]);
 			if(!browserEvent)
 			{
-				browserEvent = new goog.events.BrowserEvent(nativeEvent,nativeEvent["currentTarget"]);
+				browserEvent = new goog.events.BrowserEvent(nativeEvent as goog.events.Event,nativeEvent["currentTarget"]);
 			}
 			newEvent.wrapEvent(browserEvent);
 			return newEvent;
