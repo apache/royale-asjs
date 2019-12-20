@@ -162,11 +162,12 @@ package org.apache.royale.core
             var nativeEvent:Object = eventObject.getBrowserEvent();
             var converter:Object = converterMap[nativeEvent.constructor.name];
             if (converter)
-                e = converter["convert"](nativeEvent);
+                e = converter["convert"](nativeEvent,eventObject);
             else
+            {
                 e = new org.apache.royale.events.BrowserEvent();
-
-			e.wrapEvent(eventObject);
+			    e.wrapEvent(eventObject);
+            }
 			return HTMLElementWrapper.googFireListener(listener, e);
 		}
         

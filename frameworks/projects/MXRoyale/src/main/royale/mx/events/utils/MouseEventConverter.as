@@ -24,6 +24,10 @@ package mx.events.utils
         import flash.events.MouseEvent;
         import org.apache.royale.events.utils.IHandlesOriginalEvent;
     }
+    COMPILE::JS
+    {
+        import goog.events.BrowserEvent;
+    }
     
     import mx.core.Keyboard;
     import mx.events.MouseEvent;
@@ -180,16 +184,18 @@ package mx.events.utils
     COMPILE::JS
 	public class MouseEventConverter
 	{
-        public static function convert(nativeEvent:Object):mx.events.MouseEvent
+        public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):mx.events.MouseEvent
         {
             if (nativeEvent.hasOwnProperty("getModifierState"))
             {
                 Keyboard.setCapsLock(nativeEvent["getModifierState"]("CapsLock"));
             }
             var event:mx.events.MouseEvent = new mx.events.MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
-            event.shiftKey = nativeEvent["shiftKey"];
-            event.ctrlKey = nativeEvent["ctrlKey"];
-            event.altKey = nativeEvent["altKey"];
+			if(!browserEvent)
+			{
+				browserEvent = new goog.events.BrowserEvent(nativeEvent,nativeEvent["currentTarget"]);
+			}
+            event.wrapEvent(browserEvent);
             return event;
         }
     }

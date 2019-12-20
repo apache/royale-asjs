@@ -41,6 +41,7 @@ package org.apache.royale.events
     import org.apache.royale.events.IBrowserEvent;
     import org.apache.royale.geom.Point;
     import org.apache.royale.utils.PointUtils;
+    import org.apache.royale.utils.OSUtils;
     
     
     /**
@@ -299,7 +300,7 @@ package org.apache.royale.events
                                    relatedObject:Object = null,
                                    ctrlKey:Boolean = false, altKey:Boolean = false, shiftKey:Boolean = false,
                                    buttonDown:Boolean = false, delta:int = 0,
-                                   commandKey:Boolean = false, controlKey:Boolean = false,
+                                   metaKey:Boolean = false, controlKey:Boolean = false,
                                    clickCount:int = 0, targetBeforeBubbling:IEventDispatcher = null)
         {
             super(type, bubbles, cancelable);
@@ -312,8 +313,7 @@ package org.apache.royale.events
             this.shiftKey = shiftKey;
             this.buttonDown = buttonDown;
             this.delta = delta;
-            this.commandKey = commandKey;
-            this.controlKey = controlKey;
+            this.metaKey = metaKey;
             this.clickCount = clickCount;
         }
         
@@ -338,9 +338,62 @@ package org.apache.royale.events
         }
         
         public var relatedObject:Object;
-        public var ctrlKey:Boolean;
-        public var altKey:Boolean;
-        public var shiftKey:Boolean;
+        private var _ctrlKey:Boolean;
+
+        public function get ctrlKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.ctrlKey : _ctrlKey;
+        }
+
+        public function set ctrlKey(value:Boolean):void
+        {
+            if(wrappedEvent)
+                wrappedEvent.ctrlKey = value;
+            else 
+                _ctrlKey = value;
+        }
+        private var _altKey:Boolean;
+
+        public function get altKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.altKey : _altKey;
+        }
+
+        public function set altKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.altKey = value;
+            else _altKey = value;
+        }
+        private var _shiftKey:Boolean;
+
+        public function get shiftKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.shiftKey : _shiftKey;
+        }
+
+        public function set shiftKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.shiftKey = value;
+            else _shiftKey = value;
+        }
+        private var _metaKey:Boolean;
+
+        public function get metaKey():Boolean
+        {
+            return wrappedEvent ? wrappedEvent.metaKey : _metaKey;
+        }
+
+        public function set metaKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.metaKey = value;
+            else _metaKey = value;
+        }
+
+		public function get specialKey():Boolean
+		{
+			return OSUtils.getOS() == OSUtils.MAC_OS ? metaKey : ctrlKey;
+		}
+
         private var _buttons:int = -1;
         
         public function get buttonDown():Boolean
@@ -442,8 +495,6 @@ package org.apache.royale.events
             _deltaY = value;
         }
         
-        public var commandKey:Boolean;
-        public var controlKey:Boolean;
         public var clickCount:int;
         
         private var _target:Object;

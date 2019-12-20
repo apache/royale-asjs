@@ -23,6 +23,10 @@ package org.apache.royale.events.utils
         import flash.events.IEventDispatcher;
         import flash.events.MouseEvent;
     }
+    COMPILE::JS
+    {
+        import goog.events.BrowserEvent;
+    }
     
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.events.utils.IHandlesOriginalEvent;
@@ -178,9 +182,15 @@ package org.apache.royale.events.utils
     COMPILE::JS
 	public class MouseEventConverter
 	{
-        public static function convert(nativeEvent:Object):MouseEvent
+        public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):MouseEvent
         {
-            return new MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
+            var event:MouseEvent = new MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
+			if(!browserEvent)
+			{
+				browserEvent = new goog.events.BrowserEvent(nativeEvent,nativeEvent["currentTarget"]);
+			}
+            event.wrapEvent(browserEvent);
+            return event;
         }
     }
 

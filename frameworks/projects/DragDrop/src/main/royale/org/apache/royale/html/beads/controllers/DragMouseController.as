@@ -25,7 +25,7 @@ package org.apache.royale.html.beads.controllers
 
     COMPILE::JS
     {
-        import goog.events.BrowserEvent;
+        import org.apache.royale.events.utils.MouseEventConverter;
     }
 
 	import org.apache.royale.core.IBead;
@@ -335,9 +335,7 @@ package org.apache.royale.html.beads.controllers
                 //trace("DRAG-MOUSE: sending dragEnd via: "+event.target.toString());
                 COMPILE::JS
                 {
-                    var googEv:goog.events.BrowserEvent = new goog.events.BrowserEvent(event,event["currentTarget"]);
-                    event = new MouseEvent(event["type"]);
-                    event.wrapEvent(googEv);
+                    event = MouseEventConverter.convert(event);
                 }
 				var screenPoint:Point = new Point(event.screenX, event.screenY);
 				var newPoint:Point = PointUtils.globalToLocal(screenPoint, event.target);

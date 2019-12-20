@@ -25,6 +25,10 @@ package org.apache.royale.events.utils
 	{
 		import flash.events.KeyboardEvent;
 	}
+	COMPILE::JS
+	{
+		import goog.events.BrowserEvent;
+	}
 	
 	/**
 	 *  Converts low level keyboard events to Royale KeyboardEvents
@@ -52,9 +56,13 @@ package org.apache.royale.events.utils
 			var key:String = KeyConverter.convertCharCode(oldEvent.charCode);
 			var type:String = oldEvent.type == flash.events.KeyboardEvent.KEY_DOWN ? org.apache.royale.events.KeyboardEvent.KEY_DOWN : 
 				org.apache.royale.events.KeyboardEvent.KEY_UP;
-			var newEvent:org.apache.royale.events.KeyboardEvent = new org.apache.royale.events.KeyboardEvent(type, key, code, oldEvent.shiftKey);
-			newEvent.altKey = oldEvent.altKey;
-//			newEvent.ctrlKey = oldEvent.controlKey; // TODO
+			var newEvent:org.apache.royale.events.KeyboardEvent = new org.apache.royale.events.KeyboardEvent(
+				type,
+				key,
+				code,
+				oldEvent.shiftKey,
+				oldEvent.altKey
+			);
 			newEvent.specialKey = oldEvent.ctrlKey;
 			return newEvent;
 		}
@@ -68,7 +76,7 @@ package org.apache.royale.events.utils
 		 *  @productversion Royale 0.8
 		 */
 		COMPILE::JS
-		public static function convert(nativeEvent:Object):KeyboardEvent
+		public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):KeyboardEvent
 		{
 			var type:String = nativeEvent["type"];
 			var key:String = nativeEvent["key"];
@@ -80,10 +88,11 @@ package org.apache.royale.events.utils
 				code = KeyConverter.convertKeyCode(nativeEvent['keyCode']);
 			
 			var newEvent:KeyboardEvent = new KeyboardEvent(type, key, code, nativeEvent["shiftKey"]);
-			newEvent.altKey = nativeEvent["altKey"];
-			newEvent.ctrlKey = nativeEvent["ctrlKey"];
-			newEvent.metaKey = nativeEvent["metaKey"];
-			newEvent.specialKey = OSUtils.getOS() == OSUtils.MAC_OS ? nativeEvent["metaKey"] : nativeEvent["ctrlKey"];
+			if(!browserEvent)
+			{
+				browserEvent = new goog.events.BrowserEvent(nativeEvent,nativeEvent["currentTarget"]);
+			}
+			newEvent.wrapEvent(browserEvent);
 			return newEvent;
 		}
 	}

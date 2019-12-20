@@ -28,6 +28,10 @@ package mx.events.utils
 		import flash.events.KeyboardEvent;
         import org.apache.royale.events.KeyboardEvent;
 	}
+	COMPILE::JS
+	{
+		import goog.events.BrowserEvent;
+	}
 	
 	/**
 	 *  Converts low level keyboard events to Royale KeyboardEvents
@@ -71,7 +75,7 @@ package mx.events.utils
 		 *  @productversion Royale 0.8
 		 */
 		COMPILE::JS
-		public static function convert(nativeEvent:Object):KeyboardEvent
+		public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):KeyboardEvent
 		{
             if (nativeEvent["getModifierState"])
             {
@@ -89,10 +93,11 @@ package mx.events.utils
             if (type == "keydown") type = "keyDown";
             if (type == "keyup") type = "keyUp";
 			var newEvent:KeyboardEvent = new KeyboardEvent(type, key, code, nativeEvent["shiftKey"]);
-			newEvent.altKey = nativeEvent["altKey"];
-			newEvent.ctrlKey = nativeEvent["ctrlKey"];
-			newEvent.metaKey = nativeEvent["metaKey"];
-			newEvent.specialKey = OSUtils.getOS() == OSUtils.MAC_OS ? nativeEvent["metaKey"] : nativeEvent["ctrlKey"];
+			if(!browserEvent)
+			{
+				browserEvent = new goog.events.BrowserEvent(nativeEvent,nativeEvent["currentTarget"]);
+			}
+			newEvent.wrapEvent(browserEvent);
 			return newEvent;
 		}
 	}
