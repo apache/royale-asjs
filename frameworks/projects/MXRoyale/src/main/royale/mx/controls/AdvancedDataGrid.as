@@ -594,6 +594,85 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     //
     //--------------------------------------------------------------------------
 
+    // 'Cell Selection' constants
+    /**
+     *  Constant definition for the <code>selectionMode</code> property.
+     *  No selection is allowed in the control, 
+     *  and the <code>selectedCells</code> property is null. 
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const NONE:String           = "none";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of a single row.
+     *  Click any cell in the row to select the row.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const SINGLE_ROW:String     = "singleRow";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of multiple rows.
+     *  Click any cell in the row to select the row.
+     *  While holding down the Control key, click any cell in another row to select 
+     *  the row for discontiguous selection. 
+     *  While holding down the Shift key, click any cell in another row to select 
+     *  multiple, contiguous rows.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const MULTIPLE_ROWS:String  = "multipleRows";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of a single cell.
+     *  Click any cell to select the cell.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const SINGLE_CELL:String    = "singleCell";
+    
+    /**
+     *  Constant definition for the <code>selectionMode</code> property
+     *  to allow the selection of multiple cells.
+     *  Click any cell in the row to select the cell.
+     *  While holding down the Control key, click any cell to select 
+     *  the cell for discontiguous selection. 
+     *  While holding down the Shift key, click any cell to select 
+     *  multiple, contiguous cells.
+     *
+     *  @see mx.controls.AdvancedDataGrid#selectedCells
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public static const MULTIPLE_CELLS:String = "multipleCells";
+    
     /**
      * Indicates mouse is over the text part of the header.
      * Used as a return value by mouseEventToHeaderPart.
@@ -733,7 +812,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    //mx_internal var cellSelectionIndicators:Object = {};
+    mx_internal var cellSelectionIndicators:Object = {};
 
     /**
      *  A hash table of data provider item renderers currently in view. The
@@ -7682,8 +7761,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function removeCellSelectionData(uid:String, columnIndex:int):void
+    protected function removeCellSelectionData(uid:String, columnIndex:int):void
     {
+        /*
         if (!cellSelectionData[uid])
             return;
 
@@ -7706,7 +7786,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         // Remove uid if there are no columns for that uid in cellSelectionData
         if (!atLeastOneProperty(cellSelectionData[uid]))
             delete cellSelectionData[uid];
-    } */
+        */
+    }
 
     /**
      *  Returns <code>true</code> if the Object has at least one property,
@@ -8070,8 +8151,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     /**
      *  @private
      */
-    /* protected function removeCellIndicators(uid:String, columnIndex:int):void
+    protected function removeCellIndicators(uid:String, columnIndex:int):void
     {
+        /*
         if (cellSelectionTweens[uid] && cellSelectionTweens[uid][columnIndex])
         {
             cellSelectionTweens[uid][columnIndex].removeEventListener(
@@ -8113,8 +8195,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             caretUID = null;
             if (caretIndicator)
                 Sprite(caretIndicator).graphics.clear();
-        }
-    } */
+        }*/
+    }
     
     /**
      *  @inheritDoc mx.controls.listClasses.ListBase#clearIndicators()
@@ -8124,18 +8206,18 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* override protected function clearIndicators():void
+    override protected function clearIndicators():void
     {
         if (isCellSelectionMode())
             clearCellIndicators();
 
         super.clearIndicators();
-    } */
+    }
 
     /**
      *  @private
      */
-    /* protected function clearCellIndicators():void
+    protected function clearCellIndicators():void
     {
 		for (var p:String in cellSelectionIndicators)
 		{
@@ -8150,10 +8232,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 			}
 		}
 
-        cellSelectionTweens     = {};
+        //cellSelectionTweens     = {};
         cellSelectionIndicators = {};
-        visibleCellRenderers    = {};
-    } */
+        //visibleCellRenderers    = {};
+    }
     
     /**
      * @private
@@ -9422,9 +9504,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 
     public function set selectionMode(value:String):void
     {
-        /* setSelectionMode(value);
-        itemsSizeChanged = true;
-        invalidateDisplayList(); */
+        setSelectionMode(value);
+        //itemsSizeChanged = true;
+        invalidateDisplayList();
     }
 	
 	//----------------------------------
@@ -9762,6 +9844,99 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         {
             (view as AdvancedDataGridView).header.height = value;
             dispatchEvent(new Event("layoutNeeded"));
+        }
+    }
+    
+    // Cell Selection methods
+    /**
+     * Return <code>true</code> if <code>selectedMode</code> is 
+     * <code>SINGLE_ROW</code> or <code>MULTIPLE_ROWS</code>.
+     *
+     *  @return <code>true</code> if <code>selectedMode</code> is 
+     * <code>SINGLE_ROW</code> or <code>MULTIPLE_ROWS</code>.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function isRowSelectionMode():Boolean
+    {
+        return (selectionMode == SINGLE_ROW || selectionMode == MULTIPLE_ROWS);
+    }
+    
+    /**
+     *  Returns <code>true</code> if <code>selectedMode</code> is 
+     *  <code>SINGLE_CELL</code> or <code>MULTIPLE_CELLS</code>.
+     *
+     *  @return <code>true</code> if <code>selectedMode</code> is 
+     *  <code>SINGLE_CELL</code> or <code>MULTIPLE_CELLS</code>. 
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function isCellSelectionMode():Boolean
+    {
+        return (selectionMode == SINGLE_CELL || selectionMode == MULTIPLE_CELLS);
+    }
+    
+    /**
+     *  Handle selection mode changing.
+     *
+     *  @private
+     */
+    protected function setSelectionMode(newSelectionMode:String):void
+    {
+        if (selectionMode == newSelectionMode)
+            return;
+        
+        if (newSelectionMode == NONE)
+        {
+            selectable = false;
+        }
+        else
+        {
+            if (!selectable)
+                selectable = true;
+        }
+        
+        if (newSelectionMode == SINGLE_ROW || newSelectionMode == SINGLE_CELL)
+        {
+            if (allowMultipleSelection)
+                allowMultipleSelection = false;
+        }
+        else if (newSelectionMode == MULTIPLE_ROWS || newSelectionMode == MULTIPLE_CELLS)
+        {
+            if (!allowMultipleSelection)
+                allowMultipleSelection = true;
+        }
+        else if (newSelectionMode != NONE)
+        {
+            // Default to single row selection mode
+            newSelectionMode = SINGLE_ROW;
+            if (allowMultipleSelection)
+                allowMultipleSelection = false;
+        }
+        
+        clearAllSelection();
+        
+        _selectionMode = newSelectionMode;
+    }
+    
+    /**
+     * @private
+     *
+     * Clear all the selected data.
+     *
+     */
+    protected function clearAllSelection():void
+    {
+        if (isRowSelectionMode())
+        {
+            clearSelected();
+            clearIndicators();
         }
     }
 

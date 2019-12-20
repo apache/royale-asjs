@@ -159,7 +159,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         }
         var bgColors:Array = (treeListData.owner as UIComponent).getStyle("alternatingItemColors");
         backgroundColor = ((treeListData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
-        if (treeListData.rowIndex == (treeListData.owner as AdvancedDataGrid).selectedIndex)
+        if ((treeListData.owner as AdvancedDataGrid).selectedIndices.indexOf(treeListData.rowIndex) != -1)
         {
             selected = true;
         }

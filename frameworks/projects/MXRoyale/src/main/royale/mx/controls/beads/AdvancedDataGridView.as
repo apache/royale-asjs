@@ -18,23 +18,24 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
+    import mx.containers.beads.AdvancedDataGridListVirtualListView;
+    import mx.controls.AdvancedDataGrid;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;
-
+    import mx.core.mx_internal;
+    import mx.events.CollectionEvent;
+    import mx.events.ItemClickEvent;
+    
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.DataGridButtonBar;
-    
-    import mx.events.CollectionEvent;
-    import mx.events.ItemClickEvent;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
-    import mx.controls.AdvancedDataGrid;
-	
-    import mx.core.mx_internal;
+
     use namespace mx_internal;
 
     /**
@@ -131,6 +132,33 @@ package mx.controls.beads
                 (sharedModel.columns[i] as AdvancedDataGridColumn).list = columnLists[i];
             }
         }
+        
+        public function drawItem(index:int, selected:Boolean = false,
+                                    highlighted:Boolean = false,
+                                    caret:Boolean = false):void
+        {
+            var n:int = columnLists.length;
+            for (var i:int = 0; i < n; i++)
+            {
+                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
+                var view:AdvancedDataGridListVirtualListView = list.view as AdvancedDataGridListVirtualListView;
+                var ir:ISelectableItemRenderer = view.getItemRendererForIndex(index) as ISelectableItemRenderer;
+                if (ir)
+                {
+                    ir.selected = selected;
+                    ir.hovered = highlighted;
+                    COMPILE::JS
+                    {
+                    if (caret)
+                        (ir as UIBase).element.style.border = "1px solid #000";
+                    else
+                        (ir as UIBase).element.style.border = "none";
+                    }                        
+                }
+            }
+                
+        }
+
 
 	}
 }

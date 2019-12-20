@@ -79,7 +79,7 @@ AdvancedDataGrid
 {
 	alternatingItemColors: #F7F7F7, #FFFFFF;
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
-	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+	IDataGridPresentationModel: ClassReference("mx.controls.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("mx.controls.beads.AdvancedDataGridView");
 	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.AdvancedDataGridLayout");
@@ -110,7 +110,7 @@ adg|AdvancedDataGridColumnList {
 }
 
 adg|AdvancedDataGridItemRenderer {
-    margin-left: 5px;
+    padding-left: 5px;
 }
 
 Alert

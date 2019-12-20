@@ -35,67 +35,35 @@ import flash.utils.clearInterval;
 import flash.utils.setInterval;
 
 import mx.collections.ArrayCollection;
-import mx.collections.CursorBookmark;
-import mx.collections.IList;
-import mx.collections.IViewCursor;
-import mx.collections.ItemResponder;
-import mx.collections.ItemWrapper;
-import mx.collections.ListCollectionView;
-import mx.collections.ModifiedCollectionView;
-import mx.collections.XMLListCollection;
-import mx.collections.errors.CursorError;
-import mx.collections.errors.ItemPendingError;
-import mx.controls.dataGridClasses.DataGridListData;
-import mx.core.DragSource;
-import mx.core.EdgeMetrics;
-import mx.core.EventPriority;
-import mx.core.FlexShape;
-import mx.core.FlexSprite;
-import mx.core.IDataRenderer;
-import mx.core.IFlexDisplayObject;
-import mx.core.IInvalidating;
-import mx.core.ILayoutDirectionElement;
-import mx.core.IUIComponent;
-import mx.core.IUID;
-import mx.core.IUITextField;
-import mx.core.ScrollPolicy;
-import mx.core.SpriteAsset;
-import mx.effects.Effect;
-import mx.effects.IEffectTargetHost;
-import mx.effects.Tween;
 */
-import mx.events.CollectionEvent;
-import mx.events.CollectionEventKind;
-/*
-import mx.events.DragEvent;
-import mx.events.EffectEvent;
-import mx.events.FlexEvent;
-import mx.events.MoveEvent;
-import mx.events.SandboxMouseEvent;
-import mx.events.ScrollEvent;
-import mx.events.ScrollEventDetail;
-import mx.events.ScrollEventDirection;
-import mx.events.TweenEvent;
-import mx.managers.DragManager;
-import mx.managers.IFocusManagerComponent;
-import mx.managers.ISystemManager;
-import mx.skins.halo.ListDropIndicator;
-import mx.utils.ObjectUtil;
-import mx.utils.UIDUtil;
- */
-import org.apache.royale.events.Event;
-import org.apache.royale.events.MouseEvent;
-import mx.events.ListEvent;
+import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
+import mx.collections.IViewCursor;
 import mx.collections.Sort;
 import mx.collections.SortField;
+import mx.controls.beads.layouts.AdvancedDataGridLayout;
+import mx.controls.beads.AdvancedDataGridView;
 import mx.controls.dataGridClasses.DataGridColumn;
 import mx.core.IFactory;
-import mx.core.UIComponent; 
+import mx.core.Keyboard;
 import mx.core.ScrollControlBase;
+import mx.core.UIComponent;
 import mx.core.mx_internal;
+import mx.events.CollectionEvent;
+import mx.events.CollectionEventKind;
+import mx.events.FlexEvent;
+import mx.events.ListEvent;
+
 import org.apache.royale.core.IDataProviderNotifier;
+import org.apache.royale.core.IChild;
+import org.apache.royale.core.IParent;
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.core.ISelectionModel;
+import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.MouseEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
+
 use namespace mx_internal;
 
 
@@ -568,7 +536,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
          // addEventListener(MouseEvent.MOUSE_WHEEL, mouseWheelHandler);
         // addEventListener(MouseEvent.MOUSE_OVER, mouseOverHandler);
         // addEventListener(MouseEvent.MOUSE_OUT, mouseOutHandler);
-        // addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
+        addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
         // addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler);
         // addEventListener(MouseEvent.CLICK, mouseClickHandler);
         // addEventListener(MouseEvent.DOUBLE_CLICK, mouseDoubleClickHandler);
@@ -583,6 +551,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     {
         super.dataProvider = value;
         collection = super.dataProvider as ICollectionView;
+        iterator = collection.createCursor();
+        collectionIterator = collection.createCursor(); //IViewCursor(collection);
     }
 
     override public function addedToParent():void
@@ -591,6 +561,17 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             dataNotifier = loadBeadFromValuesManager(IDataProviderNotifier, "iDataProviderNotifier", this) as IDataProviderNotifier;
         }
         super.addedToParent();
+        COMPILE::JS
+        {
+            // turn off drag and shift select of text
+            element.style["user-select"] = "none";
+            element.style["-webkit-touch-callout"] = "none";
+            element.style["-webkit-user-select"] = "none";
+            element.style["-moz-user-select"] = "none";
+            element.style["-ms-user-select"] = "none";
+        }
+        if (!layout)
+            layout = getBeadByType(AdvancedDataGridLayout) as AdvancedDataGridLayout;
     }
 
     private var _dataNotifier:IDataProviderNotifier;
@@ -648,7 +629,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var iterator:IViewCursor;
+    protected var iterator:IViewCursor;
 
     /**
      *  A flag that indicates that a page fault as occurred and that
@@ -664,7 +645,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var iteratorValid:Boolean = true;
+    protected var iteratorValid:Boolean = true;
 
     /**
      *  The most recent seek that caused a page fault.
@@ -689,7 +670,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var visibleData:Object = {};
+    //protected var visibleData:Object = {};
 
     /**
      *  An internal display object that parents all of the item renderers,
@@ -965,7 +946,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var highlightUID:String;
+    protected var highlightUID:String;
 
     /**
      *  The renderer that is currently rolled over or under the caret.
@@ -975,7 +956,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var highlightItemRenderer:IListItemRenderer;
+    protected var highlightItemRenderer:IListItemRenderer;
 
     /**
      *  The DisplayObject that contains the graphics that indicates
@@ -986,7 +967,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var highlightIndicator:Sprite;
+    //protected var highlightIndicator:Sprite;
 
     /**
      *  The UID of the item under the caret.
@@ -996,7 +977,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var caretUID:String;
+    protected var caretUID:String;
 
     /**
      *  The renderer for the item under the caret.  In the selection
@@ -1044,7 +1025,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
- //   protected var caretIndicator:Sprite;
+    //protected var caretIndicator:Sprite;
 
     /**
      *  A hash table of ListBaseSelectionData objects that track which
@@ -1070,7 +1051,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   // protected var selectionIndicators:Object = {};
+    protected var selectionIndicators:Object = {};
 
     /**
      *  A hash table of selection tweens.  This allows the component to
@@ -1093,7 +1074,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-  //  protected var caretBookmark:CursorBookmark;
+    protected var caretBookmark:CursorBookmark;
 
     /**
      *  A bookmark to the item that is the anchor.  A bookmark allows the
@@ -1107,7 +1088,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   // protected var anchorBookmark:CursorBookmark;
+    protected var anchorBookmark:CursorBookmark;
 
     /**
      *  A flag that indicates whether to show caret.  
@@ -1120,7 +1101,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   // protected var showCaret:Boolean;
+    protected var showCaret:Boolean;
 
     /**
      *  The most recently calculated index where the drag item
@@ -1219,7 +1200,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    //protected var keySelectionPending:Boolean = false;
+    protected var keySelectionPending:Boolean = false;
     
     
     /**
@@ -1233,7 +1214,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    //protected var anchorIndex:int = -1;
+    protected var anchorIndex:int = -1;
 
     /**
      *  The offset of the item in the data provider that is at the selection
@@ -1246,7 +1227,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   // protected var caretIndex:int = -1;
+    protected var caretIndex:int = -1;
     
     /**
      *  @private
@@ -1389,16 +1370,16 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
     // these three keep track of the key selection that caused
     // the page fault
-  /*   private var bShiftKey:Boolean = false;
+    private var bShiftKey:Boolean = false;
     private var bCtrlKey:Boolean = false;
     private var lastKey:uint = 0;
     private var bSelectItem:Boolean = false;
- */
+ 
     /**
      *  @private
      *  true if we don't know for sure what index we're on in the database
      */
-  //  private var approximate:Boolean = false;
+    private var approximate:Boolean = false;
 
     // if false, pixel scrolling only in horizontal direction
    // mx_internal var bColumnScrolling:Boolean = true;
@@ -1408,17 +1389,18 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
    // mx_internal var listType:String = "grid";
 
     // mx_internal for automation delegate access
-    //mx_internal var bSelectOnRelease:Boolean;
+    mx_internal var bSelectOnRelease:Boolean;
     
-   /*  private var mouseDownItem:IListItemRenderer;
+    private var mouseDownItem:ISelectableItemRenderer; //IListItemRenderer;
+    /*
 	private var mouseDownIndex:int; // For drag and drop
-
+   */
     mx_internal var bSelectionChanged:Boolean = false;
     mx_internal var bSelectedIndexChanged:Boolean = false;
     private var bSelectedItemChanged:Boolean = false;
     private var bSelectedItemsChanged:Boolean = false;
     private var bSelectedIndicesChanged:Boolean = false;
- */
+
     /**
      *  @private
      *  Dirty flag for the cache style value cachedPaddingTop.
@@ -1445,7 +1427,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  order the user selects an item.  This order is reflected in selectedIndices 
      *  and selectedItems.
      */
-   // private var firstSelectionData:ListBaseSelectionData;
+    private var firstSelectionData:ListBaseSelectionData;
 
     /**
      *  The renderer that is or was rolled over or under the caret.
@@ -1498,7 +1480,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @private
      *  Whether the mouse button is pressed
      */
-  //  mx_internal var isPressed:Boolean = false;
+    mx_internal var isPressed:Boolean = false;
 
     /**
      *  A separate IViewCursor used to find indices of items and
@@ -1510,8 +1492,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  mx_internal var collectionIterator:IViewCursor;
-
+    mx_internal var collectionIterator:IViewCursor;
+ /*
     mx_internal var dropIndicator:IFlexDisplayObject;
  */
     //--------------------------------------------------------------------------
@@ -2529,10 +2511,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @private
      *  Storage for the lockedRowCount property.
      */
-    /* mx_internal var _lockedRowCount:int = 0;
+    mx_internal var _lockedRowCount:int = 0;
 
     [Inspectable(defaultValue="0")]
- */
+
     /**
      *  The index of the first row in the control that scrolls,
      *  where the first row is at an index of 0.
@@ -2545,20 +2527,20 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get lockedRowCount():int
+    public function get lockedRowCount():int
     {
         return _lockedRowCount;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set lockedRowCount(value:int):void
+    public function set lockedRowCount(value:int):void
     {
         _lockedRowCount = value;
 
         invalidateDisplayList();
-    } */
+    }
 
     //----------------------------------
     //  menuSelectionMode
@@ -2586,10 +2568,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @private
      *  Storage for the selectable property.
      */
-   /*  private var _selectable:Boolean = true;
+    private var _selectable:Boolean = true;
 
     [Inspectable(defaultValue="true")]
- */
+
     /**
      *  A flag that indicates whether the list shows selected items
      *  as selected.
@@ -2602,18 +2584,18 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* public function get selectable():Boolean
+    public function get selectable():Boolean
     {
         return _selectable;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set selectable(value:Boolean):void
+    public function set selectable(value:Boolean):void
     {
         _selectable = value;
-    } */
+    }
 
     //----------------------------------
     //  showDataTips
@@ -3867,18 +3849,19 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function mouseEventToItemRenderer(
-                                event:MouseEvent):IListItemRenderer
+    protected function mouseEventToItemRenderer(
+                                event:MouseEvent):ISelectableItemRenderer
     {
         return mouseEventToItemRendererOrEditor(event);
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  mx_internal function mouseEventToItemRendererOrEditor(
-                                event:MouseEvent):IListItemRenderer
+    mx_internal function mouseEventToItemRendererOrEditor(
+                                event:MouseEvent):ISelectableItemRenderer
     {
+        /*
         var target:DisplayObject = DisplayObject(event.target);
         if (target == listContent)
         {
@@ -3924,9 +3907,19 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             else 
                 target = target.parent;
         }
+        */
 
+        var target:IUIBase = event.target as IUIBase;
+        do {
+            if (target is ISelectableItemRenderer)
+                return target as ISelectableItemRenderer;
+            target = (target as IChild).parent as IUIBase;
+            if (target == this)
+                return null;
+        } while (target);
+        
         return null;
-    } */
+    }
 
     /**
      *  @private
@@ -4103,6 +4096,13 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
+    protected function drawItem(index:int, selected:Boolean = false,
+                                highlighted:Boolean = false,
+                                caret:Boolean = false,
+                                transition:Boolean = false):void
+    {
+        (view as AdvancedDataGridView).drawItem(index, selected, highlighted, caret);
+    }
     // protected function drawItem(item:IListItemRenderer,
                                 // selected:Boolean = false,
                                 // highlighted:Boolean = false,
@@ -4405,30 +4405,30 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function clearIndicators():void
+    protected function clearIndicators():void
     {
-        for (var uniqueID:String in selectionTweens)
+        /*for (var uniqueID:String in selectionTweens)
         {
             removeIndicators(uniqueID);
-        }
+        }*/
 
-        if (selectionLayer)
+        /*if (selectionLayer)
         {
             while (selectionLayer.numChildren > 0)
             {
                 selectionLayer.removeChildAt(0);
             }
-        }
+        }*/
         
-        selectionTweens = {};
+        //selectionTweens = {};
         selectionIndicators = {};
         
-        highlightIndicator = null;
+        //highlightIndicator = null;
         highlightUID = null;
         
-        caretIndicator = null;
+        //caretIndicator = null;
         caretUID = null;
-    } */
+    }
 
     /**
      *  Cleans up selection highlights and other associated graphics
@@ -4529,8 +4529,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function updateList():void
-    {
+    protected function updateList():void
+    {/*
         // trace("updateList " + verticalScrollPosition);
         
         removeClipMask();
@@ -4550,9 +4550,9 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         
         configureScrollBars();
         
-        addClipMask(true);
+        addClipMask(true);*/
     }
- */
+ 
     //--------------------------------------------------------------------------
     //
     //  Methods: Clipping
@@ -4821,7 +4821,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  public function isItemSelectable(data:Object):Boolean
+    public function isItemSelectable(data:Object):Boolean
     {
         if (!selectable)
             return false;
@@ -4830,12 +4830,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             return false;
 
         return true;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* private function calculateSelectedIndexAndItem():void
+    private function calculateSelectedIndexAndItem():void
     {
         var num:int = 0;
         for (var p:String in selectedData)
@@ -4846,14 +4846,14 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
         if (!num)
         {
-            _selectedIndex = -1;
-            _selectedItem = null;
+            (model as ISelectionModel).selectedIndex/*_selectedIndex*/ = -1;
+            //_selectedItem = null;
             return;
         }
 
-        _selectedIndex = selectedData[p].index;
-        _selectedItem = selectedData[p].data;
-    } */
+        (model as ISelectionModel).selectedIndex/*_selectedIndex*/ = selectedData[p].index;
+        //_selectedItem = selectedData[p].data;
+    }
 
     /**
      *  Updates the set of selected items given that the item renderer provided
@@ -4878,19 +4878,19 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function selectItem(item:IListItemRenderer,
+    protected function selectItem(data:Object, index:int,
                                   shiftKey:Boolean, ctrlKey:Boolean,
                                   transition:Boolean = true):Boolean
     {
-        if (!item  || !isItemSelectable(item.data))
+        if (!data  || !isItemSelectable(/*item.*/data))
             return false;
 
         // Begin multiple selection cases.
         // We'll start by assuming the selection has changed.
         var selectionChange:Boolean = false;
         var placeHolder:CursorBookmark = iterator.bookmark;
-        var index:int = itemRendererToIndex(item);
-        var uid:String = itemToUID(item.data);
+        //var index:int = itemRendererToIndex(item);
+        var uid:String = itemToUID(/*item.*/data);
 
         if (!allowMultipleSelection || (!shiftKey && !ctrlKey))
         {
@@ -4917,21 +4917,21 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             }
             // plain old click, ignore if same item is selected unless number of selected items
             // is going to change
-            else if (_selectedIndex != index || bSelectedIndexChanged || (allowMultipleSelection && numSelected != 1))
+            else if ((model as ISelectionModel).selectedIndex /*_selectedIndex*/ != index || bSelectedIndexChanged || (allowMultipleSelection && numSelected != 1))
             {
                 selectionChange = true;
 
                 //Clear all other selections, this is a single click
                 clearSelected(transition);
-                addSelectionData(uid, new ListBaseSelectionData(item.data, index, approximate));
-                drawItem(visibleData[uid], true, uid == highlightUID, true, transition);
-                _selectedIndex = index;
-                _selectedItem = item.data;
-                iterator.seek(CursorBookmark.CURRENT, _selectedIndex - 
-                    indicesToIndex(verticalScrollPosition - offscreenExtraRowsTop, horizontalScrollPosition - offscreenExtraColumnsLeft));
-                caretIndex = _selectedIndex;
+                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
+                drawItem(index, true, uid == highlightUID, true, transition);
+                (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
+                //_selectedItem = item.data;
+                iterator.seek(CursorBookmark.CURRENT, (model as ISelectionModel).selectedIndex /*_selectedIndex*/ - 
+                    layout.firstVisibleIndex/*indicesToIndex(verticalScrollPosition - offscreenExtraRowsTop, horizontalScrollPosition - offscreenExtraColumnsLeft)*/);
+                caretIndex = (model as ISelectionModel).selectedIndex; //_selectedIndex;
                 caretBookmark = iterator.bookmark;
-                anchorIndex = _selectedIndex;
+                anchorIndex = (model as ISelectionModel).selectedIndex; //_selectedIndex;
                 anchorBookmark = iterator.bookmark;
                 iterator.seek(placeHolder, 0);
             }
@@ -4951,18 +4951,18 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 anchorIndex = oldAnchorIndex;
                 anchorBookmark = oldAnchorBookmark;
 
-                try
-                {
+                //try
+                //{
                     iterator.seek(anchorBookmark, 0);
-                }
-                catch (e:ItemPendingError)
-                {
-                    e.addResponder(new ItemResponder(selectionPendingResultHandler, selectionPendingFailureHandler,
-                                                        new ListBaseSelectionPending(incr, index, item.data, transition, placeHolder, CursorBookmark.CURRENT, 0)));
-                    iteratorValid = false;
-                }
+                //}
+                //catch (e:ItemPendingError)
+                //{
+                //    e.addResponder(new ItemResponder(selectionPendingResultHandler, selectionPendingFailureHandler,
+                //                                        new ListBaseSelectionPending(incr, index, item.data, transition, placeHolder, CursorBookmark.CURRENT, 0)));
+                //    iteratorValid = false;
+                //}
 
-                shiftSelectionLoop(incr, anchorIndex, item.data, transition, placeHolder);
+                shiftSelectionLoop(incr, anchorIndex, /*item.*/data, transition, placeHolder);
             }
 
             // selection may or may not change for this case.
@@ -4974,21 +4974,22 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         
         else if (ctrlKey && allowMultipleSelection)
         {
-            if (selectedData[uid])
+            var selectionData:ListBaseSelectionData = selectedData[uid] as ListBaseSelectionData;
+            if (selectionData)
             {
                 removeSelectionData(uid);
-                drawItem(visibleData[uid], false, uid == highlightUID, true, transition);
-                if (item.data == selectedItem)
+                drawItem(selectionData.index, false, uid == highlightUID, true, transition);
+                if (/*item.*/data == selectedItem)
                     calculateSelectedIndexAndItem();
             }
             else
             {
-                addSelectionData(uid, new ListBaseSelectionData(item.data, index, approximate));
-                drawItem(visibleData[uid], true, uid == highlightUID, true, transition);
-                _selectedIndex = index;
-                _selectedItem = item.data;
+                addSelectionData(uid, new ListBaseSelectionData(/*item.*/data, index, approximate));
+                drawItem(index, true, uid == highlightUID, true, transition);
+                (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
+                //_selectedItem = item.data;
             }
-            iterator.seek(CursorBookmark.CURRENT, index - indicesToIndex(verticalScrollPosition, horizontalScrollPosition));
+            iterator.seek(CursorBookmark.CURRENT, index - layout.firstVisibleIndex/*indicesToIndex(verticalScrollPosition, horizontalScrollPosition)*/);
             caretIndex = index;
             caretBookmark = iterator.bookmark;
             anchorIndex = index;
@@ -5001,12 +5002,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         }
 
         return selectionChange;
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  private function shiftSelectionLoop(incr:Boolean, index:int,
+    private function shiftSelectionLoop(incr:Boolean, index:int,
                                         stopData:Object, transition:Boolean,
                                         placeHolder:CursorBookmark):void
     {
@@ -5017,20 +5018,20 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         // point to the correct place.
         iterator.seek(CursorBookmark.FIRST, anchorIndex);
 
-        try
-        {
+        //try
+        //{
             do
             {
                 data = iterator.current;
                 uid = itemToUID(data);
                 // trace(uid);
                 addSelectionData(uid, new ListBaseSelectionData(data, index, approximate));
-                if (visibleData[uid])
-                    drawItem(visibleData[uid], true, uid == highlightUID, false, transition);
+                if (isVisibleIndex(index))
+                    drawItem(index, true, uid == highlightUID, false, transition);
                 if (data === stopData)
                 {
-                    if (visibleData[uid])
-                        drawItem(visibleData[uid], true, uid == highlightUID, true, transition);
+                    if (isVisibleIndex(index))
+                        drawItem(index, true, uid == highlightUID, true, transition);
                     break;
                 }
                 if (incr)
@@ -5040,33 +5041,33 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
             }
             while (incr ? iterator.moveNext() : iterator.movePrevious());
-        }
-        catch (e:ItemPendingError)
-        {
-            e.addResponder(new ItemResponder(
-                selectionPendingResultHandler, selectionPendingFailureHandler,
-                new ListBaseSelectionPending(incr, index, stopData, transition,
-                                             placeHolder,
-                                             CursorBookmark.CURRENT, 0)));
-            
-            iteratorValid = false;
-        }
+        //}
+        //catch (e:ItemPendingError)
+        //{
+        //    e.addResponder(new ItemResponder(
+        //        selectionPendingResultHandler, selectionPendingFailureHandler,
+        //        new ListBaseSelectionPending(incr, index, stopData, transition,
+        //                                     placeHolder,
+        //                                     CursorBookmark.CURRENT, 0)));
+        //    
+        //    iteratorValid = false;
+        //}
 
-        try
-        {
+        //try
+        //{
             iterator.seek(placeHolder, 0);
             iteratorValid = true;
-        }
-        catch (e2:ItemPendingError)
-        {
-            lastSeekPending = new ListBaseSeekPending(placeHolder, 0);
-            
-            e2.addResponder(new ItemResponder(
-                seekPendingResultHandler, seekPendingFailureHandler,
-                lastSeekPending));
-
-        }
-    } */
+        //}
+        //catch (e2:ItemPendingError)
+        //{
+        //    lastSeekPending = new ListBaseSeekPending(placeHolder, 0);
+        //    
+        //    e2.addResponder(new ItemResponder(
+        //        seekPendingResultHandler, seekPendingFailureHandler,
+        //        lastSeekPending));
+        //
+        //}
+    }
 
     /**
      *  Clears the set of selected items and removes all graphics
@@ -5080,23 +5081,25 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function clearSelected(transition:Boolean = false):void
+    protected function clearSelected(transition:Boolean = false):void
     {
         for (var p:String in selectedData)
         {
+            var selectionData:ListBaseSelectionData = selectedData[p];
             var data:Object = selectedData[p].data;
             
             removeSelectionData(p);
             
-            var item:IListItemRenderer = visibleData[itemToUID(data)];
-            if (item)
-                 drawItem(item, false, p == highlightUID, false, transition);
+            //var item:IListItemRenderer = visibleData[itemToUID(data)];
+            //if (item)
+            if (isVisibleIndex(selectionData.index))
+                 drawItem(selectionData.index, false, p == highlightUID, false, transition);
         }
 
         clearSelectionData();
 
-        _selectedIndex = -1;
-        _selectedItem = null;
+        (model as ISelectionModel).selectedIndex = -1; //_selectedIndex = -1;
+        //_selectedItem = null;
 		_selectedItems = null;
 
         caretIndex = -1;
@@ -5104,7 +5107,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
         caretBookmark = null;
         anchorBookmark = null;
-    } */
+    }
 
     /**
      *  Moves the selection in a horizontal direction in response
@@ -5129,14 +5132,14 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
+    protected function moveSelectionHorizontally(code:uint, shiftKey:Boolean,
                                                  ctrlKey:Boolean):void
     {
 		// For Keyboard.LEFT and Keyboard.RIGHT and maybe Keyboard.UP and Keyboard.DOWN,
 		// need to account for layoutDirection="rtl".
 		
         return;
-    } */
+    }
 
     /**
      *  Moves the selection in a vertical direction in response
@@ -5158,7 +5161,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-   /*  protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
+    protected function moveSelectionVertically(code:uint, shiftKey:Boolean,
                                                ctrlKey:Boolean):void
     {
         var newVerticalScrollPosition:Number;
@@ -5169,12 +5172,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
         showCaret = true;
 
-        var rowCount:int = listItems.length;
-        var partialRow:int = (rowInfo[rowCount-1].y + rowInfo[rowCount-1].height >
-                                  listContent.height) ? 1 : 0;
+        var rowCount:int = layout.lastVisibleIndex - layout.firstVisibleIndex; //listItems.length;
+        var partialRow:int = /*(rowInfo[rowCount-1].y + rowInfo[rowCount-1].height >
+                                  listContent.height) ? 1 :*/ 0;
         var bUpdateVerticalScrollPosition:Boolean = false;
         bSelectItem = false;
-
+        
         switch (code)
         {
             case Keyboard.UP:
@@ -5198,8 +5201,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
                 else if ((caretIndex == collection.length - 1) && partialRow)
                 {
-                    if (verticalScrollPosition < maxVerticalScrollPosition)
-                        newVerticalScrollPosition = verticalScrollPosition + 1;
+                    if (verticalScrollPosition < layout.maxVerticalScrollPosition)
+                        newVerticalScrollPosition = verticalScrollPosition + layout.actualRowHeight/*1*/;
                 }
                 break;
             }
@@ -5213,10 +5216,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
                 // if the caret is on-screen, but not at the top row
                 // just move the caret to the top row
-                else if (caretIndex > verticalScrollPosition + lockedRowCount &&
-                    caretIndex < verticalScrollPosition + rowCount)
+                else if (caretIndex > layout.firstVisibleIndex/*verticalScrollPosition*/ + lockedRowCount &&
+                    caretIndex < layout.firstVisibleIndex/*verticalScrollPosition*/ + rowCount)
                 {
-                    caretIndex = verticalScrollPosition + lockedRowCount;
+                    caretIndex = layout.firstVisibleIndex/*verticalScrollPosition*/ + lockedRowCount;
                 }
                 else
                 {
@@ -5225,7 +5228,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                     // to double-buffer a previous screen in order to get this exact
                     // so we just guess for now based on current rowCount
                     caretIndex = Math.max(caretIndex - rowCount + lockedRowCount, 0);
-                    newVerticalScrollPosition = Math.max(caretIndex - lockedRowCount,0)
+                    newVerticalScrollPosition = Math.max(caretIndex - lockedRowCount,0) * layout.actualRowHeight;
                 }
                 bSelectItem = true;
                 break;
@@ -5245,7 +5248,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
                 else
                 {
-                    newVerticalScrollPosition = Math.min(caretIndex - lockedRowCount, maxVerticalScrollPosition);
+                    newVerticalScrollPosition = Math.min((caretIndex - lockedRowCount) * layout.actualRowHeight, layout.maxVerticalScrollPosition);
                 }
                 bSelectItem = true;
                 break;
@@ -5268,7 +5271,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 {
                     caretIndex = collection.length - 1;
                     bSelectItem = true;
-                    newVerticalScrollPosition = maxVerticalScrollPosition;
+                    newVerticalScrollPosition = layout.maxVerticalScrollPosition;
                 }
                 break;
             }
@@ -5278,21 +5281,25 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         {
             if (caretIndex < lockedRowCount)
                 newVerticalScrollPosition = 0;
-            else if (caretIndex < verticalScrollPosition + lockedRowCount)
+            else if (caretIndex < layout.firstVisibleIndex/*verticalScrollPosition*/ + lockedRowCount)
                 newVerticalScrollPosition = caretIndex - lockedRowCount;
-            else if (caretIndex >= verticalScrollPosition + rowCount - partialRow)
-                newVerticalScrollPosition = Math.min(maxVerticalScrollPosition, caretIndex - rowCount + partialRow + 1);
+            else if (caretIndex >= layout.firstVisibleIndex/*verticalScrollPosition */+ rowCount - partialRow)
+                newVerticalScrollPosition = Math.min(layout.maxVerticalScrollPosition, 
+                    (caretIndex - rowCount + partialRow + 1) * layout.actualRowHeight);
         }
 
         if (!isNaN(newVerticalScrollPosition))
         {
             if (verticalScrollPosition != newVerticalScrollPosition)
             {
+                var se:Event = new Event("scroll");
+                /*
                 var se:ScrollEvent = new ScrollEvent(ScrollEvent.SCROLL);
                 se.detail = ScrollEventDetail.THUMB_POSITION;
                 se.direction = ScrollEventDirection.VERTICAL;
                 se.delta = newVerticalScrollPosition - verticalScrollPosition;
                 se.position = newVerticalScrollPosition;
+                */
                 verticalScrollPosition = newVerticalScrollPosition;
                 dispatchEvent(se);
             }
@@ -5311,7 +5318,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         lastKey = code;
 
         finishKeySelection();
-    } */
+    }
 
     /**
      *  Sets selected items based on the <code>caretIndex</code> and 
@@ -5326,12 +5333,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function finishKeySelection():void
+    protected function finishKeySelection():void
     {
         var uid:String;
-        var rowCount:int = listItems.length;
-        var partialRow:int = (rowInfo[rowCount-1].y + rowInfo[rowCount-1].height >
-                                  listContent.height) ? 1 : 0;
+        var rowCount:int = layout.lastVisibleIndex = layout.firstVisibleIndex; //listItems.length;
+        var partialRow:int = /*(rowInfo[rowCount-1].y + rowInfo[rowCount-1].height >
+                                  listContent.height) ? 1 :*/ 0;
 
         if (lastKey == Keyboard.PAGE_DOWN)
         {
@@ -5343,64 +5350,66 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         var listItem:IListItemRenderer;
         var bSelChanged:Boolean = false;
 
-        if (bSelectItem && caretIndex - verticalScrollPosition >= 0)
+        if (bSelectItem && caretIndex - layout.firstVisibleIndex/*verticalScrollPosition*/ >= 0)
         {
-            if (caretIndex - verticalScrollPosition > listItems.length - 1)
-                caretIndex = listItems.length - 1 + verticalScrollPosition;
+            if (caretIndex - layout.firstVisibleIndex/*verticalScrollPosition*/ > rowCount/*listItems.length*/ - 1)
+                caretIndex = rowCount/*listItems.length*/ - 1 + layout.firstVisibleIndex/*verticalScrollPosition*/;
 
-            listItem = listItems[caretIndex - verticalScrollPosition][0];
-            if (listItem)
+            //listItem = listItems[caretIndex - verticalScrollPosition][0];
+            if (isVisibleIndex(caretIndex))/*(listItem)*/
             {
-                uid = itemToUID(listItem.data);
-                listItem = visibleData[uid];
+                var bookmark:CursorBookmark = iterator.bookmark;
+                iterator.seek(CursorBookmark.CURRENT, caretIndex - layout.firstVisibleIndex);
+                var data:Object = iterator.current;
+                uid = itemToUID(/*listItem.*/data);
                 if (!bCtrlKey)
                 {
-                    selectItem(listItem, bShiftKey, bCtrlKey);
+                    selectItem(data, caretIndex, bShiftKey, bCtrlKey);
                     bSelChanged = true;
                 }
                 if (bCtrlKey)
                 {
-                    drawItem(listItem, selectedData[uid] != null, uid == highlightUID, true);
+                    drawItem(caretIndex, selectedData[uid] != null, uid == highlightUID, true);
                 }
             }
         }
 
         if (bSelChanged)
         {
-            var pt:Point = itemRendererToIndices(listItem);
+            //var pt:Point = itemRendererToIndices(listItem);
             var evt:ListEvent = new ListEvent(ListEvent.CHANGE);
-            if (pt)
-            {
-                evt.columnIndex = pt.x;
-                evt.rowIndex = pt.y;
-            }
+            //if (pt)
+            //{
+            //    evt.columnIndex = pt.x;
+            //    evt.rowIndex = pt.y;
+            //}
             evt.itemRenderer = listItem;
             dispatchEvent(evt);
         }
     }
- */
+
     /**
      *  @private
      */
-   /*  mx_internal function commitSelectedIndex(value:int):void
+    mx_internal function commitSelectedIndex(value:int):void
     {
         if (value != -1)
         {
             value = Math.min(value, collection.length - 1);
             var bookmark:CursorBookmark = iterator.bookmark;
-            var len:int = value - scrollPositionToIndex(horizontalScrollPosition, verticalScrollPosition);
-            try
-            {
+            var len:int = value - layout.firstVisibleIndex; //scrollPositionToIndex(horizontalScrollPosition, verticalScrollPosition);
+            //try
+            //{
                 iterator.seek(CursorBookmark.CURRENT, len);
-            }
-            catch (e:ItemPendingError)
-            {
-                iterator.seek(bookmark, 0);
+            //}
+            //catch (e:ItemPendingError)
+            //{
+            //    iterator.seek(bookmark, 0);
                 // if we can't seek to that spot, try again later.
-                bSelectedIndexChanged = true;
-                _selectedIndex = value;
-                return;
-            }
+            //    bSelectedIndexChanged = true;
+            //    _selectedIndex = value;
+            //    return;
+            //}
             var data:Object = iterator.current;
             var selectedBookmark:CursorBookmark = iterator.bookmark;
             var uid:String = itemToUID(data);
@@ -5413,74 +5422,98 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         }
 
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-    } */
+    }
 
+    private var layout:AdvancedDataGridLayout;
+    
+    private function isVisibleIndex(index:int):Boolean
+    {
+        if (!layout)
+            layout = getBeadByType(AdvancedDataGridLayout) as AdvancedDataGridLayout;
+        
+        if (!layout) return false;
+        return layout.isVisibleIndex(index);        
+    }
+    
     /**
      *  Implementation detail on selecting a data, used by commitSelectedIndex.
      *  @private
      */
-    /* protected function selectData(uid:String, data:Object,
+    protected function selectData(uid:String, data:Object,
                             index:int, selectedBookmark:CursorBookmark):void
     {
         if (!selectedData[uid])
         {
-            if (visibleData[uid])
-                selectItem(visibleData[uid], false, false);
+            if (isVisibleIndex(index))
+                selectItem(data, index, false, false);
             else
             {
                 clearSelected();
                 addSelectionData(uid, new ListBaseSelectionData(data, index, approximate));
-                _selectedIndex = index;
+                (model as ISelectionModel).selectedIndex = index; // was _selectedIndex = index;
                 caretIndex = index;
                 caretBookmark = selectedBookmark;
                 anchorIndex = index;
                 anchorBookmark = selectedBookmark;
-                _selectedItem = data;
+                //_selectedItem = data;
             }
         }
-    } */
+    }
+
+    override public function get selectedIndices():Array
+    {
+        return copySelectedItems(false);
+    }
+    
+    /**
+     *  @private
+     */
+    override public function set selectedIndices(indices:Array):void
+    {
+        commitSelectedIndices(indices);
+    }
 
     /**
      *  @private
      */
-   /*  mx_internal function commitSelectedIndices(indices:Array):void
+    mx_internal function commitSelectedIndices(indices:Array):void
     {
         // trace("setting indices");
         clearSelected();
 
-        try
-        {
+        //try
+        //{
             collectionIterator.seek(CursorBookmark.FIRST, 0);
-        }
-        catch (e:ItemPendingError)
-        {
-            e.addResponder(new ItemResponder(selectionIndicesPendingResultHandler, selectionIndicesPendingFailureHandler,
-                                                    new ListBaseSelectionDataPending(true, 0, indices, CursorBookmark.FIRST, 0)));
-            return;
-        }
+        //}
+        //catch (e:ItemPendingError)
+        //{
+        //    e.addResponder(new ItemResponder(selectionIndicesPendingResultHandler, selectionIndicesPendingFailureHandler,
+        //                                            new ListBaseSelectionDataPending(true, 0, indices, CursorBookmark.FIRST, 0)));
+        //    return;
+        //}
 
         setSelectionIndicesLoop(0, indices, true);
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  private function setSelectionIndicesLoop(index:int, indices:Array, firstTime:Boolean = false):void
+    private function setSelectionIndicesLoop(index:int, indices:Array, firstTime:Boolean = false):void
     {
         while (indices.length)
         {
             if (index != indices[0])
             {
-                try
-                {
+                //try
+                //{
                     collectionIterator.seek(CursorBookmark.CURRENT, indices[0] - index);
-                }
-                catch (e:ItemPendingError)
-                {
-                    e.addResponder(new ItemResponder(selectionIndicesPendingResultHandler, selectionIndicesPendingFailureHandler,
-                                                new ListBaseSelectionDataPending(firstTime, index, indices, CursorBookmark.CURRENT, indices[0] - index)));
-                    return;
-                }
+                //}
+                //catch (e:ItemPendingError)
+                //{
+                //    e.addResponder(new ItemResponder(selectionIndicesPendingResultHandler, selectionIndicesPendingFailureHandler,
+                //                                new ListBaseSelectionDataPending(firstTime, index, indices, CursorBookmark.CURRENT, indices[0] - index)));
+                //    return;
+                //}
 
             }
             index = indices[0];
@@ -5489,8 +5522,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             var data:Object = collectionIterator.current;
             if (firstTime)
             {
-                _selectedIndex = index;
-                _selectedItem = data;
+                (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
+                //_selectedItem = data;
 				caretIndex = index;
 				caretBookmark = collectionIterator.bookmark;
 				anchorIndex = index;
@@ -5505,46 +5538,46 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             updateList();
 
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  private function commitSelectedItem(data:Object, clearFirst:Boolean = true):void
+    private function commitSelectedItem(data:Object, clearFirst:Boolean = true):void
     {
         if (clearFirst)
             clearSelected();
         if (data != null)
             commitSelectedItems([data]);
-    } */
+    }
 
     /**
      *  @private
      */
-    /* private function commitSelectedItems(items:Array):void
+    private function commitSelectedItems(items:Array):void
     {
         clearSelected();
 
         var useFind:Boolean = collection.sort != null;
 
-        try
-        {
+        //try
+        //{
             collectionIterator.seek(CursorBookmark.FIRST, 0);
-        }
-        catch (e:ItemPendingError)
-        {
-            e.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
-                                                    new ListBaseSelectionDataPending(useFind, 0, items, null, 0)));
-            return;
-        }
+        //}
+        //catch (e:ItemPendingError)
+        //{
+        //    e.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
+        //                                            new ListBaseSelectionDataPending(useFind, 0, items, null, 0)));
+        //    return;
+        //}
 
         setSelectionDataLoop(items, 0, useFind);
-    } */
+    }
 
     /**
      *  @private
      */
-    /* private function setSelectionDataLoop(items:Array, index:int, useFind:Boolean = true):void
+    private function setSelectionDataLoop(items:Array, index:int, useFind:Boolean = true):void
     {
         var uid:String;
 
@@ -5555,17 +5588,17 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 var item:Object = items.pop();
                 uid = itemToUID(item);
 
-                try
-                {
+                //try
+                //{
                     collectionIterator.findAny(item);
-                }
-                catch (e1:ItemPendingError)
-                {
-                    items.push(item);
-                    e1.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
-                                                            new ListBaseSelectionDataPending(useFind, 0, items, null, 0)));
-                    return;
-                }
+                //}
+                //catch (e1:ItemPendingError)
+                //{
+                //    items.push(item);
+                //    e1.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
+                //                                            new ListBaseSelectionDataPending(useFind, 0, items, null, 0)));
+                //    return;
+                //}
                 var bookmark:CursorBookmark = collectionIterator.bookmark;
                 var viewIndex:int = bookmark.getViewIndex();
                 if (viewIndex >= 0)
@@ -5574,16 +5607,16 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
                 else
                 {
-                    try
-                    {
+                    //try
+                    //{
                         collectionIterator.seek(CursorBookmark.FIRST, 0);
-                    }
-                    catch (e2:ItemPendingError)
-                    {
-                        e2.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
-                                                                new ListBaseSelectionDataPending(false, 0, items, CursorBookmark.FIRST, 0)));
-                        return;
-                    }
+                    //}
+                    //catch (e2:ItemPendingError)
+                    //{
+                    //    e2.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
+                    //                                            new ListBaseSelectionDataPending(false, 0, items, CursorBookmark.FIRST, 0)));
+                    //    return;
+                    //}
 
                     // collection doesn't support indexes from bookmarks so
                     // try again w/o using bookmarks
@@ -5593,8 +5626,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
                 if (items.length == 0)
                 {
-                    _selectedIndex = viewIndex;
-                    _selectedItem = item;
+                    (model as ISelectionModel).selectedIndex = index; //_selectedIndex = viewIndex;
+                    //_selectedItem = item;
                     caretIndex = viewIndex;
                     caretBookmark = collectionIterator.bookmark;
                     anchorIndex = viewIndex;
@@ -5617,8 +5650,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                         items.splice(i, 1);
                         if (items.length == 0)
                         {
-                            _selectedIndex = index;
-                            _selectedItem = data;
+                            (model as ISelectionModel).selectedIndex = index; //_selectedIndex = index;
+                            //_selectedItem = data;
                             caretIndex = index;
                             caretBookmark = collectionIterator.bookmark;
                             anchorIndex = index;
@@ -5627,17 +5660,17 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                         break;
                     }
                 }
-                try
-                {
+                //try
+                //{
                     collectionIterator.moveNext();
                     index++;
-                }
-                catch (e2:ItemPendingError)
-                {
-                    e2.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
-                                                            new ListBaseSelectionDataPending(false, index, items, CursorBookmark.CURRENT, 1)));
-                    return;
-                }
+                //}
+                //catch (e2:ItemPendingError)
+                //{
+                //    e2.addResponder(new ItemResponder(selectionDataPendingResultHandler, selectionDataPendingFailureHandler,
+                //                                            new ListBaseSelectionDataPending(false, index, items, CursorBookmark.CURRENT, 1)));
+                //    return;
+                //}
             }
         }
 
@@ -5646,21 +5679,21 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 
-    } */
+    }
 
     /**
      *  @private
      */
-   /*  private function clearSelectionData():void
+    private function clearSelectionData():void
     {
         selectedData = {};
         firstSelectionData = null;
     }
- */
+
     /**
      *  @private
      */
-   /*  mx_internal function addSelectionData(uid:String, selectionData:ListBaseSelectionData):void
+    mx_internal function addSelectionData(uid:String, selectionData:ListBaseSelectionData):void
     {
         if (firstSelectionData != null)
             firstSelectionData.prevSelectionData = selectionData;
@@ -5668,12 +5701,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         firstSelectionData = selectionData;
         
         selectedData[uid] = selectionData;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* private function removeSelectionData(uid:String):void
+    private function removeSelectionData(uid:String):void
     {
         var curSelectionData:ListBaseSelectionData = selectedData[uid];
         
@@ -5687,7 +5720,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             curSelectionData.nextSelectionData.prevSelectionData = curSelectionData.prevSelectionData;
         
         delete selectedData[uid];
-    } */
+    }
 
     /**
      *  Sets up the effect for applying the selection indicator.
@@ -5754,7 +5787,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function copySelectedItems(useDataField:Boolean = true):Array
+    protected function copySelectedItems(useDataField:Boolean = true):Array
     {
         var tmp:Array = [];
 
@@ -5770,7 +5803,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         }
         
         return tmp;
-    } */
+    }
 
     //--------------------------------------------------------------------------
     //
@@ -8921,7 +8954,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function mouseDownHandler(event:MouseEvent):void
+    protected function mouseDownHandler(event:MouseEvent):void
     {
         if (!enabled || !selectable)
             return;
@@ -8929,19 +8962,21 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         // trace("mouseDown");
         isPressed = true;
 
-        var item:IListItemRenderer = mouseEventToItemRenderer(event);
+        var item:ISelectableItemRenderer = mouseEventToItemRenderer(event);
         if (!item)
             return;
-
+        
         bSelectOnRelease = false;
 
+        /*
         var pt:Point = new Point(event.localX, event.localY);
         pt = DisplayObject(event.target).localToGlobal(pt);
-        mouseDownPoint = globalToLocal(pt);
+        mouseDownPoint = globalToLocal(pt);*/
 
-        systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true, 0, true);
-        systemManager.getSandboxRoot().addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseLeaveHandler, false, 0, true);
+        systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true/*, 0, true);
+        systemManager.getSandboxRoot().addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseLeaveHandler, false, 0, true*/);
 
+        /*
         if (!dragEnabled)
         {
             dragScrollingInterval = setInterval(dragScroll, 15);
@@ -8959,23 +8994,23 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             bSelectOnRelease = true;
         }
         else
-        {
-            if (selectItem(item, event.shiftKey, event.ctrlKey))
+        {*/
+            if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
                 mouseDownItem = item;
-        }
-    } */
+        /*}*/
+    }
 
-    /* private function mouseIsUp():void
+    private function mouseIsUp():void
     {
         systemManager.getSandboxRoot().removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true);
-        systemManager.getSandboxRoot().removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseLeaveHandler);
+        /*systemManager.getSandboxRoot().removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseLeaveHandler);
 
         if (!dragEnabled && dragScrollingInterval != 0)
         {
             clearInterval(dragScrollingInterval);
             dragScrollingInterval = 0;
-        }
-    } */
+        }*/
+    }
 
     /* private function mouseLeaveHandler(event:Event):void
     {
@@ -9017,13 +9052,13 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function mouseUpHandler(event:MouseEvent):void
+    protected function mouseUpHandler(event:MouseEvent):void
     {
-        mouseDownPoint = null;
-		mouseDownIndex = -1;
+        //mouseDownPoint = null;
+		//mouseDownIndex = -1;
         //trace("mouseUp");
-        var item:IListItemRenderer = mouseEventToItemRenderer(event);
-        var pt:Point = itemRendererToIndices(item);
+        var item:ISelectableItemRenderer = mouseEventToItemRenderer(event);
+        //var pt:Point = itemRendererToIndices(item);
         var evt:ListEvent;
 
         mouseIsUp();
@@ -9033,6 +9068,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
         if (mouseDownItem)
         {
+            /*
             evt = new ListEvent(ListEvent.CHANGE);
             evt.itemRenderer = mouseDownItem;
             pt = itemRendererToIndices(mouseDownItem);
@@ -9042,10 +9078,11 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 evt.rowIndex = pt.y;
             }
             dispatchEvent(evt);
+            */
             mouseDownItem = null;
         }
 
-        if (!item || !hitTestPoint(event.stageX, event.stageY))
+        if (!item /*|| !hitTestPoint(event.stageX, event.stageY)*/)
         {
             isPressed = false;
             return;
@@ -9054,8 +9091,9 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         if (bSelectOnRelease)
         {
             bSelectOnRelease = false;
-            if (selectItem(item, event.shiftKey, event.ctrlKey))
+            if (selectItem(item.data, item.index, event.shiftKey, event.ctrlKey))
             {
+                /*
                 evt = new ListEvent(ListEvent.CHANGE);
                 evt.itemRenderer = item;
                 if (pt)
@@ -9064,11 +9102,12 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                     evt.rowIndex = pt.y;
                 }
                 dispatchEvent(evt);
+                */
             }
         }
 
         isPressed = false;
-    } */
+    }
 
     /**
      *  Handles <code>MouseEvent.MOUSE_CLICK</code> events from any mouse
@@ -9360,6 +9399,51 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         // are representing selected items.
         drawItem(renderer,true);
     }   */  
+
+    //----------------------------------
+    //  selectedItems
+    //----------------------------------
+    
+    private var _selectedItems:Array;
+    
+    [Bindable("change")]
+    [Bindable("valueCommit")]
+    [Inspectable(category="General")]
+    
+    /**
+     *  An Array of references to the selected items in the data provider.  The
+     *  items are in the reverse order that the user selected the items.
+     *  @default [ ]
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    override public function get selectedItems():Array
+    {
+        return bSelectedItemsChanged && _selectedItems ? _selectedItems : copySelectedItems();
+    }
+    
+    /**
+     *  @private
+     */
+    override public function set selectedItems(items:Array):void
+    {
+        if (!collection || collection.length == 0)
+        {
+            _selectedItems = items;
+            bSelectedItemsChanged = true;
+            bSelectionChanged = true;
+            
+            invalidateDisplayList();
+            return;
+        }
+        
+        commitSelectedItems(items);
+    }
+    
+
 }
 
 }

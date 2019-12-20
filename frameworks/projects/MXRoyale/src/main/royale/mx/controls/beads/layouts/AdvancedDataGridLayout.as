@@ -68,6 +68,13 @@ package mx.controls.beads.layouts
         COMPILE::JS
         private var listening:Boolean;
         
+        public var firstVisibleIndex:int;
+        
+        public var lastVisibleIndex:int;      
+        
+        public var maxVerticalScrollPosition:Number;
+        
+        public var actualRowHeight:Number;
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
@@ -100,10 +107,11 @@ package mx.controls.beads.layouts
                 if (!displayedColumns) return retval;
                 var n:int = displayedColumns.length;
                 var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
-                var actualRowHeight:Number = presentationModel.rowHeight 
+                actualRowHeight = presentationModel.rowHeight 
                     + presentationModel.separatorThickness;
                 COMPILE::JS
                 {
+                firstVisibleIndex = Math.floor(listArea.element.scrollTop / actualRowHeight);
                 var topSpacerHeight:Number = Math.floor(listArea.element.scrollTop / actualRowHeight)
                     * actualRowHeight;
                 }
@@ -111,6 +119,7 @@ package mx.controls.beads.layouts
                 if (model.dataProvider && model.dataProvider.length)
                 {
                     var totalHeight:Number = model.dataProvider.length * actualRowHeight;
+                    maxVerticalScrollPosition = totalHeight - useHeight;
                     COMPILE::JS
                     {
                         if (!spacer)
@@ -126,8 +135,11 @@ package mx.controls.beads.layouts
                         if (totalHeight > useHeight)
                         {
                             var numVisibleRows:int = Math.floor(useHeight / actualRowHeight);
+                            lastVisibleIndex = firstVisibleIndex + numVisibleRows + 1;
                             useHeight = actualRowHeight * (numVisibleRows + 1);
                         }
+                        else
+                            lastVisibleIndex = model.dataProvider.length - 1;
                         if (uiHost.element.style["overflow-x"] == "hidden")
                             listArea.element.style["overflow-x"] = "hidden";
                     }
@@ -145,6 +157,11 @@ package mx.controls.beads.layouts
                 }
             }            
             return retval;
+        }
+        
+        public function isVisibleIndex(index:int):Boolean
+        {
+            return index >= firstVisibleIndex && index <= lastVisibleIndex;
         }
 	}
 }
