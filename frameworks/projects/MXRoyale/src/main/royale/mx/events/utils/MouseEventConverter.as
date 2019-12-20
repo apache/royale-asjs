@@ -186,7 +186,11 @@ package mx.events.utils
             {
                 Keyboard.setCapsLock(nativeEvent["getModifierState"]("CapsLock"));
             }
-            return new mx.events.MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
+            var event:mx.events.MouseEvent = new mx.events.MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
+            event.shiftKey = nativeEvent["shiftKey"];
+            event.ctrlKey = nativeEvent["ctrlKey"];
+            event.altKey = nativeEvent["altKey"];
+            return event;
         }
     }
 
