@@ -46,8 +46,10 @@ use namespace mx_internal;
 
 import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.html.supportClasses.StringItemRenderer;
+import org.apache.royale.events.MouseEvent;
 import mx.core.UIComponent;
 import mx.collections.IHierarchicalData;
+import mx.events.ListEvent;
 
 //--------------------------------------
 //  Events
@@ -114,8 +116,17 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     {
         super();
         typeNames += " AdvancedDataGridItemRenderer";
+        addEventListener(MouseEvent.DOUBLE_CLICK, doubleClickHandler);
     }
 
+    private function doubleClickHandler(event:MouseEvent):void
+    {
+        var treeListData:AdvancedDataGridListData = listData as AdvancedDataGridListData;
+        var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
+        var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_DOUBLE_CLICK);
+        newEvent.rowIndex = index;
+        owner.dispatchEvent(newEvent);        
+    }
     //--------------------------------------------------------------------------
     //
     //  Overridden properties: UIComponent
