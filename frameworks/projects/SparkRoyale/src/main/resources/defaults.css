@@ -106,7 +106,7 @@ NonVirtualVDataGroup
 
 DropDownList
 {
-	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
 	IBeadView: ClassReference("spark.components.beads.DropDownListView");
 	IBeadController: ClassReference("spark.components.beads.controllers.DropDownListController");
 }
