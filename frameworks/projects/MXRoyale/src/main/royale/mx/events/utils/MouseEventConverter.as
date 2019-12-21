@@ -27,7 +27,6 @@ package mx.events.utils
     COMPILE::JS
     {
         import goog.events.BrowserEvent;
-        import goog.events.Event;
     }
     
     import mx.core.Keyboard;
@@ -194,7 +193,7 @@ package mx.events.utils
             var event:mx.events.MouseEvent = new mx.events.MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
 			if(!browserEvent)
 			{
-				browserEvent = new goog.events.BrowserEvent(nativeEvent as goog.events.Event,nativeEvent["currentTarget"]);
+				browserEvent = new goog.events.BrowserEvent(nativeEvent,nativeEvent["currentTarget"]);
 			}
             event.wrapEvent(browserEvent);
             return event;
