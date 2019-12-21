@@ -26,7 +26,6 @@ package org.apache.royale.events.utils
     COMPILE::JS
     {
         import goog.events.BrowserEvent;
-        import goog.events.Event;
     }
     
     import org.apache.royale.events.MouseEvent;
@@ -188,7 +187,7 @@ package org.apache.royale.events.utils
             var event:MouseEvent = new MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);
 			if(!browserEvent)
 			{
-				browserEvent = new goog.events.BrowserEvent(nativeEvent as goog.events.Event,nativeEvent["currentTarget"]);
+				browserEvent = new goog.events.BrowserEvent(nativeEvent,nativeEvent["currentTarget"]);
 			}
             event.wrapEvent(browserEvent);
             return event;
