@@ -24,12 +24,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.core.IParent;
 
 	/**
 	 * Handles the removal of an itemRenderer once the corresponding datum has been removed
@@ -63,6 +63,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -77,6 +78,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -91,6 +94,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -109,10 +113,13 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var parent:UIBase = itemRendererParent as UIBase;
+			var parent:IParent = itemRendererParent as IParent;
 			var ir:ISelectableItemRenderer = parent.getElementAt(event.index) as ISelectableItemRenderer;
 			itemRendererParent.removeItemRenderer(ir);
 			
@@ -137,6 +144,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel(): IDataProviderModel
 		{
