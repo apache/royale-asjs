@@ -219,6 +219,14 @@ package org.apache.royale.events
 		{
 			return OSUtils.getOS() == OSUtils.MAC_OS ? metaKey : ctrlKey;
 		}
+        COMPILE::JS
+		public function set specialKey(value:Boolean):void
+		{
+            if(OSUtils.getOS() == OSUtils.MAC_OS)
+                metaKey = value;
+            else
+                ctrlKey = value;
+		}
 
         /**
          * @langversion 3.0
