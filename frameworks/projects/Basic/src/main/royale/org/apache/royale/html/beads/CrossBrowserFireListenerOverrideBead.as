@@ -20,7 +20,7 @@ package org.apache.royale.html.beads
 {
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.HTMLElementWrapper;
+	import org.apache.royale.core.ElementWrapper;
     COMPILE::JS  
 	{
         import goog.events;
@@ -87,7 +87,7 @@ package org.apache.royale.html.beads
 			}
 
 			e.wrapEvent(eventObject);
-			return HTMLElementWrapper.googFireListener(listener, e);
+			return ElementWrapper.googFireListener(listener, e);
 		}
     }
 }

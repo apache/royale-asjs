@@ -21,7 +21,7 @@ package org.apache.royale.events
     COMPILE::JS
     {
         import goog.events.BrowserEvent;
-        import org.apache.royale.core.HTMLElementWrapper;
+        import org.apache.royale.core.ElementWrapper;
 		import org.apache.royale.events.Event;
         import org.apache.royale.events.utils.KeyboardEventConverter;
     }
@@ -314,7 +314,7 @@ package org.apache.royale.events
         COMPILE::JS
         public static function setupConverter():Boolean
         {
-            HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+            ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
             return true;
         }
         

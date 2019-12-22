@@ -32,7 +32,7 @@ package org.apache.royale.events
         
         import goog.events.BrowserEvent;
         
-        import org.apache.royale.core.HTMLElementWrapper;
+        import org.apache.royale.core.ElementWrapper;
         import org.apache.royale.events.Event;
         import org.apache.royale.events.utils.MouseEventConverter;
     }
@@ -838,7 +838,7 @@ package org.apache.royale.events
         
         public static function setupConverter():Boolean
         {
-            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+            ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
             _useNativeConstructor = typeof window.MouseEvent == 'function';
             return true;
         }

@@ -67,7 +67,7 @@ import mx.events.utils.MouseEventConverter;
 import mx.managers.ISystemManager;
 
 COMPILE::JS {
-    import org.apache.royale.core.HTMLElementWrapper;
+    import org.apache.royale.core.ElementWrapper;
 }
 
 import org.apache.royale.binding.ContainerDataBinding;
@@ -324,7 +324,7 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         
         COMPILE::JS
         {
-            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+            ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
         }
     }
 
