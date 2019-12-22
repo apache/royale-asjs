@@ -34,6 +34,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IParent;
 
     /**
 	 * Handles the adding of an itemRenderer once the corresponding datum has been added
@@ -122,6 +123,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -133,7 +135,7 @@ package org.apache.royale.html.beads
 			fillRenderer(event.index, event.item, ir, presentationModel);
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var dataGroup:UIBase = itemRendererParent as UIBase;
+			var dataGroup:IParent = itemRendererParent as IParent;
 			var n:int = dataGroup.numElements;
 			for (var i:int = event.index; i < n; i++)
 			{
