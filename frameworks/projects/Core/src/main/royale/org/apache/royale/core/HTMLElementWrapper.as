@@ -155,18 +155,26 @@ package org.apache.royale.core
          * @param listener The listener object to call {goog.events.Listener}.
          * @param eventObject The event object to pass to the listener.
          * @return Result of listener.
+         * @royaleignorecoercion org.apache.royale.events.IBrowserEvent
          */
 		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
+            /**
+             * For now we're adding in some just-in-case code to prevent conflicts with ElementWrapper. This needs to be fixed.
+             */
             var e:IBrowserEvent;
-            var nativeEvent:Object = eventObject.getBrowserEvent();
-            var converter:Object = converterMap[nativeEvent.constructor.name];
-            if (converter)
-                e = converter["convert"](nativeEvent,eventObject);
-            else
-            {
-                e = new org.apache.royale.events.BrowserEvent();
-			    e.wrapEvent(eventObject);
+            if(eventObject is IBrowserEvent){
+                e = eventObject as IBrowserEvent
+            } else {
+                var nativeEvent:Object = eventObject.getBrowserEvent();
+                var converter:Object = converterMap[nativeEvent.constructor.name];
+                if (converter)
+                    e = converter["convert"](nativeEvent,eventObject);
+                else
+                {
+                    e = new org.apache.royale.events.BrowserEvent();
+                    e.wrapEvent(eventObject);
+                }
             }
 			return HTMLElementWrapper.googFireListener(listener, e);
 		}

@@ -22,6 +22,7 @@ package org.apache.royale.core
     {
         import org.apache.royale.events.utils.EventUtils;
         import org.apache.royale.events.BrowserEvent;
+        import org.apache.royale.events.IBrowserEvent
         import goog.events.BrowserEvent;
         import org.apache.royale.events.ElementEvents;
         import goog.events;
@@ -180,11 +181,20 @@ package org.apache.royale.core
          * @param listener The listener object to call {goog.events.Listener}.
          * @param eventObject The event object to pass to the listener.
          * @return Result of listener.
+         * @royaleignorecoercion org.apache.royale.events.IBrowserEvent
          */
 		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
-			var e:org.apache.royale.events.BrowserEvent = new org.apache.royale.events.BrowserEvent();
-			e.wrapEvent(eventObject);
+            /**
+             * For now we're adding in some just-in-case code to prevent conflicts with ElementWrapper. This needs to be fixed.
+             */
+            var e:IBrowserEvent;
+            if(eventObject is IBrowserEvent){
+                e = eventObject as IBrowserEvent
+            } else {
+                e = new org.apache.royale.events.BrowserEvent();
+                e.wrapEvent(eventObject);
+            }
 			return ElementWrapper.googFireListener(listener, e);
 		}
 
