@@ -2201,7 +2201,7 @@ COMPILE::JS
                 if (oldWidth.length)
                     this.positioner.style.width = "";
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
-                    this.positioner.style.left = "";
+                    return 0; // this.positioner.style.left = "";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
@@ -2276,7 +2276,7 @@ COMPILE::JS
                 if (oldHeight.length)
                     this.positioner.style.height = "";
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
-                    this.positioner.style.top = "";
+                    return 0; //this.positioner.style.top = "";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && numChildren > 0)
                 {
