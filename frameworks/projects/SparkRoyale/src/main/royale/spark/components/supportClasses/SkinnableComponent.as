@@ -142,8 +142,15 @@ public class SkinnableComponent extends UIComponent
      */
     public function SkinnableComponent()
     {
+        addEventListener("layoutNeeded", layoutSkinNeeded);
     }
 	
+    private function layoutSkinNeeded(event:Event):void
+    {
+        if (skin)
+            skin.dispatchEvent(new Event("layoutNeeded"));
+    }
+    
     //--------------------------------------------------------------------------
     //  Properties
     //--------------------------------------------------------------------------

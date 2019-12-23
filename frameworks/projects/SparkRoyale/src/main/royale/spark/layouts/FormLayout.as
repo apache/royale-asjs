@@ -27,7 +27,9 @@ package spark.layouts
 	import spark.components.supportClasses.GroupBase;
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.layouts.supportClasses.LayoutBase;
-	
+
+    import org.apache.royale.events.Event;
+    
 	use namespace mx_internal;
 	
 	/**
@@ -294,6 +296,11 @@ package spark.layouts
 				// Recalculate contentWidth; contentHeight already includes padding.
 				var contentWidth:Number = calculateColumnWidthsSum(columnMaxWidths);
 				layoutTarget.setContentSize(contentWidth + hPadding, layoutTarget.contentHeight);
+                
+                for each (formItem in formItems)
+                {
+                    formItem.dispatchEvent(new Event("layoutNeeded"));
+                }
 			}
 		}
 		
