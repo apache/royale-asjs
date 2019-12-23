@@ -141,6 +141,7 @@ Alert
 Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
+	font-weight: bold;
 }
 
 Canvas

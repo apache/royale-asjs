@@ -117,9 +117,21 @@ DropDownList
 	border: 1px solid #333333
 }
 
+Form
+{
+	skinClass: ClassReference("spark.skins.spark.FormSkin");
+	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
+}
+
+FormItem
+{
+	skinClass: ClassReference("spark.skins.spark.FormItemSkin");
+	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
+}
+
 List
 {
-	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
+	IBeadView: ClassReference("spark.components.beads.SparkContainerView");
 	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");

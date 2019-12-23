@@ -136,12 +136,17 @@ package org.apache.royale.html.beads
 
             createViewport();
 
-			var chost:IContainer = host as IContainer;
-			chost.strandChildren.addElement(viewport.contentView);
+            addViewport();
 
 			super.strand = value;
 		}
 
+        protected function addViewport():void
+        {
+            var chost:IContainer = host as IContainer;
+            chost.strandChildren.addElement(viewport.contentView);            
+        }
+        
 		/**
 		 * Called when the host is ready to complete its setup (usually after its size has been
 		 * determined).
@@ -368,14 +373,19 @@ package org.apache.royale.html.beads
 				_viewport = loadBeadFromValuesManager(IViewport, "iViewport", _strand) as IViewport;
 			
 			if (_viewport) {
-				var chost:IContainer = host as IContainer;
-				// add the viewport's contentView to this host ONLY if
-				// the contentView is not the host itself, which is likely
-				// most situations.
-				if (chost != null && chost != _viewport.contentView) {
-					chost.addElement(_viewport.contentView);
-				}
+                addViewport();
 			}
 		}
+        
+        protected function addViewport():void
+        {
+            var chost:IContainer = host as IContainer;
+            // add the viewport's contentView to this host ONLY if
+            // the contentView is not the host itself, which is likely
+            // most situations.
+            if (chost != null && chost != _viewport.contentView) {
+                chost.addElement(_viewport.contentView);
+            }            
+        }
 	}
 }

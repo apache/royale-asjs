@@ -181,7 +181,7 @@ package mx.display
 		{
 		} 
 		
-        private var thickness:Number = 0.5;
+        private var thickness:Number = NaN;
         private var color:uint = 0;
         private var alpha:Number = 1.0;
         
@@ -254,11 +254,14 @@ package mx.display
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "ellipse") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
                 colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
                 path.setAttribute("fill", colorString);
                 if (fillAlpha != 1)
@@ -285,11 +288,14 @@ package mx.display
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "rect") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
                 colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
                 path.setAttribute("fill", colorString);
                 if (fillAlpha != 1)
@@ -321,11 +327,14 @@ package mx.display
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "rect") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
                 colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
                 path.setAttribute("fill", colorString);
                 if (fillAlpha != 1)
@@ -352,11 +361,14 @@ package mx.display
             {
                 var path:SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "circle") as SVGElement;
                 var colorString:String = "RGB(" + (color >> 16) + "," + ((color & 0xff00) >> 8) + "," + (color & 0xff) + ")";
-                path.setAttribute("stroke", colorString);
-                var widthString:String = thickness.toString();
-                path.setAttribute("stroke-width", widthString);
-                if (alpha != 1)
-                    path.setAttribute("stroke-opacity", alpha.toString());
+                if (!isNaN(thickness))
+                {
+                    path.setAttribute("stroke", colorString);
+                    var widthString:String = thickness.toString();
+                    path.setAttribute("stroke-width", widthString);
+                    if (alpha != 1)
+                        path.setAttribute("stroke-opacity", alpha.toString());
+                }
                 colorString = "RGB(" + (fillColor >> 16) + "," + ((fillColor & 0xff00) >> 8) + "," + (fillColor & 0xff) + ")";
                 path.setAttribute("fill", colorString);
                 if (fillAlpha != 1)

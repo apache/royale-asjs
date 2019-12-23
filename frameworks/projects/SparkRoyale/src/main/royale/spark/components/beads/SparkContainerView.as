@@ -20,22 +20,24 @@
 package spark.components.beads
 {
 
+import spark.components.SkinnableContainer;
 import spark.components.supportClasses.GroupBase;
-import spark.layouts.supportClasses.LayoutBase;
+import spark.layouts.BasicLayout;
 
 import org.apache.royale.core.IBead;
+import org.apache.royale.core.IContainer;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.UIBase;
+import org.apache.royale.html.beads.ContainerView;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.IEventDispatcher;
-import org.apache.royale.html.beads.GroupView;
 
 /**
  *  @private
- *  The PanelView for emulation.
+ *  The SparkContainerView for emulation.
  */
-public class GroupView extends org.apache.royale.html.beads.GroupView
+public class SparkContainerView extends ContainerView
 {
 	//--------------------------------------------------------------------------
 	//
@@ -51,11 +53,30 @@ public class GroupView extends org.apache.royale.html.beads.GroupView
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function GroupView()
+	public function SparkContainerView()
 	{
 		super();
 	}
 
+    /**
+     */
+    override public function set strand(value:IStrand):void
+    {
+        super.strand = value;
+        var host:SkinnableContainer = _strand as SkinnableContainer;
+        var g:GroupBase = (contentView as GroupBase);
+        if (host.layout != null)
+            g.layout = host.layout;
+        if (g.layout == null)
+            g.layout = new BasicLayout();
+        
+        if (!host.isWidthSizedToContent())
+            g.percentWidth = 100;
+        if (!host.isHeightSizedToContent())
+            g.percentHeight = 100;
+
+    }
+    
     /**
      *  Adjusts the size of the host after the layout has been run if needed
      *
@@ -67,10 +88,7 @@ public class GroupView extends org.apache.royale.html.beads.GroupView
      */
     override public function beforeLayout():void
     {
-        var host:GroupBase = _strand as GroupBase;
-        // some Groups have left/right but are still sized to content.
-        // the left/right create padding instead.  So isntead of
-        // isWidthSizedToContent, we only check explicit and percent
+        var host:SkinnableContainer = _strand as SkinnableContainer;
         if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
         {
             host.layout.measure();
@@ -88,7 +106,7 @@ public class GroupView extends org.apache.royale.html.beads.GroupView
      */
     override public function afterLayout():void
     {
-        var host:UIBase = _strand as UIBase;
+        var host:SkinnableContainer = _strand as SkinnableContainer;
         if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
         {
             // request re-run layout on the parent.  In theory, we should only
@@ -104,4 +122,3 @@ public class GroupView extends org.apache.royale.html.beads.GroupView
 }
 
 }
-

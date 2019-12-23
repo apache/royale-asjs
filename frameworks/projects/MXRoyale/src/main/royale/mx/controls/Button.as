@@ -277,17 +277,6 @@ public class Button extends UIComponent implements IDataRenderer
 	}
 	
 	// ------------------------------------------------
-	//  fontStyle
-	// ------------------------------------------------
-	
-	public function get fontStyle():String
-	{
-		return "BOLD";
-	}
-	public function set fontStyle(value:String):void
-	{
-	}
-	// ------------------------------------------------
 	//  icon
 	// ------------------------------------------------
 	

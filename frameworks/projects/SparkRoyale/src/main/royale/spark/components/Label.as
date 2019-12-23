@@ -419,16 +419,7 @@ public class Label extends TextBase
     {
         
     }
-	
-	public function get fontStyle():String
-    {
-        return "";
-    }
-    public function set fontStyle(value:String):void
-    {
-        
-    }
-    
+	    
     public function get textDecoration():String
     {
         return "";

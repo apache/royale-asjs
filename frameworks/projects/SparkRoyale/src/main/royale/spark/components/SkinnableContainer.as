@@ -27,13 +27,13 @@ import mx.core.IVisualElementContainer;
 import mx.events.FlexEvent;
 import mx.utils.BitFlagUtil;
 
-import spark.components.supportClasses.SkinnableContainerBase;
 import spark.events.ElementExistenceEvent;
 */
 import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.mx_internal;
 
+import spark.components.supportClasses.SkinnableContainerBase;
 import spark.components.supportClasses.SkinnableComponent;
 import spark.components.supportClasses.GroupBase;
 import spark.components.beads.SkinnableContainerView;
@@ -55,6 +55,7 @@ import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.ValueEvent;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -366,7 +367,7 @@ include "../styles/metadata/SelectionFormatTextStyles.as"
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class SkinnableContainer extends SkinnableComponent implements IContainer, IContainerBaseStrandChildrenHost
+public class SkinnableContainer extends SkinnableContainerBase implements IContainer, IContainerBaseStrandChildrenHost
 {// SkinnableContainerBase 
  //    implements IDeferredContentOwner, IVisualElementContainer
    // include "../core/Version.as";
@@ -658,8 +659,8 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
             ? contentGroup.layout 
             : contentGroupProperties.layout;
         */
-        if (!_layout)
-            _layout = new BasicLayout();
+        //if (!_layout)
+        //    _layout = new BasicLayout();
         return _layout;
     }
     
@@ -902,6 +903,11 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      */
     public function childrenAdded():void
     {
+        if (skin)
+        {
+            var skinDispatcher:IEventDispatcher = (view as SkinnableContainerView).contentView as IEventDispatcher;
+            skinDispatcher.dispatchEvent(new ValueEvent("childrenAdded"));
+        }
         dispatchEvent(new ValueEvent("childrenAdded"));
     }
     
@@ -998,10 +1004,11 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-     protected function partAdded(partName:String, instance:Object):void
-    { //override
-        /* super.partAdded(partName, instance);
+    override protected function partAdded(partName:String, instance:Object):void
+    { 
+        super.partAdded(partName, instance);
 
+        /* 
         if (instance == contentGroup)
         {
             if (_contentModified)
@@ -1264,6 +1271,8 @@ public class SkinnableContainer extends SkinnableComponent implements IContainer
          if (c == contentView)
          {
              super.addElement(c); // ContainerView uses addElement to add inner contentView
+             if (c == skin)
+                 findSkinParts();
              return;
          }
          contentView.addElement(c, dispatchEvent);

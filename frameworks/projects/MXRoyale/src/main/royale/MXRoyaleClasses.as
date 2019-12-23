@@ -58,6 +58,9 @@ internal class MXRoyaleClasses
     import mx.containers.beads.layouts.BasicLayout; BasicLayout;
 	import mx.controls.beads.AlertView; AlertView;
     import mx.controls.beads.controllers.AlertMouseController; AlertMouseController;
+    import mx.containers.errors.ConstraintError; ConstraintError;
+    import mx.containers.utilityClasses.ConstraintColumn; ConstraintColumn;
+    import mx.containers.utilityClasses.ConstraintRow; ConstraintRow;
 	import mx.containers.gridClasses.GridColumnInfo; GridColumnInfo;
 	import mx.containers.gridClasses.GridRowInfo; GridRowInfo;
 	import mx.events.CloseEvent; CloseEvent;

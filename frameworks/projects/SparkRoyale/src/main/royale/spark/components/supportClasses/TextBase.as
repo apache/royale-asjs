@@ -32,7 +32,6 @@ import mx.core.IFlexModuleFactory;
 import mx.resources.IResourceManager;
 import mx.resources.ResourceManager;
 
-import spark.core.IDisplayText;
 import spark.utils.TextUtil;
 
 */
@@ -57,6 +56,8 @@ import org.apache.royale.textLayout.compose.TextLineRecycler;
 import org.apache.royale.core.ITextModel;
 
 use namespace mx_internal;
+
+import spark.core.IDisplayText;
 
 //--------------------------------------
 //  Styles
@@ -113,9 +114,9 @@ use namespace mx_internal;
  *  @royalesuppresspublicvarwarning
 */
 
-public class TextBase extends UIComponent 
-{ //implements IDisplayText
+public class TextBase extends UIComponent implements IDisplayText
 
+{ 
   //  include "../../core/Version.as";
 
     //--------------------------------------------------------------------------
@@ -343,7 +344,7 @@ public class TextBase extends UIComponent
      *  @private
 	 *  Storage for the isTruncated property.
      */
-    //private var _isTruncated:Boolean = false;
+    private var _isTruncated:Boolean = false;
         
     /**
 	 *  A read-only property reporting whether the text has been truncated.
@@ -377,12 +378,12 @@ public class TextBase extends UIComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-	/* public function get isTruncated():Boolean
+	public function get isTruncated():Boolean
     {
 		// For some reason, the compiler needs an explicit cast to Boolean
 		// to avoid a warning even though at runtime "is Boolean" is true.
 		return Boolean(_isTruncated);
-    } */
+    }
     
     /**
      *  @private

@@ -129,6 +129,8 @@ package spark.components
 		public function FormItem()
 		{
 			super();
+            typeNames += " FormItem";
+            
 			// Set these here instead of in the CSS type selector for Form
 			// We want to hide the fact that the Form itself doesn't show
 			// the error skin or error tip, but that its children do. 
@@ -421,6 +423,11 @@ package spark.components
 			}
 		}
 		
+        override protected function get skinParts():Object
+        {
+            return { labelDisplay: true, sequenceLabelDisplay: true};
+        }
+        
 		/**
 		 *  @private
 		 */

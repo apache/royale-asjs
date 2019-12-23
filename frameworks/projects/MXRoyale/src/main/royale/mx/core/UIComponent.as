@@ -2201,7 +2201,7 @@ COMPILE::JS
                 if (oldWidth.length)
                     this.positioner.style.width = "";
                 if (oldLeft.length && oldRight.length) // if both are set, this also dictates width
-                    this.positioner.style.left = "";
+                    return 0; // this.positioner.style.left = "";
                 var mw:Number = this.positioner.offsetWidth;
                 if (mw == 0 && numChildren > 0)
                 {
@@ -2276,7 +2276,7 @@ COMPILE::JS
                 if (oldHeight.length)
                     this.positioner.style.height = "";
                 if (oldTop.length && oldBottom.length) // if both are set, this also dictates height
-                    this.positioner.style.top = "";
+                    return 0; //this.positioner.style.top = "";
                 var mh:Number = this.positioner.offsetHeight;
                 if (mh == 0 && numChildren > 0)
                 {
@@ -3112,7 +3112,12 @@ COMPILE::JS
         addEventListener("stateChangeComplete", stateChangeCompleteHandler);
         dispatchEvent(event);
     }
-
+    
+    public function setCurrentState(stateName:String, playTransition:Boolean=true):void
+    {
+        currentState = stateName;
+    }
+    
     private function stateChangeCompleteHandler(event:Event):void
     {
         callLater(dispatchUpdateComplete); 
@@ -4345,6 +4350,41 @@ COMPILE::JS
         invalidateDisplayListFlag = false;
     }
 
+    override public function isWidthSizedToContent():Boolean
+    {
+        if (!isNaN(_explicitWidth))
+            return false;
+        if (!isNaN(percentWidth))
+            return false;
+        var left:* = ValuesManager.valuesImpl.getValue(this, "left");
+        var right:* = ValuesManager.valuesImpl.getValue(this, "right");
+        if (typeof(left) === "string" && String(left).indexOf(":") != -1)
+            left = undefined;
+        if (typeof(right) === "string" && String(right).indexOf(":") != -1)
+            right = undefined;        
+        if (left === undefined || right === undefined) return true;
+        if (parent is UIComponent)
+            return (parent as UIComponent).isWidthSizedToContent();
+        return false;
+    }
+
+    override public function isHeightSizedToContent():Boolean
+    {
+        if (!isNaN(_explicitHeight))
+            return false;
+        if (!isNaN(percentHeight))
+            return false;
+        var top:* = ValuesManager.valuesImpl.getValue(this, "top");
+        var bottom:* = ValuesManager.valuesImpl.getValue(this, "bottom");
+        if (typeof(top) === "string" && String(top).indexOf(":") != -1)
+            top = undefined;
+        if (typeof(bottom) === "string" && String(bottom).indexOf(":") != -1)
+            bottom = undefined;        
+        if (top === undefined || bottom === undefined) return true;
+        if (parent is UIComponent)
+            return (parent as UIComponent).isHeightSizedToContent();
+        return false;
+    }
     
     [Inspectable(category="General")]
 
@@ -4679,6 +4719,52 @@ COMPILE::JS
     {
         this._uid = uid;
     }
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get showErrorSkin():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "showErrorSkin");
+    }
+    public function set showErrorSkin(value:Object):void
+    {
+        setStyle("showErrorSkin", value);
+    }
+
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get showErrorTip():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "showErrorTip");
+    }
+    public function set showErrorTip(value:Object):void
+    {
+        setStyle("showErrorTip", value);
+    }
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get baseline():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "baseline");
+    }
+    public function set baseline(value:Object):void
+    {
+        setStyle("baseline", value);
+    }
+    
 	[Inspectable(category="General")]
 	
 	/*	  
@@ -4695,6 +4781,23 @@ COMPILE::JS
     {
         setStyle("fontSize", value);
     }
+    [Inspectable(category="General")]
+    
+    /*	  
+    *  @langversion 3.0
+    *  @playerversion Flash 9
+    *  @playerversion AIR 1.1
+    *  @productversion Flex 3
+    */
+    public function get fontStyle():Object
+    {
+        return ValuesManager.valuesImpl.getValue(this, "fontStyle");
+    }
+    public function set fontStyle(value:Object):void
+    {
+        setStyle("fontStyle", value);
+    }
+    
 	[Inspectable(category="General")]
 	
 	/*	  
