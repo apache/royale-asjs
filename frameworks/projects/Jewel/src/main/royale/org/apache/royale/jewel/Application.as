@@ -18,38 +18,39 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+    COMPILE::SWF {
+    import flash.display.DisplayObject;
+    import flash.display.StageAlign;
+    import flash.display.StageQuality;
+    import flash.display.StageScaleMode;
+    import flash.events.Event;
+
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.events.utils.MouseEventConverter;
+    }
+
+    COMPILE::JS {
+    import org.apache.royale.core.UIBase;
+    }
+    import org.apache.royale.core.AllCSSValuesImpl;
     import org.apache.royale.core.ApplicationBase;
+    import org.apache.royale.core.IApplicationView;
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IChild;
+    import org.apache.royale.core.IInitialViewApplication;
     import org.apache.royale.core.IParent;
+    import org.apache.royale.core.IPopUpHost;
     import org.apache.royale.core.IPopUpHostParent;
+    import org.apache.royale.core.IRenderedObject;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.IValuesImpl;
+    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.Timer;
-    import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IInitialViewApplication;
-	import org.apache.royale.core.IPopUpHost;
-	import org.apache.royale.core.IRenderedObject;
-    import org.apache.royale.core.AllCSSValuesImpl;
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.ILayoutChild;
-    import org.apache.royale.core.ValuesManager;
-    import org.apache.royale.core.IValuesImpl;
-    import org.apache.royale.core.IChild;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.IApplicationView;
 
-    COMPILE::SWF {
-        import flash.display.DisplayObject;
-        import flash.display.StageAlign;
-        import flash.display.StageQuality;
-        import flash.display.StageScaleMode;
-        import flash.events.Event;
-        import org.apache.royale.events.utils.MouseEventConverter;
-    }
-
-    COMPILE::JS {
-        import org.apache.royale.core.UIBase;
-    }
 
     //--------------------------------------
     //  Events

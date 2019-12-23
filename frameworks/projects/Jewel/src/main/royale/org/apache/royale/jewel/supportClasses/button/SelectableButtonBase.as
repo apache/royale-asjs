@@ -23,7 +23,7 @@ package org.apache.royale.jewel.supportClasses.button
     import org.apache.royale.core.UIButtonBase;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.events.Event;
     }
 
     COMPILE::JS
@@ -32,7 +32,6 @@ package org.apache.royale.jewel.supportClasses.button
     }
 
     import org.apache.royale.core.ISelectable;
-    import org.apache.royale.events.Event;
 
     //--------------------------------------
     //  Events
@@ -59,7 +58,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @productversion Royale 0.9.6
      */
     COMPILE::SWF
-	public class SelectableButtonBase extends UIButtonBase implements ISelectable, IClassSelectorListSupport
+	public class SelectableButtonBase extends UIButtonBase implements ISelectable
 	{
         /**
          *  Constructor.
@@ -72,8 +71,6 @@ package org.apache.royale.jewel.supportClasses.button
 		public function SelectableButtonBase()
 		{
 			super();
-
-            classSelectorList = new ClassSelectorList(this);
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 
@@ -85,74 +82,6 @@ package org.apache.royale.jewel.supportClasses.button
 			selected = !selected;
 			dispatchEvent(new Event(Event.CHANGE));
 		}
-
-        protected var classSelectorList:ClassSelectorList;
-
-        /**
-         * Add a class selector to the list.
-         * 
-         * @param name Name of selector to add.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.6
-         */
-        public function addClass(name:String):void
-        {
-            // To implement. Need to implement this interface or extensions will not compile
-        }
-
-        /**
-         * Removes a class selector from the list.
-         * 
-         * @param name Name of selector to remove.
-         *
-         * @royaleignorecoercion HTMLElement
-         * @royaleignorecoercion DOMTokenList
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.6
-         */
-        public function removeClass(name:String):void
-        {
-            // To implement. Need to implement this interface or extensions will not compile
-        }
-
-        /**
-         * Add or remove a class selector to/from the list.
-         * 
-         * @param name Name of selector to add or remove.
-         * @param value True to add, False to remove.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.6
-         */
-        public function toggleClass(name:String, value:Boolean):void
-        {
-            // To implement. Need to implement this interface or extensions will not compile
-        }
-
-        /**
-		 *  Search for the name in the element class list 
-		 *
-         *  @param name Name of selector to find.
-         *  @return return true if the name is found or false otherwise.
-         * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
-		 */
-		public function containsClass(name:String):Boolean
-        {
-            // To implement. Need to implement this interface or extensions will not compile
-            return false;
-        }
 
         /**
          *  <code>true</code> if selected, <code>false</code> otherwise.

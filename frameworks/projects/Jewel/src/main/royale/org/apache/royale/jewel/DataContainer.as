@@ -23,7 +23,6 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.DataContainerBase;
-	import org.apache.royale.utils.IClassSelectorListSupport;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -51,7 +50,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class DataContainer extends DataContainerBase implements IListWithPresentationModel, IClassSelectorListSupport
+	public class DataContainer extends DataContainerBase implements IListWithPresentationModel
 	{
 		/**
 		 *  constructor.
