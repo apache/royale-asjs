@@ -19,6 +19,7 @@
 
 package mx.containers.utilityClasses
 {	
+import org.apache.royale.core.IDocument;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 
@@ -486,6 +487,11 @@ public class ConstraintRow extends EventDispatcher //implements IMXMLObject
 		this.id = id;
 		if (!this.height && !this.percentHeight)
 			contentSize = true;
+    }
+    
+    public function setDocument(document:Object, id:String = null):void
+    {
+        initialized(document, id);
     }
     
     /**

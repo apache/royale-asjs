@@ -19,6 +19,7 @@
 
 package mx.containers.utilityClasses
 {
+import org.apache.royale.core.IDocument;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 
@@ -50,7 +51,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class ConstraintColumn extends EventDispatcher //implements IMXMLObject
+public class ConstraintColumn extends EventDispatcher implements IDocument//implements IMXMLObject
 {
 	//--------------------------------------------------------------------------
 	//
@@ -436,6 +437,11 @@ public class ConstraintColumn extends EventDispatcher //implements IMXMLObject
 		this.id = id;
 		if (!this.width && !this.percentWidth)
 			contentSize = true;
+    }
+    
+    public function setDocument(document:Object, id:String = null):void
+    {
+        initialized(document, id);
     }
     
 	/**
