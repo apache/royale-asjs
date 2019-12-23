@@ -33,6 +33,8 @@ package org.apache.royale.jewel.supportClasses.button
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
     import org.apache.royale.jewel.supportClasses.IEmphasis;
 
     //--------------------------------------
@@ -157,7 +159,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @productversion Royale 0.9.6
      */
     COMPILE::SWF
-	public class SimpleButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IEmphasis
+	public class SimpleButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport, IEmphasis
 	{
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -175,8 +177,11 @@ package org.apache.royale.jewel.supportClasses.button
 		{
 			super();
 
+            classSelectorList = new ClassSelectorList(this);
             typeNames = "jewel button";
 		}
+
+        protected var classSelectorList:ClassSelectorList;
 
         private var _emphasis:String;
         /**
