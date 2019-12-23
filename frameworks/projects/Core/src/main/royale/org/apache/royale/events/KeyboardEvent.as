@@ -21,7 +21,7 @@ package org.apache.royale.events
     COMPILE::JS
     {
         import goog.events.BrowserEvent;
-        import org.apache.royale.core.HTMLElementWrapper;
+        import org.apache.royale.core.ElementWrapper;
 		import org.apache.royale.events.Event;
         import org.apache.royale.events.utils.KeyboardEventConverter;
     }
@@ -219,6 +219,14 @@ package org.apache.royale.events
 		{
 			return OSUtils.getOS() == OSUtils.MAC_OS ? metaKey : ctrlKey;
 		}
+        COMPILE::JS
+		public function set specialKey(value:Boolean):void
+		{
+            if(OSUtils.getOS() == OSUtils.MAC_OS)
+                metaKey = value;
+            else
+                ctrlKey = value;
+		}
 
         /**
          * @langversion 3.0
@@ -306,7 +314,7 @@ package org.apache.royale.events
         COMPILE::JS
         public static function setupConverter():Boolean
         {
-            HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+            ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
             return true;
         }
         

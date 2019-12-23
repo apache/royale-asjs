@@ -22,19 +22,19 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IItemRendererProvider;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IParent;
 
     /**
 	 * Handles the adding of an itemRenderer once the corresponding datum has been added
@@ -70,6 +70,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -84,6 +85,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -100,6 +103,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -118,16 +122,20 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IParent
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
+			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+			var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
 
-            fillRenderer(event.index, event.item, ir, presentationModel);
+			fillRenderer(event.index, event.item, ir, presentationModel);
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var dataGroup:UIBase = itemRendererParent as UIBase;
+			var dataGroup:IParent = itemRendererParent as IParent;
 			var n:int = dataGroup.numElements;
 			for (var i:int = event.index; i < n; i++)
 			{
@@ -148,6 +156,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel(): IDataProviderModel
 		{
@@ -167,8 +176,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		public function get itemRendererParent():IItemRendererParent
 		{
@@ -189,6 +198,7 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+				 *  @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
@@ -200,6 +210,7 @@ package org.apache.royale.html.beads
 
         /**
          * @private
+				 *  @royaleignorecoercion org.apache.royale.core.UIBase
          */
         protected function fillRenderer(index:int,
                                         item:Object,

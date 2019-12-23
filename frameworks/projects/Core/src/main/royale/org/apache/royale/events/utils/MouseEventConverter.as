@@ -183,6 +183,11 @@ package org.apache.royale.events.utils
     COMPILE::JS
 	public class MouseEventConverter
 	{
+        /**
+         * @royaleignorecoercion goog.events.Event
+         * We're lying to the compiler for now because it thinks it's supposed to accept a goog.events.Event.
+         * We need to fix this in typedefs
+         */
         public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):MouseEvent
         {
             var event:MouseEvent = new MouseEvent(nativeEvent["type"], nativeEvent["bubbles"], nativeEvent["cancelable"]);

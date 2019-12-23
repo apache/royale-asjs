@@ -32,7 +32,7 @@ package org.apache.royale.events
         
         import goog.events.BrowserEvent;
         
-        import org.apache.royale.core.HTMLElementWrapper;
+        import org.apache.royale.core.ElementWrapper;
         import org.apache.royale.events.Event;
         import org.apache.royale.events.utils.MouseEventConverter;
     }
@@ -392,6 +392,14 @@ package org.apache.royale.events
 		public function get specialKey():Boolean
 		{
 			return OSUtils.getOS() == OSUtils.MAC_OS ? metaKey : ctrlKey;
+		}
+
+		public function set specialKey(value:Boolean):void
+		{
+            if(OSUtils.getOS() == OSUtils.MAC_OS)
+                metaKey = value;
+            else
+                ctrlKey = value;
 		}
 
         private var _buttons:int = -1;
@@ -830,7 +838,7 @@ package org.apache.royale.events
         
         public static function setupConverter():Boolean
         {
-            HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+            ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
             _useNativeConstructor = typeof window.MouseEvent == 'function';
             return true;
         }

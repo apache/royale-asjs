@@ -31,6 +31,7 @@ package mx.events.utils
 	COMPILE::JS
 	{
 		import goog.events.BrowserEvent;
+		import goog.events.Event;
 	}
 	
 	/**
@@ -73,6 +74,10 @@ package mx.events.utils
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion Event
+         * @royaleignorecoercion goog.events.Event
+         * We're lying to the compiler for now because it thinks it's supposed to accept a goog.events.Event.
+         * We need to fix this in typedefs
 		 */
 		COMPILE::JS
 		public static function convert(nativeEvent:Object,browserEvent:goog.events.BrowserEvent=null):KeyboardEvent

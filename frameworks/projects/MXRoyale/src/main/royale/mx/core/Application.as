@@ -66,7 +66,7 @@ import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
 
 COMPILE::JS {
-    import org.apache.royale.core.HTMLElementWrapper;
+    import org.apache.royale.core.ElementWrapper;
     import org.apache.royale.events.ElementEvents;
 }
 
@@ -632,9 +632,9 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
-        HTMLElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
-        HTMLElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
-        HTMLElementWrapper.converterMap["FocusEvent"] = FocusEventConverter;
+        ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+        ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+        ElementWrapper.converterMap["FocusEvent"] = FocusEventConverter;
         addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
         
         initManagers();

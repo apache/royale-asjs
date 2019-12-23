@@ -75,6 +75,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -89,6 +91,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -107,6 +110,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleAllItemsRemoved(event:CollectionEvent):void
 		{
@@ -131,6 +136,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel(): IDataProviderModel
 		{
