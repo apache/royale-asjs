@@ -30,7 +30,7 @@ package org.apache.royale.crux.beads
     import org.apache.royale.core.UIBase;
     
     COMPILE::JS {
-        import org.apache.royale.core.HTMLElementWrapper;
+        import org.apache.royale.core.ElementWrapper;
         import org.apache.royale.core.WrappedHTMLElement;
         import goog.events.EventTarget;
     }
@@ -95,7 +95,8 @@ package org.apache.royale.crux.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          *
-         *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+         *  @royaleignorecoercion org.apache.royale.core.ElementWrapper
+         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         public function set strand(value:IStrand):void
         {
@@ -108,7 +109,7 @@ package org.apache.royale.crux.beads
                     _activeInstance = this;
                     if (!_dispatcher) _dispatcher = value as IEventDispatcher;
                     var observer:MutationObserver = new MutationObserver(mutationDetected);
-                    observer.observe(HTMLElementWrapper(value).element, {'childList': true, 'subtree': true});
+                    observer.observe((value as ElementWrapper).element, {'childList': true, 'subtree': true});
                     trace('Activating JSStageEvents')
                 }
             }

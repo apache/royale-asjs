@@ -25,7 +25,6 @@ package org.apache.royale.crux
 	import org.apache.royale.reflection.ExtraData;
 	
 	COMPILE::JS {
-		import org.apache.royale.core.HTMLElementWrapper;
 		import org.apache.royale.core.WrappedHTMLElement;
 	}
 	
@@ -76,7 +75,6 @@ package org.apache.royale.crux
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
