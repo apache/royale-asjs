@@ -20,14 +20,15 @@ package org.apache.royale.events
 {
 	COMPILE::JS
 	{
-        import goog.events;
+    import goog.events;
 		import goog.events.EventTarget;
+    import org.apache.royale.core.IChild;
 	}
 
 	COMPILE::SWF
 	{
 		import flash.events.EventDispatcher;
-        import flash.events.IEventDispatcher;
+    import flash.events.IEventDispatcher;
 	}
 
 	/**
@@ -98,6 +99,13 @@ package org.apache.royale.events
 					throw e;
 			}
 			return false;
+		}
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IChild
+		 * @royaleignorecoercion goog.events.EventTarget
+		 */
+		override public function getParentEventTarget():goog.events.EventTarget{
+			return (this as IChild).parent as goog.events.EventTarget;
 		}
 
 		public function toString():String
