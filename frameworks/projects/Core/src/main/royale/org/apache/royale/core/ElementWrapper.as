@@ -353,7 +353,7 @@ package org.apache.royale.core
                 eventType = e as String;
                 if (e == "change")
                 {
-                    e = EventUtils.createEvent(eventType, e.bubbles);
+                    e = EventUtils.createEvent(eventType, e["bubbles"]);
                 }
             }
             else
@@ -361,7 +361,7 @@ package org.apache.royale.core
                 eventType = e.type;
                 if (ElementEvents.elementEvents[eventType])
                 {
-                    e = EventUtils.createEvent(eventType), e.bubbles;
+                    e = EventUtils.createEvent(eventType, e["bubbles"]);
                 }
             }
             var source:Object = this.getActualDispatcher_(eventType);
