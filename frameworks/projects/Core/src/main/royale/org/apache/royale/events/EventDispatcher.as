@@ -21,8 +21,10 @@ package org.apache.royale.events
 	COMPILE::JS
 	{
     import goog.events;
+		import goog.events.Listener;
 		import goog.events.EventTarget;
     import org.apache.royale.core.IChild;
+		import org.apache.royale.events.Event;
 	}
 
 	COMPILE::SWF
@@ -74,31 +76,22 @@ package org.apache.royale.events
 		
 		override public function dispatchEvent(event1:Object):Boolean
 		{
-			try 
-			{
-				//we get quite a few string events here, "initialize" etc
-				//so this general approach doesn't work:
-				//event.target = _dispatcher;
-				if (event1) {
-					if (typeof event1 == "string") {
-						event1 = new Event("" + event1);
-						event1.target = _dispatcher;
-						//console.log("created event from string ",event);
-					}
-					else if ("target" in event1) {
-						event1.target = _dispatcher;
-						//console.log("assigned target to event ",event);
-					}
-				} else return false;
+			//we get quite a few string events here, "initialize" etc
+			//so this general approach doesn't work:
+			//event.target = _dispatcher;
+			if (event1) {
+				if (typeof event1 == "string") {
+					event1 = new Event("" + event1);
+					event1.target = _dispatcher;
+					//console.log("created event from string ",event);
+				}
+				else if ("target" in event1) {
+					event1.target = _dispatcher;
+					//console.log("assigned target to event ",event);
+				}
+			} else return false;
 
-				return super.dispatchEvent(event1);
-			}
-			catch (e:Error)
-			{
-				if (e.name != "stopImmediatePropagation")
-					throw e;
-			}
-			return false;
+			return super.dispatchEvent(event1);
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IChild
@@ -107,10 +100,88 @@ package org.apache.royale.events
 		override public function getParentEventTarget():goog.events.EventTarget{
 			return (this as IChild).parent as EventDispatcher;
 		}
+		override public function fireListeners(type:Object, capture:Boolean, eventObject:Object):Boolean{
+			var listenerArray:Array = getListeners(type, capture);
+			if (!listenerArray) {
+				return true;
+			}
+			listenerArray = listenerArray.concat();
+
+			var rv:Boolean = true;
+			for (var i:int = 0; i < listenerArray.length; ++i) {
+				if(eventObject.immediatePropogationStopped){
+					break;
+				}
+				var listener:goog.events.Listener = listenerArray[i];
+				// We might not have a listener if the listener was removed.
+				if (listener && !listener.removed && listener.capture == capture) {
+					var listenerFn:Object = listener.listener;
+					var listenerHandler:Object = listener.handler || listener.src;
+
+					if (listener.callOnce) {
+						this.unlistenByKey(listener);
+					}
+					rv = listenerFn.call(listenerHandler, eventObject) !== false && rv;
+				}
+			}
+
+			return rv && eventObject.returnValue_ != false;			
+		}
 
 		public function toString():String
         {
             return "[object Object]";
         }
+		private static function installOverride():Boolean{
+			goog.events.EventTarget.dispatchEventInternal_ = dispatchEventInternal;
+			return true;
+		}
+		private static var overrideInstalled:Boolean = installOverride();
+		/**
+ * Dispatches the given event on the ancestorsTree.
+ *
+ * @param {!Object} target The target to dispatch on.
+ * @param {goog.events.Event|Object|string} e The event object.
+ * @param {Array<goog.events.Listenable>=} opt_ancestorsTree The ancestors
+ *     tree of the target, in reverse order from the closest ancestor
+ *     to the root event target. May be null if the target has no ancestor.
+ * @return {boolean} If anyone called preventDefault on the event object (or
+ *     if any of the listeners returns false) this will also return false.
+ * @private
+ */
+private static function dispatchEventInternal(target:EventDispatcher, e:org.apache.royale.events.Event, opt_ancestorsTree:Array):Boolean {
+  /** @suppress {missingProperties} */
+  var type:String = e.type;
+
+  var rv:Boolean = true, currentTarget:Object;
+
+  // Executes all capture listeners on the ancestors, if any.
+  if (opt_ancestorsTree) {
+    for (var i:int = opt_ancestorsTree.length - 1; !e.propagationStopped_ && i >= 0;
+         i--) {
+      currentTarget = e.currentTarget = opt_ancestorsTree[i];
+      rv = currentTarget.fireListeners(type, true, e) && rv;
+    }
+  }
+
+  // Executes capture and bubble listeners on the target.
+  if (!e.propagationStopped_) {
+    currentTarget = e.currentTarget = target;
+    rv = currentTarget.fireListeners(type, true, e) && rv;
+    if (!e.propagationStopped_) {
+      rv = currentTarget.fireListeners(type, false, e) && rv;
+    }
+  }
+
+  // Executes all bubble listeners on the ancestors, if any.
+  if (opt_ancestorsTree && e.bubbles) {
+    for (i = 0; !e.propagationStopped_ && i < opt_ancestorsTree.length; i++) {
+      currentTarget = e.currentTarget = opt_ancestorsTree[i];
+      rv = currentTarget.fireListeners(type, false, e) && rv;
+    }
+  }
+
+  return rv;
+};
 	}
 }
