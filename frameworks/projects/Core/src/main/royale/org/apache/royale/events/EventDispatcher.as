@@ -102,10 +102,10 @@ package org.apache.royale.events
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IChild
-		 * @royaleignorecoercion goog.events.EventTarget
+		 * @royaleemitcoercion org.apache.royale.events.EventDispatcher
 		 */
 		override public function getParentEventTarget():goog.events.EventTarget{
-			return (this as IChild).parent as goog.events.EventTarget;
+			return (this as IChild).parent as EventDispatcher;
 		}
 
 		public function toString():String
