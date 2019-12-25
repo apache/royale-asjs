@@ -207,17 +207,7 @@ package org.apache.royale.core
 			}
 	        super.addBead(bead);
 		}
-                        
-        private function getActualDispatcher_(type:String):Object
-        {
-            var source:Object = this;
-            if (ElementEvents.elementEvents[type]) {
-                // mouse and keyboard events also dispatch off the element.
-                source = this.element;
-            }
-            return source;
-        }
-        		
+                                		
         /**
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
