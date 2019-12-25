@@ -106,7 +106,7 @@ package org.apache.royale.events
   			}
 			}
 
-			return goog.events.EventTarget.dispatchEventInternal_(_dispatcher, event1, ancestorsTree);
+			return goog.events.EventTarget.dispatchEventInternal_(this, event1, ancestorsTree);
 		}
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IChild
