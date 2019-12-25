@@ -218,7 +218,7 @@ package org.apache.royale.core
         /**
          *  @royalesuppresspublicvarwarning
          */
-        static private var googFireListener:Function;
+        static public var googFireListener:Function;
         
         /**
          * The properties that triggers the static initializer.
