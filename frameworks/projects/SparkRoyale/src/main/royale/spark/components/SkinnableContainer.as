@@ -685,6 +685,8 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
         if (getBeadByType(IBeadView))
         {
             ((view as SkinnableContainerView).contentView as GroupBase).layout = value;
+            if (parent)
+                ((view as SkinnableContainerView).contentView as GroupBase).dispatchEvent(new Event("layoutNeeded"));       
         }
     }
     
