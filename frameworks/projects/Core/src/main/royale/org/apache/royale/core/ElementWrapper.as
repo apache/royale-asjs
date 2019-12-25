@@ -186,7 +186,7 @@ package org.apache.royale.core
          * @return Result of listener.
          * @royaleignorecoercion org.apache.royale.events.IBrowserEvent
          */
-		static public function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
+		static private function fireListenerOverride(listener:Object, eventObject:goog.events.BrowserEvent):Boolean
 		{
             var e:IBrowserEvent;
             var nativeEvent:Object = eventObject.getBrowserEvent();
@@ -204,7 +204,7 @@ package org.apache.royale.core
         /**
          * Static initializer
          */
-		static public function installOverride():Boolean
+		static private function installOverride():Boolean
 		{
 			ElementWrapper.googFireListener = goog.events.fireListener;
 			goog.events.fireListener = ElementWrapper.fireListenerOverride;
@@ -218,7 +218,7 @@ package org.apache.royale.core
         /**
          *  @royalesuppresspublicvarwarning
          */
-        static public var googFireListener:Function;
+        static private var googFireListener:Function;
         
         /**
          * The properties that triggers the static initializer.
@@ -227,7 +227,7 @@ package org.apache.royale.core
          *
          *  @royalesuppresspublicvarwarning
          */
-        static public var installedOverride:Boolean = installOverride();
+        static public var __:Boolean = installOverride();
         
 		//--------------------------------------
 		//   Property
