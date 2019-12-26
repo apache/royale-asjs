@@ -24,8 +24,10 @@ package mx.controls.beads
     import mx.controls.AdvancedDataGrid;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
+    import mx.core.mx_internal;
     import mx.events.CollectionEvent;
     import mx.utils.ObjectUtil;
+    use namespace mx_internal;
     
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IDataGrid;
@@ -152,6 +154,7 @@ package mx.controls.beads
                 
                 if (!cols)
                 {
+                    var index:int = 0;
                     // introspect the first item and use its fields
                     var itmObj:Object = iterator.current;
                     for (var p:String in itmObj)
@@ -161,6 +164,8 @@ package mx.controls.beads
                             col = new AdvancedDataGridColumn();
                             col.dataField = p;
                             newCols.push(col);
+                            col.owner = _strand as AdvancedDataGrid;
+                            col.colNum = index++;
                         }
                     }
                 }
@@ -176,6 +181,8 @@ package mx.controls.beads
                             colName = QName(colName).localName;
                         col = new AdvancedDataGridColumn();
                         col.dataField = String(colName);
+                        col.owner = _strand as AdvancedDataGrid;
+                        col.colNum = i;
                         newCols.push(col);
                     }
                 }

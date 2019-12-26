@@ -186,6 +186,10 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
 
         // InteractiveObject variables.
         tabEnabled   = false;
+        COMPILE::JS
+        {
+            isAbsolute = false;
+        }
 
         addEventListener(ToolTipEvent.TOOL_TIP_SHOW, toolTipShowHandler); 
     }
@@ -305,6 +309,12 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
     {
         _data = value;
 
+        var col:AdvancedDataGridColumn = (value as AdvancedDataGridColumn);
+        var ld:AdvancedDataGridListData = new AdvancedDataGridListData(col.headerText != null ? col.headerText : col.dataField,
+                col.dataField, 
+                col.colNum, "", col.owner);
+        listData = ld;
+        
         invalidateProperties();
         commitProperties();
 
@@ -747,8 +757,8 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
                 labelColor = getStyle("disabledColor");
             // else if (grid.isItemHighlighted(listData.uid))
             //     labelColor = getStyle("textRollOverColor");
-            else if (grid.isItemSelected(listData.uid))
-                labelColor = getStyle("textSelectedColor");
+            //else if (grid.isItemSelected(listData.uid))
+            //    labelColor = getStyle("textSelectedColor");
             else
                 labelColor = getStyle("color");
 
