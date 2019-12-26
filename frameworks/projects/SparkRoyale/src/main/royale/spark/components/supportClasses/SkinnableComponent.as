@@ -31,6 +31,11 @@ import mx.core.IFactory;
 import mx.core.mx_internal;
 
 import org.apache.royale.events.Event;
+import org.apache.royale.reflection.TypeDefinition;
+import org.apache.royale.reflection.VariableDefinition;
+import org.apache.royale.reflection.MetaDataDefinition;
+import org.apache.royale.reflection.MetaDataArgDefinition;
+import org.apache.royale.reflection.describeType;
 use namespace mx_internal;
 
 import mx.core.UIComponent;
@@ -306,7 +311,29 @@ public class SkinnableComponent extends UIComponent
      */
     protected function get skinParts():Object
     {
-        return null;
+        var parts:Object = {};
+        
+        var td:TypeDefinition = describeType(this);
+        var vars:Array = td.variables;
+        for each (var vd:VariableDefinition in vars)
+        {
+            var metadata:Array = vd.metadata;
+            for each (var md:MetaDataDefinition in metadata)
+            {
+                if (md.name == "SkinPart")
+                {
+                    var required:Boolean = false;
+                    var args:Array = md.args;
+                    for each (var arg:MetaDataArgDefinition in args)
+                    {
+                        if (arg.name == "required")
+                            required = (arg.value == "true");
+                    }
+                    parts[vd.name] = required;
+                }
+            }
+        }
+        return parts;
     }
 
     /**

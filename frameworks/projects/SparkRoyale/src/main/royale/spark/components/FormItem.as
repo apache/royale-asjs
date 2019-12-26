@@ -422,12 +422,7 @@ package spark.components
 					return "normal";       
 			}
 		}
-		
-        override protected function get skinParts():Object
-        {
-            return { labelDisplay: true, sequenceLabelDisplay: true};
-        }
-        
+		        
 		/**
 		 *  @private
 		 */

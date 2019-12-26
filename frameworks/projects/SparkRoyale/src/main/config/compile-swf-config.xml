@@ -68,6 +68,7 @@
           <name>ChangeEvent</name>
           <name>NonCommittingChangeEvent</name>
           <name>Transient</name>
+          <name>SkinPart</name>
         </keep-as3-metadata>
 	  
         <locale/>
