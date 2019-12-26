@@ -318,7 +318,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  In MXML, the default order of the columns is the order of the
      *  <code>mx:AdvancedDataGridColumn</code> tags.
      */
-   // mx_internal var colNum:Number;
+    mx_internal var colNum:Number;
     
     // preferred width is the number we should use when measuring
     // regular width will be changed if we shrink columns to fit.

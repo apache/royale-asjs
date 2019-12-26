@@ -44,14 +44,16 @@ package mx.controls
     import mx.collections.IHierarchicalCollectionView;
     import mx.collections.IHierarchicalCollectionViewCursor;
     import mx.collections.IHierarchicalData;
-    import mx.collections.IViewCursor;
     import mx.collections.ISort;
+    import mx.collections.IViewCursor;
     import mx.collections.Sort;
     import mx.collections.SortField;
     import mx.controls.beads.AdvancedDataGridSortBead;
     import mx.controls.beads.AdvancedDataGridView;
-    import mx.controls.beads.DataGridLinesBeadForICollectionView;
     import mx.controls.beads.DataGridColumnResizeBead;
+    import mx.controls.beads.DataGridLinesBeadForICollectionView;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.controls.listClasses.AdvancedListBase;
     import mx.core.mx_internal;
@@ -1376,11 +1378,13 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                         columnGroupRendererChanged(AdvancedDataGridColumnGroup(_groupedColumns[i]));
                 }
             }
-            
+            */
             _groupedColumns = value;
+            /*
             groupedColumnsChanged = true;
             invalidateProperties();
         } */
+        /*super.*/columns = getLeafColumns(_groupedColumns.slice(0));
     }
 
     //
@@ -6512,7 +6516,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     /**
      *  @private
      */
-    /* private function getLeafColumns(groupedColumns:Array):Array
+    private function getLeafColumns(groupedColumns:Array):Array
     {
         var i:int=0; 
         while (i < groupedColumns.length)
@@ -6531,7 +6535,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             }
         }
         return groupedColumns;
-    } */
+    }
 
     /**
      *  @private
@@ -9459,10 +9463,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
     public function set columns(value:Array):void
     {
+        var index:int = 0;
         IDataGridModel(model).columns = value;
-        for each (var col:DataGridColumn in value)
+        for each (var col:AdvancedDataGridColumn in value)
         {
             col.owner = this;
+            col.colNum = index++;
         }
     }
 
