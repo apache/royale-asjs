@@ -717,10 +717,7 @@ public class UITextField  extends UIComponent implements IUITextField
      //  text
      //----------------------------------
      
-     
-     COMPILE::JS
-     protected var textNode:window.Text;
-     
+          
      COMPILE::JS
      private var _text:String = "";
      
@@ -756,12 +753,9 @@ public class UITextField  extends UIComponent implements IUITextField
              }
              COMPILE::JS
              {
-                 if (textNode)
-                 {
-                     _text = value;
-                     textNode.nodeValue = value;
-                     this.dispatchEvent('textChange');
-                 }
+                 _text = value;
+                 this.element.innerText = value;
+                 this.dispatchEvent('textChange');
              }
              
              invalidateSize();
