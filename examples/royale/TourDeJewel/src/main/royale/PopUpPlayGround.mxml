@@ -38,7 +38,7 @@ limitations under the License.
 		}
 
 		private var programaticPopup:PopUp;
-		public function createProgramaticPopup(event:Event):void
+		public function createProgramaticPopup(event:MouseEvent):void
 		{
 			if(!programaticPopup)
 			{
