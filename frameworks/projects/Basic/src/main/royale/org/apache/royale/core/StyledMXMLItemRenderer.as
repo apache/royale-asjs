@@ -217,5 +217,28 @@ package org.apache.royale.core
                 toggleClass(_emphasis, value);
             }
         }
+
+        /**
+		 *  The method called when added to a parent. The StyledItemRenderer class uses
+		 *  this opportunity to assign emphasis from the strand if possible, otherwise defaults
+		 *  to PRIMARY.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			if (itemRendererParent.host is IEmphasis && (itemRendererParent.host as IEmphasis).emphasis)
+			{
+				emphasis = (itemRendererParent.host as IEmphasis).emphasis;
+			} else
+			{
+				emphasis = "primary";
+			}
+		}
 	}
 }

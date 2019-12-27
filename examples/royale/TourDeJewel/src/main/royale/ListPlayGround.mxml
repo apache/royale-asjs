@@ -164,7 +164,7 @@ limitations under the License.
 				<html:H3 text="Jewel List With ItemRenderer"/>
 				<j:HGroup gap="3">
 					<j:VGroup gap="3">
-						<j:List id="iconList" width="200" height="300" className="iconListItemRenderer" labelField="label">
+						<j:List localId="iconList" emphasis="secondary" width="200" height="300" className="iconListItemRenderer" labelField="label">
 							<j:beads>
 								<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
 								<j:AddListItemRendererForArrayListData/>
