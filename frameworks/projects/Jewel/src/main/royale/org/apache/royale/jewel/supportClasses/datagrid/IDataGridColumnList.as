@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.supportClasses.datagrid
 {
     import org.apache.royale.html.supportClasses.IDataGridColumnList;
+    import org.apache.royale.core.IEmphasis;
 
     /**
      *  The Jewel IDataGridColumnList interface is a marker interface for Jewel DataGrid Column Lists
@@ -28,7 +29,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public interface IDataGridColumnList extends org.apache.royale.html.supportClasses.IDataGridColumnList
+    public interface IDataGridColumnList extends org.apache.royale.html.supportClasses.IDataGridColumnList, IEmphasis
     {
         function get rollOverIndex():int;
         function set rollOverIndex(value:int):void;

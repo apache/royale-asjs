@@ -118,7 +118,6 @@ package org.apache.royale.jewel.beads.views
             // columns
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
             _listArea = new listAreaClass() as IUIBase;
-            //_listArea.emphasis = (_dg as IEmphasis).emphasis;
             _listArea.height = _dg.height - _header.height;
             COMPILE::JS
             {
@@ -275,6 +274,7 @@ package org.apache.royale.jewel.beads.views
                 var dataGridColumn:IDataGridColumn = _sharedModel.columns[i] as IDataGridColumn;
 
                 var list:IDataGridColumnList = new columnClass();
+                list.emphasis = (_dg as IEmphasis).emphasis;;
                 
                 if (i == 0)
                 {
