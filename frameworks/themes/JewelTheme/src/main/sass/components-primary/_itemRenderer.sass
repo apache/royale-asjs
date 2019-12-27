@@ -18,16 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 
 // Jewel ListItemRenderer
-$itemrenderer-padding: 16px
+$itemrenderer-padding: 8px
 
 // ListItemRenderer variables
 .jewel.item
-    padding: 8px
-
+    padding: $itemrenderer-padding
     &.hovered
         color: $font-theme-color
-        background: $primary-color
-
     &.selected, &.selectable:active
         color: $font-theme-color
-        background: darken($primary-color, 5%)
+
+    &.primary
+        &.hovered
+            background: $primary-color
+        &.selected, &.selectable:active
+            background: darken($primary-color, 5%)
+

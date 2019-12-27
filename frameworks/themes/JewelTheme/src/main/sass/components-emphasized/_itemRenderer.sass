@@ -20,3 +20,9 @@
 // Jewel ListItemRenderer
 
 // ListItemRenderer variables
+.jewel.item
+    &.emphasized
+        &.hovered
+            background: $emphasized-color
+        &.selected, &.selectable:active
+            background: darken($emphasized-color, 5%)
