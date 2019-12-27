@@ -493,8 +493,10 @@ j|ComboBoxPopUp {
 }
 
 .jewel.datagrid {
-  width: 200px;
-  height: 290px;
+  width: 220px;
+  height: 220px;
+  display: flex;
+  position: relative;
 }
 .jewel.datagrid .jewel.buttonbar.header {
   width: 100%;
@@ -506,19 +508,26 @@ j|ComboBoxPopUp {
   border-bottom-right-radius: 0;
 }
 .jewel.datagrid .listarea {
-  width: 100%;
+  width: auto;
+  position: absolute;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-style: solid;
+  border-color: #b3b3b3;
 }
 .jewel.datagrid .jewel.list.column {
   border-radius: 0px;
-  border-top-width: 0px;
+  border-bottom-width: 0px;
   box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
 }
 .jewel.datagrid .jewel.list.column.first {
-  border-right: 0px;
   border-bottom-left-radius: 0.25rem;
 }
 .jewel.datagrid .jewel.list.column.last {
-  border-left: 0px;
   border-bottom-right-radius: 0.25rem;
 }
 .jewel.datagrid .jewel.list.column .jewel.item {

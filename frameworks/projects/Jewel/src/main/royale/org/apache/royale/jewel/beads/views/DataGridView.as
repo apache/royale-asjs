@@ -29,6 +29,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -40,7 +41,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.beads.models.ButtonBarModel;
     
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -107,6 +108,7 @@ package org.apache.royale.jewel.beads.views
             _header.dataProvider = new ArrayList(_sharedModel.columns);
             _header.emphasis = (_dg as IEmphasis).emphasis;
             _header.labelField = "label";
+            _header.height = 38;
             var headerLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "headerLayoutClass") as Class;
             var bblayout:ButtonBarLayout = new headerLayoutClass() as ButtonBarLayout;
             _header.addBead(bblayout as IBead);
@@ -117,6 +119,13 @@ package org.apache.royale.jewel.beads.views
             // columns
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
             _listArea = new listAreaClass() as IUIBase;
+            //_listArea.emphasis = (_dg as IEmphasis).emphasis;
+            _listArea.height = _dg.height - _header.height;
+            COMPILE::JS
+            {
+            (_listArea as UIBase).element.style.top = _header.height + "px";
+            }
+
             _dg.strandChildren.addElement(_listArea as IChild);
 
             if (_sharedModel.columns)
@@ -289,6 +298,7 @@ package org.apache.royale.jewel.beads.views
                 list.addEventListener('selectionChanged', handleColumnListChange);
                 list.addBead(presentationModel as IBead);
 
+                (_listArea as UIBase).percentWidth = 100;
                 (_listArea as IParent).addElement(list as IChild);
                 _lists.push(list);
             }

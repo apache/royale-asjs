@@ -139,9 +139,12 @@ package org.apache.royale.jewel.beads.layouts
 			bbmodel.buttonWidths = columnWidths;
 			if(pixelflag)
 			{
-				// bbmodel.widthType = ButtonBarModel.PIXEL_WIDTHS;
 				bblayout.widthType = ButtonBarModel.PIXEL_WIDTHS;
-				// bblayout.layout();
+				COMPILE::JS
+				{
+					uiHost.positioner.style.width = "auto";
+					listArea.positioner.style.width = null;
+				}
 			}
 			
 			header.dispatchEvent(new Event("layoutNeeded"));

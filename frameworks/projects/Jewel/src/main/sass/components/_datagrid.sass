@@ -22,11 +22,16 @@ $border-radius: .25rem
 
 // DataGrid variables
 .jewel.datagrid
-    width: 200px
-    height: 290px
+    width: 220px
+    height: 220px
+    display: flex
+    position: relative
+    // overflow: hidden
+    // border: 1px solid red
 
     .jewel.buttonbar.header
         width: 100%
+        // height: 38px // button
 
         .jewel.button
             &.first
@@ -36,18 +41,34 @@ $border-radius: .25rem
                 border-bottom-right-radius: 0
     
     .listarea
-        width: 100%
+        width: auto
+        //top: 38px
+        //height: dg.height-header-height
+        position: absolute
+        border-top-width: 0px
+        border-left-width: 0px
+        border-right-width: 0px
+        border-bottom-width: 1px
+        border-bottom-left-radius: $border-radius
+        border-bottom-right-radius: $border-radius
+        border-style: solid
+        border-color: #b3b3b3
 
     .jewel.list.column
         border-radius: 0px
-        border-top-width: 0px
+        // border-top-width: 0px
+        border-bottom-width: 0px
         box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.25)
 
         &.first
-            border-right: 0px
+            // border-left: 0px
+            // border-right: 0px
             border-bottom-left-radius: $border-radius
+        &.middle
+
         &.last
-            border-left: 0px
+            // border-left: 0px
+            // border-right: 0px
             border-bottom-right-radius: $border-radius
         
         .jewel.item
