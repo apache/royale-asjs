@@ -20,9 +20,10 @@ package org.apache.royale.core
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.events.Event;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
 
@@ -35,7 +36,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public class StyledUIBase extends UIBase implements IClassSelectorListSupport
+    public class StyledUIBase extends UIBase implements IClassSelectorListSupport, IEmphasis
     {
         /**
          *  Constructor.
@@ -138,6 +139,36 @@ package org.apache.royale.core
             COMPILE::SWF
             {//not implemented
             return false;
+            }
+        }
+
+        private var _emphasis:String;
+        /**
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+        public function get emphasis():String
+        {
+            return _emphasis;
+        }
+        public function set emphasis(value:String):void
+        {
+            if (_emphasis != value)
+            {
+                if(_emphasis)
+                {
+                    removeClass(_emphasis);
+                }
+                _emphasis = value;
+
+                addClass(_emphasis);
             }
         }
 

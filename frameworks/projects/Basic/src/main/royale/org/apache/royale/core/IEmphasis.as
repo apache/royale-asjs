@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.core
 {
     /**
      *  The IEmphasis is the interface a jewel control implements to get diferent jewel
@@ -44,3 +44,4 @@ package org.apache.royale.jewel.supportClasses
         function set emphasis(value:String):void;
     }
 }
+ 

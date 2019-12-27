@@ -20,8 +20,9 @@ package org.apache.royale.jewel.itemRenderers
 {
 	COMPILE::JS
 	{
-	import org.apache.royale.core.WrappedHTMLElement;
+
 	}
+	import org.apache.royale.core.IEmphasis;
 	import org.apache.royale.core.IIcon;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.ValuesManager;
@@ -30,9 +31,8 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.html.beads.ITextItemRenderer;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.IconButton;
-	import org.apache.royale.jewel.beads.views.ButtonBarView;
-	import org.apache.royale.jewel.supportClasses.IEmphasis;
 	import org.apache.royale.jewel.IconButtonBar;
+	import org.apache.royale.jewel.beads.views.ButtonBarView;
 
 	/**
 	 *  The IconButtonBarItemRenderer class extends IconButton and turns it into an itemRenderer

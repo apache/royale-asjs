@@ -24,8 +24,7 @@ package org.apache.royale.jewel
     import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.html.beads.models.ButtonBarModel;
-	import org.apache.royale.jewel.supportClasses.IEmphasis;
-
+	
 	/**
 	 *  The Jewel ButtonBar class is a component that displays a set of Buttons. The ButtonBar
 	 *  is actually a List with a default horizontal layout and an itemRenderer that
@@ -48,7 +47,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBar extends List implements IEmphasis
+	public class ButtonBar extends List
 	{
 		public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -110,37 +109,6 @@ package org.apache.royale.jewel
 		// {
 		// 	ButtonBarModel(model).widthType = value;
 		// }
-
-		private var _emphasis:String;
-        /**
-		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
-         *  Colors are defined in royale jewel theme CSS.
-         * 
-         *  Left without value to get the default look (light or dark).
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        public function get emphasis():String
-        {
-            return _emphasis;
-        }
-        [Inspectable(category="General", enumeration="primary,secondary,emphasized")]
-        public function set emphasis(value:String):void
-        {
-            if (_emphasis != value)
-            {
-                if(_emphasis)
-                {
-					toggleClass(_emphasis, false);
-                }
-                _emphasis = value;
-
-                toggleClass(_emphasis, value);
-            }
-        }
 
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
