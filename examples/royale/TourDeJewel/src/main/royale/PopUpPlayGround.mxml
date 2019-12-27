@@ -37,22 +37,22 @@ limitations under the License.
 			trace("[closePopUp] ", event.target, popup1.content);
 		}
 
-		private var programaticPopup:PopUp;
-		public function createProgramaticPopup(event:MouseEvent):void
+		private var programmaticPopup:PopUp;
+		public function createprogrammaticPopup(event:MouseEvent):void
 		{
-			if(!programaticPopup)
+			if(!programmaticPopup)
 			{
 				var fe:FormExample = new FormExample();
 				fe.width = 490;
 				fe.height = 392;
 				fe.label = "AS3 Form Instance"
 
-				programaticPopup = new PopUp();
-				programaticPopup.content = fe;
-				addElement(programaticPopup);
+				programmaticPopup = new PopUp();
+				programmaticPopup.content = fe;
+				addElement(programmaticPopup);
 			}
 
-			programaticPopup.open = true; 
+			programmaticPopup.open = true; 
 		}
 		]]>
 	</fx:Script>
@@ -89,7 +89,7 @@ limitations under the License.
 
 				<html:H3 text="Jewel PopUp (Declared in AS3)"/>
 				<j:Button text="Create Programatic Popup" emphasis="primary"
-                   click="createProgramaticPopup(event)"/>
+                   click="createprogrammaticPopup(event)"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
