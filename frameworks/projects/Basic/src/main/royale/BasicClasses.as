@@ -32,6 +32,7 @@ internal class BasicClasses
 		import org.apache.royale.html.util.addElementToWrapper; addElementToWrapper;
 		import org.apache.royale.html.util.addSvgElementToWrapper; addSvgElementToWrapper;
 		import org.apache.royale.html.util.createSVG; createSVG;
+		import org.apache.royale.html.util.removeCSSStyleProperty; removeCSSStyleProperty;
 	}
     import org.apache.royale.html.ToolTip; ToolTip;
 	import org.apache.royale.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
