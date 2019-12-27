@@ -578,10 +578,14 @@ j|FormItem {
 }
 .jewel.item.hovered {
   color: #FFFFFF;
-  background: #EF5A2A;
 }
 .jewel.item.selected, .jewel.item.selectable:active {
   color: #FFFFFF;
+}
+.jewel.item.primary.hovered {
+  background: #EF5A2A;
+}
+.jewel.item.primary.selected, .jewel.item.primary.selectable:active {
   background: #ed4812;
 }
 

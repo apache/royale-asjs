@@ -122,6 +122,13 @@ hr {
   text-shadow: unset;
 }
 
+.jewel.item.secondary.hovered {
+  background: #F8B13F;
+}
+.jewel.item.secondary.selected, .jewel.item.secondary.selectable:active {
+  background: #f7a726;
+}
+
 .jewel.snackbar.secondary .jewel.snackbar-content {
   background: linear-gradient(#f9bb58, #f7a726);
   border: 1px solid #e28f08;
