@@ -196,6 +196,8 @@ package org.apache.royale.jewel.beads.views
                 var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
                 list.dataProvider = _sharedModel.dataProvider;
                 
+                COMPILE::JS
+                {
                 if(_sharedModel.dataProvider && _sharedModel.dataProvider.length * presentationModel.rowHeight < _dg.height)
                 {
                     (list as UIBase).positioner.style.height = "inherit";
@@ -204,6 +206,7 @@ package org.apache.royale.jewel.beads.views
                 {
                     (list as UIBase).positioner.style.height = null;
                     _listArea.positioner.style.overflow = null;
+                }
                 }
             }
 
