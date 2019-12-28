@@ -139,7 +139,7 @@ package org.apache.royale.html.beads
 
                 var columnLayoutClass:Class = ValuesManager.valuesImpl.getValue(host, "columnLayoutClass") as Class;
                 assert(columnLayoutClass != null,"columnLayoutClass for DataGrid must be set!")
-				var bblayout:ButtonBarLayout = new columnLayoutClass() as ButtonBarLayout;
+				var bblayout:IBead = new columnLayoutClass() as IBead;
 				_header.addBead(bblayout as IBead);
 				_header.addBead(new Viewport() as IBead);
 				host.strandChildren.addElement(_header as IChild);
