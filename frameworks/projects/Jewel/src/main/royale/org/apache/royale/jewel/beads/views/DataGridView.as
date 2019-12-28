@@ -118,10 +118,12 @@ package org.apache.royale.jewel.beads.views
             // columns
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
             _listArea = new listAreaClass() as IUIBase;
+
+            _dg.height = 240;// must be the same as in CSS default (get from CSS)
             _listArea.height = _dg.height - _header.height;
             COMPILE::JS
             {
-            (_listArea as UIBase).element.style.top = _header.height + "px";
+            (_listArea as UIBase).positioner.style.top = _header.height + "px";
             }
 
             _dg.strandChildren.addElement(_listArea as IChild);
@@ -187,11 +189,24 @@ package org.apache.royale.jewel.beads.views
          */
         protected function handleDataProviderChanged(event:Event):void
         {
+            var presentationModel:IDataGridPresentationModel = _dg.presentationModel as IDataGridPresentationModel;
+
             for (var i:int=0; i < _lists.length; i++)
             {
                 var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
                 list.dataProvider = _sharedModel.dataProvider;
+                
+                if(_sharedModel.dataProvider && _sharedModel.dataProvider.length * presentationModel.rowHeight < _dg.height)
+                {
+                    (list as UIBase).positioner.style.height = "inherit";
+                    _listArea.positioner.style.overflow = "hidden";
+                } else
+                {
+                    (list as UIBase).positioner.style.height = null;
+                    _listArea.positioner.style.overflow = null;
+                }
             }
+
             host.dispatchEvent(new Event("layoutNeeded"));
         }
 
@@ -274,7 +289,7 @@ package org.apache.royale.jewel.beads.views
                 var dataGridColumn:IDataGridColumn = _sharedModel.columns[i] as IDataGridColumn;
 
                 var list:IDataGridColumnList = new columnClass();
-                list.emphasis = (_dg as IEmphasis).emphasis;;
+                list.emphasis = (_dg as IEmphasis).emphasis;
                 
                 if (i == 0)
                 {

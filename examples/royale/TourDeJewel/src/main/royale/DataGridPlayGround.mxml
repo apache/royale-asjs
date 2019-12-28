@@ -143,7 +143,7 @@ limitations under the License.
 				
 				<j:Label text="Using specific column widths, rowHeight=40"/>
 
-				<j:DataGrid height="246"
+				<j:DataGrid localId="datagrid4" height="246"
 					rowHeight="40" emphasis="emphasized" 
 					change="dataGridIconListChange(event.target as DataGrid, datagrid4_lb)"
 					dataProvider="{listModel.iconListData}">
@@ -155,7 +155,7 @@ limitations under the License.
 				</j:DataGrid>
 
 				<j:Label id="datagrid4_lb" text="DataGrid selection will be shown here"/>
-				<j:Button text="Refresh Grid" click="refreshGrid(datagrid2)" emphasis="primary"/>
+				<j:Button text="Refresh Grid" click="refreshGrid(datagrid4)" emphasis="primary"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
