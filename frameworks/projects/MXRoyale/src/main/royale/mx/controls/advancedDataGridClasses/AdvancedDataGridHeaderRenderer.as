@@ -189,6 +189,8 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
     public function AdvancedDataGridHeaderRenderer()
     {
         super();
+        
+        typeNames = "AdvancedDataGridHeaderRenderer";
 
         // InteractiveObject variables.
         tabEnabled   = false;
@@ -311,7 +313,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         _data = value;
 
         var col:AdvancedDataGridColumn = (value as AdvancedDataGridColumn);
-        var ld:AdvancedDataGridListData = new AdvancedDataGridListData(col.headerText != null ? col.headerText : col.dataField,
+        var ld:AdvancedDataGridListData = new AdvancedDataGridListData(getColumnLabel(col),
                 col.dataField, 
                 col.colNum, "", col.owner);
         listData = ld;
@@ -321,6 +323,17 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
     } 
+    
+    private function getColumnLabel(col:DataGridColumn):String
+    {
+        var label:String = col.headerText != null ? col.headerText : col.dataField;
+        COMPILE::JS
+        {
+            if (label)
+                label = label.replace(" ", "&nbsp;");
+        }
+        return label;
+    }
 
     //----------------------------------
     //  sortItemRenderer
@@ -431,6 +444,8 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
     
     private var childHeaders:DataGridButtonBar;
 
+    private var usingHTML:Boolean;
+    
     /**
      *  @private
      *  Apply the data and listData.
@@ -486,7 +501,14 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
 
         if (_data != null)
         {
-            label.text      = listData.label ? listData.label : " ";
+            var lbl:String = listData.label ? listData.label : " ";
+            if (lbl.indexOf("&nbsp;") >= 0)
+            {
+                label.htmlText = lbl;
+                usingHTML = true;
+            }
+            else
+                label.text = lbl;
             // label.multiline = grid.variableRowHeight;
             // if( _data is AdvancedDataGridColumn)
             //     label.wordWrap = grid.columnHeaderWordWrap(_data as AdvancedDataGridColumn);
@@ -593,7 +615,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         }
         else
         {
-            var lineMetrics:TextLineMetrics = measureText(label.text);
+            var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText : label.text);
             labelWidth  = lineMetrics.width + UITextField.TEXT_WIDTH_PADDING;
             labelHeight = lineMetrics.height + UITextField.TEXT_HEIGHT_PADDING;
             w = labelWidth + horizontalGap
@@ -649,7 +671,7 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
             horizontalGap = 0;
 
         // Adjust to given width
-        var lineMetrics:TextLineMetrics = measureText(label.text);
+        var lineMetrics:TextLineMetrics = measureText(usingHTML ? label.htmlText: label.text);
         var labelWidth:Number  = lineMetrics.width + UITextField.TEXT_WIDTH_PADDING;
         var maxLabelWidth:int = unscaledWidth - sortItemRendererWidth
                                 - horizontalGap - paddingLeft - paddingRight;
@@ -701,6 +723,10 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         }
         labelX = Math.max(labelX, 0);
 
+        var labelAreaHeight:Number = unscaledHeight;
+        if (childHeaders)
+            labelAreaHeight /= 2;
+        
         var labelY:Number;
         var verticalAlign:String = getStyle("verticalAlign");
         if (verticalAlign == "top")
@@ -709,11 +735,11 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         }
         else if (verticalAlign == "bottom")
         {
-            labelY = unscaledHeight - labelHeight - paddingBottom + 2; // 2 for gutter
+            labelY = labelAreaHeight - labelHeight - paddingBottom + 2; // 2 for gutter
         }
         else // if (verticalAlign == "middle")
         {
-            labelY = (unscaledHeight - labelHeight - paddingBottom - paddingTop)/2
+            labelY = (labelAreaHeight - labelHeight - paddingBottom - paddingTop)/2
                      + paddingTop;
         }
         labelY = Math.max(labelY, 0);

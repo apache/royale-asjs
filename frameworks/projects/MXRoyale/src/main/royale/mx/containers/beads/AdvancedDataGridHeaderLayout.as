@@ -142,15 +142,14 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
             }
                 
             COMPILE::JS {
-                // otherwise let the flexbox layout handle matters on its own.
+                if (!host.isHeightSizedToContent())
+                    ilc.height = contentView.height;
                 if (buttonWidths) {
                     var widthValue:* = buttonWidths[i];
                     if (widthValue != null) ilc.width = Number(widthValue);
                     ilc.x = xx;
                     xx += ilc.width;
                 }                
-                if (!host.isHeightSizedToContent())
-                    ilc.height = contentView.height;
             }
         }
         
