@@ -31,6 +31,7 @@ limitations under the License.
 
         import vos.IconListVO;
         import vos.Product;
+        import org.apache.royale.collections.ArrayList;
 
         private function dataGridProductChange(grid:DataGrid, output:Label) : void
 		{
@@ -42,10 +43,10 @@ limitations under the License.
 			output.text = "Clicked on row " + grid.selectedIndex + " (Label: " + (grid.selectedItem as IconListVO).label + ")";
 		}
 
-		private function refreshGrid(grid:DataGrid):void
+		private function refreshGrid(grid:DataGrid, data:ArrayList):void
 		{
 			grid.dataProvider = null;
-			grid.dataProvider = (productModel as ProductModel).productList;
+			grid.dataProvider = data;
 		}
 
 		[Bindable]
@@ -106,7 +107,7 @@ limitations under the License.
 				</j:DataGrid>
 
 				<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
-				<j:Button text="Refresh Grid" click="refreshGrid(datagrid2)" emphasis="primary"/>
+				<j:Button text="Refresh Grid" click="refreshGrid(datagrid2, (productModel as ProductModel).productList)" emphasis="primary"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
@@ -155,7 +156,7 @@ limitations under the License.
 				</j:DataGrid>
 
 				<j:Label id="datagrid4_lb" text="DataGrid selection will be shown here"/>
-				<j:Button text="Refresh Grid" click="refreshGrid(datagrid4)" emphasis="primary"/>
+				<j:Button text="Refresh Grid" click="refreshGrid(datagrid4, (listModel as ListsModel).iconListData)" emphasis="primary"/>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>
