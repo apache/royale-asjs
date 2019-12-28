@@ -570,10 +570,18 @@ public class UITextFormat extends TextFormat
         if (sm.measuringElement == null)
         {
             sm.measuringElement = document.createElement("span") as HTMLSpanElement;
-            sm.measuringElement.style.position = "float"; // to try to keep it from affecting position of other elements
-            sm.measuringElement.style.display = "none"; // to try to keep it hidden
+            //everything else is absolute position so should be above this element
+            //sm.measuringElement.style.position = "float"; // to try to keep it from affecting position of other elements
+            // offsetWidth/Height not computed for display: none
+            //sm.measuringElement.style.display = "none"; // to try to keep it hidden
+            sm.measuringElement.style.opacity = 0;
+            sm.measuringElement.style["pointer-events"] = "none";
+            sm.element.appendChild(sm.measuringElement);
         }
-        sm.measuringElement.text = s;
+        if (s.indexOf("&nbsp;") >= 0)
+            sm.measuringElement.innerHTML = s;
+        else
+            sm.measuringElement.textContent = s;
         var tlm:TextLineMetrics = new TextLineMetrics();
         tlm.width = sm.measuringElement.offsetWidth;
         tlm.height = sm.measuringElement.offsetHeight;
