@@ -20,6 +20,8 @@
 package mx.controls.advancedDataGridClasses
 {
 
+    import mx.containers.beads.AdvancedDataGridHeaderLayout;
+    
     import org.apache.royale.html.DataGridButtonBar;
 
     /**
@@ -38,6 +40,13 @@ package mx.controls.advancedDataGridClasses
             super();
             typeNames += " AdvancedDataGridButtonBar";
 
+        }
+        
+        override public function addedToParent():void
+        {
+            var layout:AdvancedDataGridHeaderLayout = new AdvancedDataGridHeaderLayout();
+            addBead(layout);
+            super.addedToParent();
         }
 
     }

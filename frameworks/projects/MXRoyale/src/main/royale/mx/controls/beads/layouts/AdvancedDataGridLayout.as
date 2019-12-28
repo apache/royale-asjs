@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads.layouts
 {
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
     import mx.controls.dataGridClasses.DataGridColumn;
     
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
@@ -75,6 +76,42 @@ package mx.controls.beads.layouts
         public var maxVerticalScrollPosition:Number;
         
         public var actualRowHeight:Number;
+
+        override protected function setHeaderWidths(columnWidths:Array):void
+        {
+            var header:IUIBase = (uiHost.view as IDataGridView).header;
+            // fancier DG's will filter invisible columns and only put visible columns
+            // in the bbmodel, so do all layout based on the bbmodel, not the set
+            // of columns that may contain invisible columns
+            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            if (bbmodel.dataProvider.length != columnWidths.length)
+            {
+                // probably some grouped columns so recompute widths;
+                var newColumnWidths:Array = [];
+                for (var i:int = 0; i < bbmodel.dataProvider.length; i++)
+                {
+                    newColumnWidths.push(getHeaderColumnWidth(bbmodel.dataProvider[i] as DataGridColumn));
+                }
+                columnWidths = newColumnWidths;
+            }
+            super.setHeaderWidths(columnWidths);
+        }
+        
+        private function getHeaderColumnWidth(column:DataGridColumn):Number
+        {
+            if (column is AdvancedDataGridColumnGroup)
+            {
+                var adgcg:AdvancedDataGridColumnGroup = column as AdvancedDataGridColumnGroup;
+                var w:Number = 0;
+                for (var i:int = 0; i < adgcg.children.length; i++)
+                {
+                    w += getHeaderColumnWidth(adgcg.children[i] as DataGridColumn);
+                }
+                return w;
+            }
+            return column.columnWidth;
+        }
+        
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl

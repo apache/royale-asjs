@@ -77,6 +77,7 @@ Basic|DataGridButtonBar {
 
 adg|AdvancedDataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer");
+	position: absolute;
 }
 
 AdvancedDataGrid
@@ -90,7 +91,7 @@ AdvancedDataGrid
 	IDataProviderNotifier: ClassReference("mx.controls.beads.DataProviderChangeNotifier");
 	columnClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList");
 	columnContainerClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridButtonBar");
-	columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	columnLayoutClass: ClassReference("mx.containers.beads.AdvancedDataGridHeaderLayout");
 	listAreaClass: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridListArea");
 	
 	background-color: #FFFFFF;

@@ -61,6 +61,8 @@ package mx.controls.beads
 		{
         }
 
+        public var visibleColumns:Array = [];
+        
         override protected function handleInitComplete(event:Event):void
         {
             var host:IDataGrid = _strand as IDataGrid;
@@ -112,6 +114,8 @@ package mx.controls.beads
             }
             if (sharedModel.columns == null)
                 return;
+            if (visibleColumns == null)
+                visibleColumns = sharedModel.columns;
             super.handleDataProviderChanged(event);
         }
 
