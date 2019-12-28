@@ -58,6 +58,7 @@ package mx.controls.beads
          */
 		public function AdvancedDataGridView()
 		{
+            columnClass = AdvancedDataGridColumn;
         }
 
         override protected function handleInitComplete(event:Event):void
@@ -73,6 +74,20 @@ package mx.controls.beads
             IEventDispatcher(host).addEventListener("columnsInvalid", handleColumnsInvalid);
             handleColumnsInvalid(null);
         }		
+        
+        override protected function handleCollectionChanged(event:Event):void
+        {
+            if (columnLists == null) return;
+            
+            for (var i:int=0; i < columnLists.length; i++)
+            {
+                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
+                list.adg = _strand as AdvancedDataGrid;
+                list.model.dispatchEvent(new Event("dataProviderChanged"));
+            }
+            host.dispatchEvent(new Event("layoutNeeded"));
+            
+        }
 
         private function handleColumnsInvalid(event:Event):void
         {

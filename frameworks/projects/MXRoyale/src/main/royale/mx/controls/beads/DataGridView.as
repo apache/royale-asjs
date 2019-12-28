@@ -21,9 +21,9 @@ package mx.controls.beads
     import mx.collections.CursorBookmark;
     import mx.collections.ICollectionView;
     import mx.collections.IViewCursor;
-    import mx.controls.AdvancedDataGrid;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
+    import mx.controls.dataGridClasses.DataGridColumn;
+    import mx.controls.dataGridClasses.DataGridColumnList;
+    import mx.core.UIComponent;
     import mx.core.mx_internal;
     import mx.events.CollectionEvent;
     import mx.utils.ObjectUtil;
@@ -61,6 +61,8 @@ package mx.controls.beads
 		{
         }
 
+        protected var columnClass:Class = DataGridColumn;
+        
         public var visibleColumns:Array = [];
         
         override protected function handleInitComplete(event:Event):void
@@ -86,14 +88,13 @@ package mx.controls.beads
             }
         }		
         
-        private function handleCollectionChanged(event:Event):void
+        protected function handleCollectionChanged(event:Event):void
         {
             if (columnLists == null) return;
             
             for (var i:int=0; i < columnLists.length; i++)
             {
-                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
-                list.adg = _strand as AdvancedDataGrid;
+                var list:DataGridColumnList = columnLists[i] as DataGridColumnList;
                 list.model.dispatchEvent(new Event("dataProviderChanged"));
             }
             host.dispatchEvent(new Event("layoutNeeded"));
@@ -128,7 +129,7 @@ package mx.controls.beads
             var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
             if (sharedModel.dataProvider.length > 0)
             {
-                var col:AdvancedDataGridColumn;
+                var col:DataGridColumn;
                 var newCols:Array = [];
                 var cols:Array;
                 if (sharedModel.dataProvider)
@@ -165,10 +166,10 @@ package mx.controls.beads
                     {
                         if (p != "uid")
                         {
-                            col = new AdvancedDataGridColumn();
+                            col = new columnClass() as DataGridColumn;
                             col.dataField = p;
                             newCols.push(col);
-                            col.owner = _strand as AdvancedDataGrid;
+                            col.owner = _strand as UIComponent;
                             col.colNum = index++;
                         }
                     }
@@ -183,9 +184,9 @@ package mx.controls.beads
                         colName = cols[i];
                         if (colName is QName)
                             colName = QName(colName).localName;
-                        col = new AdvancedDataGridColumn();
+                        col = new columnClass() as DataGridColumn;
                         col.dataField = String(colName);
-                        col.owner = _strand as AdvancedDataGrid;
+                        col.owner = _strand as UIComponent;
                         col.colNum = i;
                         newCols.push(col);
                     }
