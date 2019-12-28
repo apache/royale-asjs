@@ -64,6 +64,7 @@ package mx.display
                 svg = document.createElementNS("http://www.w3.org/2000/svg", "svg") as HTMLElement;
                 svg.setAttribute("width", displayObject.width.toString() + "px");
                 svg.setAttribute("height", displayObject.height.toString() + "px");
+                svg.style.position = "absolute";
                 element.appendChild(svg);
             }
         }
