@@ -38,6 +38,7 @@ import flash.text.TextLineMetrics;
  import mx.styles.IStyleManager2;
  import mx.utils.StringUtil;
  
+ import org.apache.royale.core.TextLineMetrics;
  import org.apache.royale.events.Event;
  
  COMPILE::JS
@@ -459,6 +460,8 @@ public class UITextField  extends UIComponent implements IUITextField
             dispatchEvent(new Event("textFieldWidthChange")); */
     }
     
+     private var usingHTML:Boolean;
+     
      //----------------------------------
      //  htmlText
      //----------------------------------
@@ -666,6 +669,9 @@ public class UITextField  extends UIComponent implements IUITextField
       */
      public function set htmlText(value:String):void
      {
+         lineMetrics = null;
+         usingHTML = true;
+         
          COMPILE::SWF
              {
                  ITextModel(model).html = value;
@@ -747,6 +753,9 @@ public class UITextField  extends UIComponent implements IUITextField
       */
      public function set text(value:String):void
      {
+         lineMetrics = null;
+         usingHTML = false;
+         
          COMPILE::SWF
              {
                  ITextModel(model).text = value;
@@ -2982,14 +2991,20 @@ public class UITextField  extends UIComponent implements IUITextField
          return true;
      }
      
+     private var lineMetrics:TextLineMetrics;
+     
      public function get textWidth():Number
      {
-         return width;
+         if (!lineMetrics)
+             lineMetrics = getUITextFormat().measureText(usingHTML ? htmlText : text);
+         return lineMetrics.width;
      }
      
      public function get textHeight():Number
      {
-         return height;
+         if (!lineMetrics)
+             lineMetrics = getUITextFormat().measureText(usingHTML ? htmlText : text);
+         return lineMetrics.height;
      }
      
      public function get wordWrap():Boolean
