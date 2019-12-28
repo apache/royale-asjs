@@ -118,7 +118,8 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42"/>
+				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary'"
+					multiline="true"/>
 
 				<j:DataGrid width="100%" emphasis="secondary" rowHeight="42"
 					change="dataGridIconListChange(event.target as DataGrid, datagrid3_lb)">
@@ -129,9 +130,9 @@ limitations under the License.
 							destinationPropertyName="dataProvider"/>
 					</j:beads>
 					<j:columns>
-						<j:DataGridColumn label="Label" dataField="label" 
+						<j:DataGridColumn label="Icon" dataField="icon" 
 											itemRenderer="itemRenderers.IconItemRenderer"/>
-						<j:DataGridColumn label="Icon" dataField="icon"/>
+						<j:DataGridColumn label="Label" dataField="label"/>
 						<j:DataGridColumn label="Set" dataField="componentSet"/>
 					</j:columns>
 				</j:DataGrid>
@@ -143,7 +144,8 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Using specific column widths, rowHeight=40"/>
+				<j:Label text="Using specific column widths, rowHeight=40 and emphasis='emphasized'"
+					multiline="true"/>
 
 				<j:DataGrid localId="datagrid4" height="246"
 					rowHeight="40" emphasis="emphasized" 
