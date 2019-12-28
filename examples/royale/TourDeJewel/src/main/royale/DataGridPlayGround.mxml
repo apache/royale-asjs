@@ -29,9 +29,10 @@ limitations under the License.
         import models.ListsModel;
         import models.ProductModel;
 
+        import org.apache.royale.collections.ArrayList;
+
         import vos.IconListVO;
         import vos.Product;
-        import org.apache.royale.collections.ArrayList;
 
         private function dataGridProductChange(grid:DataGrid, output:Label) : void
 		{
