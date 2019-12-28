@@ -311,15 +311,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
      */
    // private var hasFontContextBeenSaved:Boolean = false;
     
-    /**
-     *  @private
-     *  The zero-based index of this column as it is displayed in the grid.
-     *  It is not related to the structure of the data being displayed.
-     *  In MXML, the default order of the columns is the order of the
-     *  <code>mx:AdvancedDataGridColumn</code> tags.
-     */
-    mx_internal var colNum:Number;
-    
     // preferred width is the number we should use when measuring
     // regular width will be changed if we shrink columns to fit.
    // mx_internal var preferredWidth:Number = 100;

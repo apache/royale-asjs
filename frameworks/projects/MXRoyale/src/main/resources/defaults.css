@@ -169,7 +169,7 @@ DataGrid
 {
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
 	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
-	IBeadView: ClassReference("org.apache.royale.html.beads.DataGridView");
+	IBeadView: ClassReference("mx.controls.beads.DataGridView");
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("mx.controls.dataGridClasses.DataGridColumnList");

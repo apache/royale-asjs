@@ -400,6 +400,17 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     public var sortDescending:Boolean = false;
     
     mx_internal var owner:UIComponent;
+    
+    /**
+     *  @private
+     *  The zero-based index of this column as it is displayed in the grid.
+     *  It is not related to the structure of the data being displayed.
+     *  In MXML, the default order of the columns is the order of the
+     *  <code>mx:DataGridColumn</code> tags.
+     */
+    mx_internal var colNum:Number;
+    
+
 }
 
 }
