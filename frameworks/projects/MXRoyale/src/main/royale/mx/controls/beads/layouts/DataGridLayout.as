@@ -26,7 +26,7 @@ package mx.controls.beads.layouts
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.html.beads.layouts.DataGridLayout;
     import mx.controls.dataGridClasses.DataGridColumn;
-
+    import mx.controls.beads.DataGridView;
 	
     /**
      *  The DataGridLayout class.
@@ -50,6 +50,12 @@ package mx.controls.beads.layouts
 		{
         }
 
+        override protected function getColumnsForLayout():Array
+        {
+            var view:DataGridView = (uiHost.view as DataGridView);
+            return view.visibleColumns;    
+        }
+        
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
@@ -62,11 +68,7 @@ package mx.controls.beads.layouts
          */
         override public function layout():Boolean
         {
-            var header:IUIBase = (uiHost.view as IDataGridView).header;
-            // fancier DG's will filter invisible columns and only put visible columns
-            // in the bbmodel, so do all layout based on the bbmodel, not the set
-            // of columns that may contain invisible columns
-            var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
+            var view:DataGridView = (uiHost.view as DataGridView);
             // do the proportional sizing of columns
             var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(_strand as IUIBase);			
             var useWidth:Number = uiHost.width - (borderMetrics.left + borderMetrics.right);
@@ -74,10 +76,10 @@ package mx.controls.beads.layouts
             
             var totalWidths:Number = 0;
             var unspecifiedWidths:int = 0;
-            if (bbmodel.dataProvider)
+            if (view.visibleColumns)
             {
-                for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
-                    var columnDef:DataGridColumn = bbmodel.dataProvider[i] as DataGridColumn;
+                for(var i:int=0; i < view.visibleColumns.length; i++) {
+                    var columnDef:DataGridColumn = view.visibleColumns[i] as DataGridColumn;
                     if (!isNaN(columnDef.width))
                         totalWidths += columnDef.width;
                     else
@@ -95,8 +97,8 @@ package mx.controls.beads.layouts
                 // in the remaining space
                 var remainingSpace:Number = useWidth - totalWidths;
                 var proportionateShare:Number = remainingSpace / unspecifiedWidths;
-                for(i=0; i < bbmodel.dataProvider.length; i++) {
-                    columnDef = bbmodel.dataProvider[i] as DataGridColumn;
+                for(i=0; i < view.visibleColumns.length; i++) {
+                    columnDef = view.visibleColumns[i] as DataGridColumn;
                     if (!isNaN(columnDef.width))
                         columnDef.columnWidth = columnDef.width;
                     else
@@ -108,8 +110,8 @@ package mx.controls.beads.layouts
                 if (totalWidths != useWidth)
                 {
                     var factor:Number = useWidth / totalWidths;
-                    for(i=0; i < bbmodel.dataProvider.length; i++) {
-                        columnDef = bbmodel.dataProvider[i] as DataGridColumn;
+                    for(i=0; i < view.visibleColumns.length; i++) {
+                        columnDef = view.visibleColumns[i] as DataGridColumn;
                         columnDef.columnWidth = columnDef.width * factor;
                     }                
                 }

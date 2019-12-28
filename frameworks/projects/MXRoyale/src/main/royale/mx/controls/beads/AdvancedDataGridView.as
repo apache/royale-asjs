@@ -67,15 +67,14 @@ package mx.controls.beads
             IEventDispatcher(host).addEventListener("columnsInvalid", handleColumnsInvalid);
             handleColumnsInvalid(null);
         }		
-        
+
         private function handleColumnsInvalid(event:Event):void
         {
             if (!columnLists) return;
             
-            var host:IDataGrid = _strand as IDataGrid;
+            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
             var sharedModel:IDataGridModel = (host.model as IDataGridModel);
             
-            var visibleColumns:Array = [];
             columnLists.length = 0;
             for (var i:int=0; i < sharedModel.columns.length; i++)
             {
@@ -90,7 +89,18 @@ package mx.controls.beads
                     columnLists.push(list);
                 }
             }
-            (header as DataGridButtonBar).dataProvider = visibleColumns;
+            if (host.groupedColumns != null)
+            {
+                var groupedColumns:Array = [];
+                for (i = 0; i < host.groupedColumns.length; i++)
+                {
+                    if ((host.groupedColumns[i] as AdvancedDataGridColumn).visible)
+                        groupedColumns.push(host.groupedColumns[i]);
+                }
+                (header as DataGridButtonBar).dataProvider = groupedColumns;
+            }
+            else
+                (header as DataGridButtonBar).dataProvider = visibleColumns;
             
             host.dispatchEvent(new Event("layoutNeeded"));
         }

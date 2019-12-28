@@ -48,12 +48,12 @@ package mx.controls
     import mx.collections.IViewCursor;
     import mx.collections.Sort;
     import mx.collections.SortField;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
     import mx.controls.beads.AdvancedDataGridSortBead;
     import mx.controls.beads.AdvancedDataGridView;
     import mx.controls.beads.DataGridColumnResizeBead;
     import mx.controls.beads.DataGridLinesBeadForICollectionView;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnGroup;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.controls.listClasses.AdvancedListBase;
     import mx.core.mx_internal;
@@ -6442,6 +6442,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         var i:int=0; 
         while (i < groupedColumns.length)
         {
+            (groupedColumns[i] as AdvancedDataGridColumn).owner = this;
             if (groupedColumns[i] is AdvancedDataGridColumnGroup && groupedColumns[i].children && groupedColumns[i].children.length >0)
             {
                 var prefix:Array = groupedColumns.slice(0,i);

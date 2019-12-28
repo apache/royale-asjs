@@ -29,6 +29,8 @@ import flash.geom.Rectangle;
 import flash.text.TextLineMetrics;
 */
 import mx.controls.AdvancedDataGrid;
+import mx.controls.advancedDataGridClasses.AdvancedDataGridButtonBar;
+import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
@@ -37,18 +39,22 @@ import mx.core.IDataRenderer;
 import mx.core.IFactory;
 import mx.core.IInvalidating;
 import mx.core.IToolTip;
+import mx.core.IUIComponent;
 import mx.core.IUITextField;
 import mx.core.UIComponent;
 import mx.core.UITextField;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
 import mx.events.ToolTipEvent;
-import mx.core.IUIComponent;
-import org.apache.royale.geom.Point;
+import mx.managers.ISystemManager;
+
+import org.apache.royale.core.IChild;
 import org.apache.royale.core.TextLineMetrics;
-import org.apache.royale.geom.Rectangle;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
+import org.apache.royale.geom.Point;
+import org.apache.royale.geom.Rectangle;
+import org.apache.royale.html.DataGridButtonBar;
 
 use namespace mx_internal;
 
@@ -186,11 +192,6 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
 
         // InteractiveObject variables.
         tabEnabled   = false;
-        COMPILE::JS
-        {
-            isAbsolute = false;
-        }
-
         addEventListener(ToolTipEvent.TOOL_TIP_SHOW, toolTipShowHandler); 
     }
     
@@ -427,6 +428,8 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
             addChild(background);
         }
     } 
+    
+    private var childHeaders:DataGridButtonBar;
 
     /**
      *  @private
@@ -520,6 +523,13 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
                 else
                 {
                     toolTip = null;
+                }
+                if (data is AdvancedDataGridColumnGroup)
+                {
+                    var adgcg:AdvancedDataGridColumnGroup = data as AdvancedDataGridColumnGroup;
+                    childHeaders = new AdvancedDataGridButtonBar();
+                    childHeaders.dataProvider = adgcg.children;
+                    addElement(childHeaders);                    
                 }
              }
         }
@@ -774,6 +784,18 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
             background.graphics.endFill();
             setChildIndex( IUIComponent(background), 0 );
         }
+        if (childHeaders)
+        {
+            var adgcg:AdvancedDataGridColumnGroup = data as AdvancedDataGridColumnGroup;
+            var buttonWidths:Array = [];
+            for (var i:int = 0; i < adgcg.children.length; i++)
+                buttonWidths.push((adgcg.children[i] as DataGridColumn).columnWidth);
+            childHeaders.buttonWidths = buttonWidths;
+            childHeaders.height = unscaledHeight / 2;
+            childHeaders.width = unscaledWidth;
+            childHeaders.x = 0;
+            childHeaders.y = unscaledHeight / 2;
+        }
     } 
 
     //--------------------------------------------------------------------------
@@ -884,7 +906,23 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         return label;
     } 
 
+    override public function setWidth(value:Number, noEvent:Boolean = false):void
+    {
+        super.setWidth(value, noEvent);
+        updateDisplayList(width, height);
+    }
 
+    override public function get systemManager():ISystemManager
+    {
+        var sm:ISystemManager = super.systemManager;
+        if (!sm)
+        {
+            // skip a layer because parent ButtonBar is not IUIComponent
+            systemManager = ((parent as IChild).parent as IUIComponent).systemManager;
+        }
+        return sm;
+    }
+    
     public function get nestLevel():int
     {
     	throw new Error("Method not implemented.");
