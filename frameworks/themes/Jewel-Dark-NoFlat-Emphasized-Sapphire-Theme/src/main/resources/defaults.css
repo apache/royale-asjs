@@ -122,6 +122,13 @@ hr {
   text-shadow: unset;
 }
 
+.jewel.datagrid .jewel.list.column .jewel.item.emphasized.hovered {
+  background: #5193d7;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.emphasized.selected, .jewel.datagrid .jewel.list.column .jewel.item.emphasized.selectable:active {
+  background: #3c86d2;
+}
+
 .jewel.item.emphasized.hovered {
   background: #2C74BE;
 }

@@ -301,6 +301,47 @@ j|Card {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 
+.jewel.datagrid {
+  width: 220px;
+  height: 240px;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.first {
+  border-bottom-left-radius: 0;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.last {
+  border-bottom-right-radius: 0;
+}
+.jewel.datagrid .listarea {
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-style: solid;
+  border-color: #b3b3b3;
+}
+.jewel.datagrid .jewel.list.column {
+  border-radius: 0px;
+  border-bottom-width: 0px;
+  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+}
+.jewel.datagrid .jewel.list.column.first {
+  border-bottom-left-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column.last {
+  border-bottom-right-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column .jewel.item {
+  border-bottom: 1px solid #ededed;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.primary.hovered {
+  background: #60cc6d;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.primary.selected, .jewel.datagrid .jewel.list.column .jewel.item.primary.selectable:active {
+  background: #4dc65c;
+}
+
 .jewel.datechooser .jewel.table {
   background: white;
   border: 1px solid #d9d9d9;
