@@ -80,6 +80,13 @@ adg|AdvancedDataGridButtonBar {
 	position: absolute;
 }
 
+adg|AdvancedDataGridHeaderRenderer {
+	horizontalAlign: center;
+	vertical-align: middle;
+	border: 1px solid #222222;
+	font-weight: bold;
+}
+
 AdvancedDataGrid
 {
 	alternatingItemColors: #F7F7F7, #FFFFFF;
