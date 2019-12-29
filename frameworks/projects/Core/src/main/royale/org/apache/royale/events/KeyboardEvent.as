@@ -158,41 +158,113 @@ package org.apache.royale.events
         {
             _code = value;
         }
-        
-        private var _shiftKey:Boolean;
-        public function get shiftKey():Boolean
-        {
-            return _shiftKey;
-        }
 
         private var _altKey:Boolean;
+
+        COMPILE::SWF
         public function get altKey():Boolean
         {
             return _altKey;
         }
+        
+        COMPILE::JS
+        public function get altKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.altKey : _altKey;
+        }
+        COMPILE::SWF
         public function set altKey(value:Boolean):void
         {
             _altKey = value;
         }
-        
+
+        COMPILE::JS
+        public function set altKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.altKey = value;
+            else _altKey = value;
+        }
+
         private var _ctrlKey:Boolean;
+        
+        COMPILE::SWF
         public function get ctrlKey():Boolean
         {
             return _ctrlKey;
         }
+
+        COMPILE::JS
+        public function get ctrlKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.ctrlKey : _ctrlKey;
+        }
+
+        COMPILE::SWF
         public function set ctrlKey(value:Boolean):void
         {
             _ctrlKey = value;
         }
 
+        COMPILE::JS
+        public function set ctrlKey(value:Boolean):void
+        {
+            if(wrappedEvent)
+                wrappedEvent.ctrlKey = value;
+            else 
+                _ctrlKey = value;
+        }
         private var _metaKey:Boolean;
+
+        COMPILE::SWF
         public function get metaKey():Boolean
         {
             return _metaKey;
         }
+        
+        COMPILE::JS
+        public function get metaKey():Boolean
+        {
+            return wrappedEvent ? wrappedEvent.metaKey : _metaKey;
+        }
+
+        COMPILE::SWF
         public function set metaKey(value:Boolean):void
         {
             _metaKey = value;
+        }
+
+        COMPILE::JS
+        public function set metaKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.metaKey = value;
+            else _metaKey = value;
+        }
+
+        private var _shiftKey:Boolean;
+
+        COMPILE::SWF
+        public function get shiftKey():Boolean
+        {
+            return _shiftKey;
+        }
+        
+        COMPILE::JS
+        public function get shiftKey():Boolean
+        {
+        	return wrappedEvent ? wrappedEvent.shiftKey : _shiftKey;
+        }
+
+        COMPILE::SWF
+        public function set shiftKey(value:Boolean):void
+        {
+            _shiftKey = value;
+        }
+
+        COMPILE::JS
+        public function set shiftKey(value:Boolean):void
+        {
+            if(wrappedEvent)wrappedEvent.shiftKey = value;
+            else _shiftKey = value;
         }
         
         public function get modifierKey():Boolean
