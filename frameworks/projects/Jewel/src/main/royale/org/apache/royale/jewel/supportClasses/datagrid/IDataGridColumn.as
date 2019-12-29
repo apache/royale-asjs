@@ -21,10 +21,17 @@ package org.apache.royale.jewel.supportClasses.datagrid
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IUIBase;
 
+	/**
+	 *  Jewel IDataGridColumn is the interface used by Jewel DataGridColumn in the Jewel DataGrid.
+	 * 
+	 *  Define which renderer to use for each cell in the column, and other optional data like
+	 *  the width, the label (used in header), and the name of the field in the data containing the value to display 
+	 *  in the column (for the simplest ItemRenderer).
+	 */
 	public interface IDataGridColumn
 	{
 		/**
-		 *  The itemRenderer class or factory to use to make instances of itemRenderers for
+		 *  The ItemRenderer class or factory to use to make instances of itemRenderers for
 		 *  display of data.
 		 *
 		 *  @langversion 3.0
@@ -36,7 +43,8 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		function set itemRenderer(value:IFactory):void;
 		
 		/**
-		 *  The width of the column (default is 100 pixels).
+		 *  The width of the column.
+		 *  DataGrid defaults to "numColumns/n %", where n is the number of columns
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -70,8 +78,8 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		function set dataField(value:String):void;
 		
 		/**
-		 * The name of the style class to use for this column. If this is not set
-		 * it defaults to DataGridColumnList.
+		 *  The name of the style class to use for this column.
+		 *  DataGrid uses ".jewel.list.column"
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -82,8 +90,8 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		function set className(value:String):void;
 		
 		/**
-		 * Returns a new instance of a UIBase component to be used as the actual
-		 * column in the grid.
+		 *  Returns a new instance of a UIBase component to be used as the actual
+		 *  column in the grid.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
