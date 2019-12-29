@@ -84,13 +84,7 @@ package org.apache.royale.jewel
 			super();
 			typeNames = "";
 		}
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
-        }
-
+		
         protected var _layout:StyledLayoutBase;
 
         /**
