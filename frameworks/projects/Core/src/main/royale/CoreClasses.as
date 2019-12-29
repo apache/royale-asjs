@@ -28,7 +28,6 @@ internal class CoreClasses
 {
 	import org.apache.royale.core.IId; IId;
 	import org.apache.royale.core.HTMLElementWrapper; HTMLElementWrapper;
-	import org.apache.royale.utils.IClassSelectorListSupport; IClassSelectorListSupport;
 	import org.apache.royale.core.LayoutBase; LayoutBase;
 	import org.apache.royale.core.ContainerBaseStrandChildren; ContainerBaseStrandChildren;
 	import org.apache.royale.core.ApplicationBase; ApplicationBase;
@@ -146,6 +145,7 @@ internal class CoreClasses
     import org.apache.royale.core.ITitleBarModel; ITitleBarModel;
     import org.apache.royale.core.IToggleButtonModel; IToggleButtonModel;
     import org.apache.royale.core.IUIBase; IUIBase;
+    import org.apache.royale.core.IStyledUIBase; IStyledUIBase;
     import org.apache.royale.core.IValueToggleButtonModel; IValueToggleButtonModel;
 	import org.apache.royale.core.IViewport; IViewport;
     import org.apache.royale.core.IScrollingViewport; IScrollingViewport;

@@ -40,7 +40,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public class StyledUIBase extends UIBase implements IClassSelectorListSupport, IEmphasis
+    public class StyledUIBase extends UIBase implements IStyledUIBase
     {
         /**
          *  Constructor.

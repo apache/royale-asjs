@@ -22,8 +22,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
-	import org.apache.royale.core.IEmphasis;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.utils.IEmphasis;
 	
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	

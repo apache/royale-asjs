@@ -18,30 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.utils.IEmphasis;
+
     /**
-     *  The IEmphasis is the interface a jewel control implements to get diferent jewel
-     *  look and feels. Jewel has PRIMARY, SECONDARY and EMPHASIZED emphasis look and feels.
+     *  The IStyledUIBase interface is the interface for advanced user interface components.
+     *  Used in StyledUIBase that is the core component in the Jewel UI Set
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public interface IEmphasis
-    {
-        /**
-		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
-         *  Colors are defined in royale jewel theme CSS.
-         * 
-         *  Left without value to get the default look (light or dark).
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        function get emphasis():String;
-        function set emphasis(value:String):void;
+	public interface IStyledUIBase extends IUIBase, IClassSelectorListSupport, IEmphasis
+	{
     }
 }
- 

@@ -4,7 +4,7 @@
 //  contributor license agreements.  See the NOTICE file distributed with
 //  this work for additional information regarding copyright ownership.
 //  The ASF licenses this file to You under the Apache License, Version 2.0
-//  (the "Licens"); you may not use this file except in compliance with
+//  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
 //      http://www.apache.org/licenses/LICENSE-2.0
@@ -16,22 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.datagrid
+package org.apache.royale.utils
 {
-    import org.apache.royale.html.supportClasses.IDataGridColumnList;
-    import org.apache.royale.utils.IEmphasis;
-
     /**
-     *  The Jewel IDataGridColumnList interface is a marker interface for Jewel DataGrid Column Lists
-     * 
+     *  The IEmphasis is the interface a jewel control implements to get diferent jewel
+     *  look and feels. Jewel has PRIMARY, SECONDARY and EMPHASIZED emphasis look and feels.
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public interface IDataGridColumnList extends org.apache.royale.html.supportClasses.IDataGridColumnList, IEmphasis
+    public interface IEmphasis
     {
-        function get rollOverIndex():int;
-        function set rollOverIndex(value:int):void;
+        /**
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        function get emphasis():String;
+        function set emphasis(value:String):void;
     }
 }
+ 
