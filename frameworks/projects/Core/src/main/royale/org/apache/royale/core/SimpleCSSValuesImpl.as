@@ -35,7 +35,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.utils.CSSUtils;
-	import org.apache.royale.utils.StringUtil;
+	import org.apache.royale.utils.string.splitAndTrim;
     
     /**
      *  The SimpleCSSValuesImpl class implements a minimal set of
@@ -667,7 +667,7 @@ package org.apache.royale.core
             var parts:Array = styles.split(";");
             for each (var part:String in parts)
             {
-                var pieces:Array = StringUtil.splitAndTrim(part, ":");
+                var pieces:Array = splitAndTrim(part, ":");
                 if (pieces.length < 2) continue;
                 var valueName:String = pieces[0];
                 var c:int = valueName.indexOf("-");
