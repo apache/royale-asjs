@@ -64,7 +64,6 @@ package org.apache.royale.events.utils
 				oldEvent.shiftKey,
 				oldEvent.altKey
 			);
-			newEvent.specialKey = oldEvent.ctrlKey;
 			return newEvent;
 		}
 		

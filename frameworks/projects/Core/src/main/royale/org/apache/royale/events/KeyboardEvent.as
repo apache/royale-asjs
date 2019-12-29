@@ -199,34 +199,6 @@ package org.apache.royale.events
         {
             return shiftKey || ctrlKey || metaKey;
         }
-        /**
-         * SWF does not have meta, so we need to explicitely set the specialKey
-         */
-		COMPILE::SWF
-        private var _specialKey:Boolean;
-        COMPILE::SWF
-        public function set specialKey(value:Boolean):void
-        {
-            _specialKey = value;
-        }
-        COMPILE::SWF
-		public function get specialKey():Boolean
-		{
-			return _specialKey;
-		}
-        COMPILE::JS
-		public function get specialKey():Boolean
-		{
-			return OSUtils.getOS() == OSUtils.MAC_OS ? metaKey : ctrlKey;
-		}
-        COMPILE::JS
-		public function set specialKey(value:Boolean):void
-		{
-            if(OSUtils.getOS() == OSUtils.MAC_OS)
-                metaKey = value;
-            else
-                ctrlKey = value;
-		}
 
         /**
          * @langversion 3.0

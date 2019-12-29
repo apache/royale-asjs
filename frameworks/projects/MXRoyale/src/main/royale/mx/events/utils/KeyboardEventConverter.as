@@ -63,7 +63,6 @@ package mx.events.utils
 			var newEvent:org.apache.royale.events.KeyboardEvent = new org.apache.royale.events.KeyboardEvent(type, key, code, oldEvent.shiftKey);
 			newEvent.altKey = oldEvent.altKey;
 //			newEvent.ctrlKey = oldEvent.controlKey; // TODO
-			newEvent.specialKey = oldEvent.ctrlKey;
 			return newEvent;
 		}
 		
