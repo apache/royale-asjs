@@ -16,31 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.html.util
 {
+    COMPILE::JS
+    {
+    import org.apache.royale.core.UIBase;
+    }
+    
     /**
-     *  The IEmphasis is the interface a jewel control implements to get diferent jewel
-     *  look and feels. Jewel has PRIMARY, SECONDARY and EMPHASIZED emphasis look and feels.
-     *  
+     *  Utility function removeStyleProperty method removes style property
+     *  from an UIBase positioner
+	 * 
+     *  @toplevel
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
-     */
-    public interface IEmphasis
-    {
-        /**
-		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
-         *  Colors are defined in royale jewel theme CSS.
-         * 
-         *  Left without value to get the default look (light or dark).
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        function get emphasis():String;
-        function set emphasis(value:String):void;
-    }
+     */ 
+    COMPILE::JS   
+	public function removeCSSStyleProperty(wrapper:UIBase, property:String):void
+	{
+        wrapper.positioner.style[property] = null;
+	}
 }

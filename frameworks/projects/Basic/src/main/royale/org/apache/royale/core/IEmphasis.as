@@ -16,21 +16,32 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-// Jewel ListItemRenderer
-$itemrenderer-padding: 8px
-
-// ListItemRenderer variables
-.jewel.item
-    padding: $itemrenderer-padding
-    &.hovered
-        color: $font-theme-color
-    &.selected, &.selectable:active
-        color: $font-theme-color
-
-    &.primary
-        &.hovered
-            background: $primary-color
-        &.selected, &.selectable:active
-            background: darken($primary-color, 5%)
-
+package org.apache.royale.core
+{
+    /**
+     *  The IEmphasis is the interface a jewel control implements to get diferent jewel
+     *  look and feels. Jewel has PRIMARY, SECONDARY and EMPHASIZED emphasis look and feels.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.7
+     */
+    public interface IEmphasis
+    {
+        /**
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        function get emphasis():String;
+        function set emphasis(value:String):void;
+    }
+}
+ 

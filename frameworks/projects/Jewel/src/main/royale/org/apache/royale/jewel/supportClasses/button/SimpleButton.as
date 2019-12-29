@@ -20,7 +20,10 @@ package org.apache.royale.jewel.supportClasses.button
 {
     COMPILE::SWF
     {
+    import org.apache.royale.core.IEmphasis;
     import org.apache.royale.core.UIButtonBase;
+    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
     }
 
     COMPILE::JS
@@ -33,9 +36,6 @@ package org.apache.royale.jewel.supportClasses.button
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
-    import org.apache.royale.jewel.supportClasses.IEmphasis;
 
     //--------------------------------------
     //  Events
@@ -298,7 +298,7 @@ package org.apache.royale.jewel.supportClasses.button
      *  @productversion Royale 0.9.6
      */
     COMPILE::JS
-    public class SimpleButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher, IEmphasis
+    public class SimpleButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher
     {
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -317,36 +317,6 @@ package org.apache.royale.jewel.supportClasses.button
 			super();
             typeNames = "jewel button";
 		}
-
-        private var _emphasis:String;
-        /**
-		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
-         *  Colors are defined in royale jewel theme CSS.
-         * 
-         *  Left without value to get the default look (light or dark).
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.6
-		 */
-        public function get emphasis():String
-        {
-            return _emphasis;
-        }
-        public function set emphasis(value:String):void
-        {
-            if (_emphasis != value)
-            {
-                if(_emphasis)
-                {
-                    removeClass(_emphasis);
-                }
-                _emphasis = value;
-
-                addClass(_emphasis);
-            }
-        }
 
         /**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement

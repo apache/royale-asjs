@@ -289,7 +289,7 @@ package org.apache.royale.core
 			dispatchEvent(new Event("explicitHeightChanged"));
 		}
 		
-		private var _percentWidth:Number;
+		protected var _percentWidth:Number;
 
         /**
          *  The requested percentage width this component
@@ -332,7 +332,7 @@ package org.apache.royale.core
 			dispatchEvent(new Event("percentWidthChanged"));
 		}
 
-        private var _percentHeight:Number;
+        protected var _percentHeight:Number;
         
         /**
          *  The requested percentage height this component
@@ -376,7 +376,7 @@ package org.apache.royale.core
 			dispatchEvent(new Event("percentHeightChanged"));
 		}
 		
-		private var _width:Number;
+		protected var _width:Number;
 
         [Bindable("widthChanged")]
         [PercentProxy("percentWidth")]
@@ -472,7 +472,7 @@ package org.apache.royale.core
 			return super.width;
 		}
 		
-		private var _height:Number;
+		protected var _height:Number;
 
         [Bindable("heightChanged")]
         [PercentProxy("percentHeight")]
@@ -662,7 +662,6 @@ package org.apache.royale.core
             var left:* = ValuesManager.valuesImpl.getValue(this, "left");
             var right:* = ValuesManager.valuesImpl.getValue(this, "right");
             return (left === undefined || right === undefined);
-
         }
         
         /**
@@ -684,7 +683,7 @@ package org.apache.royale.core
             return (top === undefined || bottom === undefined);          
         }
 		
-        private var _x:Number;
+        protected var _x:Number;
         
         /**
          *  @private
@@ -759,7 +758,7 @@ package org.apache.royale.core
 			}
         }
         
-        private var _y:Number;
+        protected var _y:Number;
         
         /**
          *  @private

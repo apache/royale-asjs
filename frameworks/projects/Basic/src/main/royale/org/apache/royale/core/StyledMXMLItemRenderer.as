@@ -31,7 +31,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IRuntimeSelectableItemRenderer
+	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IRuntimeSelectableItemRenderer, IEmphasis
 	{
 		/**
 		 *  constructor.
@@ -185,6 +185,60 @@ package org.apache.royale.core
 		public function set hoverable(value:Boolean):void
 		{
 			_hoverable = value;	
+		}
+
+        private var _emphasis:String;
+        /**
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get emphasis():String
+        {
+            return _emphasis;
+        }
+        [Inspectable(category="General", enumeration="primary,secondary,emphasized")]
+        public function set emphasis(value:String):void
+        {
+            if (_emphasis != value)
+            {
+                if(_emphasis)
+                {
+					toggleClass(_emphasis, false);
+                }
+                _emphasis = value;
+
+                toggleClass(_emphasis, value);
+            }
+        }
+
+        /**
+		 *  The method called when added to a parent. The StyledItemRenderer class uses
+		 *  this opportunity to assign emphasis from the strand if possible, otherwise defaults
+		 *  to PRIMARY.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			if (itemRendererParent.host is IEmphasis && (itemRendererParent.host as IEmphasis).emphasis)
+			{
+				emphasis = (itemRendererParent.host as IEmphasis).emphasis;
+			} else
+			{
+				emphasis = "primary";
+			}
 		}
 	}
 }

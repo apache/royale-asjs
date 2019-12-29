@@ -26,7 +26,9 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[      
             private function clickHandler(event:MouseEvent):void {
-                button.emphasis = (button.emphasis == Button.PRIMARY) ? "" : Button.PRIMARY;
+                event.target.emphasis = event.target.emphasis == Button.PRIMARY ? "" : Button.PRIMARY;
+				event.target.width = event.target.emphasis == Button.PRIMARY ? NaN : 250;
+				event.target.text = event.target.emphasis == Button.PRIMARY ? "Width 'auto'" : "Width = 250";
             }
 
 			private function onValueChange(event:Event):void
@@ -47,7 +49,8 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel Button"/>
 
-				<j:Button text="Default" id="button" click="clickHandler(event)"/>
+				<j:Button text="Default"/>
+				<j:Button text="Show Width Defaults" click="clickHandler(event)" width="250"/>
 				<j:Button text="Disabled">
 					<j:beads>
 						<j:Disabled/>

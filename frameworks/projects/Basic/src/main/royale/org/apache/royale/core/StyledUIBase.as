@@ -20,22 +20,27 @@ package org.apache.royale.core
 {
     COMPILE::JS
     {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+    import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.events.Event;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
 
     /**
      *  The StyledUIBase is the base class for UIBase components that makes
-     *  heavy use of styles
+     *  heavy use of styles through IClassSelectorListSupport, and supports emphasis property
+     *  through IEmphasis.
+     *  
+     *  For Javascript platform it allows to default size properties (like width and height)
+     *  to broswer defaults by removing the property. This is done through NaN value (that is the default)
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.3
      */
-    public class StyledUIBase extends UIBase implements IClassSelectorListSupport
+    public class StyledUIBase extends UIBase implements IClassSelectorListSupport, IEmphasis
     {
         /**
          *  Constructor.
@@ -141,6 +146,36 @@ package org.apache.royale.core
             }
         }
 
+        private var _emphasis:String;
+        /**
+		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
+         *  Colors are defined in royale jewel theme CSS.
+         * 
+         *  Left without value to get the default look (light or dark).
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+        public function get emphasis():String
+        {
+            return _emphasis;
+        }
+        public function set emphasis(value:String):void
+        {
+            if (_emphasis != value)
+            {
+                if(_emphasis)
+                {
+                    removeClass(_emphasis);
+                }
+                _emphasis = value;
+
+                addClass(_emphasis);
+            }
+        }
+
         /**
          * @return The actual element to be parented.
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
@@ -150,6 +185,132 @@ package org.apache.royale.core
         {
 			addElementToWrapper(this,'div');
             return element;
+        }
+
+        /**
+         *  @private
+         */
+		override public function set percentWidth(value:Number):void
+		{
+			COMPILE::SWF {
+				if (_percentWidth == value)
+					return;
+				
+				if (!isNaN(value))
+					_explicitWidth = NaN;
+				
+				_percentWidth = value;
+			}
+			COMPILE::JS {
+				this._percentWidth = value;
+				this.positioner.style.width = isNaN(value) ? null : value.toString() + '%';
+				if (!isNaN(value))
+					this._explicitWidth = NaN;
+			}
+			
+			dispatchEvent(new Event("percentWidthChanged"));
+		}
+
+        /**
+         *  @private
+         */
+		override public function set percentHeight(value:Number):void
+		{
+			COMPILE::SWF {
+				if (_percentHeight == value)
+					return;
+				
+				if (!isNaN(value))
+					_explicitHeight = NaN;
+				
+				_percentHeight = value;
+			}
+				
+			COMPILE::JS {
+				this._percentHeight = value;
+				this.positioner.style.height = isNaN(value) ? null : value.toString() + '%';
+				if (!isNaN(value))
+					this._explicitHeight = NaN;
+			}
+			
+			dispatchEvent(new Event("percentHeightChanged"));
+		}
+
+        /**
+         *  @copy org.apache.royale.core.ILayoutChild#setHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        override public function setHeight(value:Number, noEvent:Boolean = false):void
+        {
+            if (_height !== value)
+            {
+                _height = value;
+                COMPILE::JS
+                {
+                    this.positioner.style.height = isNaN(value) ? null : value.toString() + 'px';        
+                }
+                if (!noEvent)
+                    dispatchEvent(new Event("heightChanged"));
+            }            
+        }
+
+        /**
+         *  @copy org.apache.royale.core.ILayoutChild#setWidth
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        override public function setWidth(value:Number, noEvent:Boolean = false):void
+        {
+            if (_width !== value)
+            {
+                _width = value;
+                COMPILE::JS
+                {
+                    this.positioner.style.width = isNaN(value) ? null : value.toString() + 'px';        
+                }
+                if (!noEvent)
+                    dispatchEvent(new Event("widthChanged"));
+            }
+        }
+
+        /**
+         *  @copy org.apache.royale.core.ILayoutChild#setWidthAndHeight
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        override public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void
+        {
+            if (_width !== newWidth)
+            {
+                _width = newWidth;
+                COMPILE::JS
+                {
+                    this.positioner.style.width = isNaN(newWidth) ? null : newWidth.toString() + 'px';        
+                }
+                if (!noEvent) 
+                    dispatchEvent(new Event("widthChanged"));
+            }
+            if (_height !== newHeight)
+            {
+                _height = newHeight;
+                COMPILE::JS
+                {
+                    this.positioner.style.height = isNaN(newHeight) ? null : newHeight.toString() + 'px';        
+                }
+                if (!noEvent)
+                    dispatchEvent(new Event("heightChanged"));
+            }            
+            dispatchEvent(new Event("sizeChanged"));
         }
     }
 }

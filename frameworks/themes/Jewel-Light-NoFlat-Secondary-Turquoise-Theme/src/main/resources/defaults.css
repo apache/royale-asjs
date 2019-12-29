@@ -122,6 +122,20 @@ hr {
   text-shadow: unset;
 }
 
+.jewel.datagrid .jewel.list.column .jewel.item.secondary.hovered {
+  background: #3ed0c6;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.secondary.selected, .jewel.datagrid .jewel.list.column .jewel.item.secondary.selectable:active {
+  background: #30c5ba;
+}
+
+.jewel.item.secondary.hovered {
+  background: #29A89F;
+}
+.jewel.item.secondary.selected, .jewel.item.secondary.selectable:active {
+  background: #24948c;
+}
+
 .jewel.snackbar.secondary .jewel.snackbar-content {
   background: linear-gradient(#2ebcb2, #24948c);
   border: 1px solid #1a6b65;
