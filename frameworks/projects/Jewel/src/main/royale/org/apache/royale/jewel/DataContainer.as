@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IListWithPresentationModel;
@@ -119,7 +120,7 @@ package org.apache.royale.jewel
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
-		public function get presentationModel():IListPresentationModel
+		public function get presentationModel():IBead
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {

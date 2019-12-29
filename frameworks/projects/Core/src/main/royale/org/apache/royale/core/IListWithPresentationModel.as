@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    import org.apache.royale.core.IList
-	import org.apache.royale.core.IListPresentationModel;
-
     /**
      *  The IListWithPresentationModel interface is implemented by any IList
 	 *  that supports a separate IListPresentationModel
@@ -41,7 +38,6 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function get presentationModel():IListPresentationModel;
-		
+		function get presentationModel():IBead;
 	}
 }

@@ -150,6 +150,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IViewport; IViewport;
     import org.apache.royale.core.IScrollingViewport; IScrollingViewport;
 	import org.apache.royale.core.IViewportModel; IViewportModel;
+	import org.apache.royale.core.IListWithPresentationModel; IListWithPresentationModel;
 
 	import org.apache.royale.core.IApplicationView; IApplicationView;
 
