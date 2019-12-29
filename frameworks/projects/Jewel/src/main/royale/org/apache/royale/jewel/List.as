@@ -23,8 +23,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.jewel.supportClasses.DataContainerBase;
-	import org.apache.royale.utils.IEmphasis;
+	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -64,7 +63,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class List extends DataContainerBase implements IEmphasis
+	public class List extends DataContainerBase
 	{
 		/**
 		 *  constructor.
@@ -228,36 +227,5 @@ package org.apache.royale.jewel
 			}
 			return presModel;
 		}
-
-		private var _emphasis:String;
-        /**
-		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
-         *  Colors are defined in royale jewel theme CSS.
-         * 
-         *  Left without value to get the default look (light or dark).
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        public function get emphasis():String
-        {
-            return _emphasis;
-        }
-        [Inspectable(category="General", enumeration="primary,secondary,emphasized")]
-        public function set emphasis(value:String):void
-        {
-            if (_emphasis != value)
-            {
-                if(_emphasis)
-                {
-					toggleClass(_emphasis, false);
-                }
-                _emphasis = value;
-
-                toggleClass(_emphasis, value);
-            }
-        }
    	}
 }

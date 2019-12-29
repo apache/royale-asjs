@@ -102,7 +102,6 @@ package
         import org.apache.royale.jewel.supportClasses.ISelectableContent; ISelectableContent;
         import org.apache.royale.jewel.supportClasses.textinput.ITextInput; ITextInput;
 
-        import org.apache.royale.jewel.supportClasses.DataContainerBase; DataContainerBase;
         import org.apache.royale.jewel.supportClasses.Viewport; Viewport;
         import org.apache.royale.jewel.supportClasses.NoViewport; NoViewport;
         import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport; ScrollingViewport;

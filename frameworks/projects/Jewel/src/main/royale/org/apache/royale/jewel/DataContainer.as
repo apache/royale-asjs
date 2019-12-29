@@ -23,7 +23,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.jewel.supportClasses.DataContainerBase;
+	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
