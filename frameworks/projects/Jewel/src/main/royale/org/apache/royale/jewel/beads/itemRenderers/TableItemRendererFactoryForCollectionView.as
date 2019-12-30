@@ -24,7 +24,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IStrand;
@@ -41,6 +40,7 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.jewel.beads.models.TableModel;
     import org.apache.royale.jewel.beads.views.TableView;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
+    import org.apache.royale.jewel.supportClasses.IListPresentationModel;
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -307,7 +307,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -318,7 +318,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */

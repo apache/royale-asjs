@@ -25,7 +25,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
-	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -36,6 +35,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
+	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
@@ -276,7 +276,7 @@ package org.apache.royale.jewel.beads.views
          * @royaleignorecoercion org.apache.royale.core.IChild
          * @royaleignorecoercion org.apache.royale.core.IParent
          * @royaleignorecoercion org.apache.royale.core.IDataGrid
-         * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
          * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn
          */
         protected function createLists():void

@@ -20,11 +20,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -32,11 +31,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
-	
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
+	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
-    import org.apache.royale.html.beads.IListView;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
@@ -154,10 +153,10 @@ package org.apache.royale.jewel.beads.itemRenderers
          *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.core.IListView
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		protected function dataProviderChangeHandler(event:Event):void

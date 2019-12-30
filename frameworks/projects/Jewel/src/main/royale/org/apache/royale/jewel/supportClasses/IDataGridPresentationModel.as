@@ -16,39 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.models
+package org.apache.royale.jewel.supportClasses
 {
-	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
-	
-	/**
-	 *  The DataGridPresentationModel class contains the data to label the columns
-	 *  of the org.apache.royale.jewel.DataGrid along with the height of the rows or
-	 *  the align of column labels. 
-	 *  
+    /**
+	 *  The Jewel IDataGridPresentationModel interface holds key values for the display
+	 *  a Jewel DataGrid.
+	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DataGridPresentationModel extends ListPresentationModel implements IDataGridPresentationModel
-	{
-		/**
-		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function DataGridPresentationModel()
-		{
-			super();
-			
-			separatorThickness = 1;
-		}
-		
-		private var _columnLabels:Array;
+    public interface IDataGridPresentationModel extends IListPresentationModel
+    {
 		/**
 		 *  The labels used in each column header.
 		 *
@@ -57,37 +37,18 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get columnLabels():Array
-		{
-			return _columnLabels;
-		}
-		public function set columnLabels(value:Array):void
-		{
-			if (value != _columnLabels) {
-				_columnLabels = value;
-				dispatchEvent(new Event("columnLabelsChanged"));
-			}
-		}
+		function get columnLabels():Array;
+		function set columnLabels(value:Array):void;
 
-		private var _columnLabelAlign:String = ""
 		/**
 		 *  How column label aligns in the header
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
-		public function get columnLabelAlign():String
-		{
-			return _columnLabelAlign;
-		}
-		public function set columnLabelAlign(value:String):void
-		{
-			if (value != _columnLabelAlign) {
-				_columnLabelAlign = value;
-				dispatchEvent(new Event("columnsLabelAlignChanged"));
-			}
-		}
-	}
+		function get columnLabelAlign():String;
+		function set columnLabelAlign(value:String):void;
+    }
 }

@@ -21,9 +21,17 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
-	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
 	
+	/**
+	 *  The change event is dispatched whenever the datagrid's selection changes.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
 	[Event(name="change", type="org.apache.royale.events.Event")]
 	
 	/**
@@ -179,8 +187,8 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.IBead
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
 		 */
 		public function get presentationModel():IBead
 		{
@@ -195,7 +203,7 @@ package org.apache.royale.jewel
 			return _presentationModel;
 		}
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
 		 */
 		public function set presentationModel(value:IBead):void
 		{
@@ -209,14 +217,14 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
 		 */
 		public function get rowHeight():Number
 		{
 			return (presentationModel as IDataGridPresentationModel).rowHeight;
 		}
         /**
-         * @royaleignorecoercion org.apache.royale.core.IDataGridPresentationModel
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
          */
 		public function set rowHeight(value:Number):void
 		{

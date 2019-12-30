@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
 	
 	/**
 	 *  The ListPresentationModel holds values used by list controls for presenting
@@ -48,7 +48,6 @@ package org.apache.royale.jewel.beads.models
 		}
 		
 		private var _rowHeight:Number = 30;
-		
 		/**
 		 *  The height of each row.
 		 *
@@ -61,15 +60,15 @@ package org.apache.royale.jewel.beads.models
 		{
 			return _rowHeight;
 		}
-		
 		public function set rowHeight(value:Number):void
 		{
-			_rowHeight = value;
-			dispatchEvent(new Event("rowHeightChanged"));
+			if (value != _rowHeight) {
+				_rowHeight = value;
+				dispatchEvent(new Event("rowHeightChanged"));
+			}
 		}
 		
 		private var _separatorThickness:Number = 0;
-		
 		/**
 		 *  The distance between rows.
 		 *
@@ -82,15 +81,36 @@ package org.apache.royale.jewel.beads.models
 		{
 			return _separatorThickness;
 		}
-		
 		public function set separatorThickness(value:Number):void
 		{
-			_separatorThickness = value;
-			dispatchEvent(new Event("separatorThicknessChanged"));
+			if (value != _separatorThickness) {
+				_separatorThickness = value;
+				dispatchEvent(new Event("separatorThicknessChanged"));
+			}
+		}
+
+		private var _align:String = ""
+		/**
+		 *  How text align in the column
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get align():String
+		{
+			return _align;
+		}
+		public function set align(value:String):void
+		{
+			if (value != _align) {
+				_align = value;
+				dispatchEvent(new Event("alignChanged"));
+			}
 		}
 		
-		private var _strand:IStrand;
-		
+		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  

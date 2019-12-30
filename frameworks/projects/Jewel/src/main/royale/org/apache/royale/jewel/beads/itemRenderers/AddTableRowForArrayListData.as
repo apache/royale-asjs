@@ -21,7 +21,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -30,13 +29,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
-	import org.apache.royale.jewel.supportClasses.table.TableCell;
+	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.table.TableColumn;
-	import org.apache.royale.jewel.supportClasses.table.TableRow;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.html.beads.IListView;
 
     /**
 	 *  Handles the adding of an itemRenderer in a Table component once the corresponding datum has been added

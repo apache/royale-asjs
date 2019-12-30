@@ -19,10 +19,10 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 
 	/**
@@ -37,7 +37,7 @@ package org.apache.royale.jewel
 	[Event(name="initComplete", type="org.apache.royale.events.Event")]
 
 	/**
-	 * The change event is dispatched whenever the list's selection changes.
+	 *  The change event is dispatched whenever the list's selection changes.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -216,7 +216,7 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
 		 */
 		public function get presentationModel():IListPresentationModel
 		{

@@ -20,9 +20,9 @@ package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IListWithPresentationModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 
 	/**
@@ -118,7 +118,7 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
 		 */
 		public function get presentationModel():IBead
 		{
