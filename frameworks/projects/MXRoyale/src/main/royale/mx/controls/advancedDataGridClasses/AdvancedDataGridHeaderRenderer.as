@@ -30,6 +30,7 @@ import flash.text.TextLineMetrics;
 */
 import mx.controls.AdvancedDataGrid;
 import mx.controls.advancedDataGridClasses.AdvancedDataGridButtonBar;
+import mx.controls.beads.DataGridView;
 import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
@@ -51,6 +52,7 @@ import mx.managers.ISystemManager;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.ItemClickedEvent;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.geom.Point;
 import org.apache.royale.geom.Rectangle;
@@ -195,8 +197,39 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         // InteractiveObject variables.
         tabEnabled   = false;
         addEventListener(ToolTipEvent.TOOL_TIP_SHOW, toolTipShowHandler); 
+        addEventListener('click',handleClickEvent);
     }
     
+    /**
+     * @private
+     */
+    protected function handleClickEvent(event:MouseEvent):void
+    {
+        var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+        newEvent.index = index;
+        newEvent.data = data;
+        dispatchEvent(newEvent);
+    }
+    
+    private var _index:int;
+    
+    /**
+     *  The position with the dataProvider being shown by the itemRenderer instance.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.8
+     */
+    public function get index():int
+    {
+        return _index;
+    }
+    public function set index(value:int):void
+    {
+        _index = value;
+    }
+
     //--------------------------------------------------------------------------
     //
     //  Variables
@@ -332,6 +365,12 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
             if (label)
                 label = label.replace(" ", "&nbsp;");
         }
+        var dg:UIComponent = col.owner;
+        if (index == ((dg.view as DataGridView).header as AdvancedDataGridButtonBar).selectedIndex)
+        {
+            label += " " + (col.sortDescending ? "▼" : "▲");
+        }
+        
         return label;
     }
 

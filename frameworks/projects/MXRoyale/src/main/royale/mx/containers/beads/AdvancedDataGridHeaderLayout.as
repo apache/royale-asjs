@@ -19,6 +19,7 @@
 
 package mx.containers.beads
 {
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer;
 	import mx.core.EdgeMetrics;
 	import mx.core.UIComponent;
 	
@@ -129,7 +130,7 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
         {	
             var ilc:ILayoutChild = contentView.getElementAt(i) as ILayoutChild;
             if (ilc == null || !ilc.visible) continue;
-            if (!(ilc is IStyleableObject)) continue;
+            if (!(ilc is AdvancedDataGridHeaderRenderer)) continue;
             
             COMPILE::SWF {
                 if (buttonWidths) {

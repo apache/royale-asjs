@@ -83,7 +83,10 @@ adg|AdvancedDataGridButtonBar {
 adg|AdvancedDataGridHeaderRenderer {
 	horizontalAlign: center;
 	vertical-align: middle;
-	border: 1px solid #222222;
+	border-top: 1px solid #222222;
+	border-bottom: 1px solid #222222;
+	border-right: 1px solid #222222;
+	border-left: none;
 	font-weight: bold;
 }
 

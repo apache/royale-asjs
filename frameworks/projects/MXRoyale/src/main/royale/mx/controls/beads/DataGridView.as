@@ -111,12 +111,10 @@ package mx.controls.beads
             {
                 generateCols();
                 createLists();
-                (header as DataGridButtonBar).dataProvider = sharedModel.columns;
+                (header as DataGridButtonBar).dataProvider = sharedModel.columns;            
             }
             if (sharedModel.columns == null)
                 return;
-            if (visibleColumns == null)
-                visibleColumns = sharedModel.columns;
             super.handleDataProviderChanged(event);
         }
 
@@ -162,6 +160,7 @@ package mx.controls.beads
                     var index:int = 0;
                     // introspect the first item and use its fields
                     var itmObj:Object = iterator.current;
+
                     for (var p:String in itmObj)
                     {
                         if (p != "uid")
