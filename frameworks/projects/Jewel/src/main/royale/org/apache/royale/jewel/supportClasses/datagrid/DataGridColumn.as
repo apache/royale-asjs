@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.supportClasses.datagrid
 {
 	import org.apache.royale.core.IFactory;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IStyledUIBase;
 	import org.apache.royale.jewel.List;
 
 	/**
@@ -57,7 +57,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function createColumn():IUIBase
+		public function createColumn():IStyledUIBase
 		{
 			return new List();
 		}

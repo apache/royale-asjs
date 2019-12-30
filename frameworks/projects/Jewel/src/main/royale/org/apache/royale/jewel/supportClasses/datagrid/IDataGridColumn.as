@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.supportClasses.datagrid
 {
 	import org.apache.royale.core.IFactory;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IStyledUIBase;
 
 	/**
 	 *  Jewel IDataGridColumn is the interface used by Jewel DataGridColumn in the Jewel DataGrid.
@@ -98,6 +98,6 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		function createColumn():IUIBase;
+		function createColumn():IStyledUIBase;
 	}
 }
