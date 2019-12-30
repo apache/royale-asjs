@@ -22,6 +22,12 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.ElementWrapper;
+
+	COMPILE::JS
+	{
+		import org.apache.royale.utils.html.getStyle;
+	}
 	
 	/**
 	 * Use AbsolutePositioningViewBeadBase as the base class for custom control view beads.
@@ -77,14 +83,16 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+     * @royaleignorecoercion org.apache.royale.core.ElementWrapper
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			
 			COMPILE::JS {
-				if (host.element.style.position != "absolute" && host.element.style.position != "relative") {
-					host.element.style.position = "relative";
+				var style:CSSStyleDeclaration = getStyle(host as ElementWrapper);
+				if (style.position != "absolute" && style.position != "relative") {
+					style.position = "relative";
 				}
 			}
 		}
@@ -97,6 +105,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+     * @royaleignorecoercion org.apache.royale.core.ElementWrapper
 		 */
 		public function setAbsolutePosition(child:IChild, x:Number, y:Number):void
 		{
@@ -106,7 +115,7 @@ package org.apache.royale.html.beads
 			childHost.y = y;
 		
 			COMPILE::JS {
-				childHost.element.style.position = "absolute";
+				getStyle(childHost as ElementWrapper).position = "absolute";
 			}
 		}
 	}

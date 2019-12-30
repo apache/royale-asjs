@@ -37,6 +37,11 @@ package org.apache.royale.core
         import org.apache.royale.events.utils.MouseEventConverter;
     }
 
+    COMPILE::JS
+    {
+        import org.apache.royale.utils.html.getStyle;
+    }
+
     //--------------------------------------
     //  Events
     //--------------------------------------
@@ -691,8 +696,9 @@ package org.apache.royale.core
                 
 				var baseView:UIBase = initialView as UIBase;
 				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
-					this.element.style.height = window.innerHeight.toString() + 'px';
-					this.element.style.width = window.innerWidth.toString() + 'px';
+                    var style:CSSStyleDeclaration  = getStyle(this);
+					style.height = window.innerHeight.toString() + 'px';
+					style.width = window.innerWidth.toString() + 'px';
 					this.initialView.dispatchEvent(new Event("sizeChanged")); // kick off layout if % sizes
 				}
 				

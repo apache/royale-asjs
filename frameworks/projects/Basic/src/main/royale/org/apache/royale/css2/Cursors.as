@@ -38,6 +38,10 @@ package org.apache.royale.css2
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
+        import org.apache.royale.utils.html.getStyle;
+        import org.apache.royale.core.ElementWrapper;
+        import org.apache.royale.utils.html.getStyle;
+        import org.apache.royale.core.ElementWrapper;
     }
 
     /**
@@ -100,6 +104,7 @@ package org.apache.royale.css2
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
+         *  @royaleignorecoercion org.apache.royale.core.ElementWrapper
          */
 		public static function getCursor(obj:IRenderedObject):String
 		{
@@ -112,12 +117,13 @@ package org.apache.royale.css2
             }
             COMPILE::JS
             {
-                return obj.element.style.cursor;
+                return getStyle(obj as ElementWrapper).cursor;
             }
 		}
 
         /**
          *  @private
+         * @royaleignorecoercion org.apache.royale.core.ElementWrapper
          */
 		public static function setCursor(obj:IRenderedObject, cursor:String):void
 		{
@@ -176,7 +182,7 @@ package org.apache.royale.css2
             }
             COMPILE::JS
             {
-                obj.element.style.cursor = cursor;
+                getStyle(obj as ElementWrapper).cursor = cursor;
             }
 
 		}
