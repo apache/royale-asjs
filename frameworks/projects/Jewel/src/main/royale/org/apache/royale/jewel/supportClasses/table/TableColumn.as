@@ -140,7 +140,7 @@ package org.apache.royale.jewel.supportClasses.table
 			_className = value;
 		}
 
-		private var _align:String = ""
+		private var _align:String = "";
 		/**
 		 *  How text align in the column
 		 *

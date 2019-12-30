@@ -89,7 +89,7 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
-		private var _align:String = ""
+		private var _align:String = "left";
 		/**
 		 *  How text align in the column
 		 *

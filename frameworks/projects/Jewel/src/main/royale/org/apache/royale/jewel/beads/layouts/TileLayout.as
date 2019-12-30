@@ -18,19 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	import org.apache.royale.core.LayoutBase;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.layout.EdgeData;
-    import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.layout.ILayoutStyleProperties;
-	import org.apache.royale.core.UIBase;
-
 	COMPILE::JS
 	{
-		import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.core.WrappedHTMLElement;
 	}
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.layout.ILayoutStyleProperties;
 
 	/**
 	 *  The TileLayout class bead sizes and positions the elements it manages into rows and columns.
@@ -41,7 +40,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.4
 	 */
 	public class TileLayout extends LayoutBase implements ILayoutStyleProperties
 	{
@@ -51,7 +50,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function TileLayout()
 		{
@@ -68,7 +67,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get numColumns():Number
 		{
@@ -87,7 +86,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get columnWidth():Number
 		{
@@ -106,7 +105,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.4
 		 */
 		public function get rowHeight():Number
 		{
