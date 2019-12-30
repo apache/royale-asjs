@@ -80,7 +80,7 @@ limitations under the License.
 					</j:beads>
 					<j:columns>
 						<j:DataGridColumn label="Images" dataField="image" 
-											itemRenderer="itemRenderers.ImageListItemRenderer"/>
+										itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
 						<j:DataGridColumn label="Title" dataField="title"/>
 						<j:DataGridColumn label="Sales" dataField="sales"/>
 					</j:columns>
@@ -101,7 +101,7 @@ limitations under the License.
 					dataProvider="{productModel.productList}">
 					<j:columns>
 						<j:DataGridColumn label="Images" dataField="image" columnWidth="90" 
-											itemRenderer="itemRenderers.ImageListItemRenderer"/>
+										itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
 						<j:DataGridColumn label="Title" dataField="title" columnWidth="120"/>
 						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70"/>
 					</j:columns>
@@ -131,7 +131,7 @@ limitations under the License.
 					</j:beads>
 					<j:columns>
 						<j:DataGridColumn label="Icon" dataField="icon" 
-											itemRenderer="itemRenderers.IconItemRenderer"/>
+											itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
 						<j:DataGridColumn label="Label" dataField="label"/>
 						<j:DataGridColumn label="Set" dataField="componentSet"/>
 					</j:columns>
@@ -153,7 +153,7 @@ limitations under the License.
 					dataProvider="{listModel.iconListData}">
 					<j:columns>
 						<j:DataGridColumn label="Icon" dataField="icon" columnWidth="90" 
-											itemRenderer="itemRenderers.IconItemRenderer"/>
+											itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
 						<j:DataGridColumn label="Label" dataField="label" columnWidth="200"/>
 					</j:columns>
 				</j:DataGrid>
