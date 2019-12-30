@@ -124,8 +124,7 @@ package org.apache.royale.jewel.supportClasses.table
 		private var _className:String;
 		
 		/**
-		 * The name of the style class to use for this column. If this is not set
-		 * it defaults to DataGridColumnList.
+		 *  The name of the style class to use for this column.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

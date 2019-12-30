@@ -114,7 +114,6 @@ package
         import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase; SelectableButtonBase;
         
         import org.apache.royale.jewel.beads.views.DataGridView; DataGridView;
-        import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList; DataGridColumnList;
         import org.apache.royale.jewel.beads.layouts.DataGridLayout; DataGridLayout;
 
         import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect; positionInsideBoundingClientRect;
