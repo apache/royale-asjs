@@ -95,6 +95,7 @@
     <js-complex-implicit-coercions>false</js-complex-implicit-coercions>
     <js-resolve-uncertain>false</js-resolve-uncertain>
     <js-vector-index-checks>false</js-vector-index-checks>
+    <js-vector-emulation-class>Array</js-vector-emulation-class>
     
 
 </royale-config>
