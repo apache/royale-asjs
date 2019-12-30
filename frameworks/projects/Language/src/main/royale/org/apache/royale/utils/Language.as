@@ -367,6 +367,7 @@ package org.apache.royale.utils
          * @param arr
          * @param names
          * @param opt
+         * @royaleignorecoercion Array
          */
         public static function sortOn(arr:Array, names:Object, opt:Object = 0):Array
         {
