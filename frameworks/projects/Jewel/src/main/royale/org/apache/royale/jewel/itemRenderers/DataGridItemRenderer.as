@@ -33,7 +33,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 
-			typeNames = "jewel item dg";
+			typeNames = "jewel datagriditem";
         }
     }
 }
