@@ -18,23 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
-	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IStyledUIBase;
-	import org.apache.royale.jewel.List;
+	import org.apache.royale.jewel.supportClasses.table.TableColumn;
 
 	/**
 	 *  The DataGridColumn class is the collection of properties that describe
 	 *  a column of the org.apache.royale.jewel.DataGrid: which renderer 
 	 *  to use for each cell in the column, the width of the column, the label for the 
 	 *  column, and the name of the field in the data containing the value to display 
-	 *  in the column. 
+	 *  in the column.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DataGridColumn implements IDataGridColumn
+	public class DataGridColumn extends TableColumn implements IDataGridColumn
 	{
 		/**
 		 *  constructor.
@@ -59,143 +58,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 */
 		public function createColumn():IStyledUIBase
 		{
-			return new List();
-		}
-		
-		private var _itemRenderer:IFactory;
-		
-		/**
-		 *  The itemRenderer class or factory to use to make instances of itemRenderers for
-		 *  display of data.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get itemRenderer():IFactory
-		{
-			return _itemRenderer;
-		}
-		public function set itemRenderer(value:IFactory):void
-		{
-			_itemRenderer = value;
-		}
-		
-		private var _columnWidth:Number = Number.NaN;
-		
-		/**
-		 *  The width of the column (default is 100 pixels).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get columnWidth():Number
-		{
-			return _columnWidth;
-		}
-		public function set columnWidth(value:Number):void
-		{
-			_columnWidth = value;
-		}
-		
-		private var _label:String;
-		
-		/**
-		 *  The label for the column (appears in the header area).
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get label():String
-		{
-			return _label;
-		}
-		public function set label(value:String):void
-		{
-			_label = value;
-		}
-		
-		private var _dataField:String;
-		
-		/**
-		 *  The name of the field containing the data value presented by the column. This value is used
-		 *  by the itemRenderer is select the property from the data.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get dataField():String
-		{
-			return _dataField;
-		}
-		public function set dataField(value:String):void
-		{
-			_dataField = value;
-		}
-		
-		private var _className:String;
-		
-		/**
-		 * The name of the style class to use for this column. If this is not set
-		 * it defaults to DataGridColumnList.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get className():String
-		{
-			return _className;
-		}
-		public function set className(value:String):void
-		{
-			_className = value;
-		}
-
-		private var _align:String = ""
-		/**
-		 *  How text align in the column
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get align():String
-		{
-			return _align;
-		}
-
-		public function set align(value:String):void
-		{
-			_align = value;
-		}
-
-		private var _columnLabelAlign:String = ""
-		/**
-		 *  How column label text align in the header
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get columnLabelAlign():String
-		{
-			return _columnLabelAlign;
-		}
-
-		public function set columnLabelAlign(value:String):void
-		{
-			_columnLabelAlign = value;
+			return new DataGridColumnList();
 		}
 	}
 }

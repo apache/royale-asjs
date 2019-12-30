@@ -509,7 +509,6 @@ j|DataGrid {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.DataGridView");
   IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridCollectionViewModel");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.DataGridLayout");
-  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DataGridItemRenderer");
   headerClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar");
   headerLayoutClass: ClassReference("org.apache.royale.jewel.beads.layouts.ButtonBarLayout");
   listAreaClass: ClassReference("org.apache.royale.jewel.supportClasses.datagrid.DataGridListArea");
@@ -521,6 +520,10 @@ j|DataGridListArea {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
   IViewport: ClassReference("org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport");
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+j|DataGridColumnList {
+  IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DataGridItemRenderer");
 }
 
 .jewel.datechooser .jewel.table {

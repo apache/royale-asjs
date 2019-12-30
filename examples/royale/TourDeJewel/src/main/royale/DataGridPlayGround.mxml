@@ -76,7 +76,7 @@ limitations under the License.
 						<js:ConstantBinding
 							sourceID="productModel"
 							sourcePropertyName="productList"
-							destinationPropertyName="dataProvider" />
+							destinationPropertyName="dataProvider"/>
 					</j:beads>
 					<j:columns>
 						<j:DataGridColumn label="Images" dataField="image" 
@@ -102,8 +102,8 @@ limitations under the License.
 					<j:columns>
 						<j:DataGridColumn label="Images" dataField="image" columnWidth="90" 
 											itemRenderer="itemRenderers.ImageListItemRenderer"/>
-						<j:DataGridColumn label="Title" dataField="title" columnWidth="120" />
-						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70" />
+						<j:DataGridColumn label="Title" dataField="title" columnWidth="120"/>
+						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70"/>
 					</j:columns>
 				</j:DataGrid>
 
@@ -154,7 +154,7 @@ limitations under the License.
 					<j:columns>
 						<j:DataGridColumn label="Icon" dataField="icon" columnWidth="90" 
 											itemRenderer="itemRenderers.IconItemRenderer"/>
-						<j:DataGridColumn label="Label" dataField="label" columnWidth="200" />
+						<j:DataGridColumn label="Label" dataField="label" columnWidth="200"/>
 					</j:columns>
 				</j:DataGrid>
 
