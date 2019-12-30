@@ -188,6 +188,9 @@ package org.apache.royale.core
         }
 
         /**
+         *  In Javascript platform for convenience we use NaN value to remove style, since Browsers
+         *  use defaults for unset style properties.
+         * 
          *  @private
          */
 		override public function set percentWidth(value:Number):void
@@ -212,6 +215,9 @@ package org.apache.royale.core
 		}
 
         /**
+         *  In Javascript platform for convenience we use NaN value to remove style, since Browsers
+         *  use defaults for unset style properties.
+         * 
          *  @private
          */
 		override public function set percentHeight(value:Number):void
@@ -237,6 +243,9 @@ package org.apache.royale.core
 		}
 
         /**
+         *  In Javascript platform for convenience we use NaN value to remove style, since Browsers
+         *  use defaults for unset style properties.
+         * 
          *  @copy org.apache.royale.core.ILayoutChild#setHeight
          *  
          *  @langversion 3.0
@@ -259,6 +268,9 @@ package org.apache.royale.core
         }
 
         /**
+         *  In Javascript platform for convenience we use NaN value to remove style, since Browsers
+         *  use defaults for unset style properties.
+         * 
          *  @copy org.apache.royale.core.ILayoutChild#setWidth
          *  
          *  @langversion 3.0
@@ -281,6 +293,9 @@ package org.apache.royale.core
         }
 
         /**
+         *  In Javascript platform for convenience we use NaN value to remove style, since Browsers
+         *  use defaults for unset style properties.
+         * 
          *  @copy org.apache.royale.core.ILayoutChild#setWidthAndHeight
          *  
          *  @langversion 3.0
@@ -311,6 +326,72 @@ package org.apache.royale.core
                     dispatchEvent(new Event("heightChanged"));
             }            
             dispatchEvent(new Event("sizeChanged"));
+        }
+
+        /**
+         *  In Javascript platform for convenience we use NaN value to remove style, since Browsers
+         *  use defaults for unset style properties.
+         * 
+         *  @copy org.apache.royale.core.ILayoutChild#setX
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
+         */
+        override public function setX(value:Number):void
+        {
+			COMPILE::SWF
+			{
+				super.x = value;					
+			}
+			COMPILE::JS
+			{
+				//positioner.style.position = 'absolute';
+                if(!isNaN(value))
+                {
+                    if (positioner.parentNode != positioner.offsetParent)
+                        value += (positioner.parentNode as HTMLElement).offsetLeft;
+                    positioner.style.left = value.toString() + 'px';
+                } else
+                {
+                    positioner.style.left = null;
+                }
+			}
+        }
+
+        /**
+         *  In Javascript platform for convenience we use NaN value to remove style, since Browsers
+         *  use defaults for unset style properties.
+         *  
+         *  @copy org.apache.royale.core.ILayoutChild#setY
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         *  @royaleignorecoercion HTMLElement
+         */
+        override public function setY(value:Number):void
+        {
+			COMPILE::SWF
+			{
+				super.y = value;					
+			}
+			COMPILE::JS
+			{
+				//positioner.style.position = 'absolute';
+                if(!isNaN(value))
+                {
+                    if (positioner.parentNode != positioner.offsetParent)
+                        value += (positioner.parentNode as HTMLElement).offsetTop;
+                    positioner.style.top = value.toString() + 'px';
+                } else
+                {
+                    positioner.style.top = null;
+                }
+			}
         }
     }
 }
