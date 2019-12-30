@@ -334,6 +334,19 @@ package org.apache.royale.core
             return arr.join(" ");
         }
 
+        private function toCamelCase(value:String):String
+        {
+            var c:int = value.indexOf("-");
+            while (c > -1)
+            {
+                value = value.substr(0, c) +
+                    value.charAt(c + 1).toUpperCase() +
+                    value.substr(c + 2);
+                c = value.indexOf("-");
+            }
+            return value;
+        }
+
         /**
          *  The map of values.  The format is not documented and it is not recommended
          *  to manipulate this structure directly.
@@ -359,14 +372,7 @@ package org.apache.royale.core
          */
 		public function getValue(thisObject:Object, valueName:String, state:String = null, attrs:Object = null):*
 		{
-            var c:int = valueName.indexOf("-");
-            while (c > -1)
-            {
-                valueName = valueName.substr(0, c) +
-                    valueName.charAt(c + 1).toUpperCase() +
-                    valueName.substr(c + 2);
-                c = valueName.indexOf("-");
-            }
+            valueName = toCamelCase(valueName);
 
             var value:*;
 			var o:*;
@@ -574,14 +580,7 @@ package org.apache.royale.core
          */
 		public function setValue(thisObject:Object, valueName:String, value:*):void
 		{
-            var c:int = valueName.indexOf("-");
-            while (c > -1)
-            {
-                valueName = valueName.substr(0, c) +
-                    valueName.charAt(c + 1).toUpperCase() +
-                    valueName.substr(c + 2);
-                c = valueName.indexOf("-");
-            }
+            valueName = toCamelCase(valueName);
 			var oldValue:Object = values[valueName];
 			if (oldValue !== value)
 			{
@@ -670,14 +669,7 @@ package org.apache.royale.core
                 var pieces:Array = splitAndTrim(part, ":");
                 if (pieces.length < 2) continue;
                 var valueName:String = pieces[0];
-                var c:int = valueName.indexOf("-");
-	            while (c != -1)
-	            {
-	                valueName = valueName.substr(0, c) +
-	                    valueName.charAt(c + 1).toUpperCase() +
-	                    valueName.substr(c + 2);
-	                c = valueName.indexOf("-");
-	            }
+                valueName = toCamelCase(valueName);
                 
                 var value:String = pieces[1];
                 if (value == "null")
@@ -729,14 +721,7 @@ package org.apache.royale.core
             for (var valueName:String in ruleValues)
             {
                 var v:* = ruleValues[valueName];
-                var c:int = valueName.indexOf("-");
-                while (c > -1)
-                {
-                    valueName = valueName.substr(0, c) +
-                        valueName.charAt(c + 1).toUpperCase() +
-                        valueName.substr(c + 2);
-                    c = valueName.indexOf("-");
-                }
+                valueName = toCamelCase(valueName);
                 asValues[valueName] = v;
             }
             values[ruleName] = asValues;
