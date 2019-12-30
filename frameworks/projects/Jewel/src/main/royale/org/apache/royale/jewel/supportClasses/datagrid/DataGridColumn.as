@@ -159,5 +159,43 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		{
 			_className = value;
 		}
+
+		private var _align:String = ""
+		/**
+		 *  How text align in the column
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get align():String
+		{
+			return _align;
+		}
+
+		public function set align(value:String):void
+		{
+			_align = value;
+		}
+
+		private var _columnLabelAlign:String = ""
+		/**
+		 *  How column label text align in the header
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		public function get columnLabelAlign():String
+		{
+			return _columnLabelAlign;
+		}
+
+		public function set columnLabelAlign(value:String):void
+		{
+			_columnLabelAlign = value;
+		}
 	}
 }

@@ -99,5 +99,28 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @productversion Royale 0.9.4
 		 */
 		function createColumn():IStyledUIBase;
+
+		/**
+		 * The name of the style class to use for this column. If this is not set
+		 * it defaults to DataGridColumnList.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		function get align():String;
+		function set align(value:String):void;
+
+		/**
+		 *  How column label text align in the header
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.4
+		 */
+		function get columnLabelAlign():String;
+		function set columnLabelAlign(value:String):void;
 	}
 }
