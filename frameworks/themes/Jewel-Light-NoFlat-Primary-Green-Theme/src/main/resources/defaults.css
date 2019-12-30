@@ -332,13 +332,13 @@ j|Card {
 .jewel.datagrid .jewel.list.column.last {
   border-bottom-right-radius: 0.25rem;
 }
-.jewel.datagrid .jewel.list.column .jewel.item {
+.jewel.datagrid .jewel.list.column .jewel.datagriditem {
   border-bottom: 1px solid #ededed;
 }
-.jewel.datagrid .jewel.list.column .jewel.item.primary.hovered {
+.jewel.datagrid .jewel.list.column .jewel.datagriditem.primary.hovered {
   background: #60cc6d;
 }
-.jewel.datagrid .jewel.list.column .jewel.item.primary.selected, .jewel.datagrid .jewel.list.column .jewel.item.primary.selectable:active {
+.jewel.datagrid .jewel.list.column .jewel.datagriditem.primary.selected, .jewel.datagrid .jewel.list.column .jewel.datagriditem.primary.selectable:active {
   background: #4dc65c;
 }
 
@@ -613,19 +613,19 @@ j|FormItem {
   color: rgba(255, 255, 255, 0.5);
 }
 
-.jewel.item {
+.jewel.item, .jewel.datagriditem {
   padding: 8px;
 }
-.jewel.item.hovered {
+.jewel.item.hovered, .jewel.datagriditem.hovered {
   color: #FFFFFF;
 }
-.jewel.item.selected, .jewel.item.selectable:active {
+.jewel.item.selected, .jewel.item.selectable:active, .jewel.datagriditem.selected, .jewel.datagriditem.selectable:active {
   color: #FFFFFF;
 }
-.jewel.item.primary.hovered {
+.jewel.item.primary.hovered, .jewel.datagriditem.primary.hovered {
   background: #3AB549;
 }
-.jewel.item.primary.selected, .jewel.item.primary.selectable:active {
+.jewel.item.primary.selected, .jewel.item.primary.selectable:active, .jewel.datagriditem.primary.selected, .jewel.datagriditem.primary.selectable:active {
   background: #34a241;
 }
 
