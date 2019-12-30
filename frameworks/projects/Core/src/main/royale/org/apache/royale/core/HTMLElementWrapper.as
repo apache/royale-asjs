@@ -207,21 +207,5 @@ package org.apache.royale.core
 			}
 	        super.addBead(bead);
 		}
-                                		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
-		public function dispatchBubblingEvent(source:Object, e:Object):Boolean
-		{
-			// build the ancestors tree without setting the actual parentEventTarget
-			var ancestorsTree:Array = [];
-			var t:IEventDispatcher = source["parent"] as IEventDispatcher;
-			while (t != null) {
-				ancestorsTree.push(t);
-				t = t["parent"] as IEventDispatcher;
-			}
-			
-			return goog.events.EventTarget.dispatchEventInternal_(source, e, ancestorsTree);
-		}
 	}
 }

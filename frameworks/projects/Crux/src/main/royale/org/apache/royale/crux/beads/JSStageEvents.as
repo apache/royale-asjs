@@ -149,6 +149,7 @@ package org.apache.royale.crux.beads
          *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          *  @royaleignorecoercion MutationRecord
          *  @royaleignorecoercion NodeList
+         *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
          */
         COMPILE::JS
         private function mutationDetected(mutationsList:Array):void
@@ -196,7 +197,16 @@ package org.apache.royale.crux.beads
                             }
                         }
                         //dispatch a non-bubbling event, but support capture phase listeners
-                        royaleInstance.dispatchBubblingEvent(royaleInstance,new Event('addedToStage', false));
+                        // build the ancestors tree without setting the actual parentEventTarget
+                        var e:Object = new Event('addedToStage', false);
+                        var ancestorsTree:Array = [];
+                        var t:IEventDispatcher = royaleInstance["parent"] as IEventDispatcher;
+                        while (t != null) {
+                            ancestorsTree.push(t);
+                            t = t["parent"] as IEventDispatcher;
+                        }
+                        
+                        goog.events.EventTarget.dispatchEventInternal_(royaleInstance, e, ancestorsTree);
                     }
                 }
             }
