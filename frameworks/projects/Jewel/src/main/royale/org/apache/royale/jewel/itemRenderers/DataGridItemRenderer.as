@@ -16,20 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.table
+package org.apache.royale.jewel.itemRenderers
 {
-	import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn;
-	
-	/**
-	 *  TableColumn is a DataGridColumn used in Jewel Table component
-	 *  with special table properties.
-	 *  
+    /**
+	 *  The DataGridItemRenderer defines the basic Item Renderer for a Jewel DataGrid Component.
+     *  For now is just a ListItemRenderer that populates some values from Jewel DataGridColumn.
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.7
 	 */
-	public class TableColumn extends DataGridColumn
+	public class DataGridItemRenderer extends ListItemRenderer
 	{
-	}
+        public function DataGridItemRenderer()
+		{
+			super();
+
+			typeNames = "jewel item dg";
+        }
+    }
 }
