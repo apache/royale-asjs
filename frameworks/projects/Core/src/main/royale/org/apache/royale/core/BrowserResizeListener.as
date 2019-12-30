@@ -22,7 +22,11 @@ COMPILE::SWF
 {
     import flash.events.Event;
     import flash.external.ExternalInterface;
-    import flash.utils.getQualifiedClassName;        
+    import flash.utils.getQualifiedClassName;
+}
+COMPILE::JS
+{
+    import org.apache.royale.utils.html.getStyle;
 }
 
     /**
@@ -130,6 +134,7 @@ COMPILE::SWF
         
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.ILayoutChild
+         * @royaleignorecoercion org.apache.royale.core.ElementWrapper
 		 */
         private function resizeHandler(event:Event):void
         {
@@ -148,10 +153,10 @@ COMPILE::SWF
             COMPILE::JS
             {
                 var initialView:ILayoutChild = app.initialView as ILayoutChild;
-                var element:HTMLElement = app.element;
+                var style:CSSStyleDeclaration = getStyle(app as ElementWrapper);
                 if (!isNaN(initialView.percentWidth) || !isNaN(initialView.percentHeight)) {
-                    element.style.height = window.innerHeight + 'px';
-                    element.style.width = window.innerWidth + 'px';
+                    style.height = window.innerHeight + 'px';
+                    style.width = window.innerWidth + 'px';
                     initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
                 }
             }

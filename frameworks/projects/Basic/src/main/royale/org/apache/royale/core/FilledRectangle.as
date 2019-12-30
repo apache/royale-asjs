@@ -22,6 +22,10 @@ package org.apache.royale.core
     {
         import flash.display.Shape;            
     }
+    COMPILE::JS
+    {
+    	import org.apache.royale.utils.html.getStyle;
+    }
 	
 	import org.apache.royale.core.UIBase;
 	
@@ -113,8 +117,9 @@ package org.apache.royale.core
             }
             COMPILE::JS
             {
-                element.style.position = 'absolute';
-                element.style.backgroundColor = '#' + _fillColor.toString(16);
+                var style:CSSStyleDeclaration = getStyle(this);
+                style.position = 'absolute';
+                style.backgroundColor = '#' + _fillColor.toString(16);
                 if (!isNaN(x)) this.x = x;
                 if (!isNaN(y)) this.y = y;
                 if (!isNaN(width)) this.width = width;

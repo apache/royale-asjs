@@ -25,6 +25,10 @@ package org.apache.royale.core
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
+	COMPILE::JS
+	{
+		import org.apache.royale.utils.html.getStyle;
+	}
 	
 	/**
 	 * The StyleChangeNotifier can be added to the bead list of any UI component
@@ -73,10 +77,7 @@ package org.apache.royale.core
 			COMPILE::JS {
 				var host:UIHTMLElementWrapper = UIHTMLElementWrapper(_strand);
 				if (host) {
-					var element:WrappedHTMLElement = host.element as WrappedHTMLElement;
-					if (element) {
-						element.style[event.propertyName] = event.newValue;
-					}
+					getStyle(host)[event.propertyName] = event.newValue;
 				}
 			}
 		}

@@ -23,6 +23,12 @@ package org.apache.royale.core
         import flash.external.ExternalInterface;
         import flash.utils.getQualifiedClassName;
     }    
+
+    COMPILE::JS
+    {
+        import org.apache.royale.utils.html.getStyle;
+    }
+
     import org.apache.royale.events.Event;
     
     /**
@@ -64,6 +70,9 @@ package org.apache.royale.core
             app.addEventListener("viewChanged", viewChangedHandler);
         }
         
+        /**
+         * @royaleignorecoercion org.apache.royale.core.ElementWrapper
+         */
         private function viewChangedHandler(event:Event):void
         {
             COMPILE::SWF
@@ -81,7 +90,7 @@ package org.apache.royale.core
             }
             COMPILE::JS
             {
-                app.element.style.overflow = 'auto';
+                getStyle(app as ElementWrapper).overflow = 'auto';
             }
         }
 

@@ -39,6 +39,7 @@ package org.apache.royale.core
     {
         import org.apache.royale.html.util.addElementToWrapper;
         import org.apache.royale.utils.CSSUtils;
+        import org.apache.royale.utils.html.getStyle;
     }
 
 	/**
@@ -414,7 +415,7 @@ package org.apache.royale.core
             if (!isNaN(_explicitWidth))
                 return _explicitWidth;
             var pixels:Number;
-            var strpixels:String = element.style.width as String;
+            var strpixels:String = getStyle(this).width as String;
             if(strpixels == null)
                 pixels = NaN;
             else
@@ -510,7 +511,7 @@ package org.apache.royale.core
             if (!isNaN(_explicitHeight))
                 return _explicitHeight;
             var pixels:Number;
-            var strpixels:String = element.style.height as String;
+            var strpixels:String = getStyle(this).height as String;
             if(strpixels == null)
                 pixels = NaN;
             else
