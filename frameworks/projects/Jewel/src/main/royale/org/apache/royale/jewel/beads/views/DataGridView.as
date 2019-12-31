@@ -35,6 +35,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
@@ -313,7 +314,12 @@ package org.apache.royale.jewel.beads.views
                 list.labelField = dataGridColumn.dataField;
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
                 list.addEventListener('selectionChanged', handleColumnListChange);
-                list.addBead(presentationModel as IBead);
+
+                var pm:ListPresentationModel = new ListPresentationModel();
+                pm.rowHeight = presentationModel.rowHeight;
+                pm.separatorThickness = presentationModel.separatorThickness;
+                pm.align = dataGridColumn.align;
+                list.addBead(pm as IBead);
 
                 (_listArea as UIBase).percentWidth = 100;
                 (_listArea as IParent).addElement(list as IChild);

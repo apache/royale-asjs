@@ -294,6 +294,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 				UIBase(itemRenderer).style = style;
 				UIBase(itemRenderer).height = presentationModel.rowHeight;
 				UIBase(itemRenderer).percentWidth = 100;
+
+				if(itemRenderer is IAlignItemRenderer)
+				{
+					(itemRenderer as IAlignItemRenderer).align = presentationModel.align;
+				}
 			}
 			
 			setData(itemRenderer, item, index);

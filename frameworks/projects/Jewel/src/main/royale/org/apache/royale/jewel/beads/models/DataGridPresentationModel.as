@@ -69,7 +69,7 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 
-		private var _columnLabelAlign:String = ""
+		private var _columnLabelAlign:String = "left"
 		/**
 		 *  How column label aligns in the header
 		 *

@@ -93,7 +93,8 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Using specific column widths, rowHeight=54 and height=220"/>
+				<j:Label text="Using specific column widths, rowHeight=54 and height=220, last column has right alignment"
+					multiline="true"/>
 
 				<j:DataGrid localId="datagrid2" height="205"
 					rowHeight="54" emphasis="primary" 
@@ -103,7 +104,7 @@ limitations under the License.
 						<j:DataGridColumn label="Images" dataField="image" columnWidth="90" 
 										itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
 						<j:DataGridColumn label="Title" dataField="title" columnWidth="120"/>
-						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70"/>
+						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70" align="right"/>
 					</j:columns>
 				</j:DataGrid>
 
@@ -118,7 +119,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary'"
+				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary', last column has center alignment"
 					multiline="true"/>
 
 				<j:DataGrid width="100%" emphasis="secondary" rowHeight="42"
@@ -133,7 +134,7 @@ limitations under the License.
 						<j:DataGridColumn label="Icon" dataField="icon" 
 											itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
 						<j:DataGridColumn label="Label" dataField="label"/>
-						<j:DataGridColumn label="Set" dataField="componentSet"/>
+						<j:DataGridColumn label="Set" dataField="componentSet" align="center"/>
 					</j:columns>
 				</j:DataGrid>
 
