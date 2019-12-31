@@ -46,7 +46,8 @@ limitations under the License.
     </fx:Script>
 
     <j:beads>
-        <js:ItemRendererDataBinding />
+        <js:ItemRendererDataBinding/>
+        <j:HorizontalCenteredLayout/>
     </j:beads>
 
     <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true"

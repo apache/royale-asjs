@@ -50,6 +50,17 @@ limitations under the License.
 			grid.dataProvider = data;
 		}
 
+		private function addData():void
+		{
+			var product:Product = new Product("xx100","New Item",44,10,"assets/smallbluerect.jpg");
+			productModel.productList.addItemAt(product, 2);
+		}
+		
+		private function removeData():void
+		{
+			productModel.productList.removeItemAt(2);
+		}
+
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
 		]]>
@@ -68,7 +79,8 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Basic configuration, default width, no column widths, no rowHeight"/>
+				<j:Label text="Basic configuration, default width, no column widths, no rowHeight. First column uses a custom renderer."
+						multiline="true"/>
 
 				<j:DataGrid localId="datagrid"
 					change="dataGridProductChange(event.target as DataGrid, datagrid_lb)">
@@ -93,7 +105,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Using specific column widths, rowHeight=54 and height=220, last column has right alignment"
+				<j:Label text="Using specific column widths, rowHeight=54 and height=220, first column uses a custom renderer and last column has right alignment"
 					multiline="true"/>
 
 				<j:DataGrid localId="datagrid2" height="205"
@@ -101,15 +113,20 @@ limitations under the License.
 					change="dataGridProductChange(event.target as DataGrid, datagrid2_lb)"
 					dataProvider="{productModel.productList}">
 					<j:columns>
-						<j:DataGridColumn label="Images" dataField="image" columnWidth="90" 
+						<j:DataGridColumn label="Images" dataField="image" columnWidth="100" 
 										itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
-						<j:DataGridColumn label="Title" dataField="title" columnWidth="120"/>
-						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70" align="right"/>
+						<j:DataGridColumn label="Title" dataField="title" columnWidth="140"/>
+						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="80" align="right"/>
 					</j:columns>
 				</j:DataGrid>
 
 				<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
-				<j:Button text="Refresh Grid" click="refreshGrid(datagrid2, (productModel as ProductModel).productList)" emphasis="primary"/>
+
+				<j:HGroup gap="3">
+					<j:Button text="Refresh Grid" click="refreshGrid(datagrid2, (productModel as ProductModel).productList)"/>
+					<j:Button text="Add Row" click="addData()" emphasis="primary"/>
+					<j:Button text="Remove Row" click="removeData()"/>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

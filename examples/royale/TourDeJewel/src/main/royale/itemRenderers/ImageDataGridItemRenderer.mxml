@@ -36,6 +36,7 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding/>
+        <j:HorizontalCenteredLayout/>
     </j:beads>
 
     <j:Image src="{ product ? product.image : '' }"/>
