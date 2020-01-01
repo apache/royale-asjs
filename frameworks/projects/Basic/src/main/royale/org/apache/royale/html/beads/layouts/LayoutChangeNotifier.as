@@ -23,6 +23,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  The LayoutChangeNotifier notifies layouts when a property
@@ -33,7 +34,7 @@ package org.apache.royale.html.beads.layouts
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class LayoutChangeNotifier implements IBead
+	public class LayoutChangeNotifier extends Bead
 	{
 		/**
 		 *  constructor.
@@ -47,20 +48,6 @@ package org.apache.royale.html.beads.layouts
 		{
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
 			
         private var _value:* = undefined;
         
@@ -97,7 +84,7 @@ package org.apache.royale.html.beads.layouts
                 if (_strand is IBeadView)
                     IBeadView(_strand).host.dispatchEvent(new Event("layoutNeeded"));
                 else
-                    IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+                    notify("layoutNeeded");
             }
 		}
 		

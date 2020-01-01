@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.IRollOverModel;
@@ -27,11 +28,9 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
-	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.html.beads.IListView;
-	
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.events.ItemRemovedEvent;
+	import org.apache.royale.html.beads.IListView;
 
     /**
      *  The ListSingleSelectionMouseController class is a controller for
@@ -48,7 +47,7 @@ package org.apache.royale.html.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-	public class ListSingleSelectionMouseController implements IBeadController
+	public class ListSingleSelectionMouseController extends Bead implements IBeadController
 	{
         /**
          *  Constructor.
@@ -91,8 +90,6 @@ package org.apache.royale.html.beads.controllers
          *  @productversion Royale 0.9
          */
         protected var dataGroup:IItemRendererParent;
-
-		private var _strand:IStrand;
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -105,13 +102,13 @@ package org.apache.royale.html.beads.controllers
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
 			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
 			listView = value.getBeadByType(IListView) as IListView;
-			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
-			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
+			listenOnStrand("itemAdded", handleItemAdded);
+			listenOnStrand("itemRemoved", handleItemRemoved);
 		}
 		
         /**

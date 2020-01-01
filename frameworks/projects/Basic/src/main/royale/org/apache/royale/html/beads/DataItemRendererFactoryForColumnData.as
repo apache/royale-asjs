@@ -31,6 +31,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.Bead;
 	
 	/**
 	 *  The DataItemRendererFactoryForColumnData class implents the 
@@ -42,7 +43,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataItemRendererFactoryForColumnData implements IBead, IDataProviderItemRendererMapper
+	public class DataItemRendererFactoryForColumnData extends Bead implements IDataProviderItemRendererMapper
 	{
 		/**
 		 *  constructor.
@@ -57,9 +58,7 @@ package org.apache.royale.html.beads
 		}
 		
 		private var selectionModel:IDataGridModel;
-		
-		private var _strand:IStrand;
-		
+				
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -68,14 +67,15 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
+			listenOnStrand("initComplete",finishSetup);
 		}
 		
 		/**
 		 * @private
+     * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
 		 */
 		private function finishSetup(event:Event):void
 		{			
@@ -99,6 +99,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
+     * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
 		 */
 		public function get itemRendererFactory():IItemRendererClassFactory
 		{
@@ -124,6 +125,8 @@ package org.apache.royale.html.beads
 		
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.html.beads.DataGridColumnView
+         * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
 		 */
 		private function dataProviderChangeHandler(event:Event):void
 		{
@@ -147,7 +150,7 @@ package org.apache.royale.html.beads
 				tf.data = dp[i];
 			}
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			notify("itemsCreated");
 		}
 	}
 }

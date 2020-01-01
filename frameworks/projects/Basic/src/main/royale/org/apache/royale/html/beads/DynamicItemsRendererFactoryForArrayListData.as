@@ -37,6 +37,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IListView;
     import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.core.DispatcherBead;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -50,7 +51,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9
      */
-    public class DynamicItemsRendererFactoryForArrayListData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
+    public class DynamicItemsRendererFactoryForArrayListData extends DispatcherBead implements IDataProviderItemRendererMapper
     {
         public function DynamicItemsRendererFactoryForArrayListData(target:Object = null)
         {
@@ -59,7 +60,6 @@ package org.apache.royale.html.beads
 
         protected var labelField:String;
 
-        protected var _strand:IStrand;
 
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -69,10 +69,10 @@ package org.apache.royale.html.beads
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
          */
-        public function set strand(value:IStrand):void
+        override public function set strand(value:IStrand):void
         {
             _strand = value;
-            IEventDispatcher(value).addEventListener("initComplete", initComplete);
+            listenOnStrand("initComplete", initComplete);
         }
 
         /**
@@ -82,6 +82,8 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+         * @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         * @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
         protected function initComplete(event:Event):void
         {
@@ -121,6 +123,7 @@ package org.apache.royale.html.beads
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
+         * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
          */
         public function get itemRendererFactory():IItemRendererClassFactory
         {
@@ -151,6 +154,8 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
         protected function dataProviderChangeHandler(event:Event):void
         {
@@ -173,11 +178,13 @@ package org.apache.royale.html.beads
                 fillRenderer(i, item, ir, presentationModel);
             }
 
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+            notify("itemsCreated");
         }
 
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
         protected function itemAddedHandler(event:CollectionEvent):void
         {
@@ -198,12 +205,13 @@ package org.apache.royale.html.beads
 				ir.index = i;
 			}
 
-			(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			notify("itemsCreated");
+			notify("layoutNeeded");
         }
 
 		/**
 		 * @private
+         * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
         protected function fillRenderer(index:int,
                                       item:Object,

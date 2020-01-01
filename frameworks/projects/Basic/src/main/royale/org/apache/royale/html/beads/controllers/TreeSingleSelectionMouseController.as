@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,8 +20,6 @@ package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.collections.ITreeData;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemClickedEvent;
 
 	/**
@@ -71,18 +69,18 @@ package org.apache.royale.html.beads.controllers
 			
 			var node:Object = event.data;
 			
-            if (treeData.hasChildren(node))
-            {
-    			if (treeData.isOpen(node)) {
-    				treeData.closeNode(node);
-    			} else {
-    				treeData.openNode(node);
-    			}
-            }
-            
+			if (treeData.hasChildren(node))
+			{
+				if (treeData.isOpen(node)) {
+					treeData.closeNode(node);
+				} else {
+					treeData.openNode(node);
+				}
+			}
+			
 			// reset the selection
 			listModel.selectedItem = node;
-            IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			notify("change");
 		}
 	}
 }

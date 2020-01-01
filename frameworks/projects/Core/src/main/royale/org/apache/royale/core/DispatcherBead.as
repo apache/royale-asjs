@@ -31,9 +31,9 @@ package org.apache.royale.core
    */
   public class DispatcherBead extends EventDispatcher implements IBead
   {
-    public function DispatcherBead()
+    public function DispatcherBead(target:IEventDispatcher = null)
     {
-      
+        super(target);      
     }
 
     /**
