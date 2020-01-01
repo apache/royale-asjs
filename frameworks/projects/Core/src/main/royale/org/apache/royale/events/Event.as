@@ -153,22 +153,26 @@ package org.apache.royale.events
      * 
      *  @royalesuppresspublicvarwarning
      */
-    COMPILE::JS
-    public class Event extends goog.events.Event implements IRoyaleEvent {
+	COMPILE::JS
+	public class Event implements IRoyaleEvent {
 
 		public static const CHANGE:String = "change";
 		public static const COMPLETE:String = "complete";
 		public static const SELECT:String = "select";
 		public static const OPEN:String = "open";
 
-        public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
-            super(type);
+    public function Event(type:String, bubbles:Boolean = false, cancelable:Boolean = false) {
+      this.type = type;
 			this.bubbles = bubbles;
 			this.cancelable = cancelable;
-        }
+    }
 
+		public var type:String;
+		public var target:Object;
+		public var currentTarget:Object;
 		public var bubbles:Boolean;
 		public var cancelable:Boolean;
+		
 				
 		/**
 		 * Google Closure doesn't seem to support stopImmediatePropagation, but
@@ -183,20 +187,39 @@ package org.apache.royale.events
 			return _immediatePropogationStopped;
 		}
 		
+		private var _propogationStopped:Boolean;
+
+		public function get propogationStopped():Boolean
+		{
+			return _propogationStopped;
+		}
+		public function stopPropagation():void
+		{
+			_propogationStopped = true;
+		}
+
 		public function stopImmediatePropagation():void
 		{
 			_immediatePropogationStopped = true;
 		}
-		
+		private var _defaultPrevented:Boolean;
+		public function preventDefault():void
+		{	
+			_defaultPrevented = true;
+		}
+		public function get defaultPrevented():Boolean
+		{
+			return _defaultPrevented;
+		}
+		public function isDefaultPrevented():Boolean
+		{
+			return _defaultPrevented;
+		}
 		public function cloneEvent():IRoyaleEvent
 		{
 			return new org.apache.royale.events.Event(type, bubbles, cancelable);
 		}
 
-		public function isDefaultPrevented():Boolean
-		{
-			return defaultPrevented;
-		}
         
         /**
          * Determine if the target is the same as the event's target.  The event's target
