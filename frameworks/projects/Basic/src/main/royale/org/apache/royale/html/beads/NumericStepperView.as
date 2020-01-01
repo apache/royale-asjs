@@ -35,6 +35,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Spinner;
 	import org.apache.royale.html.TextInput;
 	import org.apache.royale.html.supportClasses.Border;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The NumericStepperView class creates the visual elements of the 
@@ -189,7 +190,7 @@ package org.apache.royale.html.beads
 			input.text = "" + spinner.value;
 			
 			var newEvent:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", event.oldValue, event.newValue);
-			notify(newEvent);
+			sendStrandEvent(_strand,newEvent);
 		}
 		
 		/**

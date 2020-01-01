@@ -38,6 +38,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.html.beads.IListView;
     import org.apache.royale.utils.loadBeadFromValuesManager;
     import org.apache.royale.core.DispatcherBead;
+    import org.apache.royale.utils.sendStrandEvent;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -178,7 +179,7 @@ package org.apache.royale.html.beads
                 fillRenderer(i, item, ir, presentationModel);
             }
 
-            notify("itemsCreated");
+            sendStrandEvent(_strand,"itemsCreated");
         }
 
 		/**
@@ -205,8 +206,8 @@ package org.apache.royale.html.beads
 				ir.index = i;
 			}
 
-			notify("itemsCreated");
-			notify("layoutNeeded");
+			sendStrandEvent(_strand,"itemsCreated");
+			sendStrandEvent(_strand,"layoutNeeded");
         }
 
 		/**

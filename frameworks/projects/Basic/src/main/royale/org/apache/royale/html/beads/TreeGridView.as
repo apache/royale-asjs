@@ -43,6 +43,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 * The TreeGridView class is responsible for creating the sub-components of the TreeGrid:
@@ -70,7 +71,6 @@ package org.apache.royale.html.beads
 			super();
 		}
 		
-		private var _strand:IStrand;
 		private var _header:DataGridButtonBar;
 		private var _listArea:IUIBase;
 		
@@ -200,8 +200,8 @@ package org.apache.royale.html.beads
 			listenOnStrand("widthChanged", handleSizeChanges);
 			listenOnStrand("heightChanged", handleSizeChanges);
 			
-			notify("dataGridViewCreated");
-			notify("layoutNeeded");
+			sendStrandEvent(_strand,"dataGridViewCreated");
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -218,7 +218,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDataProviderChanged(event:Event):void
 		{
-			notify("layoutNeeded");
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -253,7 +253,7 @@ package org.apache.royale.html.beads
 				return;
 			}
 			
-			notify('change');
+			sendStrandEvent(_strand,'change');
 		}
 		
 		/**
@@ -310,7 +310,7 @@ package org.apache.royale.html.beads
 				
 			}
 			
-			notify("layoutNeeded");
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 	}
 }

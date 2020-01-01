@@ -32,6 +32,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The DataItemRendererFactoryForColumnData class implents the 
@@ -150,7 +151,7 @@ package org.apache.royale.html.beads
 				tf.data = dp[i];
 			}
 			
-			notify("itemsCreated");
+			sendStrandEvent(_strand,"itemsCreated");
 		}
 	}
 }

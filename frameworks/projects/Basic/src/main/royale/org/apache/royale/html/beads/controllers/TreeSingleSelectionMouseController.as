@@ -21,6 +21,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.collections.ITreeData;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  The TreeSingleSelectionMouseController class is a controller for 
@@ -80,7 +81,7 @@ package org.apache.royale.html.beads.controllers
 			
 			// reset the selection
 			listModel.selectedItem = node;
-			notify("change");
+			sendStrandEvent(_strand,"change");
 		}
 	}
 }

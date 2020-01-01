@@ -71,21 +71,5 @@ package org.apache.royale.core
       (_strand as IEventDispatcher).addEventListener(eventType, handler, capture);
     }
 
-    /**
-     * Helper function for dispatching events from the strand
-     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-     */
-    protected function notify(event:Object):void
-    {
-      COMPILE::SWF{
-        if(event is String)
-          event = new flash.events.Event(event as String);
-        (_strand as IEventDispatcher).dispatchEvent(event as flash.events.Event);
-      }
-      COMPILE::JS
-      {
-        (_strand as IEventDispatcher).dispatchEvent(event);
-      }
-    }
   }
 }

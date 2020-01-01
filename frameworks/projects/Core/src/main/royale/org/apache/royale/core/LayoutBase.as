@@ -31,6 +31,7 @@ package org.apache.royale.core
 	import org.apache.royale.core.layout.MarginData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  This class is the base class for most, if not all, layouts. 
@@ -333,7 +334,7 @@ package org.apache.royale.core
 			
 			isLayoutRunning = false;
 			
-			notify("layoutComplete");
+			sendStrandEvent(_strand,"layoutComplete");
 			
 			/* measurement may not matter for all components
 			COMPILE::SWF

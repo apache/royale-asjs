@@ -34,6 +34,7 @@ package org.apache.royale.html.beads
 
 	COMPILE::SWF {
 		import org.apache.royale.core.SimpleCSSStylesWithFlex;
+		import org.apache.royale.utils.sendStrandEvent;
 	}
 
 	/**
@@ -293,7 +294,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleClose(event:Event):void
 		{
-			notify("close");
+			sendStrandEvent(_strand,"close");
 		}
 
 	}

@@ -30,6 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	COMPILE::JS{
 		import org.apache.royale.core.WrappedHTMLElement;
@@ -145,7 +146,7 @@ package org.apache.royale.html.beads
 		{
 			if (_strand)
 			{
-				notify(new ValueEvent("disabledChange", disabled));
+				sendStrandEvent(_strand,new ValueEvent("disabledChange", disabled));
 			}
 		}
 

@@ -24,6 +24,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The LayoutChangeNotifier notifies layouts when a property
@@ -84,7 +85,7 @@ package org.apache.royale.html.beads.layouts
                 if (_strand is IBeadView)
                     IBeadView(_strand).host.dispatchEvent(new Event("layoutNeeded"));
                 else
-                    notify("layoutNeeded");
+                    sendStrandEvent(_strand,"layoutNeeded");
             }
 		}
 		

@@ -42,6 +42,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.core.IImageView;
+    import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The ImageView class creates the visual elements of the org.apache.royale.html.Image component.
@@ -229,8 +230,7 @@ package org.apache.royale.core
         protected function loadHandler(event:Object):void
         {
             imageElement.removeEventListener('load', loadHandler);
-            var host:IUIBase = _strand as IUIBase;
-			notify("layoutNeeded");
+			sendStrandEvent(_strand,"layoutNeeded");
         }
         /**
          * @royaleignorecoercion HTMLElement
