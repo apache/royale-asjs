@@ -27,7 +27,9 @@ package org.apache.royale.utils
   import org.apache.royale.events.IEventDispatcher;
 
   /**
-   * Helper function for dispatching events from the strand
+   * Helper function for dispatching events from the bead
+   * Using this function prevent the need to cast IBead objects
+   * It also allows better minification
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
   public function sendBeadEvent(bead:IBead,event:Object):void

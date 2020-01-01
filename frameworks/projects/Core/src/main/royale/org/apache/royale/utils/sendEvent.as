@@ -23,25 +23,23 @@ package org.apache.royale.utils
     import flash.events.Event;
   }
 
-  import org.apache.royale.core.IStrand;
   import org.apache.royale.events.IEventDispatcher;
 
   /**
-   * Helper function for dispatching events from the strand
-   * Using this function prevent the need to cast IStrand objects
-   * It also allows better minification
+   * Helper function for dispatching events
+   * Using this helper function enables better minification because `dispatchEvent` cannot be minified
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
-  public function sendStrandEvent(strand:IStrand,event:Object):void
+  public function sendEvent(dispatcher:IEventDispatcher,event:Object):void
   {
       COMPILE::SWF{
         if(event is String)
           event = new flash.events.Event(event as String);
-        (strand as IEventDispatcher).dispatchEvent(event as flash.events.Event);
+        (dispatcher as IEventDispatcher).dispatchEvent(event as flash.events.Event);
       }
       COMPILE::JS
       {
-        (strand as IEventDispatcher).dispatchEvent(event);
+        (dispatcher as IEventDispatcher).dispatchEvent(event);
       }
   }
 }

@@ -318,8 +318,9 @@ internal class CoreClasses
 	import org.apache.royale.utils.date.addYears; addYears;
 	
 	import org.apache.royale.utils.event.hasPlatformModifier; hasPlatformModifier;
-	import org.apache.royale.utils.sendStrandEvent; sendStrandEvent;
+	import org.apache.royale.utils.sendEvent; sendEvent;
 	import org.apache.royale.utils.sendBeadEvent; sendBeadEvent;
+	import org.apache.royale.utils.sendStrandEvent; sendStrandEvent;
 
 	import org.apache.royale.utils.async.CompoundAsyncTask; CompoundAsyncTask;
 	import org.apache.royale.utils.async.SequentialAsyncTask; SequentialAsyncTask;
