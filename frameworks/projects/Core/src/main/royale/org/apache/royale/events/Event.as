@@ -168,18 +168,31 @@ package org.apache.royale.events
     }
 
 		public var type:String;
-		public var target:Object;
-		public var currentTarget:Object;
+		private var _target:Object;
+
+		public function get target():Object
+		{
+			return _target;
+		}
+
+		public function set target(value:Object):void
+		{
+			_target = value;
+		}
+		private var _currentTarget:Object;
+
+		public function get currentTarget():Object
+		{
+			return _currentTarget;
+		}
+
+		public function set currentTarget(value:Object):void
+		{
+			_currentTarget = value;
+		}
 		public var bubbles:Boolean;
 		public var cancelable:Boolean;
 		
-				
-		/**
-		 * Google Closure doesn't seem to support stopImmediatePropagation, but
-		 * actually the ElementWrapper fireListener override sends a
-		 * BrowserEvent in most/all cases where folks need stopImmediatePropagation
-		 * We're re-writing the goog behavior to stop immmediate propogation in EventDispatcher
-		 */
 		private var _immediatePropogationStopped:Boolean;
 
 		public function get immediatePropogationStopped():Boolean
@@ -221,25 +234,25 @@ package org.apache.royale.events
 		}
 
         
-        /**
-         * Determine if the target is the same as the event's target.  The event's target
-         * can sometimes be an internal target so this tests if the outer component
-         * matches the potential target
-         *
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.0
-         * @royaleignorecoercion Object
-         */
-        public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
-        {
-            if (potentialTarget === target)
+		/**
+		 * Determine if the target is the same as the event's target.  The event's target
+		 * can sometimes be an internal target so this tests if the outer component
+		 * matches the potential target
+		 *
+		 * @langversion 3.0
+		 * @playerversion Flash 10.2
+		 * @playerversion AIR 2.6
+		 * @productversion Royale 0.0
+		 * @royaleignorecoercion Object
+		 */
+		public function isSameTarget(potentialTarget:IEventDispatcher):Boolean
+		{
+			if (potentialTarget == target)
 				return true;
-            if (target is IRoyaleElement && (target as Object).royale_wrapper === potentialTarget)
+			if(getTargetWrapper(target) == potentialTarget)
 				return true;
-            return false;
-        }
+			return false;
+		}
 
-    }
+	}
 }
