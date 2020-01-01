@@ -67,6 +67,7 @@ package org.apache.royale.core
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIHTMLElementWrapper
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		private function handleStyleChange(event:ValueChangeEvent):void
 		{

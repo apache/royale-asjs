@@ -28,7 +28,7 @@ package org.apache.royale.core
 		public static const CHANGE:String = "transferModelChange";
 		
 		private var _matrix:Matrix;
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		public function TransformModel()
 		{

@@ -128,7 +128,7 @@ package org.apache.royale.html.beads
 				_strand.addBead(layout);
 			}
 
-			IEventDispatcher(_strand).addEventListener("beadsAdded", finishSetup);
+			listenOnStrand("beadsAdded", finishSetup);
 		}
 		
 		public function refreshContent():void
@@ -153,8 +153,8 @@ package org.apache.royale.html.beads
 			// see if there is a presentation model already in place. if not, add one.
 			var presentationModel:IDataGridPresentationModel = host.presentationModel as IDataGridPresentationModel;
 			var sharedModel:IDataGridModel = host.model as IDataGridModel;
-			IEventDispatcher(sharedModel).addEventListener("dataProviderChanged",handleDataProviderChanged);
-			IEventDispatcher(sharedModel).addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
+			sharedModel.addEventListener("dataProviderChanged",handleDataProviderChanged);
+			sharedModel.addEventListener("selectedIndexChanged", handleSelectedIndexChanged);
 			
 			_header = new DataGridButtonBar();
 			// header's height is set in CSS
@@ -197,11 +197,11 @@ package org.apache.royale.html.beads
 				
 			handleDataProviderChanged(event);
 			
-			host.addEventListener("widthChanged", handleSizeChanges);
-			host.addEventListener("heightChanged", handleSizeChanges);
+			listenOnStrand("widthChanged", handleSizeChanges);
+			listenOnStrand("heightChanged", handleSizeChanges);
 			
-			host.dispatchEvent(new Event("dataGridViewCreated"));
-			host.dispatchEvent(new Event("layoutNeeded"));
+			notify("dataGridViewCreated");
+			notify("layoutNeeded");
 		}
 		
 		/**
@@ -218,7 +218,7 @@ package org.apache.royale.html.beads
 		 */
 		private function handleDataProviderChanged(event:Event):void
 		{
-			host.dispatchEvent(new Event("layoutNeeded"));
+			notify("layoutNeeded");
 		}
 		
 		/**
@@ -253,7 +253,7 @@ package org.apache.royale.html.beads
 				return;
 			}
 			
-			host.dispatchEvent(new Event('change'));
+			notify('change');
 		}
 		
 		/**
@@ -310,7 +310,7 @@ package org.apache.royale.html.beads
 				
 			}
 			
-			host.dispatchEvent(new Event("layoutNeeded"));
+			notify("layoutNeeded");
 		}
 	}
 }

@@ -158,7 +158,7 @@ package org.apache.royale.core
             //only do this once. We don't want multiple event listeners
             if(!_sizeHandlerSet)
             {
-                host.addEventListener('sizeChanged', sizeChangedHandler);
+                listenOnStrand('sizeChanged', sizeChangedHandler);
                 _sizeHandlerSet = true;
             }
         }
@@ -230,9 +230,8 @@ package org.apache.royale.core
         {
             imageElement.removeEventListener('load', loadHandler);
             var host:IUIBase = _strand as IUIBase;
-			host.dispatchEvent(new Event("layoutNeeded"));
+			notify("layoutNeeded");
         }
-        
         /**
          * @royaleignorecoercion HTMLElement
          * @royaleignorecoercion org.apache.royale.core.IUIBase

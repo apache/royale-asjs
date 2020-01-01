@@ -28,7 +28,7 @@ package org.apache.royale.core
 	
 	public class TransformBeadBase implements IBead
 	{
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
 		public function TransformBeadBase()
 		{

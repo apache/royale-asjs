@@ -30,7 +30,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class BeadViewBase extends EventDispatcher implements IBeadView
+	public class BeadViewBase extends DispatcherBead
 	{
         /**
          *  Constructor.
@@ -45,42 +45,6 @@ package org.apache.royale.core
 			super();
 		}
 		
-        /**
-         *  The strand.  Do not modify except
-         *  via the strand setter.  For reading only.
-         * 
-         *  Because Object.defineProperties in JS
-         *  doesn't allow you to just override the setter
-         *  (you have to override the getter as well even
-         *  if it just calls the super getter) it is
-         *  more efficient to expose this variable than
-         *  have all of the layers of simple overrides.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        protected var _strand:IStrand;
-        
-        /**
-         *  Get the strand for this bead
-         * 
-         *  Override this for whatever else you need to do when
-         *  being hooked to the Strand
-         * 
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function set strand(value:IStrand):void
-		{
-            _strand = value;
-		}
-        
         /**
          *  The host component. 
          * 

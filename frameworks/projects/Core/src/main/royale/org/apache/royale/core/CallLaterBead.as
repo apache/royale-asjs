@@ -36,7 +36,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class CallLaterBead implements IBead
+	public class CallLaterBead extends Bead
 	{
         /**
          *  Constructor.
@@ -51,21 +51,6 @@ package org.apache.royale.core
 			super();
 		}
         
-        private var _strand:IStrand;
-        
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function set strand(value:IStrand):void
-        {
-            _strand = value;
-        }    
-
         private var calls:Array;
         
         /**
