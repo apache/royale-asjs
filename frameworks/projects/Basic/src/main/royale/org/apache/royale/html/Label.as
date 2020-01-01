@@ -23,6 +23,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.utils.sendEvent;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -115,7 +116,7 @@ package org.apache.royale.html
                 {
                     _text = value;
                     textNode.nodeValue = value;
-                    this.dispatchEvent('textChange');
+                    sendEvent(this,"textChange");
                 }
             }
 
@@ -154,7 +155,7 @@ package org.apache.royale.html
             COMPILE::JS
             {
                 this.element.innerHTML = value;
-                this.dispatchEvent('textChange');
+                sendEvent(this,'textChange');
             }
         }
 

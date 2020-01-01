@@ -24,6 +24,7 @@ package org.apache.royale.core
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.Timer;
+    import org.apache.royale.utils.sendEvent;
 
     COMPILE::SWF {
         import flash.display.DisplayObject;
@@ -154,7 +155,7 @@ package org.apache.royale.core
             for each (var bead:IBead in beads)
                 addBead(bead);
 
-            dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
+            sendEvent(this,"beadsAdded");
 
             if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
                 initialize();
@@ -653,8 +654,7 @@ package org.apache.royale.core
 			for (var index:int in beads) {
 				addBead(beads[index]);
 			}
-			
-			dispatchEvent(new org.apache.royale.events.Event("beadsAdded"));
+			sendEvent(this,"beadsAdded");
 			
 			if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 				initialize();
