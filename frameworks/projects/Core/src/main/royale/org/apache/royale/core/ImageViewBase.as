@@ -242,46 +242,34 @@ package org.apache.royale.core
         {
             var host:IUIBase = _strand as IUIBase;
             var s:Object = host.positioner.style;
-            var l:Number = NaN;
-            var ls:String = s.left;
-            if (typeof(ls) === 'string' && ls.length > 0)
-                l = parseFloat(ls.substring(0, ls.length - 2));
-            var r:Number = NaN;
-            var rs:String = s.right;
-            if (typeof(rs) === 'string' && rs.length > 0)
-                r = parseFloat(rs.substring(0, rs.length - 2));
-            var w:Number = NaN;
-            var ws:String = s.width;
-            if (typeof(ws) === 'string' && ws.length > 0)
-                w = parseFloat(ws.substring(0, ws.length - 2));
-            if (!isNaN(l) &&
-                !isNaN(r) && 
-                !isNaN(w)) {
+            var left:Number = getStyleValue(s.left);
+            var right:Number = getStyleValue(s.right);
+            var width:Number = getStyleValue(s.width);
+            if (!isNaN(left) &&
+                !isNaN(right) && 
+                !isNaN(width)) {
                 // if just using size constraints and image will not shrink or grow
                 var computedWidth:Number = (host.positioner.offsetParent as HTMLElement).offsetWidth -
-                    l - r;
+                    left - right;
                 s.width = computedWidth.toString() + 'px';
             }
-            var t:Number = NaN;
-            var ts:String = s.top;
-            if (typeof(ts) === 'string' && ts.length > 0)
-                t = parseFloat(ts.substring(0, ts.length - 2));
-            var b:Number = NaN;
-            var bs:String = s.right;
-            if (typeof(bs) === 'string' && bs.length > 0)
-                b = parseFloat(bs.substring(0, bs.length - 2));
-            var h:Number = NaN;
-            var hs:String = s.height;
-            if (typeof(hs) === 'string' && hs.length > 0)
-                h = parseFloat(hs.substring(0, hs.length - 2));
-            if (!isNaN(t) &&
-                !isNaN(b) &&
-                !isNaN(h)) {
+            var top:Number = getStyleValue(s.top);
+            var bottom:Number = getStyleValue(s.bottom);
+            var height:Number = getStyleValue(s.height);
+            if (!isNaN(top) &&
+                !isNaN(bottom) &&
+                !isNaN(height)) {
                 // if just using size constraints and image will not shrink or grow
                 var computedHeight:Number = (host.positioner.offsetParent as HTMLElement).offsetHeight -
-                    t - b;
+                    top - bottom;
                 s.height = computedHeight.toString() + 'px';
             }
+        }
+        private function getStyleValue(value:Object):Number
+        {
+            if (typeof(value) === 'string' && value.length > 0)
+                return parseFloat(value.substring(0, value.length - 2));
+            return NaN;
         }
 	}
 }
