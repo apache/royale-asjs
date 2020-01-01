@@ -122,10 +122,10 @@ hr {
   text-shadow: unset;
 }
 
-.jewel.datagrid .jewel.list.column .jewel.datagriditem.secondary.hovered {
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.hovered {
   background: #75c5f5;
 }
-.jewel.datagrid .jewel.list.column .jewel.datagriditem.secondary.selected, .jewel.datagrid .jewel.list.column .jewel.datagriditem.secondary.selectable:active {
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.selected, .jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.selectable:active {
   background: #5dbbf3;
 }
 
