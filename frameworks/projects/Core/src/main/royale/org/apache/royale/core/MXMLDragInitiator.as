@@ -22,6 +22,7 @@ package org.apache.royale.core
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.sendBeadEvent;
     
     /**
      *  Indicates that acceptingDrop API has been called.
@@ -104,7 +105,7 @@ package org.apache.royale.core
         {
             this.dropTarget = dropTarget;
             dropType = type;
-            dispatchEvent(new Event("acceptingDrop"));
+            sendBeadEvent(this,"acceptingDrop")
         }
         
         /**
@@ -119,7 +120,7 @@ package org.apache.royale.core
         {
             this.dropTarget = dropTarget;
             dropType = type;
-            dispatchEvent(new Event("acceptedDrop"));
+            sendBeadEvent(this,"acceptedDrop")
         }
 
    }

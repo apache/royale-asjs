@@ -58,9 +58,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			super();
 		}
-		
-		protected var _strand:IStrand;
-		
+				
 		/**
 		 * @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -102,6 +100,11 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IFactory
+		 *  @royaleignorecoercion org.apache.royale.core.IMenuBarModel
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function selectedHandler(event:ItemClickedEvent):void
 		{

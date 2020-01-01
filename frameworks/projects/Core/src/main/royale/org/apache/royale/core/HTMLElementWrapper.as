@@ -38,6 +38,7 @@ package org.apache.royale.core
         import goog.events.EventTarget;
         import goog.DEBUG;
         import org.apache.royale.events.utils.EventUtils;
+        import org.apache.royale.utils.sendStrandEvent;
     }
 
     COMPILE::SWF
@@ -187,7 +188,8 @@ package org.apache.royale.core
                     addBead(value as IBead);
                 else
                     _model = IBeadModel(value);
-                dispatchEvent(new org.apache.royale.events.Event("modelChanged"));
+
+                sendStrandEvent(this,"modelChanged");
             }
         }
         

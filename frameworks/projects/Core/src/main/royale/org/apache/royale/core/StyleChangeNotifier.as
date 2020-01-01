@@ -25,6 +25,7 @@ package org.apache.royale.core
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStyleableObject;
+	import org.apache.royale.utils.sendStrandEvent;
 	COMPILE::JS
 	{
 		import org.apache.royale.utils.html.getStyle;
@@ -73,7 +74,7 @@ package org.apache.royale.core
 		{
 			COMPILE::SWF {
 				var styleEvent:StyleChangeEvent = StyleChangeEvent.createChangeEvent(_strand, event.propertyName, event.oldValue, event.newValue);
-				IEventDispatcher(_strand).dispatchEvent(styleEvent);
+				sendStrandEvent(_strand,styleEvent);
 			}
 			COMPILE::JS {
 				var host:UIHTMLElementWrapper = UIHTMLElementWrapper(_strand);

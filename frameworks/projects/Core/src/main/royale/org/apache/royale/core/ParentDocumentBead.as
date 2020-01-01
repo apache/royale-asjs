@@ -24,6 +24,7 @@ package org.apache.royale.core
     import org.apache.royale.core.IStrand;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.utils.sendBeadEvent;
     
     /**
      *  The ParentDocumentBead class looks up the parent
@@ -83,7 +84,7 @@ package org.apache.royale.core
             if (_id != value)
             {
                 _id = value;
-                dispatchEvent(new org.apache.royale.events.Event("idChanged"));
+                sendBeadEvent(this,"idChanged");
             }
         }
         

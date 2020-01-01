@@ -20,6 +20,7 @@ package org.apache.royale.core
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.utils.sendStrandEvent;
 
     /**
      *  The Strand class is the base class for non-display object
@@ -78,7 +79,7 @@ package org.apache.royale.core
 			if (_model != value)
 			{
 				addBead(value as IBead);
-				dispatchEvent(new Event("modelChanged"));
+                sendStrandEvent(this,"modelChanged")
 			}
 		}
 		
@@ -101,7 +102,7 @@ package org.apache.royale.core
 			if (_id != value)
 			{
 				_id = value;
-				dispatchEvent(new Event("idChanged"));
+                sendStrandEvent(this,"idChanged");
 			}
 		}
 				

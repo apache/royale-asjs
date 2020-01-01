@@ -31,10 +31,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.TitleBar;
 	import org.apache.royale.html.beads.layouts.VerticalFlexLayout;
 	import org.apache.royale.html.supportClasses.PanelLayoutProxy;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	COMPILE::SWF {
 		import org.apache.royale.core.SimpleCSSStylesWithFlex;
-		import org.apache.royale.utils.sendStrandEvent;
 	}
 
 	/**

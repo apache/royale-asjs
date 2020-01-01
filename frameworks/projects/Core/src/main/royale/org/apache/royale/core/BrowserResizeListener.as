@@ -27,6 +27,7 @@ COMPILE::SWF
 COMPILE::JS
 {
     import org.apache.royale.utils.html.getStyle;
+    import org.apache.royale.utils.sendStrandEvent;
 }
 
     /**
@@ -157,7 +158,7 @@ COMPILE::JS
                 if (!isNaN(initialView.percentWidth) || !isNaN(initialView.percentHeight)) {
                     style.height = window.innerHeight + 'px';
                     style.width = window.innerWidth + 'px';
-                    initialView.dispatchEvent('sizeChanged'); // kick off layout if % sizes
+                    sendStrandEvent(initialView,'sizeChanged'); // kick off layout if % sizes
                 }
             }
         }

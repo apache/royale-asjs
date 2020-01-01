@@ -190,7 +190,7 @@ package org.apache.royale.core
 			
             if (host.isWidthSizedToContent())
             {
-                host.dispatchEvent(new Event("widthChanged"));
+                sendStrandEvent(_strand,"widthChanged");
                 if (host.parent is IEventDispatcher)
                     IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
             }
@@ -199,7 +199,7 @@ package org.apache.royale.core
                 
             if (host.isHeightSizedToContent())
             {
-                host.dispatchEvent(new Event("heightChanged"));
+                sendStrandEvent(_strand,"heightChanged");
                 if (host.parent is IEventDispatcher)
                     IEventDispatcher(host.parent).dispatchEvent(new Event("layoutNeeded"));
             }
