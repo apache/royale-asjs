@@ -26,6 +26,7 @@ package org.apache.royale.utils.css
 	 * 
 	 * @langversion 3.0
 	 * @productversion Royale 0.9.6
+	 * @royalesuppressexport
 	 * @royaleignorecoercion HTMLLinkElement
 	 */
 	COMPILE::JS

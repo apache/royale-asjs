@@ -30,6 +30,7 @@ package org.apache.royale.utils
    * Helper function for dispatching events from the bead
    * Using this function prevent the need to cast IBead objects
    * It also allows better minification
+   * @royalesuppressexport
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
   public function sendBeadEvent(bead:IBead,event:Object):void

@@ -24,6 +24,7 @@ package org.apache.royale.utils.date
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
+	 *  @royalesuppressexport
 	 */
     public function addYears(date:Date, years:int=1):Date
     {

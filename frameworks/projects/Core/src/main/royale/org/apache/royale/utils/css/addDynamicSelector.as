@@ -29,6 +29,7 @@ package org.apache.royale.utils.css
      *  
      *  @langversion 3.0
      *  @productversion Royale 0.9.3
+     *  @royalesuppressexport
      *  @royaleignorecoercion CSSStyleSheet
 	 *  @royaleignorecoercion HTMLStyleElement
      */

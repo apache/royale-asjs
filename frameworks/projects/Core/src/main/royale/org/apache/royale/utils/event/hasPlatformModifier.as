@@ -21,7 +21,9 @@ package org.apache.royale.utils.event
   import org.apache.royale.events.MouseEvent;
   import org.apache.royale.events.KeyboardEvent;
   import org.apache.royale.utils.OSUtils;
-
+  /**
+   * @royalesuppressexport
+   */
   COMPILE::JS
   public function hasPlatformModifier(event:*):Boolean{
     var isMac:Boolean = OSUtils.getOS() == OSUtils.MAC_OS;

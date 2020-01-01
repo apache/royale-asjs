@@ -30,6 +30,7 @@ package org.apache.royale.utils
    * Helper function for dispatching events from the strand
    * Using this function prevent the need to cast IStrand objects
    * It also allows better minification
+   * @royalesuppressexport
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
   public function sendStrandEvent(strand:IStrand,event:Object):void

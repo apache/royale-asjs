@@ -19,7 +19,9 @@
 package org.apache.royale.utils.html
 {
   import org.apache.royale.core.ElementWrapper;
-
+  /**
+   * @royalesuppressexport
+   */
   COMPILE::JS
   public function getStyle(wrapper:ElementWrapper):CSSStyleDeclaration
   {

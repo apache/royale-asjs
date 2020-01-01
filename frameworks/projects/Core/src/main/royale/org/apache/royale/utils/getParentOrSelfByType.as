@@ -27,6 +27,7 @@ package org.apache.royale.utils
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
+	 *  @royalesuppressexport
 	 */
     public function getParentOrSelfByType(startChild:IChild, classOrInterface:Class):Object
     {

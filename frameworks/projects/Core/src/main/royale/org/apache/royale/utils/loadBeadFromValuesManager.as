@@ -29,9 +29,10 @@ package org.apache.royale.utils
 	*  @playerversion Flash 9
 	*  @playerversion AIR 1.1
 	*  @productversion Flex 3
-    *  @royaleignorecoercion Class
-    *  @royaleignorecoercion Function
-    *  @royaleignorecoercion org.apache.royale.core.IBead
+	*  @royalesuppressexport
+	*  @royaleignorecoercion Class
+	*  @royaleignorecoercion Function
+	*  @royaleignorecoercion org.apache.royale.core.IBead
 	*/
 	public function loadBeadFromValuesManager(classOrInterface:Class, classOrInterfaceName:String, strand:IStrand):IBead
 	{

@@ -28,6 +28,7 @@ package org.apache.royale.utils
   /**
    * Helper function for dispatching events
    * Using this helper function enables better minification because `dispatchEvent` cannot be minified
+   * @royalesuppressexport
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
   public function sendEvent(dispatcher:IEventDispatcher,event:Object):void

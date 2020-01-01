@@ -26,6 +26,7 @@ package org.apache.royale.utils.js
 	 * 
 	 * @langversion 3.0
 	 * @productversion Royale 0.9.4
+	 * @royalesuppressexport
 	 * @royaleignorecoercion HTMLScriptElement
 	 */
 	COMPILE::JS

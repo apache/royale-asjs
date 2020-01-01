@@ -31,6 +31,7 @@ package org.apache.royale.utils
      * The number of milliseconds since the current script host environment was started.
      * This is from the time of the current window load (Browser javascript), or process started (Node javascript) or the AVM started (SWF)
      * @return an integer representing the number of milliseconds since start.
+     * @royalesuppressexport
      */
     public function getTimer():int
     {

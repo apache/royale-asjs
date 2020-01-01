@@ -25,6 +25,7 @@ package org.apache.royale.utils.object
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
+	 *  @royalesuppressexport
 	 */
     COMPILE::JS
     public function defineSimpleProperty(obj:Object,prop:String):void
