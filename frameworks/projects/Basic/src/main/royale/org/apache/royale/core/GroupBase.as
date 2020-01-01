@@ -29,16 +29,11 @@ package org.apache.royale.core
 	import org.apache.royale.events.ValueChangeEvent;
     import org.apache.royale.events.ValueEvent;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.sendEvent;
 
     COMPILE::JS
     {
         import org.apache.royale.html.util.addElementToWrapper;
-        import org.apache.royale.utils.sendEvent;
-        import org.apache.royale.utils.sendEvent;
-        import org.apache.royale.utils.sendEvent;
-        import org.apache.royale.utils.sendEvent;
-        import org.apache.royale.utils.sendEvent;
-        import org.apache.royale.utils.sendEvent;
     }
 
     /**

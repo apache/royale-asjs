@@ -30,6 +30,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.beads.ISliderView;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	COMPILE::JS
 	{
@@ -136,7 +137,7 @@ package org.apache.royale.html.beads.controllers
 			UIBase(_strand).topMostEventDispatcher.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 			
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
-			IEventDispatcher(_strand).dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 		
 		COMPILE::SWF
@@ -159,7 +160,7 @@ package org.apache.royale.html.beads.controllers
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
 			rangeModel.value = n;
 			
-			IEventDispatcher(_strand).dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 		
 		COMPILE::SWF
@@ -176,7 +177,7 @@ package org.apache.royale.html.beads.controllers
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
 			rangeModel.value = n;
 			
-			IEventDispatcher(_strand).dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 		
 		/**
@@ -195,7 +196,7 @@ package org.apache.royale.html.beads.controllers
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", rangeModel.value, n);
 			rangeModel.value = n;
 			
-			host.dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 		
 		/**
@@ -241,7 +242,7 @@ package org.apache.royale.html.beads.controllers
 			calcValFromMousePosition(bevent, false);
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
 			
-			host.dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 		
 		/**
@@ -257,7 +258,7 @@ package org.apache.royale.html.beads.controllers
 			
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", lastValue, rangeModel.value);
 			
-			host.dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 		
 		COMPILE::JS

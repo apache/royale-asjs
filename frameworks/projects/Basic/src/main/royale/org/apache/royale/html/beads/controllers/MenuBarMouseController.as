@@ -34,6 +34,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.MenuBar;
 	import org.apache.royale.utils.UIUtils;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 * The MenuBarMouseController handles mouse events for the MenuBar. While the menu bar is
@@ -110,7 +111,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			// close any previously open menus
 			var host:UIBase = UIUtils.findPopUpHost(_strand as IUIBase) as UIBase;
-			host.dispatchEvent(new Event("hideMenus"));
+			sendEvent(host,"hideMenus");
 			
 			var component:IUIBase = event.target as IUIBase;
 			

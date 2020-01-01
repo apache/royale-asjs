@@ -31,6 +31,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.models.MenuModel;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.sendEvent;
 	
 	COMPILE::JS {
 		import org.apache.royale.events.BrowserEvent;
@@ -86,9 +87,9 @@ package org.apache.royale.html.beads.controllers
 				window.addEventListener('mouseup', hideMenu_internal, false);
 			}
 		}
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		override protected function handleItemAdded(event:ItemAddedEvent):void
 		{
 			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
@@ -96,9 +97,9 @@ package org.apache.royale.html.beads.controllers
 			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
 		}
 		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		override protected function handleItemRemoved(event:ItemRemovedEvent):void
 		{
 			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
@@ -121,8 +122,8 @@ package org.apache.royale.html.beads.controllers
 			var node:Object = event.data;
 			
 			list.model.selectedItem = node;
-			menuDispatcher.dispatchEvent(new Event("change"));
-            hideOpenMenus();
+			sendEvent(menuDispatcher,"change");
+			hideOpenMenus();
 		}
 		
 		/**
@@ -149,8 +150,8 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.UIBase
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		protected function hideOpenMenus():void
 		{
@@ -193,8 +194,8 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function removeClickOutHandler(menu:Object):void
 		{
@@ -222,19 +223,19 @@ package org.apache.royale.html.beads.controllers
 		}
 
 		/**
-         * @royaleignorecoercion HTMLElement
+		 * @royaleignorecoercion HTMLElement
 		 * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @private
 		 */
 		COMPILE::JS
 		protected function hideMenu_internal(event:BrowserEvent):void
 		{			
-            var menu:IMenu = _strand as IMenu;
+			var menu:IMenu = _strand as IMenu;
 			var menuElem:HTMLElement = (_strand as IUIBase).element as HTMLElement;
 			var menuBarElement:HTMLElement;
-            if (menu.parentMenuBar)
-            {
-                menuBarElement = (menu.parentMenuBar as IUIBase).element as HTMLElement;
+			if (menu.parentMenuBar)
+			{
+				menuBarElement = (menu.parentMenuBar as IUIBase).element as HTMLElement;
 			}
 			var target:HTMLElement = event.target as HTMLElement;
 			while (target != null)
@@ -244,7 +245,7 @@ package org.apache.royale.html.beads.controllers
 				// if (target == menuElem || (menuBarElement && target == menuBarElement) ) return;
 				target = target.parentNode as HTMLElement;
 			}
-            
+			
 			hideOpenMenus();
 		}
 	}

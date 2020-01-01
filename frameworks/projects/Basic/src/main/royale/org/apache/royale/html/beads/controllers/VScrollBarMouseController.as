@@ -23,6 +23,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.Event;
     import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.sendStrandEvent;
 	
     /**
      *  The VScrollBarMouseController class is the controller for
@@ -58,12 +59,12 @@ package org.apache.royale.html.beads.controllers
 				if (event.localY < sbView.thumb.y)
 				{
 					sbModel.value = snap(Math.max(sbModel.minimum, sbModel.value - sbModel.pageStepSize));						
-					IEventDispatcher(strand).dispatchEvent(new Event("scroll"));
+					sendStrandEvent(strand,"scroll");
 				}
 				else
 				{
 					sbModel.value = snap(Math.min(sbModel.maximum - sbModel.pageSize, sbModel.value + sbModel.pageStepSize));
-					IEventDispatcher(strand).dispatchEvent(new Event("scroll"));
+					sendStrandEvent(strand,"scroll");
 				}
 			}
 		}
@@ -89,7 +90,7 @@ package org.apache.royale.html.beads.controllers
 			thumb.y = Math.max(track.y, Math.min(lastThumbY + (event.screenY - thumbDownY), track.y + track.height - thumb.height));
 			var newValue:Number = snap((thumb.y - track.y) / (track.height - thumb.height) * (sbModel.maximum - sbModel.minimum - sbModel.pageSize));
 			sbModel.value = newValue;
-			IEventDispatcher(strand).dispatchEvent(new Event("scroll"));
+			sendStrandEvent(strand,"scroll");
 		}
 		
 		private function thumbMouseUpHandler(event:MouseEvent):void

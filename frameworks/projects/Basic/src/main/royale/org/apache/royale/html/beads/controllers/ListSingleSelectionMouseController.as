@@ -31,77 +31,78 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.sendEvent;
 
-    /**
-     *  The ListSingleSelectionMouseController class is a controller for
-     *  org.apache.royale.html.List.  Controllers
-     *  watch for events from the interactive portions of a View and
-     *  update the data model or dispatch a semantic event.
-     *  This controller watches for events from the item renderers
-     *  and updates an ISelectionModel (which only supports single
-     *  selection).  Other controller/model pairs would support
-     *  various kinds of multiple selection.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9
-     */
+	/**
+	 *  The ListSingleSelectionMouseController class is a controller for
+	 *  org.apache.royale.html.List.  Controllers
+	 *  watch for events from the interactive portions of a View and
+	 *  update the data model or dispatch a semantic event.
+	 *  This controller watches for events from the item renderers
+	 *  and updates an ISelectionModel (which only supports single
+	 *  selection).  Other controller/model pairs would support
+	 *  various kinds of multiple selection.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9
+	 */
 	public class ListSingleSelectionMouseController extends Bead implements IBeadController
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
 		public function ListSingleSelectionMouseController()
 		{
 		}
 		
-        /**
-         *  The model.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
+		/**
+		 *  The model.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
 		protected var listModel:ISelectionModel;
 
-        /**
-         *  The view.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-        protected var listView:IListView;
+		/**
+		 *  The view.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		protected var listView:IListView;
 
-        /**
-         *  The parent of the item renderers.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         */
-        protected var dataGroup:IItemRendererParent;
+		/**
+		 *  The parent of the item renderers.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		protected var dataGroup:IItemRendererParent;
 		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9
-         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
-         *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-         */
+		/**
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 */
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
@@ -111,9 +112,9 @@ package org.apache.royale.html.beads.controllers
 			listenOnStrand("itemRemoved", handleItemRemoved);
 		}
 		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleItemAdded(event:ItemAddedEvent):void
 		{
 			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
@@ -121,9 +122,9 @@ package org.apache.royale.html.beads.controllers
 			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
 		}
 		
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handleItemRemoved(event:ItemRemovedEvent):void
 		{
 			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
@@ -132,15 +133,15 @@ package org.apache.royale.html.beads.controllers
 		}
 		
 		protected function selectedHandler(event:ItemClickedEvent):void
-        {
-            listModel.selectedIndex = event.index;
+		{
+			listModel.selectedIndex = event.index;
 			listModel.selectedItem = event.data;
-            listView.host.dispatchEvent(new Event("change"));
-        }
+            sendEvent(listView.host,"change");
+		}
 		
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
-         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloverHandler(event:Event):void
 		{
@@ -152,7 +153,7 @@ package org.apache.royale.html.beads.controllers
 		
 		/**
 		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
-         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
+		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloutHandler(event:Event):void
 		{

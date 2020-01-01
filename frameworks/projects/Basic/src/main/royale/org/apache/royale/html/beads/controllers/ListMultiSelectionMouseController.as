@@ -32,6 +32,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.beads.IListView;
 
 	import org.apache.royale.events.MultiSelectionItemClickedEvent;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The ListMultiSelectionMouseController class is a controller for
@@ -165,7 +166,7 @@ package org.apache.royale.html.beads.controllers
 				}
 			}
 			listModel.selectedIndices = newIndices;
-			listView.host.dispatchEvent(new Event("change"));
+			sendEvent(listView.host,"change");
 		}
 
 		private function getMin(value:Array):int

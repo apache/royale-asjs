@@ -29,6 +29,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.Event;
     import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.sendStrandEvent;
 
     /**
      *  The ButtonAutoRepeatController class adds autorepeat
@@ -136,12 +137,12 @@ package org.apache.royale.html.beads.controllers
             clearTimeout(timeout);
             timeout = 0;
         	repeater = setInterval(sendRepeats, interval);
-        	IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
+            sendStrandEvent(_strand,"buttonRepeat");
         }
         
         private function sendRepeats():void
         {
-       	    IEventDispatcher(_strand).dispatchEvent(new Event("buttonRepeat"));
+            sendStrandEvent(_strand,"buttonRepeat");
         }
 	}
 }

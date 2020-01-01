@@ -34,6 +34,7 @@ package org.apache.royale.html.beads.controllers
 		import goog.events;
 	}
 	import org.apache.royale.events.MultiSelectionItemClickedEvent;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The MultiSelectionItemRendererMouseController class can mouse events in itemRenderers. This
@@ -106,7 +107,7 @@ package org.apache.royale.html.beads.controllers
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
-				target.dispatchEvent(new Event("itemRollOver",true));
+				sendEvent(target,new Event("itemRollOver",true));
 			}
 		}
 
@@ -118,7 +119,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target) {
-				target.dispatchEvent(new Event("itemRollOver",true));
+				sendEvent(target,new Event("itemRollOver",true));
 			}
 		}
 
@@ -131,7 +132,7 @@ package org.apache.royale.html.beads.controllers
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
-				target.dispatchEvent(new Event("itemRollOut",true));
+				sendEvent(target,new Event("itemRollOut",true));
 			}
 		}
 
@@ -144,7 +145,7 @@ package org.apache.royale.html.beads.controllers
 			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
 			if (target)
 			{
-				target.dispatchEvent(new Event("itemRollOut",true));
+				sendEvent(target,new Event("itemRollOut",true));
 			}
 		}
 
@@ -165,7 +166,7 @@ package org.apache.royale.html.beads.controllers
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
-				target.dispatchEvent(newEvent);
+				sendEvent(target,newEvent);
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 		}
@@ -187,7 +188,7 @@ package org.apache.royale.html.beads.controllers
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
-				target.dispatchEvent(newEvent);
+				sendEvent(target,newEvent);
 			}
 		}
 
@@ -207,7 +208,7 @@ package org.apache.royale.html.beads.controllers
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 				target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
-				target.dispatchEvent(newEvent);
+				sendEvent(target,newEvent);
 			}			
 		}
 
@@ -225,7 +226,7 @@ package org.apache.royale.html.beads.controllers
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
-				target.dispatchEvent(newEvent);
+				sendEvent(target,newEvent);
 			}
 		}
 
@@ -243,7 +244,7 @@ package org.apache.royale.html.beads.controllers
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 
-				target.dispatchEvent(newEvent);
+				sendEvent(target,newEvent);
 			}
 		}
 

@@ -43,6 +43,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IParentIUIBase;
     import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.utils.sendStrandEvent;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
@@ -205,10 +207,10 @@ package org.apache.royale.html.beads
 				
 				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 				newEvent.itemRenderer = ir;
-				dispatchEvent(newEvent);
+				sendEvent(this,newEvent);
 			}
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			sendStrandEvent(_strand,"itemsCreated");
 		}
 	}
 }

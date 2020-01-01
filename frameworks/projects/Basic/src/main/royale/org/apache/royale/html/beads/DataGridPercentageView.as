@@ -24,6 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.DataGridButtonBar;
 	import org.apache.royale.html.beads.models.ButtonBarModel;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The DataGridPercentageView class is the visual bead for the org.apache.royale.html.DataGrid.
@@ -52,38 +53,38 @@ package org.apache.royale.html.beads
 			super();
 		}
 
-        /**
-         * @private
-         */
-        override protected function handleInitComplete(event:Event):void
+		/**
+		 * @private
+		 */
+		override protected function handleInitComplete(event:Event):void
 		{
 			super.handleInitComplete(event);
 
-            if (columnLists)
+			if (columnLists)
 			{
-                var host:UIBase = _strand as UIBase;
-                var sharedModel:IDataGridModel = host.model as IDataGridModel;
+				var host:UIBase = _strand as UIBase;
+				var sharedModel:IDataGridModel = host.model as IDataGridModel;
 				var columnListCount:int = sharedModel.columns.length;
-                var buttonWidths:Array = [];
+				var buttonWidths:Array = [];
 
 				for (var i:int = 0; i < columnListCount; i++)
 				{
-                    var dgc:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
-                    var colWidth:Number = dgc.columnWidth;
-                    buttonWidths.push(colWidth);
+					var dgc:IDataGridColumn = sharedModel.columns[i] as IDataGridColumn;
+					var colWidth:Number = dgc.columnWidth;
+					buttonWidths.push(colWidth);
 
-                    var list:UIBase = columnLists[i] as UIBase;
-                    if (!isNaN(dgc.columnWidth))
-                    {
+					var list:UIBase = columnLists[i] as UIBase;
+					if (!isNaN(dgc.columnWidth))
+					{
 						list.width = NaN;
-                        list.percentWidth = Number(colWidth);
-                    }
+						list.percentWidth = Number(colWidth);
+					}
 				}
 
-                var dgButtonBar:DataGridButtonBar = header as DataGridButtonBar;
-                dgButtonBar.buttonWidths = buttonWidths;
-                dgButtonBar.widthType = ButtonBarModel.PERCENT_WIDTHS;
-				dgButtonBar.dispatchEvent(new Event("layoutNeeded"));
+				var dgButtonBar:DataGridButtonBar = header as DataGridButtonBar;
+				dgButtonBar.buttonWidths = buttonWidths;
+				dgButtonBar.widthType = ButtonBarModel.PERCENT_WIDTHS;
+				sendEvent(dgButtonBar,"layoutNeeded");
 			}
 		}
 	}

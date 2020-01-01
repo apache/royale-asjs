@@ -24,6 +24,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.supportClasses.AccordionItemRenderer;
+	import org.apache.royale.utils.sendEvent;
 	
 	public class AccordionItemRendererMouseController implements IBeadController
 	{
@@ -54,8 +55,7 @@ package org.apache.royale.html.beads.controllers
 		protected function titleRollHandler(event:MouseEvent):void
 		{
 			var type:String = event.type == MouseEvent.ROLL_OVER ? "itemRollOver" : "itemRollOut";
-			var newEvent:Event = new Event(type);
-			accordionItemRenderer.dispatchEvent(newEvent);
+			sendEvent(accordionItemRenderer,type);
 		}
 		
 		protected function titleBarClickHandler(event:MouseEvent):void
@@ -63,8 +63,7 @@ package org.apache.royale.html.beads.controllers
 			var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
 			newEvent.data = accordionItemRenderer.data;
 			newEvent.index = accordionItemRenderer.index;
-			
-			accordionItemRenderer.dispatchEvent(newEvent);
+			sendEvent(accordionItemRenderer,newEvent);
 		}
 	}
 }

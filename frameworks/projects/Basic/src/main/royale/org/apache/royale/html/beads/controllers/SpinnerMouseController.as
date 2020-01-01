@@ -28,6 +28,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.beads.ISpinnerView;
+  import org.apache.royale.utils.sendStrandEvent;
     COMPILE::JS
     {
         import org.apache.royale.html.Spinner;
@@ -116,7 +117,7 @@ package org.apache.royale.html.beads.controllers
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.max(rangeModel.minimum, rangeModel.value - rangeModel.stepSize);
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
-			IEventDispatcher(_strand).dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 
 		/**
@@ -128,7 +129,7 @@ package org.apache.royale.html.beads.controllers
 			var oldValue:Number = rangeModel.value;
 			rangeModel.value = Math.min(rangeModel.maximum, rangeModel.value + rangeModel.stepSize);
 			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(_strand, "value", oldValue, rangeModel.value);
-			IEventDispatcher(_strand).dispatchEvent(vce);
+			sendStrandEvent(_strand,vce);
 		}
 	}
 }

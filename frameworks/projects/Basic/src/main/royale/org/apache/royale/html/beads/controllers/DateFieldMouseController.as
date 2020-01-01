@@ -29,6 +29,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.beads.DateFieldView;
     import org.apache.royale.utils.Timer;
     import org.apache.royale.utils.UIUtils;
+    import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 * The DateFieldMouseController class is responsible for monitoring
@@ -127,7 +128,7 @@ package org.apache.royale.html.beads.controllers
 			model.selectedDate = IDateChooserModel(viewBead.popUp.getBeadByType(IDateChooserModel)).selectedDate;
 
 			viewBead.popUpVisible = false;
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			sendStrandEvent(_strand,"change");
             
             removeDismissHandler();
 		}

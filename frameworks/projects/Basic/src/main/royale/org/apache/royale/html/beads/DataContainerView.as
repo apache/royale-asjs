@@ -44,6 +44,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  The DataContainerView provides the visual elements for the DataContainer.
@@ -112,7 +113,7 @@ package org.apache.royale.html.beads
 		protected function itemsCreatedHandler(event:Event):void
 		{
 			// trace("DataContainerView: itemsCreatedHandler");
-			host.dispatchEvent(new Event("layoutNeeded"));
+            sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -121,7 +122,7 @@ package org.apache.royale.html.beads
 		protected function dataProviderChangeHandler(event:Event):void
 		{
 			// trace("DataContainerView: dataProviderChangeHandler");
-            host.dispatchEvent(new Event("layoutNeeded"));                
+            sendStrandEvent(_strand,"layoutNeeded");
 		}
         
         /**
@@ -189,8 +190,7 @@ package org.apache.royale.html.beads
         {
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
             newEvent.item = renderer;
-            
-            host.dispatchEvent(newEvent);
+            sendStrandEvent(_strand,newEvent);
         }
         
         /**
@@ -209,8 +209,7 @@ package org.apache.royale.html.beads
             
             var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
             newEvent.item = renderer;
-            
-            host.dispatchEvent(newEvent);
+            sendStrandEvent(_strand,newEvent);
         }
         
         /**

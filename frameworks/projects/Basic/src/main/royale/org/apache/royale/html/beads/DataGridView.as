@@ -38,6 +38,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.IDataGridColumnList;
 	import org.apache.royale.html.supportClasses.IDataGridColumn;
 	import org.apache.royale.html.supportClasses.Viewport;
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.sendEvent;
 
 		/**
 		 *  The DataGridView class is the visual bead for the org.apache.royale.html.DataGrid.
@@ -150,8 +152,7 @@ package org.apache.royale.html.beads
 
 				host.addEventListener("widthChanged", handleSizeChanges);
 				host.addEventListener("heightChanged", handleSizeChanges);
-
-				host.dispatchEvent(new Event("dataGridViewCreated"));
+				sendStrandEvent(_strand,"dataGridViewCreated");
 			}
 
 			/**
@@ -159,8 +160,8 @@ package org.apache.royale.html.beads
 			 */
 			private function handleSizeChanges(event:Event):void
 			{
-				_header.dispatchEvent(new Event("layoutChanged"));
-				_listArea.dispatchEvent(new Event("layoutChanged"));
+				sendEvent(_header,"layoutChanged");
+				sendEvent(_listArea,"layoutChanged");
 			}
 
 			/**
@@ -174,7 +175,7 @@ package org.apache.royale.html.beads
                     var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
                     list.dataProvider = sharedModel.dataProvider;
                 }
-				host.dispatchEvent(new Event("layoutNeeded"));
+				sendStrandEvent(_strand,"layoutNeeded");
 			}
 
 			/**
@@ -212,7 +213,7 @@ package org.apache.royale.html.beads
 					}
 				}
 
-				host.dispatchEvent(new Event('change'));
+				sendStrandEvent(_strand,'change');
 			}
 
 			/**
@@ -270,7 +271,7 @@ package org.apache.royale.html.beads
 					_lists.push(list);
 				}
 
-				host.dispatchEvent(new Event("layoutNeeded"));
+				sendStrandEvent(_strand,"layoutNeeded");
 			}
 		}
 }

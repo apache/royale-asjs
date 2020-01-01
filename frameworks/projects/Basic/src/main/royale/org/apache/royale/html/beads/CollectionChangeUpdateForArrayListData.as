@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.utils.sendBeadEvent;
 
 
     /**
@@ -126,7 +127,7 @@ package org.apache.royale.html.beads
 		{
 			ignoreDPChange = true;
 			//simulate a dataProvider change (full renderer refresh)
-			_dataProviderModel.dispatchEvent(new Event('dataProviderChanged'));
+			sendBeadEvent(_dataProviderModel,"dataProviderChanged");
 			ignoreDPChange = false;
 		}
 

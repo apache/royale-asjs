@@ -28,6 +28,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.html.TextInput;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IComboBoxView;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	public class ComboBoxController implements IBeadController
 	{
@@ -71,7 +72,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			viewBead.popUpVisible = false;
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("change"));
+			sendStrandEvent(_strand,"change");
 		}
 	}
 }

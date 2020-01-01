@@ -40,6 +40,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.Label;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.TitleBar;
+	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.utils.sendEvent;
 
 	COMPILE::SWF
 	{
@@ -53,7 +55,6 @@ package org.apache.royale.html.beads
 	COMPILE::JS
 	{
 		import org.apache.royale.utils.html.getStyle;
-		import org.apache.royale.utils.sendStrandEvent;
 	}
 	
 	/**
@@ -277,7 +278,7 @@ package org.apache.royale.html.beads
 				titleBar.x = 0;
 				titleBar.y = 0;
 				titleBar.width = maxWidth;
-				titleBar.dispatchEvent(new Event("layoutNeeded"));
+				sendEvent(titleBar,"layoutNeeded");
 			}
 
 			// content placement here
@@ -288,7 +289,7 @@ package org.apache.royale.html.beads
 			controlBar.x = 0;
 			controlBar.y = titleBarHeight + label.y + label.height + metrics.bottom;
 			controlBar.width = maxWidth;
-			controlBar.dispatchEvent(new Event("layoutNeeded"));
+			sendEvent(controlBar,"layoutNeeded");
 			
 			UIBase(_strand).width = maxWidth;
 			UIBase(_strand).height = titleBarHeight + label.height + controlBar.height + metrics.top + metrics.bottom;
