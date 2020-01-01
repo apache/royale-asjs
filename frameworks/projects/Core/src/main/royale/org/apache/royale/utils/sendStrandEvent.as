@@ -21,6 +21,7 @@ package org.apache.royale.utils
   COMPILE::SWF
   {
     import flash.events.Event;
+    import org.apache.royale.events.Event;
   }
 
   import org.apache.royale.core.IStrand;
@@ -33,16 +34,16 @@ package org.apache.royale.utils
    * @royalesuppressexport
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
-  public function sendStrandEvent(strand:IStrand,event:Object):void
+  public function sendStrandEvent(strand:IStrand,event:Object):Boolean
   {
       COMPILE::SWF{
         if(event is String)
-          event = new flash.events.Event(event as String);
-        (strand as IEventDispatcher).dispatchEvent(event as flash.events.Event);
+          event = new org.apache.royale.events.Event(event as String);
+        return (strand as IEventDispatcher).dispatchEvent(event as flash.events.Event);
       }
       COMPILE::JS
       {
-        (strand as IEventDispatcher).dispatchEvent(event);
+        return (strand as IEventDispatcher).dispatchEvent(event);
       }
   }
 }

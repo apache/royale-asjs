@@ -21,6 +21,7 @@ package org.apache.royale.utils
   COMPILE::SWF
   {
     import flash.events.Event;
+    import org.apache.royale.events.Event;
   }
 
   import org.apache.royale.events.IEventDispatcher;
@@ -31,16 +32,16 @@ package org.apache.royale.utils
    * @royalesuppressexport
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
-  public function sendEvent(dispatcher:IEventDispatcher,event:Object):void
+  public function sendEvent(dispatcher:IEventDispatcher,event:Object):Boolean
   {
       COMPILE::SWF{
         if(event is String)
-          event = new flash.events.Event(event as String);
-        (dispatcher as IEventDispatcher).dispatchEvent(event as flash.events.Event);
+          event = new org.apache.royale.events.Event(event as String);
+        return (dispatcher as IEventDispatcher).dispatchEvent(event as flash.events.Event);
       }
       COMPILE::JS
       {
-        (dispatcher as IEventDispatcher).dispatchEvent(event);
+        return (dispatcher as IEventDispatcher).dispatchEvent(event);
       }
   }
 }

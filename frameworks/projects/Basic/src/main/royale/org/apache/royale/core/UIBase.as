@@ -34,6 +34,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.sendEvent;
 
     COMPILE::JS
     {
@@ -254,7 +255,7 @@ package org.apache.royale.core
 			
 			_explicitWidth = value;
 			
-			dispatchEvent(new Event("explicitWidthChanged"));
+			sendEvent(this,"explicitWidthChanged");
 		}
 		
 		protected var _explicitHeight:Number;
@@ -287,7 +288,7 @@ package org.apache.royale.core
 			
 			_explicitHeight = value;
 			
-			dispatchEvent(new Event("explicitHeightChanged"));
+			sendEvent(this,"explicitHeightChanged");
 		}
 		
 		protected var _percentWidth:Number;
@@ -330,7 +331,7 @@ package org.apache.royale.core
 					this._explicitWidth = NaN;
 			}
 			
-			dispatchEvent(new Event("percentWidthChanged"));
+			sendEvent(this,"percentWidthChanged");
 		}
 
         protected var _percentHeight:Number;
@@ -374,7 +375,7 @@ package org.apache.royale.core
 					this._explicitHeight = NaN;
 			}
 			
-			dispatchEvent(new Event("percentHeightChanged"));
+			sendEvent(this,"percentHeightChanged");
 		}
 		
 		protected var _width:Number;
@@ -587,7 +588,7 @@ package org.apache.royale.core
                     this.positioner.style.height = value.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("heightChanged"));
+                    sendEvent(this,"heightChanged");
             }            
         }
 
@@ -609,7 +610,7 @@ package org.apache.royale.core
                     this.positioner.style.width = value.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("widthChanged"));
+                    sendEvent(this,"widthChanged");
             }
         }
         
@@ -631,7 +632,7 @@ package org.apache.royale.core
                     this.positioner.style.width = newWidth.toString() + 'px';        
                 }
                 if (!noEvent) 
-                    dispatchEvent(new Event("widthChanged"));
+                    sendEvent(this,"widthChanged");
             }
             if (_height !== newHeight)
             {
@@ -641,9 +642,9 @@ package org.apache.royale.core
                     this.positioner.style.height = newHeight.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("heightChanged"));
+                    sendEvent(this,"heightChanged");
             }            
-            dispatchEvent(new Event("sizeChanged"));
+            sendEvent(this,"sizeChanged");
         }
         
         /**
@@ -829,8 +830,8 @@ package org.apache.royale.core
 		override public function set visible(value:Boolean):void
 		{
 			super.visible = value;
-			dispatchEvent(new Event(value?"show":"hide"));
-			dispatchEvent(new Event("visibleChanged"));
+			sendEvent(this,new Event(value?"show":"hide"));
+			sendEvent(this,new Event("visibleChanged"));
         }
         /**
          * @private
@@ -873,15 +874,15 @@ package org.apache.royale.core
                 {
 					displayStyleForLayout = positioner.style.display;
                     positioner.style.display = 'none';
-                    dispatchEvent(new Event('hide'));
+                    sendEvent(this,'hide');
                 } 
                 else 
                 {
                     if (displayStyleForLayout != null)
                         positioner.style.display = displayStyleForLayout;
-                    dispatchEvent(new Event('show'));
+                    sendEvent(this,'show');
                 }
-                dispatchEvent(new Event('visibleChanged'));
+                sendEvent(this,'visibleChanged');
             }
         }
         
@@ -922,7 +923,7 @@ package org.apache.royale.core
             if (_view != value)
             {
                 addBead(value);
-                dispatchEvent(new Event("viewChanged"));
+                sendEvent(this,"viewChanged");
             }
         }
 
@@ -949,7 +950,7 @@ package org.apache.royale.core
 			if (_id !== value)
 			{
 				_id = value;
-				dispatchEvent(new Event("idChanged"));
+				sendEvent(this,"idChanged");
 			}
             COMPILE::JS
             {
@@ -1002,7 +1003,7 @@ package org.apache.royale.core
 					if (parent)
 						ValuesManager.valuesImpl.applyStyles(this, _style);
 				}
-                dispatchEvent(new Event("stylesChanged"));
+                sendEvent(this,"stylesChanged");
 
                 // if the new style is an IStyleObject, set the reference back to us to get updates
                 var styleObject : IStyleObject = _style as IStyleObject;
@@ -1068,7 +1069,7 @@ package org.apache.royale.core
                         setClassName(computeFinalClassNames());             
                 }
                 
-                dispatchEvent(new Event("classNameChanged"));
+                sendEvent(this,"classNameChanged");
             }
         }
 
@@ -1132,7 +1133,7 @@ package org.apache.royale.core
 			}
 			
 			if (isView) {
-				dispatchEvent(new Event("viewChanged"));
+				sendEvent(this,"viewChanged");
 			}
 		}
 		
@@ -1382,7 +1383,7 @@ package org.apache.royale.core
 			loadBeadFromValuesManager(IBeadModel, "iBeadModel", this);
             loadBeadFromValuesManager(IBeadView, "iBeadView", this);
 			loadBeadFromValuesManager(IBeadController, "iBeadController", this);
-            dispatchEvent(new Event("beadsAdded"));
+            sendEvent(this,"beadsAdded");
         }
 
         private var _measurementBead:IMeasurementBead;
@@ -1447,7 +1448,7 @@ package org.apache.royale.core
          */
         protected function repeaterListener(event:Event):void
         {
-            dispatchEvent(event);
+            sendEvent(this,event);
         }
         
         /**

@@ -23,6 +23,7 @@ package org.apache.royale.html
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IAccordionCollapseBead;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendEvent;
 	
 	/**
 	 *  The Accordion class used to display a list of collapsible components
@@ -49,7 +50,9 @@ package org.apache.royale.html
 		{
 			super();
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		override public function addedToParent():void
 		{
 			super.addedToParent();
@@ -61,10 +64,12 @@ package org.apache.royale.html
 			{
 				// TODO this should probably be done in List, but it's too hacky
 				// This is my way of setting the proper item renderer state and layout 
-				(model as IEventDispatcher).dispatchEvent(new Event("selectedIndexChanged"));
+				sendEvent(model as IEventDispatcher,"selectedIndexChanged");
 			}
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.IAccordionCollapseBead
+		 */
 		public function get accordionCollapseBead():IAccordionCollapseBead
 		{
 			if (!_collapseBead)

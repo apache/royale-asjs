@@ -26,6 +26,7 @@ package org.apache.royale.core
     import org.apache.royale.events.Event;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
+    import org.apache.royale.utils.sendEvent;
 
     /**
      *  The StyledUIBase is the base class for UIBase components that makes
@@ -211,7 +212,7 @@ package org.apache.royale.core
 					this._explicitWidth = NaN;
 			}
 			
-			dispatchEvent(new Event("percentWidthChanged"));
+			sendEvent(this,"percentWidthChanged");
 		}
 
         /**
@@ -239,7 +240,7 @@ package org.apache.royale.core
 					this._explicitHeight = NaN;
 			}
 			
-			dispatchEvent(new Event("percentHeightChanged"));
+			sendEvent(this,"percentHeightChanged");
 		}
 
         /**
@@ -263,7 +264,7 @@ package org.apache.royale.core
                     this.positioner.style.height = isNaN(value) ? null : value.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("heightChanged"));
+                    sendEvent(this,"heightChanged");
             }            
         }
 
@@ -288,7 +289,7 @@ package org.apache.royale.core
                     this.positioner.style.width = isNaN(value) ? null : value.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("widthChanged"));
+                    sendEvent(this,"widthChanged");
             }
         }
 
@@ -313,7 +314,7 @@ package org.apache.royale.core
                     this.positioner.style.width = isNaN(newWidth) ? null : newWidth.toString() + 'px';        
                 }
                 if (!noEvent) 
-                    dispatchEvent(new Event("widthChanged"));
+                    sendEvent(this,"widthChanged");
             }
             if (_height !== newHeight)
             {
@@ -323,9 +324,9 @@ package org.apache.royale.core
                     this.positioner.style.height = isNaN(newHeight) ? null : newHeight.toString() + 'px';        
                 }
                 if (!noEvent)
-                    dispatchEvent(new Event("heightChanged"));
+                    sendEvent(this,"heightChanged");
             }            
-            dispatchEvent(new Event("sizeChanged"));
+            sendEvent(this,"sizeChanged");
         }
 
         /**

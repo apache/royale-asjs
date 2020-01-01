@@ -157,7 +157,7 @@ package org.apache.royale.core
 
             sendEvent(this,"beadsAdded");
 
-            if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+            if (sendEvent(this,new org.apache.royale.events.Event("preinitialize", false, true)))
                 initialize();
             else
                 addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
@@ -167,7 +167,7 @@ package org.apache.royale.core
         COMPILE::SWF
         private function enterFrameHandler(event:flash.events.Event):void
         {
-            if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+            if (sendEvent(this,new org.apache.royale.events.Event("preinitialize", false, true)))
             {
                 removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
                 initialize();
@@ -189,7 +189,7 @@ package org.apache.royale.core
 
             MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
 
-            dispatchEvent(new org.apache.royale.events.Event("initialize"));
+            sendEvent(this,"initialize");
 
             if (initialView)
             {
@@ -217,9 +217,9 @@ package org.apache.royale.core
                     graphics.drawRect(0, 0, initialView.width, initialView.height);
                     graphics.endFill();
                 }
-                dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
+                sendEvent(this,"viewChanged");
             }
-            dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+            sendEvent(this,"applicationComplete");
         }
 
         /**
@@ -656,7 +656,7 @@ package org.apache.royale.core
 			}
 			sendEvent(this,"beadsAdded");
 			
-			if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+			if (sendEvent(this,new org.apache.royale.events.Event("preinitialize", false, true)))
 				initialize();
 			else {			
 				startupTimer = new Timer(34, 0);
@@ -671,7 +671,7 @@ package org.apache.royale.core
 		COMPILE::JS
 		protected function handleStartupTimer(event:Event):void
 		{
-			if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+			if (sendEvent(this,new org.apache.royale.events.Event("preinitialize", false, true)))
 			{
 				startupTimer.stop();
 				initialize();
@@ -687,7 +687,7 @@ package org.apache.royale.core
 		{
 			MXMLDataInterpreter.generateMXMLInstances(this, instanceParent, MXMLDescriptor);
 			
-			dispatchEvent('initialize');
+			sendEvent(this,'initialize');
 			
 			if (initialView)
 			{
@@ -699,12 +699,12 @@ package org.apache.royale.core
                     var style:CSSStyleDeclaration  = getStyle(this);
 					style.height = window.innerHeight.toString() + 'px';
 					style.width = window.innerWidth.toString() + 'px';
-					this.initialView.dispatchEvent(new Event("sizeChanged")); // kick off layout if % sizes
+					sendEvent(initialView,"sizeChanged"); // kick off layout if % sizes
 				}
 				
-				dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
+				sendEvent(this,"viewChanged");
 			}
-			dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+			sendEvent(this,"applicationComplete");
 		}
         
         COMPILE::SWF

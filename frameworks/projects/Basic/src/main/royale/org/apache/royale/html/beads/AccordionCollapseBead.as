@@ -28,6 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.html.supportClasses.ICollapsible;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	public class AccordionCollapseBead implements IAccordionCollapseBead
 	{
@@ -74,8 +75,8 @@ package org.apache.royale.html.beads
 			if(lastElement)
 				lastElement.collapse();
 			lastSelectedIndex = host.selectedIndex;
-			layout.flexibleChild = String(host.selectedIndex);			
-			IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+			layout.flexibleChild = String(host.selectedIndex);
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		protected function get layout():IOneFlexibleChildLayout

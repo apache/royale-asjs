@@ -21,6 +21,7 @@ package org.apache.royale.utils
   COMPILE::SWF
   {
     import flash.events.Event;
+    import org.apache.royale.events.Event;
   }
 
   import org.apache.royale.core.IBead;
@@ -33,16 +34,16 @@ package org.apache.royale.utils
    * @royalesuppressexport
    * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
    */
-  public function sendBeadEvent(bead:IBead,event:Object):void
+  public function sendBeadEvent(bead:IBead,event:Object):Boolean
   {
       COMPILE::SWF{
         if(event is String)
-          event = new flash.events.Event(event as String);
-        (bead as IEventDispatcher).dispatchEvent(event as flash.events.Event);
+          event = new org.apache.royale.events.Event(event as String);
+        return (bead as IEventDispatcher).dispatchEvent(event as flash.events.Event);
       }
       COMPILE::JS
       {
-        (bead as IEventDispatcher).dispatchEvent(event);
+        return (bead as IEventDispatcher).dispatchEvent(event);
       }
   }
 }
