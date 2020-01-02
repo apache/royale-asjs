@@ -1161,6 +1161,9 @@ public class AdvancedDataGridColumn extends DataGridColumn
             if (owner)
             {
                 (owner as AdvancedDataGrid).columnsInvalid();
+                // columns invisible at init don't get a dataprovider so 
+                // force assignment by faking a dp change
+                (owner as AdvancedDataGrid).model.dispatchEvent(new Event("dataProviderChanged"));
                 
                 //owner.invalidateProperties();
                 //owner.invalidateSize();

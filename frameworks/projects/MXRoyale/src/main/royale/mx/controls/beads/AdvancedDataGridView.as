@@ -97,6 +97,7 @@ package mx.controls.beads
             var sharedModel:IDataGridModel = (host.model as IDataGridModel);
             
             columnLists.length = 0;
+            visibleColumns.length = 0;
             for (var i:int=0; i < sharedModel.columns.length; i++)
             {
                 var col:AdvancedDataGridColumn = sharedModel.columns[i] as AdvancedDataGridColumn;
@@ -123,7 +124,7 @@ package mx.controls.beads
                 (header as DataGridButtonBar).dataProvider = groupedColumns;
             }
             else
-                (header as DataGridButtonBar).dataProvider = visibleColumns;
+                (header as DataGridButtonBar).dataProvider = visibleColumns.slice();
             
             host.dispatchEvent(new Event("layoutNeeded"));
         }
