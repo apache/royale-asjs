@@ -39,8 +39,8 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		function get columnLabels():Array;
-		function set columnLabels(value:Array):void;
+		// function get columnLabels():Array;
+		// function set columnLabels(value:Array):void;
 
 		/**
 		 *  How column label aligns in the header
@@ -50,7 +50,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		function get columnLabelAlign():String;
-		function set columnLabelAlign(value:String):void;
+		// function get columnLabelAlign():String;
+		// function set columnLabelAlign(value:String):void;
     }
 }
