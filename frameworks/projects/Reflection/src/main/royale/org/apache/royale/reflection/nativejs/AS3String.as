@@ -39,7 +39,7 @@ package org.apache.royale.reflection.nativejs {
                 },
                 'methods':function():Object {
                     return {
-                        'String':{'parameters':function():Object { return [{'index':1,'optional':true,'type':'*'}]},'type':'','declaredBy':'String'}
+                        'String':{ 'parameters':function():Object { return ['*', true]}, 'type':'','declaredBy':'String'}
                     };
                 }
             };
