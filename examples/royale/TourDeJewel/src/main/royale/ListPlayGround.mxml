@@ -161,10 +161,12 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel List With ItemRenderer"/>
+				<html:H3 text="Jewel List With ItemRenderer and rowHeight=52"/>
 				<j:HGroup gap="3">
 					<j:VGroup gap="3">
-						<j:List localId="iconList" emphasis="secondary" width="200" height="300" className="iconListItemRenderer" labelField="label">
+						<j:List localId="iconList" width="200" height="300"
+							className="iconListItemRenderer" labelField="label"
+							emphasis="secondary" rowHeight="52">
 							<j:beads>
 								<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
 								<j:AddListItemRendererForArrayListData/>
