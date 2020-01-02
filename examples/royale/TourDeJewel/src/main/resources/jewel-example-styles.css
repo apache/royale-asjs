@@ -49,11 +49,21 @@ j|IconButtonBar
 {
     margin-right: 24px;
 }
-.jewelItem{
+
+.jewel.item .jewelItem {
     color: #3cadf1;
 }
-.basicItem{
+
+.jewel.item .basicItem {
     color: #71a02f;
+}
+
+.jewel.item.selected .jewelItem, .jewel.item.selectable:active .jewelItem, .jewel.item.hovered .jewelItem {
+    color: #ffffff;
+}
+
+.jewel.item.selected .basicItem, .jewel.item.selectable:active .basicItem, .jewel.item.hovered .basicItem {
+    color: #ffffff;
 }
 
 .navIconLinkItemRenderer

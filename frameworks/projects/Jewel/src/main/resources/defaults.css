@@ -938,7 +938,7 @@ j|ImageButton {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ImageModel");
 }
 
-.jewel.item, .jewel.navigationlink, .jewel.tabbarbutton, .jewel.datagriditem {
+.jewel.item, .jewel.navigationlink, .jewel.tabbarbutton {
   display: block;
   min-height: 34px;
   text-decoration: none;
@@ -947,14 +947,14 @@ j|ImageButton {
   overflow: hidden;
   cursor: auto;
 }
-.jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent, .jewel.datagriditem.mxmlContent {
+.jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent {
   display: flex;
   align-items: center;
 }
-.jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable, .jewel.datagriditem.selectable {
+.jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;
 }
-.jewel.item .fonticon, .jewel.navigationlink .fonticon, .jewel.tabbarbutton .fonticon, .jewel.datagriditem .fonticon {
+.jewel.item .fonticon, .jewel.navigationlink .fonticon, .jewel.tabbarbutton .fonticon {
   cursor: inherit;
 }
 

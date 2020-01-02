@@ -24,24 +24,16 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-			import vos.DetailIconListVO;
+			import org.apache.royale.collections.ICollectionView;
 			import org.apache.royale.jewel.List;
-			import org.apache.royale.collections.ArrayList;
-            import org.apache.royale.collections.ArrayListView;
 			import org.apache.royale.jewel.beads.views.ListView;
-            import org.apache.royale.collections.ICollectionView;
+
+			import vos.DetailIconListVO;
 
             [Bindable("dataChange")]
             public function get iconListItem():DetailIconListVO
             {
                 return data as DetailIconListVO;
-            }
-
-
-            override  public function addedToParent():void
-            {
-
-                super.addedToParent();
             }
 
             [Bindable("dataChange")]
@@ -66,8 +58,8 @@ limitations under the License.
                 }
             }
 
-            public function getItemClassname(item:DetailIconListVO):String{
-
+            public function getItemClassname(item:DetailIconListVO):String
+            {
                 var colorClass:String;
                 if (item) {
                     switch(item.componentSet) {
@@ -86,23 +78,18 @@ limitations under the License.
                 }
                 return colorClass;
             }
-
-            public function get rendererTest():Boolean{
-                return true;
-            }
-
 		]]>
     </fx:Script>
 
     <j:beads>
-        <js:ItemRendererDataBinding />
+        <js:ItemRendererDataBinding/>
     </j:beads>
 
     <js:FontIcon text="{iconListItem ? iconListItem.icon : ''}"
-                 material="true"
-                 visible="{iconListItem ? iconListItem.icon != null : false}"
-                 className="{colorClass}"
-                 click="clickCloseButton()"/>
+                material="true"
+                visible="{iconListItem ? iconListItem.icon != null : false}"
+                className="{colorClass}"
+                click="clickCloseButton()"/>
 
     <j:Label html="{text}" multiline="true"/>
 
