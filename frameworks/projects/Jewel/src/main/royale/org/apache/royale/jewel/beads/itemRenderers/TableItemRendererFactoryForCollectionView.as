@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -303,7 +303,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -314,7 +314,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */

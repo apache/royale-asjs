@@ -263,7 +263,7 @@ package org.apache.royale.jewel.beads.views
          * @royaleignorecoercion org.apache.royale.core.IChild
          * @royaleignorecoercion org.apache.royale.core.IParent
          * @royaleignorecoercion org.apache.royale.core.IDataGrid
-         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
          * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn
          */
         protected function createLists():void

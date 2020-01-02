@@ -156,7 +156,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		protected function dataProviderChangeHandler(event:Event):void
