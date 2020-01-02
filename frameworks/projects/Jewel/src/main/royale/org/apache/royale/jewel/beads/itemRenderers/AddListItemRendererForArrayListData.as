@@ -224,7 +224,7 @@ package org.apache.royale.jewel.beads.itemRenderers
                 // style.marginBottom = presentationModel.separatorThickness;
                 // UIBase(itemRenderer).style = style;
                 UIBase(itemRenderer).height = presentationModel.rowHeight;
-                UIBase(itemRenderer).percentWidth = 100;
+                //UIBase(itemRenderer).percentWidth = 100;
             }
 
             setData(itemRenderer, item, index);

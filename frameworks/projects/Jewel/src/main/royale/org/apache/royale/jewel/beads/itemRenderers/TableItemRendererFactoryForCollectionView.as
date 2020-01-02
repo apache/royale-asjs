@@ -244,7 +244,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 			
 			if (presentationModel) {
 				UIBase(itemRenderer).height = presentationModel.rowHeight;
-				UIBase(itemRenderer).percentWidth = 100;
 			}
 			
 			setData(itemRenderer, item, index);

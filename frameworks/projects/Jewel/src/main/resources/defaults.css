@@ -503,6 +503,9 @@ j|ComboBoxPopUp {
   position: absolute;
   width: auto;
 }
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid {
+  width: 100%;
+}
 
 j|DataGrid {
   IDataGridPresentationModel: ClassReference("org.apache.royale.jewel.beads.models.DataGridPresentationModel");

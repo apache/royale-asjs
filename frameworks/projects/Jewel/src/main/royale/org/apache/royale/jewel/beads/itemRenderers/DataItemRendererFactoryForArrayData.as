@@ -188,7 +188,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 				if (presentationModel) {
 					UIBase(ir).height = presentationModel.rowHeight;
-					UIBase(ir).percentWidth = 100;
+					// UIBase(ir).percentWidth = 100;
 				}
 				ir.data = dp[i];
 				dataGroup.addItemRenderer(ir, false);
