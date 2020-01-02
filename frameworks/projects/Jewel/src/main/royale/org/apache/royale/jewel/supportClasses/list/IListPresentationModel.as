@@ -16,9 +16,9 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.list
 {
-	import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.IBead;
 
     /**
 	 *  The Jewel IListPresentationModel interface holds key values for the display
@@ -29,8 +29,19 @@ package org.apache.royale.jewel.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-    public interface IListPresentationModel extends org.apache.royale.core.IListPresentationModel
+    public interface IListPresentationModel extends IBead
     {
+		/**
+		 *  The height of every row in the list.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		function get rowHeight():Number;
+		function set rowHeight(value:Number):void;
+
         /**
 		 *  How text aligns in the itemRenderer instance.
 		 *

@@ -36,11 +36,11 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.IDataGridView;
 	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	import org.apache.royale.utils.IEmphasis;
     
     /**
@@ -161,21 +161,6 @@ package org.apache.royale.jewel.beads.views
 
         /**
          * @private
-         * @royaleignorecoercion org.apache.royale.core.IDataGridModel
-         * @royaleignorecoercion org.apache.royale.core.IBead
-         * @royaleignorecoercion org.apache.royale.core.IBeadModel
-         * @royaleignorecoercion org.apache.royale.core.IChild
-         * @royaleignorecoercion org.apache.royale.core.IUIBase
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
-        override protected function handleInitComplete(event:Event):void
-        {
-            // _header.dispatchEvent(new Event("layoutNeeded"));
-            // _listArea.dispatchEvent(new Event("layoutNeeded"));
-        }
-
-        /**
-         * @private
          */
         private function handleSizeChanges(event:Event):void
         {
@@ -187,6 +172,7 @@ package org.apache.royale.jewel.beads.views
          * @private
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
          * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
          */
         protected function handleDataProviderChanged(event:Event):void
         {
@@ -317,7 +303,6 @@ package org.apache.royale.jewel.beads.views
 
                 var pm:ListPresentationModel = new ListPresentationModel();
                 pm.rowHeight = presentationModel.rowHeight;
-                pm.separatorThickness = presentationModel.separatorThickness;
                 pm.align = dataGridColumn.align;
                 list.addBead(pm as IBead);
 

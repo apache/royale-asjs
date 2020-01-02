@@ -34,7 +34,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -187,9 +187,6 @@ package org.apache.royale.jewel.beads.itemRenderers
                 }
 
 				if (presentationModel) {
-					var style:SimpleCSSStyles = new SimpleCSSStyles();
-					style.marginBottom = presentationModel.separatorThickness;
-					UIBase(ir).style = style;
 					UIBase(ir).height = presentationModel.rowHeight;
 					UIBase(ir).percentWidth = 100;
 				}

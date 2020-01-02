@@ -22,8 +22,8 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.

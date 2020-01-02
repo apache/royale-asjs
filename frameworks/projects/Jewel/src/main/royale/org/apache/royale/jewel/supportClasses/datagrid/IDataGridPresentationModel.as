@@ -16,8 +16,10 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses
+package org.apache.royale.jewel.supportClasses.datagrid
 {
+    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+
     /**
 	 *  The Jewel IDataGridPresentationModel interface holds key values for the display
 	 *  a Jewel DataGrid.

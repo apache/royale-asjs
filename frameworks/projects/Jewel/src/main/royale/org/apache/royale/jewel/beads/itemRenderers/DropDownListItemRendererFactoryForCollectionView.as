@@ -24,7 +24,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.IDropDownListModel;
 	import org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView

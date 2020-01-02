@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.models
 {
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
 	/**
 	 *  The DataGridPresentationModel class contains the data to label the columns
@@ -43,9 +43,7 @@ package org.apache.royale.jewel.beads.models
 		 */
 		public function DataGridPresentationModel()
 		{
-			super();
-			
-			separatorThickness = 1;
+			super();	
 		}
 		
 		private var _columnLabels:Array;

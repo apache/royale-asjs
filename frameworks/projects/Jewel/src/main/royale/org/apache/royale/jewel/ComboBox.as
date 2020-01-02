@@ -22,7 +22,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	//--------------------------------------
     //  Events

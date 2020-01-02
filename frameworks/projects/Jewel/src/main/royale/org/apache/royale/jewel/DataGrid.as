@@ -22,7 +22,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
 	/**
 	 *  The change event is dispatched whenever the datagrid's selection changes.

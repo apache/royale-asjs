@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.jewel.beads.models.TableModel;
     import org.apache.royale.jewel.beads.views.TableView;
     import org.apache.royale.jewel.itemRenderers.TableItemRenderer;
-    import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
     import org.apache.royale.jewel.supportClasses.table.TBodyContentArea;
     import org.apache.royale.jewel.supportClasses.table.THead;
     import org.apache.royale.jewel.supportClasses.table.TableColumn;
@@ -243,9 +243,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 			itemRenderer.labelField = labelField;
 			
 			if (presentationModel) {
-				var style:SimpleCSSStyles = new SimpleCSSStyles();
-				style.marginBottom = presentationModel.separatorThickness;
-				UIBase(itemRenderer).style = style;
 				UIBase(itemRenderer).height = presentationModel.rowHeight;
 				UIBase(itemRenderer).percentWidth = 100;
 			}

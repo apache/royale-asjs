@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	
 	/**
 	 *  The ListPresentationModel holds values used by list controls for presenting
@@ -65,27 +65,6 @@ package org.apache.royale.jewel.beads.models
 			if (value != _rowHeight) {
 				_rowHeight = value;
 				dispatchEvent(new Event("rowHeightChanged"));
-			}
-		}
-		
-		private var _separatorThickness:Number = 0;
-		/**
-		 *  The distance between rows.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get separatorThickness():Number
-		{
-			return _separatorThickness;
-		}
-		public function set separatorThickness(value:Number):void
-		{
-			if (value != _separatorThickness) {
-				_separatorThickness = value;
-				dispatchEvent(new Event("separatorThicknessChanged"));
 			}
 		}
 
