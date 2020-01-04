@@ -32,10 +32,17 @@ limitations under the License.
             [Bindable]
             public var color:String = "Blue";
 
+            private var themeIds:Array = [];
+
             public function changeCSS(event:Event):void
             {
                 color = event.target.selectedItem;
-                loadCSS("assets/themes/Jewel-Light-NoFlat-Primary-" + color + "-Theme/defaults.css");
+
+                // This will remove link tags by Id to avoid store unused themes
+                if(themeIds.length > 0)
+                    document.getElementById(themeIds.pop()).outerHTML = "";
+                
+                themeIds.push(loadCSS("assets/themes/Jewel-Light-NoFlat-Primary-" + color + "-Theme/defaults.css"));
             }
         ]]>
     </fx:Script>
