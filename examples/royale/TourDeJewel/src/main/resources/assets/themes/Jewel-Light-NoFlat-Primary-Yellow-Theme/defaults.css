@@ -16,7 +16,7 @@
  */
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
-j|Application {
+.jewel.application {
   background: white;
   font-family: "Lato", sans-serif;
   color: #808080;

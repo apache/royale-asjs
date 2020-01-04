@@ -156,7 +156,7 @@ package org.apache.royale.jewel
             // }
 			COMPILE::JS {
 				element = document.getElementsByTagName('body')[0];
-				element.className = 'Application';			
+				element.className = 'jewel application';			
 			}
 
 			this.valuesImpl = new AllCSSValuesImpl();
