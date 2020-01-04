@@ -77,7 +77,7 @@
                         <include>defaults.sass</include>
                     </includes>
                 </source>
-                <destination>${basedir}/../../../examples/royale/TourDeJewel/src/main/resources/assets/themes/Jewel-Light-NoFlat-Sapphire-Red-Theme</destination>
+                <destination>${basedir}/../../../examples/royale/TourDeJewel/src/main/resources/assets/themes/Jewel-Light-NoFlat-Primary-Sapphire-Theme</destination>
             </resource>
           </resources>
         </configuration>
