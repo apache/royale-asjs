@@ -50,8 +50,6 @@ package org.apache.royale.jewel
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.Timer;
-    import org.apache.royale.core.StyledUIBase;
-    import org.apache.royale.core.IFlexInfo;
 
 
     //--------------------------------------
@@ -127,7 +125,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class Application extends StyledUIBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IPopUpHostParent, IRenderedObject, IFlexInfo
+    public class Application extends ApplicationBase implements IStrand, IParent, IEventDispatcher, IInitialViewApplication, IPopUpHost, IPopUpHostParent, IRenderedObject
     {
         /**
          *  Constructor.
@@ -141,41 +139,23 @@ package org.apache.royale.jewel
         {
             super();
 
-            
+            COMPILE::SWF {
+    			if (stage)
+    			{
+    				stage.align = StageAlign.TOP_LEFT;
+    				stage.scaleMode = StageScaleMode.NO_SCALE;
+                    // should be opt-in
+    				//stage.quality = StageQuality.HIGH_16X16_LINEAR;
+    			}
 
-            // COMPILE::SWF {
-    		// 	if (stage)
-    		// 	{
-    		// 		stage.align = StageAlign.TOP_LEFT;
-    		// 		stage.scaleMode = StageScaleMode.NO_SCALE;
-            //         // should be opt-in
-    		// 		//stage.quality = StageQuality.HIGH_16X16_LINEAR;
-    		// 	}
-
-            //     loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
-            // }
+                loaderInfo.addEventListener(flash.events.Event.INIT, initHandler);
+            }
 			COMPILE::JS {
 				element = document.getElementsByTagName('body')[0];
 				element.className = 'jewel application';			
 			}
 
 			this.valuesImpl = new AllCSSValuesImpl();
-        }
-
-        private var _info:Object;
-        
-        /**
-         *  An Object containing information generated
-         *  by the compiler that is useful at startup time.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function info():Object
-        {
-            return _info;
         }
         
         protected var instanceParent:IParent = null;
@@ -447,7 +427,7 @@ package org.apache.royale.jewel
          * 
          *  @royalesuppresspublicvarwarning
          */
-        // public var beads:Array;
+        public var beads:Array;
 
         COMPILE::SWF
         private var _beads:Vector.<IBead>;
@@ -513,6 +493,36 @@ package org.apache.royale.jewel
         }
 
         /**
+         *  @copy org.apache.royale.core.IParent#addElement()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         *  @royaleignorecoercion org.apache.royale.core.IUIBase
+         *  @royaleignorecoercion HTMLElement
+         */
+        public function addElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+            COMPILE::SWF {
+                if (c is IUIBase)
+                {
+                    if (c is IRenderedObject)
+                        addChild(IRenderedObject(c).$displayObject);
+                    else
+                        addChild(c as DisplayObject);
+                    IUIBase(c).addedToParent();
+                }
+                else
+                    addChild(c as DisplayObject);
+            }
+            COMPILE::JS {
+                element.appendChild(c.positioner);
+                (c as IUIBase).addedToParent();
+            }
+        }
+
+        /**
          *  @copy org.apache.royale.core.IParent#addElementAt()
          *
          *  @langversion 3.0
@@ -521,7 +531,7 @@ package org.apache.royale.jewel
          *  @productversion Royale 0.9.4
          *  @royaleignorecoercion org.apache.royale.core.IUIBase
          */
-        override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
+        public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
         {
             COMPILE::SWF {
                 if (c is IUIBase)
@@ -536,7 +546,7 @@ package org.apache.royale.jewel
                     addChildAt(c as DisplayObject, index);
             }
             COMPILE::JS {
-                var children:NodeList = internalChildrenNodeList();
+                var children:NodeList = internalChildren();
                 if (index >= children.length)
                     addElement(c);
                 else
@@ -557,13 +567,13 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        override public function getElementAt(index:int):IChild
+        public function getElementAt(index:int):IChild
         {
             COMPILE::SWF {
                 return getChildAt(index) as IChild;
             }
             COMPILE::JS {
-                var children:NodeList = internalChildrenNodeList();
+                var children:NodeList = internalChildren();
                 return children[index].royale_wrapper;
             }
         }
@@ -576,7 +586,7 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        override public function getElementIndex(c:IChild):int
+        public function getElementIndex(c:IChild):int
         {
             COMPILE::SWF {
                 if (c is IRenderedObject)
@@ -585,7 +595,7 @@ package org.apache.royale.jewel
                 return getChildIndex(c as DisplayObject);
             }
             COMPILE::JS {
-                var children:NodeList = internalChildrenNodeList();
+                var children:NodeList = internalChildren();
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
@@ -597,6 +607,30 @@ package org.apache.royale.jewel
         }
 
         /**
+         *  @copy org.apache.royale.core.IParent#removeElement()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         *  @royaleignorecoercion HTMLElement
+         */
+        public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
+        {
+            COMPILE::SWF {
+                if (c is IRenderedObject)
+                {
+                    removeChild(IRenderedObject(c).$displayObject);
+                }
+                else
+                    removeChild(c as DisplayObject);
+            }
+            COMPILE::JS {
+                element.removeChild(c.element as HTMLElement);
+            }
+        }
+
+        /**
          *  @copy org.apache.royale.core.IParent#numElements
          *
          *  @langversion 3.0
@@ -604,13 +638,13 @@ package org.apache.royale.jewel
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        override public function get numElements():int
+        public function get numElements():int
         {
             COMPILE::SWF {
                 return numChildren;
             }
             COMPILE::JS {
-                var children:NodeList = internalChildrenNodeList();
+                var children:NodeList = internalChildren();
                 return children.length;
             }
         }
@@ -619,7 +653,7 @@ package org.apache.royale.jewel
          * @return {Object} The array of children.
          */
         COMPILE::JS
-        protected function internalChildrenNodeList():NodeList
+        protected function internalChildren():NodeList
         {
             return element.childNodes;
         };
