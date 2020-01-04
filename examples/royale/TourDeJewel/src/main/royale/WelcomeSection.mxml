@@ -66,9 +66,9 @@ limitations under the License.
 
         <j:VGroup gap="3" itemsHorizontalAlign="itemsCentered">
             <j:Label text="Choose your Jewel Theme:"/>
-            <j:DropDownList change="changeCSS(event)" selectedIndex="1">
+            <j:DropDownList change="changeCSS(event)" selectedIndex="3">
                 <j:dataProvider>
-                    <js:ArrayList source="[Amethyst, Blue, Emerald, Green, Orange, Red, Sapphire, Sunflower, Topaz, Turquoise, Violet, Yellow]" />
+                    <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
                 </j:dataProvider>
                 <j:beads>
                     <j:RequireSelection requireSelection="true"/>
