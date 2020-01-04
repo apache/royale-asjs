@@ -1,0 +1,201 @@
+/*!
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+@namespace j "library://ns.apache.org/royale/jewel";
+@namespace "http://www.w3.org/1999/xhtml";
+j|Application {
+  background: white;
+  font-family: "Lato", sans-serif;
+  color: #808080;
+  padding: 0px;
+  margin: 0px;
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+}
+
+j|Form {
+  gap: 3;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+span {
+  font-size: 1em;
+}
+
+div {
+  font-size: 14px;
+}
+
+hr {
+  background-color: #d9d9d9;
+}
+
+.jewel.xsmall {
+  font-size: 0.6em;
+}
+
+.jewel.small {
+  font-size: 0.8em;
+}
+
+.jewel {
+  font-size: 1em;
+}
+
+.jewel.large {
+  font-size: 1.2em;
+}
+
+.jewel.xlarge {
+  font-size: 1.4em;
+}
+
+.jewel.imagebutton {
+  outline: 0;
+}
+
+.jewel.badge.secondary {
+  background: #EF5A2A;
+  color: #FFFFFF;
+}
+
+.jewel.button.secondary {
+  background: linear-gradient(#f16c42, #ed4812);
+  border: 1px solid #be390e;
+  box-shadow: inset 0 1px 0 #f6a389;
+  border-radius: 3px;
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(119, 36, 9, 0.7);
+}
+.jewel.button.secondary:hover, .jewel.button.secondary:hover:focus {
+  background: linear-gradient(#EF5A2A, #d64010);
+  border: 1px solid #a6320d;
+}
+.jewel.button.secondary:active, .jewel.button.secondary:active:focus {
+  background: linear-gradient(#d64010, #a6320d);
+  border: 1px solid #772409;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.jewel.button.secondary:focus {
+  border: 1px solid #be390e;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.jewel.button.secondary[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.hovered {
+  background: #f38663;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.selected, .jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.selectable:active {
+  background: #f1744b;
+}
+
+.jewel.item.secondary.hovered {
+  background: #EF5A2A;
+}
+.jewel.item.secondary.selected, .jewel.item.secondary.selectable:active {
+  background: #ed4812;
+}
+
+.jewel.snackbar.secondary .jewel.snackbar-content {
+  background: linear-gradient(#f16c42, #ed4812);
+  border: 1px solid #be390e;
+  box-shadow: inset 0 1px 0 #f6a389;
+  border-bottom: none;
+}
+.jewel.snackbar.secondary .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.secondary .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.secondary .jewel.snackbar-action:hover {
+  background: linear-gradient(#EF5A2A, #d64010);
+}
+
+a:visited {
+  color: #d64010;
+}
+
+a:hover {
+  color: #EF5A2A;
+}
+
+a:active {
+  color: #f37f59;
+}
+
+.jewel.togglebutton.secondary {
+  background: linear-gradient(#f16c42, #ed4812);
+  border: 1px solid #be390e;
+  box-shadow: inset 0 1px 0 #f6a389;
+  border-radius: 3px;
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(119, 36, 9, 0.7);
+}
+.jewel.togglebutton.secondary:hover, .jewel.togglebutton.secondary:hover:focus {
+  background: linear-gradient(#EF5A2A, #d64010);
+  border: 1px solid #a6320d;
+}
+.jewel.togglebutton.secondary:active, .jewel.togglebutton.secondary:active:focus {
+  background: linear-gradient(#d64010, #a6320d);
+  border: 1px solid #772409;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+.jewel.togglebutton.secondary:focus {
+  border: 1px solid #be390e;
+  box-shadow: inset 0px 0px 0px 1px rgba(255, 255, 255, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+.jewel.togglebutton.secondary[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.secondary.selected {
+  background: linear-gradient(#d64010, #a6320d);
+  border: 1px solid #772409;
+  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+
+/*# sourceMappingURL=defaults.css.map */
