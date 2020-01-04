@@ -779,9 +779,6 @@ j|FormItem {
   font-size: 16px;
 }
 
-.jewel.slider input {
-  color: #662C90;
-}
 .jewel.slider input::-ms-fill-lower {
   background: linear-gradient(#6e309c, #5e2884);
   border: 1px solid #3c1a55;
