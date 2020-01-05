@@ -791,7 +791,15 @@ j|FormItem {
   border: 1px solid #333333;
   border-radius: 3px;
 }
-.jewel.slider input::-webkit-slider-thumb, .jewel.slider input::-moz-range-thumb {
+.jewel.slider input::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  background: linear-gradient(#ed2a32, #e5131b);
+  border: 1px solid #ad0e15;
+  box-shadow: inset 0 1px 0 #f47a7f, 0 0 0 1px rgba(140, 140, 140, 0.3);
+  border-radius: 50%;
+}
+.jewel.slider input::-moz-range-thumb {
   width: 18px;
   height: 18px;
   background: linear-gradient(#ed2a32, #e5131b);
