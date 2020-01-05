@@ -48,8 +48,20 @@ $slider-scale-transform: 1.4
                 border: 1px solid darken($default-color, 15%)
             border-radius: $slider-track-border-radius
 
-        // -- THUMB
-        &::-webkit-slider-thumb, &::-moz-range-thumb
+        // -- THUMB - Notice that we need to separate webkit and moz thumb whole definitions since webkit is unable to work with both mixed
+        &::-webkit-slider-thumb
+            width: $slider-thumb-size
+            height: $slider-thumb-size
+            @if $flat
+                background: $primary-color
+                border: 0
+            @else
+                background: linear-gradient(lighten($primary-color, 3%), darken($primary-color, 3%))
+                border: 1px solid darken($primary-color, 15%)
+                box-shadow: inset 0 1px 0 lighten($primary-color, 20%), 0 0 0 1px lighten(rgba($default-color, 0.3), 20%)
+            border-radius: $slider-border-radius
+        
+        &::-moz-range-thumb
             width: $slider-thumb-size
             height: $slider-thumb-size
             @if $flat
