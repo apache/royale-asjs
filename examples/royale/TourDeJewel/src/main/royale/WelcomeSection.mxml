@@ -32,17 +32,19 @@ limitations under the License.
             [Bindable]
             public var color:String = "Blue";
 
-            private var themeIds:Array = [];
+            private var themePrimaryIds:Array = [];
+            private var themeSecondaryIds:Array = [];
+            private var themeEmphasizedIds:Array = [];
 
-            public function changeCSS(event:Event):void
+            public function changeCSS(event:Event, emphasis:String, themesArray:Array):void
             {
                 color = event.target.selectedItem;
 
                 // This will remove link tags by Id to avoid store unused themes
-                if(themeIds.length > 0)
-                    document.getElementById(themeIds.pop()).outerHTML = "";
+                if(themesArray.length > 0)
+                    document.getElementById(themesArray.pop()).outerHTML = "";
                 
-                themeIds.push(loadCSS("assets/themes/Jewel-Light-NoFlat-Primary-" + color + "-Theme/defaults.css"));
+                themesArray.push(loadCSS("assets/themes/Jewel-Light-NoFlat-" + emphasis + "-" + color + "-Theme/defaults.css"));
             }
         ]]>
     </fx:Script>
@@ -66,14 +68,39 @@ limitations under the License.
 
         <j:VGroup gap="3" itemsHorizontalAlign="itemsCentered">
             <j:Label text="Choose your Jewel Theme:"/>
-            <j:DropDownList change="changeCSS(event)" selectedIndex="3">
-                <j:dataProvider>
-                    <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
-                </j:dataProvider>
-                <j:beads>
-                    <j:RequireSelection requireSelection="true"/>
-                </j:beads>
-            </j:DropDownList>
+            
+            <j:Form>
+                <j:FormItem label="Primary:">
+                    <j:DropDownList change="changeCSS(event, 'Primary', themePrimaryIds)" selectedIndex="3">
+                        <j:dataProvider>
+                            <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
+                        </j:dataProvider>
+                        <j:beads>
+                            <j:RequireSelection requireSelection="true"/>
+                        </j:beads>
+                    </j:DropDownList>
+                </j:FormItem>
+                <j:FormItem label="Secondary:">
+                    <j:DropDownList change="changeCSS(event, 'Secondary', themeSecondaryIds)" selectedIndex="8">
+                        <j:dataProvider>
+                            <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
+                        </j:dataProvider>
+                        <j:beads>
+                            <j:RequireSelection requireSelection="true"/>
+                        </j:beads>
+                    </j:DropDownList>
+                </j:FormItem>
+                <j:FormItem label="Emphasized:">
+                    <j:DropDownList change="changeCSS(event, 'Emphasized', themeEmphasizedIds)" selectedIndex="0">
+                        <j:dataProvider>
+                            <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
+                        </j:dataProvider>
+                        <j:beads>
+                            <j:RequireSelection requireSelection="true"/>
+                        </j:beads>
+                    </j:DropDownList>
+                </j:FormItem>
+            </j:Form>
         </j:VGroup>
 
         <j:Label width="400" multiline="true" html="Jewel is a themeable and responsive set of user interface components for Apache Royale to help you quickly build the front end of your applications with ActionScript &amp; MXML.&lt;br>Check &lt;a href='https://royale.apache.org'>https://royale.apache.org&lt;/a>">
