@@ -173,6 +173,10 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         if ((treeListData.owner as AdvancedDataGrid).selectedIndices.indexOf(treeListData.rowIndex) != -1)
         {
             selected = true;
+        } 
+        else if ((treeListData.owner as AdvancedDataGrid).selectedIndex == treeListData.rowIndex)
+        {
+            selected = true;            
         }
 
         COMPILE::JS {
