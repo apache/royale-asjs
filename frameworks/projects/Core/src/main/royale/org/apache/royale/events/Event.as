@@ -23,10 +23,6 @@ package org.apache.royale.events
     COMPILE::SWF {
         import flash.events.Event;
     }
-        
-	COMPILE::JS {
-		import goog.events.Event;
-	}
 
 	/**
 	 * This class simply wraps flash.events.Event so that
