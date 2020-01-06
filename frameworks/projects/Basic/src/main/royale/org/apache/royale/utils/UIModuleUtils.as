@@ -223,7 +223,7 @@ package org.apache.royale.utils
             }
 		}
         
-        private var moduleInstance:IUIBase;
+        public var moduleInstance:IUIBase;
         
         COMPILE::SWF
         protected function completeHandler(event:flash.events.Event):void
