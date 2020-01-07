@@ -2605,6 +2605,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     {   
         if (collection)
             value = Math.min(collection.length - 1, value);
+        clearSelected();
         super.selectedIndex = value;
     }
     
