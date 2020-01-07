@@ -43,6 +43,7 @@ import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.IDataProviderItemRendererMapper;
 import org.apache.royale.core.IFactory;
 import org.apache.royale.core.IItemRendererClassFactory;
+import org.apache.royale.core.IItemRendererProvider;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
@@ -50,6 +51,7 @@ import org.apache.royale.core.ILayoutView;
 import org.apache.royale.core.IListPresentationModel;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectionModel;
+import org.apache.royale.core.IStrandWithPresentationModel;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
@@ -90,7 +92,9 @@ use namespace mx_internal;
      *  @productversion Royale 0.0
      *  @royalesuppresspublicvarwarning
 	*/
-	public class ListBase extends ScrollControlBase implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
+	public class ListBase extends ScrollControlBase 
+        implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, 
+                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel
 	{  //extends UIComponent
 	
 	

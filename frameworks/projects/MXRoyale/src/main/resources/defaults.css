@@ -421,10 +421,17 @@ TextInput
 
 Tree
 {
+	IBeadLayout: ClassReference("mx.controls.listClasses.ListVerticalLayout");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TreeXMLItemRenderer");
+	IItemRenderer: ClassReference("mx.controls.treeClasses.TreeItemRenderer");
+}
+
+TreeItemRenderer
+{
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+	cursor: pointer;
 }
 
 ToggleButtonBar
