@@ -169,6 +169,14 @@ CheckBox
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ToggleButtonModel");
 }
 
+ColorPicker
+{
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ColorModel");
+	IBeadView: ClassReference("org.apache.royale.html.beads.ColorPickerView");
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ComboBoxController");
+	IPopUp: ClassReference("org.apache.royale.html.supportClasses.ColorPickerPopUp");
+}
+
 ComboBox
 {
 	IBeadModel: ClassReference("mx.controls.beads.models.ComboBoxModel");
