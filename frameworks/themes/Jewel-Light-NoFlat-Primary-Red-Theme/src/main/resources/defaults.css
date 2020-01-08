@@ -24,12 +24,12 @@
   margin: 0px;
 }
 
-input, select, textarea, button {
-  font-family: inherit;
-}
-
 j|Form {
   gap: 3;
+}
+
+input, select, textarea, button {
+  font-family: inherit;
 }
 
 h1 {
