@@ -362,7 +362,8 @@ package org.apache.royale.html.beads.layouts
                     bottomSpacer = document.createElement("div") as HTMLDivElement;
                     contentView.element.appendChild(bottomSpacer);
                 }
-                bottomSpacer.style.height = ((dp.length - endIndex) * presentationModel.rowHeight).toString() + "px";  
+                var numBottomRows:int = dp.length - endIndex;
+                bottomSpacer.style.height = (numBottomRows > 0) ? (numBottomRows * presentationModel.rowHeight).toString() + "px" : "0px";  
                 inLayout = false;
 				return true;
 			}
