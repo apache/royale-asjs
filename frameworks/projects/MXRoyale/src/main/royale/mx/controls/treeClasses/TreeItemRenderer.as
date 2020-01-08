@@ -48,12 +48,12 @@ import mx.utils.PopUpUtil;
  */
 import mx.controls.Label;
 import mx.controls.listClasses.BaseListData;
-import mx.core.IFlexDisplayObject;
-
-import mx.core.mx_internal;
-import mx.core.UIComponent;
-import mx.core.IDataRenderer;
 import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.Tree;
+import mx.core.IDataRenderer;
+import mx.core.IFlexDisplayObject;
+import mx.core.UIComponent;
+import mx.core.mx_internal;
 
 use namespace mx_internal;
 
@@ -297,9 +297,13 @@ public class TreeItemRenderer extends UIComponent
     public function set data(value:Object):void
     {
         _data = value;
-        text = dataToString(value);
-        
         var treeListData:mx.controls.treeClasses.TreeListData = listData as mx.controls.treeClasses.TreeListData;
+
+        if ((treeListData.owner as Tree).labelFunction)
+            text = (treeListData.owner as Tree).labelFunction(data);
+        else
+            text = dataToString(value);
+        
         var indentSpace:String = "    ";
         var extraSpace:String = " ";
         
@@ -342,15 +346,6 @@ public class TreeItemRenderer extends UIComponent
     }
     public function set listData(value:Object):void
     {
-        if (value is org.apache.royale.html.supportClasses.TreeListData)
-        {
-            var otld:org.apache.royale.html.supportClasses.TreeListData = value as org.apache.royale.html.supportClasses.TreeListData;
-            var tld:mx.controls.treeClasses.TreeListData = new mx.controls.treeClasses.TreeListData();
-            tld.depth = otld.depth;
-            tld.hasChildren = otld.hasChildren;
-            tld.isOpen = otld.isOpen;
-            value = tld;
-        }
         _listData = value;
     }
     
