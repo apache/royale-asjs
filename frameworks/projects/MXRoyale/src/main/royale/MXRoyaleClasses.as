@@ -79,6 +79,7 @@ internal class MXRoyaleClasses
 	import mx.rpc.remoting.CompressedRemoteObject; mx.rpc.remoting.CompressedRemoteObject;
 	import mx.controls.treeClasses.ITreeDataDescriptor; ITreeDataDescriptor;
 	import mx.controls.treeClasses.TreeListData; TreeListData;
+    import mx.controls.listClasses.ListVerticalLayout; ListVerticalLayout;
 	import mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData; DataItemRendererFactoryForICollectionViewData;
     import mx.controls.listClasses.VirtualDataItemRendererFactoryForICollectionViewData; VirtualDataItemRendererFactoryForICollectionViewData;
     import mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData; VirtualDataItemRendererFactoryForIListData;

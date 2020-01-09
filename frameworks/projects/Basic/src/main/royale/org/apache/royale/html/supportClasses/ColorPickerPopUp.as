@@ -62,6 +62,7 @@ package org.apache.royale.html.supportClasses
 			hueSelector.width = 20;
 			hueSelector.height = 300;
 			hueSelector.x = 310;
+            hueSelector.y = 0;
 			hueSelector.addEventListener("valueChange", hueChangeHandler);
 			COMPILE::JS 
 			{
@@ -87,6 +88,7 @@ package org.apache.royale.html.supportClasses
 		protected function colorSpectrumChangeHandler(event:Event):void
 		{
 			(model as IColorModel).color = colorSpectrum.hsvModifiedColor;
+            dispatchEvent(new Event("change"));
 		}
 		
 		/**

@@ -33,5 +33,14 @@ package mx.controls.dateFieldClasses
      */
 	public class DateFieldDateChooser extends DateChooser implements IDateChooser
 	{
+        
+        override public function set selectedDate(value:Date):void
+        {
+            if (!value)
+                value = new Date();
+                
+            super.selectedDate = value;
+        }
+
 	}
 }

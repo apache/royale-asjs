@@ -45,7 +45,6 @@ package mx.controls.treeClasses
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
     import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
-	import org.apache.royale.html.supportClasses.TreeListData;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -152,10 +151,11 @@ package mx.controls.treeClasses
 			var hasChildren:Boolean = treeData.hasChildren(data);
 			
 			// Set the listData with the depth of this item
-			var treeListData:org.apache.royale.html.supportClasses.TreeListData = new org.apache.royale.html.supportClasses.TreeListData();
+			var treeListData:TreeListData = new TreeListData();
 			treeListData.depth = depth;
 			treeListData.isOpen = isOpen;
 			treeListData.hasChildren = hasChildren;
+            treeListData.owner = _strand;
 			
 			ir.listData = treeListData;
 			

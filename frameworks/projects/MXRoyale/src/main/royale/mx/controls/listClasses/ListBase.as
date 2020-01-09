@@ -43,6 +43,7 @@ import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 import org.apache.royale.core.IDataProviderItemRendererMapper;
 import org.apache.royale.core.IFactory;
 import org.apache.royale.core.IItemRendererClassFactory;
+import org.apache.royale.core.IItemRendererProvider;
 import org.apache.royale.core.ILayoutChild;
 import org.apache.royale.core.ILayoutHost;
 import org.apache.royale.core.ILayoutParent;
@@ -50,6 +51,7 @@ import org.apache.royale.core.ILayoutView;
 import org.apache.royale.core.IListPresentationModel;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectionModel;
+import org.apache.royale.core.IStrandWithPresentationModel;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
@@ -90,7 +92,9 @@ use namespace mx_internal;
      *  @productversion Royale 0.0
      *  @royalesuppresspublicvarwarning
 	*/
-	public class ListBase extends ScrollControlBase implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, ILayoutView
+	public class ListBase extends ScrollControlBase 
+        implements IContainerBaseStrandChildrenHost, IContainer, ILayoutParent, 
+                    ILayoutView, IItemRendererProvider, IStrandWithPresentationModel
 	{  //extends UIComponent
 	
 	
@@ -345,7 +349,44 @@ use namespace mx_internal;
             (model as ISelectionModel).labelField = value;
         }
         
-	//----------------------------------
+        //----------------------------------
+        //  labelFunction
+        //----------------------------------
+        
+        private var _labelFunction:Function;
+        
+        /**
+         *  The name of the field in the data provider items to display as the label. 
+         *  By default the list looks for a property named <code>label</code> 
+         *  on each item and displays it.
+         *  However, if the data objects do not contain a <code>label</code> 
+         *  property, you can set the <code>labelField</code> property to
+         *  use a different property in the data object. An example would be 
+         *  "FullName" when viewing a set of people names fetched from a database.
+         *
+         *  @default "label"
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
+        public function get labelFunction():Function
+        {
+            return _labelFunction;
+        }
+        
+        /**
+         *  @private
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
+        public function set labelFunction(value:Function):void
+        {
+            _labelFunction = value;
+        }
+
+        //----------------------------------
     //  selectedIndex
     //----------------------------------
 

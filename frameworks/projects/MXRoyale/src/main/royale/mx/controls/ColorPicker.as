@@ -20,7 +20,9 @@
 package mx.controls
 {
 	import org.apache.royale.events.Event;
-	import mx.controls.ComboBase;
+    import org.apache.royale.core.IColorModel;
+	//import mx.controls.ComboBase;
+    import mx.core.UIComponent;
 /*
 import flash.display.DisplayObject;
 import flash.events.Event;
@@ -465,7 +467,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class ColorPicker extends ComboBase
+public class ColorPicker extends UIComponent //ComboBase
 {
     //include "../core/Version.as";
 
@@ -499,12 +501,13 @@ public class ColorPicker extends ComboBase
     {
         super();
 
+        typeNames = "ColorPicker";
         //if (!isModelInited)
         //    loadDefaultPalette();
 
         // Make editable false so that focus doesn't go
         // to the comboBase's textInput which is not used by CP
-        super.editable = false;
+        //super.editable = false;
 
         // Register for events.
         //addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
@@ -623,12 +626,6 @@ public class ColorPicker extends ComboBase
     //  selectedColor
     //----------------------------------
 
-    /**
-     *  @private
-     *  Storage for the selectedColor property.
-     */
-    private var _selectedColor:uint = 0x000000;
-
     //[Bindable("change")]
     //[Bindable("valueCommit")]
     //[Inspectable(category="General", defaultValue="0", format="Color")]
@@ -651,7 +648,7 @@ public class ColorPicker extends ComboBase
      */
     public function get selectedColor():uint
     {
-        return _selectedColor;
+        return (model as IColorModel).color;
     }
 
     /**
@@ -668,7 +665,6 @@ public class ColorPicker extends ComboBase
         {
             indexFlag = false;
         }
-		*/
         if (value != selectedColor)
         {
             _selectedColor = value;
@@ -680,6 +676,8 @@ public class ColorPicker extends ComboBase
         }
 
         //dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+        */
+        (model as IColorModel).color = value;
     }
 
 }
