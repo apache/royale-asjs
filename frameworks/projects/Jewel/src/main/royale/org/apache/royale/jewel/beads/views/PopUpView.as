@@ -166,12 +166,14 @@ package org.apache.royale.jewel.beads.views
 
 		private function prepareForPopUp():void
         {
-			_popUp.addClass("open");
-			COMPILE::JS
-			{
+			if(_popUp) {
+				_popUp.addClass("open");
+				COMPILE::JS
+				{
 				//avoid scroll in html
 				document.body.classList.add("viewport");
 				//cancelAnimationFrame(rq);
+				}
 			}
 		}
 	}
