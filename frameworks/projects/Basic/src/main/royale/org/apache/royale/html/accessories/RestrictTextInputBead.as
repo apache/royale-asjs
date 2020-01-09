@@ -153,7 +153,8 @@ package org.apache.royale.html.accessories
         COMPILE::JS
         private function validateInput(event:BrowserEvent):void
         {            
-            var data:String = event["data"];
+            var host:UIBase = _strand as UIBase;
+            var data:String = (host.element as HTMLInputElement).value;
             
             if (restrict && data != null && data.length > 0)
             {
@@ -174,7 +175,6 @@ package org.apache.royale.html.accessories
                 {
                     event["returnValue"] = false;
                     if (event.preventDefault) event.preventDefault();
-                    var host:UIBase = _strand as UIBase;
                     (host.element as HTMLInputElement).value = out;                    
                 }
             }
