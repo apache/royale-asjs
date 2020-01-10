@@ -1,0 +1,1249 @@
+/*!
+ *  Licensed to the Apache Software Foundation (ASF) under one or more
+ *  contributor license agreements.  See the NOTICE file distributed with
+ *  this work for additional information regarding copyright ownership.
+ *  The ASF licenses this file to You under the Apache License, Version 2.0
+ *  (the "License"); you may not use this file except in compliance with
+ *  the License.  You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *  Unless required by applicable law or agreed to in writing, software
+ *  distributed under the License is distributed on an "AS IS" BASIS,
+ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *  See the License for the specific language governing permissions and
+ *  limitations under the License.
+ */
+@namespace j "library://ns.apache.org/royale/jewel";
+@namespace "http://www.w3.org/1999/xhtml";
+.jewel.application {
+  background: white;
+  font-family: "Lato", sans-serif;
+  color: #808080;
+  padding: 0px;
+  margin: 0px;
+}
+
+j|Form {
+  gap: 3;
+}
+
+input, select, textarea, button {
+  font-family: inherit;
+}
+
+h1 {
+  font-size: 2.5em;
+}
+
+h2 {
+  font-size: 2em;
+}
+
+h3 {
+  font-size: 1.5em;
+}
+
+h4 {
+  font-size: 1.25em;
+}
+
+h5 {
+  font-size: 1em;
+}
+
+span {
+  font-size: 1em;
+}
+
+div {
+  font-size: 14px;
+}
+
+hr {
+  background-color: #d9d9d9;
+}
+
+.jewel.xsmall {
+  font-size: 0.6em;
+}
+
+.jewel.small {
+  font-size: 0.8em;
+}
+
+.jewel {
+  font-size: 1em;
+}
+
+.jewel.large {
+  font-size: 1.2em;
+}
+
+.jewel.xlarge {
+  font-size: 1.4em;
+}
+
+.jewel.imagebutton {
+  outline: 0;
+}
+
+.jewel.alert {
+  transform: translate(-50%, -60%);
+  margin: 0;
+  padding: 0;
+  min-width: 320px;
+  min-height: 240px;
+  border: 0px solid;
+  background-color: white;
+  box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
+  border-radius: 3px;
+  opacity: 0;
+  will-change: opacity, transform;
+}
+.jewel.alert.open {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.4s 0ms, transform 0.4s 0ms;
+}
+.jewel.alert.open + .backdrop {
+  opacity: 1;
+  transition: opacity 0.4s 0ms;
+}
+.jewel.alert .jewel.titlebar {
+  padding: 20px 20px 0px 20px;
+  height: 50px;
+  color: #662C90;
+}
+.jewel.alert .jewel.titlebar .jewel.label {
+  font-size: 1.45em !important;
+  font-weight: bold;
+  font-color: #662C90;
+}
+.jewel.alert .content {
+  padding: 20px;
+  top: 50px;
+  bottom: 84px;
+}
+.jewel.alert .content .jewel.label {
+  white-space: normal;
+  color: #808080;
+  font-size: 1.1em;
+  font-weight: 400;
+}
+.jewel.alert .jewel.controlbar {
+  background: white;
+  border: 0px solid;
+  border-radius: 0px 0px 3px 3px;
+  padding: 20px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 84px;
+}
+.jewel.alert + .backdrop {
+  opacity: 0;
+  will-change: opacity;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.jewel.badge {
+  border-radius: 500em;
+  color: #808080;
+  font-size: 0.85em !important;
+  line-height: 1em;
+}
+.jewel.badge.primary {
+  background: #662C90;
+  color: #FFFFFF;
+}
+
+.jewel.button {
+  background: #d9d9d9;
+  border: 1px solid #c5c5c5;
+  border-radius: 0.25rem;
+  color: #808080;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.jewel.button:hover, .jewel.button:hover:focus {
+  background: #cccccc;
+  border: 1px solid #c5c5c5;
+}
+.jewel.button:active, .jewel.button:active:focus {
+  background: #b3b3b3;
+  border: 1px solid #c5c5c5;
+}
+.jewel.button:focus {
+  background: #e6e6e6;
+  border: 1px solid #c5c5c5;
+}
+.jewel.button[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.button[disabled] {
+  font-weight: 400;
+}
+.jewel.button.icon i {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.jewel.button.iconLSpace i {
+  margin-left: 0px;
+  margin-right: 8px;
+}
+.jewel.button.iconRSpace i {
+  margin-left: 8px;
+  margin-right: 0px;
+}
+
+.jewel.button.primary {
+  background: #662C90;
+  border: 1px solid #502271;
+  border-radius: 0.25rem;
+  color: #FFFFFF;
+}
+.jewel.button.primary:hover, .jewel.button.primary:hover:focus {
+  background: #58267c;
+  border: 1px solid #502271;
+}
+.jewel.button.primary:active, .jewel.button.primary:active:focus {
+  background: #3c1a55;
+  border: 1px solid #502271;
+}
+.jewel.button.primary:focus {
+  background: #7432a4;
+  border: 1px solid #502271;
+}
+.jewel.button.primary[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+
+.jewel.card {
+  font-size: 1em;
+  font-weight: 400;
+  background: #ebebeb;
+  border: 0px;
+  border-radius: 10px;
+  padding: 20px;
+}
+
+j|Card {
+  gap: 3;
+}
+
+.jewel.checkbox input + span::before {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+}
+.jewel.checkbox input + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23662C90' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  transform: scale(0);
+}
+.jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
+  transform: scale(1);
+}
+.jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
+  background: #a66ad1;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+.jewel.checkbox input[disabled] + span::before {
+  background: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+}
+.jewel.checkbox input[disabled] + span {
+  color: silver;
+}
+.jewel.checkbox input[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%23cccccc' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.checkbox span {
+  padding-left: 8px;
+  font-size: 16px;
+}
+
+.jewel.combobox .jewel.textinput input {
+  border-radius: 0.25rem 0px 0px 0.25rem;
+}
+.jewel.combobox .jewel.button {
+  color: transparent;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-left: 0px;
+}
+.jewel.combobox .jewel.button::after {
+  background-size: 66%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23662C90' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.combobox .jewel.button[disabled] {
+  border-left: 0px !important;
+}
+.jewel.combobox .jewel.button[disabled]::after {
+  background-size: 66%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+
+.jewel.datagrid {
+  width: 220px;
+  height: 240px;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.first {
+  border-bottom-left-radius: 0;
+}
+.jewel.datagrid .jewel.buttonbar.header .jewel.button.last {
+  border-bottom-right-radius: 0;
+}
+.jewel.datagrid .listarea {
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  border-bottom-width: 1px;
+  border-bottom-left-radius: 0.25rem;
+  border-bottom-right-radius: 0.25rem;
+  border-style: solid;
+  border-color: #d9d9d9;
+}
+.jewel.datagrid .jewel.list.column {
+  border-radius: 0px;
+  border-bottom-width: 0px;
+}
+.jewel.datagrid .jewel.list.column.first {
+  border-bottom-left-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column.last {
+  border-bottom-right-radius: 0.25rem;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid {
+  border-bottom: 1px solid #ededed;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.hovered {
+  background: #873abf;
+}
+.jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.selected, .jewel.datagrid .jewel.list.column .jewel.item.datagrid.primary.selectable:active {
+  background: #7934ab;
+}
+
+.jewel.datechooser .jewel.table {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.25rem;
+  box-shadow: none;
+}
+.jewel.datechooser .jewel.table .jewel.button {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell {
+  background: white;
+  border-left: 0px;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
+  border-bottom: 1px solid #d9d9d9;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton {
+  border-radius: 50%;
+  color: transparent;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector:hover, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton:hover, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton:hover {
+  background: #f3f3f3;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector:active, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton:active, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton:active {
+  background: #e6e6e6;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  background-size: 54%;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  background-size: 40%;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23662C90' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-position: right 0 center;
+  background-repeat: no-repeat;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23662C90' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23662C90' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.datechooser .jewel.table .jewel.tablecell {
+  border-top: 0px;
+  border-left: 0px;
+  padding: 4px;
+}
+.jewel.datechooser[disabled] {
+  pointer-events: none;
+}
+.jewel.datechooser[disabled] .jewel.table {
+  color: silver;
+  text-shadow: unset;
+  background: #f3f3f3;
+  border: 0px solid;
+}
+.jewel.datechooser[disabled] .jewel.table .jewel.button {
+  color: silver;
+  text-shadow: unset;
+  font-weight: normal;
+}
+.jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell {
+  background: none;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+.jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  background-size: 40%;
+}
+.jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23cccccc' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23cccccc' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.datechooser[disabled] .jewel.tableitem.selected, .jewel.datechooser[disabled] .jewel.tableitem.selectable:active {
+  background: #cccccc;
+}
+
+.calendar.item {
+  font-size: 1em;
+}
+.calendar.item.dayName {
+  font-weight: 600;
+}
+.calendar.item.date {
+  color: grey;
+}
+
+.jewel.datefield .jewel.textinput input {
+  border-radius: 0.25rem 0px 0px 0.25rem;
+}
+.jewel.datefield .jewel.button {
+  color: transparent;
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px;
+  border-left: 0px;
+}
+.jewel.datefield .jewel.button::after {
+  background-size: 66%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M18.3333333,2.75 L17.4166667,2.75 L17.4166667,0.916666667 L15.5833333,0.916666667 L15.5833333,2.75 L6.41666667,2.75 L6.41666667,0.916666667 L4.58333333,0.916666667 L4.58333333,2.75 L3.66666667,2.75 C2.65833333,2.75 1.83333333,3.575 1.83333333,4.58333333 L1.83333333,19.25 C1.83333333,20.2583333 2.65833333,21.0833333 3.66666667,21.0833333 L18.3333333,21.0833333 C19.3416667,21.0833333 20.1666667,20.2583333 20.1666667,19.25 L20.1666667,4.58333333 C20.1666667,3.575 19.3416667,2.75 18.3333333,2.75 Z M18.3333333,19.25 L3.66666667,19.25 L3.66666667,7.33333333 L18.3333333,7.33333333 L18.3333333,19.25 Z' fill='%23662C90' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.datefield .jewel.button[disabled] {
+  border-left: 0px !important;
+}
+.jewel.datefield .jewel.button[disabled]::after {
+  background-size: 66%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M18.3333333,2.75 L17.4166667,2.75 L17.4166667,0.916666667 L15.5833333,0.916666667 L15.5833333,2.75 L6.41666667,2.75 L6.41666667,0.916666667 L4.58333333,0.916666667 L4.58333333,2.75 L3.66666667,2.75 C2.65833333,2.75 1.83333333,3.575 1.83333333,4.58333333 L1.83333333,19.25 C1.83333333,20.2583333 2.65833333,21.0833333 3.66666667,21.0833333 L18.3333333,21.0833333 C19.3416667,21.0833333 20.1666667,20.2583333 20.1666667,19.25 L20.1666667,4.58333333 C20.1666667,3.575 19.3416667,2.75 18.3333333,2.75 Z M18.3333333,19.25 L3.66666667,19.25 L3.66666667,7.33333333 L18.3333333,7.33333333 L18.3333333,19.25 Z' fill='%23cccccc' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+
+.jewel.divider {
+  border-bottom-color: #d9d9d9;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+}
+
+.jewel.drawer.float {
+  color: rgba(0, 0, 0, 0.8);
+}
+.jewel.drawer.float::before {
+  background-color: rgba(0, 0, 0, 0.65);
+  will-change: opacity;
+  transition: opacity 0.4s 0ms;
+}
+.jewel.drawer.float .drawermain {
+  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7);
+  transform: translateX(-104%);
+  will-change: transform;
+  width: calc(100% - 54px);
+  max-width: 280px;
+  background-color: white;
+  transition: transform 250ms 0ms;
+}
+.jewel.drawer.float.open .drawermain {
+  transform: none;
+  transition: transform 300ms 0ms;
+}
+.jewel.drawer.fixed .drawermain {
+  width: 240px;
+  transform: translateX(-104%);
+  will-change: transform;
+  transition: transform 250ms 0ms;
+  background-color: white;
+  border-left: 0;
+  border-right: 1px solid #d9d9d9;
+}
+.jewel.drawer.fixed.open {
+  width: auto;
+}
+.jewel.drawer.fixed.open .drawermain {
+  transition: transform 300ms 0ms;
+}
+
+.jewel.drawerheader {
+  background: #662C90;
+  border: 1px solid #502271;
+  color: #FFFFFF;
+  padding: 16px;
+}
+.jewel.drawerheader div {
+  padding: 16px;
+}
+
+.jewel.dropdownlist {
+  background-color: white;
+  border: 1px solid #d1d1d1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23662C90' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  background-size: 1.08em;
+  background-position: right 0.7em center;
+  background-repeat: no-repeat;
+  border-radius: 0.25rem;
+}
+.jewel.dropdownlist[disabled] {
+  background-color: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23cccccc' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  box-shadow: none;
+  color: silver;
+}
+.jewel.dropdownlist[disabled]::placeholder, .jewel.dropdownlist[disabled]:-ms-input-placeholder {
+  color: silver;
+}
+.jewel.dropdownlist[disabled] + i {
+  color: silver;
+}
+.jewel.dropdownlist:focus {
+  border: 1px solid #662C90;
+}
+
+.jewel.footerbar .footerBarAppHeader {
+  background: #333333;
+  border: 0px solid;
+  color: #FFFFFF;
+}
+.jewel.footerbar .footerBarAppHeader.has-drawer {
+  width: calc(100% - 240px);
+}
+.jewel.footerbar .jewel.barsection {
+  padding: 8px 12px;
+}
+.jewel.footerbar .jewel.barsection button {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 12px;
+  fill: #FFFFFF;
+  color: inherit;
+}
+.jewel.footerbar .jewel.barsection button:hover, .jewel.footerbar .jewel.barsection button:hover:focus, .jewel.footerbar .jewel.barsection button:active, .jewel.footerbar .jewel.barsection button:active:focus, .jewel.footerbar .jewel.barsection button:focus {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.footerbar .jewel.barsection button[disabled] {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
+.jewel.formheading {
+  color: #4a2069;
+  font-size: 1.4em !important;
+}
+.jewel.formheading .jewel.label.spacerLabel {
+  width: 115px;
+}
+.jewel.formheading .jewel.label.requiredSpacerLabel {
+  width: 10px;
+}
+
+j|FormHeading {
+  gap: 2;
+}
+
+.jewel.formitem .jewel.label.formlabel {
+  width: 115px;
+}
+.jewel.formitem .jewel.label.required {
+  color: #EC1C24;
+  font-size: 1.6em !important;
+  width: 10px;
+}
+
+j|FormItem {
+  gap: 2;
+  itemsVerticalAlign: itemsCentered;
+}
+
+.fonticon.dark {
+  color: #676767;
+}
+.fonticon.dark.inactive {
+  color: rgba(128, 128, 128, 0.3);
+}
+.fonticon.light {
+  color: white;
+}
+.fonticon.light.inactive {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+.jewel.item {
+  padding: 8px;
+}
+.jewel.item.hovered {
+  color: #FFFFFF;
+}
+.jewel.item.selected, .jewel.item.selectable:active {
+  color: #FFFFFF;
+}
+.jewel.item.primary.hovered {
+  background: #662C90;
+}
+.jewel.item.primary.selected, .jewel.item.primary.selectable:active {
+  background: #58267c;
+}
+
+.jewel.label {
+  font-size: 1em;
+}
+
+.jewel.list {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+}
+.jewel.list[disabled] {
+  pointer-events: none;
+  color: silver;
+  color-text-shadow: unset;
+  font-weight: normal;
+  background: #f3f3f3;
+  border: 0px solid;
+  box-shadow: none;
+}
+.jewel.list[disabled] .jewel.item.selected, .jewel.list[disabled] .jewel.item.selectable:active {
+  background: #cccccc !important;
+}
+
+.jewel.navigation {
+  background-color: #ffffff;
+}
+.jewel.navigation .layout.vertical {
+  align-items: stretch;
+}
+
+.jewel.navigationlink {
+  margin: 0;
+  padding: 0 16px;
+  font-size: 1em;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.6);
+}
+.jewel.navigationlink.hovered {
+  background: #f3f3f3 !important;
+}
+.jewel.navigationlink .hint.fonticon {
+  margin-left: auto;
+}
+
+.navigation-section-group {
+  transition: height 0.5s;
+  overflow: hidden !important;
+}
+.navigation-section-group .navigationlink {
+  padding-left: 34px;
+}
+
+.jewel.numericstepper .jewel.textinput input {
+  width: 8em;
+  border-radius: 0.25rem 0px 0px 0.25rem;
+}
+
+@media (max-width: 992px) {
+  .jewel.numericstepper .jewel.textinput input {
+    border-radius: 0;
+  }
+}
+.jewel.spinner {
+  width: 34px;
+}
+.jewel.spinner .jewel.button {
+  padding: 0px;
+  height: 19px;
+  color: transparent;
+  border-radius: 0 0.25rem 0.25rem 0;
+  border-left: 0px;
+}
+.jewel.spinner .jewel.button.up {
+  border-bottom-right-radius: 0px;
+}
+.jewel.spinner .jewel.button.up::after {
+  background-size: 46%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23662C90' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.spinner .jewel.button.down {
+  border-top-right-radius: 0px;
+  border-top-style: groove;
+}
+.jewel.spinner .jewel.button.down::after {
+  background-size: 46%;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23662C90' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+}
+
+@media (max-width: 992px) {
+  .jewel.spinner .jewel.button.up {
+    border: 1px solid #b3b3b3;
+    border-radius: 0 0.25rem 0.25rem 0;
+  }
+  .jewel.spinner .jewel.button.down {
+    border: 1px solid #b3b3b3;
+    border-radius: 0.25rem 0 0 0.25rem;
+    border-top-style: solid;
+  }
+}
+.popup-content::before {
+  background-color: rgba(0, 0, 0, 0.65);
+  will-change: opacity;
+  transition: opacity 0.4s 0ms;
+}
+.popup-content .jewel.popupcontent {
+  border: 0px;
+  border-radius: 10px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0px 0px 6px 1px rgba(1, 1, 1, 0.7) !important;
+}
+
+@media (min-width: 992px) {
+  .popup-content .jewel.popupcontent {
+    box-shadow: none !important;
+  }
+}
+.jewel.radiobutton input + span::before {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+}
+.jewel.radiobutton input + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Ccircle fill='%23662C90' cx='11' cy='11' r='6'/%3E%3C/svg%3E") no-repeat center center;
+  border: 1px solid transparent;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  transform: scale(0);
+}
+.jewel.radiobutton input:checked + span::after, .jewel.radiobutton input:checked:active + span::after {
+  transform: scale(1);
+}
+.jewel.radiobutton input:focus + span::before, .jewel.radiobutton input:checked:focus + span::before, .jewel.radiobutton input:checked:active:focus + span::before {
+  background: #a66ad1;
+  border: 1px solid #662C90;
+  border-radius: 50%;
+}
+.jewel.radiobutton input[disabled] + span::before {
+  background: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  border-radius: 50%;
+}
+.jewel.radiobutton input[disabled] + span {
+  color: silver;
+}
+.jewel.radiobutton input[disabled] + span::after {
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Ccircle fill='%23cccccc' cx='11' cy='11' r='6'/%3E%3C/svg%3E") no-repeat center center;
+}
+.jewel.radiobutton span {
+  padding-left: 8px;
+  font-size: 16px;
+}
+
+.jewel.slider input::-ms-fill-lower {
+  background: #662C90;
+  border: 1px solid #532475;
+  border-radius: 3px;
+}
+.jewel.slider input::-ms-fill-upper {
+  background: white;
+  border: 1px solid white;
+  border-radius: 3px;
+}
+.jewel.slider input::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  background: #662C90;
+  border: 1px solid #502271;
+  border-radius: 50%;
+}
+.jewel.slider input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  background: #662C90;
+  border: 1px solid #502271;
+  border-radius: 50%;
+}
+.jewel.slider input::-ms-thumb {
+  width: 18px;
+  height: 18px;
+  background: #662C90;
+  border: 1px solid #502271;
+  border-radius: 50%;
+}
+.jewel.slider input:active::-webkit-slider-thumb, .jewel.slider input:active::-moz-range-thumb {
+  transform: scale(1.4);
+}
+.jewel.slider input:active::-ms-thumb {
+  transform: scale(0.8);
+}
+.jewel.slider input[disabled]::-ms-fill-lower {
+  background: #e6e6e6;
+  border: 1px solid silver;
+  box-shadow: none;
+}
+.jewel.slider input[disabled]::-ms-fill-upper {
+  background: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+}
+.jewel.slider input[disabled]::-webkit-slider-thumb, .jewel.slider input[disabled]::-moz-range-thumb, .jewel.slider input[disabled]::-ms-thumb {
+  background: #f3f3f3;
+  border: 1px solid silver;
+  box-shadow: none;
+}
+.jewel.slider input[disabled]:active::-webkit-slider-thumb, .jewel.slider input[disabled]:active::-moz-range-thumb, .jewel.slider input[disabled]:active::-ms-thumb {
+  transform: scale(1);
+}
+.jewel.slider input[disabled] + .slider-track-container > .slider-track-fill {
+  background: #e6e6e6;
+  border: 1px solid silver;
+  box-shadow: none;
+}
+.jewel.slider input[disabled] + .slider-track-container > .slider-track {
+  background: #f3f3f3;
+  border: 1px solid #d9d9d9;
+  box-shadow: none;
+}
+
+.slider-track-container {
+  top: 50%;
+}
+
+.slider-track-fill {
+  background: #662C90;
+  border: 1px solid #532475;
+  border-radius: 3px;
+}
+
+.slider-track {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 3px;
+}
+
+.jewel.snackbar {
+  will-change: transform;
+  transform: translate(0, 100%);
+  transition: transform 0.4s 0ms;
+}
+.jewel.snackbar.open {
+  transform: translate(0);
+  transition: transform 0.4s 0ms;
+}
+.jewel.snackbar.primary .jewel.snackbar-content {
+  background: #662C90;
+  border: 0px solid;
+}
+.jewel.snackbar.primary .jewel.snackbar-message {
+  color: #FFFFFF;
+}
+.jewel.snackbar.primary .jewel.snackbar-action {
+  color: #E2D70B;
+}
+.jewel.snackbar.primary .jewel.snackbar-action:hover {
+  background: #58267c;
+  border: none;
+}
+
+.jewel.snackbar-content {
+  background: #2C3E50;
+  border-radius: 0.25rem 0.25rem 0px 0px;
+}
+
+.jewel.snackbar-message {
+  color: #FFFFFF;
+}
+
+.jewel.snackbar-action {
+  color: #FFD740;
+}
+.jewel.snackbar-action:hover {
+  background-color: #3C4E60;
+}
+
+@media (max-width: 992px) {
+  .jewel.snackbar-content {
+    border-radius: 0px;
+  }
+}
+.jewel.tabbarbutton {
+  font-size: 1em;
+  font-weight: 500;
+  border: none;
+  background: transparent;
+  outline: none;
+  color: rgba(0, 0, 0, 0.6);
+  text-transform: uppercase;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+.jewel.tabbarbutton > .content {
+  padding-top: 12px;
+  padding-bottom: 12px;
+}
+.jewel.tabbarbutton .indicator > .indicatorContent {
+  height: 2px;
+  background-color: #662C90;
+}
+.jewel.tabbarbutton.hovered {
+  background: rgba(102, 44, 144, 0.2);
+}
+.jewel.tabbarbutton.selected, .jewel.tabbarbutton.selectable:active {
+  color: #3c1a55;
+  background: rgba(102, 44, 144, 0.4);
+}
+
+.jewel.simpletable {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.25rem;
+}
+.jewel.simpletable .jewel.thead tr {
+  border-bottom: 1px solid #d9d9d9;
+}
+.jewel.simpletable .jewel.tableheadercell:first-of-type {
+  border-left: 0px;
+}
+.jewel.simpletable .jewel.tableheadercell {
+  background: #f3f3f3;
+  font-weight: 700;
+  line-height: normal !important;
+  font-size: 1em;
+  color: #808080;
+  border-left: 1px solid #d9d9d9;
+}
+.jewel.simpletable .jewel.tablecell:first-of-type {
+  border-left: 0px;
+}
+.jewel.simpletable .jewel.tablecell {
+  border-top: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+}
+.jewel.simpletable .jewel.tfoot .jewel.tablecell {
+  border-left: 0px;
+  background: #f3f3f3;
+}
+
+.jewel.table {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.25rem;
+}
+.jewel.table .jewel.thead tr {
+  border-bottom: 1px solid #d9d9d9;
+}
+.jewel.table .jewel.tableheadercell:first-of-type {
+  border-left: 0px;
+}
+.jewel.table .jewel.tableheadercell {
+  background: #f3f3f3;
+  font-weight: 700;
+  line-height: normal !important;
+  font-size: 1em;
+  color: #808080;
+  border-left: 1px solid #d9d9d9;
+}
+.jewel.table .jewel.tablecell:first-of-type {
+  border-left: 0px;
+}
+.jewel.table .jewel.tablecell {
+  border-top: 1px solid #d9d9d9;
+  border-left: 1px solid #d9d9d9;
+}
+.jewel.table .jewel.tfoot .jewel.tablecell {
+  border-left: 0px;
+  background: #f3f3f3;
+}
+
+.jewel.tableitem.hovered {
+  color: #FFFFFF;
+  background: #662C90;
+}
+.jewel.tableitem.selected, .jewel.tableitem.selectable:active {
+  color: #FFFFFF;
+  background: #58267c;
+}
+
+a:link {
+  color: #662C90;
+}
+
+a:active {
+  color: #3c1a55;
+}
+
+.jewel.textinput {
+  font-weight: 400;
+  color: #808080;
+}
+.jewel.textinput input {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.25rem;
+  transition-duration: 0.3s;
+  transition-timing-function: easein;
+}
+.jewel.textinput input:focus {
+  border: 1px solid #662C90;
+}
+.jewel.textinput input::placeholder, .jewel.textinput input:-ms-input-placeholder {
+  color: #a6a6a6;
+}
+.jewel.textinput input[disabled] {
+  background: #f3f3f3;
+  border: 0px solid;
+  box-shadow: none;
+  color: silver;
+}
+.jewel.textinput input[disabled]::placeholder, .jewel.textinput input[disabled]:-ms-input-placeholder {
+  color: silver;
+}
+.jewel.textinput input[disabled] + i {
+  color: silver;
+}
+.jewel.textinput.errorBorder input {
+  border: 1px #EC1C24 solid;
+}
+
+.jewel.textarea {
+  font-weight: 400;
+  color: #808080;
+}
+.jewel.textarea textarea {
+  background: white;
+  border: 1px solid #d9d9d9;
+  border-radius: 0.25rem;
+  transition-duration: 0.3s;
+  transition-timing-function: easein;
+}
+.jewel.textarea textarea:focus {
+  border: 1px solid #662C90;
+}
+.jewel.textarea textarea::placeholder, .jewel.textarea textarea:-ms-input-placeholder {
+  color: #a6a6a6;
+}
+.jewel.textarea textarea[disabled] {
+  background: #f3f3f3;
+  border: 0px solid;
+  box-shadow: none;
+  color: silver;
+}
+.jewel.textarea textarea[disabled]::placeholder, .jewel.textarea textarea[disabled]:-ms-input-placeholder {
+  color: silver;
+}
+
+.jewel.togglebutton {
+  background: #d9d9d9;
+  border: 1px solid #c5c5c5;
+  border-radius: 0.25rem;
+  color: #808080;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.jewel.togglebutton:hover, .jewel.togglebutton:hover:focus {
+  background: #cccccc;
+  border: 1px solid #c5c5c5;
+}
+.jewel.togglebutton:active, .jewel.togglebutton:active:focus {
+  background: #b3b3b3;
+  border: 1px solid #c5c5c5;
+}
+.jewel.togglebutton:focus {
+  background: #e6e6e6;
+  border: 1px solid #c5c5c5;
+}
+.jewel.togglebutton[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.selected {
+  background: #b3b3b3;
+  border: 1px solid #c5c5c5;
+}
+.jewel.togglebutton[disabled] {
+  font-weight: 400;
+}
+.jewel.togglebutton.icon i {
+  margin-left: 0px;
+  margin-right: 0px;
+}
+.jewel.togglebutton.iconLSpace i {
+  margin-left: 0px;
+  margin-right: 8px;
+}
+.jewel.togglebutton.iconRSpace i {
+  margin-left: 8px;
+  margin-right: 0px;
+}
+
+.jewel.togglebutton.primary {
+  background: #662C90;
+  border: 1px solid #502271;
+  border-radius: 0.25rem;
+  color: #FFFFFF;
+}
+.jewel.togglebutton.primary:hover, .jewel.togglebutton.primary:hover:focus {
+  background: #58267c;
+  border: 1px solid #502271;
+}
+.jewel.togglebutton.primary:active, .jewel.togglebutton.primary:active:focus {
+  background: #3c1a55;
+  border: 1px solid #502271;
+}
+.jewel.togglebutton.primary:focus {
+  background: #7432a4;
+  border: 1px solid #502271;
+}
+.jewel.togglebutton.primary[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.primary.selected {
+  background: #3c1a55;
+  border: 1px solid #502271;
+}
+
+.jewel.tooltip {
+  color: #FFFFFF;
+  background: #404040;
+  box-shadow: 0px 3px 3px 0 rgba(0, 0, 0, 0.4);
+  animation: slide-up 0.4s ease;
+}
+.jewel.tooltip.error {
+  background: #EC1C24;
+}
+.jewel.tooltip::before {
+  border: solid 8px transparent;
+}
+.jewel.tooltip.left-top::before {
+  left: 8px;
+  border-top-color: #EC1C24;
+}
+.jewel.tooltip.middle-top::before {
+  margin-bottom: -8px;
+  margin-left: -8px;
+  border-top-color: #EC1C24;
+}
+.jewel.tooltip.left-middle::before {
+  margin-top: -8px;
+  margin-right: -8px;
+  border-left-color: #EC1C24;
+}
+.jewel.tooltip.right-middle::before {
+  margin-top: -8px;
+  margin-left: -8px;
+  border-right-color: #EC1C24;
+}
+.jewel.tooltip.middle-bottom::before {
+  margin-top: -8px;
+  margin-left: -8px;
+  border-bottom-color: #EC1C24;
+}
+@keyframes slide-up {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.jewel.topappbar .topBarAppHeader {
+  background: #662C90;
+  border: 1px solid #502271;
+  color: #FFFFFF;
+}
+.jewel.topappbar .topBarAppHeader.has-drawer {
+  width: calc(100% - 240px);
+}
+.jewel.topappbar .jewel.barsection {
+  padding: 8px 12px;
+}
+.jewel.topappbar .jewel.barsection button {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 12px;
+  fill: #FFFFFF;
+  color: inherit;
+}
+.jewel.topappbar .jewel.barsection button:hover, .jewel.topappbar .jewel.barsection button:hover:focus, .jewel.topappbar .jewel.barsection button:active, .jewel.topappbar .jewel.barsection button:active:focus, .jewel.topappbar .jewel.barsection button:focus {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.topappbar .jewel.barsection button[disabled] {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.topappbar .jewel.bartitle {
+  font-size: 1.4em !important;
+  font-weight: 800;
+  padding-left: 20px;
+  padding-right: 0;
+}
+
+.jewel.label.wizardTitle {
+  color: #662C90;
+  font-size: 2em !important;
+}
+.jewel.next, .jewel.previous {
+  min-width: 44px;
+}
+.jewel.next:hover, .jewel.previous:hover {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+.jewel.next .jewel.button, .jewel.previous .jewel.button {
+  width: calc(100% - 10px);
+}
+
+j|Wizard {
+  gap: 3;
+  itemsVerticalAlign: itemsCentered;
+}
+
+/*# sourceMappingURL=defaults.css.map */
