@@ -35,16 +35,25 @@ limitations under the License.
             private var themePrimaryIds:Array = [];
             private var themeSecondaryIds:Array = [];
             private var themeEmphasizedIds:Array = [];
+            private var flat:Boolean = false;
 
-            public function changeCSS(event:Event, emphasis:String, themesArray:Array):void
+            public function changeCSS(event:Event, color:String, emphasis:String, themesArray:Array):void
             {
-                color = event.target.selectedItem;
-
                 // This will remove link tags by Id to avoid store unused themes
                 if(themesArray.length > 0)
                     document.getElementById(themesArray.pop()).outerHTML = "";
+
+                var flatState:String = flat? "Flat" : "NoFlat";
                 
-                themesArray.push(loadCSS("assets/themes/Jewel-Light-NoFlat-" + emphasis + "-" + color + "-Theme/defaults.css"));
+                themesArray.push(loadCSS("assets/themes/Jewel-Light-" + flatState + "-" + emphasis + "-" + color + "-Theme/defaults.css"));
+            }
+
+            public function changeFlat(event:Event):void
+            {
+                flat = event.target.selected;
+                changeCSS(event, String(primary.selectedItem),'Primary', themePrimaryIds);
+                changeCSS(event, String(secondary.selectedItem), 'Secondary', themeEmphasizedIds);
+                changeCSS(event, String(emphasized.selectedItem), 'Emphasized', themeSecondaryIds);
             }
         ]]>
     </fx:Script>
@@ -71,7 +80,7 @@ limitations under the License.
             
             <j:Form>
                 <j:FormItem label="Primary:">
-                    <j:DropDownList change="changeCSS(event, 'Primary', themePrimaryIds)" selectedIndex="3">
+                    <j:DropDownList localId="primary" change="changeCSS(event, event.target.selectedItem, 'Primary', themePrimaryIds)" selectedIndex="3">
                         <j:dataProvider>
                             <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
                         </j:dataProvider>
@@ -81,7 +90,7 @@ limitations under the License.
                     </j:DropDownList>
                 </j:FormItem>
                 <j:FormItem label="Secondary:">
-                    <j:DropDownList change="changeCSS(event, 'Secondary', themeSecondaryIds)" selectedIndex="8">
+                    <j:DropDownList localId="secondary" change="changeCSS(event, event.target.selectedItem, 'Secondary', themeSecondaryIds)" selectedIndex="8">
                         <j:dataProvider>
                             <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
                         </j:dataProvider>
@@ -91,7 +100,7 @@ limitations under the License.
                     </j:DropDownList>
                 </j:FormItem>
                 <j:FormItem label="Emphasized:">
-                    <j:DropDownList change="changeCSS(event, 'Emphasized', themeEmphasizedIds)" selectedIndex="0">
+                    <j:DropDownList localId="emphasized" change="changeCSS(event, event.target.selectedItem, 'Emphasized', themeEmphasizedIds)" selectedIndex="0">
                         <j:dataProvider>
                             <js:ArrayList source="[Emerald, Green, Turquoise, Blue, Sapphire, Violet, Amethyst, Red, Topaz, Orange, Sunflower, Yellow]"/>
                         </j:dataProvider>
@@ -99,6 +108,9 @@ limitations under the License.
                             <j:RequireSelection requireSelection="true"/>
                         </j:beads>
                     </j:DropDownList>
+                </j:FormItem>
+                <j:FormItem label="Flat?">
+                    <j:CheckBox change="changeFlat(event)"/>
                 </j:FormItem>
             </j:Form>
         </j:VGroup>
