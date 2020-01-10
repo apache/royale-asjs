@@ -41,12 +41,16 @@
         border-bottom-left-radius: $border-radius
         border-bottom-right-radius: $border-radius
         border-style: solid
-        border-color: darken($default-color, 15%)
+        @if $flat
+            border-color: $default-color
+        @else
+            border-color: darken($default-color, 15%)
 
     .jewel.list.column
         border-radius: 0px
         border-bottom-width: 0px
-        box-shadow: inset 0px 1px 1px 0px rgba(0,0,0,0.25)
+        @if not $flat
+            box-shadow: inset 0px .5px 0px 0px rgba(0,0,0,0.25)
 
         &.first
             border-bottom-left-radius: $border-radius
