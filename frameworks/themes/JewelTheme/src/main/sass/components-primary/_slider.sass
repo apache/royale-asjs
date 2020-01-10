@@ -41,7 +41,7 @@ $slider-scale-transform: 1.4
 
         &::-ms-fill-upper
             @if $flat
-                background: $default-color
+                background: lighten($default-color, 15%)
                 border: 0
             @else
                 background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 5%))
@@ -136,7 +136,7 @@ $slider-scale-transform: 1.4
 
 .slider-track
     @if $flat
-        background: $default-color
+        background: lighten($default-color, 15%)
         border: 0
     @else
         background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 5%))

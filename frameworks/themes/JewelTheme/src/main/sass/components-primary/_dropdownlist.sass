@@ -67,7 +67,7 @@ $dropdownlist-border-radius: $border-radius
     // +dropdownlist-theme($default-color, $default-font-color)
     
     @if $flat
-        background: $default-color
+        background: lighten($default-color, 15%)
         border: 0px solid
     @else
         background-color: lighten($default-color, 15%) // temporal until we fix compiler to join this on a backgroun property.

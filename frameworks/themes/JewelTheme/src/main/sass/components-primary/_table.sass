@@ -24,7 +24,7 @@ $simpletable-border-radius: $border-radius
         
 .jewel.simpletable
     @if $flat
-        background: $default-color
+        background: lighten($default-color, 15%)
         border: 1px solid transparent
     @else
         background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
@@ -40,7 +40,7 @@ $simpletable-border-radius: $border-radius
         border-left: 0px
     .jewel.tableheadercell
         @if $flat
-            background: $default-color
+            background: lighten($default-color, 15%)
         @else
             background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
             box-shadow: inset 0 1px 0 lighten($default-color, 20%)
@@ -75,7 +75,7 @@ $table-border-radius: $border-radius
 
 .jewel.table
     @if $flat
-        background: $default-color
+        background: lighten($default-color, 15%)
         border: 1px solid transparent
     @else
         background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
@@ -91,7 +91,7 @@ $table-border-radius: $border-radius
         border-left: 0px
     .jewel.tableheadercell
         @if $flat
-            background: $default-color
+            background: lighten($default-color, 15%)
         @else
             background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
             box-shadow: inset 0 1px 0 lighten($default-color, 20%)
