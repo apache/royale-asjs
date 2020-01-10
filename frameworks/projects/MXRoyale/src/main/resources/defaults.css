@@ -741,6 +741,11 @@ RadioButton
 	IBeadController:  ClassReference("mx.controls.beads.controllers.RadioButtonMouseController");			
 }
 
+TextArea
+{
+	resize: none;
+}
+
 .bothGridLines
 {
 	gridDirection : "both";
