@@ -254,7 +254,8 @@ j|Card {
 }
 .jewel.checkbox input + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
-  border: 1px solid transparent;
+  border: 1px solid #595959;
+  border-radius: 3px;
   transition: all 0.3s ease;
   transform: scale(0);
 }
@@ -264,10 +265,12 @@ j|Card {
 .jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
   background: linear-gradient(#cbe9fb, #9bd5f8);
   border: 1px solid #0f88d1;
+  border-radius: 3px;
 }
 .jewel.checkbox input[disabled] + span::before {
   background: #404040;
   border: 1px solid #0d0d0d;
+  border-radius: 3px;
 }
 .jewel.checkbox input[disabled] + span {
   color: #737373;
@@ -324,7 +327,7 @@ j|Card {
 .jewel.datagrid .jewel.list.column {
   border-radius: 0px;
   border-bottom-width: 0px;
-  box-shadow: inset 0px 1px 1px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: inset 0px 0.5px 0px 0px rgba(0, 0, 0, 0.25);
 }
 .jewel.datagrid .jewel.list.column.first {
   border-bottom-left-radius: 0.25rem;
@@ -514,17 +517,17 @@ j|Card {
 
 .jewel.dropdownlist {
   background-color: #7f7f7f;
+  border: 1px solid #333333;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%233CADF1' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-size: 1.08em;
   background-position: right 0.7em center;
   background-repeat: no-repeat;
-  border: 1px solid #333333;
   border-radius: 0.25rem;
 }
 .jewel.dropdownlist[disabled] {
   background-color: #404040;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23191919' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   border: 1px solid #0d0d0d;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23191919' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   box-shadow: none;
   color: #737373;
 }
@@ -754,6 +757,7 @@ j|FormItem {
 .jewel.radiobutton input + span::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Ccircle fill='%233CADF1' cx='11' cy='11' r='6'/%3E%3C/svg%3E") no-repeat center center;
   border: 1px solid transparent;
+  border-radius: 50%;
   transition: all 0.3s ease;
   transform: scale(0);
 }
@@ -763,10 +767,12 @@ j|FormItem {
 .jewel.radiobutton input:focus + span::before, .jewel.radiobutton input:checked:focus + span::before, .jewel.radiobutton input:checked:active:focus + span::before {
   background: linear-gradient(#cbe9fb, #9bd5f8);
   border: 1px solid #0f88d1;
+  border-radius: 50%;
 }
 .jewel.radiobutton input[disabled] + span::before {
   background: #404040;
   border: 1px solid #0d0d0d;
+  border-radius: 50%;
 }
 .jewel.radiobutton input[disabled] + span {
   color: #737373;
