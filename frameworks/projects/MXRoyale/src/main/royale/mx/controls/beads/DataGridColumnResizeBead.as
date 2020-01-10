@@ -21,6 +21,7 @@ package mx.controls.beads
     import mx.collections.ICollectionView;
     import mx.controls.AdvancedDataGrid;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.core.ScrollPolicy;
     import mx.events.AdvancedDataGridEvent;
     
     import org.apache.royale.core.IBead;
@@ -342,8 +343,11 @@ package mx.controls.beads
             }
             columns[columnIndex].width += deltaWidth;
             columns[columnIndex].columnWidth += deltaWidth;
-            columns[columnIndex + 1].columnWidth -= deltaWidth;
-            columns[columnIndex + 1].width -= deltaWidth;
+            if (adg.horizontalScrollPolicy == ScrollPolicy.OFF)
+            {
+                columns[columnIndex + 1].columnWidth -= deltaWidth;
+                columns[columnIndex + 1].width -= deltaWidth;
+            }
             adg.dispatchEvent(new Event("layoutNeeded"));
             drawLines(null);
         }
