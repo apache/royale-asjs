@@ -32,7 +32,7 @@ $checkbox-label-font-size: 16px
         + span::before
             @if $flat
                 background: lighten($default-color, 15%)
-                border: 1px solid transparent
+                border: 1px solid $default-color
             @else
                 background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
                 border: 1px solid darken($default-color, 15%)
@@ -52,7 +52,7 @@ $checkbox-label-font-size: 16px
         &:focus + span::before, &:checked:focus + span::before, &:checked:active:focus + span::before
             @if $flat
                 background: lighten($primary-color, 25%)
-                border: 1px solid transparent
+                border: 1px solid $primary-color
             @else
                 background: linear-gradient(lighten($primary-color, 30%), lighten($primary-color, 20%))
                 border: 1px solid darken($primary-color, 15%)
