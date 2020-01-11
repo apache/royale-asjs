@@ -23,7 +23,7 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" sourceCodeUrl="ViewStatesPlayGround.mxml">
 	
-	<j:Grid gap="true">
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<c:ViewStatesIncludeIn/>
 
 		<c:ViewStatesDotNotation/>

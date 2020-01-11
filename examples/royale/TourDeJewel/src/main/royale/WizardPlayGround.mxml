@@ -53,136 +53,141 @@ limitations under the License.
 		<js:ContainerDataBinding/>
 	</c:beads>
 
-	<j:Card width="600">
-		<j:Wizard id="wizard" width="100%" height="500">
-			<j:previousButton>
-				<j:Group>
-					<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
-						<j:icon>
-							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}" material="true" size="48"/>
-						</j:icon>
-					</j:IconButton>
-				</j:Group>
-			</j:previousButton>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card width="600">
+				<j:Wizard id="wizard" width="100%" height="500">
+					<j:previousButton>
+						<j:Group>
+							<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
+								<j:icon>
+									<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}" material="true" size="48"/>
+								</j:icon>
+							</j:IconButton>
+						</j:Group>
+					</j:previousButton>
 
-			<j:nextButton>
-				<j:Group>
-					<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
-						<j:icon>
-							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}" material="true" size="48"/>
-						</j:icon>
-					</j:IconButton>
-				</j:Group>
-			</j:nextButton>
+					<j:nextButton>
+						<j:Group>
+							<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
+								<j:icon>
+									<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}" material="true" size="48"/>
+								</j:icon>
+							</j:IconButton>
+						</j:Group>
+					</j:nextButton>
 
-			<j:WizardPage name="page1" exitPage="formaExample.formValidator.removeAllErrorTips()">
-				<j:step>
-					<j:WizardStep name="page1" nextStep="page2" initialPage="true" stepLabel="Page 1"/>
-				</j:step>
+					<j:WizardPage name="page1" exitPage="formaExample.formValidator.removeAllErrorTips()">
+						<j:step>
+							<j:WizardStep name="page1" nextStep="page2" initialPage="true" stepLabel="Page 1"/>
+						</j:step>
 
-				<j:Group>
-					<j:beads>
-						<j:VerticalCenteredLayout gap="9"/>
-					</j:beads>
+						<j:Group>
+							<j:beads>
+								<j:VerticalCenteredLayout gap="9"/>
+							</j:beads>
 
-					<c:FormExample localId="formaExample" label="Form Example in Page 1"/>
-				</j:Group>
-			</j:WizardPage>
+							<c:FormExample localId="formaExample" label="Form Example in Page 1"/>
+						</j:Group>
+					</j:WizardPage>
 
-			<j:WizardPage name="page2">
-				<j:step>
-					<j:WizardStep id="sl" name="page2" previousStep="page1" nextStep="page3" stepLabel="Page 2"/>
-				</j:step>
+					<j:WizardPage name="page2">
+						<j:step>
+							<j:WizardStep id="sl" name="page2" previousStep="page1" nextStep="page3" stepLabel="Page 2"/>
+						</j:step>
 
-				<j:Group>
-					<j:beads>
-						<j:VerticalCenteredLayout gap="9"/>
-					</j:beads>
-					<html:H1 text="{sl.stepLabel}"/>
-					<j:CheckBox text="autoSkip next page?" change="sl.autoSkip = event.target.selected"/>
-				</j:Group>
+						<j:Group>
+							<j:beads>
+								<j:VerticalCenteredLayout gap="9"/>
+							</j:beads>
+							<html:H1 text="{sl.stepLabel}"/>
+							<j:CheckBox text="autoSkip next page?" change="sl.autoSkip = event.target.selected"/>
+						</j:Group>
 
-			</j:WizardPage>
+					</j:WizardPage>
 
-			<j:WizardPage name="page3" localId="page3">
-				<j:step>
-					<j:WizardStep name="page3" previousStep="page2" nextStep="page4" stepLabel="Page 3"/>
-				</j:step>
+					<j:WizardPage name="page3" localId="page3">
+						<j:step>
+							<j:WizardStep name="page3" previousStep="page2" nextStep="page4" stepLabel="Page 3"/>
+						</j:step>
 
-				<j:Group>
-					<j:beads>
-						<j:VerticalCenteredLayout gap="9"/>
-					</j:beads>
-					<html:H1 text="Page 3"/>
-					<j:Button text="Go To Page 1" emphasis="primary" click="goToPage(1);"/>
-					<j:Button text="Go To Page 6" emphasis="primary" click="goToPage(6);"/>
-					<j:HGroup gap="3">
-						<j:Button text="Go To Previous" emphasis="emphasized" click="goToPreviousPage();"/>
-						<j:Button text="Go To Next" emphasis="emphasized" click="goToNextPage();"/>
-					</j:HGroup>
-				</j:Group>
+						<j:Group>
+							<j:beads>
+								<j:VerticalCenteredLayout gap="9"/>
+							</j:beads>
+							<html:H1 text="Page 3"/>
+							<j:Button text="Go To Page 1" emphasis="primary" click="goToPage(1);"/>
+							<j:Button text="Go To Page 6" emphasis="primary" click="goToPage(6);"/>
+							<j:HGroup gap="3">
+								<j:Button text="Go To Previous" emphasis="emphasized" click="goToPreviousPage();"/>
+								<j:Button text="Go To Next" emphasis="emphasized" click="goToNextPage();"/>
+							</j:HGroup>
+						</j:Group>
 
-			</j:WizardPage>
+					</j:WizardPage>
 
-			<j:WizardPage localId="page4" name="page4">
-				<j:step>
-					<j:WizardStep name="page4" previousStep="page3" nextStep="page5" stepLabel="Page 4"/>
-				</j:step>
+					<j:WizardPage localId="page4" name="page4">
+						<j:step>
+							<j:WizardStep name="page4" previousStep="page3" nextStep="page5" stepLabel="Page 4"/>
+						</j:step>
 
-				<j:Group>
-					<j:beads>
-						<j:VerticalCenteredLayout gap="9"/>
-					</j:beads>
-					<html:H1 text="Page 4"/>
-					<j:CheckBox text="show next button?" selected="true" change="page4.showNextButton = event.target.selected"/>
-					<j:CheckBox text="show previous button?" selected="true" change="page4.showPreviousButton = event.target.selected"/>
-				</j:Group>
+						<j:Group>
+							<j:beads>
+								<j:VerticalCenteredLayout gap="9"/>
+							</j:beads>
+							<html:H1 text="Page 4"/>
+							<j:CheckBox text="show next button?" selected="true" change="page4.showNextButton = event.target.selected"/>
+							<j:CheckBox text="show previous button?" selected="true" change="page4.showPreviousButton = event.target.selected"/>
+						</j:Group>
 
-			</j:WizardPage>
+					</j:WizardPage>
 
-			<j:WizardPage name="page5">
-				<j:step>
-					<j:WizardStep name="page5" previousStep="page4" nextStep="page6" stepLabel="Page 5"/>
-				</j:step>
+					<j:WizardPage name="page5">
+						<j:step>
+							<j:WizardStep name="page5" previousStep="page4" nextStep="page6" stepLabel="Page 5"/>
+						</j:step>
 
-				<j:beads>
-					<j:ScrollingViewport/>
-				</j:beads>
+						<j:beads>
+							<j:ScrollingViewport/>
+						</j:beads>
 
-				<j:Grid>
-					<j:GridCell desktopNumerator="1" desktopDenominator="1"
-								tabletNumerator="1" tabletDenominator="1"
-								phoneNumerator="1" phoneDenominator="1">
+						<j:Grid>
+							<j:GridCell desktopNumerator="1" desktopDenominator="1"
+										tabletNumerator="1" tabletDenominator="1"
+										phoneNumerator="1" phoneDenominator="1">
 
-						<html:H1 text="Page 5 (With Scroll)"/>
-						<j:Label multiline="true" width="450" html="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus blandit risus sed elementum. Nulla consectetur vestibulum fringilla. Pellentesque id facilisis tortor. Fusce neque velit, placerat sit amet nibh at, interdum fringilla lectus. Pellentesque eget porta nulla. Aenean eu nisi eros. Sed consequat convallis neque vel iaculis. Aliquam ut varius nunc. Fusce sit amet mattis nisl. Nunc nibh diam, dictum sit amet lacus nec, mollis aliquam velit. Duis volutpat ipsum at velit mattis, convallis porttitor massa molestie. Aliquam et sollicitudin ligula. Nulla tincidunt ligula libero, rutrum volutpat urna viverra auctor. Fusce interdum id elit ut vehicula. Sed consequat cursus faucibus. Nam vitae lectus lobortis, vehicula metus id, luctus lorem.
+								<html:H1 text="Page 5 (With Scroll)"/>
+								<j:Label multiline="true" width="450" html="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus blandit risus sed elementum. Nulla consectetur vestibulum fringilla. Pellentesque id facilisis tortor. Fusce neque velit, placerat sit amet nibh at, interdum fringilla lectus. Pellentesque eget porta nulla. Aenean eu nisi eros. Sed consequat convallis neque vel iaculis. Aliquam ut varius nunc. Fusce sit amet mattis nisl. Nunc nibh diam, dictum sit amet lacus nec, mollis aliquam velit. Duis volutpat ipsum at velit mattis, convallis porttitor massa molestie. Aliquam et sollicitudin ligula. Nulla tincidunt ligula libero, rutrum volutpat urna viverra auctor. Fusce interdum id elit ut vehicula. Sed consequat cursus faucibus. Nam vitae lectus lobortis, vehicula metus id, luctus lorem.
 
-	Donec tincidunt sit amet nisl ut varius. Sed varius massa augue, in convallis risus cursus ac. Donec accumsan lobortis tortor, quis mollis velit mollis nec. Cras placerat ullamcorper tellus. Suspendisse potenti. Aenean sed ipsum augue. Phasellus ullamcorper maximus urna, imperdiet facilisis risus ornare eget. Praesent imperdiet posuere nisl ut efficitur. Sed pharetra est eu lacus volutpat, nec congue urna sodales.
+			Donec tincidunt sit amet nisl ut varius. Sed varius massa augue, in convallis risus cursus ac. Donec accumsan lobortis tortor, quis mollis velit mollis nec. Cras placerat ullamcorper tellus. Suspendisse potenti. Aenean sed ipsum augue. Phasellus ullamcorper maximus urna, imperdiet facilisis risus ornare eget. Praesent imperdiet posuere nisl ut efficitur. Sed pharetra est eu lacus volutpat, nec congue urna sodales.
 
-	Maecenas et convallis nisi, vel lobortis ex. Aliquam scelerisque interdum libero quis elementum. Nunc vitae auctor nunc, a lacinia sem. Duis ut posuere erat, at finibus tortor. Pellentesque in nisl in tellus rhoncus accumsan non eu nulla. In gravida imperdiet nibh, eget tincidunt lacus convallis id. Maecenas vel eleifend nunc. Quisque mattis turpis sed turpis sagittis fringilla. Donec cursus tempus tellus eu sodales. Pellentesque et tortor at nisl aliquet placerat. Nulla facilisi. Nunc ut fringilla felis.
+			Maecenas et convallis nisi, vel lobortis ex. Aliquam scelerisque interdum libero quis elementum. Nunc vitae auctor nunc, a lacinia sem. Duis ut posuere erat, at finibus tortor. Pellentesque in nisl in tellus rhoncus accumsan non eu nulla. In gravida imperdiet nibh, eget tincidunt lacus convallis id. Maecenas vel eleifend nunc. Quisque mattis turpis sed turpis sagittis fringilla. Donec cursus tempus tellus eu sodales. Pellentesque et tortor at nisl aliquet placerat. Nulla facilisi. Nunc ut fringilla felis.
 
-	Nam massa ante, hendrerit quis sodales eu, auctor eu quam. Quisque ullamcorper vitae est non volutpat. Proin porta metus in purus pharetra, vel lobortis massa efficitur. Proin consequat metus sit amet ipsum consectetur, vitae mollis neque imperdiet. Maecenas condimentum, nulla vel placerat interdum, eros neque mollis dui, non cursus orci turpis eget ipsum. Nulla non velit at velit laoreet finibus. Pellentesque non consequat sapien. Cras et porttitor lectus. Aliquam ultricies rhoncus sem, sed pharetra libero tempus ac. Aenean nec rhoncus neque. Sed ornare tincidunt bibendum. Sed venenatis consectetur porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla eget tincidunt mauris."/>
-					</j:GridCell>
-				</j:Grid>
+			Nam massa ante, hendrerit quis sodales eu, auctor eu quam. Quisque ullamcorper vitae est non volutpat. Proin porta metus in purus pharetra, vel lobortis massa efficitur. Proin consequat metus sit amet ipsum consectetur, vitae mollis neque imperdiet. Maecenas condimentum, nulla vel placerat interdum, eros neque mollis dui, non cursus orci turpis eget ipsum. Nulla non velit at velit laoreet finibus. Pellentesque non consequat sapien. Cras et porttitor lectus. Aliquam ultricies rhoncus sem, sed pharetra libero tempus ac. Aenean nec rhoncus neque. Sed ornare tincidunt bibendum. Sed venenatis consectetur porta. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Nulla eget tincidunt mauris."/>
+							</j:GridCell>
+						</j:Grid>
 
-			</j:WizardPage>
+					</j:WizardPage>
 
-			<j:WizardPage name="page6">
-				<j:step>
-					<j:WizardStep name="page6" previousStep="page5" stepLabel="Page 6"/>
-				</j:step>
+					<j:WizardPage name="page6">
+						<j:step>
+							<j:WizardStep name="page6" previousStep="page5" stepLabel="Page 6"/>
+						</j:step>
 
-				<j:beads>
-					<j:ScrollingViewport/>
-				</j:beads>
+						<j:beads>
+							<j:ScrollingViewport/>
+						</j:beads>
 
-				<j:VGroup itemsVerticalAlign="itemsCentered" width="250">
-					<html:H3 innerHTML="&lt;strong>This Content is centered and has scroll. The scroll bar apears near the right border.&lt;/strong>&lt;br>&lt;br>"/>
-					<j:Label multiline="true" html="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus blandit risus sed elementum. Nulla consectetur vestibulum fringilla. Pellentesque id facilisis tortor. Fusce neque velit, placerat sit amet nibh at, interdum fringilla lectus. Pellentesque eget porta nulla. Aenean eu nisi eros. Sed consequat convallis neque vel iaculis. Aliquam ut varius nunc. Fusce sit amet mattis nisl. Nunc nibh diam, dictum sit amet lacus nec, mollis aliquam velit. Duis volutpat ipsum at velit mattis, convallis porttitor massa molestie. Aliquam et sollicitudin ligula. Nulla tincidunt ligula libero, rutrum volutpat urna viverra auctor. Fusce interdum id elit ut vehicula. Sed consequat cursus faucibus. Nam vitae lectus lobortis, vehicula metus id, luctus lorem.&lt;br>&lt;br>"/>
-					<j:Button text="Hi!" emphasis="primary" width="180"/>
-				</j:VGroup>
+						<j:VGroup itemsVerticalAlign="itemsCentered" width="250">
+							<html:H3 innerHTML="&lt;strong>This Content is centered and has scroll. The scroll bar apears near the right border.&lt;/strong>&lt;br>&lt;br>"/>
+							<j:Label multiline="true" html="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus blandit risus sed elementum. Nulla consectetur vestibulum fringilla. Pellentesque id facilisis tortor. Fusce neque velit, placerat sit amet nibh at, interdum fringilla lectus. Pellentesque eget porta nulla. Aenean eu nisi eros. Sed consequat convallis neque vel iaculis. Aliquam ut varius nunc. Fusce sit amet mattis nisl. Nunc nibh diam, dictum sit amet lacus nec, mollis aliquam velit. Duis volutpat ipsum at velit mattis, convallis porttitor massa molestie. Aliquam et sollicitudin ligula. Nulla tincidunt ligula libero, rutrum volutpat urna viverra auctor. Fusce interdum id elit ut vehicula. Sed consequat cursus faucibus. Nam vitae lectus lobortis, vehicula metus id, luctus lorem.&lt;br>&lt;br>"/>
+							<j:Button text="Hi!" emphasis="primary" width="180"/>
+						</j:VGroup>
 
-			</j:WizardPage>
-		</j:Wizard>
-	</j:Card>
+					</j:WizardPage>
+				</j:Wizard>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
 </c:ExampleAndSourceCodeTabbedSectionContent>

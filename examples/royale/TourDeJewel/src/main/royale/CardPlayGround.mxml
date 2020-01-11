@@ -23,13 +23,26 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" sourceCodeUrl="CardPlayGround.mxml">
 	
-	<j:Card width="600">
-		<html:H3 text="items expand test"/>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel Card"/>
 
-		<j:HGroup itemsExpand="true" gap="3">
-			<j:Button text="Hello"/>
-			<j:Button text="Apache"/>
-			<j:Button text="Royale!!!!"/>
-		</j:HGroup>
-	</j:Card>
+				<j:Label multiline="true" text="Apache Royale Card is 100% width by default and uses a Vertical layout with some default gap."/>
+				<j:Button text="Action" emphasis="primary"/>
+			</j:Card>
+		</j:GridCell>	
+	
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="items expand test"/>
+
+				<j:HGroup itemsExpand="true" gap="3">
+					<j:Button text="Hello"/>
+					<j:Button text="Apache"/>
+					<j:Button text="Royale!!!!"/>
+				</j:HGroup>
+			</j:Card>
+		</j:GridCell>	
+	</j:Grid>
 </c:ExampleAndSourceCodeTabbedSectionContent>
