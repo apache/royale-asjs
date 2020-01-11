@@ -25,6 +25,8 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
+		import org.apache.royale.core.StyledUIBase;
+
 		
 		private function clickHandler(event:MouseEvent):void
 		{
@@ -94,7 +96,7 @@ limitations under the License.
 				</j:beads>
 			</j:HSlider>
 
-			<j:Button localId="button1" text="HSlider to 400x200" width="250" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
+			<j:Button localId="button1" text="HSlider to 400x200" width="250" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
 
 		</j:Card>
 		<j:Card width="350" height="400">
@@ -107,7 +109,7 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 				</j:VSlider>
-				<j:Button localId="button2" text="VSlider to 190x160" width="150" height="80" emphasis="{Button.PRIMARY}" click="clickHandler(event)"/>
+				<j:Button localId="button2" text="VSlider to 190x160" width="150" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
 			</j:HGroup>
 		</j:Card>
 	</j:Group>

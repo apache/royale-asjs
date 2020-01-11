@@ -25,6 +25,7 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
+			import org.apache.royale.core.StyledUIBase;
 			import org.apache.royale.jewel.Button;
 			import org.apache.royale.jewel.events.WizardEvent;
 			
@@ -56,7 +57,7 @@ limitations under the License.
 		<j:Wizard id="wizard" width="100%" height="500">
 			<j:previousButton>
 				<j:Group>
-					<j:IconButton emphasis="{Button.SECONDARY}">
+					<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
 						<j:icon>
 							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}" material="true" size="48"/>
 						</j:icon>
@@ -66,7 +67,7 @@ limitations under the License.
 
 			<j:nextButton>
 				<j:Group>
-					<j:IconButton emphasis="{Button.SECONDARY}">
+					<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
 						<j:icon>
 							<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}" material="true" size="48"/>
 						</j:icon>

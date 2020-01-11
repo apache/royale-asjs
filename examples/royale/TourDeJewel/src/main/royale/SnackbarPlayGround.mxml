@@ -25,6 +25,7 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
+			import org.apache.royale.core.StyledUIBase;
 			import org.apache.royale.jewel.Snackbar;
 
 			// Event handler function uses a static method to show
@@ -75,9 +76,9 @@ limitations under the License.
 				<j:Label text="Click the button below to display Snackbar with different emphasis" multiline="true"/>
 				<j:VGroup gap="8">
 					<j:Button text="Default" id="button" click="Snackbar.show('This is Default')"/>
-					<j:Button text="Primary" emphasis="{Button.PRIMARY}" click="{Snackbar.show('This is Primary').emphasis = Button.PRIMARY}"/>
-					<j:Button text="Secondary" emphasis="{Button.SECONDARY}" click="{Snackbar.show('Secondary with ACTION',4000,'ACTION').emphasis = Button.SECONDARY}"/>
-					<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}" click="{Snackbar.show('This is Emphasized with some message').emphasis = Button.EMPHASIZED}"/>
+					<j:Button text="Primary" emphasis="{StyledUIBase.PRIMARY}" click="{Snackbar.show('This is Primary').emphasis = StyledUIBase.PRIMARY}"/>
+					<j:Button text="Secondary" emphasis="{StyledUIBase.SECONDARY}" click="{Snackbar.show('Secondary with ACTION',4000,'ACTION').emphasis = StyledUIBase.SECONDARY}"/>
+					<j:Button text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}" click="{Snackbar.show('This is Emphasized with some message').emphasis = StyledUIBase.EMPHASIZED}"/>
 				</j:VGroup>
 			</j:Card>
 		</j:GridCell>

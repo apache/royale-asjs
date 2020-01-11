@@ -27,6 +27,8 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
+			import org.apache.royale.core.StyledUIBase;
+
 			import vos.IconListVO;
 
 			private function onChange(event:Event):void {
@@ -178,7 +180,7 @@ limitations under the License.
 						<j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/>
 					</j:VGroup>
 					<j:VGroup gap="3">
-						<j:Button text="change data" emphasis="{Button.PRIMARY}" click="changeListData()"/>
+						<j:Button text="change data" emphasis="{StyledUIBase.PRIMARY}" click="changeListData()"/>
 						<j:Button text="Add item" click="addItem()"/>
 						<j:Button text="Remove first item" click="removeItemAt()"/>
 						<j:Button text="Update first item" click="updateFirstItem()"/>

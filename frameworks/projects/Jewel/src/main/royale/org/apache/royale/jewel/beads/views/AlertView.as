@@ -30,6 +30,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.html.beads.IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.events.Event;
 	}
 	COMPILE::JS
 	{

@@ -166,7 +166,7 @@ limitations under the License.
 											<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
 										</j:icon>
 									</j:IconTextInput>
-									<j:Button text="SEARCH" emphasis="{Button.PRIMARY}"/>
+									<j:Button text="SEARCH" emphasis="{StyledUIBase.PRIMARY}"/>
 								</j:HGroup>
 							</j:TableCell>
 						</j:TableRow>
@@ -220,6 +220,8 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
+			import org.apache.royale.core.StyledUIBase;
+
 			import vos.GuitarristVO;
 
 			private function onChange(event:Event):void {
