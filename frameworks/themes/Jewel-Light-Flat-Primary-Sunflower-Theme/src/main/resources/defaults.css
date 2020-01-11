@@ -165,6 +165,7 @@ hr {
   box-shadow: none;
   border-radius: 0.25rem;
   color: #808080;
+  text-shadow: none;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -211,6 +212,7 @@ hr {
   box-shadow: none;
   border-radius: 0.25rem;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.button.primary:hover, .jewel.button.primary:hover:focus {
   background: #f7a726;
@@ -544,6 +546,7 @@ j|Card {
   background: #333333;
   border: 0px solid;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.footerbar .footerBarAppHeader.has-drawer {
   width: calc(100% - 240px);
@@ -558,6 +561,7 @@ j|Card {
   padding: 12px;
   fill: #FFFFFF;
   color: inherit;
+  text-shadow: none;
 }
 .jewel.footerbar .jewel.barsection button:hover, .jewel.footerbar .jewel.barsection button:hover:focus, .jewel.footerbar .jewel.barsection button:active, .jewel.footerbar .jewel.barsection button:active:focus, .jewel.footerbar .jewel.barsection button:focus {
   background: transparent;
@@ -641,7 +645,7 @@ j|FormItem {
 .jewel.list[disabled] {
   pointer-events: none;
   color: silver;
-  color-text-shadow: unset;
+  text-shadow: unset;
   font-weight: normal;
   background: #f3f3f3;
   border: 0px solid;
@@ -1094,6 +1098,7 @@ a:active {
   box-shadow: none;
   border-radius: 0.25rem;
   color: #808080;
+  text-shadow: none;
   font-weight: bold;
   text-transform: uppercase;
 }
@@ -1145,6 +1150,7 @@ a:active {
   box-shadow: none;
   border-radius: 0.25rem;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.togglebutton.primary:hover, .jewel.togglebutton.primary:hover:focus {
   background: #f7a726;
@@ -1223,6 +1229,7 @@ a:active {
   background: #F8B13F;
   border: 1px solid #f7a118;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.topappbar .topBarAppHeader.has-drawer {
   width: calc(100% - 240px);
@@ -1237,6 +1244,7 @@ a:active {
   padding: 12px;
   fill: #FFFFFF;
   color: inherit;
+  text-shadow: none;
 }
 .jewel.topappbar .jewel.barsection button:hover, .jewel.topappbar .jewel.barsection button:hover:focus, .jewel.topappbar .jewel.barsection button:active, .jewel.topappbar .jewel.barsection button:active:focus, .jewel.topappbar .jewel.barsection button:focus {
   background: transparent;

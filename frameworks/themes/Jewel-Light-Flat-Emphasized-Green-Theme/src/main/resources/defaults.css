@@ -27,6 +27,7 @@
   box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.button.emphasized:hover, .jewel.button.emphasized:hover:focus {
   background: #34a241;
@@ -86,6 +87,7 @@
   box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.togglebutton.emphasized:hover, .jewel.togglebutton.emphasized:hover:focus {
   background: #34a241;

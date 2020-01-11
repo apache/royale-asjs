@@ -645,7 +645,7 @@ j|FormItem {
 .jewel.list[disabled] {
   pointer-events: none;
   color: #737373;
-  color-text-shadow: unset;
+  text-shadow: unset;
   font-weight: normal;
   background: #404040;
   border: 1px solid #0d0d0d;

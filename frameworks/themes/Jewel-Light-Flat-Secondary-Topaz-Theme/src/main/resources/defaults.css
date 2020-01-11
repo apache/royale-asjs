@@ -27,6 +27,7 @@
   box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.button.secondary:hover, .jewel.button.secondary:hover:focus {
   background: #ed4812;
@@ -98,6 +99,7 @@ a:active {
   box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
+  text-shadow: none;
 }
 .jewel.togglebutton.secondary:hover, .jewel.togglebutton.secondary:hover:focus {
   background: #ed4812;
