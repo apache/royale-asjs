@@ -57,13 +57,13 @@ limitations under the License.
 				case slider_h:
 					button1.width = slider_w.value;
 					button1.height = slider_h.value;
-					button1.text = slider_w.value + "x" + slider_h.value;
+					button1.text = "HSlider to " + slider_w.value + "x" + slider_h.value;
 					break;
 				case vslider_w:
 				case vslider_h:
 					button2.width = vslider_w.value;
 					button2.height = vslider_h.value;
-					button2.text = vslider_w.value + "x" + vslider_h.value;
+					button2.text = "VSlider to " + vslider_w.value + "x" + vslider_h.value;
 					break;
 			}
 		}
