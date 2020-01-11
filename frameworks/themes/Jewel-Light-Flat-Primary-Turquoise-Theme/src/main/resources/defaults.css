@@ -134,6 +134,7 @@ hr {
 .jewel.alert .jewel.controlbar {
   background: white;
   border: 0px solid;
+  box-shadow: none;
   border-radius: 0px 0px 3px 3px;
   padding: 20px;
   position: absolute;
@@ -161,6 +162,7 @@ hr {
 .jewel.button {
   background: #d9d9d9;
   border: 1px solid #c5c5c5;
+  box-shadow: none;
   border-radius: 0.25rem;
   color: #808080;
   font-weight: bold;
@@ -173,10 +175,12 @@ hr {
 .jewel.button:active, .jewel.button:active:focus {
   background: #b3b3b3;
   border: 1px solid #c5c5c5;
+  box-shadow: none;
 }
 .jewel.button:focus {
   background: #e6e6e6;
   border: 1px solid #c5c5c5;
+  box-shadow: none;
 }
 .jewel.button[disabled] {
   background: #f3f3f3 !important;
@@ -204,6 +208,7 @@ hr {
 .jewel.button.primary {
   background: #29A89F;
   border: 1px solid #218780;
+  box-shadow: none;
   border-radius: 0.25rem;
   color: #FFFFFF;
 }
@@ -214,10 +219,12 @@ hr {
 .jewel.button.primary:active, .jewel.button.primary:active:focus {
   background: #1a6b65;
   border: 1px solid #218780;
+  box-shadow: none;
 }
 .jewel.button.primary:focus {
   background: #2ebcb2;
   border: 1px solid #218780;
+  box-shadow: none;
 }
 .jewel.button.primary[disabled] {
   background: #f3f3f3 !important;
@@ -320,6 +327,7 @@ j|Card {
 .jewel.datagrid .jewel.list.column {
   border-radius: 0px;
   border-bottom-width: 0px;
+  box-shadow: none;
 }
 .jewel.datagrid .jewel.list.column.first {
   border-bottom-left-radius: 0.25rem;
@@ -627,6 +635,7 @@ j|FormItem {
 .jewel.list {
   background: white;
   border: 1px solid #d9d9d9;
+  box-shadow: none;
   border-radius: 3px;
 }
 .jewel.list[disabled] {
@@ -775,6 +784,7 @@ j|FormItem {
 .jewel.slider input::-ms-fill-lower {
   background: #29A89F;
   border: 1px solid #228b84;
+  box-shadow: none;
   border-radius: 3px;
 }
 .jewel.slider input::-ms-fill-upper {
@@ -787,6 +797,7 @@ j|FormItem {
   height: 18px;
   background: #29A89F;
   border: 1px solid #218780;
+  box-shadow: none;
   border-radius: 50%;
 }
 .jewel.slider input::-moz-range-thumb {
@@ -794,6 +805,7 @@ j|FormItem {
   height: 18px;
   background: #29A89F;
   border: 1px solid #218780;
+  box-shadow: none;
   border-radius: 50%;
 }
 .jewel.slider input::-ms-thumb {
@@ -801,6 +813,7 @@ j|FormItem {
   height: 18px;
   background: #29A89F;
   border: 1px solid #218780;
+  box-shadow: none;
   border-radius: 50%;
 }
 .jewel.slider input:active::-webkit-slider-thumb, .jewel.slider input:active::-moz-range-thumb {
@@ -845,6 +858,7 @@ j|FormItem {
 .slider-track-fill {
   background: #29A89F;
   border: 1px solid #228b84;
+  box-shadow: none;
   border-radius: 3px;
 }
 
@@ -866,6 +880,7 @@ j|FormItem {
 .jewel.snackbar.primary .jewel.snackbar-content {
   background: #29A89F;
   border: 0px solid;
+  box-shadow: none;
 }
 .jewel.snackbar.primary .jewel.snackbar-message {
   color: #FFFFFF;
@@ -931,6 +946,7 @@ j|FormItem {
 .jewel.simpletable {
   background: white;
   border: 1px solid #d9d9d9;
+  box-shadow: none;
   border-radius: 0.25rem;
 }
 .jewel.simpletable .jewel.thead tr {
@@ -941,6 +957,7 @@ j|FormItem {
 }
 .jewel.simpletable .jewel.tableheadercell {
   background: #f3f3f3;
+  box-shadow: none;
   font-weight: 700;
   line-height: normal !important;
   font-size: 1em;
@@ -957,11 +974,13 @@ j|FormItem {
 .jewel.simpletable .jewel.tfoot .jewel.tablecell {
   border-left: 0px;
   background: #f3f3f3;
+  box-shadow: none;
 }
 
 .jewel.table {
   background: white;
   border: 1px solid #d9d9d9;
+  box-shadow: none;
   border-radius: 0.25rem;
 }
 .jewel.table .jewel.thead tr {
@@ -972,6 +991,7 @@ j|FormItem {
 }
 .jewel.table .jewel.tableheadercell {
   background: #f3f3f3;
+  box-shadow: none;
   font-weight: 700;
   line-height: normal !important;
   font-size: 1em;
@@ -988,6 +1008,7 @@ j|FormItem {
 .jewel.table .jewel.tfoot .jewel.tablecell {
   border-left: 0px;
   background: #f3f3f3;
+  box-shadow: none;
 }
 
 .jewel.tableitem.hovered {
@@ -1070,6 +1091,7 @@ a:active {
 .jewel.togglebutton {
   background: #d9d9d9;
   border: 1px solid #c5c5c5;
+  box-shadow: none;
   border-radius: 0.25rem;
   color: #808080;
   font-weight: bold;
@@ -1082,10 +1104,12 @@ a:active {
 .jewel.togglebutton:active, .jewel.togglebutton:active:focus {
   background: #b3b3b3;
   border: 1px solid #c5c5c5;
+  box-shadow: none;
 }
 .jewel.togglebutton:focus {
   background: #e6e6e6;
   border: 1px solid #c5c5c5;
+  box-shadow: none;
 }
 .jewel.togglebutton[disabled] {
   background: #f3f3f3 !important;
@@ -1097,6 +1121,7 @@ a:active {
 .jewel.togglebutton.selected {
   background: #b3b3b3;
   border: 1px solid #c5c5c5;
+  box-shadow: none;
 }
 .jewel.togglebutton[disabled] {
   font-weight: 400;
@@ -1117,6 +1142,7 @@ a:active {
 .jewel.togglebutton.primary {
   background: #29A89F;
   border: 1px solid #218780;
+  box-shadow: none;
   border-radius: 0.25rem;
   color: #FFFFFF;
 }
@@ -1127,10 +1153,12 @@ a:active {
 .jewel.togglebutton.primary:active, .jewel.togglebutton.primary:active:focus {
   background: #1a6b65;
   border: 1px solid #218780;
+  box-shadow: none;
 }
 .jewel.togglebutton.primary:focus {
   background: #2ebcb2;
   border: 1px solid #218780;
+  box-shadow: none;
 }
 .jewel.togglebutton.primary[disabled] {
   background: #f3f3f3 !important;
@@ -1142,6 +1170,7 @@ a:active {
 .jewel.togglebutton.primary.selected {
   background: #1a6b65;
   border: 1px solid #218780;
+  box-shadow: none;
 }
 
 .jewel.tooltip {

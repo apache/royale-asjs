@@ -24,6 +24,7 @@
 .jewel.button.secondary {
   background: #8CC63C;
   border: 1px solid #76a831;
+  box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
 }
@@ -34,10 +35,12 @@
 .jewel.button.secondary:active, .jewel.button.secondary:active:focus {
   background: #638c29;
   border: 1px solid #76a831;
+  box-shadow: none;
 }
 .jewel.button.secondary:focus {
   background: #98cc50;
   border: 1px solid #76a831;
+  box-shadow: none;
 }
 .jewel.button.secondary[disabled] {
   background: #f3f3f3 !important;
@@ -91,6 +94,7 @@ a:active {
 .jewel.togglebutton.secondary {
   background: #8CC63C;
   border: 1px solid #76a831;
+  box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
 }
@@ -101,10 +105,12 @@ a:active {
 .jewel.togglebutton.secondary:active, .jewel.togglebutton.secondary:active:focus {
   background: #638c29;
   border: 1px solid #76a831;
+  box-shadow: none;
 }
 .jewel.togglebutton.secondary:focus {
   background: #98cc50;
   border: 1px solid #76a831;
+  box-shadow: none;
 }
 .jewel.togglebutton.secondary[disabled] {
   background: #f3f3f3 !important;
@@ -116,6 +122,7 @@ a:active {
 .jewel.togglebutton.secondary.selected {
   background: #638c29;
   border: 1px solid #76a831;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=defaults.css.map */

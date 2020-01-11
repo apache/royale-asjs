@@ -24,6 +24,7 @@
 .jewel.button.emphasized {
   background: #F8B13F;
   border: 1px solid #f7a118;
+  box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
 }
@@ -34,10 +35,12 @@
 .jewel.button.emphasized:active, .jewel.button.emphasized:active:focus {
   background: #e28f08;
   border: 1px solid #f7a118;
+  box-shadow: none;
 }
 .jewel.button.emphasized:focus {
   background: #f9bb58;
   border: 1px solid #f7a118;
+  box-shadow: none;
 }
 .jewel.button.emphasized[disabled] {
   background: #f3f3f3 !important;
@@ -79,6 +82,7 @@
 .jewel.togglebutton.emphasized {
   background: #F8B13F;
   border: 1px solid #f7a118;
+  box-shadow: none;
   border-radius: 3px;
   color: #FFFFFF;
 }
@@ -89,10 +93,12 @@
 .jewel.togglebutton.emphasized:active, .jewel.togglebutton.emphasized:active:focus {
   background: #e28f08;
   border: 1px solid #f7a118;
+  box-shadow: none;
 }
 .jewel.togglebutton.emphasized:focus {
   background: #f9bb58;
   border: 1px solid #f7a118;
+  box-shadow: none;
 }
 .jewel.togglebutton.emphasized[disabled] {
   background: #f3f3f3 !important;
@@ -104,6 +110,7 @@
 .jewel.togglebutton.emphasized.selected {
   background: #e28f08;
   border: 1px solid #f7a118;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=defaults.css.map */
