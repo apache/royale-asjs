@@ -67,6 +67,7 @@
 .jewel.snackbar.emphasized .jewel.snackbar-content {
   background: #2C74BE;
   border: 0px solid;
+  box-shadow: none;
 }
 .jewel.snackbar.emphasized .jewel.snackbar-message {
   color: #FFFFFF;
