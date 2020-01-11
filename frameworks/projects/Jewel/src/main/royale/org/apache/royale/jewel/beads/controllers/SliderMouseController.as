@@ -18,6 +18,20 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
+	COMPILE::SWF
+    {
+	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.geom.Point;
+	}
+    COMPILE::JS
+    {
+	import goog.events;
+	import goog.events.EventType;
+
+	import org.apache.royale.events.BrowserEvent;
+	import org.apache.royale.jewel.HSlider;
+	import org.apache.royale.jewel.beads.views.SliderView;
+    }
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IRangeModel;
@@ -25,21 +39,9 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.ValueChangeEvent;
-	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.beads.controls.slider.ISliderView;
 
-    COMPILE::JS
-    {
-        import goog.events;
-        import goog.events.EventType;
-
-        import org.apache.royale.events.BrowserEvent;
-        import org.apache.royale.jewel.HSlider;
-        import org.apache.royale.jewel.beads.views.SliderView;
-    }
-	
 	/**
 	 *  The SliderMouseController class bead handles mouse events on the 
 	 *  org.apache.royale.jewel.HSlider's component parts (thumb and track) and 
@@ -180,7 +182,8 @@ package org.apache.royale.jewel.beads.controllers
         }
 
         /**
-         *  Manages the input event to update the range model value and dispatch a input Royale event 
+         *  Manages the 'valueChange' event to update the range model value and dispatch a 'valueChange' Royale event
+		 *  with old and new values 
          *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -191,11 +194,10 @@ package org.apache.royale.jewel.beads.controllers
         private function handleInput(event:BrowserEvent):void
         {
             var host:HSlider = _strand as HSlider;
-
-            rangeModel.value = Number((UIBase(_strand).element as HTMLInputElement).value);
-
-            host.dispatchEvent(new org.apache.royale.events.Event('input'));
-
+			var oldValue:Number = Number((UIBase(_strand).element as HTMLInputElement).value);
+			var vce:ValueChangeEvent = ValueChangeEvent.createUpdateEvent(host, "value", rangeModel.value, oldValue);
+			rangeModel.value = oldValue;
+            host.dispatchEvent(vce);
 			SliderView(sliderView).redraw();
         }
 

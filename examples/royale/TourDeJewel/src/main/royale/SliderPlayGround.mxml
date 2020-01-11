@@ -26,11 +26,11 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 		import org.apache.royale.core.StyledUIBase;
-
+		import org.apache.royale.events.ValueChangeEvent;
 		
 		private function clickHandler(event:MouseEvent):void
 		{
-			// trace("clickHandler");
+			trace("clickHandler");
 			switch(event.target) {
 				case button1:
 					slider_w.value = 400;
@@ -44,19 +44,14 @@ limitations under the License.
 
 		}
 
-        private function onInput(event:Event):void
-        {
-			// trace("onInput");
-        }
-
 		private function onChange(event:Event):void
         {
-			// trace("onChange");
+			trace("onChange");
 		}
 
-		private function onValueChange(event:Event):void
+		private function onValueChange(event:ValueChangeEvent):void
         {
-			// trace("onValueChange"); // if target IE11 you must use this event handler
+			trace("[onValueChange] oldValue: " + event.oldValue + ", newValue: " + event.newValue); // if target IE11 you must use this event handler
 			switch(event.target){
 				case slider_w:
 				case slider_h:
@@ -71,7 +66,6 @@ limitations under the License.
 					button2.text = vslider_w.value + "x" + vslider_h.value;
 					break;
 			}
-
 		}
     	]]>
 	</fx:Script>
@@ -80,38 +74,44 @@ limitations under the License.
 		<js:ContainerDataBinding/>
 	</c:beads>
 
-	<j:Group>
-		<j:beads>
-			<j:HorizontalCenteredLayout gap="3"/>
-		</j:beads>
-		<j:Card width="450">
-			<html:H3 text="Jewel HSlider"/>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HSlider"/>
 
-			<j:HSlider localId="slider_w" width="250" value="250" minimum="100" maximum="420" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
-			<j:HSlider localId="slider_h" width="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
+				<j:HSlider localId="slider_w" width="250" value="250" minimum="100" maximum="420" change="onChange(event)" valueChange="onValueChange(event)"/>
+				<j:HSlider localId="slider_h" width="250" value="80" minimum="40" maximum="300" change="onChange(event)" valueChange="onValueChange(event)"/>
 
-			<j:HSlider localId="slider_dis" width="250" value="70" minimum="0" maximum="100">
-				<j:beads>
-					<j:Disabled/>
-				</j:beads>
-			</j:HSlider>
-
-			<j:Button localId="button1" text="HSlider to 400x200" width="250" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
-
-		</j:Card>
-		<j:Card width="350" height="400">
-			<html:H3 text="Jewel VSlider"/>
-			<j:HGroup localId="hg" gap="3"  width="300">
-				<j:VSlider localId="vslider_w"  height="250" value="150" minimum="50" maximum="220" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
-				<j:VSlider localId="vslider_h"  height="250" value="80" minimum="40" maximum="300" change="onChange(event)" input="onInput(event)" valueChange="onValueChange(event)"/>
-				<j:VSlider localId="vslider_dis"  height="250" value="70" minimum="0" maximum="300">
+				<j:HSlider localId="slider_dis" width="250" value="70" minimum="0" maximum="100">
 					<j:beads>
 						<j:Disabled/>
 					</j:beads>
-				</j:VSlider>
-				<j:Button localId="button2" text="VSlider to 190x160" width="150" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
-			</j:HGroup>
-		</j:Card>
-	</j:Group>
+				</j:HSlider>
+
+				<j:Button localId="button1" text="HSlider to 250x80" width="250" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
+
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VSlider"/>
+				<j:HGroup gap="3" width="300">
+					<j:VSlider localId="vslider_w" height="250" value="250" minimum="100" maximum="420" change="onChange(event)" valueChange="onValueChange(event)"/>
+					<j:VSlider localId="vslider_h" height="250" value="80" minimum="40" maximum="300" change="onChange(event)" valueChange="onValueChange(event)"/>
+					
+					<j:VSlider localId="vslider_dis" height="250" value="70" minimum="0" maximum="100">
+						<j:beads>
+							<j:Disabled/>
+						</j:beads>
+					</j:VSlider>
+
+					<j:Button localId="button2" text="VSlider to 250x80" width="250" height="80" emphasis="{StyledUIBase.PRIMARY}" click="clickHandler(event)"/>
+				</j:HGroup>
+			</j:Card>
+		</j:GridCell>
+	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
