@@ -41,10 +41,6 @@ package org.apache.royale.jewel
 	 */
 	public class ToggleButtonBar extends IconButtonBar
 	{
-		public static const PRIMARY:String = "primary";
-        public static const SECONDARY:String = "secondary";
-        public static const EMPHASIZED:String = "emphasized";
-		
 		/**
 		 *  constructor.
 		 *

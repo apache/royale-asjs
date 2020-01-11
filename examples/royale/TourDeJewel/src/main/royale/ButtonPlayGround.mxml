@@ -25,10 +25,12 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[      
+            import org.apache.royale.core.StyledUIBase;
+
             private function clickHandler(event:MouseEvent):void {
-                event.target.emphasis = event.target.emphasis == Button.PRIMARY ? "" : Button.PRIMARY;
-				event.target.width = event.target.emphasis == Button.PRIMARY ? NaN : 250;
-				event.target.text = event.target.emphasis == Button.PRIMARY ? "Width 'auto'" : "Width = 250";
+                event.target.emphasis = event.target.emphasis == StyledUIBase.PRIMARY ? "" : StyledUIBase.PRIMARY;
+				event.target.width = event.target.emphasis == StyledUIBase.PRIMARY ? NaN : 250;
+				event.target.text = event.target.emphasis == StyledUIBase.PRIMARY ? "Width 'auto'" : "Width = 250";
             }
 
 			private function onValueChange(event:Event):void
@@ -61,10 +63,10 @@ limitations under the License.
 						<j:MultiLine multiline="true"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
-				<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
-				<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
-				<j:Button text="Disabled" emphasis="{Button.PRIMARY}">
+				<j:Button text="Primary" emphasis="{StyledUIBase.PRIMARY}"/>
+				<j:Button text="Secondary" emphasis="{StyledUIBase.SECONDARY}"/>
+				<j:Button text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}"/>
+				<j:Button text="Disabled" emphasis="{StyledUIBase.PRIMARY}">
 					<j:beads>
 						<j:Disabled/>
 					</j:beads>
@@ -82,17 +84,17 @@ limitations under the License.
 						<j:SizeControl size="{SizeControl.XSMALL}"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="small" emphasis="{Button.PRIMARY}">
+				<j:Button text="small" emphasis="{StyledUIBase.PRIMARY}">
 					<j:beads>
 						<j:SizeControl size="{SizeControl.SMALL}"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="large" emphasis="{Button.SECONDARY}">
+				<j:Button text="large" emphasis="{StyledUIBase.SECONDARY}">
 					<j:beads>
 						<j:SizeControl size="{SizeControl.LARGE}"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
+				<j:Button text="xlarge" emphasis="{StyledUIBase.EMPHASIZED}">
 					<j:beads>
 						<j:SizeControl size="{SizeControl.XLARGE}"/>
 					</j:beads>
@@ -131,7 +133,7 @@ limitations under the License.
 				<html:H4 text="Button size"/>
 
 				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
-					<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{Button.PRIMARY}"/>
+					<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{StyledUIBase.PRIMARY}"/>
 					<j:Button text="check layout"/>
 				</j:HGroup>
 				<j:HSlider id="slider_w" width="350" value="96" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
@@ -156,10 +158,10 @@ limitations under the License.
 					</j:beads>
 				</j:ToggleButton>
 				<j:ToggleButton text="Button With More Text"/>
-				<j:ToggleButton text="Primary" emphasis="{Button.PRIMARY}"/>
-				<j:ToggleButton text="Secondary" emphasis="{Button.SECONDARY}"/>
-				<j:ToggleButton text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
-				<j:ToggleButton text="Disabled" emphasis="{Button.PRIMARY}">
+				<j:ToggleButton text="Primary" emphasis="{StyledUIBase.PRIMARY}"/>
+				<j:ToggleButton text="Secondary" emphasis="{StyledUIBase.SECONDARY}"/>
+				<j:ToggleButton text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}"/>
+				<j:ToggleButton text="Disabled" emphasis="{StyledUIBase.PRIMARY}">
 					<j:beads>
 						<j:Disabled/>
 					</j:beads>
