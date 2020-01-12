@@ -142,7 +142,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 
             fillRenderer(event.index, event.item, ir, presentationModel);
 
-
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
