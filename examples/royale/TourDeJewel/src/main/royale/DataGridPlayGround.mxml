@@ -50,15 +50,15 @@ limitations under the License.
 			grid.dataProvider = data;
 		}
 
-		private function addData():void
+		private function addRow():void
 		{
 			var product:Product = new Product("xx100","New Item",44,10,"assets/smallbluerect.jpg");
 			productModel.productList.addItem(product);
 		}
 		
-		private function removeData():void
+		private function removeFirstRow():void
 		{
-			productModel.productList.removeItemAt(2);
+			productModel.productList.removeItemAt(0);
 		}
 
 		[Bindable]
@@ -121,15 +121,15 @@ limitations under the License.
 					</j:columns>
 					<j:beads>
 						<j:AddDataGridItemRendererForArrayListData/>
+						<j:RemoveDataGridItemRendererForArrayListData/>
 					</j:beads>
 				</j:DataGrid>
 
 				<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
 
 				<j:HGroup gap="3">
-					<!-- <j:Button text="Refresh Grid" click="refreshGrid(datagrid2, (productModel as ProductModel).productList)"/> -->
-					<j:Button text="Add Row" click="addData()" emphasis="primary"/>
-					<j:Button text="Remove Row" click="removeData()"/>
+					<j:Button text="Add Row" click="addRow()" emphasis="primary"/>
+					<j:Button text="Remove First Row" click="removeFirstRow()"/>
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>

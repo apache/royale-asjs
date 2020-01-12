@@ -213,6 +213,7 @@
     <component id="CollectionChangeUpdateForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.CollectionChangeUpdateForArrayListData" />
     
     <component id="AddDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddDataGridItemRendererForArrayListData" />
+    <component id="RemoveDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveDataGridItemRendererForArrayListData" />
 
     <component id="AddTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableRowForArrayListData" />
     <component id="RemoveTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveTableRowForArrayListData" />

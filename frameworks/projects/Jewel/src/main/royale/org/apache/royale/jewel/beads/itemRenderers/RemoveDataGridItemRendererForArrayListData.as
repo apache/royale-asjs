@@ -25,7 +25,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 
     /**
-	 *  Handles the adding of an itemRenderer in a DataGrid component once the corresponding datum has been added
+	 *  Handles the removal of an itemRenderer in a DataGrid component once the corresponding datum has been added
 	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
@@ -33,7 +33,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class AddDataGridItemRendererForArrayListData implements IBead
+	public class RemoveDataGridItemRendererForArrayListData implements IBead
 	{
 		/**
 		 * Constructor
@@ -43,7 +43,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function AddDataGridItemRendererForArrayListData()
+		public function RemoveDataGridItemRendererForArrayListData()
 		{
 		}
 		
@@ -65,10 +65,9 @@ package org.apache.royale.jewel.beads.itemRenderers
             for (var i:int=0; i < view.columnLists.length; i++)
             {
                 var list:IDataGridColumnList = view.columnLists[i] as IDataGridColumnList;
-				var addItemBead:AddListItemRendererForArrayListData = new AddListItemRendererForArrayListData();
-				list.addBead(addItemBead);
-				addItemBead.setUp();
-				// IEventDispatcher(list).addEventListener("initComplete", initComplete);
+				var removeItemBead:RemoveListItemRendererForArrayListData = new RemoveListItemRendererForArrayListData();
+				list.addBead(removeItemBead);
+				removeItemBead.setUp();
             }
 		}
 	}
