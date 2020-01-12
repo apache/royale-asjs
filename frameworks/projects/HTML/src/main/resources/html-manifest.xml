@@ -67,4 +67,48 @@
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
     <component id="TextNode" class="org.apache.royale.html.TextNode" />
 
+    <component id="AnimateMotion" class="org.apache.royale.svg.elements.AnimateMotion" />
+    <component id="AnimateTransform" class="org.apache.royale.svg.elements.AnimateTransform" />
+    <component id="Circle" class="org.apache.royale.svg.elements.Circle" />
+    <component id="ClipPath" class="org.apache.royale.svg.elements.ClipPath" />
+    <component id="Defs" class="org.apache.royale.svg.elements.Defs" />
+    <component id="Ellipse" class="org.apache.royale.svg.elements.Ellipse" />
+    <component id="G" class="org.apache.royale.svg.elements.G" />
+    <component id="Image" class="org.apache.royale.svg.elements.Image" />
+    <component id="Line" class="org.apache.royale.svg.elements.Line" />
+    <component id="Marker" class="org.apache.royale.svg.elements.Marker" />
+    <component id="Mask" class="org.apache.royale.svg.elements.Mask" />
+    <component id="Path" class="org.apache.royale.svg.elements.Path" />
+    <component id="Pattern" class="org.apache.royale.svg.elements.Pattern" />
+    <component id="Polygon" class="org.apache.royale.svg.elements.Polygon" />
+    <component id="Polyline" class="org.apache.royale.svg.elements.Polyline" />
+    <component id="Rect" class="org.apache.royale.svg.elements.Rect" />
+    <component id="Svg" class="org.apache.royale.svg.elements.Svg" />
+    <component id="Switch" class="org.apache.royale.svg.elements.Switch" />
+    <component id="Symbol" class="org.apache.royale.svg.elements.Symbol" />
+    <component id="Text" class="org.apache.royale.svg.elements.Text" />
+    <component id="Use" class="org.apache.royale.svg.elements.Use" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </componentPackage>
