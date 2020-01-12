@@ -53,7 +53,7 @@ limitations under the License.
 		private function addData():void
 		{
 			var product:Product = new Product("xx100","New Item",44,10,"assets/smallbluerect.jpg");
-			productModel.productList.addItemAt(product, 2);
+			productModel.productList.addItem(product);
 		}
 		
 		private function removeData():void
@@ -119,12 +119,15 @@ limitations under the License.
 						<j:DataGridColumn label="Title" dataField="title" columnWidth="140"/>
 						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="80" align="right"/>
 					</j:columns>
+					<j:beads>
+						<j:AddDataGridItemRendererForArrayListData/>
+					</j:beads>
 				</j:DataGrid>
 
 				<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
 
 				<j:HGroup gap="3">
-					<j:Button text="Refresh Grid" click="refreshGrid(datagrid2, (productModel as ProductModel).productList)"/>
+					<!-- <j:Button text="Refresh Grid" click="refreshGrid(datagrid2, (productModel as ProductModel).productList)"/> -->
 					<j:Button text="Add Row" click="addData()" emphasis="primary"/>
 					<j:Button text="Remove Row" click="removeData()"/>
 				</j:HGroup>

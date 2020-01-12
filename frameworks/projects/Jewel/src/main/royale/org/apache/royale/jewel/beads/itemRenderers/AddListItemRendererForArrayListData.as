@@ -57,10 +57,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
-		protected var _strand:IStrand;
-
         protected var labelField:String;
-
+		
+		protected var _strand:IStrand;
 		/**
 		 * @copy org.apache.royale.core.IStrand
 		 *
@@ -84,6 +83,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @productversion Royale 0.9.4
 		 */
 		protected function initComplete(event:Event):void
+		{
+			setUp();
+		}
+
+		/**
+		 * This method is called when List is composed to conform a DataGrid
+		 * In that case DataGrid uses AddDataGridItemRendererForArrayListData,
+		 * that add this bead to the each column List and calls this method at
+		 * initialization time.
+		 */
+		public function setUp():void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
