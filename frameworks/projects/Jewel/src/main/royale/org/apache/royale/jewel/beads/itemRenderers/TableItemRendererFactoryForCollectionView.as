@@ -27,7 +27,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.EventDispatcher;

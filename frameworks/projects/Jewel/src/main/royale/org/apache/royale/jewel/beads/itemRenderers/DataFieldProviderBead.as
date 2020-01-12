@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IBead;
 
     /**
      *  The DataFieldProviderBead class is a model that holds dataField used mostly
