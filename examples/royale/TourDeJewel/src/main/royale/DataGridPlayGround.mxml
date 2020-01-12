@@ -52,13 +52,21 @@ limitations under the License.
 
 		private function addRow():void
 		{
-			var product:Product = new Product("xx100","New Item",44,10,"assets/smallbluerect.jpg");
+			var product:Product = new Product("xx100","New Item", 44, Math.floor(Math.random()*1000), "assets/smallbluerect.jpg");
 			productModel.productList.addItem(product);
 		}
 		
 		private function removeFirstRow():void
 		{
 			productModel.productList.removeItemAt(0);
+		}
+		
+		private function updateFirstRow():void
+		{
+			var product:Product = productModel.productList.getItemAt(0) as Product;
+			product.title = "What??";
+			product.sales = Math.floor(Math.random()*100);
+			productModel.productList.itemUpdated(product);
 		}
 
 		[Bindable]
@@ -122,6 +130,7 @@ limitations under the License.
 					<j:beads>
 						<j:AddDataGridItemRendererForArrayListData/>
 						<j:RemoveDataGridItemRendererForArrayListData/>
+						<j:UpdateDataGridItemRendererForArrayListData/>
 					</j:beads>
 				</j:DataGrid>
 
@@ -130,6 +139,7 @@ limitations under the License.
 				<j:HGroup gap="3">
 					<j:Button text="Add Row" click="addRow()" emphasis="primary"/>
 					<j:Button text="Remove First Row" click="removeFirstRow()"/>
+					<j:Button text="Update First Row" click="updateFirstRow()"/>
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>

@@ -83,7 +83,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		
 		/**
 		 * This method is called when List is composed to conform a DataGrid
-		 * In that case DataGrid uses AddDataGridItemRendererForArrayListData,
+		 * In that case DataGrid uses RemoveDataGridItemRendererForArrayListData,
 		 * that add this bead to the each column List and calls this method at
 		 * initialization time.
 		 */
