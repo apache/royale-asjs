@@ -68,7 +68,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 				var addItemBead:AddListItemRendererForArrayListData = new AddListItemRendererForArrayListData();
 				list.addBead(addItemBead);
 				addItemBead.setUp();
-				// IEventDispatcher(list).addEventListener("initComplete", initComplete);
             }
 		}
 	}
