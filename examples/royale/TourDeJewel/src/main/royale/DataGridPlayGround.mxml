@@ -53,12 +53,14 @@ limitations under the License.
 		private function addRow():void
 		{
 			var product:Product = new Product("xx100","New Item", 44, Math.floor(Math.random()*1000), "assets/smallbluerect.jpg");
-			productModel.productList.addItem(product);
+			(datagrid2.dataProvider as ArrayList).addItem(product);
+			// productModel.productList.addItem(product);
 		}
 		
 		private function removeFirstRow():void
 		{
-			productModel.productList.removeItemAt(0);
+			(datagrid2.dataProvider as ArrayList).removeItemAt(0);
+			// productModel.productList.removeItemAt(0);
 		}
 		
 		private function updateFirstRow():void
@@ -66,12 +68,14 @@ limitations under the License.
 			var product:Product = productModel.productList.getItemAt(0) as Product;
 			product.title = "What??";
 			product.sales = Math.floor(Math.random()*100);
-			productModel.productList.itemUpdated(product);
+			(datagrid2.dataProvider as ArrayList).itemUpdated(product);
+			// productModel.productList.itemUpdated(product);
 		}
 
 		public function removeAllRows():void
 		{
-			productModel.productList.removeAll();
+			(datagrid2.dataProvider as ArrayList).removeAll();
+			// productModel.productList.removeAll();
 		}
 
 		[Bindable]
@@ -100,7 +104,7 @@ limitations under the License.
 					<j:beads>
 						<js:ConstantBinding
 							sourceID="productModel"
-							sourcePropertyName="productList"
+							sourcePropertyName="fewProductList"
 							destinationPropertyName="dataProvider"/>
 					</j:beads>
 					<j:columns>
