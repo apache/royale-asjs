@@ -20,17 +20,17 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF {
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
+	import org.apache.royale.events.IEventDispatcher;
 	}
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IContainerBaseStrandChildrenHost;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
-	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.HGroup;
 	import org.apache.royale.jewel.IconButton;
 	import org.apache.royale.jewel.Label;
@@ -228,7 +228,7 @@ package org.apache.royale.jewel.beads.views
 			
 			// add previous button
 			if (previousButton == null) {
-				previousButton = createButton("previous", Button.SECONDARY) as UIBase;
+				previousButton = createButton("previous", StyledUIBase.SECONDARY) as UIBase;
 			}
 			previousButton.className = "jewel wizard previous";
 			if (previousButton != null && previousButton.parent == null) {
@@ -242,7 +242,7 @@ package org.apache.royale.jewel.beads.views
 
 			// add next button
 			if (nextButton == null) {
-				nextButton = createButton("next", Button.SECONDARY) as UIBase;
+				nextButton = createButton("next", StyledUIBase.SECONDARY) as UIBase;
 			}
 			nextButton.className = "jewel wizard next";
 			if (nextButton != null && nextButton.parent == null) {

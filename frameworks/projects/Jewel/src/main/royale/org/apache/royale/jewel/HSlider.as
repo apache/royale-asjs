@@ -52,16 +52,6 @@ package org.apache.royale.jewel
 	[Event(name="change", type="org.apache.royale.events.Event")]
 
 	/**
-     *  Dispatched each time user moves the slider thumb from one position to another
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
-     */
-	[Event(name="input", type="org.apache.royale.events.Event")]
-
-	/**
 	 *  The Slider class is a component that displays a range of values using a
 	 *  track and a thumb control. The Slider uses the following bead types:
 	 *

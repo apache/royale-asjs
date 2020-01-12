@@ -65,6 +65,7 @@ limitations under the License.
 				<j:Label localId="bb_label"/>
 			</j:Card>
 		</j:GridCell>
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Jewel ButtonBar"/>

@@ -30,6 +30,7 @@ limitations under the License.
 			import org.apache.royale.collections.ArrayListView;
 			import org.apache.royale.collections.Sort;
 			import org.apache.royale.collections.SortField;
+			import org.apache.royale.core.StyledUIBase;
 			import org.apache.royale.events.Event;
 
 			import vos.DetailIconListVO;
@@ -187,7 +188,7 @@ limitations under the License.
 						<j:Label text="Click on render's icon will toggle 'component set' for that renderer" multiline="true" width="200"/>
 					</j:VGroup>
 					<j:VGroup gap="3">
-						<j:Button text="Reset data" emphasis="{Button.PRIMARY}" click="resetListData()"/>
+						<j:Button text="Reset data" emphasis="{StyledUIBase.PRIMARY}" click="resetListData()"/>
 						<j:Button text="Add Random item" click="addItem()"/>
 						<j:Button text="Remove item" click="removeItemAt()"/>
 						<j:Button text="Update item" click="updateItem()"/>

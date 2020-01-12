@@ -22,15 +22,6 @@ limitations under the License.
 	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" sourceCodeUrl="LayoutsPlayGround.mxml">
-	
-	<fx:Script>
-		<![CDATA[      
-            private function clickHandler(event:MouseEvent):void {
-                // button.emphasis = (button.emphasis == Button.PRIMARY) ? "" : Button.PRIMARY;
-            }
-
-		]]>
-	</fx:Script>
 
 	<!-- <j:beads>
         <js:ContainerDataBinding/>

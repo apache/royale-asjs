@@ -679,7 +679,16 @@ public class ColorPicker extends UIComponent //ComboBase
         */
         (model as IColorModel).color = value;
     }
+    
+    public function get selectedItem():Object
+    {
+        return (model as IColorModel).color;
+    }
 
+    public function set selectedItem(value:Object):void
+    {
+        (model as IColorModel).color = uint(value);
+    }
 }
 
 } 

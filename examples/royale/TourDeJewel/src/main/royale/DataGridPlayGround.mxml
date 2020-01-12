@@ -101,6 +101,7 @@ limitations under the License.
 				<j:Label id="datagrid_lb" text="DataGrid selection will be shown here"/>
 			</j:Card>
 		</j:GridCell>
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
@@ -129,9 +130,7 @@ limitations under the License.
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 	
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
@@ -158,6 +157,7 @@ limitations under the License.
 				<j:Label id="datagrid3_lb" text="DataGrid selection will be shown here"/>
 			</j:Card>
 		</j:GridCell>
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
@@ -180,6 +180,7 @@ limitations under the License.
 				<j:Button text="Refresh Grid" click="refreshGrid(datagrid4, (listModel as ListsModel).iconListData)" emphasis="primary"/>
 			</j:Card>
 		</j:GridCell>
+		
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>

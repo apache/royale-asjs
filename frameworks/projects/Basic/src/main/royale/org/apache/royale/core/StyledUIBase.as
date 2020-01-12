@@ -42,6 +42,10 @@ package org.apache.royale.core
      */
     public class StyledUIBase extends UIBase implements IStyledUIBase
     {
+        public static const PRIMARY:String = "primary";
+        public static const SECONDARY:String = "secondary";
+        public static const EMPHASIZED:String = "emphasized";
+        
         /**
          *  Constructor.
          *  

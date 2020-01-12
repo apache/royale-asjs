@@ -25,10 +25,12 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[      
+            import org.apache.royale.core.StyledUIBase;
+
             private function clickHandler(event:MouseEvent):void {
-                event.target.emphasis = event.target.emphasis == Button.PRIMARY ? "" : Button.PRIMARY;
-				event.target.width = event.target.emphasis == Button.PRIMARY ? NaN : 250;
-				event.target.text = event.target.emphasis == Button.PRIMARY ? "Width 'auto'" : "Width = 250";
+                event.target.emphasis = event.target.emphasis == StyledUIBase.PRIMARY ? "" : StyledUIBase.PRIMARY;
+				event.target.width = event.target.emphasis == StyledUIBase.PRIMARY ? NaN : 250;
+				event.target.text = event.target.emphasis == StyledUIBase.PRIMARY ? "Width 'auto'" : "Width = 250";
             }
 
 			private function onValueChange(event:Event):void
@@ -61,18 +63,19 @@ limitations under the License.
 						<j:MultiLine multiline="true"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="Primary" emphasis="{Button.PRIMARY}"/>
-				<j:Button text="Secondary" emphasis="{Button.SECONDARY}"/>
-				<j:Button text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
-				<j:Button text="Disabled" emphasis="{Button.PRIMARY}">
+				<j:Button text="Primary" emphasis="{StyledUIBase.PRIMARY}"/>
+				<j:Button text="Secondary" emphasis="{StyledUIBase.SECONDARY}"/>
+				<j:Button text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}"/>
+				<j:Button text="Disabled" emphasis="{StyledUIBase.PRIMARY}">
 					<j:beads>
 						<j:Disabled/>
 					</j:beads>
 				</j:Button>
 
-				<j:SimpleButton emphasis="{Button.EMPHASIZED}"/>
+				<j:SimpleButton emphasis="{StyledUIBase.EMPHASIZED}"/>
 			</j:Card>
 		</j:GridCell>
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Button Sizes"/>
@@ -82,25 +85,24 @@ limitations under the License.
 						<j:SizeControl size="{SizeControl.XSMALL}"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="small" emphasis="{Button.PRIMARY}">
+				<j:Button text="small" emphasis="{StyledUIBase.PRIMARY}">
 					<j:beads>
 						<j:SizeControl size="{SizeControl.SMALL}"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="large" emphasis="{Button.SECONDARY}">
+				<j:Button text="large" emphasis="{StyledUIBase.SECONDARY}">
 					<j:beads>
 						<j:SizeControl size="{SizeControl.LARGE}"/>
 					</j:beads>
 				</j:Button>
-				<j:Button text="xlarge" emphasis="{Button.EMPHASIZED}">
+				<j:Button text="xlarge" emphasis="{StyledUIBase.EMPHASIZED}">
 					<j:beads>
 						<j:SizeControl size="{SizeControl.XLARGE}"/>
 					</j:beads>
 				</j:Button>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Button with Icons"/>
@@ -126,22 +128,21 @@ limitations under the License.
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Button size"/>
 
 				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
-					<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{Button.PRIMARY}"/>
+					<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{StyledUIBase.PRIMARY}" width="140" height="50"/>
 					<j:Button text="check layout"/>
 				</j:HGroup>
-				<j:HSlider id="slider_w" width="350" value="96" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
-				<j:HSlider id="slider_h" width="350" value="38" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:HSlider id="slider_w" width="250" value="140" minimum="120" maximum="350" valueChange="onValueChange(event)"/>
+				<j:HSlider id="slider_h" width="250" value="50" minimum="40" maximum="350" valueChange="onValueChange(event)"/>
 				<j:Label text="Resize button to: '{reizableButton.width}x{reizableButton.height}'"/>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ToggleButton"/>
@@ -156,10 +157,10 @@ limitations under the License.
 					</j:beads>
 				</j:ToggleButton>
 				<j:ToggleButton text="Button With More Text"/>
-				<j:ToggleButton text="Primary" emphasis="{Button.PRIMARY}"/>
-				<j:ToggleButton text="Secondary" emphasis="{Button.SECONDARY}"/>
-				<j:ToggleButton text="Emphasized" emphasis="{Button.EMPHASIZED}"/>
-				<j:ToggleButton text="Disabled" emphasis="{Button.PRIMARY}">
+				<j:ToggleButton text="Primary" emphasis="{StyledUIBase.PRIMARY}"/>
+				<j:ToggleButton text="Secondary" emphasis="{StyledUIBase.SECONDARY}"/>
+				<j:ToggleButton text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}"/>
+				<j:ToggleButton text="Disabled" emphasis="{StyledUIBase.PRIMARY}">
 					<j:beads>
 						<j:Disabled/>
 					</j:beads>
@@ -172,7 +173,7 @@ limitations under the License.
                         <j:ToolTip toolTip="show/hide FooterBar"/>
                     </j:beads>
                 </j:ToggleButton>
-				<j:ToggleButton text="Icon and Text" selectedText="Icon and Text" emphasis="{Button.SECONDARY}">
+				<j:ToggleButton text="Icon and Text" selectedText="Icon and Text" emphasis="{StyledUIBase.SECONDARY}">
                     <j:icon>
                         <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" material="true"/>
                     </j:icon>
@@ -190,6 +191,7 @@ limitations under the License.
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Buttons with Badges"/>

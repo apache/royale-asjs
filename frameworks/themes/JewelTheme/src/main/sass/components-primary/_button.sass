@@ -29,9 +29,10 @@ $button-border-radius: $border-radius
 	color: $text-color
 		
 	@if not $flat and $text-color == $font-theme-color
-		text:
-			shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7)
-	
+		text-shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7)
+	@else
+		text-shadow: none
+
 	&:hover, &:hover:focus
 		+jewel-bg-border("hover", $button-color)
 
@@ -44,8 +45,7 @@ $button-border-radius: $border-radius
 	&[disabled]
 		+jewel-bg-border("disabled", $button-color)
 		color: $disabled-font-color
-		text:
-			shadow: unset
+		text-shadow: unset
 
 .jewel.button
 	+button-theme($default-color, $default-font-color)

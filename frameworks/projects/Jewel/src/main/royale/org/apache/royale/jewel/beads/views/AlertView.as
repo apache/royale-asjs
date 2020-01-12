@@ -22,11 +22,15 @@ package org.apache.royale.jewel.beads.views
 	{
 	import flash.utils.setTimeout;
 
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IMeasurementBead;
+	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.html.beads.IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.events.Event;
 	}
 	COMPILE::JS
 	{
@@ -34,14 +38,11 @@ package org.apache.royale.jewel.beads.views
 	}
     import org.apache.royale.core.IAlertModel;
     import org.apache.royale.core.IBeadLayout;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.events.CloseEvent;
-    import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.html.beads.GroupView;
@@ -221,7 +222,7 @@ package org.apache.royale.jewel.beads.views
             {
                 okButton = new Button();
 				okButton.width = 100;
-				okButton.emphasis = Button.PRIMARY;
+				okButton.emphasis = StyledUIBase.PRIMARY;
                 okButton.text = alertModel.okLabel;
                 okButton.addEventListener(MouseEvent.CLICK, handleOK);
 
@@ -242,7 +243,7 @@ package org.apache.royale.jewel.beads.views
             {
                 yesButton = new Button();
 				yesButton.width = 100;
-				yesButton.emphasis = Button.PRIMARY;
+				yesButton.emphasis = StyledUIBase.PRIMARY;
                 yesButton.text = alertModel.yesLabel;
                 yesButton.addEventListener(MouseEvent.CLICK, handleYes);
 

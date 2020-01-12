@@ -2874,6 +2874,13 @@ public class SkinnableTextBase extends SkinnableComponent
         // Redispatch the event that came from the RichEditableText.
         dispatchEvent(event);
     } */
+    
+    override public function setStyle(styleName:String, value:*):void
+    {
+        if (styleName == "contentBackgroundColor")
+            styleName = "backgroundColor";
+        super.setStyle(styleName, value);
+    }
 }
 
 }

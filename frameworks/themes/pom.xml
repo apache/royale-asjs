@@ -44,6 +44,7 @@
 
     <module>JewelTheme</module>
 
+    <!-- Light & NoFlat-->
     <module>Jewel-Light-NoFlat-Primary-Amethyst-Theme</module>
     <module>Jewel-Light-NoFlat-Primary-Blue-Theme</module>
     <module>Jewel-Light-NoFlat-Primary-Emerald-Theme</module>
@@ -82,7 +83,48 @@
     <module>Jewel-Light-NoFlat-Emphasized-Turquoise-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Violet-Theme</module>
     <module>Jewel-Light-NoFlat-Emphasized-Yellow-Theme</module>
+    
+    <!-- Light & Flat-->
+    <module>Jewel-Light-Flat-Primary-Amethyst-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Blue-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Emerald-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Green-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Orange-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Red-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Sapphire-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Sunflower-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Topaz-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Turquoise-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Violet-Theme</module>
+    <module>Jewel-Light-Flat-Primary-Yellow-Theme</module>
 
+    <module>Jewel-Light-Flat-Secondary-Amethyst-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Blue-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Emerald-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Green-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Orange-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Red-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Sapphire-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Sunflower-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Topaz-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Turquoise-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Violet-Theme</module>
+    <module>Jewel-Light-Flat-Secondary-Yellow-Theme</module>
+
+    <module>Jewel-Light-Flat-Emphasized-Amethyst-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Blue-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Emerald-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Green-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Orange-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Red-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Sapphire-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Sunflower-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Topaz-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Turquoise-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Violet-Theme</module>
+    <module>Jewel-Light-Flat-Emphasized-Yellow-Theme</module>
+
+    <!-- Dark & NoFlat-->
     <module>Jewel-Dark-NoFlat-Primary-Amethyst-Theme</module>
     <module>Jewel-Dark-NoFlat-Primary-Blue-Theme</module>
     <module>Jewel-Dark-NoFlat-Primary-Emerald-Theme</module>

@@ -23,23 +23,29 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" sourceCodeUrl="RadioButtonPlayGround.mxml">
 	
-	<j:Card width="350">
-		<html:H3 text="Jewel RadioButton"/>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel RadioButton"/>
 
-		<j:RadioButton text="RadioButton 1" groupName="radios" value="Test 1"/>
-		<j:RadioButton text="RadioButton 2" groupName="radios" value="Test 2" selected="true"/>
-		<j:RadioButton text="RadioButton 3" groupName="radios" value="Test 3"/>
+				<j:RadioButton text="RadioButton 1" groupName="radios" value="Test 1"/>
+				<j:RadioButton text="RadioButton 2" groupName="radios" value="Test 2" selected="true"/>
+				<j:RadioButton text="RadioButton 3" groupName="radios" value="Test 3"/>
 
-		<j:RadioButton text="Disabled">
-			<j:beads>
-				<j:Disabled/>
-			</j:beads>
-		</j:RadioButton>
+				<j:RadioButton text="Disabled">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:RadioButton>
 
-		<j:RadioButton text="Set and Disabled" selected="true">
-			<j:beads>
-				<j:Disabled/>
-			</j:beads>
-		</j:RadioButton>
-	</j:Card>
+				<j:RadioButton text="Set and Disabled" selected="true">
+					<j:beads>
+						<j:Disabled/>
+					</j:beads>
+				</j:RadioButton>
+			</j:Card>
+        </j:GridCell>
+	</j:Grid>
+
+	
 </c:ExampleAndSourceCodeTabbedSectionContent>

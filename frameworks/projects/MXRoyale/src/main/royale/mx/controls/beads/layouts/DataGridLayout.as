@@ -27,6 +27,8 @@ package mx.controls.beads.layouts
     import org.apache.royale.html.beads.layouts.DataGridLayout;
     import mx.controls.dataGridClasses.DataGridColumn;
     import mx.controls.beads.DataGridView;
+    import mx.core.ScrollControlBase;
+    import mx.core.ScrollPolicy;
 	
     /**
      *  The DataGridLayout class.
@@ -91,30 +93,47 @@ package mx.controls.beads.layouts
                 return true;
             }
             
-            if (unspecifiedWidths > 0 && totalWidths > 0)
+            if ((uiHost as ScrollControlBase).horizontalScrollPolicy == ScrollPolicy.OFF)
             {
-                // some widths are specified, others are not, so fit the unspecified
-                // in the remaining space
-                var remainingSpace:Number = useWidth - totalWidths;
-                var proportionateShare:Number = remainingSpace / unspecifiedWidths;
+                if (unspecifiedWidths > 0 && totalWidths > 0)
+                {
+                    // some widths are specified, others are not, so fit the unspecified
+                    // in the remaining space
+                    var remainingSpace:Number = useWidth - totalWidths;
+                    var proportionateShare:Number = remainingSpace / unspecifiedWidths;
+                    for(i=0; i < view.visibleColumns.length; i++) {
+                        columnDef = view.visibleColumns[i] as DataGridColumn;
+                        if (!isNaN(columnDef.width))
+                            columnDef.columnWidth = columnDef.width;
+                        else
+                            columnDef.columnWidth = proportionateShare;
+                    }                
+                }
+                else if (totalWidths > 0)
+                {
+                    if (totalWidths != useWidth)
+                    {
+                        var factor:Number = useWidth / totalWidths;
+                        for(i=0; i < view.visibleColumns.length; i++) {
+                            columnDef = view.visibleColumns[i] as DataGridColumn;
+                            columnDef.columnWidth = columnDef.width * factor;
+                        }                
+                    }
+                }
+            }
+            else
+            {
+                COMPILE::JS
+                {
+                   view.header.element.scrollLeft = view.listArea.element.scrollLeft;
+                }
                 for(i=0; i < view.visibleColumns.length; i++) {
                     columnDef = view.visibleColumns[i] as DataGridColumn;
                     if (!isNaN(columnDef.width))
-                        columnDef.columnWidth = columnDef.width;
+                        columnDef.columnWidth = 100; // hopefully won't get here
                     else
-                        columnDef.columnWidth = proportionateShare;
+                        columnDef.columnWidth = columnDef.width;
                 }                
-            }
-            else if (totalWidths > 0)
-            {
-                if (totalWidths != useWidth)
-                {
-                    var factor:Number = useWidth / totalWidths;
-                    for(i=0; i < view.visibleColumns.length; i++) {
-                        columnDef = view.visibleColumns[i] as DataGridColumn;
-                        columnDef.columnWidth = columnDef.width * factor;
-                    }                
-                }
             }
             
             return super.layout();

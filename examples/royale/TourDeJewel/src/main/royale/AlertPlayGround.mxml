@@ -84,21 +84,25 @@ limitations under the License.
 		]]>
     </fx:Script>
 
-    <j:Card width="350">
-        <html:H3 text="Jewel Alert"/>
+    <j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card width="350">
+                <html:H3 text="Jewel Alert"/>
 
-        <!-- Alert 1-->
-        <j:Label text="Click the button below to display a simple Alert window" multiline="true"/>
-        <j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
+                <!-- Alert 1-->
+                <j:Label text="Click the button below to display a simple Alert window" multiline="true"/>
+                <j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
 
-        <!-- Alert 2-->
-        <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user." multiline="true"/>
-        <j:Button text="Click Me" click="clickHandler(event)"/>
-        <j:Label id="status"/>
+                <!-- Alert 2-->
+                <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user." multiline="true"/>
+                <j:Button text="Click Me" click="clickHandler(event)"/>
+                <j:Label id="status"/>
 
-        <!-- Alert 3 (Complex Example)-->
-        <j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts." multiline="true"/>
-        <j:Button text="Click Me" click="clickHandler2(event)"/>
-    </j:Card>
-
+                <!-- Alert 3 (Complex Example)-->
+                <j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts." multiline="true"/>
+                <j:Button text="Click Me" click="clickHandler2(event)"/>
+            </j:Card>
+        </j:GridCell>
+	</j:Grid>
+    
 </c:ExampleAndSourceCodeTabbedSectionContent>

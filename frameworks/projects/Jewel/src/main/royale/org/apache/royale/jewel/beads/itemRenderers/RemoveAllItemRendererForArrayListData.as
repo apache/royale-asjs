@@ -106,7 +106,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 *  Handles the itemRemoved event by removing the item.
+		 *  Handles the allItemsRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

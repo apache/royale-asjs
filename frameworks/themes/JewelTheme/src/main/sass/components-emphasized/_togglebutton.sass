@@ -29,8 +29,9 @@ $togglebutton-border-radius: 3px
 	color: $text-color
 	
 	@if not $flat and $text-color == $font-theme-color
-		text:
-			shadow: 0 -1px 0 rgba(darken($togglebutton-color, 30%), .7) //0 .063em
+		text-shadow: 0 -1px 0 rgba(darken($togglebutton-color, 30%), .7) //0 .063em
+	@else
+		text-shadow: none
 	
 	&:hover, &:hover:focus
 		+jewel-bg-border("hover", $togglebutton-color)
@@ -44,8 +45,7 @@ $togglebutton-border-radius: 3px
 	&[disabled]
 		+jewel-bg-border("disabled", $togglebutton-color)
 		color: $disabled-font-color
-		text:
-			shadow: unset
+		text-shadow: unset
 
 	&.selected
 		+jewel-bg-border("selected", $togglebutton-color)

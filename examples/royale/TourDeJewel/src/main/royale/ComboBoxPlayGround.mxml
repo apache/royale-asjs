@@ -87,12 +87,14 @@ limitations under the License.
 
 				<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
 					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
-						<j:ComboBox id="watchmenComboBox" dataProvider="{listModel.watchmen}">
-							<j:beads>
-								<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
-							</j:beads>
-						</j:ComboBox>
-						<j:Button text="Assign new data" click="assignNewData()"/>
+						<j:HGroup gap="3">
+							<j:ComboBox id="watchmenComboBox" dataProvider="{listModel.watchmen}">
+								<j:beads>
+									<j:ComboBoxTextPrompt prompt="Watchmen Team..."/>
+								</j:beads>
+							</j:ComboBox>
+							<j:Button text="Assign new data" click="assignNewData()"/>
+						</j:HGroup>
 					</j:GridCell>
 					<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1" itemsVerticalAlign="itemsCentered" width="290">
 						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">

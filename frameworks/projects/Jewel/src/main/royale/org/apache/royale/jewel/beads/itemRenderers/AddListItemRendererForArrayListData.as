@@ -26,7 +26,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
@@ -36,8 +35,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
-	 * Handles the adding of an itemRenderer in a List component once the corresponding datum has been added
-	 * from the IDataProviderModel.
+	 *  Handles the adding of an itemRenderer in a List component once the corresponding datum has been added
+	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -116,7 +115,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemAdded event by adding the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
