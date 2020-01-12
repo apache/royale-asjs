@@ -88,27 +88,4 @@
     <component id="Symbol" class="org.apache.royale.svg.elements.Symbol" />
     <component id="Text" class="org.apache.royale.svg.elements.Text" />
     <component id="Use" class="org.apache.royale.svg.elements.Use" />
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </componentPackage>
