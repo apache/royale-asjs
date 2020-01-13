@@ -67,6 +67,7 @@ package org.apache.royale.html.beads.controllers
 		 */
 		override protected function selectedHandler(event:MultiSelectionItemClickedEvent):void
 		{
+			super.selectedHandler(event);
 			var treeData:ITreeData = listModel.dataProvider as ITreeData;
 			if (treeData == null) return;
 			
@@ -80,8 +81,6 @@ package org.apache.royale.html.beads.controllers
     				treeData.openNode(node);
     			}
             }
-            super.selectedHandler(event);
-
 		}
 	}
 }

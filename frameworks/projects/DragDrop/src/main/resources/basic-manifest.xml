@@ -23,6 +23,7 @@
 
 	<component id="MultiSelectionDragImageBead" class="org.apache.royale.html.beads.MultiSelectionDragImageBead" />
 	<component id="MultiSelectionDragSourceBead" class="org.apache.royale.html.beads.MultiSelectionDragSourceBead" />
+	<component id="MultiSelectionTreeDragSourceBead" class="org.apache.royale.html.beads.MultiSelectionTreeDragSourceBead" />
 	<component id="SingleSelectionDragImageBead" class="org.apache.royale.html.beads.SingleSelectionDragImageBead" />
 	<component id="SingleSelectionDragSourceBead" class="org.apache.royale.html.beads.SingleSelectionDragSourceBead" />
 	<component id="SingleSelectionDropIndicatorBead" class="org.apache.royale.html.beads.SingleSelectionDropIndicatorBead"/>

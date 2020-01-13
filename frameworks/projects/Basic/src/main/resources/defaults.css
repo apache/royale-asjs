@@ -527,7 +527,7 @@ TableCell
 
 MultiSelectionTree
 {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArrayMultiSelectionModel");
+	IBeadModel: ClassReference("org.apache.royale.html.beads.models.MultiSelectionTreeModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.MultiSelectionListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeMultiSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");

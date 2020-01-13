@@ -32,6 +32,7 @@ internal class DragDropClasses
 
 	import org.apache.royale.html.beads.MultiSelectionDragImageBead; MultiSelectionDragImageBead;
 	import org.apache.royale.html.beads.MultiSelectionDragSourceBead; MultiSelectionDragSourceBead;
+	import org.apache.royale.html.beads.MultiSelectionTreeDragSourceBead; MultiSelectionTreeDragSourceBead;
 	import org.apache.royale.html.beads.SingleSelectionDragImageBead; SingleSelectionDragImageBead;
 	import org.apache.royale.html.beads.SingleSelectionDragSourceBead; SingleSelectionDragSourceBead;
 	import org.apache.royale.html.beads.SingleSelectionDropIndicatorBead; SingleSelectionDropIndicatorBead;
