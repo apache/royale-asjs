@@ -71,7 +71,6 @@ package org.apache.royale.events
 		/**
 		 * The index of the item beginning with zero.
 		 *
-		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
@@ -82,7 +81,6 @@ package org.apache.royale.events
 		/**
 		 * The data of the item.
 		 *
-		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6
@@ -93,7 +91,6 @@ package org.apache.royale.events
 		/**
 		 * Whether or not this click was done while holding the shift key
 		 *
-		 * @export
 		 * @langversion 3.0
 		 * @playerversion Flash 10.2
 		 * @playerversion AIR 2.6

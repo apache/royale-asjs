@@ -296,7 +296,6 @@ package org.apache.royale.html
 
 		/**
 		 * @royaleignorecoercion HTMLInputElement
-		 * @export
 		 */
         public function get selected():Boolean
         {
