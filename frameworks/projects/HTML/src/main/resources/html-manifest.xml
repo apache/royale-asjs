@@ -23,6 +23,7 @@
 
     <component id="A" class="org.apache.royale.html.elements.A" />
     <component id="B" class="org.apache.royale.html.elements.B" />
+    <component id="Br" class="org.apache.royale.html.elements.Br" />
     <component id="Button" class="org.apache.royale.html.elements.Button" />
     <component id="Caption" class="org.apache.royale.html.elements.Caption" />
     <component id="Code" class="org.apache.royale.html.elements.Code" />
