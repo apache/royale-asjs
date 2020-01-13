@@ -684,8 +684,16 @@ package org.apache.royale.core
                     if (isNaN(n))
                     {
                         if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
-                        {                            
+                        {                     
+                            COMPILE::SWF{
+                                // in SWF we need int or uint values
                             obj[valueName] = CSSUtils.toColor(value);
+                            }
+                            COMPILE::JS
+                            {
+                                //In JS these values can be applied directly
+                                obj[valueName] = value;
+                            }
                         }
                         else
                         {
