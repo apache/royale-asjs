@@ -93,6 +93,7 @@ package mx.controls.beads
             }
             
             var i:int;
+            var column:AdvancedDataGridColumn;
             var xpos:Number = 0;
             
             _overlay.clear();
@@ -100,6 +101,15 @@ package mx.controls.beads
             // draw the horizontals
             if (contentView.height > n * rowHeight)
             {
+                var ww:Number = 0;
+                for (i=0; i < columns.length; i++) {
+                    column = columns[i] as AdvancedDataGridColumn;
+                    if (column.visible)
+                    {
+                        ww += column.columnWidth;
+                    }
+                }
+                
                 var bgColors:Array = (_strand as UIComponent).getStyle("alternatingItemColors");
                 var yy:Number = n * rowHeight;
                 
@@ -109,14 +119,14 @@ package mx.controls.beads
                 bgFill1.color = bgColors[1];
                 for (i=n; yy < contentView.height; i++, yy += rowHeight) {
                     _overlay.fill = (i % 2 == 1) ? bgFill1 : bgFill0;
-                    _overlay.drawRect(0, yy, _area.width, rowHeight);
+                    _overlay.drawRect(0, yy, ww, rowHeight);
                 }                
             }
             
             _overlay.fill = lineFill;            
             // draw the verticals
             for (i=0; i < columns.length - 1; i++) {
-                var column:AdvancedDataGridColumn = columns[i] as AdvancedDataGridColumn;
+                column = columns[i] as AdvancedDataGridColumn;
                 if (column.visible)
                 {
                     xpos += column.columnWidth;

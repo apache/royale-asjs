@@ -16,11 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-.jewel.divider
-    height: 0
-    margin: 0
-    // border: none
-    
-j|Divider
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+package org.apache.royale.svg.elements
+{
+  COMPILE::JS
+  {
+    import org.apache.royale.html.util.addSvgElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+  }
+  COMPILE::SWF
+  public class Polyline{
+    public function Polyline(){}
+  }
+  
+  COMPILE::JS
+  public class Polyline extends SVGBase
+  {
+    public function Polyline()
+    {
+      super();
+    }
+    override protected function createElement():WrappedHTMLElement{
+      return addSvgElementToWrapper(this, 'polyline');
+    }
+    public function get points():String{
+    	return element.getAttribute("points");
+    }
+    public function set points(value:String):void{
+    	element.setAttribute("points",value);
+    }
+  }
+}

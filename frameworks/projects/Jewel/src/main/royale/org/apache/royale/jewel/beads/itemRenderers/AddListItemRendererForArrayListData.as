@@ -57,10 +57,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
-		protected var _strand:IStrand;
-
         protected var labelField:String;
-
+		
+		protected var _strand:IStrand;
 		/**
 		 * @copy org.apache.royale.core.IStrand
 		 *
@@ -84,6 +83,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @productversion Royale 0.9.4
 		 */
 		protected function initComplete(event:Event):void
+		{
+			setUp();
+		}
+
+		/**
+		 * This method is called when List is composed to conform a DataGrid
+		 * In that case DataGrid uses AddDataGridItemRendererForArrayListData,
+		 * that add this bead to the each column List and calls this method at
+		 * initialization time.
+		 */
+		public function setUp():void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
@@ -131,7 +141,6 @@ package org.apache.royale.jewel.beads.itemRenderers
             var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
 
             fillRenderer(event.index, event.item, ir, presentationModel);
-
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = itemRendererParent.numItemRenderers;
@@ -224,6 +233,10 @@ package org.apache.royale.jewel.beads.itemRenderers
                 // UIBase(itemRenderer).style = style;
                 UIBase(itemRenderer).height = presentationModel.rowHeight;
                 //UIBase(itemRenderer).percentWidth = 100;
+				if(itemRenderer is IAlignItemRenderer)
+				{
+					(itemRenderer as IAlignItemRenderer).align = presentationModel.align;
+				}
             }
 
             setData(itemRenderer, item, index);

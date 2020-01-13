@@ -16,11 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.svg.elements
+{
+  COMPILE::JS
+  {
+    import org.apache.royale.html.util.addSvgElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+  }
+  COMPILE::SWF
+  public class Svg{
+    public function Svg(){}
+  }
+  
+  COMPILE::JS
+  public class Svg extends SVGBase
+  {
+    public function Svg()
+    {
+      super();
+    }
+    override protected function createElement():WrappedHTMLElement{
+      return addSvgElementToWrapper(this, 'svg');
+    }
 
-.jewel.divider
-    height: 0
-    margin: 0
-    // border: none
-    
-j|Divider
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    public function get preserveAspectRatio():String{
+      return element.getAttribute("preserveAspectRatio");
+    }
+    public function set preserveAspectRatio(value:String):void{
+      element.setAttribute("preserveAspectRatio",value);
+    }
+    public function get viewBox():String{
+      return element.getAttribute("viewBox");
+    }
+    public function set viewBox(value:String):void{
+      element.setAttribute("viewBox",value);
+    }
+  }
+}

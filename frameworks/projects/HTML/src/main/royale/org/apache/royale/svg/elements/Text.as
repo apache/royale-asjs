@@ -16,11 +16,39 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.svg.elements
+{
+  COMPILE::JS
+  {
+    import org.apache.royale.html.util.addSvgElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+  }
+  COMPILE::SWF
+  public class Text{
+    public function Text(){}
+  }
+  
+  COMPILE::JS
+  public class Text extends SVGBase
+  {
+    public function Text()
+    {
+      super();
+    }
+    override protected function createElement():WrappedHTMLElement{
+      var elem:WrappedHTMLElement = addSvgElementToWrapper(this, 'text');
+      textNode = document.createTextNode("") as Text;
+			elem.appendChild(textNode as Node);
 
-.jewel.divider
-    height: 0
-    margin: 0
-    // border: none
-    
-j|Divider
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+      return elem;
+    }
+    private var textNode:*;
+
+    public function get text():String{
+    	return textNode.nodeValue;
+    }
+    public function set text(value:String):void{
+      textNode.nodeValue = value
+    }
+  }
+}

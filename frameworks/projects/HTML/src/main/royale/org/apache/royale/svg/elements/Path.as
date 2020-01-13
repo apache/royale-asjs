@@ -16,11 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.svg.elements
+{
+  COMPILE::JS
+  {
+    import org.apache.royale.html.util.addSvgElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+  }
+  COMPILE::SWF
+  public class Path{
+    public function Path(){}
+  }
+  
+  COMPILE::JS
+  public class Path extends SVGBase
+  {
+    public function Path()
+    {
+      super();
+    }
+    override protected function createElement():WrappedHTMLElement{
+      return addSvgElementToWrapper(this, 'path');
+    }
 
-.jewel.divider
-    height: 0
-    margin: 0
-    // border: none
-    
-j|Divider
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+    public function get d():String{
+    	return element.getAttribute("d");
+    }
+    public function set d(value:String):void{
+    	element.setAttribute("d",value);
+    }
+  }
+}

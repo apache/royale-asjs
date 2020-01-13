@@ -16,11 +16,33 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-.jewel.divider
-    height: 0
-    margin: 0
-    // border: none
-    
-j|Divider
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+package org.apache.royale.svg.elements
+{
+  COMPILE::JS
+  {
+    import org.apache.royale.html.util.addSvgElementToWrapper;
+    import org.apache.royale.core.WrappedHTMLElement;
+  }
+  COMPILE::SWF
+  public class Symbol{
+    public function Symbol(){}
+  }
+  
+  COMPILE::JS
+  public class Symbol extends SVGBase
+  {
+    public function Symbol()
+    {
+      super();
+    }
+    override protected function createElement():WrappedHTMLElement{
+      return addSvgElementToWrapper(this, 'symbol');
+    }
+    public function get viewBox():String{
+    	return element.getAttribute("viewBox");
+    }
+    public function set viewBox(value:String):void{
+    	element.setAttribute("viewBox",value);
+    }
+  }
+}
