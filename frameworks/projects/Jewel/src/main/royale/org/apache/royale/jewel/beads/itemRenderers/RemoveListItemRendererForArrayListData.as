@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				ir.index = i;
 			}
 
-			if(_dataProviderModel)
+			if(!_strand is IDataGridColumnList)
 			{
 				//adjust the model's selectedIndex, if applicable
 				if (event.index < ISelectionModel(_dataProviderModel).selectedIndex)
