@@ -141,7 +141,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				ir.index = i;
 			}
 
-			if(!_strand is IDataGridColumnList)
+			if(!(_strand is IDataGridColumnList)) // only run this code on normal list (not not DataGrid column Lists)
 			{
 				//adjust the model's selectedIndex, if applicable
 				if (event.index < ISelectionModel(_dataProviderModel).selectedIndex)
@@ -152,9 +152,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 				{
 					ISelectionModel(_dataProviderModel).selectedIndex = -1;
 				}
+			
+				(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 			}
-
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
 		private var _dataProviderModel: IDataProviderModel;

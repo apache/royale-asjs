@@ -83,7 +83,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
 		protected function initComplete(event:Event):void
 		{
@@ -122,7 +122,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
@@ -138,6 +138,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 			{
 				ISelectionModel(_dataProviderModel).selectedIndex = -1;
 			}
+
+			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
 		private var _dataProviderModel: IDataProviderModel;
@@ -149,7 +151,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		public function get dataProviderModel(): IDataProviderModel

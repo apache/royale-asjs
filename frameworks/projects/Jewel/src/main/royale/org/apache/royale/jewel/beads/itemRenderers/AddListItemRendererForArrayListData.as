@@ -31,6 +31,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -149,12 +150,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
-            //adjust the model's selectedIndex, if applicable
-			if (event.index <= ISelectionModel(_dataProviderModel).selectedIndex) {
-                ISelectionModel(_dataProviderModel).selectedIndex = ISelectionModel(_dataProviderModel).selectedIndex + 1;
-			}
 
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			if(!(_strand is IDataGridColumnList)) // only run this code on normal list (not not DataGrid column Lists)
+			{
+				//adjust the model's selectedIndex, if applicable
+				if (event.index <= ISelectionModel(_dataProviderModel).selectedIndex) {
+					ISelectionModel(_dataProviderModel).selectedIndex = ISelectionModel(_dataProviderModel).selectedIndex + 1;
+				}
+
+				(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			}
 		}
 
 		private var _dataProviderModel: IDataProviderModel;
