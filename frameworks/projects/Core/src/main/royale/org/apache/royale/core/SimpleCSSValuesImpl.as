@@ -748,10 +748,7 @@ package org.apache.royale.core
 				    if (typeof(value) == 'function') continue;
 					cssString += p + ": ";
 					if (typeof(value) == 'number') {
-                    	if (colorStyles[p])
-                        	value = CSSUtils.attributeFromColor(value as uint);
-                    	else
-                        	value = value.toString() + 'px';
+                        value = processNumberStyle(p,value);
                 	}
                 	else if (p == 'backgroundImage') {
                     	if (p.indexOf('url') != 0)
@@ -763,6 +760,14 @@ package org.apache.royale.core
 				cssString += "}";
 				ss.insertRule(cssString, ss.cssRules.length);
 			}
+        }
+        COMPILE::JS
+        protected function processNumberStyle(prop:String,value:*):*{
+            if (colorStyles[prop])
+                value = CSSUtils.attributeFromColor(value);
+            else if (numericStyles[prop])
+                return value;
+            return value + 'px';
         }
 		
 		COMPILE::JS
@@ -871,12 +876,7 @@ package org.apache.royale.core
                 if (value === undefined)
                     continue;
                 if (typeof(value) == 'number') {
-                    if (colorStyles[p])
-                        value = CSSUtils.attributeFromColor(value);
-                    else if (numericStyles[p])
-                        value = value.toString();
-                    else
-                        value = value.toString() + 'px';
+                    value = processNumberStyle(p,value);
                 }
                 else if (p == 'backgroundImage' && value.indexOf('url') != 0) {
                         value = 'url(' + value + ')';
