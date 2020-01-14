@@ -166,14 +166,14 @@ limitations under the License.
 							</j:beads>
 						</j:DataGrid>
 						<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
+						<j:Label html="{'Selected Index: ' + datagrid2.selectedIndex}"/>
+						<j:Label id="selected" html="{describeItem(datagrid2.selectedItem)}"/>
 					</j:VGroup>
 					<j:VGroup gap="3">
 						<j:Button text="Add Row" click="addRow()" emphasis="primary"/>
 						<j:Button text="Remove First Row" click="removeFirstRow()"/>
 						<j:Button text="Update First Row" click="updateFirstRow()"/>
 						<j:Button text="Remove all rows" click="removeAllRows()"/>
-						<j:Label html="{'Selected Index: ' + datagrid2.selectedIndex}"/>
-						<j:Label id="selected" html="{describeItem(datagrid2.selectedItem)}"/>
 					</j:VGroup>
 				</j:HGroup>
 			</j:Card>
