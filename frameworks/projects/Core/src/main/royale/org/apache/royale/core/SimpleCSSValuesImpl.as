@@ -764,7 +764,8 @@ package org.apache.royale.core
         COMPILE::JS
         protected function processNumberStyle(prop:String,value:*):*{
             if (colorStyles[prop])
-                value = CSSUtils.attributeFromColor(value);
+                return CSSUtils.attributeFromColor(value);
+                
             return value + 'px';
         }
 		
