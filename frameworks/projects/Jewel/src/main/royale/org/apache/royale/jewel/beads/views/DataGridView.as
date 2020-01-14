@@ -35,6 +35,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.GroupView;
 	import org.apache.royale.html.beads.IDataGridView;
+	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.layouts.ButtonBarLayout;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.Viewport;
@@ -319,6 +320,7 @@ package org.apache.royale.jewel.beads.views
                 var dataGridColumn:IDataGridColumn = _sharedModel.columns[i] as IDataGridColumn;
 
                 var list:IDataGridColumnList = new columnClass();
+                list.datagrid = _dg as DataGrid;
                 list.emphasis = (_dg as IEmphasis).emphasis;
                 
                 if (i == 0)
