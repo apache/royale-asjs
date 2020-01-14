@@ -19,6 +19,8 @@
 package org.apache.royale.core
 {
     
+    import org.apache.royale.utils.CSSUtils;
+
     /**
      *  The AllCSSValuesImpl class will eventually implement a full set of
      *  CSS lookup rules.
@@ -73,6 +75,55 @@ package org.apache.royale.core
         {
             return AllCSSValuesImpl._numericStyles;
         }
-        
+        private var _defaultLengthUnit:String = "px";
+        /**
+         * The default value used when converting numbers in CSS to length units. Can be px, em, etc.
+         * Defaults to px
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get defaultLengthUnit():String
+        {
+        	return _defaultLengthUnit;
+        }
+
+        public function set defaultLengthUnit(value:String):void
+        {
+        	_defaultLengthUnit = value;
+        }
+        protected var lengthProps:Array = [
+            "width",
+            "height",
+            "margin",
+            "padding",
+            "borderWidth",
+            "fontSize",
+            "textShadow"
+        ];
+        protected function isLengthProp(prop:String):Boolean{
+            if(lengthProps.indexOf(prop) != -1){
+                return true;
+            }
+            // margin and padding can have variants
+            if(prop.indexOf("margin")== 0){
+                return true;
+            }
+            if(prop.indexOf("padding")== 0){
+                return true;
+            }
+            return false;
+        }
+        COMPILE::JS
+        override protected function processNumberStyle(prop:String,value:*):*{
+            if (colorStyles[prop])
+                value = CSSUtils.attributeFromColor(value);
+            else if (isLengthProp(prop))
+                return value + defaultLengthUnit;
+            return value;
+        }
+
+
     }
 }

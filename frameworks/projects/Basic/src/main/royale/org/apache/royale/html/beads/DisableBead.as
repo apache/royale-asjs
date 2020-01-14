@@ -74,6 +74,10 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
+            COMPILE::JS
+            {
+                _lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+            }
 			updateHost();
 		}
 		
