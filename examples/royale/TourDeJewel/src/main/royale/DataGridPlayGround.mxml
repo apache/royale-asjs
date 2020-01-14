@@ -161,7 +161,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary', last column has center alignment"
+				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment. Clicking on row icon, remove the entire row."
 					multiline="true"/>
 
 				<j:DataGrid width="100%" emphasis="secondary" rowHeight="42"
@@ -171,12 +171,14 @@ limitations under the License.
 							sourceID="listModel"
 							sourcePropertyName="iconDetailListData"
 							destinationPropertyName="dataProvider"/>
+						<j:RemoveDataGridItemRendererForArrayListData/>
 					</j:beads>
 					<j:columns>
-						<j:DataGridColumn label="Icon" dataField="icon" 
-											itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
-						<j:DataGridColumn label="Label" dataField="label"/>
-						<j:DataGridColumn label="Set" dataField="componentSet" align="center"/>
+						<j:DataGridColumn label="Icon" 
+										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+						<j:DataGridColumn label="Label" dataField="label" align="center"/>
+						<j:DataGridColumn label="Is Jewel?"
+										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
 					</j:columns>
 				</j:DataGrid>
 

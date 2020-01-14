@@ -23,26 +23,21 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-			import org.apache.royale.collections.ArrayList;
 			import org.apache.royale.events.Event;
-			import org.apache.royale.jewel.beads.views.ListView;
-			import org.apache.royale.jewel.supportClasses.datagrid.DataGridColumnList;
+			import org.apache.royale.jewel.Alert;
 
-			import vos.IconListVO;
+			import vos.DetailIconListVO;
             
             [Bindable("dataChange")]
-            public function get iconList():IconListVO
+            public function get detailIconList():DetailIconListVO
             {
-                return data as IconListVO;
+                return data as DetailIconListVO;
             }
 
-            public function clickCloseButton(event:Event):void
-			{
+            public function clickCheck(event:Event):void
+            {
                 event.preventDefault(); // to avoid datagrid click event handler to be called
-                
-                var view:ListView = this.itemRendererParent as ListView;
-                var column:DataGridColumnList = view.host as DataGridColumnList;
-                (column.datagrid.dataProvider as ArrayList).removeItemAt(index);
+                Alert.show("Clicking this check will not produce any change", "You clicked on " + index + " row checkbox!");
             }
 		]]>
     </fx:Script>
@@ -52,9 +47,7 @@ limitations under the License.
         <j:HorizontalCenteredLayout/>
     </j:beads>
 
-    <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true"
-        visible="{iconList ? iconList.icon != null : false}"
-        click="clickCloseButton(event)"/>
+    <j:CheckBox selected="{detailIconList ? detailIconList.componentSet == 'Jewel' : false}" click="clickCheck(event)"/>
 
 </j:DataGridItemRenderer>
 
