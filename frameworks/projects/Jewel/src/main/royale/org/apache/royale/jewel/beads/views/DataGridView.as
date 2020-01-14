@@ -256,6 +256,7 @@ package org.apache.royale.jewel.beads.views
                 var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
                 list.selectedIndex = newIndex;
             }
+            host.dispatchEvent(new Event('selectionChanged'));
         }
 
         /**
@@ -267,14 +268,6 @@ package org.apache.royale.jewel.beads.views
         {
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
             _sharedModel.selectedIndex = list.selectedIndex;
-
-            for(var i:int=0; i < _lists.length; i++) {
-                if (list != _lists[i]) {
-                    var otherList:IDataGridColumnList = _lists[i] as IDataGridColumnList;
-                    otherList.selectedIndex = list.selectedIndex;
-                }
-            }
-
             host.dispatchEvent(new Event('change'));
         }
         /**

@@ -78,6 +78,26 @@ limitations under the License.
 			// productModel.productList.removeAll();
 		}
 
+		private function describeItem(item:*):String {
+			const intro:String = "<strong>DataGrid selectedItem:</strong> ";
+			var evaluated:String;
+			if (item is String) {
+				evaluated = "String value: '" + item + "'";
+			} else {
+				if (item === null || item === undefined) {
+					evaluated = "Nothing Selected";
+				}
+				else {
+					if (item is IconListVO) {
+						evaluated = "Object's label field: '" + IconListVO(item).label + "'";
+					} else {
+						evaluated = "Object : " + item;
+					}
+				}
+			}
+			return intro + evaluated;
+		}
+
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
 		]]>
@@ -152,6 +172,8 @@ limitations under the License.
 						<j:Button text="Remove First Row" click="removeFirstRow()"/>
 						<j:Button text="Update First Row" click="updateFirstRow()"/>
 						<j:Button text="Remove all rows" click="removeAllRows()"/>
+						<j:Label html="{'Selected Index: ' + datagrid2.selectedIndex}"/>
+						<j:Label id="selected" html="{describeItem(datagrid2.selectedItem)}"/>
 					</j:VGroup>
 				</j:HGroup>
 			</j:Card>
