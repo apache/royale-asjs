@@ -368,9 +368,15 @@ public class TextInput extends UIComponent implements ITextInput
         
         COMPILE::JS {
             if (value)
+            {
                 element.removeEventListener("keypress", blockInput);
-            else
+                element.removeEventListener("keydown", blockEdit);
+            }
+            else 
+            {
                 element.addEventListener("keypress", blockInput);
+                element.addEventListener("keydown", blockEdit);
+            }
         }
 		
 		COMPILE::SWF {
@@ -384,6 +390,16 @@ public class TextInput extends UIComponent implements ITextInput
     {
         event["returnValue"] = false;
         if (event.preventDefault) event.preventDefault();        
+    }
+    
+    COMPILE::JS
+    private function blockEdit(event:Event):void
+    {
+        if (event["key"] == "Delete" || event["key"] == "Backspace")
+        {
+            event["returnValue"] = false;
+            if (event.preventDefault) event.preventDefault();   
+        }
     }
 
     //----------------------------------
