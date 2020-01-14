@@ -65,51 +65,6 @@
     <component id="U" class="org.apache.royale.html.elements.U" />
     <component id="Ul" class="org.apache.royale.html.elements.Ul" />
 
-
-    <component id="a" class="org.apache.royale.html.elements.A" />
-    <component id="b" class="org.apache.royale.html.elements.B" />
-    <component id="br" class="org.apache.royale.html.elements.Br" />
-    <component id="button" class="org.apache.royale.html.elements.Button" />
-    <component id="caption" class="org.apache.royale.html.elements.Caption" />
-    <component id="code" class="org.apache.royale.html.elements.Code" />
-    <component id="col" class="org.apache.royale.html.elements.Col" />
-    <component id="colgroup" class="org.apache.royale.html.elements.Colgroup" />
-    <component id="div" class="org.apache.royale.html.elements.Div" />
-    <component id="em" class="org.apache.royale.html.elements.Em" />
-    <component id="form" class="org.apache.royale.html.elements.Form" />
-    <component id="h1" class="org.apache.royale.html.elements.H1" />
-    <component id="h2" class="org.apache.royale.html.elements.H2" />
-    <component id="h3" class="org.apache.royale.html.elements.H3" />
-    <component id="h4" class="org.apache.royale.html.elements.H4" />
-    <component id="h5" class="org.apache.royale.html.elements.H5" />
-    <component id="h6" class="org.apache.royale.html.elements.H6" />
-    <component id="hr" class="org.apache.royale.html.elements.Hr" />
-    <component id="i" class="org.apache.royale.html.elements.I" />
-    <component id="img" class="org.apache.royale.html.elements.Img" />
-    <component id="input" class="org.apache.royale.html.elements.Input" />
-    <component id="label" class="org.apache.royale.html.elements.Label" />
-    <component id="li" class="org.apache.royale.html.elements.Li" />
-    <component id="ol" class="org.apache.royale.html.elements.Ol" />
-    <component id="option" class="org.apache.royale.html.elements.Option"/>
-    <component id="p" class="org.apache.royale.html.elements.P" />
-    <component id="pre" class="org.apache.royale.html.elements.Pre" />
-    <component id="progress" class="org.apache.royale.html.elements.Progress" />
-    <component id="s" class="org.apache.royale.html.elements.S" />
-    <component id="select" class="org.apache.royale.html.elements.Select"/>
-    <component id="small" class="org.apache.royale.html.elements.Small"/>
-    <component id="span" class="org.apache.royale.html.elements.Span" />
-    <component id="strong" class="org.apache.royale.html.elements.Strong" />
-    <component id="table" class="org.apache.royale.html.elements.Table" />
-    <component id="tbody" class="org.apache.royale.html.elements.Tbody" />
-    <component id="td" class="org.apache.royale.html.elements.Td" />
-    <component id="textarea" class="org.apache.royale.html.elements.Textarea" />
-    <component id="tfoot" class="org.apache.royale.html.elements.Tfoot" />
-    <component id="th" class="org.apache.royale.html.elements.Th" />
-    <component id="thead" class="org.apache.royale.html.elements.Thead" />
-    <component id="tr" class="org.apache.royale.html.elements.Tr" />
-    <component id="u" class="org.apache.royale.html.elements.U" />
-    <component id="ul" class="org.apache.royale.html.elements.Ul" />
-
     <component id="InnerHTML" class="org.apache.royale.html.beads.InnerHTML"/>
     <component id="TextNode" class="org.apache.royale.html.TextNode" />
 
