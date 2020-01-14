@@ -63,10 +63,13 @@ limitations under the License.
                 <rs:AnchorListData href="http://www.apache.org/security/">Security</rs:AnchorListData>
             </rs:TitledAnchorList>
         </Div>
-        <Div className="aboutusdiv" >
+        <Div className="aboutusdiv">
             <P className="aboutus">ABOUT US</P>
-            <P><img class="aboutus-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/apache-royale-logo-footer-circle-grey.svg"/>Apache Royale™ is a highly productive open source application technology for building expressive frontend applications that outputs to different formats and deploy consistently on all major browsers, desktops and devices.</P>
-            <P><img class="aboutus-apache-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/Apache_PoweredBy.svg" />
+            <P>
+            <!-- <img class="aboutus-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/apache-royale-logo-footer-circle-grey.svg"/> -->
+            Apache Royale™ is a highly productive open source application technology for building expressive frontend applications that outputs to different formats and deploy consistently on all major browsers, desktops and devices.</P>
+            <P>
+            <!-- <img class="aboutus-apache-logo" src="http://royale.codeoscopic.com/wp-content/uploads/2017/10/Apache_PoweredBy.svg" /> -->
             Apache Royale™, Apache™ and the Apache feather logo™ are trademarks of The Apache Software Foundation. All other marks mentioned may be trademarks or registered trademarks of their respective owners. Read more about our privacy policy on our Privacy Policy page.</P>
         </Div>
     </Div>
