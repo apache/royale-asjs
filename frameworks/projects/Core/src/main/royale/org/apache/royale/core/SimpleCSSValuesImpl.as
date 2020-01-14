@@ -765,8 +765,6 @@ package org.apache.royale.core
         protected function processNumberStyle(prop:String,value:*):*{
             if (colorStyles[prop])
                 value = CSSUtils.attributeFromColor(value);
-            else if (numericStyles[prop])
-                return value;
             return value + 'px';
         }
 		
@@ -840,19 +838,6 @@ package org.apache.royale.core
         }
         
         /**
-         * The styles that can use raw numbers
-         */
-        COMPILE::JS
-        private static const _numericStyles:Object = {
-        }
-        COMPILE::JS
-        protected function get numericStyles() : Object
-        {
-            return SimpleCSSValuesImpl._numericStyles;
-        }
-        
-
-        /**
          * @param thisObject The object to apply styles to;
          * @param styles The styles.
          * @royaleignorecoercion HTMLElement
@@ -863,7 +848,6 @@ package org.apache.royale.core
             var styleList:Object = this.perInstanceStyles;
             var colorStyles:Object = this.colorStyles;
             var skipStyles:Object = this.skipStyles;
-            var numericStyles:Object = this.numericStyles;
             var listObj:Object = styles;
             if (styles && styles.styleList)
                 listObj = styles.styleList;

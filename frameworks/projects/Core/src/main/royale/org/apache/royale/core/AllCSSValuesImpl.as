@@ -63,18 +63,6 @@ package org.apache.royale.core
         // As new styles are supported, they can be added to the list of style categories
         // that are currently defined within SimpleCSSValuesImpl, and overridden here.
         
-        /**
-         * The styles that can use raw numbers
-         */
-        COMPILE::JS
-        protected static const _numericStyles:Object = {
-            'fontWeight': 1
-        }
-        COMPILE::JS
-        override protected function get numericStyles() : Object
-        {
-            return AllCSSValuesImpl._numericStyles;
-        }
         private var _defaultLengthUnit:String = "px";
         /**
          * The default value used when converting numbers in CSS to length units. Can be px, em, etc.
