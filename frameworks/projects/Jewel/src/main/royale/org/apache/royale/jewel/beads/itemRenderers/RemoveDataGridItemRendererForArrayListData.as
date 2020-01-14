@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.views.DataGridView;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
