@@ -57,5 +57,25 @@ package org.apache.royale.html
             }
 			
 		}
+
+        public function get class():String
+        {
+            COMPILE::SWF
+            {
+                return "";
+            }
+            COMPILE::JS
+            {
+            	return element.getAttribute("class");
+            }
+        }
+
+        public function set class(value:String):void
+        {
+            COMPILE::JS
+            {
+            	element.setAttribute("class",value);
+            }
+        }
     }
 }
