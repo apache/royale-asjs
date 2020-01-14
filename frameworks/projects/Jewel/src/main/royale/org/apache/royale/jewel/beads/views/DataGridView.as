@@ -223,6 +223,8 @@ package org.apache.royale.jewel.beads.views
 				dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemAddedAndRemoved);
 				dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleItemAddedAndRemoved);
             }
+
+            host.dispatchEvent(new Event("layoutNeeded"));
         }
         
         protected function updateColumnLayout(list:IDataGridColumnList):void
