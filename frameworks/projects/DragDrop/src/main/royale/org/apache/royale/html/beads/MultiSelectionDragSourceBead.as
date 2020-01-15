@@ -122,7 +122,7 @@ package org.apache.royale.html.beads
 
 		private var _strand:IStrand;
 		private var _dragController:DragMouseController;
-		private var continueDragOperation:Boolean = true;
+		protected var continueDragOperation:Boolean = true;
 
 		private var _dragType:String = "move";
 
@@ -204,7 +204,7 @@ package org.apache.royale.html.beads
 			}
 		}
 
-		private function get model():IMultiSelectionModel
+		protected function get model():IMultiSelectionModel
 		{
 			return (_strand as IStrandWithModel).model as IMultiSelectionModel;
 		}
