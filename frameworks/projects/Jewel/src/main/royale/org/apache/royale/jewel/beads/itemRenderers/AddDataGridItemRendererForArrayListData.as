@@ -135,7 +135,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				ISelectionModel(_dataProviderModel).selectedIndex = ISelectionModel(_dataProviderModel).selectedIndex + 1;
 			}
 
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			// (_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
 		private var _dataProviderModel: IDataProviderModel;

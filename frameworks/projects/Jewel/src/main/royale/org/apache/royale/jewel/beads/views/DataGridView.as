@@ -224,7 +224,7 @@ package org.apache.royale.jewel.beads.views
 				dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleItemAddedAndRemoved);
             }
 
-            host.dispatchEvent(new Event("layoutNeeded"));
+            // host.dispatchEvent(new Event("layoutNeeded"));
         }
         
         protected function updateColumnLayout(list:IDataGridColumnList):void
@@ -241,7 +241,7 @@ package org.apache.royale.jewel.beads.views
                 _listArea.positioner.style.overflow = null;
             }
             }
-            //host.dispatchEvent(new Event("layoutNeeded"));
+            // host.dispatchEvent(new Event("layoutNeeded"));
         }
 
         /**

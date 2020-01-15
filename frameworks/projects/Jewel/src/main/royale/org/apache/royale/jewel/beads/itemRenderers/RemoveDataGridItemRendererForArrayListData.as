@@ -112,7 +112,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				return;
 
 			// listen for individual items being removed in the future.
-			dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
+			// dp.addEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
 		}
 
 		/**
