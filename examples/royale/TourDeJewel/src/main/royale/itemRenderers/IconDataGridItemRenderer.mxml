@@ -38,8 +38,6 @@ limitations under the License.
 
             public function clickCloseButton(event:Event):void
 			{
-                event.preventDefault(); // to avoid datagrid click event handler to be called
-                
                 var view:ListView = this.itemRendererParent as ListView;
                 var column:DataGridColumnList = view.host as DataGridColumnList;
                 (column.datagrid.dataProvider as ArrayList).removeItemAt(index);

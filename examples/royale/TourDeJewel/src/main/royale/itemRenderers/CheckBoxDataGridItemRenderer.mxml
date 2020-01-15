@@ -19,7 +19,7 @@ limitations under the License.
 -->
 <j:DataGridItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
-    xmlns:js="library://ns.apache.org/royale/basic">
+    xmlns:js="library://ns.apache.org/royale/basic" click="clickCheck(event)">
 
     <fx:Script>
         <![CDATA[
@@ -36,7 +36,7 @@ limitations under the License.
 
             public function clickCheck(event:Event):void
             {
-                event.preventDefault(); // to avoid datagrid click event handler to be called
+                event.preventDefault();
                 Alert.show("Clicking this check will not produce any change", "You clicked on " + index + " row checkbox!");
             }
 		]]>
@@ -47,7 +47,11 @@ limitations under the License.
         <j:HorizontalCenteredLayout/>
     </j:beads>
 
-    <j:CheckBox selected="{detailIconList ? detailIconList.componentSet == 'Jewel' : false}" click="clickCheck(event)"/>
+    <j:CheckBox selected="{detailIconList ? detailIconList.componentSet == 'Jewel' : false}">
+        <j:beads>
+            <j:Disabled disabled="true"/>
+        </j:beads>
+    </j:CheckBox>
 
 </j:DataGridItemRenderer>
 
