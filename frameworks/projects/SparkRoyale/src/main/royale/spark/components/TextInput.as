@@ -284,8 +284,8 @@ public class TextInput extends SkinnableTextBase
     //  text
     //----------------------------------
 
-    //[Bindable("change")]
-    //[Bindable("textChanged")]
+    [Bindable("change")]
+    [Bindable("textChanged")]
     
     // Compiler will strip leading and trailing whitespace from text string.
     [CollapseWhiteSpace]
