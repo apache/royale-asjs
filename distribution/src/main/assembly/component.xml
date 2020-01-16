@@ -34,6 +34,8 @@ under the License.
         <include>org.apache.royale.framework.distribution:*:jar</include>
       </includes>
       <excludes>
+        <exclude>org.apache.royale.framework.distribution:compiler-compjsc:jar</exclude>
+        <exclude>org.apache.royale.framework.distribution:compiler-mxmljsc:jar</exclude>
         <exclude>org.apache.royale.compiler:compiler-jx:jar</exclude>
       </excludes>
     </dependencySet>
@@ -84,6 +86,8 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>js/lib</outputDirectory>
       <includes>
+        <include>org.apache.royale.framework.distribution:compiler-compjsc:jar</include>
+        <include>org.apache.royale.framework.distribution:compiler-mxmljsc:jar</include>
         <include>org.apache.royale.compiler:compiler-jx:jar</include>
         <include>*:args4j:jar</include>
         <include>*:commons-io:*</include>
