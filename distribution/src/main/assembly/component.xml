@@ -165,6 +165,15 @@ under the License.
       </includes>
       <filtered>true</filtered>
     </fileSet>
+    
+    <!-- Copy the themes -->
+    <fileSet>
+      <directory>../frameworks/themes</directory>
+      <outputDirectory>frameworks/themes</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
 
     <!-- Copy the sdk descriptor -->
     <fileSet>
