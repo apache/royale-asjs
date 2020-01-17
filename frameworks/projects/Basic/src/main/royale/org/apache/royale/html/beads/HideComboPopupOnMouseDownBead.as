@@ -55,8 +55,8 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IComboBoxView
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
@@ -68,7 +68,10 @@ package org.apache.royale.html.beads
 				IEventDispatcher(_strand).addEventListener("viewChanged", finishSetup);
 			}
 		}
-		
+		/**
+		 * @royaleignorecoercion org.apache.royale.html.beads.IComboBoxView
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function finishSetup(event:Event):void
 		{
 			if (viewBead == null) {
@@ -83,6 +86,10 @@ package org.apache.royale.html.beads
 			event.stopImmediatePropagation();
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handlePopupShow(event:Event):void
 		{
 			IEventDispatcher(viewBead.popUp).addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
@@ -97,6 +104,10 @@ package org.apache.royale.html.beads
 			viewBead.popUpVisible = false;
 		}
 		
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
 		protected function handlePopupHide(event:Event):void
 		{
 			IEventDispatcher(viewBead.popUp).removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
