@@ -168,7 +168,7 @@ limitations under the License.
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel List with ArrayList (source) DataProvider"/>
 				<j:HGroup gap="3">
@@ -202,7 +202,7 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
 					<j:VGroup gap="3">

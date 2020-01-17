@@ -25,7 +25,7 @@ limitations under the License.
 	
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-            <j:Card width="600">
+            <j:Card>
 				<html:H3 text="Jewel Form And Validators"/>
 
 				<c:FormExample label="Form with validation example"/>

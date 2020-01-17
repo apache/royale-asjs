@@ -49,7 +49,7 @@ limitations under the License.
 	</c:beads>
 
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel TextInput"/>
 
@@ -170,7 +170,8 @@ limitations under the License.
 				</j:TextInput>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card width="100%">
 				<html:H4 text="Jewel TextArea"/>
 
@@ -190,10 +191,8 @@ limitations under the License.
 				</j:TextArea>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 
-	<j:Grid gap="true">
-		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="1" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel IconTextInput"/>
 
@@ -242,12 +241,7 @@ limitations under the License.
 				</j:IconTextInput>
 			</j:Card>
 		</j:GridCell>
-
-		<!-- <j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
-
-			</j:Card>
-		</j:GridCell> -->
+		
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
