@@ -497,7 +497,7 @@ package org.apache.royale.core
                     addChild(c as DisplayObject);
             }
             COMPILE::JS {
-                this.element.appendChild(c.element as HTMLElement);
+                this.element.appendChild(c.positioner as HTMLElement);
                 (c as IUIBase).addedToParent();
             }
         }
