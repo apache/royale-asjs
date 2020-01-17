@@ -34,6 +34,7 @@
   <description>The Apache Royale: Royale distribution, source and binary, in zip and tar.gz formats.</description>
 
   <properties>
+    <assemblyVersion>3.2.0</assemblyVersion>
     <distributionFileName>apache-royale-${project.version}</distributionFileName>
     <timestamp>${maven.build.timestamp}</timestamp>
     <maven.build.timestamp.format>yyyyMMddHHmm</maven.build.timestamp.format>
@@ -595,6 +596,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-assembly-plugin</artifactId>
+        <version>${assemblyVersion}</version>
         <executions>
           <execution>
             <id>create-distro-packages</id>
@@ -620,6 +622,7 @@
         <plugins>
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
+            <version>${assemblyVersion}</version>
             <executions>
               <execution>
                 <id>make-src-assembly</id>
@@ -747,6 +750,7 @@
           </plugin-->
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
+            <version>${assemblyVersion}</version>
             <executions>
               <execution>
                 <id>create-distribution-folder</id>
