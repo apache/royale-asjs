@@ -77,5 +77,30 @@ package org.apache.royale.html
             	element.setAttribute("class",value);
             }
         }
+        COMPILE::SWF
+        protected var _attributes_:Object = {};
+        public function setAttribute(name:String,value:String):void
+        {
+            COMPILE::JS
+            {
+            	element.setAttribute(name,value);
+            }
+            COMPILE::SWF
+            {
+                _attributes_[name] = value;
+            }
+            
+        }
+        public function getAttribute(name:String):String
+        {
+            COMPILE::JS
+            {
+            	return element.getAttribute(name);
+            }
+            COMPILE::SWF
+            {
+                return _attributes_[name];
+            }
+        }
     }
 }
