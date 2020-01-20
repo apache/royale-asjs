@@ -498,7 +498,7 @@ package org.apache.royale.core
                     addChild(c as DisplayObject);
             }
             COMPILE::JS {
-                this.element.appendChild(c.element as HTMLElement);
+                this.element.appendChild(c.positioner as HTMLElement);
                 (c as IUIBase).addedToParent();
             }
         }
@@ -580,7 +580,7 @@ package org.apache.royale.core
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
-                    if (children[i] == c.element)
+                    if (children[i] == c.positioner)
                         return i;
                 }
                 return -1;
@@ -607,7 +607,7 @@ package org.apache.royale.core
                     removeChild(c as DisplayObject);
             }
             COMPILE::JS {
-                element.removeChild(c.element as HTMLElement);
+                element.removeChild(c.positioner as HTMLElement);
             }
         }
 

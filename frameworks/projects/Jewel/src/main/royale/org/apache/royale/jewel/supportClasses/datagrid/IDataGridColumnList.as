@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.supportClasses.datagrid
 {
     import org.apache.royale.html.supportClasses.IDataGridColumnList;
+    import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.utils.IEmphasis;
 
     /**
@@ -33,5 +34,16 @@ package org.apache.royale.jewel.supportClasses.datagrid
     {
         function get rollOverIndex():int;
         function set rollOverIndex(value:int):void;
+
+        /**
+		 *  Pointer back to the DataGrid that owns this column List
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		function get datagrid():DataGrid;
+		function set datagrid(value:DataGrid):void;
     }
 }

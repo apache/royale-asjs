@@ -632,9 +632,9 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function initializeApplication():void
 	{
-        ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
-        ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
-        ElementWrapper.converterMap["FocusEvent"] = FocusEventConverter;
+        ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter.convert;
+        ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter.convert;
+        ElementWrapper.converterMap["FocusEvent"] = FocusEventConverter.convert;
         addEventListener(KeyboardEvent.KEY_DOWN, keyDownForCapsLockHandler);
         
         initManagers();

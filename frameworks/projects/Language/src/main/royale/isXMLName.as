@@ -387,7 +387,7 @@ const combiningCharsTable:Array = [
 ];
 
 function isInTable(table:Array, charCode:uint):Boolean{
-    var upper:uint = table.length*.5;
+    var upper:uint = table.length;
     for (var i:uint =0; i<upper; i+=2) {
         if (charCode >= table[i] && charCode <= table[i+1]) return true;
     }

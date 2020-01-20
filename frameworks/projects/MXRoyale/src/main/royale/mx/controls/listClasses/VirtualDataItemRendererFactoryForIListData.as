@@ -119,6 +119,7 @@ package mx.controls.listClasses
             if (!dp)
                 return;
             
+            labelField = dataProviderModel.labelField;
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererParent = view.dataGroup;
             

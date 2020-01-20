@@ -152,7 +152,7 @@ package org.apache.royale.jewel
             }
 			COMPILE::JS {
 				element = document.getElementsByTagName('body')[0];
-				element.className = 'Application';			
+				element.className = 'jewel application';			
 			}
 
 			this.valuesImpl = new AllCSSValuesImpl();
@@ -599,7 +599,7 @@ package org.apache.royale.jewel
                 var n:int = children.length;
                 for (var i:int = 0; i < n; i++)
                 {
-                    if (children[i] == c.element)
+                    if (children[i] == c.positioner)
                         return i;
                 }
                 return -1;
@@ -626,7 +626,7 @@ package org.apache.royale.jewel
                     removeChild(c as DisplayObject);
             }
             COMPILE::JS {
-                element.removeChild(c.element as HTMLElement);
+                element.removeChild(c.positioner as HTMLElement);
             }
         }
 

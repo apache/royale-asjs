@@ -155,7 +155,9 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.ArraySelectionModel; ArraySelectionModel;
 	import org.apache.royale.html.beads.models.ArrayListSelectionModel; ArrayListSelectionModel;
 	import org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel; SingleSelectionCollectionViewModel;
+	import org.apache.royale.html.beads.models.MultiSelectionCollectionViewModel; MultiSelectionCollectionViewModel;
 	import org.apache.royale.html.beads.models.TreeModel; TreeModel;
+	import org.apache.royale.html.beads.models.MultiSelectionTreeModel; MultiSelectionTreeModel;
 	import org.apache.royale.html.beads.models.MenuModel; MenuModel;
     import org.apache.royale.html.beads.models.RangeModel; RangeModel;
     import org.apache.royale.html.beads.models.RangeModelExtended; RangeModelExtended;
@@ -195,6 +197,7 @@ internal class BasicClasses
     import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
     import org.apache.royale.html.beads.controllers.ListMultiSelectionMouseController; ListMultiSelectionMouseController;
     import org.apache.royale.html.beads.MultiSelectionItemRendererClassFactory; MultiSelectionItemRendererClassFactory;
+	import org.apache.royale.html.beads.controllers.TreeMultiSelectionMouseController; TreeMultiSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
 	import org.apache.royale.html.beads.controllers.MenuSelectionMouseController; MenuSelectionMouseController;
     import org.apache.royale.html.beads.controllers.HSliderMouseController; HSliderMouseController;

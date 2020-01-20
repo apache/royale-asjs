@@ -31,27 +31,32 @@ limitations under the License.
 		]]>
 	</fx:Script>
 
-	<j:Card>
-		<html:H3 text="Jewel NumericStepper"/>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel NumericStepper"/>
 
-		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-			<j:NumericStepper id="numericStepper" valueChange="valueChangeHandler(event)"/>
-			<j:Label id="result" text="Default NumericStepper: "/>
-		</j:HGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:NumericStepper id="numericStepper" valueChange="valueChangeHandler(event)"/>
+					<j:Label id="result" text="Default NumericStepper: "/>
+				</j:HGroup>
 
-		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-			<j:NumericStepper value="30"/>
-			<j:Label text="NumericStepper value='30'"/>
-		</j:HGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:NumericStepper value="30"/>
+					<j:Label text="NumericStepper value='30'"/>
+				</j:HGroup>
 
-		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-			<j:NumericStepper minimum="10" maximum="100"/>
-			<j:Label text="NumericStepper minimum='10' and maximum='100'" multiline="true" width="300"/>
-		</j:HGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:NumericStepper minimum="10" maximum="100"/>
+					<j:Label text="NumericStepper minimum='10' and maximum='100'" multiline="true" width="300"/>
+				</j:HGroup>
 
-		<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-			<j:NumericStepper stepSize="2"/>
-			<j:Label text="NumericStepper stepSize='2'"/>
-		</j:HGroup>
-	</j:Card>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:NumericStepper stepSize="2"/>
+					<j:Label text="NumericStepper stepSize='2'"/>
+				</j:HGroup>
+			</j:Card>
+        </j:GridCell>
+	</j:Grid>
+
 </c:ExampleAndSourceCodeTabbedSectionContent>

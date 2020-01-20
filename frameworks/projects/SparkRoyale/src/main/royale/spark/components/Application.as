@@ -324,7 +324,7 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
         
         COMPILE::JS
         {
-            ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter;
+            ElementWrapper.converterMap["MouseEvent"] = MouseEventConverter.convert;
         }
     }
 

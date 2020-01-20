@@ -67,9 +67,9 @@ package org.apache.royale.reflection.utils
 			var statics:Array;
 			if ( classRef.prototype.ROYALE_REFLECTION_INFO) {
 				if (CompilationData.hasCompilationOption(
-						classRef.prototype.ROYALE_REFLECTION_INFO.compileFlags,
+						classRef.prototype.ROYALE_COMPILE_FLAGS,
 						CompilationData.WITH_DEFAULT_INITIALIZERS)) {
-					statics = classRef.prototype.ROYALE_REFLECTION_INFO.statics
+					statics = classRef.prototype.ROYALE_INITIAL_STATICS
 				} else {
 					//debug level warning:
 					if (goog.DEBUG) {
@@ -81,7 +81,7 @@ package org.apache.royale.reflection.utils
 					statics = Object.keys(classRef);
 				}
 			} else {
-				statics = ExtraData.hasData(classRef) ? ExtraData.getData(classRef)['ROYALE_REFLECTION_INFO']['statics'] : null;
+				statics = ExtraData.hasData(classRef) ? ExtraData.getData(classRef)['ROYALE_INITIAL_STATICS'] : null;
 			}
 
 			if (statics) {

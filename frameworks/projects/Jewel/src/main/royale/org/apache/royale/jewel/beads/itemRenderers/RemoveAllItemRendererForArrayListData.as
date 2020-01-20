@@ -30,8 +30,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 
 	/**
-	 *  Handles the removal of all itemRenderers once the all items has been removed
-	 *  from the IDataProviderModel. This works the same for List and Table components
+	 *  Handles the removal of all itemRenderers.
+	 *  This works the same for List and Table components
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -78,6 +78,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function initComplete(event:Event):void
 		{
+			setUp();
+		}
+
+		/**
+		 * This method is called when List is composed to conform a DataGrid
+		 * In that case DataGrid uses RemoveAllDataGridItemRendererForArrayListData,
+		 * that add this bead to the each column List and calls this method at
+		 * initialization time.
+		 */
+		public function setUp():void
+		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 			
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
@@ -106,7 +117,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 *  Handles the itemRemoved event by removing the item.
+		 *  Handles the allItemsRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

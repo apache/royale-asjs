@@ -26,18 +26,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     /**
-	 * Handles the adding of an itemRenderer in a List component once the corresponding datum has been added
-	 * from the IDataProviderModel.
+	 *  Handles the adding of an itemRenderer in a List component once the corresponding datum has been added
+	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -58,10 +58,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
-		protected var _strand:IStrand;
-
         protected var labelField:String;
-
+		
+		protected var _strand:IStrand;
 		/**
 		 * @copy org.apache.royale.core.IStrand
 		 *
@@ -85,6 +84,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @productversion Royale 0.9.4
 		 */
 		protected function initComplete(event:Event):void
+		{
+			setUp();
+		}
+
+		/**
+		 * This method is called when List is composed to conform a DataGrid
+		 * In that case DataGrid uses AddDataGridItemRendererForArrayListData,
+		 * that add this bead to the each column List and calls this method at
+		 * initialization time.
+		 */
+		public function setUp():void
 		{
 			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
 
@@ -116,7 +126,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the itemAdded event by adding the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -133,7 +143,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 
             fillRenderer(event.index, event.item, ir, presentationModel);
 
-
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = itemRendererParent.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
@@ -141,12 +150,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
-            //adjust the model's selectedIndex, if applicable
-			if (event.index <= ISelectionModel(_dataProviderModel).selectedIndex) {
-                ISelectionModel(_dataProviderModel).selectedIndex = ISelectionModel(_dataProviderModel).selectedIndex + 1;
-			}
 
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			if(!(_strand is IDataGridColumnList)) // only run this code on normal list (not not DataGrid column Lists)
+			{
+				//adjust the model's selectedIndex, if applicable
+				if (event.index <= ISelectionModel(_dataProviderModel).selectedIndex) {
+					ISelectionModel(_dataProviderModel).selectedIndex = ISelectionModel(_dataProviderModel).selectedIndex + 1;
+				}
+
+				(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			}
 		}
 
 		private var _dataProviderModel: IDataProviderModel;
@@ -220,11 +233,15 @@ package org.apache.royale.jewel.beads.itemRenderers
             itemRenderer.labelField = labelField;
 
             if (presentationModel) {
-                var style:SimpleCSSStyles = new SimpleCSSStyles();
-                style.marginBottom = presentationModel.separatorThickness;
-                UIBase(itemRenderer).style = style;
+                // var style:SimpleCSSStyles = new SimpleCSSStyles();
+                // style.marginBottom = presentationModel.separatorThickness;
+                // UIBase(itemRenderer).style = style;
                 UIBase(itemRenderer).height = presentationModel.rowHeight;
-                UIBase(itemRenderer).percentWidth = 100;
+                //UIBase(itemRenderer).percentWidth = 100;
+				if(itemRenderer is IAlignItemRenderer)
+				{
+					(itemRenderer as IAlignItemRenderer).align = presentationModel.align;
+				}
             }
 
             setData(itemRenderer, item, index);

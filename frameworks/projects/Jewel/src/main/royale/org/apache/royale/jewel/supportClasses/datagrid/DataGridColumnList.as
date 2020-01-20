@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.datagrid
 {
+    import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
     
@@ -73,5 +74,21 @@ package org.apache.royale.jewel.supportClasses.datagrid
          *  @royalesuppresspublicvarwarning
          */
 		public var columnInfo: DataGridColumn;
+
+        private var _datagrid:DataGrid;
+        /**
+		 *  Pointer back to the DataGrid that owns this column List
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get datagrid():DataGrid {
+            return _datagrid;
+        }
+		public function set datagrid(value:DataGrid):void {
+            _datagrid = value;
+        }
 	}
 }

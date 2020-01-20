@@ -30,8 +30,8 @@ package org.apache.royale.jewel
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.html.elements.Select;
     import org.apache.royale.jewel.beads.models.ListPresentationModel;
-    import org.apache.royale.jewel.supportClasses.IListPresentationModel;
     import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
+    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 
     //--------------------------------------
@@ -219,7 +219,7 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 */
 		public function get presentationModel():IListPresentationModel
 		{

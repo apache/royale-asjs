@@ -22,6 +22,8 @@ package spark.components.supportClasses
 
 import mx.events.FlexEvent;
 
+import org.apache.royale.html.beads.models.RangeModel;
+
 /**
  *  The Range class holds a value and an allowed range for that 
  *  value, defined by <code>minimum</code> and <code>maximum</code> properties. 
@@ -129,6 +131,8 @@ public class Range extends SkinnableComponent
         _maximum = value;
         maxChanged = true;
         
+        (model as RangeModel).maximum = value;
+        
         invalidateProperties();
     }
     
@@ -170,6 +174,8 @@ public class Range extends SkinnableComponent
         _minimum = value;
         minChanged = true;
         
+        (model as RangeModel).minimum = value;
+
         invalidateProperties();
     }
     

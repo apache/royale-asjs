@@ -18,15 +18,18 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    import org.apache.royale.core.BeadViewBase;
+	COMPILE::SWF
+	{
     import org.apache.royale.core.IBead;
+    import org.apache.royale.core.ValuesManager;
+	}
+    import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IRangeModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.jewel.Button;

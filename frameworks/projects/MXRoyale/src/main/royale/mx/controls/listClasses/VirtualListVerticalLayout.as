@@ -287,13 +287,17 @@ package mx.controls.listClasses
                     {
                         // see if we can re-use any renderers
                         freeIndex = visibleIndexes.pop();
-                        while (freeIndex >= endIndex)
+                        while (freeIndex > endIndex)
                         {
                             factory.freeItemRendererForIndex(freeIndex);
                             if (visibleIndexes.length == 0)
                                 break;
                             freeIndex = visibleIndexes.pop();
                         }
+                        // we popped it off at the end of loop but if we didn't
+                        // use it, then push it back on
+                        if (freeIndex == endIndex)
+                            visibleIndexes.push(freeIndex);
                         if (visibleIndexes.length)
                             endIndex = visibleIndexes[visibleIndexes.length - 1];
                     }
@@ -357,6 +361,12 @@ package mx.controls.listClasses
                 {
                     bottomSpacer = document.createElement("div") as HTMLDivElement;
                     contentView.element.appendChild(bottomSpacer);
+                }
+                else
+                {
+                    // ensure bottom spacer is at the bottom!
+                    contentView.element.removeChild(bottomSpacer);                    
+                    contentView.element.appendChild(bottomSpacer);                    
                 }
                 bottomSpacer.style.height = ((dp.length - endIndex) * presentationModel.rowHeight).toString() + "px";  
                 inLayout = false;

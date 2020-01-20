@@ -159,10 +159,6 @@ package org.apache.royale.jewel.supportClasses.button
     COMPILE::SWF
 	public class SimpleButton extends UIButtonBase implements IStrand, IUIBase, IEventDispatcher, IClassSelectorListSupport, IEmphasis
 	{
-        public static const PRIMARY:String = "primary";
-        public static const SECONDARY:String = "secondary";
-        public static const EMPHASIZED:String = "emphasized";
-
         /**
          *  Constructor.
          *  
@@ -298,10 +294,6 @@ package org.apache.royale.jewel.supportClasses.button
     COMPILE::JS
     public class SimpleButton extends StyledUIBase implements IStrand, IUIBase, IEventDispatcher
     {
-        public static const PRIMARY:String = "primary";
-        public static const SECONDARY:String = "secondary";
-        public static const EMPHASIZED:String = "emphasized";
-
         /**
          *  Constructor.
          *  

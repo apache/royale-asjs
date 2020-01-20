@@ -85,7 +85,8 @@ package org.apache.royale.html.accessories
 			COMPILE::JS
 			{
                 var host:UIBase = _strand as UIBase;
-                host.element.addEventListener("keypress", validateInput, false);
+                host.element.addEventListener("keypress", validateKeypress, false);
+                host.element.addEventListener("input", validateInput, false);
 			}
 		}
 		
@@ -129,7 +130,7 @@ package org.apache.royale.html.accessories
 		}
 				
 		COMPILE::JS
-		private function validateInput(event:BrowserEvent):void
+		private function validateKeypress(event:BrowserEvent):void
 		{
 			var code:int = event.charCode;
 			
@@ -145,5 +146,38 @@ package org.apache.royale.html.accessories
     			}
             }
 		}
+        
+        /**
+         *  @royaleignorecoercion HTMLInputElement 
+         */
+        COMPILE::JS
+        private function validateInput(event:BrowserEvent):void
+        {            
+            var host:UIBase = _strand as UIBase;
+            var data:String = (host.element as HTMLInputElement).value;
+            
+            if (restrict && data != null && data.length > 0)
+            {
+                var regex:RegExp = new RegExp("[" + restrict + "]");
+                var out:String = "";
+                var n:int = data.length;
+                var blocked:Boolean = false;
+                for (var i:int = 0; i < n; i++)
+                {
+                    var key:String = data.charAt(i);
+                    if (regex.test(key)) {
+                        out += key;
+                    }
+                    else
+                        blocked = true;
+                }
+                if (blocked) 
+                {
+                    event["returnValue"] = false;
+                    if (event.preventDefault) event.preventDefault();
+                    (host.element as HTMLInputElement).value = out;                    
+                }
+            }
+        }
 	}
 }

@@ -41,19 +41,24 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </c:beads>
 
-	<j:Card width="350">
-		<html:H3 text="Jewel Label"/>
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card width="350">
+				<html:H3 text="Jewel Label"/>
 
-		<j:Label id="label" text="This is a Label" click="labelClick(event)" className="cursor-pointer">
-			<j:beads>
-				<j:ToolTip toolTip="This Label is clickable!"/>
-			</j:beads>
-		</j:Label>
+				<j:Label id="label" text="This is a Label" click="labelClick(event)" className="cursor-pointer">
+					<j:beads>
+						<j:ToolTip toolTip="This Label is clickable!"/>
+					</j:beads>
+				</j:Label>
 
-		<j:Label text="This is a multiline label with more text that wraps if container has set a width" multiline="true"/>
+				<j:Label text="This is a multiline label with more text that wraps if container has set a width" multiline="true"/>
 
-		<j:Label>
-			<j:html><![CDATA[<p>This is <strong><font size='16'>{a_string}</font></strong><br>using inline <u>HTML</u></p>]]></j:html>
-		</j:Label>
-	</j:Card>
+				<j:Label>
+					<j:html><![CDATA[<p>This is <strong><font size='16'>{a_string}</font></strong><br>using inline <u>HTML</u></p>]]></j:html>
+				</j:Label>
+			</j:Card>
+        </j:GridCell>
+	</j:Grid>
+	
 </c:ExampleAndSourceCodeTabbedSectionContent>

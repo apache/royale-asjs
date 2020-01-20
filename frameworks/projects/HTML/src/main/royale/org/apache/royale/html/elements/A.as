@@ -66,11 +66,7 @@ package org.apache.royale.html.elements
 		public function set href(value:String):void
 		{
             _href = value;
-            
-            COMPILE::JS
-            {
-                element.setAttribute('href', value);
-            }
+            setAttribute('href', value);
 		}
         
 		private var _target:String = "_self";
@@ -90,11 +86,7 @@ package org.apache.royale.html.elements
 		public function set target(value:String):void
 		{
             _target = value;
-            
-            COMPILE::JS
-            {
-                element.setAttribute('target', value);
-            }
+            setAttribute('target', value);
 		}
 		
 		private var _rel:String = "";
@@ -113,11 +105,7 @@ package org.apache.royale.html.elements
 		public function set rel(value:String):void
 		{
             _rel = value;
-            
-            COMPILE::JS
-            {
-                element.setAttribute('rel', value);
-            }
+            setAttribute('rel', value);
 		}
 		
         COMPILE::JS

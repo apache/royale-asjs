@@ -66,11 +66,11 @@ package org.apache.royale.reflection {
 					arr = Object.keys(inspect);
 					if (inspect.prototype && inspect.prototype.ROYALE_REFLECTION_INFO) {
 						if (goog.DEBUG) {
-							if (!CompilationData.hasCompilationOption(inspect.prototype.ROYALE_REFLECTION_INFO.compileFlags, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
+							if (!CompilationData.hasCompilationOption(inspect.prototype.ROYALE_COMPILE_FLAGS, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
 								trace('[WARN] getDynamicFields can be unreliable for static inspection of ' + inspect.prototype.ROYALE_CLASS_INFO.names[0].qName + ' because it was not compiled with \'js-default-initializers=true\'');
 							}
 						}
-						var avoidNames:Array = inspect.prototype.ROYALE_REFLECTION_INFO.statics;
+						var avoidNames:Array = inspect.prototype.ROYALE_INITIAL_STATICS;
 						if (avoidNames) {
 							var temp:Array = [];
 							var l:uint = arr.length;
@@ -93,7 +93,7 @@ package org.apache.royale.reflection {
 					if (inspect.ROYALE_REFLECTION_INFO) {
 						const inspectReflect:Object = inspect.ROYALE_REFLECTION_INFO;
 						if (goog.DEBUG) {
-							if (!CompilationData.hasCompilationOption(inspectReflect.compileFlags, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
+							if (!CompilationData.hasCompilationOption(inspect.ROYALE_COMPILE_FLAGS, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
 								trace('[WARN] getDynamicFields can be unreliable for ' + inspect.ROYALE_CLASS_INFO.names[0].qName + ' and any ancestor classes that were not compiled with \'js-default-initializers=true\'');
 								warned = true;
 							}
@@ -123,7 +123,7 @@ package org.apache.royale.reflection {
 							while (proto) {
 								var protoReflect:Object = proto.ROYALE_REFLECTION_INFO;
 								if (goog.DEBUG && !warned) {
-									if (protoReflect && !CompilationData.hasCompilationOption(protoReflect.compileFlags, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
+									if (protoReflect && !CompilationData.hasCompilationOption(proto.ROYALE_COMPILE_FLAGS, CompilationData.WITH_DEFAULT_INITIALIZERS)) {
 										//skip EventDispatcher because we already special-cased it
 										if (proto.ROYALE_CLASS_INFO.names[0].qName != eventDispatcherClassInfo.names[0].qName) {
 											trace('[WARN] getDynamicFields can be unreliable for '

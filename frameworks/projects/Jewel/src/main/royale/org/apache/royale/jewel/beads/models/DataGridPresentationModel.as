@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.models
 {
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
 	/**
 	 *  The DataGridPresentationModel class contains the data to label the columns
@@ -43,12 +43,10 @@ package org.apache.royale.jewel.beads.models
 		 */
 		public function DataGridPresentationModel()
 		{
-			super();
-			
-			separatorThickness = 1;
+			super();	
 		}
 		
-		private var _columnLabels:Array;
+		// private var _columnLabels:Array;
 		/**
 		 *  The labels used in each column header.
 		 *
@@ -57,19 +55,19 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get columnLabels():Array
-		{
-			return _columnLabels;
-		}
-		public function set columnLabels(value:Array):void
-		{
-			if (value != _columnLabels) {
-				_columnLabels = value;
-				dispatchEvent(new Event("columnLabelsChanged"));
-			}
-		}
+		// public function get columnLabels():Array
+		// {
+		// 	return _columnLabels;
+		// }
+		// public function set columnLabels(value:Array):void
+		// {
+		// 	if (value != _columnLabels) {
+		// 		_columnLabels = value;
+		// 		dispatchEvent(new Event("columnLabelsChanged"));
+		// 	}
+		// }
 
-		private var _columnLabelAlign:String = ""
+		// private var _columnLabelAlign:String = "left"
 		/**
 		 *  How column label aligns in the header
 		 *
@@ -78,16 +76,16 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get columnLabelAlign():String
-		{
-			return _columnLabelAlign;
-		}
-		public function set columnLabelAlign(value:String):void
-		{
-			if (value != _columnLabelAlign) {
-				_columnLabelAlign = value;
-				dispatchEvent(new Event("columnsLabelAlignChanged"));
-			}
-		}
+		// public function get columnLabelAlign():String
+		// {
+		// 	return _columnLabelAlign;
+		// }
+		// public function set columnLabelAlign(value:String):void
+		// {
+		// 	if (value != _columnLabelAlign) {
+		// 		_columnLabelAlign = value;
+		// 		dispatchEvent(new Event("columnsLabelAlignChanged"));
+		// 	}
+		// }
 	}
 }

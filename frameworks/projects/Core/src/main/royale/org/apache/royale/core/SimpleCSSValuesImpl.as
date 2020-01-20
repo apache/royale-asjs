@@ -684,8 +684,16 @@ package org.apache.royale.core
                     if (isNaN(n))
                     {
                         if (value.charAt(0) == "#" || value.indexOf("rgb") == 0)
-                        {                            
+                        {                     
+                            COMPILE::SWF{
+                                // in SWF we need int or uint values
                             obj[valueName] = CSSUtils.toColor(value);
+                            }
+                            COMPILE::JS
+                            {
+                                //In JS these values can be applied directly
+                                obj[valueName] = value;
+                            }
                         }
                         else
                         {
@@ -740,10 +748,7 @@ package org.apache.royale.core
 				    if (typeof(value) == 'function') continue;
 					cssString += p + ": ";
 					if (typeof(value) == 'number') {
-                    	if (colorStyles[p])
-                        	value = CSSUtils.attributeFromColor(value as uint);
-                    	else
-                        	value = value.toString() + 'px';
+                        value = processNumberStyle(p,value);
                 	}
                 	else if (p == 'backgroundImage') {
                     	if (p.indexOf('url') != 0)
@@ -755,6 +760,13 @@ package org.apache.royale.core
 				cssString += "}";
 				ss.insertRule(cssString, ss.cssRules.length);
 			}
+        }
+        COMPILE::JS
+        protected function processNumberStyle(prop:String,value:*):*{
+            if (colorStyles[prop])
+                return CSSUtils.attributeFromColor(value);
+                
+            return value + 'px';
         }
 		
 		COMPILE::JS
@@ -827,19 +839,6 @@ package org.apache.royale.core
         }
         
         /**
-         * The styles that can use raw numbers
-         */
-        COMPILE::JS
-        private static const _numericStyles:Object = {
-        }
-        COMPILE::JS
-        protected function get numericStyles() : Object
-        {
-            return SimpleCSSValuesImpl._numericStyles;
-        }
-        
-
-        /**
          * @param thisObject The object to apply styles to;
          * @param styles The styles.
          * @royaleignorecoercion HTMLElement
@@ -850,7 +849,6 @@ package org.apache.royale.core
             var styleList:Object = this.perInstanceStyles;
             var colorStyles:Object = this.colorStyles;
             var skipStyles:Object = this.skipStyles;
-            var numericStyles:Object = this.numericStyles;
             var listObj:Object = styles;
             if (styles && styles.styleList)
                 listObj = styles.styleList;
@@ -863,12 +861,7 @@ package org.apache.royale.core
                 if (value === undefined)
                     continue;
                 if (typeof(value) == 'number') {
-                    if (colorStyles[p])
-                        value = CSSUtils.attributeFromColor(value);
-                    else if (numericStyles[p])
-                        value = value.toString();
-                    else
-                        value = value.toString() + 'px';
+                    value = processNumberStyle(p,value);
                 }
                 else if (p == 'backgroundImage' && value.indexOf('url') != 0) {
                         value = 'url(' + value + ')';

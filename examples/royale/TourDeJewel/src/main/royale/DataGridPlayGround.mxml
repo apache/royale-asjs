@@ -50,6 +50,54 @@ limitations under the License.
 			grid.dataProvider = data;
 		}
 
+		private function addRow():void
+		{
+			var product:Product = new Product("xx100","New Item", 44, Math.floor(Math.random()*1000), "assets/smallbluerect.jpg");
+			(datagrid2.dataProvider as ArrayList).addItem(product);
+			// productModel.productList.addItem(product);
+		}
+		
+		private function removeFirstRow():void
+		{
+			(datagrid2.dataProvider as ArrayList).removeItemAt(0);
+			// productModel.productList.removeItemAt(0);
+		}
+		
+		private function updateFirstRow():void
+		{
+			var product:Product = productModel.productList.getItemAt(0) as Product;
+			product.title = "What??";
+			product.sales = Math.floor(Math.random()*100);
+			(datagrid2.dataProvider as ArrayList).itemUpdated(product);
+			// productModel.productList.itemUpdated(product);
+		}
+
+		public function removeAllRows():void
+		{
+			(datagrid2.dataProvider as ArrayList).removeAll();
+			// productModel.productList.removeAll();
+		}
+
+		private function describeItem(item:*):String {
+			const intro:String = "<strong>DataGrid selectedItem:</strong> ";
+			var evaluated:String;
+			if (item is String) {
+				evaluated = "String value: '" + item + "'";
+			} else {
+				if (item === null || item === undefined) {
+					evaluated = "Nothing Selected";
+				}
+				else {
+					if (item is IconListVO) {
+						evaluated = "Object's label field: '" + IconListVO(item).label + "'";
+					} else {
+						evaluated = "Object : " + item;
+					}
+				}
+			}
+			return intro + evaluated;
+		}
+
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
 		]]>
@@ -68,14 +116,15 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Basic configuration, default width, no column widths, no rowHeight"/>
+				<j:Label text="Basic configuration, default width, no column widths, no rowHeight. First column uses a custom renderer."
+						multiline="true"/>
 
 				<j:DataGrid localId="datagrid"
 					change="dataGridProductChange(event.target as DataGrid, datagrid_lb)">
 					<j:beads>
 						<js:ConstantBinding
 							sourceID="productModel"
-							sourcePropertyName="productList"
+							sourcePropertyName="fewProductList"
 							destinationPropertyName="dataProvider"/>
 					</j:beads>
 					<j:columns>
@@ -89,36 +138,52 @@ limitations under the License.
 				<j:Label id="datagrid_lb" text="DataGrid selection will be shown here"/>
 			</j:Card>
 		</j:GridCell>
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Using specific column widths, rowHeight=54 and height=220"/>
+				<j:Label text="Using specific column widths, rowHeight=54 and height=220, first column uses a custom renderer and last column has right alignment"
+					multiline="true"/>
 
-				<j:DataGrid localId="datagrid2" height="205"
-					rowHeight="54" emphasis="primary" 
-					change="dataGridProductChange(event.target as DataGrid, datagrid2_lb)"
-					dataProvider="{productModel.productList}">
-					<j:columns>
-						<j:DataGridColumn label="Images" dataField="image" columnWidth="90" 
-										itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
-						<j:DataGridColumn label="Title" dataField="title" columnWidth="120"/>
-						<j:DataGridColumn label="Sales" dataField="sales" columnWidth="70"/>
-					</j:columns>
-				</j:DataGrid>
-
-				<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
-				<j:Button text="Refresh Grid" click="refreshGrid(datagrid2, (productModel as ProductModel).productList)" emphasis="primary"/>
+				<j:HGroup gap="3">
+					<j:VGroup gap="3">
+						<j:DataGrid localId="datagrid2" height="205"
+							rowHeight="54" emphasis="primary" 
+							change="dataGridProductChange(event.target as DataGrid, datagrid2_lb)"
+							dataProvider="{productModel.productList}">
+							<j:columns>
+								<j:DataGridColumn label="Images" dataField="image" columnWidth="100" 
+												itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
+								<j:DataGridColumn label="Title" dataField="title" columnWidth="140"/>
+								<j:DataGridColumn label="Sales" dataField="sales" columnWidth="80" align="right"/>
+							</j:columns>
+							<j:beads>
+								<j:AddDataGridItemRendererForArrayListData/>
+								<j:RemoveDataGridItemRendererForArrayListData/>
+								<j:UpdateDataGridItemRendererForArrayListData/>
+								<j:RemoveAllDataGridItemRendererForArrayListData/>
+							</j:beads>
+						</j:DataGrid>
+						<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
+						<j:Label html="{'Selected Index: ' + datagrid2.selectedIndex}"/>
+						<j:Label id="selected" html="{describeItem(datagrid2.selectedItem)}"/>
+					</j:VGroup>
+					<j:VGroup gap="3">
+						<j:Button text="Add Row" click="addRow()" emphasis="primary"/>
+						<j:Button text="Remove First Row" click="removeFirstRow()"/>
+						<j:Button text="Update First Row" click="updateFirstRow()"/>
+						<j:Button text="Remove all rows" click="removeAllRows()"/>
+					</j:VGroup>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 	
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
 				
-				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary'"
+				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment. Clicking on row icon, remove the entire row."
 					multiline="true"/>
 
 				<j:DataGrid width="100%" emphasis="secondary" rowHeight="42"
@@ -128,18 +193,21 @@ limitations under the License.
 							sourceID="listModel"
 							sourcePropertyName="iconDetailListData"
 							destinationPropertyName="dataProvider"/>
+						<j:RemoveDataGridItemRendererForArrayListData/>
 					</j:beads>
 					<j:columns>
-						<j:DataGridColumn label="Icon" dataField="icon" 
-											itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
-						<j:DataGridColumn label="Label" dataField="label"/>
-						<j:DataGridColumn label="Set" dataField="componentSet"/>
+						<j:DataGridColumn label="Icon" 
+										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+						<j:DataGridColumn label="Label" dataField="label" align="center"/>
+						<j:DataGridColumn label="Is Jewel?"
+										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
 					</j:columns>
 				</j:DataGrid>
 
 				<j:Label id="datagrid3_lb" text="DataGrid selection will be shown here"/>
 			</j:Card>
 		</j:GridCell>
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>
@@ -162,6 +230,7 @@ limitations under the License.
 				<j:Button text="Refresh Grid" click="refreshGrid(datagrid4, (listModel as ListsModel).iconListData)" emphasis="primary"/>
 			</j:Card>
 		</j:GridCell>
+		
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>

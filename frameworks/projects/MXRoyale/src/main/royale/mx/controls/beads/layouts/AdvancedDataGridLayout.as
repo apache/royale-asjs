@@ -181,6 +181,14 @@ package mx.controls.beads.layouts
                             listArea.element.style["overflow-x"] = "hidden";
                     }
                 }
+                COMPILE::JS
+                {
+                    if (listArea.element.offsetHeight > listArea.element.clientHeight)
+                    {
+                        // horizontal scrollbar is always shown
+                        useHeight -= listArea.element.offsetHeight - listArea.element.clientHeight;
+                    }
+                }
                 for (var i:int = 0; i < n; i++)
                 {
                     var columnList:UIBase = displayedColumns[i] as UIBase;

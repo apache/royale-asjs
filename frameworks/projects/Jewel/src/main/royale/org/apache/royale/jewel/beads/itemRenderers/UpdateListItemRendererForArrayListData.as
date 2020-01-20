@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -31,8 +31,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 
     /**
-	 *  Handles the update of an itemRenderer in a List component once the corresponding
-	 *  datum has been updated from the IDataProviderModel.
+	 *  Handles the update of an itemRenderer in a List component.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -53,10 +52,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
-		protected var _strand:IStrand;
-
         protected var labelField:String;
 
+		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IStrand
 		 *
@@ -83,8 +81,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function initComplete(event:Event):void
 		{
-			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
+			setUp();
+		}
 
+		/**
+		 * This method is called when List is composed to conform a DataGrid
+		 * In that case DataGrid uses UpdateDataGridItemRendererForArrayListData,
+		 * that add this bead to the each column List and calls this method at
+		 * initialization time.
+		 */
+		public function setUp():void
+		{
+			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
+			
 			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			labelField = _dataProviderModel.labelField;
 

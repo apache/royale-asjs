@@ -19,6 +19,8 @@
 package org.apache.royale.core
 {
     
+    import org.apache.royale.utils.CSSUtils;
+
     /**
      *  The AllCSSValuesImpl class will eventually implement a full set of
      *  CSS lookup rules.
@@ -61,18 +63,55 @@ package org.apache.royale.core
         // As new styles are supported, they can be added to the list of style categories
         // that are currently defined within SimpleCSSValuesImpl, and overridden here.
         
+        private var _defaultLengthUnit:String = "px";
         /**
-         * The styles that can use raw numbers
+         * The default value used when converting numbers in CSS to length units. Can be px, em, etc.
+         * Defaults to px
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
          */
-        COMPILE::JS
-        protected static const _numericStyles:Object = {
-            'fontWeight': 1
-        }
-        COMPILE::JS
-        override protected function get numericStyles() : Object
+        public function get defaultLengthUnit():String
         {
-            return AllCSSValuesImpl._numericStyles;
+        	return _defaultLengthUnit;
         }
-        
+
+        public function set defaultLengthUnit(value:String):void
+        {
+        	_defaultLengthUnit = value;
+        }
+        protected var lengthProps:Array = [
+            "width",
+            "height",
+            "margin",
+            "padding",
+            "borderWidth",
+            "fontSize",
+            "textShadow"
+        ];
+        protected function isLengthProp(prop:String):Boolean{
+            if(lengthProps.indexOf(prop) != -1){
+                return true;
+            }
+            // margin and padding can have variants
+            if(prop.indexOf("margin")== 0){
+                return true;
+            }
+            if(prop.indexOf("padding")== 0){
+                return true;
+            }
+            return false;
+        }
+        COMPILE::JS
+        override protected function processNumberStyle(prop:String,value:*):*{
+            if (colorStyles[prop])
+                value = CSSUtils.attributeFromColor(value);
+            else if (isLengthProp(prop))
+                return value + defaultLengthUnit;
+            return value;
+        }
+
+
     }
 }

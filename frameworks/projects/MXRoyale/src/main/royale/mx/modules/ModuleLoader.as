@@ -279,9 +279,7 @@ public class ModuleLoader extends VBox
      */
     public function get child():Object //DisplayObject
     {
-        if (numElements)
-            return getElementAt(numElements - 1);
-        return null;
+        return utils.moduleInstance;
     }
 
     //----------------------------------

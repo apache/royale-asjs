@@ -48,10 +48,6 @@ package org.apache.royale.jewel
      */
     public class Button extends SimpleButton
     {
-            public static const PRIMARY:String = "primary";
-            public static const SECONDARY:String = "secondary";
-            public static const EMPHASIZED:String = "emphasized";
-                  
             /**
              *  Constructor.
              *  

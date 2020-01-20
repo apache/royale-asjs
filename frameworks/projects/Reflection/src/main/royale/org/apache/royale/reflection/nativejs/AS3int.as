@@ -38,7 +38,7 @@ package org.apache.royale.reflection.nativejs {
             return {
                 'methods':function():Object {
                     return {
-                        'int':{'parameters':function():Object {return [{'index':1,'optional':true,'type':'*'}]},'type':'','declaredBy':'int'}
+                        'int':{'parameters':function():Object {return ['*', true]},'type':'','declaredBy':'int'}
                     };
                 }
             };

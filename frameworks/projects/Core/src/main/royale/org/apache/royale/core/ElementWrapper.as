@@ -190,9 +190,9 @@ package org.apache.royale.core
 		{
             var e:IBrowserEvent;
             var nativeEvent:Object = eventObject.getBrowserEvent();
-            var converter:Object = converterMap[nativeEvent.constructor.name];
+            var converter:Function = converterMap[nativeEvent.constructor.name];
             if (converter)
-                e = converter["convert"](nativeEvent,eventObject);
+                e = converter(nativeEvent,eventObject);
             else
             {
                 e = new org.apache.royale.events.BrowserEvent();

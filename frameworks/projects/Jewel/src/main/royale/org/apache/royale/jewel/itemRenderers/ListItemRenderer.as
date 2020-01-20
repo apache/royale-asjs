@@ -58,10 +58,6 @@ package org.apache.royale.jewel.itemRenderers
 			if(MXMLDescriptor != null)
 			{
 				addClass("mxmlContent");
-			} else
-			{
-				textAlign = new TextAlign();
-				addBead(textAlign);
 			}
 		}
 
@@ -113,6 +109,11 @@ package org.apache.royale.jewel.itemRenderers
 
 		public function set align(value:String):void
 		{
+			if(!textAlign)
+			{
+				textAlign = new TextAlign();
+				addBead(textAlign);
+			}
 			textAlign.align = value;
 		}
 

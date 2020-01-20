@@ -126,13 +126,13 @@ package org.apache.royale.reflection {
 				//class or interface
 				if (inspect.prototype && inspect.prototype.ROYALE_REFLECTION_INFO) {
 					_qName = inspect.prototype.ROYALE_CLASS_INFO.names[0].qName;
-					_flags = inspect.prototype.ROYALE_REFLECTION_INFO.compileFlags;
+					_flags = inspect.prototype.ROYALE_COMPILE_FLAGS;
 					_class = inspect as Class;
 				}
 			} else {
 				//instance
 				if (inspect.ROYALE_REFLECTION_INFO) {
-					_flags = inspect.ROYALE_REFLECTION_INFO.compileFlags;
+					_flags = inspect.ROYALE_COMPILE_FLAGS;
 					_qName = inspect.ROYALE_CLASS_INFO.names[0].qName;
 					_class = constructor as Class;
 				}
@@ -160,7 +160,7 @@ package org.apache.royale.reflection {
 				//check that the prototype chain has the same compile flags
 				var proto:Object = _class.prototype;
 				while (proto && proto.ROYALE_REFLECTION_INFO) {
-					if (!hasCompilationOption(proto.ROYALE_REFLECTION_INFO.compileFlags, checkFlags)) {
+					if (!hasCompilationOption(proto.ROYALE_COMPILE_FLAGS, checkFlags)) {
 						return false;
 					}
 					proto = proto.constructor.superClass_;

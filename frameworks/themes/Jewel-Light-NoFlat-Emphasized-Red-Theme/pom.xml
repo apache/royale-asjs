@@ -69,6 +69,16 @@
                 </source>
                 <destination>${basedir}/src/main/resources</destination>
             </resource>
+            <!-- Create a copy for TourDeJewel so we can change themes dinamicaly -->
+            <resource>
+                <source>
+                    <directory>${basedir}/src/main/sass</directory>
+                    <includes>
+                        <include>defaults.sass</include>
+                    </includes>
+                </source>
+                <destination>${basedir}/../../../examples/royale/TourDeJewel/src/main/resources/assets/themes/Jewel-Light-NoFlat-Emphasized-Red-Theme</destination>
+            </resource>
           </resources>
         </configuration>
         <executions>

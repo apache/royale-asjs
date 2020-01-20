@@ -25,7 +25,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
@@ -34,7 +33,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
@@ -156,7 +155,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
 		protected function dataProviderChangeHandler(event:Event):void
@@ -187,11 +186,8 @@ package org.apache.royale.jewel.beads.itemRenderers
                 }
 
 				if (presentationModel) {
-					var style:SimpleCSSStyles = new SimpleCSSStyles();
-					style.marginBottom = presentationModel.separatorThickness;
-					UIBase(ir).style = style;
 					UIBase(ir).height = presentationModel.rowHeight;
-					UIBase(ir).percentWidth = 100;
+					// UIBase(ir).percentWidth = 100;
 				}
 				ir.data = dp[i];
 				dataGroup.addItemRenderer(ir, false);

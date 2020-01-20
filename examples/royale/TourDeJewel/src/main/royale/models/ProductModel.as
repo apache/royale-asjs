@@ -24,6 +24,17 @@ package models
 	[Bindable]
 	public class ProductModel
 	{
+		private var _fewProductList:ArrayList = new ArrayList([
+            new Product("ps100", "Few", 44, 200,"assets/smallbluerect.jpg"),
+            new Product("tx200", "Products", 5, 285,"assets/smallgreenrect.jpg"),
+            new Product("rz300", "On List", 80, 105,"assets/smallyellowrect.jpg")
+		]);
+
+		public function get fewProductList():ArrayList
+		{
+			return _fewProductList;
+		}
+
 		private var _productList:ArrayList = new ArrayList([
             new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
             new Product("tx200","Thingys",5,285,"assets/smallgreenrect.jpg"),

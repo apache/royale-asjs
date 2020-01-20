@@ -365,11 +365,41 @@ public class TextInput extends UIComponent implements ITextInput
 		}
 		
 		_disableBead.disabled = !value;
+        
+        COMPILE::JS {
+            if (value)
+            {
+                element.removeEventListener("keypress", blockInput);
+                element.removeEventListener("keydown", blockEdit);
+            }
+            else 
+            {
+                element.addEventListener("keypress", blockInput);
+                element.addEventListener("keydown", blockEdit);
+            }
+        }
 		
 		COMPILE::SWF {
 			var textView:TextInputView = view as TextInputView;
 			textView.textField.mouseEnabled = super.enabled;
 		}
+    }
+    
+    COMPILE::JS
+    private function blockInput(event:Event):void
+    {
+        event["returnValue"] = false;
+        if (event.preventDefault) event.preventDefault();        
+    }
+    
+    COMPILE::JS
+    private function blockEdit(event:Event):void
+    {
+        if (event["key"] == "Delete" || event["key"] == "Backspace")
+        {
+            event["returnValue"] = false;
+            if (event.preventDefault) event.preventDefault();   
+        }
     }
 
     //----------------------------------

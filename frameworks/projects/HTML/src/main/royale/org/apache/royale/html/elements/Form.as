@@ -112,6 +112,17 @@ package org.apache.royale.html.elements
             form.name = value;
         }
 
+        COMPILE::SWF
+        override public function get name():String
+        {
+            return super.name;
+        }
+        COMPILE::SWF
+        override public function set name(value:String):void
+        {
+            super.name = value;
+        }
+        
 		COMPILE::SWF
         private var _target:String;
         /**

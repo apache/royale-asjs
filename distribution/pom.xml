@@ -47,7 +47,9 @@
     <module>jars/compc</module>
     <module>jars/compiler-asc</module>
     <module>jars/compiler-compc</module>
+    <module>jars/compiler-compjsc</module>
     <module>jars/compiler-mxmlc</module>
+    <module>jars/compiler-mxmljsc</module>
     <module>jars/compiler-optimizer</module>
     <module>jars/compiler-swfdump</module>
     <module>jars/mxmlc</module>
@@ -528,6 +530,16 @@
     <dependency>
       <groupId>org.apache.royale.framework.distribution</groupId>
       <artifactId>compiler-mxmlc</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework.distribution</groupId>
+      <artifactId>compiler-compjsc</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.royale.framework.distribution</groupId>
+      <artifactId>compiler-mxmljsc</artifactId>
       <version>0.9.7-SNAPSHOT</version>
     </dependency>
     <dependency>

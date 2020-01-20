@@ -26,11 +26,15 @@
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.jewel.beads.validators.Validator;
+			import org.apache.royale.utils.css.loadCSS;
 
 			public function setUp():void
 			{
 				// you can change language here
 				//Validator.locale = "es_ES";
+				// loadCSS("assets/themes/Jewel-Light-NoFlat-Primary-Blue-Theme/defaults.css")
+				// loadCSS("assets/themes/Jewel-Light-NoFlat-Secondary-Topaz-Theme/defaults.css")
+				// loadCSS("assets/themes/Jewel-Light-NoFlat-Emphasized-Emerald-Theme/defaults.css")
 			}
 		]]>
 	</fx:Script>

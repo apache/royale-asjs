@@ -63,26 +63,11 @@ package org.apache.royale.html.elements
          */
         public function get for():String
         {
-            COMPILE::SWF
-            {
-                return _for;
-            }
-            COMPILE::JS
-            {
-                return element.getAttribute("for");
-            }
+            return getAttribute("for");
         }
         public function set for(value:String):void
         {
-            COMPILE::SWF
-            {
-                _for = value;
-            }
-
-            COMPILE::JS
-            {
-                element.setAttribute("for", value);
-            }
+            setAttribute("for", value);
         }
 
         COMPILE::JS

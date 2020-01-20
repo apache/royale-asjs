@@ -4825,12 +4825,16 @@ COMPILE::JS
      */
     public function get color():Object
     {
-        trace("color not implemented");
-        return 0;
+        return getStyle("color");
     }
     public function set color(value:Object):void
     {
-        trace("color not implemented");
+        if (value is String && value.charAt(0) != '#')
+        {
+            var c:uint = parseInt(value as String);
+            value = '#' + c.toString(16);
+        }
+        setStyle("color", value);
     }
 	[Inspectable(category="General")]
 

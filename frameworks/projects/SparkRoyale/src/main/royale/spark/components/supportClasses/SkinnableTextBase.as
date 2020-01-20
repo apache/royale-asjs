@@ -49,17 +49,17 @@ import spark.core.IProxiedStageTextWrapper;
 import spark.core.ISoftKeyboardHintClient;
 import spark.events.TextOperationEvent;
  */
-import org.apache.royale.html.accessories.PasswordInputBead;
-import org.apache.royale.textLayout.elements.TextFlow;
+import mx.core.mx_internal;
+import mx.managers.IFocusManagerComponent;
 import mx.utils.BitFlagUtil;
 
 import spark.components.RichEditableText;
 import spark.core.IEditableText;
-	
-import mx.managers.IFocusManagerComponent;
+
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
-import mx.core.mx_internal;
+import org.apache.royale.html.accessories.PasswordInputBead;
+import org.apache.royale.textLayout.elements.TextFlow;
 
 use namespace mx_internal;
 
@@ -469,10 +469,12 @@ public class SkinnableTextBase extends SkinnableComponent
     
     public function get contentBackgroundColor():uint
     {
-	return 0;
+        return getStyle("backgroundColor");
     }
+    
     public function set contentBackgroundColor(val:uint):void
     {
+        setStyle("contentBackgroundColor", val);
     }
     
     public function get contentBackgroundAlpha():Number
@@ -2874,6 +2876,20 @@ public class SkinnableTextBase extends SkinnableComponent
         // Redispatch the event that came from the RichEditableText.
         dispatchEvent(event);
     } */
+    
+    override public function setStyle(styleName:String, value:*):void
+    {
+        if (styleName == "contentBackgroundColor")
+        {
+            styleName = "backgroundColor";
+            if (value is String && value.charAt(0) != '#')
+            {
+                var c:uint = parseInt(value as String);
+                value = '#' + c.toString(16);
+            }
+        }
+        super.setStyle(styleName, value);
+    }
 }
 
 }

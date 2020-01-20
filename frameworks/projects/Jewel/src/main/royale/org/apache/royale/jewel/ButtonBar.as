@@ -49,10 +49,6 @@ package org.apache.royale.jewel
 	 */
 	public class ButtonBar extends List
 	{
-		public static const PRIMARY:String = "primary";
-        public static const SECONDARY:String = "secondary";
-        public static const EMPHASIZED:String = "emphasized";
-		
 		/**
 		 *  constructor.
 		 *

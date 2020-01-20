@@ -1066,7 +1066,7 @@ package org.apache.royale.core
                     // set it now if it was set once in addedToParent
                     // otherwise just wait for addedToParent
                     if (parent)
-                        setClassName(computeFinalClassNames());             
+                        setClassName(computeFinalClassNames());
                 }
                 
                 sendEvent(this,"classNameChanged");
@@ -1327,7 +1327,9 @@ package org.apache.royale.core
 			
             COMPILE::JS
             {
-			    setClassName(computeFinalClassNames());
+                var classNames:String = computeFinalClassNames().trim();
+                if(classNames)
+			        setClassName(classNames);
                 
                 if (style)
                     ValuesManager.valuesImpl.applyStyles(this, style);

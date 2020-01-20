@@ -27,13 +27,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.jewel.supportClasses.IListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
 	/**
@@ -149,7 +148,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -187,7 +186,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -226,7 +225,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IListPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -289,11 +288,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 			itemRenderer.labelField = labelField;
 			
 			if (presentationModel) {
-				var style:SimpleCSSStyles = new SimpleCSSStyles();
-				style.marginBottom = presentationModel.separatorThickness;
-				UIBase(itemRenderer).style = style;
 				UIBase(itemRenderer).height = presentationModel.rowHeight;
-				UIBase(itemRenderer).percentWidth = 100;
+
+				if(itemRenderer is IAlignItemRenderer)
+				{
+					(itemRenderer as IAlignItemRenderer).align = presentationModel.align;
+				}
 			}
 			
 			setData(itemRenderer, item, index);

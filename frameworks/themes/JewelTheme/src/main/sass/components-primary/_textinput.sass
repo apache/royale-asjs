@@ -28,8 +28,8 @@ $textinput-border-radius: $border-radius
 
 	input
 		@if $flat
-			background: $default-color
-			border: 0px solid
+			background: lighten($default-color, 15%)
+			border: 1px solid $default-color
 		@else
 			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
 			border: 1px solid darken($default-color, 15%)
@@ -43,7 +43,8 @@ $textinput-border-radius: $border-radius
 		
 		&:focus
 			@if $flat
-				background: lighten($primary-color, 25%)
+				border: 1px solid $primary-color
+				// background: lighten($primary-color, 25%)
 			@else
 				border: 1px solid darken($primary-color, 15%)
 		
@@ -97,8 +98,8 @@ $textarea-border-radius: $border-radius
 
 	textarea	
 		@if $flat
-			background: $default-color
-			border: 0px solid
+			background: lighten($default-color, 15%)
+			border: 1px solid $default-color
 		@else
 			background: linear-gradient(lighten($default-color, 15%), lighten($default-color, 10%))
 			border: 1px solid darken($default-color, 15%)
@@ -112,7 +113,8 @@ $textarea-border-radius: $border-radius
 		
 		&:focus
 			@if $flat
-				background: lighten($primary-color, 25%)
+				border: 1px solid $primary-color
+				// background: lighten($primary-color, 25%)
 			@else
 				border: 1px solid darken($primary-color, 15%)
 		

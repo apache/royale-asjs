@@ -27,6 +27,8 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
+			import org.apache.royale.core.StyledUIBase;
+
 			import vos.IconListVO;
 
 			private function onChange(event:Event):void {
@@ -95,16 +97,16 @@ limitations under the License.
 				const intro:String = "<strong>List selectedItem:</strong> ";
 				var evaluated:String;
 				if (item is String) {
-					evaluated = 'String value: \'' + item + '\'';
+					evaluated = "String value: '" + item + "'";
 				} else {
 					if (item === null || item === undefined) {
-						evaluated = '[Nothing Selected]'
+						evaluated = "Nothing Selected]";
 					}
 					else {
 						if (item is IconListVO) {
-							evaluated = 'Object\'s label field: \'' + IconListVO(item).label + '\'';
+							evaluated = "Object's label field: '" + IconListVO(item).label + "'";
 						} else {
-							evaluated = 'Object : ' + item;
+							evaluated = "Object : " + item;
 						}
 					}
 				}
@@ -161,10 +163,12 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel List With ItemRenderer"/>
+				<html:H3 text="Jewel List With ItemRenderer and rowHeight=52"/>
 				<j:HGroup gap="3">
 					<j:VGroup gap="3">
-						<j:List localId="iconList" emphasis="secondary" width="200" height="300" className="iconListItemRenderer" labelField="label">
+						<j:List localId="iconList" width="200" height="300"
+							className="iconListItemRenderer" labelField="label"
+							emphasis="secondary" rowHeight="52">
 							<j:beads>
 								<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
 								<j:AddListItemRendererForArrayListData/>
@@ -176,7 +180,7 @@ limitations under the License.
 						<j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/>
 					</j:VGroup>
 					<j:VGroup gap="3">
-						<j:Button text="change data" emphasis="{Button.PRIMARY}" click="changeListData()"/>
+						<j:Button text="change data" emphasis="{StyledUIBase.PRIMARY}" click="changeListData()"/>
 						<j:Button text="Add item" click="addItem()"/>
 						<j:Button text="Remove first item" click="removeItemAt()"/>
 						<j:Button text="Update first item" click="updateFirstItem()"/>

@@ -2597,6 +2597,18 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         _selectable = value;
     }
 
+    /**
+     *  @private
+     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+     */
+    override public function set selectedIndex(value:int):void
+    {   
+        if (collection)
+            value = Math.min(collection.length - 1, value);
+        clearSelected();
+        super.selectedIndex = value;
+    }
+    
     //----------------------------------
     //  showDataTips
     //----------------------------------

@@ -22,7 +22,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.core.IDataGrid;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.jewel.supportClasses.IDataGridPresentationModel;
+	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
 	/**
 	 *  The change event is dispatched whenever the datagrid's selection changes.
@@ -188,7 +188,7 @@ package org.apache.royale.jewel
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.core.IBead
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
 		 */
 		public function get presentationModel():IBead
 		{
@@ -196,14 +196,14 @@ package org.apache.royale.jewel
 				var c:Class = ValuesManager.valuesImpl.getValue(this, "iDataGridPresentationModel");
 				if (c) {
 					_presentationModel = new c() as IDataGridPresentationModel;
-					addBead(_presentationModel as IBead);
+					addBead(_presentationModel);
 				}
 			}
 			
 			return _presentationModel;
 		}
 		/**
-		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
+		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
 		 */
 		public function set presentationModel(value:IBead):void
 		{
@@ -217,14 +217,14 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
 		 */
 		public function get rowHeight():Number
 		{
 			return (presentationModel as IDataGridPresentationModel).rowHeight;
 		}
         /**
-         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.IDataGridPresentationModel
+         * @royaleignorecoercion org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel
          */
 		public function set rowHeight(value:Number):void
 		{

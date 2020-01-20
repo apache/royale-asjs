@@ -358,7 +358,7 @@ package org.apache.royale.events
         COMPILE::JS
         public static function setupConverter():Boolean
         {
-            ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter;
+            ElementWrapper.converterMap["KeyboardEvent"] = KeyboardEventConverter.convert;
             return true;
         }
         

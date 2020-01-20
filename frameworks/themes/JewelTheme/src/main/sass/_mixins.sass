@@ -21,7 +21,8 @@
 	@if ($state == "normal")
 		@if $flat
 			background: $bg-color
-			border: 0px solid
+			border: 1px solid darken($bg-color, 8%)
+			box-shadow: none
 		@else
 			background: linear-gradient(lighten($bg-color, 5%), darken($bg-color, 5%))
 			border: 1px solid darken($bg-color, 15%)
@@ -31,7 +32,7 @@
 	@else if ($state == "hover")
 		@if $flat
 			background: darken($bg-color, 5%)
-			border: 0px solid
+			border: 1px solid darken($bg-color, 8%)
 		@else
 			background: linear-gradient($bg-color, darken($bg-color, 10%))
 			border: 1px solid darken($bg-color, 20%)
@@ -39,7 +40,8 @@
 	@else if ($state == "active") or ($state == "selected")
 		@if $flat
 			background: darken($bg-color, 15%)
-			border: 0px solid
+			border: 1px solid darken($bg-color, 8%)
+			box-shadow: none
 		@else
 			background: linear-gradient(darken($bg-color, 10%), darken($bg-color, 20%))
 			border: 1px solid darken($bg-color, 30%) 
@@ -48,7 +50,8 @@
 	@else if ($state == "focus")
 		@if $flat
 			background: lighten($bg-color, 5%)
-			border: 0px solid $bg-color
+			border: 1px solid darken($bg-color, 8%)
+			box-shadow: none
 		@else
 			border: 1px solid darken($bg-color, 15%)
 			box-shadow: inset 0px 0px 0px 1px rgba(lighten($bg-color, 50%), .5), inset 0 1px 0 rgba(lighten($bg-color, 55%), .6)
@@ -56,7 +59,7 @@
 	@else if ($state == "disabled")
 		@if $flat
 			background: $disabled-color !important
-			border: 0px solid !important
+			border: 1px solid $disabled-border-color !important
 		@else
 			background: $disabled-color !important
 			border: 1px solid $disabled-border-color !important
