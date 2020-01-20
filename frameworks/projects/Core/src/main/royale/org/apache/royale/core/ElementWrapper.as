@@ -317,13 +317,13 @@ package org.apache.royale.core
         override public function addEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
             var source:Object = getActualDispatcher_(type);
-            goog.events.listen(source, type, handler);
+            goog.events.listen(source, type, handler, opt_capture ? { capture: true } : null);
         }
         
         override public function removeEventListener(type:String, handler:Function, opt_capture:Boolean = false, opt_handlerScope:Object = null):void
         {
             var source:Object = getActualDispatcher_(type);
-            goog.events.unlisten(source, type, handler);
+            goog.events.unlisten(source, type, handler, opt_capture ? { capture: true } : null);
         }
         
         private function getActualDispatcher_(type:String):Object
