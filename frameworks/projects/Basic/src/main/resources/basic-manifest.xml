@@ -273,4 +273,6 @@
     <component id="ModalDisplay" class="org.apache.royale.html.beads.plugin.ModalDisplay"/>
     <component id="ModalOverlay" class="org.apache.royale.html.beads.plugin.ModalOverlay"/>
 
+    <component id="Router" class="org.apache.royale.routing.Router"/>
+
 </componentPackage>
