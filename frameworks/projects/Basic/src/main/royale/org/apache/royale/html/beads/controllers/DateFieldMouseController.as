@@ -101,6 +101,9 @@ package org.apache.royale.html.beads.controllers
             var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
             if (host) {
                 host.addEventListener("click", dismissHandler);
+                // also listen in capture to intercept before a component can 
+                // see the click and stop its propagation
+                host.addEventListener("click", dismissHandler, true);
             }
         }
         
@@ -112,6 +115,7 @@ package org.apache.royale.html.beads.controllers
             var host:UIBase = UIUtils.findPopUpHost(_strand as UIBase) as UIBase;
             if (host) {
                 host.removeEventListener("click", dismissHandler);
+                host.removeEventListener("click", dismissHandler, true);
             }
 		}
 		
