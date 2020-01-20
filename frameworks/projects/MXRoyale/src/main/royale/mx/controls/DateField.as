@@ -434,8 +434,9 @@ public class DateField extends ComboBase
 	 * 
 	 * TODO move short names to resource bundles.
 	 */
-	/*  protected static function shortMonthName(monthName:String, locale:Locale, monthNames:Array):String
+	 protected static function shortMonthName(monthName:String, /*locale:Locale,*/ monthNames:Array):String
 	 {
+        /*
 		if (locale && locale.language == "fr") {
 			if (monthName == monthNames[5]) {
 				return "JUN";
@@ -443,11 +444,15 @@ public class DateField extends ComboBase
 			else if (monthName == monthNames[6]) {
 				return "JUL";	
 			}
-		}
+		}*/
 		
 		return monthName.substr(0,3);
-	 } */
+	 }
 	 
+    public static var monthNames:Array = ["January", 
+            "February", "March", "April", "May", "June", 
+            "July", "August", "September", "October", "November", "December"];
+
     /**
      *  Parses a String object that contains a date, and returns a Date
      *  object corresponding to the String.
@@ -481,7 +486,7 @@ public class DateField extends ComboBase
      */
     public static function stringToDate(valueString:String, inputFormat:String):Date
     {
-        /* var maskChar:String
+        var maskChar:String
 		var dateChar:String;
 		var dateString:String;
 		var monthString:String;
@@ -495,14 +500,16 @@ public class DateField extends ComboBase
 		if (valueString == null || inputFormat == null)
 			return null;
 		
-		var monthNames:Array = ResourceManager.getInstance().getStringArray("SharedResources", "monthNames");	
-		var noMonths:int = monthNames.length;
+		//var monthNames:Array = ResourceManager.getInstance().getStringArray("SharedResources", "monthNames");	
+        var noMonths:int = monthNames.length;
+        /*
 		var locales:Array = ResourceManager.getInstance().localeChain;
 		var locale:Locale = new Locale(locales[0]);
-		
+		*/
+        
 		for (var i:int = 0; i < noMonths; i++) {
 			valueString = valueString.replace(monthNames[i], (i+1).toString());
-			valueString = valueString.replace(shortMonthName(monthNames[i], locale, monthNames), (i+1).toString());
+			valueString = valueString.replace(shortMonthName(monthNames[i], /*locale,*/ monthNames), (i+1).toString());
 		}
 		
 		length = valueString.length;
@@ -603,9 +610,7 @@ public class DateField extends ComboBase
         if (dayNum != newDate.getDate() || (monthNum - 1) != newDate.getMonth())
             return null;
 
-        return newDate; */ 
-		var newDate:Date =new Date();
-		return newDate;
+        return newDate; 
     }
 
     /**
