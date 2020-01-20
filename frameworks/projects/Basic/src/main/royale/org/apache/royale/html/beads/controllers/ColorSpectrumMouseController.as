@@ -24,7 +24,9 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.Event;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ISliderView;
 	import org.apache.royale.utils.HSV;
 	import org.apache.royale.utils.hsvToHex;
@@ -118,6 +120,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			sliderView.track.addEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
 			sliderView.track.addEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
+            (_strand as IEventDispatcher).dispatchEvent(new Event("thumbDown"));
 		}
 		
 		private function thumbMoveHandler(event:MouseEvent):void
@@ -131,6 +134,7 @@ package org.apache.royale.html.beads.controllers
 		
 		private function thumbUpHandler(event:MouseEvent):void
 		{
+            (_strand as IEventDispatcher).dispatchEvent(new Event("thumbUp"));
 			sliderView.track.removeEventListener(MouseEvent.MOUSE_MOVE, thumbMoveHandler);
 			sliderView.track.removeEventListener(MouseEvent.MOUSE_UP, thumbUpHandler);
 		}
