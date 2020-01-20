@@ -69,7 +69,7 @@ DataGroup
 {
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionIListModel");
-	IBeadView:  ClassReference("org.apache.royale.html.beads.VirtualDataContainerView");			
+	IBeadView:  ClassReference("org.apache.royale.html.beads.VirtualListView");			
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VirtualListVerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");

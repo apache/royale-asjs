@@ -283,6 +283,7 @@ List
 
 ListItemRenderer
 {
+	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 	padding-top: 4px;
 	padding-bottom: 4px;
 	flex-shrink: 0;
