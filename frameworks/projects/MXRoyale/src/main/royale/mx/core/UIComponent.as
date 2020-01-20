@@ -1302,6 +1302,7 @@ public class UIComponent extends UIBase
     private var _enabled:Boolean = true;
 
     [Inspectable(category="General", enumeration="true,false", defaultValue="true")]
+    [Bindable("disabledChange")]
 
     /**
      *  @copy mx.core.IUIComponent#enabled
