@@ -53,7 +53,6 @@ import spark.components.supportClasses.GroupBase;
 import spark.components.supportClasses.ScrollerLayout;
 import spark.components.supportClasses.TouchScrollHelper;
 import spark.core.IGraphicElement;
-import spark.core.IViewport;
 import spark.core.NavigationUnit;
 import spark.effects.Animate;
 import spark.effects.ThrowEffect;
@@ -69,6 +68,7 @@ import mx.core.UIComponent;
 import mx.managers.IFocusManagerComponent;
 
 import spark.components.supportClasses.SkinnableComponent;
+import spark.core.IViewport;
 
 import org.apache.royale.core.IChild;
 import org.apache.royale.events.Event;
@@ -1051,7 +1051,7 @@ public class Scroller extends SkinnableComponent
     //  viewport - default property
     //----------------------------------    
     
-    private var _viewport:IVisualElement;//IViewport;
+    private var _viewport:IViewport;
     
     [Bindable(event="viewportChanged")]
     
@@ -1079,7 +1079,7 @@ public class Scroller extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-    public function get viewport(): IVisualElement//IViewport
+    public function get viewport(): IViewport
     {       
         return _viewport;
     }
@@ -1087,7 +1087,7 @@ public class Scroller extends SkinnableComponent
     /**
      *  @private
      */
-    public function set viewport(value:IVisualElement):void
+    public function set viewport(value:IViewport):void
     {
         if (value == _viewport)
             return;
@@ -1113,8 +1113,9 @@ public class Scroller extends SkinnableComponent
     {
         /*  SWF?
         if (skin && viewport)
-        {
+        {*/
             viewport.clipAndEnableScrolling = true;
+            /*
             Group(skin).addElementAt(viewport, 0);
             viewport.addEventListener(PropertyChangeEvent.PROPERTY_CHANGE, viewport_propertyChangeHandler);
             viewport.addEventListener(Event.RESIZE, viewport_resizeHandler);
@@ -3892,6 +3893,13 @@ public class Scroller extends SkinnableComponent
         (_viewport as UIComponent).width = width;
         (_viewport as UIComponent).height = height;
         installViewport();
+    }
+    
+    override public function setActualSize(w:Number, h:Number):void
+    {
+        super.setActualSize(w, h);
+        (_viewport as UIComponent).width = width;
+        (_viewport as UIComponent).height = height;        
     }
 }
 

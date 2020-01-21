@@ -163,6 +163,13 @@ Panel .TitleBar
 	background-color: #FFFFFF;
 }
 
+RichEditableText
+{
+	inactiveTextSelectionColor: #E8E8E8;
+    focusedTextSelectionColor: #A8C6EE;
+    unfocusedTextSelectionColor: #E8E8E8;
+}
+
 Scroller
 {
 	IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");

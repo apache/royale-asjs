@@ -33,14 +33,13 @@ package spark.components.supportClasses
 //import flash.geom.Rectangle;
 
 //import mx.core.ILayoutElement;
-import org.apache.royale.geom.Point;
-	
 import mx.core.IUIComponent;
 import mx.core.IVisualElement;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 import mx.events.PropertyChangeEvent;
 
+import spark.core.IViewport;
 import spark.layouts.BasicLayout;
 import spark.layouts.supportClasses.LayoutBase;
 
@@ -54,6 +53,7 @@ import org.apache.royale.core.IParent;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.ValueEvent;
+import org.apache.royale.geom.Point;
 import org.apache.royale.utils.MXMLDataInterpreter;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -332,8 +332,8 @@ include "../../styles/metadata/SelectionFormatTextStyles.as" */
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class GroupBase extends UIComponent implements ILayoutParent, IContainer
-{ //implements IViewport
+public class GroupBase extends UIComponent implements ILayoutParent, IContainer, IViewport
+{
 
     //--------------------------------------------------------------------------
     //

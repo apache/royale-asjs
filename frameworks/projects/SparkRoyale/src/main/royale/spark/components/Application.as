@@ -68,6 +68,7 @@ import mx.managers.ISystemManager;
 
 COMPILE::JS {
     import org.apache.royale.core.ElementWrapper;
+    import org.apache.royale.events.ElementEvents;
 }
 
 import org.apache.royale.binding.ContainerDataBinding;
@@ -1639,10 +1640,17 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
     /**
      *  @private
      */
-    /* override protected function createChildren():void
+    override protected function createChildren():void
     {
+        COMPILE::JS
+            {
+                ElementEvents.elementEvents["focusin"] = 1;
+                ElementEvents.elementEvents["focusout"] = 1;
+            }
+
         super.createChildren();
         
+        /*
         // Only listen for softKeyboard events 
         // if the runtime supports a soft keyboard
         if (softKeyboardBehavior != "")
@@ -1661,8 +1669,8 @@ public class Application extends SkinnableContainer implements IStrand, IParent,
             if (nativeApp && nativeApp["nativeApplication"])
                 EventDispatcher(nativeApp["nativeApplication"]).
                     addEventListener(Event.DEACTIVATE, nativeApplication_deactivateHandler);
-        }
-    } */
+        }*/
+    }
 
     /**
      *  @private

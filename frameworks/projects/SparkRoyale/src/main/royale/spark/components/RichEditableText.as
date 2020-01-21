@@ -85,7 +85,6 @@ package spark.components
     
     use namespace tlf_internal; */
     
-    import mx.core.IVisualElement;
     import mx.core.UIComponent;
     import mx.core.mx_internal;
     import mx.events.FlexEvent;
@@ -93,7 +92,9 @@ package spark.components
     
     import spark.components.supportClasses.RichEditableTextContainerManager;
     import spark.core.IEditableText;
+    import spark.core.IViewport;
     
+    import org.apache.royale.textLayout.beads.DispatchTLFKeyboardEventBead;
     import org.apache.royale.textLayout.container.TextContainerManager;
     import org.apache.royale.textLayout.conversion.ITextExporter;
     import org.apache.royale.textLayout.conversion.ITextImporter;
@@ -103,12 +104,13 @@ package spark.components
     import org.apache.royale.textLayout.edit.SelectionState;
     import org.apache.royale.textLayout.elements.TextFlow;
     import org.apache.royale.textLayout.events.SelectionEvent;
-    import org.apache.royale.textLayout.factory.TLFFactory;
     import org.apache.royale.textLayout.factory.StandardTLFFactory;
+    import org.apache.royale.textLayout.factory.TLFFactory;
     import org.apache.royale.textLayout.factory.TextFlowTextLineFactory;
     import org.apache.royale.textLayout.factory.TextLineFactoryBase;
     use namespace mx_internal;
 	import mx.managers.IFocusManagerComponent;
+	import org.apache.royale.textLayout.beads.DispatchTLFKeyboardEventBead;
 
     
     //--------------------------------------
@@ -452,9 +454,9 @@ package spark.components
      *  @see flashx.textLayout.container.TextContainerManager
      */
     public class RichEditableText extends UIComponent
-        implements IFocusManagerComponent, IVisualElement, IEditableText
+        implements IFocusManagerComponent, IEditableText, IViewport
     {
-	//, IIMESupport, ISystemCursorClient, IViewport
+	//, IIMESupport, ISystemCursorClient
        // include "../core/Version.as";
         
         //--------------------------------------------------------------------------
@@ -633,6 +635,8 @@ package spark.components
         {
             super();
             
+            typeNames = "RichEditableText";
+                
             initClass();
             
             // Use the setter.
@@ -1054,7 +1058,7 @@ package spark.components
          *  Set to true by a scroller when it installs this as a viewport.
          *  Set to false by a scroller when it uninstalls this as a viewport.
          */
-        /* public function set clipAndEnableScrolling(value:Boolean):void 
+        public function set clipAndEnableScrolling(value:Boolean):void 
         {
             if (value == _clipAndEnableScrolling) 
                 return;
@@ -1063,7 +1067,7 @@ package spark.components
             clipAndEnableScrollingChanged = true;
             
             invalidateProperties();
-        } */
+        }
         
         //----------------------------------
         //  contentHeight
@@ -1954,7 +1958,7 @@ package spark.components
         /**
          *  @private
          */
-        /* private var _selectionHighlighting:String =
+        private var _selectionHighlighting:String = "whenFocused" /*
             TextSelectionHighlighting.WHEN_FOCUSED; */
         
         /**
@@ -1962,9 +1966,9 @@ package spark.components
          *  To indicate either selection highlighting or selection styles have
          *  changed.
          */
-        /* private var selectionFormatsChanged:Boolean = false;
+        private var selectionFormatsChanged:Boolean = false;
         
-        [Inspectable(category="General", enumeration="always,whenActive,whenFocused", defaultValue="whenFocused")] */
+        [Inspectable(category="General", enumeration="always,whenActive,whenFocused", defaultValue="whenFocused")]
         
         /**
          *  Determines when the text selection is highlighted.
@@ -1995,15 +1999,15 @@ package spark.components
          *  @playerversion AIR 1.5
          *  @productversion Royale 0.9.4
          */
-        /* public function get selectionHighlighting():String 
+        public function get selectionHighlighting():String 
         {
             return _selectionHighlighting;
-        } */
+        }
         
         /**
          *  @private
          */
-        /* public function set selectionHighlighting(value:String):void
+        public function set selectionHighlighting(value:String):void
         {
             if (value == _selectionHighlighting)
                 return;
@@ -2013,7 +2017,7 @@ package spark.components
             
             invalidateProperties();
             invalidateDisplayList();
-        } */
+        }
         
         //----------------------------------
         //  text
@@ -4944,6 +4948,12 @@ package spark.components
             commitProperties();
             measure();
             updateDisplayList(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
+            COMPILE::JS
+            {
+                if (element['tabIndex'] == -1)
+                    element['tabIndex'] = 0;
+            }
+            addBead(new DispatchTLFKeyboardEventBead());
         }
     }
 

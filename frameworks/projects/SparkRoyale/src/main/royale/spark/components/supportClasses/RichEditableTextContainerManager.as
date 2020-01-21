@@ -45,8 +45,6 @@ import spark.components.TextSelectionHighlighting;
 import flashx.textLayout.tlf_internal;
 import flashx.textLayout.container.ContainerController;
 import flashx.textLayout.edit.EditManager;
-import flashx.textLayout.edit.EditingMode;
-import flashx.textLayout.edit.SelectionFormat;
 import flashx.textLayout.edit.SelectionManager;
 import flashx.textLayout.elements.FlowLeafElement;
 import flashx.textLayout.elements.ParagraphElement;
@@ -58,6 +56,8 @@ import flashx.undo.IUndoManager;
 import flashx.undo.UndoManager;
 */
 
+import org.apache.royale.textLayout.edit.EditingMode;
+import org.apache.royale.textLayout.edit.SelectionFormat;
 import org.apache.royale.textLayout.edit.ElementRange;
 import org.apache.royale.textLayout.elements.TextRange;
 import org.apache.royale.textLayout.edit.IEditManager;
@@ -259,6 +259,7 @@ public class RichEditableTextContainerManager extends TextContainerManager
     
     /**
      *  @private
+     */
     override protected function getFocusedSelectionFormat():SelectionFormat
     {
         var selectionColor:* = textDisplay.getStyle("focusedTextSelectionColor");
@@ -272,13 +273,13 @@ public class RichEditableTextContainerManager extends TextContainerManager
         // the inverse color of the background, for maximum readability.         
         // If not editable, then no insertion point.        
         return new SelectionFormat(
-            selectionColor, 1.0, BlendMode.NORMAL, 
-            0x000000, hideCursor ? 0 : focusedPointAlpha, BlendMode.INVERT);
+            selectionColor, 1.0, "normal" /*BlendMode.NORMAL*/, 
+            0x000000, hideCursor ? 0 : focusedPointAlpha, "invert" /*BlendMode.INVERT*/);
     }
-     */
     
     /**
      *  @private
+     */
     override protected function getUnfocusedSelectionFormat():SelectionFormat
     {
         var unfocusedSelectionColor:* = textDisplay.getStyle(
@@ -286,19 +287,19 @@ public class RichEditableTextContainerManager extends TextContainerManager
 
         var unfocusedAlpha:Number =
             textDisplay.selectionHighlighting != 
-            TextSelectionHighlighting.WHEN_FOCUSED ?
+            "whenFocused" /*TextSelectionHighlighting.WHEN_FOCUSED*/ ?
             1.0 :
             0.0;
 
         // No insertion point when no focus.
         return new SelectionFormat(
-            unfocusedSelectionColor, unfocusedAlpha, BlendMode.NORMAL,
+            unfocusedSelectionColor, unfocusedAlpha, "normal" /*BlendMode.NORMAL*/,
             unfocusedSelectionColor, 0.0);
     }
-     */
     
     /**
      *  @private
+     */
     override protected function getInactiveSelectionFormat():SelectionFormat
     {
         var inactiveSelectionColor:* = textDisplay.getStyle(
@@ -308,7 +309,7 @@ public class RichEditableTextContainerManager extends TextContainerManager
         
         var inactiveRangeAlpha:Number =
             textDisplay.selectionHighlighting == 
-            TextSelectionHighlighting.ALWAYS ?
+            "always" /*TextSelectionHighlighting.ALWAYS*/ ?
             1.0 :
             0.0;
 
@@ -317,11 +318,10 @@ public class RichEditableTextContainerManager extends TextContainerManager
         var pointBlinkRate:Number = 0.0;
         
         return new SelectionFormat(
-            inactiveSelectionColor, inactiveRangeAlpha, BlendMode.NORMAL,
-            inactiveSelectionColor, inactivePointAlpha, BlendMode.INVERT,
+            inactiveSelectionColor, inactiveRangeAlpha, "normal" /* BlendMode.NORMAL */,
+            inactiveSelectionColor, inactivePointAlpha, "invert" /* BlendMode.INVERT */,
             pointBlinkRate);
     }   
-     */
     
     /**
      *  @private

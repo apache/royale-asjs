@@ -20,7 +20,7 @@
 package spark.components
 {
 	
-    import mx.core.IVisualElement;
+    import spark.core.IViewport;
     
 	import spark.components.supportClasses.SkinnableTextBase;
     
@@ -340,7 +340,7 @@ package spark.components
             scroller.percentWidth = 100;
             textDisplay = new RichEditableText();
             partAdded("textDisplay", textDisplay);
-            scroller.viewport = textDisplay as IVisualElement;
+            scroller.viewport = textDisplay as IViewport;
             addElement(scroller);
         }
         
