@@ -34,8 +34,6 @@ under the License.
         <include>org.apache.royale.framework.distribution:*:jar</include>
       </includes>
       <excludes>
-        <exclude>org.apache.royale.framework.distribution:compiler-compjsc:jar</exclude>
-        <exclude>org.apache.royale.framework.distribution:compiler-mxmljsc:jar</exclude>
         <exclude>org.apache.royale.compiler:compiler-jx:jar</exclude>
       </excludes>
     </dependencySet>
@@ -86,8 +84,6 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>js/lib</outputDirectory>
       <includes>
-        <include>org.apache.royale.framework.distribution:compiler-compjsc:jar</include>
-        <include>org.apache.royale.framework.distribution:compiler-mxmljsc:jar</include>
         <include>org.apache.royale.compiler:compiler-jx:jar</include>
         <include>*:args4j:jar</include>
         <include>*:commons-io:*</include>
@@ -211,6 +207,18 @@ under the License.
   </fileSets>
 
   <files>
+    <!-- Rename main js dummy jar artifacts to "mxmlc.jar" and "compc.jar" that is what an IDE expects to find -->
+    <file>
+      <source>jars/compiler-mxmljsc/target/compiler-mxmljsc-0.9.7-SNAPSHOT.jar</source>
+      <outputDirectory>js/lib</outputDirectory>
+      <destName>mxmlc.jar</destName>
+    </file>
+    <file>
+      <source>jars/compiler-compjsc/target/compiler-compjsc-0.9.7-SNAPSHOT.jar</source>
+      <outputDirectory>js/lib</outputDirectory>
+      <destName>compc.jar</destName>
+    </file>
+
     <!-- Copy the manifests -->
     <file>
       <source>../frameworks/projects/Binding/src/main/resources/basic-manifest.xml</source>
