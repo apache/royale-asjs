@@ -20,8 +20,10 @@
 package spark.components
 {
 	
+    import mx.core.IVisualElement;
+    
 	import spark.components.supportClasses.SkinnableTextBase;
-	
+    
 	import org.apache.royale.events.Event;
 	import org.apache.royale.textLayout.elements.TextFlow;
 	
@@ -331,6 +333,17 @@ package spark.components
             typeNames += " SparkTextArea";
 		}
 		
+        override protected function createChildren():void
+        {
+            scroller = new Scroller();
+            scroller.percentHeight = 100;
+            scroller.percentWidth = 100;
+            textDisplay = new RichEditableText();
+            partAdded("textDisplay", textDisplay);
+            scroller.viewport = textDisplay as IVisualElement;
+            addElement(scroller);
+        }
+        
 		//--------------------------------------------------------------------------
 		//
 		//  Variables

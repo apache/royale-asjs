@@ -31,13 +31,11 @@ import flash.events.SoftKeyboardEvent;
 import flash.system.Capabilities;
 
 import flashx.textLayout.elements.TextFlow;
-import flashx.textLayout.events.SelectionEvent;
 
 import mx.core.FlexGlobals;
 import mx.core.IIMESupport;
 import mx.core.IVisualElement;
 import mx.core.InteractionMode;
-import mx.events.FlexEvent;
 import mx.events.SandboxMouseEvent;
 import mx.events.TouchInteractionEvent;
 import mx.utils.Platform;
@@ -47,19 +45,21 @@ import spark.components.TextSelectionHighlighting;
 import spark.core.IDisplayText;
 import spark.core.IProxiedStageTextWrapper;
 import spark.core.ISoftKeyboardHintClient;
-import spark.events.TextOperationEvent;
  */
+import mx.events.FlexEvent;
 import mx.core.mx_internal;
 import mx.managers.IFocusManagerComponent;
 import mx.utils.BitFlagUtil;
 
 import spark.components.RichEditableText;
 import spark.core.IEditableText;
+import spark.events.TextOperationEvent;
 
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.html.accessories.PasswordInputBead;
 import org.apache.royale.textLayout.elements.TextFlow;
+import org.apache.royale.textLayout.events.SelectionEvent;
 
 use namespace mx_internal;
 
@@ -332,52 +332,52 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-   // private static const DISPLAY_AS_PASSWORD_PROPERTY_FLAG:uint = 1 << 1;
+    private static const DISPLAY_AS_PASSWORD_PROPERTY_FLAG:uint = 1 << 1;
     
     /**
      *  @private
      */
-   // private static const EDITABLE_PROPERTY_FLAG:uint = 1 << 2;
+    private static const EDITABLE_PROPERTY_FLAG:uint = 1 << 2;
         
     /**
      *  @private
      */
- //   private static const HEIGHT_IN_LINES_PROPERTY_FLAG:uint = 1 << 3;
+    private static const HEIGHT_IN_LINES_PROPERTY_FLAG:uint = 1 << 3;
     
     /**
      *  @private
      */
- //   private static const IME_MODE_PROPERTY_FLAG:uint = 1 << 4;
+    private static const IME_MODE_PROPERTY_FLAG:uint = 1 << 4;
     
     /**
      *  @private
      */
-  //  private static const MAX_CHARS_PROPERTY_FLAG:uint = 1 << 5;
+    private static const MAX_CHARS_PROPERTY_FLAG:uint = 1 << 5;
        
     /**
      *  @private
      */
-  //  private static const MAX_WIDTH_PROPERTY_FLAG:uint = 1 << 7;
+    private static const MAX_WIDTH_PROPERTY_FLAG:uint = 1 << 7;
     
     /**
      *  @private
      */
-   // private static const RESTRICT_PROPERTY_FLAG:uint = 1 << 8;
+     private static const RESTRICT_PROPERTY_FLAG:uint = 1 << 8;
 
     /**
      *  @private
      */
-  //  private static const SELECTABLE_PROPERTY_FLAG:uint = 1 << 9;
+    private static const SELECTABLE_PROPERTY_FLAG:uint = 1 << 9;
 
     /**
      *  @private
      */
-  //  private static const SELECTION_HIGHLIGHTING_FLAG:uint = 1 << 10;
+    private static const SELECTION_HIGHLIGHTING_FLAG:uint = 1 << 10;
 
     /**
      *  @private
      */
-  //  private static const TEXT_PROPERTY_FLAG:uint = 1 << 11;
+    private static const TEXT_PROPERTY_FLAG:uint = 1 << 11;
 
     /**
      *  @private
@@ -387,37 +387,37 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-  //  private static const TYPICAL_TEXT_PROPERTY_FLAG:uint = 1 << 13;
+    private static const TYPICAL_TEXT_PROPERTY_FLAG:uint = 1 << 13;
     
     /**
      *  @private
      */
-  //  private static const WIDTH_IN_CHARS_PROPERTY_FLAG:uint = 1 << 14;
+    private static const WIDTH_IN_CHARS_PROPERTY_FLAG:uint = 1 << 14;
     
     /**
      *  @private
      */
-  //  private static const AUTO_CAPITALIZE_FLAG:uint = 1 << 15;
+    private static const AUTO_CAPITALIZE_FLAG:uint = 1 << 15;
     
     /**
      *  @private
      */
-  //  private static const AUTO_CORRECT_FLAG:uint = 1 << 16;
+    private static const AUTO_CORRECT_FLAG:uint = 1 << 16;
     
     /**
      *  @private
      */
-  //  private static const RETURN_KEY_LABEL_FLAG:uint = 1 << 17;
+    private static const RETURN_KEY_LABEL_FLAG:uint = 1 << 17;
     
     /**
      *  @private
      */
-  //  private static const SOFT_KEYBOARD_TYPE_FLAG:uint = 1 << 18;
+    private static const SOFT_KEYBOARD_TYPE_FLAG:uint = 1 << 18;
 
     /**
      *  @private
      */
-  //  private static const PROMPT_TEXT_PROPERTY_FLAG:uint = 1;
+    private static const PROMPT_TEXT_PROPERTY_FLAG:uint = 1;
     
     //--------------------------------------------------------------------------
     //
@@ -1504,7 +1504,7 @@ public class SkinnableTextBase extends SkinnableComponent
      */
     public function get text():String
     {
-        /* if (textDisplay)
+        if (textDisplay)
             return textDisplay.text;
             
         // If there is no textDisplay, it isn't possible to set one of
@@ -1512,8 +1512,7 @@ public class SkinnableTextBase extends SkinnableComponent
                     
         // want the default to be the empty string
         var v:* = textDisplayProperties.text;
-        return (v === undefined) ? "" : v; */
-		return "";
+        return (v === undefined) ? "" : v;
     }
 
     /**
@@ -1523,7 +1522,7 @@ public class SkinnableTextBase extends SkinnableComponent
     {
         // text should never be null.  Convert null to the empty string.
         
-        /* if (textDisplay)
+        if (textDisplay)
         {
             textDisplay.text = value;
             textDisplayProperties = BitFlagUtil.update(
@@ -1542,7 +1541,7 @@ public class SkinnableTextBase extends SkinnableComponent
 
         // Generate an UPDATE_COMPLETE event.
         invalidateProperties();
-        invalidateSkinState(); */
+        invalidateSkinState();
      } 
 
     //----------------------------------
@@ -1860,10 +1859,11 @@ public class SkinnableTextBase extends SkinnableComponent
     /**
      *  @private
      */
-    /* override protected function partAdded(partName:String, instance:Object):void
+    override protected function partAdded(partName:String, instance:Object):void
     {
         super.partAdded(partName, instance);
 
+        /*
         if (instance == promptDisplay)
         {
             var newPromptDisplayProperties:uint = 0;
@@ -1875,7 +1875,7 @@ public class SkinnableTextBase extends SkinnableComponent
             }
             promptDisplayProperties = newPromptDisplayProperties;
         }
-        
+        */
         if (instance == textDisplay)
         {
             // Copy proxied values from textDisplayProperties (if set) to 
@@ -1902,7 +1902,7 @@ public class SkinnableTextBase extends SkinnableComponent
             textDisplay.addEventListener(FlexEvent.VALUE_COMMIT,
                                          textDisplay_valueCommitHandler);
         }
-    } */
+    }
 
     /**
      *  @private
@@ -2351,7 +2351,7 @@ public class SkinnableTextBase extends SkinnableComponent
      *  Copy values stored locally into textDisplay now that textDisplay 
      *  has been added.
      */
-    /* private function textDisplayAdded():void
+    private function textDisplayAdded():void
     {        
         var newTextDisplayProperties:uint = 0;
         var richEditableText:RichEditableText = textDisplay as RichEditableText;
@@ -2387,12 +2387,13 @@ public class SkinnableTextBase extends SkinnableComponent
                 HEIGHT_IN_LINES_PROPERTY_FLAG, true);
         }
 
+        /*
         if (textDisplayProperties.imeMode !== undefined && richEditableText)
         {
             richEditableText.imeMode = textDisplayProperties.imeMode;
             newTextDisplayProperties = BitFlagUtil.update(
                 uint(newTextDisplayProperties), IME_MODE_PROPERTY_FLAG, true);
-        }
+        }*/
 
         if (textDisplayProperties.maxChars !== undefined)
         {
@@ -2425,6 +2426,7 @@ public class SkinnableTextBase extends SkinnableComponent
                 uint(newTextDisplayProperties), SELECTABLE_PROPERTY_FLAG, true);
         }
 
+        /*
         if (textDisplayProperties.selectionHighlighting !== undefined && richEditableText)
         {
             richEditableText.selectionHighlighting = 
@@ -2432,7 +2434,7 @@ public class SkinnableTextBase extends SkinnableComponent
             newTextDisplayProperties = BitFlagUtil.update(
                 uint(newTextDisplayProperties), 
                 SELECTION_HIGHLIGHTING_FLAG, true);
-        }
+        }*/
             
         if (textDisplayProperties.text != null)
         {
@@ -2464,6 +2466,7 @@ public class SkinnableTextBase extends SkinnableComponent
                 WIDTH_IN_CHARS_PROPERTY_FLAG, true);
         }
         
+        /*
         var softKeyboardClient:ISoftKeyboardHintClient = textDisplay as ISoftKeyboardHintClient;
         
         if (textDisplayProperties.autoCapitalize !== undefined && softKeyboardClient)
@@ -2497,10 +2500,11 @@ public class SkinnableTextBase extends SkinnableComponent
                 uint(newTextDisplayProperties),
                 SOFT_KEYBOARD_TYPE_FLAG, true);
         }
+        */
             
         // Switch from storing properties to bit mask of stored properties.
         textDisplayProperties = newTextDisplayProperties;    
-    } */
+    }
     
     /**
      *  @private
@@ -2795,11 +2799,11 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @private
      *  Called when the RichEditableText dispatches a 'selectionChange' event.
      */
-   /*  private function textDisplay_selectionChangeHandler(event:Event):void
+    private function textDisplay_selectionChangeHandler(event:Event):void
     {
         // Redispatch the event that came from the RichEditableText.
         dispatchEvent(event);
-    } */
+    }
 
     /**
      *  Called when the RichEditableText dispatches a 'change' event
@@ -2810,12 +2814,13 @@ public class SkinnableTextBase extends SkinnableComponent
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  private function textDisplay_changeHandler(event:Event):void
+    private function textDisplay_changeHandler(event:Event):void
     {        
         // The text component has changed.  Generate an UPDATE_COMPLETE event.
         invalidateDisplayList();
 
 
+        /*
         // We may have gone from empty to non-empty or vice-versa. This should
         // cause the prompt to show or hide.
         if (prompt != null && prompt != "" && skin && skin.currentState)
@@ -2827,21 +2832,21 @@ public class SkinnableTextBase extends SkinnableComponent
                 invalidateSkinState();
             }
         }
-
+        */
 
         // Redispatch the event that came from the RichEditableText.
         dispatchEvent(event);
-    } */
+    }
 
     /**
      *  @private
      *  Called when the RichEditableText dispatches a 'changing' event
      *  before an editing operation.
      */
-   /*  private function textDisplay_changingHandler(event:TextOperationEvent):void
+    private function textDisplay_changingHandler(event:TextOperationEvent):void
     {
         // Redispatch the event that came from the RichEditableText.
-        var newEvent:Event = event.clone();
+        var newEvent:Event = event.cloneEvent();
         dispatchEvent(newEvent);
         
         // If the event dispatched from this component is canceled,
@@ -2849,18 +2854,18 @@ public class SkinnableTextBase extends SkinnableComponent
         // the editing operation from being processed.
         if (newEvent.isDefaultPrevented())
             event.preventDefault();
-    } */
+    }
 
     /**
      *  @private
      *  Called when the RichEditableText dispatches an 'enter' event
      *  in response to the Enter key.
      */
-    /* private function textDisplay_enterHandler(event:Event):void
+    private function textDisplay_enterHandler(event:Event):void
     {
         // Redispatch the event that came from the RichEditableText.
         dispatchEvent(event);
-    } */
+    }
 
     /**
      *  @private
@@ -2871,11 +2876,11 @@ public class SkinnableTextBase extends SkinnableComponent
      *  there isn't a textDisplay since since the event will be dispatched by 
      *  RET when the textDisplay part is added.
      */
-   /*  private function textDisplay_valueCommitHandler(event:Event):void
+    private function textDisplay_valueCommitHandler(event:Event):void
     {
         // Redispatch the event that came from the RichEditableText.
         dispatchEvent(event);
-    } */
+    }
     
     override public function setStyle(styleName:String, value:*):void
     {

@@ -3889,9 +3889,9 @@ public class Scroller extends SkinnableComponent
     override public function addedToParent():void
     {
         super.addedToParent();
-        installViewport();
         (_viewport as UIComponent).width = width;
         (_viewport as UIComponent).height = height;
+        installViewport();
     }
 }
 
