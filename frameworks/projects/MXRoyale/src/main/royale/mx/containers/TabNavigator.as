@@ -374,6 +374,8 @@ public class TabNavigator extends ViewStack implements IFocusManagerComponent
     {
         super();
 
+        typeNames += " TabNavigator";
+        
         // Most views can't take focus, but a TabNavigator can.
         // Container.init() has set tabEnabled false, so we
         // have to set it back to true.

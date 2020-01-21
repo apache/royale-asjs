@@ -202,12 +202,16 @@ TextInput
 	font-family: Arial;
 }
 
-TextArea
+/* TextArea maps to an HTMLElement name so we can't use it because the compiler will
+   geenrate a true TextArea Type Selector instead of a .TextArea class selector */
+.SparkTextArea
 {
 	border-style: solid;
 	border-color: #000000;
 	border-width: 1px;
 	background-color: #FFFFFF;
+	width: 188px;
+	height: 151px;
 }
 
 /* compiler thinks the above TextArea is for HTML TextArea so doesn't convert it to a 

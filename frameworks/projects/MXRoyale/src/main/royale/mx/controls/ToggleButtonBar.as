@@ -468,7 +468,20 @@ public class ToggleButtonBar extends UIComponent implements ILayoutParent, ILayo
     override public function get measuredHeight():Number
     {
         if (dataProvider)
+        {
+            COMPILE::JS
+            {
+                // if the height was set to zero by setActualSize because
+                // there were no buttons to measure, clear the width
+                // style so the buttonbar can get its natural height
+                if (height == 0 && isNaN(explicitHeight))
+                {
+                    element.style.height = null;
+                    _height = NaN;
+                }
+            }
             return height; // do a better measurement someday
+        }
         return 0;
     }
 }

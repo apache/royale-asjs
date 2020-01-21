@@ -970,7 +970,13 @@ public class Container extends UIComponent
 		o.bottom = vm.bottom + pd.bottom;
 		
         if (isNaN(o.left) || isNaN(o.top))
+        {
             _viewMetricsAndPadding = null; // don't cache invalid entry
+            if (isNaN(o.left)) o.left = 0;
+            if (isNaN(o.top)) o.top = 0;
+        }
+        if (isNaN(o.right)) o.right = 0;
+        if (isNaN(o.bottom)) o.bottom = 0;
 		return o;
 	}
 	

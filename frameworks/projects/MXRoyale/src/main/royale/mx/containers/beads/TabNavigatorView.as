@@ -26,8 +26,9 @@ import mx.containers.ViewStack;
 import mx.containers.beads.BoxLayout;
 import mx.containers.beads.ViewStackLayout;
 import mx.controls.TabBar;
-import mx.core.Container;
 import mx.core.ContainerLayout;
+import mx.core.INavigatorContent;
+import mx.core.UIComponent;
 
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IChild;
@@ -140,7 +141,7 @@ public class TabNavigatorView extends GroupView
         (_strand as IEventDispatcher).addEventListener("childrenAdded", childrenAddedHandler);
         contentArea.addEventListener("childrenAdded", childrenAddedHandler);
         var vsl:ViewStackLayout = new ViewStackLayout();
-        vsl.target = contentArea as Container;
+        vsl.target = contentArea as UIComponent;
         vsl.model = tabBar.model as ISelectionModel;
         contentArea.addBead(vsl);
         if (contentArea.parent == null) {
@@ -162,7 +163,7 @@ public class TabNavigatorView extends GroupView
         var n:int = contentArea.numElements;
         for (var i:int = 0; i < n; i++)
         {
-            var child:Container = contentArea.getElementAt(i) as Container;
+            var child:INavigatorContent = contentArea.getElementAt(i) as INavigatorContent;
             tabDP.push({ label: child.label});
             // run this again if the label changes
             child.addEventListener("labelChanged", childrenAddedHandler);

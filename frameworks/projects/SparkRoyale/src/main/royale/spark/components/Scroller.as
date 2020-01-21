@@ -63,13 +63,15 @@ import spark.events.CaretBoundsChangeEvent;
 import spark.layouts.supportClasses.LayoutBase;
 import spark.utils.MouseEventUtil; */
 import mx.core.IVisualElement;
-import mx.core.mx_internal;
-import spark.components.supportClasses.SkinnableComponent;
 import mx.core.IVisualElementContainer;
+import mx.core.mx_internal;
+import mx.core.UIComponent;
 import mx.managers.IFocusManagerComponent;
 
-import org.apache.royale.events.Event;
+import spark.components.supportClasses.SkinnableComponent;
+
 import org.apache.royale.core.IChild;
+import org.apache.royale.events.Event;
 
 use namespace mx_internal;
 /* 
@@ -1092,7 +1094,8 @@ public class Scroller extends SkinnableComponent
         
        uninstallViewport();
         _viewport = value;
-       installViewport();
+        if (parent)
+           installViewport();
         dispatchEvent(new Event("viewportChanged"));
     }
     
@@ -3882,6 +3885,14 @@ public class Scroller extends SkinnableComponent
         // If caretBounds is changing, minimize the scroll
         ensureElementPositionIsVisible(lastFocusedElement, event.newCaretBounds, false, false);
     } */
+    
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        installViewport();
+        (_viewport as UIComponent).width = width;
+        (_viewport as UIComponent).height = height;
+    }
 }
 
 }

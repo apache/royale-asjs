@@ -84,6 +84,18 @@ public class SkinnableContainerView extends SparkContainerView
                 host.layout.measure();
             }
         }
+        else
+        {
+            if (host.skin)
+            {
+                host.skin.setLayoutBoundsSize(host.width, host.height);
+            }
+            else
+            {
+                (viewport.contentView as ILayoutChild).setWidthAndHeight(host.width, host.height);
+            }
+                
+        }
     }
     
     override protected function addViewport():void

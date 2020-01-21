@@ -20,20 +20,10 @@
 package spark.components
 {
 	
-	import org.apache.royale.textLayout.elements.TextFlow;
-	import org.apache.royale.events.Event;
-	/* import flash.events.Event;
-	
-	import flashx.textLayout.formats.TextLayoutFormat;
-	
-	import mx.core.ScrollPolicy;
-	import mx.core.mx_internal;
-	import mx.events.FlexEvent;
-	
-	import spark.events.TextOperationEvent;
-	
-	use namespace mx_internal */;
 	import spark.components.supportClasses.SkinnableTextBase;
+	
+	import org.apache.royale.events.Event;
+	import org.apache.royale.textLayout.elements.TextFlow;
 	
 	//--------------------------------------
 	//  Styles
@@ -338,7 +328,7 @@ package spark.components
 		public function TextArea()
 		{
 			super();
-            typeNames += " TextArea";
+            typeNames += " SparkTextArea";
 		}
 		
 		//--------------------------------------------------------------------------
@@ -760,7 +750,7 @@ package spark.components
 			//    return;
 			
 			// textDisplay.scrollToRange(anchorPosition, activePosition);
-		}
+		}        
 	}
 	
 }

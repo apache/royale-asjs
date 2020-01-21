@@ -68,6 +68,7 @@ use namespace mx_internal;
 
 import org.apache.royale.core.CallLaterBead;
 import org.apache.royale.core.IChild;
+import org.apache.royale.core.IMXMLDocument;
 import org.apache.royale.core.IStatesImpl;
 import org.apache.royale.core.IStatesObject;
 import org.apache.royale.core.IUIBase;
@@ -483,6 +484,7 @@ import org.apache.royale.utils.MXMLDataInterpreter;
 public class UIComponent extends UIBase
     implements IChildList,
     IFlexDisplayObject,
+    IMXMLDocument,
     IInvalidating,
     IStatesObject,
     ISimpleStyleClient,

@@ -415,9 +415,12 @@ TabNavigator
 	ITabNavigatorContentArea: ClassReference("mx.core.Container");
 	verticalGap: 0;	
 	background-color: #FFFFFF;
-	border: 1px solid #333333
 }
 
+.TabNavigatorContent
+{
+	border: 1px solid #333333
+}
 
 TextInput
 {

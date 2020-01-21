@@ -21,7 +21,6 @@ package mx.containers.beads
 {
 	import mx.containers.TabNavigator;
 	import mx.containers.ViewStack;
-	import mx.core.Container;
 	import mx.core.EdgeMetrics;
 	import mx.core.UIComponent;
 	
@@ -79,19 +78,19 @@ public class ViewStackLayout extends LayoutBase
 	override public function set strand(value:IStrand):void
 	{
 		_strand = value;
-		_target = value as Container;
+		_target = value as UIComponent;
 		super.strand = value;
 		
 	}
 	
-	private var _target:Container;
+	private var _target:UIComponent;
 	
-	public function get target():Container
+	public function get target():UIComponent
 	{
 		return _target;
 	}
 	
-	public function set target(value:Container):void
+	public function set target(value:UIComponent):void
 	{
 		_target = value;
 	}
