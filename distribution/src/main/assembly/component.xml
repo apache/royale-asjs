@@ -182,6 +182,40 @@ under the License.
       <filtered>true</filtered>
     </fileSet>
 
+    <!-- Copy the unpacked closure-compiler -->
+    <fileSet>
+      <outputDirectory>js/lib/google/closure-compiler/compiler</outputDirectory>
+      <directory>target/closure-compiler-temp</directory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
+    <!-- Copy all from the parent -->
+    <!-- <fileSet>
+      <directory>../js/lib/google/closure-compiler/compiler</directory>
+      <outputDirectory>js/lib/google/closure-compiler/compiler</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet> -->
+    
+    <!-- Copy the unpacked closure-library -->
+    <fileSet>
+      <outputDirectory>js/lib/google/closure-library/closure</outputDirectory>
+      <directory>target/closure-library-temp</directory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet>
+    <!-- Copy all from the parent -->
+    <!-- <fileSet>
+      <directory>../js/lib/google/closure-library/closure</directory>
+      <outputDirectory>js/lib/google/closure-library/closure</outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+    </fileSet> -->
+    
     <!-- Copy the SWFObject templates -->
     <fileSet>
       <outputDirectory>templates/swfobject</outputDirectory>

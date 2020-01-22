@@ -552,6 +552,18 @@
       <artifactId>compiler-swfdump</artifactId>
       <version>0.9.7-SNAPSHOT</version>
     </dependency>
+    
+    <!-- google closure compiler and library will be needed unpacked in js/lib/google -->
+    <dependency>
+      <groupId>com.google.javascript</groupId>
+      <artifactId>closure-compiler</artifactId>
+      <version>v20181210</version>
+    </dependency>
+    <dependency>
+      <groupId>org.clojure</groupId>
+      <artifactId>google-closure-library</artifactId>
+      <version>0.0-20190213-2033d5d9</version>
+    </dependency>
   </dependencies>
 
   <build>
@@ -586,6 +598,44 @@
                   <type>jar</type>
                   <outputDirectory>${project.build.directory}/swfobject-temp</outputDirectory>
                   <includes>META-INF/resources/**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-ompiler</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>com.google.javascript</groupId>
+                  <artifactId>closure-compiler</artifactId>
+                  <version>v20181210</version>
+                  <type>jar</type>
+                  <outputDirectory>${project.build.directory}/closure-compiler-temp</outputDirectory>
+                  <includes>**</includes>
+                </artifactItem>
+              </artifactItems>
+            </configuration>
+          </execution>
+          <execution>
+            <id>unpack-closure-library</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>unpack</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.clojure</groupId>
+                  <artifactId>google-closure-library</artifactId>
+                  <version>0.0-20190213-2033d5d9</version>
+                  <type>jar</type>
+                  <outputDirectory>${project.build.directory}/closure-library-temp</outputDirectory>
+                  <includes>**</includes>
                 </artifactItem>
               </artifactItems>
             </configuration>
@@ -724,7 +774,8 @@
       </dependencies>
       <build>
         <plugins>
-          <plugin>
+          <!-- Not clean since this removes unpacked closure-library from temp folder and prevents the copy to js/lib/google folder -->
+          <!-- <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-clean-plugin</artifactId>
             <executions>
@@ -744,7 +795,7 @@
                 </configuration>
               </execution>
             </executions>
-          </plugin>
+          </plugin> -->
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <executions>
