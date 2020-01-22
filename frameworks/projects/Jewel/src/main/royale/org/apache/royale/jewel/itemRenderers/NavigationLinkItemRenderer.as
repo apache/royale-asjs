@@ -59,7 +59,7 @@ package org.apache.royale.jewel.itemRenderers
 			}
 		}
 
-		private var _href:String = "#";
+		// private var _href:String = "#";
         /**
          *  the navigation link url
          *  
@@ -68,15 +68,15 @@ package org.apache.royale.jewel.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		[Bindable('dataChange')]
-		public function get href():String
-		{
-            return _href;   
-		}
-		public function set href(value:String):void
-		{
-            _href = value;
-		}
+		// [Bindable('dataChange')]
+		// public function get href():String
+		// {
+        //     return _href;   
+		// }
+		// public function set href(value:String):void
+		// {
+        //     _href = value;
+		// }
 
 		private var _text:String = "";
 
@@ -115,7 +115,7 @@ package org.apache.royale.jewel.itemRenderers
 		override public function set data(value:Object):void
 		{
 			if (value == null) {
-				 _href = "#";
+				// _href = "#";
 				_text = null;
 				//super.data setter will dispatch dataChange
 				super.data = value;
@@ -137,18 +137,18 @@ package org.apache.royale.jewel.itemRenderers
 			}
 			// text = getLabelFromData(this, value);
 			
-            if(value.href !== undefined)
-			{
-				if (value.href === null) _href = "#";
-                else _href = String(value.href);
-			} else _href = "#";
+            // if(value.href !== undefined)
+			// {
+			// 	if (value.href === null) _href = "#";
+            //     else _href = String(value.href);
+			// } else _href = "#";
 
 			COMPILE::JS
 			{
 			if(textNode != null)
 			{
 				textNode.nodeValue = _text;
-				(element as HTMLElement).setAttribute('href', _href);
+				//(element as HTMLElement).setAttribute('href', _href);
 			}	
 			}
 			//super.data setter will dispatch dataChange
@@ -163,7 +163,7 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
             var a:WrappedHTMLElement = addElementToWrapper(this, 'a');
-            a.setAttribute('href', href);
+            //a.setAttribute('href', href);
 
 			if(MXMLDescriptor == null)
 			{

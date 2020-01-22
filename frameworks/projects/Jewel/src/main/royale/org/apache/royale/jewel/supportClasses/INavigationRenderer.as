@@ -42,7 +42,7 @@ package org.apache.royale.jewel.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        function get href():String;
-        function set href(value:String):void;
+        // function get href():String;
+        // function set href(value:String):void;
     }
 }
