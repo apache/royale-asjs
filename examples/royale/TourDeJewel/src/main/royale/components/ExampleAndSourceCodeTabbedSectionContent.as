@@ -119,7 +119,7 @@ package components
         private function changeHandler(event:Event):void
         {
             var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
-            tabcontent.selectedContent = item.href;
+            tabcontent.selectedContent = item.hash;
             if(sourceCodeTab.isSelected && sourceCodeMXMLText.text == "")
             {
                 service.getContent();

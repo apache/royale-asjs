@@ -23,31 +23,95 @@ limitations under the License.
     xmlns:html="library://ns.apache.org/royale/html"
     xmlns:models="models.*"
     xmlns:c="components.*"
-    xmlns:local="*">
+    xmlns:local="*"
+    initComplete="setNavSelection()">
 
     <fx:Script>
         <![CDATA[
-            import vos.NavigationLinkVO;
+            import org.apache.royale.jewel.supportClasses.ISelectableContent;
+            import org.apache.royale.routing.RouteState;
             import org.apache.royale.utils.OSUtils;
 
-            private function changeHandler(event:Event):void
+            import vos.NavigationLinkVO;
+
+            private var currentContent:ISelectableContent;
+            private var currentNavOption:NavigationLinkVO;
+            
+            private function setNavSelection():void {
+                var routeState:RouteState = router.routeState;
+                if(routeState.state){
+                    setNavFromHash(routeState.state);
+                } else {
+                    goToHome();
+                }
+            }
+
+            private function setNavFromHash(hash:String):void{
+                var l:uint = mainNavigationModel.containerDrawerNavigation.length;
+				while(l--) {
+					currentNavOption = NavigationLinkVO(mainNavigationModel.containerDrawerNavigation.getItemAt(l));
+					if(currentNavOption.hash == hash){
+                        containerNavigation.selectedItem = currentNavOption;
+                        navigateTo();
+                        return;
+                    }
+				}
+
+                l = mainNavigationModel.controlsDrawerNavigation.length;
+				while(l--) {
+					currentNavOption = NavigationLinkVO(mainNavigationModel.controlsDrawerNavigation.getItemAt(l));
+					if(currentNavOption.hash == hash){
+                        controlsNavigation.selectedItem = currentNavOption;
+                        navigateTo();
+                        return;
+                    }
+				}
+
+                l = mainNavigationModel.collapsibleNavExample.length;
+				while(l--) {
+					currentNavOption = NavigationLinkVO(mainNavigationModel.collapsibleNavExample.getItemAt(l));
+					if(currentNavOption.hash == hash){
+                        collapsibleNavigation.selectedItem = currentNavOption;
+                        navigateTo();
+                        return;
+                    }
+				}
+            }
+
+            private function hashChanged():void{
+                if(currentNavOption.subMenu)
+                    return;
+                setNavSelection();
+            }
+
+            private function navChangeHandler(event:Event):void
             {
-                var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
-                main.selectedContent = item.href;
+                currentNavOption = (event.target as Navigation).selectedItem as NavigationLinkVO;
+                
+                router.routeState.title = currentNavOption.label;
+                router.routeState.state = currentNavOption.hash;
+                router.setState();
+                
+                navigateTo();
+            }
+
+            private function navigateTo():void {
+                main.selectedContent = currentNavOption.hash;
+                
                 if(!drawer.fixed)
                     drawer.close();
             }
 
             private function collapsibleChangeHandler(event:Event):void
             {
-                var item:NavigationLinkVO = (event.target as Navigation).selectedItem as NavigationLinkVO;
-                if (item){
-                    item = item.selectedChild;
-                    main.selectedContent = item.href;
-                    if(!drawer.fixed)
-                        drawer.close();
-                }
-
+                currentNavOption = (event.target as Navigation).selectedItem as NavigationLinkVO;
+                currentNavOption = currentNavOption.selectedChild;
+                
+                router.routeState.title = currentNavOption.label;
+                router.routeState.state = currentNavOption.hash;
+                router.setState();
+                
+                navigateTo();
             }
 
             private function toggleTopAppBarFixed():void
@@ -58,7 +122,8 @@ limitations under the License.
 
             private function goToHome():void
             {
-                main.selectedContent = "welcome_panel";
+                currentNavOption = new NavigationLinkVO("Welcome", "welcome_panel", null);
+                main.selectedContent = currentNavOption.hash;
             }
 
             [Bindable]
@@ -104,6 +169,7 @@ limitations under the License.
     </j:model>
 
     <j:beads>
+        <js:Router id="router" stateChange="hashChanged()" /> 
         <js:ContainerDataBinding/>
         <js:BrowserOrientation localId="bo"/>
 		<j:CleanValidationErrors/>
@@ -117,22 +183,24 @@ limitations under the License.
             <j:ImageButton src="assets/apache-royale-jewel-logo-white.svg" height="140" click="goToHome()"/>
         </j:DrawerHeader>
         <j:DrawerContent>
-            <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
+            <j:Navigation localId="containerNavigation" change="navChangeHandler(event)"
+                className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="containerDrawerNavigation" destinationPropertyName="dataProvider"/>
                     <j:NavigationActionNotifier/>
                 </j:beads>
             </j:Navigation>
             <j:Divider/>
-            <j:Navigation change="collapsibleChangeHandler(event)"
-                          className="navSectionItemRenderer">
+            <j:Navigation localId="collapsibleNavigation" change="collapsibleChangeHandler(event)"
+                className="navSectionItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="collapsibleNavExample" destinationPropertyName="dataProvider"/>
                     <j:NavigationActionNotifier/>
                 </j:beads>
             </j:Navigation>
             <j:Divider/>
-            <j:Navigation change="changeHandler(event)" className="navIconLinkItemRenderer">
+            <j:Navigation localId="controlsNavigation" change="navChangeHandler(event)"
+                className="navIconLinkItemRenderer">
                 <j:beads>
                     <js:ConstantBinding sourceID="mainNavigationModel" sourcePropertyName="controlsDrawerNavigation" destinationPropertyName="dataProvider"/>
                     <j:NavigationActionNotifier/>
@@ -230,7 +298,7 @@ limitations under the License.
         </j:BarRow>
     </j:TopAppBar>
 
-    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true" selectedContent = "welcome_panel">
+    <j:ApplicationMainContent localId="main" hasTopAppBar="true" hasFooterBar="true">
         <local:WelcomeSection name="welcome_panel"/>
         <local:AlertPlayGround name="alert_panel"/>
         <local:ButtonPlayGround name="button_panel"/>

@@ -22,13 +22,13 @@ package vos
     public class TabBarButtonVO
     {
         public var label:String;
-        public var href:String;
+        public var hash:String;
         public var icon:String;
 
-        public function TabBarButtonVO(label:String, href:String, icon:String = null)
+        public function TabBarButtonVO(label:String, hash:String, icon:String = null)
         {
             this.label = label;
-            this.href = href;
+            this.hash = hash;
             this.icon = icon;
         }
     }

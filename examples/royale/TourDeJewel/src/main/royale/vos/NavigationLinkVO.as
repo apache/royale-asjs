@@ -24,7 +24,7 @@ package vos
     public class NavigationLinkVO
     {
         public var label:String;
-        public var href:String;
+        public var hash:String;
         public var icon:String;
         
         //for collapsible example
@@ -32,10 +32,10 @@ package vos
         public var open:Boolean;
         public var selectedChild:NavigationLinkVO;
 
-        public function NavigationLinkVO(label:String, href:String, icon:String = null)
+        public function NavigationLinkVO(label:String, hash:String, icon:String = null)
         {
             this.label = label;
-            this.href = href;
+            this.hash = hash;
             this.icon = icon;
         }
     }

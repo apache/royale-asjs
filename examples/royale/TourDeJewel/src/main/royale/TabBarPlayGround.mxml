@@ -31,7 +31,7 @@ limitations under the License.
             private function changeHandler(event:Event):void
             {
                 var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
-                tabcontent.selectedContent = item.href;
+                tabcontent.selectedContent = item.hash;
             }
 
             private var _tabBarData:ArrayList = new ArrayList([
@@ -98,7 +98,7 @@ limitations under the License.
 				<j:TabBar localId="tabbar" width="100%" className="tabBarVerticalIconItemRenderer"
 						dataProvider="{tabBarData}">
 					<j:beads>
-						<j:AssignTabContent selectedContentProperty="href">
+						<j:AssignTabContent selectedContentProperty="hash">
 							<j:content>
 								<j:TabBarContent localId="tabcontent" >
 									<j:SectionContent name="tab1">
@@ -143,7 +143,7 @@ limitations under the License.
 						<js:ConstantBinding sourcePropertyName="tabBarData" destinationPropertyName="dataProvider"/>
 					</j:beads>
 				</j:TabBar>
-				<j:TabBarContent localId="tabcontent2" selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).href}" >
+				<j:TabBarContent localId="tabcontent2" selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).hash}" >
 					<j:SectionContent name="tab1">
 						<j:Label text="Tab 1"/>
 					</j:SectionContent>
@@ -195,7 +195,7 @@ limitations under the License.
 
 				<j:TabBar width="100%" dataProvider="{scrolltabBarData}">
 					<j:beads>
-						<j:AssignTabContent selectedContentProperty="href">
+						<j:AssignTabContent selectedContentProperty="hash">
 							<j:content>
 								<j:TabBarContent>
 									<j:SectionContent name="films">
