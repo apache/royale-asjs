@@ -196,10 +196,7 @@ public class SkinnableComponent extends UIComponent
      */
     public function get skinClass():Class
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("skinClass not implemented");
-        return null;
+        return getStyle("skinClass");
     }
         
     /**
@@ -207,9 +204,7 @@ public class SkinnableComponent extends UIComponent
      */
     public function set skinClass(value:Class):void
     {
-        // TODO
-        if (GOOG::DEBUG)
-            trace("skinClass not implemented");
+        setStyle("skinClass", value);
     }
         
     //----------------------------------
