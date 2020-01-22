@@ -290,6 +290,11 @@
                 target directories. We don't want that.
             -->
             <exclude>**/target/**</exclude>
+            <!-- 
+                Same case for generated compilations of examples or libraries
+                done with IDEs that instead of target use bin.
+            -->
+            <exclude>**/bin/**</exclude>
 
             <exclude>**/src/test/royale/out/**</exclude>
             <exclude>lib/external/*.html</exclude>
