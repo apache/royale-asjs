@@ -56,6 +56,8 @@ package org.apache.royale.html.supportClasses
 		}
 
 		private var _columnIndex:int;
+		private var _selectedColor:uint = 0x9C9C9C;
+		private var _hoverColor:uint = 0xECECEC;
 
 		/**
 		 *  The index of the column the itemRenderer represents.
@@ -72,6 +74,40 @@ package org.apache.royale.html.supportClasses
 		public function set columnIndex(value:int):void
 		{
 			_columnIndex = value;
+		}
+		
+		/**
+		 *  The selected colour.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function get selectedColor():uint
+		{
+			return _selectedColor;
+		}
+		public function set selectedColor(value:uint):void
+		{
+			_selectedColor = value;
+		}
+
+		/**
+		 *  The hover colour.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function get hoverColor():uint
+		{
+			return _hoverColor;
+		}
+		public function set hoverColor(value:uint):void
+		{
+			_hoverColor = value;
 		}
 
 		private var _rowIndex:int;
@@ -135,9 +171,9 @@ package org.apache.royale.html.supportClasses
 			COMPILE::JS
 			{
 				if (selected)
-					element.style.backgroundColor = '#9C9C9C';
+					element.style.backgroundColor = "#" + selectedColor.toString(16);
 				else if (hovered)
-					element.style.backgroundColor = '#ECECEC';
+					element.style.backgroundColor = "#" + hoverColor.toString(16);
 				else
 					element.style.backgroundColor = 'transparent';
 			}
