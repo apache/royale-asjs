@@ -56,7 +56,7 @@ package org.apache.royale.jewel.itemRenderers
 			addClass("selectable");
 		}
 
-		private var _href:String = "#";
+		// private var _href:String = "#";
         /**
          *  the navigation link url
          *  
@@ -65,14 +65,14 @@ package org.apache.royale.jewel.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-		public function get href():String
-		{
-            return _href;   
-		}
-		public function set href(value:String):void
-		{
-            _href = value;
-		}
+		// public function get href():String
+		// {
+        //     return _href;   
+		// }
+		// public function set href(value:String):void
+		// {
+        //     _href = value;
+		// }
 
 		private var _text:String = "";
 
@@ -120,10 +120,10 @@ package org.apache.royale.jewel.itemRenderers
 			text = getLabelFromData(this, value);
             super.data = value;
 			
-            if(value.href !== undefined)
-			{
-                href = String(value.href);
-			}
+            // if(value.href !== undefined)
+			// {
+            //     href = String(value.href);
+			// }
 
 			// COMPILE::JS
 			// {

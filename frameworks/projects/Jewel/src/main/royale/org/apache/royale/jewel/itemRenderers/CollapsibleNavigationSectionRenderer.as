@@ -92,7 +92,7 @@ package org.apache.royale.jewel.itemRenderers
 
 		private var navLinkClassSelector:ClassSelectorList;
 		
-		private var _href:String = "#";
+		// private var _href:String = "#";
         /**
          *  the navigation link url
 		 *  while the parent is primarily for hiding or showing its
@@ -106,14 +106,14 @@ package org.apache.royale.jewel.itemRenderers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.6
          */
-		public function get href():String
-		{
-            return _href;   
-		}
-		public function set href(value:String):void
-		{
-            _href = value;
-		}
+		// public function get href():String
+		// {
+        //     return _href;   
+		// }
+		// public function set href(value:String):void
+		// {
+        //     _href = value;
+		// }
 
 		private var _text:String = "";
 
@@ -228,7 +228,7 @@ package org.apache.royale.jewel.itemRenderers
 		override public function set data(value:Object):void
 		{
 			if(value == null) {
-				_href = "#";
+				// _href = "#";
 				_text = null;
 				open = false;
 				//super.data setter will dispatch dataChange
@@ -250,17 +250,17 @@ package org.apache.royale.jewel.itemRenderers
 			}
 			// text = getLabelFromData(this, value);
 			
-            if(value.href !== undefined)
-			{
-                href = String(value.href);
-			}
+            // if(value.href !== undefined)
+			// {
+            //     href = String(value.href);
+			// }
 
 			COMPILE::JS
 			{
 				if(textNode != null)
 				{
 					textNode.nodeValue = text;
-					(element as HTMLElement).setAttribute('href', href);
+					// (element as HTMLElement).setAttribute('href', href);
 				}	
 			}
 			
@@ -315,7 +315,7 @@ package org.apache.royale.jewel.itemRenderers
 
 			var nav:WrappedHTMLElement = addElementToWrapper(this, 'nav');
 			sectionNavItem = new A();
-			sectionNavItem.href = href;
+			// sectionNavItem.href = href;
 			if(MXMLDescriptor == null)
 			{
 				textNode = document.createTextNode('') as Text;
