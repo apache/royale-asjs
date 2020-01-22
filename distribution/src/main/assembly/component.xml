@@ -88,7 +88,7 @@ under the License.
         <include>*:args4j:jar</include>
         <include>*:commons-io:*</include>
         <include>*:flex-tool-api:*</include>
-        <include>*:google-closure-library*:jar</include>
+        <!-- <include>*:google-closure-library*:jar</include> -->
         <include>*:guava:*</include>
         <include>*:org.json:jar</include>
       </includes>
