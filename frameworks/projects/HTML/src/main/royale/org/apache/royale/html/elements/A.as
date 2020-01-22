@@ -50,7 +50,7 @@ package org.apache.royale.html.elements
 			super();
 		}
 		
-        private var _href:String = "#";
+        private var _href:String;
         /**
          *  the link url
          *  
@@ -112,7 +112,7 @@ package org.apache.royale.html.elements
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this,'a');
-            element.setAttribute('href', _href);
+            // element.setAttribute('href', _href);
             return element;
         }
     }
