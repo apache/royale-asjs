@@ -562,7 +562,7 @@
     <dependency>
       <groupId>org.clojure</groupId>
       <artifactId>google-closure-library</artifactId>
-      <version>0.0-20190213-2033d5d9</version>
+      <version>0.0-20170809-b9c14c6b</version>
     </dependency>
   </dependencies>
 
@@ -632,7 +632,7 @@
                 <artifactItem>
                   <groupId>org.clojure</groupId>
                   <artifactId>google-closure-library</artifactId>
-                  <version>0.0-20190213-2033d5d9</version>
+                  <version>0.0-20170809-b9c14c6b</version>
                   <type>jar</type>
                   <outputDirectory>${project.build.directory}/closure-library-temp</outputDirectory>
                   <includes>**</includes>
