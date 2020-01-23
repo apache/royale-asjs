@@ -207,7 +207,7 @@ public class Range extends SkinnableComponent
      */
     public function get stepSize():Number
     {
-        return _stepSize;
+        return (model as RangeModel).stepSize;
     }
     
     public function set stepSize(value:Number):void
@@ -217,6 +217,8 @@ public class Range extends SkinnableComponent
         
         _stepSize = value;
         stepSizeChanged = true;
+        
+        (model as RangeModel).stepSize = value;
         
         invalidateProperties();       
     }
@@ -252,7 +254,7 @@ public class Range extends SkinnableComponent
      */
     public function get value():Number
     {
-        return (valueChanged) ? _changedValue : _value;
+        return (model as RangeModel).value;
     }
     
     
@@ -268,9 +270,7 @@ public class Range extends SkinnableComponent
     {
         if (newValue == value)
             return;
-        _changedValue = newValue;
-        valueChanged = true;
-        invalidateProperties();
+        (model as RangeModel).value = newValue;
     }
     
     //---------------------------------
