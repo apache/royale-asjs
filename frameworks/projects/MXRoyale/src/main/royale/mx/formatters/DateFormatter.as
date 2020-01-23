@@ -75,9 +75,8 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-public class DateFormatter 
+public class DateFormatter extends Formatter
 {
-/* extends Formatter */
     //include "../core/Version.as";
 
     //--------------------------------------------------------------------------
@@ -125,7 +124,7 @@ public class DateFormatter
      */
     public static function parseDateString(str:String, format:String = null):Date
     {
-        /* if (!str || str == "")
+        if (!str || str == "")
             return null;
 
         var year:int = -1;
@@ -413,7 +412,7 @@ public class DateFormatter
         if (day != newDate.getDate() || mon != newDate.getMonth())
             return null;
 
-        return newDate; */ var newDate:Date;  return newDate;
+        return newDate;
     }
 
     //--------------------------------------------------------------------------
@@ -643,12 +642,12 @@ public class DateFormatter
      */
     public function set formatString(value:String):void
     {
-        /* formatStringOverride = value;
+        //formatStringOverride = value;
 
         _formatString = value != null ?
                         value :
-                        resourceManager.getString(
-                            "SharedResources", "dateFormat"); */
+                        /*resourceManager.getString(
+                            "SharedResources", "dateFormat");*/ "MM/DD/YYYY";
     }
 
     //--------------------------------------------------------------------------
@@ -685,9 +684,9 @@ public class DateFormatter
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    /* override */ public function format(value:Object):String
+    override public function format(value:Object):String
     {       
-      /*   // Reset any previous errors.
+        // Reset any previous errors.
         if (error)
             error = null;
 
@@ -755,7 +754,7 @@ public class DateFormatter
             formatString, VALID_PATTERN_CHARS,
             DateBase.extractTokenDate);
 
-        return dataFormatter.formatValue(value); */ return "";
+        return dataFormatter.formatValue(value);
     }
 }
 
