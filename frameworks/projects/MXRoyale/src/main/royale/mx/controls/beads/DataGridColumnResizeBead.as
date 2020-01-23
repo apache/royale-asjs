@@ -341,6 +341,10 @@ package mx.controls.beads
             {
                 columns[i].width = columns[i].columnWidth;
             }
+            if (columns[columnIndex].width + deltaWidth < columns[columnIndex].minWidth)
+            {
+                deltaWidth = columns[columnIndex].minWidth - columns[columnIndex].width;
+            }
             columns[columnIndex].width += deltaWidth;
             columns[columnIndex].columnWidth += deltaWidth;
             if (adg.horizontalScrollPolicy == ScrollPolicy.OFF)

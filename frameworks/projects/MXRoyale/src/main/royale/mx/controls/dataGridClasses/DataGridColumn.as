@@ -398,6 +398,47 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
         // otherwise, just store the size
         _width = value;
     }
+    
+    //----------------------------------
+    //  minWidth
+    //----------------------------------
+    
+    /**
+     *  @private
+     *  Storage for the width property.
+     */
+    private var _minWidth:Number = 20;
+    
+    [Inspectable(category="General", defaultValue="20")]
+    
+    /**
+     *  The width of the column, in pixels. 
+     *  If the DataGrid's <code>horizontalScrollPolicy</code> property 
+     *  is <code>false</code>, all visible columns must fit in the displayable 
+     *  area, and the DataGrid will not always honor the width of
+     *  the columns if the total width of the columns is too
+     *  small or too large for the displayable area.
+     *
+     *  @default 100
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    public function get minWidth():Number
+    {
+        return _minWidth;
+    }
+    
+    /**
+     *  @private
+     */
+    public function set minWidth(value:Number):void
+    {
+        _minWidth = value;
+    }
+
 
     public var sortDescending:Boolean = false;
     

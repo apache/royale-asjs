@@ -879,51 +879,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
 
 
     //----------------------------------
-    //  minWidth
-    //----------------------------------
-
-    /**
-     *  @private
-     *  Storage for the minWidth property.
-     */
-    private var _minWidth:Number = 20;
-
-    [Bindable("minWidthChanged")]
-    [Inspectable(category="General", defaultValue="100")]
-
-    /**
-     *  The minimum width of the column, in pixels.
-     *  @default 20
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Royale 0.9.3
-     */
-    public function get minWidth():Number
-    {
-        return _minWidth;
-    }
-
-    /**
-     *  @private
-     */
-    public function set minWidth(value:Number):void
-    {
-        _minWidth = value;
-
-      /*   if (owner)
-        {
-            owner.invalidateList();
-        }
-
-        if (_width < value)
-            _width = value;
-
-        dispatchEvent(new Event("minWidthChanged")); */
-    }
-
-    //----------------------------------
     //  resizable
     //----------------------------------
 
