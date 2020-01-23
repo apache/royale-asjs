@@ -52,16 +52,16 @@ limitations under the License.
 				const intro:String = "<strong>ComboBox selectedItem:</strong> ";
 				var evaluated:String;
 				if (item is String) {
-					evaluated = 'String value: \'' + item + '\'';
+					evaluated = "String value: '" + item + "'";
 				} else {
 					if (item === null || item === undefined) {
-						evaluated = '[Nothing Selected]'
+						evaluated = "Nothing Selected";
 					}
 					else {
 						if (item is IconListVO) {
-							evaluated = 'Object\'s label field: \'' + IconListVO(item).label + '\'';
+							evaluated = "Object's label field: '" + IconListVO(item).label + "'";
 						} else {
-							evaluated = 'Object : ' + item;
+							evaluated = "Object : " + item;
 						}
 					}
 				}

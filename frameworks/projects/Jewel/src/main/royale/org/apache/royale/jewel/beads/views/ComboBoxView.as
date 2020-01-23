@@ -27,7 +27,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.jewel.supportClasses.ResponsiveSizes;
 	import org.apache.royale.jewel.supportClasses.util.positionInsideBoundingClientRect;
-	import org.apache.royale.utils.BrowserInfo;
 	import org.apache.royale.utils.PointUtils;
 	}
 	import org.apache.royale.core.BeadViewBase;
