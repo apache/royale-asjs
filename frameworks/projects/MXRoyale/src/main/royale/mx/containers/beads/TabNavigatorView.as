@@ -169,7 +169,7 @@ public class TabNavigatorView extends GroupView
             child.addEventListener("labelChanged", childrenAddedHandler);
         }
         (tabBar as TabBar).dataProvider = tabDP;
-        if ((tabBar.model as ISelectionModel).selectedIndex == -1)
+        if ((tabBar.model as ISelectionModel).selectedIndex == -1 && n > 0)
         {
             (tabBar.model as ISelectionModel).selectedIndex = 0;
             var tabNavigator:TabNavigator = _strand as TabNavigator;
