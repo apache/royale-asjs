@@ -902,12 +902,17 @@ limitations under the License.
         <echo message="Updating config file node-config.xml with version ${build.version}"/>
         <fix-config-file file="${staging-dir}/frameworks/node-config-template.xml" version="${build.version}" />
         
-        
+        <fixcrlf srcdir="${staging-dir}/bin" eol="crlf" fixlast="false">
+            <include name="**/*.bat"/>
+        </fixcrlf>
         <fixcrlf srcdir="${staging-dir}/js/bin" eol="crlf" fixlast="false">
             <include name="**/*.bat"/>
         </fixcrlf>
         
         <!-- Unix shell scripts need the correct line endings. -->
+        <fixcrlf srcdir="${staging-dir}/bin" eol="unix" fixlast="false">
+            <exclude name="**/*.bat"/>
+        </fixcrlf>
         <fixcrlf srcdir="${staging-dir}/js/bin" eol="unix" fixlast="false">
             <exclude name="**/*.bat"/>
         </fixcrlf>
