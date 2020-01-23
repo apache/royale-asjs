@@ -248,7 +248,10 @@ public class PopUpManager
         var popUpHost:IUIBase = (popUp.parent as IPopUpHostParent).popUpHost as IUIBase;
 		UIUtils.removePopUp(popUp as IChild);
         if (modalWindows.length > 0 && modalWindows[modalWindows.length - 1] == popUp)
+        {
             PopUpManagerModal.remove(popUpHost);
+            modalWindows.pop();
+        }
     }
 } // class
 } // package
