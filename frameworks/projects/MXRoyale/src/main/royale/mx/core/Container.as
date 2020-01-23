@@ -638,12 +638,11 @@ public class Container extends UIComponent
     
 	public function get horizontalGap():Object
     {
-        trace("horizontalGap not implemented");
-        return 0;
+        return getStyle("horizontalGap");
     }
     public function set horizontalGap(value:Object):void
     {
-        trace("horizontalGap not implemented");
+        setStyle("horizontalGap", value);
     }
      public function get verticalAlign():Object
     {
