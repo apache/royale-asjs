@@ -162,6 +162,7 @@ internal class CoreClasses
 	
 	import org.apache.royale.core.CSSClassList; CSSClassList;
 	import org.apache.royale.core.StyleChangeNotifier; StyleChangeNotifier;
+	import org.apache.royale.core.StrandWithModel; StrandWithModel;
 	import org.apache.royale.events.CustomEvent; CustomEvent;
     import org.apache.royale.events.Event; Event;
 	import org.apache.royale.events.CloseEvent; CloseEvent;
