@@ -30,7 +30,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class BeadViewBase extends DispatcherBead
+	public class BeadViewBase extends DispatcherBead implements IBeadView
 	{
         /**
          *  Constructor.
