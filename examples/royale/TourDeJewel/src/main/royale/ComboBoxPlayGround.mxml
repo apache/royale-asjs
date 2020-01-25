@@ -133,10 +133,7 @@ limitations under the License.
 				</j:Grid>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
-
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-
+	
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
@@ -152,9 +149,6 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 
-	</j:Grid>
-
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ComboBox selectedIndex: {cmb1.selectedIndex}"/>
@@ -164,9 +158,7 @@ limitations under the License.
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ComboBox selectedItem"/>
@@ -178,9 +170,7 @@ limitations under the License.
 				<j:Button text="Deselect" click="cmb2.selectedIndex = -1"/>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ComboBox with Search Filter"/>
@@ -194,9 +184,7 @@ limitations under the License.
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 
-	<j:Grid gap="true">
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Reposition popup"/>
@@ -209,9 +197,7 @@ limitations under the License.
 				</j:PopUp>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
-	
-	<j:Grid gap="true">
+		
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel ComboBox Disabled"/>
