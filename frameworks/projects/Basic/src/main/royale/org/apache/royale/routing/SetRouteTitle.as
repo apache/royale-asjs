@@ -18,16 +18,36 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  public class RouteState
+  import org.apache.royale.core.Bead;
+  import org.apache.royale.core.IStrand;
+
+  public class SetRouteTitle extends Bead
   {
-    public function RouteState(path:String="")
+    public function SetRouteTitle()
     {
-      this.path = path;
-      this.parameters = {};
+      
     }
-    public var anchor:String;
-    public var parameters:Object;
-    public var path:String;
-    public var title:String;
+
+    override public function set strand(value:IStrand):void
+    {
+      COMPILE::JS
+      {
+        initialTitle = document.title;
+      }
+    }
+
+    private var initialTitle:String;
+    private function setTitle():void
+    {
+      COMPILE::JS
+      {
+        if(window.history.state){
+          document.title = window.history.state["title"];
+        } else {
+          document.title = initialTitle;
+        }
+      }
+    }
+
   }
 }

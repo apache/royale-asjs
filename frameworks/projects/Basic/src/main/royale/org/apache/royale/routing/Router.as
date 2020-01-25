@@ -24,6 +24,14 @@ package org.apache.royale.routing
   import org.apache.royale.core.IStatesObject;
   import org.apache.royale.events.Event;
   import org.apache.royale.core.IInitialViewApplication;
+  import org.apache.royale.core.Strand;
+  import org.apache.royale.core.IBead;
+  import org.apache.royale.events.IEventDispatcher;
+  import org.apache.royale.events.ValueEvent;
+  import org.apache.royale.core.IUIBase;
+  import org.apache.royale.core.IMXMLDocument;
+  import org.apache.royale.utils.MXMLDataInterpreter;
+  [DefaultProperty("beads")]
     /**
      *  Dispatched when the state is changed.
      *
@@ -44,7 +52,7 @@ package org.apache.royale.routing
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-  public class Router extends DispatcherBead
+  public class Router extends Strand implements IBead, IMXMLDocument
   {
     public function Router()
     {
@@ -60,14 +68,14 @@ package org.apache.royale.routing
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public var syncState:Boolean;
-		override public function set strand(value:IStrand):void
+    public var host:IStrand;
+    private var _strand:IStrand;
+		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
 			COMPILE::JS
 			{
 				window.addEventListener("hashchange", hashChangeHandler);
-        initialTitle = document.title;
 			}
       // If it's an Application, listen to applicationComplete
       if(_strand is IInitialViewApplication)
@@ -76,6 +84,14 @@ package org.apache.royale.routing
       else
         listenOnStrand("initComplete",onInit);
 		}
+    /**
+     * Helper function to attach event listener without the need for casting
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     */
+    protected function listenOnStrand(eventType:String,handler:Function,capture:Boolean=false):void
+    {
+      (_strand as IEventDispatcher).addEventListener(eventType, handler, capture);
+    }
     private function onInit(event:Event):void
     {
       COMPILE::JS
@@ -86,15 +102,9 @@ package org.apache.royale.routing
         }
       }
     }
-    private var initialTitle:String;
 		private function hashChangeHandler():void
 		{
       parseHash();
-      if(syncState)
-      {
-        assert(_strand is IStatesObject,"syncState can only be used on IStatesObjects");
-        (_strand as IStatesObject).currentState = _routeState.state;
-      }
 			dispatchEvent(new Event("stateChange"));
 		}
     private function parseHash():void
@@ -108,60 +118,33 @@ package org.apache.royale.routing
           index = 1;
         }
         hash = hash.slice(index+1);
-        var paths:Array = hash.split("/");
-        var statePart:String = paths.pop();
-        var splitParts:Array = statePart.split("?");
-        statePart = splitParts[0];
-        _routeState = new RouteState(statePart,document.title);
-        _routeState.path = paths;
-        _routeState.parameters = parseParameters(splitParts[1]);
+        var ev:ValueEvent = new ValueEvent("hashReceived",hash);
+        dispatchEvent(ev);
+        // var splitParts:Array = hash.split("?");
+        // var path:String = 
+        // var paths:Array = hash.split("/");
+        // var statePart:String = paths.pop();
+        // var splitParts:Array = statePart.split("?");
+        // statePart = splitParts[0];
+        // _routeState = new RouteState(statePart,document.title);
+        // _routeState.path = paths;
+        // _routeState.parameters = parseParameters(splitParts[1]);
       }
-    }
-    private function parseParameters(query:String):Object
-    {
-      var urlVars:Object;
-      if(query){
-        var vars:Array = query.split("&");
-        if(vars.length){
-          urlVars = {};
-        }
-        for (var i:int=0;i<vars.length;i++) {
-            var pair:Array = vars[i].split("=");
-            urlVars[pair[0]] = pair[1] == undefined ? undefined : decodeURIComponent(pair[1]);
-        }
-      }
-      return urlVars;
     }
 
-    private function buildHash():String
-    {
-      var hash:String = "#!";
-      if(_routeState.path && routeState.path.length){
-        hash += (_routeState.path.join("/") + "/");
-      }
-      if(_routeState.state){
-        hash += _routeState.state;
-      }
-      hash+= buildParameterString();
-      return hash;
-    }
-    private function buildParameterString():String{
-      var retVal:String = "";
-      if(_routeState.parameters){
-        retVal += "?";
-        for(var x:String in _routeState.parameters){
-          retVal += x;
-          if(_routeState.parameters[x] != undefined){
-            retVal += "=" + encodeURIComponent(_routeState.parameters[x]);
-            retVal += "&";
-          }
-        }
-        //remove trailing &
-        retVal = retVal.slice(0, -1);
-      }
+    // private function buildHash():String
+    // {
 
-      return retVal;
-    }
+    //   var hash:String = "#!";
+    //   if(_routeState.path && routeState.path.length){
+    //     hash += (_routeState.path.join("/") + "/");
+    //   }
+    //   if(_routeState.state){
+    //     hash += _routeState.state;
+    //   }
+    //   hash+= buildParameterString();
+    //   return hash;
+    // }
 
     private var _routeState:RouteState;
 
@@ -188,7 +171,16 @@ package org.apache.royale.routing
     {
       COMPILE::JS
       {
-        window.history.pushState({"title":_routeState.title},_routeState.title,buildHash());
+        var hash:String = "#!";
+        var ev:ValueEvent = new ValueEvent("hashNeeded","");
+        dispatchEvent(ev);
+        var stateEv:ValueEvent = new ValueEvent("stateNeeded",{});
+        dispatchEvent(stateEv);
+        if(!ev.defaultPrevented)
+        {
+          hash += ev.value;
+          window.history.pushState(stateEv.value,_routeState.title,hash);
+        }
         if(_routeState.title)
         {
           document.title = _routeState.title;
@@ -205,70 +197,52 @@ package org.apache.royale.routing
     public function renderState():void
     {
       setState();
-      if(syncState)
-      {
-        assert(_strand is IStatesObject,"syncState can only be used on IStatesObjects");
-        (_strand as IStatesObject).currentState = _routeState.state;
-      }
+      // if(syncState)
+      // {
+      //   assert(_strand is IStatesObject,"syncState can only be used on IStatesObjects");
+      //   (_strand as IStatesObject).currentState = _routeState.state;
+      // }
       dispatchEvent(new Event("stateChange"));
     }
-    private function setTitle():void
-    {
-      COMPILE::JS
-      {
-        if(window.history.state){
-          document.title = window.history.state["title"];
-        } else {
-          document.title = initialTitle;
-        }
-      }
-    }
-    /**
-     * Goes forward in the history
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    public function forward():void{
-      COMPILE::JS
-      {
-         window.history.forward();
-         setTitle();
-         parseHash();
-      }
-    }
-    /**
-     * Goes backwards in the history
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    public function back():void{
-      COMPILE::JS
-      {
-         window.history.back();
-         setTitle();
-         parseHash();
-      }
-    }
 
-    /**
-     * Moved the specified number of steps (forward or backwards) in the history
-     * calling it with 0 or no value will reload the page.
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    public function go(steps:int=0):void{
-      COMPILE::JS
-      {
-         window.history.go(steps);
-         parseHash();
-      }
-    }
+		private var _mxmlDescriptor:Array;
+		private var _mxmlDocument:Object = this;
+
+		/**
+		 *  @copy org.apache.royale.core.Application#MXMLDescriptor
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function get MXMLDescriptor():Array
+		{
+			return _mxmlDescriptor;
+		}
+		
+		/**
+		 *  @private
+		 */
+		public function setMXMLDescriptor(document:Object, value:Array):void
+		{
+			_mxmlDocument = document;
+			_mxmlDescriptor = value;
+		}
+		
+		/**
+		 *  @copy org.apache.royale.core.Application#generateMXMLAttributes()
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.8
+		 */
+		public function generateMXMLAttributes(data:Array):void
+		{
+			MXMLDataInterpreter.generateMXMLProperties(this, data);
+		}
+		
 
   }
 }

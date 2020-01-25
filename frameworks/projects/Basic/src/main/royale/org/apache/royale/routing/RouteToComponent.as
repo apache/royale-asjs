@@ -18,16 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  public class RouteState
+  import org.apache.royale.core.Bead;
+  [DefaultProperty("routes")]
+  /**
+   * RouteToComponent is a bead designed for Router
+   * One or more routes should be assigned to the bead
+   */
+  public class RouteToComponent extends Bead
   {
-    public function RouteState(path:String="")
+    public function RouteToComponent()
     {
-      this.path = path;
-      this.parameters = {};
+      
     }
-    public var anchor:String;
-    public var parameters:Object;
-    public var path:String;
-    public var title:String;
+
+    public var routes:Array;
   }
 }

@@ -18,16 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  public class RouteState
+  import org.apache.royale.core.Bead;
+  import org.apache.royale.core.IStrand;
+  import org.apache.royale.events.ValueEvent;
+
+  public class ParameterRouting extends Bead
   {
-    public function RouteState(path:String="")
+    public function ParameterRouting()
     {
-      this.path = path;
-      this.parameters = {};
+      
     }
-    public var anchor:String;
-    public var parameters:Object;
-    public var path:String;
-    public var title:String;
+    override public function set strand(value:IStrand):void
+    {
+      _strand = value;
+      listenOnStrand("hashReceived",parseHash)
+      listenOnStrand("hashNeeded",buildHash)
+    }
+    private function buildHash(ev:ValueEvent):void
+    {
+
+    }
+    private function parseHash(ev:ValueEvent):void
+    {
+
+    }
   }
 }
