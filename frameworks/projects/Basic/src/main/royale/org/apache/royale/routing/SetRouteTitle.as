@@ -20,12 +20,19 @@ package org.apache.royale.routing
 {
   import org.apache.royale.core.Bead;
   import org.apache.royale.core.IStrand;
+  import org.apache.royale.events.ValueEvent;
 
   public class SetRouteTitle extends Bead
   {
     public function SetRouteTitle()
     {
       
+    }
+    /**
+     * @royaleignorecoercion org.apache.royale.routing.Router
+     */
+    private function get host():Router{
+      return _strand as Router
     }
 
     override public function set strand(value:IStrand):void
@@ -34,8 +41,13 @@ package org.apache.royale.routing
       {
         initialTitle = document.title;
       }
+      listenOnStrand("stateSet",handleStateSet);
+      listenOnStrand("hashReceived",hashReceived);
     }
-
+    private function hashReceived(ev:ValueEvent):void
+    {
+      setTitle();
+    }
     private var initialTitle:String;
     private function setTitle():void
     {
@@ -47,6 +59,19 @@ package org.apache.royale.routing
           document.title = initialTitle;
         }
       }
+    }
+
+    private function handleStateSet():void
+    {
+      COMPILE::JS
+      {
+        if(host.routeState.title)
+        {
+          document.title = host.routeState.title;
+        }
+
+      }
+
     }
 
   }

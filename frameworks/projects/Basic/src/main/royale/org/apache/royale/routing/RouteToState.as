@@ -88,7 +88,18 @@ package org.apache.royale.routing
     }
     private function hashReceived(ev:ValueEvent):void
     {
-      var hash
+      var hash:String = ev.value;
+      var trailing:String = "";
+      // if we have parameters, we don't care if we also have an anchor
+      var delim:String = ""
+      var index:int = hash.indexOf("?")
+      if(index == -1)
+        index = hash.indexOf("#");
+      
+      if(index != -1)
+        hash = hash.slice(0,index);
+      
+      host.routeState.path = hash;
     }
     private var settingState:Boolean;
     /**

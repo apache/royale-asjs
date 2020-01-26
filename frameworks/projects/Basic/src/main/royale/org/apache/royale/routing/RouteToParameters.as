@@ -29,6 +29,12 @@ package org.apache.royale.routing
     {
       
     }
+    /**
+     * @royaleignorecoercion org.apache.royale.routing.Router
+     */
+    private function get host():Router{
+      return _strand as Router
+    }
     override public function set strand(value:IStrand):void
     {
       _strand = value;
@@ -38,52 +44,86 @@ package org.apache.royale.routing
     }
     private function hashNeeded(ev:ValueEvent):void
     {
+      var hash:String = ev.value;
+      var paramStr:String = buildParameterString();
+      var trailing:String = "";
+      var index:int = hash.indexOf("#");
+      if(index != -1)
+      {
+        trailing = hash.slice(index);
+        hash = hash.slice(0,index);
+      }
+      ev.value = hash + paramStr + trailing;
 
     }
 
     private function hashReceived(ev:ValueEvent):void
     {
-      
+      var hash:String = ev.value;
+      var index:int = hash.indexOf("?");
+      if(index == -1)//no params
+        return;
+      hash = hash.slice(index + 1);
+      index = hash.indexOf("#");
+      if(index != -1)
+      {
+        hash = hash.slice(0,index);
+      }
+      host.routeState.parameters = parseParameters(hash);
     }
     private function stateChanged():void
     {
-
+      var params:Object = host.routeState.parameters;
+      // apply routes
+      if(routes)
+      {
+        for(var i:int=0;i<routes.length;i++){
+          var route:ParameterRoute = routes[i];
+          if(route.key in params)
+          {
+            route.callback(params[route.key]);
+            if(route.title)
+              host.routeState.title = route.title;
+          }
+        }
+      }      
     }
     public var routes:Array;
 
-    // private function buildParameterString():String{
-    //   var retVal:String = "";
-    //   if(_routeState.parameters){
-    //     retVal += "?";
-    //     for(var x:String in _routeState.parameters){
-    //       retVal += x;
-    //       if(_routeState.parameters[x] != undefined){
-    //         retVal += "=" + encodeURIComponent(_routeState.parameters[x]);
-    //         retVal += "&";
-    //       }
-    //     }
-    //     //remove trailing &
-    //     retVal = retVal.slice(0, -1);
-    //   }
+    private function buildParameterString():String{
+      var retVal:String = "";
+      var state:RouteState = host.routeState;
+      if(state.parameters){
+        retVal += "?";
+        for(var x:String in state.parameters){
+          retVal += x;
+          if(state.parameters[x] != undefined){
+            retVal += "=" + encodeURIComponent(state.parameters[x]);
+            retVal += "&";
+          }
+        }
+        //remove trailing &
+        retVal = retVal.slice(0, -1);
+      }
 
-    //   return retVal;
-    // }
+      return retVal;
+    }
 
-    // private function parseParameters(query:String):Object
-    // {
-    //   var urlVars:Object;
-    //   if(query){
-    //     var vars:Array = query.split("&");
-    //     if(vars.length){
-    //       urlVars = {};
-    //     }
-    //     for (var i:int=0;i<vars.length;i++) {
-    //         var pair:Array = vars[i].split("=");
-    //         urlVars[pair[0]] = pair[1] == undefined ? undefined : decodeURIComponent(pair[1]);
-    //     }
-    //   }
-    //   return urlVars;
-    // }
+    private function parseParameters(query:String):Object
+    {
+      var urlVars:Object;
+      if(query){
+        var vars:Array = query.split("&");
+        if(vars.length){
+          urlVars = {};
+        }
+        for (var i:int=0;i<vars.length;i++) {
+            var pair:Array = vars[i].split("=");
+            urlVars[pair[0]] = pair[1] == undefined ? undefined : decodeURIComponent(pair[1]);
+        }
+      }
+      return urlVars;
+    }
 
   }
 }

@@ -32,6 +32,7 @@ package org.apache.royale.routing
      * Parameter key to use
      */
     public var key:String;
+    public var title:String;
     /**
      * Function to call if the parameter exists. (The value is supplied as an argument.)
      */

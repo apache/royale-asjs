@@ -29,5 +29,13 @@ package org.apache.royale.routing
     public var parameters:Object;
     public var path:String;
     public var title:String;
+    public function getBaseName():String
+    {
+        var lastdelim:int = path.lastIndexOf("/");
+        if(lastdelim != -1)
+          return path.slice(lastdelim+1);
+      
+      return path;
+    }
   }
 }

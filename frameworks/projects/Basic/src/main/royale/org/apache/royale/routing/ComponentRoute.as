@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  import org.apache.royale.core.IUIBase;
+  import org.apache.royale.core.IParent;
   /**
    * ComponentRoutes are declared in RouteToComponent beads.
    * This maps a base name of a route path to a component class.
@@ -40,6 +40,8 @@ package org.apache.royale.routing
     /**
      * The parent to add the component to. (Defaults to the strand of the router.)
      */
-    public var parent:IUIBase;
+    public var parent:IParent;
+
+    public var title:String;
   }
 }

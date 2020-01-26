@@ -31,6 +31,7 @@ package org.apache.royale.routing
   import org.apache.royale.core.IUIBase;
   import org.apache.royale.core.IMXMLDocument;
   import org.apache.royale.utils.MXMLDataInterpreter;
+  import org.apache.royale.utils.sendStrandEvent;
   [DefaultProperty("beads")]
     /**
      *  Dispatched when the state is changed.
@@ -180,10 +181,7 @@ package org.apache.royale.routing
         {
           hash += ev.value;
           window.history.pushState(stateEv.value,_routeState.title,hash);
-        }
-        if(_routeState.title)
-        {
-          document.title = _routeState.title;
+          sendStrandEvent(this,"stateSet");
         }
       }
     }
