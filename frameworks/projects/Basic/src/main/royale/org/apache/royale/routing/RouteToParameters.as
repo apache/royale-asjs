@@ -19,13 +19,38 @@
 package org.apache.royale.routing
 {
   import org.apache.royale.core.Bead;
+  import org.apache.royale.events.ValueEvent;
+  import org.apache.royale.core.IStrand;
 
-  public class RouteNeedsParameters extends Bead
+  [DefaultProperty("routes")]
+  public class RouteToParameters extends Bead
   {
-    public function RouteNeedsParameters()
+    public function RouteToParameters()
     {
       
     }
+    override public function set strand(value:IStrand):void
+    {
+      _strand = value;
+      listenOnStrand("hashNeeded",hashNeeded);
+      listenOnStrand("hashReceived",hashReceived);
+      listenOnStrand("stateChange",stateChanged)
+    }
+    private function hashNeeded(ev:ValueEvent):void
+    {
+
+    }
+
+    private function hashReceived(ev:ValueEvent):void
+    {
+      
+    }
+    private function stateChanged():void
+    {
+
+    }
+    public var routes:Array;
+
     // private function buildParameterString():String{
     //   var retVal:String = "";
     //   if(_routeState.parameters){

@@ -18,29 +18,23 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  import org.apache.royale.core.Bead;
-  import org.apache.royale.core.IStrand;
-  import org.apache.royale.events.ValueEvent;
-
-  public class ParameterRouting extends Bead
+  /**
+   * ParameterRoutes are declared in (or added to) RouteToParamter beads.
+   * If the key exists in thge parameters, the callback will be called with the value as the argument to the function.
+   */
+  public class ParameterRoute
   {
-    public function ParameterRouting()
+    public function ParameterRoute()
     {
       
     }
-    override public function set strand(value:IStrand):void
-    {
-      _strand = value;
-      listenOnStrand("hashReceived",parseHash)
-      listenOnStrand("hashNeeded",buildHash)
-    }
-    private function buildHash(ev:ValueEvent):void
-    {
-
-    }
-    private function parseHash(ev:ValueEvent):void
-    {
-
-    }
+    /**
+     * Parameter key to use
+     */
+    public var key:String;
+    /**
+     * Function to call if the parameter exists. (The value is supplied as an argument.)
+     */
+    public var callback:Function;
   }
 }

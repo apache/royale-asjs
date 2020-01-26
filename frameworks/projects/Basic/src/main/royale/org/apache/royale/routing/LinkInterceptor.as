@@ -22,9 +22,9 @@ package org.apache.royale.routing
   import org.apache.royale.core.IStrand;
   import org.apache.royale.events.Event;
 
-  public class LinkRouting extends Bead
+  public class LinkInterceptor extends Bead
   {
-    public function LinkRouting()
+    public function LinkInterceptor()
     {
       
     }
