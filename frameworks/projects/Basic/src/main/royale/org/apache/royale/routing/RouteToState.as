@@ -22,8 +22,8 @@ package org.apache.royale.routing
   import org.apache.royale.core.IStrand;
   import org.apache.royale.events.ValueEvent;
   import org.apache.royale.core.IStatesObject;
-  import org.apache.royale.textLayout.debug.assert;
   import org.apache.royale.utils.callLater;
+  import org.apache.royale.debugging.assert;
 
   public class RouteToState extends Bead
   {
@@ -37,7 +37,7 @@ package org.apache.royale.routing
     private function get host():Router{
       return _strand as Router
     }
-    
+
     override public function set strand(value:IStrand):void
     {
       _strand = value;

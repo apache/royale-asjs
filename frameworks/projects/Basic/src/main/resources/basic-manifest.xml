@@ -273,6 +273,13 @@
     <component id="ModalDisplay" class="org.apache.royale.html.beads.plugin.ModalDisplay"/>
     <component id="ModalOverlay" class="org.apache.royale.html.beads.plugin.ModalOverlay"/>
 
+    <component id="ComponentRoute" class="org.apache.royale.routing.ComponentRoute"/>
+    <component id="LinkInterceptor" class="org.apache.royale.routing.LinkInterceptor"/>
+    <component id="ParameterRoute" class="org.apache.royale.routing.ParameterRoute"/>
+    <component id="RouteToComponent" class="org.apache.royale.routing.RouteToComponent"/>
+    <component id="RouteToParameters" class="org.apache.royale.routing.RouteToParameters"/>
+    <component id="RouteToState" class="org.apache.royale.routing.RouteToState"/>
+    <component id="SetRouteTitle" class="org.apache.royale.routing.SetRouteTitle"/>
     <component id="Router" class="org.apache.royale.routing.Router"/>
 
 </componentPackage>

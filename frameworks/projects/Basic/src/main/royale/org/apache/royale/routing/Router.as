@@ -18,17 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  import org.apache.royale.core.DispatcherBead;
   import org.apache.royale.core.IStrand;
-  import org.apache.royale.debugging.assert;
-  import org.apache.royale.core.IStatesObject;
   import org.apache.royale.events.Event;
   import org.apache.royale.core.IInitialViewApplication;
   import org.apache.royale.core.Strand;
   import org.apache.royale.core.IBead;
   import org.apache.royale.events.IEventDispatcher;
   import org.apache.royale.events.ValueEvent;
-  import org.apache.royale.core.IUIBase;
   import org.apache.royale.core.IMXMLDocument;
   import org.apache.royale.utils.MXMLDataInterpreter;
   import org.apache.royale.utils.sendStrandEvent;
@@ -121,31 +117,8 @@ package org.apache.royale.routing
         hash = hash.slice(index+1);
         var ev:ValueEvent = new ValueEvent("hashReceived",hash);
         dispatchEvent(ev);
-        // var splitParts:Array = hash.split("?");
-        // var path:String = 
-        // var paths:Array = hash.split("/");
-        // var statePart:String = paths.pop();
-        // var splitParts:Array = statePart.split("?");
-        // statePart = splitParts[0];
-        // _routeState = new RouteState(statePart,document.title);
-        // _routeState.path = paths;
-        // _routeState.parameters = parseParameters(splitParts[1]);
       }
     }
-
-    // private function buildHash():String
-    // {
-
-    //   var hash:String = "#!";
-    //   if(_routeState.path && routeState.path.length){
-    //     hash += (_routeState.path.join("/") + "/");
-    //   }
-    //   if(_routeState.state){
-    //     hash += _routeState.state;
-    //   }
-    //   hash+= buildParameterString();
-    //   return hash;
-    // }
 
     private var _routeState:RouteState;
 
@@ -195,11 +168,6 @@ package org.apache.royale.routing
     public function renderState():void
     {
       setState();
-      // if(syncState)
-      // {
-      //   assert(_strand is IStatesObject,"syncState can only be used on IStatesObjects");
-      //   (_strand as IStatesObject).currentState = _routeState.state;
-      // }
       dispatchEvent(new Event("stateChange"));
     }
 
