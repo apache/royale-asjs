@@ -94,17 +94,11 @@ package org.apache.royale.effects
 			return _children;
 		}
 
-		/**
-		 * @private
-		 */
 		public function set children(value:Array):void
 		{
 			_children = value;
 		}
 
-		/**
-		 *  @private
-		 */
 		private var _duration:Number = 500;
 		public function set duration(value:Number):void
 		{
