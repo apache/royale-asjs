@@ -71,10 +71,9 @@ package org.apache.royale.effects
 		private var document:Object;
 		
 		/**
-		 *  @private
 		 *  The target.
 		 */
-		private var target:IUIBase;
+		public var target:IUIBase;
 		
 		private var _children:Array;
 		
@@ -86,10 +85,6 @@ package org.apache.royale.effects
 		//
 		//--------------------------------------------------------------------------
 		
-		/**
-		 *  @private
-		 */
-		private var _duration:Number = 500;
 		
 		/**
 		 *  The children.
@@ -99,14 +94,12 @@ package org.apache.royale.effects
 			return _children;
 		}
 
-		/**
-		 * @private
-		 */
 		public function set children(value:Array):void
 		{
 			_children = value;
 		}
 
+		private var _duration:Number = 500;
 		public function set duration(value:Number):void
 		{
 			_duration = value;

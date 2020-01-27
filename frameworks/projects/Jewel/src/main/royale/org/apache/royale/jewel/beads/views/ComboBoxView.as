@@ -31,9 +31,8 @@ package org.apache.royale.jewel.beads.views
 	}
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IComboBoxModel;
-	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -124,7 +123,7 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.strand = value;
 
-			var host:StyledUIBase = _strand as StyledUIBase;
+			var parent:IParent = _strand as StyledUIBase;
 
 			_textinput = new TextInput();
             /*COMPILE::JS {
@@ -139,8 +138,8 @@ package org.apache.royale.jewel.beads.views
 
 			initSize();
 
-			host.addElement(_textinput);
-			host.addElement(_button);
+			parent.addElement(_textinput);
+			parent.addElement(_button);
 
 			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 
@@ -153,7 +152,7 @@ package org.apache.royale.jewel.beads.views
 			model.addEventListener("selectionChanged", handleItemChange);
 			model.addEventListener("dataProviderChanged", itemChangeAction);
 
-			IEventDispatcher(_strand).addEventListener("sizeChanged", handleSizeChange);
+			listenOnStrand("sizeChanged", handleSizeChange);
 		}
 
 		private var model:IComboBoxModel;
@@ -188,8 +187,9 @@ package org.apache.royale.jewel.beads.views
                     _comboPopUp = new _popUpClass() as ComboBoxPopUp;
                     _comboPopUp.model = model;
 
-                    var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
-                    popupHost.popUpParent.addElement(_comboPopUp);
+					UIUtils.addPopUp(_comboPopUp, host);
+                    // var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+                    // popupHost.popUpParent.addElement(_comboPopUp);
 
                     // popup is ComboBoxPopUp that fills 100% of browser window-> We want the internal List inside its view to adjust height
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
