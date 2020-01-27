@@ -50,6 +50,7 @@
     <module>node</module>
     <module>amf</module>
     <module>crux</module>
+    <module>jewel</module>
     <module>examples-tests</module>
   </modules>
 
