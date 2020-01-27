@@ -29,6 +29,32 @@ limitations under the License.
 			import org.apache.royale.jewel.beads.views.ListView;
 
 			import vos.IconListVO;
+
+            private var host:List;
+
+            /**
+             * listen to "itemRemoved" event dispatched from the List
+             */
+            override public function addedToParent():void
+            {
+                super.addedToParent();
+
+                var view:ListView = this.itemRendererParent as ListView;
+                host = view.host as List;
+                IEventDispatcher(host).addEventListener("itemRemoved", handleItemRemoved);
+            }
+
+            /**
+             * check if the renderer (item) is the current and in that case ensure remove listener and tip.
+             */
+            protected function handleItemRemoved(event:ItemRemovedEvent):void
+            {
+                if(event.item == this)
+                {
+                    IEventDispatcher(host).removeEventListener("itemRemoved", handleItemRemoved);
+                    tt.removeTip();
+                }
+            }
             
             [Bindable("dataChange")]
             public function get iconList():IconListVO
@@ -46,11 +72,17 @@ limitations under the License.
                     }
                 }
             }
+
+            public function getToolTip(newText:String):String
+            {
+                return "ToolTip of <strong>" + newText + "</strong> item<br>to show how is removed<br>with the renderer.";
+            }
 		]]>
     </fx:Script>
 
     <j:beads>
         <js:ItemRendererDataBinding />
+        <j:ToolTip localId="tt" toolTip="{getToolTip(text)}"/>
     </j:beads>
 
     <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>
