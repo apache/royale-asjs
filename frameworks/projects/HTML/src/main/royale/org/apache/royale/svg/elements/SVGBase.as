@@ -19,7 +19,7 @@
 package org.apache.royale.svg.elements
 {
   import org.apache.royale.html.Group;
-
+  COMPILE::JS
   public class SVGBase extends Group
   {
     public function SVGBase()
