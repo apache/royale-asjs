@@ -510,6 +510,7 @@
    <exclude-classes>
        <class>org.apache.royale.utils.Language</class>
        <class>org.apache.royale.core.IRoyaleElement</class>
+       <class>org.apache.royale.svg.elements.SVGBase</class>
        <class>org.apache.royale.core.WrappedHTMLElement</class>
        <class>org.apache.royale.events.BrowserEvent</class>
        <class>org.apache.royale.html.beads.CSSTextButtonView</class>
