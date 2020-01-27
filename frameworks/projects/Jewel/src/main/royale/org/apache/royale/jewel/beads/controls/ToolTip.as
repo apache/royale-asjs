@@ -30,6 +30,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.utils.OSUtils;
 	import org.apache.royale.utils.PointUtils;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.events.Event;
 
 	/**
 	 *  The ToolTip class is a specialty bead that can be used with
