@@ -43,5 +43,7 @@ package org.apache.royale.routing
     public var parent:IParent;
 
     public var title:String;
+
+    public var defaultRoute:Boolean = false;
   }
 }

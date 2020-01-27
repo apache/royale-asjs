@@ -96,6 +96,7 @@ package org.apache.royale.routing
      */
     private function stateChanged():void
     {
+      var default:ComponentRoute;
       // apply routes
       if(routes)
       {
@@ -103,20 +104,30 @@ package org.apache.royale.routing
 
         for(var i:int=0;i<routes.length;i++){
           var route:ComponentRoute = routes[i];
+          if(route.defaultRoute)
+            default = route;
           if(route.baseName == baseName)
           {
-            var parent:IParent = route.parent || host.host as IParent;
-            while(parent.numElements > 0)
-              parent.removeElement(parent.getElementAt(0));
-            
-            var comp:IChild = new route.component();
-            parent.addElement(comp);
-            if(route.title)
-              host.routeState.title = route.title;
+            addComponent(route);
+            return;
           }
+        }
+        if(default)
+        {
+          addComponent(default);
         }
       }      
     }
+    private function addComponent(route:ComponentRoute):void{
+      var parent:IParent = route.parent || host.host as IParent;
+      while(parent.numElements > 0)
+        parent.removeElement(parent.getElementAt(0));
+      
+      var comp:IChild = new route.component();
+      parent.addElement(comp);
+      if(route.title)
+        host.routeState.title = route.title;
 
+    }
   }
 }
