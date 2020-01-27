@@ -20,7 +20,9 @@ limitations under the License.
 <j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic" 
-    xmlns="http://www.w3.org/1999/xhtml">
+    xmlns="http://www.w3.org/1999/xhtml"
+    rollOver="closeBtn.visible = true"
+    rollOut="closeBtn.visible = false">
 
     <fx:Script>
         <![CDATA[
@@ -34,27 +36,23 @@ limitations under the License.
             public var host:List;
 
             [Bindable("dataChange")]
-            public function get item():TodoVO
-            {
+            public function get item():TodoVO {
                 return data as TodoVO;
             }
 
-            public function clickCloseButton():void
-			{
-                var view:ListView = this.itemRendererParent as ListView;
+            public function clickCloseButton():void {
+                var view:ListView = itemRendererParent as ListView;
 				host = view.host as List;
 				(host.dataProvider as ArrayListView).removeItemAt(index);
                 dispatchEvent(new Event("itemStateChanged", true));
             }
 
-            public function edit(event:Event):void
-            {
+            public function edit(event:Event):void {
                 item.label = event.target.text;
                 currentState = 'normal';
             }
 
-            public function changeItemState(event:Event):void
-            {
+            public function changeItemState(event:Event):void {
                 item.done = event.target.selected;
                 dispatchEvent(new Event("itemStateChanged", true));
             }
@@ -77,7 +75,7 @@ limitations under the License.
 
     <j:TextInput localId="editfield" visible.normal="false" visible.editing="true" enter="edit(event)"/>
 
-    <j:IconButton click="clickCloseButton()">
+    <j:IconButton localId="closeBtn" click="clickCloseButton()" visible="false">
         <j:icon>
             <js:FontIcon text="{MaterialIconType.CLOSE}" material="true"/>
         </j:icon>

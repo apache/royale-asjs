@@ -21,7 +21,6 @@ limitations under the License.
     xmlns:j="library://ns.apache.org/royale/jewel"
     xmlns:js="library://ns.apache.org/royale/basic"
     xmlns:html="library://ns.apache.org/royale/html"
-    xmlns:local="*"
     initComplete="setUp()">
 
     <fx:Script>
@@ -32,24 +31,21 @@ limitations under the License.
         import org.apache.royale.collections.ArrayListView;
         import org.apache.royale.events.Event;
 
-        public function setUp():void
-        {
-            list.addEventListener("itemStateChanged", itemStateChangedHandler)
+        [Bindable]
+        public var items:ArrayList = new ArrayList();
+
+        public function setUp():void {
+            list.addEventListener("itemStateChanged", itemStateChangedHandler);
         }
 
-        private function addItem(event:Event):void
-        {
+        private function addItem(event:Event):void {
             var newItem:TodoVO = new TodoVO(event.target.text);
             items.addItem(newItem);
             event.target.text = "";
             itemStateChangedHandler();
         }
-
-        [Bindable]
-        public var items:ArrayList = new ArrayList();
         
-        public function itemsCompleted(listOfItems:ArrayList, filterFunction:Function = null):ArrayListView
-        {
+        public function itemsCompleted(listOfItems:ArrayList, filterFunction:Function = null):ArrayListView {
             var alv:ArrayListView = new ArrayListView(listOfItems);
             alv.filterFunction = filterFunction;
             alv.refresh();
@@ -68,11 +64,13 @@ limitations under the License.
             return item && item.done == true;
         }
         
-        public function markAllDone():void {
-            var l:uint = items.length;
+        //Mark all as complete
+        public function markAllAsComplete():void {
+            var len:int = items.length
             var item:TodoVO;
-            while(l--) {
-                item = TodoVO(items.getItemAt(l));
+            for(var i:int = 0; i < len; i++)
+            {
+                item = TodoVO(items.getItemAt(i));
                 item.done = true;
             }
         }
@@ -83,14 +81,14 @@ limitations under the License.
             while(l--) {
                 item = TodoVO(items.getItemAt(l));
                 if(item.done){
-                    items.removeItemAt(l);
+                    items.removeItem(item);
                 }
             }
         }
 
-        public function itemStateChangedHandler(event:Event = null):void
-        {
+        public function itemStateChangedHandler(event:Event = null):void {
             itemsLeft.text = itemsCompleted(items, isActive).length + " item left";
+            clearCompleted.visible = itemsCompleted(items, isCompleted).length != 0 ? true : false;
         }
         ]]>
 	</fx:Script>
@@ -99,17 +97,16 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-    <html:H1 text="todos"/>
-            
-    <j:Card>
+    <j:SectionContent className="todoapp" isSelected="true">
+        <html:H1 text="todos"/>
 
         <j:HGroup>
-            <j:IconButton click="markAllDone()">
+            <j:IconButton click="markAllAsComplete()">
                 <j:icon>
                     <js:FontIcon text="{MaterialIconType.ARROW_DOWNWARD}" material="true"/>
                 </j:icon>
             </j:IconButton>
-            <j:TextInput localId="need" enter="addItem(event)">
+            <j:TextInput localId="need" enter="addItem(event)" className="new-todo">
                 <j:beads>
                     <j:TextPrompt prompt="What needs to be done?"/>
                 </j:beads>
@@ -117,22 +114,28 @@ limitations under the License.
         </j:HGroup>
 
         <j:List localId="list" width="200" height="300" rowHeight="60"
-            labelField="label" className="todoItemRenderer"
+            labelField="label" className="todoItemRenderer todo-list"
             initComplete="list.dataProvider = itemsCompleted(items, null)">
             <j:beads>
                 <j:AddListItemRendererForArrayListData/>
                 <j:RemoveListItemRendererForArrayListData/>
                 <j:UpdateListItemRendererForArrayListData/>
-                <j:RemoveAllItemRendererForArrayListData/>
             </j:beads>
         </j:List>
-        <j:HGroup gap="3">
-            <j:Label localId="itemsLeft" text="0 items left"/>
-            <j:Button text="All" click="list.dataProvider = itemsCompleted(items, null)"/>
-            <j:Button text="Active" click="list.dataProvider = itemsCompleted(items, isActive)"/>
-            <j:Button text="Completed" click="list.dataProvider = itemsCompleted(items, isCompleted)"/>
-            <j:Button text="Clear Completed" click="removeCompleted()"/>
-        </j:HGroup>
-    </j:Card>
 
+        <j:BarRow>
+            <j:BarSection>
+                <j:Label localId="itemsLeft" text="0 items left"/>
+            </j:BarSection>
+            <j:BarSection>
+                <j:Button text="All" click="list.dataProvider = itemsCompleted(items, null)"/>
+                <j:Button text="Active" click="list.dataProvider = itemsCompleted(items, isActive)"/>
+                <j:Button text="Completed" click="list.dataProvider = itemsCompleted(items, isCompleted)"/>
+            </j:BarSection>
+            <j:BarSection>
+                <j:Button localId="clearCompleted" text="Clear Completed" click="removeCompleted()" visible="false"/>
+            </j:BarSection>
+        </j:BarRow>
+    
+    </j:SectionContent>
 </j:View>
