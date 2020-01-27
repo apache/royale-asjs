@@ -18,14 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IParentIUIBase;
-    import org.apache.royale.events.Event;
+	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IStatesObject;
+	import org.apache.royale.events.ValueChangeEvent;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.core.IStatesImpl;
+	import org.apache.royale.core.IState;
+
+	/**
+     *  Indicates that the state change has completed.  All properties
+     *  that need to change have been changed, and all transitinos
+     *  that need to run have completed.  However, any deferred work
+     *  may not be completed, and the screen may not be updated until
+     *  code stops executing.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.7
+     */
+    [Event(name="stateChangeComplete", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The MXMLItemRenderer class is the base class for itemRenderers that are MXML-based
@@ -36,7 +53,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class MXMLItemRenderer extends DataItemRenderer implements ILayoutParent, ILayoutHost, IStrand, ILayoutView
+	public class MXMLItemRenderer extends DataItemRenderer implements ILayoutParent, ILayoutHost, IStrand, ILayoutView, IStatesObject
 	{
 		/**
 		 *  constructor.
@@ -90,6 +107,119 @@ package org.apache.royale.html.supportClasses
 			
 		}
 
+
+		private var _states:Array;
+        
+        /**
+         *  The array of view states. These should
+         *  be instances of org.apache.royale.states.State.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get states():Array
+        {
+            return _states;
+        }
+
+        /**
+         *  @private
+         *  @royaleignorecoercion Class
+         *  @royaleignorecoercion org.apache.royale.core.IBead
+         */
+        public function set states(value:Array):void
+        {
+            _states = value;
+            _currentState = _states[0].name;
+            
+			try{
+    			loadBeadFromValuesManager(IStatesImpl, "iStatesImpl", this);
+			}
+			//TODO:  Need to handle this case more gracefully
+			catch(e:Error)
+			{
+                COMPILE::SWF
+                {
+                    trace(e.message);                        
+                }
+			}
+            
+        }
+        
+        /**
+         *  <code>true</code> if the array of states
+         *  contains a state with this name.
+         * 
+         *  @param state The state namem.
+         *  @return True if state in state array
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function hasState(state:String):Boolean
+        {
+            for each (var s:IState in _states)
+            {
+                if (s.name == state)
+                    return true;
+            }
+            return false;
+        }
+        
+		
+        private var _currentState:String;
+        
+        [Bindable("currentStateChange")]
+        /**
+         *  The name of the current state.
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get currentState():String
+        {
+            return _currentState;   
+        }
+
+        /**
+         *  @private
+         */
+        public function set currentState(value:String):void
+        {
+			if (value == _currentState) return;
+            var event:ValueChangeEvent = new ValueChangeEvent("currentStateChange", false, false, _currentState, value)
+            _currentState = value;
+            dispatchEvent(event);
+        }
+        
+        private var _transitions:Array;
+        
+        /**
+         *  The array of transitions.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get transitions():Array
+        {
+            return _transitions;   
+        }
+        
+        /**
+         *  @private
+         */
+        public function set transitions(value:Array):void
+        {
+            _transitions = value;   
+        }
 
 	}
 }
