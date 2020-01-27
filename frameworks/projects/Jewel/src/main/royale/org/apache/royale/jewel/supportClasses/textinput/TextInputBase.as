@@ -24,13 +24,12 @@ package org.apache.royale.jewel.supportClasses.textinput
 
     COMPILE::JS
     {
-    import goog.events;
-
     import org.apache.royale.core.WrappedHTMLElement;
     }
 
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.events.Event;
+    import org.apache.royale.events.KeyboardEvent;
     import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
     
     /**
@@ -192,7 +191,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        protected function enterEventHandler(event:Event):void
+        protected function enterEventHandler(event:KeyboardEvent):void
         {
             COMPILE::JS
             {
