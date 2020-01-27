@@ -224,16 +224,25 @@ package org.apache.royale.jewel.beads.controls
 		}
 
         /**
-         * @private
-		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 * rollOutHandler
+		 * @private
          */
-        protected function rollOutHandler(event:MouseEvent):void
+        protected function rollOutHandler(event:MouseEvent = null):void
         {
+			removeTip();
+		}
+
+		/**
+		 * remove the tooltip popup
+		 * 
+		 * @private
+		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		 */
+		public function removeTip():void {
 			IEventDispatcher(_strand).removeEventListener("change", changeHandler, false);
 			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
-			
-			var comp:IUIBase = _strand as IUIBase;
-            if (tt) {
+
+			if (tt) {
                 host.popUpParent.removeElement(tt);
 				tt = null;
 			}
