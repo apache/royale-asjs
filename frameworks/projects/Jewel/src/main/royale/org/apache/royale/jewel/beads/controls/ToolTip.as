@@ -131,8 +131,13 @@ package org.apache.royale.jewel.beads.controls
 			//ToolTip in iOS produces a bad behaviour, used in a button and user has to do a second touch to trigger click event
 			if(OSUtils.getOS() != OSUtils.IOS_OS)
 			{
-            	IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+            	IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OVER, rollOverHandler, false);
 			}
+		}
+
+		protected function changeHandler(event:Event):void
+		{
+			tt.html = toolTip;
 		}
 
 		/**
@@ -145,7 +150,8 @@ package org.apache.royale.jewel.beads.controls
 			if (!toolTip || tt)
 				return;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
+			IEventDispatcher(_strand).addEventListener("change", changeHandler, false);
+            IEventDispatcher(_strand).addEventListener(MouseEvent.ROLL_OUT, rollOutHandler, false);
 
             var comp:IUIBase = _strand as IUIBase;
             host = UIUtils.findPopUpHost(comp);
@@ -223,6 +229,7 @@ package org.apache.royale.jewel.beads.controls
          */
         protected function rollOutHandler(event:MouseEvent):void
         {
+			IEventDispatcher(_strand).removeEventListener("change", changeHandler, false);
 			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 			
 			var comp:IUIBase = _strand as IUIBase;
