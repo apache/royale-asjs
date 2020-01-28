@@ -222,6 +222,8 @@
     <component id="UpdateTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateTableRowForArrayListData" />
 
     <component id="RemoveAllItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllItemRendererForArrayListData" />
+    
+    <component id="ToolTipRemovalWhenItemRemoved" class="org.apache.royale.jewel.beads.itemRenderers.ToolTipRemovalWhenItemRemoved" />
 
     <!-- <component id="JewelLabelViewBead" class="org.apache.royale.jewel.beads.views.JewelLabelViewBead"/> -->
 
