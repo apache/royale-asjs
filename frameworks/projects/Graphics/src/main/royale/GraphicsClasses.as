@@ -53,7 +53,26 @@ internal class GraphicsClasses
 	import org.apache.royale.graphics.IPath; IPath;
 	import org.apache.royale.graphics.IRect; IRect;
 	import org.apache.royale.graphics.IText; IText;
-		
+
+	//swf level graphics api support:
+	import org.apache.royale.display.Graphics; Graphics;
+	import org.apache.royale.display.IGraphicsTarget; IGraphicsTarget;
+	COMPILE::JS{
+		import org.apache.royale.display.CapsStyle; CapsStyle;
+		import org.apache.royale.display.GraphicsEndFill; GraphicsEndFill;
+		import org.apache.royale.display.GraphicsGradientFill; GraphicsGradientFill;
+		import org.apache.royale.display.GraphicsSolidFill; GraphicsSolidFill;
+		import org.apache.royale.display.GraphicsStroke; GraphicsStroke;
+		import org.apache.royale.display.IGraphicsData; IGraphicsData;
+		import org.apache.royale.display.IGraphicsFill; IGraphicsFill;
+		import org.apache.royale.display.IGraphicsStroke; IGraphicsStroke;
+		import org.apache.royale.display.InterpolationMethod; InterpolationMethod;
+		import org.apache.royale.display.JointStyle; JointStyle;
+		import org.apache.royale.display.LineScaleMode; LineScaleMode;
+
+		import org.apache.royale.display.BitmapData; BitmapData;
+	}
+
 }
 
 }

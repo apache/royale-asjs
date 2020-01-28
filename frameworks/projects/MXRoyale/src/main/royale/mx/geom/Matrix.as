@@ -41,9 +41,6 @@ package mx.geom
 			super(a,b,c,d,tx,ty);
 
 		}
-		public function createGradientBox(width:Number, height:Number, rotation:Number = 0, tx:Number = 0, ty:Number = 0):void
-		{
-		}
 		
 	}
 }

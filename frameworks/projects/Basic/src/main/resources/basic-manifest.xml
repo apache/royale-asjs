@@ -275,4 +275,6 @@
 
     <component id="Router" class="org.apache.royale.routing.Router"/>
 
+    <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
+
 </componentPackage>
