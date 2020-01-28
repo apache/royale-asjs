@@ -18,17 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.ILayoutParent;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
+	import org.apache.royale.core.IState;
+	import org.apache.royale.core.IStatesImpl;
 	import org.apache.royale.core.IStatesObject;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
-	import org.apache.royale.core.IStatesImpl;
-	import org.apache.royale.core.IState;
 
 	/**
      *  Indicates that the state change has completed.  All properties
