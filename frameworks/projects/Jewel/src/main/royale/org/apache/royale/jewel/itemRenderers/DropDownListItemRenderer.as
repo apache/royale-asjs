@@ -72,7 +72,7 @@ package org.apache.royale.jewel.itemRenderers
             {
                 COMPILE::JS
                 {
-                var view:DropDownListView = DropDownListView(itemRendererParent);
+                var view:DropDownListView = DropDownListView(itemRendererOwnerView);
                 // item.element.setAttribute("disabled", "");
                 item.element.setAttribute("selected", "");
                 item.element.setAttribute("hidden", "");

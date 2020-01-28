@@ -237,7 +237,7 @@ package org.apache.royale.charts.optimized
 								  radius:Number, yRadius:Number = NaN,
 								  continueFlag:Boolean = false):void
 		{			
-			var graphicsContainer:CompoundGraphic = this.itemRendererParent as CompoundGraphic;
+			var graphicsContainer:CompoundGraphic = this.itemRendererOwnerView as CompoundGraphic;
 			
 			var x1:Number = x + radius * Math.cos(startAngle);
 			var y1:Number = y + radius * Math.sin(startAngle);

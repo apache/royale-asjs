@@ -20,14 +20,14 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.supportClasses.UIItemRendererBase;
 
-	public class TreeGridControlItemRenderer extends UIItemRendererBase implements IItemRendererParent
+	public class TreeGridControlItemRenderer extends UIItemRendererBase implements IItemRendererOwnerView
 	{
 		public function TreeGridControlItemRenderer()
 		{
@@ -74,7 +74,7 @@ package org.apache.royale.html.supportClasses
 			child.setWidthAndHeight(this.width - _controlButton.width, this.height);			
 		}
 		
-		// IItemRendererParent implementation
+		// IItemRendererOwnerView implementation
 		
         public function get numItemRenderers():int
         {

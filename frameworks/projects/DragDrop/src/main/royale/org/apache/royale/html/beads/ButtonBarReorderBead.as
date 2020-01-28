@@ -24,7 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.IDragInitiator;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ILayoutHost;
@@ -136,10 +136,10 @@ package org.apache.royale.html.beads
 
 			var startHere:Object = event.relatedObject;
 			while (!(startHere is IItemRenderer) && startHere != null) {
-				startHere = startHere.itemRendererParent;
+				startHere = startHere.itemRendererOwnerView;
 			}
 			if (startHere is IItemRenderer) {
-				var p:IParent = (startHere.itemRendererParent as ILayoutHost).contentView as IParent;
+				var p:IParent = (startHere.itemRendererOwnerView as ILayoutHost).contentView as IParent;
 				sourceIndex = p.getElementIndex(startHere as IChild);
 				DragEvent.dragSource = (startHere as IItemRenderer).data;
 			}
@@ -244,7 +244,7 @@ package org.apache.royale.html.beads
 
 			targetIndex = -1; // assume after the end unless proven otherwise.
 
-			var itemRendererParent:IParent;
+			var itemRendererOwnerView:IParent;
 
 			var startHere:Object = event.relatedObject;
 			while( !(startHere is IItemRenderer) && startHere != null) {
@@ -255,8 +255,8 @@ package org.apache.royale.html.beads
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				trace("-- dropping onto an existing object: "+ir.data.toString());
 
-				itemRendererParent = (ir.itemRendererParent as ILayoutHost).contentView as IParent;
-				targetIndex = itemRendererParent.getElementIndex(ir);
+				itemRendererOwnerView = (ir.itemRendererOwnerView as ILayoutHost).contentView as IParent;
+				targetIndex = itemRendererOwnerView.getElementIndex(ir);
 			}
 			else  {
 				trace("-- dropping after the last item");

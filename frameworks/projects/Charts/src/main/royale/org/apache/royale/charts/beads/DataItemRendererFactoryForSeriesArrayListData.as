@@ -130,7 +130,7 @@ package org.apache.royale.charts.beads
 					{
 						var ir:IChartItemRenderer = chartSeries.itemRenderer.newInstance() as IChartItemRenderer;
 						dataGroup.addItemRenderer(ir, false);
-						ir.itemRendererParent = dataGroup;
+						ir.itemRendererOwnerView = dataGroup;
 						ir.index = i;
 						ir.data = dp.getItemAt(i)
 						ir.series = chartSeries;

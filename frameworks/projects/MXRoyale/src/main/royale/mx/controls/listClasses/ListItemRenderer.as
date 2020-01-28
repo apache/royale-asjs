@@ -224,7 +224,7 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
         dispatchEvent(ice);
     }
 
-    private var _itemRendererParent:Object;
+    private var _itemRendererOwnerView:Object;
     
     /**
      * The parent container for the itemRenderer instance.
@@ -234,13 +234,13 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get itemRendererParent():Object
+    public function get itemRendererOwnerView():Object
     {
-        return _itemRendererParent;
+        return _itemRendererOwnerView;
     }
-    public function set itemRendererParent(value:Object):void
+    public function set itemRendererOwnerView(value:Object):void
     {
-        _itemRendererParent = value;
+        _itemRendererOwnerView = value;
     }
 			
     private var _labelField:String = "label";
@@ -261,7 +261,7 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
 
     protected function getComponentDispatcher():IEventDispatcher
     {
-        var irp:Object = itemRendererParent;
+        var irp:Object = itemRendererOwnerView;
         var p:IParent = parent;
         while (p)
         {

@@ -24,7 +24,7 @@ package org.apache.royale.charts.optimized
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IContentView;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
@@ -42,7 +42,7 @@ package org.apache.royale.charts.optimized
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class SVGChartDataGroup extends CompoundGraphic implements IItemRendererParent, IContentView, IChartDataGroup
+	public class SVGChartDataGroup extends CompoundGraphic implements IItemRendererOwnerView, IContentView, IChartDataGroup
 	{
 		/**
 		 *  constructor.
@@ -83,7 +83,7 @@ package org.apache.royale.charts.optimized
 		}
 		
         /**
-         *  @copy org.apache.royale.core.IItemRendererParent#numItemRenderers()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#numItemRenderers()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -96,7 +96,7 @@ package org.apache.royale.charts.optimized
         }
         
 		/**
-		 *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
+		 *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererForIndex()
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -110,7 +110,7 @@ package org.apache.royale.charts.optimized
 		}
 		
         /**
-         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererAt()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererAt()
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -148,7 +148,7 @@ package org.apache.royale.charts.optimized
 		}
 		
 		/**
-		 *  @copy org.apache.royale.core.IItemRendererParent#removeAllElements()
+		 *  @copy org.apache.royale.core.IItemRendererOwnerView#removeAllElements()
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -201,7 +201,7 @@ package org.apache.royale.charts.optimized
 		}
 		
 		/**
-		 * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
+		 * @copy org.apache.royale.core.IItemRendererOwnerView#removeItemRenderer()
 		 * @private
 		 *
 		 *  @langversion 3.0

@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -89,7 +89,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        protected var dataGroup:IItemRendererParent;
+        protected var dataGroup:IItemRendererOwnerView;
 
 		private var _strand:IStrand;
 

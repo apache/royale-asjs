@@ -59,8 +59,8 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super.data = value;
 
-			//itemRendererParent.parent is DateChooser
-			var viewState:int = (itemRendererParent.parent.model as DateChooserModel).viewState;
+			//itemRendererOwnerView.parent is DateChooser
+			var viewState:int = (itemRendererOwnerView.parent.model as DateChooserModel).viewState;
 
 			if (value[labelField] is Date) {
 				if(viewState == 0)
@@ -70,7 +70,7 @@ package org.apache.royale.jewel.itemRenderers
 				{
 					text = String( (value[labelField] as Date).getFullYear());
 				} else {
-					var monthNames:Array = (itemRendererParent.parent.model as DateChooserModel).monthNames;
+					var monthNames:Array = (itemRendererOwnerView.parent.model as DateChooserModel).monthNames;
 					text = String(monthNames[(value[labelField] as Date).getMonth()]);
 				}
 

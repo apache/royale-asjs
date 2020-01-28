@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
@@ -47,7 +47,7 @@ package org.apache.royale.html.beads
 			if(idx < 0)
 				idx = 0;
 
-			var dg:IItemRendererParent = IListView(host.view).dataGroup as IItemRendererParent;
+			var dg:IItemRendererOwnerView = IListView(host.view).dataGroup as IItemRendererOwnerView;
 			var numElems:int = dg.numItemRenderers;
 			for(var i:int = 0; i < numElems; i++){
 				if(i == idx)

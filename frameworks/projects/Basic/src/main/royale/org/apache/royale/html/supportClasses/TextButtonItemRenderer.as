@@ -19,7 +19,7 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.events.Event;
@@ -108,7 +108,7 @@ package org.apache.royale.html.supportClasses
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
 
-		private var _itemRendererParent:Object;
+		private var _itemRendererOwnerView:Object;
 
 		/**
 		 * The parent container for the itemRenderer instance.
@@ -118,13 +118,13 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function get itemRendererParent():Object
+		public function get itemRendererOwnerView():Object
 		{
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
-		public function set itemRendererParent(value:Object):void
+		public function set itemRendererOwnerView(value:Object):void
 		{
-			_itemRendererParent = value;
+			_itemRendererOwnerView = value;
 		}
 
 		private var _labelField:String = null;

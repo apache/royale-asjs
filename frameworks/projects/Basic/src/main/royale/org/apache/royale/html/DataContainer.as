@@ -28,7 +28,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IFactory;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
     import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IListPresentationModel;

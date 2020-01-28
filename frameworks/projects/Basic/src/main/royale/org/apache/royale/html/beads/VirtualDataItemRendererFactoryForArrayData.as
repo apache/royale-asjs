@@ -23,7 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
@@ -145,7 +145,7 @@ package org.apache.royale.html.beads
 		}
 		
         /**
-         *  The org.apache.royale.core.IItemRendererParent that will
+         *  The org.apache.royale.core.IItemRendererOwnerView that will
          *  parent the item renderers.
          *  
          *  @langversion 3.0
@@ -162,7 +162,7 @@ package org.apache.royale.html.beads
 				return;
 			
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererParent = view.dataGroup;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
         }
@@ -181,7 +181,7 @@ package org.apache.royale.html.beads
         {
             var ir:ISelectableItemRenderer = rendererMap[index];
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
             dataGroup.removeItemRenderer(ir);
             delete rendererMap[index];
         }
@@ -209,7 +209,7 @@ package org.apache.royale.html.beads
             var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			dataGroup.addItemRendererAt(ir, elementIndex);
 			ir.index = index;
 			ir.labelField = labelField;

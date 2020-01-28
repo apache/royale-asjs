@@ -20,12 +20,12 @@ package org.apache.royale.html.supportClasses
 {	
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.Event;
 
     /**
-     *  The DataGroup class is the IItemRendererParent used internally
+     *  The DataGroup class is the IItemRendererOwnerView used internally
      *  by org.apache.royale.html.List class.
      *  
      *  @langversion 3.0

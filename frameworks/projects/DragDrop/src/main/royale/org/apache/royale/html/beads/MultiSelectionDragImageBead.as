@@ -30,7 +30,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDocument;
 	import org.apache.royale.core.IDragInitiator;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
@@ -122,11 +122,11 @@ package org.apache.royale.html.beads
 			{
 				dragImage.addBead(new HorizontalLayout())
 			}
-			var itemRendererParent:IItemRendererParent = (_strand.getBeadByType(IBeadView) as IListView).dataGroup as IItemRendererParent;
+			var itemRendererOwnerView:IItemRendererOwnerView = (_strand.getBeadByType(IBeadView) as IListView).dataGroup as IItemRendererOwnerView;
 			var selectedIndices:Array = model.selectedIndices;
 			for (var i:int = 0; i < selectedIndices.length; i++)
 			{
-				var ir:IItemRenderer = itemRendererParent.getItemRendererForIndex(selectedIndices[i]);
+				var ir:IItemRenderer = itemRendererOwnerView.getItemRendererForIndex(selectedIndices[i]);
 				var lookalike:UIBase = new Lookalike(ir);
 				lookalike.width = IUIBase(ir).width;
 				lookalike.height = IUIBase(ir).height;

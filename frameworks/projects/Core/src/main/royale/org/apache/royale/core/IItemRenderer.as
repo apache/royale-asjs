@@ -63,7 +63,7 @@ package org.apache.royale.core
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		function get itemRendererParent():Object;
-		function set itemRendererParent(value:Object):void;
+		function get itemRendererOwnerView():Object;
+		function set itemRendererOwnerView(value:Object):void;
 	}
 }

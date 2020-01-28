@@ -20,7 +20,7 @@ package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -90,7 +90,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 */
-		protected var dataGroup:IItemRendererParent;
+		protected var dataGroup:IItemRendererOwnerView;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand

@@ -23,7 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.DropType;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IMultiSelectionModel;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
@@ -124,7 +124,7 @@ package org.apache.royale.html.beads
 		}
 
 		private var _dropController:DropMouseController;
-		private var _itemRendererParent:IItemRendererParent;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		private var _dropIndicatorBead:SingleSelectionDropIndicatorBead;
 		private var _dropIndicator:UIBase;
 		private var targetIndex:int = -1;
@@ -188,11 +188,11 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 */
-		private function get itemRendererParent():IItemRendererParent
+		private function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (!_itemRendererParent)
-				_itemRendererParent = _strand.getBeadByType(IItemRendererParent) as IItemRendererParent;
-			return _itemRendererParent;
+			if (!_itemRendererOwnerView)
+				_itemRendererOwnerView = _strand.getBeadByType(IItemRendererOwnerView) as IItemRendererOwnerView;
+			return _itemRendererOwnerView;
 		}
 
 		/**
@@ -229,9 +229,9 @@ package org.apache.royale.html.beads
 		{
 			var changeMade:Boolean = true;
 			var calculatedIndex:int = -1;
-			for (var i:int = 0; i < itemRendererParent.numItemRenderers; i++)
+			for (var i:int = 0; i < itemRendererOwnerView.numItemRenderers; i++)
 			{
-				var ir:IUIBase = itemRendererParent.getItemRendererAt(i) as IUIBase;
+				var ir:IUIBase = itemRendererOwnerView.getItemRendererAt(i) as IUIBase;
 				var localY:Number = PointUtils.globalToLocal(new Point(e.clientX, e.clientY), ir).y;
 				if (localY >= 0 && localY <= ir.height)
 				{
@@ -247,10 +247,10 @@ package org.apache.royale.html.beads
 				targetIndex = calculatedIndex;
 				// in case we're at the end of the list, we want to choose the last renderer
 				// but we also want to drop the source after the least renderer, not before it
-				isEndOfList = calculatedIndex == itemRendererParent.numItemRenderers;
+				isEndOfList = calculatedIndex == itemRendererOwnerView.numItemRenderers;
 				// calculated index may have been increased beyond bounds
 				var lastItemVisitedIndex:int = !isEndOfList ? calculatedIndex : calculatedIndex - 1;
-				var lastItemVisited:IUIBase = itemRendererParent.getItemRendererAt(lastItemVisitedIndex) as IUIBase;
+				var lastItemVisited:IUIBase = itemRendererOwnerView.getItemRendererAt(lastItemVisitedIndex) as IUIBase;
 				
 				var di:UIBase = getDropIndicator(lastItemVisited, (dropDirection == "horizontal") ? indicatorParent.width : 4,
 					(dropDirection == "horizontal") ? 4 : indicatorParent.height);
@@ -321,7 +321,7 @@ package org.apache.royale.html.beads
 			// dragging somewhere higher on the list, fix items jumping down before it's dropped
 			for (var i:int = 0; i < calculatedTargetIndex; i++)
 			{
-				if (itemRendererParent.getItemRendererAt(i).data == dragSource[0])
+				if (itemRendererOwnerView.getItemRendererAt(i).data == dragSource[0])
 				{
 					calculatedTargetIndex--;
 					break;

@@ -28,7 +28,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.ISelectableItemRenderer;
@@ -105,7 +105,7 @@ package org.apache.royale.html.beads
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#removeAllItemRenderers()
          * @private
          *
          *  @langversion 3.0

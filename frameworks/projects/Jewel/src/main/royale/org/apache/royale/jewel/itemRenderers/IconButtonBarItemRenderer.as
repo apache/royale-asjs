@@ -70,13 +70,13 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_data = value;
 			text = getLabelFromData(this, value);
-			rightPosition = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).rightPosition;
+			rightPosition = ((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).rightPosition;
 			if(value.icon)
 			{
-				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererParent as ButtonBarView).buttonBar, "iconClass") as Class;
+				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererOwnerView as ButtonBarView).buttonBar, "iconClass") as Class;
 				var fontIcon:IIcon = new iconClass(); 
-				fontIcon.material = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).material;
-				fontIcon.text = value[((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).iconField];
+				fontIcon.material = ((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).material;
+				fontIcon.text = value[((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).iconField];
 				icon = fontIcon;
 			}
 		}
@@ -95,7 +95,7 @@ package org.apache.royale.jewel.itemRenderers
 		/*
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
-		private var _itemRendererParent:Object;
+		private var _itemRendererOwnerView:Object;
 		/**
 		 * The parent container for the itemRenderer instance.
 		 *
@@ -104,15 +104,15 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get itemRendererParent():Object
+		public function get itemRendererOwnerView():Object
 		{
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
-		public function set itemRendererParent(value:Object):void
+		public function set itemRendererOwnerView(value:Object):void
 		{
-			_itemRendererParent = value;
+			_itemRendererOwnerView = value;
 
-			var buttonBar:IEmphasis = (itemRendererParent as ButtonBarView).buttonBar;
+			var buttonBar:IEmphasis = (itemRendererOwnerView as ButtonBarView).buttonBar;
 			if(buttonBar.emphasis != null)
 			{
 				emphasis = buttonBar.emphasis;
@@ -183,7 +183,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("first");
 			} 
-			else if( _index == (itemRendererParent as ButtonBarView).buttonBar.dataProvider.length - 1 )
+			else if( _index == (itemRendererOwnerView as ButtonBarView).buttonBar.dataProvider.length - 1 )
 			{
 				addClass("last");
 			}

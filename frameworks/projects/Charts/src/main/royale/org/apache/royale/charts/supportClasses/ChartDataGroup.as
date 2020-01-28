@@ -22,7 +22,7 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.charts.core.IChartItemRenderer;
 	import org.apache.royale.charts.core.IChartSeries;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.UIBase;
@@ -59,11 +59,11 @@ package org.apache.royale.charts.supportClasses
 		}
 		
         /*
-        * IItemRendererParent
+        * IItemRendererOwnerView
         */
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#numItemRenderers()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#numItemRenderers()
          * @private
          *
          *  @langversion 3.0
@@ -77,7 +77,7 @@ package org.apache.royale.charts.supportClasses
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#addItemRenderer()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#addItemRenderer()
          * @private
          *
          *  @langversion 3.0
@@ -92,7 +92,7 @@ package org.apache.royale.charts.supportClasses
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#addItemRendererAt()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#addItemRendererAt()
          * @private
          *
          *  @langversion 3.0
@@ -118,7 +118,7 @@ package org.apache.royale.charts.supportClasses
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#removeItemRenderer()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#removeItemRenderer()
          * @private
          *
          *  @langversion 3.0
@@ -137,7 +137,7 @@ package org.apache.royale.charts.supportClasses
         }
         
         /**
-         * @copy org.apache.royale.core.IItemRendererParent#removeAllItemRenderers()
+         * @copy org.apache.royale.core.IItemRendererOwnerView#removeAllItemRenderers()
          * @private
          *
          *  @langversion 3.0
@@ -154,7 +154,7 @@ package org.apache.royale.charts.supportClasses
         }
         
         /**
-         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererForIndex()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererForIndex()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -168,7 +168,7 @@ package org.apache.royale.charts.supportClasses
         }
         
         /**
-         *  @copy org.apache.royale.core.IItemRendererParent#getItemRendererAt()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#getItemRendererAt()
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -184,7 +184,7 @@ package org.apache.royale.charts.supportClasses
         /**
          *  Refreshes the itemRenderers. Useful after a size change by the data group.
          *
-         *  @copy org.apache.royale.core.IItemRendererParent#updateAllItemRenderers()
+         *  @copy org.apache.royale.core.IItemRendererOwnerView#updateAllItemRenderers()
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6

@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -140,7 +140,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					ir = column.itemRenderer.newInstance() as TableItemRenderer;
 				} else
 				{
-					ir = itemRendererFactory.createItemRenderer(itemRendererParent) as TableItemRenderer;
+					ir = itemRendererFactory.createItemRenderer(itemRendererOwnerView) as TableItemRenderer;
 				}
 
 				labelField =  column.dataField;
@@ -159,10 +159,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			// adjust the itemRenderers' index to adjust for the shift
-			var len:int = itemRendererParent.numItemRenderers;
+			var len:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				ir = itemRendererParent.getItemRendererAt(i) as TableItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as TableItemRenderer;
 				ir.index = i;
 				ir.rowIndex = i;
 			}
@@ -170,10 +170,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -181,13 +181,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-				_itemRendererParent = view.dataGroup;
+				_itemRendererOwnerView = view.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 
         private var _itemRendererFactory:IItemRendererClassFactory;
@@ -217,7 +217,7 @@ package org.apache.royale.jewel.beads.itemRenderers
                                         itemRenderer:TableItemRenderer,
                                         presentationModel:IListPresentationModel):void
         {
-            itemRendererParent.addItemRendererAt(itemRenderer, index);
+            itemRendererOwnerView.addItemRendererAt(itemRenderer, index);
 
             itemRenderer.labelField = labelField;
 

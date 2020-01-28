@@ -68,7 +68,7 @@ package org.apache.royale.mdl.beads
             }
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ITabItemRenderer;
+            var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(itemRendererOwnerView) as ITabItemRenderer;
             ir.tabIdField = tabsIdField;
 
             fillRenderer(event.index, event.item, ir, presentationModel);

@@ -22,7 +22,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
@@ -143,7 +143,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 		
         /**
-         *  The org.apache.royale.core.IItemRendererParent that will
+         *  The org.apache.royale.core.IItemRendererOwnerView that will
          *  parent the item renderers.
          *
          *  @langversion 3.0
@@ -165,7 +165,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				return;
 			
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			var dataGroup:IItemRendererParent = listView.dataGroup;
+			var dataGroup:IItemRendererOwnerView = listView.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
 			

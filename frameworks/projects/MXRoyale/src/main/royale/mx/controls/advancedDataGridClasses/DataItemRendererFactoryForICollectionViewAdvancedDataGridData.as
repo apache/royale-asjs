@@ -33,7 +33,7 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
@@ -188,7 +188,7 @@ package mx.controls.advancedDataGridClasses
             var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
             dataGroup.addItemRendererAt(ir, elementIndex);
             ir.labelField = labelField;
             if (dataItemRenderer)

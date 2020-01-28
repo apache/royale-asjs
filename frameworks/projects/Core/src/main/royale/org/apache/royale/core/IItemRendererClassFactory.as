@@ -47,7 +47,7 @@ package org.apache.royale.core
          *  @param parent The parent of the item renderer.
          *  @return The item renderer.
          * 
-         *  @see org.apache.royale.core.IItemRendererParent
+         *  @see org.apache.royale.core.IItemRendererOwnerView
          *  @see org.apache.royale.core.IItemRenderer
          * 
          *  @langversion 3.0
@@ -55,6 +55,6 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function createItemRenderer(parent:IItemRendererParent):IItemRenderer;
+		function createItemRenderer(parent:IItemRendererOwnerView):IItemRenderer;
 	}
 }

@@ -24,7 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
@@ -141,7 +141,7 @@ package org.apache.royale.html.beads
 		}
 		
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent that will
+		 *  The org.apache.royale.core.IItemRendererOwnerView that will
 		 *  parent the item renderers.
 		 *
 		 *  @langversion 3.0
@@ -149,7 +149,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		protected var dataGroup:IItemRendererParent;
+		protected var dataGroup:IItemRendererOwnerView;
 		
 		/**
 		 * @private

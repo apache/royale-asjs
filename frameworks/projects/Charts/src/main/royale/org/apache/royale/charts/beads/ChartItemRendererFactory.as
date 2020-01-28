@@ -24,7 +24,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -58,7 +58,7 @@ package org.apache.royale.charts.beads
 		}
 		
 		private var selectionModel:ISelectionModel;
-		//protected var dataGroup:IItemRendererParent;
+		//protected var dataGroup:IItemRendererOwnerView;
 		
 		private var _seriesRenderers:Array;
 		
@@ -106,7 +106,7 @@ package org.apache.royale.charts.beads
 			selectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
 			
-			var dataGroup:IItemRendererParent = listView.dataGroup;
+			var dataGroup:IItemRendererOwnerView = listView.dataGroup;
 			
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)
@@ -126,7 +126,7 @@ package org.apache.royale.charts.beads
 				{
 					var s:IChartSeries = series[i] as IChartSeries;
 					var k:IChartItemRenderer = s.itemRenderer.newInstance() as IChartItemRenderer;
-					k.itemRendererParent = dataGroup;
+					k.itemRendererOwnerView = dataGroup;
 					k.xField = s.xField;
 					k.yField = s.yField;
 					//k.fillColor = s.fillColor;

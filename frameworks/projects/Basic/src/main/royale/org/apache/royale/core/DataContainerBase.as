@@ -93,7 +93,7 @@ package org.apache.royale.core
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 * 	@royaleignorecoercion org.apache.royale.html.beads.IListView
-		public function get dataGroup():IItemRendererParent
+		public function get dataGroup():IItemRendererOwnerView
 		{
 			// The JS-side's view.dataGroup is actually this instance of DataContainerBase
 			return (view as IListView).dataGroup;

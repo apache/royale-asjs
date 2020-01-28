@@ -21,7 +21,7 @@ package org.apache.royale.core
 	import org.apache.royale.events.IEventDispatcher;
 
     /**
-     *  The IItemRendererParent interface is the basic interface for the 
+     *  The IItemRendererOwnerView interface is the basic interface for the 
      *  container that parents item renderers.
      * 
      *  @langversion 3.0
@@ -29,10 +29,10 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IItemRendererParent extends IEventDispatcher
+	public interface IItemRendererOwnerView extends IEventDispatcher
 	{
         /**
-         *  The IItemRendererParent interface is the basic interface for the 
+         *  The IItemRendererOwnerView interface is the basic interface for the 
          *  container that parents item renderers.
          * 
          *  @param index The index of the data item.

@@ -28,7 +28,7 @@ package org.apache.royale.jewel.supportClasses.list
 	import org.apache.royale.jewel.DataContainer;
 	
 	/**
-	 *  The DataGroup class is the IItemRendererParent used internally
+	 *  The DataGroup class is the IItemRendererOwnerView used internally
      *  by org.apache.royale.jewel.List class.
 	 *  
      *  @toplevel

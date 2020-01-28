@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -139,15 +139,15 @@ package org.apache.royale.jewel.beads.itemRenderers
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
+            var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererOwnerView) as ISelectableItemRenderer;
 
             fillRenderer(event.index, event.item, ir, presentationModel);
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = itemRendererParent.numItemRenderers;
+			var n:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as ISelectableItemRenderer;
 				ir.index = i;
 			}
 
@@ -181,10 +181,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			return _dataProviderModel;
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -192,13 +192,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-				_itemRendererParent = view.dataGroup;
+				_itemRendererOwnerView = view.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 
         private var _itemRendererFactory:IItemRendererClassFactory;
@@ -228,7 +228,7 @@ package org.apache.royale.jewel.beads.itemRenderers
                                         itemRenderer:ISelectableItemRenderer,
                                         presentationModel:IListPresentationModel):void
         {
-            itemRendererParent.addItemRendererAt(itemRenderer, index);
+            itemRendererOwnerView.addItemRendererAt(itemRenderer, index);
 
             itemRenderer.labelField = labelField;
 

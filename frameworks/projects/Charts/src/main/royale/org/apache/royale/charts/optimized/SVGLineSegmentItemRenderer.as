@@ -177,7 +177,7 @@ package org.apache.royale.charts.optimized
 		{			
 			if (points != null)
 			{
-				var graphicsContainer:CompoundGraphic = this.itemRendererParent as CompoundGraphic;
+				var graphicsContainer:CompoundGraphic = this.itemRendererOwnerView as CompoundGraphic;
 				
 				if (stroke == null) {
 					var solidColorStroke:SolidColorStroke = new SolidColorStroke();

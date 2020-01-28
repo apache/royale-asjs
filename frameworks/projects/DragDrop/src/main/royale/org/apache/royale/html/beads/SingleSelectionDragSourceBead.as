@@ -189,7 +189,7 @@ package org.apache.royale.html.beads
 			var itemRenderer:IItemRenderer = getParentOrSelfByType(relatedObject as IChild, IItemRenderer) as IItemRenderer;
 
 			if (itemRenderer) {
-				var p:IParent = (itemRenderer.itemRendererParent as ILayoutHost).contentView as IParent;
+				var p:IParent = (itemRenderer.itemRendererOwnerView as ILayoutHost).contentView as IParent;
 				_dragSourceIndex = p.getElementIndex(itemRenderer as IChild);
 				DragEvent.dragSource = (itemRenderer as IItemRenderer).data;
 			}

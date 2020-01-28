@@ -21,7 +21,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.DropType;
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
@@ -130,7 +130,7 @@ package org.apache.royale.html.beads
 		}
 
 		private var _dropController:DropMouseController;
-		private var _itemRendererParent:IItemRendererParent;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		private var _dropIndicatorBead:SingleSelectionDropIndicatorBead;
 		private var _dropIndicator:UIBase;
 		private var lastItemVisited:Object;
@@ -191,11 +191,11 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 */
-		private function get itemRendererParent():IItemRendererParent
+		private function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (!_itemRendererParent)
-				_itemRendererParent = _strand.getBeadByType(IItemRendererParent) as IItemRendererParent;
-			return _itemRendererParent;
+			if (!_itemRendererOwnerView)
+				_itemRendererOwnerView = _strand.getBeadByType(IItemRendererOwnerView) as IItemRendererOwnerView;
+			return _itemRendererOwnerView;
 		}
 
 		/**
@@ -235,11 +235,11 @@ package org.apache.royale.html.beads
 			if (startHere is IItemRenderer) {
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				lastItemVisited = ir;
-			} else if (itemRendererParent && itemRendererParent.numItemRenderers > 0)
+			} else if (itemRendererOwnerView && itemRendererOwnerView.numItemRenderers > 0)
 			{
 				// as long as we're assuming the last item is dropped into in case there's no item renderer under mouse
 				// this is needed
-				lastItemVisited = itemRendererParent.getItemRendererAt(itemRendererParent.numItemRenderers - 1);
+				lastItemVisited = itemRendererOwnerView.getItemRendererAt(itemRendererOwnerView.numItemRenderers - 1);
 			}
 
 			if (lastItemVisited && !indicatorVisible && indicatorParent) {
@@ -326,7 +326,7 @@ package org.apache.royale.html.beads
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				//trace("-- dropping onto an existing object: "+ir.data.toString());
 
-				contentViewAsParent = (ir.itemRendererParent as ILayoutHost).contentView as IParent;
+				contentViewAsParent = (ir.itemRendererOwnerView as ILayoutHost).contentView as IParent;
 				targetIndex = contentViewAsParent.getElementIndex(ir);
 			}
 

@@ -176,12 +176,12 @@ package org.apache.royale.html.supportClasses
 		{
 		}
 		
-		public function get itemRendererParent():Object
+		public function get itemRendererOwnerView():Object
 		{
 			return null;
 		}
 		
-		public function set itemRendererParent(value:Object):void
+		public function set itemRendererOwnerView(value:Object):void
 		{
 		}
 		

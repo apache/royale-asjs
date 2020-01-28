@@ -28,7 +28,7 @@ package mx.controls.listClasses
     import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
@@ -95,7 +95,7 @@ package mx.controls.listClasses
         {
             var ir:ISelectableItemRenderer = rendererMap[index];
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
             dataGroup.removeItemRenderer(ir);
             delete rendererMap[index];
         }
@@ -107,7 +107,7 @@ package mx.controls.listClasses
         private var cursor:IViewCursor;
         
         /**
-         *  The org.apache.royale.core.IItemRendererParent that will
+         *  The org.apache.royale.core.IItemRendererOwnerView that will
          *  parent the item renderers.
          *  
          *  @langversion 3.0
@@ -126,7 +126,7 @@ package mx.controls.listClasses
                 return;
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
             dataGroup.removeAllItemRenderers();
         }
@@ -154,7 +154,7 @@ package mx.controls.listClasses
             }
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererParent = view.dataGroup;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
             ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
             var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
             

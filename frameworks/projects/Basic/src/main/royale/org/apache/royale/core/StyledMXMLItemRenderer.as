@@ -233,9 +233,9 @@ package org.apache.royale.core
 		{
 			super.addedToParent();
 			
-			if (itemRendererParent.host is IEmphasis && (itemRendererParent.host as IEmphasis).emphasis)
+			if (itemRendererOwnerView.host is IEmphasis && (itemRendererOwnerView.host as IEmphasis).emphasis)
 			{
-				emphasis = (itemRendererParent.host as IEmphasis).emphasis;
+				emphasis = (itemRendererOwnerView.host as IEmphasis).emphasis;
 			} else
 			{
 				emphasis = "primary";

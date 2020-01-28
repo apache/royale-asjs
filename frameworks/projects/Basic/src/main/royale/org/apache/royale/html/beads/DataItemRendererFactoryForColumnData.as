@@ -23,7 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IList;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ValuesManager;
@@ -122,7 +122,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-//		protected var dataGroup:IItemRendererParent;
+//		protected var dataGroup:IItemRendererOwnerView;
 		
 		/**
 		 * @private
@@ -138,7 +138,7 @@ package org.apache.royale.html.beads
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
 			if (view == null) return;
 
-			var dataGroup:IItemRendererParent = view.dataGroup;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			dataGroup.removeAllItemRenderers();
 
 			var n:int = dp.length; 

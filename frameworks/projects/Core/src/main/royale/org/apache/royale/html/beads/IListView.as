@@ -19,7 +19,7 @@
 package org.apache.royale.html.beads
 {	
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 
 	/**
@@ -42,7 +42,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		function get dataGroup():IItemRendererParent;
+		function get dataGroup():IItemRendererOwnerView;
 		
 	}
 }

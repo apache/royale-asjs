@@ -25,7 +25,7 @@ package spark.components.beads
 	import spark.core.IGapLayout;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import spark.components.supportClasses.ListBase;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.events.IEventDispatcher;

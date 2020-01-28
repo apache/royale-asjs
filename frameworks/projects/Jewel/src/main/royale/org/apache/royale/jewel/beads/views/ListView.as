@@ -22,7 +22,7 @@ package org.apache.royale.jewel.beads.views
 	{
 	import org.apache.royale.events.IEventDispatcher;
 	}
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
@@ -63,17 +63,17 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
 		}
-		private var _dataGroup:IItemRendererParent;
+		private var _dataGroup:IItemRendererOwnerView;
 		/**
-		 * @royaleignorecoercion org.apache.royale.core.IItemRendererParent
+		 * @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
 		 */
-		override public function get dataGroup():IItemRendererParent
+		override public function get dataGroup():IItemRendererOwnerView
 		{
 			if(!_dataGroup)
 			{
 				var c:ILayoutView = contentView;
-				if(c && c is IItemRendererParent)
-					_dataGroup = c as IItemRendererParent;
+				if(c && c is IItemRendererOwnerView)
+					_dataGroup = c as IItemRendererOwnerView;
 				else
 					_dataGroup = super.dataGroup;
 			}
@@ -168,14 +168,14 @@ package org.apache.royale.jewel.beads.views
 			_strand = value;
 			super.strand = value;
 		}
-		private var _dataGroup:IItemRendererParent;
-		override public function get dataGroup():IItemRendererParent
+		private var _dataGroup:IItemRendererOwnerView;
+		override public function get dataGroup():IItemRendererOwnerView
 		{
 			if(!_dataGroup)
 			{
 				var c:ILayoutView = contentView;
-				if(c && c is IItemRendererParent)
-					_dataGroup = c as IItemRendererParent;
+				if(c && c is IItemRendererOwnerView)
+					_dataGroup = c as IItemRendererOwnerView;
 				else
 					_dataGroup = super.dataGroup;
 			}

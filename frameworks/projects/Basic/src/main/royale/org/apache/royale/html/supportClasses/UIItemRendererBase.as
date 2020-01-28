@@ -73,7 +73,7 @@ package org.apache.royale.html.supportClasses
             
 		}
 		
-		private var _itemRendererParent:Object;
+		private var _itemRendererOwnerView:Object;
 		
 		/**
 		 * The parent container for the itemRenderer instance.
@@ -83,13 +83,13 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get itemRendererParent():Object
+		public function get itemRendererOwnerView():Object
 		{
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
-		public function set itemRendererParent(value:Object):void
+		public function set itemRendererOwnerView(value:Object):void
 		{
-			_itemRendererParent = value;
+			_itemRendererOwnerView = value;
 		}
 		
         /**

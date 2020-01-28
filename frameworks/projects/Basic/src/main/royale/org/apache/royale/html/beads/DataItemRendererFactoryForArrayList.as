@@ -22,7 +22,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IDataProviderModel;
@@ -160,7 +160,7 @@ package org.apache.royale.html.beads
 				return;
 			
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererParent = view.dataGroup;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
 			
