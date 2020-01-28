@@ -135,6 +135,7 @@
     <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
     <component id="MXMLBeadView" class="org.apache.royale.html.MXMLBeadView"/>
     <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
+    <component id="MXMLStatesItemRenderer" class="org.apache.royale.html.supportClasses.MXMLStatesItemRenderer"/>
     <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
     <component id="ColorItemRenderer" class="org.apache.royale.html.supportClasses.ColorItemRenderer"/>
