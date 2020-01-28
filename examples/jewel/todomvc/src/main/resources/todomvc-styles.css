@@ -22,11 +22,7 @@
 @namespace "http://www.w3.org/1999/xhtml";
 @namespace j "library://ns.apache.org/royale/jewel";
 
-.todoItemRenderer
-{
-    IItemRenderer: ClassReference("jewel.todomvc.renderers.TodoItemRenderer");
-}
-
+/* Application */
 .jewel.application {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     font-size: 14px;
@@ -41,36 +37,170 @@
 	font-weight: 300;
 }
 
-.new-todo,
-.edit {
+/* Main View */
+.royale
+{
+    background: #fff;
+    margin: 130px 0 40px 0;
+    position: relative;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Main Section */
+.todoapp {
+	background: #fff;
+	margin: 130px 0 40px 0;
 	position: relative;
-	margin: 0;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Main Title */
+.todoapp h1 {
+	position: absolute;
+	top: -155px;
 	width: 100%;
+	font-size: 100px;
+	font-weight: 100;
+	text-align: center;
+	color: rgba(175, 47, 47, 0.15);
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+/* Button */
+.jewel.button {
+	margin: 3px;
+    padding: 3px 7px;
+	background: none;
+	border: none;
+	box-shadow: none;
+	border-radius: 0.25rem;
+	color: #808080;
+	text-shadow: none;
+	font-weight: normal;
+	text-transform: initial;
+}
+.jewel.button:hover, .jewel.button:hover:focus {
+	background: none;
+	border: none;
+}
+.jewel.button:active, .jewel.button:active:focus {
+	background: none;
+	border: none;
+	box-shadow: none;
+}
+.jewel.button:focus {
+	border: none;
+	box-shadow: none;
+}
+
+.jewel.togglebutton {
+	margin: 3px;
+    padding: 3px 7px;
+	background: none;
+	border: 1px solid transparent;
+	box-shadow: none;
+	border-radius: 0.25rem;
+	color: #808080;
+	text-shadow: none;
+	font-weight: normal;
+	text-transform: initial;
+}
+.jewel.togglebutton:hover, .jewel.togglebutton:hover:focus {
+	background: none;
+	border: 1px solid rgba(175, 47, 47, .1);
+}
+.jewel.togglebutton:active, .jewel.togglebutton:active:focus {
+	background: none;
+	border: 1px solid rgba(175,47,47,.2);;
+	box-shadow: none;
+}
+.jewel.togglebutton:focus {
+	border: 1px solid #b3b3b3;
+	box-shadow: none;
+}
+.jewel.togglebutton.selected {
+	background: none;
+	border: 1px solid rgba(175,47,47,.2);;
+	box-shadow: none;
+}
+
+/* TextInput */
+.jewel.textinput.new-todo input
+{
+	padding: 16px 16px 16px 60px !important;
+	border-radius: 0px;
+	border: none;
+	
+	background: rgba(0, 0, 0, 0.003);
+	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+
 	font-size: 24px;
-	font-family: inherit;
-	font-weight: inherit;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-weight: 300;
+	font-stretch: normal;
+	font-style: normal;
+	font-variant-caps: normal;
+	font-weight: 300;
 	line-height: 1.4em;
 	border: 0;
-	color: inherit;
-	padding: 6px;
-	border: 1px solid #999;
-	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
-	box-sizing: border-box;
+	color: rgb(77, 77, 77);
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 }
 
-.new-todo {
-	padding: 16px 16px 16px 60px;
+.jewel.textinput.new-todo input:focus {
 	border: none;
-	background: rgba(0, 0, 0, 0.003);
-	box-shadow: inset 0 -2px 1px rgba(0,0,0,0.03);
+}
+.jewel.textinput.new-todo input::placeholder, .jewel.textinput.new-todo input:-ms-input-placeholder {
+	color:rgb(230, 230, 230);
+	font-style: italic;
 }
 
-.todo-list {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+.jewel.item .jewel.textinput
+{
+	margin-left: 46px;
+}
+.jewel.textinput input
+{
+	background: none;
+	border-radius: 0px;
+	font-weight: 300;
+	padding: 12px;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: 300;
+	line-height: 1.4em;
+	outline: 0;
+	color: inherit;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0,0,0,.2);
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: antialiased;
+}
+.jewel.textinput input:focus {
+	border: 1px solid darkgrey;
+}
+
+/* List */
+.todo-list
+{
+	IItemRenderer: ClassReference("jewel.todomvc.renderers.TodoItemRenderer");
+}
+
+.jewel.list
+{
+	border-radius: 0px;
+	border: none;
+	background: none;
+}
+
+/* ItemRenderer */
+.jewel.item
+{
+	padding: 0px;
 }
 
 .todo-list li {
@@ -88,122 +218,87 @@
 	padding: 0;
 }
 
-.todo-list li.editing .edit {
-	display: block;
-	width: 506px;
-	padding: 12px 16px;
-	margin: 0 0 0 43px;
+/* CheckBox */
+.jewel.checkbox
+{
+	margin: 8px;
 }
 
-.todo-list li.editing .view {
-	display: none;
+.jewel.checkbox input + span::before {
+	background: none;
+	border: 1px solid #b3b3b3;
+	border-radius: 50%;
+}
+.jewel.checkbox input + span::after {
+	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+	border: 1px solid transparent;
+	border-radius: 50%;
+	transition: none;
+	transform: none;
+}
+.jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
+	transform: none;
+}
+.jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
+	background: none;
+	border: 1px solid #0f88d1;
+	border-radius: 50%;
+}
+.jewel.checkbox span {
+	padding-left: 8px;
+	font-size: 16px;
+}
+/* 
+	content: url("data:image/svg+xml,%3Csvg viewBox='-10 -18 100 135' version='1.1' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
+	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+	
+	content: url("data:image/svg+xml,%3Csvg viewBox='-10 -18 100 135' version='1.1' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
+	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
+ */
+
+/* ItemRenderer label */
+.todolabel
+{
+	padding-left: 13px;
 }
 
-.todo-list li .toggle {
-	text-align: center;
-	width: 40px;
-	/* auto, since non-WebKit browsers doesn't support input styling */
-	height: auto;
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	margin: auto 0;
-	border: none; /* Mobile Safari */
-	-webkit-appearance: none;
-	appearance: none;
-}
-
-.todo-list li .toggle {
-	opacity: 0;
-}
-
-.todo-list li .toggle + label {
-	/*
-		Firefox requires `#` to be escaped - https://bugzilla.mozilla.org/show_bug.cgi?id=922433
-		IE and Edge requires *everything* to be escaped to render, so we do that instead of just the `#` - https://developer.microsoft.com/en-us/microsoft-edge/platform/issues/7157459/
-	*/
-	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23ededed%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
-	background-repeat: no-repeat;
-	background-position: center left;
-}
-
-.todo-list li .toggle:checked + label {
-	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23bddad5%22%20stroke-width%3D%223%22/%3E%3Cpath%20fill%3D%22%235dc2af%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22/%3E%3C/svg%3E');
-}
-
-.todo-list li label {
-	word-break: break-all;
-	padding: 15px 15px 15px 60px;
-	display: block;
-	line-height: 1.2;
-	transition: color 0.4s;
-}
-
-.todo-list li.completed label {
+.completed
+{
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
 
-.todo-list li .destroy {
-	display: none;
-	position: absolute;
-	top: 0;
-	right: 10px;
-	bottom: 0;
-	width: 40px;
-	height: 40px;
-	margin: auto 0;
-	font-size: 30px;
-	color: #cc9a9a;
-	margin-bottom: 11px;
-	transition: color 0.2s ease-out;
-}
-
-.todo-list li .destroy:hover {
-	color: #af5b5e;
-}
-
-.todo-list li .destroy:after {
-	content: '×';
-}
-
-.todo-list li:hover .destroy {
-	display: block;
-}
-
-.todo-list li .edit {
-	display: none;
-}
-
-.todo-list li.editing:last-child {
-	margin-bottom: -1px;
-}
-
-.royale
+/* ItemRenderer destroy button */
+.destroy 
 {
-    background: #fff;
-    margin: 130px 0 40px 0;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
+	color: #af5b5e !important;
 }
 
-.todoapp {
-	background: #fff;
-	margin: 130px 0 40px 0;
-	position: relative;
-	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
-	            0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-
-.todoapp h1 {
-	position: absolute;
-	top: -155px;
-	width: 100%;
-	font-size: 100px;
-	font-weight: 100;
+/* Footer */
+.footer {
+	color: #777;
+	padding: 10px 15px;
 	text-align: center;
-	color: rgba(175, 47, 47, 0.15);
-	-webkit-text-rendering: optimizeLegibility;
-	-moz-text-rendering: optimizeLegibility;
-	text-rendering: optimizeLegibility;
+	border-top: 1px solid #e6e6e6;
+}
+
+.footer:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2),
+	            0 8px 0 -3px #f6f6f6,
+	            0 9px 1px -3px rgba(0, 0, 0, 0.2),
+	            0 16px 0 -6px #f6f6f6,
+	            0 17px 2px -6px rgba(0, 0, 0, 0.2);
+}
+
+/* BarRow */
+.jewel.barrow
+{
+	height: unset;
 }

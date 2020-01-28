@@ -34,11 +34,22 @@ limitations under the License.
         [Bindable]
         public var items:ArrayList = new ArrayList();
 
+        [Bindable]
+        public var completedItems:ArrayListView;
+        
+        [Bindable]
+        public var activeItems:ArrayListView;
+
         public function setUp():void {
-            list.addEventListener("itemStateChanged", itemStateChangedHandler);
+            todolist.addEventListener("itemStateChanged", itemStateChangedHandler);
+            todolist.addEventListener("removeItem", removeItemHandler);
+
+            activeItems = itemsCompleted(items, isActive);
+            completedItems = itemsCompleted(items, isCompleted);
         }
 
         private function addItem(event:Event):void {
+            if(event.target.text == "") return; 
             var newItem:TodoVO = new TodoVO(event.target.text);
             items.addItem(newItem);
             event.target.text = "";
@@ -84,11 +95,46 @@ limitations under the License.
                     items.removeItem(item);
                 }
             }
+            toogleAll.visible = footer.visible = itemsCompleted(items, null).length != 0 ? true : false;
         }
 
         public function itemStateChangedHandler(event:Event = null):void {
             itemsLeft.text = itemsCompleted(items, isActive).length + " item left";
             clearCompleted.visible = itemsCompleted(items, isCompleted).length != 0 ? true : false;
+            toogleAll.visible = footer.visible = itemsCompleted(items, null).length != 0 ? true : false;
+        }
+        
+        public function removeItemHandler(event:Event):void {
+            items.removeItem(event.target.data);
+            itemStateChangedHandler();
+        }
+        
+        public function selectFileter(event:Event):void {
+            if(event.target.text == "All")
+            {
+                active_btn.selected = false;
+                completed_btn.selected = false;
+
+                todolist.dataProvider = items;
+            } 
+            else if(event.target.text == "Active")
+            {
+                all_btn.selected = false;
+                completed_btn.selected = false;
+
+                activeItems.refresh();
+
+                todolist.dataProvider = activeItems;
+            }
+            else if(event.target.text == "Completed")
+            {
+                all_btn.selected = false;
+                active_btn.selected = false;
+
+                completedItems.refresh();
+
+                todolist.dataProvider = completedItems;
+            }
         }
         ]]>
 	</fx:Script>
@@ -97,45 +143,53 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </j:beads>
 
-    <j:SectionContent className="todoapp" isSelected="true">
+    <html:Section className="todoapp">
         <html:H1 text="todos"/>
 
-        <j:HGroup>
-            <j:IconButton click="markAllAsComplete()">
-                <j:icon>
-                    <js:FontIcon text="{MaterialIconType.ARROW_DOWNWARD}" material="true"/>
-                </j:icon>
-            </j:IconButton>
-            <j:TextInput localId="need" enter="addItem(event)" className="new-todo">
+        <html:Header localId="header">
+            <j:Group>
+                <j:TextInput localId="need" enter="addItem(event)" width="100%" className="new-todo">
+                    <j:beads>
+                        <j:TextPrompt prompt="What needs to be done?"/>
+                    </j:beads>
+                </j:TextInput>
+                <j:IconButton localId="toogleAll" click="markAllAsComplete()" visible="false"
+                    width="40" x="10" y="10" className="toggle-all">
+                    <j:icon>
+                        <js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_DOWN}" material="true"/>
+                    </j:icon>
+                </j:IconButton>
+            </j:Group>
+        </html:Header>
+
+        <html:Section localId="main">
+            <j:List localId="todolist" width="100%" rowHeight="55"
+                labelField="label" className="todo-list"
+                initComplete="todolist.dataProvider = itemsCompleted(items, null)">
                 <j:beads>
-                    <j:TextPrompt prompt="What needs to be done?"/>
+                    <j:AddListItemRendererForArrayListData/>
+                    <j:RemoveListItemRendererForArrayListData/>
+                    <j:UpdateListItemRendererForArrayListData/>
                 </j:beads>
-            </j:TextInput>
-        </j:HGroup>
+            </j:List>
+        </html:Section>
 
-        <j:List localId="list" width="200" height="300" rowHeight="60"
-            labelField="label" className="todoItemRenderer todo-list"
-            initComplete="list.dataProvider = itemsCompleted(items, null)">
-            <j:beads>
-                <j:AddListItemRendererForArrayListData/>
-                <j:RemoveListItemRendererForArrayListData/>
-                <j:UpdateListItemRendererForArrayListData/>
-            </j:beads>
-        </j:List>
-
-        <j:BarRow>
-            <j:BarSection>
-                <j:Label localId="itemsLeft" text="0 items left"/>
-            </j:BarSection>
-            <j:BarSection>
-                <j:Button text="All" click="list.dataProvider = itemsCompleted(items, null)"/>
-                <j:Button text="Active" click="list.dataProvider = itemsCompleted(items, isActive)"/>
-                <j:Button text="Completed" click="list.dataProvider = itemsCompleted(items, isCompleted)"/>
-            </j:BarSection>
-            <j:BarSection>
-                <j:Button localId="clearCompleted" text="Clear Completed" click="removeCompleted()" visible="false"/>
-            </j:BarSection>
-        </j:BarRow>
-    
-    </j:SectionContent>
+        <html:Footer localId="footer" className="footer" visible="false">
+            <j:BarRow>
+                <j:BarSection width="15%">
+                    <j:Label localId="itemsLeft" text="0 items left"/>
+                </j:BarSection>
+                <j:BarSection gap="3" itemsHorizontalAlign="itemsCenter">
+                    <j:ToggleButton localId="all_btn" text="All" click="selectFileter(event)" selected="true"/>
+                    <j:ToggleButton localId="active_btn" text="Active" click="selectFileter(event)"/>
+                    <j:ToggleButton localId="completed_btn" text="Completed" click="selectFileter(event)"/>
+                </j:BarSection>
+                <j:BarSection width="15%" itemsHorizontalAlign="itemsRight">
+                    <j:Button localId="clearCompleted" text="Clear Completed" click="removeCompleted()" visible="false">
+                        
+                    </j:Button>
+                </j:BarSection>
+            </j:BarRow>
+        </html:Footer>
+    </html:Section>
 </j:View>

@@ -19,17 +19,17 @@ limitations under the License.
 -->
 <j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
-    xmlns:js="library://ns.apache.org/royale/basic" 
-    xmlns="http://www.w3.org/1999/xhtml"
-    rollOver="closeBtn.visible = true"
-    rollOut="closeBtn.visible = false">
+    xmlns:js="library://ns.apache.org/royale/basic"
+    width="100%" hoverable="false" selectable="false"
+    rollOver="rollOverHandler(event)"
+    rollOut="rollOutHandler(event)">
 
     <fx:Script>
         <![CDATA[
 			import jewel.todomvc.vos.TodoVO;
 
-			import org.apache.royale.collections.ArrayListView;
 			import org.apache.royale.events.Event;
+			import org.apache.royale.events.MouseEvent;
 			import org.apache.royale.jewel.List;
 			import org.apache.royale.jewel.beads.views.ListView;
 
@@ -40,11 +40,20 @@ limitations under the License.
                 return data as TodoVO;
             }
 
-            public function clickCloseButton():void {
+            override public function set data(value:Object):void
+            {
+                if (value != data)
+                {
+                    super.data = value;
+                    dispatchEvent(new Event("dataChange"));
+                    trace(description)
+                }
+            }
+
+            public function clickCloseButton(event:MouseEvent):void {
                 var view:ListView = itemRendererParent as ListView;
 				host = view.host as List;
-				(host.dataProvider as ArrayListView).removeItemAt(index);
-                dispatchEvent(new Event("itemStateChanged", true));
+                dispatchEvent(new Event("removeItem", true));
             }
 
             public function edit(event:Event):void {
@@ -55,6 +64,26 @@ limitations under the License.
             public function changeItemState(event:Event):void {
                 item.done = event.target.selected;
                 dispatchEvent(new Event("itemStateChanged", true));
+            }
+
+            public function goToEditMode(event:MouseEvent):void
+            {
+                editfield.text = description.text;
+                currentState = "editing";
+                closeBtn.visible = false;
+                editfield.setFocus();
+            }
+
+            public function rollOverHandler(event:Event):void
+            {
+                if(currentState == "normal")
+                    closeBtn.visible = true;
+            }
+            
+            public function rollOutHandler(event:Event):void
+            {
+                if(currentState == "normal")
+                    closeBtn.visible = false;
             }
 		]]>
     </fx:Script>
@@ -68,14 +97,23 @@ limitations under the License.
         <js:SimpleStatesImpl/>
         <js:ItemRendererDataBinding />
     </j:beads>
-
-    <j:CheckBox selected="{item ? (item.done ? true : false) : false }" click="changeItemState(event);"/>
     
-    <j:Label html="{item ? item.label : ''}" multiline="true" visible.normal="true" visible.editing="false" click="currentState = 'editing'"/>
+    <j:CheckBox width="40" height="40"
+        selected="{item ? (item.done ? true : false) : false }"
+        click="changeItemState(event);"
+        visible.normal="true" visible.editing="false"/>
+    
+    <j:Label localId="description" width="100%" 
+        text="{item ? item.label : ''}" multiline="true"
+        doubleClick="goToEditMode(event)" 
+        visible.normal="true" visible.editing="false"
+        className="{item ? (item.done ? 'todolabel completed' : 'todolabel') : 'todolabel' }"/>
 
-    <j:TextInput localId="editfield" visible.normal="false" visible.editing="true" enter="edit(event)"/>
+    <j:TextInput localId="editfield" width="100%"
+        visible.normal="false" visible.editing="true"
+        enter="edit(event)"/>
 
-    <j:IconButton localId="closeBtn" click="clickCloseButton()" visible="false">
+    <j:IconButton localId="closeBtn" click="clickCloseButton(event)" visible="false" className="destroy">
         <j:icon>
             <js:FontIcon text="{MaterialIconType.CLOSE}" material="true"/>
         </j:icon>
