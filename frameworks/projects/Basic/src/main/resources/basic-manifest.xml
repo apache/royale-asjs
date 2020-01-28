@@ -86,6 +86,9 @@
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
     <component id="ArrayMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayMultiSelectionModel"/>
     <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
+    <component id="MultiSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.MultiSelectionCollectionViewModel"/>
+    <component id="MultiSelectionTreeModel" class="org.apache.royale.html.beads.models.MultiSelectionTreeModel"/>
+    <component id="SingleSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>
