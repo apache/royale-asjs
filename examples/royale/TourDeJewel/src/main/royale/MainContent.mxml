@@ -234,7 +234,7 @@ limitations under the License.
             </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsCenter">
                 <html:H3 text="{orientation}" />
-            </Section>
+            </j:BarSection>
             <j:BarSection itemsHorizontalAlign="itemsRight">
                 <j:IconButton>
                     <j:beads>
