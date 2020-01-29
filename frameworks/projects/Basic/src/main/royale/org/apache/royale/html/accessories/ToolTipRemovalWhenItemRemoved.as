@@ -16,21 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.itemRenderers
+package org.apache.royale.html.accessories
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IToolTipBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.jewel.beads.controls.ToolTip;
 
     /**
-     *  The ToolTipRemovalWhenItemRemoved class can be used in renderers that
-     *  can be removed and uses ToolTip, to ensure the tooltip popup is removed
-     *  with the item renderer.
+     *  The ToolTipRemovalWhenItemRemoved class can be used in lists that have 
+     *  item tenderers that have tooltips.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -51,9 +49,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 		}
 
-		private var _strand:IStrand;
-        private var host:IUIBase;
-		
         /**
          *  listen to "itemRemoved" event dispatched from the List
          *  
@@ -66,51 +61,20 @@ package org.apache.royale.jewel.beads.itemRenderers
          */
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;
-
-            var view:IBeadView = (_strand as IItemRenderer).itemRendererParent as IBeadView;
-            host = view.host as IUIBase;
-            IEventDispatcher(host).addEventListener("itemRemoved", handleItemRemoved);
+            var eventDispatcher:IEventDispatcher = ((value as IItemRenderer).itemRendererParent as IBeadView).host as IEventDispatcher;
+            eventDispatcher.addEventListener("itemRemoved", handleItemRemoved);
 		}
 
-        /**
-         * check if the renderer (item) is the current and in that case ensure remove listener and tip.
-         */
         protected function handleItemRemoved(event:ItemRemovedEvent):void
         {
-            if(event.item == this)
-            {
-                IEventDispatcher(host).removeEventListener("itemRemoved", handleItemRemoved);
-                if(tooltip)
-                {
-                    tooltip.removeTip();
-                }
-            }
+                _tooltip.removeTip();
         }
 
-        private var _tooltip:ToolTip = null;
-        /**
-         *  The ToolTip that manages the tip popup to be removed
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-		public function get tooltip():ToolTip
-		{
-			return _tooltip;
-		}
-
-        /**
-         *  @private
-         */
-		public function set tooltip(value:ToolTip):void
-		{
-			if (value != _tooltip)
-			{
-                _tooltip = value;
-			}
-		}
+        private var _tooltip:IToolTipBead;
+        public function set tooltip(value:IToolTipBead):void
+            {
+                    _tooltip = value;
+            }
+		
 	}
 }

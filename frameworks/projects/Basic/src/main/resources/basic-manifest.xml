@@ -234,6 +234,7 @@
 
     <component id="ToolTipBead" class="org.apache.royale.html.accessories.ToolTipBead" />
     <component id="AdaptiveToolTipBead" class="org.apache.royale.html.accessories.AdaptiveToolTipBead" />
+    <component id="ToolTipRemovalWhenItemRemoved" class="org.apache.royale.html.accessories.ToolTipRemovalWhenItemRemoved" />
     
     <component id="LayoutOnShow" class="org.apache.royale.html.beads.layouts.LayoutOnShow"/>
     <component id="ImageButton" class="org.apache.royale.html.ImageButton"/>

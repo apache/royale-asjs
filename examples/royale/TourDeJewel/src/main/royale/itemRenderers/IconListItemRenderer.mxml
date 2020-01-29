@@ -57,7 +57,7 @@ limitations under the License.
     <j:beads>
         <js:ItemRendererDataBinding />
         <j:ToolTip localId="tt" toolTip="{getToolTip(text)}"/>
-        <j:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
+        <js:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
     </j:beads>
 
     <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>

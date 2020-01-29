@@ -22,6 +22,7 @@ package org.apache.royale.html.accessories
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IToolTipBead;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.geom.Point;
@@ -32,14 +33,14 @@ package org.apache.royale.html.accessories
 	/**
 	 *  The ToolTipBead class is a specialty bead that can be used with
 	 *  any control. The bead floats a string over a control if
-     *  the user hovers over the control with a mouse.
+	 *  the user hovers over the control with a mouse.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9
 	 */
-	public class ToolTipBead implements IBead
+	public class ToolTipBead implements IBead, IToolTipBead
 	{
 		/**
 		 *  constructor.
@@ -79,7 +80,7 @@ package org.apache.royale.html.accessories
 		}
 		public function set toolTip(value:String):void
 		{
-            _toolTip = value;
+			_toolTip = value;
 		}
 
 		/**
@@ -132,7 +133,7 @@ package org.apache.royale.html.accessories
 		{
 			_strand = value;
 
-            IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
+			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OVER, rollOverHandler, false);
 		}
 
 		/**
@@ -148,7 +149,7 @@ package org.apache.royale.html.accessories
 			IEventDispatcher(_strand).addEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
 
 			var comp:IUIBase = _strand as IUIBase
-			host = UIUtils.findPopUpHost(comp);
+				host = UIUtils.findPopUpHost(comp);
 			if (tt)
 				host.popUpParent.removeElement(tt);
 
@@ -194,24 +195,37 @@ package org.apache.royale.html.accessories
 
 			pt = new Point(comp.width/xFactor, comp.height/yFactor);
 			pt = PointUtils.localToGlobal(pt, comp);
-			
+
 			return pt;
 		}
 
-        /**
-         * @private
-		 * @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-        protected function rollOutHandler(event:MouseEvent):void
-        {
+		/**                         	
+		 *  @copy org.apache.royale.core.IToolTipBead#removeTip()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 */
+		public function removeTip():void
+		{
 			IEventDispatcher(_strand).removeEventListener(MouseEvent.MOUSE_OUT, rollOutHandler, false);
-			
+
 			var comp:IUIBase = _strand as IUIBase;
-            if (tt) {
-                host.popUpParent.removeElement(tt);
+			if (tt) {
+				host.popUpParent.removeElement(tt);
 				tt = null;
 			}
-        }
+		}
+
+		/**
+		 * @private
+		 */
+        public function rollOutHandler(event:MouseEvent):void
+            {
+                    removeTip();
+            }
 	}
 }
 

@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.controls
 	import org.apache.royale.core.IPopUpHost;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IToolTipBead;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.geom.Point;
@@ -42,7 +43,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ToolTip implements IBead
+	public class ToolTip implements IBead, IToolTipBead
 	{
 		/**
 		 *  constructor.
@@ -233,11 +234,14 @@ package org.apache.royale.jewel.beads.controls
 			removeTip();
 		}
 
-		/**
-		 * remove the tooltip popup
-		 * 
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.IUIBase
+		/**                         	
+		 *  @copy org.apache.royale.core.IToolTipBead#removeTip()
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function removeTip():void {
 			IEventDispatcher(_strand).removeEventListener("change", changeHandler, false);
