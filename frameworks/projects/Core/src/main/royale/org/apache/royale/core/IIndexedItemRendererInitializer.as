@@ -18,31 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.core.IItemRendererOwnerView;
+
     /**
-     *  The IItemRendererClassFactory interface is the basic interface for beads
-     *  that generate instances of IItemRenderers.  Note that this is not the same
-     *  as an org.apache.royale.core.IFactory which is a lower-level interface for generating
-     *  an instance of just about anything.  IItemRendererClassFactory implementations
-     *  often use IFactory to generate the actual item renderer instance, but
-     *  the IItemRendererClassFactory bead allows for more computation about which 
-     *  renderer to instantiate. For example, the default implementation
-     *  in org.apache.royale.core.ItemRendererClassFactory checks for an itemRenderer
-     *  property on the strand, then looks for a default definition in CSS, but
-     *  also handles the renderer being defined in MXML in sub tags of the
-     *  ItemRendererClassFactory.  Other more advanced implementations could
-     *  return different renderers based on the data item's type.
+     *  The IItemRendererInitializer interface is the basic interface for beads
+     *  that initialize properties on an IItemRenderer.  Simple implementations
+     *  only assign the data and itemRendererOwnerView property, but others will 
+     *  assign other properties if needed. 
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IItemRendererClassFactory extends IBead
+	public interface IIndexedItemRendererInitializer extends IItemRendererInitializer
 	{
         /**
          *  This method is called to generate another instance of an item renderer.
          * 
-         *  @return The item renderer.
+         *  @param renderer The renderer
+         *  @param data The data for the renderer
+         *  @param ownerView the view of the component that owns the renderers
+         *  @param index the index in the list of renderers
          * 
          *  @see org.apache.royale.core.IItemRenderer
          * 
@@ -51,6 +48,6 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function createItemRenderer():IItemRenderer;
+		function initializeIndexedItemRenderer(renderer:IIndexedItemRenderer, data:Object, ownerView:IItemRendererOwnerView, index:int):void;
 	}
 }

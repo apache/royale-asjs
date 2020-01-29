@@ -18,39 +18,28 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+	import org.apache.royale.events.IEventDispatcher;
+
     /**
-     *  The IItemRendererClassFactory interface is the basic interface for beads
-     *  that generate instances of IItemRenderers.  Note that this is not the same
-     *  as an org.apache.royale.core.IFactory which is a lower-level interface for generating
-     *  an instance of just about anything.  IItemRendererClassFactory implementations
-     *  often use IFactory to generate the actual item renderer instance, but
-     *  the IItemRendererClassFactory bead allows for more computation about which 
-     *  renderer to instantiate. For example, the default implementation
-     *  in org.apache.royale.core.ItemRendererClassFactory checks for an itemRenderer
-     *  property on the strand, then looks for a default definition in CSS, but
-     *  also handles the renderer being defined in MXML in sub tags of the
-     *  ItemRendererClassFactory.  Other more advanced implementations could
-     *  return different renderers based on the data item's type.
-     * 
+     *  The IIndexedItemRenderer interface is the basic interface for item renderers
+     *  that have an index property that indicates its index in the list of renderers.
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IItemRendererClassFactory extends IBead
+	public interface IIndexedItemRenderer extends IItemRenderer
 	{
         /**
-         *  This method is called to generate another instance of an item renderer.
-         * 
-         *  @return The item renderer.
-         * 
-         *  @see org.apache.royale.core.IItemRenderer
+         *  The index of the item renderer.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function createItemRenderer():IItemRenderer;
+		function get index():int;
+		function set index(value:int):void;		
 	}
 }

@@ -75,23 +75,6 @@ package mx.controls.treeClasses
 			super();
 		}
 
-		private var _strand:IStrand;
-
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			super.strand = value;
-		}
-        
         /**
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView
@@ -113,22 +96,7 @@ package mx.controls.treeClasses
             dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
             
-            dataGroup.removeAllItemRenderers();
-            
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            labelField = dataProviderModel.labelField;
-            
-            var n:int = dp.length;
-            var cursor:IViewCursor = dp.createCursor();
-            for (var i:int = 0; i < n; i++)
-            {
-                var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-                var item:Object = cursor.current;
-                cursor.moveNext();
-                fillRenderer(i, item, ir, presentationModel);
-            }
-            
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+            super.dataProviderChangeHandler(event);
         }
 
 		

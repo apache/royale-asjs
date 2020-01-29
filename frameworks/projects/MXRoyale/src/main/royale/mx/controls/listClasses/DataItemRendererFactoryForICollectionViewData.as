@@ -19,33 +19,31 @@
 package mx.controls.listClasses
 {
     import mx.collections.ArrayCollection;
-	import mx.collections.ICollectionView;
-	import mx.collections.IViewCursor;
+    import mx.collections.ICollectionView;
+    import mx.collections.IViewCursor;
+    
+    import org.apache.royale.core.IBead;
+    import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IItemRendererClassFactory;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.SimpleCSSStyles;
+    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.events.CollectionEvent;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ItemRendererEvent;
+    import org.apache.royale.html.List;
+    import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
+    import org.apache.royale.html.supportClasses.TreeListData;
 	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IDataProviderItemRendererMapper;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.CollectionEvent;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.ItemRendererEvent;
-	import org.apache.royale.html.List;
-	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
-	import org.apache.royale.html.supportClasses.TreeListData;
-	
-	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
-
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a
      *  HierarchicalData object and creates an item renderer for every
@@ -73,6 +71,8 @@ package mx.controls.listClasses
 			super();
 		}
         
+        private var dp:ICollectionView;
+        
         /**
          * @private
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
@@ -83,7 +83,7 @@ package mx.controls.listClasses
         {
             if (!dataProviderModel)
                 return;
-            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+            dp = dataProviderModel.dataProvider as ICollectionView;
             if (!dp)
             {
                 // temporary until descriptor is used in MenuBarModel
@@ -102,13 +102,14 @@ package mx.controls.listClasses
             dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
             
+            super.dataProviderChangeHandler(event);
+            
             dataGroup.removeAllItemRenderers();
             
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
             labelField = dataProviderModel.labelField;
             
             var n:int = dp.length;
-            var cursor:IViewCursor = dp.createCursor();
             for (var i:int = 0; i < n; i++)
             {
                 var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
@@ -120,5 +121,22 @@ package mx.controls.listClasses
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
         }
 		
+        private var cursor:IViewCursor;
+        
+        
+        // assumes will be called in a loop, not random access
+        override protected function dataProviderLength():int
+        {
+            cursor = dp.createCursor();
+            return dp.length;
+        }
+        
+        // assumes will be called in a loop, not random access
+        override protected function getItemAt(index:int):Object
+        {
+            var obj:Object = cursor.current;
+            cursor.moveNext();
+            return obj;
+        }
 	}
 }

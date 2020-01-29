@@ -53,8 +53,6 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.supportClasses.TreeListData;
 	
-	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
-
     /**
      *  The DataItemRendererFactoryForHierarchicalData class reads a
      *  HierarchicalData object and creates an item renderer for every
@@ -82,23 +80,6 @@ package mx.controls.advancedDataGridClasses
 			super();
 		}
 
-		private var _strand:IStrand;
-
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			super.strand = value;
-		}
-        
         /**
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView

@@ -44,7 +44,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataItemRendererFactoryForColumnData extends Bead implements IDataProviderItemRendererMapper
+	public class DataItemRendererFactoryForColumnData extends DataItemRendererFactoryBase
 	{
 		/**
 		 *  constructor.
@@ -60,70 +60,7 @@ package org.apache.royale.html.beads
 		
 		private var selectionModel:IDataGridModel;
 				
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			listenOnStrand("initComplete",finishSetup);
-		}
-		
-		/**
-		 * @private
-     * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
-		 */
-		private function finishSetup(event:Event):void
-		{			
-			selectionModel = _strand.getBeadByType(IDataGridModel) as IDataGridModel;
-			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
-			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
-			// already have been loaded by DataContainerBase.addedToParent function.
-			if(!_itemRendererFactory)
-    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
-			
-			dataProviderChangeHandler(null);
-		}
-		
-		private var _itemRendererFactory:IItemRendererClassFactory;
-		
-		/**
-		 *  The factory used to create the itemRenderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-     * @royaleignorecoercion org.apache.royale.core.IItemRendererClassFactory
-		 */
-		public function get itemRendererFactory():IItemRendererClassFactory
-		{
-			if(!_itemRendererFactory)
-    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
-			
-			return _itemRendererFactory
-		}
-		public function set itemRendererFactory(value:IItemRendererClassFactory):void
-		{
-			_itemRendererFactory = value;
-		}
-		
-		/**
-		 *  The dataGroup that is the pareent for the itemRenderers
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-//		protected var dataGroup:IItemRendererOwnerView;
-		
+
 		/**
 		 * @private
          * @royaleignorecoercion org.apache.royale.html.beads.DataGridColumnView
@@ -138,20 +75,7 @@ package org.apache.royale.html.beads
 			var view:DataGridColumnView = _strand.getBeadByType(IBeadView) as DataGridColumnView;
 			if (view == null) return;
 
-			var dataGroup:IItemRendererOwnerView = view.dataGroup;
-			dataGroup.removeAllItemRenderers();
-
-			var n:int = dp.length; 
-			for (var i:int = 0; i < n; i++)
-			{
-				var tf:DataItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as DataItemRenderer;
-				dataGroup.addItemRenderer(tf, false);
-				tf.index = i;
-				tf.labelField = view.column.dataField;
-				tf.data = dp[i];
-			}
-			
-			sendStrandEvent(_strand,"itemsCreated");
+            super.dataProviderChangeHandler(event);
 		}
 	}
 }
