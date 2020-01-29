@@ -95,7 +95,15 @@ limitations under the License.
                     items.removeItem(item);
                 }
             }
+            clearCompleted.visible = false;
             toogleAll.visible = footer.visible = itemsCompleted(items, null).length != 0 ? true : false;
+            
+            if(all_btn.selected)
+                selectFilter(all_btn.text);
+            else if(active_btn.selected)
+                selectFilter(active_btn.text);
+            else if(completed_btn.selected)
+                selectFilter(completed_btn.text);
         }
 
         public function itemStateChangedHandler(event:Event = null):void {
@@ -109,15 +117,18 @@ limitations under the License.
             itemStateChangedHandler();
         }
         
-        public function selectFileter(event:Event):void {
-            if(event.target.text == "All")
+        public function toggleButtonClickHandler(event:Event):void {
+            selectFilter(event.target.text);
+        }
+        public function selectFilter(label:String):void {
+            if(label == "All")
             {
                 active_btn.selected = false;
                 completed_btn.selected = false;
 
                 todolist.dataProvider = items;
             } 
-            else if(event.target.text == "Active")
+            else if(label == "Active")
             {
                 all_btn.selected = false;
                 completed_btn.selected = false;
@@ -126,7 +137,7 @@ limitations under the License.
 
                 todolist.dataProvider = activeItems;
             }
-            else if(event.target.text == "Completed")
+            else if(label == "Completed")
             {
                 all_btn.selected = false;
                 active_btn.selected = false;
@@ -180,16 +191,28 @@ limitations under the License.
                     <j:Label localId="itemsLeft" text="0 items left"/>
                 </j:BarSection>
                 <j:BarSection gap="3" itemsHorizontalAlign="itemsCenter">
-                    <j:ToggleButton localId="all_btn" text="All" click="selectFileter(event)" selected="true"/>
-                    <j:ToggleButton localId="active_btn" text="Active" click="selectFileter(event)"/>
-                    <j:ToggleButton localId="completed_btn" text="Completed" click="selectFileter(event)"/>
+                    <j:ToggleButton localId="all_btn" text="All" click="toggleButtonClickHandler(event)" selected="true"/>
+                    <j:ToggleButton localId="active_btn" text="Active" click="toggleButtonClickHandler(event)"/>
+                    <j:ToggleButton localId="completed_btn" text="Completed" click="toggleButtonClickHandler(event)"/>
                 </j:BarSection>
                 <j:BarSection width="15%" itemsHorizontalAlign="itemsRight">
-                    <j:Button localId="clearCompleted" text="Clear Completed" click="removeCompleted()" visible="false">
-                        
-                    </j:Button>
+                    <j:Button localId="clearCompleted" text="Clear Completed" click="removeCompleted()" visible="false"/>
                 </j:BarSection>
             </j:BarRow>
+
         </html:Footer>
     </html:Section>
+    
+    <html:Footer className="info">
+        <![CDATA[
+            <p>Double-click to edit a todo</p>
+            <p>
+                Created by
+                <a href="http://github.com/carlosrovira" target="_blank">Carlos Rovira</a>
+                for
+                <a href="http://royale.apache.org" target="_blank">Apache Royale</a>
+            </p>
+            <p>Inspired in <a href="http://todomvc.com" target="_blank">TodoMVC</a></p>
+        ]]>
+    </html:Footer>
 </j:View>

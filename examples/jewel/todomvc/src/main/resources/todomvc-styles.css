@@ -37,15 +37,6 @@
 	font-weight: 300;
 }
 
-/* Main View */
-.royale
-{
-    background: #fff;
-    margin: 130px 0 40px 0;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
-}
-
 /* Main Section */
 .todoapp {
 	background: #fff;
@@ -301,4 +292,27 @@
 .jewel.barrow
 {
 	height: unset;
+}
+
+/* Footer Info */
+.info {
+	text-align: center;
+	margin: 65px auto 0;
+	color: #bfbfbf;
+	font-size: 10px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.info p {
+	line-height: 1;
+}
+
+.info a {
+	font-weight: 400;
+	color: inherit;
+	text-decoration: none;
+}
+
+.info a:hover {
+	text-decoration: underline;
 }
