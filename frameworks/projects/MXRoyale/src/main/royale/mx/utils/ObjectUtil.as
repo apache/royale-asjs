@@ -801,8 +801,6 @@ public class ObjectUtil
                 return "(" + objectType + ")";
             }
         }
-
-        return "(unknown)";
     }
 
     /**
