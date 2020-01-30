@@ -57,7 +57,7 @@ import mx.core.mx_internal;
 
 use namespace mx_internal;
 
-import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IItemRenderer;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.util.getLabelFromData;
@@ -80,7 +80,7 @@ import org.apache.royale.html.supportClasses.TreeListData;
  *  @productversion Flex 3
  */
 public class TreeItemRenderer extends UIComponent 
-    implements IDataRenderer, IDropInListItemRenderer, ISelectableItemRenderer
+    implements IDataRenderer, IDropInListItemRenderer, IItemRenderer
 {
    
 
@@ -101,7 +101,7 @@ public class TreeItemRenderer extends UIComponent
     public function TreeItemRenderer()
     {
         super();
-        typeNames = "TreeItemRenderer";
+        typeNames = "TreeItemRenderer";        
     }
 
     override protected function createChildren():void
@@ -211,6 +211,7 @@ public class TreeItemRenderer extends UIComponent
         
         // each MXML file can also have styles in fx:Style block
         ValuesManager.valuesImpl.init(this);
+        loadBeadFromValuesManager(ISelectableItemRenderer);
         
         dispatchEvent(new Event("initBindings"));
         dispatchEvent(new Event("initComplete"));

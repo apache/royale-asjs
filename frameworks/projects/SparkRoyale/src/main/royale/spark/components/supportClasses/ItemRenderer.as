@@ -84,8 +84,8 @@ import spark.components.DataRenderer;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class ItemRenderer extends DataRenderer implements ISelectableItemRenderer
-{    // implements IItemRenderer
+public class ItemRenderer extends DataRenderer implements IItemRenderer
+{
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -913,4 +913,9 @@ public class ItemRenderer extends DataRenderer implements ISelectableItemRendere
     } */
 
 }
+}
+
+class SparkItemRendererISelectableImpl extends Bead implements ISelectableItemRenderer
+{
+    
 }

@@ -30,7 +30,7 @@ package mx.controls.beads
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
@@ -168,7 +168,7 @@ package mx.controls.beads
             {
                 var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
                 var view:AdvancedDataGridListVirtualListView = list.view as AdvancedDataGridListVirtualListView;
-                var ir:ISelectableItemRenderer = view.getItemRendererForIndex(index) as ISelectableItemRenderer;
+                var ir:IItemRenderer = view.getItemRendererForIndex(index) as IItemRenderer;
                 if (ir)
                 {
                     ir.selected = selected;

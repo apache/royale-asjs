@@ -16,40 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.mdl.supportClasses
+package org.apache.royale.core
 {
-    import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.events.IEventDispatcher;
 
     /**
-     *  The ITabItemRenderer interface is the basic interface for MDL Tabs and TabBar item renderers.
-     *
+     *  The IIndexedItemRenderer interface is the basic interface for item renderers
+     *  that have an index property that indicates its index in the list of renderers.
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
+     *  @productversion Royale 0.0
      */
-    public interface ITabItemRenderer extends IItemRenderer
-    {
+	public interface ILabelFieldItemRenderer extends IIndexedItemRenderer
+	{
         /**
-         *  Provides name of the property which stores "id" for Tab
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         */
-        function get tabIdField():String;
-        function set tabIdField(value:String):void;
-
-        /**
-         *  Indicates whether specific Tab is currently selected/active
+         *  The property on the data item that the item renderer
+         *  should renderer.
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
+         *  @productversion Royale 0.0
          */
-        function get isActive():Boolean;
-        function set isActive(value:Boolean):void;
-    }
+        function get labelField():String;
+        function set labelField(value:String):void;        
+	}
 }
