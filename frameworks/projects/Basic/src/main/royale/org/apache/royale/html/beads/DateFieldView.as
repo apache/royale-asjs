@@ -206,6 +206,8 @@ package org.apache.royale.html.beads
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
+                    var popUpModel:IDateChooserModel = _popUp.getBeadByType(IDateChooserModel) as IDateChooserModel;
+                    popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());
 					var point:Point = new Point(_textInput.width, _button.height);
