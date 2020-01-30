@@ -20,6 +20,8 @@ package jewel.todomvc.models
 {
 	import jewel.todomvc.vos.TodoVO;
 
+	import mx.net.SharedObject;
+
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.collections.ArrayListView;
 	import org.apache.royale.core.IBeadModel;
@@ -46,8 +48,6 @@ package jewel.todomvc.models
 		 */
         public function TodoModel():void
         {
-            activeItems = filterItems(isActive);
-            completedItems = filterItems(isCompleted);
         }
         
         private var _strand:IStrand;
@@ -69,6 +69,11 @@ package jewel.todomvc.models
         public var router:Router;
 
         /**
+         *  Local storage for the todo items
+         */
+        public var storage:SharedObject = SharedObject.getLocal("todomvc");
+
+        /**
          * the list of items binded to the todo list component
          */
         public var listItems:Object;
@@ -76,7 +81,7 @@ package jewel.todomvc.models
         /**
          * the real list with all items
          */
-        public var allItems:ArrayList = new ArrayList();
+        public var allItems:ArrayList;
 
         /**
          * the filtered list with active items
@@ -88,6 +93,13 @@ package jewel.todomvc.models
          */
         public var completedItems:ArrayListView;
 
+        /**
+         *  Set up the filtered collections for later use
+         */
+        public function setUpFilteredCollections():void {
+            activeItems = filterItems(isActive);
+            completedItems = filterItems(isCompleted);
+        }
         /**
          *  Filter the items in the list creating an ArrayListView with the right filter function
          */
@@ -117,6 +129,11 @@ package jewel.todomvc.models
          */
         public var filterState:String = TodoModel.ALL_FILTER;
 
+        /**
+         * toggleAll button selected state
+         */
+        public var toggleAllSelectedState:Boolean = false;
+        
         /**
          * how many items left to do
          */

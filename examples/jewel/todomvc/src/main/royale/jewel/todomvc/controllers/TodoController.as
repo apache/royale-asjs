@@ -22,6 +22,7 @@ package jewel.todomvc.controllers
 	import jewel.todomvc.models.TodoModel;
 	import jewel.todomvc.vos.TodoVO;
 
+	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
@@ -63,7 +64,18 @@ package jewel.todomvc.controllers
 			IEventDispatcher(_strand).addEventListener(TodoEvent.ITEM_REMOVED, itemRemovedHandler);            
 			
         	model = _strand.getBeadByType(IBeadModel) as TodoModel;
+			
+			// retrieve local items and use it if exists
+			var localAllItems:Array = model.storage.data["items"];
+			if(localAllItems)
+				model.allItems = new ArrayList(localAllItems);
+			else
+				model.allItems = new ArrayList();
+			
+			model.setUpFilteredCollections();
 			model.listItems = model.allItems;
+
+			updateInterface();
         }
 
 		/**
@@ -72,29 +84,48 @@ package jewel.todomvc.controllers
 		private var model:TodoModel;
 		
         /**
-         *  Add the todo item to the list and refresh the list state 
+         *  Saves the actual data to the local storage via Local SharedObject
+         */
+        protected function saveDataToLocal():void {
+			try {
+				model.storage.data["items"] = model.allItems.source;
+				model.storage.flush();
+			} catch (error:Error) {
+				trace("You need to be online to store locally");
+			}
+		}
+
+        /**
+         *  Add the todo item to the list, save data and refresh the list state 
          */
         protected function addTodoItem(event:TodoEvent):void {
             model.allItems.addItem(event.todo);
-            updateInterface();
+			
+			saveDataToLocal();
+			updateInterface();
         }
         
+
+
 		/**
-         *  Mark all todo items as completed and update items left and clear completed button visibility
+         *  Mark all todo items as completed, save data and update the interface accordingly
          */
         protected function markAllComplete(event:TodoEvent):void {
-            var len:int = model.allItems.length
+			model.toggleAllSelectedState = !model.toggleAllSelectedState;
+
+            var len:int = model.allItems.length;
 			var item:TodoVO;
 			for(var i:int = 0; i < len; i++) {
 				item = TodoVO(model.allItems.getItemAt(i));
-				item.done = true;
+				item.done = model.toggleAllSelectedState;
 			}
 
+			saveDataToLocal();
 			updateInterface();
         }
 
 		/**
-         *  Remove all completed todo items, update footer and toggle all button visibility
+         *  Remove all completed todo items, save data and update footer and toggle all button visibility
          */
         protected function removeCompleted(event:TodoEvent):void {
 			var l:uint = model.allItems.length;
@@ -106,8 +137,8 @@ package jewel.todomvc.controllers
 				}
 			}
 
-			model.footerVisibility = model.allItems.length != 0 ? true : false;
-			model.toogleAllVisibility = model.allItems.length != 0 ? true : false;
+			saveDataToLocal();
+			updateInterface();
 		}
 
 		/**
@@ -117,6 +148,7 @@ package jewel.todomvc.controllers
 		{
 			if(model.filterState != event.label) {
 				model.filterState = event.label;
+
 				setListState();
 			}
 		}
@@ -159,25 +191,31 @@ package jewel.todomvc.controllers
 		}
 
 		/**
-		 *  When some todo item change state (done/undone), we must update the interface accordingly
+		 *  When some todo item change state (done/undone), we must save data and update the interface accordingly
 		 */
         public function itemStateChangedHandler(event:TodoEvent = null):void {
 			event.todo.done = event.completion;
+
+			saveDataToLocal();
 			updateInterface();
 		}
 
 		/**
-		 *  Commit the label changes to the item
+		 *  Commit the label changes to the item and save data
 		 */
         public function itemLabelChangedHandler(event:TodoEvent = null):void {
 			event.todo.label = event.label;
+
+			saveDataToLocal();
 		}
 
 		/**
-		 *  When the user click in the renderer destroy button we must remove the item and update the interface
+		 *  When the user click in the renderer destroy button we must remove the item, save data and update the interface
 		 */
         public function itemRemovedHandler(event:TodoEvent):void {
 			model.allItems.removeItem(event.todo);
+
+			saveDataToLocal();
             updateInterface();
 		}
 

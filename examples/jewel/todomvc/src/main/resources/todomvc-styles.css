@@ -84,9 +84,7 @@ todomvc|TodoListSection
 }
 .jewel.button:hover, .jewel.button:hover:focus {
 	background: none;
-	border: 1px solid transparent;
-
-	text-decoration: underline;	
+	border: 1px solid transparent;	
 }
 .jewel.button:active, .jewel.button:active:focus {
 	background: none;
@@ -98,6 +96,7 @@ todomvc|TodoListSection
 	box-shadow: none;
 }
 
+/* ToggleButton */
 .jewel.togglebutton {
 	margin: 3px;
     padding: 3px 7px;
@@ -129,9 +128,30 @@ todomvc|TodoListSection
 	box-shadow: none;
 }
 
+.jewel.togglebutton.toggleAll {
+
+}
+.jewel.togglebutton.toggleAll:hover, .jewel.togglebutton.toggleAll:hover:focus {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll:active, .jewel.togglebutton.toggleAll:active:focus {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll:focus {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll.selected {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll .fonticon {
+	color: #737373;
+}
+.jewel.togglebutton.toggleAll.selected .fonticon {
+	color: #e6e6e6;
+}
+
 /* TextInput */
-.jewel.textinput.new-todo input
-{
+.jewel.textinput.new-todo input {
 	padding: 16px 16px 16px 60px !important;
 	border-radius: 0px;
 	border: none;
@@ -161,12 +181,10 @@ todomvc|TodoListSection
 	font-style: italic;
 }
 
-.jewel.item .jewel.textinput
-{
+.jewel.item .jewel.textinput {
 	margin-left: 46px;
 }
-.jewel.textinput input
-{
+.jewel.textinput input {
 	background: none;
 	border-radius: 0px;
 	font-weight: 300;
@@ -187,21 +205,18 @@ todomvc|TodoListSection
 }
 
 /* List */
-.todo-list
-{
+.todo-list {
 	IItemRenderer: ClassReference("jewel.todomvc.renderers.TodoItemRenderer");
 }
 
-.jewel.list
-{
+.jewel.list {
 	border-radius: 0px;
 	border: none;
 	background: none;
 }
 
 /* ItemRenderer */
-.jewel.item
-{
+.jewel.item {
 	padding: 0px;
 }
 
@@ -221,8 +236,7 @@ todomvc|TodoListSection
 }
 
 /* CheckBox */
-.jewel.checkbox
-{
+.jewel.checkbox {
 	margin: 8px;
 }
 
@@ -259,20 +273,17 @@ todomvc|TodoListSection
  */
 
 /* ItemRenderer label */
-.todolabel
-{
+.todolabel {
 	padding-left: 13px;
 }
 
-.completed
-{
+.completed {
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
 
 /* ItemRenderer destroy button */
-.destroy 
-{
+.destroy {
 	color: #af5b5e !important;
 }
 
@@ -300,9 +311,13 @@ todomvc|TodoListSection
 }
 
 /* BarRow */
-.jewel.barrow
-{
+.jewel.barrow {
 	height: unset;
+}
+
+/* Clear Completed Button */
+.jewel.button.clearCompleted {
+	text-decoration: underline;
 }
 
 /* Footer Info */

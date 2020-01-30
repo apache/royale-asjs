@@ -19,7 +19,8 @@ limitations under the License.
 -->
 <j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 	xmlns:j="library://ns.apache.org/royale/jewel"
-	xmlns:js="library://ns.apache.org/royale/basic">
+	xmlns:js="library://ns.apache.org/royale/basic"
+	height="61">
 
 	<fx:Script>
 		<![CDATA[
@@ -63,12 +64,12 @@ limitations under the License.
 		</j:beads>
 	</j:TextInput>
 
-	<j:IconButton localId="toogleAll" visible="{todoModel.toogleAllVisibility}"
-		width="40" x="10" y="10" className="toggle-all"
+	<j:ToggleButton localId="toogleAll" visible="{todoModel.toogleAllVisibility}"
+		width="34" height="55" className="toggleAll"
 		click="markAllComplete(event)">
 		<j:icon>
 			<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_DOWN}" material="true"/>
 		</j:icon>
-	</j:IconButton>
+	</j:ToggleButton>
 
 </j:Group>

@@ -27,6 +27,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import jewel.todomvc.models.TodoModel;
+            
             import org.apache.royale.core.IBeadModel;
             import org.apache.royale.routing.RouteState;
             
@@ -42,7 +43,7 @@ limitations under the License.
                 todoModel.router = router;
                 header.todoModel = todoModel;
                 footer.todoModel = todoModel;
-
+                
                 updateRouting();
             }
 
