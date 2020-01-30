@@ -17,7 +17,7 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package mx.net
+package org.apache.royale.storage
 {
     
     COMPILE::SWF
@@ -40,17 +40,17 @@ package mx.net
         private static const map:Object = {};
         private static var unlocked:Boolean;
         
-        public static function getLocal(name:String, localPath:String = null, secure:Boolean = false):mx.net.SharedObjectJSON
+        public static function getLocal(name:String, localPath:String = null, secure:Boolean = false):org.apache.royale.storage.SharedObjectJSON
         {
             var pathKey:String = localPath == null ? '$null$' : localPath;
             COMPILE::JS {
                 localPath = pathKey;
             }
-            var cached:mx.net.SharedObjectJSON = map[pathKey + '::' + name];
+            var cached:org.apache.royale.storage.SharedObjectJSON = map[pathKey + '::' + name];
             if (!cached)
             {
                 unlocked = true;
-                cached = new mx.net.SharedObjectJSON();
+                cached = new org.apache.royale.storage.SharedObjectJSON();
                 unlocked = false;
                 map[pathKey + '::' + name] = cached;
                 cached.setName(name);

@@ -45,6 +45,8 @@ package
         import org.apache.royale.net.remoting.messages.RoyaleClient; RoyaleClient;
 	
 		import org.apache.royale.net.remoting.amf.AMFBinaryData; AMFBinaryData;
+
+        import mx.events.NetStatusEvent; NetStatusEvent;
         
         // import org.apache.royale.reflection.registerClassAlias;
         // //RpcClassAliasInitializer
