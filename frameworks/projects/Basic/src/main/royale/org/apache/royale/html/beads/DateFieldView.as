@@ -126,7 +126,8 @@ package org.apache.royale.html.beads
 			_textInput.height = 18;
 
 			_button = new TextButton();
-			_button.text = "⬇︎";
+			//_button.text = "⬇︎";
+			_button.text =  "\uD83D\uDCC5"
 			getHost().addElement(_button);
 
 			COMPILE::SWF {
