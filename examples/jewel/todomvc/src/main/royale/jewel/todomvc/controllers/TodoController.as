@@ -57,6 +57,7 @@ package jewel.todomvc.controllers
 			IEventDispatcher(_strand).addEventListener(TodoEvent.MARK_ALL_COMPLETE, markAllComplete);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.REMOVE_COMPLETED, removeCompleted);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.REFRESH_LIST, refreshList);            
+			IEventDispatcher(_strand).addEventListener(TodoEvent.REFRESH_LIST_BY_USER, refreshListByUser);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.ITEM_STATE_CHANGED, itemStateChangedHandler);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.ITEM_LABEL_CHANGED, itemLabelChangedHandler);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.ITEM_REMOVED, itemRemovedHandler);            
@@ -114,8 +115,26 @@ package jewel.todomvc.controllers
          */
         protected function refreshList(event:TodoEvent):void
 		{
-			model.filterState = event.label;
-			setListState();
+			if(model.filterState != event.label) {
+				model.filterState = event.label;
+				setListState();
+			}
+		}
+		
+		/**
+         *  Refresh the todo list to the appropiate filter state (All, Active or Completed)
+         */
+        protected function refreshListByUser(event:TodoEvent):void
+		{
+			if(model.filterState != event.label) {
+				model.filterState = event.label;
+				
+				model.router.routeState.title = "TodoMVC - " + model.filterState + " State";
+				model.router.routeState.state = model.filterState;
+				model.router.setState();
+
+				setListState();
+			}
 		}
 
 		/**

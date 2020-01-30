@@ -25,55 +25,58 @@ limitations under the License.
         <![CDATA[
             import jewel.todomvc.models.TodoModel;
             import jewel.todomvc.events.TodoEvent;
-
+            
             [Bindable]
             public var todoModel:TodoModel;
 
             /**
-             *  All toggle buttons runs select filter
+             *  Used for routing. Select the appropiate state for the URL hash
              */
-            public function toggleButtonClickHandler(event:Event):void {
-                selectFilter(event.target.text);
+            public function selectState(hash:String):void {
+                if(hash == all_btn.text)
+                    all_btn.selected = true;
+                else if(hash ==  active_btn.text)
+                    active_btn.selected = true;
+                else if(hash == completed_btn.text)
+                    completed_btn.selected = true;
+                    
+                updateToggles(hash);
+                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, hash));
             }
 
             /**
-             *  Update buttons states and refresh the list updating the list model
+             *  All toggle buttons use this handler to navigate todo list
              */
-            public function selectFilter(label:String):void {
-                if(label == TodoModel.ALL_FILTER)
-                {
+            public function toggleButtonClickHandler(event:Event):void {
+                updateToggles(event.target.text);
+                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST_BY_USER, null, event.target.text));
+            }
+
+            /**
+             *  Update toggle buttons to appropiate state
+             */
+            public function updateToggles(label:String):void {
+                if(label == TodoModel.ALL_FILTER) {
                     active_btn.selected = false;
                     completed_btn.selected = false;
                 } 
-                else if(label == TodoModel.ACTIVE_FILTER)
-                {
+                else if(label == TodoModel.ACTIVE_FILTER) {
                     all_btn.selected = false;
                     completed_btn.selected = false;
-
                 }
-                else if(label == TodoModel.COMPLETED_FILTER)
-                {
+                else if(label == TodoModel.COMPLETED_FILTER) {
                     all_btn.selected = false;
                     active_btn.selected = false;
                 }
-
-                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, label));
             }
 
             /**
-             *  Remove all completed todo items and update the todo list with the right filter
+             *  Remove all completed todo items and update clear complete visibility
              */
             public function removeCompleted():void {
                 dispatchEvent(new TodoEvent(TodoEvent.REMOVE_COMPLETED));
 
                 clearCompleted.visible = false;
-                
-                if(all_btn.selected)
-                    selectFilter(all_btn.text);
-                else if(active_btn.selected)
-                    selectFilter(active_btn.text);
-                else if(completed_btn.selected)
-                    selectFilter(completed_btn.text);
             }
         ]]>
     </fx:Script>
@@ -87,7 +90,7 @@ limitations under the License.
     </j:BarSection>
 
     <j:BarSection gap="3" itemsHorizontalAlign="itemsCenter">
-        <j:ToggleButton localId="all_btn" text="All" click="toggleButtonClickHandler(event)" selected="true"/>
+        <j:ToggleButton localId="all_btn" text="All" click="toggleButtonClickHandler(event)"/>
         <j:ToggleButton localId="active_btn" text="Active" click="toggleButtonClickHandler(event)"/>
         <j:ToggleButton localId="completed_btn" text="Completed" click="toggleButtonClickHandler(event)"/>
     </j:BarSection>

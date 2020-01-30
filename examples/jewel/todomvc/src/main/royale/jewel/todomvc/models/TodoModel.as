@@ -25,6 +25,7 @@ package jewel.todomvc.models
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.routing.Router;
 
 	[Bindable]
     /**
@@ -61,6 +62,11 @@ package jewel.todomvc.models
 		public function set strand(value:IStrand):void {
         	_strand = value;
         }
+
+        /**
+		 *  The router that updates the browser navigation state.
+		 */
+        public var router:Router;
 
         /**
          * the list of items binded to the todo list component
