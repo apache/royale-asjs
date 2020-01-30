@@ -28,6 +28,7 @@
     </j:valuesImpl>
 
     <j:initialView>
-        <views:MainContent/>
+        <views:TodoListSection/>
      </j:initialView>
+     
 </j:Application>

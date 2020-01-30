@@ -21,6 +21,15 @@
 
 @namespace "http://www.w3.org/1999/xhtml";
 @namespace j "library://ns.apache.org/royale/jewel";
+@namespace todomvc "jewel.todomvc.views.*";
+
+/* Add Controller and Model beads to TodoListSectionComponent */
+todomvc|TodoListSection
+{
+	IBeadController: ClassReference("jewel.todomvc.controllers.TodoController");
+	IBeadModel: ClassReference("jewel.todomvc.models.TodoModel");
+}
+
 
 /* Application */
 .jewel.application {
@@ -65,7 +74,7 @@
 	margin: 3px;
     padding: 3px 7px;
 	background: none;
-	border: none;
+	border: 1px solid transparent;
 	box-shadow: none;
 	border-radius: 0.25rem;
 	color: #808080;
@@ -75,15 +84,17 @@
 }
 .jewel.button:hover, .jewel.button:hover:focus {
 	background: none;
-	border: none;
+	border: 1px solid transparent;
+
+	text-decoration: underline;	
 }
 .jewel.button:active, .jewel.button:active:focus {
 	background: none;
-	border: none;
+	border: 1px solid transparent;
 	box-shadow: none;
 }
 .jewel.button:focus {
-	border: none;
+	border: 1px solid transparent;
 	box-shadow: none;
 }
 
@@ -105,7 +116,7 @@
 }
 .jewel.togglebutton:active, .jewel.togglebutton:active:focus {
 	background: none;
-	border: 1px solid rgba(175,47,47,.2);;
+	border: 1px solid rgba(175,47,47,.2);
 	box-shadow: none;
 }
 .jewel.togglebutton:focus {

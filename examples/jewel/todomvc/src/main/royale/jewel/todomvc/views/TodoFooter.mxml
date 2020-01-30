@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:BarRow xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:j="library://ns.apache.org/royale/jewel"
+	xmlns:js="library://ns.apache.org/royale/basic">
+
+    <fx:Script>
+        <![CDATA[
+            import jewel.todomvc.models.TodoModel;
+            import jewel.todomvc.events.TodoEvent;
+
+            [Bindable]
+            public var todoModel:TodoModel;
+
+            /**
+             *  All toggle buttons runs select filter
+             */
+            public function toggleButtonClickHandler(event:Event):void {
+                selectFilter(event.target.text);
+            }
+
+            /**
+             *  Update buttons states and refresh the list updating the list model
+             */
+            public function selectFilter(label:String):void {
+                if(label == TodoModel.ALL_FILTER)
+                {
+                    active_btn.selected = false;
+                    completed_btn.selected = false;
+                } 
+                else if(label == TodoModel.ACTIVE_FILTER)
+                {
+                    all_btn.selected = false;
+                    completed_btn.selected = false;
+
+                }
+                else if(label == TodoModel.COMPLETED_FILTER)
+                {
+                    all_btn.selected = false;
+                    active_btn.selected = false;
+                }
+
+                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, label));
+            }
+
+            /**
+             *  Remove all completed todo items and update the todo list with the right filter
+             */
+            public function removeCompleted():void {
+                dispatchEvent(new TodoEvent(TodoEvent.REMOVE_COMPLETED));
+
+                clearCompleted.visible = false;
+                
+                if(all_btn.selected)
+                    selectFilter(all_btn.text);
+                else if(active_btn.selected)
+                    selectFilter(active_btn.text);
+                else if(completed_btn.selected)
+                    selectFilter(completed_btn.text);
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:BarSection width="15%">
+        <j:Label localId="itemsLeft" text="{todoModel.itemsLeftLabel}"/>
+    </j:BarSection>
+
+    <j:BarSection gap="3" itemsHorizontalAlign="itemsCenter">
+        <j:ToggleButton localId="all_btn" text="All" click="toggleButtonClickHandler(event)" selected="true"/>
+        <j:ToggleButton localId="active_btn" text="Active" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="completed_btn" text="Completed" click="toggleButtonClickHandler(event)"/>
+    </j:BarSection>
+
+    <j:BarSection width="15%" gap="3" itemsHorizontalAlign="itemsRight">
+        <j:Button localId="clearCompleted" text="Clear Completed" click="removeCompleted()" visible="{todoModel.clearCompletedVisibility}"/>
+    </j:BarSection>
+
+</j:BarRow>
