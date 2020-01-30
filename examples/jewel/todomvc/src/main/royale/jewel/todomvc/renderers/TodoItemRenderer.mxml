@@ -118,7 +118,7 @@ limitations under the License.
         visible.normal="true" visible.editing="false"
         click="changeItemState(event);"/>
     
-    <j:Label localId="description" width="100%" 
+    <j:Label localId="description" width="84%" 
         text="{item ? item.label : ''}" multiline="true"
         visible.normal="true" visible.editing="false"
         className="{item ? (item.done ? 'todolabel completed' : 'todolabel') : 'todolabel' }"

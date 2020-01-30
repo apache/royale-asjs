@@ -27,7 +27,7 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import jewel.todomvc.models.TodoModel;
-            
+
             import org.apache.royale.core.IBeadModel;
             import org.apache.royale.routing.RouteState;
             
@@ -81,7 +81,7 @@ limitations under the License.
         </html:Header>
         
         <html:Section localId="main">
-            <j:List localId="todolist" width="100%" rowHeight="55"
+            <j:List localId="todolist" width="100%"
                 labelField="label" className="todo-list" 
                 dataProvider="{todoModel.listItems}">
                 <j:beads>

@@ -218,6 +218,7 @@ todomvc|TodoListSection
 /* ItemRenderer */
 .jewel.item {
 	padding: 0px;
+	min-height: 55px;
 }
 
 .todo-list li {
