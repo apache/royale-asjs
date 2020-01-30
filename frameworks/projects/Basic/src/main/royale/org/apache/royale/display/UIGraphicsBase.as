@@ -38,14 +38,14 @@ package org.apache.royale.display
 		
 		COMPILE::JS{
 			
-			private var _svg:SVGElement;
+			private var _svg:SVGSVGElement;
 			
 			/**
-			 * @royaleignorecoercion SVGElement
+			 * @royaleignorecoercion SVGSVGElement
 			 */
-			public function get graphicsRenderTarget():SVGElement{
+			public function get graphicsRenderTarget():SVGSVGElement{
 				if (!_svg) {
-					_svg = createGraphicsSVG('svg');
+					_svg = createGraphicsSVG('svg') as SVGSVGElement;
 					_svg.setAttribute('xmlns', 'http://www.w3.org/2000/svg');
 					_svg.style.overflow = 'visible'; //it is hidden by default
 					if (element.childNodes.length) {
