@@ -17,16 +17,16 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package org.apache.royale.storage
+package mx.net
 {
     /**
      * This class is not available for reflection in the javascript target
      * @royalesuppressexport
      */
     public class SharedObjectFlushStatus
-    {
-        public static const PENDING:String = "pending";
-        public static const FLUSHED:String = "flushed";
-        public static const FAILED:String = "failed";
-    }
+{
+    public static const PENDING:String = "pending";
+    public static const FLUSHED:String = "flushed";
+    public static const FAILED:String = "failed";
+}
 }

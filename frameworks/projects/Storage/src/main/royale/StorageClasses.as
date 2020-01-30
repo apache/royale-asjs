@@ -27,9 +27,6 @@ package
  */
 internal class StorageClasses
 {
-	import org.apache.royale.storage.SharedObject; SharedObject;
-	import org.apache.royale.storage.SharedObjectJSON; SharedObjectJSON;
-
     import org.apache.royale.storage.LocalStorage; LocalStorage;
     import org.apache.royale.storage.providers.LocalStorageProvider; LocalStorageProvider;
 
