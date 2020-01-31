@@ -45,6 +45,21 @@ limitations under the License.
 				</j:CheckBox>
 			</j:Card>
         </j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel CheckBox Sizing"/>
+
+				<j:CheckBox text="No size"/>
+				<j:CheckBox text="CheckWidth and checkHeight to 120" checkWidth="120" checkHeight="120"/>
+				<j:CheckBox text="Only checkWidth to 45" checkWidth="45"/>
+				<j:CheckBox text="Only checkHeight to 60 and disabled" checkHeight="60">
+					<j:beads>
+						<j:Disabled id="opt3disable" disabled="false"/>
+					</j:beads>
+				</j:CheckBox>
+			</j:Card>
+        </j:GridCell>
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
