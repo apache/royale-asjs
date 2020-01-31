@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:BarRow xmlns:fx="http://ns.adobe.com/mxml/2009"
+	xmlns:j="library://ns.apache.org/royale/jewel"
+	xmlns:js="library://ns.apache.org/royale/basic">
+
+    <fx:Script>
+        <![CDATA[
+            import jewel.todomvc.events.TodoEvent;
+            import jewel.todomvc.models.TodoModel;
+            
+            [Bindable]
+            public var todoModel:TodoModel;
+
+            /**
+             *  Used for routing. Select the appropiate state for the URL hash
+             */
+            public function selectState(hash:String):void {
+                if(hash == all_btn.text)
+                    all_btn.selected = true;
+                else if(hash ==  active_btn.text)
+                    active_btn.selected = true;
+                else if(hash == completed_btn.text)
+                    completed_btn.selected = true;
+                    
+                updateToggles(hash);
+                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, hash));
+            }
+
+            /**
+             *  All toggle buttons use this handler to navigate todo list
+             */
+            public function toggleButtonClickHandler(event:Event):void {
+                updateToggles(event.target.text);
+                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST_BY_USER, null, event.target.text));
+            }
+
+            /**
+             *  Update toggle buttons to appropiate state
+             */
+            public function updateToggles(label:String):void {
+                if(label == TodoModel.ALL_FILTER) {
+                    active_btn.selected = false;
+                    completed_btn.selected = false;
+                } 
+                else if(label == TodoModel.ACTIVE_FILTER) {
+                    all_btn.selected = false;
+                    completed_btn.selected = false;
+                }
+                else if(label == TodoModel.COMPLETED_FILTER) {
+                    all_btn.selected = false;
+                    active_btn.selected = false;
+                }
+            }
+
+            /**
+             *  Remove all completed todo items and update clear complete visibility
+             */
+            public function removeCompleted():void {
+                dispatchEvent(new TodoEvent(TodoEvent.REMOVE_COMPLETED));
+
+                clearCompleted.visible = false;
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+    </j:beads>
+
+    <j:BarSection width="15%">
+        <j:Label localId="itemsLeft" text="{todoModel.itemsLeftLabel}"/>
+    </j:BarSection>
+
+    <j:BarSection gap="3" itemsHorizontalAlign="itemsCenter">
+        <j:ToggleButton localId="all_btn" text="All" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="active_btn" text="Active" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="completed_btn" text="Completed" click="toggleButtonClickHandler(event)"/>
+    </j:BarSection>
+
+    <j:BarSection width="15%" gap="3" itemsHorizontalAlign="itemsRight">
+        <j:Button localId="clearCompleted" text="Clear Completed" className="clearCompleted"
+            visible="{todoModel.clearCompletedVisibility}" click="removeCompleted()"/>
+    </j:BarSection>
+
+</j:BarRow>

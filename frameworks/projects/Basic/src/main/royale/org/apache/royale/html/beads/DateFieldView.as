@@ -126,7 +126,8 @@ package org.apache.royale.html.beads
 			_textInput.height = 18;
 
 			_button = new TextButton();
-			_button.text = "⬇︎";
+			//_button.text = "⬇︎";
+			_button.text =  "\uD83D\uDCC5"
 			getHost().addElement(_button);
 
 			COMPILE::SWF {
@@ -206,6 +207,8 @@ package org.apache.royale.html.beads
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
+                    var popUpModel:IDateChooserModel = _popUp.getBeadByType(IDateChooserModel) as IDateChooserModel;
+                    popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());
 					var point:Point = new Point(_textInput.width, _button.height);

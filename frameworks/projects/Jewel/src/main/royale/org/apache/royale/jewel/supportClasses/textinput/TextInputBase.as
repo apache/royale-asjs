@@ -24,13 +24,12 @@ package org.apache.royale.jewel.supportClasses.textinput
 
     COMPILE::JS
     {
-    import goog.events;
-
     import org.apache.royale.core.WrappedHTMLElement;
     }
 
     import org.apache.royale.core.StyledUIBase;
     import org.apache.royale.events.Event;
+    import org.apache.royale.events.KeyboardEvent;
     import org.apache.royale.jewel.supportClasses.textinput.ITextInput;
     
     /**
@@ -192,7 +191,7 @@ package org.apache.royale.jewel.supportClasses.textinput
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        protected function enterEventHandler(event:Event):void
+        protected function enterEventHandler(event:KeyboardEvent):void
         {
             COMPILE::JS
             {
@@ -248,5 +247,21 @@ package org.apache.royale.jewel.supportClasses.textinput
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(element);
 		}
+
+        /**
+         *  set focus on the text box programatically
+         * 
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		public function setFocus():void
+		{
+            COMPILE::JS
+            {
+                element.focus();
+            }
+        }
 	}
 }

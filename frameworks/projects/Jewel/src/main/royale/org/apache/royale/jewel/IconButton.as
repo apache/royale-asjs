@@ -30,6 +30,14 @@ package org.apache.royale.jewel
     import org.apache.royale.core.IIcon;
     import org.apache.royale.core.IIconSupport;
     
+    /**
+     *  The IconButton class is a Button that supports icons.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.4
+     */
     public class IconButton extends Button implements IIconSupport
 	{
         /**
@@ -65,7 +73,6 @@ package org.apache.royale.jewel
 		{
             return _text;
 		}
-
         /**
          *  @private
          */
@@ -81,6 +88,8 @@ package org.apache.royale.jewel
 		}
 
         private var _icon:IIcon;
+        
+        [Bindable("iconChange")]
         /**
 		 *  The icon to use with the button.
          *  Optional
@@ -107,6 +116,8 @@ package org.apache.royale.jewel
         }
 
         private var _rightPosition:Boolean;
+
+        [Bindable("rightPositionChange")]
         /**
 		 *  icon's position regarding the text content 
          *  Can be false ("left") or true ("right"). defaults to false ("left")

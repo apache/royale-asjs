@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
+    import org.apache.royale.html.supportClasses.MXMLStatesItemRenderer;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
     import org.apache.royale.utils.IEmphasis;
@@ -32,7 +32,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IRuntimeSelectableItemRenderer, IEmphasis
+	public class StyledMXMLItemRenderer extends MXMLStatesItemRenderer implements IClassSelectorListSupport, IRuntimeSelectableItemRenderer, IEmphasis
 	{
 		/**
 		 *  constructor.

@@ -46,11 +46,18 @@ limitations under the License.
                     }
                 }
             }
+
+            public function getToolTip(newText:String):String
+            {
+                return "ToolTip of <strong>" + newText + "</strong> item<br>to show how is removed<br>with the renderer.";
+            }
 		]]>
     </fx:Script>
 
     <j:beads>
         <js:ItemRendererDataBinding />
+        <j:ToolTip localId="tt" toolTip="{getToolTip(text)}"/>
+        <js:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
     </j:beads>
 
     <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>

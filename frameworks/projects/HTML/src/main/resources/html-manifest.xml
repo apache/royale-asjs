@@ -31,7 +31,9 @@
     <component id="Colgroup" class="org.apache.royale.html.elements.Colgroup" />
     <component id="Div" class="org.apache.royale.html.elements.Div" />
     <component id="Em" class="org.apache.royale.html.elements.Em" />
+    <component id="Footer" class="org.apache.royale.html.elements.Footer" />
     <component id="Form" class="org.apache.royale.html.elements.Form" />
+    <component id="Header" class="org.apache.royale.html.elements.Header" />
     <component id="H1" class="org.apache.royale.html.elements.H1" />
     <component id="H2" class="org.apache.royale.html.elements.H2" />
     <component id="H3" class="org.apache.royale.html.elements.H3" />
@@ -50,6 +52,7 @@
     <component id="Pre" class="org.apache.royale.html.elements.Pre" />
     <component id="Progress" class="org.apache.royale.html.elements.Progress" />
     <component id="S" class="org.apache.royale.html.elements.S" />
+    <component id="Section" class="org.apache.royale.html.elements.Section"/>
     <component id="Select" class="org.apache.royale.html.elements.Select"/>
     <component id="Small" class="org.apache.royale.html.elements.Small"/>
     <component id="Span" class="org.apache.royale.html.elements.Span" />

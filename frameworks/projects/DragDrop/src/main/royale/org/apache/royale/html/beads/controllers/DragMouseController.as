@@ -338,7 +338,21 @@ package org.apache.royale.html.beads.controllers
                     event = MouseEventConverter.convert(event);
                 }
 				var screenPoint:Point = new Point(event.screenX, event.screenY);
-				var newPoint:Point = PointUtils.globalToLocal(screenPoint, event.target);
+                // if dragged out of the browser window the target will be the document
+                // and trying to get the local coordinates will casue a RTE.
+                var royaleEvent:Boolean;
+                var newPoint:Point;
+                // these values are relative to the browser window and can be negative.
+                if(event.target.constructor.name == "HTMLHtmlElement")
+                {
+                    royaleEvent = false;
+                    newPoint = new Point(event.clientX,event.clientY);
+                }
+                else 
+				{
+                    royaleEvent = true;
+                    newPoint = PointUtils.globalToLocal(screenPoint, event.target);
+                }
 				dragEvent = DragEvent.createDragEvent("dragEnd", event);
 				dragEvent.clientX = newPoint.x;
 				dragEvent.clientY = newPoint.y;
@@ -348,8 +362,10 @@ package org.apache.royale.html.beads.controllers
 				COMPILE::JS {
 					dragEvent.relatedObject = event.target;
 				}
-
-                DragEvent.dispatchDragEvent(dragEvent, event.target);
+                if(royaleEvent)
+                {
+                    DragEvent.dispatchDragEvent(dragEvent, event.target);
+                }
 				dispatchEvent(dragEvent);
                 event.preventDefault();
             }

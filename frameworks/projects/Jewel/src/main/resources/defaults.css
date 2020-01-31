@@ -983,7 +983,7 @@ j|Label {
   position: relative;
 }
 .layout.basic > * {
-  position: absolute;
+  position: absolute !important;
 }
 
 .layout {

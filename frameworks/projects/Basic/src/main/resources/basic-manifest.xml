@@ -86,6 +86,9 @@
     <component id="ArraySelectionModel" class="org.apache.royale.html.beads.models.ArraySelectionModel"/>
     <component id="ArrayMultiSelectionModel" class="org.apache.royale.html.beads.models.ArrayMultiSelectionModel"/>
     <component id="ArrayColorSelectionModel" class="org.apache.royale.html.beads.models.ArrayColorSelectionModel"/>
+    <component id="MultiSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.MultiSelectionCollectionViewModel"/>
+    <component id="MultiSelectionTreeModel" class="org.apache.royale.html.beads.models.MultiSelectionTreeModel"/>
+    <component id="SingleSelectionCollectionViewModel" class="org.apache.royale.html.beads.models.SingleSelectionCollectionViewModel"/>
     <component id="TitleBarModel" class="org.apache.royale.html.beads.models.TitleBarModel"/>
     <component id="ToolTip" class="org.apache.royale.html.ToolTip"/>
     <component id="Tree" class="org.apache.royale.html.Tree"/>
@@ -135,6 +138,7 @@
     <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
     <component id="MXMLBeadView" class="org.apache.royale.html.MXMLBeadView"/>
     <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
+    <component id="MXMLStatesItemRenderer" class="org.apache.royale.html.supportClasses.MXMLStatesItemRenderer"/>
     <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
     <component id="ColorItemRenderer" class="org.apache.royale.html.supportClasses.ColorItemRenderer"/>
@@ -230,6 +234,7 @@
 
     <component id="ToolTipBead" class="org.apache.royale.html.accessories.ToolTipBead" />
     <component id="AdaptiveToolTipBead" class="org.apache.royale.html.accessories.AdaptiveToolTipBead" />
+    <component id="ToolTipRemovalWhenItemRemoved" class="org.apache.royale.html.accessories.ToolTipRemovalWhenItemRemoved" />
     
     <component id="LayoutOnShow" class="org.apache.royale.html.beads.layouts.LayoutOnShow"/>
     <component id="ImageButton" class="org.apache.royale.html.ImageButton"/>
@@ -281,5 +286,7 @@
     <component id="RouteToState" class="org.apache.royale.routing.RouteToState"/>
     <component id="SetRouteTitle" class="org.apache.royale.routing.SetRouteTitle"/>
     <component id="Router" class="org.apache.royale.routing.Router"/>
+
+    <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
 
 </componentPackage>
