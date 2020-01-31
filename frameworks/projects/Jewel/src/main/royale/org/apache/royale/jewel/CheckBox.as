@@ -183,7 +183,7 @@ package org.apache.royale.jewel
          * the org.apache.royale.core.HTMLElementWrapper#element for this component
          * added to the positioner. Is a HTMLInputElement.
          */
-        protected var input:HTMLInputElement;
+        public var input:HTMLInputElement;
 
         COMPILE::JS
         /**
@@ -236,6 +236,50 @@ package org.apache.royale.jewel
             _positioner.royale_wrapper = this;
 			_positioner.appendChild(element);
             _positioner.appendChild(checkbox);
+		}
+        
+        private var _checkWidth:Number;
+        /**
+         *  Check Width
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        [Bindable("checkWidthChange")]
+        public function get checkWidth():Number
+		{
+			return _checkWidth;
+		}
+        public function set checkWidth(value:Number):void
+		{
+            if(_checkWidth != value)
+            {
+			    _checkWidth = value;
+            }
+		}
+        
+        private var _checkHeight:Number;
+        /**
+         *  Check Height
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        [Bindable("checkHeightChange")]
+        public function get checkHeight():Number
+		{
+			return _checkHeight;
+		}
+        public function set checkHeight(value:Number):void
+		{
+            if(_checkHeight != value)
+            {
+			    _checkHeight = value;
+            }
 		}
     }
 }
