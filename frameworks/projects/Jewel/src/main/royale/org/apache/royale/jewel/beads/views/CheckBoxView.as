@@ -25,12 +25,15 @@ package org.apache.royale.jewel.beads.views
 		import flash.display.Sprite;
 		import flash.text.TextFieldAutoSize;
 		import flash.text.TextFieldType;
+		import flash.events.Event;
 
 		import org.apache.royale.core.CSSTextField;
+		import org.apache.royale.core.IToggleButtonModel;
 	}
 	COMPILE::JS
 	{
-    import org.apache.royale.events.IEventDispatcher;
+    	import org.apache.royale.events.IEventDispatcher;
+		import  org.apache.royale.events.Event;
 	}
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IStrand;
