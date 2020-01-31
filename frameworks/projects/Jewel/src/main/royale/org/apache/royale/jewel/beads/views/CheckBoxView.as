@@ -216,7 +216,7 @@ package org.apache.royale.jewel.beads.views
 			var ruleName:String;
 			var beforeSelector:String = "";
 			if(checkbox.checkWidth || checkbox.checkHeight) {
-				ruleName = "chkb" + ((new Date()).getTime());
+				ruleName = "chkb" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
 				// addDynamicSelector(".jewel.checkbox." + ruleName, "border: 1px solid red;");
 				// addDynamicSelector(".jewel.checkbox", "border: 1px solid red;");
 				checkbox.className = ruleName;
