@@ -20,27 +20,26 @@ package org.apache.royale.jewel.beads.views
 {
 	COMPILE::SWF
 	{
-		import flash.display.Shape;
-		import flash.display.SimpleButton;
-		import flash.display.Sprite;
-		import flash.text.TextFieldAutoSize;
-		import flash.text.TextFieldType;
-		import flash.events.Event;
+	import flash.display.Shape;
+	import flash.display.SimpleButton;
+	import flash.display.Sprite;
+	import flash.events.Event;
+	import flash.text.TextFieldAutoSize;
+	import flash.text.TextFieldType;
 
-		import org.apache.royale.core.CSSTextField;
-		import org.apache.royale.core.IToggleButtonModel;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.IToggleButtonModel;
 	}
 	COMPILE::JS
 	{
-    	import org.apache.royale.events.IEventDispatcher;
-		import  org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
+	import  org.apache.royale.events.Event;
 	}
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.jewel.CheckBox;
-    import org.apache.royale.core.IUIBase;
-    // import org.apache.royale.utils.css.addDynamicSelector;
+    import org.apache.royale.utils.css.addDynamicSelector;
 	
     /**
      *  The CheckBoxView class is the default view for SWF platform
@@ -176,29 +175,6 @@ package org.apache.royale.jewel.beads.views
 				text = toggleButtonModel.text;
 			if (toggleButtonModel.html !== null)
 				html = toggleButtonModel.html;
-			}
-		}
-
-		public function addDynamicSelector(selector:String, rule:String):void
-		{
-			COMPILE::JS
-			{
-				var selectorString:String = selector + ' { ' + rule + ' }';
-				var element:HTMLStyleElement = document.getElementById("royale_dynamic_css") as HTMLStyleElement;
-				if(element)
-				{
-					var sheet:CSSStyleSheet = element.sheet as CSSStyleSheet;
-					//for 'insertRule' below, the index (2nd) argument is not optional in IE11, but is optional for modern browsers (with default value 0)
-					sheet.insertRule(selectorString, 0);
-				}
-				else
-				{
-					var style:HTMLStyleElement = document.createElement('style') as HTMLStyleElement;
-					style.type = 'text/css';
-					style.id = "royale_dynamic_css";
-					style.innerHTML = selectorString;
-					document.getElementsByTagName('head')[0].appendChild(style);
-				}
 			}
 		}
 
