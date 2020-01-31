@@ -183,12 +183,13 @@ package org.apache.royale.jewel.beads.views
 		{
 			COMPILE::JS
 			{
-				var selectorString:String = selector + ' { ' + rule + ' }'
+				var selectorString:String = selector + ' { ' + rule + ' }';
 				var element:HTMLStyleElement = document.getElementById("royale_dynamic_css") as HTMLStyleElement;
 				if(element)
 				{
 					var sheet:CSSStyleSheet = element.sheet as CSSStyleSheet;
-					sheet.insertRule(selectorString);
+					//for 'insertRule' below, the index (2nd) argument is not optional in IE11, but is optional for modern browsers (with default value 0)
+					sheet.insertRule(selectorString, 0);
 				}
 				else
 				{
