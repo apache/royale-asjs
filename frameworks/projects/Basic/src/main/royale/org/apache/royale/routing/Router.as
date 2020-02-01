@@ -55,17 +55,10 @@ package org.apache.royale.routing
     {
       
     }
-    /**
-     * Use this to automatically sync the state of the strand.
-     * This only works for the state property of the RouterState.
-     * It also assumes that the strand is an IStatesObject.
-     * For this to work correctly, it's usually assumed that the bead is attached to the application View
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
-    public var host:IStrand;
+    public function get host():IStrand
+    {
+      return _strand;
+    }
     private var _strand:IStrand;
 		public function set strand(value:IStrand):void
 		{	
@@ -91,6 +84,11 @@ package org.apache.royale.routing
     }
     private function onInit(event:Event):void
     {
+      if(beads)
+      {
+        for each (var bead:IBead in beads)
+          addBead(bead);
+      }
       COMPILE::JS
       {
         if(location.hash)

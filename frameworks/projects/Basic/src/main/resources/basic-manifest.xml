@@ -285,6 +285,7 @@
     <component id="RouteToParameters" class="org.apache.royale.routing.RouteToParameters"/>
     <component id="RouteToState" class="org.apache.royale.routing.RouteToState"/>
     <component id="SetRouteTitle" class="org.apache.royale.routing.SetRouteTitle"/>
+    <component id="RouteTitleLookup" class="org.apache.royale.routing.RouteTitleLookup"/>
     <component id="Router" class="org.apache.royale.routing.Router"/>
 
     <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>

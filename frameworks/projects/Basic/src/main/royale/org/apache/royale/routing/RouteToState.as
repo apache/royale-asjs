@@ -52,28 +52,15 @@ package org.apache.royale.routing
      */
     private function attachStateEvent():void
     {
-      var statesObject:IStatesObject = component;
-      if(!statesObject)
-      {
-        assert(host.host is IStatesObject,"syncState can only be used on IStatesObjects");
-        statesObject = host.host as IStatesObject;
-        
-      }
-      statesObject.addEventListener("currentStateChange",handleStateChange);
-
+      getStateComponent().addEventListener("currentStateChange",handleStateChange);
     }
     private function handleStateChange():void
     {
       if(settingState)// don't do anything if the event was fired as a result of a hash.
         return;
       //TODO what about a parent path
-      var statesObject:IStatesObject = component;
-      if(!statesObject)
-      {
-        statesObject = host.host as IStatesObject;
-      }
 
-      host.routeState.path = statesObject.currentState;
+      host.routeState.path = getStateComponent().currentState;
       host.setState();
     }
     private function hashNeeded(ev:ValueEvent):void
@@ -96,7 +83,7 @@ package org.apache.royale.routing
       if(delim)
         trailing = hash.slice(hash.indexOf(delim));
       
-      ev.value = parentPath + (host.host as IStatesObject).currentState + trailing;
+      ev.value = parentPath + getStateComponent().currentState + trailing;
     }
     private function hashReceived(ev:ValueEvent):void
     {
@@ -119,17 +106,24 @@ package org.apache.royale.routing
      */
     private function stateChanged(ev:ValueEvent):void
     {
+        settingState = true;
+        //TODO what about using the base name of the path?
+        getStateComponent().currentState = host.routeState.path;
+        settingState = false;
+
+    }
+    /**
+     * @royaleignorecoercion org.apache.royale.core.IStatesObject
+     */
+    private function getStateComponent():IStatesObject
+    {
       var statesObject:IStatesObject = component;
       if(!statesObject)
       {
         assert(host.host is IStatesObject,"syncState can only be used on IStatesObjects");
         statesObject = host.host as IStatesObject;
       }
-        settingState = true;
-        //TODO what about using the base name of the path?
-        statesObject.currentState = host.routeState.path;
-        settingState = false;
-
+      return statesObject;      
     }
     /**
      * The component whose state we sync. (Defaults to the strand of the router.)

@@ -37,6 +37,7 @@ package org.apache.royale.routing
 
     override public function set strand(value:IStrand):void
     {
+      _strand = value;
       COMPILE::JS
       {
         initialTitle = document.title;
