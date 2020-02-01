@@ -70,7 +70,9 @@ limitations under the License.
 
     <j:beads>
         <js:ContainerDataBinding/>
-        <js:Router localId="router" stateChange="hashChanged()" /> 
+        <js:Router localId="router" stateChange="hashChanged()">
+            <js:RouteToState component="{footer}"/>
+        </js:Router>
     </j:beads>
 
     <html:Section className="todoapp">

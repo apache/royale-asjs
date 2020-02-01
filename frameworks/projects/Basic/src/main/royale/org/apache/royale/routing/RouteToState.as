@@ -52,8 +52,14 @@ package org.apache.royale.routing
      */
     private function attachStateEvent():void
     {
-      assert(host.host is IStatesObject,"syncState can only be used on IStatesObjects");
-      (host.host as IStatesObject).addEventListener("currentStateChange",handleStateChange);
+      var statesObject:IStatesObject = component;
+      if(!statesObject)
+      {
+        assert(host.host is IStatesObject,"syncState can only be used on IStatesObjects");
+        statesObject = host.host as IStatesObject;
+        
+      }
+      statesObject.addEventListener("currentStateChange",handleStateChange);
 
     }
     private function handleStateChange():void
@@ -61,7 +67,13 @@ package org.apache.royale.routing
       if(settingState)// don't do anything if the event was fired as a result of a hash.
         return;
       //TODO what about a parent path
-      host.routeState.path = (host.host as IStatesObject).currentState;
+      var statesObject:IStatesObject = component;
+      if(!statesObject)
+      {
+        statesObject = host.host as IStatesObject;
+      }
+
+      host.routeState.path = statesObject.currentState;
       host.setState();
     }
     private function hashNeeded(ev:ValueEvent):void
@@ -107,13 +119,22 @@ package org.apache.royale.routing
      */
     private function stateChanged(ev:ValueEvent):void
     {
+      var statesObject:IStatesObject = component;
+      if(!statesObject)
+      {
         assert(host.host is IStatesObject,"syncState can only be used on IStatesObjects");
+        statesObject = host.host as IStatesObject;
+      }
         settingState = true;
         //TODO what about using the base name of the path?
-        (host.host as IStatesObject).currentState = host.routeState.path;
+        statesObject.currentState = host.routeState.path;
         settingState = false;
 
     }
+    /**
+     * The component whose state we sync. (Defaults to the strand of the router.)
+     */
+    public var component:IStatesObject;
 
   }
 }

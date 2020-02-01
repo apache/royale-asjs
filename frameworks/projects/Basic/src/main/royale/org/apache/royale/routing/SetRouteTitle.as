@@ -31,7 +31,7 @@ package org.apache.royale.routing
     /**
      * @royaleignorecoercion org.apache.royale.routing.Router
      */
-    private function get host():Router{
+    protected function get host():Router{
       return _strand as Router
     }
 
@@ -61,7 +61,7 @@ package org.apache.royale.routing
       }
     }
 
-    private function handleStateSet():void
+    protected function handleStateSet():void
     {
       COMPILE::JS
       {

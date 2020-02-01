@@ -80,7 +80,9 @@ limitations under the License.
             }
         ]]>
     </fx:Script>
-
+    <j:states>
+        <js:State />
+    </j:states>
     <j:beads>
         <js:ContainerDataBinding/>
     </j:beads>
