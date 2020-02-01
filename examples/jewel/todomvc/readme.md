@@ -1,0 +1,45 @@
+# Apache Royale TodoMVC Example
+
+> Apache Royale™ is a productive, open-source frontend application technology that lets you code in MXML & AS3 and output to different formats, included Javascript and SWF.
+
+> _[Apache Royale™ Website](https://royale.apache.org)_
+
+
+## Learning Apache Royale
+
+The [Apache Royale getting started documentation](https://apache.github.io/royale-docs/get-started) is a great way to get started.
+
+Here are some links you may find helpful:
+
+* [Documentation](https://apache.github.io/royale-docs)
+* [API Reference](https://royale.apache.org/asdoc)
+* [Blog](https://royale.apache.org/blog)
+* [Apache Royale on GitHub](https://github.com/apache/royale-asjs/wiki/Apache-Royale-Source-Code-Repositories)
+* [Support (Dev Mailing List)](https://royale.apache.org/mailing-lists)
+* [FAQ](https://royale.apache.org/faq/)
+* [Get Involved](https://royale.apache.org/get-involved)
+
+Articles and guides from the community:
+
+* [Royale Examples](https://royale.apache.org/category/royale-examples)
+
+Apache Royale social media:
+
+* [Twitter](https://twitter.com/apacheroyale)
+* [Facebook](https://facebook.com/ApacheRoyaleSDK/)
+* [LinkedIn](https://www.linkedin.com/groups/12118437)
+
+Get help from other Apache Royale users:
+
+* [Apache Royale on StackOverflow](https://stackoverflow.com/questions/tagged/apache-royale)
+* [Discussion Forum (User Mailing List)](https://royale.apache.org/mailing-lists)
+
+_If you have other helpful links to share, or find any of the links above no longer work, please [let us know](https://github.com/apache/royale-asjs/issues)._
+
+
+## Running
+
+The app is built upon [AS3](https://apache.github.io/royale-docs/features/as3) and [MXML](https://apache.github.io/royale-docs/features/mxml) languages and compiled with the Apache Royale Compiler.
+We use [Maven](https://maven.apache.org) and [ANT](https://ant.apache.org) to build the project.
+
+To run the app, go to the generated code and run `index.html` or visit [https://royale.apache.org/todomvc-jewel].

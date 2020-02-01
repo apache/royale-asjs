@@ -55,7 +55,7 @@ package jewel.todomvc.controllers
 		public function set strand(value:IStrand):void {
 			_strand = value;
 			IEventDispatcher(_strand).addEventListener(TodoEvent.ADD_TODO_ITEM, addTodoItem);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.MARK_ALL_COMPLETE, markAllComplete);            
+			IEventDispatcher(_strand).addEventListener(TodoEvent.TOGGLE_ALL_COMPLETE, toggleAllComplete);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.REMOVE_COMPLETED, removeCompleted);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.REFRESH_LIST, refreshList);            
 			IEventDispatcher(_strand).addEventListener(TodoEvent.REFRESH_LIST_BY_USER, refreshListByUser);            
@@ -108,16 +108,16 @@ package jewel.todomvc.controllers
 
 
 		/**
-         *  Mark all todo items as completed, save data and update the interface accordingly
+         *  Mark all todo items as completed or uncompleted, save data and update the interface accordingly
          */
-        protected function markAllComplete(event:TodoEvent):void {
-			model.toggleAllSelectedState = !model.toggleAllSelectedState;
+        protected function toggleAllComplete(event:TodoEvent):void {
+			model.toggleAllToCompletedState = !model.toggleAllToCompletedState;
 
             var len:int = model.allItems.length;
 			var item:TodoVO;
 			for(var i:int = 0; i < len; i++) {
 				item = TodoVO(model.allItems.getItemAt(i));
-				item.done = model.toggleAllSelectedState;
+				item.done = model.toggleAllToCompletedState;
 			}
 
 			saveDataToLocal();
@@ -202,11 +202,16 @@ package jewel.todomvc.controllers
 
 		/**
 		 *  Commit the label changes to the item and save data
+		 *  if label is empty, remove todo item
 		 */
         public function itemLabelChangedHandler(event:TodoEvent = null):void {
-			event.todo.label = event.label;
+			if(event.label != "")
+				event.todo.label = event.label;
+			else
+				model.allItems.removeItem(event.todo);
 
 			saveDataToLocal();
+			updateInterface();
 		}
 
 		/**
@@ -226,9 +231,10 @@ package jewel.todomvc.controllers
 			setListState();
 
 			model.itemsLeftLabel = model.activeItems.length + " item left";
-            model.clearCompletedVisibility = model.completedItems.length != 0 ? true : false;
-			model.footerVisibility = model.allItems.length != 0 ? true : false;
-			model.toogleAllVisibility = model.allItems.length != 0 ? true : false;
+            model.clearCompletedVisibility = model.completedItems.length != 0;
+			model.footerVisibility = model.allItems.length != 0;
+			model.toogleAllVisibility = model.allItems.length != 0;
+			model.toggleAllToCompletedState = model.activeItems.length == 0;
         }
 	}
 }

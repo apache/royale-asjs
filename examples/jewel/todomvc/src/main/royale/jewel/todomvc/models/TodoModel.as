@@ -130,9 +130,9 @@ package jewel.todomvc.models
         public var filterState:String = TodoModel.ALL_FILTER;
 
         /**
-         * toggleAll button selected state
+         * true, toggle all todo items to completed state, false to all uncompleted
          */
-        public var toggleAllSelectedState:Boolean = false;
+        public var toggleAllToCompletedState:Boolean = false;
         
         /**
          * how many items left to do
