@@ -31,7 +31,7 @@ limitations under the License.
 
 			import org.apache.royale.events.Event;
 			import org.apache.royale.events.MouseEvent;
-            
+
             /**
              *  Used to know if mouse is over this render in order to
              *  show destroy button when exit editing state
@@ -57,18 +57,18 @@ limitations under the License.
              *  Destroy this todo item
              */
             public function removeItemClickHandler(event:MouseEvent):void {
+                COMPILE::JS
+                {
+                window.removeEventListener('click', commitLabelChanges, false);
+                }
                 dispatchEvent(new TodoEvent(TodoEvent.ITEM_REMOVED, item));
             }
 
             /**
-             *  If user made changes to label, commit changes to the todo item and exit 'editing' state
+             *  commit changes to the todo item and exit 'editing' state
              */
             public function updateLabelAndExit(event:Event):void {
-                if(item.label != event.target.text)
-                    dispatchEvent(new TodoEvent(TodoEvent.ITEM_LABEL_CHANGED, item, event.target.text));
-                currentState = 'normal';
-                if(mouseIsOverRenderer)
-                    destroy_btn.visible = true;
+                commitLabelChanges();
             }
 
             /**
@@ -80,6 +80,28 @@ limitations under the License.
                 currentState = "editing";
                 destroy_btn.visible = false;
                 editfield.setFocus();
+
+                COMPILE::JS
+                {
+                window.addEventListener('click', commitLabelChanges, false);
+                }
+            }
+
+            /**
+             *  remove window listener to stop listening click events. If user made changes to label, commit 
+             *  changes to the todo item and exit 'editing' state.
+             *  Make destroy button visible if mouse is over renderer.
+             */
+            public function commitLabelChanges():void {
+                COMPILE::JS
+                {
+                window.removeEventListener('click', commitLabelChanges, false);
+                }
+                if(item.label != editfield.text)
+                    dispatchEvent(new TodoEvent(TodoEvent.ITEM_LABEL_CHANGED, item, editfield.text));
+                currentState = 'normal';
+                if(mouseIsOverRenderer)
+                    destroy_btn.visible = true;
             }
 
             /**
@@ -114,7 +136,7 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
     
-    <j:CheckBox selected="{item ? (item.done ? true : false) : false }"
+    <j:CheckBox selected="{item ? item.done : false }" checkWidth="40" checkHeight="40"
         visible.normal="true" visible.editing="false"
         click="changeItemState(event);"/>
     

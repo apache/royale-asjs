@@ -20,7 +20,7 @@ limitations under the License.
 <j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 	xmlns:j="library://ns.apache.org/royale/jewel"
 	xmlns:js="library://ns.apache.org/royale/basic"
-	height="61">
+	height="60">
 
 	<fx:Script>
 		<![CDATA[
@@ -45,10 +45,10 @@ limitations under the License.
 			}
 
 			/**
-			 *  Mark all todo items complete
+			 *  Toggle all todo items complete or uncomplete
 			 */ 
-			public function markAllComplete(event:Event):void {
-				dispatchEvent(new TodoEvent(TodoEvent.MARK_ALL_COMPLETE));
+			public function toggleAllComplete(event:Event):void {
+				dispatchEvent(new TodoEvent(TodoEvent.TOGGLE_ALL_COMPLETE));
 			}
 		]]>
 	</fx:Script>
@@ -65,8 +65,8 @@ limitations under the License.
 	</j:TextInput>
 
 	<j:ToggleButton localId="toogleAll" visible="{todoModel.toogleAllVisibility}"
-		width="34" height="55" className="toggleAll"
-		click="markAllComplete(event)">
+		width="50" height="55" className="toggleAll" selected="{todoModel.toggleAllToCompletedState}"
+		click="toggleAllComplete(event)">
 		<j:icon>
 			<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_DOWN}" material="true"/>
 		</j:icon>

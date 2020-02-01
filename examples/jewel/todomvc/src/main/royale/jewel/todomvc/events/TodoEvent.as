@@ -31,7 +31,7 @@ package jewel.todomvc.events
 		 * Actions
 		 */
 		public static const ADD_TODO_ITEM:String = "add_Todo_Item";
-		public static const MARK_ALL_COMPLETE:String = "mark_all_complete";
+		public static const TOGGLE_ALL_COMPLETE:String = "toggle_all_complete";
 		public static const REMOVE_COMPLETED:String = "remove_completed";
 		public static const REFRESH_LIST:String = "refresh_list";
 		public static const REFRESH_LIST_BY_USER:String = "refresh_list_by_user";

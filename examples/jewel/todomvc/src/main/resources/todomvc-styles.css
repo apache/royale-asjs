@@ -128,8 +128,9 @@ todomvc|TodoListSection
 	box-shadow: none;
 }
 
-.jewel.togglebutton.toggleAll {
-
+/* Toggle All */
+.jewel.togglebutton.toggleAll .fonticon {
+	font-size: 1.8em;
 }
 .jewel.togglebutton.toggleAll:hover, .jewel.togglebutton.toggleAll:hover:focus {
 	border: 1px solid transparent;
@@ -144,10 +145,10 @@ todomvc|TodoListSection
 	border: 1px solid transparent;
 }
 .jewel.togglebutton.toggleAll .fonticon {
-	color: #737373;
+	color: #e6e6e6;
 }
 .jewel.togglebutton.toggleAll.selected .fonticon {
-	color: #e6e6e6;
+	color: #737373;
 }
 
 /* TextInput */
@@ -218,7 +219,7 @@ todomvc|TodoListSection
 /* ItemRenderer */
 .jewel.item {
 	padding: 0px;
-	min-height: 55px;
+	min-height: 59px;
 }
 
 .todo-list li {
@@ -242,40 +243,29 @@ todomvc|TodoListSection
 }
 
 .jewel.checkbox input + span::before {
-	background: none;
-	border: 1px solid #b3b3b3;
+	background: url("data:image/svg+xml,%3Csvg viewBox='0 -18 100 135' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
+	/* background: none; */
+	border: none;
 	border-radius: 50%;
 }
 .jewel.checkbox input + span::after {
-	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+	background: url("data:image/svg+xml,%3Csvg viewBox='0 -18 100 135' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23bddad5' stroke-width='3'/%3E%3Cpath fill='%235dc2af' d='M72 25L42 71 27 56l-4 4 20 20 34-52z'/%3E%3C/svg%3E") no-repeat center center;
 	border: 1px solid transparent;
 	border-radius: 50%;
 	transition: none;
-	transform: none;
+  	transform: none;
 }
 .jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
 	transform: none;
 }
 .jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
 	background: none;
-	border: 1px solid #0f88d1;
+	border: none;
 	border-radius: 50%;
 }
 .jewel.checkbox span {
-	padding-left: 8px;
+	padding-left: 3px;
 	font-size: 16px;
-}
-/* 
-	content: url("data:image/svg+xml,%3Csvg viewBox='-10 -18 100 135' version='1.1' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
-	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
-	
-	content: url("data:image/svg+xml,%3Csvg viewBox='-10 -18 100 135' version='1.1' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
-	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
- */
-
-/* ItemRenderer label */
-.todolabel {
-	padding-left: 13px;
 }
 
 .completed {
