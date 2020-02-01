@@ -2,7 +2,7 @@
 
 > Apache Royale™ is a productive, open-source frontend application technology that lets you code in MXML & AS3 and output to different formats, included Javascript and SWF.
 
-> _[Apache Royale™ Website - https://royale.apache.org)_
+> _[Apache Royale™ Website](https://royale.apache.org)_
 
 
 ## Learning Apache Royale
