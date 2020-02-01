@@ -59,7 +59,7 @@ limitations under the License.
             public function removeItemClickHandler(event:MouseEvent):void {
                 COMPILE::JS
                 {
-                window.removeEventListener('click', commitLabelChanges, false);
+                document.removeEventListener('click', commitLabelChanges, true);
                 }
                 dispatchEvent(new TodoEvent(TodoEvent.ITEM_REMOVED, item));
             }
@@ -83,19 +83,19 @@ limitations under the License.
 
                 COMPILE::JS
                 {
-                window.addEventListener('click', commitLabelChanges, false);
+                document.addEventListener('click', commitLabelChanges, true);
                 }
             }
 
             /**
-             *  remove window listener to stop listening click events. If user made changes to label, commit 
+             *  remove document listener to stop listening click events. If user made changes to label, commit 
              *  changes to the todo item and exit 'editing' state.
              *  Make destroy button visible if mouse is over renderer.
              */
             public function commitLabelChanges():void {
                 COMPILE::JS
                 {
-                window.removeEventListener('click', commitLabelChanges, false);
+                document.removeEventListener('click', commitLabelChanges, true);
                 }
                 if(item.label != editfield.text)
                     dispatchEvent(new TodoEvent(TodoEvent.ITEM_LABEL_CHANGED, item, editfield.text));
@@ -144,7 +144,8 @@ limitations under the License.
         text="{item ? item.label : ''}" multiline="true"
         visible.normal="true" visible.editing="false"
         className="{item ? (item.done ? 'todolabel completed' : 'todolabel') : 'todolabel' }"
-        doubleClick="goToEditMode(event)"/>
+        doubleClick="goToEditMode(event)"
+        />
 
     <j:TextInput localId="editfield" width="100%"
         visible.normal="false" visible.editing="true"
