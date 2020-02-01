@@ -54,23 +54,18 @@ package jewel.todomvc.controllers
 		 */
 		public function set strand(value:IStrand):void {
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener(TodoEvent.ADD_TODO_ITEM, addTodoItem);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.TOGGLE_ALL_COMPLETE, toggleAllComplete);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.REMOVE_COMPLETED, removeCompleted);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.REFRESH_LIST, refreshList);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.REFRESH_LIST_BY_USER, refreshListByUser);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.ITEM_STATE_CHANGED, itemStateChangedHandler);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.ITEM_LABEL_CHANGED, itemLabelChangedHandler);            
-			IEventDispatcher(_strand).addEventListener(TodoEvent.ITEM_REMOVED, itemRemovedHandler);            
+			(_strand as IEventDispatcher).addEventListener(TodoEvent.ADD_TODO_ITEM, addTodoItem);            
+			(_strand as IEventDispatcher).addEventListener(TodoEvent.TOGGLE_ALL_COMPLETE, toggleAllComplete);            
+			(_strand as IEventDispatcher).addEventListener(TodoEvent.REMOVE_COMPLETED, removeCompleted);            
+			(_strand as IEventDispatcher).addEventListener(TodoEvent.REFRESH_LIST, refreshList);            
+			(_strand as IEventDispatcher).addEventListener(TodoEvent.ITEM_STATE_CHANGED, itemStateChangedHandler);            
+			(_strand as IEventDispatcher).addEventListener(TodoEvent.ITEM_LABEL_CHANGED, itemLabelChangedHandler);            
+			(_strand as IEventDispatcher).addEventListener(TodoEvent.ITEM_REMOVED, itemRemovedHandler);            
 			
         	model = _strand.getBeadByType(IBeadModel) as TodoModel;
 			
 			// retrieve local items and use it if exists
-			var localAllItems:Array = model.storage.data["items"];
-			if(localAllItems)
-				model.allItems = new ArrayList(localAllItems);
-			else
-				model.allItems = new ArrayList();
+			model.allItems = new ArrayList(model.getItemStore());
 			
 			model.setUpFilteredCollections();
 			model.listItems = model.allItems;
@@ -88,8 +83,7 @@ package jewel.todomvc.controllers
          */
         protected function saveDataToLocal():void {
 			try {
-				model.storage.data["items"] = model.allItems.source;
-				model.storage.flush();
+				model.setItemStore(model.allItems.source);
 			} catch (error:Error) {
 				trace("You need to be online to store locally");
 			}
@@ -153,21 +147,6 @@ package jewel.todomvc.controllers
 			}
 		}
 		
-		/**
-         *  Refresh the todo list to the appropiate filter state (All, Active or Completed)
-         */
-        protected function refreshListByUser(event:TodoEvent):void
-		{
-			if(model.filterState != event.label) {
-				model.filterState = event.label;
-				
-				model.router.routeState.title = "TodoMVC - " + model.filterState + " State";
-				model.router.routeState.state = model.filterState;
-				model.router.setState();
-
-				setListState();
-			}
-		}
 
 		/**
 		 *  Sets the new state filter and refresh list to match the filter

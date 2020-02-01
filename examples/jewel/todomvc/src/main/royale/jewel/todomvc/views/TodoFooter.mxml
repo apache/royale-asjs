@@ -29,45 +29,18 @@ limitations under the License.
             [Bindable]
             public var todoModel:TodoModel;
 
-            /**
-             *  Used for routing. Select the appropiate state for the URL hash
-             */
-            public function selectState(hash:String):void {
-                if(hash == all_btn.text)
-                    all_btn.selected = true;
-                else if(hash ==  active_btn.text)
-                    active_btn.selected = true;
-                else if(hash == completed_btn.text)
-                    completed_btn.selected = true;
-                    
-                updateToggles(hash);
-                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, hash));
+            override public function set currentState(value:String):void
+            {
+                super.currentState = value;
+                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, value));
             }
 
             /**
              *  All toggle buttons use this handler to navigate todo list
              */
             public function toggleButtonClickHandler(event:Event):void {
-                updateToggles(event.target.text);
-                dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST_BY_USER, null, event.target.text));
-            }
-
-            /**
-             *  Update toggle buttons to appropiate state
-             */
-            public function updateToggles(label:String):void {
-                if(label == TodoModel.ALL_FILTER) {
-                    active_btn.selected = false;
-                    completed_btn.selected = false;
-                } 
-                else if(label == TodoModel.ACTIVE_FILTER) {
-                    all_btn.selected = false;
-                    completed_btn.selected = false;
-                }
-                else if(label == TodoModel.COMPLETED_FILTER) {
-                    all_btn.selected = false;
-                    active_btn.selected = false;
-                }
+                event.target.selected = true;
+                currentState = event.target.text;
             }
 
             /**
@@ -81,9 +54,12 @@ limitations under the License.
         ]]>
     </fx:Script>
     <j:states>
-        <js:State />
+        <js:State name="All"/>
+        <js:State name="Active"/>
+        <js:State name="Completed"/>
     </j:states>
     <j:beads>
+        <js:SimpleStatesImpl/>
         <js:ContainerDataBinding/>
     </j:beads>
 
@@ -92,9 +68,9 @@ limitations under the License.
     </j:BarSection>
 
     <j:BarSection gap="3" itemsHorizontalAlign="itemsCenter">
-        <j:ToggleButton localId="all_btn" text="All" click="toggleButtonClickHandler(event)"/>
-        <j:ToggleButton localId="active_btn" text="Active" click="toggleButtonClickHandler(event)"/>
-        <j:ToggleButton localId="completed_btn" text="Completed" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="all_btn" selected="false" selected.All="true" text="All" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="active_btn" selected="false" selected.Active="true" text="Active" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="completed_btn" selected="false" selected.Completed="true" text="Completed" click="toggleButtonClickHandler(event)"/>
     </j:BarSection>
 
     <j:BarSection width="15%" gap="3" itemsHorizontalAlign="itemsRight">

@@ -20,7 +20,7 @@
     "config": "royale",
     "compilerOptions": {
         "debug": false,
-        "targets": ["JSRoyale","SWF"],
+        "targets": ["JSRoyale"],
         "source-map": true
     },
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
