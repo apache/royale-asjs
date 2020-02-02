@@ -51,11 +51,20 @@ limitations under the License.
 				<html:H3 text="Jewel CheckBox Sizing"/>
 
 				<j:CheckBox text="No size"/>
-				<j:CheckBox text="CheckWidth and checkHeight to 120" checkWidth="120" checkHeight="120"/>
-				<j:CheckBox text="Only checkWidth to 45" checkWidth="45"/>
-				<j:CheckBox text="Only checkHeight to 60 and disabled" checkHeight="60" selected="true">
+				<j:CheckBox text="CheckWidth and checkHeight to 60">
+					<j:beads>
+						<j:CheckBoxSize checkWidth="60" checkHeight="60"/>
+					</j:beads>
+				</j:CheckBox>
+				<j:CheckBox text="Only checkWidth to 45">
+					<j:beads>
+						<j:CheckBoxSize checkWidth="45"/>
+					</j:beads>
+				</j:CheckBox>
+				<j:CheckBox text="Only checkHeight to 35 and disabled" selected="true">
 					<j:beads>
 						<j:Disabled id="opt3disable" disabled="true"/>
+						<j:CheckBoxSize checkWidth="35"/>
 					</j:beads>
 				</j:CheckBox>
 			</j:Card>

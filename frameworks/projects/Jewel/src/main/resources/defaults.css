@@ -322,6 +322,8 @@ j|Card {
   display: inline-flex;
   margin: 0;
   padding: 0;
+  width: 22px;
+  height: 22px;
   opacity: 0;
 }
 .jewel.checkbox input + span::before {
@@ -353,10 +355,6 @@ j|Card {
 .jewel.checkbox span {
   cursor: pointer;
   margin: auto;
-}
-
-j|CheckBox {
-  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.CheckBoxView");
 }
 
 .jewel.controlbar {
