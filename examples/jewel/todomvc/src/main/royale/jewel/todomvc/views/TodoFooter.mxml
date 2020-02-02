@@ -68,9 +68,9 @@ limitations under the License.
     </j:BarSection>
 
     <j:BarSection gap="3" itemsHorizontalAlign="itemsCenter">
-        <j:ToggleButton localId="all_btn" selected="false" selected.All="true" text="All" click="toggleButtonClickHandler(event)"/>
-        <j:ToggleButton localId="active_btn" selected="false" selected.Active="true" text="Active" click="toggleButtonClickHandler(event)"/>
-        <j:ToggleButton localId="completed_btn" selected="false" selected.Completed="true" text="Completed" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="all_btn" selected.All="true" selected.Active="false" selected.Completed="false" text="All" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="active_btn" selected.All="false" selected.Active="true" selected.Completed="false" text="Active" click="toggleButtonClickHandler(event)"/>
+        <j:ToggleButton localId="completed_btn" selected.All="false" selected.Active="false" selected.Completed="true" text="Completed" click="toggleButtonClickHandler(event)"/>
     </j:BarSection>
 
     <j:BarSection width="15%" gap="3" itemsHorizontalAlign="itemsRight">

@@ -20,7 +20,6 @@ package jewel.todomvc.models
 {
 	import jewel.todomvc.vos.TodoVO;
 
-
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.collections.ArrayListView;
 	import org.apache.royale.core.IBeadModel;
