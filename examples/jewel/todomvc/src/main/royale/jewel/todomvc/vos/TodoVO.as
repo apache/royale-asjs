@@ -43,5 +43,18 @@ package jewel.todomvc.vos
         {
             this.label = label;
         }
+
+        public function toJSON():Object{
+            return {
+                "label":label,
+                "done":done
+            }
+        }
+        public static function fromJSON(data:Object):TodoVO
+        {
+            var todo:TodoVO = new TodoVO(data["label"]);
+            todo.done = data["done"];
+            return todo;
+        }
     }
 }

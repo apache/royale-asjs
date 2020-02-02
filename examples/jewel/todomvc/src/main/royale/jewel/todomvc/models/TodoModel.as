@@ -84,6 +84,9 @@ package jewel.todomvc.models
             {
                 try{
                     itemArr = JSON.parse(itemStr) as Array;
+                    for(var i:int=0;i<itemArr.length;i++){
+                        itemArr[i] = TodoVO.fromJSON(itemArr[i]);
+                    }
                 }catch(err:Error){
                     return [];
                 }
