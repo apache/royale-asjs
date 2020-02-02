@@ -208,7 +208,7 @@ package jewel.todomvc.controllers
 		 */
 		public function updateInterface():void {
 			setListState();
-			var item:String = model.activeItems.length == 1 " item " : " items ";
+			var item:String = model.activeItems.length == 1 ? " item " : " items ";
 			model.itemsLeftLabel = model.activeItems.length + item + "left";
             model.clearCompletedVisibility = model.completedItems.length != 0;
 			model.footerVisibility = model.allItems.length != 0;
