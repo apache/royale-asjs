@@ -31,6 +31,7 @@ package org.apache.royale.jewel
     import org.apache.royale.html.util.addElementToWrapper;
     }
 
+    import org.apache.royale.jewel.supportClasses.IInputButton;
     import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase;
     
     /**
@@ -48,7 +49,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class CheckBox extends SelectableButtonBase
+    public class CheckBox extends SelectableButtonBase implements IInputButton
     {
         /**
          *  Constructor.
@@ -184,6 +185,19 @@ package org.apache.royale.jewel
          * added to the positioner. Is a HTMLInputElement.
          */
         public var input:HTMLInputElement;
+
+        /**
+         *  the input button
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        COMPILE::JS
+        public function get inputButton():HTMLInputElement {
+            return input;
+        }
 
         COMPILE::JS
         /**

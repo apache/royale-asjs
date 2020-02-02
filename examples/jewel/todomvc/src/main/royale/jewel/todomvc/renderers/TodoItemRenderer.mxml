@@ -140,7 +140,7 @@ limitations under the License.
         visible.normal="true" visible.editing="false"
         click="changeItemState(event);">
         <j:beads>
-            <j:CheckBoxSize checkWidth="40" checkHeight="40"/>
+            <j:InputButtonSize width="40" height="40"/>
         </j:beads>
     </j:CheckBox>
     

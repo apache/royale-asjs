@@ -16,25 +16,28 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.checkbox
+package org.apache.royale.jewel.beads.controls
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.CheckBox;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.supportClasses.IInputButton;
 	import org.apache.royale.utils.css.addDynamicSelector;
 	
     /**
-     *  The CheckBoxSize class
+     *  The InputButtonSize class implements input button size for controls
+	 *  like CheckBox or RadioButton that need to size the selectable button part.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public class CheckBoxSize implements IBead
+	public class InputButtonSize implements IBead
 	{
-		public static const CHECK_DEFAULT_SIZE:Number = 22;
+		public static const INPUTBUTTON_DEFAULT_SIZE:Number = 22;
 
         /**
          *  Constructor.
@@ -44,61 +47,64 @@ package org.apache.royale.jewel.beads.controls.checkbox
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-		public function CheckBoxSize()
+		public function InputButtonSize()
 		{	
 		}
 
-		private var _checkWidth:Number;
+		private var _width:Number;
         /**
-         *  Check Width
+         *  Input button width
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        [Bindable("checkWidthChange")]
-        public function get checkWidth():Number
+        [Bindable("inputButtonWidthChange")]
+        public function get width():Number
 		{
-			return _checkWidth;
+			return _width;
 		}
-        public function set checkWidth(value:Number):void
+        public function set width(value:Number):void
 		{
-            if(_checkWidth != value)
+            if(_width != value)
             {
-			    _checkWidth = value;
+			    _width = value;
             }
 		}
         
-        private var _checkHeight:Number;
+        private var _height:Number;
         /**
-         *  Check Height
+         *  Input button height
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        [Bindable("checkHeightChange")]
-        public function get checkHeight():Number
+        [Bindable("inputButtonHeightChange")]
+        public function get height():Number
 		{
-			return _checkHeight;
+			return _height;
 		}
-        public function set checkHeight(value:Number):void
+        public function set height(value:Number):void
 		{
-            if(_checkHeight != value)
+            if(_height != value)
             {
-			    _checkHeight = value;
+			    _height = value;
             }
 		}
 
 		/**
-		 * the _strand
+		 * The IInputButton control that host the inputButton
 		 */
-		private var checkbox:CheckBox;
+		private var host:IInputButton;
 		
+		/**
+		 * The input button
+		 */
 		COMPILE::JS
-        private var input:HTMLInputElement;
+        private var inputButton:HTMLInputElement;
 
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -110,15 +116,15 @@ package org.apache.royale.jewel.beads.controls.checkbox
          */
 		public function set strand(value:IStrand):void
 		{
-			checkbox = value as CheckBox;
+			host = value as IInputButton;
 
 			COMPILE::JS
 			{
-			input = checkbox.input;
+			inputButton = host.inputButton;
 
-			checkbox.addEventListener("widthChanged",sizeChangeHandler);
-			checkbox.addEventListener("heightChanged",sizeChangeHandler);
-            checkbox.addEventListener("sizeChanged",sizeChangeHandler);
+			IEventDispatcher(host).addEventListener("widthChanged",sizeChangeHandler);
+			IEventDispatcher(host).addEventListener("heightChanged",sizeChangeHandler);
+            IEventDispatcher(host).addEventListener("sizeChanged",sizeChangeHandler);
 
 			// always run size change since there are no size change events
 			sizeChangeHandler(null);
@@ -134,30 +140,30 @@ package org.apache.royale.jewel.beads.controls.checkbox
 		{
 			var ruleName:String;
 			var beforeSelector:String = "";
-			if(checkWidth || checkHeight) {
-				ruleName = "chkb" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
-				checkbox.className = ruleName;
+			if(width || height) {
+				ruleName = "inpbtn" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
+				(host as StyledUIBase).className = ruleName;
 			}
 			
-			if(checkWidth) {
-				input.style.width = checkWidth + "px";
-				beforeSelector += "width: "+ checkWidth +"px;";
+			if(width) {
+				inputButton.style.width = width + "px";
+				beforeSelector += "width: "+ width +"px;";
 			} 
 			else {
-				input.style.width = CHECK_DEFAULT_SIZE + "px";
-				beforeSelector += "width: "+ CHECK_DEFAULT_SIZE +"px;";
+				inputButton.style.width = INPUTBUTTON_DEFAULT_SIZE + "px";
+				beforeSelector += "width: "+ INPUTBUTTON_DEFAULT_SIZE +"px;";
 			}
 
-			if(checkHeight) {
-				input.style.height = checkHeight + "px";
-				beforeSelector += "height: "+ checkHeight +"px;";
+			if(height) {
+				inputButton.style.height = height + "px";
+				beforeSelector += "height: "+ height +"px;";
 			} 
 			else {
-				input.style.height = CHECK_DEFAULT_SIZE + "px";
-				beforeSelector += "height: "+ CHECK_DEFAULT_SIZE +"px;";
+				inputButton.style.height = INPUTBUTTON_DEFAULT_SIZE + "px";
+				beforeSelector += "height: "+ INPUTBUTTON_DEFAULT_SIZE +"px;";
 			}
 
-			if(checkWidth || checkHeight) {
+			if(width || height) {
 				addDynamicSelector(".jewel." + ruleName + " input+span::before" , beforeSelector);
 				addDynamicSelector(".jewel." + ruleName + " input+span::after" , beforeSelector);
 			}

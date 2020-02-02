@@ -33,6 +33,7 @@ package org.apache.royale.jewel
     }
 
     import org.apache.royale.events.MouseEvent;
+    import org.apache.royale.jewel.supportClasses.IInputButton;
     import org.apache.royale.jewel.supportClasses.button.SelectableButtonBase;
     
     /**
@@ -49,7 +50,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-    public class RadioButton extends SelectableButtonBase
+    public class RadioButton extends SelectableButtonBase implements IInputButton
     {
         /**
          *  Constructor.
@@ -293,6 +294,19 @@ package org.apache.royale.jewel
          * added to the positioner. Is a HTMLInputElement.
          */
         protected var icon:HTMLInputElement;
+
+        /**
+         *  the input button
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        COMPILE::JS
+        public function get inputButton():HTMLInputElement {
+            return icon;
+        }
         
         COMPILE::JS
         /**

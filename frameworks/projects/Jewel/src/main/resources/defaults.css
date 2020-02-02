@@ -3348,7 +3348,7 @@ j|PopUp {
   position: relative;
   margin: 0;
   padding: 0;
-  height: 22px;
+  height: auto;
 }
 .jewel.radiobutton input {
   -webkit-appearance: none;
@@ -3393,8 +3393,6 @@ j|PopUp {
 .jewel.radiobutton span {
   cursor: pointer;
   margin: 0;
-  vertical-align: top;
-  line-height: 24px;
 }
 
 @media -royale-swf {

@@ -151,7 +151,7 @@
 
     <component id="ResponsiveDrawer" class="org.apache.royale.jewel.beads.controls.drawer.ResponsiveDrawer"/>
     
-    <component id="CheckBoxSize" class="org.apache.royale.jewel.beads.controls.checkbox.CheckBoxSize"/>
+    <component id="InputButtonSize" class="org.apache.royale.jewel.beads.controls.InputButtonSize"/>
 
     <component id="MultiLine" class="org.apache.royale.jewel.beads.controls.MultiLine"/>
     <component id="NavigationActionNotifier" class="org.apache.royale.jewel.beads.controls.NavigationActionNotifier"/>
