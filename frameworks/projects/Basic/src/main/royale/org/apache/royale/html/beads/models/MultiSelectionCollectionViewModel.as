@@ -96,12 +96,12 @@ package org.apache.royale.html.beads.models
 			if(_dataProvider && _selectedIndices)
 			{
 				var indices:Array = [];
-				var length:int = (value as Array).length;
+				var length:int = value.length;
 				for (var i:int = 0; i < _selectedIndices.length; i++)
 				{
 					if (_selectedIndices[i] < length)
 					{
-						indices.push(value[_selectedIndices[i]]);
+						indices.push(value.getItemAt(_selectedIndices[i]));
 					}
 					_selectedIndices = indices;
 					syncItemsAndIndices();

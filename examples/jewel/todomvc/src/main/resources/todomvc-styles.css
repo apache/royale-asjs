@@ -21,6 +21,15 @@
 
 @namespace "http://www.w3.org/1999/xhtml";
 @namespace j "library://ns.apache.org/royale/jewel";
+@namespace todomvc "jewel.todomvc.views.*";
+
+/* Add Controller and Model beads to TodoListSectionComponent */
+todomvc|TodoListSection
+{
+	IBeadController: ClassReference("jewel.todomvc.controllers.TodoController");
+	IBeadModel: ClassReference("jewel.todomvc.models.TodoModel");
+}
+
 
 /* Application */
 .jewel.application {
@@ -35,15 +44,6 @@
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
 	font-weight: 300;
-}
-
-/* Main View */
-.royale
-{
-    background: #fff;
-    margin: 130px 0 40px 0;
-    position: relative;
-    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Main Section */
@@ -74,7 +74,7 @@
 	margin: 3px;
     padding: 3px 7px;
 	background: none;
-	border: none;
+	border: 1px solid transparent;
 	box-shadow: none;
 	border-radius: 0.25rem;
 	color: #808080;
@@ -84,18 +84,19 @@
 }
 .jewel.button:hover, .jewel.button:hover:focus {
 	background: none;
-	border: none;
+	border: 1px solid transparent;	
 }
 .jewel.button:active, .jewel.button:active:focus {
 	background: none;
-	border: none;
+	border: 1px solid transparent;
 	box-shadow: none;
 }
 .jewel.button:focus {
-	border: none;
+	border: 1px solid transparent;
 	box-shadow: none;
 }
 
+/* ToggleButton */
 .jewel.togglebutton {
 	margin: 3px;
     padding: 3px 7px;
@@ -114,7 +115,7 @@
 }
 .jewel.togglebutton:active, .jewel.togglebutton:active:focus {
 	background: none;
-	border: 1px solid rgba(175,47,47,.2);;
+	border: 1px solid rgba(175,47,47,.2);
 	box-shadow: none;
 }
 .jewel.togglebutton:focus {
@@ -127,9 +128,31 @@
 	box-shadow: none;
 }
 
+/* Toggle All */
+.jewel.togglebutton.toggleAll .fonticon {
+	font-size: 1.8em;
+}
+.jewel.togglebutton.toggleAll:hover, .jewel.togglebutton.toggleAll:hover:focus {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll:active, .jewel.togglebutton.toggleAll:active:focus {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll:focus {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll.selected {
+	border: 1px solid transparent;
+}
+.jewel.togglebutton.toggleAll .fonticon {
+	color: #e6e6e6;
+}
+.jewel.togglebutton.toggleAll.selected .fonticon {
+	color: #737373;
+}
+
 /* TextInput */
-.jewel.textinput.new-todo input
-{
+.jewel.textinput.new-todo input {
 	padding: 16px 16px 16px 60px !important;
 	border-radius: 0px;
 	border: none;
@@ -159,12 +182,10 @@
 	font-style: italic;
 }
 
-.jewel.item .jewel.textinput
-{
+.jewel.item .jewel.textinput {
 	margin-left: 46px;
 }
-.jewel.textinput input
-{
+.jewel.textinput input {
 	background: none;
 	border-radius: 0px;
 	font-weight: 300;
@@ -185,22 +206,20 @@
 }
 
 /* List */
-.todo-list
-{
+.todo-list {
 	IItemRenderer: ClassReference("jewel.todomvc.renderers.TodoItemRenderer");
 }
 
-.jewel.list
-{
+.jewel.list {
 	border-radius: 0px;
 	border: none;
 	background: none;
 }
 
 /* ItemRenderer */
-.jewel.item
-{
+.jewel.item {
 	padding: 0px;
+	min-height: 59px;
 }
 
 .todo-list li {
@@ -219,58 +238,43 @@
 }
 
 /* CheckBox */
-.jewel.checkbox
-{
+.jewel.checkbox {
 	margin: 8px;
 }
 
 .jewel.checkbox input + span::before {
-	background: none;
-	border: 1px solid #b3b3b3;
+	background: url("data:image/svg+xml,%3Csvg viewBox='0 -18 100 135' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
+	/* background: none; */
+	border: none;
 	border-radius: 50%;
 }
 .jewel.checkbox input + span::after {
-	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
+	background: url("data:image/svg+xml,%3Csvg viewBox='0 -18 100 135' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23bddad5' stroke-width='3'/%3E%3Cpath fill='%235dc2af' d='M72 25L42 71 27 56l-4 4 20 20 34-52z'/%3E%3C/svg%3E") no-repeat center center;
 	border: 1px solid transparent;
 	border-radius: 50%;
 	transition: none;
-	transform: none;
+  	transform: none;
 }
 .jewel.checkbox input:checked + span::after, .jewel.checkbox input:checked:active + span::after {
 	transform: none;
 }
 .jewel.checkbox input:focus + span::before, .jewel.checkbox input:checked:focus + span::before, .jewel.checkbox input:checked:active:focus + span::before {
 	background: none;
-	border: 1px solid #0f88d1;
+	border: none;
 	border-radius: 50%;
 }
 .jewel.checkbox span {
-	padding-left: 8px;
+	padding-left: 3px;
 	font-size: 16px;
 }
-/* 
-	content: url("data:image/svg+xml,%3Csvg viewBox='-10 -18 100 135' version='1.1' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
-	background: url("data:image/svg+xml,%3Csvg viewBox='0 0 22 22' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='22' height='22' fill-opacity='0'/%3E%3Cpolygon fill='%233CADF1' points='3.50018311 12.4854126 8.48547363 17.4989624 18.4641113 7.47589111 15.5010376 4.51739502 8.48547363 11.5650024 6.52087402 9.47265625'/%3E%3C/svg%3E") no-repeat center center;
-	
-	content: url("data:image/svg+xml,%3Csvg viewBox='-10 -18 100 135' version='1.1' xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='50' cy='50' r='50' fill='none' stroke='%23ededed' stroke-width='3'/%3E%3C/svg%3E") no-repeat center center;
-	background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="-10 -18 100 135"><circle cx="50" cy="50" r="50" fill="none" stroke="#bddad5" stroke-width="3"/><path fill="#5dc2af" d="M72 25L42 71 27 56l-4 4 20 20 34-52z"/></svg>');
- */
 
-/* ItemRenderer label */
-.todolabel
-{
-	padding-left: 13px;
-}
-
-.completed
-{
+.completed {
 	color: #d9d9d9;
 	text-decoration: line-through;
 }
 
 /* ItemRenderer destroy button */
-.destroy 
-{
+.destroy {
 	color: #af5b5e !important;
 }
 
@@ -298,7 +302,34 @@
 }
 
 /* BarRow */
-.jewel.barrow
-{
+.jewel.barrow {
 	height: unset;
+}
+
+/* Clear Completed Button */
+.jewel.button.clearCompleted {
+	text-decoration: underline;
+}
+
+/* Footer Info */
+.info {
+	text-align: center;
+	margin: 65px auto 0;
+	color: #bfbfbf;
+	font-size: 10px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+}
+
+.info p {
+	line-height: 1;
+}
+
+.info a {
+	font-weight: 400;
+	color: inherit;
+	text-decoration: none;
+}
+
+.info a:hover {
+	text-decoration: underline;
 }

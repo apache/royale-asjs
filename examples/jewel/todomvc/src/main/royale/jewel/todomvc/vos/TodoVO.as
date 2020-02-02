@@ -19,11 +19,26 @@
 package jewel.todomvc.vos
 {
     [Bindable]
+    [RemoteClass(alias="jewel.todomvc.vos.TodoVO")]
+    /**
+     *  The todo item definition with a label for description an completion state
+     *  The remote class is used to save and retrieve from local storage
+     */
     public class TodoVO
     {
+        /**
+         * label description todo
+         */
         public var label:String;
+
+        /**
+         *  completion state (done/undone)
+         */
         public var done:Boolean;
         
+        /**
+         *  constructor
+         */
         public function TodoVO(label:String)
         {
             this.label = label;

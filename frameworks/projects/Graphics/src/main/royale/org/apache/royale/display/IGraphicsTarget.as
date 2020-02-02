@@ -28,13 +28,13 @@ package org.apache.royale.display
 	public interface IGraphicsTarget extends IRenderedObject, IEventDispatcher
 	{
     
-		COMPILE::SWF{
-			function get graphicsRenderTarget():flash.display.Graphics;
-		}
+		COMPILE::SWF
+		function get graphicsRenderTarget():flash.display.Graphics;
+
 		
-		COMPILE::JS{
-			function get graphicsRenderTarget():SVGElement;
-		}
+		COMPILE::JS
+		function get graphicsRenderTarget():SVGSVGElement;
+
     }
 	
 }

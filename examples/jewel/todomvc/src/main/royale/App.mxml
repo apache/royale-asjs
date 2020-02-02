@@ -19,7 +19,8 @@
 <j:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
                xmlns:j="library://ns.apache.org/royale/jewel"
                xmlns:js="library://ns.apache.org/royale/basic"
-               xmlns:views="jewel.todomvc.views.*">
+               xmlns:views="jewel.todomvc.views.*"
+               initialize="setUp()">
 
     <fx:Style source="../../main/resources/todomvc-styles.css"/>
 
@@ -27,7 +28,27 @@
         <js:SimpleCSSValuesImpl />
     </j:valuesImpl>
 
+    <fx:Script>
+        <![CDATA[
+            import org.apache.royale.reflection.registerClassAlias;
+            import org.apache.royale.collections.ArrayList;
+
+            /**
+             *  Register ArrayCollection alias to map to ArrayList
+             */
+            public function setUp():void
+			{
+				registerClassAlias("flex.messaging.io.ArrayCollection", ArrayList);
+			}
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+		<js:ClassAliasBead/>
+	</j:beads>
+
     <j:initialView>
-        <views:MainContent/>
+        <views:TodoListSection/>
      </j:initialView>
+     
 </j:Application>

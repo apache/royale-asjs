@@ -80,6 +80,7 @@ package
         import org.apache.royale.jewel.beads.views.FormHeadingView; FormHeadingView;
         import org.apache.royale.jewel.beads.views.WizardView; WizardView;
         import org.apache.royale.jewel.beads.views.ButtonBarView; ButtonBarView;
+	    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
 
         COMPILE::SWF
 	    {
@@ -89,7 +90,6 @@ package
             import org.apache.royale.jewel.beads.views.SliderTrackView; SliderTrackView;
 
             import org.apache.royale.jewel.beads.views.RadioButtonView; RadioButtonView;
-		    import org.apache.royale.jewel.beads.views.CheckBoxView; CheckBoxView;
             import org.apache.royale.jewel.beads.views.ButtonView; ButtonView;
 
             // import org.apache.royale.jewel.beads.views.DropDownListView; DropDownListView;

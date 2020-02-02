@@ -241,7 +241,7 @@ package org.apache.royale.jewel.beads.views
                 _listArea.positioner.style.overflow = null;
             }
             }
-            // host.dispatchEvent(new Event("layoutNeeded"));
+            host.dispatchEvent(new Event("layoutNeeded"));
         }
 
         /**
