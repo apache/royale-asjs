@@ -186,44 +186,44 @@ package org.apache.royale.jewel.beads.views
 		private function sizeChangeHandler(event:Event) : void
 		{
 			// first reads
-			var widthToContent:Boolean = (_strand as UIBase).isWidthSizedToContent();
+			// var widthToContent:Boolean = (_strand as UIBase).isWidthSizedToContent();
 			// trace("widthToContent:" + widthToContent);
 
-			var checkbox:CheckBox = (_strand as CheckBox);
+			// var checkbox:CheckBox = (_strand as CheckBox);
 			// var inputWidth:String = input.style.width + "px";
 			// var inputHeight:String = input.style.height + "px";
 
-			var ruleName:String;
-			var beforeSelector:String = "";
-			if(checkbox.checkWidth || checkbox.checkHeight) {
-				ruleName = "chkb" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
-				// addDynamicSelector(".jewel.checkbox." + ruleName, "border: 1px solid red;");
-				// addDynamicSelector(".jewel.checkbox", "border: 1px solid red;");
-				checkbox.className = ruleName;
-			}
+			// var ruleName:String;
+			// var beforeSelector:String = "";
+			// if(checkbox.checkWidth || checkbox.checkHeight) {
+			// 	ruleName = "chkb" + ((new Date()).getTime() + "-" + Math.floor(Math.random()*1000));
+			// 	// addDynamicSelector(".jewel.checkbox." + ruleName, "border: 1px solid red;");
+			// 	// addDynamicSelector(".jewel.checkbox", "border: 1px solid red;");
+			// 	checkbox.className = ruleName;
+			// }
 			
-			if(checkbox.checkWidth) {
-				input.style.width = checkbox.checkWidth + "px";
-				beforeSelector += "width: "+ checkbox.checkWidth +"px;";
-			} 
-			else {
-				input.style.width = CHECK_DEFAULT_SIZE + "px";
-				beforeSelector += "width: "+ CHECK_DEFAULT_SIZE +"px;";
-			}
+			// if(checkbox.checkWidth) {
+			// 	input.style.width = checkbox.checkWidth + "px";
+			// 	beforeSelector += "width: "+ checkbox.checkWidth +"px;";
+			// } 
+			// else {
+			// 	input.style.width = CHECK_DEFAULT_SIZE + "px";
+			// 	beforeSelector += "width: "+ CHECK_DEFAULT_SIZE +"px;";
+			// }
 
-			if(checkbox.checkHeight) {
-				input.style.height = checkbox.checkHeight + "px";
-				beforeSelector += "height: "+ checkbox.checkHeight +"px;";
-			} 
-			else {
-				input.style.height = CHECK_DEFAULT_SIZE + "px";
-				beforeSelector += "height: "+ CHECK_DEFAULT_SIZE +"px;";
-			}
+			// if(checkbox.checkHeight) {
+			// 	input.style.height = checkbox.checkHeight + "px";
+			// 	beforeSelector += "height: "+ checkbox.checkHeight +"px;";
+			// } 
+			// else {
+			// 	input.style.height = CHECK_DEFAULT_SIZE + "px";
+			// 	beforeSelector += "height: "+ CHECK_DEFAULT_SIZE +"px;";
+			// }
 
-			if(checkbox.checkWidth || checkbox.checkHeight) {
-				addDynamicSelector(".jewel.checkbox." + ruleName + " input+span::before" , beforeSelector);
-				addDynamicSelector(".jewel.checkbox." + ruleName + " input+span::after" , beforeSelector);
-			}
+			// if(checkbox.checkWidth || checkbox.checkHeight) {
+			// 	addDynamicSelector(".jewel.checkbox." + ruleName + " input+span::before" , beforeSelector);
+			// 	addDynamicSelector(".jewel.checkbox." + ruleName + " input+span::after" , beforeSelector);
+			// }
 			// var strandWidth:Number;
 			// if (!widthToContent)
 			// {

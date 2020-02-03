@@ -136,9 +136,14 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
     
-    <j:CheckBox selected="{item ? item.done : false }" checkWidth="40" checkHeight="40"
+    <j:CheckBox selected="{item ? item.done : false}"
         visible.normal="true" visible.editing="false"
-        click="changeItemState(event);"/>
+        click="changeItemState(event);">
+        <j:beads>
+            <j:InputButtonSize width="40" height="40"/>
+        </j:beads>
+    </j:CheckBox>
+    
     
     <j:Label localId="description" width="84%" 
         text="{item ? item.label : ''}" multiline="true"
