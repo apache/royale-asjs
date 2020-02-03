@@ -303,25 +303,6 @@ package org.apache.royale.jewel.beads.models
             }
         }
         
-        private var _disableChangeCheck:Boolean;
-        
-        /**
-         *  The currently selected date or null if no date has been selected.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function get disableChangeCheck():Boolean
-        {
-            return _disableChangeCheck;
-        }
-        public function set disableChangeCheck(value:Boolean):void
-        {
-            _disableChangeCheck = value;
-        }
-
         // Utilities
         public function changeYear(newYear:Number):void
         {

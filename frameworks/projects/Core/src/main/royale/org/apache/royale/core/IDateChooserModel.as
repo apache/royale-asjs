@@ -98,18 +98,5 @@ package org.apache.royale.core
 		function get selectedDate():Date;
 		function set selectedDate(value:Date):void;
         
-        /**
-         *  If true, the DateChooser will dispatch change
-         *  events even if the date clicked is the selected date.
-         *  This flag is used by DateField to get the
-         *  dropdown to dismiss when clicking the selected date.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        function get disableChangeCheck():Boolean;
-        function set disableChangeCheck(value:Boolean):void;
 	}
 }

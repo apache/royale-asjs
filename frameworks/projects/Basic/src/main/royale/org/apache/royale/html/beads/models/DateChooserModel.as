@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {	
-	import org.apache.royale.core.IDateChooserModel;
+	import org.apache.royale.core.IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
@@ -33,7 +33,7 @@ package org.apache.royale.html.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DateChooserModel extends EventDispatcher implements IDateChooserModel
+	public class DateChooserModel extends EventDispatcher implements IDateChooserModelWithChangeCheck
 	{
 		public function DateChooserModel()
 		{
