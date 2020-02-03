@@ -25,15 +25,21 @@ import org.apache.royale.geom.Rectangle;
 import mx.core.mx_internal;
 import mx.display.Graphics;
 import mx.graphics.IFill;
+import mx.geom.Matrix;
 
 
 use namespace mx_internal;
+
+[DefaultProperty("entries")]
 
 public class LinearGradient implements IFill
 {
     public function begin(g:Graphics,targetBounds:Rectangle,targetOrigin:Point):void
     {
-        trace("LinearGradient begin not implemented");
+        var m:Matrix = null;
+        if (rotation == 90)
+            m = Graphics.MATRIX_ROTATE90;
+        g.beginGradientFill('linearGradient', entries, null, null, m);
     }
     
     public function end(g:Graphics):void
