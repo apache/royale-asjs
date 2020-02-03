@@ -120,13 +120,11 @@ DropDownList
 Form
 {
 	skinClass: ClassReference("spark.skins.spark.FormSkin");
-	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
 }
 
 FormItem
 {
 	skinClass: ClassReference("spark.skins.spark.FormItemSkin");
-	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
 }
 
 List
@@ -146,9 +144,8 @@ NumericStepper
 Panel
 {
 	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
-	IBeadView: ClassReference("spark.components.beads.PanelView");
-	IPanelContentArea: ClassReference("spark.components.Group");	
-	
+	skinClass: ClassReference("spark.skins.spark.PanelSkin");
+		
 	background-color: #FFFFFF;
 	border: 1px solid #333333
 }
@@ -179,7 +176,7 @@ SkinnableContainer
 {
 	IBeadView: ClassReference("spark.components.beads.SkinnableContainerView");
 	IBeadLayout: ClassReference("spark.layouts.supportClasses.SparkLayoutBead");
-	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
+	IViewport: ClassReference("spark.components.beads.SparkSkinScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	IContentView: ClassReference("spark.components.Group");
 	border-width: 1px;

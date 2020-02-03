@@ -38,6 +38,7 @@ internal class SparkRoyaleClasses
 	import spark.skins.spark.ComboBoxTextInputSkin; ComboBoxTextInputSkin; 
     import spark.skins.spark.FormSkin; FormSkin; 
     import spark.skins.spark.FormItemSkin; FormItemSkin; 
+    import spark.skins.spark.PanelSkin; PanelSkin; 
 	
 	import spark.layouts.supportClasses.SparkLayoutBead; SparkLayoutBead;
     import spark.layouts.FormLayout; FormLayout;
