@@ -59,17 +59,6 @@ under the License.
         <include>org.apache.royale.typedefs:*</include>
       </includes>
     </dependencySet>
-    <!-- Put the framework swcs into the frameworks/libs directory -->
-    <dependencySet>
-      <useProjectArtifact>false</useProjectArtifact>
-      <outputDirectory>frameworks/libs</outputDirectory>
-      <includes>
-        <include>org.apache.royale.framework:*:swc</include>
-      </includes>
-      <excludes>
-        <exclude>org.apache.royale.framework:*:swc:typedefs</exclude>
-      </excludes>
-    </dependencySet>
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
       <useProjectArtifact>false</useProjectArtifact>
@@ -177,7 +166,6 @@ under the License.
       <outputDirectory></outputDirectory>
       <includes>
         <include>flex-sdk-description.xml</include>
-        <include>royale-sdk-description.xml</include>
       </includes>
       <filtered>true</filtered>
     </fileSet>
@@ -215,32 +203,17 @@ under the License.
         <include>**</include>
       </includes>
     </fileSet> -->
-    
-    <!-- Copy the SWFObject templates -->
-    <fileSet>
-      <outputDirectory>templates/swfobject</outputDirectory>
-      <directory>target/swfobject-temp/META-INF/resources/webjars/swfobject/2.2</directory>
-      <includes>
-        <include>*</include>
-      </includes>
-      <excludes>
-        <exclude>src/**</exclude>
-        <exclude>index.html</exclude>
-        <exclude>index_dynamic.html</exclude>
-        <exclude>test.swf</exclude>
-      </excludes>
-    </fileSet>
-    <!-- Copy our custom index.html template as well as the history code -->
-    <fileSet>
-      <directory>../templates/swfobject</directory>
-      <outputDirectory>templates/swfobject</outputDirectory>
-      <includes>
-        <include>**</include>
-      </includes>
-    </fileSet>
   </fileSets>
 
   <files>
+    <!-- Copy the right sdk-description -->
+    <file>
+      <source>src/main/resources/${assembly.sdk-description}</source>
+      <outputDirectory></outputDirectory>
+      <destName>royale-sdk-description.xml</destName>
+      <filtered>true</filtered>
+    </file>
+
     <!-- Rename main js dummy jar artifacts to "mxmlc.jar" and "compc.jar" that is what an IDE expects to find -->
     <file>
       <source>jars/compiler-mxmljsc/target/compiler-mxmljsc-0.9.7-SNAPSHOT.jar</source>
