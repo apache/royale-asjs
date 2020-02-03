@@ -2376,7 +2376,6 @@ public class VerticalLayout extends LayoutBase implements IGapLayout
         return index;
     }
 
-
 }
 }
 

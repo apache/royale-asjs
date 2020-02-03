@@ -30,8 +30,11 @@ import mx.core.IVisualElement;
 import mx.core.UIComponent;
 import mx.core.mx_internal;
 
+import spark.components.Group;
 import spark.components.supportClasses.GroupBase;
 import spark.core.NavigationUnit;
+import spark.layouts.HorizontalAlign;
+import spark.layouts.VerticalLayout;
 
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.LayoutBase;
@@ -2157,25 +2160,44 @@ public class LayoutBase extends org.apache.royale.core.LayoutBase implements IEv
         
         var w:Number = target.width;
         var h:Number = target.height;
-        if (target.isHeightSizedToContent())
+        if (isHeightSizedToContent())
             h = target.measuredHeight;
-        if (target.isWidthSizedToContent())
+        if (isWidthSizedToContent())
             w = target.measuredWidth;
         
         updateDisplayList(w, h);
         
         // update the target's actual size if needed.
-        if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
+        if (isWidthSizedToContent() && isHeightSizedToContent()) {
             target.setActualSize(target.getExplicitOrMeasuredWidth(), 
                 target.getExplicitOrMeasuredHeight());
         }
-        else if (target.isWidthSizedToContent())
+        else if (isWidthSizedToContent())
             target.setWidth(target.getExplicitOrMeasuredWidth());
-        else if (target.isHeightSizedToContent())
+        else if (isHeightSizedToContent())
             target.setHeight(target.getExplicitOrMeasuredHeight());
         
         return true;
     }
 
+    public function isHeightSizedToContent():Boolean
+    {
+        return target.isHeightSizedToContent();
+    }
+    
+    public function isWidthSizedToContent():Boolean
+    {
+        if (target.parent is Group)
+        {
+            var parentGroup:Group = target.parent as Group;
+            if (parentGroup.layout is VerticalLayout)
+            {
+                var parentLayout:VerticalLayout = parentGroup.layout as VerticalLayout;
+                if (parentLayout.horizontalAlign == HorizontalAlign.JUSTIFY)
+                    return false;
+            }                
+        }
+        return target.isWidthSizedToContent();
+    }
 }
 }
