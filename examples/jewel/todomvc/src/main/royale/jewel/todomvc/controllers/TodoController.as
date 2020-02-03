@@ -174,6 +174,7 @@ package jewel.todomvc.controllers
 		 */
         public function itemStateChangedHandler(event:TodoEvent = null):void {
 			event.todo.done = event.completion;
+			model.allItems.itemUpdated(event.todo);
 
 			saveDataToLocal();
 			updateInterface();
@@ -184,10 +185,13 @@ package jewel.todomvc.controllers
 		 *  if label is empty, remove todo item
 		 */
         public function itemLabelChangedHandler(event:TodoEvent = null):void {
-			if(event.label != "")
+			if(event.label != ""){
 				event.todo.label = event.label;
-			else
+				model.allItems.itemUpdated(event.todo);
+			}
+			else {
 				model.allItems.removeItem(event.todo);
+			}
 
 			saveDataToLocal();
 			updateInterface();

@@ -194,6 +194,7 @@ todomvc|TodoListSection
 	font-family: inherit;
 	font-weight: 300;
 	line-height: 1.4em;
+	height: auto;
 	outline: 0;
 	color: inherit;
 	border: 1px solid #999;
@@ -219,7 +220,7 @@ todomvc|TodoListSection
 /* ItemRenderer */
 .jewel.item {
 	padding: 0px;
-	min-height: 59px;
+	min-height: 60px;
 }
 
 .todo-list li {

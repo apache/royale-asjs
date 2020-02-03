@@ -20,7 +20,7 @@ limitations under the License.
 <j:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
 	xmlns:j="library://ns.apache.org/royale/jewel"
 	xmlns:js="library://ns.apache.org/royale/basic"
-	height="60">
+	height="65">
 
 	<fx:Script>
 		<![CDATA[
@@ -65,7 +65,7 @@ limitations under the License.
 	</j:TextInput>
 
 	<j:ToggleButton localId="toogleAll" visible="{todoModel.toogleAllVisibility}"
-		width="50" height="55" className="toggleAll" selected="{todoModel.toggleAllToCompletedState}"
+		width="50" height="61" className="toggleAll" selected="{todoModel.toggleAllToCompletedState}"
 		click="toggleAllComplete(event)">
 		<j:icon>
 			<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_DOWN}" material="true"/>

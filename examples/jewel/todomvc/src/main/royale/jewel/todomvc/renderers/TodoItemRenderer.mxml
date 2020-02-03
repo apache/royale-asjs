@@ -144,13 +144,11 @@ limitations under the License.
         </j:beads>
     </j:CheckBox>
     
-    
     <j:Label localId="description" width="84%" 
         text="{item ? item.label : ''}" multiline="true"
         visible.normal="true" visible.editing="false"
         className="{item ? (item.done ? 'todolabel completed' : 'todolabel') : 'todolabel' }"
-        doubleClick="goToEditMode(event)"
-        />
+        doubleClick="goToEditMode(event)"/>
 
     <j:TextInput localId="editfield" width="100%"
         visible.normal="false" visible.editing="true"
