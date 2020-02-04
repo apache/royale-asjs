@@ -25,5 +25,10 @@ under the License.
   <includeBaseDirectory>false</includeBaseDirectory>
   <componentDescriptors>
     <componentDescriptor>src/main/assembly/component-royale.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-royale-with-swf.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-flash.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-air.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-fontkit.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-swfobject.xml</componentDescriptor>
   </componentDescriptors>
 </assembly>

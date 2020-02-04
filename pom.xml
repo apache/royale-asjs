@@ -254,6 +254,8 @@
           </execution>
         </executions>
         <configuration>
+          <!-- Make rat log the problematic files in the build output -->
+          <consoleOutput>true</consoleOutput>
           <excludes>
             <!-- JSON files can't contain comments -->
             <exclude>**/*.json</exclude>
