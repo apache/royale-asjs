@@ -98,7 +98,6 @@ package org.apache.royale.html.supportClasses
 			textField.y = cy - textField.height/2;
 			textField.width = width;
 
-			updateRenderer();
 		}
 
 		/**

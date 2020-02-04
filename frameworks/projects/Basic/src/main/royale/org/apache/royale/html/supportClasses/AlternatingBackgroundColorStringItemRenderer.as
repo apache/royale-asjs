@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+    import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead;
+
 	/**
 	 *  The AlternatingBackgroundColorStringItemRenderer class displays data in string form using the data's toString()
 	 *  function and alternates between two background colors.  This is the most simple implementation for immutable lists
@@ -40,7 +42,11 @@ package org.apache.royale.html.supportClasses
 		 */
 		public function AlternatingBackgroundColorStringItemRenderer()
 		{
-		}
+            backgroundBead = new SolidBackgroundSelectableItemRendererBead();
+            addBead(backgroundBead);
+        }
+        
+        private var backgroundBead:SolidBackgroundSelectableItemRendererBead;
 
 		private var _color0:String;
 		
@@ -72,24 +78,7 @@ package org.apache.royale.html.supportClasses
 
 			var index:int = parent.getElementIndex(this);
 			oddIndex = ((index % 2) == 1)
-			COMPILE::JS
-			{
-				element.style.backgroundColor = oddIndex ? _color1 : _color0;
-			}
+			backgroundBead.backgroundColor = oddIndex ? _color1 : _color0;
 		}
-
-		/**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			COMPILE::JS
-			{
-				if (element.style.backgroundColor == null || element.style.backgroundColor == "")
-					element.style.backgroundColor = oddIndex ? _color1 : _color0;
-			}
-		}
-
 	}
 }

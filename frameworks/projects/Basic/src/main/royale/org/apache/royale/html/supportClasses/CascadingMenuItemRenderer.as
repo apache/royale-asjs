@@ -169,8 +169,6 @@ package org.apache.royale.html.supportClasses
 				separator.height = 1;
 				separator.draw();
 			}
-			
-			updateRenderer();
 		}
 	}
 }

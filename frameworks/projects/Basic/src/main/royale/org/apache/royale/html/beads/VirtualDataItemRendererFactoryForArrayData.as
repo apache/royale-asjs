@@ -27,7 +27,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
@@ -179,7 +180,7 @@ package org.apache.royale.html.beads
          */
         public function freeItemRendererForIndex(index:int):void
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
+            var ir:IIndexedItemRenderer = rendererMap[index];
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             dataGroup.removeItemRenderer(ir);
@@ -198,21 +199,22 @@ package org.apache.royale.html.beads
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
-        public function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer
+        public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
+            var ir:IIndexedItemRenderer = rendererMap[index];
             if (ir) return ir;
             
             var dp:Array = dataProviderModel.dataProvider as Array;
             
-			ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+			ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
             var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			dataGroup.addItemRendererAt(ir, elementIndex);
 			ir.index = index;
-			ir.labelField = labelField;
+            if (ir is ILabelFieldItemRenderer)
+    			(ir as ILabelFieldItemRenderer).labelField = labelField;
             if (dataItemRenderer)
             {
                 dataItemRenderer.dataField = dataField;

@@ -21,7 +21,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -115,7 +115,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
-            var ir:ISelectableItemRenderer = itemRendererOwnerView.getItemRendererForIndex(event.index) as ISelectableItemRenderer;
+            var ir:IIndexedItemRenderer = itemRendererOwnerView.getItemRendererForIndex(event.index) as IIndexedItemRenderer;
 
             setData(ir, event.item, event.index);
 
@@ -166,7 +166,7 @@ package org.apache.royale.html.beads
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
             itemRenderer.data = data;

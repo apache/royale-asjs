@@ -157,8 +157,6 @@ package org.apache.royale.html.supportClasses
 		{
 			textButton.width = this.width;
 			textButton.height = this.height;
-			
-			updateRenderer();
 		}
 	}
 }

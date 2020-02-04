@@ -24,7 +24,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithModelView;

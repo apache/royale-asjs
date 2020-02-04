@@ -148,7 +148,7 @@ package org.apache.royale.html.beads
 			var n:int = dp.length; 
 			for (var i:int = 0; i < n; i++)
 			{
-				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
+				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer() as ITextItemRenderer;
                 tf.index = i;
                 //TODO There is no itemsCreated event being dispatched once all the item renderers are added.
                 // Not sure why, but that would require dispatching events as they are added. This should probably be fixed.

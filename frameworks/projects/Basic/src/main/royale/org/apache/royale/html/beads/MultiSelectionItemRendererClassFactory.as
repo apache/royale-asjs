@@ -49,9 +49,9 @@ package org.apache.royale.html.beads
 			super();
 		}
 
-		override public function createFromClass(parent:IItemRendererOwnerView):IItemRenderer
+		override public function createFromClass():IItemRenderer
 		{
-			var renderer:IItemRenderer = super.createFromClass(parent);
+			var renderer:IItemRenderer = super.createFromClass();
 			var strand:IStrand = renderer as IStrand;
 			var bead:IBead = strand.getBeadByType(IBeadController);
 			if (bead)

@@ -31,7 +31,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class SelectableItemRendererBead implements IBead
+	public class SelectableItemRendererBeadBase implements IBead
 	{
 		/**
 		 *  constructor.
@@ -41,11 +41,11 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function SelectableItemRendererBead()
+		public function SelectableItemRendererBeadBase()
 		{
 		}
 
-        private var _strand:IStrand;
+        protected var _strand:IStrand;
 
         /**
 		 *  @copy org.apache.royale.core.IBead#strand

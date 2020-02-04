@@ -20,9 +20,10 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.svg.CompoundGraphic;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.MXMLDataInterpreter;
 	
 	/**
 	 *  The GraphicsItemRenderer provides a base class for itemRenderers that use graphics rather than
@@ -33,7 +34,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class GraphicsItemRenderer extends CompoundGraphic implements ISelectableItemRenderer
+	public class GraphicsItemRenderer extends CompoundGraphic
 	{
 		/**
 		 *  Constructor.
@@ -61,6 +62,8 @@ package org.apache.royale.html.supportClasses
 			
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
+            
+            loadBeadFromValuesManager(ISelectableItemRenderer, "iSelectableItemRenderer", this);
 			
 			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);

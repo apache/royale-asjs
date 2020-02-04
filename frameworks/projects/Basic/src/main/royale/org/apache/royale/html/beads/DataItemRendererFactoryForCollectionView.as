@@ -26,7 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.SimpleCSSStyles;
@@ -56,7 +56,7 @@ package org.apache.royale.html.beads
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
@@ -80,7 +80,7 @@ package org.apache.royale.html.beads
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function itemAddedHandler(event:CollectionEvent):void
@@ -92,7 +92,7 @@ package org.apache.royale.html.beads
 				return;
 			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as IIndexedItemRenderer;
 			labelField = dataProviderModel.labelField;
 			
 			fillRenderer(event.index, event.item, ir, presentationModel);
@@ -101,7 +101,7 @@ package org.apache.royale.html.beads
 			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getItemRendererAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
 				
 				// could let the IR know its index has been changed (eg, it might change its
@@ -119,7 +119,7 @@ package org.apache.royale.html.beads
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function itemRemovedHandler(event:CollectionEvent):void
@@ -130,14 +130,14 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(event.index) as ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 			dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
 			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getItemRendererAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
 				
 				// could let the IR know its index has been changed (eg, it might change its
@@ -153,7 +153,7 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		protected function itemUpdatedHandler(event:CollectionEvent):void
 		{
@@ -165,7 +165,7 @@ package org.apache.royale.html.beads
 
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(event.index) as ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 			setData(ir, event.item, event.index);
 		}
 		

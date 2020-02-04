@@ -18,6 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+    COMPILE::SWF
+    {
+        import flash.display.Sprite;
+    }
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.IStrand;
@@ -31,7 +35,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class SolidBackgroundSelectableItemRendererBead extends SeletableItemRendererBeadBase
+	public class SolidBackgroundSelectableItemRendererBead extends SelectableItemRendererBeadBase
 	{
 
 		/**
@@ -55,10 +59,11 @@ package org.apache.royale.html.beads
             {
                 super.updateRenderer();
                 
-                graphics.clear();
-                graphics.beginFill(useColor, (down||selected||hovered)?1:0);
-                graphics.drawRect(0, 0, width, height);
-                graphics.endFill();
+                var host:Sprite = _strand as Sprite;
+                host.graphics.clear();
+                host.graphics.beginFill(useColor, (down||selected||hovered)?1:0);
+                host.graphics.drawRect(0, 0, host.width, host.height);
+                host.graphics.endFill();
             }
             COMPILE::JS
             {

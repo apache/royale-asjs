@@ -19,14 +19,17 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -35,12 +38,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.List;
-	
-    import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.IParentIUIBase;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.utils.sendStrandEvent;
@@ -229,7 +228,7 @@ package org.apache.royale.html.beads
             return 0;
         }
         
-        override protected function getItemAt(i):Object
+        override protected function getItemAt(i:int):Object
         {
             return null;
         }

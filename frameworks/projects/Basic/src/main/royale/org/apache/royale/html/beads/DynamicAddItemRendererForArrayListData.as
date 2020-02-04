@@ -23,7 +23,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -124,13 +124,13 @@ package org.apache.royale.html.beads
 		 *  @productversion Royale 0.9.0
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.IParent
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererOwnerView) as ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer(itemRendererOwnerView) as IIndexedItemRenderer;
 
 			fillRenderer(event.index, event.item, ir, presentationModel);
 			
@@ -139,7 +139,7 @@ package org.apache.royale.html.beads
 			var n:int = dataGroup.numElements;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getElementAt(i) as IIndexedItemRenderer;
 				ir.index = i;
 			}
 
@@ -214,7 +214,7 @@ package org.apache.royale.html.beads
          */
         protected function fillRenderer(index:int,
                                         item:Object,
-                                        itemRenderer:ISelectableItemRenderer,
+                                        itemRenderer:IIndexedItemRenderer,
                                         presentationModel:IListPresentationModel):void
         {
             itemRendererOwnerView.addItemRendererAt(itemRenderer, index);
@@ -235,7 +235,7 @@ package org.apache.royale.html.beads
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
             itemRenderer.data = data;

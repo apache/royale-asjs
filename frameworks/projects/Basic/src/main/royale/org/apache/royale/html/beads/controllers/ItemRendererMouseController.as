@@ -19,7 +19,8 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 COMPILE::SWF {
 	import org.apache.royale.events.Event;
@@ -61,7 +62,7 @@ COMPILE::JS {
 		{
 		}
 		
-		private var renderer:ISelectableItemRenderer;
+		private var renderer:IIndexedItemRenderer;
 		private var _strand:IStrand;
 		
 		/**
@@ -71,13 +72,13 @@ COMPILE::JS {
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			renderer = value as ISelectableItemRenderer;
+			renderer = value as IIndexedItemRenderer;
 			
 			COMPILE::SWF {
 				renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
@@ -103,7 +104,7 @@ COMPILE::JS {
 		COMPILE::SWF
 		protected function rollOverHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				sendEvent(target,new Event("itemRollOver",true));
@@ -111,12 +112,12 @@ COMPILE::JS {
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseOver(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target) {
 				sendEvent(target,new Event("itemRollOver",true));
 			}
@@ -128,7 +129,7 @@ COMPILE::JS {
 		COMPILE::SWF
 		protected function rollOutHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				sendEvent(target,new Event("itemRollOut",true));
@@ -136,12 +137,12 @@ COMPILE::JS {
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseOut(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				sendEvent(target,new Event("itemRollOut",true));
@@ -154,11 +155,15 @@ COMPILE::JS {
 		COMPILE::SWF
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-				target.down = true;
-				
+                if (target is IStrand)
+                {
+                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    if (selectionBead)
+                        selectionBead.down = true;
+                }				
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
 				newEvent.index = target.index;
@@ -169,17 +174,23 @@ COMPILE::JS {
 		
 		/**
 		 * @private
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseDown(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-				target.down = true;
-				target.hovered = false;
-
+                if (target is IStrand)
+                {
+                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    if (selectionBead)
+                    {
+                        selectionBead.down = true;
+                        selectionBead.hovered = false;
+                    }
+                }
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
 				newEvent.index = target.index;
@@ -194,7 +205,7 @@ COMPILE::JS {
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
 			event.stopImmediatePropagation();
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{				
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
@@ -208,12 +219,12 @@ COMPILE::JS {
 		
 		/**
 		 * @private
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseClick(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
@@ -226,12 +237,12 @@ COMPILE::JS {
 
 		/**
 		 * @private
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseUp");

@@ -23,7 +23,8 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.MXMLDataInterpreter;
-	
+    import org.apache.royale.utils.loadBeadFromValuesManager;
+        
     [DefaultProperty("mxmlContent")]
 
     /**
@@ -36,7 +37,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class UIItemRendererBase extends UIBase implements ISelectableItemRenderer
+	public class UIItemRendererBase extends UIBase
 	{
 		/**
 		 *  constructor.
@@ -67,6 +68,8 @@ package org.apache.royale.html.supportClasses
 
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
+            
+            loadBeadFromValuesManager(ISelectableItemRenderer, "iSelectableItemRenderer", this);
             
             dispatchEvent(new Event("initBindings"));
             dispatchEvent(new Event("initComplete"));
@@ -121,49 +124,7 @@ package org.apache.royale.html.supportClasses
         {
             mxmlProperties = data;
         }
-        
-        private var _backgroundColor:uint = 0xFFFFFF;
-        public function get backgroundColor():uint
-        {
-            return _backgroundColor;
-        }
-        public function set backgroundColor(value:uint):void
-        {
-            _backgroundColor = value;
-        }
-        
-        private var _highlightColor:uint = 0xCEDBEF;
-        public function get highlightColor():uint
-        {
-            return _highlightColor;
-        }
-        public function set highlightColor(value:uint):void
-        {
-            _highlightColor = value;
-        }
-        
-        private var _selectedColor:uint = 0xA8C6EE;
-        public function get selectedColor():uint
-        {
-            return _selectedColor;
-        }
-        public function set selectedColor(value:uint):void
-        {
-            _selectedColor = value;
-        }
-        
-        private var _downColor:uint = 0x808080;
-        public function get downColor():uint
-        {
-            return _downColor;
-        }
-        public function set downColor(value:uint):void
-        {
-            _downColor = value;
-        }
-        
-		protected var useColor:uint = backgroundColor;
-		
+        		
 		private var _data:Object;
 		
         [Bindable("__NoChangeEvent__")]
@@ -240,82 +201,7 @@ package org.apache.royale.html.supportClasses
 		{
 			_index = value;
 		}
-		
-		private var _hovered:Boolean;
-		
-		/**
-		 *  Whether or not the itemRenderer is in a hovered state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get hovered():Boolean
-		{
-			return _hovered;
-		}
-		public function set hovered(value:Boolean):void
-		{
-			_hovered = value;
-			updateRenderer();
-		}
-		
-		private var _selected:Boolean;
-		
-		/**
-		 *  Whether or not the itemRenderer is in a selected state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get selected():Boolean
-		{
-			return _selected;
-		}
-		public function set selected(value:Boolean):void
-		{
-			_selected = value;
-			updateRenderer();
-		}
-		
-		private var _down:Boolean;
-		
-		/**
-		 *  Whether or not the itemRenderer is in a down (or pre-selected) state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get down():Boolean
-		{
-			return _down;
-		}
-		public function set down(value:Boolean):void
-		{
-			_down = value;
-			updateRenderer();
-		}
-		
-		/**
-		 * @private
-		 */
-		public function updateRenderer():void
-		{
-			if (down)
-				useColor = downColor;
-			else if (hovered)
-				useColor = highlightColor;
-			else if (selected)
-				useColor = selectedColor;
-			else
-				useColor = backgroundColor;
-		}
-		
+				
 		/**
 		 * @private
 		 */

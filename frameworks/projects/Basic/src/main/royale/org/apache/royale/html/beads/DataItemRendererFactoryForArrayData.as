@@ -27,7 +27,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
@@ -57,7 +57,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-	public class DataItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
+	public class DataItemRendererFactoryForArrayData extends DataItemRendererFactoryBase implements IBead, IDataProviderItemRendererMapper
 	{
         /**
          *  Constructor.
@@ -96,7 +96,7 @@ package org.apache.royale.html.beads
             return dp.length;
         }
         
-        override protected function getItemAt(i):Object
+        override protected function getItemAt(i:int):Object
         {
             return dp[i];
         }

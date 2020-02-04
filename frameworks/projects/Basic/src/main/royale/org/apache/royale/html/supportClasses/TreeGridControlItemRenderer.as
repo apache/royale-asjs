@@ -52,7 +52,7 @@ package org.apache.royale.html.supportClasses
 		{
 			_originalItemRenderer = value;
 			
-			child = value.createItemRenderer(this) as UIBase;
+			child = value.createItemRenderer() as UIBase;
 			(child as IItemRenderer).data = this.data;
 			this.addElement(child);
 		}

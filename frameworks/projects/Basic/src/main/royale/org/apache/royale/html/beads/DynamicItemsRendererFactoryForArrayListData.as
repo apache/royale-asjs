@@ -25,7 +25,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.SimpleCSSStyles;
@@ -45,7 +45,7 @@ package org.apache.royale.html.beads
     /**
      *  The DynamicItemsRendererFactoryForArrayListData class reads an
      *  array of data and creates an item renderer for every
-     *  ISelectableItemRenderer in the array.
+     *  IIndexedItemRenderer in the array.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -156,7 +156,7 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-         * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+         * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
         protected function dataProviderChangeHandler(event:Event):void
         {
@@ -174,7 +174,7 @@ package org.apache.royale.html.beads
             var n:int = dp.length;
             for (var i:int = 0; i < n; i++)
             {
-                var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+                var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as IIndexedItemRenderer;
                 var item:Object = dp.getItemAt(i);
                 fillRenderer(i, item, ir, presentationModel);
             }
@@ -185,7 +185,7 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-         * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+         * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
         protected function itemAddedHandler(event:CollectionEvent):void
         {
@@ -194,7 +194,7 @@ package org.apache.royale.html.beads
                 return;
 
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+            var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as IIndexedItemRenderer;
 
             fillRenderer(event.index, event.item, ir, presentationModel);
 			
@@ -202,7 +202,7 @@ package org.apache.royale.html.beads
 			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = dataGroup.getItemRendererAt(i) as ISelectableItemRenderer;
+				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
 			}
 
@@ -216,7 +216,7 @@ package org.apache.royale.html.beads
 		 */
         protected function fillRenderer(index:int,
                                       item:Object,
-                                      itemRenderer:ISelectableItemRenderer,
+                                      itemRenderer:IIndexedItemRenderer,
                                       presentationModel:IListPresentationModel):void
         {
 			dataGroup.addItemRendererAt(itemRenderer, index);
@@ -237,7 +237,7 @@ package org.apache.royale.html.beads
 		/**
 		 * @private
 		 */
-		protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+		protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
 		{
 			itemRenderer.index = index;
 			itemRenderer.data = data;
