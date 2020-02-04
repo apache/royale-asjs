@@ -109,6 +109,8 @@ internal class CoreClasses
     import org.apache.royale.core.IImage; IImage;
     import org.apache.royale.core.IImageModel; IImageModel;
     import org.apache.royale.core.IItemRendererProvider; IItemRendererProvider;
+    import org.apache.royale.core.IIndexedItemRenderer; IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer; ILabelFieldItemRenderer;
     import org.apache.royale.core.ILayoutChild; ILayoutChild;
 	import org.apache.royale.core.ILayoutHost; ILayoutHost;
 	import org.apache.royale.core.ILayoutView; ILayoutView;

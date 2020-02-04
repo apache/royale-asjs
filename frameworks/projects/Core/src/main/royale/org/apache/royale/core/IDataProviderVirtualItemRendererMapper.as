@@ -38,6 +38,6 @@ package org.apache.royale.core
 	public interface IDataProviderVirtualItemRendererMapper extends IDataProviderItemRendererMapper
 	{
         function freeItemRendererForIndex(index:int):void;
-        function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer;
+        function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer;
 	}
 }
