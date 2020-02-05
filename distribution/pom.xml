@@ -423,6 +423,43 @@
         <version>2.10</version>
         <executions>
           <execution>
+            <id>copy-compiler-jx</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.royale.compiler</groupId>
+                  <artifactId>compiler-jx</artifactId>
+                  <version>${royale.compiler.version}</version>
+                  <type>jar</type>
+                  <destFileName>jsc.jar</destFileName>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/jsc</outputDirectory>
+            </configuration>
+          </execution>
+          <!-- <execution>
+            <id>copy-compiler-jx</id>
+            <phase>package</phase>
+            <goals>
+              <goal>copy-dependencies</goal>
+            </goals>
+            <configuration>
+              <artifactItems>
+                <artifactItem>
+                  <groupId>org.apache.royale.compiler</groupId>
+                  <artifactId>compiler-jx</artifactId>
+                  <version>${royale.compiler.version}</version>
+                  <type>jar</type>
+                </artifactItem>
+              </artifactItems>
+              <outputDirectory>${project.build.directory}/jsc</outputDirectory>
+            </configuration>
+          </execution> -->
+          <execution>
             <id>unpack-closure-compiler</id>
             <phase>process-resources</phase>
             <goals>

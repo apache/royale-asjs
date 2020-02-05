@@ -44,7 +44,7 @@
               <mainClass>org.apache.royale.compiler.clients.MXMLJSC</mainClass>
             </manifest>
             <manifestEntries>
-              <Class-Path>args4j.jar org.json.jar compiler-jx-0.9.7-SNAPSHOT.jar</Class-Path>
+              <Class-Path>args4j.jar org.json.jar jsc.jar</Class-Path>
             </manifestEntries>
           </archive>
         </configuration>

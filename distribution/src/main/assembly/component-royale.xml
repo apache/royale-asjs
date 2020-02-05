@@ -73,7 +73,7 @@ under the License.
       <useProjectArtifact>false</useProjectArtifact>
       <outputDirectory>js/lib</outputDirectory>
       <includes>
-        <include>org.apache.royale.compiler:compiler-jx:jar</include>
+        <!-- <include>org.apache.royale.compiler:compiler-jx:jar</include> -->
         <include>*:args4j:jar</include>
         <include>*:commons-io:*</include>
         <include>*:flex-tool-api:*</include>
@@ -236,6 +236,10 @@ under the License.
       <source>jars/compiler-compjsc/target/compiler-compjsc-0.9.7-SNAPSHOT.jar</source>
       <outputDirectory>js/lib</outputDirectory>
       <destName>compc.jar</destName>
+    </file>
+    <file>
+      <source>${project.build.directory}/jsc/jsc.jar</source>
+      <outputDirectory>js/lib</outputDirectory>
     </file>
 
     <!-- Copy the manifests -->
