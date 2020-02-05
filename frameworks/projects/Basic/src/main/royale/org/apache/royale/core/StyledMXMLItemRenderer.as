@@ -233,7 +233,7 @@ package org.apache.royale.core
 		{
 			super.addedToParent();
 			
-			if (itemRendererParent.host is IEmphasis && (itemRendererParent.host as IEmphasis).emphasis)
+			if (itemRendererParent && itemRendererParent.host is IEmphasis && (itemRendererParent.host as IEmphasis).emphasis)
 			{
 				emphasis = (itemRendererParent.host as IEmphasis).emphasis;
 			} else
