@@ -20,6 +20,7 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ITitleBarModel;
 	import org.apache.royale.events.Event;
@@ -89,14 +90,13 @@ package org.apache.royale.html.supportClasses
 		{
 		}
 		
-		public function get itemRendererOwnerView():Object
-		{
-			return null;
-		}
-		
-		public function set itemRendererOwnerView(value:Object):void
-		{
-		}
+         public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return null;
+        }
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+        }
 		
 		public function get titleBar():TitleBar
 		{

@@ -26,7 +26,8 @@ package org.apache.royale.charts.optimized
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Point;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
@@ -236,5 +237,10 @@ package org.apache.royale.charts.optimized
 		{
 			
 		}
+        
+        public function get host():IUIBase
+        {
+            return this;
+        }
 	}
 }

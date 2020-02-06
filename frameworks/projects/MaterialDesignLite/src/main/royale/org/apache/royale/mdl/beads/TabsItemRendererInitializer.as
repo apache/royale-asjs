@@ -16,22 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.html.beads
+package org.apache.royale.mdl.beads
 {	
-	import org.apache.royale.core.IItemRendererOwnerView;
-	
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
+	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.SimpleCSSStyles;
+	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 
+    import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
+    import org.apache.royale.mdl.beads.models.ITabModel;
+    
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
      *  in list classes.
@@ -41,7 +43,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ListItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class TabsItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -51,14 +53,15 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function ListItemRendererInitializer()
+		public function TabsItemRendererInitializer()
 		{
 		}
 		
         protected var presentationModel:IListPresentationModel;
         protected var dataProviderModel:IDataProviderModel;
         protected var labelField:String;
-        
+        protected var tabsIdField:String;
+                
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -75,6 +78,8 @@ package org.apache.royale.html.beads
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;            
             dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
             labelField = dataProviderModel.labelField;            
+            var model:ITabModel = _strand.getBeadByType(ITabModel) as ITabModel;
+            tabsIdField = model.tabIdField;
 		}
 		
 		/**
@@ -86,6 +91,7 @@ package org.apache.royale.html.beads
 		{
             if (ir is ILabelFieldItemRenderer)
                 (ir as ILabelFieldItemRenderer).labelField = labelField;
+            (ir as ITabItemRenderer).tabIdField = tabsIdField;
             ir.itemRendererOwnerView = ownerView;
             
             setupVisualsForItemRenderer(ir as IIndexedItemRenderer);

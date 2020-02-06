@@ -108,24 +108,27 @@ package org.apache.royale.html.supportClasses
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
 
-		private var _itemRendererOwnerView:Object;
-
-		/**
-		 * The parent container for the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get itemRendererOwnerView():Object
-		{
-			return _itemRendererOwnerView;
-		}
-		public function set itemRendererOwnerView(value:Object):void
-		{
-			_itemRendererOwnerView = value;
-		}
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The view of the parent component of the itemRenderer. 
+         *  This is not always the container that directly parents the
+         *  itemRenderers.  A List may have an internal DataGroup that
+         *  parents the itemRenderers,
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
 
 		private var _labelField:String = null;
 

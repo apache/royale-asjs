@@ -22,15 +22,17 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRendererInitializer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -40,7 +42,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
-    import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 
@@ -79,7 +81,7 @@ package org.apache.royale.html.beads
 		protected var labelField:String;
         protected var dataField:String;
 
-		private var _strand:IStrand;
+		protected var _strand:IStrand;
 		
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -168,6 +170,34 @@ package org.apache.royale.html.beads
 			dataGroup.removeAllItemRenderers();
         }
         
+        private var _itemRendererInitializer:IItemRendererInitializer;
+        
+        /**
+         *  The org.apache.royale.core.IItemRendererInitializer used 
+         *  to initialize instances of item renderers.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.IItemRendererInitializer
+         */
+        public function get itemRendererInitializer():IItemRendererInitializer
+        {
+            if(!_itemRendererInitializer)
+                _itemRendererInitializer = loadBeadFromValuesManager(IItemRendererInitializer, "iItemRendererInitializer", _strand) as IItemRendererInitializer;
+            
+            return _itemRendererInitializer;
+        }
+        
+        /**
+         *  @private
+         */
+        public function set itemRendererInitializer(value:IItemRendererInitializer):void
+        {
+            _itemRendererInitializer = value;
+        }
+        
         /**
          *  Free an item renderer for a given index.
          *
@@ -189,6 +219,8 @@ package org.apache.royale.html.beads
         
         protected var rendererMap:Object = {};
         
+        private var dp:Array;
+        
         /**
          *  Get an item renderer for a given index.
          *
@@ -204,37 +236,27 @@ package org.apache.royale.html.beads
             var ir:IIndexedItemRenderer = rendererMap[index];
             if (ir) return ir;
             
-            var dp:Array = dataProviderModel.dataProvider as Array;
+            dp = dataProviderModel.dataProvider as Array;
             
 			ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-            var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			dataGroup.addItemRendererAt(ir, elementIndex);
-			ir.index = index;
-            if (ir is ILabelFieldItemRenderer)
-    			(ir as ILabelFieldItemRenderer).labelField = labelField;
-            if (dataItemRenderer)
-            {
-                dataItemRenderer.dataField = dataField;
-            }
+            var data:Object = getItemAt(index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir as IIndexedItemRenderer, data, dataGroup, index);
             rendererMap[index] = ir;
-            
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			if (presentationModel) {
-				var style:SimpleCSSStyles = new SimpleCSSStyles();
-				style.marginBottom = presentationModel.separatorThickness;
-				UIBase(ir).style = style;
-				UIBase(ir).height = presentationModel.rowHeight;
-				UIBase(ir).percentWidth = 100;
-			}
-			ir.data = dp[index];
+			ir.data = data;
 				
 			var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
 			newEvent.itemRenderer = ir;
 			dispatchEvent(newEvent);
             return ir;
 		}
+        
+        public function getItemAt(index:int):Object
+        {
+            return dp[index];
+        }
 	}
 }

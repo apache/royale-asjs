@@ -22,6 +22,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
+    import org.apache.royale.core.IItemRendererInitializer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
+    import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutHost;
@@ -45,11 +49,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.sendStrandEvent;
 
     /**
-     *  The DataItemRendererFactoryForArrayData class reads an
-     *  array of data and creates an item renderer for every
-     *  item in the array.  Other implementations of
-     *  IDataProviderItemRendererMapper map different data 
-     *  structures or manage a virtual set of renderers.
+     *  The DataItemRendererFactoryBase class is a base class
+     *  for IDataProviderItemRendererMapper implementations.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -88,7 +89,7 @@ package org.apache.royale.html.beads
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
+			IEventDispatcher(value).addEventListener("initComplete", finishSetup);
 		}
 		
 		/**
@@ -188,6 +189,7 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.IItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
 		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -201,7 +203,7 @@ package org.apache.royale.html.beads
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
-            removeAllItemRenderers();
+            removeAllItemRenderers(dataGroup);
             
 			var n:int = dataProviderLength; 
 			for (var i:int = 0; i < n; i++)
@@ -211,7 +213,7 @@ package org.apache.royale.html.beads
 
 				dataGroup.addItemRenderer(ir, false);
                 var data:Object = getItemAt(i);
-                (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, view, index);
+                (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir as IIndexedItemRenderer, data, dataGroup, i);
 				ir.data = data;				
 			}
 			
@@ -228,7 +230,7 @@ package org.apache.royale.html.beads
             return 0;
         }
         
-        override protected function getItemAt(i:int):Object
+        protected function getItemAt(i:int):Object
         {
             return null;
         }

@@ -110,6 +110,7 @@ internal class CoreClasses
     import org.apache.royale.core.IImageModel; IImageModel;
     import org.apache.royale.core.IItemRendererProvider; IItemRendererProvider;
     import org.apache.royale.core.IIndexedItemRenderer; IIndexedItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer; IIndexedItemRendererInitializer;
     import org.apache.royale.core.ILabelFieldItemRenderer; ILabelFieldItemRenderer;
     import org.apache.royale.core.ILayoutChild; ILayoutChild;
 	import org.apache.royale.core.ILayoutHost; ILayoutHost;
@@ -132,6 +133,7 @@ internal class CoreClasses
 	{
 	    import org.apache.royale.core.IScrollBarModel; IScrollBarModel;
 	}
+    import org.apache.royale.core.IListDataItemRenderer; IListDataItemRenderer;
     import org.apache.royale.core.IRuntimeSelectableItemRenderer; IRuntimeSelectableItemRenderer;
     import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
     import org.apache.royale.core.ISelectable; ISelectable;

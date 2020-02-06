@@ -203,6 +203,11 @@ package org.apache.royale.charts.supportClasses
             }
         }
         
+        public function get host():IUIBase
+        {
+            return this;
+        }
+        
         /*
 		 * IChartDataGroup
 		 */

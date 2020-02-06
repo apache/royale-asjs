@@ -61,19 +61,27 @@ package org.apache.royale.mdl.itemRenderers
             return element;
         }
 
-        override public function updateRenderer():void
+	}
+}
+
+import org.apache.royale.core.IUIBase;
+import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
+
+class TableRowItemSelectableItemRendererBead extends SelectableItemRendererBeadBase
+{
+    override public function updateRenderer():void
+    {
+        COMPILE::JS
         {
-            COMPILE::JS
+            var row:IUIBase = _strand as IUIBase;
+            if (selected)
             {
-                if (selected)
-                {
-                    row.element.classList.add("is-selected");
-                }
-                else
-                {
-                    row.element.classList.remove("is-selected");
-                }
+                row.element.classList.add("is-selected");
+            }
+            else
+            {
+                row.element.classList.remove("is-selected");
             }
         }
-	}
+    }    
 }

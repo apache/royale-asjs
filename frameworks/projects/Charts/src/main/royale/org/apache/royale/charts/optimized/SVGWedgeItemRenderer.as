@@ -23,8 +23,8 @@ package org.apache.royale.charts.optimized
 	import org.apache.royale.graphics.IFill;
 	import org.apache.royale.graphics.IStroke;
 	import org.apache.royale.svg.Path;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
-	import org.apache.royale.charts.supportClasses.IWedgeItemRenderer;
+	import org.apache.royale.charts.supportClasses.ChartItemRenderer;
+    import org.apache.royale.charts.supportClasses.IWedgeItemRenderer;
 	
 	/**
 	 *  The SVGWedgeItemRenderer draws its graphics directly into a SVGChartDataGroup
@@ -35,7 +35,7 @@ package org.apache.royale.charts.optimized
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class SVGWedgeItemRenderer extends DataItemRenderer implements IWedgeItemRenderer
+	public class SVGWedgeItemRenderer extends ChartItemRenderer implements IWedgeItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -50,25 +50,6 @@ package org.apache.royale.charts.optimized
 			super();
 		}
 		
-		private var _series:IChartSeries;
-		
-		/**
-		 *  The series to which this itemRenderer instance belongs. Or, the series
-		 *  being presented.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get series():IChartSeries
-		{
-			return _series;
-		}
-		public function set series(value:IChartSeries):void
-		{
-			_series = value;
-		}
 		
 		private var _centerX:Number;
 		
@@ -252,30 +233,5 @@ package org.apache.royale.charts.optimized
 			graphicsContainer.drawStringPath(pathString);
 		}
 		
-		/*
-		* Ignored by WedgeItemRenderer
-		*/
-		
-		/**
-		 * @private
-		 */
-		public function get xField():String
-		{
-			return null;
-		}
-		public function set xField(value:String):void
-		{
-		}
-		
-		/**
-		 * @private
-		 */
-		public function get yField():String
-		{
-			return null;
-		}
-		public function set yField(value:String):void
-		{
-		}
 	}
 }

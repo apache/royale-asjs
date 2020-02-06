@@ -19,6 +19,8 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IBead;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -69,14 +71,12 @@ package org.apache.royale.html.supportClasses
             // each MXML file can also have styles in fx:Style block
             ValuesManager.valuesImpl.init(this);
             
-            loadBeadFromValuesManager(ISelectableItemRenderer, "iSelectableItemRenderer", this);
-            
             dispatchEvent(new Event("initBindings"));
             dispatchEvent(new Event("initComplete"));
             
 		}
 		
-		private var _itemRendererOwnerView:Object;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		
 		/**
 		 * The parent container for the itemRenderer instance.
@@ -86,13 +86,24 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get itemRendererOwnerView():Object
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
 			return _itemRendererOwnerView;
 		}
-		public function set itemRendererOwnerView(value:Object):void
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
 			_itemRendererOwnerView = value;
+            if (!getBeadByType(ISelectableItemRenderer))
+            {
+                // load ISelectableItemRenderer impl from the
+                // owner, not the item renderer so that item
+                // renderers aren't strongly coupled to a
+                // particular selection visual and the list
+                // can dictate the selection visual
+                var c:Class = ValuesManager.valuesImpl.getValue(value.host, "iSelectableItemRenderer");
+                if (c)
+                    addBead(new c() as IBead);                    
+            }
 		}
 		
         /**
@@ -144,27 +155,6 @@ package org.apache.royale.html.supportClasses
 		public function set data(value:Object):void
 		{
 			_data = value;
-		}
-		
-		private var _listData:Object;
-		
-		[Bindable("__NoChangeEvent__")]
-		/**
-		 *  Additional data about the list structure the itemRenderer may
-		 *  find useful.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get listData():Object
-		{
-			return _listData;
-		}
-		public function set listData(value:Object):void
-		{
-			_listData = value;
 		}
 		
 		private var _labelField:String = "label";

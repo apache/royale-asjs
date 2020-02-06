@@ -67,34 +67,5 @@ package org.apache.royale.html.beads
 		{
 			super();
 		}
-
-		/**
-		 * Sets the itemRenderer's data with additional tree-related data.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 */
-		override protected function setData(ir:IIndexedItemRenderer, data:Object, index:int):void
-		{
-			if (!dataProviderModel)
-				return;
-			
-			var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
-			var depth:int = treeData.getDepth(data);
-			var isOpen:Boolean = treeData.isOpen(data);
-			var hasChildren:Boolean = treeData.hasChildren(data);
-			
-			// Set the listData with the depth of this item
-			var treeListData:TreeListData = new TreeListData();
-			treeListData.depth = depth;
-			treeListData.isOpen = isOpen;
-			treeListData.hasChildren = hasChildren;
-			
-			ir.listData = treeListData;
-			
-			super.setData(ir, data, index);
-		}
 	}
 }

@@ -38,6 +38,11 @@ BoxItemRenderer
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
+ChartItemRenderer
+{
+    ISelectableItemRenderer: ClassReference("org.apache.royale.charts.beads.ChartSelectableItemRendererBead");
+}
+
 WedgeItemRenderer
 {
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");

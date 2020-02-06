@@ -38,42 +38,5 @@ package org.apache.royale.mdl.beads
      */
 	public class DynamicTabsAddItemRendererForArrayListData extends DynamicAddItemRendererForArrayListData
 	{
-		protected var tabsIdField:String;
-
-        /**
-         *  finish setup
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         */
-        override protected function initComplete(event:Event):void
-        {
-            var model:ITabModel = _strand.getBeadByType(ITabModel) as ITabModel;
-            tabsIdField = model.tabIdField;
-
-            super.initComplete(event);
-        }
-
-        override protected function handleItemAdded(event:CollectionEvent):void
-        {
-            var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
-            if (!dp)
-                return;
-
-            if (dataProviderModel is ISelectionModel) {
-                var model:ISelectionModel = dataProviderModel as ISelectionModel;
-                model.selectedIndex = -1;
-            }
-
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(itemRendererOwnerView) as ITabItemRenderer;
-            ir.tabIdField = tabsIdField;
-
-            fillRenderer(event.index, event.item, ir, presentationModel);
-
-            (_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-        }
 	}
 }

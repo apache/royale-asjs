@@ -21,6 +21,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
 
 	/**
@@ -109,40 +110,6 @@ package org.apache.royale.html.beads
         }
         
         protected var useColor:uint = backgroundColor;
-        private var _labelField:String = "label";
-        
-        /**
-         * The name of the field within the data to use as a label. Some itemRenderers use this field to
-         * identify the value they should show while other itemRenderers ignore this if they are showing
-         * complex information.
-         */
-        public function get labelField():String
-        {
-            return _labelField;
-        }
-        public function set labelField(value:String):void
-        {
-            _labelField = value;
-        }
-        
-        private var _index:int;
-        
-        /**
-         *  The position with the dataProvider being shown by the itemRenderer instance.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function get index():int
-        {
-            return _index;
-        }
-        public function set index(value:int):void
-        {
-            _index = value;
-        }
         
         private var _hovered:Boolean;
         

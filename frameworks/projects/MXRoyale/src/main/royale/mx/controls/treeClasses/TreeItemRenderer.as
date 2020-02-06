@@ -47,9 +47,9 @@ import mx.utils.PopUpUtil;
 
  */
 import mx.controls.Label;
+import mx.controls.Tree;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.Tree;
 import mx.core.IDataRenderer;
 import mx.core.IFlexDisplayObject;
 import mx.core.UIComponent;
@@ -57,11 +57,14 @@ import mx.core.mx_internal;
 
 use namespace mx_internal;
 
+import org.apache.royale.core.IBead;
 import org.apache.royale.core.IItemRenderer;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.util.getLabelFromData;
 import org.apache.royale.html.supportClasses.TreeListData;
+import org.apache.royale.core.IItemRendererOwnerView;
+import org.apache.royale.core.ISelectableItemRenderer;
 
 /**
  *  The TreeItemRenderer class defines the default item renderer for a Tree control. 
@@ -211,14 +214,13 @@ public class TreeItemRenderer extends UIComponent
         
         // each MXML file can also have styles in fx:Style block
         ValuesManager.valuesImpl.init(this);
-        loadBeadFromValuesManager(ISelectableItemRenderer);
         
         dispatchEvent(new Event("initBindings"));
         dispatchEvent(new Event("initComplete"));
         
     }
     
-    private var _itemRendererOwnerView:Object;
+    private var _itemRendererOwnerView:IItemRendererOwnerView;
     
     /**
      * The parent container for the itemRenderer instance.
@@ -228,13 +230,24 @@ public class TreeItemRenderer extends UIComponent
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get itemRendererOwnerView():Object
+    public function get itemRendererOwnerView():IItemRendererOwnerView
     {
         return _itemRendererOwnerView;
     }
-    public function set itemRendererOwnerView(value:Object):void
+    public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
     {
         _itemRendererOwnerView = value;
+        if (!getBeadByType(ISelectableItemRenderer))
+        {
+            // load ISelectableItemRenderer impl from the
+            // owner, not the item renderer so that item
+            // renderers aren't strongly coupled to a
+            // particular selection visual and the list
+            // can dictate the selection visual
+            var c:Class = ValuesManager.valuesImpl.getValue(value.host, "iSelectableItemRenderer");
+            if (c)
+                addBead(new c() as IBead);                    
+        }
     }
         
     private var _backgroundColor:uint = 0xFFFFFF;

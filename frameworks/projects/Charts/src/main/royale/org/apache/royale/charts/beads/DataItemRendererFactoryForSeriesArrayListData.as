@@ -53,8 +53,6 @@ package org.apache.royale.charts.beads
 		 */
 		public function DataItemRendererFactoryForSeriesArrayListData()
 		{
-            factory =  new ChartItemRendererFactory(this);
-            itemRendererClassFactory = factory;
 		}
 		
         private var factory:IItemRendererClassFactory;
@@ -74,7 +72,7 @@ package org.apache.royale.charts.beads
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-            dp = selectionModel.dataProvider as ArrayList;
+            dp = dataProviderModel.dataProvider as ArrayList;
             super.dataProviderChangeHandler(event);
         }
                 

@@ -24,7 +24,7 @@ package mx.controls.beads.layouts
     import org.apache.royale.core.ILayoutView;
     import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IScrollingViewport;
-    import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithPresentationModel;
     import org.apache.royale.core.IUIBase;
@@ -209,7 +209,7 @@ package mx.controls.beads.layouts
                     {
                         if (i >= dp.length) continue; // no more renderers needed
                         
-                        var ir:IItemRenderer;
+                        var ir:IIndexedItemRenderer;
                         if (i < firstIndex)
                         {
                             ir  = factory.getItemRendererForIndex(i, i - startIndex);
@@ -329,7 +329,7 @@ package mx.controls.beads.layouts
                     {
                         if (i >= dp.length) continue; // no more renderers needed
                         
-                        var ir:IItemRenderer;
+                        var ir:IIndexedItemRenderer;
                         if (i < firstIndex)
                         {
                             // the base class adds 1 because the div/scroll padding is in the

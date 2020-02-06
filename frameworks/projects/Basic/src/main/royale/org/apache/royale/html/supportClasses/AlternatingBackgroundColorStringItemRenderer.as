@@ -48,24 +48,24 @@ package org.apache.royale.html.supportClasses
         
         private var backgroundBead:SolidBackgroundSelectableItemRendererBead;
 
-		private var _color0:String;
+		private var _color0:uint;
 		
-		public function get backgroundColor0():String
+		public function get backgroundColor0():uint
 		{
 			return _color0;
 		}
-		public function set backgroundColor0(value:String):void
+		public function set backgroundColor0(value:uint):void
 		{
 			_color0 = value;
 		}
 		
-		private var _color1:String;
+		private var _color1:uint;
 		
-		public function get backgroundColor1():String
+		public function get backgroundColor1():uint
 		{
 			return _color1;
 		}
-		public function set backgroundColor1(value:String):void
+		public function set backgroundColor1(value:uint):void
 		{
 			_color1 = value;
 		}

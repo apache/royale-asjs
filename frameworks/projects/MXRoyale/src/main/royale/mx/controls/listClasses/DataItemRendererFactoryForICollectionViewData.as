@@ -29,7 +29,7 @@ package mx.controls.listClasses
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.SimpleCSSStyles;
@@ -102,23 +102,7 @@ package mx.controls.listClasses
             dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
             
-            super.dataProviderChangeHandler(event);
-            
-            dataGroup.removeAllItemRenderers();
-            
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            labelField = dataProviderModel.labelField;
-            
-            var n:int = dp.length;
-            for (var i:int = 0; i < n; i++)
-            {
-                var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-                var item:Object = cursor.current;
-                cursor.moveNext();
-                fillRenderer(i, item, ir, presentationModel);
-            }
-            
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+            super.dataProviderChangeHandler(event);            
         }
 		
         private var cursor:IViewCursor;

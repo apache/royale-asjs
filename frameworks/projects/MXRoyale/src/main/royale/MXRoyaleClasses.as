@@ -85,6 +85,7 @@ internal class MXRoyaleClasses
     import mx.controls.listClasses.VirtualDataItemRendererFactoryForIListData; VirtualDataItemRendererFactoryForIListData;
 	import mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData; DataItemRendererFactoryForICollectionViewHierarchicalData;
     import mx.controls.advancedDataGridClasses.DataItemRendererFactoryForICollectionViewAdvancedDataGridData; DataItemRendererFactoryForICollectionViewAdvancedDataGridData;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridSelectableItemRendererBead; AdvancedDataGridSelectableItemRendererBead;
 	import mx.charts.chartClasses.RenderData; RenderData;
 	import mx.effects.EffectInstance; EffectInstance;
 	import mx.effects.effectClasses.CompositeEffectInstance; CompositeEffectInstance;

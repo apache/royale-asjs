@@ -28,7 +28,7 @@ package mx.controls.listClasses
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IListPresentationModel;
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.SimpleCSSStyles;
@@ -70,6 +70,8 @@ package mx.controls.listClasses
 			super();
 		}
         
+        private var dp:IList;
+        
         /**
          * @private
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
@@ -80,7 +82,7 @@ package mx.controls.listClasses
         {
             if (!dataProviderModel)
                 return;
-            var dp:IList = dataProviderModel.dataProvider as IList;
+            dp = dataProviderModel.dataProvider as IList;
             if (!dp)
             {
                 // temporary until descriptor is used in MenuBarModel

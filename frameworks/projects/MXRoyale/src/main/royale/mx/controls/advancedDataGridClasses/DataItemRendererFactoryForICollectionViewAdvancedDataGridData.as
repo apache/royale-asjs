@@ -35,7 +35,10 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
+    import org.apache.royale.core.IListDataItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
@@ -84,7 +87,7 @@ package mx.controls.advancedDataGridClasses
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
-         * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+         * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
          * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          */
         override protected function dataProviderChangeHandler(event:Event):void
@@ -121,7 +124,7 @@ package mx.controls.advancedDataGridClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
 		 */
-		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
+		protected function setData(ir:IIndexedItemRenderer, data:Object, index:int):void
 		{
             var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
 
@@ -140,9 +143,9 @@ package mx.controls.advancedDataGridClasses
 			treeListData.open = isOpen;
 			treeListData.hasChildren = hasChildren;
 			
-			ir.listData = treeListData;
+			(ir as IListDataItemRenderer).listData = treeListData;
             if (firstColumn && adgColumnList.adg.groupLabelField)
-                ir.labelField = adgColumnList.adg.groupLabelField;
+                (ir as ILabelFieldItemRenderer).labelField = adgColumnList.adg.groupLabelField;
 			
 			ir.data = data;
             ir.index = index;
@@ -158,34 +161,20 @@ package mx.controls.advancedDataGridClasses
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
-        override public function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer
+        override public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
+            var ir:IIndexedItemRenderer = rendererMap[index];
             if (ir) return ir;
             
             var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
             
-            ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-            var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+            ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             dataGroup.addItemRendererAt(ir, elementIndex);
-            ir.labelField = labelField;
-            if (dataItemRenderer)
-            {
-                dataItemRenderer.dataField = dataField;
-            }
             rendererMap[index] = ir;
             
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            if (presentationModel) {
-                var style:SimpleCSSStyles = new SimpleCSSStyles();
-                style.marginBottom = presentationModel.separatorThickness;
-                UIBase(ir).style = style;
-                UIBase(ir).height = presentationModel.rowHeight;
-                UIBase(ir).percentWidth = 100;
-            }
             var delta:int = index - currentIndex;
             if (currentIndex == -1)
             {
@@ -205,8 +194,8 @@ package mx.controls.advancedDataGridClasses
             }
             currentIndex = index;
             
-            var item:Object = cursor.current;
-            setData(ir, item, index);
+            var data:Object = cursor.current;
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, index);
             
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
             newEvent.itemRenderer = ir;

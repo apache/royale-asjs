@@ -25,6 +25,7 @@ package org.apache.royale.html.supportClasses
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IBeadController;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+    import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IRoyaleElement;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
@@ -461,22 +462,24 @@ package org.apache.royale.html.supportClasses
             updateRenderer();
         }
 		
-		private var _itemRendererOwnerView:Object;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		
 		/**
-		 *  The parent component of the itemRenderer instance. This is the container that houses
-		 *  all of the itemRenderers.
+		 *  The view of the parent component of the itemRenderer. 
+         *  This is not always the container that directly parents the
+		 *  itemRenderers.  A List may have an internal DataGroup that
+         *  parents the itemRenderers,
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get itemRendererOwnerView():Object
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
 			return _itemRendererOwnerView;
 		}
-		public function set itemRendererOwnerView(value:Object):void
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
 			_itemRendererOwnerView = value;
 		}

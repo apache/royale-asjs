@@ -31,7 +31,7 @@ internal class FlatClasses
 	{
 		import org.apache.royale.flat.beads.CSSScrollBarView; CSSScrollBarView;
 		import org.apache.royale.flat.beads.CSSScrollBarButtonView; CSSScrollBarButtonView;
-		import org.apache.royale.flat.supportClasses.DropDownListStringItemRenderer; DropDownListStringItemRenderer;
+		import org.apache.royale.flat.supportClasses.DropDownListSolidBackgroundSelectableItemRendererBead; DropDownListSolidBackgroundSelectableItemRendererBead;
     	import org.apache.royale.flat.supportClasses.DropDownListList; DropDownListList;
 		import org.apache.royale.flat.beads.DropDownListView; DropDownListView;
     	import org.apache.royale.flat.beads.CheckboxCSSContentAndTextToggleButtonView; CheckboxCSSContentAndTextToggleButtonView;

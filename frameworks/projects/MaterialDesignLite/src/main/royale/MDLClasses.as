@@ -28,6 +28,7 @@ package
 	internal class MDLClasses
 	{
 		import org.apache.royale.mdl.beads.TabsItemRendererFactoryForArrayData; TabsItemRendererFactoryForArrayData;
+        import org.apache.royale.mdl.beads.TabsItemRendererInitializer; TabsItemRendererInitializer;
         import org.apache.royale.mdl.beads.TabsDataItemRendererFactoryForArrayListData; TabsDataItemRendererFactoryForArrayListData;
 		import org.apache.royale.mdl.beads.models.TabArrayModel; TabArrayModel;
 		import org.apache.royale.mdl.beads.models.TabArrayListModel; TabArrayListModel;

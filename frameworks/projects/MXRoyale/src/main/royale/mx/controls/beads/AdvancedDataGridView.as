@@ -29,8 +29,9 @@ package mx.controls.beads
     
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
-    import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
@@ -171,8 +172,9 @@ package mx.controls.beads
                 var ir:IItemRenderer = view.getItemRendererForIndex(index) as IItemRenderer;
                 if (ir)
                 {
-                    ir.selected = selected;
-                    ir.hovered = highlighted;
+                    var selectionBead:ISelectableItemRenderer = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    selectionBead.selected = selected;
+                    selectionBead.hovered = highlighted;
                     COMPILE::JS
                     {
                     if (caret)

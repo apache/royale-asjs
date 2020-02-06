@@ -44,12 +44,12 @@ import flash.utils.getQualifiedSuperclassName; */
 //import mx.styles.StyleProtoChain;
 use namespace mx_internal;
 
-import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.html.supportClasses.StringItemRenderer;
 import org.apache.royale.events.MouseEvent;
 import mx.core.UIComponent;
 import mx.collections.IHierarchicalData;
 import mx.events.ListEvent;
+import org.apache.royale.core.ISelectableItemRenderer;
 
 //--------------------------------------
 //  Events
@@ -168,24 +168,17 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             
             indent += (treeListData.hasChildren ? (treeListData.open ? "▼" : "▶") : "") + extraSpace;
         }
-        var bgColors:Array = (treeListData.owner as UIComponent).getStyle("alternatingItemColors");
-        backgroundColor = ((treeListData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];
+        
+        var selectionBead:ISelectableItemRenderer = getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
         if ((treeListData.owner as AdvancedDataGrid).selectedIndices.indexOf(treeListData.rowIndex) != -1)
         {
-            selected = true;
+            selectionBead.selected = true;
         } 
         else if ((treeListData.owner as AdvancedDataGrid).selectedIndex == treeListData.rowIndex)
         {
-            selected = true;            
+            selectionBead.selected = true;            
         }
-
-        COMPILE::JS {
-            if (selected)
-                element.style.backgroundColor = '#9C9C9C';
-            else
-                element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
-        }
-
+        
         if (column.labelFunction)
         {
             this.text = column.labelFunction(value, column);
@@ -195,40 +188,30 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             this.text = indent + this.text;
         }
     }
-
-    private var textSelectedColor:String = "#000000";
-    private var textRollOverColor:String = "#000000";
     
+    private var _listData:Object;
+    
+    [Bindable("__NoChangeEvent__")]
     /**
-     * @private
+     *  The extra data being represented by this itemRenderer. This can be something simple like a String or
+     *  a Number or something very complex.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
      */
-    override public function updateRenderer():void
+    public function get listData():Object
     {
-        COMPILE::SWF
-        {
-            super.updateRenderer();
-        }
-        COMPILE::JS
-        {
-            if (selected)
-            {
-                element.style.backgroundColor = '#9C9C9C';
-                element.style.color = textSelectedColor;
-            }
-            else if (hovered)
-            {
-                element.style.backgroundColor = '#ECECEC';
-                element.style.color = textRollOverColor;
-            }
-            else
-            {
-                var treeListData:AdvancedDataGridListData = listData as AdvancedDataGridListData;
-                var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
-                element.style.backgroundColor = CSSUtils.attributeFromColor(backgroundColor);
-                element.style.color = CSSUtils.attributeFromColor((treeListData.owner as UIComponent).getStyle("color"));
-            }
-        }
+        return _listData;
     }
+    
+    public function set listData(value:Object):void
+    {
+        _listData = value;
+    }
+    
+
 
     //--------------------------------------------------------------------------
     //
@@ -249,18 +232,6 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         super.text = value;
     }
     
-    public function setStyle(styleName:String, value:Object):void
-    {
-        COMPILE::JS
-        {
-            if (styleName == "textRollOverColor")
-                textRollOverColor = String(value);
-            else if (styleName == "textSelectedColor")
-                textSelectedColor = String(value);
-            else
-                element.style[styleName] = value;        
-        }
-    }
 }
 
 }

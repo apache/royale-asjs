@@ -19,6 +19,7 @@
 package org.apache.royale.core
 {
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.core.IUIBase;
 
     /**
      *  The IItemRendererOwnerView interface is the basic interface for the 
@@ -53,5 +54,7 @@ package org.apache.royale.core
 		function removeAllItemRenderers():void;
 		function updateAllItemRenderers():void;
         function get numItemRenderers():int;
+        
+        function get host():IUIBase;
 	}
 }

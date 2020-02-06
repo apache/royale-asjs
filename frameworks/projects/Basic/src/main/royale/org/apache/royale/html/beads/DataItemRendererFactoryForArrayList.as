@@ -73,7 +73,7 @@ package org.apache.royale.html.beads
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		protected function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
 			if (!dp)

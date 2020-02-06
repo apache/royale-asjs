@@ -27,8 +27,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
@@ -59,7 +61,7 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			if (!dataProviderModel)
 				return;
@@ -91,11 +93,14 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as IIndexedItemRenderer;
-			labelField = dataProviderModel.labelField;
-			
-			fillRenderer(event.index, event.item, ir, presentationModel);
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
+            
+			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+
+            var data:Object = event.item;
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, event.index);
+            ir.data = data;				
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = dataGroup.numItemRenderers;
@@ -130,6 +135,9 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
+            
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 			dataGroup.removeItemRenderer(ir);
 			
@@ -163,10 +171,16 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
+            
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
-			setData(ir, event.item, event.index);
+
+            var data:Object = event.item;
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, event.index);
+            ir.data = data;				
 		}
 		
 	}

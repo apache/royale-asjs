@@ -159,7 +159,7 @@ package org.apache.royale.mdl.beads
             var n:int = dp.length;
             for (var i:int = 0; i < n; i++)
             {
-                var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITabItemRenderer;
+                var ir:ITabItemRenderer = itemRendererFactory.createItemRenderer() as ITabItemRenderer;
                 dataGroup.addItemRenderer(ir, false);
                 ir.index = i;
                 ir.labelField = labelField;

@@ -25,11 +25,14 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
+    import org.apache.royale.html.beads.DataItemRendererFactoryBase;
 	
 	/**
 	 *  The DataItemRendererFactoryForSeriesData creates the itemRenderers necessary for series-based
@@ -52,8 +55,8 @@ package org.apache.royale.charts.beads
 		 */
 		public function DataItemRendererFactoryForSeriesData()
 		{
-            factory =  new ChartItemRendererFactory(this);
-            itemRendererClassFactory = factory;
+            factory =  new ChartItemRendererClassFactory(this);
+            itemRendererFactory = factory;
 		}
 		
         private var factory:IItemRendererClassFactory;
@@ -81,7 +84,7 @@ package org.apache.royale.charts.beads
          */
         override protected function dataProviderChangeHandler(event:Event):void
         {
-            dp = selectionModel.dataProvider as Array;
+            dp = dataProviderModel.dataProvider as Array;
             chart = _strand as IChart;
             series = chart.series;
             
@@ -97,7 +100,7 @@ package org.apache.royale.charts.beads
             }
         }
         
-        override protected function removeAllItemRenderers():void
+        override protected function removeAllItemRenderers(parent:IItemRendererOwnerView):void
         {
             // do nothing.  We don't want to remove the renderers
             // between each series, we removed them all ourselves
@@ -119,12 +122,20 @@ package org.apache.royale.charts.beads
 import org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData;
 import org.apache.royale.core.IDataProviderModel;
 import org.apache.royale.core.UIBase;
+import org.apache.royale.charts.core.IChartItemRenderer;
+import org.apache.royale.core.Bead;
+import org.apache.royale.core.IItemRendererOwnerView;
+import org.apache.royale.core.IItemRenderer;
+import org.apache.royale.core.IIndexedItemRenderer;
+import org.apache.royale.core.IIndexedItemRendererInitializer;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.core.ItemRendererClassFactory;
 
-class ChartItemRendererFactory extends ItemRendererClassFactory
+class ChartItemRendererClassFactory extends ItemRendererClassFactory
 {
     private var owner:DataItemRendererFactoryForSeriesData;
     
-    public function ChartItemRendererFactory(ref:DataItemRendererFactoryForSeriesData)
+    public function ChartItemRendererClassFactory(ref:DataItemRendererFactoryForSeriesData)
     {
         owner = ref;
         createFunction = createChartSeriesRenderer;
@@ -137,6 +148,7 @@ class ChartItemRendererFactory extends ItemRendererClassFactory
     }
 }
 
+
 class ChartItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer		
 {
     private var owner:DataItemRendererFactoryForSeriesData;
@@ -145,6 +157,8 @@ class ChartItemRendererInitializer extends Bead implements IIndexedItemRendererI
     {
         owner = ref;    
     }
+    
+    private var _strand:IStrand;
     
     /**
      *  @copy org.apache.royale.core.IBead#strand
@@ -165,7 +179,7 @@ class ChartItemRendererInitializer extends Bead implements IIndexedItemRendererI
      *  @private
      *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
      */
-    public function initializeItemRenderer(ir:IIndexedItemRenderer, data:Object, ownerView:IItemRendererOwnerView, index:int):void
+    public function initializeItemRenderer(ir:IIndexedItemRenderer, data:Object, ownerView:IItemRendererOwnerView):void
     {
         ir.itemRendererOwnerView = ownerView;
     }

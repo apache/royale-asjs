@@ -32,7 +32,7 @@ import spark.components.ResizeMode;
 
 use namespace mx_internal;  */
 
-import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IItemRenderer;
 import spark.components.DataRenderer;
 /**
  *  The ItemRenderer class is the base class for Spark item renderers.
@@ -913,9 +913,4 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
     } */
 
 }
-}
-
-class SparkItemRendererISelectableImpl extends Bead implements ISelectableItemRenderer
-{
-    
 }

@@ -30,7 +30,8 @@ package mx.controls.listClasses
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
@@ -45,7 +46,6 @@ package mx.controls.listClasses
 	import org.apache.royale.html.List;
     import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -77,10 +77,6 @@ package mx.controls.listClasses
 			super();
 		}
 
-        protected var dataProviderModel:IDataProviderModel;
-        
-        protected var dataField:String;
-                
         /**
          *  Free an item renderer for a given index.
          *
@@ -93,7 +89,7 @@ package mx.controls.listClasses
          */
         public function freeItemRendererForIndex(index:int):void
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
+            var ir:IIndexedItemRenderer = rendererMap[index];
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             dataGroup.removeItemRenderer(ir);
@@ -142,9 +138,9 @@ package mx.controls.listClasses
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
-        public function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer
+        public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
+            var ir:IIndexedItemRenderer = rendererMap[index];
             if (ir) return ir;
             
             if (!cursor)
@@ -155,29 +151,15 @@ package mx.controls.listClasses
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-            var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+            ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
             
             dataGroup.addItemRendererAt(ir, elementIndex);
-            ir.index = index;
-            ir.labelField = labelField;
-            if (dataItemRenderer)
-            {
-                dataItemRenderer.dataField = dataField;
-            }
             rendererMap[index] = ir;
             
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            if (presentationModel) {
-                var style:SimpleCSSStyles = new SimpleCSSStyles();
-                style.marginBottom = presentationModel.separatorThickness;
-                UIBase(ir).style = style;
-                UIBase(ir).height = presentationModel.rowHeight;
-                UIBase(ir).percentWidth = 100;
-            }
             var distance:int = index - currentIndex;
             cursor.seek(CursorBookmark.CURRENT, distance);
             currentIndex = index;
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, cursor.current, dataGroup, index);
             ir.data = cursor.current;
             
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);

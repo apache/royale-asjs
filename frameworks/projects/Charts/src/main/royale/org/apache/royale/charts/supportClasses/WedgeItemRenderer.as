@@ -35,7 +35,7 @@ package org.apache.royale.charts.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class WedgeItemRenderer extends DataItemRenderer implements IWedgeItemRenderer
+	public class WedgeItemRenderer extends ChartItemRenderer implements IWedgeItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -48,36 +48,6 @@ package org.apache.royale.charts.supportClasses
 		public function WedgeItemRenderer()
 		{
 			super();
-		}
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-		}
-		
-		override public function addBead(bead:IBead):void
-		{
-			super.addBead(bead);
-		}
-		
-		private var _series:IChartSeries;
-		
-		/**
-		 *  The series to which this itemRenderer instance belongs. Or, the series
-		 *  being presented.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get series():IChartSeries
-		{
-			return _series;
-		}
-		public function set series(value:IChartSeries):void
-		{
-			_series = value;
 		}
 		
 		private var filledPath:Path;
@@ -118,20 +88,6 @@ package org.apache.royale.charts.supportClasses
 		public function set stroke(value:IStroke):void
 		{
 			_stroke = value;
-		}
-		
-		/**
-		 *  @copy org.apache.royale.supportClasses.UIItemRendererBase#data
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		override public function set data(value:Object):void
-		{
-			super.data = value;	
-			drawWedgeInternal();
 		}
 		
 		private var _centerX:Number;
@@ -292,8 +248,10 @@ package org.apache.royale.charts.supportClasses
 		private var hoverFill:IFill;
 		
 		override public function updateRenderer():void
-		{						
-			if (down||selected||hovered) {
+		{				
+            drawWedgeInternal();
+            
+			if (selectionBead.down || selectionBead.selected || selectionBead.hovered) {
 				if (hoverFill == null) {
 					if(fill is SolidColor)
 					{
@@ -320,30 +278,5 @@ package org.apache.royale.charts.supportClasses
 			filledPath.drawStringPath(0, 0, filledPath.data);
 		}
 		
-		/*
-		 * Ignored by WedgeItemRenderer
-		 */
-		
-		/**
-		 * @private
-		 */
-		public function get xField():String
-		{
-			return null;
-		}
-		public function set xField(value:String):void
-		{
-		}
-		
-		/**
-		 * @private
-		 */
-		public function get yField():String
-		{
-			return null;
-		}
-		public function set yField(value:String):void
-		{
-		}
 	}
 }

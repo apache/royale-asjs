@@ -32,7 +32,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IRuntimeSelectableItemRenderer, IEmphasis
+	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IEmphasis
 	{
 		/**
 		 *  constructor.
@@ -137,56 +137,6 @@ package org.apache.royale.core
             return false;
             }
         }
-
-        /************************************
-         *  IRuntimeSelectableItemRenderer
-         ************************************/
-
-        private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-
-		public function set selectable(value:Boolean):void
-		{
-			_selectable = value;	
-		}
-
-        private var _hoverable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get hoverable():Boolean
-		{
-			return _hoverable;
-		}
-
-		public function set hoverable(value:Boolean):void
-		{
-			_hoverable = value;	
-		}
 
         private var _emphasis:String;
         /**

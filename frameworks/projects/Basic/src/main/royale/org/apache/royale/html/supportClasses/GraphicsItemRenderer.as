@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+    import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
@@ -34,7 +36,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class GraphicsItemRenderer extends CompoundGraphic
+	public class GraphicsItemRenderer extends CompoundGraphic implements IItemRenderer
 	{
 		/**
 		 *  Constructor.
@@ -63,8 +65,6 @@ package org.apache.royale.html.supportClasses
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
             
-            loadBeadFromValuesManager(ISelectableItemRenderer, "iSelectableItemRenderer", this);
-			
 			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 			
@@ -280,7 +280,7 @@ package org.apache.royale.html.supportClasses
 			_dataField = value;
 		}
 		
-		private var _itemRendererOwnerView:Object;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		
 		/**
 		 * The parent container for the itemRenderer instance.
@@ -290,11 +290,11 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get itemRendererOwnerView():Object
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
 			return _itemRendererOwnerView;
 		}
-		public function set itemRendererOwnerView(value:Object):void
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
 			_itemRendererOwnerView = value;
 		}

@@ -16,27 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.charts.optimized
+package org.apache.royale.charts.supportClasses
 {
 	import org.apache.royale.charts.core.IChartItemRenderer;
 	import org.apache.royale.charts.core.IChartSeries;
-	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.graphics.IFill;
 	import org.apache.royale.graphics.IStroke;
 	import org.apache.royale.graphics.SolidColor;
-	import org.apache.royale.graphics.SolidColorStroke;
-	import org.apache.royale.html.supportClasses.GraphicsItemRenderer;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.svg.LinearGradient;
+	import org.apache.royale.svg.Rect;
 	
 	/**
-	 *  The SVGBoxItemRenderer draws its graphics directly into a SVGChartDataGroup
-	 *  (CompoundGraphic).
-	 *
+	 *  The ChartItemRenderer is the base class for Chart ItemRenderers. 
+     *  This class implements the org.apache.royale.charts.core.IChartItemRenderer
+	 *  interface. 
+	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class SVGBoxItemRenderer extends GraphicsItemRenderer implements IChartItemRenderer
+	public class ChartItemRenderer extends DataItemRenderer implements IChartItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -46,11 +49,11 @@ package org.apache.royale.charts.optimized
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function SVGBoxItemRenderer()
+		public function ChartItemRenderer()
 		{
 			super();
 		}
-		
+				
 		private var _series:IChartSeries;
 		
 		/**
@@ -70,6 +73,8 @@ package org.apache.royale.charts.optimized
 		{
 			_series = value;
 		}
+		
+		private var filledRect:Rect;
 				
 		private var _yField:String = "y";
 		
@@ -108,6 +113,14 @@ package org.apache.royale.charts.optimized
 		{
 			_xField = value;
 		}
+        
+        protected var selectionBead:ISelectableItemRenderer;
+        
+        override public function addedToParent():void
+        {
+            super.addedToParent();
+            selectionBead = getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;   
+        }
 		
 		/**
 		 *  @copy org.apache.royale.supportClasses.UIItemRendererBase#data
@@ -120,7 +133,7 @@ package org.apache.royale.charts.optimized
 		override public function set data(value:Object):void
 		{
 			super.data = value;	
-			drawBar();
+			updateRenderer();
 		}
 		
 		/**
@@ -134,7 +147,7 @@ package org.apache.royale.charts.optimized
 		override public function set width(value:Number):void
 		{
 			super.width = value;
-			drawBar();
+			updateRenderer();
 		}
 		
 		/**
@@ -148,18 +161,12 @@ package org.apache.royale.charts.optimized
 		override public function set height(value:Number):void
 		{
 			super.height = value;
-			drawBar();
-		}
+            updateRenderer();
+		}		
 		
-		/**
-		 *  @private
-		 */
-		protected function drawBar():void
-		{
-			if ((this.width > 0) && (this.height > 0))
-			{		
-				this.drawRect(0, 0, this.width, this.height);
-			}
+		public function updateRenderer():void
+		{			
+
 		}
 	}
 }

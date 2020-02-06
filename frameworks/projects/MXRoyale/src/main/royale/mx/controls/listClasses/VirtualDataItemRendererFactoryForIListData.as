@@ -23,14 +23,15 @@ package mx.controls.listClasses
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -41,9 +42,9 @@ package mx.controls.listClasses
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
-    import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -75,10 +76,6 @@ package mx.controls.listClasses
 			super();
 		}
 
-        protected var dataProviderModel:IDataProviderModel;
-        
-        protected var dataField:String;
-                
         /**
          *  Free an item renderer for a given index.
          *
@@ -91,7 +88,7 @@ package mx.controls.listClasses
          */
         public function freeItemRendererForIndex(index:int):void
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
+            var ir:IIndexedItemRenderer = rendererMap[index];
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             dataGroup.removeItemRenderer(ir);
@@ -119,7 +116,6 @@ package mx.controls.listClasses
             if (!dp)
                 return;
             
-            labelField = dataProviderModel.labelField;
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
@@ -137,37 +133,23 @@ package mx.controls.listClasses
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
-        public function getItemRendererForIndex(index:int, elementIndex:int):ISelectableItemRenderer
+        public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
         {
-            var ir:ISelectableItemRenderer = rendererMap[index];
+            var ir:IIndexedItemRenderer = rendererMap[index];
             if (ir) return ir;
             
             var dp:IList = dataProviderModel.dataProvider as IList;
             
             var view:IListView = (_strand as IStrandWithModelView).view as IListView;
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-            var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+            ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
             
             dataGroup.addItemRendererAt(ir, elementIndex);
-            ir.index = index;
-            ir.labelField = labelField;
-            if (dataItemRenderer)
-            {
-                dataItemRenderer.dataField = dataField;
-            }
+            
+            var data:Object = dp.getItemAt(index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, index);
             rendererMap[index] = ir;
-            
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            if (presentationModel) {
-                var style:SimpleCSSStyles = new SimpleCSSStyles();
-                style.marginBottom = presentationModel.separatorThickness;
-                UIBase(ir).style = style;
-                UIBase(ir).height = presentationModel.rowHeight;
-                UIBase(ir).percentWidth = 100;
-            }
-            ir.data = dp.getItemAt(index);
-            
+                        
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
             newEvent.itemRenderer = ir;
             dispatchEvent(newEvent);
