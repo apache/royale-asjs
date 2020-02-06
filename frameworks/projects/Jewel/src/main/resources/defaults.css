@@ -484,6 +484,14 @@ j|ComboBoxPopUp {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ComboBoxPopUpView");
 }
 
+j|VirtualComboBox {
+  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp");
+}
+
+j|VirtualComboBoxPopUp {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualComboBoxPopUpView");
+}
+
 .jewel.datagrid {
   display: flex;
   position: relative;

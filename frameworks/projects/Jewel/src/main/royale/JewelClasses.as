@@ -75,6 +75,7 @@ package
         import org.apache.royale.jewel.beads.views.TableView; TableView;
         import org.apache.royale.jewel.beads.views.ComboBoxView; ComboBoxView;
         import org.apache.royale.jewel.beads.views.ComboBoxPopUpView; ComboBoxPopUpView;
+        import org.apache.royale.jewel.beads.views.VirtualComboBoxPopUpView; VirtualComboBoxPopUpView;
 		import org.apache.royale.jewel.beads.views.SnackbarView; SnackbarView;
         import org.apache.royale.jewel.beads.views.FormItemView; FormItemView;
         import org.apache.royale.jewel.beads.views.FormHeadingView; FormHeadingView;

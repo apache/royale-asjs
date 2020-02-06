@@ -75,6 +75,8 @@
     <component id="DropDownList" class="org.apache.royale.jewel.DropDownList"/>
     <component id="ComboBox" class="org.apache.royale.jewel.ComboBox"/>
     <component id="ComboBoxPopUp" class="org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp"/>
+    <component id="VirtualComboBox" class="org.apache.royale.jewel.VirtualComboBox"/>
+    <component id="VirtualComboBoxPopUp" class="org.apache.royale.jewel.supportClasses.combobox.VirtualComboBoxPopUp"/>
     <component id="Spacer" class="org.apache.royale.jewel.Spacer"/>
     <component id="DateChooser" class="org.apache.royale.jewel.DateChooser"/>
     <component id="DateField" class="org.apache.royale.jewel.DateField"/>
