@@ -3183,6 +3183,12 @@ j|ListItemRenderer {
     IContentView: ClassReference("org.apache.royale.jewel.supportClasses.list.DataGroup");
   }
 }
+j|VirtualList {
+  IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualListView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VirtualListVerticalLayout");
+  IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView");
+}
+
 j|Navigation {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ListView");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController");
