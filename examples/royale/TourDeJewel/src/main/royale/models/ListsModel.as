@@ -166,5 +166,51 @@ package models
 		{
 			return _iconButtonData;
 		}
+
+		/**
+		 * Used in the Virtual List example example.
+		 */
+		public var _bigIconListVOData:Array;
+        
+        public function get bigIconListVOData():ArrayList
+        {
+			var item:IconListVO;
+            if (!_bigIconListVOData)
+            {
+                _bigIconListVOData = [];
+				var icons:Array = [
+					MaterialIconType.ACCESSIBILITY,
+					MaterialIconType.BATTERY_ALERT,
+					MaterialIconType.CAKE,
+					MaterialIconType.DASHBOARD,
+					MaterialIconType.EMAIL,
+					MaterialIconType.EQUALIZER,
+					MaterialIconType.FACE,
+					MaterialIconType.GAMEPAD,
+					MaterialIconType.HEADSET_MIC,
+					MaterialIconType.KEYBOARD,
+					MaterialIconType.LAPTOP_MAC,
+					MaterialIconType.MEMORY,
+					MaterialIconType.ADD_CIRCLE_OUTLINE,
+					MaterialIconType.PAGES
+				];
+                for (var i:int = 0; i < 1000; i++)
+                {
+					item = new IconListVO("Icon - " + i, getRandomArrayIcon(icons)),
+                    _bigIconListVOData.push(item);//"row " + i.toString());
+                }
+            }
+            return new ArrayList(_bigIconListVOData);
+        }
+
+		public function getRandomArrayIcon(array:Array):String {
+			var idx:int=Math.floor(Math.random() * array.length);
+			return array[idx];
+		}
+
+		public function resetBigIconListVOData():void
+		{
+			_bigIconListVOData = null;
+		}
 	}
 }

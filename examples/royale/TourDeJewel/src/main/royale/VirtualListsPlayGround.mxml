@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
+	xmlns:j="library://ns.apache.org/royale/jewel" 
+	xmlns:html="library://ns.apache.org/royale/html" 
+	xmlns:js="library://ns.apache.org/royale/basic" 
+	xmlns:c="components.*" 
+	xmlns:models="models.*" sourceCodeUrl="VirtualListsPlayGround.mxml">
+	
+	<fx:Script>
+		<![CDATA[
+		import vos.IconListVO;
+		import org.apache.royale.collections.ArrayList;
+		import org.apache.royale.core.StyledUIBase;
+
+
+		private function addItemToVirtual():void
+		{
+			var iconListVO:IconListVO = new IconListVO("New Item", MaterialIconType.CLOSE);
+
+			(virtualIconList.dataProvider as ArrayList).addItem(iconListVO);
+			// listModel.iconListData.addItem(iconListVO); // to test things are adding to right place
+		}
+
+		public function removeItemAtToVirtual():void
+		{
+			(virtualIconList.dataProvider as ArrayList).removeItemAt(0);
+			// listModel.iconListData.removeItemAt(0);
+		}
+
+		public function updateFirstItemOfVirtual():void
+		{
+			var item:IconListVO = (virtualIconList.dataProvider as ArrayList).getItemAt(0) as IconListVO;
+			item.label = "What??";
+			item.icon = MaterialIconType.ACCESSIBILITY;
+			(virtualIconList.dataProvider as ArrayList).itemUpdated(item);
+			// listModel.iconListData.itemUpdated(item);
+		}
+
+		public function removeAllDataOfVirtual():void
+		{
+			(virtualIconList.dataProvider as ArrayList).removeAll();
+			// listModel.iconListData.removeAll();
+		}
+
+		private function describeItem(item:*):String {
+			const intro:String = "<strong>List selectedItem:</strong> ";
+			var evaluated:String;
+			if (item is String) {
+				evaluated = "String value: '" + item + "'";
+			} else {
+				if (item === null || item === undefined) {
+					evaluated = "Nothing Selected]";
+				}
+				else {
+					if (item is IconListVO) {
+						evaluated = "Object's label field: '" + IconListVO(item).label + "'";
+					} else {
+						evaluated = "Object : " + item;
+					}
+				}
+			}
+			return intro + evaluated;
+		}
+    	]]>
+	</fx:Script>
+
+	<c:model>
+		<models:ListsModel localId="listModel"/>
+	</c:model>
+
+	<c:beads>
+        <js:ContainerDataBinding/>
+    </c:beads>
+
+	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel VirtualList"/>
+				<j:HGroup gap="3">
+					<j:VGroup gap="3">
+						<j:VirtualList localId="virtualIconList" width="200" height="300"
+										className="simpleiIconListItemRenderer" labelField="label"
+										emphasis="secondary" rowHeight="52"
+										dataProvider="{listModel.bigIconListVOData}"
+										selectedIndex="4"
+										>
+										<!-- change="onChange(event)" -->
+							<j:beads>
+								<!-- <js:ConstantBinding sourceID="listModel" sourcePropertyName="bigIconListVOData" destinationPropertyName="dataProvider" /> -->
+								<j:AddListItemRendererForArrayListData/>
+								<j:RemoveListItemRendererForArrayListData/>
+								<j:UpdateListItemRendererForArrayListData/>
+								<j:RemoveAllItemRendererForArrayListData/>
+							</j:beads>
+						</j:VirtualList>
+						<!-- <j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/> -->
+					</j:VGroup>
+					<j:VGroup gap="3">
+						<!-- <j:Button text="change data" emphasis="{StyledUIBase.PRIMARY}" click="listModel.resetBigIconListVOData()"/>
+						<j:Button text="Add item" click="addItemToVirtual()"/>
+						<j:Button text="Remove first item" click="removeItemAtToVirtual()"/>
+						<j:Button text="Update first item" click="updateFirstItemOfVirtual()"/>
+						<j:Button text="Remove all data" click="removeAllDataOfVirtual()"/>
+						<j:Label html="{'Selected Index: ' + virtualIconList.selectedIndex}"/>
+						<j:Label html="Selected Item description:"/>
+						<j:Label html="{describeItem(virtualIconList.selectedItem)}"/>
+						<j:Label html="{'list filtered length: ' + filter.length}"/>
+						<j:TextInput>
+							<j:beads>
+								<j:TextPrompt prompt="filter list..."/>
+								<j:SearchFilterForList id="filter" list="{virtualIconList}"/>
+							</j:beads>
+						</j:TextInput> -->
+						<!-- <j:Button text="Trace Collection Labels" click="traceCollectionLabels()"/> -->
+						
+						<!-- example below for dataProvider binding -->
+						<!--<j:List labelField="label" dataProvider="{iconList.dataProvider}" selectedIndex="3" width="120" height="200" />-->
+					</j:VGroup>
+				</j:HGroup>
+			</j:Card>
+        </j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<html:H3 text="Jewel VirtualComboBox"/>
+				
+				<j:VirtualComboBox localId="virtualIconCmb"
+								className="cmbSimpleiIconListItemRenderer" labelField="label"
+								dataProvider="{listModel.bigIconListVOData}"
+								/>				
+			</j:Card>
+        </j:GridCell>
+	</j:Grid>
+	
+</c:ExampleAndSourceCodeTabbedSectionContent>

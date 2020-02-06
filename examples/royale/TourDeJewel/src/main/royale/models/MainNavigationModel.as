@@ -36,6 +36,7 @@ package models
             new NavigationLinkVO("Images", "image_panel", MaterialIconType.IMAGE),
             new NavigationLinkVO("Label", "label_panel", MaterialIconType.LABEL),
             new NavigationLinkVO("List", "list_panel", MaterialIconType.LIST_ALT),
+            new NavigationLinkVO("Virtual Lists", "virtual_lists_panel", MaterialIconType.LINE_WEIGHT),
             new NavigationLinkVO("NumericStepper", "numericstepper_panel", MaterialIconType.UNFOLD_MORE),
             new NavigationLinkVO("PopUp", "popup_panel", MaterialIconType.FLIP_TO_FRONT),
             new NavigationLinkVO("RadioButton", "radiobutton_panel", MaterialIconType.RADIO_BUTTON_CHECKED),

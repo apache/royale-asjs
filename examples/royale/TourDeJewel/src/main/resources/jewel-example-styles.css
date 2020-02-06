@@ -32,6 +32,18 @@ j|IconButtonBar
     IItemRenderer: ClassReference("itemRenderers.TableStyleListItemRenderer");
 }
 
+.simpleiIconListItemRenderer
+{
+    IItemRenderer: ClassReference("itemRenderers.SimpleIconListItemRenderer");
+}
+
+/* .cmbSimpleiIconListItemRenderer`
+{
+    IItemRenderer: ClassReference("itemRenderers.SimpleIconListItemRenderer");
+} */
+
+
+
 .iconListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.IconListItemRenderer");
