@@ -23,7 +23,16 @@ package org.apache.royale.jewel.beads.layouts
 
 	}
     COMPILE::SWF {
-        import org.apache.royale.geom.Size;
+    import org.apache.royale.geom.Size;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.layout.EdgeData;
+	import org.apache.royale.core.IScrollingViewport;
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IScrollingViewport;
+	import org.apache.royale.html.beads.VirtualDataContainerView;
+	import org.apache.royale.core.ILayoutChild;
+	import org.apache.royale.core.IUIBase;
     }
 	import org.apache.royale.collections.ICollectionView;
 	import org.apache.royale.core.IBeadLayout;
@@ -35,7 +44,6 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
-	import org.apache.royale.core.ISelectionModel;
         
 	/**
 	 *  The VirtualListVerticalLayout class is used for Jewel List that wants to use VirtualListView
