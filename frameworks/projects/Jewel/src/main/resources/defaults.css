@@ -485,7 +485,7 @@ j|ComboBoxPopUp {
 }
 
 j|VirtualComboBox {
-  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp");
+  IPopUp: ClassReference("org.apache.royale.jewel.supportClasses.combobox.VirtualComboBoxPopUp");
 }
 
 j|VirtualComboBoxPopUp {
