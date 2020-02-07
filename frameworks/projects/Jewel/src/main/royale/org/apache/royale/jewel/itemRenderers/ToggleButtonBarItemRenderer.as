@@ -23,6 +23,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.WrappedHTMLElement;
 	}
 	import org.apache.royale.core.IIcon;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.ItemClickedEvent;
@@ -99,7 +100,7 @@ package org.apache.royale.jewel.itemRenderers
 		/*
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
-		private var _itemRendererOwnerView:Object;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		/**
 		 * The parent container for the itemRenderer instance.
 		 *
@@ -108,11 +109,11 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get itemRendererOwnerView():Object
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
 			return _itemRendererOwnerView;
 		}
-		public function set itemRendererOwnerView(value:Object):void
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
 			_itemRendererOwnerView = value;
 

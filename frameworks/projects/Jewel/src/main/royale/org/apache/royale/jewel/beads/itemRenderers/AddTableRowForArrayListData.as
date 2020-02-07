@@ -140,7 +140,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 					ir = column.itemRenderer.newInstance() as TableItemRenderer;
 				} else
 				{
-					ir = itemRendererFactory.createItemRenderer(itemRendererOwnerView) as TableItemRenderer;
+					ir = itemRendererFactory.createItemRenderer() as TableItemRenderer;
 				}
 
 				labelField =  column.dataField;

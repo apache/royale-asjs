@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
+    import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
 
 	/**
@@ -59,8 +60,9 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super.data = value;
 
+            var model:DateChooserModel = (itemRendererOwnerView.host as IStrandWithModel).model as DateChooserModel;
 			//itemRendererOwnerView.parent is DateChooser
-			var viewState:int = (itemRendererOwnerView.parent.model as DateChooserModel).viewState;
+			var viewState:int = model.viewState;
 
 			if (value[labelField] is Date) {
 				if(viewState == 0)
@@ -70,7 +72,7 @@ package org.apache.royale.jewel.itemRenderers
 				{
 					text = String( (value[labelField] as Date).getFullYear());
 				} else {
-					var monthNames:Array = (itemRendererOwnerView.parent.model as DateChooserModel).monthNames;
+					var monthNames:Array = model.monthNames;
 					text = String(monthNames[(value[labelField] as Date).getMonth()]);
 				}
 

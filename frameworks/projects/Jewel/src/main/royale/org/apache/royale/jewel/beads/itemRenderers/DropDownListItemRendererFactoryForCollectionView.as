@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.collections.ICollectionView;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.models.IDropDownListModel;
@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
@@ -56,7 +56,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			labelField = dataProviderModel.labelField;
 			
-			var ir:ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer;
 			var item:Object;
 			
 			var model:IDropDownListModel = _strand.getBeadByType(IDropDownListModel) as IDropDownListModel;
@@ -64,7 +64,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 			if(offset == 1)
 			{
-				ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+				ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 				item = DropDownListItemRenderer.OPTION_DISABLED;
 				fillRenderer(0, item, ir, presentationModel);
 			}
@@ -72,7 +72,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				ir = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+				ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 				item = dp.getItemAt(i);
 				fillRenderer(i + offset, item, ir, presentationModel);
 			}

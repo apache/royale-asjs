@@ -28,6 +28,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.elements.A;
 	import org.apache.royale.jewel.Navigation;
+    import org.apache.royale.jewel.beads.ClassSelectorListHoverableRuntimeSelectableItemRendererBead;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
 	import org.apache.royale.utils.ClassSelectorList;
 	import org.apache.royale.utils.MXMLDataInterpreter;
@@ -67,6 +68,7 @@ package org.apache.royale.jewel.itemRenderers
 			}
 			open = false;
 			addEventListener('click', onSectionNav);
+            addBead(ClassSelectorListHoverableRuntimeSelectableItemRendererBead(navLinkClassSelector));
 		}
 		
 		private function onSectionNav(event:Event):void{
@@ -326,19 +328,6 @@ package org.apache.royale.jewel.itemRenderers
 			
             return nav;
         }
-
-		/**
-		 * @private
-		 * 
-		 * Styles are handled in CSS and usually This renderer does not use "selected" state
-	 	 * at least if the drawer is closed after selection.
-		 */
-		override public function updateRenderer():void
-		{
-			// there's no selection only hover state
-			if(hoverable)
-				navLinkClassSelector.toggle("hovered", hovered);
-		}
 		
 		private var _childNavClassName:String =  "navigation-section-group";
 		//can override in subclass if needed - used to target the lower level items via css

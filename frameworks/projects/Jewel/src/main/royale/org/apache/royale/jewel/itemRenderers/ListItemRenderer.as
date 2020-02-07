@@ -29,6 +29,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.jewel.beads.controls.TextAlign;
 	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+    import org.apache.royale.jewel.beads.ClassSelectorListRuntimeSelectableItemRendererBead;
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
@@ -59,6 +60,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("mxmlContent");
 			}
+            addBead(ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList));
 		}
 
 		private var _text:String = "";
@@ -144,48 +146,5 @@ package org.apache.royale.jewel.itemRenderers
             return element;
         }
 
-		private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		override public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-		override public function set selectable(value:Boolean):void
-		{
-			_selectable = value;
-			toggleClass("selectable", _selectable);	
-		}
-
-        /**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			// if (down)
-			// 	useColor = downColor;
-			// else if (hovered)
-			// 	useColor = highlightColor;
-			// else 
-            //if (selected)
-            // 	useColor = selectedColor;
-			//else
-			// 	useColor = backgroundColor;
-
-			if(hoverable)
-            	toggleClass("hovered", hovered);
-			if(selectable)
-            	toggleClass("selected", selected);
-		}
 	}
 }

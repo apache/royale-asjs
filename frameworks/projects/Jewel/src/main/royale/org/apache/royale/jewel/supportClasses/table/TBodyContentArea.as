@@ -91,7 +91,7 @@ package org.apache.royale.jewel.supportClasses.table
 		{
 			// this method is not used for now, so it needs to be tested to see if it's correctly implemented
 			var r:DataItemRenderer = renderer as DataItemRenderer;
-			r.itemRendererOwnerView = host; // easy access from renderer to table
+			r.itemRendererOwnerView = this; // easy access from renderer to table
 			var tableCell:TableCell = new TableCell();
 			tableCell.addElement(r);
 
@@ -124,7 +124,7 @@ package org.apache.royale.jewel.supportClasses.table
 		public function addItemRendererAt(renderer:IItemRenderer, index:int):void
 		{
 			var r:DataItemRenderer = renderer as DataItemRenderer;
-			r.itemRendererOwnerView = host; // easy access from renderer to table
+			r.itemRendererOwnerView = this; // easy access from renderer to table
 			var tableCell:TableCell = new TableCell();
 			tableCell.addElement(r);
 

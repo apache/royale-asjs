@@ -27,13 +27,13 @@ package org.apache.royale.jewel.beads.controllers
 	import goog.events.Event;
 	import goog.events.EventType;
 
-	import org.apache.royale.core.IRuntimeSelectableItemRenderer;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.events.BrowserEvent;
 	}
+    import org.apache.royale.core.IRuntimeSelectableItemRenderer;
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.ItemClickedEvent;
 
@@ -62,7 +62,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 		}
 		
-        private var renderer:ISelectableItemRenderer;
+        private var renderer:IIndexedItemRenderer;
 		private var _strand:IStrand;
 		
 		/**
@@ -72,13 +72,13 @@ package org.apache.royale.jewel.beads.controllers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            renderer = value as ISelectableItemRenderer;
+            renderer = value as IIndexedItemRenderer;
 			
 			COMPILE::SWF {
 	            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
@@ -103,7 +103,7 @@ package org.apache.royale.jewel.beads.controllers
 		COMPILE::SWF
 		protected function rollOverHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				target.dispatchEvent(new Event("itemRollOver",true));
@@ -111,12 +111,12 @@ package org.apache.royale.jewel.beads.controllers
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseOver(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target) {
 				target.dispatchEvent(new Event("itemRollOver",true));
 			}
@@ -128,7 +128,7 @@ package org.apache.royale.jewel.beads.controllers
 		COMPILE::SWF
 		protected function rollOutHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				target.dispatchEvent(new Event("itemRollOut",true));
@@ -136,12 +136,12 @@ package org.apache.royale.jewel.beads.controllers
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseOut(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
 				target.dispatchEvent(new Event("itemRollOut",true));
@@ -154,27 +154,29 @@ package org.apache.royale.jewel.beads.controllers
 		COMPILE::SWF
 		protected function mouseDownHandler(event:MouseEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-                target.down = true;
+                var selectionBead:IRuntimeSelectableItemRenderer = target.getBeadByType(IRuntimeSelectableItemRenderer) as IRuntimeSelectableItemRenderer;
+                selectionBead.down = true;
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 		}
 		
 		/**
 		 * @private
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseDown(event:BrowserEvent):void
 		{
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
-			if (target)
-			{
-				target.down = true;
-				target.hovered = false;
-			}
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+            if (target)
+            {
+                var selectionBead:IRuntimeSelectableItemRenderer = target.getBeadByType(IRuntimeSelectableItemRenderer) as IRuntimeSelectableItemRenderer;
+                selectionBead.down = true;
+                selectionBead.hovered = false;
+            }
 		}
 		
 		/**
@@ -184,7 +186,7 @@ package org.apache.royale.jewel.beads.controllers
 		protected function mouseUpHandler(event:MouseEvent):void
 		{
 			event.stopImmediatePropagation();
-			var target:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{				
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
@@ -198,21 +200,25 @@ package org.apache.royale.jewel.beads.controllers
 		
 		/**
 		 * @private
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		COMPILE::JS
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
 			event.stopImmediatePropagation();
-			var target:IRuntimeSelectableItemRenderer = event.currentTarget as IRuntimeSelectableItemRenderer;
-			if (target && target.selectable)
-			{
-				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
-				newEvent.data = target.data;
-				newEvent.index = target.index;
-
-				target.dispatchEvent(newEvent);
-			}
+            var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+            if (target)
+            {
+    			var selectionBead:IRuntimeSelectableItemRenderer = target.getBeadByType(IRuntimeSelectableItemRenderer) as IRuntimeSelectableItemRenderer;
+    			if (selectionBead && selectionBead.selectable)
+    			{
+    				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+    				newEvent.data = target.data;
+    				newEvent.index = target.index;
+    
+    				target.dispatchEvent(newEvent);
+    			}
+            }
 		}
 	
 	}

@@ -23,7 +23,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
@@ -153,10 +154,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.core.IListView
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		 *  @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
          */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -174,12 +176,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+				var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
                 var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
 
 				
 				ir.index = i;
-				ir.labelField = labelField;
+                (ir as ILabelFieldItemRenderer).labelField = labelField;
                 if (dataItemRenderer)
                 {
                     dataItemRenderer.dataField = dataField;

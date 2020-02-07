@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -124,20 +124,20 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var ir:ISelectableItemRenderer = itemRendererOwnerView.getItemRendererAt(event.index) as ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = itemRendererOwnerView.getItemRendererAt(event.index) as IIndexedItemRenderer;
 			itemRendererOwnerView.removeItemRenderer(ir);
 
 			// adjust the itemRenderers' index to adjust for the shift
 			var n:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = itemRendererOwnerView.getItemRendererAt(i) as ISelectableItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
 			}
 

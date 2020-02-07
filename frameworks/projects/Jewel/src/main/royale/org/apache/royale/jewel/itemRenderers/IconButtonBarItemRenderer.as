@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.IIcon;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.ItemClickedEvent;
@@ -95,7 +96,7 @@ package org.apache.royale.jewel.itemRenderers
 		/*
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
-		private var _itemRendererOwnerView:Object;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		/**
 		 * The parent container for the itemRenderer instance.
 		 *
@@ -104,11 +105,11 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get itemRendererOwnerView():Object
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
 			return _itemRendererOwnerView;
 		}
-		public function set itemRendererOwnerView(value:Object):void
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
 			_itemRendererOwnerView = value;
 
@@ -193,107 +194,5 @@ package org.apache.royale.jewel.itemRenderers
 			}
 		}
 
-		private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-
-		public function set selectable(value:Boolean):void
-		{
-			_selectable = value;	
-		}
-
-		private var _hoverable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get hoverable():Boolean
-		{
-			return _hoverable;
-		}
-
-		public function set hoverable(value:Boolean):void
-		{
-			_hoverable = value;	
-		}
-		
-		private var _hovered:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a hovered state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get hovered():Boolean
-		{
-			return _hovered;
-		}
-		public function set hovered(value:Boolean):void
-		{
-			_hovered = value;
-		}
-
-		private var _selected:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a selected state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get selected():Boolean
-		{
-			return _selected;
-		}
-		public function set selected(value:Boolean):void
-		{
-			_selected = value;
-		}
-
-		private var _down:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a down (or pre-selected) state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get down():Boolean
-		{
-			return _down;
-		}
-		public function set down(value:Boolean):void
-		{
-			_down = value;
-		}
 	}
 }

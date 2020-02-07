@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+    import org.apache.royale.core.ISelectableItemRenderer;
+
 	COMPILE::JS
 	{
 	import org.apache.royale.events.Event;
@@ -62,9 +64,10 @@ package org.apache.royale.jewel.beads.views
 		{
 			var prev_ir:TabBarButtonItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as TabBarButtonItemRenderer;
 			var ir:TabBarButtonItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as TabBarButtonItemRenderer;
+            var selectionBead:ISelectableItemRenderer;
 
 			if(prev_ir) {
-				prev_ir.selected = false;
+                selectionBead = prev_ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
 				var lastRect:ClientRect = prev_ir.getBoundingBox;
 				var currentRect:ClientRect = ir.getBoundingBox;
 				var widthDiff:Number = lastRect.width / currentRect.width;
@@ -72,11 +75,12 @@ package org.apache.royale.jewel.beads.views
 					widthDiff = 1;
 				var positionDiff:Number = lastRect.left - currentRect.left;
 				
-				ir.selected = true;
+                selectionBead.selected = false;
 				ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
 			} else
 			{
-				ir.selected = true;
+                selectionBead = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                selectionBead.selected = true;
 			}
 			
 			lastSelectedIndex = listModel.selectedIndex;

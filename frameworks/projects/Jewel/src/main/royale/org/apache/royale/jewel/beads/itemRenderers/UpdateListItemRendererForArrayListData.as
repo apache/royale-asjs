@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -134,7 +134,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-            var ir:ISelectableItemRenderer = itemRendererOwnerView.getItemRendererAt(event.index) as ISelectableItemRenderer;
+            var ir:IIndexedItemRenderer = itemRendererOwnerView.getItemRendererAt(event.index) as IIndexedItemRenderer;
 
             setData(ir, event.item, event.index);
 
@@ -190,7 +190,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
 			var forceDataChangeEvent:Boolean = (itemRenderer.data == data);

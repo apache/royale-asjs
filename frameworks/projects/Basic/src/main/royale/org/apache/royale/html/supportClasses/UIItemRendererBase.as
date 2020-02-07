@@ -18,8 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-	import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IBead;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
@@ -39,7 +40,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class UIItemRendererBase extends UIBase
+	public class UIItemRendererBase extends UIBase implements IIndexedItemRenderer
 	{
 		/**
 		 *  constructor.

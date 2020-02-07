@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -156,27 +156,27 @@ package org.apache.royale.jewel.beads.controllers
         }
 
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
          * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloverHandler(event:Event):void
 		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
 				IRollOverModel(listModel).rollOverIndex = renderer.index;
 			}
 		}
 
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
          * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloutHandler(event:Event):void
 		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
-				renderer.hovered = false;
-				renderer.down = false;
+				// renderer.hovered = false; who sets this?
+				// renderer.down = false; who sets this?
 				IRollOverModel(listModel).rollOverIndex = -1;
 			}
 		}

@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
@@ -130,7 +130,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-			var ir:ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer;
 			var processedRow:TableRow = (itemRendererOwnerView as UIBase).getElementAt(event.index) as TableRow;
 			var cell:TableCell;
 			var n:int = processedRow.numElements;
@@ -138,7 +138,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			for (var i:int = 0; i < n; i++)
 			{
 				cell = processedRow.getElementAt(i) as TableCell;
-				ir = cell.getElementAt(0) as ISelectableItemRenderer;
+				ir = cell.getElementAt(0) as IIndexedItemRenderer;
 				setData(ir, event.item, event.index);
 			}
 			
@@ -169,7 +169,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
             itemRenderer.data = data;
