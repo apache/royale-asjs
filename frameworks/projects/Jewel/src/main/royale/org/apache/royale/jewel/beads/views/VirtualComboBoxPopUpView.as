@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.IBeadModel;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.VirtualList;
 
     /**
@@ -32,7 +32,7 @@ package org.apache.royale.jewel.beads.views
      * 
 	 *  @viewbead	 
 	 */
-	public class VirtualComboBoxPopUpView extends BeadViewBase
+	public class VirtualComboBoxPopUpView extends ComboBoxPopUpView
 	{
 		/**
 		 *  constructor
@@ -63,21 +63,10 @@ package org.apache.royale.jewel.beads.views
             
             var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
 
-            _list = new VirtualList();
-            _list.model = model;
+            list = new VirtualList();
+            list.model = model;
             
-            IParent(_strand).addElement(_list);
+            IParent(_strand).addElement(list);
 		}
-
-        private var _list:VirtualList;
-
-        public function get list():VirtualList
-        {
-        	return _list;
-        }
-        public function set list(value:VirtualList):void
-        {
-        	_list = value;
-        }
     }
 }

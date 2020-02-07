@@ -56,6 +56,8 @@ package org.apache.royale.jewel.beads.views
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
+         * 
+         *  @royaleignorecoercion org.apache.royale.jewel.List
          */
         override public function set strand(value:IStrand):void
 		{
@@ -63,21 +65,12 @@ package org.apache.royale.jewel.beads.views
             
             var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
 
-            _list = new List();
-            _list.model = model;
+            list = new List();
+            list.model = model;
             
-            IParent(_strand).addElement(_list);
+            IParent(_strand).addElement(list);
 		}
 
-        private var _list:List;
-
-        public function get list():List
-        {
-        	return _list;
-        }
-        public function set list(value:List):void
-        {
-        	_list = value;
-        }
+        public var list:List;
     }
 }

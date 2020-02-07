@@ -18,21 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS
-	{
-
-	}
     COMPILE::SWF {
+    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IScrollingViewport;
+    import org.apache.royale.core.ISelectionModel;
+    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.ValuesManager;
+    import org.apache.royale.core.layout.EdgeData;
     import org.apache.royale.geom.Size;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.layout.EdgeData;
-	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.html.beads.VirtualDataContainerView;
-	import org.apache.royale.core.ILayoutChild;
-	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.html.beads.VirtualDataContainerView;
     }
 	import org.apache.royale.collections.ICollectionView;
 	import org.apache.royale.core.IBeadLayout;
@@ -132,16 +127,14 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @royaleignorecoercion Array
 		 *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
 		 *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithPresentationModel
 		 */
 		override public function layout():Boolean
 		{
             if (inLayout) return true;
             inLayout = true;
-
-            // dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
-            
+             
 			COMPILE::SWF
 			{
                 // the strategy for virtualization in SWF is based on the
