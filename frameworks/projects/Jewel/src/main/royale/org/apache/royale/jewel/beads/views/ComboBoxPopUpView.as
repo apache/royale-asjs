@@ -28,7 +28,8 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
     import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
-
+    import org.apache.royale.events.Event;
+    
     /**
 	 * The ComboBoxPopUpView class is a view bead for the ComboBoxPopUp.
      * 
