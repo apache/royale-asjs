@@ -199,6 +199,8 @@ package org.apache.royale.jewel.beads.views
 
                     // popup is ComboBoxPopUp that fills 100% of browser window-> We want the internal List inside its view to adjust height
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
+					//popup width needs to be set before position inside bounding client to work ok
+					_list.width = host.width;
                     // _list.model = _comboPopUp.model;
 
                     COMPILE::JS
@@ -323,9 +325,6 @@ package org.apache.royale.jewel.beads.views
 				// Desktop width size
 				if(outerWidth >= ResponsiveSizes.TABLET_BREAKPOINT)
 				{
-					//popup width needs to be set before position inside bounding client to work ok
-					_list.width = _textinput.width + _button.width;
-
 					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = positionInsideBoundingClientRect(_strand, _list, origin);
 					var point:Point = PointUtils.localToGlobal(origin, _strand);
