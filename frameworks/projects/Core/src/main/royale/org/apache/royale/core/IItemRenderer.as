@@ -42,18 +42,5 @@ package org.apache.royale.core
 		function get data():Object;
 		function set data(value:Object):void;
 		
-		/**
-		 *  The view that controls where the item renderers are actually
-         *  parented.  This is usually the view of outer component, and not always
-         *  the container that parents
-		 *  all of the itemRenderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		function get itemRendererOwnerView():IItemRendererOwnerView;
-		function set itemRendererOwnerView(value:IItemRendererOwnerView):void;
 	}
 }

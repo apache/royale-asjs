@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+    import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
@@ -46,7 +47,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.0
 	 */
-	public class DynamicAddItemRendererForArrayListData extends DataItemRendererFactoryBase
+	public class DynamicAddItemRendererForArrayListData extends ItemRendererFactoryBase
 	{
 		/**
 		 * Constructor
@@ -60,19 +61,20 @@ package org.apache.royale.html.beads
 		{
 		}
 
+        private var dp:IArrayList;
+        
 		/**
 		 *  @private
 		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			dp = dataProviderModel.dataProvider as IArrayList;
 			if (!dp)
 				return;
 			
 			// listen for individual items being added in the future.
 			dp.addEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
-            super.dataProviderChangeHandler(event);
 		}
 
 		/**
@@ -97,7 +99,7 @@ package org.apache.royale.html.beads
 			// update the index values in the itemRenderers to correspond to their shifted positions.
             dataGroup.addItemRenderer(ir, false);
             var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, event.index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
             ir.data = data;
             
             // update the index values in the itemRenderers to correspond to their shifted positions.

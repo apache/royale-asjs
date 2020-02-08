@@ -18,36 +18,36 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.core.IBead;
     import org.apache.royale.core.IItemRendererOwnerView;
-
+    import org.apache.royale.core.IStrand;
+    
     /**
-     *  The IItemRendererInitializer interface is the basic interface for beads
-     *  that initialize properties on an IItemRenderer.  Simple implementations
-     *  only assign the data and itemRendererOwnerView property, but others will 
-     *  assign other properties if needed. 
+     *  The ItemRendererOwnerViewBead stores a reference
+     *  to the IItemRendererOwnerView for an IItemRenderer
      * 
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IIndexedItemRendererInitializer extends IItemRendererInitializer
+	public class ItemRendererOwnerViewBead extends Bead
 	{
         /**
-         *  This method is called to generate another instance of an item renderer.
-         * 
-         *  @param renderer The renderer
-         *  @param data The data for the renderer
-         *  @param ownerView the view of the component that owns the renderers
-         *  @param index the index in the list of renderers
-         * 
-         *  @see org.apache.royale.core.IItemRenderer
-         * 
+         *  Constructor.
+         *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function initializeIndexedItemRenderer(renderer:IIndexedItemRenderer, data:Object, index:int):void;
-	}
+		public function ItemRendererOwnerViewBead(ownerView:IItemRendererOwnerView)
+		{
+			super();
+            this.ownerView = ownerView;
+		}
+        
+        public var ownerView:IItemRendererOwnerView;
+        
+    }
 }

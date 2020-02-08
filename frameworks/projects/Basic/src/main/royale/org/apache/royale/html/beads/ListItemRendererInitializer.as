@@ -28,6 +28,7 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.ILabelFieldItemRenderer;
     import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
@@ -72,7 +73,7 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;            
+            presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
             dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
             labelField = dataProviderModel.labelField;            
 		}
@@ -82,11 +83,10 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
-		public function initializeItemRenderer(ir:IItemRenderer, data:Object, ownerView:IItemRendererOwnerView):void
+		public function initializeItemRenderer(ir:IItemRenderer, data:Object):void
 		{
             if (ir is ILabelFieldItemRenderer)
                 (ir as ILabelFieldItemRenderer).labelField = labelField;
-            ir.itemRendererOwnerView = ownerView;
             
             setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
         }
@@ -95,10 +95,10 @@ package org.apache.royale.html.beads
          *  @private
          *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
          */
-        public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, ownerView:IItemRendererOwnerView, index:int):void
+        public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
         {
             ir.index = index;
-            initializeItemRenderer(ir, data, ownerView);
+            initializeItemRenderer(ir, data);
         }
         
         protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void

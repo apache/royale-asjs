@@ -48,7 +48,7 @@ package org.apache.royale.collections
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IArrayList
+	public interface IArrayList extends IEventDispatcher
 	{
         /**
          *  The array of raw data needing conversion.

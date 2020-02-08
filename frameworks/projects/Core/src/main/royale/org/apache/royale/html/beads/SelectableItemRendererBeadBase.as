@@ -19,8 +19,9 @@
 package org.apache.royale.html.beads
 {
     import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
 
@@ -32,7 +33,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class SelectableItemRendererBeadBase implements IBead
+	public class SelectableItemRendererBeadBase implements IBead, ISelectableItemRenderer
 	{
 		/**
 		 *  constructor.

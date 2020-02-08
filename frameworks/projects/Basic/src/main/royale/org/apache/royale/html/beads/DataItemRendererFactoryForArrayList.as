@@ -68,6 +68,8 @@ package org.apache.royale.html.beads
 			super(target);
 		}
 		
+        private var dp:IArrayList;
+        
 		/**
 		 *  @private
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
@@ -75,11 +77,21 @@ package org.apache.royale.html.beads
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
+			dp = dataProviderModel.dataProvider as IArrayList;
 			if (!dp)
 				return;
 			
             super.dataProviderChangeHandler(event);
 		}
+        
+        override protected function get dataProviderLength():int
+        {
+            return dp.length;
+        }
+        
+        override protected function getItemAt(i:int):Object
+        {
+            return dp.getItemAt(i);
+        }
 	}
 }

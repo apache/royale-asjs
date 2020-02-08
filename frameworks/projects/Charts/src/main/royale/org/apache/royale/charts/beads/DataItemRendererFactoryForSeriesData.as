@@ -124,7 +124,6 @@ import org.apache.royale.core.IDataProviderModel;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.charts.core.IChartItemRenderer;
 import org.apache.royale.core.Bead;
-import org.apache.royale.core.IItemRendererOwnerView;
 import org.apache.royale.core.IItemRenderer;
 import org.apache.royale.core.IIndexedItemRenderer;
 import org.apache.royale.core.IIndexedItemRendererInitializer;
@@ -179,19 +178,18 @@ class ChartItemRendererInitializer extends Bead implements IIndexedItemRendererI
      *  @private
      *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
      */
-    public function initializeItemRenderer(ir:IIndexedItemRenderer, data:Object, ownerView:IItemRendererOwnerView):void
+    public function initializeItemRenderer(ir:IIndexedItemRenderer, data:Object):void
     {
-        ir.itemRendererOwnerView = ownerView;
     }
     
     /**
      *  @private
      *  @royaleignorecoercion org.apache.royale.core.IChartItemRenderer
      */
-    public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, ownerView:IItemRendererOwnerView, index:int):void
+    public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
     {
         (ir as IChartItemRenderer).series = owner.chartSeries;
         ir.index = index;
-        initializeItemRenderer(ir, data, ownerView);
+        initializeItemRenderer(ir, data);
     }        
 }

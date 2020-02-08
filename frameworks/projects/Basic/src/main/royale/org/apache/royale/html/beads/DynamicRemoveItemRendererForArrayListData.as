@@ -20,8 +20,9 @@ package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -29,7 +30,6 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.core.IParent;
 
 	/**
 	 * Handles the removal of an itemRenderer once the corresponding datum has been removed
@@ -40,7 +40,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.0
 	 */
-	public class DynamicRemoveItemRendererForArrayListData implements IBead
+	public class DynamicRemoveItemRendererForArrayListData extends ItemRendererFactoryBase
 	{
 		/**
 		 * Constructor
@@ -54,49 +54,12 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		private var _strand:IStrand;
-
-		/**
-		 * @copy org.apache.royale.core.IStrand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete", initComplete);
-		}
-		
-		/**
-		 *  finish setup
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		protected function initComplete(event:Event):void
-		{
-			IEventDispatcher(_strand).removeEventListener("initComplete", initComplete);
-			
-			_dataProviderModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);	
-			
-			// invoke now in case "dataProviderChanged" has already been dispatched.
-			dataProviderChangeHandler(null);
-		}
 		
 		/**
 		 * @private
 		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
-		protected function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
@@ -119,61 +82,20 @@ package org.apache.royale.html.beads
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var parent:IParent = itemRendererOwnerView as IParent;
-			var ir:IIndexedItemRenderer = parent.getElementAt(event.index) as IIndexedItemRenderer;
-			itemRendererOwnerView.removeItemRenderer(ir);
+            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+            var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(event.index) as IIndexedItemRenderer;
+            dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = parent.numElements;
+			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = parent.getElementAt(i) as IIndexedItemRenderer;
+				ir = dataGroup.getItemRendererForIndex(i) as IIndexedItemRenderer;
 				ir.index = i;
 			}
 
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
-		}
-
-		private var _dataProviderModel: IDataProviderModel;
-
-		/**
-		 *  The org.apache.royale.core.IDataProviderModel that contains the
-		 *  data source.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-		 *  @royaleignorecoercion org.apache.royale.core.IDataProviderModel
-		 */
-		public function get dataProviderModel(): IDataProviderModel
-		{
-			if (_dataProviderModel == null && _strand != null) {
-				_dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			}
-			return _dataProviderModel;
-		}
-
-		private var _itemRendererOwnerView: IItemRendererOwnerView;
-
-		/**
-		 *  The org.apache.royale.core.IItemRendererOwnerView used
-		 *  to generate instances of item renderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.0
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-		 */
-		public function get itemRendererOwnerView():IItemRendererOwnerView
-		{
-			if (_itemRendererOwnerView == null) {
-                var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-                _itemRendererOwnerView = view.dataGroup;
-			}
-			return _itemRendererOwnerView;
 		}
 	}
 }

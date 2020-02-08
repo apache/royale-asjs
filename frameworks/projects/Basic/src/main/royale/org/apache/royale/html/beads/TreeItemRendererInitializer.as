@@ -60,12 +60,12 @@ package org.apache.royale.html.beads
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 		 */
-		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, ownerView:IItemRendererOwnerView, index:int):void
+		override public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
 		{
             if (!dataProviderModel)
                 return;
             
-            super.initializeItemRenderer(ir, data, ownerView, index);
+            super.initializeItemRenderer(ir, data, index);
             
             var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
             var depth:int = treeData.getDepth(data);

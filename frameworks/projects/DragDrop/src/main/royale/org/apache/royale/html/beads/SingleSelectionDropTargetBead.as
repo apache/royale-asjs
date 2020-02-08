@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.ItemRendererOwnerViewBead;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ISelectionModel;
@@ -326,7 +327,8 @@ package org.apache.royale.html.beads
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				//trace("-- dropping onto an existing object: "+ir.data.toString());
 
-				contentViewAsParent = (ir.itemRendererOwnerView as ILayoutHost).contentView as IParent;
+                var ownerViewBead:ItemRendererOwnerViewBead = ir.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead;
+				contentViewAsParent = (ownerViewBead.ownerView as ILayoutHost).contentView as IParent;
 				targetIndex = contentViewAsParent.getElementIndex(ir);
 			}
 

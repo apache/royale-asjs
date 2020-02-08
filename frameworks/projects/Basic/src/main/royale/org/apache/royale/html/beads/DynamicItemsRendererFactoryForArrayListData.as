@@ -59,6 +59,8 @@ package org.apache.royale.html.beads
             super(target);
         }
 
+        private var dp:IArrayList;
+        
 		/**
 		 * @private
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
@@ -66,7 +68,7 @@ package org.apache.royale.html.beads
 		 */
         override protected function dataProviderChangeHandler(event:Event):void
         {
-            var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
+            dp = dataProviderModel.dataProvider as IArrayList;
             if (!dp)
                 return;
 
@@ -93,7 +95,7 @@ package org.apache.royale.html.beads
             var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
             dataGroup.addItemRenderer(ir, false);
             var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, event.index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
             ir.data = data;
             
 			// update the index values in the itemRenderers to correspond to their shifted positions.
@@ -106,6 +108,16 @@ package org.apache.royale.html.beads
 
 			sendStrandEvent(_strand,"itemsCreated");
 			sendStrandEvent(_strand,"layoutNeeded");
+        }
+        
+        override protected function get dataProviderLength():int
+        {
+            return dp.length;
+        }
+        
+        override protected function getItemAt(i:int):Object
+        {
+            return dp.getItemAt(i);
         }
     }
 }

@@ -108,28 +108,6 @@ package org.apache.royale.html.supportClasses
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
 
-        private var _itemRendererOwnerView:IItemRendererOwnerView;
-        
-        /**
-         *  The view of the parent component of the itemRenderer. 
-         *  This is not always the container that directly parents the
-         *  itemRenderers.  A List may have an internal DataGroup that
-         *  parents the itemRenderers,
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-        public function get itemRendererOwnerView():IItemRendererOwnerView
-        {
-            return _itemRendererOwnerView;
-        }
-        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
-        {
-            _itemRendererOwnerView = value;
-        }
-
 		private var _labelField:String = null;
 
 		/**
@@ -190,109 +168,6 @@ package org.apache.royale.html.supportClasses
 		public function set index(value:int):void
 		{
 			_index = value;
-		}
-
-		private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-
-		public function set selectable(value:Boolean):void
-		{
-			_selectable = value;	
-		}
-
-		private var _hoverable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get hoverable():Boolean
-		{
-			return _hoverable;
-		}
-
-		public function set hoverable(value:Boolean):void
-		{
-			_hoverable = value;	
-		}
-		
-		private var _hovered:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a hovered state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get hovered():Boolean
-		{
-			return _hovered;
-		}
-		public function set hovered(value:Boolean):void
-		{
-			_hovered = value;
-		}
-
-		private var _selected:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a selected state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get selected():Boolean
-		{
-			return _selected;
-		}
-		public function set selected(value:Boolean):void
-		{
-			_selected = value;
-		}
-
-		private var _down:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a down (or pre-selected) state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
-		 */
-		public function get down():Boolean
-		{
-			return _down;
-		}
-		public function set down(value:Boolean):void
-		{
-			_down = value;
 		}
 	}
 }

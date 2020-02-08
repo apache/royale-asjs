@@ -25,6 +25,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDragInitiator;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.ItemRendererOwnerViewBead;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.ILayoutHost;
@@ -255,7 +256,8 @@ package org.apache.royale.html.beads
 				var ir:IItemRenderer = startHere as IItemRenderer;
 				trace("-- dropping onto an existing object: "+ir.data.toString());
 
-				itemRendererOwnerView = (ir.itemRendererOwnerView as ILayoutHost).contentView as IParent;
+                var ownerViewBead:ItemRendererOwnerViewBead = ir.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead;
+				itemRendererOwnerView = (ownerViewBead.ownerView as ILayoutHost).contentView as IParent;
 				targetIndex = itemRendererOwnerView.getElementIndex(ir);
 			}
 			else  {

@@ -99,7 +99,7 @@ package org.apache.royale.html.beads
 			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 
             var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, event.index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
             ir.data = data;				
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
@@ -179,7 +179,7 @@ package org.apache.royale.html.beads
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 
             var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, event.index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
             ir.data = data;				
 		}
 		

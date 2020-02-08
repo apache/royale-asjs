@@ -94,17 +94,6 @@ package org.apache.royale.html.supportClasses
 		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
 			_itemRendererOwnerView = value;
-            if (!getBeadByType(ISelectableItemRenderer))
-            {
-                // load ISelectableItemRenderer impl from the
-                // owner, not the item renderer so that item
-                // renderers aren't strongly coupled to a
-                // particular selection visual and the list
-                // can dictate the selection visual
-                var c:Class = ValuesManager.valuesImpl.getValue(value.host, "iSelectableItemRenderer");
-                if (c)
-                    addBead(new c() as IBead);                    
-            }
 		}
 		
         /**

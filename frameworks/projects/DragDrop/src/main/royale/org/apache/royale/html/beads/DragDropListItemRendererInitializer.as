@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.mdl.beads
+package org.apache.royale.html.beads
 {	
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IDataProviderModel;
@@ -31,19 +31,16 @@ package org.apache.royale.mdl.beads
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 
-    import org.apache.royale.mdl.supportClasses.ITabItemRenderer;
-    import org.apache.royale.mdl.beads.models.ITabModel;
-    
 	/**
-	 *  The ListItemRendererInitializer class initializes item renderers
-     *  in list classes.
+	 *  The DragDropListItemRendererInitializer class initializes item renderers
+     *  with a reference to the owning List.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TabsItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class DragDropListItemRendererInitializer extends ListItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -53,15 +50,10 @@ package org.apache.royale.mdl.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function TabsItemRendererInitializer()
+		public function DragDropListItemRendererInitializer()
 		{
 		}
-		
-        protected var presentationModel:IListPresentationModel;
-        protected var dataProviderModel:IDataProviderModel;
-        protected var labelField:String;
-        protected var tabsIdField:String;
-                
+		        
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -69,51 +61,26 @@ package org.apache.royale.mdl.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
+		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
 		 */
 		override public function set strand(value:IStrand):void
 		{	
-			_strand = value;
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;            
-            dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-            labelField = dataProviderModel.labelField;            
-            var model:ITabModel = _strand.getBeadByType(ITabModel) as ITabModel;
-            tabsIdField = model.tabIdField;
+            super.strand = value;
+            ownerView = (value as IUIBase).view as IItemRendererOwnerView;
 		}
 		
+        private var ownerView:IItemRendererOwnerView;
+        
 		/**
 		 *  @private
 		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
-		public function initializeItemRenderer(ir:IItemRenderer, data:Object):void
+		override public function initializeItemRenderer(ir:IItemRenderer, data:Object):void
 		{
-            if (ir is ILabelFieldItemRenderer)
-                (ir as ILabelFieldItemRenderer).labelField = labelField;
-            (ir as ITabItemRenderer).tabIdField = tabsIdField;
-            
-            setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
+            super.initializeItemRenderer(ir, data);
+            ir.addBead(new ItemRendererOwnerViewBead(ownerView));
         }
-        
-        /**
-         *  @private
-         *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
-         */
-        public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
-        {
-            ir.index = index;
-            initializeItemRenderer(ir, data);
-        }
-        
-        protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
-        {
-            var style:SimpleCSSStyles = new SimpleCSSStyles();
-            style.marginBottom = presentationModel.separatorThickness;
-            UIBase(ir).style = style;
-            UIBase(ir).height = presentationModel.rowHeight;
-            UIBase(ir).percentWidth = 100;
-		}
-
 	}
 }

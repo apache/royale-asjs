@@ -159,7 +159,7 @@ package mx.controls.listClasses
             var distance:int = index - currentIndex;
             cursor.seek(CursorBookmark.CURRENT, distance);
             currentIndex = index;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, cursor.current, dataGroup, index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, cursor.current, index);
             ir.data = cursor.current;
             
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);

@@ -51,6 +51,6 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function initializeItemRenderer(renderer:IItemRenderer, data:Object, ownerView:IItemRendererOwnerView):void;
+		function initializeItemRenderer(renderer:IItemRenderer, data:Object):void;
 	}
 }

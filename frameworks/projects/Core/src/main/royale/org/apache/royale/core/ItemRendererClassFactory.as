@@ -55,7 +55,7 @@ package org.apache.royale.core
 			super();
 		}
 				
-        private var _strand:IStrand;
+        protected var _strand:IStrand;
         
         /**
          *  @copy org.apache.royale.core.IBead#strand

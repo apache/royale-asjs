@@ -24,7 +24,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IParent;
@@ -39,6 +40,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
         
@@ -63,7 +65,7 @@ package org.apache.royale.html.beads
 		protected var listModel:ISelectionModel;
 
 		protected var lastSelectedIndex:int = -1;
-
+        
 		/**
 		 * @private
 		 */
@@ -72,10 +74,25 @@ package org.apache.royale.html.beads
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+            var mapper:IEventDispatcher = _strand.getBeadByType(IDataProviderItemRendererMapper) as IEventDispatcher;
+            mapper.addEventListener(ItemRendererEvent.CREATED, itemCreatedHandler);
 
 			super.handleInitComplete(event);
 		}
 
+        protected function itemCreatedHandler(event:ItemRendererEvent):void
+        {
+            var selectionBead:ISelectableItemRenderer;
+            var ir:IIndexedItemRenderer = event.itemRenderer as IIndexedItemRenderer;
+            if (ir.index == lastSelectedIndex)
+            {
+                selectionBead = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (selectionBead)
+                    selectionBead.selected = true;                
+            }
+            
+        }
+        
         protected var firstElementIndex:int = 1;
         
         override public function getItemRendererForIndex(index:int):IItemRenderer

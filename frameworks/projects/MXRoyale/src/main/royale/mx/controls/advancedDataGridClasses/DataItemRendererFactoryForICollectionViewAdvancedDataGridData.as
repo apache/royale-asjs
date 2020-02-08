@@ -195,7 +195,7 @@ package mx.controls.advancedDataGridClasses
             currentIndex = index;
             
             var data:Object = cursor.current;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, dataGroup, index);
+            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
             
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
             newEvent.itemRenderer = ir;
