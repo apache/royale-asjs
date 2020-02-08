@@ -138,12 +138,6 @@ hr {
   height: 1px;
 }
 
-.jewel.multiline {
-  white-space: pre-wrap !important;
-  word-wrap: break-word;
-  max-width: 100%;
-}
-
 .responsiveSizeMonitor {
   background: rgba(0, 0, 0, 0.8);
   color: white;
@@ -963,6 +957,10 @@ j|ImageButton {
 .jewel.label {
   cursor: default;
   white-space: nowrap;
+}
+.jewel.label.multiline {
+  white-space: pre-wrap;
+  word-wrap: break-word;
 }
 
 j|Label {
