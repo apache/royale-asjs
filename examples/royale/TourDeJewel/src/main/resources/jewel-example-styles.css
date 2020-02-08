@@ -37,10 +37,10 @@ j|IconButtonBar
     IItemRenderer: ClassReference("itemRenderers.SimpleIconListItemRenderer");
 }
 
-/* .cmbSimpleiIconListItemRenderer`
+.cmbSimpleiIconListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.SimpleIconListItemRenderer");
-} */
+}
 
 
 

@@ -102,15 +102,14 @@ limitations under the License.
 										dataProvider="{listModel.bigIconListVOData}"
 										selectedIndex="4"
 										>
-										<!-- change="onChange(event)" -->
 							<j:beads>
-								<!-- <js:ConstantBinding sourceID="listModel" sourcePropertyName="bigIconListVOData" destinationPropertyName="dataProvider" /> -->
 								<j:AddListItemRendererForArrayListData/>
 								<j:RemoveListItemRendererForArrayListData/>
 								<j:UpdateListItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
 						</j:VirtualList>
+								<!-- change="onChange(event)" -->
 						<!-- <j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/> -->
 					</j:VGroup>
 					<j:VGroup gap="3">

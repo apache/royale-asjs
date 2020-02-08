@@ -24,10 +24,6 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-			import org.apache.royale.collections.ArrayList;
-			import org.apache.royale.jewel.List;
-			import org.apache.royale.jewel.beads.views.ListView;
-
 			import vos.IconListVO;
             
             [Bindable("dataChange")]
@@ -42,9 +38,10 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
 
-    <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}"/>
-
-    <j:Label html="{text}" multiline="true"/>
+    <j:HGroup gap="6" itemsVerticalAlign="itemsCentered">
+        <js:FontIcon text="{iconList.icon}" material="true" visible="{iconList.icon != null}"/>
+        <j:Label html="{text}"/>
+    </j:HGroup>
 
 </j:ListItemRenderer>
 
