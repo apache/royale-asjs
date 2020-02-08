@@ -23,6 +23,8 @@ package org.apache.royale.jewel.beads.views
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.jewel.List;
+    import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
+    import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
 
     /**
 	 * The ComboBoxPopUpView class is a view bead for the ComboBoxPopUp.
@@ -64,13 +66,32 @@ package org.apache.royale.jewel.beads.views
             _strand = value;
             
             var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
-
-            list = new List();
             list.model = model;
-            
+
+            var _presentationModel:IComboBoxPresentationModel = (_strand as ComboBoxPopUp).presentationModel as IComboBoxPresentationModel;
+            list.rowHeight = _presentationModel.rowHeight;
+
+            // use rowCount to configure height
+            var rowCount:int = _presentationModel.rowCount;
+
+            // var view:IListView = list.view as IListView;
+            // var dataGroup:IItemRendererParent = view.dataGroup;
+
+            // var factory:IItemRendererClassFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", list) as IItemRendererClassFactory;
+            // var ir:ISelectableItemRenderer = factory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+            list.height = rowCount * list.rowHeight; //(ir as IUIBase).height;
+
             IParent(_strand).addElement(list);
 		}
 
-        public var list:List;
+        protected var _list:List;
+        public function get list():List
+        {
+            if(!_list) {
+                _list = new List();
+            }
+            return _list;
+        }
+
     }
 }

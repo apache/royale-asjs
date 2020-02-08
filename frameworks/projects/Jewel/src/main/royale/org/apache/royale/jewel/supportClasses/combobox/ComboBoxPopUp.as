@@ -22,6 +22,7 @@ package org.apache.royale.jewel.supportClasses.combobox
     import org.apache.royale.core.IPopUp;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.StyledUIBase;
+    import org.apache.royale.jewel.beads.models.ComboBoxPresentationModel;
     
     //--------------------------------------
     //  Events
@@ -124,6 +125,60 @@ package org.apache.royale.jewel.supportClasses.combobox
 		public function set selectedItem(value:Object):void
 		{
 			ISelectionModel(model).selectedItem = value;
+		}
+
+		/**
+		 *  The default height of each cell in every column
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get rowHeight():Number
+        {
+            return (presentationModel as IComboBoxPresentationModel).rowHeight;
+        }
+        public function set rowHeight(value:Number):void
+        {
+            (presentationModel as IComboBoxPresentationModel).rowHeight = value;
+        }
+
+		/**
+		 *  Maximum number of rows visible in the ComboBox popup list.
+		 *  If there are fewer items in the dataProvider, the ComboBox shows only as many items as there are in the dataProvider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get rowCount():int
+        {
+            return (presentationModel as IComboBoxPresentationModel).rowCount;
+        }
+        public function set rowCount(value:int):void
+        {
+            (presentationModel as IComboBoxPresentationModel).rowCount = value;
+        }
+
+		/**
+		 *  The presentation model for the list.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 */
+		public function get presentationModel():IComboBoxPresentationModel
+		{
+			var presModel:IComboBoxPresentationModel = getBeadByType(IComboBoxPresentationModel) as IComboBoxPresentationModel;
+			if (presModel == null) {
+				presModel = new ComboBoxPresentationModel();
+				addBead(presModel);
+			}
+			return presModel;
 		}
 	}
 }

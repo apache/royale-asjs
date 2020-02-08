@@ -18,9 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-    import org.apache.royale.core.IBeadModel;
-    import org.apache.royale.core.IParent;
-    import org.apache.royale.core.IStrand;
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.VirtualList;
 
@@ -47,26 +44,12 @@ package org.apache.royale.jewel.beads.views
 			super();
 		}
         
-        /**
-         *  Get the strand for this bead
-         * 
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-        override public function set strand(value:IStrand):void
-		{
-            _strand = value;
-            
-            var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
-
-            list = new VirtualList();
-            list.model = model;
-            
-            IParent(_strand).addElement(list);
-		}
+        override public function get list():List
+        {
+            if(!_list) {
+                _list = new VirtualList();
+            }
+            return _list;
+        }
     }
 }
