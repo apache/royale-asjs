@@ -940,13 +940,14 @@ j|ImageButton {
 }
 
 .jewel.item, .jewel.navigationlink, .jewel.tabbarbutton {
-  display: block;
+  display: flex;
   min-height: 34px;
   text-decoration: none;
   letter-spacing: 0;
   line-height: normal !important;
   overflow: hidden;
   cursor: auto;
+  align-items: center;
 }
 .jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent {
   display: flex;
