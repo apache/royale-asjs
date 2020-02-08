@@ -191,18 +191,23 @@ package org.apache.royale.jewel.beads.views
 
                     _comboPopUp = new _popUpClass() as ComboBoxPopUp;
 					_comboPopUp.addBead(_presentationModel);
-                    _comboPopUp.model = model;
-
+					_comboPopUp.model = model;
+					
+					// if  user defines item render for combo must be pased to popup list
+					var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
+					if(itemRendererClass != null)
+						_comboPopUp.itemRendererClass = itemRendererClass;
+					
 					UIUtils.addPopUp(_comboPopUp, host);
                     // var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
                     // popupHost.popUpParent.addElement(_comboPopUp);
 
                     // popup is ComboBoxPopUp that fills 100% of browser window-> We want the internal List inside its view to adjust height
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
+					
 					//popup width needs to be set before position inside bounding client to work ok
 					_list.width = host.width;
-                    // _list.model = _comboPopUp.model;
-
+                    
                     COMPILE::JS
                     {
 					// Fix temporary: when soft keyboard opens in ios devices browser is not resized, so popup gets under the keyboard

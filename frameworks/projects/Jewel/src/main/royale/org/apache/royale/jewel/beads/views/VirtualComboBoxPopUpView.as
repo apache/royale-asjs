@@ -48,6 +48,7 @@ package org.apache.royale.jewel.beads.views
         {
             if(!_list) {
                 _list = new VirtualList();
+				_list.addEventListener("beadsAdded", beadsAddedHandler);
             }
             return _list;
         }
