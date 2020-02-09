@@ -30,10 +30,11 @@ import org.apache.royale.core.IBead;
 import org.apache.royale.core.IContentView;
 import org.apache.royale.core.IStrand;
 import org.apache.royale.core.IUIBase;
-import org.apache.royale.core.IViewport;
+import org.apache.royale.core.IScrollingViewport;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.geom.Size;
 
 COMPILE::SWF
@@ -45,7 +46,7 @@ COMPILE::SWF
  *  @private
  *  The viewport that loads a Spark Skin.
  */
-public class SparkSkinScrollingViewport implements IViewport
+public class SparkSkinScrollingViewport extends EventDispatcher implements IBead, IScrollingViewport
 {
 	//--------------------------------------------------------------------------
 	//
@@ -90,10 +91,23 @@ public class SparkSkinScrollingViewport implements IViewport
         host = value as SkinnableComponent;
         
         var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
-        host.setSkin(new c());
-        host.skin.addEventListener("initComplete", initCompleteHandler);
-        contentArea = host.skin; // temporary assigment so that SkinnableContainer.addElement can add the skin
-        
+        if (c)
+        {
+            host.setSkin(new c());
+            host.skin.addEventListener("initComplete", initCompleteHandler);
+            contentArea = host.skin; // temporary assigment so that SkinnableContainer.addElement can add the skin
+        }
+        else
+        {
+            var f:Function = ValuesManager.valuesImpl.getValue(value, "iContentView") as Function;
+            if (f)
+            {
+                contentArea = new f() as UIBase;
+            }
+            
+            if (!contentArea)
+                contentArea = value as UIBase;
+        }
     }
     
     private function initCompleteHandler(event:Event):void
@@ -113,8 +127,84 @@ public class SparkSkinScrollingViewport implements IViewport
     protected function setScrollStyle():void
     {
         contentArea.element.style.overflow = "auto";
+        adaptContentArea();
     }
     
+    /**
+     * If the contentArea is not the same as the strand,
+     * we need to size it to 100% for scrolling to work correctly.
+     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+     */
+    COMPILE::JS
+    protected function adaptContentArea():void
+    {
+        if(host != contentArea)
+        {
+            contentArea.percentHeight = 100;
+            contentArea.percentWidth = 100;
+            contentArea.element.style.position = "absolute";
+        }
+    }
+    
+    COMPILE::SWF
+    protected var _verticalScrollPosition:Number = 0;
+    
+    public function get verticalScrollPosition():Number
+    {
+        COMPILE::JS
+        {
+            return contentArea.element.scrollTop;
+        }
+        COMPILE::SWF
+        {
+            return _verticalScrollPosition;
+        }
+    }
+    public function set verticalScrollPosition(value:Number):void
+    {
+        COMPILE::JS
+        {
+            contentArea.element.scrollTop = value;
+        }
+        COMPILE::SWF
+        {
+            _verticalScrollPosition = value;
+            dispatchEvent(new Event("verticalScrollPositionChanged"));
+            // handleVerticalScrollChange();  figure out how to re-use from ScrollingViewport
+            // given we need different timing (waiting on initComplete)
+        }
+    }
+
+    COMPILE::SWF
+    protected var _horizontalScrollPosition:Number = 0;
+    
+    public function get horizontalScrollPosition():Number
+    {
+        COMPILE::JS
+        {
+            return contentArea.element.scrollLeft;
+        }
+        COMPILE::SWF
+        {
+            return _horizontalScrollPosition;
+        }
+    }
+    
+    public function set horizontalScrollPosition(value:Number):void
+    {
+        COMPILE::JS
+        {
+           contentArea.element.scrollLeft = value;
+        }
+        COMPILE::SWF
+        {
+            _horizontalScrollPosition = value;
+            dispatchEvent(new Event("horizontalScrollPositionChanged"));
+            // handleHorizontalScrollChange();     figure out how to re-use from ScrollingViewport
+            // given we need different timing (waiting on initComplete)         
+        }
+    }
+
     /**
      * @copy org.apache.royale.core.IViewport#setPosition()
      *

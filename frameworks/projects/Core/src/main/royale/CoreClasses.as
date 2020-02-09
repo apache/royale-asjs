@@ -261,7 +261,7 @@ internal class CoreClasses
     
     import org.apache.royale.core.IDataGridModel; IDataGridModel;
     import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
-    import org.apache.royale.core.IDateChooserModel; IDateChooserModel;
+    import org.apache.royale.core.IDateChooserModelWithChangeCheck; IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.ParentDocumentBead; ParentDocumentBead;
 	import org.apache.royale.core.TransformBeadBase; TransformBeadBase;
 	import org.apache.royale.core.TransformModel; TransformModel;

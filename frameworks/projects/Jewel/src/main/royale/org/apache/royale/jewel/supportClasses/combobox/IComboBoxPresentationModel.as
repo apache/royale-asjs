@@ -16,19 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.jewel.supportClasses.combobox
+{
+    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
-.jewel
-
-	&.label
-		cursor: default
-		white-space: nowrap
-
-		&.multiline
-			white-space: pre-wrap
-			word-wrap: break-word
-
-j|Label
-	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-	//IMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
-	//IBeadView: ClassReference("org.apache.royale.jewel.beads.views.JewelLabelViewBead")
-
+    /**
+	 *  The Jewel IComboBoxPresentationModel interface holds key values for the display
+	 *  a Jewel ComboBox.
+	 * 
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
+    public interface IComboBoxPresentationModel extends IListPresentationModel
+    {
+		/**
+		 *  Maximum number of rows visible in the ComboBox popup list.
+		 *  If there are fewer items in the dataProvider, the ComboBox shows only as many items as there are in the dataProvider.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		function get rowCount():int
+    	function set rowCount(value:int):void
+    }
+}

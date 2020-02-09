@@ -35,4 +35,5 @@
     <component id="FileLoaderAndUploader" class="org.apache.royale.file.beads.FileLoaderAndUploader"/>
     <component id="FileModel" class="org.apache.royale.file.beads.FileModel"/>
     <component id="FileModelWithParams" class="org.apache.royale.file.beads.FileModelWithParams"/>
+    <component id="FileModelWithParamsAndFileContent" class="org.apache.royale.file.beads.FileModelWithParamsAndFileContent"/>
 </componentPackage>

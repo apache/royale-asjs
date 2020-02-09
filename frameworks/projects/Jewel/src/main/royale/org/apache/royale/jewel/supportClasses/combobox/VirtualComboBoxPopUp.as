@@ -16,19 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-.jewel
-
-	&.label
-		cursor: default
-		white-space: nowrap
-
-		&.multiline
-			white-space: pre-wrap
-			word-wrap: break-word
-
-j|Label
-	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-	//IMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
-	//IBeadView: ClassReference("org.apache.royale.jewel.beads.views.JewelLabelViewBead")
-
+package org.apache.royale.jewel.supportClasses.combobox
+{
+	/**
+	 *  The VirtualComboBoxPopUp class is the popup that holds the VirtualList used internally
+	 *  by VirtualComboBox as the dropdown/popup.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
+	public class VirtualComboBoxPopUp extends ComboBoxPopUp
+	{
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function VirtualComboBoxPopUp()
+		{
+			super();
+		}
+	}
+}

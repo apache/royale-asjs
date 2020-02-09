@@ -47,7 +47,7 @@ package org.apache.royale.jewel.beads.models
 			super();
 		}
 		
-		private var _rowHeight:Number = 30;
+		private var _rowHeight:Number = 34;
 		/**
 		 *  The height of each row.
 		 *

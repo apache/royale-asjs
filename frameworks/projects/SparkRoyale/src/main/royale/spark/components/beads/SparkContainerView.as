@@ -63,6 +63,11 @@ public class SparkContainerView extends ContainerView
     override public function set strand(value:IStrand):void
     {
         super.strand = value;
+        prepareContentView();
+    }
+    
+    protected function prepareContentView():void
+    {
         var host:SkinnableContainer = _strand as SkinnableContainer;
         var g:GroupBase = (contentView as GroupBase);
         if (host.layout != null)

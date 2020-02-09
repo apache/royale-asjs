@@ -86,20 +86,20 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
         
         var w:Number = target.width;
         var h:Number = target.height;
-        if (target.isHeightSizedToContent())
+        if (target.layout.isHeightSizedToContent())
             h = target.measuredHeight;
-        if (target.isWidthSizedToContent())
+        if (target.layout.isWidthSizedToContent())
             w = target.measuredWidth;
         target.layout.updateDisplayList(w, h);
         
         // update the target's actual size if needed.
-        if (target.isWidthSizedToContent() && target.isHeightSizedToContent()) {
+        if (target.layout.isWidthSizedToContent() && target.layout.isHeightSizedToContent()) {
             target.setActualSize(target.getExplicitOrMeasuredWidth(), 
                 target.getExplicitOrMeasuredHeight());
         }
-        else if (target.isWidthSizedToContent())
+        else if (target.layout.isWidthSizedToContent())
             target.setWidth(target.getExplicitOrMeasuredWidth());
-        else if (target.isHeightSizedToContent())
+        else if (target.layout.isHeightSizedToContent())
             target.setHeight(target.getExplicitOrMeasuredHeight());
         
         return true;

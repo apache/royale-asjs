@@ -39,11 +39,13 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.Button;
+	import org.apache.royale.jewel.ComboBox;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.TextInput;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
+	import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
 	import org.apache.royale.utils.UIUtils;
 
 	/**
@@ -142,6 +144,7 @@ package org.apache.royale.jewel.beads.views
 			parent.addElement(_button);
 
 			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			_presentationModel = (_strand as ComboBox).presentationModel;
 
 			if (model is IJewelSelectionModel) {
 				//do this here as well as in the controller,
@@ -156,6 +159,7 @@ package org.apache.royale.jewel.beads.views
 		}
 
 		private var model:IComboBoxModel;
+		private var _presentationModel:IComboBoxPresentationModel;
 
 		private var _popUpClass:Class;
 		/**
@@ -184,17 +188,26 @@ package org.apache.royale.jewel.beads.views
                     {
                         _popUpClass = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
                     }
-                    _comboPopUp = new _popUpClass() as ComboBoxPopUp;
-                    _comboPopUp.model = model;
 
+                    _comboPopUp = new _popUpClass() as ComboBoxPopUp;
+					_comboPopUp.addBead(_presentationModel);
+					_comboPopUp.model = model;
+					
+					// if  user defines item render for combo must be pased to popup list
+					var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
+					if(itemRendererClass != null)
+						_comboPopUp.itemRendererClass = itemRendererClass;
+					
 					UIUtils.addPopUp(_comboPopUp, host);
                     // var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
                     // popupHost.popUpParent.addElement(_comboPopUp);
 
                     // popup is ComboBoxPopUp that fills 100% of browser window-> We want the internal List inside its view to adjust height
                     _list = (_comboPopUp.view as ComboBoxPopUpView).list;
-                    // _list.model = _comboPopUp.model;
-
+					
+					//popup width needs to be set before position inside bounding client to work ok
+					_list.width = host.width;
+                    
                     COMPILE::JS
                     {
 					// Fix temporary: when soft keyboard opens in ios devices browser is not resized, so popup gets under the keyboard
@@ -317,9 +330,6 @@ package org.apache.royale.jewel.beads.views
 				// Desktop width size
 				if(outerWidth >= ResponsiveSizes.TABLET_BREAKPOINT)
 				{
-					//popup width needs to be set before position inside bounding client to work ok
-					_list.width = _textinput.width + _button.width;
-
 					var origin:Point = new Point(0, button.y + button.height - top);
 					var relocated:Point = positionInsideBoundingClientRect(_strand, _list, origin);
 					var point:Point = PointUtils.localToGlobal(origin, _strand);

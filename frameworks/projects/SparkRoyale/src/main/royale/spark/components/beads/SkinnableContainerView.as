@@ -57,6 +57,20 @@ public class SkinnableContainerView extends SparkContainerView
 		super();
 	}
 
+    override protected function prepareContentView():void
+    {
+        var host:SkinnableContainer = _strand as SkinnableContainer;
+        if (host.skin)
+        {
+            if (!host.isWidthSizedToContent())
+                host.skin.percentWidth = 100;
+            if (!host.isHeightSizedToContent())
+                host.skin.percentHeight = 100;            
+        }
+        else
+            super.prepareContentView();
+    }
+
     /**
      *  Adjusts the size of the host after the layout has been run if needed
      *

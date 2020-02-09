@@ -22,6 +22,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDateChooserModel;
+    import org.apache.royale.core.IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.IFormatter;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IPopUpHost;
@@ -207,7 +208,7 @@ package org.apache.royale.html.beads
 
 					var model:IDateChooserModel = _strand.getBeadByType(IDateChooserModel) as IDateChooserModel;
 					_popUp.selectedDate = model.selectedDate;
-                    var popUpModel:IDateChooserModel = _popUp.getBeadByType(IDateChooserModel) as IDateChooserModel;
+                    var popUpModel:IDateChooserModelWithChangeCheck = _popUp.getBeadByType(IDateChooserModelWithChangeCheck) as IDateChooserModelWithChangeCheck;
                     popUpModel.disableChangeCheck = true;
 
 					var host:IPopUpHost = UIUtils.findPopUpHost(getHost());

@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
-	COMPILE::JS
-	{
-	import org.apache.royale.events.IEventDispatcher;
-	}
 	import org.apache.royale.core.IItemRendererParent;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IRollOverModel;
@@ -94,7 +90,7 @@ package org.apache.royale.jewel.beads.views
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-			IEventDispatcher(_strand).addEventListener("itemsCreated", itemsCreatedHandler);
+			listenOnStrand("itemsCreated", itemsCreatedHandler);
 
 			super.handleInitComplete(event);
 		}

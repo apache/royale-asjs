@@ -18,36 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
-	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.ItemAddedEvent;
-	import org.apache.royale.events.ItemClickedEvent;
-	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 
 /**
-     *  The ListSingleSelectionMouseController class is a controller for
-     *  org.apache.royale.jewel.List.  Controllers
-     *  watch for events from the interactive portions of a View and
+     *  The Jewel ListSingleSelectionMouseController class is a controller for
+     *  org.apache.royale.jewel.List.
+     * 
+     *  Controllers watch for events from the interactive portions of a View and
      *  update the data model or dispatch a semantic event.
      *  This controller watches for events from the item renderers
      *  and updates an ISelectionModel (which only supports single
      *  selection).  Other controller/model pairs would support
      *  various kinds of multiple selection.
+     * 
+     *  Jewel controller takes into account if the component
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class ListSingleSelectionMouseController implements IBeadController
+	public class ListSingleSelectionMouseController extends org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController
 	{
         /**
          *  Constructor.
@@ -62,38 +57,6 @@ package org.apache.royale.jewel.beads.controllers
 		}
 
         /**
-         *  The model.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		protected var listModel:ISelectionModel;
-
-        /**
-         *  The view.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        protected var listView:IListView;
-
-        /**
-         *  The parent of the item renderers.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-        protected var dataGroup:IItemRendererParent;
-
-		private var _strand:IStrand;
-
-        /**
          *  @copy org.apache.royale.core.IBead#strand
          *
          *  @langversion 3.0
@@ -105,13 +68,9 @@ package org.apache.royale.jewel.beads.controllers
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          *  @royaleignorecoercion org.apache.royale.core.IListView
          */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			_strand = value;
-			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
-			listView = value.getBeadByType(IListView) as IListView;
-			IEventDispatcher(_strand).addEventListener("itemAdded", handleItemAdded);
-			IEventDispatcher(_strand).addEventListener("itemRemoved", handleItemRemoved);
+			super.strand = value;
 
             //if the list is composed as part of another component, with a shared model (e.g. ComboBox) then it should not be the primary dispatcher
 			if (listModel is IJewelSelectionModel && !(IJewelSelectionModel(listModel).hasDispatcher)) {
@@ -125,61 +84,11 @@ package org.apache.royale.jewel.beads.controllers
 		}
 
         /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+         * 
+         * @param event 
          */
-		protected function handleItemAdded(event:ItemAddedEvent):void
-		{
-			IEventDispatcher(event.item).addEventListener("itemClicked", selectedHandler);
-			IEventDispatcher(event.item).addEventListener("itemRollOver", rolloverHandler);
-			IEventDispatcher(event.item).addEventListener("itemRollOut", rolloutHandler);
-		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-         */
-		protected function handleItemRemoved(event:ItemRemovedEvent):void
-		{
-			IEventDispatcher(event.item).removeEventListener("itemClicked", selectedHandler);
-			IEventDispatcher(event.item).removeEventListener("itemRollOver", rolloverHandler);
-			IEventDispatcher(event.item).removeEventListener("itemRollOut", rolloutHandler);
-		}
-
-		protected function selectedHandler(event:ItemClickedEvent):void
-        {
-            listModel.selectedIndex = event.index;
-			listModel.selectedItem = event.data;
-            listView.host.dispatchEvent(new Event(Event.CHANGE));
-        }
-
         protected function modelChangeHandler(event:Event):void{
             IEventDispatcher(_strand).dispatchEvent(new Event(event.type));
         }
-
-		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
-         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
-		 */
-		protected function rolloverHandler(event:Event):void
-		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
-			if (renderer) {
-				IRollOverModel(listModel).rollOverIndex = renderer.index;
-			}
-		}
-
-		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
-         * @royaleignorecoercion org.apache.royale.core.IRollOverModel
-		 */
-		protected function rolloutHandler(event:Event):void
-		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
-			if (renderer) {
-				renderer.hovered = false;
-				renderer.down = false;
-				IRollOverModel(listModel).rollOverIndex = -1;
-			}
-		}
-
 	}
 }

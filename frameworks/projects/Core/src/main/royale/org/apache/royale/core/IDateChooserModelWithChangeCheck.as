@@ -16,19 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-
-.jewel
-
-	&.label
-		cursor: default
-		white-space: nowrap
-
-		&.multiline
-			white-space: pre-wrap
-			word-wrap: break-word
-
-j|Label
-	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-	//IMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
-	//IBeadView: ClassReference("org.apache.royale.jewel.beads.views.JewelLabelViewBead")
-
+package org.apache.royale.core
+{
+	/**
+	 * The IDateChooserModelWithChangeCheck adds a disabledChangeCheck API to
+     * the IDateChooserModel interface.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.0
+	 */
+	public interface IDateChooserModelWithChangeCheck extends IDateChooserModel
+	{
+        /**
+         *  If true, the DateChooser will dispatch change
+         *  events even if the date clicked is the selected date.
+         *  This flag is used by DateField to get the
+         *  dropdown to dismiss when clicking the selected date.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        function get disableChangeCheck():Boolean;
+        function set disableChangeCheck(value:Boolean):void;
+	}
+}

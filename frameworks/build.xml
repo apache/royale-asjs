@@ -149,14 +149,43 @@
     </target>
 
     <target name="test" description="Tests all SWCs">
-        <antcall target="RoyaleUnitTest"/>
+        <antcall target="LanguageTest"/>
         <antcall target="CoreTest"/>
-        <antcall target="BasicTest"/>
+        <antcall target="GraphicsTest"/>
+        <antcall target="BindingTest"/>
         <antcall target="ReflectionTest"/>
-        <antcall target="NetworkTest"/>
-        <antcall target="XMLTest"/>
+        <antcall target="RoyaleUnitTest"/>
         <antcall target="CollectionsTest"/>
+        <antcall target="BasicTest"/>
+        <antcall target="RoyaleUnitUITest"/>
+
+        <antcall target="AceTest"/>
+        <antcall target="HTMLTest"/>
+        <antcall target="EffectsTest"/>
+        <antcall target="FlatTest"/>
+        <antcall target="ChartsTest"/>
+        <antcall target="DragDropTest"/>
+        <antcall target="FormattersTest"/>
+        <antcall target="GoogleMapsTest"/>
+        <antcall target="CreateJSTest"/>
+        <antcall target="HTML5Test"/>
+        <antcall target="JQueryTest"/>
+        <antcall target="MobileTest"/>
+
+        <antcall target="StorageTest"/>
+        <antcall target="XMLTest"/>
+        <antcall target="NetworkTest"/>
+        <antcall target="TextTest"/>
+        <antcall target="TLFTest"/>
+        <antcall target="MaterialDesignLiteTest"/>
+        <antcall target="FontAwesomeTest"/>
+        <antcall target="ExpressTest"/>
+        <antcall target="RoyaleSiteTest"/>
         <antcall target="MXRoyaleTest"/>
+        <antcall target="SparkRoyaleTest"/>
+        <antcall target="CruxTest"/>
+        <antcall target="JewelTest"/>
+        <antcall target="IconsTest"/>
     </target>
 
     <target name="fonts">
@@ -249,8 +278,16 @@
         <ant dir="${basedir}/projects/Binding"/>
     </target>
 
+    <target name="BindingTest" description="Test of Binding.swc">
+        <ant dir="${basedir}/projects/Binding" target="test"/>
+    </target>
+
     <target name="Charts" description="Clean build of Charts.swc">
         <ant dir="${basedir}/projects/Charts"/>
+    </target>
+
+    <target name="ChartsTest" description="Test of Charts.swc">
+        <ant dir="${basedir}/projects/Charts" target="test"/>
     </target>
 
     <target name="Core" description="Clean build of Core.swc">
@@ -273,36 +310,72 @@
         <ant dir="${basedir}/projects/CreateJS"/>
     </target>
 
+    <target name="CreateJSTest" description="Test of CreateJS.swc">
+        <ant dir="${basedir}/projects/CreateJS" target="test"/>
+    </target>
+
     <target name="DragDrop" description="Clean build of DragDrop.swc">
         <ant dir="${basedir}/projects/DragDrop"/>
+    </target>
+
+    <target name="DragDropTest" description="Test of DragDrop.swc">
+        <ant dir="${basedir}/projects/DragDrop" target="test"/>
     </target>
 
     <target name="Effects" description="Clean build of Effects.swc">
         <ant dir="${basedir}/projects/Effects"/>
     </target>
 
+    <target name="EffectsTest" description="Test of Effects.swc">
+        <ant dir="${basedir}/projects/Effects" target="test"/>
+    </target>
+
     <target name="Express" description="Clean build of Express.swc">
         <ant dir="${basedir}/projects/Express"/>
+    </target>
+
+    <target name="ExpressTest" description="Test of Express.swc">
+        <ant dir="${basedir}/projects/Express" target="test"/>
     </target>
 
     <target name="Flat" description="Clean build of Flat.swc">
         <ant dir="${basedir}/projects/Flat"/>
     </target>
 
+    <target name="FlatTest" description="Test of Flat.swc">
+        <ant dir="${basedir}/projects/Flat" target="test"/>
+    </target>
+
     <target name="FontAwesome" description="Clean build of FontAwesome.swc">
         <ant dir="${basedir}/projects/FontAwesome"/>
+    </target>
+
+    <target name="FontAwesomeTest" description="Test of FontAwesome.swc">
+        <ant dir="${basedir}/projects/FontAwesome" target="test"/>
     </target>
 
     <target name="Formatters" description="Clean build of Formatters.swc">
         <ant dir="${basedir}/projects/Formatters"/>
     </target>
 
+    <target name="FormattersTest" description="Test of Formatters.swc">
+        <ant dir="${basedir}/projects/Formatters" target="test"/>
+    </target>
+
     <target name="GoogleMaps" description="Clean build of GoogleMaps.swc">
         <ant dir="${basedir}/projects/GoogleMaps"/>
     </target>
 
+    <target name="GoogleMapsTest" description="Test of GoogleMaps.swc">
+        <ant dir="${basedir}/projects/GoogleMaps" target="test"/>
+    </target>
+
     <target name="Graphics" description="Clean build of Graphics.swc">
         <ant dir="${basedir}/projects/Graphics"/>
+    </target>
+
+    <target name="GraphicsTest" description="Test of Graphics.swc">
+        <ant dir="${basedir}/projects/Graphics" target="test"/>
     </target>
 
     <target name="Basic" description="Clean build of Basic.swc">
@@ -317,28 +390,56 @@
         <ant dir="${basedir}/projects/HTML"/>
     </target>
 
+    <target name="HTMLTest" description="Test of HTML.swc">
+        <ant dir="${basedir}/projects/HTML" target="test"/>
+    </target>
+
     <target name="HTML5" description="Clean build of HTML5.swc">
         <ant dir="${basedir}/projects/HTML5"/>
+    </target>
+
+    <target name="HTML5Test" description="Test of HTML5.swc">
+        <ant dir="${basedir}/projects/HTML5" target="test"/>
     </target>
 
     <target name="Ace" description="Clean build of Ace.swc">
 	    <ant dir="${basedir}/projects/Ace"/>
     </target>
 
+    <target name="AceTest" description="Test of Ace.swc">
+        <ant dir="${basedir}/projects/Ace" target="test"/>
+    </target>
+
     <target name="JQuery" description="Clean build of JQuery.swc">
         <ant dir="${basedir}/projects/JQuery"/>
+    </target>
+
+    <target name="JQueryTest" description="Test of JQuery.swc">
+        <ant dir="${basedir}/projects/JQuery" target="test"/>
     </target>
 
     <target name="Language" description="Clean build of Language.swc">
         <ant dir="${basedir}/projects/Language"/>
     </target>
 
+    <target name="LanguageTest" description="Test of Language.swc">
+        <ant dir="${basedir}/projects/Language" target="test"/>
+    </target>
+
 	<target name="MaterialDesignLite" description="Clean build of MaterialDesignLite.swc">
         <ant dir="${basedir}/projects/MaterialDesignLite"/>
     </target>
 
+    <target name="MaterialDesignLiteTest" description="Test of MaterialDesignLite.swc">
+        <ant dir="${basedir}/projects/MaterialDesignLite" target="test"/>
+    </target>
+
     <target name="Mobile" description="Clean build of Mobile.swc">
         <ant dir="${basedir}/projects/Mobile"/>
+    </target>
+
+    <target name="MobileTest" description="Test of Mobile.swc">
+        <ant dir="${basedir}/projects/Mobile" target="test"/>
     </target>
 
     <target name="Network" description="Clean build of Network.swc">
@@ -369,9 +470,18 @@
         <ant dir="${basedir}/projects/RoyaleUnitUI"/>
     </target>
 
+    <target name="RoyaleUnitUITest" description="Test of RoyaleUnitUI.swc">
+        <ant dir="${basedir}/projects/RoyaleUnitUI" target="test"/>
+    </target>
+
     <target name="Storage" description="Clean build of Storage.swc">
         <ant dir="${basedir}/projects/Storage"/>
     </target>
+
+    <target name="StorageTest" description="Test of Storage.swc">
+        <ant dir="${basedir}/projects/Storage" target="test"/>
+    </target>
+
     <target name="XML" description="Clean build of XML.swc">
         <ant dir="${basedir}/projects/XML"/>
     </target>
@@ -383,15 +493,31 @@
     <target name="Text" description="Clean build of Text.swc">
         <ant dir="${basedir}/projects/Text"/>
     </target>
+
+    <target name="TextTest" description="Test of Text.swc">
+        <ant dir="${basedir}/projects/Text" target="test"/>
+    </target>
+
     <target name="TLF" description="Clean build of TLF.swc">
         <ant dir="${basedir}/projects/TLF"/>
     </target>
+
+    <target name="TLFTest" description="Test of TLF.swc">
+        <ant dir="${basedir}/projects/TLF" target="test"/>
+    </target>
+
     <target name="RoyaleSite" description="Clean build of RoyaleSite.swc">
         <ant dir="${basedir}/projects/RoyaleSite"/>
     </target>
+
+    <target name="RoyaleSiteTest" description="Test of RoyaleSite.swc">
+        <ant dir="${basedir}/projects/RoyaleSite" target="test"/>
+    </target>
+
     <target name="MXRoyale" description="Clean build of MXRoyale.swc">
         <ant dir="${basedir}/projects/MXRoyale"/>
     </target>
+
     <target name="MXRoyaleTest" description="Test of MXRoyale.swc">
         <ant dir="${basedir}/projects/MXRoyale" target="test"/>
     </target>
@@ -399,17 +525,37 @@
     <target name="SparkRoyale" description="Clean build of SparkRoyale.swc">
         <ant dir="${basedir}/projects/SparkRoyale"/>
     </target>
+
+    <target name="SparkRoyaleTest" description="Test of SparkRoyale.swc">
+        <ant dir="${basedir}/projects/SparkRoyale" target="test"/>
+    </target>
+
     <target name="Crux" description="Clean build of Crux.swc">
         <ant dir="${basedir}/projects/Crux"/>
     </target>
+
+    <target name="CruxTest" description="Test of Crux.swc">
+        <ant dir="${basedir}/projects/Crux" target="test"/>
+    </target>
+
+    <target name="Icons" description="Clean build of Icons.swc">
+        <ant dir="${basedir}/projects/Icons"/>
+    </target>
+
+    <target name="IconsTest" description="Test of Icons.swc">
+        <ant dir="${basedir}/projects/Icons" target="test"/>
+    </target>
+
     <target name="Jewel" description="Clean build of Jewel.swc">
         <ant dir="${basedir}/projects/Jewel"/>
     </target>
+
+    <target name="JewelTest" description="Test of Jewel.swc">
+        <ant dir="${basedir}/projects/Jewel" target="test"/>
+    </target>
+
     <target name="JewelTheme" description="Clean build of JewelTheme.swc">
         <ant dir="${basedir}/themes/JewelTheme"/>
-    </target>
-	<target name="Icons" description="Clean build of Icons.swc">
-        <ant dir="${basedir}/projects/Icons"/>
     </target>
     <target name="create-config" depends="playerglobal-setswfversion" description="Copy the config template and inject version numbers">
         <copy file="${basedir}/${configname}-config-template.xml" tofile="${basedir}/${configname}-config.xml" overwrite="true">

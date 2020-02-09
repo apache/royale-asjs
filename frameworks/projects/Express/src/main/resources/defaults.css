@@ -51,7 +51,7 @@ DataGrid
 	border-width: 1px;
 }
 
-.DataGridColumnList
+DataGridColumnList
 {
 	IBeadModel: ClassReference("org.apache.royale.express.beads.models.DataGridModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			

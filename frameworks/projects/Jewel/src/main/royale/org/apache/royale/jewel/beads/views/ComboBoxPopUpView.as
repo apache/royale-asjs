@@ -19,11 +19,17 @@
 package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.BeadViewBase;
+    import org.apache.royale.core.ClassFactory;
     import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.ItemRendererClassFactory;
     import org.apache.royale.jewel.List;
-
+    import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
+    import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
+    import org.apache.royale.events.Event;
+    
     /**
 	 * The ComboBoxPopUpView class is a view bead for the ComboBoxPopUp.
      * 
@@ -56,28 +62,60 @@ package org.apache.royale.jewel.beads.views
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
+         * 
+         *  @royaleignorecoercion org.apache.royale.jewel.List
          */
         override public function set strand(value:IStrand):void
 		{
             _strand = value;
-            
+
+            // set model
             var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+            list.model = model;
 
-            _list = new List();
-            _list.model = model;
-            
-            IParent(_strand).addElement(_list);
+            // set rowHeight
+            var _presentationModel:IComboBoxPresentationModel = (_strand as ComboBoxPopUp).presentationModel as IComboBoxPresentationModel;
+            list.rowHeight = _presentationModel.rowHeight;
+
+            // set height based on rowCount
+            var rowCount:int = _presentationModel.rowCount;
+            list.height = rowCount * list.rowHeight;
+
+            IParent(_strand).addElement(list);
 		}
-
-        private var _list:List;
-
+        
+        protected var _list:List;
+        /**
+         *  The list part
+         * @return 
+         */
         public function get list():List
         {
-        	return _list;
+            if(!_list) {
+                _list = new List();
+                _list.addEventListener("beadsAdded", beadsAddedHandler);
+            }
+            return _list;
         }
-        public function set list(value:List):void
-        {
-        	_list = value;
+
+        /**
+         *  If  user defines item render in the combo, this must be pased to popup list
+         *  Modify the item renderer class to instantiate renderers configured in the ComboBox instance
+         * 
+         *  @param event 
+         */
+        public function beadsAddedHandler(event:Event):void
+		{
+            _list.removeEventListener("beadsAdded", beadsAddedHandler);
+            
+            // ComboBoxView pass the itemRendererClass to the ComboBoxPopUp
+            var itemRendererClass:Class = (_strand as ComboBoxPopUp).itemRendererClass;
+
+            if(itemRendererClass)
+            {
+                var factory:ItemRendererClassFactory = list.getBeadByType(IItemRendererClassFactory) as ItemRendererClassFactory;
+                factory.itemRendererFactory = new ClassFactory(itemRendererClass);
+            }
         }
     }
 }

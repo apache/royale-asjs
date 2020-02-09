@@ -25,6 +25,6 @@ under the License.
     <format>tar.gz</format>
   </formats>
   <componentDescriptors>
-    <componentDescriptor>src/main/assembly/component.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-royale.xml</componentDescriptor>
   </componentDescriptors>
 </assembly>
