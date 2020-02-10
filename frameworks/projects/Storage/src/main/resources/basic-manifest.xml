@@ -20,6 +20,7 @@
 
 
 <componentPackage>
+	<component id="AMFStorage" class="org.apache.royale.storage.AMFStorage"/>
 	<component id="LocalStorage" class="org.apache.royale.storage.LocalStorage"/>
 	<component id="PermanentStorage" class="org.apache.royale.storage.PermanentStorage"/>
 </componentPackage>

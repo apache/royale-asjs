@@ -43,7 +43,11 @@ package jewel.todomvc.vos
         {
             this.label = label;
         }
-
+        
+        /**
+         * The following two methods could be used if we were saving and reading the data as JSON,
+         * but we're actually saving and reading as AMF, so they are not necessary.
+         */
         public function toJSON():Object{
             return {
                 "label":label,

@@ -26,7 +26,7 @@ package jewel.todomvc.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.routing.Router;
-	import org.apache.royale.storage.LocalStorage;
+	import org.apache.royale.storage.AMFStorage;
 
 	[Bindable]
     /**
@@ -72,30 +72,18 @@ package jewel.todomvc.models
          */
         public function setItemStore(items:Array):void
         {
-            var itemStr:String = JSON.stringify(items);
-            storage.setItem("todomvc",itemStr);
+            storage.data["items"] = items;
+            storage.save();
         }
         public function getItemStore():Array
         {
-            var itemArr:Array = [];
-            var itemStr:String = storage.getItem("todomvc") as String;
-            if(itemStr)
-            {
-                try{
-                    itemArr = JSON.parse(itemStr) as Array;
-                    for(var i:int=0;i<itemArr.length;i++){
-                        itemArr[i] = TodoVO.fromJSON(itemArr[i]);
-                    }
-                }catch(err:Error){
-                    return [];
-                }
-            }
+            var itemArr:Array = storage.data["items"] || [];
             return itemArr;
         }
         /**
          *  Local storage for the todo items
          */
-        private var storage:LocalStorage = new LocalStorage();// SharedObject.getLocal("todomvc");
+        private var storage:AMFStorage = AMFStorage.getLocal("todomvc");
 
         /**
          * the list of items binded to the todo list component

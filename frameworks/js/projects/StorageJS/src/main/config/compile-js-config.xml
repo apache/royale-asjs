@@ -58,6 +58,8 @@
             <path-element>../../../../../../../js/libs/cordova.swc</path-element>
             <path-element>../../../../../libs/LanguageJS.swc</path-element>
             <path-element>../../../../../libs/CoreJS.swc</path-element>
+            <path-element>../../../../../libs/NetworkJS.swc</path-element>
+            <path-element>../../../../../libs/ReflectionJS.swc</path-element>
         </external-library-path>
         
         <namespaces>
@@ -72,6 +74,7 @@
         </source-path>
         
         <warn-no-constructor>false</warn-no-constructor>
+        <allow-abstract-classes>true</allow-abstract-classes>
     </compiler>
     
     <include-file>

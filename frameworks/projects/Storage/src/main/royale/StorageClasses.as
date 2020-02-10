@@ -27,6 +27,7 @@ package
  */
 internal class StorageClasses
 {
+	import org.apache.royale.storage.AMFStorage; AMFStorage;
     import org.apache.royale.storage.LocalStorage; LocalStorage;
     import org.apache.royale.storage.providers.LocalStorageProvider; LocalStorageProvider;
 
