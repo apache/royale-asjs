@@ -100,7 +100,7 @@ limitations under the License.
 					evaluated = "String value: '" + item + "'";
 				} else {
 					if (item === null || item === undefined) {
-						evaluated = "Nothing Selected]";
+						evaluated = "Nothing Selected";
 					}
 					else {
 						if (item is IconListVO) {
@@ -115,8 +115,8 @@ limitations under the License.
 
 			public function describeIconItem(iconObject:Object):String{
 				const iconVO:IconListVO = iconObject as IconListVO;
-				if (!iconVO) return '[Nothing Selected]';
-				return 'label:\'' + iconVO.label + '\', icon:\'' + iconVO.icon + '\'';
+				if (!iconVO) return 'Nothing Selected';
+				return 'label:"' + iconVO.label + '", icon:"' + iconVO.icon + '"';
 			}
 
 			// private function traceCollectionLabels():void

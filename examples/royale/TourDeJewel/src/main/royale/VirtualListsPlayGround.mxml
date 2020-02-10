@@ -26,10 +26,10 @@ limitations under the License.
 	
 	<fx:Script>
 		<![CDATA[
-		import vos.IconListVO;
 		import org.apache.royale.collections.ArrayList;
 		import org.apache.royale.core.StyledUIBase;
 
+		import vos.IconListVO;
 
 		private function addItemToVirtual():void
 		{
@@ -67,7 +67,7 @@ limitations under the License.
 				evaluated = "String value: '" + item + "'";
 			} else {
 				if (item === null || item === undefined) {
-					evaluated = "Nothing Selected]";
+					evaluated = "Nothing Selected";
 				}
 				else {
 					if (item is IconListVO) {
