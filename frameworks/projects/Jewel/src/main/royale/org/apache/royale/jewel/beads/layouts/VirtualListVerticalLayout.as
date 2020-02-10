@@ -285,7 +285,7 @@ package org.apache.royale.jewel.beads.layouts
                 var viewportHeight:Number = contentView.height;
                 var startIndex:int = Math.floor(viewportTop / presentationModel.rowHeight);
                 var factory:IDataProviderVirtualItemRendererMapper = host.getBeadByType(IDataProviderVirtualItemRendererMapper) as IDataProviderVirtualItemRendererMapper;
-                var endIndex:int = Math.ceil((viewportTop + viewportHeight) / presentationModel.rowHeight);
+                var endIndex:int = Math.ceil((viewportTop + viewportHeight) / presentationModel.rowHeight) + 1;
                 var freeIndex:int;
                 var firstIndex:int;
                 var lastIndex:int;
@@ -380,14 +380,12 @@ package org.apache.royale.jewel.beads.layouts
                     {
                     //    trace("i < firstIndex: creating: i = " + i);
                        ir  = factory.getItemRendererForIndex(i, i - startIndex + 1);
-                    //    ir.element.style.display = "block";
                        visibleIndexes.push(i);
                     }
                     else if (i > lastIndex)
                     {
                         // trace("i > lastIndex: creating: i = " + i);
                         ir  = factory.getItemRendererForIndex(i, i - startIndex + 1);
-                        // ir.element.style.display = "block";
                         visibleIndexes.push(i);
                     }
                 }
