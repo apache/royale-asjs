@@ -633,7 +633,11 @@ j|FormItem {
 }
 
 .jewel.label {
-  font-size: 1em;
+  line-height: 1em;
+}
+.jewel.label.multiline {
+  line-height: normal;
+  max-width: 100%;
 }
 
 .jewel.list {
