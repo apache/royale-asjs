@@ -18,17 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  import org.apache.royale.core.Bead;
-  import org.apache.royale.core.IStrand;
-  import org.apache.royale.events.ValueEvent;
-  import org.apache.royale.core.IParent;
   import org.apache.royale.core.IChild;
+  import org.apache.royale.core.IParent;
+  import org.apache.royale.core.IStrand;
   [DefaultProperty("routes")]
   /**
    * RouteToComponent is a bead designed for Router
    * One or more routes should be assigned to the bead
    */
-  public class RouteToComponent extends Bead
+  public class RouteToComponent extends PathRouteBead
   {
     public function RouteToComponent()
     {
@@ -37,58 +35,10 @@ package org.apache.royale.routing
 
     public var routes:Array;
 
-    /**
-     * @royaleignorecoercion org.apache.royale.routing.Router
-     */
-    private function get host():Router{
-      return _strand as Router
-    }
     override public function set strand(value:IStrand):void
     {
-      _strand = value;
-      listenOnStrand("hashNeeded",hashNeeded);
-      listenOnStrand("hashReceived",hashReceived);
+      super.strand = value;
       listenOnStrand("stateChange",stateChanged)
-    }
-    private function hashNeeded(ev:ValueEvent):void
-    {
-      var hash:String = ev.value;
-      var trailing:String = "";
-      var delim:String = ""
-      if(hash.indexOf("?") != -1)
-        delim = "?"
-
-      else if(hash.indexOf("#") != -1)
-        delim = "#"
-      if(delim)
-      {
-        trailing = hash.slice(hash.indexOf(delim));
-        hash = hash.slice(0,hash.indexOf(delim));
-      }
-      // no bead added the path yet
-      if(!hash)
-      {
-        hash = host.routeState.path;
-      }
-      
-      ev.value = hash + trailing;
-
-    }
-
-    private function hashReceived(ev:ValueEvent):void
-    {
-      var hash:String = ev.value;
-      var trailing:String = "";
-      // if we have parameters, we don't care if we also have an anchor
-      var delim:String = ""
-      var index:int = hash.indexOf("?")
-      if(index == -1)
-        index = hash.indexOf("#");
-      
-      if(index != -1)
-        hash = hash.slice(0,index);
-      
-      host.routeState.path = hash;
     }
 
     /**

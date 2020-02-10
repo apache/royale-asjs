@@ -18,31 +18,22 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
-  import org.apache.royale.core.Bead;
-  import org.apache.royale.core.IStrand;
-  import org.apache.royale.events.ValueEvent;
   import org.apache.royale.core.IStatesObject;
-  import org.apache.royale.utils.callLater;
+  import org.apache.royale.core.IStrand;
   import org.apache.royale.debugging.assert;
+  import org.apache.royale.events.ValueEvent;
+  import org.apache.royale.utils.callLater;
 
-  public class RouteToState extends Bead
+  public class RouteToState extends PathRouteBead
   {
     public function RouteToState()
     {
       
     }
-    /**
-     * @royaleignorecoercion org.apache.royale.routing.Router
-     */
-    private function get host():Router{
-      return _strand as Router
-    }
 
     override public function set strand(value:IStrand):void
     {
-      _strand = value;
-      listenOnStrand("hashNeeded",hashNeeded);
-      listenOnStrand("hashReceived",hashReceived);
+      super.strand = value;
       listenOnStrand("stateChange",stateChanged)
       // attach state change event async to allow adding the parent strand after this is added.
       callLater(attachStateEvent);
@@ -63,7 +54,7 @@ package org.apache.royale.routing
       host.routeState.path = getStateComponent().currentState;
       host.setState();
     }
-    private function hashNeeded(ev:ValueEvent):void
+    override protected function hashNeeded(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       // don't overwrite path, parameters and anchor
@@ -84,21 +75,6 @@ package org.apache.royale.routing
         trailing = hash.slice(hash.indexOf(delim));
       
       ev.value = parentPath + getStateComponent().currentState + trailing;
-    }
-    private function hashReceived(ev:ValueEvent):void
-    {
-      var hash:String = ev.value;
-      var trailing:String = "";
-      // if we have parameters, we don't care if we also have an anchor
-      var delim:String = ""
-      var index:int = hash.indexOf("?")
-      if(index == -1)
-        index = hash.indexOf("#");
-      
-      if(index != -1)
-        hash = hash.slice(0,index);
-      
-      host.routeState.path = hash;
     }
     private var settingState:Boolean;
     /**

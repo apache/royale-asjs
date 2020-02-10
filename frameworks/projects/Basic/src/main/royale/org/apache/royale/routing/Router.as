@@ -28,6 +28,7 @@ package org.apache.royale.routing
   import org.apache.royale.core.IMXMLDocument;
   import org.apache.royale.utils.MXMLDataInterpreter;
   import org.apache.royale.utils.sendStrandEvent;
+  import org.apache.royale.utils.loadBeadFromValuesManager;
   [DefaultProperty("beads")]
     /**
      *  Dispatched when the state is changed.
@@ -63,6 +64,7 @@ package org.apache.royale.routing
 		public function set strand(value:IStrand):void
 		{	
 			_strand = value;
+      loadBeadFromValuesManager(IPathRouteBead, "iPathRouteBead", this);
 			COMPILE::JS
 			{
 				window.addEventListener("hashchange", hashChangeHandler);
