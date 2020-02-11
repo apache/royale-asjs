@@ -28,8 +28,7 @@ package jewel.todomvc.controllers
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 
-	[Bindable]
-    /**
+	/**
      * The Todo Controller holds all the global actions. The views dispatch events that bubbles and
 	 * this class register to these evens and updates the model, so views can update accordingly using
 	 * binding most of the times.
