@@ -145,7 +145,7 @@ public class DateBase
      *  @private
      *  Storage for the dayNamesShort property.
      */
-    private static var _dayNamesShort:Array; /* of String */
+    private static var _dayNamesShort:Array = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; /* of String */
     
     /**
      *  @private
@@ -269,7 +269,7 @@ public class DateBase
      *  @private
      *  Storage for the monthNamesShort property.
      */
-    private static var _monthNamesShort:Array; /* of String */
+    private static var _monthNamesShort:Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct","Nov", "Dec"]; /* of String */
     
     /**
      *  @private
