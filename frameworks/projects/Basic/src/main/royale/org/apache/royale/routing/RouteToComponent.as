@@ -46,7 +46,7 @@ package org.apache.royale.routing
      */
     private function stateChanged():void
     {
-      var default:ComponentRoute;
+      var defaultRoute:ComponentRoute;
       // apply routes
       if(routes)
       {
@@ -55,16 +55,16 @@ package org.apache.royale.routing
         for(var i:int=0;i<routes.length;i++){
           var route:ComponentRoute = routes[i];
           if(route.defaultRoute)
-            default = route;
+            defaultRoute = route;
           if(route.baseName == baseName)
           {
             addComponent(route);
             return;
           }
         }
-        if(default)
+        if(defaultRoute)
         {
-          addComponent(default);
+          addComponent(defaultRoute);
         }
       }      
     }
