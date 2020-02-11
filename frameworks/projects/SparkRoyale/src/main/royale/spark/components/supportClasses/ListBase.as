@@ -47,7 +47,7 @@ import mx.core.mx_internal;
 
 import spark.components.DataGroup;
 import spark.components.SkinnableContainer;
-import spark.components.beads.SkinnableContainerView;
+import spark.components.beads.SparkContainerView;
 
 import org.apache.royale.core.IBeadLayout;
 import org.apache.royale.core.ISelectionModel;
@@ -475,26 +475,26 @@ public class ListBase  extends SkinnableContainer
      *  @productversion Royale 0.9.4
      * 
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     *  @royaleignorecoercion spark.components.beads.SparkContainerView
      */
     [Bindable("dataProviderChanged")]
     [Inspectable(category="Data")]
     
     public function get dataProvider():IList
     {       
-        return ((view as SkinnableContainerView).contentView as DataGroup).dataProvider;
+        return ((view as SparkContainerView).contentView as DataGroup).dataProvider;
     }
     
     /**
      *  @private
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     *  @royaleignorecoercion spark.components.beads.SparkContainerView
      */
     public function set dataProvider(value:IList):void
     {
         if (isWidthSizedToContent() || isHeightSizedToContent())
-            ((view as SkinnableContainerView).contentView as DataGroup).addEventListener("itemsCreated", itemsCreatedHandler);
-        ((view as SkinnableContainerView).contentView as DataGroup).dataProvider = value;
+            ((view as SparkContainerView).contentView as DataGroup).addEventListener("itemsCreated", itemsCreatedHandler);
+        ((view as SparkContainerView).contentView as DataGroup).dataProvider = value;
     }
     
     private function itemsCreatedHandler(event:Event):void
@@ -506,8 +506,8 @@ public class ListBase  extends SkinnableContainer
                 // clear last width/height so elements size to content
                 element.style.width = "";
                 element.style.height = "";
-                ((view as SkinnableContainerView).contentView as DataGroup).element.style.width = "";
-                ((view as SkinnableContainerView).contentView as DataGroup).element.style.height = "";
+                ((view as SparkContainerView).contentView as DataGroup).element.style.width = "";
+                ((view as SparkContainerView).contentView as DataGroup).element.style.height = "";
             }
             (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
         }
@@ -528,24 +528,24 @@ public class ListBase  extends SkinnableContainer
      *  @productversion Royale 0.9.4
      * 
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     *  @royaleignorecoercion spark.components.beads.SparkContainerView
      */
     public function get itemRenderer():IFactory
     {
-        return ((view as SkinnableContainerView).contentView as DataGroup).itemRenderer;
+        return ((view as SparkContainerView).contentView as DataGroup).itemRenderer;
     }
     
     /**
      *  @private
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     *  @royaleignorecoercion spark.components.beads.SparkContainerView
      */
     public function set itemRenderer(value:IFactory):void
     {
-        ((view as SkinnableContainerView).contentView as DataGroup).itemRenderer = value;
+        ((view as SparkContainerView).contentView as DataGroup).itemRenderer = value;
         // the ItemRendererFactory was already put on the DataGroup's strand and
         // determined which factory to use so we have to set it up later here.
-        var factory:ItemRendererClassFactory = ((view as SkinnableContainerView).contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
+        var factory:ItemRendererClassFactory = ((view as SparkContainerView).contentView as DataGroup).getBeadByType(ItemRendererClassFactory) as ItemRendererClassFactory;
         factory.createFunction = factory.createFromClass;
         factory.itemRendererFactory = value;
     }
@@ -667,7 +667,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function get labelField():String
     {
-         return (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).labelField;
+         return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).labelField;
     } 
     
     /**
@@ -675,7 +675,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set labelField(value:String):void
     {
-        (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).labelField = value;
+        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).labelField = value;
     } 
     
     //----------------------------------
@@ -922,7 +922,7 @@ public class ListBase  extends SkinnableContainer
        /*  if (_proposedSelectedIndex != NO_PROPOSED_SELECTION)
             return _proposedSelectedIndex; */
             
-        return (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex;
+        return (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex;
     }
     
     /**
@@ -930,7 +930,7 @@ public class ListBase  extends SkinnableContainer
      */
     public function set selectedIndex(value:int):void
     {
-        (((view as SkinnableContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex = value;
+        (((view as SparkContainerView).contentView as DataGroup).model as ISelectionModel).selectedIndex = value;
        /*  setSelectedIndex(value, false); */
     }
     
@@ -2179,7 +2179,7 @@ public class ListBase  extends SkinnableContainer
     /**
      *  @private
      *  @royaleignorecoercion spark.components.DataGroup
-     *  @royaleignorecoercion spark.components.beads.SkinnableContainerView
+     *  @royaleignorecoercion spark.components.beads.SparkContainerView
      */
     override public function addedToParent():void
     {
@@ -2194,7 +2194,7 @@ public class ListBase  extends SkinnableContainer
     override public function setActualSize(w:Number, h:Number):void
     {
         super.setActualSize(w, h);
-        ((view as SkinnableContainerView).contentView as DataGroup).setActualSize(w, h);
+        ((view as SparkContainerView).contentView as DataGroup).setActualSize(w, h);
     }
 }
 
