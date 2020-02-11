@@ -233,7 +233,6 @@ public class RadioButton extends ToggleButtonBase
     {
         rbicon = new RadioButtonIcon()
         rbicon.id = '_radio_' + RadioButton.radioCounter++;
-        rbicon.element.addEventListener("change", rbChangeHandler);
         rbicon.element.addEventListener("click", rbClickHandler);
         
         textNode = document.createTextNode('') as window.Text;
@@ -254,20 +253,11 @@ public class RadioButton extends ToggleButtonBase
      * @royaleignorecoercion HTMLInputElement
      */
     COMPILE::JS
-    private function rbChangeHandler(event:Event):void
+    private function rbClickHandler(event:Event):void
     {
         selected = (rbicon.element as HTMLInputElement).checked;
         if (group)
             group.setSelection(this);
-    }
-    
-    /**
-     * @royaleignorecoercion HTMLInputElement
-     */
-    COMPILE::JS
-    private function rbClickHandler(event:Event):void
-    {
-        selected = (rbicon.element as HTMLInputElement).checked;
     }
     
     COMPILE::JS
