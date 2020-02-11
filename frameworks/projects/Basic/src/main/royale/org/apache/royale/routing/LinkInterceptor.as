@@ -16,16 +16,42 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.routing
 {
-    "config": "royale",
-    "compilerOptions": {
-        "debug": false,
-        "targets": ["JSRoyale"],
-        "source-map": true
-    },
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
-    "files":
-    [
-        "src/main/royale/App.mxml"
-    ]
+  import org.apache.royale.core.Bead;
+  import org.apache.royale.core.IStrand;
+  import org.apache.royale.events.Event;
+
+  public class LinkInterceptor extends Bead
+  {
+    public function LinkInterceptor()
+    {
+      
+    }
+
+    /**
+     * @royaleignorecoercion org.apache.royale.routing.Router
+     */
+    private function get host():Router{
+      return _strand as Router
+    }
+
+    override public function set strand(value:IStrand):void
+    {
+      _strand = value;
+      COMPILE::JS
+      {
+        document.addEventListener('click', interceptClickEvent);
+      }
+    }
+    /**
+     * If requireHash is true, any link that does not start with hash will be handled by a browser redirect
+     */
+    public var requireHash:Boolean = false;
+    private function interceptClickEvent(ev:Event):void
+    {
+      //TODO find the link target and handle the click event
+      trace(ev);
+    }
+  }
 }

@@ -20,15 +20,22 @@ package org.apache.royale.routing
 {
   public class RouteState
   {
-    public function RouteState(state:String="",title:String="")
+    public function RouteState(path:String="")
     {
-      this.state = state;
-      this.title = title;
-
+      this.path = path;
+      this.parameters = {};
     }
-    public var state:String;
-    public var title:String;
+    public var anchor:String;
     public var parameters:Object;
-    public var path:Array;
+    public var path:String;
+    public var title:String;
+    public function getBaseName():String
+    {
+        var lastdelim:int = path.lastIndexOf("/");
+        if(lastdelim != -1)
+          return path.slice(lastdelim+1);
+      
+      return path;
+    }
   }
 }

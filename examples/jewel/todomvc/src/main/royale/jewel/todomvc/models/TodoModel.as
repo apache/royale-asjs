@@ -20,14 +20,13 @@ package jewel.todomvc.models
 {
 	import jewel.todomvc.vos.TodoVO;
 
-	import mx.net.SharedObject;
-
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.collections.ArrayListView;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.routing.Router;
+	import org.apache.royale.storage.AMFStorage;
 
 	[Bindable]
     /**
@@ -69,9 +68,22 @@ package jewel.todomvc.models
         public var router:Router;
 
         /**
+         * Saves the array ot items
+         */
+        public function setItemStore(items:Array):void
+        {
+            storage.data["items"] = items;
+            storage.save();
+        }
+        public function getItemStore():Array
+        {
+            var itemArr:Array = storage.data["items"] || [];
+            return itemArr;
+        }
+        /**
          *  Local storage for the todo items
          */
-        public var storage:SharedObject = SharedObject.getLocal("todomvc");
+        private var storage:AMFStorage = AMFStorage.getLocal("todomvc");
 
         /**
          * the list of items binded to the todo list component

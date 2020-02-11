@@ -43,34 +43,30 @@ limitations under the License.
                 todoModel.router = router;
                 header.todoModel = todoModel;
                 footer.todoModel = todoModel;
-                
-                updateRouting();
             }
 
-            /**
-             *  Used for routing. If we have a routing state navigate using that info
-             *  In other case (initial state) set to no filters (ALL_FILTER)
-             */
-            private function updateRouting():void {
-                var routeState:RouteState = router.routeState;
-                if(routeState.state)
-                    footer.selectState(routeState.state);
-                else
-                    footer.selectState(TodoModel.ALL_FILTER);
-            }
-
-            /**
-             *  Router used this handler when the URL hash change to update app state
-             */
-            private function hashChanged():void{
-                updateRouting();
+            private function getTitleLookup():Object{
+                var retVal:Object = {};
+                var states:Array = [
+                    TodoModel.ALL_FILTER,
+                    TodoModel.ACTIVE_FILTER,
+                    TodoModel.COMPLETED_FILTER
+                ]
+                for(var i:int=0;i<states.length;i++)
+                {
+                    retVal[states[i]] = "TodoMVC - " + states[i] + " State";
+                }
+                return retVal;
             }
         ]]>
     </fx:Script>
 
     <j:beads>
         <js:ContainerDataBinding/>
-        <js:Router localId="router" stateChange="hashChanged()" /> 
+        <js:Router localId="router">
+            <js:RouteToState component="{footer}"/>
+            <js:RouteTitleLookup lookup="{getTitleLookup()}"/>
+        </js:Router>
     </j:beads>
 
     <html:Section className="todoapp">
@@ -92,7 +88,7 @@ limitations under the License.
             </j:List>
         </html:Section>
         
-        <html:Footer className="footer" visible="{todoModel.footerVisibility}">
+        <html:Footer className="footer" visible="{todoModel.footerVisibility}" currentState="All">
             <views:TodoFooter localId="footer"/>
         </html:Footer>
     </html:Section>

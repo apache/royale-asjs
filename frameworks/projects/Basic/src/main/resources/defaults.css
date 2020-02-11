@@ -733,6 +733,11 @@ CascadingMenuItemRenderer
 	flex-grow: 1;
 }
 
+Router
+{
+	IPathRouteBead: ClassReference("org.apache.royale.routing.PathRouteBead");
+}
+
 TextInput
 {
 	border: 1px solid #808080;

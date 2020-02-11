@@ -16,16 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.routing
 {
-    "config": "royale",
-    "compilerOptions": {
-        "debug": false,
-        "targets": ["JSRoyale"],
-        "source-map": true
-    },
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
-    "files":
-    [
-        "src/main/royale/App.mxml"
-    ]
+  public class RouteTitleLookup extends SetRouteTitle
+  {
+    public function RouteTitleLookup()
+    {
+      super();
+      lookup = {};
+    }
+    public var lookup:Object;
+    override protected function handleStateSet():void
+    {
+      var baseName:String = host.routeState.getBaseName();
+      if(lookup[baseName])
+        host.routeState.title = lookup[baseName];
+      super.handleStateSet();
+
+    }
+
+  }
 }

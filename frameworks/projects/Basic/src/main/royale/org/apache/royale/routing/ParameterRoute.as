@@ -16,16 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.routing
 {
-    "config": "royale",
-    "compilerOptions": {
-        "debug": false,
-        "targets": ["JSRoyale"],
-        "source-map": true
-    },
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
-    "files":
-    [
-        "src/main/royale/App.mxml"
-    ]
+  /**
+   * ParameterRoutes are declared in (or added to) RouteToParamter beads.
+   * If the key exists in thge parameters, the callback will be called with the value as the argument to the function.
+   */
+  public class ParameterRoute
+  {
+    public function ParameterRoute()
+    {
+      
+    }
+    /**
+     * Parameter key to use
+     */
+    public var key:String;
+    public var title:String;
+    /**
+     * Function to call if the parameter exists. (The value is supplied as an argument.)
+     */
+    public var callback:Function;
+  }
 }

@@ -56,7 +56,7 @@ limitations under the License.
             /**
              *  Destroy this todo item
              */
-            public function removeItemClickHandler(event:MouseEvent):void {
+            public function removeItemClickHandler(event:Event):void {
                 COMPILE::JS
                 {
                 document.removeEventListener('click', commitLabelChanges, true);
@@ -74,7 +74,7 @@ limitations under the License.
             /**
              *  Change renderer state to edit mode by double clicking in the todo item label
              */
-            public function goToEditMode(event:MouseEvent):void
+            public function goToEditMode(event:Event):void
             {
                 editfield.text = description.text;
                 currentState = "editing";
@@ -107,7 +107,7 @@ limitations under the License.
             /**
              *  Show destroy button when user rolls over the renderer
              */
-            public function rollOverHandler(event:MouseEvent):void
+            public function rollOverHandler(event:Event):void
             {
                 mouseIsOverRenderer = true;
                 if(currentState == "normal")
@@ -117,7 +117,7 @@ limitations under the License.
             /**
              *  Hide destroy button when user rolls out the renderer
              */
-            public function rollOutHandler(event:MouseEvent):void
+            public function rollOutHandler(event:Event):void
             {
                 mouseIsOverRenderer = false;
                 if(currentState == "normal")

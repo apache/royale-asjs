@@ -39,8 +39,9 @@ limitations under the License.
             
             private function setNavSelection():void {
                 var routeState:RouteState = router.routeState;
-                if(routeState.state){
-                    setNavFromHash(routeState.state);
+                var baseName:String = routeState.getBaseName();
+                if(baseName){
+                    setNavFromHash(baseName);
                 } else {
                     goToHome();
                 }
@@ -89,7 +90,7 @@ limitations under the License.
                 currentNavOption = (event.target as Navigation).selectedItem as NavigationLinkVO;
                 
                 router.routeState.title = currentNavOption.label;
-                router.routeState.state = currentNavOption.hash;
+                router.routeState.path = currentNavOption.hash;
                 router.setState();
                 
                 navigateTo();
@@ -108,7 +109,7 @@ limitations under the License.
                 currentNavOption = currentNavOption.selectedChild;
                 
                 router.routeState.title = currentNavOption.label;
-                router.routeState.state = currentNavOption.hash;
+                router.routeState.path = currentNavOption.hash;
                 router.setState();
                 
                 navigateTo();

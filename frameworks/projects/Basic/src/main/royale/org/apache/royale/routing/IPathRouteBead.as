@@ -16,16 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.routing
 {
-    "config": "royale",
-    "compilerOptions": {
-        "debug": false,
-        "targets": ["JSRoyale"],
-        "source-map": true
-    },
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
-    "files":
-    [
-        "src/main/royale/App.mxml"
-    ]
+  /**
+   * Marker interface for a bead which parses the path part of path part of a route
+   */
+  public interface IPathRouteBead
+  {
+    
+  }
 }

@@ -16,16 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.routing
 {
-    "config": "royale",
-    "compilerOptions": {
-        "debug": false,
-        "targets": ["JSRoyale"],
-        "source-map": true
-    },
-    "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
-    "files":
-    [
-        "src/main/royale/App.mxml"
-    ]
+  import org.apache.royale.core.IParent;
+  /**
+   * ComponentRoutes are declared in RouteToComponent beads.
+   * This maps a base name of a route path to a component class.
+   */
+  public class ComponentRoute
+  {
+    public function ComponentRoute()
+    {
+      
+    }
+    /**
+     * The component class to attach to the parent. I new one is instantiated each time we have a new route.
+     */
+    public var component:Class;
+    /**
+     * This is the base name (leaf) of the route path.
+     */
+    public var baseName:String;
+    /**
+     * The parent to add the component to. (Defaults to the strand of the router.)
+     */
+    public var parent:IParent;
+
+    public var title:String;
+
+    public var defaultRoute:Boolean = false;
+  }
 }

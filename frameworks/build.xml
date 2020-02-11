@@ -131,9 +131,9 @@
         <antcall target="JQuery"/>
         <antcall target="Mobile"/>
 
+        <antcall target="Network"/>
         <antcall target="Storage"/>
         <antcall target="XML"/>
-        <antcall target="Network"/>
         <antcall target="Text"/>
         <antcall target="TLF"/>
 		<antcall target="MaterialDesignLite"/>
