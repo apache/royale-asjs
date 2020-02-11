@@ -32,7 +32,6 @@ package org.apache.royale.jewel.beads.models
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	[Bindable]
 	public class WizardModel extends EventDispatcher implements IBeadModel, ITextModel
 	{
 		/**
