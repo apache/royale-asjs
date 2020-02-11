@@ -297,9 +297,13 @@
                 done with IDEs that instead of target use bin.
             -->
             <exclude>**/bin/**</exclude>
-
+            
             <exclude>**/src/test/royale/out/**</exclude>
             <exclude>lib/external/*.html</exclude>
+            
+            <!-- Moonshine generate this files -->
+            <exclude>obj/*.xml</exclude>
+            <exclude>*.as3proj</exclude>
           </excludes>
         </configuration>
       </plugin>
