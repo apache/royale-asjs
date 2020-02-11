@@ -16,7 +16,7 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads
+package org.apache.royale.jewel.beads.itemRenderers
 {
     COMPILE::SWF
     {

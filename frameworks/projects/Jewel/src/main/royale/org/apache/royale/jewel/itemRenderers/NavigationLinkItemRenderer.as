@@ -25,7 +25,7 @@ package org.apache.royale.jewel.itemRenderers
     }
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-    import org.apache.royale.jewel.beads.ClassSelectorListHoverableRuntimeSelectableItemRendererBead;
+    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverableRuntimeSelectableItemRendererBead;
 
 	/**
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 

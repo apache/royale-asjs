@@ -27,7 +27,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-    import org.apache.royale.jewel.beads.ClassSelectorListRuntimeSelectableItemRendererBead;
+    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListRuntimeSelectableItemRendererBead;
     
 	/**
 	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 

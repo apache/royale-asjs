@@ -38,7 +38,7 @@ limitations under the License.
 
             public function clickCloseButton(event:Event):void
 			{
-                var view:ListView = this.itemRendererParent as ListView;
+                var view:ListView = this.itemRendererOwnerView as ListView;
                 var column:DataGridColumnList = view.host as DataGridColumnList;
                 (column.datagrid.dataProvider as ArrayList).removeItemAt(index);
             }

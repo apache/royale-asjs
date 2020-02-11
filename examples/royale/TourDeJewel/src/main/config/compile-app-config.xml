@@ -21,6 +21,9 @@
         <optimization>skipAsCoercions</optimization>
     </js-output-optimization>
     <compiler>
+        <targets>
+            <target>JSRoyale</target>
+        </targets>
         <theme>
             <filename>../../../../../../frameworks/libs/JewelTheme.swc</filename>
             <filename>../../../../../../frameworks/themes/Jewel-Light-NoFlat-Primary-Blue-Theme/src/main/resources/defaults.css</filename>

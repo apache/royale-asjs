@@ -19,7 +19,6 @@
 package org.apache.royale.html.supportClasses
 {
     import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IBead;
 	import org.apache.royale.core.UIBase;
@@ -75,25 +74,6 @@ package org.apache.royale.html.supportClasses
             dispatchEvent(new Event("initBindings"));
             dispatchEvent(new Event("initComplete"));
             
-		}
-		
-		private var _itemRendererOwnerView:IItemRendererOwnerView;
-		
-		/**
-		 * The parent container for the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get itemRendererOwnerView():IItemRendererOwnerView
-		{
-			return _itemRendererOwnerView;
-		}
-		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
-		{
-			_itemRendererOwnerView = value;
 		}
 		
         /**

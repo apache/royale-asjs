@@ -24,7 +24,7 @@ package org.apache.royale.jewel.itemRenderers
     import org.apache.royale.jewel.beads.views.DropDownListView;            
     }
     import org.apache.royale.html.elements.Option;
-    import org.apache.royale.html.supportClasses.MXMLItemRenderer;
+    import org.apache.royale.core.StyledMXMLItemRenderer;
 
     /**
      *  The DropDownListItemRenderer class creates a DropDownList menu item
@@ -34,7 +34,7 @@ package org.apache.royale.jewel.itemRenderers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */    
-	public class DropDownListItemRenderer extends MXMLItemRenderer
+	public class DropDownListItemRenderer extends StyledMXMLItemRenderer
 	{
         public static const OPTION_DISABLED:String = "DropDownList.Select.Default.Prompt";
 

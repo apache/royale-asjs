@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
+    import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.html.supportClasses.MXMLItemRenderer;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
@@ -169,6 +170,26 @@ package org.apache.royale.core
             }
         }
 
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The text of the renderer
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
+        
         /**
 		 *  The method called when added to a parent. The StyledItemRenderer class uses
 		 *  this opportunity to assign emphasis from the strand if possible, otherwise defaults

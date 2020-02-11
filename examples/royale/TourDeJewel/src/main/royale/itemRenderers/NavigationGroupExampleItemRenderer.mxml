@@ -64,7 +64,7 @@ limitations under the License.
 
         override public function onChange(selectedItem:Object):void{
             trace('selectedItem',selectedItem)
-            var parentNav:Navigation =   this.itemRendererParent ? this.itemRendererParent.host as Navigation : null;
+            var parentNav:Navigation =   this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
             if (parentNav) {
                 //this hierarchy support is a bit kooky, and probably there will be something better later with Hierarchical data setup
                 navlink.selectedChild =selectedItem as NavigationLinkVO;
