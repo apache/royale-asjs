@@ -34,7 +34,6 @@ package jewel.todomvc.events
 		public static const TOGGLE_ALL_COMPLETE:String = "toggle_all_complete";
 		public static const REMOVE_COMPLETED:String = "remove_completed";
 		public static const REFRESH_LIST:String = "refresh_list";
-
 		public static const ITEM_STATE_CHANGED:String = "item_state_changed";
 		public static const ITEM_LABEL_CHANGED:String = "item_label_changed";
 		public static const ITEM_REMOVED:String = "item_removed";
@@ -56,6 +55,8 @@ package jewel.todomvc.events
 
         /**
          * constructor
+		 * 
+		 * event need to bubble up to be catched for the views
          */
 		public function TodoEvent(type:String, todo:TodoVO = null, label:String = null, completion:Boolean = false) {
 			super(type, true);

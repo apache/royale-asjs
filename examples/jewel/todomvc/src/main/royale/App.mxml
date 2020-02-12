@@ -49,6 +49,6 @@
 
     <j:initialView>
         <views:TodoListSection/>
-     </j:initialView>
+    </j:initialView>
      
 </j:Application>

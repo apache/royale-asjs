@@ -38,11 +38,13 @@ limitations under the License.
              */
             public function setUp():void {
                 todoModel = getBeadByType(IBeadModel) as TodoModel;
-                todoModel.router = router;
                 header.todoModel = todoModel;
                 footer.todoModel = todoModel;
             }
 
+            /**
+             *  Provide the appropiate browser window title
+             */
             private function getTitleLookup():Object {
                 var retVal:Object = {};
                 var states:Array = [
@@ -61,7 +63,7 @@ limitations under the License.
 
     <j:beads>
         <js:ContainerDataBinding/>
-        <js:Router localId="router">
+        <js:Router>
             <js:RouteToState component="{footer}"/>
             <js:RouteTitleLookup lookup="{getTitleLookup()}"/>
         </js:Router>
@@ -86,8 +88,8 @@ limitations under the License.
             </j:List>
         </html:Section>
         
-        <html:Footer className="footer" visible="{todoModel.footerVisibility}" currentState="All">
-            <views:TodoFooter localId="footer"/>
+        <html:Footer className="footer" visible="{todoModel.footerVisibility}">
+            <views:TodoFooter localId="footer" currentState="All"/>
         </html:Footer>
     </html:Section>
     

@@ -25,7 +25,6 @@ package jewel.todomvc.models
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.routing.Router;
 	import org.apache.royale.storage.AMFStorage;
 
 	[Bindable]
@@ -61,11 +60,6 @@ package jewel.todomvc.models
 		public function set strand(value:IStrand):void {
         	_strand = value;
         }
-
-        /**
-		 *  The router that updates the browser navigation state.
-		 */
-        public var router:Router;
 
         /**
          * Saves the array ot items

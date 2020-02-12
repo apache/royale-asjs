@@ -44,7 +44,6 @@
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/todomvc-index-template.html</htmlTemplate>
           <additionalCompilerOptions>
-            -js-dynamic-access-unknown-members=true;
             -source-map=true;
           </additionalCompilerOptions>
         </configuration>

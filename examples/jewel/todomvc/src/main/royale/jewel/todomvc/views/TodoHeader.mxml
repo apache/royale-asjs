@@ -34,14 +34,13 @@ limitations under the License.
 			public var todoModel:TodoModel;
 
 			/**
-			 *  Signal todo item addition from main text box
+			 *  Signal todo item addition from main text box if text is not empty
 			 */
 			private function addItem(event:Event):void {
 				if(event.target.text == "") return; 
 				var newTodo:TodoVO = new TodoVO(event.target.text);
-				event.target.text = "";
-				
 				dispatchEvent(new TodoEvent(TodoEvent.ADD_TODO_ITEM, newTodo));
+				event.target.text = "";
 			}
 
 			/**

@@ -26,14 +26,14 @@ package jewel.todomvc.controllers
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.Bead;
 
 	/**
      * The Todo Controller holds all the global actions. The views dispatch events that bubbles and
 	 * this class register to these evens and updates the model, so views can update accordingly using
 	 * binding most of the times.
      */
-	public class TodoController implements IBeadController
+	public class TodoController extends Bead implements IBeadController
 	{
         /**
 		 *  constructor.
@@ -42,8 +42,7 @@ package jewel.todomvc.controllers
 		{
         }
 
-        private var _strand:IStrand;
-		/**
+        /**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
@@ -51,15 +50,16 @@ package jewel.todomvc.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function set strand(value:IStrand):void {
-			_strand = value;
-			(_strand as IEventDispatcher).addEventListener(TodoEvent.ADD_TODO_ITEM, addTodoItem);            
-			(_strand as IEventDispatcher).addEventListener(TodoEvent.TOGGLE_ALL_COMPLETE, toggleAllComplete);            
-			(_strand as IEventDispatcher).addEventListener(TodoEvent.REMOVE_COMPLETED, removeCompleted);            
-			(_strand as IEventDispatcher).addEventListener(TodoEvent.REFRESH_LIST, refreshList);            
-			(_strand as IEventDispatcher).addEventListener(TodoEvent.ITEM_STATE_CHANGED, itemStateChangedHandler);            
-			(_strand as IEventDispatcher).addEventListener(TodoEvent.ITEM_LABEL_CHANGED, itemLabelChangedHandler);            
-			(_strand as IEventDispatcher).addEventListener(TodoEvent.ITEM_REMOVED, itemRemovedHandler);            
+		override public function set strand(value:IStrand):void {
+			super.strand = value;
+
+			listenOnStrand(TodoEvent.ADD_TODO_ITEM, addTodoItem);            
+			listenOnStrand(TodoEvent.TOGGLE_ALL_COMPLETE, toggleAllComplete);            
+			listenOnStrand(TodoEvent.REMOVE_COMPLETED, removeCompleted);            
+			listenOnStrand(TodoEvent.REFRESH_LIST, refreshList);            
+			listenOnStrand(TodoEvent.ITEM_STATE_CHANGED, itemStateChangedHandler);            
+			listenOnStrand(TodoEvent.ITEM_LABEL_CHANGED, itemLabelChangedHandler);            
+			listenOnStrand(TodoEvent.ITEM_REMOVED, itemRemovedHandler);            
 			
         	model = _strand.getBeadByType(IBeadModel) as TodoModel;
 			
@@ -76,17 +76,6 @@ package jewel.todomvc.controllers
 		 *  Common todo model
 		 */
 		private var model:TodoModel;
-		
-        /**
-         *  Saves the actual data to the local storage via Local SharedObject
-         */
-        protected function saveDataToLocal():void {
-			try {
-				model.setItemStore(model.allItems.source);
-			} catch (error:Error) {
-				trace("You need to be online to store locally");
-			}
-		}
 
         /**
          *  Add the todo item to the list, save data and refresh the list state 
@@ -97,8 +86,6 @@ package jewel.todomvc.controllers
 			saveDataToLocal();
 			updateInterface();
         }
-        
-
 
 		/**
          *  Mark all todo items as completed or uncompleted, save data and update the interface accordingly
@@ -145,28 +132,6 @@ package jewel.todomvc.controllers
 				setListState();
 			}
 		}
-		
-
-		/**
-		 *  Sets the new state filter and refresh list to match the filter
-		 */
-        protected function setListState():void {
-			// setting to the same collection must cause refreshed too
-			model.listItems = null;
-
-			model.activeItems.refresh();
-			model.completedItems.refresh();
-
-			if(model.filterState == TodoModel.ALL_FILTER) {
-				model.listItems = model.allItems;
-			} 
-			else if(model.filterState == TodoModel.ACTIVE_FILTER) {
-				model.listItems = model.activeItems;
-			}
-			else if(model.filterState == TodoModel.COMPLETED_FILTER) {
-				model.listItems = model.completedItems;
-			}
-		}
 
 		/**
 		 *  When some todo item change state (done/undone), we must save data and update the interface accordingly
@@ -207,6 +172,17 @@ package jewel.todomvc.controllers
 		}
 
 		/**
+         *  Saves the actual data to the local storage via Local SharedObject
+         */
+        protected function saveDataToLocal():void {
+			try {
+				model.setItemStore(model.allItems.source);
+			} catch (error:Error) {
+				trace("You need to be online to store locally");
+			}
+		}
+
+		/**
 		 *  Update the interface accordingly
 		 */
 		public function updateInterface():void {
@@ -218,5 +194,26 @@ package jewel.todomvc.controllers
 			model.toogleAllVisibility = model.allItems.length != 0;
 			model.toggleAllToCompletedState = model.activeItems.length == 0;
         }
+
+		/**
+		 *  Sets the new state filter and refresh list to match the filter
+		 */
+        protected function setListState():void {
+			// setting to the same collection must cause refreshed too
+			model.listItems = null;
+
+			model.activeItems.refresh();
+			model.completedItems.refresh();
+
+			if(model.filterState == TodoModel.ALL_FILTER) {
+				model.listItems = model.allItems;
+			} 
+			else if(model.filterState == TodoModel.ACTIVE_FILTER) {
+				model.listItems = model.activeItems;
+			}
+			else if(model.filterState == TodoModel.COMPLETED_FILTER) {
+				model.listItems = model.completedItems;
+			}
+		}
 	}
 }

@@ -29,6 +29,9 @@ limitations under the License.
             [Bindable]
             public var todoModel:TodoModel;
 
+            /**
+             * Refresh list when change state
+             */
             override public function set currentState(value:String):void {
                 super.currentState = value;
                 dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, value));
@@ -47,7 +50,6 @@ limitations under the License.
              */
             public function removeCompleted():void {
                 dispatchEvent(new TodoEvent(TodoEvent.REMOVE_COMPLETED));
-
                 clearCompleted.visible = false;
             }
         ]]>
