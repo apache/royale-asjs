@@ -36,6 +36,7 @@
     <module>CruxQuickStart</module>
     <module>CruxQuickStartBasic</module>
     <module>CruxGitHubCommitLogViewer</module>
+    <module>todomvc-jewel-crux</module>
   </modules>
 
   <build>

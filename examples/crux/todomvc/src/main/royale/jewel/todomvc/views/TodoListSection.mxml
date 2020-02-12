@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+Licensed to the Apache Software Foundation (ASF) under one or more
+contributor license agreements.  See the NOTICE file distributed with
+this work for additional information regarding copyright ownership.
+The ASF licenses this file to You under the Apache License, Version 2.0
+(the "License"); you may not use this file except in compliance with
+the License.  You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+<j:View xmlns:fx="http://ns.adobe.com/mxml/2009"
+    xmlns:j="library://ns.apache.org/royale/jewel"
+    xmlns:js="library://ns.apache.org/royale/basic"
+    xmlns:html="library://ns.apache.org/royale/html"
+    xmlns:views="jewel.todomvc.views.*">
+
+    <fx:Script>
+        <![CDATA[
+            import jewel.todomvc.models.TodoModel;
+            
+            [Bindable]
+            [Inject]
+			public var todoModel:TodoModel;
+
+            /**
+             *  Provide the appropiate browser window title
+             */
+            private function getTitleLookup():Object {
+                var retVal:Object = {};
+                var states:Array = [
+                    TodoModel.ALL_FILTER,
+                    TodoModel.ACTIVE_FILTER,
+                    TodoModel.COMPLETED_FILTER
+                ]
+                for(var i:int=0; i < states.length ; i++)
+                {
+                    retVal[states[i]] = "TodoMVC - " + states[i] + " State";
+                }
+                return retVal;
+            }
+        ]]>
+    </fx:Script>
+
+    <j:beads>
+        <js:ContainerDataBinding/>
+        <js:Router>
+            <js:RouteToState component="{footer}"/>
+            <js:RouteTitleLookup lookup="{getTitleLookup()}"/>
+        </js:Router>
+    </j:beads>
+
+    <html:Section className="todoapp">
+        <html:H1 text="todos"/>
+        
+        <html:Header>
+            <views:TodoHeader localId="header"/>
+        </html:Header>
+        
+        <html:Section localId="main">
+            <j:List localId="todolist" width="100%"
+                labelField="label" className="todo-list" 
+                dataProvider="{todoModel.listItems}">
+                <j:beads>
+                    <j:AddListItemRendererForArrayListData/>
+                    <j:RemoveListItemRendererForArrayListData/>
+                    <j:UpdateListItemRendererForArrayListData/>
+                </j:beads>
+            </j:List>
+        </html:Section>
+        
+        <html:Footer className="footer" visible="{todoModel.footerVisibility}">
+            <views:TodoFooter localId="footer" currentState="All"/>
+        </html:Footer>
+    </html:Section>
+    
+    <html:Footer className="info">
+        <![CDATA[
+            <p>Double-click to edit a todo</p>
+            <p>
+                Created by
+                <a href="http://github.com/carlosrovira" target="_blank">Carlos Rovira</a>
+                for
+                <a href="http://royale.apache.org" target="_blank">Apache Royale</a>
+            </p>
+            <p>Inspired in <a href="http://todomvc.com" target="_blank">TodoMVC</a></p>
+        ]]>
+    </html:Footer>
+</j:View>
