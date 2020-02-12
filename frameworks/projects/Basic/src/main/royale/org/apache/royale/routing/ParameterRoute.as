@@ -32,6 +32,14 @@ package org.apache.royale.routing
      * Parameter key to use
      */
     public var key:String;
+    /**
+     * If a default value is specified, the callback will be called
+     * with the default if no matching key is specified in the URL
+     */
+    public var defaultValue:String;
+    /**
+     * Optional window title
+     */
     public var title:String;
     /**
      * Function to call if the parameter exists. (The value is supplied as an argument.)

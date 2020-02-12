@@ -108,6 +108,10 @@ package org.apache.royale.routing
         {
           hashChangeHandler();
         }
+        else// if there's no hash we should still dispatch a stateChange event so the beads can set defaults
+        {
+          dispatchEvent(new Event("stateChange"));
+        }
       }
     }
 		private function hashChangeHandler():void

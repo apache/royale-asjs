@@ -79,11 +79,17 @@ package org.apache.royale.routing
       {
         for(var i:int=0;i<routes.length;i++){
           var route:ParameterRoute = routes[i];
+          var value:String = route.defaultValue;
           if(route.key in params)
           {
-            route.callback(params[route.key]);
+            value = params[route.key];
+          }
+          if(value)
+          {
+            route.callback(value);
             if(route.title)
               host.routeState.title = route.title;
+
           }
         }
       }      
