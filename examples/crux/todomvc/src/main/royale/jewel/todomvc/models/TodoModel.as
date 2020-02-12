@@ -23,7 +23,6 @@ package jewel.todomvc.models
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.collections.ArrayListView;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.storage.AMFStorage;
 
 	[Bindable]
@@ -40,13 +39,6 @@ package jewel.todomvc.models
         public static const ACTIVE_FILTER:String = "Active";
         public static const COMPLETED_FILTER:String = "Completed";
         
-		/**
-		 * The [Dispatcher] metadata tag instructs Crux to inject an event dispatcher.
-		 * Event's dispatched via this dispatcher can trigger event mediators.
-		 */ 
-        [Dispaqtcher]
-		public var dispatcher : IEventDispatcher;
-
         /**
          * Retrieves the array ot items
          */
