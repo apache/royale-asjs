@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.routing
 {
+  import org.apache.royale.core.IState;
   import org.apache.royale.core.IStatesObject;
   import org.apache.royale.core.IStrand;
   import org.apache.royale.debugging.assert;
@@ -34,7 +35,7 @@ package org.apache.royale.routing
     override public function set strand(value:IStrand):void
     {
       super.strand = value;
-      listenOnStrand("stateChange",stateChanged)
+      listenOnStrand("stateChange",stateChanged);
       // attach state change event async to allow adding the parent strand after this is added.
       callLater(attachStateEvent);
     }
@@ -84,7 +85,18 @@ package org.apache.royale.routing
     {
         settingState = true;
         //TODO what about using the base name of the path?
-        getStateComponent().currentState = host.routeState.path;
+        var stateName:String = host.routeState.path;
+        var stateComponent:IStatesObject = getStateComponent();
+        var states:Array = stateComponent.states;
+        //only change the state if the new value is a valid state
+        for each(var state:IState in states)
+        {
+          if(state.name == stateName)
+          {
+            stateComponent.currentState = stateName;
+            break;
+          }
+        }
         settingState = false;
 
     }
