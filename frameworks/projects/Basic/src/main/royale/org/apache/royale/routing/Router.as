@@ -29,6 +29,7 @@ package org.apache.royale.routing
   import org.apache.royale.utils.MXMLDataInterpreter;
   import org.apache.royale.utils.sendStrandEvent;
   import org.apache.royale.utils.loadBeadFromValuesManager;
+  import org.apache.royale.utils.callLater;
   [DefaultProperty("beads")]
     /**
      *  Dispatched when the state is changed.
@@ -39,6 +40,16 @@ package org.apache.royale.routing
      *  @productversion Royale 0.9.7
      */
     [Event(name="stateChange", type="org.apache.royale.events.Event")]
+
+    /**
+     *  Dispatched when bindings are initialized
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.7
+     */
+    [Event(name="initBindings", type="org.apache.royale.events.Event")]
 
     /**
      * Router is a bead which automatically handles browsing history.
@@ -69,12 +80,9 @@ package org.apache.royale.routing
 			{
 				window.addEventListener("hashchange", hashChangeHandler);
 			}
-      // If it's an Application, listen to applicationComplete
-      if(_strand is IInitialViewApplication)
-        listenOnStrand("applicationComplete",onInit);
-      //Otherwise listen to initComplete
-      else
-        listenOnStrand("initComplete",onInit);
+
+      // wait until the app is initialized. Calling onInit async soves this problem
+      callLater(onInit);
 		}
     /**
      * Helper function to attach event listener without the need for casting
@@ -91,6 +99,9 @@ package org.apache.royale.routing
         for each (var bead:IBead in beads)
           addBead(bead);
       }
+      // needed for binding in MXML
+      dispatchEvent(new Event("initBindings"));
+
       COMPILE::JS
       {
         if(location.hash)
