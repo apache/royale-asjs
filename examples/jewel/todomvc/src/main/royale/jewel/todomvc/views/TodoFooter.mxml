@@ -29,8 +29,7 @@ limitations under the License.
             [Bindable]
             public var todoModel:TodoModel;
 
-            override public function set currentState(value:String):void
-            {
+            override public function set currentState(value:String):void {
                 super.currentState = value;
                 dispatchEvent(new TodoEvent(TodoEvent.REFRESH_LIST, null, value));
             }
@@ -53,11 +52,13 @@ limitations under the License.
             }
         ]]>
     </fx:Script>
+
     <j:states>
         <js:State name="All"/>
         <js:State name="Active"/>
         <js:State name="Completed"/>
     </j:states>
+    
     <j:beads>
         <js:SimpleStatesImpl/>
         <js:ContainerDataBinding/>

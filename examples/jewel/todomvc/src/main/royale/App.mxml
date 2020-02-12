@@ -30,8 +30,8 @@
 
     <fx:Script>
         <![CDATA[
-            import org.apache.royale.reflection.registerClassAlias;
             import org.apache.royale.collections.ArrayList;
+            import org.apache.royale.reflection.registerClassAlias;
 
             /**
              *  Register ArrayCollection alias to map to ArrayList

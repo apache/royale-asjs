@@ -29,7 +29,6 @@ limitations under the License.
             import jewel.todomvc.models.TodoModel;
 
             import org.apache.royale.core.IBeadModel;
-            import org.apache.royale.routing.RouteState;
             
             [Bindable]
 			public var todoModel:TodoModel;
@@ -37,22 +36,21 @@ limitations under the License.
             /**
              *  Set up child views
              */
-            public function setUp():void
-            {
+            public function setUp():void {
                 todoModel = getBeadByType(IBeadModel) as TodoModel;
                 todoModel.router = router;
                 header.todoModel = todoModel;
                 footer.todoModel = todoModel;
             }
 
-            private function getTitleLookup():Object{
+            private function getTitleLookup():Object {
                 var retVal:Object = {};
                 var states:Array = [
                     TodoModel.ALL_FILTER,
                     TodoModel.ACTIVE_FILTER,
                     TodoModel.COMPLETED_FILTER
                 ]
-                for(var i:int=0;i<states.length;i++)
+                for(var i:int=0; i < states.length ; i++)
                 {
                     retVal[states[i]] = "TodoMVC - " + states[i] + " State";
                 }
