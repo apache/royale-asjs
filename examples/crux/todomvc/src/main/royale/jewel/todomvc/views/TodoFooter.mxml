@@ -26,8 +26,8 @@ limitations under the License.
             import jewel.todomvc.events.TodoEvent;
             import jewel.todomvc.models.TodoModel;
             
-            [Bindable]
             [Inject]
+            [Bindable]
             public var todoModel:TodoModel;
 
             /**

@@ -30,8 +30,8 @@ limitations under the License.
 
 			import org.apache.royale.events.Event;
 
-			[Bindable]
 			[Inject]
+			[Bindable]
 			public var todoModel:TodoModel;
 
 			/**
