@@ -23,27 +23,30 @@ package mx.net
 
    public class FileFilter 
    {
+	   private var _description:String;
+	   private var _extension:String;
       public function FileFilter(description:String, extension:String, macType:String = null)
 	  {
-	  
+		  _description = description;
+		  _extension = extension;
 	  }
 	    public function get description():String
 		{
-		   return "";
+		   return _description;
 		}
         public function set description(value:String):void
 		{
-		
+			_description = value;
 		}
 
 		
 	    public function get extension():String
 		{
-		   return "";
+		   return _extension;
 		}
         public function set extension(value:String):void
 		{
-		
+			_extension = value;
 		}
 		
 		

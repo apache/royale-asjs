@@ -20,52 +20,75 @@
 package mx.net
 {
 
- import org.apache.royale.events.EventDispatcher;
+ import org.apache.royale.file.FileProxy;
+ import org.apache.royale.file.beads.FileBrowserWithFilter;
  import mx.utils.ByteArray;
- 
-   COMPILE::SWF{
-       import flash.net.FileFilter;
-               }
+ import org.apache.royale.file.beads.FileLoader;
+ import org.apache.royale.file.beads.FileModel;
+ import org.apache.royale.file.beads.FileLoaderAndUploader;
+ import org.apache.royale.events.Event;
+ import org.apache.royale.net.URLRequest;
 
-   COMPILE::JS{
-       import mx.net.FileFilter;
-              }
-
-   public class FileReference extends org.apache.royale.events.EventDispatcher
+   public class FileReference extends FileProxy
    {
       
+      private var _model:FileModel;
+      private var _browser:FileBrowserWithFilter;
+      private var _loader:FileLoader;
+      private var _uploader:FileLoaderAndUploader;
       public function FileReference()
       {
+		  super();
+		  _model = new FileModel();
+		  _browser = new FileBrowserWithFilter();
+		  _uploader = new FileLoaderAndUploader();
+		  addBead(_model);
+		  addBead(_browser);
+		  addBead(_uploader);
+		  addEventListener("modelChanged", modelChangedHandler);
 	  }
   
       
       public function browse(typeFilter:Array = null):Boolean
       {
+         var allFilters:Array = [];
+         if (typeFilter)
+		 {
+			for (var i:int = 0; i < typeFilter.length; i++)
+			{
+				var fileFilter:FileFilter = typeFilter[i] as FileFilter;
+				var filters:Array = fileFilter.extension.split(";");
+				allFilters = allFilters.concat(filters);
+			}
+			_browser.filter = allFilters.join(",");
+		 }
+		 _browser.browse();
          return true;
       }
 		 
 	  public function load():void
 	  {
-	  }
-	  
-	  public function get name():String
-	  {
-	    return "";
+		  if (!_loader)
+		  {
+			  // FileLoaderAndUploader has injected this
+			  _loader = getBeadByType(FileLoader) as FileLoader;
+		  }
+		  _loader.load();
 	  }
 	  
 	  public function get data():ByteArray
 	  {
-	    return null;
+        return blob as ByteArray; // need to create a model that actually returns a ByteArray
+	  }
+
+	  public function upload(request:URLRequest, uploadDataFieldName:String = "Filedata", testUpload:Boolean = false):void
+	  {
+		  _uploader.upload(request.url);
 	  }
 	  
-	  public function get size():Number
-	   {
-	     return 0;
-	   }
-      
-	  public function get type():String
+	  private function modelChangedHandler(event:Event):void
 	  {
-	     return null; 
+		  dispatchEvent(new Event(Event.SELECT));
 	  }
 	  
 	  public function save(data:*, defaultFileName:String = null):void
@@ -74,6 +97,7 @@ package mx.net
           }
 
       
+
    }
 
             
