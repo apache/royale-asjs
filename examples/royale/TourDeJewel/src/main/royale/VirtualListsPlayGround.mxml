@@ -143,7 +143,7 @@ limitations under the License.
 				
 				<j:VirtualComboBox localId="virtualIconCmb"
 								className="cmbSimpleiIconListItemRenderer" labelField="label"
-								dataProvider="{listModel.bigIconListVOData}"
+								dataProvider="{listModel.bigIconListVOData}" rowCount="4" rowHeight="52"
 								/>				
 			</j:Card>
         </j:GridCell>

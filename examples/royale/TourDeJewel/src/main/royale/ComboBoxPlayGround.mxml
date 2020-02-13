@@ -38,11 +38,6 @@ limitations under the License.
 				avengersComboBoxResult.html = "<strong>ComboBox selectedItem:</strong> " + event.target.selectedItem.label;
             }*/
 
-			private function onValueChange(event:Event):void
-			{
-				cmb.width = slider_w.value;
-			}
-
 			public function assignNewData():void
 			{
 				watchmenComboBox.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
@@ -137,15 +132,22 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 
 			<j:Card>
-				<html:H3 text="Jewel ComboBox Resize"/>
+				<html:H3 text="Jewel ComboBox Sizing"/>
+
+				<j:ComboBox id="cmb" labelField="label" dataProvider="{listModel.avengers}"/>
 
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-					<j:ComboBox id="cmb" labelField="label" dataProvider="{listModel.avengers}"/>
-					<j:Label text="Width: {cmb.width}px"/>
+					<j:Label text="width: {cmb.width}px"/>
+					<j:HSlider width="250" value="200" minimum="100" maximum="400" valueChange="cmb.width = event.target.value;"/>
 				</j:HGroup>
-
-				<j:HSlider id="slider_w" width="250" value="200" minimum="100" maximum="400" valueChange="onValueChange(event)"/>
-
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:Label text="rowHeight: {cmb.rowHeight}"/>
+					<j:HSlider width="150" value="34" minimum="34" maximum="52" valueChange="cmb.rowHeight = event.target.value;"/>
+				</j:HGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:Label text="rowCount: {cmb.rowCount}"/>
+					<j:HSlider width="150" value="5" minimum="3" maximum="8" valueChange="cmb.rowCount = event.target.value;"/>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
 

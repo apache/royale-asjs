@@ -160,6 +160,7 @@ package org.apache.royale.jewel
 			ISelectionModel(model).selectedItem = value;
 		}
 
+		[Bindable("rowHeightChanged")]
 		/**
 		 *  The default height of each cell in every column
 		 *
@@ -177,6 +178,7 @@ package org.apache.royale.jewel
             (presentationModel as IComboBoxPresentationModel).rowHeight = value;
         }
 
+		[Bindable("rowCountChanged")]
 		/**
 		 *  Maximum number of rows visible in the ComboBox popup list.
 		 *  If there are fewer items in the dataProvider, the ComboBox shows only as many items as there are in the dataProvider.

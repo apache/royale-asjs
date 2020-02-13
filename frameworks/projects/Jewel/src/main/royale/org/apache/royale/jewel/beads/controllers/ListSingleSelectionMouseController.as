@@ -24,7 +24,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 
-/**
+    /**
      *  The Jewel ListSingleSelectionMouseController class is a controller for
      *  org.apache.royale.jewel.List.
      * 
