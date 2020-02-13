@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+    import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModel;
@@ -115,13 +116,22 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
+            var selectionBead:ISelectableItemRenderer;
+			var ir:IItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as IItemRenderer;
             if (ir)
-				ir.selected = false;
+            {
+                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (selectionBead)
+                    selectionBead.selected = false;
+            }
 			
-			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as ISelectableItemRenderer;
+			ir = dataGroup.getItemRendererAt(listModel.selectedIndex) as IItemRenderer;
 			if (ir)
-				ir.selected = true;
+            {
+                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (selectionBead)
+                    selectionBead.selected = true;
+            }
             lastSelectedIndex = listModel.selectedIndex;
 		}
 	}

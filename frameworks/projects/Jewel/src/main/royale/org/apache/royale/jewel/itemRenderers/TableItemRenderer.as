@@ -24,6 +24,8 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.html.util.addElementToWrapper;
 	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
     }
+    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListRuntimeSelectableItemRendererBead;
+	import org.apache.royale.core.IRuntimeSelectableItemRenderer;
 	import org.apache.royale.jewel.beads.controls.TextAlign;
 
 	/**
@@ -58,8 +60,35 @@ package org.apache.royale.jewel.itemRenderers
 
 			textAlign = new TextAlign();
 			addBead(textAlign);
+            
+            // a more PAYG implementation might be to have a base class or interface for
+            // TableItemRenderer so that TableCellCloseIconItemRenderer doesn't load
+            // a selection bead at all and doesn't need hoverable or selectable APIs
+            // to disable default functionality.
+            selectionBead = new ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList);
+            addBead(selectionBead);
 		}
 		
+        private var selectionBead:IRuntimeSelectableItemRenderer;
+        
+        public function get hoverable():Boolean
+        {
+            return selectionBead.hoverable;
+        }
+        public function set hoverable(value:Boolean):void
+        {
+            selectionBead.hoverable = value;
+        }
+        
+        public function get selectable():Boolean
+        {
+            return selectionBead.selectable;
+        }
+        public function set selectable(value:Boolean):void
+        {
+            selectionBead.selectable = value;
+        }
+        
         /**
          * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
          */

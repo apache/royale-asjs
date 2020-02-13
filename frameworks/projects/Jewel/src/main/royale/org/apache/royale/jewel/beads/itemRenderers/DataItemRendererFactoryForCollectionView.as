@@ -23,16 +23,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
@@ -297,6 +298,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 					(itemRenderer as IAlignItemRenderer).align = presentationModel.align;
 				}
 			}
+            if (itemRenderer is IOwnerViewItemRenderer)
+                (itemRenderer as IOwnerViewItemRenderer).itemRendererOwnerView = dataGroup;
 			
 			setData(itemRenderer, item, index);
 			dataGroup.addItemRendererAt(itemRenderer, index);

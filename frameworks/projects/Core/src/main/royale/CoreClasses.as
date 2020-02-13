@@ -114,6 +114,7 @@ internal class CoreClasses
     import org.apache.royale.core.IIndexedItemRenderer; IIndexedItemRenderer;
     import org.apache.royale.core.IIndexedItemRendererInitializer; IIndexedItemRendererInitializer;
     import org.apache.royale.core.ILabelFieldItemRenderer; ILabelFieldItemRenderer;
+    import org.apache.royale.core.IOwnerViewItemRenderer; IOwnerViewItemRenderer;
     import org.apache.royale.core.ILayoutChild; ILayoutChild;
 	import org.apache.royale.core.ILayoutHost; ILayoutHost;
 	import org.apache.royale.core.ILayoutView; ILayoutView;

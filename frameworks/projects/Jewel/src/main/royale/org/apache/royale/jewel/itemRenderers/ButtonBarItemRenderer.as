@@ -23,6 +23,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.WrappedHTMLElement;
 	}
 	import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
     import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
@@ -41,7 +42,7 @@ package org.apache.royale.jewel.itemRenderers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBarItemRenderer extends Button implements ITextItemRenderer
+	public class ButtonBarItemRenderer extends Button implements ITextItemRenderer, IOwnerViewItemRenderer
 	{
 		public function ButtonBarItemRenderer()
 		{

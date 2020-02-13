@@ -23,8 +23,9 @@ package org.apache.royale.jewel.beads.itemRenderers
         import flash.display.Sprite;
     }
     import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.IRuntimeSelectableItemRenderer;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
     import org.apache.royale.utils.ClassSelectorList;
 
@@ -37,7 +38,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class ClassSelectorListRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase
+	public class ClassSelectorListRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase implements IRuntimeSelectableItemRenderer
 	{
 
 		/**
@@ -55,7 +56,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 
         protected var classSelectorList:ClassSelectorList;
         
-        private var _selectable:Boolean;
+        private var _selectable:Boolean = true;
         
         /**
          *  <code>true</code> if the item renderer is can be selected
@@ -80,7 +81,7 @@ package org.apache.royale.jewel.beads.itemRenderers
             
         }
         
-        private var _hoverable:Boolean;
+        private var _hoverable:Boolean = true;
         
         /**
          *  <code>true</code> if the item renderer is can be hovered

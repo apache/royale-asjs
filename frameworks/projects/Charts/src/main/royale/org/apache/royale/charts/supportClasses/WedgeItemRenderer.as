@@ -251,6 +251,8 @@ package org.apache.royale.charts.supportClasses
 		{				
             drawWedgeInternal();
             
+            if (!filledPath) return; // too early
+            
 			if (selectionBead.down || selectionBead.selected || selectionBead.hovered) {
 				if (hoverFill == null) {
 					if(fill is SolidColor)

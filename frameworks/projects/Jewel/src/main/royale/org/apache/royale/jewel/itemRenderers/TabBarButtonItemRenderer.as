@@ -55,7 +55,7 @@ package org.apache.royale.jewel.itemRenderers
 
 			typeNames = "jewel tabbarbutton";
 			addClass("selectable");
-            addBead(ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList));
+            addBead(new ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList));
 		}
 
 		// private var _href:String = "#";

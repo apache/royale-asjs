@@ -22,6 +22,7 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.IContainer;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IUIBase;
@@ -80,7 +81,15 @@ package org.apache.royale.charts.beads
 			
 			_strand = value;
 		}
-		
+
+        /**
+         * @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
+         */
+        override public function get dataGroup():IItemRendererOwnerView
+        {
+            return this.contentView as IItemRendererOwnerView;
+        }
+
 		/**
 		 * @private
 		 */

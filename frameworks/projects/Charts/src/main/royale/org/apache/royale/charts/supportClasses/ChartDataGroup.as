@@ -114,7 +114,7 @@ package org.apache.royale.charts.supportClasses
             var newEvent:ItemAddedEvent = new ItemAddedEvent("itemAdded");
             newEvent.item = renderer;
             
-            (host as IEventDispatcher).dispatchEvent(newEvent);
+            (parent as IEventDispatcher).dispatchEvent(newEvent);
         }
         
         /**
@@ -133,7 +133,7 @@ package org.apache.royale.charts.supportClasses
             var newEvent:ItemRemovedEvent = new ItemRemovedEvent("itemRemoved");
             newEvent.item = renderer;
             
-            (host as IEventDispatcher).dispatchEvent(newEvent);
+            (parent as IEventDispatcher).dispatchEvent(newEvent);
         }
         
         /**

@@ -24,16 +24,18 @@ package org.apache.royale.charts.beads
 	import org.apache.royale.charts.core.IChartSeries;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IItemRendererOwnerView;
-    import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.ItemRendererClassFactory;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.DataItemRendererFactoryBase;
 	import org.apache.royale.html.beads.IListView;
-    import org.apache.royale.html.beads.DataItemRendererFactoryBase;
-	
+	import org.apache.royale.utils.sendStrandEvent;
+
 	/**
 	 *  The DataItemRendererFactoryForSeriesData creates the itemRenderers necessary for series-based
 	 *  charts. 
@@ -67,10 +69,13 @@ package org.apache.royale.charts.beads
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
+            value.addBead(factory);
             value.addBead(new ChartItemRendererInitializer(this))
         }
         
         public var chartSeries:IChartSeries;
+        
+        private var blockItemsCreatedEvent:Boolean;
         
         /**
          * @private
@@ -91,13 +96,27 @@ package org.apache.royale.charts.beads
             var listView:IListView = _strand.getBeadByType(IListView) as IListView;
             var dataGroup:IChartDataGroup = listView.dataGroup as IChartDataGroup;
             
+            blockItemsCreatedEvent = true;
             for (var s:int=0; s < series.length; s++)
             {				
                 var n:int = dp.length; 
                 chartSeries = series[s] as IChartSeries;
                 if (chartSeries.itemRenderer)
+                {
+                    if (itemRendererFactory is ItemRendererClassFactory)
+                        (itemRendererFactory as ItemRendererClassFactory).itemRendererFactory = chartSeries.itemRenderer;
                     super.dataProviderChangeHandler(event);
+                }
             }
+            blockItemsCreatedEvent = false;
+            sendStrandEvent(_strand,"itemsCreated");
+        }
+        
+        override protected function dispatchItemCreatedEvent():void
+        {
+            if (blockItemsCreatedEvent)
+                return;
+            super.dispatchItemCreatedEvent();
         }
         
         override protected function removeAllItemRenderers(parent:IItemRendererOwnerView):void
@@ -109,7 +128,7 @@ package org.apache.royale.charts.beads
         
         override protected function get dataProviderLength():int
         {
-            return series.length;
+            return dp.length;
         }
         
         override protected function getItemAt(index:int):Object
@@ -120,17 +139,19 @@ package org.apache.royale.charts.beads
 }
 
 import org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData;
-import org.apache.royale.core.IDataProviderModel;
-import org.apache.royale.core.UIBase;
 import org.apache.royale.charts.core.IChartItemRenderer;
 import org.apache.royale.core.Bead;
-import org.apache.royale.core.IItemRenderer;
+import org.apache.royale.core.IDataProviderModel;
 import org.apache.royale.core.IIndexedItemRenderer;
 import org.apache.royale.core.IIndexedItemRendererInitializer;
+import org.apache.royale.core.IItemRenderer;
+import org.apache.royale.core.IItemRendererOwnerView;
 import org.apache.royale.core.IStrand;
-import org.apache.royale.core.ItemRendererClassFactory;
+import org.apache.royale.core.SelectableItemRendererClassFactory;
+import org.apache.royale.core.UIBase;
+import org.apache.royale.html.beads.IListView;
 
-class ChartItemRendererClassFactory extends ItemRendererClassFactory
+class ChartItemRendererClassFactory extends SelectableItemRendererClassFactory
 {
     private var owner:DataItemRendererFactoryForSeriesData;
     
@@ -172,7 +193,12 @@ class ChartItemRendererInitializer extends Bead implements IIndexedItemRendererI
     override public function set strand(value:IStrand):void
     {	
         _strand = value;
+        
+        var listView:IListView = _strand.getBeadByType(IListView) as IListView;
+        var ownerView:IItemRendererOwnerView = listView.dataGroup as IItemRendererOwnerView;
     }
+    
+    private var ownerView:IItemRendererOwnerView;
     
     /**
      *  @private
@@ -188,7 +214,10 @@ class ChartItemRendererInitializer extends Bead implements IIndexedItemRendererI
      */
     public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
     {
-        (ir as IChartItemRenderer).series = owner.chartSeries;
+        var chartIR:IChartItemRenderer = ir as IChartItemRenderer;
+        chartIR.series = owner.chartSeries;
+        chartIR.itemRendererOwnerView = ownerView;
+        
         ir.index = index;
         initializeItemRenderer(ir, data);
     }        

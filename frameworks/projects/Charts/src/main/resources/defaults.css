@@ -28,6 +28,7 @@ BarChart
     IContentView: ClassReference("org.apache.royale.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
+    ISelectableItemRenderer: ClassReference("org.apache.royale.charts.beads.ChartSelectableItemRendererBead");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
@@ -36,11 +37,6 @@ BarChart
 BoxItemRenderer
 {
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
-}
-
-ChartItemRenderer
-{
-    ISelectableItemRenderer: ClassReference("org.apache.royale.charts.beads.ChartSelectableItemRendererBead");
 }
 
 WedgeItemRenderer
@@ -57,6 +53,7 @@ ColumnChart
     IContentView: ClassReference("org.apache.royale.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
+    ISelectableItemRenderer: ClassReference("org.apache.royale.charts.beads.ChartSelectableItemRendererBead");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
@@ -71,6 +68,7 @@ LineChart
     IContentView: ClassReference("org.apache.royale.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
+    ISelectableItemRenderer: ClassReference("org.apache.royale.charts.beads.ChartSelectableItemRendererBead");
     IConnectedItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.LineSegmentItemRenderer");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
@@ -98,6 +96,7 @@ StackedColumnChart
     IContentView: ClassReference("org.apache.royale.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
+    ISelectableItemRenderer: ClassReference("org.apache.royale.charts.beads.ChartSelectableItemRendererBead");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
@@ -112,6 +111,7 @@ StackedBarChart
     IContentView: ClassReference("org.apache.royale.charts.supportClasses.ChartDataGroup");
     IDataProviderItemRendererMapper: ClassReference("org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData");
     IItemRenderer: ClassReference("org.apache.royale.charts.supportClasses.BoxItemRenderer");
+    ISelectableItemRenderer: ClassReference("org.apache.royale.charts.beads.ChartSelectableItemRendererBead");
     IHorizontalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
     IVerticalAxisGroup: ClassReference("org.apache.royale.charts.supportClasses.ChartAxisGroup");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");

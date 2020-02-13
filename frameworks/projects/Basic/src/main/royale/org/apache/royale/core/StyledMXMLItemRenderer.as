@@ -19,6 +19,7 @@
 package org.apache.royale.core
 {
     import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
     import org.apache.royale.html.supportClasses.MXMLItemRenderer;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
@@ -33,7 +34,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IEmphasis
+	public class StyledMXMLItemRenderer extends MXMLItemRenderer implements IClassSelectorListSupport, IEmphasis, IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.

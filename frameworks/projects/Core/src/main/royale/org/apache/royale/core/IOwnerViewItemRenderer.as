@@ -18,45 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.events.EventDispatcher;
-    
+	import org.apache.royale.events.IEventDispatcher;
+
     /**
-     *  The BeadViewBase class is the base class for most view beads.
+     *  The IOwnerViewItemRenderer interface is the basic interface for item renderers
+     *  that have an itemRendererOwnerView property that references the View of the component
+     *  that eventually parents the item renderers.
      *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class BeadViewBase extends DispatcherBead implements IBeadView
+	public interface IOwnerViewItemRenderer extends IItemRenderer
 	{
         /**
-         *  Constructor.
+         *  The reference to the IItemRendererOwnerView of the renderer
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.4
          */
-		public function BeadViewBase()
-		{
-			super();
-		}
-		
-        /**
-         *  The host component. 
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         *  @royaleignorecoercion org.apache.royale.core.IUIBase
-         */
-        public function get host():IUIBase
-        {
-            return _strand as IUIBase;
-        }
-   }
+        function get itemRendererOwnerView():IItemRendererOwnerView;
+        function set itemRendererOwnerView(value:IItemRendererOwnerView):void;
+        
+	}
 }

@@ -58,7 +58,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("mxmlContent");
 			}
-            addBead(ClassSelectorListHoverableRuntimeSelectableItemRendererBead(classSelectorList));
+            addBead(new ClassSelectorListHoverableRuntimeSelectableItemRendererBead(classSelectorList));
 		}
 
 		// private var _href:String = "#";

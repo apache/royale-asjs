@@ -60,7 +60,7 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super.data = value;
 
-            var model:DateChooserModel = (itemRendererOwnerView.host as IStrandWithModel).model as DateChooserModel;
+            var model:DateChooserModel = (itemRendererOwnerView.host.parent as IStrandWithModel).model as DateChooserModel;
 			//itemRendererOwnerView.parent is DateChooser
 			var viewState:int = model.viewState;
 

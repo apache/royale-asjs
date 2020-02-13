@@ -68,6 +68,7 @@ package org.apache.royale.jewel.beads.views
 
 			if(prev_ir) {
                 selectionBead = prev_ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                selectionBead.selected = false;
 				var lastRect:ClientRect = prev_ir.getBoundingBox;
 				var currentRect:ClientRect = ir.getBoundingBox;
 				var widthDiff:Number = lastRect.width / currentRect.width;
@@ -75,7 +76,8 @@ package org.apache.royale.jewel.beads.views
 					widthDiff = 1;
 				var positionDiff:Number = lastRect.left - currentRect.left;
 				
-                selectionBead.selected = false;
+                selectionBead = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                selectionBead.selected = true;
 				ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
 			} else
 			{

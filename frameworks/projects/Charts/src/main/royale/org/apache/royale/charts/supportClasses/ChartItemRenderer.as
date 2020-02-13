@@ -21,6 +21,7 @@ package org.apache.royale.charts.supportClasses
 	import org.apache.royale.charts.core.IChartItemRenderer;
 	import org.apache.royale.charts.core.IChartSeries;
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.graphics.IFill;
 	import org.apache.royale.graphics.IStroke;
@@ -163,7 +164,28 @@ package org.apache.royale.charts.supportClasses
 			super.height = value;
             updateRenderer();
 		}		
-		
+
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The text of the renderer
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
+        
+
 		public function updateRenderer():void
 		{			
 

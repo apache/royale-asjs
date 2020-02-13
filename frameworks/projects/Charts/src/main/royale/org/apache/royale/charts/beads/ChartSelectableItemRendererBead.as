@@ -48,27 +48,7 @@ package org.apache.royale.charts.beads
 		public function ChartSelectableItemRendererBead()
 		{
 		}
-		
-
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-		}
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
-        
+		        
         private var _hovered:Boolean;
         
         /**

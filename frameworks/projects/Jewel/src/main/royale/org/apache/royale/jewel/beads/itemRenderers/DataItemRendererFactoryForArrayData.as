@@ -33,6 +33,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -186,6 +187,8 @@ package org.apache.royale.jewel.beads.itemRenderers
                 {
                     dataItemRenderer.dataField = dataField;
                 }
+                if (ir is IOwnerViewItemRenderer)
+                    (ir as IOwnerViewItemRenderer).itemRendererOwnerView = dataGroup;
 
 				if (presentationModel) {
 					UIBase(ir).height = presentationModel.rowHeight;

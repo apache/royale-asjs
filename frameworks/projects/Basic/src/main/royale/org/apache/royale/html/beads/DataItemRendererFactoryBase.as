@@ -114,8 +114,13 @@ package org.apache.royale.html.beads
 				ir.data = data;				
 			}
 			
-			sendStrandEvent(_strand,"itemsCreated");
+            dispatchItemCreatedEvent();
 		}
-        
+
+        protected function dispatchItemCreatedEvent():void
+        {
+            sendStrandEvent(_strand,"itemsCreated");
+        }
+
 	}
 }

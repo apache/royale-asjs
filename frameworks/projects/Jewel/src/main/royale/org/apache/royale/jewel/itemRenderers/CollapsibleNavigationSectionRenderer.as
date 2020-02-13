@@ -68,7 +68,7 @@ package org.apache.royale.jewel.itemRenderers
 			}
 			open = false;
 			addEventListener('click', onSectionNav);
-            addBead(ClassSelectorListHoverableRuntimeSelectableItemRendererBead(navLinkClassSelector));
+            addBead(new ClassSelectorListHoverableRuntimeSelectableItemRendererBead(navLinkClassSelector));
 		}
 		
 		private function onSectionNav(event:Event):void{
