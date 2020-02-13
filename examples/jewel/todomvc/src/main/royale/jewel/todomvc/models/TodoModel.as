@@ -27,11 +27,11 @@ package jewel.todomvc.models
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.storage.AMFStorage;
 
-	[Bindable]
     /**
      *  Todo Model stores global model variables that are updated by controller
      *  and used in views to update visuals for the user
      */
+	[Bindable]
 	public class TodoModel extends EventDispatcher implements IBeadModel
 	{
         /**
