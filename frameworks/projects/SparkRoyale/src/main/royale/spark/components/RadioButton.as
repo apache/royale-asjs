@@ -433,6 +433,13 @@ public class RadioButton extends ToggleButtonBase
                 try
                 {
                     g = RadioButtonGroup(mxmlDocument[groupName]);
+                    COMPILE::JS
+                    {
+                        // in JS, the coercion above does not throw an exception
+                        // if the value is undefined.  Maybe it should?
+                        if (g == null)
+                            throw new Error();
+                    }
                 }
                 catch(e:Error)
                 {
