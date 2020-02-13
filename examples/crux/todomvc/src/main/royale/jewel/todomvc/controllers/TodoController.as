@@ -23,7 +23,6 @@ package jewel.todomvc.controllers
 	import jewel.todomvc.vos.TodoVO;
 
 	import org.apache.royale.collections.ArrayList;
-	import org.apache.royale.core.IStrand;
 
 	/**
      * The Todo Controller holds all the global actions. The views dispatch events that bubbles and
@@ -44,7 +43,7 @@ package jewel.todomvc.controllers
 		 *  In this example, we set up a default user after the bean is created.
 		 */
 		[PostConstruct]
-		public function setUp(value:IStrand):void {
+		public function setUp():void {
 			// retrieve local items and use it if exists
 			model.allItems = new ArrayList(model.getItemStore());
 			

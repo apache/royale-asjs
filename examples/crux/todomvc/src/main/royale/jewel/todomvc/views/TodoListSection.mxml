@@ -27,8 +27,8 @@ limitations under the License.
         <![CDATA[
             import jewel.todomvc.models.TodoModel;
             
-            [Bindable]
             [Inject]
+            [Bindable]
 			public var todoModel:TodoModel;
 
             /**
