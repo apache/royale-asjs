@@ -36,6 +36,7 @@ import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.EventDispatcher;
 import org.apache.royale.geom.Size;
+import spark.components.SkinnableContainer;
 
 COMPILE::SWF
 {
@@ -113,6 +114,13 @@ public class SparkSkinScrollingViewport extends EventDispatcher implements IBead
     private function initCompleteHandler(event:Event):void
     {
         contentArea = host.skin["contentGroup"];
+        if (host is SkinnableContainer)
+        {
+            var sc:SkinnableContainer = host as SkinnableContainer;
+            if (sc.layout)
+                (contentArea as GroupBase).layout = sc.layout;       
+        }
+            
         COMPILE::JS
         {
             setScrollStyle();
@@ -140,8 +148,32 @@ public class SparkSkinScrollingViewport extends EventDispatcher implements IBead
     {
         if(host != contentArea)
         {
-            contentArea.percentHeight = 100;
-            contentArea.percentWidth = 100;
+            if (host is SkinnableContainer)
+            {
+                var sc:SkinnableContainer = host as SkinnableContainer;
+                if (sc.layout)
+                {
+                    if (!sc.layout.isWidthSizedToContent())
+                        contentArea.percentWidth = 100;
+                    if (!sc.layout.isHeightSizedToContent())
+                        contentArea.percentHeight = 100;
+                }
+                else
+                {
+                    if (host.isWidthSizedToContent())
+                        contentArea.percentWidth = 100;
+                    if (host.isHeightSizedToContent())
+                        contentArea.percentHeight = 100;                    
+                }
+            }
+            else
+            {
+                if (host.isWidthSizedToContent())
+                    contentArea.percentWidth = 100;
+                if (host.isHeightSizedToContent())
+                    contentArea.percentHeight = 100;
+                
+            }
             contentArea.element.style.position = "absolute";
         }
     }

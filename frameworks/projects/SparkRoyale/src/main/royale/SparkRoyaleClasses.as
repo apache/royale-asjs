@@ -39,6 +39,7 @@ internal class SparkRoyaleClasses
     import spark.skins.spark.FormSkin; FormSkin; 
     import spark.skins.spark.FormItemSkin; FormItemSkin; 
     import spark.skins.spark.PanelSkin; PanelSkin; 
+    import spark.skins.spark.TitleWindowSkin; TitleWindowSkin; 
 	
 	import spark.layouts.supportClasses.SparkLayoutBead; SparkLayoutBead;
     import spark.layouts.FormLayout; FormLayout;

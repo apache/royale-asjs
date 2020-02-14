@@ -230,7 +230,7 @@ TextInput
 
 TitleWindow
 {
-	IBeadView: ClassReference("spark.components.beads.TitleWindowView");
+	skinClass: ClassReference("spark.skins.spark.TitleWindowSkin");
 }
 
 .TitleBarCloseButton
