@@ -290,6 +290,8 @@ public class RadioButton extends ToggleButtonBase
             {
                 (rbicon.element as HTMLInputElement).checked = value;
             }
+        if (value && group)
+            group.setSelection(this);
         dispatchEvent(new Event("selectedChanged"));
     }    
 
