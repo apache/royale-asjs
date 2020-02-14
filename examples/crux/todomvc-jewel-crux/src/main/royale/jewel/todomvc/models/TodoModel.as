@@ -60,7 +60,7 @@ package jewel.todomvc.models
         /**
          *  Local storage for the todo items
          */
-        private var storage:AMFStorage = AMFStorage.getLocal("todomvc");
+        private var storage:AMFStorage = AMFStorage.getLocal("todomvccrux");
 
         /**
          * the list of items binded to the todo list component

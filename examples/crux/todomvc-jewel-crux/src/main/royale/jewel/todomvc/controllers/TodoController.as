@@ -46,8 +46,8 @@ package jewel.todomvc.controllers
 		public function setUp():void {
 			// retrieve local items and use it if exists
 			model.allItems = new ArrayList(model.getItemStore());
-			model.allItems = new ArrayList([]);
-			saveDataToLocal();
+			// model.allItems = new ArrayList([]);
+			// saveDataToLocal();
 			
 			model.setUpFilteredCollections();
 			model.listItems = model.allItems;
