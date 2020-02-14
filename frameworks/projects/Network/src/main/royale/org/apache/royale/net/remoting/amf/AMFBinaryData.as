@@ -23,6 +23,10 @@ package org.apache.royale.net.remoting.amf {
 	import org.apache.royale.utils.net.IDynamicPropertyWriter;
 	import org.apache.royale.utils.net.IExternalizable;
 	import org.apache.royale.utils.BinaryData;
+
+	COMPILE::JS{
+		import goog.DEBUG;
+	}
 	
 	COMPILE::SWF{
 		import flash.net.ObjectEncoding;
@@ -115,6 +119,9 @@ package org.apache.royale.net.remoting.amf {
 			var value:* = _serializationContext.readObjectExternal();
 			var err:Error = _serializationContext.getError();
 			if (err) {
+				if (goog.DEBUG){
+					console.log('%c[AMFBinaryData.readObject] - Deserialization Error :'+ err.message,'color:red');
+				}
 				throw new Error(err.message);
 			}
 			return value;
@@ -1217,7 +1224,13 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 				try {
 					value = readScriptObject();
 				} catch (e:Error) {
-					throw new Error("Failed to deserialize: " + e);
+					if (goog.DEBUG){
+						var err:Error = (e.message.indexOf("Failed to deserialize") == -1)
+								? new Error("Failed to deserialize: " + e.message +' '+e.stack.split('\n')[1])
+								: e;
+						throw err;
+					}
+					else throw new Error("Failed to deserialize: " + e.message);
 				}
 				break;
 			case AMF3_ARRAY:
