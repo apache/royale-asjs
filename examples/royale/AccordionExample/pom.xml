@@ -72,6 +72,7 @@
       <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
+      <classifier>js</classifier>
     </dependency>
   </dependencies>
 
@@ -84,6 +85,14 @@
           <artifactId>Basic</artifactId>
           <version>0.9.7-SNAPSHOT</version>
           <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>BasicTheme</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <scope>theme</scope>
           <classifier>swf</classifier>
         </dependency>
       </dependencies>

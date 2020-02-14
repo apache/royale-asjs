@@ -80,6 +80,7 @@
         <version>0.9.7-SNAPSHOT</version>
         <type>swc</type>
         <scope>theme</scope>
+        <classifier>js</classifier>
     </dependency>
   </dependencies>
 
