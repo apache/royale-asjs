@@ -150,7 +150,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var dayNamesShortOverride:Array; /* of String */
+    private static var dayNamesShortOverride:Array = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]; /* of String */
 
     /**
      *  Short format of day names.
@@ -274,7 +274,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var monthNamesShortOverride:Array; /* of String */
+    private static var monthNamesShortOverride:Array = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct","Nov", "Dec"]; /* of String */
 
     /**
      *  Short format of month names.
