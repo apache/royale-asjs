@@ -454,6 +454,11 @@ public class RadioButtonGroup extends EventDispatcher
          if (_selectedValue != null)
              selectedValue = _selectedValue;
 
+        // If this radio button is selected, then it becomes the selection
+        // for the group.
+        if (instance.selected == true)
+            selection = instance;
+
 // 		dispatchEvent(new Event("numRadioButtonsChanged"));
     }
 
