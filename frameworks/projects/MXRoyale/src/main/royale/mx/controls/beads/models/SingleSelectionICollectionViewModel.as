@@ -21,6 +21,8 @@ package mx.controls.beads.models
 	import mx.collections.ICollectionView;
 	import mx.collections.IViewCursor;
     import mx.collections.CursorBookmark;
+    import mx.events.CollectionEvent;
+    import mx.events.CollectionEventKind;
 	
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
@@ -92,7 +94,10 @@ package mx.controls.beads.models
 
             _dataProvider = value as ICollectionView;
             if (_dataProvider)
+			{
                 _cursor = _dataProvider.createCursor();
+				dataProvider.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+			}
 			if(!_dataProvider || _selectedIndex >= _dataProvider.length)
 				_selectedIndex = -1;
             
@@ -292,6 +297,28 @@ package mx.controls.beads.models
 			}
 			dispatchEvent(new Event("selectedItemChanged"));
 			dispatchEvent(new Event("selectedIndexChanged"));
+		}
+		
+		protected function collectionChangeHandler(event:CollectionEvent):void
+		{
+			if (event.kind == CollectionEventKind.ADD)
+			{
+				if (event.location <= _selectedIndex)
+				{
+					_selectedIndex++;
+				}
+			}
+			else if (event.kind == CollectionEventKind.REMOVE)
+			{
+				if (event.location < _selectedIndex)
+				{
+					_selectedIndex--;
+				}
+				else if (event.location == _selectedIndex)
+				{
+					_selectedItem = getItemAt(_selectedIndex);
+				}
+			}
 		}
 	}
 }
