@@ -474,6 +474,7 @@ CascadingMenu {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.CascadingMenuModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.CascadingMenuItemRenderer");
+	IMenu: ClassReference("org.apache.royale.html.CascadingMenu");
 	position: absolute;
 	background-color: white;
 	border-width: 1px;

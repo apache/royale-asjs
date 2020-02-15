@@ -70,6 +70,7 @@ internal class BasicClasses
 	import org.apache.royale.html.supportClasses.MenuItemRenderer; MenuItemRenderer;
 	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
 	import org.apache.royale.html.CascadingMenu; CascadingMenu;
+	import org.apache.royale.html.CascadingMenuWithOnScreenCheck; CascadingMenuWithOnScreenCheck;
 	import org.apache.royale.html.beads.CascadingMenuFactory; CascadingMenuFactory;
 	import org.apache.royale.html.beads.models.CascadingMenuModel; CascadingMenuModel;
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
