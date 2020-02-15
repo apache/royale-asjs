@@ -618,7 +618,7 @@ package mx.formatters
                          numStr.substring(numStr.indexOf(".") + 1);
             }
 
-           // numStr = dataFormatter.formatPrecision(numStr, int(precision));
+            numStr = dataFormatter.formatPrecision(numStr, int(precision));
 
             // If our value is 0, then don't show -0
             if (Number(numStr) == 0)
