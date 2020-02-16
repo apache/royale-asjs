@@ -38,6 +38,8 @@ package jewel.todomvc.models
         public static const ALL_FILTER:String = "All";
         public static const ACTIVE_FILTER:String = "Active";
         public static const COMPLETED_FILTER:String = "Completed";
+
+        public static const STORAGE_PATH:String = "crux";
         
         /**
          * Retrieves the array ot items
@@ -60,7 +62,7 @@ package jewel.todomvc.models
         /**
          *  Local storage for the todo items
          */
-        private var storage:AMFStorage = AMFStorage.getLocal("todomvccrux");
+        private var storage:AMFStorage = AMFStorage.getLocal("todomvc", STORAGE_PATH);
 
         /**
          * the list of items binded to the todo list component
