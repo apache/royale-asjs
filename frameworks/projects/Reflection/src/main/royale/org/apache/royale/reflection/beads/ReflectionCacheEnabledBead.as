@@ -47,6 +47,7 @@ package org.apache.royale.reflection.beads
          */
 		public function ReflectionCacheEnabledBead()
 		{
+            TypeDefinition.useCache = true;
 		}
 		
 
@@ -60,7 +61,6 @@ package org.apache.royale.reflection.beads
          */
         public function set strand(value:IStrand):void
         {
-            TypeDefinition.useCache = true;
         }
             
 

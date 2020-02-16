@@ -61,6 +61,7 @@ internal class ReflectionClasses
 	import org.apache.royale.reflection.DefinitionWithMetaData; DefinitionWithMetaData;
 	import org.apache.royale.reflection.FunctionDefinition; FunctionDefinition;
 	import org.apache.royale.reflection.MemberDefinitionBase; MemberDefinitionBase;
+	import org.apache.royale.reflection.MetaDataDefinition; MetaDataDefinition;
 	import org.apache.royale.reflection.MetaDataArgDefinition; MetaDataArgDefinition;
 	import org.apache.royale.reflection.MethodDefinition; MethodDefinition;
 	import org.apache.royale.reflection.ParameterDefinition; ParameterDefinition;
