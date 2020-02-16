@@ -42,7 +42,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ListItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class IndexedItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -52,11 +52,10 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function ListItemRendererInitializer()
+		public function IndexedItemRendererInitializer()
 		{
 		}
 		
-        protected var presentationModel:IListPresentationModel;
         protected var dataProviderModel:IDataProviderModel;
         protected var labelField:String;
         
@@ -73,7 +72,6 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-            presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
             dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
             labelField = dataProviderModel.labelField;            
 		}
@@ -103,11 +101,6 @@ package org.apache.royale.html.beads
         
         protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
-            var style:SimpleCSSStyles = new SimpleCSSStyles();
-            style.marginBottom = presentationModel.separatorThickness;
-            UIBase(ir).style = style;
-            UIBase(ir).height = presentationModel.rowHeight;
-            UIBase(ir).percentWidth = 100;
 		}
 
 	}

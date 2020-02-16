@@ -105,7 +105,7 @@ package mx.controls.listClasses
             
         }
         
-        override protected function dataProviderLength():int
+        override protected function get dataProviderLength():int
         {
             return dp.length;
         }

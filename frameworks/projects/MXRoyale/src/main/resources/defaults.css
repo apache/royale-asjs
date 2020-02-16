@@ -118,6 +118,7 @@ adg|AdvancedDataGridColumnList {
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	border-style: none;
@@ -271,6 +272,7 @@ List
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
 	IListPresentationModel: ClassReference("org.apache.royale.html.beads.models.ListPresentationModel");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.ScrollingViewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
@@ -301,6 +303,7 @@ MenuBar {
 	IMenuFactory: ClassReference("org.apache.royale.html.beads.CascadingMenuFactory");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.IndexedItemRendererInitializer");
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 	height: 30px;
@@ -437,6 +440,7 @@ Tree
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.TreeItemRendererInitializer");
 	IItemRenderer: ClassReference("mx.controls.treeClasses.TreeItemRenderer");
 }
 
@@ -453,6 +457,7 @@ ToggleButtonBar
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
+	IItemRendererInitializer: ClassReference("org.apache.royale.html.beads.ListItemRendererInitializer");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.TextButtonItemRenderer");
 	

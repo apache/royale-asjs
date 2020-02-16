@@ -109,7 +109,7 @@ package mx.controls.listClasses
         
         
         // assumes will be called in a loop, not random access
-        override protected function dataProviderLength():int
+        override protected function get dataProviderLength():int
         {
             cursor = dp.createCursor();
             return dp.length;

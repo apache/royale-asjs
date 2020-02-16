@@ -42,7 +42,7 @@ package org.apache.royale.html.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class ListItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class ListItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -57,8 +57,6 @@ package org.apache.royale.html.beads
 		}
 		
         protected var presentationModel:IListPresentationModel;
-        protected var dataProviderModel:IDataProviderModel;
-        protected var labelField:String;
         
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -72,36 +70,11 @@ package org.apache.royale.html.beads
 		 */
 		override public function set strand(value:IStrand):void
 		{	
-			_strand = value;
+			super.strand = value;
             presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
-            dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-            labelField = dataProviderModel.labelField;            
 		}
-		
-		/**
-		 *  @private
-		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 */
-		public function initializeItemRenderer(ir:IItemRenderer, data:Object):void
-		{
-            if (ir is ILabelFieldItemRenderer)
-                (ir as ILabelFieldItemRenderer).labelField = labelField;
-            
-            setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
-        }
-        
-        /**
-         *  @private
-         *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
-         */
-        public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
-        {
-            ir.index = index;
-            initializeItemRenderer(ir, data);
-        }
-        
-        protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+		        
+        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
             var style:SimpleCSSStyles = new SimpleCSSStyles();
             style.marginBottom = presentationModel.separatorThickness;
