@@ -62,8 +62,8 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
     //
     //--------------------------------------------------------------------------
     
-    private var textSelectedColor:String = "#000000";
-    private var textRollOverColor:String = "#000000";
+    public var textSelectedColor:String = "#000000";
+    public var textRollOverColor:String = "#000000";
     
     /**
      * @private

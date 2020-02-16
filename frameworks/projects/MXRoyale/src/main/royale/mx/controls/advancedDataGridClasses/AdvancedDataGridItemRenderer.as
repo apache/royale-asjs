@@ -232,6 +232,25 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         super.text = value;
     }
     
+    public function setStyle(styleName:String, value:Object):void
+    {
+		var selectionBead:AdvancedDataGridSelectableItemRendererBead;
+        COMPILE::JS
+        {
+            if (styleName == "textRollOverColor")
+			{
+				selectionBead = getBeadByType(ISelectableItemRenderer) as AdvancedDataGridSelectableItemRendererBead;
+                selectionBead.textRollOverColor = String(value);
+			}
+            else if (styleName == "textSelectedColor")
+			{
+				selectionBead = getBeadByType(ISelectableItemRenderer) as AdvancedDataGridSelectableItemRendererBead;
+                selectionBead.textSelectedColor = String(value);
+			}
+            else
+                element.style[styleName] = value;        
+        }
+    }
 }
 
 }
