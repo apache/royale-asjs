@@ -257,6 +257,7 @@ internal class MXRoyaleClasses
     
     import mx.controls.menuClasses.MenuBarItemRenderer; MenuBarItemRenderer;
     import mx.controls.menuClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
+    import mx.controls.menuClasses.CascadingMenuWithOnScreenCheck; CascadingMenuWithOnScreenCheck;
 
     import mx.containers.beads.FormItemView; FormItemView;
     import mx.containers.beads.FormItemContainer; FormItemContainer;
