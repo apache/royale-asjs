@@ -34,7 +34,6 @@
         <![CDATA[
             import org.apache.royale.collections.ArrayList;
             import org.apache.royale.reflection.registerClassAlias;
-            import org.apache.royale.storage.AMFStorage;
 
             /**
              *  Register ArrayCollection alias to map to ArrayList
@@ -42,12 +41,7 @@
             public function setUp():void
 			{
 				registerClassAlias("flex.messaging.io.ArrayCollection", ArrayList);
-
-                var itemArr:Array = storage.data["items"] || [];
-                trace(itemArr);
 			}
-
-            public var storage:AMFStorage = AMFStorage.getLocal("todomvc");
         ]]>
     </fx:Script>
 
