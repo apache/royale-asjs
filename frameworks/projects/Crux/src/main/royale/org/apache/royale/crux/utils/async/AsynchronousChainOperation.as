@@ -15,8 +15,6 @@
  */
 package org.apache.royale.crux.utils.async
 {
-	import mx.rpc.IResponder;
-	
 	import org.apache.royale.crux.events.ChainEvent;
 	import org.apache.royale.crux.utils.chain.IChain;
 	

@@ -17,11 +17,11 @@ package org.apache.royale.crux.processors
 {
 	import org.apache.royale.crux.Bean;
 	import org.apache.royale.crux.IBeanFactoryAware;
+	import org.apache.royale.crux.ICrux;
+	import org.apache.royale.crux.ICruxAware;
 	import org.apache.royale.crux.IDispatcherAware;
 	import org.apache.royale.crux.IDisposable;
 	import org.apache.royale.crux.IInitializing;
-	import org.apache.royale.crux.ICrux;
-	import org.apache.royale.crux.ICruxAware;
 	
 	public class CruxInterfaceProcessor implements IBeanProcessor
 	{

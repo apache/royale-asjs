@@ -17,28 +17,20 @@ package org.apache.royale.crux
 {
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.core.IRenderedObject;
-	import org.apache.royale.reflection.TypeDefinition;
-	import org.apache.royale.reflection.ExtraData;
-	
-	COMPILE::JS {
-		import org.apache.royale.core.WrappedHTMLElement;
-	}
-	
     import org.apache.royale.crux.events.CruxEvent;
-	import org.apache.royale.crux.processors.DispatcherProcessor;
-	import org.apache.royale.crux.processors.EventHandlerProcessor;
-	import org.apache.royale.crux.processors.IProcessor;
+    import org.apache.royale.crux.processors.CruxInterfaceProcessor;
+    import org.apache.royale.crux.processors.DispatcherProcessor;
+    import org.apache.royale.crux.processors.EventHandlerProcessor;
+    import org.apache.royale.crux.processors.IProcessor;
     import org.apache.royale.crux.processors.InjectProcessor;
-	import org.apache.royale.crux.processors.CruxInterfaceProcessor;
-	import org.apache.royale.crux.processors.PostConstructProcessor;
-	import org.apache.royale.crux.processors.PreDestroyProcessor;
-	import org.apache.royale.crux.processors.ProcessorPriority;
-	import org.apache.royale.crux.processors.ViewProcessor;
-
+    import org.apache.royale.crux.processors.PostConstructProcessor;
+    import org.apache.royale.crux.processors.PreDestroyProcessor;
+    import org.apache.royale.crux.processors.ProcessorPriority;
+    import org.apache.royale.crux.processors.ViewProcessor;
+    import org.apache.royale.events.EventDispatcher;
+    import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.reflection.ExtraData;
+    import org.apache.royale.reflection.TypeDefinition;
 
     [DefaultProperty("beanProviders")]
 	

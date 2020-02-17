@@ -15,9 +15,9 @@
  */
 package org.apache.royale.crux.reflection
 {
-    import org.apache.royale.reflection.getQualifiedClassName;
     import org.apache.royale.reflection.TypeDefinition;
     import org.apache.royale.reflection.describeType;
+    import org.apache.royale.reflection.getQualifiedClassName;
     import org.apache.royale.reflection.utils.getStaticConstantsByConvention;
     /**
 	 * Static class used to ensure each type is only inspected via <code>describeType</code>

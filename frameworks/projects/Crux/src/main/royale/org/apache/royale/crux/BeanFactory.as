@@ -15,27 +15,26 @@
  */
 package org.apache.royale.crux
 {
-	import org.apache.royale.core.IFlexInfo;
-	import org.apache.royale.core.IRoyaleElement;
-	import org.apache.royale.core.UIBase;
 	COMPILE::SWF{
 		import flash.events.Event;
 	}
 	COMPILE::JS{
-		import org.apache.royale.events.Event;
 		import goog.events;
+
+		import org.apache.royale.events.Event;
 	}
-	
-    import org.apache.royale.events.EventDispatcher;
-    import org.apache.royale.crux.events.BeanEvent;
-    import org.apache.royale.crux.events.CruxEvent;
-    import org.apache.royale.crux.processors.IBeanProcessor;
-    import org.apache.royale.crux.processors.IFactoryProcessor;
-    import org.apache.royale.crux.processors.IMetadataProcessor;
-    import org.apache.royale.crux.processors.IProcessor;
-    import org.apache.royale.crux.reflection.TypeCache;
+	import org.apache.royale.core.IFlexInfo;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.crux.events.BeanEvent;
+	import org.apache.royale.crux.events.CruxEvent;
+	import org.apache.royale.crux.processors.IBeanProcessor;
+	import org.apache.royale.crux.processors.IFactoryProcessor;
+	import org.apache.royale.crux.processors.IMetadataProcessor;
+	import org.apache.royale.crux.processors.IProcessor;
+	import org.apache.royale.crux.reflection.TypeCache;
 	import org.apache.royale.crux.utils.view.simulatedSingleEnterFrame;
-    import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.reflection.getQualifiedClassName;
 
     public class BeanFactory extends EventDispatcher implements IBeanFactory
 	{

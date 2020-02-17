@@ -15,14 +15,13 @@
  */
 package org.apache.royale.crux
 {
-	import org.apache.royale.core.IFlexInfo;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.crux.processors.IProcessor;
-    import org.apache.royale.crux.processors.IMetadataProcessor;
 	COMPILE::SWF{
 		import flash.utils.Dictionary;
 	}
-
+	import org.apache.royale.core.IFlexInfo;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.crux.processors.IMetadataProcessor;
+	import org.apache.royale.crux.processors.IProcessor;
 	import org.apache.royale.crux.utils.view.applicationContains;
 
     public class CruxManager

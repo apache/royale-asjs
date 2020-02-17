@@ -15,14 +15,14 @@
  */
 package org.apache.royale.crux
 {
-	import org.apache.royale.core.IMXMLDocument;
 	import org.apache.royale.core.IDocument;
-    import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.core.IMXMLDocument;
+	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.reflection.AccessorDefinition;
 	import org.apache.royale.reflection.TypeDefinition;
 	import org.apache.royale.reflection.VariableDefinition;
 	import org.apache.royale.reflection.describeType;
-    import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.utils.MXMLDataInterpreter;
 
     [DefaultProperty("beans")]
 

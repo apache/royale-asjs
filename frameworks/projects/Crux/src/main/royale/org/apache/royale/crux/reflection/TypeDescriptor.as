@@ -17,17 +17,14 @@ package org.apache.royale.crux.reflection
 {
 	import org.apache.royale.crux.CruxManager;
 	import org.apache.royale.crux.factories.MetadataHostFactory;
-	import org.apache.royale.reflection.DefinitionWithMetaData;
 	import org.apache.royale.reflection.MemberDefinitionBase;
 	import org.apache.royale.reflection.MetaDataArgDefinition;
-	import org.apache.royale.reflection.TypeDefinition;
-	import org.apache.royale.reflection.MetaDataArgDefinition;
-    import org.apache.royale.reflection.MetaDataDefinition;
-	import org.apache.royale.reflection.MethodDefinition;
-	import org.apache.royale.reflection.VariableDefinition;
+	import org.apache.royale.reflection.MetaDataDefinition;
 	import org.apache.royale.reflection.ParameterDefinition;
-	import org.apache.royale.reflection.utils.getStaticConstantsByConvention;
+	import org.apache.royale.reflection.TypeDefinition;
+	import org.apache.royale.reflection.VariableDefinition;
 	import org.apache.royale.reflection.utils.getMembersWithMetadata;
+	import org.apache.royale.reflection.utils.getStaticConstantsByConvention;
 	
     /**
 	 * Object representation of a given type, based on <code>flash.utils.describeType</code>

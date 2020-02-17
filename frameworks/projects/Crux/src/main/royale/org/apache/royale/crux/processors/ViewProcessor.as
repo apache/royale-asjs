@@ -15,12 +15,9 @@
  */
 package org.apache.royale.crux.processors
 {
-
 	COMPILE::SWF{
-		import flash.utils.Dictionary;
+	import flash.utils.Dictionary;
 	}
-
-	
 	import org.apache.royale.crux.Bean;
 	import org.apache.royale.crux.reflection.IMetadataTag;
 	import org.apache.royale.crux.reflection.MetadataHostMethod;

@@ -15,11 +15,11 @@
  */
 package org.apache.royale.crux.processors
 {
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.crux.Bean;
 	import org.apache.royale.crux.IBeanFactory;
 	import org.apache.royale.crux.ICrux;
 	import org.apache.royale.crux.reflection.IMetadataTag;
+	import org.apache.royale.events.EventDispatcher;
 	
 	/**
 	 * Metadata Processor

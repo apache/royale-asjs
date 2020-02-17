@@ -16,17 +16,16 @@
 package org.apache.royale.crux.factories
 {
     import org.apache.royale.crux.reflection.IMetadataHost;
-	import org.apache.royale.crux.reflection.MetadataHostClass;
-	import org.apache.royale.crux.reflection.MetadataHostMethod;
-	import org.apache.royale.crux.reflection.MetadataHostProperty;
-	import org.apache.royale.crux.reflection.MethodParameter;
-	import org.apache.royale.reflection.DefinitionWithMetaData;
-	import org.apache.royale.reflection.MethodDefinition;
-	import org.apache.royale.reflection.ParameterDefinition;
-	import org.apache.royale.reflection.TypeDefinition;
-	import org.apache.royale.reflection.VariableDefinition;
-	import org.apache.royale.reflection.getDefinitionByName;
-	import org.apache.royale.reflection.getQualifiedClassName;
+    import org.apache.royale.crux.reflection.MetadataHostClass;
+    import org.apache.royale.crux.reflection.MetadataHostMethod;
+    import org.apache.royale.crux.reflection.MetadataHostProperty;
+    import org.apache.royale.crux.reflection.MethodParameter;
+    import org.apache.royale.reflection.DefinitionWithMetaData;
+    import org.apache.royale.reflection.MethodDefinition;
+    import org.apache.royale.reflection.ParameterDefinition;
+    import org.apache.royale.reflection.TypeDefinition;
+    import org.apache.royale.reflection.VariableDefinition;
+    import org.apache.royale.reflection.getDefinitionByName;
 
 	/**
 	 * Simple factory to create the different kinds of metadata
