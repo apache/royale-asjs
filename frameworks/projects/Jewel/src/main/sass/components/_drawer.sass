@@ -22,6 +22,7 @@
 // Drawer variables
 $drawer-float-width-offset: 60px
 $drawer-float-max-width: 310px
+$drawerfooter-bar-row-height: 66px
 
 .jewel.drawer
 
@@ -124,6 +125,11 @@ $drawer-float-max-width: 310px
     -webkit-overflow-scrolling: touch //Momentum (innercial) Scrolling on iOS 
     touch-action: pan-y
 
+.jewel.drawerfooter 
+    display: flex
+    position: relative
+    width: 100%
+    height: $drawerfooter-bar-row-height
 
 
 j|DrawerBase
@@ -137,3 +143,5 @@ j|DrawerHeader
 
 j|DrawerContent
     IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
+
+j|DrawerFooter

@@ -97,6 +97,53 @@ $drawer-fixed-width: 240px
 // DrawerContent
 .jewel.drawercontent
 
+// DrawerFooter
+$drawerfooter-bar-section-vertical-padding: 8px
+$drawerfooter-bar-section-horizontal-padding: 12px
+$drawerfooter-bar-button-padding: 12px
+
+.jewel.drawerfooter
+    @if $flat
+        background: $footer-color
+        border: 0px solid
+    @else
+        background: linear-gradient(lighten($footer-color, 5%), darken($footer-color, 5%))
+        border-top: 1px solid lighten($footer-color, 15%)
+        border-bottom: 1px solid darken($footer-color, 20%)
+        // box-shadow: 0px 0px 6px 1px rgba(.7, .7, .7, .7)
+    
+    color: $font-theme-color
+
+    @if not $flat //and $text-color == $font-theme-color
+        text-shadow: 0 -1px 0 rgba(darken($footer-color, 30%), .7)
+    @else
+        text-shadow: none
+
+    .jewel.barsection 
+        padding: $drawerfooter-bar-section-vertical-padding $drawerfooter-bar-section-horizontal-padding
+        
+        button
+            background: transparent
+            box-shadow: none
+            border: none
+            padding: $drawerfooter-bar-button-padding
+            fill: $font-theme-color
+            color: inherit
+            
+            @if not $flat //and $text-color == $font-theme-color
+                text-shadow: 0 -1px 0 rgba(darken($primary-color, 30%), .7)
+            @else
+                text-shadow: none
+                    
+            &:hover, &:hover:focus, &:active, &:active:focus, &:focus
+                background: transparent
+                box-shadow: none
+                border: none
+
+            &[disabled]
+                background: transparent
+                box-shadow: none
+                border: none
 
 
 j|Drawer
@@ -104,3 +151,5 @@ j|Drawer
 j|DrawerHeader
 
 j|DrawerContent
+
+j|DrawerFooter

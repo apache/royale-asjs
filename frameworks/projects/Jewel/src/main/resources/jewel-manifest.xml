@@ -135,6 +135,7 @@
     <component id="Drawer" class="org.apache.royale.jewel.Drawer"/>
     <component id="DrawerHeader" class="org.apache.royale.jewel.supportClasses.drawer.DrawerHeader"/>
     <component id="DrawerContent" class="org.apache.royale.jewel.supportClasses.drawer.DrawerContent"/>
+    <component id="DrawerFooter" class="org.apache.royale.jewel.supportClasses.drawer.DrawerFooter"/>
 
     <component id="HideDrawerOnMouseDown" class="org.apache.royale.jewel.beads.controls.drawer.HideDrawerOnMouseDown"/>
 
