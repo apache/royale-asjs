@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.core.UIBase;
+	COMPILE::JS
+	{
+	import org.apache.royale.core.WrappedHTMLElement;
+	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.jewel.supportClasses.drawer.DrawerBase;
@@ -62,12 +65,17 @@ package org.apache.royale.jewel
 			// defaults to float (notice that float or fixed is needed always)
             typeNames = "jewel drawer " + FLOAT;
 
-			addEventListener(MouseEvent.CLICK, internalMouseHandler);
-
 			// TODO (carlosrovira) handle swipe touch gesture to close drawer in mobile (only on float)
 			// addEventListener("touchstart" handleTouchStart);
 			// addEventListener("touchmove" handleTouchMove);
 			// addEventListener("touchend" handleTouchEnd);
+		}
+
+		COMPILE::JS
+		override public function set positioner(value:WrappedHTMLElement):void
+		{
+			super.positioner = value;
+			super.positioner.addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 
 		// private function handleTouchStart(event:Event):void
@@ -80,16 +88,14 @@ package org.apache.royale.jewel
 		// {
 		// }
 
+		COMPILE::JS
 		private function internalMouseHandler(event:MouseEvent):void
 		{
-			COMPILE::JS
+			var aside:HTMLElement = event.target as HTMLElement;
+			var hostClassList:DOMTokenList = aside.classList;
+			if (hostClassList.contains("drawer"))
 			{
-				var hostComponent:UIBase = event.target as UIBase;
-				var hostClassList:DOMTokenList = hostComponent.positioner.classList;
-				if (hostClassList.contains("drawer"))
-				{
-					close();
-				}
+				close();
 			}
 		}
 
