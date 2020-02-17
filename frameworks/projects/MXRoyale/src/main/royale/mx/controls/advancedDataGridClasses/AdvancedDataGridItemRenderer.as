@@ -50,6 +50,7 @@ import mx.core.UIComponent;
 import mx.collections.IHierarchicalData;
 import mx.events.ListEvent;
 import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IListDataItemRenderer;
 
 //--------------------------------------
 //  Events
@@ -70,7 +71,7 @@ import org.apache.royale.core.ISelectableItemRenderer;
  *  @playerversion AIR 1.1
  *  @productversion Royale 0.9.3
  */
-//[Event(name="dataChange", type="mx.events.FlexEvent")]
+[Event(name="dataChange", type="mx.events.FlexEvent")]
 
 /**
  *  The AdvancedDataGridItemRenderer class defines the default item renderer for a AdvancedDataGrid control. 
@@ -89,7 +90,7 @@ import org.apache.royale.core.ISelectableItemRenderer;
  *  @productversion Royale 0.9.3
  */
 public class AdvancedDataGridItemRenderer extends StringItemRenderer
-                                  implements IDataRenderer,IDropInListItemRenderer
+                                  implements IDataRenderer,IDropInListItemRenderer,IListDataItemRenderer
 {
  /* extends UITextField
                                   implements IDataRenderer,
@@ -169,16 +170,6 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
             indent += (treeListData.hasChildren ? (treeListData.open ? "▼" : "▶") : "") + extraSpace;
         }
         
-        var selectionBead:ISelectableItemRenderer = getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-        if ((treeListData.owner as AdvancedDataGrid).selectedIndices.indexOf(treeListData.rowIndex) != -1)
-        {
-            selectionBead.selected = true;
-        } 
-        else if ((treeListData.owner as AdvancedDataGrid).selectedIndex == treeListData.rowIndex)
-        {
-            selectionBead.selected = true;            
-        }
-        
         if (column.labelFunction)
         {
             this.text = column.labelFunction(value, column);
@@ -187,6 +178,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         {
             this.text = indent + this.text;
         }
+		dispatchEvent(new FlexEvent("dataChange"));
     }
     
     private var _listData:Object;

@@ -52,7 +52,7 @@ package mx.controls.advancedDataGridClasses
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryForArrayData;
+	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryBase;
 	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.html.supportClasses.TreeListData;
 	
@@ -68,7 +68,7 @@ package mx.controls.advancedDataGridClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataItemRendererFactoryForICollectionViewAdvancedDataGridData extends VirtualDataItemRendererFactoryForArrayData
+	public class DataItemRendererFactoryForICollectionViewAdvancedDataGridData extends VirtualDataItemRendererFactoryBase
 	{
         /**
          *  Constructor.
@@ -116,43 +116,9 @@ package mx.controls.advancedDataGridClasses
         private var cursor:IViewCursor;
         private var currentIndex:int;
 		
-		/**
-		 * Sets the itemRenderer's data with additional tree-related data.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 */
-		protected function setData(ir:IIndexedItemRenderer, data:Object, index:int):void
-		{
-            var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
-
-            if (!adgColumnList.adg) return;
-
-            var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
-
-			var depth:int = adgColumnList.adg.getDepth(data);
-			var isOpen:Boolean = adgColumnList.adg.isItemOpen(data);
-			var hasChildren:Boolean = adgColumnList.adg.hasChildren(data);
-            var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
-
-			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", adgColumnListModel.columnIndex, "", adgColumnList.adg, index);
-			treeListData.depth = depth;
-			treeListData.open = isOpen;
-			treeListData.hasChildren = hasChildren;
-			
-			(ir as IListDataItemRenderer).listData = treeListData;
-            if (firstColumn && adgColumnList.adg.groupLabelField)
-                (ir as ILabelFieldItemRenderer).labelField = adgColumnList.adg.groupLabelField;
-			
-			ir.data = data;
-            ir.index = index;
-		}
         
         /**
-         *  Get an item renderer for a given index.
+         *  Get a item for a given index.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -161,20 +127,8 @@ package mx.controls.advancedDataGridClasses
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */
-        override public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
+        override public function getItemAt(index:int):Object
         {
-            var ir:IIndexedItemRenderer = rendererMap[index];
-            if (ir) return ir;
-            
-            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
-            
-            ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-            
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            dataGroup.addItemRendererAt(ir, elementIndex);
-            rendererMap[index] = ir;
-            
             var delta:int = index - currentIndex;
             if (currentIndex == -1)
             {
@@ -193,14 +147,7 @@ package mx.controls.advancedDataGridClasses
                 cursor.seek(CursorBookmark.CURRENT, delta);
             }
             currentIndex = index;
-            
-            var data:Object = cursor.current;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
-            
-            var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-            newEvent.itemRenderer = ir;
-            dispatchEvent(newEvent);
-            return ir;
+			return cursor.current;
         }
 	}
 }

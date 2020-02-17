@@ -21,10 +21,15 @@ package mx.controls.advancedDataGridClasses
 {
 
 import mx.controls.AdvancedDataGrid;
+import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
 import mx.core.UIComponent;
 
 import org.apache.royale.utils.CSSUtils;
+import org.apache.royale.core.IListDataItemRenderer;
 import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IStrand;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
 
 /**
@@ -56,6 +61,12 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
     //--------------------------------------------------------------------------
 
 
+    override public function set strand(value:IStrand):void 
+	{
+		super.strand = value;
+		(value as IEventDispatcher).addEventListener("dataChange", dataChangeHandler);
+	}
+	
     //--------------------------------------------------------------------------
     //
     //  Properties
@@ -70,7 +81,7 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
      */
     override public function updateRenderer():void
     {
-        var ir:AdvancedDataGridItemRenderer = _strand as AdvancedDataGridItemRenderer;
+        var ir:IListDataItemRenderer = _strand as IListDataItemRenderer;
         var treeListData:AdvancedDataGridListData = ir.listData as AdvancedDataGridListData;
         var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
         var bgColors:Array = owner.getStyle("alternatingItemColors");
@@ -108,6 +119,22 @@ public class AdvancedDataGridSelectableItemRendererBead extends SelectableItemRe
         }
     }
 
+	private function dataChangeHandler(event:Event):void
+	{
+        var ir:IListDataItemRenderer = _strand as IListDataItemRenderer;
+        var treeListData:AdvancedDataGridListData = ir.listData as AdvancedDataGridListData;
+        var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
+        if (owner.selectedIndices.indexOf(treeListData.rowIndex) != -1)
+        {
+            selected = true;
+        } 
+        else if (owner.selectedIndex == treeListData.rowIndex)
+        {
+            selected = true;            
+        }
+		else
+			selected = false;        
+	}
 }
 
 }

@@ -60,7 +60,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class VirtualDataItemRendererFactoryForArrayData extends EventDispatcher implements IBead, IDataProviderVirtualItemRendererMapper
+	public class VirtualDataItemRendererFactoryForArrayData extends VirtualDataItemRendererFactoryBase
 	{
         /**
          *  Constructor.
@@ -74,78 +74,6 @@ package org.apache.royale.html.beads
 		{
 			super(target);
 		}
-
-		protected var dataProviderModel:IDataProviderModel;
-		protected var dataFieldProvider:DataFieldProviderBead;
-		
-		protected var labelField:String;
-        protected var dataField:String;
-
-		protected var _strand:IStrand;
-		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			IEventDispatcher(value).addEventListener("initComplete",finishSetup);
-		}
-		
-		/**
-		 * @private
-		 */
-		private function finishSetup(event:Event):void
-		{			
-			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			labelField = dataProviderModel.labelField;
-
-            dataFieldProvider = _strand.getBeadByType(DataFieldProviderBead) as DataFieldProviderBead;
-			if (dataFieldProvider)
-            {
-                dataField = dataFieldProvider.dataField;
-            }
-
-			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
-			// already have been loaded by DataContainerBase.addedToParent function.
-			if(!_itemRendererFactory)
-    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;				
-			
-			dataProviderChangeHandler(null);
-		}
-		
-		private var _itemRendererFactory:IItemRendererClassFactory;
-		
-        /**
-         *  The org.apache.royale.core.IItemRendererClassFactory used 
-         *  to generate instances of item renderers.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get itemRendererFactory():IItemRendererClassFactory
-		{
-			if(!_itemRendererFactory)
-    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
-			
-			return _itemRendererFactory;
-		}
-		
-        /**
-         *  @private
-         */
-		public function set itemRendererFactory(value:IItemRendererClassFactory):void
-		{
-			_itemRendererFactory = value;
-		}
 		
         /**
          *  The org.apache.royale.core.IItemRendererOwnerView that will
@@ -158,103 +86,19 @@ package org.apache.royale.html.beads
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
          */		
-		protected function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:Array = dataProviderModel.dataProvider as Array;
+			dp = dataProviderModel.dataProvider as Array;
 			if (!dp)
 				return;
 			
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererOwnerView = view.dataGroup;
-			
-			dataGroup.removeAllItemRenderers();
+			super.dataProviderChangeHandler(event);
         }
-        
-        private var _itemRendererInitializer:IItemRendererInitializer;
-        
-        /**
-         *  The org.apache.royale.core.IItemRendererInitializer used 
-         *  to initialize instances of item renderers.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.8
-         *  @royaleignorecoercion org.apache.royale.core.IItemRendererInitializer
-         */
-        public function get itemRendererInitializer():IItemRendererInitializer
-        {
-            if(!_itemRendererInitializer)
-                _itemRendererInitializer = loadBeadFromValuesManager(IItemRendererInitializer, "iItemRendererInitializer", _strand) as IItemRendererInitializer;
-            
-            return _itemRendererInitializer;
-        }
-        
-        /**
-         *  @private
-         */
-        public function set itemRendererInitializer(value:IItemRendererInitializer):void
-        {
-            _itemRendererInitializer = value;
-        }
-        
-        /**
-         *  Free an item renderer for a given index.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.0
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-         */
-        public function freeItemRendererForIndex(index:int):void
-        {
-            var ir:IIndexedItemRenderer = rendererMap[index];
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            dataGroup.removeItemRenderer(ir);
-            delete rendererMap[index];
-        }
-        
-        protected var rendererMap:Object = {};
-        
+                
         private var dp:Array;
         
-        /**
-         *  Get an item renderer for a given index.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.0
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-         */
-        public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
-        {
-            var ir:IIndexedItemRenderer = rendererMap[index];
-            if (ir) return ir;
-            
-            dp = dataProviderModel.dataProvider as Array;
-            
-			ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-			dataGroup.addItemRendererAt(ir, elementIndex);
-            var data:Object = getItemAt(index);
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir as IIndexedItemRenderer, data, index);
-            rendererMap[index] = ir;
-			ir.data = data;
-				
-			var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-			newEvent.itemRenderer = ir;
-			dispatchEvent(newEvent);
-            return ir;
-		}
         
-        public function getItemAt(index:int):Object
+        override public function getItemAt(index:int):Object
         {
             return dp[index];
         }

@@ -26,15 +26,18 @@ package mx.controls.beads
     import org.apache.royale.core.IIndexedItemRendererInitializer;
     import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.IListDataItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.html.beads.ListItemRendererInitializer;
-    import mx.controls.treeClasses.TreeListData;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
+	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
+    import mx.controls.beads.models.DataGridColumnICollectionViewModel;
     
 	/**
-	 *  The TreeItemRendererInitializer class initializes item renderers
+	 *  The AdvancedDataGridItemRendererInitializer class initializes item renderers
      *  in tree classes.
 	 *  
 	 *  @langversion 3.0
@@ -42,7 +45,7 @@ package mx.controls.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class TreeItemRendererInitializer extends ListItemRendererInitializer
+	public class AdvancedDataGridItemRendererInitializer extends ListItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -52,7 +55,7 @@ package mx.controls.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function TreeItemRendererInitializer()
+		public function AdvancedDataGridItemRendererInitializer()
 		{
 		}
 				
@@ -65,21 +68,29 @@ package mx.controls.beads
             if (!dataProviderModel)
                 return;
             
-            super.initializeItemRenderer(ir, data, index);
+            super.initializeIndexedItemRenderer(ir, data, index);
             
-            var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
-            var depth:int = treeData.getDepth(data);
-            var isOpen:Boolean = treeData.isOpen(data);
-            var hasChildren:Boolean = treeData.hasChildren(data);
-            
-            // Set the listData with the depth of this item
-            var treeListData:TreeListData = new TreeListData();
-            treeListData.depth = depth;
-            treeListData.isOpen = isOpen;
-            treeListData.hasChildren = hasChildren;
-            
-            (ir as IListDataItemRenderer).listData = treeListData;
-            
+            var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
+
+            if (!adgColumnList.adg) return;
+
+            var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
+
+			var depth:int = adgColumnList.adg.getDepth(data);
+			var isOpen:Boolean = adgColumnList.adg.isItemOpen(data);
+			var hasChildren:Boolean = adgColumnList.adg.hasChildren(data);
+            var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
+
+			// Set the listData with the depth of this item
+			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", adgColumnListModel.columnIndex, "", adgColumnList.adg, index);
+			treeListData.depth = depth;
+			treeListData.open = isOpen;
+			treeListData.hasChildren = hasChildren;
+			
+			(ir as IListDataItemRenderer).listData = treeListData;
+            if (firstColumn && adgColumnList.adg.groupLabelField)
+                (ir as ILabelFieldItemRenderer).labelField = adgColumnList.adg.groupLabelField;
+			            
         }
         
 	}
