@@ -20,9 +20,13 @@
 	xmlns:fx="http://ns.adobe.com/mxml/2009"
 	xmlns:crux="library://ns.apache.org/royale/crux"
 	xmlns:models="jewel.todomvc.models.*"
-	xmlns:controller="jewel.todomvc.controllers.*">
+	xmlns:controller="jewel.todomvc.controllers.*"
+	xmlns:services="jewel.todomvc.services.*">
 	
 	<models:TodoModel id="todoModel"/>
 	<controller:TodoController id="todoController"/>
+	<services:LocalStorageDelegate id="localStorageDelegate"/>
+
+	<crux:AMFStorageBean id="amfStorageBean" name="todomvc" localPath="crux"/>
 	
 </crux:BeanProvider>
