@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.beads.models
 {
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
 	
 	/**
@@ -64,7 +65,8 @@ package org.apache.royale.jewel.beads.models
 		{
 			if (value != _rowCount) {
 				_rowCount = value;
-				dispatchEvent(new Event("rowCountChanged"));
+				if(_strand)
+					(_strand as IEventDispatcher).dispatchEvent(new Event("rowCountChanged"));
 			}
 		}
 	}
