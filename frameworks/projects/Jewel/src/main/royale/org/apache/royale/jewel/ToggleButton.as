@@ -21,7 +21,8 @@ package org.apache.royale.jewel
     COMPILE::SWF
     {
     import flash.events.MouseEvent;
-	import org.apache.royale.core.IToggleButtonModel;
+
+    import org.apache.royale.core.IToggleButtonModel;
     }
     COMPILE::JS
     {

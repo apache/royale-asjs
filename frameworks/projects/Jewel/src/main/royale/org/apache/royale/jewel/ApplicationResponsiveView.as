@@ -19,16 +19,9 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IApplicationView;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.core.IPopUpHost;
+	import org.apache.royale.core.IPopUpHostParent;
 	import org.apache.royale.events.Event;
-	// import org.apache.royale.jewel.beads.layouts.VerticalLayout;
-
-	COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-    }
 
 	/**
 	 *  The ApplicationResponsiveView class is the main Container component capable of parenting other

@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	// COMPILE::JS
-	// {
-	// import org.apache.royale.utils.css.transitionEventAvailable;
-	// }
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.models.WizardModel;
     import org.apache.royale.jewel.beads.models.WizardStep;
