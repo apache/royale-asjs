@@ -16,15 +16,12 @@
 package crux.quickstart.service
 {
 	import crux.quickstart.model.User;
-	import org.apache.royale.events.IEventDispatcher;
+
 	import mx.rpc.AsyncToken;
-	
+
 	import org.apache.royale.crux.utils.services.MockDelegateHelper;
-	
-	
-	/**
-	 * @royalesuppresspublicvarwarning
-	 */
+	import org.apache.royale.events.IEventDispatcher;
+
 	public class UserService
 	{
 		[Dispatcher]

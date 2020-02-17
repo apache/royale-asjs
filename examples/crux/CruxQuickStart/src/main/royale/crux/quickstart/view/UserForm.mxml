@@ -51,7 +51,7 @@
 
 			/**
 			 * Handle the user hitting the save button. We capture the form data
-			 * and dispatch a standard Flex event. No Crux-specific events or
+			 * and dispatch a standard Royale event. No Crux-specific events or
 			 * special central dispatcher needed!
 			 */
 			private function saveUser() : void
