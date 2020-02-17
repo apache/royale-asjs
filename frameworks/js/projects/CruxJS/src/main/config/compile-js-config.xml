@@ -65,6 +65,7 @@
             <path-element>../../../../../libs/NetworkJS.swc</path-element>
             <path-element>../../../../../libs/ReflectionJS.swc</path-element>
             <path-element>../../../../../libs/MXRoyaleJS.swc</path-element>
+            <path-element>../../../../../libs/StorageJS.swc</path-element>
         </external-library-path>
 
         <namespaces>

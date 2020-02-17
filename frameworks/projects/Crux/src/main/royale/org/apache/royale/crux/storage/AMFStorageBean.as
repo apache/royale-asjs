@@ -20,6 +20,7 @@ package org.apache.royale.crux.storage
 {
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.storage.AMFStorage;
+	import org.apache.royale.events.Event;
 	
 	public class AMFStorageBean extends EventDispatcher implements IAMFStorageBean
 	{
