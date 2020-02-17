@@ -93,7 +93,8 @@ package org.apache.royale.mdl.beads
                 (ir as ILabelFieldItemRenderer).labelField = labelField;
             (ir as ITabItemRenderer).tabIdField = tabsIdField;
             
-            setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
+			if (presentationModel)
+	            setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
         }
         
         /**
