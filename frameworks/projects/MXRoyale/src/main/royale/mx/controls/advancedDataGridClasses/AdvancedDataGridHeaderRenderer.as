@@ -211,25 +211,6 @@ public class AdvancedDataGridHeaderRenderer extends UIComponent implements IData
         dispatchEvent(newEvent);
     }
     
-    private var _index:int;
-    
-    /**
-     *  The position with the dataProvider being shown by the itemRenderer instance.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.8
-     */
-    public function get index():int
-    {
-        return _index;
-    }
-    public function set index(value:int):void
-    {
-        _index = value;
-    }
-
     //--------------------------------------------------------------------------
     //
     //  Variables

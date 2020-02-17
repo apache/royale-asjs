@@ -35,6 +35,7 @@ package mx.controls.beads
     import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;
+	import mx.core.UIComponent;
     
 	/**
 	 *  The AdvancedDataGridItemRendererInitializer class initializes item renderers
@@ -81,8 +82,15 @@ package mx.controls.beads
 			var hasChildren:Boolean = adgColumnList.adg.hasChildren(data);
             var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
 
+			var dataField:String = adgColumnList.adg.columns[adgColumnListModel.columnIndex].dataField;
+			var text:String = "";
+			try {
+				text = data[dataField];
+			} catch (e:Error)
+			{
+			}
 			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData("", "", adgColumnListModel.columnIndex, "", adgColumnList.adg, index);
+			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData(text, dataField, adgColumnListModel.columnIndex, "", adgColumnList.adg, index);
 			treeListData.depth = depth;
 			treeListData.open = isOpen;
 			treeListData.hasChildren = hasChildren;
@@ -92,6 +100,19 @@ package mx.controls.beads
                 (ir as ILabelFieldItemRenderer).labelField = adgColumnList.adg.groupLabelField;
 			            
         }
-        
+
+        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        {
+			super.setupVisualsForItemRenderer(ir);
+			COMPILE::JS
+			{
+				if (ir is UIComponent)
+				{
+					(ir as UIComponent).isAbsolute = false;
+					(ir as UIComponent).element.style.position = null;
+				}
+			}
+		}
+		        
 	}
 }

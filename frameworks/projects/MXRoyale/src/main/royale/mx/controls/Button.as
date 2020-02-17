@@ -25,7 +25,10 @@ COMPILE::JS
 	import org.apache.royale.events.BrowserEvent;
 	import org.apache.royale.html.util.addElementToWrapper;
 }
+import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.listClasses.BaseListData;
+import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
 import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
@@ -243,7 +246,7 @@ use namespace mx_internal;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class Button extends UIComponent implements IDataRenderer
+public class Button extends UIComponent implements IDataRenderer, IListItemRenderer, IDropInListItemRenderer
 {
 	
 	public function Button()
@@ -430,8 +433,42 @@ public class Button extends UIComponent implements IDataRenderer
 	 */
 	public function set data(value:Object):void
 	{
-		_data = value;
-		dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
+        var newSelected:*;
+        var newLabel:*;
+
+        _data = value;
+
+        if (_listData && _listData is DataGridListData && 
+            DataGridListData(_listData).dataField !=null)
+        {
+            newSelected = _data[DataGridListData(_listData).dataField];
+
+            newLabel = "";
+        }
+        else if (_listData)
+        {
+            if (selectedField)
+                newSelected = _data[selectedField];
+
+            newLabel = _listData.label;
+        }
+        else
+        {
+            newSelected = _data;
+        }
+
+        if (newSelected !== undefined/* && !selectedSet*/)
+        {
+            selected = newSelected as Boolean;
+            //selectedSet = false;
+        }
+        if (newLabel !== undefined/* && !labelSet*/)
+        {
+            label = newLabel;
+            //labelSet = false;
+        }
+
+        dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
 	}
 	
 	//-----------------------------------

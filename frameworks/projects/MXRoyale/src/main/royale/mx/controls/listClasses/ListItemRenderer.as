@@ -293,26 +293,6 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
         _listData = value;
     }
     
-    [Bindable("__NoChangeEvent__")]
-    /**
-     *  The index being represented by this itemRenderer. This can be something simple like a String or
-     *  a Number or something very complex.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get index():int
-    {
-        return _index;
-    }
-    
-    public function set index(value:int):void
-    {
-        _index = value;
-    }
-    
     public function get nestLevel():int
     {
     	throw new Error("Method not implemented.");
