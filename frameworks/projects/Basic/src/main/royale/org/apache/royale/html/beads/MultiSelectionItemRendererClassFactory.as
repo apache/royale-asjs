@@ -27,7 +27,7 @@ package org.apache.royale.html.beads
 	 *  @productversion Royale 0.9.7
 	 */
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.ItemRendererClassFactory;
 	import org.apache.royale.core.IItemRenderer;
@@ -49,9 +49,9 @@ package org.apache.royale.html.beads
 			super();
 		}
 
-		override public function createFromClass(parent:IItemRendererParent):IItemRenderer
+		override public function createFromClass():IItemRenderer
 		{
-			var renderer:IItemRenderer = super.createFromClass(parent);
+			var renderer:IItemRenderer = super.createFromClass();
 			var strand:IStrand = renderer as IStrand;
 			var bead:IBead = strand.getBeadByType(IBeadController);
 			if (bead)

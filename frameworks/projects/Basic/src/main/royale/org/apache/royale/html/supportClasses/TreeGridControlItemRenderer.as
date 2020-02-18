@@ -20,14 +20,15 @@ package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IUIBase;
+    import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.html.TextButton;
 	import org.apache.royale.html.supportClasses.UIItemRendererBase;
 
-	public class TreeGridControlItemRenderer extends UIItemRendererBase implements IItemRendererParent
+	public class TreeGridControlItemRenderer extends UIItemRendererBase implements IItemRendererOwnerView
 	{
 		public function TreeGridControlItemRenderer()
 		{
@@ -36,6 +37,27 @@ package org.apache.royale.html.supportClasses
 			_controlButton = new TextButton();
 		}
 		
+        private var _listData:Object;
+        
+        [Bindable("__NoChangeEvent__")]
+        /**
+         *  Additional data about the list structure the itemRenderer may
+         *  find useful.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get listData():Object
+        {
+            return _listData;
+        }
+        public function set listData(value:Object):void
+        {
+            _listData = value;
+        }
+        
 		private var _controlButton: TextButton;
 		public function get controlButton():TextButton
 		{
@@ -52,7 +74,7 @@ package org.apache.royale.html.supportClasses
 		{
 			_originalItemRenderer = value;
 			
-			child = value.createItemRenderer(this) as UIBase;
+			child = value.createItemRenderer() as UIBase;
 			(child as IItemRenderer).data = this.data;
 			this.addElement(child);
 		}
@@ -74,7 +96,7 @@ package org.apache.royale.html.supportClasses
 			child.setWidthAndHeight(this.width - _controlButton.width, this.height);			
 		}
 		
-		// IItemRendererParent implementation
+		// IItemRendererOwnerView implementation
 		
         public function get numItemRenderers():int
         {
@@ -111,6 +133,11 @@ package org.apache.royale.html.supportClasses
 			this.removeElement(child);
 		}
 		
+        public function get host():IUIBase
+        {
+            return this;
+        }
+        
 		public function updateAllItemRenderers():void
 		{
 		}

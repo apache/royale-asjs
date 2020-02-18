@@ -41,8 +41,8 @@ import mx.collections.ICollectionView;
 import mx.collections.IViewCursor;
 import mx.collections.Sort;
 import mx.collections.SortField;
-import mx.controls.beads.layouts.AdvancedDataGridLayout;
 import mx.controls.beads.AdvancedDataGridView;
+import mx.controls.beads.layouts.AdvancedDataGridLayout;
 import mx.controls.dataGridClasses.DataGridColumn;
 import mx.core.IFactory;
 import mx.core.Keyboard;
@@ -54,12 +54,13 @@ import mx.events.CollectionEventKind;
 import mx.events.FlexEvent;
 import mx.events.ListEvent;
 
-import org.apache.royale.core.IDataProviderNotifier;
 import org.apache.royale.core.IChild;
+import org.apache.royale.core.IDataProviderNotifier;
+import org.apache.royale.core.IIndexedItemRenderer;
+import org.apache.royale.core.IItemRenderer;
 import org.apache.royale.core.IParent;
-import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.ISelectionModel;
-import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
@@ -1391,7 +1392,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     // mx_internal for automation delegate access
     mx_internal var bSelectOnRelease:Boolean;
     
-    private var mouseDownItem:ISelectableItemRenderer; //IListItemRenderer;
+    private var mouseDownItem:IItemRenderer; //IListItemRenderer;
     /*
 	private var mouseDownIndex:int; // For drag and drop
    */
@@ -3862,7 +3863,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @productversion Royale 0.9.4
      */
     protected function mouseEventToItemRenderer(
-                                event:MouseEvent):ISelectableItemRenderer
+                                event:MouseEvent):IItemRenderer
     {
         return mouseEventToItemRendererOrEditor(event);
     }
@@ -3871,7 +3872,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @private
      */
     mx_internal function mouseEventToItemRendererOrEditor(
-                                event:MouseEvent):ISelectableItemRenderer
+                                event:MouseEvent):IItemRenderer
     {
         /*
         var target:DisplayObject = DisplayObject(event.target);
@@ -3923,8 +3924,8 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
 
         var target:IUIBase = event.target as IUIBase;
         do {
-            if (target is ISelectableItemRenderer)
-                return target as ISelectableItemRenderer;
+            if (target is IItemRenderer)
+                return target as IItemRenderer;
             target = (target as IChild).parent as IUIBase;
             if (target == this)
                 return null;
@@ -8974,7 +8975,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         // trace("mouseDown");
         isPressed = true;
 
-        var item:ISelectableItemRenderer = mouseEventToItemRenderer(event);
+        var item:IIndexedItemRenderer = mouseEventToItemRenderer(event) as IIndexedItemRenderer;
         if (!item)
             return;
         
@@ -9069,7 +9070,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         //mouseDownPoint = null;
 		//mouseDownIndex = -1;
         //trace("mouseUp");
-        var item:ISelectableItemRenderer = mouseEventToItemRenderer(event);
+        var item:IIndexedItemRenderer = mouseEventToItemRenderer(event) as IIndexedItemRenderer;
         //var pt:Point = itemRendererToIndices(item);
         var evt:ListEvent;
 

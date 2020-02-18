@@ -31,7 +31,7 @@ limitations under the License.
             
             private function clickCloseButton():void
 			{
-                var table:Table = itemRendererParent as Table;
+                var table:Table = itemRendererOwnerView.host as Table;
                 (table.dataProvider as ArrayList).removeItemAt(rowIndex);
             }
         ]]>

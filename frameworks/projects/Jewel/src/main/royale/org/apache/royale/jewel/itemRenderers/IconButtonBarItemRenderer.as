@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.IIcon;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.ItemClickedEvent;
@@ -70,13 +71,13 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			_data = value;
 			text = getLabelFromData(this, value);
-			rightPosition = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).rightPosition;
+			rightPosition = ((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).rightPosition;
 			if(value.icon)
 			{
-				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererParent as ButtonBarView).buttonBar, "iconClass") as Class;
+				var iconClass:Class = ValuesManager.valuesImpl.getValue((itemRendererOwnerView as ButtonBarView).buttonBar, "iconClass") as Class;
 				var fontIcon:IIcon = new iconClass(); 
-				fontIcon.material = ((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).material;
-				fontIcon.text = value[((itemRendererParent as ButtonBarView).buttonBar as IconButtonBar).iconField];
+				fontIcon.material = ((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).material;
+				fontIcon.text = value[((itemRendererOwnerView as ButtonBarView).buttonBar as IconButtonBar).iconField];
 				icon = fontIcon;
 			}
 		}
@@ -95,7 +96,7 @@ package org.apache.royale.jewel.itemRenderers
 		/*
 		 * IItemRenderer, ISelectableItemRenderer
 		 */
-		private var _itemRendererParent:Object;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		/**
 		 * The parent container for the itemRenderer instance.
 		 *
@@ -104,15 +105,15 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get itemRendererParent():Object
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
-		public function set itemRendererParent(value:Object):void
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
-			_itemRendererParent = value;
+			_itemRendererOwnerView = value;
 
-			var buttonBar:IEmphasis = (itemRendererParent as ButtonBarView).buttonBar;
+			var buttonBar:IEmphasis = (itemRendererOwnerView as ButtonBarView).buttonBar;
 			if(buttonBar.emphasis != null)
 			{
 				emphasis = buttonBar.emphasis;
@@ -183,7 +184,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("first");
 			} 
-			else if( _index == (itemRendererParent as ButtonBarView).buttonBar.dataProvider.length - 1 )
+			else if( _index == (itemRendererOwnerView as ButtonBarView).buttonBar.dataProvider.length - 1 )
 			{
 				addClass("last");
 			}
@@ -193,107 +194,5 @@ package org.apache.royale.jewel.itemRenderers
 			}
 		}
 
-		private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-
-		public function set selectable(value:Boolean):void
-		{
-			_selectable = value;	
-		}
-
-		private var _hoverable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get hoverable():Boolean
-		{
-			return _hoverable;
-		}
-
-		public function set hoverable(value:Boolean):void
-		{
-			_hoverable = value;	
-		}
-		
-		private var _hovered:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a hovered state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get hovered():Boolean
-		{
-			return _hovered;
-		}
-		public function set hovered(value:Boolean):void
-		{
-			_hovered = value;
-		}
-
-		private var _selected:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a selected state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get selected():Boolean
-		{
-			return _selected;
-		}
-		public function set selected(value:Boolean):void
-		{
-			_selected = value;
-		}
-
-		private var _down:Boolean;
-
-		/**
-		 *  Whether or not the itemRenderer is in a down (or pre-selected) state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get down():Boolean
-		{
-			return _down;
-		}
-		public function set down(value:Boolean):void
-		{
-			_down = value;
-		}
 	}
 }

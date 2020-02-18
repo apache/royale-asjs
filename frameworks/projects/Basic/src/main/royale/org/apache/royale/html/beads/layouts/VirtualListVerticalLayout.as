@@ -30,7 +30,7 @@ package org.apache.royale.html.beads.layouts
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
@@ -230,7 +230,7 @@ package org.apache.royale.html.beads.layouts
                 {
                     if (i >= dp.length) continue; // no more renderers needed
                     
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
                         ir  = factory.getItemRendererForIndex(i, i - startIndex);
@@ -363,7 +363,7 @@ package org.apache.royale.html.beads.layouts
                 {
                     if (i >= dp.length) continue; // no more renderers needed
                     
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
                        //trace("i < firstIndex: creating: i = " + i);
@@ -407,7 +407,7 @@ package org.apache.royale.html.beads.layouts
         }
 
         COMPILE::SWF
-        protected function sizeAndPositionRenderer(ir:ISelectableItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
+        protected function sizeAndPositionRenderer(ir:IIndexedItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
         {
             var ilc:ILayoutChild;
             var positions:Object = childPositions(ir);

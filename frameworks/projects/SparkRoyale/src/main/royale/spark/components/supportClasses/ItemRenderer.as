@@ -32,7 +32,7 @@ import spark.components.ResizeMode;
 
 use namespace mx_internal;  */
 
-import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IItemRenderer;
 import spark.components.DataRenderer;
 /**
  *  The ItemRenderer class is the base class for Spark item renderers.
@@ -84,8 +84,8 @@ import spark.components.DataRenderer;
  *  @playerversion AIR 1.5
  *  @productversion Royale 0.9.4
  */
-public class ItemRenderer extends DataRenderer implements ISelectableItemRenderer
-{    // implements IItemRenderer
+public class ItemRenderer extends DataRenderer implements IItemRenderer
+{
     //--------------------------------------------------------------------------
     //
     //  Constructor
@@ -389,10 +389,10 @@ public class ItemRenderer extends DataRenderer implements ISelectableItemRendere
     /**
      *  @private
      *  storage for the index property 
-     */    
     private var _index:int;
+     */    
     
-    [Bindable("itemIndexChanged")]
+    //[Bindable("itemIndexChanged")]
     
     /**
      *  @inheritDoc 
@@ -403,15 +403,14 @@ public class ItemRenderer extends DataRenderer implements ISelectableItemRendere
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
-     */    
     public function get index():int
     {
         return _index;
     }
+     */    
     
     /**
      *  @private
-     */    
     public function set index(value:int):void
     {
         if (value == _index)
@@ -419,7 +418,6 @@ public class ItemRenderer extends DataRenderer implements ISelectableItemRendere
         
         _index = value;
 
-        /*
         if (autoDrawBackground)
         {
             redrawRequested = true;
@@ -427,8 +425,8 @@ public class ItemRenderer extends DataRenderer implements ISelectableItemRendere
         }
         
         dispatchEvent(new Event("itemIndexChanged"));
-        */
     }
+        */
     
     //----------------------------------
     //  labelDisplay

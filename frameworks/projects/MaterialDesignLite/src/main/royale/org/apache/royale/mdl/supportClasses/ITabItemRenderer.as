@@ -18,7 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.mdl.supportClasses
 {
-    import org.apache.royale.core.ISelectableItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
+    import org.apache.royale.core.IIndexedItemRenderer;
 
     /**
      *  The ITabItemRenderer interface is the basic interface for MDL Tabs and TabBar item renderers.
@@ -28,7 +29,7 @@ package org.apache.royale.mdl.supportClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.8
      */
-    public interface ITabItemRenderer extends ISelectableItemRenderer
+    public interface ITabItemRenderer extends ILabelFieldItemRenderer, IIndexedItemRenderer
     {
         /**
          *  Provides name of the property which stores "id" for Tab

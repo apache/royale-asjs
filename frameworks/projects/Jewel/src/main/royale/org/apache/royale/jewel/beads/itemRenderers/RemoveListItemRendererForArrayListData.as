@@ -20,8 +20,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -124,20 +124,20 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var ir:ISelectableItemRenderer = itemRendererParent.getItemRendererAt(event.index) as ISelectableItemRenderer;
-			itemRendererParent.removeItemRenderer(ir);
+			var ir:IIndexedItemRenderer = itemRendererOwnerView.getItemRendererAt(event.index) as IIndexedItemRenderer;
+			itemRendererOwnerView.removeItemRenderer(ir);
 
 			// adjust the itemRenderers' index to adjust for the shift
-			var n:int = itemRendererParent.numItemRenderers;
+			var n:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
 			}
 
@@ -177,10 +177,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			return _dataProviderModel;
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -189,13 +189,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @productversion Royale 0.9.4
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-				_itemRendererParent = view.dataGroup;
+				_itemRendererOwnerView = view.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 	}
 }

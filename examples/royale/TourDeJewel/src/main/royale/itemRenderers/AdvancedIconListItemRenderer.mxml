@@ -44,7 +44,7 @@ limitations under the License.
 
             private function clickCloseButton():void
 			{
-                var view:ListView = this.itemRendererParent as ListView;
+                var view:ListView = this.itemRendererOwnerView as ListView;
 				if (view) {
 					var host:List = view.host as List;
 					if (host) {

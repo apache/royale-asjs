@@ -23,10 +23,12 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.core.IRuntimeSelectableItemRenderer;
+    import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.beads.controls.TextAlign;
+    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListRuntimeSelectableItemRendererBead;
 	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	
@@ -143,49 +145,13 @@ package org.apache.royale.jewel.itemRenderers
 			addElementToWrapper(this, 'li');
             return element;
         }
+        
+        override public function addedToParent():void
+        {
+            super.addedToParent();
+            if (!getBeadByType(IRuntimeSelectableItemRenderer))
+                addBead(new ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList));
+        }
 
-		private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		override public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-		override public function set selectable(value:Boolean):void
-		{
-			_selectable = value;
-			toggleClass("selectable", _selectable);	
-		}
-
-        /**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			// if (down)
-			// 	useColor = downColor;
-			// else if (hovered)
-			// 	useColor = highlightColor;
-			// else 
-            //if (selected)
-            // 	useColor = selectedColor;
-			//else
-			// 	useColor = backgroundColor;
-
-			if(hoverable)
-            	toggleClass("hovered", hovered);
-			if(selectable)
-            	toggleClass("selected", selected);
-		}
 	}
 }

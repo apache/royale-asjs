@@ -24,8 +24,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+    import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IRollOverModel;
@@ -38,6 +40,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+    import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.supportClasses.Border;
 	import org.apache.royale.html.supportClasses.DataGroup;
         
@@ -62,7 +65,7 @@ package org.apache.royale.html.beads
 		protected var listModel:ISelectionModel;
 
 		protected var lastSelectedIndex:int = -1;
-
+        
 		/**
 		 * @private
 		 */
@@ -71,10 +74,25 @@ package org.apache.royale.html.beads
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
+            var mapper:IEventDispatcher = _strand.getBeadByType(IDataProviderItemRendererMapper) as IEventDispatcher;
+            mapper.addEventListener(ItemRendererEvent.CREATED, itemCreatedHandler);
 
 			super.handleInitComplete(event);
 		}
 
+        protected function itemCreatedHandler(event:ItemRendererEvent):void
+        {
+            var selectionBead:ISelectableItemRenderer;
+            var ir:IIndexedItemRenderer = event.itemRenderer as IIndexedItemRenderer;
+            if (ir.index == lastSelectedIndex)
+            {
+                selectionBead = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (selectionBead)
+                    selectionBead.selected = true;                
+            }
+            
+        }
+        
         protected var firstElementIndex:int = 1;
         
         override public function getItemRendererForIndex(index:int):IItemRenderer
@@ -82,7 +100,7 @@ package org.apache.royale.html.beads
             if (contentView.numElements == 0)
                 return null;
             
-            var firstIndex:int = (contentView.getElementAt(firstElementIndex) as ISelectableItemRenderer).index;
+            var firstIndex:int = (contentView.getElementAt(firstElementIndex) as IIndexedItemRenderer).index;
             
             if (index < firstIndex) 
                 return null;
@@ -94,16 +112,31 @@ package org.apache.royale.html.beads
         
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as ISelectableItemRenderer;
+            var selectionBead:ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IIndexedItemRenderer;
 			if(ir)
-				ir.selected = false;
-			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as ISelectableItemRenderer;
+            {
+                if (ir is IStrand)
+                {
+                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    if (selectionBead)
+                        selectionBead.selected = false;
+                }
+            }
+			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IIndexedItemRenderer;
 			if(ir)
-				ir.selected = true;
+            {
+                if (ir is IStrand)
+                {
+                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    if (selectionBead)
+                        selectionBead.selected = true;
+                }
+            }
 
 			lastSelectedIndex = listModel.selectedIndex;
 		}
@@ -112,17 +145,32 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-			var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
+            var selectionBead:ISelectableItemRenderer;
+            var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IIndexedItemRenderer;
 			if(ir)
-				ir.hovered = false;
-			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as ISelectableItemRenderer;
+            {
+                if (ir is IStrand)
+                {
+                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    if (selectionBead)
+                        selectionBead.hovered = false;
+                }
+            }
+			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as IIndexedItemRenderer;
 			if(ir)
-				ir.hovered = true;
+            {
+                if (ir is IStrand)
+                {
+                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    if (selectionBead)
+                        selectionBead.hovered = true;
+                }
+            }
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
 		}
 

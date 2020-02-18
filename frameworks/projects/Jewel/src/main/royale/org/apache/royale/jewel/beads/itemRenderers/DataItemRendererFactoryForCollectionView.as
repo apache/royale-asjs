@@ -23,15 +23,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	
@@ -135,7 +137,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		}
 		
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent that will
+		 *  The org.apache.royale.core.IItemRendererOwnerView that will
 		 *  parent the item renderers.
 		 *
 		 *  @langversion 3.0
@@ -143,13 +145,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		protected var dataGroup:IItemRendererParent;
+		protected var dataGroup:IItemRendererOwnerView;
 		
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
@@ -175,7 +177,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+				var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 				var item:Object = dp.getItemAt(i);
 				fillRenderer(i, item, ir, presentationModel);
 			}
@@ -187,7 +189,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		// protected function itemAddedHandler(event:CollectionEvent):void
@@ -199,7 +201,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		// 		return;
 		
 		// 	var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-		// 	var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
+		// 	var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 		// 	labelField = dataProviderModel.labelField;
 		
 		// 	fillRenderer(event.index, event.item, ir, presentationModel);
@@ -208,7 +210,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		// 	var n:int = dataGroup.numElements;
 		// 	for (var i:int = event.index; i < n; i++)
 		// 	{
-		// 		ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+		// 		ir = dataGroup.getElementAt(i) as IIndexedItemRenderer;
 		// 		ir.index = i;
 		
 		// 		// could let the IR know its index has been changed (eg, it might change its
@@ -226,7 +228,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		// protected function itemRemovedHandler(event:CollectionEvent):void
@@ -237,14 +239,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 		// 	if (!dp)
 		// 		return;
 		
-		// 	var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+		// 	var ir:IIndexedItemRenderer = dataGroup.getElementAt(event.index) as IIndexedItemRenderer;
 		// 	dataGroup.removeItemRenderer(ir);
 		
 		// 	// adjust the itemRenderers' index to adjust for the shift
 		// 	var n:int = dataGroup.numElements;
 		// 	for (var i:int = event.index; i < n; i++)
 		// 	{
-		// 		ir = dataGroup.getElementAt(i) as ISelectableItemRenderer;
+		// 		ir = dataGroup.getElementAt(i) as IIndexedItemRenderer;
 		// 		ir.index = i;
 		
 		// 		// could let the IR know its index has been changed (eg, it might change its
@@ -260,7 +262,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		// protected function itemUpdatedHandler(event:CollectionEvent):void
 		// {
@@ -272,20 +274,21 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 		// 	// update the given renderer with (possibly) new information so it can change its
 		// 	// appearence or whatever.
-		// 	var ir:ISelectableItemRenderer = dataGroup.getElementAt(event.index) as ISelectableItemRenderer;
+		// 	var ir:IIndexedItemRenderer = dataGroup.getElementAt(event.index) as IIndexedItemRenderer;
 		// 	setData(ir, event.item, event.index);
 		// }
 		
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 * @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
 		 */
 		protected function fillRenderer(index:int,
 										item:Object,
-										itemRenderer:ISelectableItemRenderer,
+										itemRenderer:IIndexedItemRenderer,
 										presentationModel:IListPresentationModel):void
 		{
-			itemRenderer.labelField = labelField;
+            (itemRenderer as ILabelFieldItemRenderer).labelField = labelField;
 			
 			if (presentationModel) {
 				UIBase(itemRenderer).height = presentationModel.rowHeight;
@@ -295,6 +298,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 					(itemRenderer as IAlignItemRenderer).align = presentationModel.align;
 				}
 			}
+            if (itemRenderer is IOwnerViewItemRenderer)
+                (itemRenderer as IOwnerViewItemRenderer).itemRendererOwnerView = dataGroup;
 			
 			setData(itemRenderer, item, index);
 			dataGroup.addItemRendererAt(itemRenderer, index);
@@ -303,7 +308,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		/**
 		 * @private
 		 */
-		protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+		protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
 		{
 			itemRenderer.index = index;
 			itemRenderer.data = data;

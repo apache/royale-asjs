@@ -171,6 +171,7 @@ internal class MXRoyaleClasses
     import mx.controls.advancedDataGridClasses.AdvancedDataGridButtonBar; AdvancedDataGridButtonBar;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridListArea; AdvancedDataGridListArea;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController; AdvancedDataGridSingleSelectionMouseController;
+    import mx.controls.advancedDataGridClasses.AdvancedDataGridSelectableItemRendererBead; AdvancedDataGridSelectableItemRendererBead;
     import mx.controls.dataGridClasses.DataGridColumnList; DataGridColumnList;
     import mx.controls.dataGridClasses.DataGridListArea; DataGridListArea;
     import mx.controls.beads.AdvancedDataGridView; AdvancedDataGridView;
@@ -240,6 +241,9 @@ internal class MXRoyaleClasses
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
     import mx.controls.beads.controllers.MenuBarMouseController; MenuBarMouseController;
     import mx.controls.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
+    import mx.controls.beads.ListItemRendererInitializer; ListItemRendererInitializer;
+    import mx.controls.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
+    import mx.controls.beads.AdvancedDataGridItemRendererInitializer; AdvancedDataGridItemRendererInitializer;
     
     import mx.containers.PanelTitleBar; PanelTitleBar;
     import mx.containers.beads.PanelView; PanelView;

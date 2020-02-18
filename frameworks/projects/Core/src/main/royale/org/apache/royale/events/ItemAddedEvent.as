@@ -21,7 +21,7 @@ package org.apache.royale.events
 	import org.apache.royale.events.CustomEvent;
 	
 	/**
-	 * The ItemAddedEvent is dispatched by IItemRendererParent objects whenenver an
+	 * The ItemAddedEvent is dispatched by IItemRendererOwnerView objects whenenver an
 	 * itemRenderer is added.
 	 *
 	 * @langversion 3.0

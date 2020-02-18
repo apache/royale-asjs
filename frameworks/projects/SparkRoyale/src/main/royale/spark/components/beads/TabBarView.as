@@ -25,7 +25,8 @@ package spark.components.beads
 	import spark.core.IGapLayout;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import spark.components.supportClasses.ListBase;
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.events.IEventDispatcher;
@@ -83,6 +84,7 @@ package spark.components.beads
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 */
 		protected function valueChangeHandler(event:ValueChangeEvent):void
 		{
@@ -90,12 +92,21 @@ package spark.components.beads
 			{
 				return;
 			}
-			var ir:ISelectableItemRenderer = (contentView as IParent).getElementAt(int(event.oldValue)) as ISelectableItemRenderer;
+			var ir:IItemRenderer = (contentView as IParent).getElementAt(int(event.oldValue)) as IItemRenderer;
+            var sir:ISelectableItemRenderer;
 			if(ir)
-				ir.selected = false;
-			ir = (contentView as IParent).getElementAt(int(event.newValue)) as ISelectableItemRenderer;
+            {
+                sir = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (sir)
+    				sir.selected = false;
+            }
+			ir = (contentView as IParent).getElementAt(int(event.newValue)) as IItemRenderer;
 			if(ir)
-				ir.selected = true;
+            {
+                sir = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (sir)
+                    sir.selected = true;
+            }
 		}
 
 	}

@@ -35,7 +35,7 @@ package org.apache.royale.events
 	 */
 	public class ItemRendererEvent extends CustomEvent
 	{
-		// dispatched when a new itemRenderer has been created and added to the IItemRendererParent.
+		// dispatched when a new itemRenderer has been created and added to the IItemRendererOwnerView.
 		static public const CREATED:String = "itemRendererCreated";
 		
 		//--------------------------------------

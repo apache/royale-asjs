@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.views
     {
     import org.apache.royale.html.elements.Select;
     }
+    import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.ISelectionModel;
     import org.apache.royale.core.IStrand;
@@ -114,21 +115,30 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-            var ir:ISelectableItemRenderer;
+            var selectionBead:ISelectableItemRenderer;
+            var ir:IItemRenderer;
             if (lastSelectedIndex != -1) {
-                ir = dataGroup.getItemRendererAt(lastSelectedIndex) as ISelectableItemRenderer;
+                ir = dataGroup.getItemRendererAt(lastSelectedIndex) as IItemRenderer;
             }
 
 			if(ir)
-				ir.selected = false;
+            {
+                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (selectionBead)
+                    selectionBead.selected = false;
+            }
             var newIndex:int = model.selectedIndex;
             if (model is IDropDownListModel) {
                 newIndex += IDropDownListModel(model).offset;
             }
 
-			ir = dataGroup.getItemRendererAt(newIndex) as ISelectableItemRenderer;
-			if(ir)
-				ir.selected = true;
+			ir = dataGroup.getItemRendererAt(newIndex) as IItemRenderer;
+            if(ir) 
+            {
+                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                if (selectionBead)
+                    selectionBead.selected = true;
+            }
 
 			lastSelectedIndex = newIndex;
         }

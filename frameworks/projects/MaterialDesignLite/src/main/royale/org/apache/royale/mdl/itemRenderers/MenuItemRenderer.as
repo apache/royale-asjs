@@ -162,11 +162,6 @@ package org.apache.royale.mdl.itemRenderers
             }
 		}
 		
-		override public function updateRenderer():void
-		{
-			// don't change background-color, let mdl library take care of that.
-		}
-
         protected var _ripple:Boolean = false;
         /**
 		 *  A boolean flag to activate "mdl-js-ripple-effect" effect selector.

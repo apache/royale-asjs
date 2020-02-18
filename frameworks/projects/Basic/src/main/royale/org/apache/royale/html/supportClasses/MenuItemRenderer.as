@@ -105,8 +105,6 @@ package org.apache.royale.html.supportClasses
 			
 			label.x = 0;
 			label.y = cy - label.height/2;
-
-			updateRenderer();
 		}
 	}
 }

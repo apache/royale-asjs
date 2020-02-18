@@ -47,9 +47,9 @@ import mx.utils.PopUpUtil;
 
  */
 import mx.controls.Label;
+import mx.controls.Tree;
 import mx.controls.listClasses.BaseListData;
 import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.Tree;
 import mx.core.IDataRenderer;
 import mx.core.IFlexDisplayObject;
 import mx.core.UIComponent;
@@ -57,11 +57,15 @@ import mx.core.mx_internal;
 
 use namespace mx_internal;
 
-import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IItemRenderer;
+import org.apache.royale.core.ILabelFieldItemRenderer;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.util.getLabelFromData;
 import org.apache.royale.html.supportClasses.TreeListData;
+import org.apache.royale.core.IItemRendererOwnerView;
+import org.apache.royale.core.ISelectableItemRenderer;
 
 /**
  *  The TreeItemRenderer class defines the default item renderer for a Tree control. 
@@ -80,7 +84,7 @@ import org.apache.royale.html.supportClasses.TreeListData;
  *  @productversion Flex 3
  */
 public class TreeItemRenderer extends UIComponent 
-    implements IDataRenderer, IDropInListItemRenderer, ISelectableItemRenderer
+    implements IDataRenderer, IDropInListItemRenderer, IItemRenderer, ILabelFieldItemRenderer
 {
    
 
@@ -101,7 +105,7 @@ public class TreeItemRenderer extends UIComponent
     public function TreeItemRenderer()
     {
         super();
-        typeNames = "TreeItemRenderer";
+        typeNames = "TreeItemRenderer";        
     }
 
     override protected function createChildren():void
@@ -217,67 +221,6 @@ public class TreeItemRenderer extends UIComponent
         
     }
     
-    private var _itemRendererParent:Object;
-    
-    /**
-     * The parent container for the itemRenderer instance.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get itemRendererParent():Object
-    {
-        return _itemRendererParent;
-    }
-    public function set itemRendererParent(value:Object):void
-    {
-        _itemRendererParent = value;
-    }
-        
-    private var _backgroundColor:uint = 0xFFFFFF;
-    override public function get backgroundColor():uint
-    {
-        return _backgroundColor;
-    }
-    override public function set backgroundColor(value:uint):void
-    {
-        _backgroundColor = value;
-    }
-    
-    private var _highlightColor:uint = 0xCEDBEF;
-    public function get highlightColor():uint
-    {
-        return _highlightColor;
-    }
-    public function set highlightColor(value:uint):void
-    {
-        _highlightColor = value;
-    }
-    
-    private var _selectedColor:uint = 0xA8C6EE;
-    public function get selectedColor():uint
-    {
-        return _selectedColor;
-    }
-    public function set selectedColor(value:uint):void
-    {
-        _selectedColor = value;
-    }
-    
-    private var _downColor:uint = 0x808080;
-    public function get downColor():uint
-    {
-        return _downColor;
-    }
-    public function set downColor(value:uint):void
-    {
-        _downColor = value;
-    }
-    
-    protected var useColor:uint = backgroundColor;
-    
     private var _data:Object;
     
     [Bindable("__NoChangeEvent__")]
@@ -363,104 +306,6 @@ public class TreeItemRenderer extends UIComponent
     public function set labelField(value:String):void
     {
         _labelField = value;
-    }
-    
-    private var _index:int;
-    
-    /**
-     *  The position with the dataProvider being shown by the itemRenderer instance.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get index():int
-    {
-        return _index;
-    }
-    public function set index(value:int):void
-    {
-        _index = value;
-    }
-    
-    private var _hovered:Boolean;
-    
-    /**
-     *  Whether or not the itemRenderer is in a hovered state.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get hovered():Boolean
-    {
-        return _hovered;
-    }
-    public function set hovered(value:Boolean):void
-    {
-        _hovered = value;
-        updateRenderer();
-    }
-    
-    private var _selected:Boolean;
-    
-    /**
-     *  Whether or not the itemRenderer is in a selected state.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get selected():Boolean
-    {
-        return _selected;
-    }
-    public function set selected(value:Boolean):void
-    {
-        _selected = value;
-        updateRenderer();
-    }
-    
-    private var _down:Boolean;
-    
-    /**
-     *  Whether or not the itemRenderer is in a down (or pre-selected) state.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get down():Boolean
-    {
-        return _down;
-    }
-    public function set down(value:Boolean):void
-    {
-        _down = value;
-        updateRenderer();
-    }
-    
-    /**
-     * @private
-     */
-    public function updateRenderer():void
-    {
-        if (down)
-            useColor = downColor;
-        else if (hovered)
-            useColor = highlightColor;
-        else if (selected)
-            useColor = selectedColor;
-        else
-            useColor = backgroundColor;
-        COMPILE::JS
-        {
-            element.style.backgroundColor = '#' + useColor.toString(16);
-        }
     }
     
     /**

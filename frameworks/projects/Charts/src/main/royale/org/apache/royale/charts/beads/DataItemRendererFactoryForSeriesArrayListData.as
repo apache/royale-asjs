@@ -41,7 +41,7 @@ package org.apache.royale.charts.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DataItemRendererFactoryForSeriesArrayListData implements IBead, IDataProviderItemRendererMapper
+	public class DataItemRendererFactoryForSeriesArrayListData extends DataItemRendererFactoryForSeriesData
 	{
 		/**
 		 *  constructor.
@@ -55,45 +55,10 @@ package org.apache.royale.charts.beads
 		{
 		}
 		
-		private var _strand:IStrand;
-		
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			IEventDispatcher(_strand).addEventListener("initComplete", initComplete);
-		}
-		public function get strand():IStrand
-		{
-			return _strand;
-		}
-		
-		private function initComplete(event:Event):void
-		{
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			selectionModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			
-			dataProviderChangeHandler(null);
-		}
-		
-		/**
-		 * For series data, the 'global' itemRendererFactory is not used. Each series supplies
-		 * its own itemRendererFactory.
-		 */
-		public function get itemRendererFactory():IItemRendererClassFactory
-		{
-			return null;
-		}
-		public function set itemRendererFactory(value:IItemRendererClassFactory):void
-		{
-		}
+        private var factory:IItemRendererClassFactory;
+        private var chart:IChart;
+        private var series:Array;
+        private var dp:ArrayList;
 		
 		/**
 		 * @private
@@ -105,43 +70,16 @@ package org.apache.royale.charts.beads
 		 * @royaleignorecoercion org.apache.royale.charts.core.IChartSeries
 		 * @royaleemitcoercion org.apache.royale.collections.ArrayList
 		 */
-		private function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			var selectionModel:ISelectionModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
-			var dp:ArrayList = selectionModel.dataProvider as ArrayList;
-			if (!dp)
-				return;
-			
-			var listView:IListView = _strand.getBeadByType(IListView) as IListView;
-			var dataGroup:IChartDataGroup = listView.dataGroup as IChartDataGroup;
-			dataGroup.removeAllItemRenderers();
-			
-			var chart:IChart = _strand as IChart;
-			var series:Array = chart.series;
-						
-			for (var s:int=0; s < series.length; s++)
-			{				
-				var n:int = dp.length; 
-				var chartSeries:IChartSeries = series[s] as IChartSeries;
-				
-				for (var i:int = 0; i < n; i++)
-				{
-					if (chartSeries.itemRenderer)
-					{
-						var ir:IChartItemRenderer = chartSeries.itemRenderer.newInstance() as IChartItemRenderer;
-						dataGroup.addItemRenderer(ir, false);
-						ir.itemRendererParent = dataGroup;
-						ir.index = i;
-						ir.data = dp.getItemAt(i)
-						ir.series = chartSeries;
-					}
-				}
-				
-			}
-			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
-			//TODO (Harbs) I think layoutNeeded is always dispatched when itemsCreated is handled.
-			IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
-		}
-	}
+            dp = dataProviderModel.dataProvider as ArrayList;
+            super.dataProviderChangeHandler(event);
+        }
+                
+        override protected function getItemAt(index:int):Object
+        {
+            return dp.getItemAt(index);
+        }
+    }
 }
+

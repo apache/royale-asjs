@@ -104,7 +104,6 @@ package org.apache.royale.jewel.itemRenderers
 			textField.y = cy - textField.height/2;
 			textField.width = width;
 
-			updateRenderer();
 		}
 
 		/**

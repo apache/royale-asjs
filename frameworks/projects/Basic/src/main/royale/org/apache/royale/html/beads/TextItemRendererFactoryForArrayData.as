@@ -21,7 +21,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -129,7 +129,7 @@ package org.apache.royale.html.beads
 		}
 
 		/**
-		 *  The IItemRendererParent that should parent the ITextItemRenderers
+		 *  The IItemRendererOwnerView that should parent the ITextItemRenderers
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -148,14 +148,14 @@ package org.apache.royale.html.beads
 				return;
 
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererParent = view.dataGroup;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 
 			dataGroup.removeAllItemRenderers();
 
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ITextItemRenderer;
+				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer() as ITextItemRenderer;
 				tf.index = i;
 				dataGroup.addItemRenderer(tf, false);
 				if (selectionModel.labelField) {

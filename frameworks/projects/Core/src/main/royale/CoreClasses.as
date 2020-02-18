@@ -48,6 +48,7 @@ internal class CoreClasses
 
 	import org.apache.royale.html.beads.IBackgroundBead; IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead; IBorderBead;
+    import org.apache.royale.html.beads.SelectableItemRendererBeadBase; SelectableItemRendererBeadBase;
 
     import org.apache.royale.core.BeadViewBase; BeadViewBase;
     import org.apache.royale.core.ImageViewBase; ImageViewBase;
@@ -74,6 +75,7 @@ internal class CoreClasses
 	}
 	import org.apache.royale.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.royale.core.ItemRendererClassFactory; ItemRendererClassFactory;
+    import org.apache.royale.core.SelectableItemRendererClassFactory; SelectableItemRendererClassFactory;
     import org.apache.royale.core.IChangePropagator; IChangePropagator;
     import org.apache.royale.core.IAlertModel; IAlertModel;
     import org.apache.royale.core.IBead; IBead;
@@ -110,6 +112,10 @@ internal class CoreClasses
     import org.apache.royale.core.IImage; IImage;
     import org.apache.royale.core.IImageModel; IImageModel;
     import org.apache.royale.core.IItemRendererProvider; IItemRendererProvider;
+    import org.apache.royale.core.IIndexedItemRenderer; IIndexedItemRenderer;
+    import org.apache.royale.core.IIndexedItemRendererInitializer; IIndexedItemRendererInitializer;
+    import org.apache.royale.core.ILabelFieldItemRenderer; ILabelFieldItemRenderer;
+    import org.apache.royale.core.IOwnerViewItemRenderer; IOwnerViewItemRenderer;
     import org.apache.royale.core.ILayoutChild; ILayoutChild;
 	import org.apache.royale.core.ILayoutHost; ILayoutHost;
 	import org.apache.royale.core.ILayoutView; ILayoutView;
@@ -131,6 +137,7 @@ internal class CoreClasses
 	{
 	    import org.apache.royale.core.IScrollBarModel; IScrollBarModel;
 	}
+    import org.apache.royale.core.IListDataItemRenderer; IListDataItemRenderer;
     import org.apache.royale.core.IRuntimeSelectableItemRenderer; IRuntimeSelectableItemRenderer;
     import org.apache.royale.core.ISelectableItemRenderer; ISelectableItemRenderer;
     import org.apache.royale.core.ISelectable; ISelectable;
@@ -263,6 +270,7 @@ internal class CoreClasses
     import org.apache.royale.core.IDataGridPresentationModel; IDataGridPresentationModel;
     import org.apache.royale.core.IDateChooserModelWithChangeCheck; IDateChooserModelWithChangeCheck;
 	import org.apache.royale.core.ParentDocumentBead; ParentDocumentBead;
+    import org.apache.royale.core.ItemRendererOwnerViewBead; ItemRendererOwnerViewBead;
 	import org.apache.royale.core.TransformBeadBase; TransformBeadBase;
 	import org.apache.royale.core.TransformModel; TransformModel;
 	import org.apache.royale.core.TransformCompoundModel; TransformCompoundModel;

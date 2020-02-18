@@ -29,7 +29,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IItemRenderer extends IEventDispatcher, IChild
+	public interface IItemRenderer extends IEventDispatcher, IChild, IStrand
 	{
         /**
          *  The data item to be displayed by the item renderer.
@@ -42,28 +42,5 @@ package org.apache.royale.core
 		function get data():Object;
 		function set data(value:Object):void;
 		
-		/**
-		 * Additional data about the list structure that might be useful
-		 * to itemRenderer implementations.
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 */
-		function get listData():Object;
-		function set listData(value:Object):void;
-		
-		/**
-		 *  The parent component of the itemRenderer instance. This is the container that houses
-		 *  all of the itemRenderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		function get itemRendererParent():Object;
-		function set itemRendererParent(value:Object):void;
 	}
 }

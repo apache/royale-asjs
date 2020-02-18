@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.charts.core
 {
-    import org.apache.royale.core.IItemRendererParent;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.geom.Point;
 
@@ -31,7 +31,7 @@ package org.apache.royale.charts.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public interface IChartDataGroup extends IItemRendererParent, ILayoutView
+	public interface IChartDataGroup extends IItemRendererOwnerView, ILayoutView
 	{
 		/**
 		 *  Returns the itemRenderer that matches both the series and child index value.

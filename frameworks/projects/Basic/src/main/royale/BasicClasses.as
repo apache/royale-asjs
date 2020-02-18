@@ -75,6 +75,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.CascadingMenuModel; CascadingMenuModel;
 	import org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
 	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
+    import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead; SolidBackgroundSelectableItemRendererBead;
+    import org.apache.royale.html.beads.SolidBackgroundRuntimeSelectableItemRendererBead; SolidBackgroundRuntimeSelectableItemRendererBead;
 	
 	COMPILE::SWF
 	{
@@ -113,6 +115,8 @@ internal class BasicClasses
 	import org.apache.royale.html.beads.models.BinaryImageModel; BinaryImageModel;
 
 	import org.apache.royale.html.beads.ListView; ListView;
+    import org.apache.royale.html.beads.ListItemRendererInitializer; ListItemRendererInitializer;
+    import org.apache.royale.html.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
 	
 	import org.apache.royale.html.beads.MultiSelectionListView; MultiSelectionListView;
 	import org.apache.royale.html.beads.NumericStepperView; NumericStepperView;

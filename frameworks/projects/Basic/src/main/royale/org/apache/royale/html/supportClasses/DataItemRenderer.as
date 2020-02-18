@@ -119,31 +119,6 @@ package org.apache.royale.html.supportClasses
         protected var controller:IBeadController;
 
 		/**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			COMPILE::SWF
-			{
-				super.updateRenderer();
-
-				graphics.clear();
-				graphics.beginFill(useColor, (down||selected||hovered)?1:0);
-				graphics.drawRect(0, 0, width, height);
-				graphics.endFill();
-			}
-			COMPILE::JS
-			{
-				if (selected)
-					element.style.backgroundColor = '#9C9C9C';
-				else if (hovered)
-					element.style.backgroundColor = '#ECECEC';
-				else
-					element.style.backgroundColor = 'transparent';
-			}
-		}
-
-		/**
 		 * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
 		 *
 		 */

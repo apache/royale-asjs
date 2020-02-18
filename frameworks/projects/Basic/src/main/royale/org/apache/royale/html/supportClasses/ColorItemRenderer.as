@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+	import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead;
 	import org.apache.royale.utils.CSSUtils;
 
 	/**
@@ -43,7 +44,12 @@ package org.apache.royale.html.supportClasses
 			super();
 
             typeNames = 'ColorItemRenderer';
+        
+            backgroundBead = new SolidBackgroundSelectableItemRendererBead();
+            addBead(backgroundBead);
 		}
+        
+        private var backgroundBead:SolidBackgroundSelectableItemRendererBead;
 
 		/**
 		 *  Sets the data value and uses the String version of the data for display.
@@ -60,38 +66,19 @@ package org.apache.royale.html.supportClasses
 		override public function set data(value:Object):void
 		{
 			super.data = value;
-			updateRenderer();
-		}
-
-		/**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			COMPILE::SWF
-			{
-				super.updateRenderer();
-
-				graphics.clear();
-				graphics.beginFill(useColor, (down||selected||hovered)?1:0);
-				graphics.drawRect(0, 0, width, height);
-				graphics.endFill();
-			}
-			COMPILE::JS
-			{
-				var color:uint;
-				if (!isNaN(data))
-				{
-					color = uint(data);
-				} else if (dataField)
-				{
-					color = uint(data[dataField]);
-				} else
-				{
-					color = 0x000000;
-				}
-				element.style.backgroundColor = CSSUtils.attributeFromColor(color);
-			}
+            
+            var color:uint;
+            if (!isNaN(uint(data)))
+            {
+                color = uint(data);
+            } else if (dataField)
+            {
+                color = uint(data[dataField]);
+            } else
+            {
+                color = 0x000000;
+            }
+            backgroundBead.backgroundColor = color;
 		}
 	}
 }

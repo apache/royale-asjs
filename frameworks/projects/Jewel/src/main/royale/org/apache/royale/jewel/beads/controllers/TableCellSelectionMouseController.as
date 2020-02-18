@@ -19,9 +19,9 @@
 package org.apache.royale.jewel.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IBeadView;
@@ -91,7 +91,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.4
          */
-        protected var dataGroup:IItemRendererParent;
+        protected var dataGroup:IItemRendererOwnerView;
 
 		private var _strand:IStrand;
 		
@@ -148,27 +148,27 @@ package org.apache.royale.jewel.beads.controllers
         }
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
          * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloverHandler(event:Event):void
 		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
 				IRollOverModel(model).rollOverIndex = renderer.index;
 			}
 		}
 		
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
          * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloutHandler(event:Event):void
 		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
-				renderer.hovered = false;
-				renderer.down = false;
+				//renderer.hovered = false; who sets this to true?
+				//renderer.down = false; who sets this to true?
 				IRollOverModel(model).rollOverIndex = -1;
 			}
 		}

@@ -18,14 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.flat.supportClasses
 {
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFieldType;
 	
-	import org.apache.royale.core.CSSTextField;
     import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.html.beads.ITextItemRenderer;
-    import org.apache.royale.html.supportClasses.StringItemRenderer;
+	import org.apache.royale.core.IStyleableObject;
+    import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead;
 
 	/**
 	 *  The DropDownListStringItemRenderer is a StringItemRenderer with a particular
@@ -36,7 +32,7 @@ package org.apache.royale.flat.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class DropDownListStringItemRenderer extends StringItemRenderer
+	public class DropDownListSolidBackgroundSelectableItemRendererBead extends SolidBackgroundSelectableItemRendererBead
 	{
 		/**
 		 *  constructor.
@@ -46,11 +42,11 @@ package org.apache.royale.flat.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function DropDownListStringItemRenderer()
+		public function DropDownListSolidBackgroundSelectableItemRendererBead()
 		{
 			super();
 			
-            className = 'dropdown-menu-item-renderer';
+            (_strand as IStyleableObject).className = 'dropdown-menu-item-renderer';
 		}
 		
 		/**
@@ -58,7 +54,7 @@ package org.apache.royale.flat.supportClasses
 		 */
 		override public function updateRenderer():void
 		{
-            className = selected ? 'dropdown-menu-item-renderer-selected' : 'dropdown-menu-item-renderer';
+            (_strand as IStyleableObject).className = selected ? 'dropdown-menu-item-renderer-selected' : 'dropdown-menu-item-renderer';
             if (selected)
                 selectedColor = ValuesManager.valuesImpl.getValue(this, 'background-color');
             if (hovered)

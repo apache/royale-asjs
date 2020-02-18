@@ -45,6 +45,7 @@ internal class ChartsClasses
 	import org.apache.royale.charts.supportClasses.ChartDataGroup; ChartDataGroup;
 	
 	import org.apache.royale.charts.beads.ChartView; ChartView;
+    import org.apache.royale.charts.beads.ChartSelectableItemRendererBead; ChartSelectableItemRendererBead;
 	import org.apache.royale.charts.beads.ChartItemRendererFactory; ChartItemRendererFactory;
 	import org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesData; DataItemRendererFactoryForSeriesData;
 	import org.apache.royale.charts.beads.DataItemRendererFactoryForSeriesArrayListData; DataItemRendererFactoryForSeriesArrayListData;

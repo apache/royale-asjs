@@ -21,37 +21,27 @@ package org.apache.royale.core
 	import org.apache.royale.events.IEventDispatcher;
 
     /**
-     *  The IItemRendererParent interface is the basic interface for the 
-     *  container that parents item renderers.
-     * 
+     *  The IOwnerViewItemRenderer interface is the basic interface for item renderers
+     *  that have an itemRendererOwnerView property that references the View of the component
+     *  that eventually parents the item renderers.
+     *  
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public interface IItemRendererParent extends IEventDispatcher
+	public interface IOwnerViewItemRenderer extends IItemRenderer
 	{
         /**
-         *  The IItemRendererParent interface is the basic interface for the 
-         *  container that parents item renderers.
-         * 
-         *  @param index The index of the data item.
-         *  @return The item renderer for the data item.
-         * 
-         *  @see org.apache.royale.core.IItemRenderer
-         * 
+         *  The reference to the IItemRendererOwnerView of the renderer
+         *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.4
          */
-		function addItemRenderer(renderer:IItemRenderer, dispatchAdded:Boolean):void;
-		function addItemRendererAt(renderer:IItemRenderer, index:int):void;
-		function removeItemRenderer(renderer:IItemRenderer):void;
-		function getItemRendererForIndex(index:int):IItemRenderer;
-        function getItemRendererAt(index:int):IItemRenderer;
-		function removeAllItemRenderers():void;
-		function updateAllItemRenderers():void;
-        function get numItemRenderers():int;
+        function get itemRendererOwnerView():IItemRendererOwnerView;
+        function set itemRendererOwnerView(value:IItemRendererOwnerView):void;
+        
 	}
 }

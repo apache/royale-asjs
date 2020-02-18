@@ -21,8 +21,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IIndexedItemRenderer;
+    import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
@@ -132,22 +133,22 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
             var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(itemRendererParent) as ISelectableItemRenderer;
+            var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 
             fillRenderer(event.index, event.item, ir, presentationModel);
 
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-			var n:int = itemRendererParent.numItemRenderers;
+			var n:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
 			{
-				ir = itemRendererParent.getItemRendererAt(i) as ISelectableItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as IIndexedItemRenderer;
 				ir.index = i;
 			}
 
@@ -181,10 +182,10 @@ package org.apache.royale.jewel.beads.itemRenderers
 			return _dataProviderModel;
 		}
 
-		private var _itemRendererParent: IItemRendererParent;
+		private var _itemRendererOwnerView: IItemRendererOwnerView;
 
 		/**
-		 *  The org.apache.royale.core.IItemRendererParent used
+		 *  The org.apache.royale.core.IItemRendererOwnerView used
 		 *  to generate instances of item renderers.
 		 *
 		 *  @langversion 3.0
@@ -192,13 +193,13 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
-		public function get itemRendererParent():IItemRendererParent
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			if (_itemRendererParent == null) {
+			if (_itemRendererOwnerView == null) {
 				var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-				_itemRendererParent = view.dataGroup;
+				_itemRendererOwnerView = view.dataGroup;
 			}
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
 
         private var _itemRendererFactory:IItemRendererClassFactory;
@@ -222,15 +223,16 @@ package org.apache.royale.jewel.beads.itemRenderers
 
         /**
          * @private
+		 *  @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
          */
         protected function fillRenderer(index:int,
                                         item:Object,
-                                        itemRenderer:ISelectableItemRenderer,
+                                        itemRenderer:IIndexedItemRenderer,
                                         presentationModel:IListPresentationModel):void
         {
-            itemRendererParent.addItemRendererAt(itemRenderer, index);
+            itemRendererOwnerView.addItemRendererAt(itemRenderer, index);
 
-            itemRenderer.labelField = labelField;
+            (itemRenderer as ILabelFieldItemRenderer).labelField = labelField;
 
             if (presentationModel) {
                 // var style:SimpleCSSStyles = new SimpleCSSStyles();
@@ -250,7 +252,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         /**
          * @private
          */
-        protected function setData(itemRenderer:ISelectableItemRenderer, data:Object, index:int):void
+        protected function setData(itemRenderer:IIndexedItemRenderer, data:Object, index:int):void
         {
             itemRenderer.index = index;
             itemRenderer.data = data;

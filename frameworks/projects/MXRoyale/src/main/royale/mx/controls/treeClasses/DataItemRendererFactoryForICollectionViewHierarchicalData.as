@@ -30,7 +30,7 @@ package mx.controls.treeClasses
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
@@ -75,23 +75,8 @@ package mx.controls.treeClasses
 			super();
 		}
 
-		private var _strand:IStrand;
-
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		override public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			
-			super.strand = value;
-		}
-        
+		private var dp:ICollectionView;
+		
         /**
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView
@@ -103,7 +88,7 @@ package mx.controls.treeClasses
         {
             if (!dataProviderModel)
                 return;
-            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+            dp = dataProviderModel.dataProvider as ICollectionView;
             if (!dp)
                 return;
             
@@ -113,53 +98,26 @@ package mx.controls.treeClasses
             dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
             dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
             
-            dataGroup.removeAllItemRenderers();
-            
-            var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-            labelField = dataProviderModel.labelField;
-            
-            var n:int = dp.length;
-            var cursor:IViewCursor = dp.createCursor();
-            for (var i:int = 0; i < n; i++)
-            {
-                var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-                var item:Object = cursor.current;
-                cursor.moveNext();
-                fillRenderer(i, item, ir, presentationModel);
-            }
-            
-            IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+            super.dataProviderChangeHandler(event);
         }
 
+        private var cursor:IViewCursor;
+        
+        
+        // assumes will be called in a loop, not random access
+        override protected function get dataProviderLength():int
+        {
+            cursor = dp.createCursor();
+            return dp.length;
+        }
+        
+        // assumes will be called in a loop, not random access
+        override protected function getItemAt(index:int):Object
+        {
+            var obj:Object = cursor.current;
+            cursor.moveNext();
+            return obj;
+        }
 		
-		/**
-		 * Sets the itemRenderer's data with additional tree-related data.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-		 */
-		override protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
-		{
-			if (!dataProviderModel)
-				return;
-			
-			var treeData:ITreeData = dataProviderModel.dataProvider as ITreeData;
-			var depth:int = treeData.getDepth(data);
-			var isOpen:Boolean = treeData.isOpen(data);
-			var hasChildren:Boolean = treeData.hasChildren(data);
-			
-			// Set the listData with the depth of this item
-			var treeListData:TreeListData = new TreeListData();
-			treeListData.depth = depth;
-			treeListData.isOpen = isOpen;
-			treeListData.hasChildren = hasChildren;
-            treeListData.owner = _strand;
-			
-			ir.listData = treeListData;
-			
-			super.setData(ir, data, index);
-		}
 	}
 }

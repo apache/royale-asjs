@@ -22,9 +22,9 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
 	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithModelView;
@@ -41,8 +41,6 @@ package org.apache.royale.html.beads
     import org.apache.royale.utils.sendEvent;
     import org.apache.royale.utils.sendStrandEvent;
 	
-	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
-	
     /**
      *  The DataItemRendererFactoryForArrayList class uses an ArrayList
 	 *  and creates an item renderer for every
@@ -55,7 +53,7 @@ package org.apache.royale.html.beads
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class DataItemRendererFactoryForArrayList extends EventDispatcher implements IBead, IDataProviderItemRendererMapper
+	public class DataItemRendererFactoryForArrayList extends DataItemRendererFactoryBase
 	{
         /**
          *  Constructor.
@@ -70,131 +68,30 @@ package org.apache.royale.html.beads
 			super(target);
 		}
 		
-		protected var dataProviderModel:IDataProviderModel;
-        protected var dataFieldProvider:DataFieldProviderBead;
-
-		protected var labelField:String;
-		protected var dataField:String;
-
-		protected var _strand:IStrand;
-		
-        /**
-         *  @copy org.apache.royale.core.IBead#strand
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function set strand(value:IStrand):void
-		{
-			_strand = value;
-			IEventDispatcher(_strand).addEventListener("initComplete", initComplete);
-		}
-		
-		protected function initComplete(event:Event):void
-		{			
-			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
-			labelField = dataProviderModel.labelField;
-
-            dataFieldProvider = _strand.getBeadByType(DataFieldProviderBead) as DataFieldProviderBead;
-            if (dataFieldProvider)
-            {
-                dataField = dataFieldProvider.dataField;
-            }
-
-			// if the host component inherits from DataContainerBase, the itemRendererClassFactory will 
-			// already have been loaded by DataContainerBase.addedToParent function.
-			if(!_itemRendererFactory)
-    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;				
-			
-			dataProviderChangeHandler(null);
-		}
-		
-		private var _itemRendererFactory:IItemRendererClassFactory;
-		
-        /**
-         *  The org.apache.royale.core.IItemRendererClassFactory used 
-         *  to generate instances of item renderers.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function get itemRendererFactory():IItemRendererClassFactory
-		{
-			if(!_itemRendererFactory)
-    			_itemRendererFactory = loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", _strand) as IItemRendererClassFactory;
-			
-			return _itemRendererFactory;
-		}
-		
-        /**
-         *  @private
-         */
-		public function set itemRendererFactory(value:IItemRendererClassFactory):void
-		{
-			_itemRendererFactory = value;
-		}
-		
-		/**
-		 * @private
-		 */
-		protected function setData(ir:ISelectableItemRenderer, data:Object, index:int):void
-		{
-			ir.data = data;
-			ir.index = index;
-		}
-		
+        private var dp:IArrayList;
+        
 		/**
 		 *  @private
          *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
          *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
-		protected function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IArrayList = dataProviderModel.dataProvider as IArrayList;
+			dp = dataProviderModel.dataProvider as IArrayList;
 			if (!dp)
 				return;
 			
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-			var dataGroup:IItemRendererParent = view.dataGroup;
-			
-			dataGroup.removeAllItemRenderers();
-			
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			
-			var n:int = dp.length; 
-			for (var i:int = 0; i < n; i++)
-			{				
-				var ir:ISelectableItemRenderer = itemRendererFactory.createItemRenderer(dataGroup) as ISelectableItemRenderer;
-				var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
-
-				dataGroup.addItemRenderer(ir, false);
-				if (presentationModel) {
-					var style:SimpleCSSStyles = new SimpleCSSStyles();
-					style.marginBottom = presentationModel.separatorThickness;
-					UIBase(ir).style = style;
-					UIBase(ir).height = presentationModel.rowHeight;
-					UIBase(ir).percentWidth = 100;
-				}
-
-                ir.labelField = labelField;
-				if (dataItemRenderer)
-				{
-					dataItemRenderer.dataField = dataField;
-				}
-
-				setData(ir, dp.getItemAt(i), i);
-
-				var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
-				newEvent.itemRenderer = ir;
-				sendEvent(this,newEvent);
-			}
-
-			sendStrandEvent(_strand,"itemsCreated");
+            super.dataProviderChangeHandler(event);
 		}
+        
+        override protected function get dataProviderLength():int
+        {
+            return dp.length;
+        }
+        
+        override protected function getItemAt(i:int):Object
+        {
+            return dp.getItemAt(i);
+        }
 	}
 }

@@ -19,9 +19,15 @@
 
 package spark.components { 
     
-import org.apache.royale.events.Event;
 import mx.core.IDataRenderer;
 import mx.events.FlexEvent;
+
+import org.apache.royale.core.IBead;
+import org.apache.royale.core.IItemRendererOwnerView;
+import org.apache.royale.core.ISelectableItemRenderer;
+import org.apache.royale.core.ValuesManager;
+import org.apache.royale.events.Event;
+
 //import org.apache.royale.events.EventDispatcher;
 /**
  *  Dispatched when the <code>data</code> property changes.
@@ -84,7 +90,7 @@ public class DataRenderer extends Group implements IDataRenderer
         super();
     }
     
-    private var _itemRendererParent:Object;
+    private var _itemRendererOwnerView:IItemRendererOwnerView;
     
     /**
      * The parent container for the itemRenderer instance.
@@ -94,13 +100,24 @@ public class DataRenderer extends Group implements IDataRenderer
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get itemRendererParent():Object
+    public function get itemRendererOwnerView():IItemRendererOwnerView
     {
-        return _itemRendererParent;
+        return _itemRendererOwnerView;
     }
-    public function set itemRendererParent(value:Object):void
+    public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
     {
-        _itemRendererParent = value;
+        _itemRendererOwnerView = value;
+        if (!getBeadByType(ISelectableItemRenderer))
+        {
+            // load ISelectableItemRenderer impl from the
+            // owner, not the item renderer so that item
+            // renderers aren't strongly coupled to a
+            // particular selection visual and the list
+            // can dictate the selection visual
+            var c:Class = ValuesManager.valuesImpl.getValue(value.host, "iSelectableItemRenderer");
+            if (c)
+                addBead(new c() as IBead);                    
+        }
     }
     
     //--------------------------------------------------------------------------

@@ -19,7 +19,8 @@
 package org.apache.royale.html.supportClasses
 {
 	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ITitleBarModel;
 	import org.apache.royale.events.Event;
@@ -27,12 +28,9 @@ package org.apache.royale.html.supportClasses
 	import org.apache.royale.html.TitleBar;
 	import org.apache.royale.html.beads.PanelView;
 	
-	public class AccordionItemRenderer extends Panel implements ISelectableItemRenderer, ICollapsible
+	public class AccordionItemRenderer extends Panel implements IItemRenderer, ICollapsible
 	{
 		private var _index:int;
-		private var _selected:Boolean;
-		private var _hovered:Boolean;
-		private var _down:Boolean;
 		private var value:Object;
 		
 		public function AccordionItemRenderer()
@@ -41,61 +39,6 @@ package org.apache.royale.html.supportClasses
 			percentWidth = 100;
 		}
 
-		private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-
-		public function set selectable(value:Boolean):void
-		{
-			_selectable = value;	
-		}
-
-		private var _hoverable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get hoverable():Boolean
-		{
-			return _hoverable;
-		}
-
-		public function set hoverable(value:Boolean):void
-		{
-			_hoverable = value;	
-		}
-		
-		public function get selected():Boolean
-		{
-			return _selected;
-		}
-
-		public function set selected(value:Boolean):void
-		{
-			_selected = value;
-		}
 
 		public function get index():int
 		{
@@ -108,35 +51,6 @@ package org.apache.royale.html.supportClasses
 			id = "item" + index;
 		}
 
-		public function get labelField():String
-		{
-			return null;
-		}
-		
-		public function set labelField(value:String):void
-		{
-		}
-				
-		public function get hovered():Boolean
-		{
-			return _hovered;
-		}
-		
-		public function set hovered(value:Boolean):void
-		{
-			_hovered = value;
-		}
-		
-		public function get down():Boolean
-		{
-			return _down;
-		}
-		
-		public function set down(value:Boolean):void
-		{
-			_down = value;
-		}
-		
 		public function get data():Object
 		{
 			return numElements > 0 ? getElementAt(0) : null;
@@ -176,14 +90,13 @@ package org.apache.royale.html.supportClasses
 		{
 		}
 		
-		public function get itemRendererParent():Object
-		{
-			return null;
-		}
-		
-		public function set itemRendererParent(value:Object):void
-		{
-		}
+         public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return null;
+        }
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+        }
 		
 		public function get titleBar():TitleBar
 		{

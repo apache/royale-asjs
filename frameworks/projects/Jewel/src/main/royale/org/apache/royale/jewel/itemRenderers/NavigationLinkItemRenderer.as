@@ -25,6 +25,7 @@ package org.apache.royale.jewel.itemRenderers
     }
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
+    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverableRuntimeSelectableItemRendererBead;
 
 	/**
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 
@@ -57,6 +58,7 @@ package org.apache.royale.jewel.itemRenderers
 			{
 				addClass("mxmlContent");
 			}
+            addBead(new ClassSelectorListHoverableRuntimeSelectableItemRendererBead(classSelectorList));
 		}
 
 		// private var _href:String = "#";
@@ -173,18 +175,5 @@ package org.apache.royale.jewel.itemRenderers
 
             return element;
         }
-
-		/**
-		 * @private
-		 * 
-		 * Styles are handled in CSS and usualy This renderer does not uses "selected" state
-	 	 * at least if the drawer is closed after selection.
-		 */
-		override public function updateRenderer():void
-		{
-			// there's no selection only hover state
-			if(hoverable)
-            	toggleClass("hovered", hovered);
-		}
 	}
 }

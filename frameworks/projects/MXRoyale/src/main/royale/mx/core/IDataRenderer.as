@@ -20,6 +20,8 @@
 package mx.core
 {
 
+import org.apache.royale.core.IIndexedItemRenderer;
+
 /**
  *  The IDataRenderer interface defines the interface for components that have a <code>data</code> property.
  *
@@ -72,7 +74,7 @@ package mx.core
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public interface IDataRenderer
+public interface IDataRenderer extends IIndexedItemRenderer
 {
 	//--------------------------------------------------------------------------
 	//
@@ -80,24 +82,6 @@ public interface IDataRenderer
 	//
 	//--------------------------------------------------------------------------
 
-	//----------------------------------
-	//  data
-	//----------------------------------
-
-	/**
-	 *  The data to render or edit.
-	 *  
-	 *  @langversion 3.0
-	 *  @playerversion Flash 9
-	 *  @playerversion AIR 1.1
-	 *  @productversion Flex 3
-	 */
-	function get data():Object;
-	
-	/**
-	 *  @private
-	 */
-	function set data(value:Object):void;
 }
 
 }

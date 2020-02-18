@@ -148,7 +148,7 @@ package spark.components.supportClasses
             getComponentDispatcher().dispatchEvent(le);
         }
 
-        private var _itemRendererParent:Object;
+        private var _itemRendererOwnerView:Object;
         
         /**
          * The parent container for the itemRenderer instance.
@@ -158,13 +158,13 @@ package spark.components.supportClasses
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        public function get itemRendererParent():Object
+        public function get itemRendererOwnerView():Object
         {
-            return _itemRendererParent;
+            return _itemRendererOwnerView;
         }
-        public function set itemRendererParent(value:Object):void
+        public function set itemRendererOwnerView(value:Object):void
         {
-            _itemRendererParent = value;
+            _itemRendererOwnerView = value;
         }
                 
         private var _labelField:String = "label";
@@ -185,7 +185,7 @@ package spark.components.supportClasses
 
         protected function getComponentDispatcher():IEventDispatcher
         {
-            var irp:Object = itemRendererParent;
+            var irp:Object = itemRendererOwnerView;
             var p:IParent = parent;
             while (p)
             {

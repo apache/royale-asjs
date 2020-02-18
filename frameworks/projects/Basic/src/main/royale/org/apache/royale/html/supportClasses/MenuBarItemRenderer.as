@@ -81,8 +81,6 @@ package org.apache.royale.html.supportClasses
 			
 			var h:Number = height;
 			var w:Number = width;
-			
-			updateRenderer();
 		}
 	}
 }

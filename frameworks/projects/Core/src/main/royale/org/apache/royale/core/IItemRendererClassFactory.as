@@ -39,15 +39,11 @@ package org.apache.royale.core
      */
 	public interface IItemRendererClassFactory extends IBead
 	{
-        // TODO: add additional parameters like the data item and index
         /**
-         *  This method is called to generate another instance of an item renderer
-         *  and attach it to the given parent.
+         *  This method is called to generate another instance of an item renderer.
          * 
-         *  @param parent The parent of the item renderer.
          *  @return The item renderer.
          * 
-         *  @see org.apache.royale.core.IItemRendererParent
          *  @see org.apache.royale.core.IItemRenderer
          * 
          *  @langversion 3.0
@@ -55,6 +51,6 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		function createItemRenderer(parent:IItemRendererParent):IItemRenderer;
+		function createItemRenderer():IItemRenderer;
 	}
 }

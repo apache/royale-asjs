@@ -20,7 +20,8 @@ package org.apache.royale.html.accessories
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IBeadView;
-	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IOwnerViewItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IToolTipBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
@@ -61,7 +62,7 @@ package org.apache.royale.html.accessories
          */
 		public function set strand(value:IStrand):void
 		{
-            var eventDispatcher:IEventDispatcher = ((value as IItemRenderer).itemRendererParent as IBeadView).host as IEventDispatcher;
+            var eventDispatcher:IEventDispatcher = ((value as IOwnerViewItemRenderer).itemRendererOwnerView as IBeadView).host as IEventDispatcher;
             eventDispatcher.addEventListener("itemRemoved", handleItemRemoved);
 		}
 

@@ -130,5 +130,10 @@ package
         import dialogPolyfill; dialogPolyfill;
         import org.apache.royale.utils.transparentPixelElement; transparentPixelElement;
         }
+        
+        import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListRuntimeSelectableItemRendererBead; ClassSelectorListRuntimeSelectableItemRendererBead;
+        import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverableRuntimeSelectableItemRendererBead; ClassSelectorListHoverableRuntimeSelectableItemRendererBead;
+        import org.apache.royale.jewel.beads.itemRenderers.JewelListItemRendererInitializer; JewelListItemRendererInitializer;
+
     }
 }

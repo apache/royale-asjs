@@ -612,7 +612,8 @@ DropDownListList
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ArraySelectionModel");
 	IDataProviderItemRendererMapper: ClassReference("org.apache.royale.html.beads.TextItemRendererFactoryForArrayData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
-	IItemRenderer: ClassReference("org.apache.royale.flat.supportClasses.DropDownListStringItemRenderer");
+	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.StringItemRenderer");
+	ISelectableItemRenderer: ClassReference("org.apache.royale.flat.supportClasses.DropDownListSolidBackgroundSelectableItemRendererBead");
 	iBackgroundBead: ClassReference("org.apache.royale.html.beads.SolidBackgroundBead");
 	iBorderBead: ClassReference('org.apache.royale.html.beads.SingleLineBorderBead');
 	iBorderModel: ClassReference('org.apache.royale.html.beads.models.SingleLineBorderModel');

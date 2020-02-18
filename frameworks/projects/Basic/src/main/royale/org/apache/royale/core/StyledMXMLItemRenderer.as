@@ -19,6 +19,8 @@
 package org.apache.royale.core
 {
     import org.apache.royale.html.supportClasses.MXMLStatesItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
+    import org.apache.royale.core.IOwnerViewItemRenderer;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
     import org.apache.royale.utils.IEmphasis;
@@ -32,7 +34,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class StyledMXMLItemRenderer extends MXMLStatesItemRenderer implements IClassSelectorListSupport, IRuntimeSelectableItemRenderer, IEmphasis
+	public class StyledMXMLItemRenderer extends MXMLStatesItemRenderer implements IClassSelectorListSupport, IEmphasis, IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -138,56 +140,6 @@ package org.apache.royale.core
             }
         }
 
-        /************************************
-         *  IRuntimeSelectableItemRenderer
-         ************************************/
-
-        private var _selectable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get selectable():Boolean
-		{
-			return _selectable;
-		}
-
-		public function set selectable(value:Boolean):void
-		{
-			_selectable = value;	
-		}
-
-        private var _hoverable:Boolean = true;
-		/**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-		public function get hoverable():Boolean
-		{
-			return _hoverable;
-		}
-
-		public function set hoverable(value:Boolean):void
-		{
-			_hoverable = value;	
-		}
-
         private var _emphasis:String;
         /**
 		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
@@ -219,6 +171,26 @@ package org.apache.royale.core
             }
         }
 
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The text of the renderer
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
+        
         /**
 		 *  The method called when added to a parent. The StyledItemRenderer class uses
 		 *  this opportunity to assign emphasis from the strand if possible, otherwise defaults
@@ -233,9 +205,9 @@ package org.apache.royale.core
 		{
 			super.addedToParent();
 			
-			if (itemRendererParent && itemRendererParent.host is IEmphasis && (itemRendererParent.host as IEmphasis).emphasis)
+			if (itemRendererOwnerView && itemRendererOwnerView.host is IEmphasis && (itemRendererOwnerView.host as IEmphasis).emphasis)
 			{
-				emphasis = (itemRendererParent.host as IEmphasis).emphasis;
+				emphasis = (itemRendererOwnerView.host as IEmphasis).emphasis;
 			} else
 			{
 				emphasis = "primary";

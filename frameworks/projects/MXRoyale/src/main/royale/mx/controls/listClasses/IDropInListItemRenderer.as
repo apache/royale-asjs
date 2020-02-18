@@ -20,6 +20,8 @@
 package mx.controls.listClasses
 {
 
+import org.apache.royale.core.IListDataItemRenderer;
+
 /**
  *  The interface for "drop-in" item renderers.  Most IListItemRenderers
  *  are not "drop-ins".  They are expecting to use a particular field of
@@ -131,7 +133,7 @@ package mx.controls.listClasses
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public interface IDropInListItemRenderer
+public interface IDropInListItemRenderer extends IListDataItemRenderer
 {
     //--------------------------------------------------------------------------
     //
@@ -139,25 +141,6 @@ public interface IDropInListItemRenderer
     //
     //--------------------------------------------------------------------------
 
-    //----------------------------------
-    //  listData
-    //----------------------------------
-
-    /**
-     *  Implements the <code>listData</code> property
-     *  using setter and getter methods. 
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 9
-     *  @playerversion AIR 1.1
-     *  @productversion Flex 3
-     */
-    function get listData():Object;
-    
-    /**
-     *  @private
-     */
-    function set listData(value:Object):void;
 }
 
 }

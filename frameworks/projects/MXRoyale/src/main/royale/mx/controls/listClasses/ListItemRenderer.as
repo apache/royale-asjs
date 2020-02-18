@@ -26,6 +26,10 @@ import org.apache.royale.core.IBead;
 import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.IChild;
+import org.apache.royale.core.IIndexedItemRenderer;
+import org.apache.royale.core.ILabelFieldItemRenderer;
+import org.apache.royale.core.IOwnerViewItemRenderer;
+import org.apache.royale.core.IItemRendererOwnerView;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectableItemRenderer;
 import org.apache.royale.core.IStrand;
@@ -53,7 +57,7 @@ COMPILE::SWF
  *  @productversion Flex 3
  */
 
-public class ListItemRenderer extends UIComponent implements IListItemRenderer, ISelectableItemRenderer
+public class ListItemRenderer extends UIComponent implements IListItemRenderer, IIndexedItemRenderer, ILabelFieldItemRenderer, IOwnerViewItemRenderer
 {
     public function ListItemRenderer()
     {
@@ -98,94 +102,8 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
         textField.x = 0;
         textField.y = cy - textField.height/2;
         textField.width = width;
-
-        updateRenderer();
     }
-		private var _selected:Boolean;
-		
-		/**
-		 *  Whether or not the itemRenderer is in a selected state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get selected():Boolean
-		{
-			return _selected;
-		}
-		public function set selected(value:Boolean):void
-		{
-			_selected = value;
-			updateRenderer();
-		}
-		/**
-		 * @private
-		 */
-		public function updateRenderer():void
-		{
-
-			COMPILE::SWF
-			{
-				// super.updateRenderer();
-
-				graphics.clear();
-				graphics.beginFill(0xFFFFFF, (down||selected||hovered)?1:0);
-				graphics.drawRect(0, 0, width, height);
-				graphics.endFill();
-			}
-			COMPILE::JS
-			{
-				if (selected)
-					element.style.backgroundColor = '#9C9C9C';
-				else if (hovered)
-					element.style.backgroundColor = '#ECECEC';
-				else
-					element.style.backgroundColor = 'transparent';
-			}
-		}
-
-        private var _down:Boolean;
-		
-		/**
-		 *  Whether or not the itemRenderer is in a down (or pre-selected) state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get down():Boolean
-		{
-			return _down;
-		}
-		public function set down(value:Boolean):void
-		{
-			_down = value;
-			updateRenderer();
-		}
-
-		private var _hovered:Boolean;
-		
-		/**
-		 *  Whether or not the itemRenderer is in a hovered state.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
-		 */
-		public function get hovered():Boolean
-		{
-			return _hovered;
-		}
-		public function set hovered(value:Boolean):void
-		{
-			_hovered = value;
-			updateRenderer();
-		}
-		
+    
     private var _rowIndex:int;
 
     /**
@@ -224,7 +142,7 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
         dispatchEvent(ice);
     }
 
-    private var _itemRendererParent:Object;
+    private var _itemRendererOwnerView:IItemRendererOwnerView;
     
     /**
      * The parent container for the itemRenderer instance.
@@ -234,13 +152,24 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public function get itemRendererParent():Object
+    public function get itemRendererOwnerView():IItemRendererOwnerView
     {
-        return _itemRendererParent;
+        return _itemRendererOwnerView;
     }
-    public function set itemRendererParent(value:Object):void
+    public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
     {
-        _itemRendererParent = value;
+        _itemRendererOwnerView = value;
+        if (!getBeadByType(ISelectableItemRenderer))
+        {
+            // load ISelectableItemRenderer impl from the
+            // owner, not the item renderer so that item
+            // renderers aren't strongly coupled to a
+            // particular selection visual and the list
+            // can dictate the selection visual
+            var c:Class = ValuesManager.valuesImpl.getValue(value.host, "iSelectableItemRenderer");
+            if (c)
+                addBead(new c() as IBead);                    
+        }
     }
 			
     private var _labelField:String = "label";
@@ -261,7 +190,7 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
 
     protected function getComponentDispatcher():IEventDispatcher
     {
-        var irp:Object = itemRendererParent;
+        var irp:Object = itemRendererOwnerView;
         var p:IParent = parent;
         while (p)
         {
@@ -364,26 +293,6 @@ public class ListItemRenderer extends UIComponent implements IListItemRenderer, 
     public function set listData(value:Object):void
     {
         _listData = value;
-    }
-    
-    [Bindable("__NoChangeEvent__")]
-    /**
-     *  The index being represented by this itemRenderer. This can be something simple like a String or
-     *  a Number or something very complex.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get index():int
-    {
-        return _index;
-    }
-    
-    public function set index(value:int):void
-    {
-        _index = value;
     }
     
     public function get nestLevel():int

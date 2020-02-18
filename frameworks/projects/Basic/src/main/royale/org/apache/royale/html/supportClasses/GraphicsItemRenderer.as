@@ -18,11 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+    import org.apache.royale.core.IItemRenderer;
+    import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.svg.CompoundGraphic;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.utils.MXMLDataInterpreter;
+	import org.apache.royale.svg.CompoundGraphic;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+    import org.apache.royale.utils.MXMLDataInterpreter;
 	
 	/**
 	 *  The GraphicsItemRenderer provides a base class for itemRenderers that use graphics rather than
@@ -33,7 +36,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class GraphicsItemRenderer extends CompoundGraphic implements ISelectableItemRenderer
+	public class GraphicsItemRenderer extends CompoundGraphic implements IItemRenderer
 	{
 		/**
 		 *  Constructor.
@@ -61,7 +64,7 @@ package org.apache.royale.html.supportClasses
 			
 			// each MXML file can also have styles in fx:Style block
 			ValuesManager.valuesImpl.init(this);
-			
+            
 			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
 			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
 			
@@ -277,7 +280,7 @@ package org.apache.royale.html.supportClasses
 			_dataField = value;
 		}
 		
-		private var _itemRendererParent:Object;
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		
 		/**
 		 * The parent container for the itemRenderer instance.
@@ -287,13 +290,13 @@ package org.apache.royale.html.supportClasses
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function get itemRendererParent():Object
+		public function get itemRendererOwnerView():IItemRendererOwnerView
 		{
-			return _itemRendererParent;
+			return _itemRendererOwnerView;
 		}
-		public function set itemRendererParent(value:Object):void
+		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
-			_itemRendererParent = value;
+			_itemRendererOwnerView = value;
 		}
 		
 		/**

@@ -60,10 +60,5 @@ package org.apache.royale.mdl.itemRenderers
 			
             return element;
         }
-
-        override public function updateRenderer():void
-		{
-			
-		}
 	}
 }

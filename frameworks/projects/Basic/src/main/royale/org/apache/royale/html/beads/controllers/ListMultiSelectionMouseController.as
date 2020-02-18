@@ -19,19 +19,19 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
-	import org.apache.royale.core.IItemRendererParent;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IMultiSelectionModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
-	import org.apache.royale.core.IMultiSelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.events.MouseEvent;
-	import org.apache.royale.html.beads.IListView;
-
 	import org.apache.royale.events.MultiSelectionItemClickedEvent;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.sendEvent;
 
 	/**
@@ -90,7 +90,7 @@ package org.apache.royale.html.beads.controllers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		protected var dataGroup:IItemRendererParent;
+		protected var dataGroup:IItemRendererOwnerView;
 
 		private var _strand:IStrand;
 
@@ -196,27 +196,34 @@ package org.apache.royale.html.beads.controllers
 		}
 
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloverHandler(event:Event):void
 		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
 				IRollOverModel(listModel).rollOverIndex = renderer.index;
 			}
 		}
 
 		/**
-		 * @royaleemitcoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleemitcoercion org.apache.royale.core.IIndexedItemRenderer
 		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
 		protected function rolloutHandler(event:Event):void
 		{
-			var renderer:ISelectableItemRenderer = event.currentTarget as ISelectableItemRenderer;
+			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
-				renderer.hovered = false;
-				renderer.down = false;
+                if (renderer is IStrand)
+                {
+                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    if (selectionBead)
+                    {
+                        selectionBead.hovered = false;
+                        selectionBead.down = false;                        
+                    }
+                }
 				IRollOverModel(listModel).rollOverIndex = -1;
 			}
 		}
