@@ -75,6 +75,8 @@ package mx.controls.treeClasses
 			super();
 		}
 
+		private var dp:ICollectionView;
+		
         /**
          * @private
          * @royaleignorecoercion mx.collections.ICollectionView
@@ -86,7 +88,7 @@ package mx.controls.treeClasses
         {
             if (!dataProviderModel)
                 return;
-            var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+            dp = dataProviderModel.dataProvider as ICollectionView;
             if (!dp)
                 return;
             
@@ -99,6 +101,23 @@ package mx.controls.treeClasses
             super.dataProviderChangeHandler(event);
         }
 
+        private var cursor:IViewCursor;
+        
+        
+        // assumes will be called in a loop, not random access
+        override protected function get dataProviderLength():int
+        {
+            cursor = dp.createCursor();
+            return dp.length;
+        }
+        
+        // assumes will be called in a loop, not random access
+        override protected function getItemAt(index:int):Object
+        {
+            var obj:Object = cursor.current;
+            cursor.moveNext();
+            return obj;
+        }
 		
 	}
 }

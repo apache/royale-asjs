@@ -27,6 +27,8 @@ import org.apache.royale.core.IBeadView;
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.IChild;
 import org.apache.royale.core.IIndexedItemRenderer;
+import org.apache.royale.core.ILabelFieldItemRenderer;
+import org.apache.royale.core.IOwnerViewItemRenderer;
 import org.apache.royale.core.IItemRendererOwnerView;
 import org.apache.royale.core.IParent;
 import org.apache.royale.core.ISelectableItemRenderer;
@@ -55,7 +57,7 @@ COMPILE::SWF
  *  @productversion Flex 3
  */
 
-public class ListItemRenderer extends UIComponent implements IListItemRenderer, IIndexedItemRenderer
+public class ListItemRenderer extends UIComponent implements IListItemRenderer, IIndexedItemRenderer, ILabelFieldItemRenderer, IOwnerViewItemRenderer
 {
     public function ListItemRenderer()
     {

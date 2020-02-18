@@ -65,7 +65,7 @@ package org.apache.royale.html.beads
 		{
 			if (!dataProviderModel)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			dp = dataProviderModel.dataProvider as ICollectionView;
 			if (!dp)
 				return;
 			
@@ -89,7 +89,7 @@ package org.apache.royale.html.beads
 		{
 			if (!dataProviderModel)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			dp = dataProviderModel.dataProvider as ICollectionView;
 			if (!dp)
 				return;
 			
@@ -97,6 +97,7 @@ package org.apache.royale.html.beads
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
 			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+			dataGroup.addItemRendererAt(ir, event.index);
 
             var data:Object = event.item;
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
@@ -120,6 +121,8 @@ package org.apache.royale.html.beads
 			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 		}
 		
+		private var dp:ICollectionView;
+		
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
@@ -131,7 +134,7 @@ package org.apache.royale.html.beads
 		{
 			if (!dataProviderModel)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			dp = dataProviderModel.dataProvider as ICollectionView;
 			if (!dp)
 				return;
 			
@@ -167,7 +170,7 @@ package org.apache.royale.html.beads
 		{
 			if (!dataProviderModel)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+			dp = dataProviderModel.dataProvider as ICollectionView;
 			if (!dp)
 				return;
 
@@ -182,6 +185,16 @@ package org.apache.royale.html.beads
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
             ir.data = data;				
 		}
+
+        override protected function get dataProviderLength():int
+        {
+            return dp.length;
+        }
+        
+        override protected function getItemAt(i:int):Object
+        {
+            return dp.getItemAt(i);
+        }
 		
 	}
 }

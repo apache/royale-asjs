@@ -241,6 +241,7 @@ internal class MXRoyaleClasses
     import mx.controls.dateFieldClasses.DateFieldDateChooser; DateFieldDateChooser;
     import mx.controls.beads.controllers.MenuBarMouseController; MenuBarMouseController;
     import mx.controls.beads.controllers.CascadingMenuSelectionMouseController; CascadingMenuSelectionMouseController;
+    import mx.controls.beads.ListItemRendererInitializer; ListItemRendererInitializer;
     import mx.controls.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
     import mx.controls.beads.AdvancedDataGridItemRendererInitializer; AdvancedDataGridItemRendererInitializer;
     

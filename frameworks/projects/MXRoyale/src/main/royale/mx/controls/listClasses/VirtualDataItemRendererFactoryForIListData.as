@@ -149,6 +149,7 @@ package mx.controls.listClasses
             var data:Object = dp.getItemAt(index);
             (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, index);
             rendererMap[index] = ir;
+			ir.data = data;
                         
             var newEvent:ItemRendererEvent = new ItemRendererEvent(ItemRendererEvent.CREATED);
             newEvent.itemRenderer = ir;

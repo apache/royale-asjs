@@ -59,6 +59,7 @@ use namespace mx_internal;
 
 import org.apache.royale.core.IBead;
 import org.apache.royale.core.IItemRenderer;
+import org.apache.royale.core.ILabelFieldItemRenderer;
 import org.apache.royale.core.ValuesManager;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.util.getLabelFromData;
@@ -83,7 +84,7 @@ import org.apache.royale.core.ISelectableItemRenderer;
  *  @productversion Flex 3
  */
 public class TreeItemRenderer extends UIComponent 
-    implements IDataRenderer, IDropInListItemRenderer, IItemRenderer
+    implements IDataRenderer, IDropInListItemRenderer, IItemRenderer, ILabelFieldItemRenderer
 {
    
 
@@ -219,78 +220,6 @@ public class TreeItemRenderer extends UIComponent
         dispatchEvent(new Event("initComplete"));
         
     }
-    
-    private var _itemRendererOwnerView:IItemRendererOwnerView;
-    
-    /**
-     * The parent container for the itemRenderer instance.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get itemRendererOwnerView():IItemRendererOwnerView
-    {
-        return _itemRendererOwnerView;
-    }
-    public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
-    {
-        _itemRendererOwnerView = value;
-        if (!getBeadByType(ISelectableItemRenderer))
-        {
-            // load ISelectableItemRenderer impl from the
-            // owner, not the item renderer so that item
-            // renderers aren't strongly coupled to a
-            // particular selection visual and the list
-            // can dictate the selection visual
-            var c:Class = ValuesManager.valuesImpl.getValue(value.host, "iSelectableItemRenderer");
-            if (c)
-                addBead(new c() as IBead);                    
-        }
-    }
-        
-    private var _backgroundColor:uint = 0xFFFFFF;
-    override public function get backgroundColor():uint
-    {
-        return _backgroundColor;
-    }
-    override public function set backgroundColor(value:uint):void
-    {
-        _backgroundColor = value;
-    }
-    
-    private var _highlightColor:uint = 0xCEDBEF;
-    public function get highlightColor():uint
-    {
-        return _highlightColor;
-    }
-    public function set highlightColor(value:uint):void
-    {
-        _highlightColor = value;
-    }
-    
-    private var _selectedColor:uint = 0xA8C6EE;
-    public function get selectedColor():uint
-    {
-        return _selectedColor;
-    }
-    public function set selectedColor(value:uint):void
-    {
-        _selectedColor = value;
-    }
-    
-    private var _downColor:uint = 0x808080;
-    public function get downColor():uint
-    {
-        return _downColor;
-    }
-    public function set downColor(value:uint):void
-    {
-        _downColor = value;
-    }
-    
-    protected var useColor:uint = backgroundColor;
     
     private var _data:Object;
     

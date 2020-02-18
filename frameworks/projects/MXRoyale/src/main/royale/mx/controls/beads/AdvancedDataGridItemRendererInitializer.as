@@ -31,7 +31,6 @@ package mx.controls.beads
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
-    import org.apache.royale.html.beads.ListItemRendererInitializer;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
 	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;

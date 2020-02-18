@@ -389,10 +389,10 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
     /**
      *  @private
      *  storage for the index property 
-     */    
     private var _index:int;
+     */    
     
-    [Bindable("itemIndexChanged")]
+    //[Bindable("itemIndexChanged")]
     
     /**
      *  @inheritDoc 
@@ -403,15 +403,14 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
      *  @playerversion Flash 10
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
-     */    
     public function get index():int
     {
         return _index;
     }
+     */    
     
     /**
      *  @private
-     */    
     public function set index(value:int):void
     {
         if (value == _index)
@@ -419,7 +418,6 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
         
         _index = value;
 
-        /*
         if (autoDrawBackground)
         {
             redrawRequested = true;
@@ -427,8 +425,8 @@ public class ItemRenderer extends DataRenderer implements IItemRenderer
         }
         
         dispatchEvent(new Event("itemIndexChanged"));
-        */
     }
+        */
     
     //----------------------------------
     //  labelDisplay
