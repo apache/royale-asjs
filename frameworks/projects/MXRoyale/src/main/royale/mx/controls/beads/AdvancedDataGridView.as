@@ -153,7 +153,12 @@ package mx.controls.beads
                 }
             }        
             super.createLists();
-            
+            for (i =0; i < columnLists.length; i++)
+            {
+                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
+                list.adg = _strand as AdvancedDataGrid;
+			}
+
             for (i=0; i < sharedModel.columns.length; i++)
             {
                 (sharedModel.columns[i] as AdvancedDataGridColumn).list = columnLists[i];
