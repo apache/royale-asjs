@@ -59,8 +59,6 @@ package products
 			image.y = cy - 16;
 			image.width = 32;
 			image.height = 32;
-
-			updateRenderer();
 		}
 	}
 }
