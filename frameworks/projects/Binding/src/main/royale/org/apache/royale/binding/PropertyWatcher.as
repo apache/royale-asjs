@@ -151,11 +151,14 @@ package org.apache.royale.binding
         protected function changeHandler(event:Event):void
         {
             if (event is ValueChangeEvent)
-            {
-                var propName:String = ValueChangeEvent(event).propertyName;
-                
-                if (propName != propertyName)
-                    return;
+            {   //normally it is 'generic' ValueChangeEvent.VALUE_CHANGE, but it can be other types, eg. "currentStateChange", so check here:
+                if (event.type == ValueChangeEvent.VALUE_CHANGE) {
+                    var propName:String = ValueChangeEvent(event).propertyName;
+
+                    if (propName != propertyName)
+                        return;
+                }
+                //@todo investigate possible optimization here. We can assume we already know the new Value and old Value via the event.
             }
             
             wrapUpdate(updateProperty);
