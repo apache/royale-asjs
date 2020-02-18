@@ -26,7 +26,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.html.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;

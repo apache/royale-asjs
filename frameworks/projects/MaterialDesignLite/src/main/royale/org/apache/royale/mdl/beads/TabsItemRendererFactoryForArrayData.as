@@ -22,7 +22,7 @@ package org.apache.royale.mdl.beads
     import org.apache.royale.core.IDataProviderItemRendererMapper;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IItemRendererOwnerView;
-    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.html.IListPresentationModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;

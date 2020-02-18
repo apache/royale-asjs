@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.models
 {
-	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.html.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;

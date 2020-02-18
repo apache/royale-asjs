@@ -49,6 +49,7 @@ internal class CoreClasses
 	import org.apache.royale.html.beads.IBackgroundBead; IBackgroundBead;
 	import org.apache.royale.html.beads.IBorderBead; IBorderBead;
     import org.apache.royale.html.beads.SelectableItemRendererBeadBase; SelectableItemRendererBeadBase;
+    import org.apache.royale.html.IListPresentationModel; org.apache.royale.html.IListPresentationModel;
 
     import org.apache.royale.core.BeadViewBase; BeadViewBase;
     import org.apache.royale.core.ImageViewBase; ImageViewBase;
@@ -120,7 +121,7 @@ internal class CoreClasses
 	import org.apache.royale.core.ILayoutHost; ILayoutHost;
 	import org.apache.royale.core.ILayoutView; ILayoutView;
 	import org.apache.royale.core.ILayoutParent; ILayoutParent;
-    import org.apache.royale.core.IListPresentationModel; IListPresentationModel;
+    import org.apache.royale.core.IListPresentationModel; org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IMeasurementBead; IMeasurementBead;
     import org.apache.royale.core.IModule; IModule;
     import org.apache.royale.core.IPanelModel; IPanelModel;

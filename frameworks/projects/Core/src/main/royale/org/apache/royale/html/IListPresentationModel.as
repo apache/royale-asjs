@@ -16,30 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.list
+package org.apache.royale.html
 {
-    import org.apache.royale.core.IBead;
+import org.apache.royale.core.IListPresentationModel;
 
-    /**
-	 *  The Jewel IListPresentationModel interface holds key values for the display
+	/**
+	 *  The IListPresentationModel interface holds key values for the display
 	 *  of lists.
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.0
 	 */
-    public interface IListPresentationModel extends org.apache.royale.core.IListPresentationModel
-    {
-        /**
-		 *  How text aligns in the itemRenderer instance.
-		 *
+	public interface IListPresentationModel extends org.apache.royale.core.IListPresentationModel
+	{
+		/**
+		 * The distance each row should be separated from the row above.
+		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.0
 		 */
-		function get align():String;
-		function set align(value:String):void;
-    }
+		function get separatorThickness():Number;
+		function set separatorThickness(value:Number):void;
+	}
 }

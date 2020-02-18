@@ -31,7 +31,6 @@ package org.apache.royale.html
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
     import org.apache.royale.core.IStrandWithPresentationModel;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.UIBase;

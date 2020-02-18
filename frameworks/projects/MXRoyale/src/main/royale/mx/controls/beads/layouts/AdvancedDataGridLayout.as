@@ -24,7 +24,7 @@ package mx.controls.beads.layouts
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.html.IListPresentationModel;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IStrandWithPresentationModel;
     import org.apache.royale.core.IUIBase;

@@ -22,7 +22,7 @@ package mx.controls.beads.layouts
     import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
     import org.apache.royale.core.ILayoutView;
-    import org.apache.royale.core.IListPresentationModel;
+    import org.apache.royale.html.IListPresentationModel;
     import org.apache.royale.core.IScrollingViewport;
     import org.apache.royale.core.IIndexedItemRenderer;
     import org.apache.royale.core.IStrand;

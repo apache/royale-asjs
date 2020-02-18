@@ -18,12 +18,14 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
+	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
-	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -63,7 +65,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class List extends DataContainerBase
+	public class List extends DataContainerBase implements IStrandWithPresentationModel
 	{
 		/**
 		 *  constructor.
@@ -176,7 +178,7 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
         public function get rowHeight():Number
         {
@@ -217,9 +219,9 @@ package org.apache.royale.jewel
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
+		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 */
-		public function get presentationModel():IListPresentationModel
+		public function get presentationModel():IBead
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {

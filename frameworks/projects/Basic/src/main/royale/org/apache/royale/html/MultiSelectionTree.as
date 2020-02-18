@@ -18,7 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html
 {
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IMultiSelectionModel;
 

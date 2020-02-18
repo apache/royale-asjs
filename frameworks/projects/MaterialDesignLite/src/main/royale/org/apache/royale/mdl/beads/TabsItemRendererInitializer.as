@@ -25,7 +25,7 @@ package org.apache.royale.mdl.beads
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILabelFieldItemRenderer;
-	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.html.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
