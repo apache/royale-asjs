@@ -95,7 +95,7 @@ hr {
   min-width: 320px;
   min-height: 240px;
   border: 0px solid;
-  background-color: black;
+  background: #191a19;
   box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
   border-radius: 3px;
   opacity: 0;
@@ -237,13 +237,34 @@ hr {
 .jewel.card {
   font-size: 1em;
   font-weight: 400;
-  background: #1a1a1a;
-  border: 0px;
-  border-radius: 10px;
+  background: #191a19;
+  border: 1px solid #bababa;
+  border-radius: 0.25rem;
+}
+.jewel.card.simple {
+  padding: 20px;
+}
+.jewel.card .cardHeader {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.jewel.card .cardPrimaryContent {
+  padding: 20px;
+}
+.jewel.card .cardActions {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
 j|Card {
+  gap: 3;
+}
+
+j|CardHeader {
+  gap: 3;
+}
+
+j|CardActions {
   gap: 3;
 }
 
