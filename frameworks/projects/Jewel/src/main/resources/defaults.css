@@ -298,9 +298,25 @@ j|ToggleButtonBar {
   overflow: hidden;
   position: relative;
 }
-
-j|Card {
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+.jewel.card .cardHeader {
+  width: 100%;
+}
+.jewel.card .cardPrimaryContent {
+  width: 100%;
+  min-height: 152px;
+  position: relative;
+  outline: none;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+}
+.jewel.card .cardActions {
+  width: 100%;
+  position: relative;
+  outline: none;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
 }
 
 .jewel.checkbox {

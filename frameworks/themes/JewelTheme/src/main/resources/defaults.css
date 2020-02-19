@@ -237,13 +237,34 @@ hr {
 .jewel.card {
   font-size: 1em;
   font-weight: 400;
-  background: #ebebeb;
-  border: 0px;
-  border-radius: 10px;
+  background: white;
+  border: 1px solid #d2dadf;
+  border-radius: 0.25rem;
+}
+.jewel.card.simple {
+  padding: 20px;
+}
+.jewel.card .cardHeader {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.jewel.card .cardPrimaryContent {
+  padding: 20px;
+}
+.jewel.card .cardActions {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
 j|Card {
+  gap: 3;
+}
+
+j|CardHeader {
+  gap: 3;
+}
+
+j|CardActions {
   gap: 3;
 }
 

@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package org.apache.royale.jewel.supportClasses.card
 {
+	import org.apache.royale.jewel.Card;
 	import org.apache.royale.jewel.VGroup;
 
 	/**
-	 *  The Card class is a container that surronds other components.
-	 *  Card has a default "panel" style and can compose other containers like
-	 *  CardHeader, CardPrimaryContent and CardActions
-	 *  
+	 *  The CardPrimaryContent class is a the main container for Cards.
+	 *  Adding this container means we want a more complex card structure
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.7
 	 */
-	public class Card extends VGroup
+	public class CardPrimaryContent extends VGroup
 	{
 		/**
 		 *  constructor.
@@ -38,17 +38,33 @@ package org.apache.royale.jewel
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
-		public function Card()
+		public function CardPrimaryContent()
 		{
 			super();
 
-            typeNames = "jewel card";
+			typeNames = "cardPrimaryContent";
+		}
+
+		/**
+		 *  This container means Card structure is complex, so we remove Card's simple style
+		 *  that is set by default on the Card
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
 			
-			// Add basic card styles by default when use Card alone
-			// if Card composes CardPrimaryContent, then remove it for more complex structure and styles
-			className = "simple";
+			if(parent is Card)
+			{
+				var parentCard:Card = parent as Card;
+				parentCard.removeClass("simple");
+			}
 		}
 	}
 }
