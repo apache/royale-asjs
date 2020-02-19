@@ -22,10 +22,8 @@ package org.apache.royale.jewel.supportClasses.drawer
 
 	/**
 	 *  The DrawerFooter class is a Bar component to use as the last content in a Drawer.
-	 *  for different items like
-	 *  a title, navigation icon, and/or icon buttons.
-	 *  Normaly is located at the top or bottom of a container and use to fill all 
-	 *  horizontal availale space. It's responsive as screen size changes
+	 *  
+	 *  The styling of this component is similar to the FooterBar.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2

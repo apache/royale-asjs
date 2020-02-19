@@ -244,6 +244,9 @@ j|Alert {
 .jewel.button[disabled] {
   cursor: default;
 }
+.jewel.button.multiline {
+  white-space: pre-wrap;
+}
 .jewel.button .fonticon {
   cursor: inherit;
 }
