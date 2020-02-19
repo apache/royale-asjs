@@ -1083,7 +1083,7 @@ j|Label {
   margin: 0px 0px 0px 30px;
 }
 .layout.horizontal.sameWidths > * {
-  flex: 1 0;
+  flex: 1 0 auto;
 }
 .layout.horizontal.pixelWidths > * {
   flex: none;
