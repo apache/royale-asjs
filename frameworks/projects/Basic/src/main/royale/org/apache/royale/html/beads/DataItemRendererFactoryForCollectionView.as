@@ -142,6 +142,7 @@ package org.apache.royale.html.beads
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
+			if (!ir) return; // may have already been cleaned up, possibly when a tree node closes
 			dataGroup.removeItemRenderer(ir);
 			
 			// adjust the itemRenderers' index to adjust for the shift
