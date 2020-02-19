@@ -64,6 +64,6 @@ $disabled-border-color: darken($disabled-color, 10%)
     $disabled-border-color: darken($disabled-color, 20%)
 
 // BACKGROUND
-$background-color: lighten($light-color, 45%)
+$background-color: desaturate(lighten($primary-color, 38%), 50%)
 @if $dark
-    $background-color: darken($dark-color, 35%)
+    $background-color: desaturate(darken($primary-color, 50%), 50%)
