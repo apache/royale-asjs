@@ -77,6 +77,7 @@ internal class BasicClasses
 	import org.apache.royale.html.supportClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;
     import org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead; SolidBackgroundSelectableItemRendererBead;
     import org.apache.royale.html.beads.SolidBackgroundRuntimeSelectableItemRendererBead; SolidBackgroundRuntimeSelectableItemRendererBead;
+    import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead; AlternatingBackgroundColorSelectableItemRendererBead;
 	
 	COMPILE::SWF
 	{

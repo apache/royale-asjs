@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead;
 
 	/**
 	 *  The AlternatingBackgroundColorHashAnchorItemRenderer class displays data in string form using the data's toString()
@@ -41,55 +42,7 @@ package
 		 */
 		public function AlternatingBackgroundColorHashAnchorStringItemRenderer()
 		{
-		}
-
-		private var _color0:String;
-		
-		public function get backgroundColor0():String
-		{
-			return _color0;
-		}
-		public function set backgroundColor0(value:String):void
-		{
-			_color0 = value;
-		}
-		
-		private var _color1:String;
-		
-		public function get backgroundColor1():String
-		{
-			return _color1;
-		}
-		public function set backgroundColor1(value:String):void
-		{
-			_color1 = value;
-		}
-		
-		private var oddIndex:Boolean;
-		
-		override public function addedToParent():void
-		{
-			super.addedToParent();
-
-			var index:int = parent.getElementIndex(this);
-			oddIndex = ((index % 2) == 1)
-			COMPILE::JS
-			{
-				element.style.backgroundColor = oddIndex ? _color1 : _color0;
-			}
-		}
-
-		/**
-		 * @private
-		 */
-		override public function updateRenderer():void
-		{
-			super.updateRenderer();
-			COMPILE::JS
-			{
-				if (element.style.backgroundColor == null || element.style.backgroundColor == "")
-					element.style.backgroundColor = oddIndex ? _color1 : _color0;
-			}
+			addBead(new AlternatingBackgroundColorSelectableItemRendererBead());
 		}
 
 	}

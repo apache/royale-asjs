@@ -27,7 +27,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.ItemRendererOwnerViewBead;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 
@@ -62,12 +63,12 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 *  @royaleignorecoercion org.apache.royale.core.IItemRendererOwnerView
-		 *  @royaleignorecoercion org.apache.royale.core.IUIBase
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 */
 		override public function set strand(value:IStrand):void
 		{	
             super.strand = value;
-            ownerView = (value as IUIBase).view as IItemRendererOwnerView;
+            ownerView = (value as IStrandWithModelView).view as IItemRendererOwnerView;
 		}
 		
         private var ownerView:IItemRendererOwnerView;

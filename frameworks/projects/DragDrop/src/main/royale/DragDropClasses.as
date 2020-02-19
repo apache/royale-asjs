@@ -49,6 +49,8 @@ internal class DragDropClasses
 	import org.apache.royale.html.beads.ButtonBarReorderBead; ButtonBarReorderBead;
 
 	import org.apache.royale.html.beads.DataGridDragDropBead; DataGridDragDropBead;
+	
+	import org.apache.royale.html.beads.DragDropListItemRendererInitializer; DragDropListItemRendererInitializer;
 
 }
 

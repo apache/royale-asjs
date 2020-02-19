@@ -392,7 +392,7 @@ limitations under the License.
 	</fx:Style>
 	<fx:Declarations>
 		<fx:Component className="AltBGRenderer">
-		    <local:AlternatingBackgroundColorHashAnchorStringItemRenderer backgroundColor0="#ffffff" backgroundColor1="#ffeeee" />
+		    <local:AlternatingBackgroundColorHashAnchorStringItemRenderer/>
 		</fx:Component>
 	</fx:Declarations>
 	<rs:states>

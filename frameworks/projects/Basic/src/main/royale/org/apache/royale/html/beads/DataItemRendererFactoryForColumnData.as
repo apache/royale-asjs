@@ -66,7 +66,7 @@ package org.apache.royale.html.beads
          * @royaleignorecoercion org.apache.royale.html.beads.DataGridColumnView
          * @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
 		 */
-		private function dataProviderChangeHandler(event:Event):void
+		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			var dp:Array = selectionModel.dataProvider as Array;
 			if (!dp)

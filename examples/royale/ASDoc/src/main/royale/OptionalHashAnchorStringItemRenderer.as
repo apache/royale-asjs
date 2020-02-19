@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+import  org.apache.royale.core.IOwnerViewItemRenderer;
+import  org.apache.royale.core.IItemRendererOwnerView;
 import  org.apache.royale.html.supportClasses.StringItemRenderer;
 import  org.apache.royale.html.List;
 
@@ -33,7 +35,7 @@ import  org.apache.royale.html.List;
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class OptionalHashAnchorStringItemRenderer extends StringItemRenderer
+	public class OptionalHashAnchorStringItemRenderer extends StringItemRenderer implements IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -51,7 +53,7 @@ import  org.apache.royale.html.List;
 		override public function set text(value:String):void
 		{
 			var last:Boolean = false;
-			if (itemRendererParent)
+			if (itemRendererOwnerView)
 			{
 				var n:int = (parent as List).dataProvider.length;
 				last = n == index + 1; 
@@ -69,6 +71,27 @@ import  org.apache.royale.html.List;
 	                this.element.innerHTML = "<a href='#!" + href + "' class='HashAnchorAnchor'>" + value + "</a>" + (last ? "" : " -> ");
             }
 		}
+		
+		private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The text of the renderer
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
+
 
 	}
 }

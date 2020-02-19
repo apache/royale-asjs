@@ -25,33 +25,11 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
             import models.ASDocModel;
-
-            private var _color0:String = "#fff";
-			
-			public function get backgroundColor0():String
-			{
-				return _color0;
-			}
-			public function set backgroundColor0(value:String):void
-			{
-				_color0 = value;
-			}
-			
-			private var _color1:String = "#ffeeee";
-			
-			public function get backgroundColor1():String
-			{
-				return _color1;
-			}
-			public function set backgroundColor1(value:String):void
-			{
-				_color1 = value;
-			}
-			
-			private var oddIndex:Boolean;
+			import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead;
 
 			override public function set data(value:Object):void
 			{
+				addBead(new AlternatingBackgroundColorSelectableItemRendererBead);
 				super.data = value;
 				if (value.returnhref)
 					typeGroup.removeElement(label);
@@ -75,32 +53,7 @@ limitations under the License.
             {
                 return data as ASDocClassMembers;
             }
-            		
-			override public function addedToParent():void
-			{
-				super.addedToParent();
-	
-				var index:int = parent.getElementIndex(this);
-				oddIndex = ((index % 2) == 1)
-				COMPILE::JS
-				{
-					element.style.backgroundColor = oddIndex ? _color1 : _color0;
-				}
-			}
-			
-			/**
-			 * @private
-			 */
-			override public function updateRenderer():void
-			{
-				super.updateRenderer();
-				COMPILE::JS
-				{
-					if (element.style.backgroundColor == null || element.style.backgroundColor == "")
-						element.style.backgroundColor = oddIndex ? _color1 : _color0;
-				}
-			}
-			
+           			
 		]]>
     </fx:Script>
 	<fx:Style>

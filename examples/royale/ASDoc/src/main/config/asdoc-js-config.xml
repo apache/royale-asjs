@@ -616,7 +616,6 @@
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/supportClasses/scrollbar/ScrollBar.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/models/ScrollBarModel.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/ButtonView.as</path-element>
-       <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/CheckBoxView.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/RadioButtonView.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/TextFieldView.as</path-element>
        <path-element>${frameworks_dir}/projects/Jewel/src/main/royale/org/apache/royale/jewel/beads/views/SliderTrackView.as</path-element>

@@ -30,7 +30,7 @@ package mx.controls.listClasses
 	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
@@ -228,7 +228,7 @@ package mx.controls.listClasses
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
                         ir  = factory.getItemRendererForIndex(i, i - startIndex);
@@ -342,7 +342,7 @@ package mx.controls.listClasses
                 }
                 for (var i:int = startIndex; i < endIndex; i++)
                 {
-                    var ir:ISelectableItemRenderer;
+                    var ir:IIndexedItemRenderer;
                     if (i < firstIndex)
                     {
                        ir  = factory.getItemRendererForIndex(i, i - startIndex + 1);
@@ -380,7 +380,7 @@ package mx.controls.listClasses
         }
 
         COMPILE::SWF
-        private function sizeAndPositionRenderer(ir:ISelectableItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
+        private function sizeAndPositionRenderer(ir:IIndexedItemRenderer, xpos:Number, ypos:Number, hostWidth:Number, hostHeight:Number):void
         {
             var ilc:ILayoutChild;
             var positions:Object = childPositions(ir);
