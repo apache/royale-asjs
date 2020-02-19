@@ -479,7 +479,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 *  @private
 	 *  Storage for the listData property.
 	 */
-	private var _listData:BaseListData;
+	private var _listData:Object;
 	
 	[Bindable("dataChange")]
 	[Inspectable(environment="none")]
@@ -504,7 +504,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public function get listData():BaseListData
+	public function get listData():Object
 	{
 		return _listData;
 	}
@@ -512,7 +512,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	/**
 	 *  @private
 	 */
-	public function set listData(value:BaseListData):void
+	public function set listData(value:Object):void
 	{
 		_listData = value;
 	}

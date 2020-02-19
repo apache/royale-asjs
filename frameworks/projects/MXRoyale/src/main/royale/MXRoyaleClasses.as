@@ -257,6 +257,7 @@ internal class MXRoyaleClasses
 	import mx.controls.beads.models.DataGridColumnICollectionViewModel; DataGridColumnICollectionViewModel;
     import mx.controls.beads.models.DataGridICollectionViewModel; DataGridICollectionViewModel;
     import mx.controls.beads.models.DataGridPresentationModel; DataGridPresentationModel;
+    import mx.controls.beads.models.ListPresentationModel; ListPresentationModel;
     import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
     import mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer; TextButtonDataGridColumnItemRenderer;
     

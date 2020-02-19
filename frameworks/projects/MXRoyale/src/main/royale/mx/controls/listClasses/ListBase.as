@@ -733,6 +733,7 @@ use namespace mx_internal;
 		public function ListBase()
 		{
 			super();            
+			rowHeight = 22; //match Flex?
 		}
         
         private var _DCinitialized:Boolean = true;

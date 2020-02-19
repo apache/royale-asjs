@@ -21,7 +21,6 @@ package mx.collections
 {
 import mx.events.CollectionEvent;
 
-import org.apache.royale.collections.ICollectionView;
 import org.apache.royale.events.IEventDispatcher;
 
 /**

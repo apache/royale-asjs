@@ -59,12 +59,14 @@ Basic|CascadingMenu
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IBeadController: ClassReference("mx.controls.beads.controllers.CascadingMenuSelectionMouseController");
 	IMenu: ClassReference("mx.controls.menuClasses.CascadingMenuWithOnScreenCheck");
+	IListPresentationModel: ClassReference("mx.controls.beads.models.ListPresentationModel");
 }
 
 Basic|ComboBoxList
 {
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
+	IListPresentationModel: ClassReference("mx.controls.beads.models.ListPresentationModel");
 }
 
 Basic|DataGridColumnList {

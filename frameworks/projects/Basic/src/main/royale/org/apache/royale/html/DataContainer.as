@@ -35,6 +35,7 @@ package org.apache.royale.html
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
     COMPILE::JS
     {
         import org.apache.royale.core.WrappedHTMLElement;
@@ -146,8 +147,12 @@ package org.apache.royale.html
 		{
 			var presModel:IListPresentationModel = getBeadByType(IListPresentationModel) as IListPresentationModel;
 			if (presModel == null) {
-				presModel = new ListPresentationModel();
-				addBead(presModel);
+			    presModel = loadBeadFromValuesManager(IListPresentationModel, "iListPresentationModel", this) as IListPresentationModel;
+				if (presModel == null)
+				{		
+					presModel = new ListPresentationModel();
+					addBead(presModel);
+				}
 			}
 			return presModel;
 		}

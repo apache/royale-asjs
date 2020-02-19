@@ -75,7 +75,7 @@ package mx.controls.beads
             if (!dataProviderModel)
                 return;
             
-            super.initializeItemRenderer(ir, data, index);
+            super.initializeIndexedItemRenderer(ir, data, index);
             
 			if (ir is IOwnerViewItemRenderer)
 				(ir as IOwnerViewItemRenderer).itemRendererOwnerView = ownerView;
