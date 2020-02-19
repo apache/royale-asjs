@@ -169,7 +169,7 @@ public class TreeItemRenderer extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    protected var disclosureIcon:Label;
+    public var disclosureIcon:Label;
 
     //--------------------------------------------------------------------------
     //

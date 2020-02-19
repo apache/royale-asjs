@@ -449,7 +449,7 @@ Tree
 
 TreeItemRenderer
 {
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
+	IBeadController: ClassReference("mx.controls.beads.TreeItemRendererMouseController");
 	cursor: pointer;
 }
 
