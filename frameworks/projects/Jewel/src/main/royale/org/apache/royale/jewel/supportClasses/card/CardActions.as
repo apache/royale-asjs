@@ -16,21 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.drawer
+package org.apache.royale.jewel.supportClasses.card
 {
-	import org.apache.royale.jewel.supportClasses.bar.BarRow;
+	import org.apache.royale.jewel.HGroup;
 
 	/**
-	 *  The DrawerFooter class is a Bar component to use as the last content in a Drawer.
-	 *  
-	 *  The styling of this component is similar to the FooterBar.
+	 *  The CardActions class is a footer for Cards where actions (i.e: buttons, icons)
+	 *  use to be located.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DrawerFooter extends BarRow
+	public class CardActions extends HGroup
 	{
 		/**
 		 *  constructor.
@@ -40,11 +39,13 @@ package org.apache.royale.jewel.supportClasses.drawer
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function DrawerFooter()
+		public function CardActions()
 		{
 			super();
 
-			typeNames = "jewel drawerfooter"
+			typeNames = "cardActions";
 		}
+
+        
 	}
 }

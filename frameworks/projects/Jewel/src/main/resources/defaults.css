@@ -245,6 +245,9 @@ j|Alert {
 .jewel.button[disabled] {
   cursor: default;
 }
+.jewel.button.multiline {
+  white-space: pre-wrap;
+}
 .jewel.button .fonticon {
   cursor: inherit;
 }
@@ -297,9 +300,25 @@ j|ToggleButtonBar {
   overflow: hidden;
   position: relative;
 }
-
-j|Card {
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+.jewel.card .cardHeader {
+  width: 100%;
+}
+.jewel.card .cardPrimaryContent {
+  width: 100%;
+  min-height: 152px;
+  position: relative;
+  outline: none;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
+}
+.jewel.card .cardActions {
+  width: 100%;
+  position: relative;
+  outline: none;
+  color: inherit;
+  text-decoration: none;
+  overflow: hidden;
 }
 
 .jewel.checkbox {
@@ -497,6 +516,10 @@ j|VirtualComboBoxPopUp {
 .jewel.datagrid .listarea {
   position: absolute;
   width: auto;
+  overflow: hidden;
+}
+.jewel.datagrid .jewel.list.column {
+  height: inherit;
 }
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid {
   width: 100%;
@@ -1081,7 +1104,7 @@ j|Label {
   margin: 0px 0px 0px 30px;
 }
 .layout.horizontal.sameWidths > * {
-  flex: 1 0;
+  flex: 1 0 0;
 }
 .layout.horizontal.pixelWidths > * {
   flex: none;

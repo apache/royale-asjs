@@ -144,6 +144,9 @@
     <component id="Image" class="org.apache.royale.jewel.Image"/>
 
     <component id="Card" class="org.apache.royale.jewel.Card"/>
+    <component id="CardHeader" class="org.apache.royale.jewel.supportClasses.card.CardHeader"/>
+    <component id="CardPrimaryContent" class="org.apache.royale.jewel.supportClasses.card.CardPrimaryContent"/>
+    <component id="CardActions" class="org.apache.royale.jewel.supportClasses.card.CardActions"/>
 
     <component id="DropDownListList" class="org.apache.royale.jewel.supportClasses.dropdownlist.DropDownListList"/>
 

@@ -18,16 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS {
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.WrappedHTMLElement;
-    }
+	COMPILE::SWF {
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.layout.EdgeData;
+	}
+	// COMPILE::JS {
+	// import org.apache.royale.core.WrappedHTMLElement;
+    // }
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
-	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
 

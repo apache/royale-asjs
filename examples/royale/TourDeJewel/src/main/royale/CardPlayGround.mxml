@@ -26,13 +26,16 @@ limitations under the License.
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel Card"/>
+				<html:H3 text="Jewel Simple Card"/>
 
-				<j:Label multiline="true" text="Apache Royale Card is 100% width by default and uses a Vertical layout with some default gap."/>
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p><strong>Apache Royale Card</strong> is 100% width by default and uses a <strong>VerticalLayout</strong> with some default gap.</p>]]></j:html>
+				</j:Label>
+
 				<j:Button text="Action" emphasis="primary"/>
 			</j:Card>
 		</j:GridCell>	
-	
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="items expand test"/>
@@ -43,6 +46,70 @@ limitations under the License.
 					<j:Button text="Royale!!!!"/>
 				</j:HGroup>
 			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardPrimaryContent>
+					<html:H3 text="Jewel Card"/>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>A Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong></p>]]></j:html>
+					</j:Label>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Button text="Do it" emphasis="primary"/>
+					<j:Button text="Cancel"/>
+				</j:CardActions>
+			</j:Card>
 		</j:GridCell>	
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>A Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong> (this one with itemsHorizontalAlign property set to "itemsRight"</p>]]></j:html>
+					</j:Label>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsRight">
+					<j:Button text="Do it" emphasis="primary"/>
+					<j:Button text="Cancel"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel Card"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>A Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong></p>]]></j:html>
+					</j:Label>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Button text="Do it" emphasis="primary"/>
+					<j:Button text="Cancel"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>	
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<j:Label multiline="true" text="CardTitle"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[<p>A Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong> (this one with itemsHorizontalAlign property set to "itemsRight"</p>]]></j:html>
+					</j:Label>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsRight">
+					<j:Button text="Do it" emphasis="primary"/>
+					<j:Button text="Cancel"/>
+				</j:CardActions>
+			</j:Card>
+		</j:GridCell>
+		
 	</j:Grid>
 </c:ExampleAndSourceCodeTabbedSectionContent>

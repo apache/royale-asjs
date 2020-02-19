@@ -18,17 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.Group;
+	import org.apache.royale.jewel.VGroup;
 
 	/**
 	 *  The Card class is a container that surronds other components.
+	 *  Card has a default "panel" style and can compose other containers like
+	 *  CardHeader, CardPrimaryContent and CardActions
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Card extends Group
+	public class Card extends VGroup
 	{
 		/**
 		 *  constructor.
@@ -43,60 +45,10 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "jewel card";
+			
+			// Add basic card styles by default when use Card alone
+			// if Card composes CardPrimaryContent, then remove it for more complex structure and styles
+			className = "simple";
 		}
-
-        // public function get gap():Boolean
-        // {
-        //     return layout.gap;
-        // }
-
-        // public function set gap(value:Boolean):void
-        // {
-		// 	typeNames = StringUtil.removeWord(typeNames, " gap");
-		// 	typeNames += " gap";
-
-		// 	COMPILE::JS
-        //     {
-		// 		if (parent)
-        //         	setClassName(computeFinalClassNames()); 
-		// 	}
-
-		// 	layout.gap = value;
-        // }
-
-		//protected var _shadow:Number = 0;
-        /**
-		 *  A boolean flag to activate "shadow-Xdp" effect selector.
-		 *  Assigns variable shadow depths (0, 2, 3, 4, 6, 8, or 16) to card
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        // public function get shadow():Number
-        // {
-        //     return _shadow;
-        // }
-
-        // public function set shadow(value:Number):void
-        // {
-		// 	if (_shadow != value)
-        //     {
-        //         COMPILE::JS
-        //         {
-        //             if (value == 2 || value == 3 || value == 4 || value == 6 || value == 8 || value == 16)
-        //             {
-        //                 var classVal:String = "shadow-" + _shadow + "dp";
-        //                 classSelectorList.remove(classVal);
-
-        //                 classVal = "shadow-" + value + "dp";
-		// 				classSelectorList.add(classVal);
-
-        //                 _shadow = value;
-        //             }
-        //         }
-        //     }
-        // }
 	}
 }

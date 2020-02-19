@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.supportClasses.drawer
+package org.apache.royale.jewel.supportClasses.card
 {
-	import org.apache.royale.jewel.supportClasses.bar.BarRow;
+	import org.apache.royale.jewel.Card;
+	import org.apache.royale.jewel.VGroup;
 
 	/**
-	 *  The DrawerFooter class is a Bar component to use as the last content in a Drawer.
-	 *  
-	 *  The styling of this component is similar to the FooterBar.
+	 *  The CardPrimaryContent class is a the main container for Cards.
+	 *  Adding this container means we want a more complex card structure
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class DrawerFooter extends BarRow
+	public class CardPrimaryContent extends VGroup
 	{
 		/**
 		 *  constructor.
@@ -40,11 +40,31 @@ package org.apache.royale.jewel.supportClasses.drawer
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function DrawerFooter()
+		public function CardPrimaryContent()
 		{
 			super();
 
-			typeNames = "jewel drawerfooter"
+			typeNames = "cardPrimaryContent";
+		}
+
+		/**
+		 *  This container means Card structure is complex, so we remove Card's simple style
+		 *  that is set by default on the Card
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+			if(parent is Card)
+			{
+				var parentCard:Card = parent as Card;
+				parentCard.removeClass("simple");
+			}
 		}
 	}
 }
