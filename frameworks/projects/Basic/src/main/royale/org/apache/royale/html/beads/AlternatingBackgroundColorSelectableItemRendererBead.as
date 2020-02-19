@@ -24,6 +24,7 @@ package org.apache.royale.html.beads
 import org.apache.royale.utils.CSSUtils;
 import org.apache.royale.core.IIndexedItemRenderer;
 import org.apache.royale.core.IOwnerViewItemRenderer;
+import org.apache.royale.core.ItemRendererOwnerViewBead;
 import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.ISelectableItemRenderer;
 import org.apache.royale.core.IStrand;
@@ -108,7 +109,13 @@ public class AlternatingBackgroundColorSelectableItemRendererBead extends Select
 	private function dataChangeHandler(event:Event):void
 	{
         var ir:IIndexedItemRenderer = _strand as IIndexedItemRenderer;
-        var owner:IStrandWithModel = (ir as IOwnerViewItemRenderer).itemRendererOwnerView.host as IStrandWithModel;
+        var owner:IStrandWithModel;
+		if (ir is IOwnerViewItemRenderer)
+			owner = (ir as IOwnerViewItemRenderer).itemRendererOwnerView.host as IStrandWithModel;
+		else
+		{
+			owner = (ir.getBeadByType(ItemRendererOwnerViewBead) as ItemRendererOwnerViewBead).ownerView.host as IStrandWithModel;
+		}
 		var model:ISelectionModel = owner.model as ISelectionModel;
         if (model.selectedIndex == ir.index)
         {

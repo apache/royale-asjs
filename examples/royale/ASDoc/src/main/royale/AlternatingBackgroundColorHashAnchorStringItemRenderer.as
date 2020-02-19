@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+import  org.apache.royale.core.IOwnerViewItemRenderer;
+import  org.apache.royale.core.IItemRendererOwnerView;
 import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRendererBead;
+import org.apache.royale.events.Event;
 
 	/**
 	 *  The AlternatingBackgroundColorHashAnchorItemRenderer class displays data in string form using the data's toString()
@@ -30,7 +33,7 @@ import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRend
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class AlternatingBackgroundColorHashAnchorStringItemRenderer extends HashAnchorStringItemRenderer
+	public class AlternatingBackgroundColorHashAnchorStringItemRenderer extends HashAnchorStringItemRenderer implements IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -44,6 +47,33 @@ import org.apache.royale.html.beads.AlternatingBackgroundColorSelectableItemRend
 		{
 			addBead(new AlternatingBackgroundColorSelectableItemRendererBead());
 		}
+		
+        [Bindable("dataChange")]
+		override public function set data(value:Object):void
+		{
+			super.data = value;
+			dispatchEvent(new Event("dataChange"));
+		}
+
+        private var _itemRendererOwnerView:IItemRendererOwnerView;
+        
+        /**
+         *  The text of the renderer
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.4
+         */
+        public function get itemRendererOwnerView():IItemRendererOwnerView
+        {
+            return _itemRendererOwnerView;
+        }
+        
+        public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
+        {
+            _itemRendererOwnerView = value;
+        }
 
 	}
 }
