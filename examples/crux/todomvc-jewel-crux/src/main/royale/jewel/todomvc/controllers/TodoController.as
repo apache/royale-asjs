@@ -20,6 +20,7 @@ package jewel.todomvc.controllers
 {
 	import jewel.todomvc.events.TodoEvent;
 	import jewel.todomvc.models.TodoModel;
+	import jewel.todomvc.services.ILocalStorageDelegate;
 	import jewel.todomvc.vos.TodoVO;
 
 	import org.apache.royale.collections.ArrayList;
@@ -39,13 +40,19 @@ package jewel.todomvc.controllers
 		public var model:TodoModel;
 
 		/**
+		 * the service delegate to store data in the browser
+		 */
+		[Inject(source = "localStorageDelegate")]
+		public var delegate:ILocalStorageDelegate;
+
+		/**
 		 *  [PostConstruct] methods are invoked after all dependencies are injected.
 		 *  In this example, we set up a default user after the bean is created.
 		 */
 		[PostConstruct]
 		public function setUp():void {
 			// retrieve local items and use it if exists
-			model.allItems = new ArrayList(model.getItemStore());
+			model.allItems = new ArrayList(delegate.getItemStore());
 			
 			model.setUpFilteredCollections();
 			model.listItems = model.allItems;
@@ -159,7 +166,7 @@ package jewel.todomvc.controllers
          */
         protected function saveDataToLocal():void {
 			try {
-				model.setItemStore(model.allItems.source);
+				delegate.setItemStore(model.allItems.source);
 			} catch (error:Error) {
 				trace("You need to be online to store locally");
 			}

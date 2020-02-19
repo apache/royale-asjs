@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.models
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	
 	/**
@@ -64,7 +65,8 @@ package org.apache.royale.jewel.beads.models
 		{
 			if (value != _rowHeight) {
 				_rowHeight = value;
-				dispatchEvent(new Event("rowHeightChanged"));
+				if(_strand)
+					(_strand as IEventDispatcher).dispatchEvent(new Event("rowHeightChanged"));
 			}
 		}
 
@@ -85,7 +87,8 @@ package org.apache.royale.jewel.beads.models
 		{
 			if (value != _align) {
 				_align = value;
-				dispatchEvent(new Event("alignChanged"));
+				if(_strand)
+					(_strand as IEventDispatcher).dispatchEvent(new Event("alignChanged"));
 			}
 		}
 		

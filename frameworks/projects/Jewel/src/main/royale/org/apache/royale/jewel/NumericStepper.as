@@ -20,11 +20,7 @@ package org.apache.royale.jewel
 {
     COMPILE::JS
     {
-	import goog.events;
-
-	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.util.addElementToWrapper;
     }
 	import org.apache.royale.core.IRangeModel;

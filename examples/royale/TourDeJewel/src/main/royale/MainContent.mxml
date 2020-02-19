@@ -208,6 +208,19 @@ limitations under the License.
                 </j:beads>
             </j:Navigation>
         </j:DrawerContent>
+
+        <j:DrawerFooter>
+            <j:BarRow>
+                <j:BarSection>
+                    <j:IconButton>
+                        <j:icon>
+                            <js:FontIcon text="{MaterialIconType.FEEDBACK}" material="true"/>
+                        </j:icon>
+                    </j:IconButton>
+                </j:BarSection>
+            </j:BarRow>
+        </j:DrawerFooter>
+
     </j:Drawer>
 
     <j:FooterBar localId="footerbar" fixed="true" hasDrawer="{drawer.fixed &amp;&amp; drawer.isOpen}">

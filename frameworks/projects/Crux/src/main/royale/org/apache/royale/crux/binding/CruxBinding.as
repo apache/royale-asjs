@@ -22,12 +22,9 @@
  */
 package org.apache.royale.crux.binding
 {	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDocument;
+	import org.apache.royale.binding.GenericBinding;
+	import org.apache.royale.binding.PropertyWatcher;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.ValueChangeEvent;
-    import org.apache.royale.binding.GenericBinding;
-    import org.apache.royale.binding.PropertyWatcher;
     
     /**
      *  The CruxBinding class is the data-binding class that is specific to

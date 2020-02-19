@@ -16,7 +16,7 @@
 package org.apache.royale.crux.utils.async
 {
 	import mx.rpc.AsyncToken;
-	
+
 	import org.apache.royale.crux.utils.services.CruxResponder;
 	
 	public class AsyncTokenOperation extends AbstractAsynchronousOperation implements IAsynchronousOperation

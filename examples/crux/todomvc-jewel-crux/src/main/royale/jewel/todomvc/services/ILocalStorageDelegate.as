@@ -16,47 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel
+package jewel.todomvc.services
 {
-    COMPILE::JS
-    {
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
-    }
-
-	/**
-	 *  The Divider class is a component that shows a clear separation between
-	 *  two zones
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+    /**
+	 *  ILocalStorageDelegate interface is the interface for delgates that
+	 *  stores data in local browser storage
 	 */
-	public class Divider extends Group
-	{
+    public interface ILocalStorageDelegate
+    {
 		/**
-		 *  constructor.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function Divider()
-		{
-			super();
-
-            typeNames = "jewel divider";
-		}
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         * Retrieves the array ot items
          */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			return addElementToWrapper(this,'hr');
-        }
-	}
+        function getItemStore():Array;
+        /**
+         * Saves the array ot items
+         */
+        function setItemStore(items:Array):void;
+    }
 }

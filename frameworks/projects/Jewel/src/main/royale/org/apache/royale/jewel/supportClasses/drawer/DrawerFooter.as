@@ -16,58 +16,37 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.models
+package org.apache.royale.jewel.supportClasses.drawer
 {
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
-	
+	import org.apache.royale.jewel.supportClasses.bar.BarRow;
+
 	/**
-	 *  The ComboBoxPresentationModel class contains the data to present the popup list
-	 *  of the org.apache.royale.jewel.ComboBox along with the rowCount, the height of the rows or
-	 *  the align of column labels. 
-	 *  
+	 *  The DrawerFooter class is a Bar component to use as the last content in a Drawer.
+	 *  for different items like
+	 *  a title, navigation icon, and/or icon buttons.
+	 *  Normaly is located at the top or bottom of a container and use to fill all 
+	 *  horizontal availale space. It's responsive as screen size changes
+	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ComboBoxPresentationModel extends ListPresentationModel implements IComboBoxPresentationModel
+	public class DrawerFooter extends BarRow
 	{
 		/**
 		 *  constructor.
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function ComboBoxPresentationModel()
-		{
-			super();	
-		}
-
-		private var _rowCount:int = 5;
-		/**
-		 *  Maximum number of rows visible in the ComboBox popup list.
-		 *  If there are fewer items in the dataProvider, the ComboBox shows only as many items as there are in the dataProvider.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function get rowCount():int
+		public function DrawerFooter()
 		{
-			return _rowCount;
-		}
-    	public function set rowCount(value:int):void
-		{
-			if (value != _rowCount) {
-				_rowCount = value;
-				if(_strand)
-					(_strand as IEventDispatcher).dispatchEvent(new Event("rowCountChanged"));
-			}
+			super();
+
+			typeNames = "jewel drawerfooter"
 		}
 	}
 }

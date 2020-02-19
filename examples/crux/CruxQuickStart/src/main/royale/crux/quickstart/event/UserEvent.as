@@ -18,13 +18,9 @@ package crux.quickstart.event
 	import crux.quickstart.model.User;
 	import org.apache.royale.events.Event;
 	
-	/**
-	 * @royalesuppresspublicvarwarning
-	 */
 	public class UserEvent extends Event
 	{
 		public static const SAVE_USER_REQUESTED : String = "saveUser";
-		
 		public var user : User;
 		
 		/**

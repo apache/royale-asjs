@@ -24,15 +24,12 @@
                xmlns:config="crux.quickstart.config.*"
                initialize="setUp()">
 
-
     <fx:Script>
 		<![CDATA[
-
         public function setUp():void
         {
             tracer('application setUp stub');
         }
-
         ]]>
 	</fx:Script>
 
@@ -51,18 +48,11 @@
             </crux:beanProviders>
 
             <crux:config>
-                <crux:CruxConfig>
-                    <crux:eventPackages>
-                        <fx:Array>
-                            <fx:String>crux.quickstart.event.*</fx:String>
-                        </fx:Array>
-                    </crux:eventPackages>
-                    <crux:viewPackages>
-                        <fx:Array>
-                            <fx:String>crux.quickstart.view.*</fx:String>
-                        </fx:Array>
-                    </crux:viewPackages>
-                </crux:CruxConfig>
+                <!-- The eventPackages value tells Crux the path to your Event classes,
+                and viewPackages is an optional value that speeds up the processing of display classes. -->
+                <crux:CruxConfig
+                    eventPackages="crux.quickstart.event.*"
+                    viewPackages="crux.quickstart.view.*"/>
             </crux:config>
         </crux:Crux>
     </j:beads>
@@ -70,7 +60,6 @@
     <j:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </j:valuesImpl>
-
 
     <j:initialView>
             <j:View>

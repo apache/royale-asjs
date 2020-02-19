@@ -15,9 +15,9 @@
  */
 package org.apache.royale.crux.utils.async
 {
+	import org.apache.royale.crux.utils.chain.IAsyncChainStep;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IRoyaleEvent;
-	import org.apache.royale.crux.utils.chain.IAsyncChainStep;
 
 	public class AsynchronousEvent extends Event implements IAsynchronousEvent
 	{

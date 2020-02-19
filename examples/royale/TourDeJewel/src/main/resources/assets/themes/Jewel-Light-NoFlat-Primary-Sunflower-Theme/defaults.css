@@ -515,6 +515,36 @@ j|Card {
   padding: 16px;
 }
 
+.jewel.drawerfooter {
+  background: linear-gradient(#404040, #262626);
+  border-top: 1px solid #595959;
+  border-bottom: 1px solid black;
+  color: #FFFFFF;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
+}
+.jewel.drawerfooter .jewel.barsection {
+  padding: 8px 12px;
+}
+.jewel.drawerfooter .jewel.barsection button {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  padding: 12px;
+  fill: #FFFFFF;
+  color: inherit;
+  text-shadow: 0 -1px 0 rgba(152, 96, 6, 0.7);
+}
+.jewel.drawerfooter .jewel.barsection button:hover, .jewel.drawerfooter .jewel.barsection button:hover:focus, .jewel.drawerfooter .jewel.barsection button:active, .jewel.drawerfooter .jewel.barsection button:active:focus, .jewel.drawerfooter .jewel.barsection button:focus {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+.jewel.drawerfooter .jewel.barsection button[disabled] {
+  background: transparent;
+  box-shadow: none;
+  border: none;
+}
+
 .jewel.dropdownlist {
   background-color: white;
   border: 1px solid #b3b3b3;

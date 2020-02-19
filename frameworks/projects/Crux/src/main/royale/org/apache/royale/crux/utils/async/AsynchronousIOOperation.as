@@ -17,10 +17,6 @@ package org.apache.royale.crux.utils.async
 {
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-	//import flash.events.IOErrorEvent;
-	//import flash.events.SecurityErrorEvent;
-	
-	import mx.rpc.IResponder;
 	
 	public class AsynchronousIOOperation extends AbstractAsynchronousDispatcherOperation implements IAsynchronousOperation
 	{

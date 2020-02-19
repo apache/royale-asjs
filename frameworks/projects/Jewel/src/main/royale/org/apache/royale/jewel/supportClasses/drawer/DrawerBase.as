@@ -29,8 +29,6 @@ package org.apache.royale.jewel.supportClasses.drawer
         import org.apache.royale.core.WrappedHTMLElement;
         import org.apache.royale.html.util.addElementToWrapper;
     }
-	import org.apache.royale.core.IChild;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.jewel.Group;
 
 	/**

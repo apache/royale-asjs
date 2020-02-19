@@ -22,7 +22,6 @@
  */
 package org.apache.royale.crux.binding
 {
-
 	import org.apache.royale.events.ValueChangeEvent;
 	import org.apache.royale.reflection.DefinitionWithMetaData;
 	import org.apache.royale.reflection.MetaDataArgDefinition;

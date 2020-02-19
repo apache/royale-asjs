@@ -21,29 +21,13 @@
                xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:crux="library://ns.apache.org/royale/crux"
                xmlns:config="jewel.todomvc.config.*"
-               xmlns:views="jewel.todomvc.views.*"
-               initialize="setUp()">
+               xmlns:views="jewel.todomvc.views.*">
 
     <fx:Style source="../../main/resources/todomvc-styles.css"/>
 
     <j:valuesImpl>
         <js:SimpleCSSValuesImpl />
     </j:valuesImpl>
-
-    <fx:Script>
-        <![CDATA[
-            import org.apache.royale.collections.ArrayList;
-            import org.apache.royale.reflection.registerClassAlias;
-
-            /**
-             *  Register ArrayCollection alias to map to ArrayList
-             */
-            public function setUp():void
-			{
-				registerClassAlias("flex.messaging.io.ArrayCollection", ArrayList);
-			}
-        ]]>
-    </fx:Script>
 
     <j:beads>
 		<js:ClassAliasBead/>

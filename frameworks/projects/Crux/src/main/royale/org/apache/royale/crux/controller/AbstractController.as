@@ -15,8 +15,6 @@
  */
 package org.apache.royale.crux.controller
 {
-
-	import org.apache.royale.events.IEventDispatcher;
 	COMPILE::SWF{
 		import flash.net.URLLoader;
 		import flash.net.URLRequest;
@@ -24,18 +22,19 @@ package org.apache.royale.crux.controller
 	COMPILE::JS{
 		import org.apache.royale.net.URLLoader;
 		import org.apache.royale.net.URLRequest;
-	}
-	
+	}	
 	import mx.rpc.AsyncToken;
-	
-	import org.apache.royale.crux.IDispatcherAware;
+
 	import org.apache.royale.crux.ICrux;
 	import org.apache.royale.crux.ICruxAware;
+	import org.apache.royale.crux.IDispatcherAware;
 	import org.apache.royale.crux.utils.chain.AsyncCommandChainStep;
 	import org.apache.royale.crux.utils.chain.ChainType;
 	import org.apache.royale.crux.utils.chain.CommandChain;
 	import org.apache.royale.crux.utils.services.CruxResponder;
 	import org.apache.royale.crux.utils.services.CruxURLRequest;
+	import org.apache.royale.events.IEventDispatcher;
+	
 	/**
 	 *
 	 *   @royalesuppresspublicvarwarning

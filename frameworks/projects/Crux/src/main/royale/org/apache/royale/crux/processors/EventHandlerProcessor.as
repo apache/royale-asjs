@@ -22,10 +22,6 @@ package org.apache.royale.crux.processors
 	COMPILE::JS {
 		import org.apache.royale.utils.Language;
 	}
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.reflection.getQualifiedClassName;
-	import org.apache.royale.reflection.utils.getMembersWithNameMatch;
-	
 	import org.apache.royale.crux.Bean;
 	import org.apache.royale.crux.CruxConfig;
 	import org.apache.royale.crux.metadata.EventHandlerMetadataTag;
@@ -35,6 +31,9 @@ package org.apache.royale.crux.processors
 	import org.apache.royale.crux.reflection.TypeCache;
 	import org.apache.royale.crux.reflection.TypeDescriptor;
 	import org.apache.royale.crux.utils.event.EventHandler;
+	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.reflection.getQualifiedClassName;
+	import org.apache.royale.reflection.utils.getMembersWithNameMatch;
 //	import org.apache.royale.crux.utils.logging.CruxLogger;
 	
 	/**

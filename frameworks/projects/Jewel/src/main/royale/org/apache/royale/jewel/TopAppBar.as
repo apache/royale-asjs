@@ -18,19 +18,13 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.events.Event;
-
 	COMPILE::SWF
     {
-		import flash.display.DisplayObject;
+	import flash.display.DisplayObject;
 
-		import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IRenderedObject;
     }
-    COMPILE::JS
-    {
-        import org.apache.royale.core.WrappedHTMLElement;
-        import org.apache.royale.html.util.addElementToWrapper;
-    }
+	import org.apache.royale.events.Event;
 
 	/**
 	 *  The TopAppBar class is a container component for different items like
