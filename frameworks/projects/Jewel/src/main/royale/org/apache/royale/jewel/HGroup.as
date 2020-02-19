@@ -59,25 +59,6 @@ package org.apache.royale.jewel
         {
             _layout = value;
         }
-
-        // public function get gap():Boolean
-        // {
-        //     return layout.gap;
-        // }
-
-        // public function set gap(value:Boolean):void
-        // {
-		// 	typeNames = StringUtil.removeWord(typeNames, " gap");
-		// 	typeNames += " gap";
-
-		// 	COMPILE::JS
-        //     {
-		// 		if (parent)
-        //         	setClassName(computeFinalClassNames()); 
-		// 	}
-
-		// 	layout.gap = value;
-        // }
         
         /**
 		 *  Assigns variable gap in steps of GAP_STEP. You have available GAPS*GAP_STEP gap styles
