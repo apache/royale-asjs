@@ -23,7 +23,6 @@ package org.apache.royale.jewel.beads.controls.tabbar
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.TabBar;
 	import org.apache.royale.jewel.TabBarContent;
-	import org.apache.royale.core.IDataProviderModel;
 	
 	[DefaultProperty("content")]
 

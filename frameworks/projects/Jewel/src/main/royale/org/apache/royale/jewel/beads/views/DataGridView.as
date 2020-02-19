@@ -231,14 +231,10 @@ package org.apache.royale.jewel.beads.views
         {   
             COMPILE::JS
             {
-            if(_sharedModel.dataProvider && (_sharedModel.dataProvider.length * _presentationModel.rowHeight) < _listArea.height)
+            if(_sharedModel.dataProvider && (_sharedModel.dataProvider.length * _presentationModel.rowHeight) > _listArea.height)
             {
-                (list as UIBase).positioner.style.height = "inherit";
-                _listArea.positioner.style.overflow = "hidden";
-            } else
-            {
-                (list as UIBase).positioner.style.height = null;
-                _listArea.positioner.style.overflow = null;
+                (list as UIBase).positioner.style.height = "auto";
+                _listArea.positioner.style.overflow = "auto";
             }
             }
             host.dispatchEvent(new Event("layoutNeeded"));
