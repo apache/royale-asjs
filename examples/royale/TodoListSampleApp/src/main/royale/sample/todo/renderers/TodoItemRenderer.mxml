@@ -25,7 +25,7 @@ limitations under the License.
 
 	<fx:Script>
 		<![CDATA[
-			import org.apache.royale.events.Event;
+			import org.apache.royale.events.ItemClickedEvent;
 			import org.apache.royale.events.MouseEvent;
 			import sample.todo.vo.ToDoVO;
 			
@@ -37,12 +37,18 @@ limitations under the License.
 			
 			private function checkBoxChange():void
 			{
-				dispatchEvent(new org.apache.royale.events.Event("checkChanged"));
+				var e:ItemClickedEvent = new org.apache.royale.events.ItemClickedEvent("checkChanged");
+				e.index = index;
+				e.data = data;
+				dispatchEvent(e);
 			}
 
 			private function removeClick():void
 			{
-				dispatchEvent(new org.apache.royale.events.Event("removeRequest"));
+				var e:ItemClickedEvent = new org.apache.royale.events.ItemClickedEvent("removeRequest");
+				e.index = index;
+				e.data = data;
+				dispatchEvent(e);
 			}
 		]]>
 	</fx:Script>
