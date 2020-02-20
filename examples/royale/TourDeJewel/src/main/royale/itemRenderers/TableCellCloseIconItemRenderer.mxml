@@ -22,7 +22,7 @@ limitations under the License.
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:html="library://ns.apache.org/royale/html" 
     xmlns="http://www.w3.org/1999/xhtml"
-    hoverable="false" selectable="false">
+    >
 
     <fx:Script>
         <![CDATA[
@@ -39,6 +39,7 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding/>
+		<j:NoClassSelectorListRuntimeSelectableItemRendererBead/>
     </j:beads>
 
     <j:IconButton emphasis="primary" width="24" height="24" style="padding: 0px; border-radius: 50%" click="clickCloseButton()">
