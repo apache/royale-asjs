@@ -209,6 +209,8 @@ todomvc|TodoListSection
 /* List */
 .todo-list {
 	IItemRenderer: ClassReference("jewel.todomvc.renderers.TodoItemRenderer");
+	/* disables selection visuals on renderers */
+    IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
 }
 
 .jewel.list {
