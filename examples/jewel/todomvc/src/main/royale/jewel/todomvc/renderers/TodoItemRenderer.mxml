@@ -20,9 +20,9 @@ limitations under the License.
 <j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic"
-    hoverable="false" selectable="false" width="100%"
     rollOver="rollOverHandler(event)"
-    rollOut="rollOutHandler(event)">
+    rollOut="rollOutHandler(event)"
+    width="100%">
 
     <fx:Script>
         <![CDATA[
