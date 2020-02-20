@@ -17,7 +17,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<j:ListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+<j:SimpleListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic"
     rollOver="rollOverHandler(event)"
@@ -161,5 +161,5 @@ limitations under the License.
         </j:icon>
     </j:IconButton>
 
-</j:ListItemRenderer>
+</j:SimpleListItemRenderer>
 
