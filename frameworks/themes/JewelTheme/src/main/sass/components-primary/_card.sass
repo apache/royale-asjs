@@ -30,21 +30,30 @@
         background: lighten($background-color, 10%)
     @else
         background: lighten($background-color, 10%)
-    border: 1px solid desaturate(lighten($primary-color, 26%), 70%)
+    @if $flat
+        border: 1px solid transparent
+    @else
+        border: 1px solid desaturate(lighten($primary-color, 26%), 70%)
     border-radius: $border-radius
 
     &.simple
         padding: 20px
 
     .cardHeader
-        border-bottom: 1px solid rgba(0,0,0,.1)
+        @if $flat
+            border-bottom: 1px solid transparent
+        @else
+            border-bottom: 1px solid desaturate(lighten($primary-color, 26%), 70%)
         padding: 20px
 
     .cardPrimaryContent
         padding: 20px
 
     .cardActions
-        border-top: 1px solid rgba(0,0,0,.1)
+        @if $flat
+            border-top: 1px solid transparent
+        @else
+            border-top: 1px solid desaturate(lighten($primary-color, 26%), 70%)
         padding: 20px
 
 j|Card
