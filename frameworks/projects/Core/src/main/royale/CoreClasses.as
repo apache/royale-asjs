@@ -77,6 +77,7 @@ internal class CoreClasses
 	import org.apache.royale.core.IBinaryImageLoader; IBinaryImageLoader;
     import org.apache.royale.core.ItemRendererClassFactory; ItemRendererClassFactory;
     import org.apache.royale.core.SelectableItemRendererClassFactory; SelectableItemRendererClassFactory;
+    import org.apache.royale.core.OverridableSelectableItemRendererClassFactory; OverridableSelectableItemRendererClassFactory;
     import org.apache.royale.core.IChangePropagator; IChangePropagator;
     import org.apache.royale.core.IAlertModel; IAlertModel;
     import org.apache.royale.core.IBead; IBead;

@@ -18,13 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-    COMPILE::SWF
-    {
-        import flash.display.Sprite;
-    }
-    import org.apache.royale.core.IRuntimeSelectableItemRenderer;
+    import org.apache.royale.core.IStrand;
     import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
-    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.utils.IClassSelectorListSupport;
 
 	/**
 	 *  UnselectableElement bead prevents from text selection of html element
@@ -35,7 +31,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class ClassSelectorListRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase implements IRuntimeSelectableItemRenderer
+	public class ClassSelectorListRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase
 	{
 		/**
 		 *  constructor.
@@ -45,72 +41,27 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList:ClassSelectorList)
+		public function ClassSelectorListRuntimeSelectableItemRendererBead()
 		{
-            this.classSelectorList = classSelectorList;
 		}
 
-        protected var classSelectorList:ClassSelectorList;
-        
-        private var _selectable:Boolean = true;
-        
-        /**
-         *  <code>true</code> if the item renderer is can be selected
-         *  false otherwise. Use to configure a renderer to be non 
-         *  selectable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        public function get selectable():Boolean
-        {
-            return _selectable;
-        }
-        public function set selectable(value:Boolean):void
-        {
-            _selectable = value;
-            classSelectorList.toggle("selectable", _selectable);	
-            
-        }
-        
-        private var _hoverable:Boolean = true;
-        
-        /**
-         *  <code>true</code> if the item renderer is can be hovered
-         *  false otherwise. Use to configure a renderer to be non 
-         *  hoverable.
-         *  
-         *  Defaults to true
-         * 
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        public function get hoverable():Boolean
-        {
-            return _hoverable;
-        }
-        public function set hoverable(value:Boolean):void
-        {
-            _hoverable = value;
-        }
-        
+		private var ir:IClassSelectorListSupport;
+		
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			ir = value as IClassSelectorListSupport;
+			ir.addClass("selectable");
+		}
+		
         /**
          * @private
          */
         override public function updateRenderer():void
         {
             // there's no selection only hover state
-            if(hoverable)
-                classSelectorList.toggle("hovered", hovered);
-            if(selectable) {
-                classSelectorList.toggle("selected", selected);
-            }
+            ir.toggleClass("hovered", hovered);
+            ir.toggleClass("selected", selected);
         }
 	}
 }

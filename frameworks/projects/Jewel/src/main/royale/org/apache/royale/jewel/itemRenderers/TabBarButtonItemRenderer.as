@@ -27,7 +27,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
-    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListRuntimeSelectableItemRendererBead;
     
 	/**
 	 *  The TabBarButtonItemRenderer defines the basic Item Renderer for a Jewel 
@@ -55,7 +54,6 @@ package org.apache.royale.jewel.itemRenderers
 
 			typeNames = "jewel tabbarbutton";
 			addClass("selectable");
-            addBead(new ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList));
 		}
 
 		// private var _href:String = "#";

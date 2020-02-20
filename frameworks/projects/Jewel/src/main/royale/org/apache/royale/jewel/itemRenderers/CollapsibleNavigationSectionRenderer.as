@@ -28,7 +28,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.elements.A;
 	import org.apache.royale.jewel.Navigation;
-    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverableRuntimeSelectableItemRendererBead;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
 	import org.apache.royale.utils.ClassSelectorList;
 	import org.apache.royale.utils.MXMLDataInterpreter;
@@ -68,7 +67,6 @@ package org.apache.royale.jewel.itemRenderers
 			}
 			open = false;
 			addEventListener('click', onSectionNav);
-            addBead(new ClassSelectorListHoverableRuntimeSelectableItemRendererBead(navLinkClassSelector));
 		}
 		
 		private function onSectionNav(event:Event):void{

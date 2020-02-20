@@ -18,11 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
-    COMPILE::SWF
-    {
-        import flash.display.Sprite;
-    }
-    import org.apache.royale.utils.ClassSelectorList;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
+    import org.apache.royale.utils.IClassSelectorListSupport;
 
 	/**
 	 *  UnselectableElement bead prevents from text selection of html element
@@ -33,7 +31,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ClassSelectorListHoverableRuntimeSelectableItemRendererBead extends ClassSelectorListRuntimeSelectableItemRendererBead
+	public class ClassSelectorListHoverableRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase
 	{
 		/**
 		 *  constructor.
@@ -43,19 +41,25 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function ClassSelectorListHoverableRuntimeSelectableItemRendererBead(classSelectorList:ClassSelectorList)
+		public function ClassSelectorListHoverableRuntimeSelectableItemRendererBead()
 		{
-            super(classSelectorList);
 		}
         
+		private var ir:IClassSelectorListSupport;
+		
+		override public function set strand(value:IStrand):void
+		{
+			super.strand = value;
+			ir = value as IClassSelectorListSupport;
+			ir.addClass("selectable");
+		}
+		
         /**
          * @private
          */
         override public function updateRenderer():void
         {
-            // there's no selection only hover state
-            if(hoverable)
-                classSelectorList.toggle("hovered", hovered);
+            ir.toggleClass("hovered", hovered);
         }
 	}
 }

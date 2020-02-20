@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.events.BrowserEvent;
 	}
-    import org.apache.royale.core.IRuntimeSelectableItemRenderer;
+    import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
@@ -157,7 +157,7 @@ package org.apache.royale.jewel.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-                var selectionBead:IRuntimeSelectableItemRenderer = target.getBeadByType(IRuntimeSelectableItemRenderer) as IRuntimeSelectableItemRenderer;
+                var selectionBead:ISelectableItemRenderer = target.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
                 selectionBead.down = true;
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
@@ -173,7 +173,7 @@ package org.apache.royale.jewel.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
             if (target)
             {
-                var selectionBead:IRuntimeSelectableItemRenderer = target.getBeadByType(IRuntimeSelectableItemRenderer) as IRuntimeSelectableItemRenderer;
+                var selectionBead:ISelectableItemRenderer = target.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
                 selectionBead.down = true;
                 selectionBead.hovered = false;
             }
@@ -209,8 +209,8 @@ package org.apache.royale.jewel.beads.controllers
             var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
             if (target)
             {
-    			var selectionBead:IRuntimeSelectableItemRenderer = target.getBeadByType(IRuntimeSelectableItemRenderer) as IRuntimeSelectableItemRenderer;
-    			if (selectionBead && selectionBead.selectable)
+    			var selectionBead:ISelectableItemRenderer = target.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+    			if (selectionBead && selectionBead.down)
     			{
     				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
     				newEvent.data = target.data;

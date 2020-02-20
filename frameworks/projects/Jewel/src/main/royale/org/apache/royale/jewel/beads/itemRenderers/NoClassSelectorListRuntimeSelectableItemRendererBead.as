@@ -16,25 +16,22 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.itemRenderers
+package org.apache.royale.jewel.beads.itemRenderers
 {
-	COMPILE::JS
-    {
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
-    }
-    import org.apache.royale.jewel.beads.controls.TextAlign;
+    import org.apache.royale.core.IStrand;
+    import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
+    import org.apache.royale.utils.IClassSelectorListSupport;
 
 	/**
-	 *  The TableItemRenderer class displays data in string form using the data's toString()
-	 *  function.
+	 *  NoClassSelectorListRuntimeSelectableItemRendererBead bead disables selection visuals
 	 *
+	 *  @viewbead
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.8
 	 */
-	public class TableItemRenderer extends ListItemRenderer
+	public class NoClassSelectorListRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase
 	{
 		/**
 		 *  constructor.
@@ -42,31 +39,21 @@ package org.apache.royale.jewel.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.8
 		 */
-		public function TableItemRenderer()
+		public function NoClassSelectorListRuntimeSelectableItemRendererBead()
 		{
-			super();
-
-			typeNames = "jewel tableitem";
-			
-			if(MXMLDescriptor != null)
-			{
-            	typeNames += " with-childs";
-			}
-
-			textAlign = new TextAlign();
-			addBead(textAlign);            
 		}
 		
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			addElementToWrapper(this, 'div');
-            return element;
-        }
+		override public function set down(value:Boolean):void
+		{
+			// don't allow down state
+		}
+		
+		override public function set hovered(value:Boolean):void
+		{
+			// don't allow down hovered
+		}
+		
 	}
 }

@@ -39,7 +39,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-	public class SelectableItemRendererClassFactory extends ItemRendererClassFactory
+	public class OverridableSelectableItemRendererClassFactory extends ItemRendererClassFactory
 	{
         /**
          *  Constructor.
@@ -49,7 +49,7 @@ package org.apache.royale.core
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.0
          */
-		public function SelectableItemRendererClassFactory()
+		public function OverridableSelectableItemRendererClassFactory()
 		{
 			super();
 		}
@@ -82,7 +82,8 @@ package org.apache.royale.core
         override public function createItemRenderer():IItemRenderer
         {
             var ir:IItemRenderer = super.createItemRenderer();
-	        ir.addBead(new selectableBeadClass());
+			if (!ir.getBeadByType(ISelectableItemRenderer))
+	            ir.addBead(new selectableBeadClass());
             return ir;
         }
 	}
