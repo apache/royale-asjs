@@ -60,7 +60,6 @@ package products
 			image.width = 32;
 			image.height = 32;
 
-			updateRenderer();
 		}
 	}
 }
