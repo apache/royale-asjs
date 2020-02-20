@@ -18,19 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-    COMPILE::JS
-    {
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.html.util.addElementToWrapper;
-    }
 	import org.apache.royale.core.IRuntimeSelectableItemRenderer;
-    import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.jewel.beads.controls.TextAlign;
-    import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListRuntimeSelectableItemRendererBead;
-	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
-	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+	import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListRuntimeSelectableItemRendererBead;
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
@@ -40,7 +29,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class ListItemRenderer extends StyledMXMLItemRenderer implements ITextItemRenderer, IAlignItemRenderer
+	public class ListItemRenderer extends SimpleListItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -53,105 +42,14 @@ package org.apache.royale.jewel.itemRenderers
 		public function ListItemRenderer()
 		{
 			super();
-
-			typeNames = "jewel item";
 			addClass("selectable");
-
-			if(MXMLDescriptor != null)
-			{
-				addClass("mxmlContent");
-			}
 		}
-
-		private var _text:String = "";
-
-		[Bindable(event="textChange")]
-        /**
-         *  The text of the renderer
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
-         */
-		public function get text():String
-		{
-            return _text;
-		}
-
-		public function set text(value:String):void
-		{
-            if(value != _text) {
-				_text = value;
-				COMPILE::JS
-				{
-				if(MXMLDescriptor == null)
-				{
-					element.innerHTML = _text;
-				}
-				}
-				dispatchEvent(new Event('textChange'));
-			}
-		}
-
-        protected var textAlign:TextAlign;
-
-		/**
-		 *  How text align in the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get align():String
-		{
-			return textAlign.align;
-		}
-
-		public function set align(value:String):void
-		{
-			if(!textAlign)
-			{
-				textAlign = new TextAlign();
-				addBead(textAlign);
-			}
-			textAlign.align = value;
-		}
-
-		/**
-		 *  Sets the data value and uses the String version of the data for display.
-		 * 
-		 *  @param Object data The object being displayed by the itemRenderer instance.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        override public function set data(value:Object):void
-        {
-            text = getLabelFromData(this, value);
-            super.data = value;
-        }
-
-        /**
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-		 * @royaleignorecoercion Text
-         */
-        COMPILE::JS
-        override protected function createElement():WrappedHTMLElement
-        {
-			addElementToWrapper(this, 'li');
-            return element;
-        }
-        
+		
         override public function addedToParent():void
         {
             super.addedToParent();
             if (!getBeadByType(IRuntimeSelectableItemRenderer))
                 addBead(new ClassSelectorListRuntimeSelectableItemRendererBead(classSelectorList));
         }
-
 	}
 }
