@@ -204,7 +204,6 @@
     <component id="ButtonBarLayout" class="org.apache.royale.jewel.beads.layouts.ButtonBarLayout"/>
 
     <component id="StringItemRenderer" class="org.apache.royale.jewel.itemRenderers.StringItemRenderer"/>
-    <component id="SimpleListItemRenderer" class="org.apache.royale.jewel.itemRenderers.SimpleListItemRenderer"/>
     <component id="ListItemRenderer" class="org.apache.royale.jewel.itemRenderers.ListItemRenderer"/>
     <component id="DataGridItemRenderer" class="org.apache.royale.jewel.itemRenderers.DataGridItemRenderer"/>
     <component id="TableItemRenderer" class="org.apache.royale.jewel.itemRenderers.TableItemRenderer"/>
