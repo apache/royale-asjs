@@ -18,10 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	COMPILE::JS
-	{
-	import org.apache.royale.core.WrappedHTMLElement;
-	}
 	import org.apache.royale.core.IIcon;
     import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;

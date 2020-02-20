@@ -22,9 +22,6 @@ package org.apache.royale.jewel.beads.itemRenderers
     {
         import flash.display.Sprite;
     }
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.IStrand;
     import org.apache.royale.utils.ClassSelectorList;
 
 	/**
@@ -34,18 +31,17 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.8
+	 *  @productversion Royale 0.9.7
 	 */
 	public class ClassSelectorListHoverableRuntimeSelectableItemRendererBead extends ClassSelectorListRuntimeSelectableItemRendererBead
 	{
-
 		/**
 		 *  constructor.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.8
+		 *  @productversion Royale 0.9.7
 		 */
 		public function ClassSelectorListHoverableRuntimeSelectableItemRendererBead(classSelectorList:ClassSelectorList)
 		{
@@ -61,7 +57,5 @@ package org.apache.royale.jewel.beads.itemRenderers
             if(hoverable)
                 classSelectorList.toggle("hovered", hovered);
         }
-        
-
 	}
 }

@@ -18,21 +18,19 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {	
-	import org.apache.royale.core.IItemRendererOwnerView;
-	
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithPresentationModel;
-    import org.apache.royale.core.IStrandWithModelView;
-    import org.apache.royale.core.SimpleCSSStyles;
-    import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithPresentationModel;
+	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers

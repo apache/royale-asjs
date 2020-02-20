@@ -22,10 +22,7 @@ package org.apache.royale.jewel.beads.itemRenderers
     {
         import flash.display.Sprite;
     }
-    import org.apache.royale.core.IBead;
     import org.apache.royale.core.IRuntimeSelectableItemRenderer;
-    import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
     import org.apache.royale.html.beads.SelectableItemRendererBeadBase;
     import org.apache.royale.utils.ClassSelectorList;
 
@@ -40,7 +37,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 */
 	public class ClassSelectorListRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase implements IRuntimeSelectableItemRenderer
 	{
-
 		/**
 		 *  constructor.
 		 *
@@ -116,7 +112,5 @@ package org.apache.royale.jewel.beads.itemRenderers
                 classSelectorList.toggle("selected", selected);
             }
         }
-        
-
 	}
 }

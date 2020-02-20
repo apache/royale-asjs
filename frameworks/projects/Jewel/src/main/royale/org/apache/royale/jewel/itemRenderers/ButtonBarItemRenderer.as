@@ -18,13 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.itemRenderers
 {
-	COMPILE::JS
-	{
-	import org.apache.royale.core.WrappedHTMLElement;
-	}
 	import org.apache.royale.core.IItemRendererOwnerView;
-    import org.apache.royale.core.IOwnerViewItemRenderer;
-    import org.apache.royale.core.SimpleCSSStylesWithFlex;
+	import org.apache.royale.core.IOwnerViewItemRenderer;
+	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.html.beads.ITextItemRenderer;
