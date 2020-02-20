@@ -17,7 +17,7 @@
 @namespace j "library://ns.apache.org/royale/jewel";
 @namespace "http://www.w3.org/1999/xhtml";
 .jewel.application {
-  background: white;
+  background: #d1d6db;
   font-family: "Lato", sans-serif;
   color: #808080;
   padding: 0px;
@@ -95,7 +95,7 @@ hr {
   min-width: 320px;
   min-height: 240px;
   border: 0px solid;
-  background-color: white;
+  background: #edeff1;
   box-shadow: 0px 20px 65px 0px rgba(0, 0, 0, 0.8);
   border-radius: 3px;
   opacity: 0;
@@ -239,13 +239,34 @@ hr {
 .jewel.card {
   font-size: 1em;
   font-weight: 400;
-  background: #ebebeb;
-  border: 0px;
-  border-radius: 10px;
+  background: #edeff1;
+  border: 1px solid #b7b7b7;
+  border-radius: 0.25rem;
+}
+.jewel.card.simple {
+  padding: 20px;
+}
+.jewel.card .cardHeader {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+.jewel.card .cardPrimaryContent {
+  padding: 20px;
+}
+.jewel.card .cardActions {
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
   padding: 20px;
 }
 
 j|Card {
+  gap: 3;
+}
+
+j|CardHeader {
+  gap: 3;
+}
+
+j|CardActions {
   gap: 3;
 }
 
