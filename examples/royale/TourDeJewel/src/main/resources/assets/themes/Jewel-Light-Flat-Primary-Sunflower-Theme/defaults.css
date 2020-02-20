@@ -240,21 +240,21 @@ hr {
   font-size: 1em;
   font-weight: 400;
   background: white;
-  border: 1px solid #e5e0d6;
+  border: 1px solid transparent;
   border-radius: 0.25rem;
 }
 .jewel.card.simple {
   padding: 20px;
 }
 .jewel.card .cardHeader {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid transparent;
   padding: 20px;
 }
 .jewel.card .cardPrimaryContent {
   padding: 20px;
 }
 .jewel.card .cardActions {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid transparent;
   padding: 20px;
 }
 

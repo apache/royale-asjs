@@ -245,14 +245,14 @@ hr {
   padding: 20px;
 }
 .jewel.card .cardHeader {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #bdbdbd;
   padding: 20px;
 }
 .jewel.card .cardPrimaryContent {
   padding: 20px;
 }
 .jewel.card .cardActions {
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  border-top: 1px solid #bdbdbd;
   padding: 20px;
 }
 
