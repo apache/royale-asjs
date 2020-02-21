@@ -80,6 +80,26 @@
   background: linear-gradient(#3AB549, #2e8e39);
 }
 
+.emphasized-light {
+  color: #ccefd0;
+}
+
+.emphasized-lightest {
+  color: #7fd68a;
+}
+
+.emphasized-normal {
+  color: #3AB549;
+}
+
+.emphasized-dark {
+  color: #21682a;
+}
+
+.emphasized-darkest {
+  color: #081b0b;
+}
+
 .jewel.togglebutton.emphasized {
   background: linear-gradient(#45c354, #34a241);
   border: 1px solid #277b32;

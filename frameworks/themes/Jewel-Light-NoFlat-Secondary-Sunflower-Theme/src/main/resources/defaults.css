@@ -92,6 +92,26 @@ a:active {
   color: #fac570;
 }
 
+.secondary-light {
+  color: white;
+}
+
+.secondary-lightest {
+  color: #fcd9a1;
+}
+
+.secondary-normal {
+  color: #F8B13F;
+}
+
+.secondary-dark {
+  color: #ca7f07;
+}
+
+.secondary-darkest {
+  color: #674104;
+}
+
 .jewel.togglebutton.secondary {
   background: linear-gradient(#f9bb58, #f7a726);
   border: 1px solid #e28f08;
