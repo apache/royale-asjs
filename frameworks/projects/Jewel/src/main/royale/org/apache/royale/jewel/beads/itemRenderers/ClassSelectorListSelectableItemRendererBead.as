@@ -29,9 +29,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.8
 	 */
-	public class ClassSelectorListHoverableRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase
+	public class ClassSelectorListSelectableItemRendererBead extends SelectableItemRendererBeadBase
 	{
 		/**
 		 *  constructor.
@@ -39,12 +39,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.8
 		 */
-		public function ClassSelectorListHoverableRuntimeSelectableItemRendererBead()
+		public function ClassSelectorListSelectableItemRendererBead()
 		{
 		}
-        
+
 		private var ir:IClassSelectorListSupport;
 		
 		override public function set strand(value:IStrand):void
@@ -59,7 +59,9 @@ package org.apache.royale.jewel.beads.itemRenderers
          */
         override public function updateRenderer():void
         {
+            // there's no selection only hover state
             ir.toggleClass("hovered", hovered);
+            ir.toggleClass("selected", selected);
         }
 	}
 }

@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.8
 	 */
-	public class NoClassSelectorListRuntimeSelectableItemRendererBead extends SelectableItemRendererBeadBase
+	public class NoClassSelectorListSelectableItemRendererBead extends SelectableItemRendererBeadBase
 	{
 		/**
 		 *  constructor.
@@ -41,7 +41,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function NoClassSelectorListRuntimeSelectableItemRendererBead()
+		public function NoClassSelectorListSelectableItemRendererBead()
 		{
 		}
 		
