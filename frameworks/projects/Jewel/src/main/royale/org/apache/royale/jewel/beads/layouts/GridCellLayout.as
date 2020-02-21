@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::JS {
-    	import org.apache.royale.core.UIBase;
-    }
+	COMPILE::SWF {
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IUIBase;
+	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 
@@ -498,7 +497,6 @@ package org.apache.royale.jewel.beads.layouts
 
         /**
          * @copy org.apache.royale.core.IBeadLayout#layout
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
          */
 		override public function layout():Boolean
 		{

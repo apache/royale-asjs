@@ -88,110 +88,6 @@ package org.apache.royale.jewel.beads.layouts
 			}
 		}
 
-		/**
-		 *  @private
-		 */
-		private var _paddingTop:Number = 0;
-
-		/**
-		 *  The top padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingTop():Number
-		{
-			return _paddingTop;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingTop(value:Number):void
-		{
-			_paddingTop = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingRight:Number = 0;
-
-		/**
-		 *  The right padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingRight():Number
-		{
-			return _paddingRight;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingRight(value:Number):void
-		{
-			_paddingRight = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingBottom:Number = 0;
-
-		/**
-		 *  The top padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingBottom():Number
-		{
-			return _paddingBottom;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingBottom(value:Number):void
-		{
-			_paddingBottom = value;
-		}
-
-		/**
-		 *  @private
-		 */
-		private var _paddingLeft:Number = 0;
-
-		/**
-		 *  The left padding value.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get paddingLeft():Number
-		{
-			return _paddingLeft;
-		}
-
-		/**
-		 *  @private
-		 */
-		public function set paddingLeft(value:Number):void
-		{
-			_paddingLeft = value;
-		}
-
 		private var gapInitialized:Boolean;
 		// private var _gap:Boolean;
 		/**
@@ -344,20 +240,20 @@ package org.apache.royale.jewel.beads.layouts
 				var data:Object;
 				var canAdjust:Boolean = false;
 
-				var paddingMetrics:EdgeData = new EdgeData();
-                paddingMetrics.left = _paddingLeft;
-                paddingMetrics.top = _paddingTop;
-                paddingMetrics.right = _paddingRight;
-                paddingMetrics.bottom = _paddingBottom;
-				var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
+				// var paddingMetrics:EdgeData = new EdgeData();
+                // paddingMetrics.left = _paddingLeft;
+                // paddingMetrics.top = _paddingTop;
+                // paddingMetrics.right = _paddingRight;
+                // paddingMetrics.bottom = _paddingBottom;
+				// var borderMetrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderMetrics(host);
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.
-				hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
-				hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+				// hostWidth -= paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+				// hostHeight -= paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
-				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.top;
+				var xpos:Number = 0;//borderMetrics.left + paddingMetrics.left;
+				var ypos:Number = 0;//borderMetrics.top + paddingMetrics.top;
 
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
