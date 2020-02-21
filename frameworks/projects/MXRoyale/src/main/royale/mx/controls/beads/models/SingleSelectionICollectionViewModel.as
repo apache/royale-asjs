@@ -306,6 +306,7 @@ package mx.controls.beads.models
 				if (event.location <= _selectedIndex)
 				{
 					_selectedIndex++;
+					dispatchEvent(new Event("selectedIndexChanged"));
 				}
 			}
 			else if (event.kind == CollectionEventKind.REMOVE)
@@ -313,10 +314,14 @@ package mx.controls.beads.models
 				if (event.location < _selectedIndex)
 				{
 					_selectedIndex--;
+					dispatchEvent(new Event("selectedIndexChanged"));
 				}
 				else if (event.location == _selectedIndex)
 				{
-					_selectedItem = getItemAt(_selectedIndex);
+					_selectedItem = null;
+					_selectedIndex = -1;
+					dispatchEvent(new Event("selectedItemChanged"));
+					dispatchEvent(new Event("selectedIndexChanged"));
 				}
 			}
 		}
