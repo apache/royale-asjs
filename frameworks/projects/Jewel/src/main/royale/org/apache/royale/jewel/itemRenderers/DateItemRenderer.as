@@ -20,6 +20,7 @@ package org.apache.royale.jewel.itemRenderers
 {
     import org.apache.royale.core.IStrandWithModel;
 	import org.apache.royale.jewel.beads.models.DateChooserModel;
+	import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead;
 
 	/**
 	 *  The DateItemRenderer class renders date values for the DateChooser.
@@ -44,6 +45,8 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel tableitem calendar";
+			
+			addBead(new ClassSelectorListSelectableItemRendererBead());
 		}
 
 		/**
