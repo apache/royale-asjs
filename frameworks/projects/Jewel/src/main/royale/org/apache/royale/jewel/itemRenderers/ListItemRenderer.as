@@ -53,7 +53,6 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel item";
-			addClass("selectable");
 
 			if(MXMLDescriptor != null)
 			{

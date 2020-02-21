@@ -51,7 +51,6 @@ package org.apache.royale.jewel.itemRenderers
 			super();
 
 			typeNames = "jewel navigationlink";
-			addClass("selectable");
 
 			if(MXMLDescriptor != null)
 			{
