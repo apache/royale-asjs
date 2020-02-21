@@ -78,9 +78,11 @@
         <ant dir="${basedir}/express/DataBindingExample"/>
         <ant dir="${basedir}/express/DataGridExample"/>
         <ant dir="${basedir}/express/GitHubCommitLogViewer"/>
+        <ant dir="${basedir}/jewel/todomvc"/>
         <ant dir="${basedir}/crux/CruxQuickStart"/>
         <ant dir="${basedir}/crux/CruxQuickStartBasic"/>
         <ant dir="${basedir}/crux/CruxGitHubCommitLogViewer"/>
+        <ant dir="${basedir}/crux/todomvc-jewel-crux"/>
         <ant dir="${basedir}/royale/AccordionExample"/>
         <ant dir="${basedir}/royale/ASDoc"/>
         <ant dir="${basedir}/royale/CordovaCameraExample"/>

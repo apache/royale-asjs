@@ -29,11 +29,21 @@
         <keep-as3-metadata>
             <name>Bindable</name>
             <name>Transient</name>
+
+            <name>Inject</name>
+            <name>Dispatcher</name>
+            <name>EventHandler</name>
+            <name>PostConstruct</name>
+            <name>PreDestroy</name>
+            <name>ViewAdded</name>
+            <name>ViewRemoved</name>
         </keep-as3-metadata>
 
         <js-library-path append="true">
             <path-element>../../../../../../frameworks/js/libs/BasicJS.swc</path-element>
             <path-element>../../../../../../frameworks/js/libs/IconsJS.swc</path-element>
+            <path-element>../../../../../../frameworks/js/libs/CruxJS.swc</path-element>
+            <path-element>../../../../../../frameworks/js/libs/MXRoyaleJS.swc</path-element>
         </js-library-path>
         <!--<library-path append="true">
             <path-element>../../../../../../frameworks/libs/Basic.swc</path-element>
@@ -42,5 +52,9 @@
         <theme>
             <filename>../../../../../../frameworks/libs/JewelTheme.swc</filename>
         </theme>
+        <exclude-defaults-css-files>
+            <!--<filename>MXRoyale.swc:defaults.css</filename>-->
+            <filename>MXRoyaleJS.swc:defaults.css</filename>
+        </exclude-defaults-css-files>
     </compiler>
 </royale-config>

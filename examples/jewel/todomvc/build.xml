@@ -21,7 +21,7 @@
 
 <project name="todomvc" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../../.."/>
-    <property name="example" value="todomvc" />
+    <property name="example" value="App" />
     
     <property file="${ROYALE_HOME}/env.properties"/>
     <property environment="env"/>
