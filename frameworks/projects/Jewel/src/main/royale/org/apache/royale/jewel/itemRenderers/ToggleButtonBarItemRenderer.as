@@ -19,7 +19,8 @@
 package org.apache.royale.jewel.itemRenderers
 {
 	import org.apache.royale.core.IIcon;
-    import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.core.SimpleCSSStylesWithFlex;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.ItemClickedEvent;
@@ -40,7 +41,7 @@ package org.apache.royale.jewel.itemRenderers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
 	 */
-	public class ToggleButtonBarItemRenderer extends ToggleButton implements ITextItemRenderer
+	public class ToggleButtonBarItemRenderer extends ToggleButton implements ITextItemRenderer, IOwnerViewItemRenderer
 	{
 		public function ToggleButtonBarItemRenderer()
 		{
