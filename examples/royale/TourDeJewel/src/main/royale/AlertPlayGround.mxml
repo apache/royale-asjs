@@ -85,22 +85,54 @@ limitations under the License.
     </fx:Script>
 
     <j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+        <j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-            <j:Card width="350">
-                <html:H3 text="Jewel Alert"/>
+			<j:VGroup>
+				<html:H1 text="Jewel Alert" className="emphasized-dark"/>
 
-                <!-- Alert 1-->
-                <j:Label text="Click the button below to display a simple Alert window" multiline="true"/>
-                <j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p>Jewel Alert examples.</p>]]></j:html>
+				</j:Label>
+			</j:VGroup>
+		</j:GridCell>
 
-                <!-- Alert 2-->
-                <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user." multiline="true"/>
-                <j:Button text="Click Me" click="clickHandler(event)"/>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+            <!-- Alert 1-->
+            <j:Card>
+                <j:CardPrimaryContent>
+                    <j:Label text="Click the button below to display a simple Alert window" multiline="true"/>
+                </j:CardPrimaryContent>
+                <j:CardActions>
+                    <j:Button text="Click Me" click="Alert.show('This is an Alert component example that shows a label text and the default OK button.', 'Alert Example')"/>
+				</j:CardActions>
+            </j:Card>
+        </j:GridCell>
+
+        <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+            <!-- Alert 2-->
+            <j:Card>
+                <j:CardPrimaryContent>
+                    <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user." multiline="true"/>
                 <j:Label id="status"/>
-
-                <!-- Alert 3 (Complex Example)-->
-                <j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts." multiline="true"/>
-                <j:Button text="Click Me" click="clickHandler2(event)"/>
+                </j:CardPrimaryContent>
+                <j:CardActions>
+                    <j:Button text="Click Me" click="clickHandler(event)"/>
+				</j:CardActions>
+            </j:Card>
+        </j:GridCell>
+        
+        <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+            <!-- Alert 3 (Complex Example)-->
+            <j:Card>
+                <j:CardPrimaryContent>
+                    <j:Label text="This is a complex example that add and retrieve beads at runtime. Click the button below to display an Alert window that add content and make changes in some layout parts." multiline="true"/>
+                </j:CardPrimaryContent>
+                <j:CardActions>
+                    <j:Button text="Click Me" click="clickHandler2(event)"/>
+				</j:CardActions>
             </j:Card>
         </j:GridCell>
 	</j:Grid>

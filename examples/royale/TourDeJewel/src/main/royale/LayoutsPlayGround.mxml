@@ -23,36 +23,53 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" sourceCodeUrl="LayoutsPlayGround.mxml">
 
-	<!-- <j:beads>
-        <js:ContainerDataBinding/>
-    </j:beads> -->
-
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
-		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+		<j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:VGroup>
+				<html:H1 text="Jewel Layouts" className="emphasized-dark"/>
+
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p>Jewel Layouts examples.</p>]]></j:html>
+				</j:Label>
+			</j:VGroup>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel BasicLayout (width200, height:200px)"/>
-
-				<j:Group width="200" height="200" className="wrapper">
-					<j:Button text="Origin" emphasis="primary"/>
-					<j:Button text="x:30,y:30" emphasis="secondary" x="30" y="30"/>
-					<j:Button text="x:60,y:60" emphasis="emphasized" x="60" y="60"/>
-					<j:Button text="bottom/right" style="bottom:0;right:0"/>
-				</j:Group>
-
+				<j:CardHeader>
+					<html:H3 text="Jewel BasicLayout"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true" text="Jewel BasicLayout (width200, height:200px)"/>
+					<j:Group width="200" height="200" className="wrapper">
+						<j:Button text="Origin" emphasis="primary"/>
+						<j:Button text="x:30,y:30" emphasis="secondary" x="30" y="30"/>
+						<j:Button text="x:60,y:60" emphasis="emphasized" x="60" y="60"/>
+						<j:Button text="bottom/right" style="bottom:0;right:0"/>
+					</j:Group>
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
-		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H4 text="Jewel HorizontalLayout"/>
-
-				<j:HGroup id="hg" gap="3" className="wrapper">
-					<j:Button text="X" emphasis="primary"/>
-					<j:Button text="Y" emphasis="secondary"/>
-					<j:Button text="Z" emphasis="emphasized"/>
-					<j:Button text="0" />
-				</j:HGroup>
-
-				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
+				<j:CardHeader>
+					<html:H3 text="Jewel HorizontalLayout"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:HGroup id="hg" gap="3" className="wrapper">
+						<j:Button text="X" emphasis="primary"/>
+						<j:Button text="Y" emphasis="secondary"/>
+						<j:Button text="Z" emphasis="emphasized"/>
+						<j:Button text="0" />
+					</j:HGroup>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign = "itemsCenter">
+					<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
@@ -69,8 +86,7 @@ limitations under the License.
 				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel HorizontalCenteredLayout (width200, height:200px)"/>
@@ -108,9 +124,7 @@ limitations under the License.
 
 			</j:Card>
 		</j:GridCell>
-	</j:Grid>
 
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
 		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel HorizontalFlowLayout"/>
