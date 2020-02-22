@@ -89,15 +89,11 @@ limitations under the License.
 			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-			<j:VGroup>
-				<html:H1 text="Jewel Alert" className="emphasized-dark"/>
-
-				<j:Label multiline="true">
-					<j:html><![CDATA[<p>Jewel Alert examples.</p>]]></j:html>
-				</j:Label>
-			</j:VGroup>
-		</j:GridCell>
+		<c:ExampleHeader title="Jewel Alert">
+			<c:description>
+				<![CDATA[<strong>Jewel Alert</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
             <!-- Alert 1-->

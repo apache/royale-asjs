@@ -28,15 +28,11 @@ limitations under the License.
 			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-			<j:VGroup>
-				<html:H1 text="Jewel Card" className="emphasized-dark"/>
-
-				<j:Label multiline="true">
-					<j:html><![CDATA[<p><strong>Apache Royale Card</strong> is 100% width by default and uses a <strong>VerticalLayout</strong> with some default gap.</p>]]></j:html>
-				</j:Label>
-			</j:VGroup>
-		</j:GridCell>	
+		<c:ExampleHeader title="Jewel Card">
+			<c:description>
+				<![CDATA[<strong>Jewel Card</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>

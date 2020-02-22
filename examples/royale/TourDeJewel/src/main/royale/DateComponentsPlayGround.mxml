@@ -94,16 +94,12 @@ limitations under the License.
 		<j:beads>
 			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
-
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-			<j:VGroup>
-				<html:H1 text="Jewel DateField &amp; DateChooser" className="emphasized-dark"/>
-
-				<j:Label multiline="true">
-					<j:html><![CDATA[<p>Jewel DateField &amp; DateChooser examples.</p>]]></j:html>
-				</j:Label>
-			</j:VGroup>
-		</j:GridCell>
+		
+		<c:ExampleHeader title="Jewel DateField &amp; DateChooser">
+			<c:description>
+				<![CDATA[<strong>Jewel DateField &amp; DateChooser</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>

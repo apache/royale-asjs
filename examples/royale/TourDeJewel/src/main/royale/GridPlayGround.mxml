@@ -39,17 +39,11 @@ limitations under the License.
 			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-			<j:VGroup>
-				<html:H1 text="Jewel Grid" className="emphasized-dark"/>
-
-				<j:Label multiline="true">
-					<j:html><![CDATA[<p>Jewel Grids examples.</p>]]></j:html>
-				</j:Label>
-				<j:CheckBox text="Turn Gap on/off" change="useGap = !useGap;" selected="true"/>
-			</j:VGroup>
-		</j:GridCell>
-		
+		<c:ExampleHeader title="Jewel Grid">
+			<c:description>
+				<![CDATA[<strong>Jewel Grid</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
 
 		<j:Grid gap="{useGap}">
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
