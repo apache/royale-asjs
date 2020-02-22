@@ -5873,8 +5873,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
-    public function scrollToIndex(index:int):Boolean
+     */
+    override public function scrollToIndex(index:int):Boolean
     {
+		/*
        var newVPos:int;
 
         if (index >= verticalScrollPosition + listItems.length - lockedRowCount - offscreenExtraRowsBottom || index < verticalScrollPosition)
@@ -5883,9 +5885,17 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             verticalScrollPosition = newVPos;
             return true;
         }
+		*/
+		COMPILE::JS
+		{
+			var listArea:IUIBase = (view as AdvancedDataGridView).listArea;
+			var element:HTMLElement = listArea.element;
+			var max:Number = Math.max(0, dataProvider.length * rowHeight - element.clientHeight);
+			var yy:Number = Math.min(index * rowHeight, max);
+			element.scrollTop = yy;
+		}
         return false; 
     } 
-     */
      
 
     /**
