@@ -80,11 +80,11 @@
   background: linear-gradient(#3AB549, #2e8e39);
 }
 
-.emphasized-light {
+.emphasized-lightest {
   color: #ccefd0;
 }
 
-.emphasized-lightest {
+.emphasized-light {
   color: #7fd68a;
 }
 
