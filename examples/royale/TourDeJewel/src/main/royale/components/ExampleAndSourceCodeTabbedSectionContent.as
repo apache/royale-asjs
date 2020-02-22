@@ -20,7 +20,6 @@ package components
 {
     import org.apache.royale.collections.ArrayList;
     import org.apache.royale.core.IChild;
-    import org.apache.royale.core.IContainerBaseStrandChildrenHost;
     import org.apache.royale.events.Event;
     import org.apache.royale.html.elements.A;
     import org.apache.royale.html.elements.Code;
@@ -33,7 +32,7 @@ package components
 
     import vos.TabBarButtonVO;
     
-    public class ExampleAndSourceCodeTabbedSectionContent extends ScrollableSectionContent implements IContainerBaseStrandChildrenHost 
+    public class ExampleAndSourceCodeTabbedSectionContent extends ScrollableSectionContent
 	{
         /**
 		 *  constructor.
@@ -47,11 +46,7 @@ package components
 		{
             super();
 
-            exampleTab = new ScrollableSectionContent();
-            exampleTab.name = "exampleTab";
-            contentArea = exampleTab;
-
-            addEventListener("initComplete", initCompleteHandler);
+            addEventListener("beadsAdded", beadsAddedHandler);
 		}
 
         private var service:GitHubService;
@@ -78,18 +73,23 @@ package components
         	_sourceCodeUrl = value;
         }
 
-        private function initCompleteHandler(event:Event):void
+        private function beadsAddedHandler(event:Event):void
         {
             tabBarNavigation = new ArrayList([
 				new TabBarButtonVO("Examples", "exampleTab", MaterialIconType.VIEW_COMPACT),
 				new TabBarButtonVO("Source Code", "sourceCodeTab", MaterialIconType.CODE)		
 			]);
-
             tabbar = new TabBar();
             tabbar.className = "tabBarVerticalIconItemRenderer";
             tabbar.addEventListener(Event.CHANGE, changeHandler);
             tabbar.dataProvider = tabBarNavigation;
-            $addElement(tabbar);
+            strandChildren.addElement(tabbar);
+
+            tabcontent = new TabBarContent();
+
+            exampleTab = new ScrollableSectionContent();
+            exampleTab.name = "exampleTab";
+            tabcontent.addElement(exampleTab);
             
             sourceCodeTab = new ScrollableSectionContent();
             sourceCodeTab.name = "sourceCodeTab";
@@ -105,11 +105,10 @@ package components
             pre.addElement(sourceCodeMXMLText);
             sourceCodeTab.addElement(pre);
 
-            tabcontent = new TabBarContent();
-            tabcontent.addElement(exampleTab);
             tabcontent.addElement(sourceCodeTab);
+            
             tabcontent.selectedContent = "exampleTab";
-            $addElement(tabcontent);
+            strandChildren.addElement(tabcontent);
             
             service = new GitHubService();
             service.addEventListener("dataReady", dataReadyHandler);
@@ -136,80 +135,54 @@ package components
             }
         }
 
-        
-        private var _contentArea:ScrollableSectionContent;
-		/**
-		 * The content area of the formItem.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		public function get contentArea():ScrollableSectionContent
-		{
-			return _contentArea;
-		}
-		public function set contentArea(value:ScrollableSectionContent):void
-		{
-			_contentArea = value;
-		}
-
-
         /**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function addElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			contentArea.addElement(c, dispatchEvent);
-			contentArea.dispatchEvent(new Event("layoutNeeded"));
+			exampleTab.addElement(c, dispatchEvent);
+			exampleTab.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function addElementAt(c:IChild, index:int, dispatchEvent:Boolean = true):void
 		{
-			contentArea.addElementAt(c, index, dispatchEvent);
-			contentArea.dispatchEvent(new Event("layoutNeeded"));
+			exampleTab.addElementAt(c, index, dispatchEvent);
+			exampleTab.dispatchEvent(new Event("layoutNeeded"));
 		}
 		
 		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
+		 * @private 
 		 */
 		override public function getElementIndex(c:IChild):int
 		{
-			return contentArea.getElementIndex(c);
+			return exampleTab.getElementIndex(c);
 		}
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function removeElement(c:IChild, dispatchEvent:Boolean = true):void
 		{
-			contentArea.removeElement(c, dispatchEvent);
+			exampleTab.removeElement(c, dispatchEvent);
 		}
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function get numElements():int
 		{
-			return contentArea.numElements;
+			return exampleTab.numElements;
 		}
 		
 		/**
 		 * @private
-		 * @royaleignorecoercion org.apache.royale.html.beads.PanelView
 		 */
 		override public function getElementAt(index:int):IChild
 		{
-			return contentArea.getElementAt(index);
+			return exampleTab.getElementAt(index);
 		}
     }
 }
