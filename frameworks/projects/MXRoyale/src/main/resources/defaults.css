@@ -271,7 +271,7 @@ List
 {
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
 	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController");
+	IBeadController: ClassReference("mx.controls.listClasses.ListSingleSelectionMouseController");
 	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
 	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
@@ -443,7 +443,7 @@ Tree
 {
 	IBeadLayout: ClassReference("mx.controls.listClasses.ListVerticalLayout");
 	IBeadModel: ClassReference("mx.controls.beads.models.SingleSelectionICollectionViewModel");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.TreeSingleSelectionMouseController");
+	IBeadController: ClassReference("mx.controls.treeClasses.TreeSingleSelectionMouseController");
 	IDataProviderItemRendererMapper: ClassReference("mx.controls.treeClasses.DataItemRendererFactoryForICollectionViewHierarchicalData");
 	IItemRendererInitializer: ClassReference("mx.controls.beads.TreeItemRendererInitializer");
 	IItemRenderer: ClassReference("mx.controls.treeClasses.TreeItemRenderer");
