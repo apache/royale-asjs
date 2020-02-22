@@ -249,8 +249,8 @@ package org.apache.royale.jewel.beads.layouts
 				
 				// adjust the host's usable size by the metrics. If hostSizedToContent, then the
 				// resulting adjusted value may be less than zero.
-				hostWidth -= paddingMetrics.left;// + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
-				hostHeight -= paddingMetrics.top;// + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
+				hostWidth -= 0;//paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
+				hostHeight -= 0;//paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
 				var xpos:Number = 0;// borderMetrics.left + paddingMetrics.left;
 				var ypos:Number = 0;//borderMetrics.top + paddingMetrics.top;

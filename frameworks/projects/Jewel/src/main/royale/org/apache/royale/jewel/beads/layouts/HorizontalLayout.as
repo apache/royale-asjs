@@ -255,8 +255,8 @@ package org.apache.royale.jewel.beads.layouts
 				hostWidth -= 0;//paddingMetrics.left + paddingMetrics.right + borderMetrics.left + borderMetrics.right;
 				hostHeight -= 0;//paddingMetrics.top + paddingMetrics.bottom + borderMetrics.top + borderMetrics.bottom;
 
-				var xpos:Number = borderMetrics.left + paddingMetrics.left;
-				var ypos:Number = borderMetrics.top + paddingMetrics.top;
+				var xpos:Number = 0;//borderMetrics.left + paddingMetrics.left;
+				var ypos:Number = 0;//borderMetrics.top + paddingMetrics.top;
 
 				// First pass determines the data about the child.
 				for(var i:int=0; i < n; i++)
