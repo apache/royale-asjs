@@ -1087,6 +1087,26 @@ a:active {
   color: #0f88d1;
 }
 
+.primary-lightest {
+  color: #fafdff;
+}
+
+.primary-light {
+  color: #9bd5f8;
+}
+
+.primary-normal {
+  color: #3CADF1;
+}
+
+.primary-dark {
+  color: #0d79ba;
+}
+
+.primary-darkest {
+  color: #063b5b;
+}
+
 .jewel.textinput {
   font-weight: 400;
   color: #808080;
@@ -1413,6 +1433,26 @@ a:active {
   color: #f37f59;
 }
 
+.secondary-lightest {
+  color: #fdede8;
+}
+
+.secondary-light {
+  color: #f6a389;
+}
+
+.secondary-normal {
+  color: #EF5A2A;
+}
+
+.secondary-dark {
+  color: #a6320d;
+}
+
+.secondary-darkest {
+  color: #481605;
+}
+
 .jewel.togglebutton.secondary {
   background: linear-gradient(#f16c42, #ed4812);
   border: 1px solid #be390e;
@@ -1509,6 +1549,26 @@ a:active {
 }
 .jewel.snackbar.emphasized .jewel.snackbar-action:hover {
   background: linear-gradient(#8CC63C, #71a02f);
+}
+
+.emphasized-lightest {
+  color: #e9f4da;
+}
+
+.emphasized-light {
+  color: #bbdd8b;
+}
+
+.emphasized-normal {
+  color: #8CC63C;
+}
+
+.emphasized-dark {
+  color: #557923;
+}
+
+.emphasized-darkest {
+  color: #1d2a0c;
 }
 
 .jewel.togglebutton.emphasized {

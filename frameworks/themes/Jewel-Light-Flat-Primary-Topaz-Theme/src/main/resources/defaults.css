@@ -1086,6 +1086,26 @@ a:active {
   color: #be390e;
 }
 
+.primary-lightest {
+  color: #fdede8;
+}
+
+.primary-light {
+  color: #f6a389;
+}
+
+.primary-normal {
+  color: #EF5A2A;
+}
+
+.primary-dark {
+  color: #a6320d;
+}
+
+.primary-darkest {
+  color: #481605;
+}
+
 .jewel.textinput {
   font-weight: 400;
   color: #808080;

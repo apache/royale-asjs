@@ -24,22 +24,77 @@ limitations under the License.
 	xmlns:c="components.*" sourceCodeUrl="HeadingsAndText.mxml">
 	
 	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+		<j:beads>
+			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
+		</j:beads>
+		
+		<c:ExampleHeader title="Jewel Headings &amp; Text">
+			<c:description>
+				<![CDATA[<strong>Jewel Headings &amp; Text</strong> examples.]]>
+			</c:description>
+		</c:ExampleHeader>
+
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-				<html:H3 text="Headings and text"/>
+				<j:CardHeader>
+					<html:H3 text="Headings and text"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<html:H1 text="Heading H1"/>
+					<html:H2 text="Heading H2"/>
+					<html:H3 text="Heading H3"/>
+					<html:H4 text="Heading H4"/>
+					<html:Hr width="100%"/>
+					<html:Span text="Some span text."/>
+					<html:Hr width="100%"/>
 
-				<html:H1 text="Heading H1"/>
-				<html:H2 text="Heading H2"/>
-				<html:H3 text="Heading H3"/>
-				<html:H4 text="Heading H4"/>
+					<j:Label text="Normal text used in a div, texts and fields with single line or multiple lines." multiline="true"/>
+				</j:CardPrimaryContent>
+			</j:Card>
+        </j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<j:CardHeader>
+					<html:H3 text="Primary Text Colors"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Primary Color lightest" className="primary-lightest"/>
+					<j:Label text="Primary Color light" className="primary-light"/>
+					<j:Label text="Primary Color normal" className="primary-normal"/>
+					<j:Label text="Primary Color dark" className="primary-dark"/>
+					<j:Label text="Primary Color darkest" className="primary-darkest"/>
+				</j:CardPrimaryContent>
+			</j:Card>
+        </j:GridCell>
 
-				<html:Hr width="100%"/>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<j:CardHeader>
+					<html:H3 text="Secondary Text Colors"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Secondary Color lightest" className="secondary-lightest"/>
+					<j:Label text="Secondary Color light" className="secondary-light"/>
+					<j:Label text="Secondary Color normal" className="secondary-normal"/>
+					<j:Label text="Secondary Color dark" className="secondary-dark"/>
+					<j:Label text="Secondary Color darkest" className="secondary-darkest"/>
+				</j:CardPrimaryContent>
+			</j:Card>
+        </j:GridCell>
 
-				<html:Span text="Some span text."/>
-				
-				<html:Hr width="100%"/>
-
-				<j:Label text="Normal text used in a div, texts and fields with single line or multiple lines." multiline="true"/>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+				<j:CardHeader>
+					<html:H3 text="Emphasized Text Colors"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Emphasized Color lightest" className="emphasized-lightest"/>
+					<j:Label text="Emphasized Color light" className="emphasized-light"/>
+					<j:Label text="Emphasized Color normal" className="emphasized-normal"/>
+					<j:Label text="Emphasized Color dark" className="emphasized-dark"/>
+					<j:Label text="Emphasized Color darkest" className="emphasized-darkest"/>
+				</j:CardPrimaryContent>
 			</j:Card>
         </j:GridCell>
 	</j:Grid>

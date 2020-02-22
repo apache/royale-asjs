@@ -149,6 +149,7 @@ package mx.controls.beads.layouts
                 COMPILE::JS
                 {
                 firstVisibleIndex = Math.floor(listArea.element.scrollTop / actualRowHeight);
+				var scrollTop:Number = listArea.element.scrollTop;
                 var topSpacerHeight:Number = Math.floor(listArea.element.scrollTop / actualRowHeight)
                     * actualRowHeight;
                 }
@@ -197,6 +198,8 @@ package mx.controls.beads.layouts
                     {
                         columnList.element.style.position = "absolute";
                         columnList.element.style.top = (topSpacerHeight + 1).toString() + 'px';
+						// chrome has bug where moving things resets scrollTop
+						listArea.element.scrollTop = scrollTop;
                         columnList.dispatchEvent(new Event("layoutNeeded"));
                     }
                 }

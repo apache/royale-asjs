@@ -550,10 +550,18 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      */
     override public function set dataProvider(value:Object):void
     {
+        if (collection)
+            collection.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+
+        collection = value as ICollectionView;
+        if (collection)
+		{
+        		collection.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChangeHandler);
+	        iterator = collection.createCursor();
+	        collectionIterator = collection.createCursor(); //IViewCursor(collection);
+		}
         super.dataProvider = value;
-        collection = super.dataProvider as ICollectionView;
-        iterator = collection.createCursor();
-        collectionIterator = collection.createCursor(); //IViewCursor(collection);
+
     }
 
     override public function addedToParent():void
@@ -5865,8 +5873,10 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion Flash 9
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
-    public function scrollToIndex(index:int):Boolean
+     */
+    override public function scrollToIndex(index:int):Boolean
     {
+		/*
        var newVPos:int;
 
         if (index >= verticalScrollPosition + listItems.length - lockedRowCount - offscreenExtraRowsBottom || index < verticalScrollPosition)
@@ -5875,9 +5885,17 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
             verticalScrollPosition = newVPos;
             return true;
         }
+		*/
+		COMPILE::JS
+		{
+			var listArea:IUIBase = (view as AdvancedDataGridView).listArea;
+			var element:HTMLElement = listArea.element;
+			var max:Number = Math.max(0, dataProvider.length * rowHeight - element.clientHeight);
+			var yy:Number = Math.min(index * rowHeight, max);
+			element.scrollTop = yy;
+		}
         return false; 
     } 
-     */
      
 
     /**
@@ -8252,7 +8270,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         var len:int;
         var i:int;
         var n:int;
-        //var data:ListBaseSelectionData;
+        var data:ListBaseSelectionData;
         var p:String;
         var selectedUID:String;
 
@@ -8260,13 +8278,13 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         {
             var ce:CollectionEvent = CollectionEvent(event);
 
-            /*
             // trace("ListBase collectionEvent", ce.kind);
             if (ce.kind == CollectionEventKind.ADD)
             {
-                prepareDataEffect(ce);                        
+                //prepareDataEffect(ce);                        
                 // trace("ListBase collectionEvent ADD", ce.location, verticalScrollPosition);
                 // special case when we have less than a screen full of stuff
+				/*
                 if (ce.location == 0 && verticalScrollPosition == 0)
                 {
                     try
@@ -8287,7 +8305,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 else if (listType == "vertical" && verticalScrollPosition >= ce.location)
                 {
                     super.verticalScrollPosition = super.verticalScrollPosition + ce.items.length;
-                }
+                }*/
 
                 len = ce.items.length;
                 for (p in selectedData)
@@ -8296,14 +8314,14 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                     if (data.index > ce.location)
                         data.index += len;
                 }
-                
+                /* model will handle this
                 if (_selectedIndex >= ce.location)
                 {
                     _selectedIndex += len;
                     dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-                }
+                }*/
             }
-
+			/*
             else if (ce.kind == CollectionEventKind.REPLACE)
             {
                 // trace("ListBase collectionEvent REPLACE");
@@ -8328,27 +8346,29 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 }
 
                 prepareDataEffect(ce);                        
-            }
+            }*/
 
             else if (ce.kind == CollectionEventKind.REMOVE)
             {
-                prepareDataEffect(ce);                        
+                //prepareDataEffect(ce);                        
                 var requiresValueCommit:Boolean = false;
     
                 // trace("ListBase collectionEvent REMOVE", ce.location, verticalScrollPosition);
                 // make sure we've generated rows for the actual data
                 // at startup time we might just have blank rows
+				/*
                 if (listItems.length && listItems[lockedRowCount].length)
                 {
                     // special case when we have less than a screen full of stuff
                     var firstUID:String = rowMap[listItems[lockedRowCount][0].name].uid;
                     selectedUID = selectedItem ? itemToUID(selectedItem) : null;
-                    
+					*/
                     n = ce.items.length;
                     for (i = 0; i < n; i++)
                     {
                         var uid:String = itemToUID(ce.items[i]);
                         
+						/*
                         if (uid == firstUID && verticalScrollPosition == 0)
                         {
                             try
@@ -8364,21 +8384,22 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                                 iteratorValid = false;
                                 // do nothing, we'll repaint when the data arrives
                             }
-                        }
+                        }*/
                         
                         if (selectedData[uid])
                             removeSelectionData(uid);
                         
+						/* model should take care of this
                         if (selectedUID == uid)
                         {
                             _selectedItem = null;
                             _selectedIndex = -1;
                             requiresValueCommit = true;
-                        }
+                        }*/
 
-                        removeIndicators(uid);
+                        //removeIndicators(uid);
                     }
-            
+					/*
                     // Decrement verticalScrollPosition by the number of items that have
                     // been removed from the top.
                     if (listType == "vertical" && verticalScrollPosition >= ce.location)
@@ -8412,13 +8433,13 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                             // do nothing, we'll repaint when the data arrives
                          }
                     }
-
+					*/
                     var emitEvent:Boolean = adjustAfterRemove(ce.items, ce.location, requiresValueCommit);
                     if (emitEvent)
                         dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
-                }
+                /*}*/
             }
-
+			/*
             else if (ce.kind == CollectionEventKind.MOVE)
             {
                 if (ce.oldLocation < ce.location)
@@ -8477,9 +8498,9 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 else if ((ce.location <= verticalScrollPosition) && 
                          (ce.oldLocation > verticalScrollPosition))
                     seekPreviousSafely(iterator,verticalScrollPosition);
-            }
+            }*/
 
-            else*/ if (ce.kind == CollectionEventKind.REFRESH)
+            else if (ce.kind == CollectionEventKind.REFRESH)
             {
                 /*
                 if (anchorBookmark)
@@ -8700,7 +8721,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
     /**
      *  @private
      */
-    /* protected function adjustAfterRemove(items:Array, location:int, emitEvent:Boolean):Boolean
+    protected function adjustAfterRemove(items:Array, location:int, emitEvent:Boolean):Boolean
     {
         var data:ListBaseSelectionData;
         var requiresValueCommit:Boolean = emitEvent;
@@ -8714,31 +8735,33 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
                 data.index -= length;
         }
 
+		/* model should handle this on it sown
         if (_selectedIndex > location)
         {
             _selectedIndex -= length;
             requiresValueCommit = true;
-        }
+        }*/
         
         // selected the last thing if the selected item
         // got removed.
-        if (i > 0 && _selectedIndex == -1)
+        if (i > 0 && /*_*/selectedIndex == -1)
         {
-            _selectedIndex = data.index;
-            _selectedItem = data.data;
+            /*_*/selectedIndex = data.index;
+            /*_selectedItem = data.data;*/
             requiresValueCommit = true;
         }
 
+		/* model should handle this on it sown
         if (i == 0)
         {
             _selectedIndex = -1;
             bSelectionChanged = true;
             bSelectedIndexChanged = true;
             invalidateDisplayList();
-        }
+        }*/
         
         return requiresValueCommit;
-    } */
+    }
 
     /**
      *  Handles <code>MouseEvent.MOUSE_OVER</code> events from any mouse

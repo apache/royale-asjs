@@ -799,10 +799,11 @@ use namespace mx_internal;
             return _strandChildren;
         }
         
-        public function scrollToIndex(index:int):void
+        public function scrollToIndex(index:int):Boolean
         {
 
             trace("ListBase:scrollToIndex not implemented");
+			return false;
         }
         
         /**

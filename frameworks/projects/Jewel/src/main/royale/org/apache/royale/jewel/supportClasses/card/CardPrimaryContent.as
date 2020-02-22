@@ -63,6 +63,7 @@ package org.apache.royale.jewel.supportClasses.card
 			if(parent is Card)
 			{
 				var parentCard:Card = parent as Card;
+				parentCard.gap = 0;
 				parentCard.removeClass("simple");
 			}
 		}

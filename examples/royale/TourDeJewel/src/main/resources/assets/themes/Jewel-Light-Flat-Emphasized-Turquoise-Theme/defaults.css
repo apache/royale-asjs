@@ -81,6 +81,26 @@
   border: none;
 }
 
+.emphasized-lightest {
+  color: #b1ece8;
+}
+
+.emphasized-light {
+  color: #5fd8cf;
+}
+
+.emphasized-normal {
+  color: #29A89F;
+}
+
+.emphasized-dark {
+  color: #155651;
+}
+
+.emphasized-darkest {
+  color: #010404;
+}
+
 .jewel.togglebutton.emphasized {
   background: #29A89F;
   border: 1px solid #218780;
