@@ -23,14 +23,18 @@ limitations under the License.
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" sourceCodeUrl="CardPlayGround.mxml">
 	
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+	<c:beads>
+		<js:ContainerDataBinding/>
+	</c:beads>
+
+	<j:Grid gap="true">
 		<j:beads>
 			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel Card">
 			<c:description>
-				<![CDATA[<strong>Jewel Card</strong> examples.]]>
+				<![CDATA[<strong>Jewel Card</strong> examples. Unlike other examples, in this one itemsVerticalAlign is not set to "itemsSameHeight" to show how Cards height works depending on content.]]>
 			</c:description>
 		</c:ExampleHeader>
 		
@@ -39,7 +43,7 @@ limitations under the License.
 				<html:H3 text="Jewel Simple Card"/>
 
 				<j:Label multiline="true">
-					<j:html><![CDATA[<p><strong>Apache Royale Card</strong> is 100% width by default and uses a <strong>VerticalLayout</strong> with some default gap.</p>]]></j:html>
+					<j:html><![CDATA[<p><strong>Apache Royale Card</strong> simplest version uses just a Card component that layout content elements vertically with some default gap between them. It applies some default padding. Card width is 100%.</p>]]></j:html>
 				</j:Label>
 
 				<j:Button text="Action" emphasis="primary"/>
@@ -48,12 +52,16 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="items expand test"/>
-
+				<html:H3 text="Jewel Simple Card"/>
+				
+				<j:Label multiline="true">
+					<j:html><![CDATA[<p>Below this text the element is an <strong>HGroup</strong> with <strong>itemsExpand</strong> that makes internal content expand all available space.</p>]]></j:html>
+				</j:Label>
+				
 				<j:HGroup itemsExpand="true" gap="3">
 					<j:Button text="Hello"/>
 					<j:Button text="Apache"/>
-					<j:Button text="Royale!!!!"/>
+					<j:Button text="Royale!"/>
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
@@ -63,11 +71,12 @@ limitations under the License.
 				<j:CardPrimaryContent>
 					<html:H3 text="Jewel Card"/>
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>A Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong></p>]]></j:html>
+						<j:html><![CDATA[<p>This Card use <strong>CardPrimaryContent</strong> to add the main content vertically with some gap and <strong>CardActions</strong> to add some action buttons horizontally with some gap.</p>]]></j:html>
 					</j:Label>
+					<j:CheckBox text="A CheckBox" selected="true"/>
 				</j:CardPrimaryContent>
 				<j:CardActions>
-					<j:Button text="Do it" emphasis="primary"/>
+					<j:Button text="Submit" emphasis="primary"/>
 					<j:Button text="Cancel"/>
 				</j:CardActions>
 			</j:Card>
@@ -77,11 +86,11 @@ limitations under the License.
 			<j:Card>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>A Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong> (this one with itemsHorizontalAlign property set to "itemsRight"</p>]]></j:html>
+						<j:html><![CDATA[<p>This Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong> align action content to the right with <strong>itemsHorizontalAlign</strong> property set to <strong>"itemsRight"</strong>.</p>]]></j:html>
 					</j:Label>
 				</j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign = "itemsRight">
-					<j:Button text="Do it" emphasis="primary"/>
+					<j:Button text="Ok" emphasis="primary"/>
 					<j:Button text="Cancel"/>
 				</j:CardActions>
 			</j:Card>
@@ -94,12 +103,20 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>A Card with <strong>CardPrimaryContent</strong> and <strong>CardActions</strong></p>]]></j:html>
+						<j:html><![CDATA[<p>This Card adds a <strong>CardHeader</strong> as the first element, then <strong>CardPrimaryContent</strong> and <strong>CardActions</strong> card parts. Actions use IconButton to add icons.</p>]]></j:html>
 					</j:Label>
 				</j:CardPrimaryContent>
-				<j:CardActions>
-					<j:Button text="Do it" emphasis="primary"/>
-					<j:Button text="Cancel"/>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:IconButton text="Reply" emphasis="primary">
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.REPLY}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton text="Cancel">
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.CANCEL}" material="true"/>
+						</j:icon>
+					</j:IconButton>
 				</j:CardActions>
 			</j:Card>
 		</j:GridCell>	
@@ -107,7 +124,16 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<j:Label multiline="true" text="CardTitle"/>
+					<j:BarSection>
+						<html:H3 text="Jewel Card"/>
+					</j:BarSection>
+					<j:BarSection itemsHorizontalAlign="itemsRight">
+						<j:IconButton>
+							<j:icon>
+								<js:FontIcon text="{MaterialIconType.MORE_VERT}" material="true"/>
+							</j:icon>
+						</j:IconButton>
+					</j:BarSection>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">

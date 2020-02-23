@@ -20,6 +20,9 @@
 // Jewel ToggleButton
 
 // ToggleButton variables
+$togglebutton-margin: 0 !default
+$togglebutton-padding: 0.679em 1.12em !default
+$icon-togglebutton-padding: 0.429em 0.87em !default
 $togglebutton-border-radius: $border-radius
 
 =togglebutton-theme($togglebutton-color, $text-color)
@@ -51,6 +54,9 @@ $togglebutton-border-radius: $border-radius
 		+jewel-bg-border("selected", $togglebutton-color)
 
 .jewel.togglebutton
+	margin: $togglebutton-margin
+	padding: $togglebutton-padding
+
 	+togglebutton-theme($default-color, $default-font-color)
 
 
@@ -71,15 +77,17 @@ $togglebutton-border-radius: $border-radius
 			weight: $font-weight-normal
 	
 	&.icon
+		padding: $icon-button-padding
+
 		i
 			margin-left: 0px
 			margin-right: 0px
 
-	&.iconLSpace
+	&.left-space
 		i
 			margin-left: 0px
 			margin-right: 8px
-	&.iconRSpace
+	&.right-space
 		i
 			margin-left: 8px
 			margin-right: 0px

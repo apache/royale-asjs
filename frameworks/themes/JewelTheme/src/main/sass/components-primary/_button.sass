@@ -20,6 +20,9 @@
 // Jewel Button
 
 // Button variables
+$button-margin: 0 !default
+$button-padding: 0.679em 1.12em !default
+$icon-button-padding: 0.429em 0.87em !default
 $button-border-radius: $border-radius
 
 =button-theme($button-color, $text-color)
@@ -48,6 +51,9 @@ $button-border-radius: $border-radius
 		text-shadow: unset
 
 .jewel.button
+	margin: $button-margin
+	padding: $button-padding
+
 	+button-theme($default-color, $default-font-color)
 
 	// -- BUTTON LABEL
@@ -67,15 +73,17 @@ $button-border-radius: $border-radius
 			weight: $font-weight-normal
 	
 	&.icon
+		padding: $icon-button-padding
+
 		i
 			margin-left: 0px
 			margin-right: 0px
 
-	&.iconLSpace
+	&.left-space
 		i
 			margin-left: 0px
 			margin-right: 8px
-	&.iconRSpace
+	&.right-space
 		i
 			margin-left: 8px
 			margin-right: 0px

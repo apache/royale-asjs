@@ -225,8 +225,6 @@ j|Alert {
 }
 
 .jewel.button {
-  margin: 0;
-  padding: 0.68em 1.12em;
   cursor: pointer;
   user-select: none;
   display: inline-flex;
@@ -3972,8 +3970,6 @@ j|TitleBar {
 }
 
 .jewel.togglebutton {
-  margin: 0;
-  padding: 0.68em 1.12em;
   cursor: pointer;
   user-select: none;
   display: inline-flex;
@@ -4113,7 +4109,6 @@ j|BarTitle {
   display: flex;
   position: relative;
   width: 100%;
-  height: 64px;
 }
 
 .jewel.barsection {

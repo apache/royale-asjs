@@ -32,34 +32,6 @@ input, select, textarea, button {
   font-family: inherit;
 }
 
-h1 {
-  font-size: 2.5em;
-}
-
-h2 {
-  font-size: 2em;
-}
-
-h3 {
-  font-size: 1.5em;
-}
-
-h4 {
-  font-size: 1.25em;
-}
-
-h5 {
-  font-size: 1em;
-}
-
-span {
-  font-size: 1em;
-}
-
-div {
-  font-size: 14px;
-}
-
 hr {
   background-color: #d9d9d9;
 }
@@ -160,6 +132,8 @@ hr {
 }
 
 .jewel.button {
+  margin: 0;
+  padding: 0.679em 1.12em;
   background: linear-gradient(#e6e6e6, #cccccc);
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
@@ -192,15 +166,18 @@ hr {
 .jewel.button[disabled] {
   font-weight: 400;
 }
+.jewel.button.icon {
+  padding: 0.429em 0.87em;
+}
 .jewel.button.icon i {
   margin-left: 0px;
   margin-right: 0px;
 }
-.jewel.button.iconLSpace i {
+.jewel.button.left-space i {
   margin-left: 0px;
   margin-right: 8px;
 }
-.jewel.button.iconRSpace i {
+.jewel.button.right-space i {
   margin-left: 8px;
   margin-right: 0px;
 }
@@ -1107,6 +1084,39 @@ a:active {
   color: #063b5b;
 }
 
+h1 {
+  font-size: 2em;
+  margin: 0.8rem 0rem;
+}
+
+h2 {
+  font-size: 2em;
+  margin: 0.58rem 0rem;
+}
+
+h3 {
+  font-size: 1.5em;
+  margin: 0.408rem 0rem;
+}
+
+h4 {
+  font-size: 1.25em;
+  margin: 0.35rem 0rem;
+}
+
+h5 {
+  font-size: 1em;
+  margin: 0.2rem 0rem;
+}
+
+span {
+  font-size: 1em;
+}
+
+div {
+  font-size: 14px;
+}
+
 .jewel.textinput {
   font-weight: 400;
   color: #808080;
@@ -1168,6 +1178,8 @@ a:active {
 }
 
 .jewel.togglebutton {
+  margin: 0;
+  padding: 0.679em 1.12em;
   background: linear-gradient(#e6e6e6, #cccccc);
   border: 1px solid #b3b3b3;
   box-shadow: inset 0 1px 0 white;
@@ -1205,15 +1217,18 @@ a:active {
 .jewel.togglebutton[disabled] {
   font-weight: 400;
 }
+.jewel.togglebutton.icon {
+  padding: 0.429em 0.87em;
+}
 .jewel.togglebutton.icon i {
   margin-left: 0px;
   margin-right: 0px;
 }
-.jewel.togglebutton.iconLSpace i {
+.jewel.togglebutton.left-space i {
   margin-left: 0px;
   margin-right: 8px;
 }
-.jewel.togglebutton.iconRSpace i {
+.jewel.togglebutton.right-space i {
   margin-left: 8px;
   margin-right: 0px;
 }
