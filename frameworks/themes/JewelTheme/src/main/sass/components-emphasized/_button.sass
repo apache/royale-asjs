@@ -22,33 +22,39 @@
 // Button variables
 $button-border-radius: 3px
 
-=button-theme($button-color, $text-color)
+=button-theme($button-color, $text-color, $outline: false)
 	
-	+jewel-bg-border("normal", $button-color, $button-border-radius)
+	+jewel-bg-border("normal", $button-color, $outline, $button-border-radius)
 	
-	color: $text-color
+	@if $outline
+		color: darken($button-color, 15%)
+	@else
+		color: $text-color
 	
-	@if not $flat and $text-color == $font-theme-color
+	@if not $outline and not $flat and $text-color == $font-theme-color
 		text-shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7) //0 .063em
 	@else
 		text-shadow: none
 	
 	&:hover, &:hover:focus
-		+jewel-bg-border("hover", $button-color)
+		+jewel-bg-border("hover", $button-color, $outline)
 
 	&:active, &:active:focus
-		+jewel-bg-border("active", $button-color)
+		+jewel-bg-border("active", $button-color, $outline)
 
 	&:focus
-		+jewel-bg-border("focus", $button-color)
+		+jewel-bg-border("focus", $button-color, $outline)
 		
 	&[disabled]
-		+jewel-bg-border("disabled", $button-color)
+		+jewel-bg-border("disabled", $button-color, $outline)
 		color: $disabled-font-color
 		text-shadow: unset
 
 .jewel.button.emphasized
-	+button-theme($emphasized-color, $font-theme-color)
+	+button-theme($emphasized-color, $font-theme-color, false)
+
+.jewel.button.emphasized.outlined
+	+button-theme($emphasized-color, $font-theme-color, true)
 
 
 //SVGs

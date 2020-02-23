@@ -17,50 +17,72 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-=jewel-bg-border($state, $bg-color, $bg-border-radius: 0px)
+=jewel-bg-border($state, $bg-color, $outline: false, $bg-border-radius: 0px)
 	@if ($state == "normal")
-		@if $flat
-			background: $bg-color
-			border: 1px solid darken($bg-color, 8%)
+		@if $outline
+			background: rgba($bg-color, 0.05)
+			border: 1px solid darken($bg-color, 10%)
 			box-shadow: none
 		@else
-			background: linear-gradient(lighten($bg-color, 5%), darken($bg-color, 5%))
-			border: 1px solid darken($bg-color, 15%)
-			box-shadow: inset 0 1px 0 lighten($bg-color, 20%)
+			@if $flat
+				background: $bg-color
+				border: 1px solid darken($bg-color, 8%)
+				box-shadow: none
+			@else
+				background: linear-gradient(lighten($bg-color, 5%), darken($bg-color, 5%))
+				border: 1px solid darken($bg-color, 15%)
+				box-shadow: inset 0 1px 0 lighten($bg-color, 20%)
 		border-radius: $bg-border-radius
 	
 	@else if ($state == "hover")
-		@if $flat
-			background: darken($bg-color, 5%)
-			border: 1px solid darken($bg-color, 8%)
+		@if $outline
+			background: rgba($bg-color, .15)
+			border: 1px solid darken($bg-color, 15%)
 		@else
-			background: linear-gradient($bg-color, darken($bg-color, 10%))
-			border: 1px solid darken($bg-color, 20%)
+			@if $flat
+				background: darken($bg-color, 5%)
+				border: 1px solid darken($bg-color, 8%)
+			@else
+				background: linear-gradient($bg-color, darken($bg-color, 10%))
+				border: 1px solid darken($bg-color, 20%)
 	
 	@else if ($state == "active") or ($state == "selected")
-		@if $flat
-			background: darken($bg-color, 15%)
-			border: 1px solid darken($bg-color, 8%)
+		@if $outline
+			background: rgba($bg-color, .25)
+			border: 1px solid darken($bg-color, 18%)
 			box-shadow: none
 		@else
-			background: linear-gradient(darken($bg-color, 10%), darken($bg-color, 20%))
-			border: 1px solid darken($bg-color, 30%) 
-			box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
+			@if $flat
+				background: darken($bg-color, 15%)
+				border: 1px solid darken($bg-color, 8%)
+				box-shadow: none
+			@else
+				background: linear-gradient(darken($bg-color, 10%), darken($bg-color, 20%))
+				border: 1px solid darken($bg-color, 30%) 
+				box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
 
 	@else if ($state == "focus")
-		@if $flat
-			background: lighten($bg-color, 5%)
-			border: 1px solid darken($bg-color, 8%)
+		@if $outline
+			border: 1px solid darken($bg-color, 20%)
 			box-shadow: none
 		@else
-			border: 1px solid darken($bg-color, 15%)
-			box-shadow: inset 0px 0px 0px 1px rgba(lighten($bg-color, 50%), .5), inset 0 1px 0 rgba(lighten($bg-color, 55%), .6)
+			@if $flat
+				background: lighten($bg-color, 5%)
+				border: 1px solid darken($bg-color, 8%)
+				box-shadow: none
+			@else
+				border: 1px solid darken($bg-color, 15%)
+				box-shadow: inset 0px 0px 0px 1px rgba(lighten($bg-color, 50%), .5), inset 0 1px 0 rgba(lighten($bg-color, 55%), .6)
 	
 	@else if ($state == "disabled")
-		@if $flat
+		@if $outline
 			background: $disabled-color !important
 			border: 1px solid $disabled-border-color !important
 		@else
-			background: $disabled-color !important
-			border: 1px solid $disabled-border-color !important
+			@if $flat
+				background: $disabled-color !important
+				border: 1px solid $disabled-border-color !important
+			@else
+				background: $disabled-color !important
+				border: 1px solid $disabled-border-color !important
 		box-shadow: none !important
