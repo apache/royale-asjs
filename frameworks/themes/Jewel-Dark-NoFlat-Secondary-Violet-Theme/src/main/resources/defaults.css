@@ -50,6 +50,35 @@
   text-shadow: unset;
 }
 
+.jewel.button.secondary.outlined {
+  background: rgba(102, 44, 144, 0.05);
+  border: 1px solid #4a2069;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #3c1a55;
+  text-shadow: none;
+}
+.jewel.button.secondary.outlined:hover, .jewel.button.secondary.outlined:hover:focus {
+  background: rgba(102, 44, 144, 0.15);
+  border: 1px solid #3c1a55;
+}
+.jewel.button.secondary.outlined:active, .jewel.button.secondary.outlined:active:focus {
+  background: rgba(102, 44, 144, 0.25);
+  border: 1px solid #34174a;
+  box-shadow: none;
+}
+.jewel.button.secondary.outlined:focus {
+  border: 1px solid #2f1442;
+  box-shadow: none;
+}
+.jewel.button.secondary.outlined[disabled] {
+  background: #404040 !important;
+  border: 1px solid #0d0d0d !important;
+  box-shadow: none !important;
+  color: #737373;
+  text-shadow: unset;
+}
+
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.hovered {
   background: #873abf;
 }
@@ -144,6 +173,40 @@ a:active {
   background: linear-gradient(#4a2069, #2f1442);
   border: 1px solid #13081b;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+}
+
+.jewel.togglebutton.secondary.outlined {
+  background: rgba(102, 44, 144, 0.05);
+  border: 1px solid #4a2069;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #3c1a55;
+  text-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined:hover, .jewel.togglebutton.secondary.outlined:hover:focus {
+  background: rgba(102, 44, 144, 0.15);
+  border: 1px solid #3c1a55;
+}
+.jewel.togglebutton.secondary.outlined:active, .jewel.togglebutton.secondary.outlined:active:focus {
+  background: rgba(102, 44, 144, 0.25);
+  border: 1px solid #34174a;
+  box-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined:focus {
+  border: 1px solid #2f1442;
+  box-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined[disabled] {
+  background: #404040 !important;
+  border: 1px solid #0d0d0d !important;
+  box-shadow: none !important;
+  color: #737373;
+  text-shadow: unset;
+}
+.jewel.togglebutton.secondary.outlined.selected {
+  background: rgba(102, 44, 144, 0.25);
+  border: 1px solid #34174a;
+  box-shadow: none;
 }
 
 /*# sourceMappingURL=defaults.css.map */

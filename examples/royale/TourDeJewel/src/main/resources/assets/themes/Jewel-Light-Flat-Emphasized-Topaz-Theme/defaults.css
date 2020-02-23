@@ -51,6 +51,35 @@
   text-shadow: unset;
 }
 
+.jewel.button.emphasized.outlined {
+  background: rgba(239, 90, 42, 0.05);
+  border: 1px solid #d64010;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #be390e;
+  text-shadow: none;
+}
+.jewel.button.emphasized.outlined:hover, .jewel.button.emphasized.outlined:hover:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid #be390e;
+}
+.jewel.button.emphasized.outlined:active, .jewel.button.emphasized.outlined:active:focus {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid #b0350d;
+  box-shadow: none;
+}
+.jewel.button.emphasized.outlined:focus {
+  border: 1px solid #a6320d;
+  box-shadow: none;
+}
+.jewel.button.emphasized.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.emphasized.hovered {
   background: #f38663;
 }
@@ -133,6 +162,40 @@
 .jewel.togglebutton.emphasized.selected {
   background: #be390e;
   border: 1px solid #df4311;
+  box-shadow: none;
+}
+
+.jewel.togglebutton.emphasized.outlined {
+  background: rgba(239, 90, 42, 0.05);
+  border: 1px solid #d64010;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #be390e;
+  text-shadow: none;
+}
+.jewel.togglebutton.emphasized.outlined:hover, .jewel.togglebutton.emphasized.outlined:hover:focus {
+  background: rgba(239, 90, 42, 0.15);
+  border: 1px solid #be390e;
+}
+.jewel.togglebutton.emphasized.outlined:active, .jewel.togglebutton.emphasized.outlined:active:focus {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid #b0350d;
+  box-shadow: none;
+}
+.jewel.togglebutton.emphasized.outlined:focus {
+  border: 1px solid #a6320d;
+  box-shadow: none;
+}
+.jewel.togglebutton.emphasized.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.emphasized.outlined.selected {
+  background: rgba(239, 90, 42, 0.25);
+  border: 1px solid #b0350d;
   box-shadow: none;
 }
 

@@ -51,6 +51,35 @@
   text-shadow: unset;
 }
 
+.jewel.button.secondary.outlined {
+  background: rgba(236, 28, 36, 0.05);
+  border: 1px solid #c51017;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #ad0e15;
+  text-shadow: none;
+}
+.jewel.button.secondary.outlined:hover, .jewel.button.secondary.outlined:hover:focus {
+  background: rgba(236, 28, 36, 0.15);
+  border: 1px solid #ad0e15;
+}
+.jewel.button.secondary.outlined:active, .jewel.button.secondary.outlined:active:focus {
+  background: rgba(236, 28, 36, 0.25);
+  border: 1px solid #9f0d13;
+  box-shadow: none;
+}
+.jewel.button.secondary.outlined:focus {
+  border: 1px solid #950d12;
+  box-shadow: none;
+}
+.jewel.button.secondary.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.hovered {
   background: #f1545a;
 }
@@ -145,6 +174,40 @@ a:active {
 .jewel.togglebutton.secondary.selected {
   background: #ad0e15;
   border: 1px solid #ce1118;
+  box-shadow: none;
+}
+
+.jewel.togglebutton.secondary.outlined {
+  background: rgba(236, 28, 36, 0.05);
+  border: 1px solid #c51017;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #ad0e15;
+  text-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined:hover, .jewel.togglebutton.secondary.outlined:hover:focus {
+  background: rgba(236, 28, 36, 0.15);
+  border: 1px solid #ad0e15;
+}
+.jewel.togglebutton.secondary.outlined:active, .jewel.togglebutton.secondary.outlined:active:focus {
+  background: rgba(236, 28, 36, 0.25);
+  border: 1px solid #9f0d13;
+  box-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined:focus {
+  border: 1px solid #950d12;
+  box-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.secondary.outlined.selected {
+  background: rgba(236, 28, 36, 0.25);
+  border: 1px solid #9f0d13;
   box-shadow: none;
 }
 

@@ -51,6 +51,35 @@
   text-shadow: unset;
 }
 
+.jewel.button.secondary.outlined {
+  background: rgba(41, 168, 159, 0.05);
+  border: 1px solid #1f7f78;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #1a6b65;
+  text-shadow: none;
+}
+.jewel.button.secondary.outlined:hover, .jewel.button.secondary.outlined:hover:focus {
+  background: rgba(41, 168, 159, 0.15);
+  border: 1px solid #1a6b65;
+}
+.jewel.button.secondary.outlined:active, .jewel.button.secondary.outlined:active:focus {
+  background: rgba(41, 168, 159, 0.25);
+  border: 1px solid #175e59;
+  box-shadow: none;
+}
+.jewel.button.secondary.outlined:focus {
+  border: 1px solid #155651;
+  box-shadow: none;
+}
+.jewel.button.secondary.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.hovered {
   background: #3ed0c6;
 }
@@ -145,6 +174,40 @@ a:active {
 .jewel.togglebutton.secondary.selected {
   background: #1a6b65;
   border: 1px solid #218780;
+  box-shadow: none;
+}
+
+.jewel.togglebutton.secondary.outlined {
+  background: rgba(41, 168, 159, 0.05);
+  border: 1px solid #1f7f78;
+  box-shadow: none;
+  border-radius: 3px;
+  color: #1a6b65;
+  text-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined:hover, .jewel.togglebutton.secondary.outlined:hover:focus {
+  background: rgba(41, 168, 159, 0.15);
+  border: 1px solid #1a6b65;
+}
+.jewel.togglebutton.secondary.outlined:active, .jewel.togglebutton.secondary.outlined:active:focus {
+  background: rgba(41, 168, 159, 0.25);
+  border: 1px solid #175e59;
+  box-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined:focus {
+  border: 1px solid #155651;
+  box-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.secondary.outlined.selected {
+  background: rgba(41, 168, 159, 0.25);
+  border: 1px solid #175e59;
   box-shadow: none;
 }
 
