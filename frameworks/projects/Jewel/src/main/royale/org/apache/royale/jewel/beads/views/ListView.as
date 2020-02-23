@@ -27,6 +27,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -102,60 +103,58 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function itemsCreatedHandler(event:Event):void
 		{
-            super.itemsCreatedHandler(event);
+			super.itemsCreatedHandler(event);
 			if(listModel.selectedIndex != -1)
 				selectionChangeHandler(null);
 		}
 
 		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 */
-        protected function selectionChangeHandler(event:Event):void
-        {
-            var selectionBead:ISelectableItemRenderer;
-            var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
-            if (ir) 
-            {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.selected = false;
-            }
-            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IItemRenderer;
-            if (ir) {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.selected = true;
-            }
-            
-            lastSelectedIndex = listModel.selectedIndex;
-        }
+		protected function selectionChangeHandler(event:Event):void
+		{
+			var selectionBead:ISelectableItemRenderer;
+			var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
+			if (ir) 
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = false;
+			}
+			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IItemRenderer;
+			if (ir) {
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = true;
+			}
+			
+			lastSelectedIndex = listModel.selectedIndex;
+		}
 
 		protected var lastRollOverIndex:int = -1;
 
 		/**
-		 * @private
-		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.IItemRenderer
 		 * @royaleignorecoercion org.apache.royale.core.IRollOverModel
 		 */
-        protected function rollOverIndexChangeHandler(event:Event):void
-        {
-            var selectionBead:ISelectableItemRenderer;
-            var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
-            if (ir) 
-            {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.hovered = false;
-            }
-            ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as ISelectableItemRenderer;
-            if (ir) {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.hovered = true;
-            }
-            lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
-        }
+		protected function rollOverIndexChangeHandler(event:Event):void
+		{
+			var selectionBead:ISelectableItemRenderer;
+			var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IItemRenderer;
+			if (ir) 
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.hovered = false;
+			}
+			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as IItemRenderer;
+			if (ir) {
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.hovered = true;
+			}
+			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
+		}
 	}
 
 	COMPILE::SWF
@@ -212,47 +211,47 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-        protected function selectionChangeHandler(event:Event):void
-        {
-            var selectionBead:ISelectableItemRenderer;
-            var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
-            if (ir) 
-            {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.selected = false;
-            }
-            ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IItemRenderer;
-            if (ir) {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.selected = true;
-            }
-            lastSelectedIndex = listModel.selectedIndex;
-        }
+		protected function selectionChangeHandler(event:Event):void
+		{
+			var selectionBead:ISelectableItemRenderer;
+			var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IItemRenderer;
+			if (ir) 
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = false;
+			}
+			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IItemRenderer;
+			if (ir) {
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = true;
+			}
+			lastSelectedIndex = listModel.selectedIndex;
+		}
 
 		protected var lastRollOverIndex:int = -1;
 
 		/**
 		 * @private
 		 */
-        protected function rollOverIndexChangeHandler(event:Event):void
-        {
-            var selectionBead:ISelectableItemRenderer;
-            var ir:ISelectableItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as ISelectableItemRenderer;
-            if (ir) 
-            {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.hovered = false;
-            }
-            ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as ISelectableItemRenderer;
-            if (ir) {
-                selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.hovered = true;
-            }
-            lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
-        }
+		protected function rollOverIndexChangeHandler(event:Event):void
+		{
+			var selectionBead:ISelectableItemRenderer;
+			var ir:IItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IItemRenderer;
+			if (ir) 
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.hovered = false;
+			}
+			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as IItemRenderer;
+			if (ir) {
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.hovered = true;
+			}
+			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
+		}
 	}
 }

@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -18,32 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.BeadViewBase;
-	import org.apache.royale.core.ContainerBase;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.Strand;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.events.ItemRendererEvent;
-	import org.apache.royale.html.supportClasses.Border;
-	import org.apache.royale.html.supportClasses.DataGroup;
-        
+	import org.apache.royale.events.ItemRendererEvent;
+	import org.apache.royale.utils.getSelectionRenderBead;
+		
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List
 	 *  component. A List consists of the area to display the data (in the dataGroup), any
@@ -65,7 +50,7 @@ package org.apache.royale.html.beads
 		protected var listModel:ISelectionModel;
 
 		protected var lastSelectedIndex:int = -1;
-        
+		
 		/**
 		 * @private
 		 */
@@ -74,69 +59,63 @@ package org.apache.royale.html.beads
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectedIndexChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-            var mapper:IEventDispatcher = _strand.getBeadByType(IDataProviderItemRendererMapper) as IEventDispatcher;
-            mapper.addEventListener(ItemRendererEvent.CREATED, itemCreatedHandler);
+			var mapper:IEventDispatcher = _strand.getBeadByType(IDataProviderItemRendererMapper) as IEventDispatcher;
+			mapper.addEventListener(ItemRendererEvent.CREATED, itemCreatedHandler);
 
 			super.handleInitComplete(event);
 		}
 
-        protected function itemCreatedHandler(event:ItemRendererEvent):void
-        {
-            var selectionBead:ISelectableItemRenderer;
-            var ir:IIndexedItemRenderer = event.itemRenderer as IIndexedItemRenderer;
-            if (ir.index == lastSelectedIndex)
-            {
-                selectionBead = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.selected = true;                
-            }
-            
-        }
-        
-        protected var firstElementIndex:int = 1;
-        
-        override public function getItemRendererForIndex(index:int):IItemRenderer
-        {
-            if (contentView.numElements == 0)
-                return null;
-            
-            var firstIndex:int = (contentView.getElementAt(firstElementIndex) as IIndexedItemRenderer).index;
-            
-            if (index < firstIndex) 
-                return null;
-            if (index >= (firstIndex + contentView.numElements))
-                return null;
-            
-            return contentView.getElementAt(index - firstIndex + firstElementIndex) as IItemRenderer;            
-        }
-        
+		protected function itemCreatedHandler(event:ItemRendererEvent):void
+		{
+			var selectionBead:ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = event.itemRenderer as IIndexedItemRenderer;
+			if (ir.index == lastSelectedIndex)
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = true;				
+			}
+			
+		}
+		
+		protected var firstElementIndex:int = 1;
+		
+		override public function getItemRendererForIndex(index:int):IItemRenderer
+		{
+			if (contentView.numElements == 0)
+				return null;
+			
+			var firstIndex:int = (contentView.getElementAt(firstElementIndex) as IIndexedItemRenderer).index;
+			
+			if (index < firstIndex) 
+				return null;
+			if (index >= (firstIndex + contentView.numElements))
+				return null;
+			
+			return contentView.getElementAt(index - firstIndex + firstElementIndex) as IItemRenderer;			
+		}
+		
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{
-            var selectionBead:ISelectableItemRenderer;
+			var selectionBead:ISelectableItemRenderer;
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IIndexedItemRenderer;
 			if(ir)
-            {
-                if (ir is IStrand)
-                {
-                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                        selectionBead.selected = false;
-                }
-            }
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = false;
+			}
 			ir = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IIndexedItemRenderer;
 			if(ir)
-            {
-                if (ir is IStrand)
-                {
-                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                        selectionBead.selected = true;
-                }
-            }
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = true;
+			}
 
 			lastSelectedIndex = listModel.selectedIndex;
 		}
@@ -150,27 +129,21 @@ package org.apache.royale.html.beads
 		 */
 		protected function rollOverIndexChangeHandler(event:Event):void
 		{
-            var selectionBead:ISelectableItemRenderer;
-            var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IIndexedItemRenderer;
+			var selectionBead:ISelectableItemRenderer;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IIndexedItemRenderer;
 			if(ir)
-            {
-                if (ir is IStrand)
-                {
-                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                        selectionBead.hovered = false;
-                }
-            }
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.hovered = false;
+			}
 			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as IIndexedItemRenderer;
 			if(ir)
-            {
-                if (ir is IStrand)
-                {
-                    selectionBead = (ir as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                        selectionBead.hovered = true;
-                }
-            }
+			{
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.hovered = true;
+			}
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
 		}
 

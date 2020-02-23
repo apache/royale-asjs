@@ -36,6 +36,7 @@ package mx.controls.beads
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.DataGridButtonBar;
+    import org.apache.royale.utils.getSelectionRenderBead;
 
     use namespace mx_internal;
 
@@ -177,7 +178,7 @@ package mx.controls.beads
                 var ir:IItemRenderer = view.getItemRendererForIndex(index) as IItemRenderer;
                 if (ir)
                 {
-                    var selectionBead:ISelectableItemRenderer = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+                    var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(ir);
                     selectionBead.selected = selected;
                     selectionBead.hovered = highlighted;
                     COMPILE::JS
