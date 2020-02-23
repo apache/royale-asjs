@@ -40,7 +40,7 @@ limitations under the License.
 	</j:beads>
 
     <j:VGroup>
-        <html:H1 text="{title}" className="emphasized-dark"/>
+        <html:H1 text="{title}" className="primary-dark"/>
         <html:P innerHTML="{description}"/>
     </j:VGroup>
 
