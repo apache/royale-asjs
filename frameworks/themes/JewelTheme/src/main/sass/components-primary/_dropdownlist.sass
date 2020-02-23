@@ -22,50 +22,7 @@
 // DropDownList variables
 $dropdownlist-border-radius: $border-radius
 
-// =dropdownlist-theme($dropdownlist-color, $text-color)
-    
-//     // +jewel-bg-border("normal", $dropdownlist-color, $dropdownlist-border-radius)
-
-//     // @if $transitions-enable
-//     //     transition:
-//     //         duration: $transition-duration
-//     //         timing-function: $transition-timing
-
-//     font:
-//         family: $font-stack 
-//         size: $font-size
-//         // weight: bold
-//     color: $text-color
-//     text:
-//         // transform: uppercase
-//         weight: $font-weight-normal
-//         decoration: none 
-//     @if not $flat and $text-color == $font-theme-color
-//         text:
-//             shadow: 0 -1px 0 rgba(darken($dropdownlist-color, 30%), .7) //0 .063em
-
-//     // &:hover, &:hover:focus
-//     //     +jewel-bg-border("hover", $dropdownlist-color)
-
-//     // &:active, &:active:focus
-//     //     +jewel-bg-border("active", $dropdownlist-color)
-
-//     &:focus
-//         outline: none
-//         // +jewel-bg-border("focus", $dropdownlist-color)
-        
-//     &[disabled]
-//         cursor: unset
-//         // +jewel-bg-border("disabled", $dropdownlist-color)
-//         color: $disabled-font-color
-//         // font:
-//         //     weight: $font-weight-normal
-//         // text:
-//         //     shadow: unset
-
-.jewel.dropdownlist
-    // +dropdownlist-theme($default-color, $default-font-color)
-    
+.jewel.dropdownlist    
     @if $flat
         background-color: lighten($default-color, 15%)
         border: 1px solid darken($default-color, 3%)
