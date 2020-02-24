@@ -481,12 +481,12 @@ public class NumericStepper extends Range
     /**
      *  @private
      */
-    //private var _valueFormatFunction:Function;
+    private var _valueFormatFunction:Function;
     
     /**
      *  @private
      */
-    //private var valueFormatFunctionChanged:Boolean;
+    private var valueFormatFunctionChanged:Boolean;
     
     /**
      *  Callback function that formats the value displayed
@@ -506,21 +506,21 @@ public class NumericStepper extends Range
      *  @playerversion AIR 1.5
      *  @productversion Flex 4
      */
-    /* public function get valueFormatFunction():Function
+    public function get valueFormatFunction():Function
     {
         return _valueFormatFunction;
     }
-     */
+    
     /**
      *  @private
      */
-    /* public function set valueFormatFunction(value:Function):void
+    public function set valueFormatFunction(value:Function):void
     {
         _valueFormatFunction = value;
         valueFormatFunctionChanged = true;
         invalidateProperties();
     }
-     */
+
     //--------------------------------- 
     // valueParseFunction
     //---------------------------------
