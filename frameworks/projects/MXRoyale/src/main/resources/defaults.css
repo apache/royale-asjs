@@ -23,6 +23,7 @@
 @namespace containerBeads "mx.containers.beads.*";
 @namespace adg "mx.controls.advancedDataGridClasses.*";
 @namespace pop "mx.managers.*";
+@namespace menu "mx.controls.menuClasses.*";
 
 .royale *, . royale *:before, . royale *:after {
 	-moz-box-sizing: border-box;
@@ -317,13 +318,12 @@ MenuBar {
 	border-bottom: 1px solid #222222;
 }
 
-/*
-MenuBarItemRenderer {
-	margin-left: 5px;
-	margin-right: 15px;
+menu|MenuBarItemRenderer {
+	margin-left: 10px;
+	margin-right: 10px;
 	cursor: pointer;
 }
-
+/*
 Menu {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.CascadingMenuModel");
 	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController");
