@@ -18,20 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.sendStrandEvent;
 
-    /**
+	/**
 	 * Handles the update of an itemRenderer once the corresponding datum has been updated
 	 * from the IDataProviderModel.
 	 *
@@ -55,7 +52,7 @@ package org.apache.royale.html.beads
 		}
 		
 		/**
-		 * @private
+		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
@@ -74,18 +71,21 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.0
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
 		 */
 		protected function handleItemUpdated(event:CollectionEvent):void
 		{
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(event.index) as IIndexedItemRenderer;
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(event.index) as IIndexedItemRenderer;
 
-            var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-            ir.data = data;
-
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			var data:Object = event.item;
+			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
+			ir.data = data;
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 
 	}

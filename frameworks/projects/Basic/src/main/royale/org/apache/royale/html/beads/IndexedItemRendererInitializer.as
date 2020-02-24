@@ -18,24 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {	
-	import org.apache.royale.core.IItemRendererOwnerView;
-	
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithPresentationModel;
-	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.core.UIBase;
 
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
-     *  in list classes.
+	 *  in list classes.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -56,9 +49,9 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-        protected var dataProviderModel:IDataProviderModel;
-        protected var labelField:String;
-        
+		protected var dataProviderModel:IDataProviderModel;
+		protected var labelField:String;
+		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -72,8 +65,8 @@ package org.apache.royale.html.beads
 		override public function set strand(value:IStrand):void
 		{	
 			_strand = value;
-            dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-            labelField = dataProviderModel.labelField;            
+			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
+			labelField = dataProviderModel.labelField;			
 		}
 		
 		/**
@@ -83,24 +76,24 @@ package org.apache.royale.html.beads
 		 */
 		public function initializeItemRenderer(ir:IItemRenderer, data:Object):void
 		{
-            if (ir is ILabelFieldItemRenderer)
-                (ir as ILabelFieldItemRenderer).labelField = labelField;
-            
-            setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
-        }
-        
-        /**
-         *  @private
-         *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
-         */
-        public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
-        {
-            ir.index = index;
-            initializeItemRenderer(ir, data);
-        }
-        
-        protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
-        {
+			if (ir is ILabelFieldItemRenderer)
+				(ir as ILabelFieldItemRenderer).labelField = labelField;
+			
+			setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
+		}
+		
+		/**
+		 *  @private
+		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+		 */
+		public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
+		{
+			ir.index = index;
+			initializeItemRenderer(ir, data);
+		}
+		
+		protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+		{
 		}
 
 	}
