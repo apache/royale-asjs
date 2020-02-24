@@ -67,23 +67,28 @@ package org.apache.royale.jewel.beads.views
 			var ir:TabBarButtonItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as TabBarButtonItemRenderer;
 			var selectionBead:ISelectableItemRenderer;
 
-			if(prev_ir) {
-				selectionBead = getSelectionRenderBead(prev_ir);
-				selectionBead.selected = false;
-				var lastRect:ClientRect = prev_ir.getBoundingBox;
-				var currentRect:ClientRect = ir.getBoundingBox;
-				var widthDiff:Number = lastRect.width / currentRect.width;
-				if(isNaN(widthDiff))
-					widthDiff = 1;
-				var positionDiff:Number = lastRect.left - currentRect.left;
-				
-				selectionBead = getSelectionRenderBead(ir);
-				selectionBead.selected = true;
-				ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
-			} else
+			trace("lastSelectedIndex", lastSelectedIndex)
+
+			if(listModel.selectedIndex != -1)
 			{
-				selectionBead = getSelectionRenderBead(ir);
-				selectionBead.selected = true;
+				if(prev_ir) {
+					selectionBead = getSelectionRenderBead(prev_ir);
+					selectionBead.selected = false;
+					var lastRect:ClientRect = prev_ir.getBoundingBox;
+					var currentRect:ClientRect = ir.getBoundingBox;
+					var widthDiff:Number = lastRect.width / currentRect.width;
+					if(isNaN(widthDiff))
+						widthDiff = 1;
+					var positionDiff:Number = lastRect.left - currentRect.left;
+					
+					selectionBead = getSelectionRenderBead(ir);
+					selectionBead.selected = true;
+					ir.animateIndicator(positionDiff, widthDiff, 300, 'ease-in-out');				
+				} else
+				{
+					selectionBead = getSelectionRenderBead(ir);
+					selectionBead.selected = true;
+				}
 			}
 			
 			lastSelectedIndex = listModel.selectedIndex;
