@@ -34,6 +34,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.core.DispatcherBead;
 	import org.apache.royale.utils.sendStrandEvent;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
 
 	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 
@@ -155,7 +156,7 @@ package org.apache.royale.html.beads
 			var n:int = dp.length;
 			for (var i:int = 0; i < n; i++)
 			{
-				var tf:ITextItemRenderer = itemRendererFactory.createItemRenderer() as ITextItemRenderer;
+				var tf:ILabelFieldItemRenderer = itemRendererFactory.createItemRenderer() as ILabelFieldItemRenderer;
 				tf.index = i;
 				dataGroup.addItemRenderer(tf, false);
 				if (selectionModel.labelField) {
