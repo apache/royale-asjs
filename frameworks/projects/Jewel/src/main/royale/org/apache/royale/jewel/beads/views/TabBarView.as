@@ -66,9 +66,7 @@ package org.apache.royale.jewel.beads.views
 			var prev_ir:TabBarButtonItemRenderer = dataGroup.getItemRendererAt(lastSelectedIndex) as TabBarButtonItemRenderer;
 			var ir:TabBarButtonItemRenderer = dataGroup.getItemRendererAt(listModel.selectedIndex) as TabBarButtonItemRenderer;
 			var selectionBead:ISelectableItemRenderer;
-
-			trace("lastSelectedIndex", lastSelectedIndex)
-
+			
 			if(listModel.selectedIndex != -1)
 			{
 				if(prev_ir) {
