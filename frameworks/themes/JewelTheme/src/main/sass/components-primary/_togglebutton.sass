@@ -25,47 +25,57 @@ $togglebutton-padding: 0.679em 1.12em !default
 $icon-togglebutton-padding: 0.429em 0.87em !default
 $togglebutton-border-radius: $border-radius
 
-=togglebutton-theme($togglebutton-color, $text-color, $outline: false)
+=togglebutton-theme($togglebutton-color, $text-color, $outlined: false, $unboxed: false)
 	
-	+jewel-bg-border("normal", $togglebutton-color, $outline, $togglebutton-border-radius)
+	+jewel-bg-border("normal", $togglebutton-color, $outlined, $unboxed, $togglebutton-border-radius)
 	
-	@if $outline
+	@if $outlined or $unboxed
 		color: darken($togglebutton-color, 15%)
 	@else
 		color: $text-color
 	
-	@if not $outline and not $outline and not $flat and $text-color == $font-theme-color
+	@if not $outlined and not $unboxed and not $flat and $text-color == $font-theme-color
 		text-shadow: 0 -1px 0 rgba(darken($togglebutton-color, 30%), .7)
 	@else
 		text-shadow: none
 
 	&:hover, &:hover:focus
-		+jewel-bg-border("hover", $togglebutton-color, $outline)
-
+		+jewel-bg-border("hover", $togglebutton-color, $outlined, $unboxed)
+		@if $outlined or $unboxed
+			color: darken($togglebutton-color, 25%)
+		@else
+			color: $text-color
 	&:active, &:active:focus
-		+jewel-bg-border("active", $togglebutton-color, $outline)
+		+jewel-bg-border("active", $togglebutton-color, $outlined, $unboxed)
+		@if $outlined or $unboxed
+			color: darken($togglebutton-color, 25%)
+		@else
+			color: $text-color
 
 	&:focus
-		+jewel-bg-border("focus", $togglebutton-color, $outline)
+		+jewel-bg-border("focus", $togglebutton-color, $outlined, $unboxed)
+		@if $outlined or $unboxed
+			color: darken($togglebutton-color, 25%)
+		@else
+			color: $text-color
 		
 	&[disabled]
-		+jewel-bg-border("disabled", $togglebutton-color, $outline)
+		+jewel-bg-border("disabled", $togglebutton-color, $outlined, $unboxed)
 		color: $disabled-font-color
 		text-shadow: unset
 	
 	&.selected
-		+jewel-bg-border("selected", $togglebutton-color, false)
+		+jewel-bg-border("selected", $togglebutton-color)
 
 .jewel.togglebutton
 	margin: $togglebutton-margin
 	padding: $togglebutton-padding
 
-	+togglebutton-theme($default-color, $default-font-color, false)
+	+togglebutton-theme($default-color, $default-font-color)
 
 
 	// -- TOGGLEBUTTON LABEL
 	font:
-		// family: $font-stack 
 		weight: bold
 	text:
 		transform: uppercase
@@ -80,7 +90,7 @@ $togglebutton-border-radius: $border-radius
 			weight: $font-weight-normal
 	
 	&.icon
-		padding: $icon-button-padding
+		padding: $icon-togglebutton-padding
 
 		i
 			margin-left: 0px
@@ -94,14 +104,21 @@ $togglebutton-border-radius: $border-radius
 		i
 			margin-left: 8px
 			margin-right: 0px
-
-.jewel.button.outlined
-	+togglebutton-theme(darken($default-color, 20%), darken($default-font-color, 20%), true)
-
 	
 .jewel.togglebutton.primary
 	+togglebutton-theme($primary-color, $font-theme-color)
 
+// OUTLINED
+.jewel.togglebutton.outlined
+	+togglebutton-theme(darken($default-color, 15%), darken($default-font-color, 15%), true)
+
 .jewel.togglebutton.primary.outlined
 	+togglebutton-theme($primary-color, $font-theme-color, true)
+
+// UNBOXED
+.jewel.togglebutton.unboxed
+	+togglebutton-theme(darken($default-color, 15%), darken($default-font-color, 15%), false, true)
+	
+.jewel.togglebutton.primary.unboxed
+	+togglebutton-theme($primary-color, $font-theme-color, false, true)
 

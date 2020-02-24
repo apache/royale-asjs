@@ -17,11 +17,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-=jewel-bg-border($state, $bg-color, $outline: false, $bg-border-radius: 0px)
+=jewel-bg-border($state, $bg-color, $outlined: false, $unboxed: false, $bg-border-radius: 0px)
 	@if ($state == "normal")
-		@if $outline
+		@if $outlined
 			background: rgba($bg-color, 0.05)
 			border: 1px solid darken($bg-color, 10%)
+			box-shadow: none
+		@else if $unboxed
+			background: rgba($bg-color, 0)
+			border: 1px solid transparent
 			box-shadow: none
 		@else
 			@if $flat
@@ -32,12 +36,15 @@
 				background: linear-gradient(lighten($bg-color, 5%), darken($bg-color, 5%))
 				border: 1px solid darken($bg-color, 15%)
 				box-shadow: inset 0 1px 0 lighten($bg-color, 20%)
-		border-radius: $bg-border-radius
+			border-radius: $bg-border-radius
 	
 	@else if ($state == "hover")
-		@if $outline
+		@if $outlined
 			background: rgba($bg-color, .15)
 			border: 1px solid darken($bg-color, 15%)
+		@else if $unboxed
+			background: rgba($bg-color, .15)
+			border: 1px solid transparent
 		@else
 			@if $flat
 				background: darken($bg-color, 5%)
@@ -47,9 +54,13 @@
 				border: 1px solid darken($bg-color, 20%)
 	
 	@else if ($state == "active") or ($state == "selected")
-		@if $outline
+		@if $outlined
 			background: rgba($bg-color, .25)
 			border: 1px solid darken($bg-color, 18%)
+			box-shadow: none
+		@else if $unboxed
+			background: rgba($bg-color, .25)
+			border: 1px solid transparent
 			box-shadow: none
 		@else
 			@if $flat
@@ -62,8 +73,12 @@
 				box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5)
 
 	@else if ($state == "focus")
-		@if $outline
+		@if $outlined
 			border: 1px solid darken($bg-color, 20%)
+			box-shadow: none
+		@else if $unboxed
+			background: rgba($bg-color, .15)
+			border: 1px solid transparent
 			box-shadow: none
 		@else
 			@if $flat
@@ -75,9 +90,12 @@
 				box-shadow: inset 0px 0px 0px 1px rgba(lighten($bg-color, 50%), .5), inset 0 1px 0 rgba(lighten($bg-color, 55%), .6)
 	
 	@else if ($state == "disabled")
-		@if $outline
+		@if $outlined
 			background: $disabled-color !important
 			border: 1px solid $disabled-border-color !important
+		@else if $unboxed
+			background: rgba($disabled-color, 0) !important
+			border: 1px solid transparent !important
 		@else
 			@if $flat
 				background: $disabled-color !important
@@ -85,4 +103,4 @@
 			@else
 				background: $disabled-color !important
 				border: 1px solid $disabled-border-color !important
-		box-shadow: none !important
+			box-shadow: none !important

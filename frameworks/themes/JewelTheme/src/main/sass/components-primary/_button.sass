@@ -25,31 +25,43 @@ $button-padding: 0.679em 1.12em !default
 $icon-button-padding: 0.429em 0.87em !default
 $button-border-radius: $border-radius
 
-=button-theme($button-color, $text-color, $outline: false)
+=button-theme($button-color, $text-color, $outlined: false, $unboxed: false)
 	
-	+jewel-bg-border("normal", $button-color, $outline, $button-border-radius)
+	+jewel-bg-border("normal", $button-color, $outlined, $unboxed, $button-border-radius)
 	
-	@if $outline
+	@if $outlined or $unboxed
 		color: darken($button-color, 15%)
 	@else
 		color: $text-color
 	
-	@if not $outline and not $flat and $text-color == $font-theme-color
+	@if not $outlined and not $unboxed and not $flat and $text-color == $font-theme-color
 		text-shadow: 0 -1px 0 rgba(darken($button-color, 30%), .7)
 	@else
 		text-shadow: none
-
+	
 	&:hover, &:hover:focus
-		+jewel-bg-border("hover", $button-color, $outline)
-
+		+jewel-bg-border("hover", $button-color, $outlined, $unboxed)
+		@if $outlined or $unboxed
+			color: darken($button-color, 25%)
+		@else
+			color: $text-color
+	
 	&:active, &:active:focus
-		+jewel-bg-border("active", $button-color, $outline)
-
+		+jewel-bg-border("active", $button-color, $outlined, $unboxed)
+		@if $outlined or $unboxed
+			color: darken($button-color, 25%)
+		@else
+			color: $text-color
+	
 	&:focus
-		+jewel-bg-border("focus", $button-color, $outline)
-		
+		+jewel-bg-border("focus", $button-color, $outlined, $unboxed)
+		@if $outlined or $unboxed
+			color: darken($button-color, 25%)
+		@else
+			color: $text-color
+	
 	&[disabled]
-		+jewel-bg-border("disabled", $button-color, $outline)
+		+jewel-bg-border("disabled", $button-color, $outlined, $unboxed)
 		color: $disabled-font-color
 		text-shadow: unset
 
@@ -57,11 +69,10 @@ $button-border-radius: $border-radius
 	margin: $button-margin
 	padding: $button-padding
 
-	+button-theme($default-color, $default-font-color, false)
+	+button-theme($default-color, $default-font-color)
 
 	// -- BUTTON LABEL
 	font:
-		// family: $font-stack 
 		weight: bold
 	text:
 		transform: uppercase
@@ -91,14 +102,19 @@ $button-border-radius: $border-radius
 			margin-left: 8px
 			margin-right: 0px
 
-.jewel.button.outline
-	+button-theme(darken($default-color, 20%), darken($default-font-color, 20%), true)
-
-
 .jewel.button.primary
 	+button-theme($primary-color, $font-theme-color)
+
+// OUTLINED
+.jewel.button.outlined
+	+button-theme(darken($default-color, 15%), darken($default-font-color, 15%), true)
 
 .jewel.button.primary.outlined
 	+button-theme($primary-color, $font-theme-color, true)
 
+// UNBOXED
+.jewel.button.unboxed
+	+button-theme(darken($default-color, 15%), darken($default-font-color, 15%), false, true)
 	
+.jewel.button.primary.unboxed
+	+button-theme($primary-color, $font-theme-color, false, true)
