@@ -241,7 +241,7 @@ hr {
   color: black;
 }
 .jewel.button.outlined[disabled] {
-  background: #404040 !important;
+  background: rgba(64, 64, 64, 0.1) !important;
   border: 1px solid #0d0d0d !important;
   color: #737373;
   text-shadow: unset;
@@ -271,7 +271,7 @@ hr {
   color: #7e0b0f;
 }
 .jewel.button.primary.outlined[disabled] {
-  background: #404040 !important;
+  background: rgba(64, 64, 64, 0.1) !important;
   border: 1px solid #0d0d0d !important;
   color: #737373;
   text-shadow: unset;
@@ -366,6 +366,10 @@ j|Card {
 }
 
 j|CardHeader {
+  gap: 3;
+}
+
+j|CardPrimaryContent {
   gap: 3;
 }
 
@@ -1425,7 +1429,7 @@ div {
   color: black;
 }
 .jewel.togglebutton.outlined[disabled] {
-  background: #404040 !important;
+  background: rgba(64, 64, 64, 0.1) !important;
   border: 1px solid #0d0d0d !important;
   color: #737373;
   text-shadow: unset;
@@ -1460,7 +1464,7 @@ div {
   color: #7e0b0f;
 }
 .jewel.togglebutton.primary.outlined[disabled] {
-  background: #404040 !important;
+  background: rgba(64, 64, 64, 0.1) !important;
   border: 1px solid #0d0d0d !important;
   color: #737373;
   text-shadow: unset;
