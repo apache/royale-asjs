@@ -18,18 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
-    import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ISelectableItemRenderer;
-    import org.apache.royale.core.IBead;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.MXMLDataInterpreter;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
-        
-    [DefaultProperty("mxmlContent")]
+	import org.apache.royale.core.ILabelFieldItemRenderer;
+		
+	[DefaultProperty("mxmlContent")]
 
-    /**
+	/**
 	 *  The UIItemRendererBase class is the base class for all itemRenderers. An itemRenderer is used to
 	 *  display a single datum within a collection of data. Components such as a List use itemRenderers to 
 	 *  show their dataProviders.
@@ -39,7 +36,7 @@ package org.apache.royale.html.supportClasses
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class UIItemRendererBase extends UIBase implements IIndexedItemRenderer
+	public class UIItemRendererBase extends UIBase implements ILabelFieldItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -58,57 +55,57 @@ package org.apache.royale.html.supportClasses
 		 */
 		override public function addedToParent():void
 		{
-            MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
-            MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
-            
+			MXMLDataInterpreter.generateMXMLProperties(this, mxmlProperties);
+			MXMLDataInterpreter.generateMXMLInstances(this, this, MXMLDescriptor);
+			
 			super.addedToParent();
 			
-            // very common for item renderers to be resized by their containers,
-            addEventListener("widthChanged", sizeChangeHandler);
-            addEventListener("heightChanged", sizeChangeHandler);
+			// very common for item renderers to be resized by their containers,
+			addEventListener("widthChanged", sizeChangeHandler);
+			addEventListener("heightChanged", sizeChangeHandler);
 			addEventListener("sizeChanged", sizeChangeHandler);
 
-            // each MXML file can also have styles in fx:Style block
-            ValuesManager.valuesImpl.init(this);
-            
-            dispatchEvent(new Event("initBindings"));
-            dispatchEvent(new Event("initComplete"));
-            
+			// each MXML file can also have styles in fx:Style block
+			ValuesManager.valuesImpl.init(this);
+			
+			dispatchEvent(new Event("initBindings"));
+			dispatchEvent(new Event("initComplete"));
+			
 		}
 		
-        /**
-         *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         * 
-         *  @royalesuppresspublicvarwarning
-         */
-        public var mxmlContent:Array;
-        
+		/**
+		 *  @copy org.apache.royale.core.ItemRendererClassFactory#mxmlContent
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.0
+		 * 
+		 *  @royalesuppresspublicvarwarning
+		 */
+		public var mxmlContent:Array;
+		
 		/**
 		 * @private
 		 */
-        public function get MXMLDescriptor():Array
-        {
-            return null;
-        }
-        
-        private var mxmlProperties:Array ;
-        
+		public function get MXMLDescriptor():Array
+		{
+			return null;
+		}
+		
+		private var mxmlProperties:Array ;
+		
 		/**
 		 * @private
 		 */
-        public function generateMXMLAttributes(data:Array):void
-        {
-            mxmlProperties = data;
-        }
-        		
+		public function generateMXMLAttributes(data:Array):void
+		{
+			mxmlProperties = data;
+		}
+				
 		private var _data:Object;
 		
-        [Bindable("__NoChangeEvent__")]
+		[Bindable("__NoChangeEvent__")]
 		/**
 		 *  The data being represented by this itemRenderer. This can be something simple like a String or
 		 *  a Number or something very complex.
