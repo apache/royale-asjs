@@ -77,9 +77,9 @@ $gap-size: 10px !default
 		@for $i from 1 through $gaps
 			&.gap-#{$i}x#{$gap-step}px
 				> *:first-child
-					margin: 0px
+					margin-left: 0px
 				> *
-					margin: 0px 0px 0px ($gap + $i * $gap-step)
+					margin-left: $gap + $i * $gap-step
 		&.sameWidths
 			> *
 				flex: 1 0 0
