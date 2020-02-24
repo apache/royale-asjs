@@ -35,6 +35,13 @@ import org.apache.royale.html.supportClasses.StringItemRenderer;
 
 public class MenuBarItemRenderer extends StringItemRenderer
 {
+
+	public function MenuBarItemRenderer()
+	{
+		super();
+		typeNames += " MenuBarItemRenderer";
+	}
+	
     override public function set text(value:String):void
     {
         super.text = value;

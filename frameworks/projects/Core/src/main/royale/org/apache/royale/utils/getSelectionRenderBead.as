@@ -16,19 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.utils
+{
+  import org.apache.royale.core.IItemRenderer;
+  import org.apache.royale.core.ISelectableItemRenderer;
 
-// Jewel ToggleButton
+  /**
+   * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
+   */
+  public function getSelectionRenderBead(renderer:IItemRenderer):ISelectableItemRenderer
+  {
+    COMPILE::JS
+    {
+      var selectionBead:ISelectableItemRenderer = renderer["_selectionBead_"];
+      if(!selectionBead)
+      {
+        selectionBead = renderer.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+        if(selectionBead)
+          renderer["_selectionBead_"] = selectionBead;
+      }
+      return selectionBead;
+    }
 
-// ToggleButton variables
-$togglebutton-border-radius: $border-radius
-	
-.jewel.togglebutton.secondary
-	+togglebutton-theme($secondary-color, $font-theme-color, false)
-
-// OUTLINED
-.jewel.togglebutton.secondary.outlined
-	+togglebutton-theme($secondary-color, $font-theme-color, true)
-
-// UNBOXED	
-.jewel.togglebutton.secondary.unboxed
-	+button-theme($secondary-color, $font-theme-color, false, true)
+    COMPILE::SWF
+    {
+      return renderer.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
+    }
+  }
+}

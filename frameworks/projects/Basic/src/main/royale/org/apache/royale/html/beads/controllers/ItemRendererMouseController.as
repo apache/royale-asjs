@@ -20,7 +20,7 @@ package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
 COMPILE::SWF {
 	import org.apache.royale.events.Event;
@@ -36,6 +36,7 @@ COMPILE::JS {
 }
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
 	 *  The ItemRendererMouseController class can mouse events in itemRenderers. This
@@ -158,12 +159,9 @@ COMPILE::JS {
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-                if (target is IStrand)
-                {
-                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                        selectionBead.down = true;
-                }				
+					var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+					if (selectionBead)
+						selectionBead.down = true;
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
 				newEvent.index = target.index;
@@ -182,15 +180,12 @@ COMPILE::JS {
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-                if (target is IStrand)
-                {
-                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                    {
-                        selectionBead.down = true;
-                        selectionBead.hovered = false;
-                    }
-                }
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+				if (selectionBead)
+				{
+					selectionBead.down = true;
+					selectionBead.hovered = false;
+				}
 				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemMouseDown");
 				newEvent.data = target.data;
 				newEvent.index = target.index;

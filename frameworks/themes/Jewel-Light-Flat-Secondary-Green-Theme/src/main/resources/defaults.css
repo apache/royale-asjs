@@ -25,28 +25,92 @@
   background: #3AB549;
   border: 1px solid #30963d;
   box-shadow: none;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: none;
 }
 .jewel.button.secondary:hover, .jewel.button.secondary:hover:focus {
   background: #34a241;
   border: 1px solid #30963d;
+  color: #FFFFFF;
 }
 .jewel.button.secondary:active, .jewel.button.secondary:active:focus {
   background: #277b32;
   border: 1px solid #30963d;
   box-shadow: none;
+  color: #FFFFFF;
 }
 .jewel.button.secondary:focus {
   background: #45c354;
   border: 1px solid #30963d;
   box-shadow: none;
+  color: #FFFFFF;
 }
 .jewel.button.secondary[disabled] {
   background: #f3f3f3 !important;
   border: 1px solid #d9d9d9 !important;
   box-shadow: none !important;
+  color: silver;
+  text-shadow: unset;
+}
+
+.jewel.button.secondary.outlined {
+  background: rgba(58, 181, 73, 0.05);
+  border: 1px solid #2e8e39;
+  box-shadow: none;
+  color: #277b32;
+  text-shadow: none;
+}
+.jewel.button.secondary.outlined:hover, .jewel.button.secondary.outlined:hover:focus {
+  background: rgba(58, 181, 73, 0.15);
+  border: 1px solid #277b32;
+  color: #1b5422;
+}
+.jewel.button.secondary.outlined:active, .jewel.button.secondary.outlined:active:focus {
+  background: rgba(58, 181, 73, 0.25);
+  border: 1px solid #246f2d;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.button.secondary.outlined:focus {
+  border: 1px solid #21682a;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.button.secondary.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  color: silver;
+  text-shadow: unset;
+}
+
+.jewel.button.secondary.unboxed {
+  background: rgba(58, 181, 73, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #277b32;
+  text-shadow: none;
+}
+.jewel.button.secondary.unboxed:hover, .jewel.button.secondary.unboxed:hover:focus {
+  background: rgba(58, 181, 73, 0.15);
+  border: 1px solid transparent;
+  color: #1b5422;
+}
+.jewel.button.secondary.unboxed:active, .jewel.button.secondary.unboxed:active:focus {
+  background: rgba(58, 181, 73, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.button.secondary.unboxed:focus {
+  background: rgba(58, 181, 73, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.button.secondary.unboxed[disabled] {
+  background: rgba(243, 243, 243, 0) !important;
+  border: 1px solid transparent !important;
   color: silver;
   text-shadow: unset;
 }
@@ -117,23 +181,26 @@ a:active {
   background: #3AB549;
   border: 1px solid #30963d;
   box-shadow: none;
-  border-radius: 3px;
+  border-radius: 0.25rem;
   color: #FFFFFF;
   text-shadow: none;
 }
 .jewel.togglebutton.secondary:hover, .jewel.togglebutton.secondary:hover:focus {
   background: #34a241;
   border: 1px solid #30963d;
+  color: #FFFFFF;
 }
 .jewel.togglebutton.secondary:active, .jewel.togglebutton.secondary:active:focus {
   background: #277b32;
   border: 1px solid #30963d;
   box-shadow: none;
+  color: #FFFFFF;
 }
 .jewel.togglebutton.secondary:focus {
   background: #45c354;
   border: 1px solid #30963d;
   box-shadow: none;
+  color: #FFFFFF;
 }
 .jewel.togglebutton.secondary[disabled] {
   background: #f3f3f3 !important;
@@ -146,6 +213,72 @@ a:active {
   background: #277b32;
   border: 1px solid #30963d;
   box-shadow: none;
+}
+
+.jewel.togglebutton.secondary.outlined {
+  background: rgba(58, 181, 73, 0.05);
+  border: 1px solid #2e8e39;
+  box-shadow: none;
+  color: #277b32;
+  text-shadow: none;
+}
+.jewel.togglebutton.secondary.outlined:hover, .jewel.togglebutton.secondary.outlined:hover:focus {
+  background: rgba(58, 181, 73, 0.15);
+  border: 1px solid #277b32;
+  color: #1b5422;
+}
+.jewel.togglebutton.secondary.outlined:active, .jewel.togglebutton.secondary.outlined:active:focus {
+  background: rgba(58, 181, 73, 0.25);
+  border: 1px solid #246f2d;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.togglebutton.secondary.outlined:focus {
+  border: 1px solid #21682a;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.togglebutton.secondary.outlined[disabled] {
+  background: #f3f3f3 !important;
+  border: 1px solid #d9d9d9 !important;
+  color: silver;
+  text-shadow: unset;
+}
+.jewel.togglebutton.secondary.outlined.selected {
+  background: #277b32;
+  border: 1px solid #30963d;
+  box-shadow: none;
+}
+
+.jewel.togglebutton.secondary.unboxed {
+  background: rgba(58, 181, 73, 0);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #277b32;
+  text-shadow: none;
+}
+.jewel.togglebutton.secondary.unboxed:hover, .jewel.togglebutton.secondary.unboxed:hover:focus {
+  background: rgba(58, 181, 73, 0.15);
+  border: 1px solid transparent;
+  color: #1b5422;
+}
+.jewel.togglebutton.secondary.unboxed:active, .jewel.togglebutton.secondary.unboxed:active:focus {
+  background: rgba(58, 181, 73, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.togglebutton.secondary.unboxed:focus {
+  background: rgba(58, 181, 73, 0.15);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #1b5422;
+}
+.jewel.togglebutton.secondary.unboxed[disabled] {
+  background: rgba(243, 243, 243, 0) !important;
+  border: 1px solid transparent !important;
+  color: silver;
+  text-shadow: unset;
 }
 
 /*# sourceMappingURL=defaults.css.map */

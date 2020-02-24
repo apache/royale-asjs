@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -23,7 +23,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -33,6 +33,7 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
 	 *  The ListSingleSelectionMouseController class is a controller for
@@ -137,7 +138,7 @@ package org.apache.royale.html.beads.controllers
 		{
 			listModel.selectedIndex = event.index;
 			listModel.selectedItem = event.data;
-            sendEvent(listView.host,"change");
+			sendEvent(listView.host,"change");
 		}
 		
 		/**
@@ -160,15 +161,12 @@ package org.apache.royale.html.beads.controllers
 		{
 			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
-                if (renderer is IStrand)
-                {
-                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                    {
-                        selectionBead.hovered = false;
-                        selectionBead.down = false;                        
-                    }
-                }
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+				if (selectionBead)
+				{
+					selectionBead.hovered = false;
+					selectionBead.down = false;						
+				}
 				IRollOverModel(listModel).rollOverIndex = -1;
 			}
 		}

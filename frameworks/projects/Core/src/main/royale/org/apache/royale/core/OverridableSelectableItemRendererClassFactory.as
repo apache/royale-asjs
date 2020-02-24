@@ -25,6 +25,7 @@ package org.apache.royale.core
     import org.apache.royale.core.ISelectableItemRenderer;
     
     import org.apache.royale.utils.MXMLDataInterpreter;
+    import org.apache.royale.utils.getSelectionRenderBead;
 
 	[DefaultProperty("mxmlContent")]
     
@@ -82,8 +83,16 @@ package org.apache.royale.core
         override public function createItemRenderer():IItemRenderer
         {
             var ir:IItemRenderer = super.createItemRenderer();
-			if (!ir.getBeadByType(ISelectableItemRenderer))
-	            ir.addBead(new selectableBeadClass());
+            var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(ir);
+			if (!selectionBead)
+            {
+                selectionBead = new selectableBeadClass();
+                COMPILE::JS
+                {
+                    ir["_selectionBead_"] = selectionBead;
+                }
+	            ir.addBead(selectionBead);
+            }
             return ir;
         }
 	}

@@ -19,52 +19,38 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.collections.ArrayList;
-	import org.apache.royale.collections.ICollectionView;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
-	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.ItemRendererEvent;
-	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.beads.VirtualDataItemRendererFactoryBase;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
-	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.getSelectionRenderBead;
 	import org.apache.royale.utils.sendStrandEvent;
 
-    [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
+	[Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
-    /**
-     *  The DataItemRendererFactoryForArrayData class reads an
-     *  array of data and creates an item renderer for every
-     *  item in the array.  Other implementations of
-     *  IDataProviderItemRendererMapper map different data 
-     *  structures or manage a virtual set of renderers.
-     *  
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.7
-     */
+	/**
+	 *  The DataItemRendererFactoryForArrayData class reads an
+	 *  array of data and creates an item renderer for every
+	 *  item in the array.  Other implementations of
+	 *  IDataProviderItemRendererMapper map different data 
+	 *  structures or manage a virtual set of renderers.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
 	public class VirtualDataItemRendererFactoryForCollectionView extends VirtualDataItemRendererFactoryBase
 	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
+		/**
+		 *  Constructor.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
 		public function VirtualDataItemRendererFactoryForCollectionView(target:Object=null)
 		{
 			super(target);
@@ -72,61 +58,61 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 		private var dp:ArrayList;
 		
-        /**
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-         */		
+		/**
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 */		
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-            if (!dataProviderModel)
+			if (!dataProviderModel)
 				return;
-            dp = dataProviderModel.dataProvider as ArrayList;
+			dp = dataProviderModel.dataProvider as ArrayList;
 			if (!dp)
 				return;
 			
 			super.dataProviderChangeHandler(event);
 
-            sendStrandEvent(_strand, "layoutNeeded");
-        }
-        
-        /**
-         *  Get an item renderer for a given index.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
-         *  @royaleignorecoercion org.apache.royale.html.beads.IListView
-         */
-        override public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
-        {
-            var ir:IIndexedItemRenderer = rendererMap[index];
-            if (ir) return ir;
-            
+			sendStrandEvent(_strand, "layoutNeeded");
+		}
+		
+		/**
+		 *  Get an item renderer for a given index.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
+		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
+		 */
+		override public function getItemRendererForIndex(index:int, elementIndex:int):IIndexedItemRenderer
+		{
+			var ir:IIndexedItemRenderer = rendererMap[index];
+			if (ir) return ir;
+			
 			ir = super.getItemRendererForIndex(index, elementIndex);
-			            
-            // if the item was already selected make the item show it
-            if(index == (dataProviderModel as ISelectionModel).selectedIndex)
-            {
-	            var selectionBead:ISelectableItemRenderer;
-                selectionBead = ir.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                if (selectionBead)
-                    selectionBead.selected = false;
-            }
+						
+			// if the item was already selected make the item show it
+			if(index == (dataProviderModel as ISelectionModel).selectedIndex)
+			{
+				var selectionBead:ISelectableItemRenderer;
+				selectionBead = getSelectionRenderBead(ir);
+				if (selectionBead)
+					selectionBead.selected = false;
+			}
 				
-            return ir;
+			return ir;
 		}
 		
 		override public function getItemAt(index:int):Object
-        {
-            return dp.getItemAt(index);
-        }
+		{
+			return dp.getItemAt(index);
+		}
 
 	}
 }

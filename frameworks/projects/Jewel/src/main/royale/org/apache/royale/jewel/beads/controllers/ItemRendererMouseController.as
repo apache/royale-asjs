@@ -31,11 +31,12 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.events.BrowserEvent;
 	}
-    import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.ItemClickedEvent;
+	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
 	 *  The ItemRendererMouseController class can mouse events in itemRenderers. This
@@ -62,7 +63,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 		}
 		
-        private var renderer:IIndexedItemRenderer;
+		private var renderer:IIndexedItemRenderer;
 		private var _strand:IStrand;
 		
 		/**
@@ -78,11 +79,11 @@ package org.apache.royale.jewel.beads.controllers
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-            renderer = value as IIndexedItemRenderer;
+			renderer = value as IIndexedItemRenderer;
 			
 			COMPILE::SWF {
-	            renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
-	            renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
+				renderer.addEventListener(MouseEvent.ROLL_OVER, rollOverHandler);
+				renderer.addEventListener(MouseEvent.ROLL_OUT, rollOutHandler);
 				renderer.addEventListener(MouseEvent.MOUSE_DOWN, mouseDownHandler);
 				renderer.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
@@ -157,8 +158,8 @@ package org.apache.royale.jewel.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-                var selectionBead:ISelectableItemRenderer = target.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                selectionBead.down = true;
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(target);
+				selectionBead.down = true;
 				target.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);
 			}
 		}
@@ -171,12 +172,12 @@ package org.apache.royale.jewel.beads.controllers
 		protected function handleMouseDown(event:BrowserEvent):void
 		{
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
-            if (target)
-            {
-                var selectionBead:ISelectableItemRenderer = target.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                selectionBead.down = true;
-                selectionBead.hovered = false;
-            }
+			if (target)
+			{
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(target);
+				selectionBead.down = true;
+				selectionBead.hovered = false;
+			}
 		}
 		
 		/**
@@ -193,7 +194,7 @@ package org.apache.royale.jewel.beads.controllers
 				newEvent.data = target.data;
 				newEvent.index = target.index;
 				
-                target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);                
+				target.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler);				
 				target.dispatchEvent(newEvent);
 			}			
 		}
@@ -206,19 +207,19 @@ package org.apache.royale.jewel.beads.controllers
 		protected function handleMouseUp(event:BrowserEvent):void
 		{
 			event.stopImmediatePropagation();
-            var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
-            if (target)
-            {
-    			var selectionBead:ISelectableItemRenderer = target.getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-    			if (selectionBead && selectionBead.down)
-    			{
-    				var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
-    				newEvent.data = target.data;
-    				newEvent.index = target.index;
-    
-    				target.dispatchEvent(newEvent);
-    			}
-            }
+			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
+			if (target)
+			{
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(target);
+				if (selectionBead && selectionBead.down)
+				{
+					var newEvent:ItemClickedEvent = new ItemClickedEvent("itemClicked");
+					newEvent.data = target.data;
+					newEvent.index = target.index;
+	
+					target.dispatchEvent(newEvent);
+				}
+			}
 		}
 	
 	}

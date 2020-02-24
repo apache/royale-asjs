@@ -18,27 +18,17 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-    import org.apache.royale.collections.IArrayList;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.collections.IArrayList;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
-	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendStrandEvent;
 
-    /**
+	/**
 	 * Handles the adding of an itemRenderer once the corresponding datum has been added
 	 * from the IDataProviderModel.
 	 *
@@ -61,8 +51,8 @@ package org.apache.royale.html.beads
 		{
 		}
 
-        private var dp:IArrayList;
-        
+		private var dp:IArrayList;
+		
 		/**
 		 *  @private
 		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
@@ -87,30 +77,28 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.core.IParent
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function handleItemAdded(event:CollectionEvent):void
 		{
 			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
-            dataGroup.addItemRenderer(ir, false);
-            var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-            ir.data = data;
-            
-            // update the index values in the itemRenderers to correspond to their shifted positions.
-            var n:int = dataGroup.numItemRenderers;
-            for (var i:int = event.index; i < n; i++)
-            {
-                ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
-                ir.index = i;
-            }
-
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			dataGroup.addItemRenderer(ir, false);
+			var data:Object = event.item;
+			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
+			ir.data = data;
+			
+			// update the index values in the itemRenderers to correspond to their shifted positions.
+			var n:int = dataGroup.numItemRenderers;
+			for (var i:int = event.index; i < n; i++)
+			{
+				ir = dataGroup.getItemRendererAt(i) as IIndexedItemRenderer;
+				ir.index = i;
+			}
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 	}
 }

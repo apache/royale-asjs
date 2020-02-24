@@ -208,6 +208,52 @@ package org.apache.royale.jewel.supportClasses.button
             }
         }
 
+        private var _outlined:Boolean;
+        /**
+		 *  Applies outlined style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get outlined():Boolean
+        {
+            return _outlined;
+        }
+        public function set outlined(value:Boolean):void
+        {
+            if (_outlined != value)
+            {
+                _outlined = value;
+
+                _outlined ? addClass("outlined") : removeClass("outlined");
+            }
+        }
+
+        private var _unboxed:Boolean;
+        /**
+		 *  Applies unboxed style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get unboxed():Boolean
+        {
+            return _unboxed;
+        }
+        public function set unboxed(value:Boolean):void
+        {
+            if (_unboxed != value)
+            {
+                _unboxed = value;
+
+                _unboxed ? addClass("unboxed") : removeClass("unboxed");
+            }
+        }
+
         /**
          * Add a class selector to the list.
          * 
@@ -318,6 +364,52 @@ package org.apache.royale.jewel.supportClasses.button
             element.setAttribute('type', 'button');
             
             return element;
+        }
+
+        private var _outlined:Boolean;
+        /**
+		 *  Applies outlined style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get outlined():Boolean
+        {
+            return _outlined;
+        }
+        public function set outlined(value:Boolean):void
+        {
+            if (_outlined != value)
+            {
+                _outlined = value;
+
+                _outlined ? addClass("outlined") : removeClass("outlined");
+            }
+        }
+        
+        private var _unboxed:Boolean;
+        /**
+		 *  Applies unboxed style to the button. This combines with the emphasis styles
+         *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get unboxed():Boolean
+        {
+            return _unboxed;
+        }
+        public function set unboxed(value:Boolean):void
+        {
+            if (_unboxed != value)
+            {
+                _unboxed = value;
+
+                _unboxed ? addClass("unboxed") : removeClass("unboxed");
+            }
         }
 	}
 }

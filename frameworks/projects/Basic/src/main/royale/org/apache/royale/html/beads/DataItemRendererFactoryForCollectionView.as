@@ -19,28 +19,15 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.collections.ICollectionView;
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IBeadModel;
-	import org.apache.royale.core.IDataProviderItemRendererMapper;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IItemRendererClassFactory;
-	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.IIndexedItemRendererInitializer;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.supportClasses.StringItemRenderer;
-	import org.apache.royale.html.supportClasses.UIItemRendererBase;
-	import org.apache.royale.utils.loadBeadFromValuesManager;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	
 	/**
@@ -75,7 +62,7 @@ package org.apache.royale.html.beads
 			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
-            super.dataProviderChangeHandler(event);
+			super.dataProviderChangeHandler(event);
 		}
 		
 		/**
@@ -83,7 +70,6 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function itemAddedHandler(event:CollectionEvent):void
 		{
@@ -93,15 +79,15 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			
 			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 			dataGroup.addItemRendererAt(ir, event.index);
 
-            var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-            ir.data = data;				
+			var data:Object = event.item;
+			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
+			ir.data = data;				
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = dataGroup.numItemRenderers;
@@ -116,9 +102,8 @@ package org.apache.royale.html.beads
 				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
 				//if (ubase) ubase.updateRenderer()
 			}
-			
-			(_strand as IEventDispatcher).dispatchEvent(new Event("itemsCreated"));
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"itemsCreated");
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		private var dp:ICollectionView;
@@ -128,7 +113,6 @@ package org.apache.royale.html.beads
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
 		 * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
 		 * @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function itemRemovedHandler(event:CollectionEvent):void
 		{
@@ -138,9 +122,9 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 			
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 			if (!ir) return; // may have already been cleaned up, possibly when a tree node closes
 			dataGroup.removeItemRenderer(ir);
@@ -158,8 +142,7 @@ package org.apache.royale.html.beads
 				//var ubase:UIItemRendererBase = ir as UIItemRendererBase;
 				//if (ubase) ubase.updateRenderer()
 			}
-			
-			(_strand as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+			sendStrandEvent(_strand,"layoutNeeded");
 		}
 		
 		/**
@@ -175,27 +158,27 @@ package org.apache.royale.html.beads
 			if (!dp)
 				return;
 
-            var view:IListView = (_strand as IStrandWithModelView).view as IListView;
-            var dataGroup:IItemRendererOwnerView = view.dataGroup;
-            
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			
 			// update the given renderer with (possibly) new information so it can change its
 			// appearence or whatever.
 			var ir:IIndexedItemRenderer = dataGroup.getItemRendererAt(event.index) as IIndexedItemRenderer;
 
-            var data:Object = event.item;
-            (itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-            ir.data = data;				
+			var data:Object = event.item;
+			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
+			ir.data = data;				
 		}
 
-        override protected function get dataProviderLength():int
-        {
-            return dp.length;
-        }
-        
-        override protected function getItemAt(i:int):Object
-        {
-            return dp.getItemAt(i);
-        }
+		override protected function get dataProviderLength():int
+		{
+			return dp.length;
+		}
+		
+		override protected function getItemAt(i:int):Object
+		{
+			return dp.getItemAt(i);
+		}
 		
 	}
 }

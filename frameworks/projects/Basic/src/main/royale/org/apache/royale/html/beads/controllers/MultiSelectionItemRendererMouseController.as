@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -19,7 +19,7 @@
 package org.apache.royale.html.beads.controllers
 {
 	import org.apache.royale.core.IBeadController;
-    import org.apache.royale.core.ISelectableItemRenderer;
+	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IStrand;
 	COMPILE::SWF {
@@ -36,6 +36,7 @@ package org.apache.royale.html.beads.controllers
 	}
 	import org.apache.royale.events.MultiSelectionItemClickedEvent;
 	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
 	 *  The MultiSelectionItemRendererMouseController class can mouse events in itemRenderers. This
@@ -159,14 +160,11 @@ package org.apache.royale.html.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-                if (target is IStrand)
-                {
-                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                    {
-                        selectionBead.down = true;
-                    }            
-                }
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+				if (selectionBead)
+				{
+					selectionBead.down = true;
+				}			
 				var newEvent:MultiSelectionItemClickedEvent = new MultiSelectionItemClickedEvent("itemMouseDown", true, true);
 				newEvent.shiftKey = event.shiftKey;
 				newEvent.ctrlKey = event.ctrlKey;
@@ -188,15 +186,12 @@ package org.apache.royale.html.beads.controllers
 			var target:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (target)
 			{
-                if (target is IStrand)
-                {
-                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                    {
-                        selectionBead.down = true;
-                        selectionBead.hovered = false;                    
-                    }            
-                }
+				var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+				if (selectionBead)
+				{
+					selectionBead.down = true;
+					selectionBead.hovered = false;
+				}			
 				var newEvent:MultiSelectionItemClickedEvent = MultiSelectionItemClickedEvent.createMultiSelectionItemClickedEvent("itemMouseDown", event);
 				newEvent.data = target.data;
 				newEvent.index = target.index;

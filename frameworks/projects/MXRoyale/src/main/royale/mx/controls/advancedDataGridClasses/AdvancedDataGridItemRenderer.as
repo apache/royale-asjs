@@ -51,6 +51,7 @@ import mx.collections.IHierarchicalData;
 import mx.events.ListEvent;
 import org.apache.royale.core.ISelectableItemRenderer;
 import org.apache.royale.core.IListDataItemRenderer;
+import org.apache.royale.utils.getSelectionRenderBead;
 
 //--------------------------------------
 //  Events
@@ -231,12 +232,12 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         {
             if (styleName == "textRollOverColor")
 			{
-				selectionBead = getBeadByType(ISelectableItemRenderer) as AdvancedDataGridSelectableItemRendererBead;
+				selectionBead = getSelectionRenderBead(this) as AdvancedDataGridSelectableItemRendererBead;
                 selectionBead.textRollOverColor = String(value);
 			}
             else if (styleName == "textSelectedColor")
 			{
-				selectionBead = getBeadByType(ISelectableItemRenderer) as AdvancedDataGridSelectableItemRendererBead;
+				selectionBead = getSelectionRenderBead(this) as AdvancedDataGridSelectableItemRendererBead;
                 selectionBead.textSelectedColor = String(value);
 			}
             else

@@ -7,7 +7,7 @@
 //  (the "License"); you may not use this file except in compliance with
 //  the License.  You may obtain a copy of the License at
 //
-//      http://www.apache.org/licenses/LICENSE-2.0
+//	  http://www.apache.org/licenses/LICENSE-2.0
 //
 //  Unless required by applicable law or agreed to in writing, software
 //  distributed under the License is distributed on an "AS IS" BASIS,
@@ -29,9 +29,9 @@ package org.apache.royale.html.beads.controllers
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemAddedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
-	import org.apache.royale.events.MouseEvent;
 	import org.apache.royale.events.MultiSelectionItemClickedEvent;
 	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.utils.getSelectionRenderBead;
 	import org.apache.royale.utils.sendEvent;
 
 	/**
@@ -41,7 +41,7 @@ package org.apache.royale.html.beads.controllers
 	 *  update the data model or dispatch a semantic event.
 	 *  This controller watches for events from the item renderers
 	 *  and updates an IMultiSelectionModel (which supports multi
-	 *  selection).      
+	 *  selection).	  
 	 * 
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -215,15 +215,15 @@ package org.apache.royale.html.beads.controllers
 		{
 			var renderer:IIndexedItemRenderer = event.currentTarget as IIndexedItemRenderer;
 			if (renderer) {
-                if (renderer is IStrand)
-                {
-                    var selectionBead:ISelectableItemRenderer = (renderer as IStrand).getBeadByType(ISelectableItemRenderer) as ISelectableItemRenderer;
-                    if (selectionBead)
-                    {
-                        selectionBead.hovered = false;
-                        selectionBead.down = false;                        
-                    }
-                }
+				if (renderer is IStrand)
+				{
+					var selectionBead:ISelectableItemRenderer = getSelectionRenderBead(renderer);
+					if (selectionBead)
+					{
+						selectionBead.hovered = false;
+						selectionBead.down = false;						
+					}
+				}
 				IRollOverModel(listModel).rollOverIndex = -1;
 			}
 		}
