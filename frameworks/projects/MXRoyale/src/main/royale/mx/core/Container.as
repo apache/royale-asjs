@@ -575,6 +575,51 @@ public class Container extends UIComponent
     }
 
     /**
+     *  Respond to size changes by setting the positions and sizes
+     *  of this container's borders.
+     *  This is an advanced method that you might override
+     *  when creating a subclass of Container.
+     *
+     *  <p>Flex calls the <code>layoutChrome()</code> method when the
+     *  container is added to a parent container using the <code>addChild()</code> method,
+     *  and when the container's <code>invalidateDisplayList()</code> method is called.</p>
+     *
+     *  <p>The <code>Container.layoutChrome()</code> method is called regardless of the
+     *  value of the <code>autoLayout</code> property.</p>
+     *
+     *  <p>The <code>Container.layoutChrome()</code> method sets the
+     *  position and size of the Container container's border.
+     *  In every subclass of Container, the subclass's <code>layoutChrome()</code>
+     *  method should call the <code>super.layoutChrome()</code> method,
+     *  so that the border is positioned properly.</p>
+     *
+     *  @param unscaledWidth Specifies the width of the component, in pixels,
+     *  in the component's coordinates, regardless of the value of the
+     *  <code>scaleX</code> property of the component.
+     *
+     *  @param unscaledHeight Specifies the height of the component, in pixels,
+     *  in the component's coordinates, regardless of the value of the
+     *  <code>scaleY</code> property of the component.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function layoutChrome(unscaledWidth:Number,
+                                    unscaledHeight:Number):void
+    {
+        // Border covers the whole thing.
+//        if (border)
+//        {
+//            updateBackgroundImageRect();
+//
+//            border.move(0, 0);
+//            border.setActualSize(unscaledWidth, unscaledHeight);
+//        }
+    }
+
+    /**
      *  Number of pixels between the container's bottom border
      *  and the bottom of its content area.
      *
