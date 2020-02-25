@@ -78,7 +78,7 @@
   color: #8f5105;
 }
 .jewel.button.secondary.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -239,7 +239,7 @@ a:active {
   color: #8f5105;
 }
 .jewel.togglebutton.secondary.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;

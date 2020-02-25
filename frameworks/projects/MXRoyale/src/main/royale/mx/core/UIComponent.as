@@ -95,6 +95,8 @@ import mx.validators.IValidatorListener;
 import mx.validators.ValidationResult;
 import mx.events.ValidationResultEvent;
 import org.apache.royale.utils.MXMLDataInterpreter;
+import mx.managers.IFocusManagerComponent;
+import mx.events.FocusEvent;
 
 /**
  *  Set a different class for click events so that
@@ -617,6 +619,13 @@ public class UIComponent extends UIBase
     public function UIComponent()
     {
         super();
+        if (this is IFocusManagerComponent)
+        {
+            addEventListener(FocusEvent.FOCUS_IN, focusInHandler);
+            addEventListener(FocusEvent.FOCUS_OUT, focusOutHandler);
+            addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);
+            addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
+        }
     }
 
     //--------------------------------------------------------------------------
@@ -5156,6 +5165,39 @@ COMPILE::JS
      *  @productversion Flex 3
      */
     protected function keyUpHandler(event:KeyboardEvent):void
+    {
+        // You must override this function if your component accepts focus
+    }
+
+    /**
+     *  The event handler called for a <code>focusIn</code> event.
+     *  If you override this method, make sure to call the base class version.
+     *
+     *  @param event The event object.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function focusInHandler(event:FocusEvent):void
+    {
+        // You must override this function if your component accepts focus
+    }
+
+
+    /**
+     *  The event handler called for a <code>focusOut</code> event.
+     *  If you override this method, make sure to call the base class version.
+     *
+     *  @param event The event object.
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Flex 3
+     */
+    protected function focusOutHandler(event:FocusEvent):void
     {
         // You must override this function if your component accepts focus
     }

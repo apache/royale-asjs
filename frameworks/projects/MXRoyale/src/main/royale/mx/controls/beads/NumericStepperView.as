@@ -21,6 +21,7 @@ package mx.controls.beads
     import mx.core.UIComponent;
     
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.html.beads.NumericStepperView;
 	
     /**
@@ -50,5 +51,10 @@ package mx.controls.beads
                 (value as UIComponent).measuredWidth = 60;
             }
         }
+
+		public function getInput():IUIBase
+		{
+			return input;
+		}
 	}
 }

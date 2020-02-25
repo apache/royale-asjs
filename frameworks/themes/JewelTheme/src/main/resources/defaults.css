@@ -241,7 +241,7 @@ hr {
   color: #737373;
 }
 .jewel.button.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -271,7 +271,7 @@ hr {
   color: #0c69a2;
 }
 .jewel.button.primary.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -1429,7 +1429,7 @@ div {
   color: #737373;
 }
 .jewel.togglebutton.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -1464,7 +1464,7 @@ div {
   color: #0c69a2;
 }
 .jewel.togglebutton.primary.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -1713,7 +1713,7 @@ j|Wizard {
   color: #8f2b0b;
 }
 .jewel.button.secondary.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -1873,7 +1873,7 @@ a:active {
   color: #8f2b0b;
 }
 .jewel.togglebutton.secondary.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -1976,7 +1976,7 @@ a:active {
   color: #47651e;
 }
 .jewel.button.emphasized.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
@@ -2124,7 +2124,7 @@ a:active {
   color: #47651e;
 }
 .jewel.togglebutton.emphasized.outlined[disabled] {
-  background: #f3f3f3 !important;
+  background: rgba(243, 243, 243, 0.1) !important;
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;

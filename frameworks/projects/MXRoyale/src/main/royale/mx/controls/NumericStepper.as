@@ -60,6 +60,7 @@ import mx.styles.StyleProxy;
 
 use namespace mx_internal;
 */
+import mx.controls.beads.NumericStepperView;
 
 //--------------------------------------
 //  Events
@@ -646,7 +647,24 @@ public class NumericStepper extends UIComponent
     //
     //--------------------------------------------------------------------------
 
-
+	private var oldBorderColor:String;
+	
+	override public function set errorString(value:String):void
+	{
+		super.errorString = value;
+		COMPILE::JS
+		{
+			if (value)
+			{
+				oldBorderColor = (view as NumericStepperView).getInput().element.style.borderColor;
+				(view as NumericStepperView).getInput().element.style.borderColor = "#f00";
+			}
+			else
+			{
+				(view as NumericStepperView).getInput().element.style.borderColor = oldBorderColor;
+			}
+		}
+	}
 }
 
 }

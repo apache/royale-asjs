@@ -91,7 +91,7 @@
 	
 	@else if ($state == "disabled")
 		@if $outlined
-			background: $disabled-color !important
+			background: rgba($disabled-color, 0.1) !important
 			border: 1px solid $disabled-border-color !important
 		@else if $unboxed
 			background: rgba($disabled-color, 0) !important

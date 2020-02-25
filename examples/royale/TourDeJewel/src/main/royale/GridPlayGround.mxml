@@ -34,14 +34,14 @@ limitations under the License.
 		<js:ContainerDataBinding/>
 	</c:beads>
 
-	<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight">
+	<j:Grid gap="true">
 		<j:beads>
 			<j:Paddings paddingTop="0" paddingLeft="50" paddingRight="50" paddingBottom="50"/>
 		</j:beads>
 
 		<c:ExampleHeader title="Jewel Grid">
 			<c:description>
-				<![CDATA[<strong>Jewel Grid</strong> examples.]]>
+				<![CDATA[<b>Jewel Grid</b> examples. Notice that unlike other pages, this one doesn't use <b>itemsVerticalAlign</b> set to "itemsSameHeight" in order to show how different alignemnts works through this page.]]>
 			</c:description>
 		</c:ExampleHeader>
 
@@ -49,18 +49,14 @@ limitations under the License.
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 				<html:Div className="box" text="1"/>
 			</j:GridCell>
-		</j:Grid>
-
-		<j:Grid gap="{useGap}">
+		
 			<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
 				<html:Div className="box" text="2"/>
 			</j:GridCell>
 			<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
 				<html:Div className="box" text="2"/>
 			</j:GridCell>
-		</j:Grid>
-
-		<j:Grid gap="{useGap}">
+		
 			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
 				<html:Div className="box" text="3"/>
 			</j:GridCell>
@@ -70,9 +66,7 @@ limitations under the License.
 			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
 				<html:Div className="box" text="3"/>
 			</j:GridCell>
-		</j:Grid>
-
-		<j:Grid gap="{useGap}">
+		
 			<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 				<html:Div className="box" text="4"/>
 			</j:GridCell>
@@ -85,8 +79,7 @@ limitations under the License.
 			<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 				<html:Div className="box" text="4"/>
 			</j:GridCell>
-		</j:Grid>
-		<j:Grid gap="{useGap}">
+		
 			<j:GridCell desktopNumerator="1" desktopDenominator="5" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
 				<html:Div className="box" text="5"/>
 			</j:GridCell>
@@ -102,9 +95,7 @@ limitations under the License.
 			<j:GridCell desktopNumerator="1" desktopDenominator="5" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
 				<html:Div className="box" text="5"/>
 			</j:GridCell>
-		</j:Grid>
-
-		<j:Grid gap="{useGap}">
+		
 			<j:GridCell desktopNumerator="1" desktopDenominator="6" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="2">
 				<html:Div className="box" text="6"/>
 			</j:GridCell>
@@ -124,9 +115,6 @@ limitations under the License.
 				<html:Div className="box" text="6"/>
 			</j:GridCell>
 
-		</j:Grid>
-
-		<j:Grid gap="{useGap}">
 			<j:GridCell desktopNumerator="1" desktopDenominator="7" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="3">
 				<html:Div className="box" text="7"/>
 			</j:GridCell>
@@ -149,185 +137,174 @@ limitations under the License.
 				<html:Div className="box" text="7"/>
 			</j:GridCell>
 
-		</j:Grid>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
+			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="8"/>
+			</j:GridCell>
 
-		<j:Grid gap="{useGap}">
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="8" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="8"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
 			</j:GridCell>
-		</j:Grid>
+			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
+				<html:Div className="box" text="9"/>
+			</j:GridCell>
 
-		<j:Grid gap="{useGap}">
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="9" tabletNumerator="1" tabletDenominator="4" phoneNumerator="1" phoneDenominator="2">
-				<html:Div className="box" text="9"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
 			</j:GridCell>
-		</j:Grid>
+			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="10"/>
+			</j:GridCell>
 
-		<j:Grid gap="{useGap}">
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="10" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="10"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
 			</j:GridCell>
-		</j:Grid>
+			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="11"/>
+			</j:GridCell>
 
-		<j:Grid gap="{useGap}">
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="11" tabletNumerator="1" tabletDenominator="5" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="11"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
 			</j:GridCell>
-		</j:Grid>
+			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
+				<html:Div className="box" text="12"/>
+			</j:GridCell>
+		
+			
+			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+				<html:H3 text="Grids Responsive Visibility"/>
+			</j:GridCell>
 
-		<j:Grid id="g" gap="{useGap}">
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="12" tabletNumerator="1" tabletDenominator="6" phoneNumerator="1" phoneDenominator="4">
-				<html:Div className="box" text="12"/>
-			</j:GridCell>
-		</j:Grid>
-
-		<html:H3 text="Grids Responsive Visibility"/>
-
-		<j:Grid gap="true">
+			
 			<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2">
 				<html:Div className="box" text="2a"/>
 			</j:GridCell>
 			<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="2" wideScreenVisible="false">
 				<html:Div className="box" text="2b - Hidden in WideScreen"/>
 			</j:GridCell>
-		</j:Grid>
 
-		<j:Grid gap="true">
 			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3" phoneVisible="false">
 				<html:Div className="box" text="3a - Hidden in Phones"/>
 			</j:GridCell>
@@ -337,9 +314,7 @@ limitations under the License.
 			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
 				<html:Div className="box" text="3c"/>
 			</j:GridCell>
-		</j:Grid>
 
-		<j:Grid gap="true">
 			<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 				<html:Div className="box" text="4a"/>
 			</j:GridCell>
@@ -352,64 +327,76 @@ limitations under the License.
 			<j:GridCell desktopNumerator="1" desktopDenominator="4" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 				<html:Div className="box" text="4d"/>
 			</j:GridCell>
-		</j:Grid>
+			
 
-		<html:H3 text="Grids Horizontal Align"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+				<html:H3 text="Grids Horizontal Align"/>
+			</j:GridCell>
 
-		<html:H4 text=" itemsTop"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+				<html:H4 text="itemsTop"/>
+			</j:GridCell>
 
-		<j:Grid gap="true" itemsVerticalAlign="itemsTop">
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 100px" height="100"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 200px" height="200"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 300px" height="300"/>
-			</j:GridCell>
-		</j:Grid>
 
-		<html:H4 text=" itemsBottom"/>
+			<j:Grid gap="true" itemsVerticalAlign="itemsTop">
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 100px" height="100"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 200px" height="200"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 300px" height="300"/>
+				</j:GridCell>
+			</j:Grid>
 
-		<j:Grid gap="true" itemsVerticalAlign="itemsBottom">
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 100px" height="100"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+				<html:H4 text="itemsBottom"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 200px" height="200"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 300px" height="300"/>
-			</j:GridCell>
-		</j:Grid>
 
-		<html:H4 text=" itemsCentered"/>
+			<j:Grid gap="true" itemsVerticalAlign="itemsBottom">
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 100px" height="100"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 200px" height="200"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 300px" height="300"/>
+				</j:GridCell>
+			</j:Grid>
 
-		<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 100px" height="100"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+				<html:H4 text="itemsCentered"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 200px" height="200"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="height: 300px" height="300"/>
-			</j:GridCell>
-		</j:Grid>
 
-		<html:H4 text=" itemsSameHeight"/>
+			<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 100px" height="100"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 200px" height="200"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="height: 300px" height="300"/>
+				</j:GridCell>
+			</j:Grid>
 
-		<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight" height="200">
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="Same Height"/>
+			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+				<html:H4 text=" itemsSameHeight"/>
 			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="Same Height"/>
-			</j:GridCell>
-			<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
-				<html:Div className="box" text="Same Height"/>
-			</j:GridCell>
+
+			<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight" height="200">
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="Same Height"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="Same Height"/>
+				</j:GridCell>
+				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
+					<html:Div className="box" text="Same Height"/>
+				</j:GridCell>
+			</j:Grid>
 		</j:Grid>
 	</j:Grid>
 	

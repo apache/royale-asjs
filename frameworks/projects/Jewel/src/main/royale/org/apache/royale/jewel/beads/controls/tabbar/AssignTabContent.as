@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.tabbar
 {	
+	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -82,11 +83,32 @@ package org.apache.royale.jewel.beads.controls.tabbar
 			}
 		}
 		
+		/**
+		 *  Select the right content for the selected tabbar button.
+		 *  Or if the dataprovider changes and a content was already selected, tries
+		 *  to select the tabbar button (if exits).
+		 * 
+		 *  @param event 
+		 */
 		protected function selectionChangedHandler(event:Event):void
 		{
 			if(content && tabbar.selectedIndex != -1)
 			{
 				content.selectedContent = tabbar.selectedItem[selectedContentProperty];
+			}
+			else if(tabbar.selectedIndex == -1 && content.selectedContent)
+			{
+				var len:int = tabbar.dataProvider.length;
+				var item:Object;
+				for(var index:int = 0; index < len; index++)
+				{
+					item = (tabbar.dataProvider as ArrayList).getItemAt(index);
+					if(item[selectedContentProperty] == content.selectedContent)
+					{
+						tabbar.selectedItem = item;
+						return;
+					}
+				}
 			}
 		}
 

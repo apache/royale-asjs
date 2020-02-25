@@ -26,13 +26,8 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
+
 			import vos.TabBarButtonVO;
-            
-            private function changeHandler(event:Event):void
-            {
-                var item:TabBarButtonVO = (event.target as TabBar).selectedItem as TabBarButtonVO;
-                tabcontent.selectedContent = item.hash;
-            }
 
             private var _tabBarData:ArrayList = new ArrayList([
 				new TabBarButtonVO("Tab 1", "tab1", MaterialIconType.ACCESSIBILITY),
@@ -45,6 +40,19 @@ limitations under the License.
 			public function get tabBarData():ArrayList
 			{
 				return _tabBarData;
+			}
+			public function set tabBarData(value:ArrayList):void
+			{
+				_tabBarData = value;
+			}
+
+			private function updateTabBarData():void
+			{
+				tabBarData = new ArrayList([
+					new TabBarButtonVO("Other 1", "tab1", MaterialIconType.MORE),
+					new TabBarButtonVO("Other 2", "tab2", MaterialIconType.PAGES),
+					new TabBarButtonVO("Other 3", "tab3", MaterialIconType.ZOMM_IN)
+				]);
 			}
             
 			private var _scrolltabBarData:ArrayList = new ArrayList([
@@ -93,135 +101,169 @@ limitations under the License.
 
 		<c:ExampleHeader title="Jewel TabBar">
 			<c:description>
-				<![CDATA[<strong>Jewel TabBar</strong> examples.]]>
+				<![CDATA[<b>Jewel TabBar</b> can be used with content organized in a <b>TabBarContent</b>. <b>AssignTabContent</b> is a convenient bead to bind a <b>TabBar</b> with the corresponding <b>TabBarContent</b>. Last examples shows horizontal scrolling when options overflow the available width.]]>
 			</c:description>
 		</c:ExampleHeader>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel TabBar"/>
+				<j:CardHeader>
+					<html:H3 text="Jewel TabBar"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by an icon and a label. The <b>ItemRenderer</b> is asigned vía className <b>tabBarVerticalIconItemRenderer</b>.]]></j:html>
+					</j:Label>
 
-				<j:Label multiline="true">
-					<j:html><![CDATA[This Tab Bar has an <strong>ItemRenderer</strong> composed by an icon and a label. the ItemRenderer is asigned vía className <strong>tabBarVerticalIconItemRenderer</strong>.]]></j:html>
-				</j:Label>
-
-				<j:TabBar localId="tabbar" width="100%" className="tabBarVerticalIconItemRenderer"
-						dataProvider="{tabBarData}">
-					<j:beads>
-						<j:AssignTabContent selectedContentProperty="hash">
-							<j:content>
-								<j:TabBarContent localId="tabcontent" >
-									<j:SectionContent name="tab1">
-										<j:Label text="Tab 1"/>
-									</j:SectionContent>
-									<j:SectionContent name="tab2">
-										<j:Label text="Tab 2"/>
-									</j:SectionContent>
-									<j:SectionContent name="tab3">
-										<j:Label text="Tab 3"/>
-									</j:SectionContent>
-									<j:SectionContent name="tab4">
-										<j:Label text="Tab 4"/>
-									</j:SectionContent>
-								</j:TabBarContent>
-							</j:content>
-						</j:AssignTabContent>
-					</j:beads>
-				</j:TabBar>
-				
-				<!-- <j:Label multiline="true">
-					<j:html><![CDATA[Components:
-						<ul>
-							<li><strong>TabBar:</strong> Es el componente
-								<li><strong>AssignTabContent:</strong> Asigansdsd </li>
-							</li>
-							<li><strong>TabBarContent:</strong></li>
-						</ul>]]></j:html>
-				</j:Label> -->
-
+					<j:TabBar width="100%" className="tabBarVerticalIconItemRenderer"
+							dataProvider="{tabBarData}">
+						<j:beads>
+							<j:AssignTabContent selectedContentProperty="hash">
+								<j:content>
+									<j:TabBarContent localId="tabcontent">
+										<j:SectionContent name="tab1">
+											<j:Label text="Tab 1"/>
+										</j:SectionContent>
+										<j:SectionContent name="tab2">
+											<j:Label text="Tab 2"/>
+										</j:SectionContent>
+										<j:SectionContent name="tab3">
+											<j:Label text="Tab 3"/>
+										</j:SectionContent>
+										<j:SectionContent name="tab4">
+											<j:Label text="Tab 4"/>
+										</j:SectionContent>
+									</j:TabBarContent>
+								</j:content>
+							</j:AssignTabContent>
+						</j:beads>
+					</j:TabBar>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsVerticalAlign="itemsRight">
+					<j:Button click="updateTabBarData()" text="change all data" emphasis="primary"/>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel TabBar"/>
-
-				<j:Label text="This Tab Bar has an ItemRenderer composed by just a label."/>
-
-				<j:TabBar localId="tabbar2" selectedIndex="2" className="tabBarHorizontalIconItemRenderer">
-					<j:beads>
-						<js:ConstantBinding sourcePropertyName="tabBarData" destinationPropertyName="dataProvider"/>
-					</j:beads>
-				</j:TabBar>
-				<j:TabBarContent localId="tabcontent2" selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).hash}" >
-					<j:SectionContent name="tab1">
-						<j:Label text="Tab 1"/>
-					</j:SectionContent>
-					<j:SectionContent name="tab2">
-						<j:Label text="Tab 2"/>
-					</j:SectionContent>
-					<j:SectionContent name="tab3">
-						<j:Label text="Tab 3"/>
-					</j:SectionContent>
-					<j:SectionContent name="tab4">
-						<j:Label text="Tab 4"/>
-					</j:SectionContent>
-				</j:TabBarContent>
-
-			</j:Card>
-		</j:GridCell>
-		
-		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
-				<html:H3 text="Jewel TabBar"/>
-
-				<j:TabBar>
-					<j:beads>
-						<js:ConstantBinding sourcePropertyName="tabBarDataSample"
-											destinationPropertyName="dataProvider"/>
-						<j:AssignTabContent selectedContentProperty="content">
-							<j:content>
-								<j:TabBarContent>
-									<j:SectionContent name="films">
-										<j:Label text="Films Content Goes Here"/>
-									</j:SectionContent>
-									<j:SectionContent name="collection">
-										<j:Label text="Collection Content Goes Here"/>
-									</j:SectionContent>
-									<j:SectionContent name="favorites">
-										<j:Label text="Favorites Content Goes Here"/>
-									</j:SectionContent>
-								</j:TabBarContent>
-							</j:content>
-						</j:AssignTabContent>
-					</j:beads>
-				</j:TabBar>
+				<j:CardHeader>
+					<html:H3 text="Jewel TabBar"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[This <b>TabBar</b> has an <b>ItemRenderer</b> composed by just a label. This example doesn't use <b>AssignTabContent</b>.]]></j:html>
+					</j:Label>
+					<j:TabBar localId="tabbar2" selectedIndex="2" className="tabBarHorizontalIconItemRenderer">
+						<j:beads>
+							<js:ConstantBinding sourcePropertyName="tabBarData" destinationPropertyName="dataProvider"/>
+						</j:beads>
+					</j:TabBar>
+					<j:TabBarContent localId="tabcontent2" selectedContent="{(tabbar2.selectedItem as TabBarButtonVO).hash}">
+						<j:SectionContent name="tab1">
+							<j:Label text="Tab 1"/>
+						</j:SectionContent>
+						<j:SectionContent name="tab2">
+							<j:Label text="Tab 2"/>
+						</j:SectionContent>
+						<j:SectionContent name="tab3">
+							<j:Label text="Tab 3"/>
+						</j:SectionContent>
+						<j:SectionContent name="tab4">
+							<j:Label text="Tab 4"/>
+						</j:SectionContent>
+					</j:TabBarContent>
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel TabBar with Scroll"/>
-
-				<j:TabBar width="100%" dataProvider="{scrolltabBarData}">
-					<j:beads>
-						<j:AssignTabContent selectedContentProperty="hash">
-							<j:content>
-								<j:TabBarContent>
-									<j:SectionContent name="films">
-										<j:Label text="Films Content Goes Here"/>
-									</j:SectionContent>
-									<j:SectionContent name="collection">
-										<j:Label text="Collection Content Goes Here"/>
-									</j:SectionContent>
-									<j:SectionContent name="favorites">
-										<j:Label text="Favorites Content Goes Here"/>
-									</j:SectionContent>
-								</j:TabBarContent>
-							</j:content>
-						</j:AssignTabContent>
-					</j:beads>
-				</j:TabBar>
+				<j:CardHeader>
+					<html:H3 text="Jewel TabBar"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:TabBar>
+						<j:beads>
+							<js:ConstantBinding sourcePropertyName="tabBarDataSample"
+												destinationPropertyName="dataProvider"/>
+							<j:AssignTabContent selectedContentProperty="content">
+								<j:content>
+									<j:TabBarContent>
+										<j:SectionContent name="films">
+											<j:Label text="Films Content Goes Here"/>
+										</j:SectionContent>
+										<j:SectionContent name="collection">
+											<j:Label text="Collection Content Goes Here"/>
+										</j:SectionContent>
+										<j:SectionContent name="favorites">
+											<j:Label text="Favorites Content Goes Here"/>
+										</j:SectionContent>
+									</j:TabBarContent>
+								</j:content>
+							</j:AssignTabContent>
+						</j:beads>
+					</j:TabBar>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="Jewel TabBar with horizontal scroll"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label multiline="true">
+						<j:html><![CDATA[This <b>TabBar</b> has twelve tabs. Notice that "width" needs to be configured to 100% to make scroll work.]]></j:html>
+					</j:Label>
+					<j:TabBar width="100%" localId="tabbar3" dataProvider="{scrolltabBarData}">
+						<j:beads>
+							<j:AssignTabContent selectedContentProperty="hash">
+								<j:content>
+									<j:TabBarContent selectedContent="{(tabbar3.selectedItem as TabBarButtonVO).hash}">
+										<j:SectionContent name="tabone">
+											<j:Label text="Tab One!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabtwo">
+											<j:Label text="Tab Two!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabthree">
+											<j:Label text="Tab Three!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabfour">
+											<j:Label text="Tab Four!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabfive">
+											<j:Label text="Tab Five!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabsix">
+											<j:Label text="Tab Six!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabseven">
+											<j:Label text="Tab Seven!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabeight">
+											<j:Label text="Tab Eight!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabnine">
+											<j:Label text="Tab Nine!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabten">
+											<j:Label text="Tab Ten!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabeleven">
+											<j:Label text="Tab Eleven!"/>
+										</j:SectionContent>
+										<j:SectionContent name="tabtwelve">
+											<j:Label text="Tab Twelve!"/>
+										</j:SectionContent>
+									</j:TabBarContent>
+								</j:content>
+							</j:AssignTabContent>
+						</j:beads>
+					</j:TabBar>
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 

@@ -34,7 +34,7 @@ limitations under the License.
 
 		<c:ExampleHeader title="Jewel Card">
 			<c:description>
-				<![CDATA[<b>Jewel Card</b> examples. This page shows how to use Card alone or with other companion components like <b>CardHeader</b>, <b>CardPrimaryContent</b> and <b>CardActions</b>.<br>
+				<![CDATA[This page shows how to use <b>Jewel Card</b> alone or with other companion components like <b>CardHeader</b>, <b>CardPrimaryContent</b> and <b>CardActions</b>.<br>
 				You can see how content is aligned in each section and how to add variations in order to get several configurations. Special attention to different button styles and text colors.<br>
 				Notice that unlike other pages, this one doesn't use <b>itemsVerticalAlign</b> set to "itemsSameHeight" in order to show how Card height works depending on content.]]>
 			</c:description>
