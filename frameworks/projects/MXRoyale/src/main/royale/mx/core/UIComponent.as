@@ -3653,6 +3653,7 @@ COMPILE::JS
         dispatchEvent(new FlexEvent(FlexEvent.PREINITIALIZE));
             
         createChildren();
+		invalidateSize();
                 
         // This should always be the last thing that initialize() calls.
         initializationComplete();
@@ -3817,6 +3818,8 @@ COMPILE::JS
      */
     public function invalidateSize():void
     {
+		_measuredWidth = NaN;
+		_measuredHeight = NaN;
         if (parent)
             (parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded")); // might cause too many layouts
     }
@@ -5991,6 +5994,8 @@ COMPILE::JS
             }
         }
         */
+		_measuredWidth = NaN;
+		_measuredHeight = NaN;
     }
     
     /**
