@@ -3653,8 +3653,9 @@ COMPILE::JS
         dispatchEvent(new FlexEvent(FlexEvent.PREINITIALIZE));
             
         createChildren();
-		invalidateSize();
-                
+		_measuredWidth = NaN;
+		_measuredHeight = NaN;
+		                
         // This should always be the last thing that initialize() calls.
         initializationComplete();
     }
