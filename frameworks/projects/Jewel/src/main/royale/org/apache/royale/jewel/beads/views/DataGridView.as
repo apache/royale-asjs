@@ -88,9 +88,9 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
             _dg = _strand as IDataGrid;
+            _presentationModel = _dg.presentationModel as IDataGridPresentationModel;
             _dg.addEventListener("widthChanged", handleSizeChanges);
             _dg.addEventListener("heightChanged", handleSizeChanges);
-            _presentationModel = _dg.presentationModel as IDataGridPresentationModel;
             
             // see if there is a presentation model already in place. if not, add one.
             _sharedModel = _dg.model as IDataGridModel;

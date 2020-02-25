@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.beads.models
 {
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 	
 	/**
@@ -46,7 +47,7 @@ package org.apache.royale.jewel.beads.models
 			super();	
 		}
 		
-		// private var _columnLabels:Array;
+		private var _columnLabels:Array;
 		/**
 		 *  The labels used in each column header.
 		 *
@@ -55,17 +56,18 @@ package org.apache.royale.jewel.beads.models
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		// public function get columnLabels():Array
-		// {
-		// 	return _columnLabels;
-		// }
-		// public function set columnLabels(value:Array):void
-		// {
-		// 	if (value != _columnLabels) {
-		// 		_columnLabels = value;
-		// 		dispatchEvent(new Event("columnLabelsChanged"));
-		// 	}
-		// }
+		public function get columnLabels():Array
+		{
+			return _columnLabels;
+		}
+		public function set columnLabels(value:Array):void
+		{
+			if (value != _columnLabels) {
+				_columnLabels = value;
+				if(_strand)
+					(_strand as IEventDispatcher).dispatchEvent(new Event("columnLabelsChanged"));
+			}
+		}
 
 		// private var _columnLabelAlign:String = "left"
 		/**
