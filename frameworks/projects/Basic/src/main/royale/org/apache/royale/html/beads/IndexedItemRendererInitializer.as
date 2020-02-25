@@ -59,8 +59,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
-		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		override public function set strand(value:IStrand):void
 		{	
@@ -71,7 +70,7 @@ package org.apache.royale.html.beads
 		
 		/**
 		 *  @private
-		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
+		 *  @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
 		 */
 		public function initializeItemRenderer(ir:IItemRenderer, data:Object):void
