@@ -59,9 +59,12 @@ package org.apache.royale.jewel.beads.itemRenderers
          */
         override public function updateRenderer():void
         {
-            // there's no selection only hover state
-            ir.toggleClass("hovered", hovered);
-            ir.toggleClass("selected", selected);
+			if (!selected)
+			{
+				ir.toggleClass("hovered", hovered);
+			}
+
+			ir.toggleClass("selected", selected);
         }
 	}
 }
