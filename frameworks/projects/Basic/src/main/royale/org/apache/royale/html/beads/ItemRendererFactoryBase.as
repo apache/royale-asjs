@@ -100,6 +100,7 @@ package org.apache.royale.html.beads
 		 */
 		protected function finishSetup(event:Event):void
 		{			
+			IEventDispatcher(_strand).removeEventListener("initComplete", finishSetup);
 			dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
 			dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
 
