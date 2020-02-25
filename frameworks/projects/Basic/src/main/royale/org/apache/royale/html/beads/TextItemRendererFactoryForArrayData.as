@@ -137,7 +137,7 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9
 		 *  @royaleignorecoercion Array
-		 *  @royaleignorecoercion org.apache.royale.html.beads.ITextItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithModelView
 		 *  @royaleignorecoercion org.apache.royale.html.beads.IListView
