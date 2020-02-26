@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.controls.datagrid
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.DataGrid;
 	import org.apache.royale.jewel.beads.views.DataGridView;
 	import org.apache.royale.jewel.supportClasses.datagrid.DataGridButtonBar;
