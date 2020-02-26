@@ -150,6 +150,7 @@ NumericStepper
 Panel
 {
 	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
+	IViewport: ClassReference("spark.components.beads.SparkSkinViewport");
 	skinClass: ClassReference("spark.skins.spark.PanelSkin");
 		
 	background-color: #FFFFFF;

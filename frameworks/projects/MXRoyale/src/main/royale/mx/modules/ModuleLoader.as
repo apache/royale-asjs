@@ -309,6 +309,10 @@ public class ModuleLoader extends VBox
      */
     public function get url():String
     {
+	if (!utils.modulePath && !utils.moduleName)
+	{
+		return null;
+	}
         return utils.modulePath + "/" + utils.moduleName + ".swf";
     }
 

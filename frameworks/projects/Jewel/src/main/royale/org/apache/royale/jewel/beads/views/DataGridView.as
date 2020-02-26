@@ -88,9 +88,9 @@ package org.apache.royale.jewel.beads.views
 			super.strand = value;
 
             _dg = _strand as IDataGrid;
+            _presentationModel = _dg.presentationModel as IDataGridPresentationModel;
             _dg.addEventListener("widthChanged", handleSizeChanges);
             _dg.addEventListener("heightChanged", handleSizeChanges);
-            _presentationModel = _dg.presentationModel as IDataGridPresentationModel;
             
             // see if there is a presentation model already in place. if not, add one.
             _sharedModel = _dg.model as IDataGridModel;
@@ -144,8 +144,8 @@ package org.apache.royale.jewel.beads.views
             // columns
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
             _listArea = new listAreaClass() as IUIBase;
-
-            _dg.height = 240;// must be the same as in CSS default (get from CSS)
+            if(!_dg.height)
+                _dg.height = 240; // if height not set make it default to 240px
             _listArea.height = _dg.height - _header.height;
             COMPILE::JS
             {

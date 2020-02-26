@@ -33,6 +33,7 @@ limitations under the License.
 
         import vos.IconListVO;
         import vos.Product;
+        import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
 
         private function dataGridProductChange(grid:DataGrid, output:Label) : void
 		{
@@ -100,6 +101,15 @@ limitations under the License.
 
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
+
+		/**
+		 * DataGridColumnLabelsChange nead needed
+		 */
+		public function changeColumnNames():void
+		{
+			var pm:IDataGridPresentationModel = datagrid.presentationModel as IDataGridPresentationModel;
+			pm.columnLabels = ["Imgs", "Names", "Cost"];
+		}
 		]]>
 	</fx:Script>
 
@@ -118,34 +128,41 @@ limitations under the License.
 
 		<c:ExampleHeader title="Jewel DataGrid">
 			<c:description>
-				<![CDATA[<strong>Jewel DataGrid</strong> examples.]]>
+				<![CDATA[<b>Jewel DataGrid</b> examples.]]>
 			</c:description>
 		</c:ExampleHeader>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataGrid"/>
-				
-				<j:Label text="Basic configuration, default width, no column widths, no rowHeight. First column uses a custom renderer."
-						multiline="true"/>
+				<j:CardHeader>
+					<html:H3 text="Jewel DataGrid" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Basic configuration, default width, no column widths, no rowHeight. First column uses a custom renderer."
+							multiline="true"/>
 
-				<j:DataGrid localId="datagrid"
-					change="dataGridProductChange(event.target as DataGrid, datagrid_lb)">
-					<j:beads>
-						<js:ConstantBinding
-							sourceID="productModel"
-							sourcePropertyName="fewProductList"
-							destinationPropertyName="dataProvider"/>
-					</j:beads>
-					<j:columns>
-						<j:DataGridColumn label="Images" dataField="image" 
-										itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
-						<j:DataGridColumn label="Title" dataField="title"/>
-						<j:DataGridColumn label="Sales" dataField="sales"/>
-					</j:columns>
-				</j:DataGrid>
+					<j:DataGrid localId="datagrid"
+						change="dataGridProductChange(event.target as DataGrid, datagrid_lb)">
+						<j:beads>
+							<js:ConstantBinding
+								sourceID="productModel"
+								sourcePropertyName="fewProductList"
+								destinationPropertyName="dataProvider"/>
+							<j:DataGridColumnLabelsChange/>
+						</j:beads>
+						<j:columns>
+							<j:DataGridColumn label="Images" dataField="image" 
+											itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
+							<j:DataGridColumn label="Title" dataField="title"/>
+							<j:DataGridColumn label="Sales" dataField="sales"/>
+						</j:columns>
+					</j:DataGrid>
 
-				<j:Label id="datagrid_lb" text="DataGrid selection will be shown here"/>
+					<j:Label id="datagrid_lb" text="DataGrid selection will be shown here"/>
+				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Button text="change column labels" click="changeColumnNames()"/>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 		

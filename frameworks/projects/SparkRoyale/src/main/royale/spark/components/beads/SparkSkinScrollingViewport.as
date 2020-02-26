@@ -47,7 +47,7 @@ COMPILE::SWF
  *  @private
  *  The viewport that loads a Spark Skin.
  */
-public class SparkSkinScrollingViewport extends EventDispatcher implements IBead, IScrollingViewport
+public class SparkSkinScrollingViewport extends SparkSkinViewport implements IScrollingViewport
 {
 	//--------------------------------------------------------------------------
 	//
@@ -68,64 +68,13 @@ public class SparkSkinScrollingViewport extends EventDispatcher implements IBead
 		super();
 	}
 
-    protected var contentArea:UIBase;
-    
-    /**
-     * Get the actual parent of the container's content.
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function get contentView():IUIBase
+    override protected function initCompleteHandler(event:Event):void
     {
-        return contentArea;
-    }
-    
-    protected var host:SkinnableComponent;
-    
-    /**
-     */
-    public function set strand(value:IStrand):void
-    {
-        host = value as SkinnableComponent;
-        
-        var c:Class = ValuesManager.valuesImpl.getValue(value, "skinClass") as Class;
-        if (c)
-        {
-            host.setSkin(new c());
-            host.skin.addEventListener("initComplete", initCompleteHandler);
-            contentArea = host.skin; // temporary assigment so that SkinnableContainer.addElement can add the skin
-        }
-        else
-        {
-            var f:Function = ValuesManager.valuesImpl.getValue(value, "iContentView") as Function;
-            if (f)
-            {
-                contentArea = new f() as UIBase;
-            }
-            
-            if (!contentArea)
-                contentArea = value as UIBase;
-        }
-    }
-    
-    private function initCompleteHandler(event:Event):void
-    {
-        contentArea = host.skin["contentGroup"];
-        if (host is SkinnableContainer)
-        {
-            var sc:SkinnableContainer = host as SkinnableContainer;
-            if (sc.layout)
-                (contentArea as GroupBase).layout = sc.layout;       
-        }
-            
+		super.initCompleteHandler(event);
         COMPILE::JS
         {
             setScrollStyle();
-        }
-        
+        }        
     }
     
     /**
@@ -135,47 +84,6 @@ public class SparkSkinScrollingViewport extends EventDispatcher implements IBead
     protected function setScrollStyle():void
     {
         contentArea.element.style.overflow = "auto";
-        adaptContentArea();
-    }
-    
-    /**
-     * If the contentArea is not the same as the strand,
-     * we need to size it to 100% for scrolling to work correctly.
-     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-     */
-    COMPILE::JS
-    protected function adaptContentArea():void
-    {
-        if(host != contentArea)
-        {
-            if (host is SkinnableContainer)
-            {
-                var sc:SkinnableContainer = host as SkinnableContainer;
-                if (sc.layout)
-                {
-                    if (!sc.layout.isWidthSizedToContent())
-                        contentArea.percentWidth = 100;
-                    if (!sc.layout.isHeightSizedToContent())
-                        contentArea.percentHeight = 100;
-                }
-                else
-                {
-                    if (host.isWidthSizedToContent())
-                        contentArea.percentWidth = 100;
-                    if (host.isHeightSizedToContent())
-                        contentArea.percentHeight = 100;                    
-                }
-            }
-            else
-            {
-                if (host.isWidthSizedToContent())
-                    contentArea.percentWidth = 100;
-                if (host.isHeightSizedToContent())
-                    contentArea.percentHeight = 100;
-                
-            }
-            contentArea.element.style.position = "absolute";
-        }
     }
     
     COMPILE::SWF
@@ -237,60 +145,6 @@ public class SparkSkinScrollingViewport extends EventDispatcher implements IBead
         }
     }
 
-    /**
-     * @copy org.apache.royale.core.IViewport#setPosition()
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function setPosition(x:Number, y:Number):void
-    {
-        COMPILE::SWF {
-            contentArea.x = x;
-            contentArea.y = y;
-        }
-    }
-    
-    /**
-     * @copy org.apache.royale.core.IViewport#layoutViewportBeforeContentLayout()
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function layoutViewportBeforeContentLayout(width:Number, height:Number):void
-    {
-        COMPILE::SWF {
-            if (!isNaN(width))
-                contentArea.width = width;
-            if (!isNaN(height))
-                contentArea.height = height;
-        }
-    }
-    
-    /**
-     * @copy org.apache.royale.core.IViewport#layoutViewportAfterContentLayout()
-     *
-     *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
-     */
-    public function layoutViewportAfterContentLayout(contentSize:Size):void
-    {
-        COMPILE::SWF {
-            var hostWidth:Number = UIBase(host).width;
-            var hostHeight:Number = UIBase(host).height;
-            
-            var rect:flash.geom.Rectangle = new flash.geom.Rectangle(0, 0, hostWidth, hostHeight);
-            contentArea.scrollRect = rect;
-            
-            return;
-        }
-    }
 }
 
 }

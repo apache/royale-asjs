@@ -65,6 +65,7 @@ package org.apache.royale.jewel
 			typeNames = "jewel datagrid";
 		}
 		
+		[Bindable("columnsChanged")]
 		/**
 		 *  The array of org.apache.royale.jewel.supportClasses.datagrid.DataGridColumn used to 
 		 *  describe each column.
