@@ -35,9 +35,9 @@ import flash.text.TextLineMetrics;
 import flash.ui.Keyboard;
 */
 import mx.controls.listClasses.BaseListData;
-/*
 import mx.controls.listClasses.IDropInListItemRenderer;
 import mx.controls.listClasses.IListItemRenderer;
+/*
 import mx.core.FlexVersion;
 */
 import mx.core.IDataRenderer;
@@ -53,9 +53,9 @@ import mx.core.mx_internal;
 */
 import mx.events.FlexEvent;
 import mx.events.NumericStepperEvent;
+import mx.managers.IFocusManagerComponent;
 /*
 import mx.managers.IFocusManager;
-import mx.managers.IFocusManagerComponent;
 import mx.styles.StyleProxy;
 
 use namespace mx_internal;
@@ -199,9 +199,9 @@ import mx.controls.beads.NumericStepperView;
  *  @productversion Flex 3
  */
 public class NumericStepper extends UIComponent
-                            implements IDataRenderer /*, IDropInListItemRenderer,*/
-                            /*IFocusManagerComponent, IIMESupport,
-                            IListItemRenderer*/
+                            implements IDataRenderer, IDropInListItemRenderer,
+                            IFocusManagerComponent, /*IIMESupport,*/
+                            IListItemRenderer
 {
     //--------------------------------------------------------------------------
     //
@@ -311,7 +311,7 @@ public class NumericStepper extends UIComponent
      *  @private
      *  Storage for the listData property.
      */
-    private var _listData:BaseListData;
+    private var _listData:Object;
 
     [Bindable("dataChange")]
     [Inspectable(environment="none")]
@@ -336,7 +336,7 @@ public class NumericStepper extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
     }
@@ -344,7 +344,7 @@ public class NumericStepper extends UIComponent
     /**
      *  @private
      */
-    public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
         _listData = value;
     }
