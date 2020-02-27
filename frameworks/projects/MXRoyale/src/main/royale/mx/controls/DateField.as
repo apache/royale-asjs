@@ -30,9 +30,12 @@ import flash.geom.Point;
 import flash.geom.Rectangle;
 import flash.ui.Keyboard; */
 
-//import mx.controls.dataGridClasses.DataGridListData;
+import mx.controls.dataGridClasses.DataGridListData;
 import mx.controls.beads.DateFieldView;
 import mx.controls.listClasses.BaseListData;
+import mx.controls.listClasses.IDropInListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.listClasses.ListData;
 import mx.core.ClassFactory;
 import mx.core.IDataRenderer;
 import mx.core.IFactory;
@@ -404,10 +407,9 @@ include "../styles/metadata/TextStyles.as" */
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DateField extends ComboBase 
-                      
+public class DateField extends ComboBase implements IDataRenderer,IFocusManagerComponent, IDropInListItemRenderer, IListItemRenderer                      
 {
- /* implements IDataRenderer,IFocusManagerComponent, IDropInListItemRenderer, IListItemRenderer */
+ 
    // include "../core/Version.as";
 
     //--------------------------------------------------------------------------
@@ -883,10 +885,10 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the data property
      */
-  /*   private var _data:Object;
+    private var _data:Object;
 
     [Bindable("dataChange")]
-    [Inspectable(environment="none")] */
+    [Inspectable(environment="none")]
 
     /**
      *  The <code>data</code> property lets you pass a value
@@ -906,15 +908,15 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get data():Object
+    public function get data():Object
     {
         return _data;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set data(value:Object):void
+    public function set data(value:Object):void
     {
         var newDate:Date;
 
@@ -932,14 +934,14 @@ public class DateField extends ComboBase
         else
             newDate = _data as Date;
 
-        if (!selectedDateSet)
-        {
+        //if (!selectedDateSet)
+        //{
             selectedDate = newDate;
-            selectedDateSet = false;
-        }
+        //    selectedDateSet = false;
+        //}
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
-    } */
+    }
 
     //----------------------------------
     //  dayNames
@@ -1502,10 +1504,10 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the listData property
      */
-  /*   private var _listData:BaseListData;
+    private var _listData:Object;
 
     [Bindable("dataChange")]
-    [Inspectable(environment="none")] */
+    [Inspectable(environment="none")]
 
     /**
      *  When a component is used as a drop-in item renderer or drop-in
@@ -1527,18 +1529,18 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    /* public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
         _listData = value;
-    } */
+    }
 
     //----------------------------------
     //  maxYear
@@ -1765,9 +1767,9 @@ public class DateField extends ComboBase
      *  @private
      *  Storage for the parseFunction property.
      */
-   /*  private var _parseFunction:Function = DateField.stringToDate;
+    private var _parseFunction:Function = DateField.stringToDate;
 
-    [Bindable("parseFunctionChanged")] */
+    [Bindable("parseFunctionChanged")]
 
     /**
      *  Function used to parse the date entered as text
@@ -1804,20 +1806,20 @@ public class DateField extends ComboBase
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-   /*  public function get parseFunction():Function
+    public function get parseFunction():Function
     {
         return _parseFunction;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set parseFunction(value:Function):void
+    public function set parseFunction(value:Function):void
     {
         _parseFunction = value;
 
         dispatchEvent(new Event("parseFunctionChanged"));
-    } */
+    }
 
     //----------------------------------
     //  selectableRange
