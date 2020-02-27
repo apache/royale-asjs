@@ -20,6 +20,7 @@
 package mx.controls.listClasses
 {
 	// import flash.events.IEventDispatcher;
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.events.IEventDispatcher;
 		
 	import mx.core.IDataRenderer;
@@ -73,7 +74,7 @@ package mx.controls.listClasses
 	public interface IListItemRenderer extends IDataRenderer, IEventDispatcher,
 		IFlexDisplayObject,
 		//ILayoutManagerClient,
-		ISimpleStyleClient, IUIComponent
+		ISimpleStyleClient, IUIComponent, IIndexedItemRenderer
 	{
 	}
 	

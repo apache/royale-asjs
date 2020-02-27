@@ -22,9 +22,9 @@ package mx.core
     import org.apache.royale.core.ITextInput;
     
     import mx.managers.IFocusManagerComponent;
+	import mx.controls.listClasses.IDropInListItemRenderer;
+	import mx.controls.listClasses.IListItemRenderer;
 /*
-import mx.controls.listClasses.IDropInListItemRenderer;
-import mx.controls.listClasses.IListItemRenderer;
 import mx.styles.IStyleClient;
 */
 
@@ -37,7 +37,8 @@ import mx.styles.IStyleClient;
  *  @productversion Flex 4
  */
 public interface ITextInput
-    extends IDataRenderer, IUIComponent, IFocusManagerComponent, org.apache.royale.core.ITextInput
+    extends IDataRenderer, IUIComponent, IDropInListItemRenderer,
+			IListItemRenderer, IFocusManagerComponent, org.apache.royale.core.ITextInput
 {
     //--------------------------------------------------------------------------
     //

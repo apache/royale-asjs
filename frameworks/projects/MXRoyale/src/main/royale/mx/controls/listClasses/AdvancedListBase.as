@@ -1765,22 +1765,7 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
 	 *	@royalesuppresspublicvarwarning 
-	 */
-	 
-    //----------------------------------
-    //  editable
-    //----------------------------------
-    
-    public function get editable():String
-	{
-	  return "";
-	}
-    public function set editable(value:String):void
-	{
-	
-	}
-	
-	
+	 */	 	
     public var allowDragSelection:Boolean = false;
 
     

@@ -118,6 +118,17 @@ COMPILE::SWF {
             return def;
         }
         
+        /**
+         * The static getNativeDefinition method is a way to get a TypeDefinition for non-Royale types
+		 * like String, etc.
+         * @param name the qualified name of the definition,
+         * @return a TypeDefinition representing the class or interface represented by the parameters
+         */
+        public static function getNativeDefinition(name:String):TypeDefinition {
+            const def:TypeDefinition = internalGetDefinition(name);
+            return def;
+        }
+        
         internal static function internalGetDefinition(name:String, rawData:Object = null):TypeDefinition{
             COMPILE::SWF {
                 //normalize Vector naming

@@ -26,7 +26,7 @@ import org.apache.royale.events.Event;
 import org.apache.royale.events.IRoyaleEvent;
 
  
-//import mx.controls.listClasses.IListItemRenderer;
+import mx.controls.listClasses.IListItemRenderer;
 import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
 
 /**
@@ -95,7 +95,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const ITEM_CLOSE:String = "itemClose";
+    public static const ITEM_CLOSE:String = "itemClose";
     
     /**
      *  The AdvancedDataGridEvent.ITEM_EDIT_BEGIN constant defines the value of the 
@@ -173,7 +173,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public static const ITEM_EDIT_BEGIN:String = "itemEditBegin";
+    public static const ITEM_EDIT_BEGIN:String = "itemEditBegin";
 
     /**
      *  The AdvancedDataGridEvent.ITEM_EDIT_END constant defines the value of the 
@@ -252,7 +252,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const ITEM_EDIT_END:String = "itemEditEnd"
+    public static const ITEM_EDIT_END:String = "itemEditEnd"
 
     /**
      *  The AdvancedDataGridEvent.ITEM_FOCUS_IN constant defines the value of the 
@@ -298,7 +298,7 @@ public class AdvancedDataGridEvent extends Event
     *  @playerversion AIR 1.1
     *  @productversion Royale 0.9.3
     */
-   // public static const ITEM_FOCUS_IN:String = "itemFocusIn";
+   public static const ITEM_FOCUS_IN:String = "itemFocusIn";
 
     /**
      *  The AdvancedDataGridEvent.ITEM_FOCUS_OUT constant defines the value of the 
@@ -344,7 +344,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public static const ITEM_FOCUS_OUT:String = "itemFocusOut";
+    public static const ITEM_FOCUS_OUT:String = "itemFocusOut";
 
     /**
      *  The AdvancedDataGridEvent.ITEM__EDIT_BEGINNING constant defines the value of the 
@@ -401,7 +401,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public static const ITEM_EDIT_BEGINNING:String = "itemEditBeginning";
+    public static const ITEM_EDIT_BEGINNING:String = "itemEditBeginning";
     
     /**
      *  The AdvancedDataGridEvent.ITEM_OPEN event type constant indicates that an AdvancedDataGrid
@@ -444,7 +444,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public static const ITEM_OPEN:String = "itemOpen";
+    public static const ITEM_OPEN:String = "itemOpen";
     
     /**
      *  The AdvancedDataGridEvent.ITEM_OPENING event type constant is dispatched immediately 
@@ -494,7 +494,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public static const ITEM_OPENING:String = "itemOpening";
+    public static const ITEM_OPENING:String = "itemOpening";
 
     /**
      *  The AdvancedDataGridEvent.COLUMN_STRETCH constant defines the value of the 
@@ -772,7 +772,7 @@ public class AdvancedDataGridEvent extends Event
                                   dataField:String = null,
                                   rowIndex:int = -1,
                                   reason:String = null,
-                                  itemRenderer:Object = null,
+                                  itemRenderer:IListItemRenderer = null,
                                   localX:Number = NaN,
                                   multiColumnSort:Boolean = false,
                                   removeColumnFromSort:Boolean = false,
@@ -785,8 +785,8 @@ public class AdvancedDataGridEvent extends Event
         this.columnIndex = columnIndex;
         this.dataField = dataField;
         this.rowIndex = rowIndex;
-      //  this.reason = reason;
-      //  this.itemRenderer = itemRenderer;
+        this.reason = reason;
+        this.itemRenderer = itemRenderer;
       //  this.localX = localX;
        // this.multiColumnSort = multiColumnSort;
        // this.removeColumnFromSort = removeColumnFromSort;
@@ -878,7 +878,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public var item:Object;
+    public var item:Object;
 
     //----------------------------------
     //  itemRenderer
@@ -894,7 +894,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    //public var itemRenderer:IListItemRenderer;
+    public var itemRenderer:IListItemRenderer;
 
     //----------------------------------
     //  localX
@@ -975,7 +975,7 @@ public class AdvancedDataGridEvent extends Event
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var reason:String;
+    public var reason:String;
 
     //----------------------------------
     //  rowIndex

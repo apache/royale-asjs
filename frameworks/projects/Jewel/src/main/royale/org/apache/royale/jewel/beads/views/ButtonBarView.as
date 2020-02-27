@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.views
 {
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.jewel.ButtonBar;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 
 	/**
 	 *  The ButtonBarView class creates the visual elements of the org.apache.royale.jewel.ButtonBar 
@@ -76,6 +77,7 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.strand = value;
 			buttonBar = value as ButtonBar;
-		}		
+			(buttonBar.presentationModel as ListPresentationModel).rowHeight = 38;
+		}
 	}
 }

@@ -44,7 +44,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-            typeNames = "jewel card";
+            typeNames += " card";
 			
 			// Add basic card styles by default when use Card alone
 			// if Card composes CardPrimaryContent, then remove it for more complex structure and styles

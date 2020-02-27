@@ -238,7 +238,7 @@ public class ScrollControlBase extends UIComponent
     /**
      *  @private
      */
-//    mx_internal var _maxVerticalScrollPosition:Number;
+    mx_internal var _maxVerticalScrollPosition:Number;
     mx_internal var _maxHorizontalScrollPosition:Number;
 
     /**
@@ -528,26 +528,26 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get maxHorizontalScrollPosition():Number
-//    {
-//        if (!isNaN(_maxHorizontalScrollPosition))
-//            return _maxHorizontalScrollPosition;
-//
-//        var m:Number = horizontalScrollBar ?
-//                       horizontalScrollBar.maxScrollPosition :
-//                       0;
-//        return m;
-//    }
+    public function get maxHorizontalScrollPosition():Number
+    {
+        //if (!isNaN(_maxHorizontalScrollPosition))
+            return _maxHorizontalScrollPosition;
+
+        //var m:Number = horizontalScrollBar ?
+        //               horizontalScrollBar.maxScrollPosition :
+        //               0;
+        //return m;
+    }
 
     /**
      *  @private
      */
-//    public function set maxHorizontalScrollPosition(value:Number):void
-//    {
-//        _maxHorizontalScrollPosition = value;
-//
-//        dispatchEvent(new Event("maxHorizontalScrollPositionChanged"));
-//    }
+    public function set maxHorizontalScrollPosition(value:Number):void
+    {
+        _maxHorizontalScrollPosition = value;
+
+        dispatchEvent(new Event("maxHorizontalScrollPositionChanged"));
+    }
 
     //----------------------------------
     //  maxVerticalScrollPosition
@@ -572,26 +572,26 @@ public class ScrollControlBase extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-//    public function get maxVerticalScrollPosition():Number
-//    {
-//        if (!isNaN(_maxVerticalScrollPosition))
-//            return _maxVerticalScrollPosition;
-//
-//        var m:Number = verticalScrollBar ?
-//                       verticalScrollBar.maxScrollPosition :
-//                       0;
-//        return m;
-//    }
+    public function get maxVerticalScrollPosition():Number
+    {
+        //if (!isNaN(_maxVerticalScrollPosition))
+            return _maxVerticalScrollPosition;
+
+        //var m:Number = verticalScrollBar ?
+        //               verticalScrollBar.maxScrollPosition :
+        //               0;
+        //return m;
+    }
 
     /**
      *  @private
      */
-//    public function set maxVerticalScrollPosition(value:Number):void
-//    {
-//        _maxVerticalScrollPosition = value;
-//
-//        dispatchEvent(new Event("maxVerticalScrollPositionChanged"));
-//    }
+    public function set maxVerticalScrollPosition(value:Number):void
+    {
+        _maxVerticalScrollPosition = value;
+
+         dispatchEvent(new Event("maxVerticalScrollPositionChanged"));
+    }
 
     //----------------------------------
     //  scrollTipFunction
