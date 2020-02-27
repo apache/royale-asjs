@@ -25,7 +25,8 @@ $card-height: 52px !default
 $card-primary-content-minheight: 152px !default
 
 .jewel.card
-    //flex-direction: column
+    display: flex
+    flex-direction: column
     
     min-width: $card-width
     min-height: $card-height
@@ -37,6 +38,7 @@ $card-primary-content-minheight: 152px !default
 
     .cardHeader
         width: 100%
+        flex
 
     .cardPrimaryContent
         width: 100%
@@ -47,6 +49,8 @@ $card-primary-content-minheight: 152px !default
         color: inherit
         text-decoration: none
         overflow: hidden
+
+        flex: 1 1 auto
 
     .cardActions
         width: 100%
