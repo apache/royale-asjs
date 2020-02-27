@@ -274,7 +274,7 @@ package org.apache.royale.jewel.beads.views
             }
                     
             var scrollbead:ScrollingViewport = _listArea.getBeadByType(IScrollingViewport) as ScrollingViewport;
-            scrollbead.scroll = _sharedModel.dataProvider && (_sharedModel.dataProvider.length * _presentationModel.rowHeight) > _listArea.height
+            scrollbead.scroll = _sharedModel.dataProvider && (_sharedModel.dataProvider.length * _presentationModel.rowHeight) > _listArea.height;
             
             host.dispatchEvent(new Event("layoutNeeded"));
         }

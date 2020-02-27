@@ -387,5 +387,42 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 				ScrollBarModel(_horizontalScroller.model).value = horizontalScrollPosition;
 			}
 		}
+
+		private var _scroll:Boolean = true;
+		/**
+		 * enable or disable scrolling on the strand
+		 * @return true for scroll, false for no scroll
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get scroll():Boolean
+		{
+			return _scroll;
+		}
+		public function set scroll(value:Boolean):void
+		{
+			if(value != _scroll)
+			{
+				_scroll = value;
+				updateScroll();
+			}
+		}
+
+		/**
+		 * adds or remove the scroll
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function updateScroll():void
+		{
+			_scroll ?
+				contentArea.positioner.classList.add("scroll") :
+				contentArea.positioner.classList.remove("scroll");
+		}
 	}
 }
