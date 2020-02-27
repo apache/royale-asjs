@@ -253,16 +253,12 @@ package org.apache.royale.jewel.beads.views
 
         protected function updateLayout():void
         {
-            trace("_dg.height",_dg.height);
             if(!_dg.height)
                 _dg.height = 240; // if height not set make it default to 240px
-            trace("_dg.height",_dg.height);
             _listArea.height = _dg.height - _header.height;
             (_listArea as ILayoutChild).percentWidth = 100;
-            trace("_listArea.height",_listArea.height);
             _listArea.y = _header.height;
-            trace(" ----- ");
-
+            
             for (var i:int=0; i < _lists.length; i++)
             {
                 var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
