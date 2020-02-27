@@ -10880,10 +10880,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 return;
             }
 
-			/*
-            if (isDataEditable(newData))
+            //if (isDataEditable(newData))
                 break;
-			*/
 
         } while (true);
 
@@ -10957,6 +10955,9 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
         if (event.relatedObject && contains(event.relatedObject as IUIComponent))
             return;
 
+		if (inEndEdit)
+			return;
+			
 		COMPILE::SWF
 		{
         // ignore textfields losing focus on mousedowns
