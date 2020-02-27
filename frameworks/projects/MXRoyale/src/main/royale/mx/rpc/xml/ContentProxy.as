@@ -189,9 +189,9 @@ public dynamic class ContentProxy extends Proxy
     }
     
     COMPILE::JS
-    override public function deleteProperty(name:String):void
+    override public function deleteProperty(name:String):Boolean
     {
-        proxy_deleteProperty(name);
+        return proxy_deleteProperty(name);
     }
     
     private function proxy_deleteProperty(name:*):Boolean
