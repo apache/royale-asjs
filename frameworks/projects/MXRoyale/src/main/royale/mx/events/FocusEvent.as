@@ -108,9 +108,11 @@ public class FocusEvent extends org.apache.royale.events.Event
 							  
 	{
 		super(type, bubbles, cancelable);
+		_relatedObject = relatedObject;
 	}
 	
-
+	private var _relatedObject:Object;
+	
     /**
      * @type {?goog.events.FocusEvent}
      */
@@ -127,7 +129,10 @@ public class FocusEvent extends org.apache.royale.events.Event
         nativeEvent = event.getBrowserEvent();
     }
     
-
+	public function get relatedObject():Object
+	{
+		return _relatedObject;
+	}
 
 	
 }

@@ -185,7 +185,10 @@ public class KeyboardEvent extends org.apache.royale.events.KeyboardEvent
 	}
 	
 	
-	
+	public function get charCode():uint
+	{
+		return code.charCodeAt();
+	}
 }
 
 }

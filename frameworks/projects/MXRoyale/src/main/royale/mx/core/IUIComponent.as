@@ -23,6 +23,7 @@ import org.apache.royale.core.IChild;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.geom.Rectangle;
 import mx.managers.ISystemManager;
+import mx.core.IChildList;
 
 /**
  *  The IUIComponent interface defines the basic set of APIs
@@ -33,7 +34,7 @@ import mx.managers.ISystemManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public interface IUIComponent extends IFlexDisplayObject, IChild, IUIBase
+public interface IUIComponent extends IFlexDisplayObject, IChild, IUIBase, IChildList
 {
     //--------------------------------------------------------------------------
     //

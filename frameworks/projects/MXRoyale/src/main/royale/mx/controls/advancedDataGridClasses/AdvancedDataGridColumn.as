@@ -239,7 +239,8 @@ public class AdvancedDataGridColumn extends DataGridColumn
 
         return _embeddedFontRegistry;
     }
-    
+    */
+
     private static var _defaultItemEditorFactory:IFactory;
     
     mx_internal static function get defaultItemEditorFactory():IFactory
@@ -247,7 +248,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
         if (!_defaultItemEditorFactory)
             _defaultItemEditorFactory = new ClassFactory(TextInput);
         return _defaultItemEditorFactory;
-    } */
+    }
     
     //--------------------------------------------------------------------------
     //
@@ -569,7 +570,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-    public var itemEditor:IFactory = null;//defaultItemEditorFactory;
+    public var itemEditor:IFactory = defaultItemEditorFactory;
 
     //----------------------------------
     //  editorDataField
@@ -616,7 +617,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorHeightOffset:Number = 0;
+    public var editorHeightOffset:Number = 0;
 
     //----------------------------------
     //  editorWidthOffset
@@ -640,7 +641,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorWidthOffset:Number = 0;
+    public var editorWidthOffset:Number = 0;
 
     //----------------------------------
     //  editorXOffset
@@ -665,7 +666,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorXOffset:Number = 0;
+    public var editorXOffset:Number = 0;
 
     //----------------------------------
     //  editorYOffset
@@ -690,7 +691,7 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   // public var editorYOffset:Number = 0;
+    public var editorYOffset:Number = 0;
 
     //----------------------------------
     //  editorUsesEnterKey

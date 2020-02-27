@@ -24,6 +24,7 @@ package mx.controls.beads
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;
     import mx.core.mx_internal;
+    import mx.events.AdvancedDataGridEvent;
     import mx.events.CollectionEvent;
     import mx.events.ItemClickEvent;
     
@@ -138,7 +139,28 @@ package mx.controls.beads
         
         private function itemClickHandler(event:ItemClickEvent):void
         {
-            host.dispatchEvent(event);
+            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
+			var target:AdvancedDataGridColumnList = event.target as AdvancedDataGridColumnList;
+			
+            host.dispatchEvent(event); // currently this doesn't clone and overwrites event.target
+			if (host.editable)
+			{
+	            for (var i:int = 0; i < columnLists.length; i++)
+	            {
+	                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
+	                if (target == list)
+					{
+	                    var advancedDataGridEvent:AdvancedDataGridEvent =
+	                        new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_EDIT_BEGINNING, false, true);
+	                    // ITEM_EDIT events are cancelable
+	                    advancedDataGridEvent.columnIndex = i;
+	                    advancedDataGridEvent.dataField = visibleColumns[i].dataField;
+	                    advancedDataGridEvent.rowIndex = event.index;
+	                    host.dispatchEvent(advancedDataGridEvent);
+						break;
+					}
+				}
+			}
         }
         
         override protected function createLists():void
