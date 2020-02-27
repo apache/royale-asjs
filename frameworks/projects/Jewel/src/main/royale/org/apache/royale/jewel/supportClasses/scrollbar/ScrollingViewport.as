@@ -97,12 +97,35 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 			} else {
 				component = contentView as UIBase;
 			}
-			//component.element.style.overflow = "auto";
-			
-			//remove hard coded style in Viewport (overflow: hidden)
-			//contentArea.element.removeAttribute("style");
-			// contentArea.element.classList.add("viewport");
-			contentArea.element.classList.add("scroll");
+			updateScroll();
+		}
+
+		private var _scroll:Boolean = true;
+		/**
+		 * enable or disable scrolling on the strand
+		 * @return true for scroll, false for no scroll
+		 */
+		public function get scroll():Boolean
+		{
+			return _scroll;
+		}
+		public function set scroll(value:Boolean):void
+		{
+			if(value != _scroll)
+			{
+				_scroll = value;
+				updateScroll();
+			}
+		}
+
+		/**
+		 * adds or remove the scroll
+		 */
+		public function updateScroll():void
+		{
+			_scroll ?
+				contentArea.positioner.classList.add("scroll") :
+				contentArea.positioner.classList.remove("scroll");
 		}
 		
 		/**
