@@ -194,7 +194,7 @@ package models
 					MaterialIconType.ADD_CIRCLE_OUTLINE,
 					MaterialIconType.PAGES
 				];
-                for (var i:int = 0; i < 1000; i++)
+                for (var i:int = 0; i < 2000; i++)
                 {
 					item = new IconListVO("Icon - " + i, getRandomArrayIcon(icons)),
                     _bigIconListVOData.push(item);//"row " + i.toString());

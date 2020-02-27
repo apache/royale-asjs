@@ -18,26 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.scrollbar
 {
-	import org.apache.royale.jewel.supportClasses.Viewport;
-	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IContainer;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IScrollingViewport;
-    import org.apache.royale.core.layout.EdgeData;
-    import org.apache.royale.core.ValuesManager;
     COMPILE::SWF
     {
-        import org.apache.royale.core.IViewportScroller;
-		import org.apache.royale.jewel.beads.models.ScrollBarModel;
-		import flash.geom.Rectangle;
-		import org.apache.royale.geom.Rectangle;
-    }
-	import org.apache.royale.core.UIBase;
+	import flash.geom.Rectangle;
+
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewportScroller;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.geom.Size;
 	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.jewel.beads.models.ScrollBarModel;
+    }
+	COMPILE::JS
+    {
+	import org.apache.royale.core.IStrand;
+	}
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IScrollingViewport;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.jewel.supportClasses.Viewport;
 
 	/**
 	 * The ScrollingViewport extends the Viewport class by adding horizontal and
@@ -97,12 +100,44 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 			} else {
 				component = contentView as UIBase;
 			}
-			//component.element.style.overflow = "auto";
-			
-			//remove hard coded style in Viewport (overflow: hidden)
-			//contentArea.element.removeAttribute("style");
-			// contentArea.element.classList.add("viewport");
-			contentArea.element.classList.add("scroll");
+			updateScroll();
+		}
+
+		private var _scroll:Boolean = true;
+		/**
+		 * enable or disable scrolling on the strand
+		 * @return true for scroll, false for no scroll
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get scroll():Boolean
+		{
+			return _scroll;
+		}
+		public function set scroll(value:Boolean):void
+		{
+			if(value != _scroll)
+			{
+				_scroll = value;
+				updateScroll();
+			}
+		}
+
+		/**
+		 * adds or remove the scroll
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function updateScroll():void
+		{
+			_scroll ?
+				contentArea.positioner.classList.add("scroll") :
+				contentArea.positioner.classList.remove("scroll");
 		}
 		
 		/**
