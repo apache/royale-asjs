@@ -420,9 +420,7 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		 */
 		public function updateScroll():void
 		{
-			_scroll ?
-				contentArea.positioner.classList.add("scroll") :
-				contentArea.positioner.classList.remove("scroll");
+			// todo 
 		}
 	}
 }
