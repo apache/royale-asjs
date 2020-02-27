@@ -18,26 +18,29 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.scrollbar
 {
-	import org.apache.royale.jewel.supportClasses.Viewport;
-	import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IContainer;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IScrollingViewport;
-    import org.apache.royale.core.layout.EdgeData;
-    import org.apache.royale.core.ValuesManager;
     COMPILE::SWF
     {
-        import org.apache.royale.core.IViewportScroller;
-		import org.apache.royale.jewel.beads.models.ScrollBarModel;
-		import flash.geom.Rectangle;
-		import org.apache.royale.geom.Rectangle;
-    }
-	import org.apache.royale.core.UIBase;
+	import flash.geom.Rectangle;
+
+	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
+	import org.apache.royale.core.IContainer;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IViewportScroller;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.geom.Size;
 	import org.apache.royale.geom.Rectangle;
+	import org.apache.royale.jewel.beads.models.ScrollBarModel;
+    }
+	COMPILE::JS
+    {
+	import org.apache.royale.core.IStrand;
+	}
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IScrollingViewport;
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.jewel.supportClasses.Viewport;
 
 	/**
 	 * The ScrollingViewport extends the Viewport class by adding horizontal and
@@ -104,6 +107,10 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		/**
 		 * enable or disable scrolling on the strand
 		 * @return true for scroll, false for no scroll
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
 		 */
 		public function get scroll():Boolean
 		{
@@ -120,6 +127,11 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 
 		/**
 		 * adds or remove the scroll
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
 		 */
 		public function updateScroll():void
 		{
