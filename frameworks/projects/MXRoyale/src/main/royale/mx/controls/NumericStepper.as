@@ -665,6 +665,13 @@ public class NumericStepper extends UIComponent
 			}
 		}
 	}
+	
+	override public function addedToParent():void
+	{
+		super.addedToParent();
+		_measuredHeight = 20;
+		_measuredWidth = 55; // FF is 55, Chrome 54
+	}
 }
 
 }
