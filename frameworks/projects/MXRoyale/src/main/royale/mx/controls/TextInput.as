@@ -994,7 +994,7 @@ public class TextInput extends UIComponent implements ITextInput
     //  listData
     //----------------------------------
 
-    private var _listData:BaseListData;
+    private var _listData:Object;
 
     [Bindable("dataChange")]
     [Inspectable(environment="none")]
@@ -1019,7 +1019,7 @@ public class TextInput extends UIComponent implements ITextInput
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
     }
@@ -1027,7 +1027,7 @@ public class TextInput extends UIComponent implements ITextInput
     /**
      *  @private
      */
-    public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
         _listData = value;
     }

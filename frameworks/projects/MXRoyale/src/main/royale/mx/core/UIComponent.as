@@ -51,6 +51,8 @@ import mx.events.KeyboardEvent;
 import mx.events.MoveEvent;
 import mx.events.PropertyChangeEvent;
 import mx.events.ResizeEvent;
+import mx.events.utils.KeyboardEventConverter;
+import mx.events.utils.FocusEventConverter;
 import mx.managers.ICursorManager;
 import mx.managers.IFocusManager;
 import mx.managers.IFocusManagerContainer;
@@ -621,6 +623,11 @@ public class UIComponent extends UIBase
         super();
         if (this is IFocusManagerComponent)
         {
+			COMPILE::SWF
+			{
+				KeyboardEventConverter.setupInstanceConverters(this);
+				FocusEventConverter.setupInstanceConverters(this);
+			}
             addEventListener(FocusEvent.FOCUS_IN, focusInHandler);
             addEventListener(FocusEvent.FOCUS_OUT, focusOutHandler);
             addEventListener(KeyboardEvent.KEY_DOWN, keyDownHandler);

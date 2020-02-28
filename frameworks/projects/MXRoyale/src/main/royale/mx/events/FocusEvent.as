@@ -49,10 +49,10 @@ public class FocusEvent extends flash.events.FocusEvent
 {
     public static const FOCUS_IN:String = "focusIn";
     public static const FOCUS_OUT:String = "focusOut";
-	public function FocusEvent(type:String, bubbles:Boolean = false,
-                              cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none")
+	public function FocusEvent(type:String/*, bubbles:Boolean = false,
+                              cancelable:Boolean = false ,relatedObject:InteractiveObject = null, shiftKey:Boolean = false, keyCode:uint = 0, direction:String = "none"*/)
     {
-        super(type, bubbles, cancelable,relatedObject,shiftKey,keyCode,direction);
+        super(type/*, bubbles, cancelable,relatedObject,shiftKey,keyCode,direction*/);
     }
 }
 

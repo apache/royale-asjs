@@ -368,6 +368,8 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	private function initHandler(event:flash.events.Event):void
 	{
 		MouseEventConverter.setupAllConverters(stage);
+		FocusEventConverter.setupAllConverters(stage);
+		KeyboardEventConverter.setupAllConverters(stage);
 		
 		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 			this.initializeApplication();

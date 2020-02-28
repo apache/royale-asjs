@@ -24,6 +24,8 @@ package mx.events.utils
 	COMPILE::SWF
 	{
 		import flash.events.FocusEvent;
+        import flash.events.IEventDispatcher;
+        import org.apache.royale.events.utils.IHandlesOriginalEvent;
 	}
 	
 	/**
@@ -48,9 +50,110 @@ package mx.events.utils
 		COMPILE::SWF
 		public static function convert(oldEvent:flash.events.FocusEvent):mx.events.FocusEvent
 		{
-			var newEvent:mx.events.FocusEvent = new mx.events.FocusEvent(oldEvent.type, true);
+			var newEvent:mx.events.FocusEvent = new mx.events.FocusEvent(oldEvent.type);
 			return newEvent;
 		}
+		
+		COMPILE::SWF
+		private static function focusEventConverter(event:flash.events.Event):void
+        {
+            if (event is flash.events.FocusEvent && (!(event is mx.events.FocusEvent)))
+            {
+				var p:* = event.target;
+				while (p != null) {
+					if (p is IHandlesOriginalEvent) return;
+					p = p.parent;
+				}
+				
+                var newEvent:mx.events.FocusEvent = 
+                    convert(flash.events.FocusEvent(event));
+                if (newEvent) 
+                {
+                    // some events are not converted if there are no JS equivalents
+                    event.stopImmediatePropagation();
+					//newEvent.targetBeforeBubbling = event.target; might be needed
+                    event.target.dispatchEvent(newEvent);
+                }
+                else
+                    trace("did not convert", event.type);
+            }
+        }
+        
+        /**
+         *  The list of events to convert.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		COMPILE::SWF
+        public static var allConvertedEvents:Array = [
+            flash.events.FocusEvent.KEY_FOCUS_CHANGE,
+            flash.events.FocusEvent.MOUSE_FOCUS_CHANGE,
+            flash.events.FocusEvent.FOCUS_IN,
+            flash.events.FocusEvent.FOCUS_OUT
+            ];
+            
+        /**
+         *  The list of events to convert on each instance.
+         *  Per-instance killers are needed for "out" events because
+         *  they can be sent after the instance is removed from the 
+         *  display list so the main converter can't intercept them
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		COMPILE::SWF
+        public static var perInstanceConvertedEvents:Array = [
+            flash.events.FocusEvent.KEY_FOCUS_CHANGE,
+            flash.events.FocusEvent.MOUSE_FOCUS_CHANGE,
+            flash.events.FocusEvent.FOCUS_OUT
+        ];
+        
+        /**
+         *  The event handler that converts the events.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		COMPILE::SWF
+        public static var eventHandler:Function = focusEventConverter;
+        
+        /**
+         *  Set up the top level converter.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		COMPILE::SWF
+        public static function setupAllConverters(target:IEventDispatcher, capture:Boolean = true):void
+        {
+            for each (var eventType:String in allConvertedEvents)
+                target.addEventListener(eventType, eventHandler, capture, 9999);
+        }
+
+        /**
+         *  Set up some event handlers on each instance.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+		COMPILE::SWF
+        public static function setupInstanceConverters(target:IEventDispatcher):void
+        {
+            for each (var eventType:String in perInstanceConvertedEvents)
+                target.addEventListener(eventType, eventHandler, false, 9999);
+        }
+
 		
 		/**
 		 *  Converts JS keyboard events to Royale ones.
