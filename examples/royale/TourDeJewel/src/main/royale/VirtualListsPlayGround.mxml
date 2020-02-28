@@ -153,9 +153,12 @@ limitations under the License.
 				<html:H3 text="Jewel VirtualComboBox"/>
 				
 				<j:VirtualComboBox localId="virtualIconCmb"
-								className="cmbSimpleiIconListItemRenderer" labelField="label"
-								dataProvider="{listModel.bigIconListVOData}" rowCount="4" rowHeight="52"
-								/>				
+							className="cmbSimpleiIconListItemRenderer" labelField="label"
+							dataProvider="{listModel.bigIconListVOData}" rowCount="4" rowHeight="52">
+					<j:beads>
+						<j:ComboBoxTextPrompt prompt="Some text here..."/>
+					</j:beads>
+				</j:VirtualComboBox>			
 			</j:Card>
         </j:GridCell>
 	</j:Grid>
