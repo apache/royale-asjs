@@ -71,11 +71,11 @@ import mx.binding.BindingManager;
 import mx.containers.utilityClasses.PostScaleAdapter;
 import mx.controls.HScrollBar;
 import mx.controls.VScrollBar;
-import mx.controls.listClasses.IListItemRenderer;
 import mx.controls.scrollClasses.ScrollBar;
 import mx.core.IUITextField;
 import mx.events.ChildExistenceChangedEvent;
 */
+import mx.controls.listClasses.IListItemRenderer;
 import mx.events.FlexEvent;
 import mx.events.IndexChangedEvent;
 import mx.managers.IFocusManagerContainer;
@@ -318,8 +318,7 @@ public class Container extends UIComponent
 					   implements IDataRenderer, IChildList,
 					   IContainer, ILayoutParent, ILayoutView, IContentViewHost,
 					   IContainerBaseStrandChildrenHost, IMXMLDocument, IFocusManagerContainer,
-                       //implements IContainer, IDataRenderer,
-                       //IListItemRenderer,
+                       IListItemRenderer,
                        //IRawChildrenContainer, IChildList, IVisualElementContainer,
                        INavigatorContent
 

@@ -21,6 +21,8 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.collections.ArrayList;
     import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IDataGridModel;
+    import org.apache.royale.core.ILayoutChild;
+    import org.apache.royale.core.IScrollingViewport;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
@@ -29,6 +31,8 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.html.beads.IDataGridView;
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
+    import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
+    import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport;
 	
 	/**
 	 * DataGridLayout is a class that handles the size and positioning of the
@@ -69,23 +73,15 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_strand = value;
 			
-			(_strand as IEventDispatcher).addEventListener("widthChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("heightChanged", handleSizeChanges);
-			(_strand as IEventDispatcher).addEventListener("sizeChanged", handleSizeChanges);
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 		}
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 */
-		protected function get uiHost():UIBase
+		protected function get datagrid():UIBase
 		{
 			return _strand as UIBase;
-		}
-		
-		private function handleSizeChanges(event:Event):void
-		{
-			layout();
 		}
 		
 		private function handleLayoutNeeded(event:Event):void
@@ -105,26 +101,46 @@ package org.apache.royale.jewel.beads.layouts
 		 */
 		public function layout():Boolean
 		{
-			var header:IUIBase = (uiHost.view as IDataGridView).header;
+			var view:IDataGridView = datagrid.view as IDataGridView
+			var presentationModel:IDataGridPresentationModel = datagrid.getBeadByType(IDataGridPresentationModel) as IDataGridPresentationModel;
+			var header:IUIBase = view.header;
             // fancier DG's will filter invisible columns and only put visible columns
             // in the bbmodel, so do all layout based on the bbmodel, not the set
             // of columns that may contain invisible columns
             var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
             var bblayout:ButtonBarLayout = header.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
 			// (header as ButtonBar).widthType = ButtonBarModel.PROPORTIONAL_WIDTHS;
-			var listArea:IUIBase = (uiHost.view as IDataGridView).listArea;
+			var listArea:IUIBase = view.listArea;
 			
-			var displayedColumns:Array = (uiHost.view as IDataGridView).columnLists;
-			var model:IDataGridModel = uiHost.model as IDataGridModel;
+			var displayedColumns:Array = view.columnLists;
+			var model:IDataGridModel = datagrid.model as IDataGridModel;
 			
-			var defaultColumnWidth:Number = (uiHost.percentWidth) / bbmodel.dataProvider.length;
+			var defaultColumnWidth:Number;
+			if(!datagrid.percentWidth)
+			{
+				defaultColumnWidth = (datagrid.width) / bbmodel.dataProvider.length;
+			} else
+			{
+				defaultColumnWidth = (datagrid.percentWidth) / bbmodel.dataProvider.length;
+			}
 			var columnWidths:Array = [];
-			
+
+			(listArea as ILayoutChild).percentWidth = 100;
+            listArea.y = header.height;
+            
 			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
-				
-				//temporal- if only 1 isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
+
+				if(model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > listArea.height)
+				{
+					columnList.height = NaN;
+				} else
+				{
+					columnList.height = listArea.height;
+				}
+
+				//temporal- if only one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
 				var pixelflag:Boolean = false;
 				var columnWidth:Number = defaultColumnWidth;
 				if (!isNaN(columnDef.columnWidth)) {
@@ -132,9 +148,16 @@ package org.apache.royale.jewel.beads.layouts
 					pixelflag = true;
 				}
 				
-				columnList.width = columnWidth;
+				if(!datagrid.percentWidth)
+					columnList.width = columnWidth;
+				else
+					columnList.percentWidth = columnWidth;
+
 				columnWidths.push(columnWidth);
 			}
+
+			var scrollbead:ScrollingViewport = listArea.getBeadByType(IScrollingViewport) as ScrollingViewport;
+            scrollbead.scroll = model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > listArea.height;
 			
 			bbmodel.buttonWidths = columnWidths;
 			if(pixelflag)
@@ -142,8 +165,8 @@ package org.apache.royale.jewel.beads.layouts
 				bblayout.widthType = ButtonBarModel.PIXEL_WIDTHS;
 				COMPILE::JS
 				{
-					uiHost.positioner.style.width = "auto";
-					listArea.positioner.style.width = null;
+					datagrid.width = NaN;
+					listArea.width = NaN;
 				}
 			}
 			

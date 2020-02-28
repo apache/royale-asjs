@@ -110,6 +110,21 @@ limitations under the License.
 			var pm:IDataGridPresentationModel = datagrid.presentationModel as IDataGridPresentationModel;
 			pm.columnLabels = ["Imgs", "Names", "Cost"];
 		}
+
+		private function loadSmallData():void
+		{
+			productModel.fewProductList = new ArrayList([
+				new Product("rz302","New",80,105,"assets/smallyellowrect.jpg"),
+				new Product("dh442","Records",10,340,"assets/smallredrect.jpg"),
+				new Product("ps222","to show!",35,190,"assets/smallorangerect.jpg"),
+				new Product("ps102",":-)",44,200,"assets/smallbluerect.jpg"),
+			]);
+		}
+
+		private function clearData():void
+		{
+			productModel.fewProductList = new ArrayList();
+		}
 		]]>
 	</fx:Script>
 
@@ -142,12 +157,9 @@ limitations under the License.
 							multiline="true"/>
 
 					<j:DataGrid localId="datagrid"
-						change="dataGridProductChange(event.target as DataGrid, datagrid_lb)">
+						change="dataGridProductChange(event.target as DataGrid, datagrid_lb)"
+						dataProvider="{productModel.fewProductList}">
 						<j:beads>
-							<js:ConstantBinding
-								sourceID="productModel"
-								sourcePropertyName="fewProductList"
-								destinationPropertyName="dataProvider"/>
 							<j:DataGridColumnLabelsChange/>
 						</j:beads>
 						<j:columns>
@@ -160,8 +172,31 @@ limitations under the License.
 
 					<j:Label id="datagrid_lb" text="DataGrid selection will be shown here"/>
 				</j:CardPrimaryContent>
-				<j:CardActions>
-					<j:Button text="change column labels" click="changeColumnNames()"/>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:IconButton click="changeColumnNames()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Change Column Labels"/>
+						</j:beads>
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.RESTORE_PAGE}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="clearData()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Clear Data"/>
+						</j:beads>
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.CLEAR_ALL}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="loadSmallData()" emphasis="primary" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Load Data"/>
+						</j:beads>
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.AUTORENEW}" material="true"/>
+						</j:icon>
+					</j:IconButton>
 				</j:CardActions>
 			</j:Card>
 		</j:GridCell>

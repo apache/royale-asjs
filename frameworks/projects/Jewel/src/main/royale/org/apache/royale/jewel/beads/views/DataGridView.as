@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.views
 {
 	import org.apache.royale.collections.ArrayList;
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IBeadModel;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IChild;
@@ -27,7 +28,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.IScrollingViewport;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
@@ -44,8 +44,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
-	import org.apache.royale.jewel.supportClasses.scrollbar.ScrollingViewport;
 	import org.apache.royale.utils.IEmphasis;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
     
     /**
      *  The DataGridView class is the visual bead for the org.apache.royale.jewel.DataGrid.
@@ -127,6 +127,12 @@ package org.apache.royale.jewel.beads.views
 
             if (_sharedModel.columns)
                 createLists();
+
+            // set default width and height
+            if(!_dg.width && !(_dg as ILayoutChild).percentWidth)
+                _dg.width = 220; // if width not set make it default to 220px
+            if(!_dg.height)
+                _dg.height = 240; // if height not set make it default to 240px
             
             handleDataProviderChanged(null);
         }
@@ -208,6 +214,7 @@ package org.apache.royale.jewel.beads.views
          */
         private function handleSizeChanges(event:Event):void
         {
+            _listArea.height = _dg.height - _header.height;
             dispatchEvent(new Event("layoutNeeded"));
         }
 
@@ -234,8 +241,20 @@ package org.apache.royale.jewel.beads.views
 				dp.addEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleItemAddedAndRemoved);
             }
 
-            updateLayout();
+            for (var i:int=0; i < _lists.length; i++)
+            {
+                var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
+                list.dataProvider = dp;
+            }
+
+            if(!layout) {
+                // Load the layout bead if it hasn't already been loaded (init time)
+			    layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand) as IBeadLayout;
+            } 
+            host.dispatchEvent(new Event("layoutNeeded"));
         }
+
+        private var layout:IBeadLayout;
 
         /**
 		 *  Handles the itemAdded event by adding the item.
@@ -248,37 +267,9 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function handleItemAddedAndRemoved(event:CollectionEvent):void
 		{
-            updateLayout();
-        }
-
-        protected function updateLayout():void
-        {
-            if(!_dg.height)
-                _dg.height = 240; // if height not set make it default to 240px
-            _listArea.height = _dg.height - _header.height;
-            (_listArea as ILayoutChild).percentWidth = 100;
-            _listArea.y = _header.height;
-            
-            for (var i:int=0; i < _lists.length; i++)
-            {
-                var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
-                list.dataProvider = dp;
-
-                if(_sharedModel.dataProvider && (_sharedModel.dataProvider.length * _presentationModel.rowHeight) > _listArea.height)
-                {
-                    (list as IUIBase).height = NaN;
-                } else
-                {
-                    (list as IUIBase).height = _listArea.height;
-                }
-            }
-                    
-            var scrollbead:ScrollingViewport = _listArea.getBeadByType(IScrollingViewport) as ScrollingViewport;
-            scrollbead.scroll = _sharedModel.dataProvider && (_sharedModel.dataProvider.length * _presentationModel.rowHeight) > _listArea.height
-            
             host.dispatchEvent(new Event("layoutNeeded"));
         }
-
+        
         /**
          * @private
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
