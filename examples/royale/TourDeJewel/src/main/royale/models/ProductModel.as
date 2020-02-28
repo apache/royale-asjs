@@ -34,6 +34,13 @@ package models
 		{
 			return _fewProductList;
 		}
+		public function set fewProductList(value:ArrayList):void
+		{
+			if(value != _fewProductList)
+			{
+				_fewProductList = value;
+			}
+		}
 
 		private var _productList:ArrayList = new ArrayList([
             new Product("ps100","Widgets",44,200,"assets/smallbluerect.jpg"),
