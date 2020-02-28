@@ -103,7 +103,7 @@ $gap-size: 10px !default
 		align-items: flex-start
 
 		> *
-			flex: 0 0 auto
+			flex: 0 1 auto
 		
 		&.flow
 			flex-wrap: wrap
@@ -126,9 +126,9 @@ $gap-size: 10px !default
 		@for $i from 1 through $gaps
 			&.gap-#{$i}x#{$gap-step}px
 				> *:first-child
-					margin: 0px
+					margin-top: 0px
 				> *
-					margin: ($gap + $i * $gap-step) 0px 0px
+					margin-top: $gap + $i * $gap-step
 
 	// Tile	
 	&.tile

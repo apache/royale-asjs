@@ -1121,7 +1121,7 @@ j|Label {
   align-items: flex-start;
 }
 .layout.vertical > * {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
 }
 .layout.vertical.flow {
   flex-wrap: wrap;
@@ -1137,64 +1137,64 @@ j|Label {
   width: 100%;
 }
 .layout.vertical.gap-1x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-1x3px > * {
-  margin: 3px 0px 0px;
+  margin-top: 3px;
 }
 .layout.vertical.gap-2x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-2x3px > * {
-  margin: 6px 0px 0px;
+  margin-top: 6px;
 }
 .layout.vertical.gap-3x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-3x3px > * {
-  margin: 9px 0px 0px;
+  margin-top: 9px;
 }
 .layout.vertical.gap-4x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-4x3px > * {
-  margin: 12px 0px 0px;
+  margin-top: 12px;
 }
 .layout.vertical.gap-5x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-5x3px > * {
-  margin: 15px 0px 0px;
+  margin-top: 15px;
 }
 .layout.vertical.gap-6x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-6x3px > * {
-  margin: 18px 0px 0px;
+  margin-top: 18px;
 }
 .layout.vertical.gap-7x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-7x3px > * {
-  margin: 21px 0px 0px;
+  margin-top: 21px;
 }
 .layout.vertical.gap-8x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-8x3px > * {
-  margin: 24px 0px 0px;
+  margin-top: 24px;
 }
 .layout.vertical.gap-9x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-9x3px > * {
-  margin: 27px 0px 0px;
+  margin-top: 27px;
 }
 .layout.vertical.gap-10x3px > *:first-child {
-  margin: 0px;
+  margin-top: 0px;
 }
 .layout.vertical.gap-10x3px > * {
-  margin: 30px 0px 0px;
+  margin-top: 30px;
 }
 .layout.tile {
   flex-flow: row wrap;
