@@ -101,7 +101,7 @@ package org.apache.royale.html.beads
 				if (selectionBead)
 					selectionBead.hovered = false;
 			}
-			ir = dataGroup.getItemRendererForIndex(lastRollOverIndex) as IItemRenderer;
+			ir = dataGroup.getItemRendererForIndex((listModel as IRollOverModel).rollOverIndex) as IItemRenderer;
 			if (ir) {
 				selectionBead = getSelectionRenderBead(ir);
 				if (selectionBead)
