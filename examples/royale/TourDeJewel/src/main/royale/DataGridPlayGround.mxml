@@ -203,41 +203,68 @@ limitations under the License.
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataGrid"/>
-				
-				<j:Label text="Using specific column widths, rowHeight=54 and height=220, first column uses a custom renderer and last column has right alignment"
-					multiline="true"/>
+				<j:CardHeader>
+					<html:H3 text="Jewel DataGrid" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Using specific column widths, rowHeight=54 and height=220, first column uses a custom renderer and last column has right alignment"
+						multiline="true"/>
 
-				<j:HGroup gap="3">
-					<j:VGroup gap="3">
-						<j:DataGrid localId="datagrid2" height="205"
-							rowHeight="54" emphasis="primary" 
-							change="dataGridProductChange(event.target as DataGrid, datagrid2_lb)"
-							dataProvider="{productModel.productList}">
-							<j:columns>
-								<j:DataGridColumn label="Images" dataField="image" columnWidth="100" 
-												itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
-								<j:DataGridColumn label="Title" dataField="title" columnWidth="140"/>
-								<j:DataGridColumn label="Sales" dataField="sales" columnWidth="80" align="right"/>
-							</j:columns>
-							<j:beads>
-								<j:AddDataGridItemRendererForArrayListData/>
-								<j:RemoveDataGridItemRendererForArrayListData/>
-								<j:UpdateDataGridItemRendererForArrayListData/>
-								<j:RemoveAllDataGridItemRendererForArrayListData/>
-							</j:beads>
-						</j:DataGrid>
-						<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
-						<j:Label html="{'Selected Index: ' + datagrid2.selectedIndex}"/>
-						<j:Label id="selected" html="{describeItem(datagrid2.selectedItem)}"/>
-					</j:VGroup>
-					<j:VGroup gap="3">
-						<j:Button text="Add Row" click="addRow()" emphasis="primary"/>
-						<j:Button text="Remove First Row" click="removeFirstRow()"/>
-						<j:Button text="Update First Row" click="updateFirstRow()"/>
-						<j:Button text="Remove all rows" click="removeAllRows()"/>
-					</j:VGroup>
-				</j:HGroup>
+					<j:DataGrid localId="datagrid2" height="205"
+						rowHeight="54" emphasis="primary" 
+						change="dataGridProductChange(event.target as DataGrid, datagrid2_lb)"
+						dataProvider="{productModel.productList}">
+						<j:columns>
+							<j:DataGridColumn label="Images" dataField="image" columnWidth="100" 
+											itemRenderer="itemRenderers.ImageDataGridItemRenderer"/>
+							<j:DataGridColumn label="Title" dataField="title" columnWidth="140"/>
+							<j:DataGridColumn label="Sales" dataField="sales" columnWidth="80" align="right"/>
+						</j:columns>
+						<j:beads>
+							<j:AddDataGridItemRendererForArrayListData/>
+							<j:RemoveDataGridItemRendererForArrayListData/>
+							<j:UpdateDataGridItemRendererForArrayListData/>
+							<j:RemoveAllDataGridItemRendererForArrayListData/>
+						</j:beads>
+					</j:DataGrid>
+					<j:Label id="datagrid2_lb" text="DataGrid selection will be shown here"/>
+					<j:Label html="{'Selected Index: ' + datagrid2.selectedIndex}"/>
+					<j:Label id="selected" html="{describeItem(datagrid2.selectedItem)}"/>
+					</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:IconButton click="addRow()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Add Row"/>
+						</j:beads>
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.ADD}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="removeFirstRow()" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Remove First Row"/>
+						</j:beads>
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.REMOVE}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="updateFirstRow()" emphasis="primary" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Update First Row"/>
+						</j:beads>
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.UPDATE}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="removeAllRows()" emphasis="primary" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Remove all rows"/>
+						</j:beads>
+						<j:icon>
+							<js:FontIcon text="{MaterialIconType.DELETE_FOREVER}" material="true"/>
+						</j:icon>
+					</j:IconButton>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 	
