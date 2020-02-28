@@ -145,6 +145,7 @@ public class DispatchMouseClickEvent extends TestStep {
                 System.out.println(script);
             ((JavascriptExecutor)webDriver).executeScript(script.toString());
             try {
+				Thread.sleep(1000);
                 mouseTarget.click();
             }
             catch (StaleElementReferenceException sere)
