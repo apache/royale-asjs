@@ -42,6 +42,8 @@
 			<js:DropDownList localId="resultTypesList"
 				dataProvider="{testsModel.resultTypes}"
 				change="resultTypesList_changeHandler(event)"/>
+			<js:Spacer width="10"/>
+			<js:Label text="{resultTypesList.selectedItem} count:{testsModel.results.length}"/>
 		</js:HGroup>
 		<js:Spacer height="2"/>
 		<js:DynamicList localId="resultsList"
