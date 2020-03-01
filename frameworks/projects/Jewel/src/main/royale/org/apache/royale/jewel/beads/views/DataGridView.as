@@ -88,8 +88,8 @@ package org.apache.royale.jewel.beads.views
 
             _dg = _strand as IDataGrid;
             _presentationModel = _dg.presentationModel as IDataGridPresentationModel;
-            _dg.addEventListener("widthChanged", handleSizeChanges);
-            _dg.addEventListener("heightChanged", handleSizeChanges);
+            // _dg.addEventListener("widthChanged", handleSizeChanges);
+            // _dg.addEventListener("heightChanged", handleSizeChanges);
             
             // see if there is a presentation model already in place. if not, add one.
             _sharedModel = _dg.model as IDataGridModel;
@@ -106,6 +106,8 @@ package org.apache.royale.jewel.beads.views
 		 */
 		private function createChildren():void
 		{
+            listenOnStrand("initComplete", initCompleteHandler);
+
             // header
             var headerClass:Class = ValuesManager.valuesImpl.getValue(host, "headerClass") as Class;
             _header = new headerClass() as DataGridButtonBar;
@@ -131,10 +133,8 @@ package org.apache.royale.jewel.beads.views
             // set default width and height
             if(!_dg.width && !(_dg as ILayoutChild).percentWidth)
                 _dg.width = 220; // if width not set make it default to 220px
-            if(!_dg.height)
+            if(!_dg.height && isNaN((_dg as ILayoutChild).percentHeight))
                 _dg.height = 240; // if height not set make it default to 240px
-            
-            handleDataProviderChanged(null);
         }
 
         /**
@@ -186,6 +186,23 @@ package org.apache.royale.jewel.beads.views
         }
 
         /**
+		 *  finish setup
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 *  
+         *  @param event 
+         */
+        protected function initCompleteHandler(event:Event):void
+		{
+            IEventDispatcher(_strand).removeEventListener("initComplete", initCompleteHandler);
+            handleDataProviderChanged(null);
+            // host.dispatchEvent(new Event("layoutNeeded"));
+        }
+
+        /**
          * An array of List objects the comprise the columns of the DataGrid.
          */
         public function get columnLists():Array
@@ -207,15 +224,6 @@ package org.apache.royale.jewel.beads.views
         public function get header():IUIBase
         {
             return _header;
-        }
-
-        /**
-         * @private
-         */
-        private function handleSizeChanges(event:Event):void
-        {
-            _listArea.height = _dg.height - _header.height;
-            dispatchEvent(new Event("layoutNeeded"));
         }
 
         private var dp:IEventDispatcher;

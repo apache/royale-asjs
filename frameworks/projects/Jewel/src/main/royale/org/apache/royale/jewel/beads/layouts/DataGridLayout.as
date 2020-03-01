@@ -125,8 +125,18 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			var columnWidths:Array = [];
 
+			if(listArea.y != header.height)
+				listArea.y = header.height;
+			
 			(listArea as ILayoutChild).percentWidth = 100;
-            listArea.y = header.height;
+			// (listArea as ILayoutChild).percentHeight = 100;
+			
+			COMPILE::JS {	
+			if(datagrid.height == 0)
+				listArea.positioner.style.height = "calc(100% - " + header.height + "px)";
+			else
+				listArea.height = datagrid.height - header.height;
+			}
             
 			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
@@ -137,7 +147,10 @@ package org.apache.royale.jewel.beads.layouts
 					columnList.height = NaN;
 				} else
 				{
-					columnList.height = listArea.height;
+					if(datagrid.height == 0)
+						columnList.percentHeight = 100;
+					else
+						columnList.height = listArea.height;
 				}
 
 				//temporal- if only one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
