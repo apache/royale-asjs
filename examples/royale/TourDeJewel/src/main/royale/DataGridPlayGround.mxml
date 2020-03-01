@@ -119,11 +119,13 @@ limitations under the License.
 				new Product("ps222","to show!",35,190,"assets/smallorangerect.jpg"),
 				new Product("ps102",":-)",44,200,"assets/smallbluerect.jpg"),
 			]);
+			datagrid.dataProvider = productModel.fewProductList;
 		}
 
 		private function clearData():void
 		{
 			productModel.fewProductList = new ArrayList();
+			datagrid.dataProvider = productModel.fewProductList;
 		}
 		]]>
 	</fx:Script>
@@ -148,7 +150,7 @@ limitations under the License.
 		</c:ExampleHeader>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
+			<j:Card height="600">
 				<j:CardHeader>
 					<html:H3 text="Jewel DataGrid" className="primary-normal"/>
 				</j:CardHeader>
@@ -156,9 +158,10 @@ limitations under the License.
 					<j:Label text="Basic configuration, default width, no column widths, no rowHeight. First column uses a custom renderer."
 							multiline="true"/>
 
-					<j:DataGrid localId="datagrid"
+					<j:DataGrid localId="datagrid" height="100%"
 						change="dataGridProductChange(event.target as DataGrid, datagrid_lb)"
-						dataProvider="{productModel.fewProductList}">
+						>
+						<!-- dataProvider="{productModel.fewProductList}" -->
 						<j:beads>
 							<j:DataGridColumnLabelsChange/>
 						</j:beads>
