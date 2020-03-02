@@ -33,6 +33,7 @@ import mx.core.IDataRenderer;
 import mx.core.UIComponent;
 import mx.events.FlexEvent;
 
+import org.apache.royale.binding.ItemRendererDataBinding;
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
 import org.apache.royale.html.accessories.ToolTipBead;
@@ -436,6 +437,9 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
         var newSelected:*;
         var newLabel:*;
 
+		addBead(new ItemRendererDataBinding());
+		dispatchEvent(new Event("initBindings"));
+		
         _data = value;
 
         if (_listData && _listData is DataGridListData && 
