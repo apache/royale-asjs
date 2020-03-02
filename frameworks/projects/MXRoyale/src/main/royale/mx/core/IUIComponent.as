@@ -486,7 +486,7 @@ public interface IUIComponent extends IFlexDisplayObject, IChild, IUIBase, IChil
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    function owns(displayObject:IUIComponent):Boolean;
+    function owns(displayObject:IUIBase):Boolean;
 }
 
 }

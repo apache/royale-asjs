@@ -42,6 +42,7 @@ import mx.core.IFactory;
 import mx.core.mx_internal;
 import mx.events.CalendarLayoutChangeEvent;
 import mx.events.FlexEvent;
+import mx.events.FocusEvent;
 import mx.events.SandboxMouseEvent;
 import mx.managers.IFocusManagerComponent;
 import mx.managers.ISystemManager;
@@ -2669,8 +2670,9 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
     /**
      *  @private
      */
-   /*  override protected function focusOutHandler(event:FocusEvent):void
+    override protected function focusOutHandler(event:FocusEvent):void
     {
+		/*
         if (showingDropdown && event != null &&
             this.contains(DisplayObject(event.target)))
             displayDropdown(false);
@@ -2681,7 +2683,12 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
             checkYearSetSelectedDate(_parseFunction(text, formatString));
         
         selectedDate_changeHandler(event);
-    } */
+		*/
+		if (owns(event.relatedObject as IUIBase))
+		{
+			setFocus();
+		}
+    }
 
     /**
      *  @private
@@ -2939,6 +2946,12 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
         
         dispatchEvent(new Event("initComplete"));
     }
+
+	override public function owns(child:IUIBase):Boolean
+	{
+		if (child == (view as DateFieldView).popUp) return true;
+		return false;
+	}
 }
 
 }

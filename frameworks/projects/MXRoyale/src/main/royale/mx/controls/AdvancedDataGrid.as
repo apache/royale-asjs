@@ -10232,7 +10232,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
     private function setEditedItemPosition(coord:Object):void
     {
-        bEditedItemPositionChanged = true;
+        //bEditedItemPositionChanged = true;
         _proposedEditedItemPosition = coord;
         //invalidateDisplayList();
 		commitEditedItemPosition(coord);
@@ -10952,7 +10952,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     private function itemEditorFocusOutHandler(event:FocusEvent):void
     {
         // trace("itemEditorFocusOut " + event.relatedObject);
-        if (event.relatedObject && contains(event.relatedObject as IUIComponent))
+        if (event.relatedObject && (itemEditorInstance is IUIComponent) && 
+			(itemEditorInstance as IUIComponent).owns(event.relatedObject as IUIBase))
             return;
 
 		if (inEndEdit)
@@ -11159,6 +11160,10 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 		var listContent:IParent = (view as AdvancedDataGridView).listArea as IParent;
 		if (item.parent != listContent)
 			listContent.addElement(item as IChild);
+		COMPILE::JS
+		{
+			(item as IUIBase).element.style.position = "absolute";
+		}
     }
 
 	private function getRowInfo(rowNum:int):ListRowInfo

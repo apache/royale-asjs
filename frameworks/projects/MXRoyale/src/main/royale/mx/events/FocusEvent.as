@@ -28,6 +28,7 @@ import flash.display.InteractiveObject;
 COMPILE::JS
 {
 import goog.events.BrowserEvent;
+import org.apache.royale.core.WrappedHTMLElement;
 }
 
 import org.apache.royale.events.Event;
@@ -123,14 +124,22 @@ public class FocusEvent extends org.apache.royale.events.Event
      */
     private var nativeEvent:Object;
     
-    public function wrapEvent(event:goog.events.BrowserEvent):void
+    public function wrapEvent(event:Object):void
     {
-        wrappedEvent = event;
-        nativeEvent = event.getBrowserEvent();
+        //wrappedEvent = event;
+        nativeEvent = event; //.getBrowserEvent();
     }
     
+    /**
+     * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
 	public function get relatedObject():Object
 	{
+		if (nativeEvent && nativeEvent["relatedTarget"])
+		{
+			return (nativeEvent["relatedTarget"] as WrappedHTMLElement).royale_wrapper;
+		}
+			
 		return _relatedObject;
 	}
 

@@ -49,6 +49,10 @@ package mx.controls.beads
                 var host:Sprite = getHost() as Sprite;
                 host.stage.focus = host;
             }
+			COMPILE::JS
+			{
+				(_textInput as TextInput).setFocus();
+			}
         }
         
         override public function set strand(value:IStrand):void

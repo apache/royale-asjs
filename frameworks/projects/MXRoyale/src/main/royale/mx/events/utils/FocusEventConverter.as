@@ -28,6 +28,11 @@ package mx.events.utils
         import org.apache.royale.events.utils.IHandlesOriginalEvent;
 	}
 	
+	COMPILE::JS
+	{
+		import goog.events.BrowserEvent;
+	}
+	
 	/**
 	 *  Converts low level focus events to Royale FocusEvents
 	 *  
@@ -162,6 +167,8 @@ package mx.events.utils
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
+		 *  
+		 *  @royaleignorecoercion goog.events.BrowserEvent
 		 */
 		COMPILE::JS
 		public static function convert(nativeEvent:Object):FocusEvent
@@ -170,6 +177,7 @@ package mx.events.utils
             if (type == "focusin") type = "focusIn";
             if (type == "focusout") type = "focusOut";
 			var newEvent:FocusEvent = new FocusEvent(type, true);
+			newEvent.wrapEvent(nativeEvent as BrowserEvent);
 			return newEvent;
 		}
 	}

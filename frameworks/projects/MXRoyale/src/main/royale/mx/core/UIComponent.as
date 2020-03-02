@@ -3713,7 +3713,7 @@ COMPILE::JS
      */
     protected function createChildren():void
     {
-        MXMLDataInterpreter.generateMXMLInstances(_mxmlDocument, this, MXMLDescriptor);
+        MXMLDataInterpreter.generateMXMLInstances(mxmlDocument, this, MXMLDescriptor);
     }
     
     private var _mxmlDescriptor:Array;
@@ -5233,7 +5233,7 @@ COMPILE::JS
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function owns(child:IUIComponent):Boolean
+    public function owns(child:IUIBase):Boolean
     {
         trace("owns not implemented");
         return true;

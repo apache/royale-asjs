@@ -83,6 +83,10 @@ package org.apache.royale.html.beads.controllers
 			var viewBead:DateFieldView = _strand.getBeadByType(DateFieldView) as DateFieldView;
 			viewBead.popUpVisible = true;
 			IEventDispatcher(viewBead.popUp).addEventListener("change", changeHandler);
+			COMPILE::JS
+			{
+				(viewBead.popUp as IUIBase).element.tabIndex = 0;
+			}
                                    
             removeDismissHandler();
             
