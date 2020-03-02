@@ -16,34 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.reflection {
+package flexUnitTests
+{
+    import flexUnitTests.binding.*
 
-
-COMPILE::SWF {
-    import flash.utils.describeType;
-}
-/**
-     * Retrieves a an alias for a class, based on an alias mapping, previously registered with
-     * registerClassAlias, or possibly using [RemoteClass(alias='someAlias')] metadata
-     *
-     * @param classObject the class to retrieve the alias for
-     * @return the most recently mapped alias, if found otherwise null
+    [Suite]
+    [RunWith("org.apache.royale.test.runners.SuiteRunner")]
+    /**
+     *  @royalesuppresspublicvarwarning
      */
-    public function getAliasByClass(classObject:Class):String {
-        var ret:String;
-        if (classObject == null) throw new TypeError("Parameter classObject must be non-null.");
-        COMPILE::SWF {
-            ret= flash.utils.describeType(classObject).@alias;
-            if (ret.length==0) ret = null;
+    public class BindingTester
+    {
+        public function BindingTester()
+        {
         }
 
-        COMPILE::JS {
-            var info:* = classObject.prototype.ROYALE_CLASS_INFO;
-            if (info) {
-                ret = info.alias;
-                if (ret == '') ret = null;
-            } else ret=null;
-        }
-        return ret;
+        public var bindableCoreTest:BindableCoreTests;
+    
+        public var bindingCoreTest:BindingCoreTests;
+
     }
 }

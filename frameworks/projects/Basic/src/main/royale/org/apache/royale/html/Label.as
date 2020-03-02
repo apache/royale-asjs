@@ -114,6 +114,7 @@ package org.apache.royale.html
             {
                 if (textNode)
                 {
+                    value = value != null ? value + '' : '';
                     _text = value;
                     textNode.nodeValue = value;
                     sendEvent(this,"textChange");
