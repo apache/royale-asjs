@@ -75,6 +75,7 @@
     <module>TeamPage</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
+
   </modules>
 
   <build>
@@ -176,6 +177,20 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Language</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Effects</artifactId>
           <version>0.9.7-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>

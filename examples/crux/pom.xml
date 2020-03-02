@@ -121,7 +121,13 @@
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
-
+    <dependency>
+      <groupId>org.apache.royale.framework</groupId>
+      <artifactId>Network</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+      <type>swc</type>
+      <classifier>js</classifier>
+    </dependency>
     <!-- Import the shared unit-tests we want to run on all examples -->
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
@@ -180,6 +186,41 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Graphics</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Effects</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Basic</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>MXRoyale</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Reflection</artifactId>
+          <version>0.9.7-SNAPSHOT</version>
+          <type>swc</type>
+          <classifier>swf</classifier>
+        </dependency>
+        <dependency>
+          <groupId>org.apache.royale.framework</groupId>
+          <artifactId>Network</artifactId>
           <version>0.9.7-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
