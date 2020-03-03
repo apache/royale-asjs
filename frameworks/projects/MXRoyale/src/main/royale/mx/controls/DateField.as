@@ -2950,7 +2950,7 @@ public class DateField extends ComboBase implements IDataRenderer,IFocusManagerC
 	override public function owns(child:IUIBase):Boolean
 	{
 		if (child == (view as DateFieldView).popUp) return true;
-		return false;
+		return super.owns(child);
 	}
 }
 
