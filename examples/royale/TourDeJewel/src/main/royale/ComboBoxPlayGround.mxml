@@ -223,6 +223,19 @@ limitations under the License.
 				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel ComboBox ComboBoxTrucatedText"/>
+
+				<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+					<j:beads>
+						<j:ComboBoxTruncateText/>
+						<j:ComboBoxTextPrompt prompt="The internal text input truncate the text"/>
+					</j:beads>
+				</j:ComboBox>
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
 
 	<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
