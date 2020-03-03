@@ -187,6 +187,7 @@
     <component id="ComboUpperCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboUpperCase"/>
     <component id="ComboLowerCase" class="org.apache.royale.jewel.beads.controls.combobox.ComboLowerCase"/>
     <component id="ComboBoxDisabled" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxDisabled"/>
+    <component id="ComboBoxTruncateText" class="org.apache.royale.jewel.beads.controls.combobox.ComboBoxTruncateText"/>
 
     <component id="BasicLayout" class="org.apache.royale.jewel.beads.layouts.BasicLayout"/>
     <component id="NullLayout" class="org.apache.royale.jewel.beads.layouts.NullLayout"/>
