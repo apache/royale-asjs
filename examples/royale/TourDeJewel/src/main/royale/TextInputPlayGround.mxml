@@ -252,6 +252,18 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 		
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel TextInput TruncatedText"/>
+
+				<j:TextInput text="A TextInput with many text to get trucated" change="textInputChange(event)" enter="enterPress(event)">
+					<j:beads>
+						<j:TruncateText/>
+					</j:beads>
+				</j:TextInput>
+			</j:Card>
+		</j:GridCell>
+		
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>

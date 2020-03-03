@@ -25,17 +25,17 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.ILabelFieldItemRenderer;
-    import org.apache.royale.html.IListPresentationModel;
+	import org.apache.royale.core.ILabelFieldItemRenderer;
+	import org.apache.royale.html.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithPresentationModel;
+	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
-    import org.apache.royale.core.SimpleCSSStyles;
+	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
-     *  in list classes.
+	 *  in list classes.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -56,8 +56,8 @@ package org.apache.royale.html.beads
 		{
 		}
 		
-        protected var presentationModel:IListPresentationModel;
-        
+		protected var presentationModel:IListPresentationModel;
+		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -66,21 +66,23 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithPresentationModel
 		 */
 		override public function set strand(value:IStrand):void
 		{	
 			super.strand = value;
-            presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
+			presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;			
 		}
-		        
-        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
-        {
-            var style:SimpleCSSStyles = new SimpleCSSStyles();
-            style.marginBottom = presentationModel.separatorThickness;
-            UIBase(ir).style = style;
-            UIBase(ir).height = presentationModel.rowHeight;
-            UIBase(ir).percentWidth = 100;
+		/**
+		 * @royaleignorecoercion org.apache.royale.core.UIBase
+		 */
+		override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+		{
+			var style:SimpleCSSStyles = new SimpleCSSStyles();
+			style.marginBottom = presentationModel.separatorThickness;
+			(ir as UIBase).style = style;
+			(ir as UIBase).height = presentationModel.rowHeight;
+			(ir as UIBase).percentWidth = 100;
 		}
 
 	}

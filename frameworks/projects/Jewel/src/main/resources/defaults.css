@@ -3914,6 +3914,10 @@ j|TableRow {
   left: auto;
   right: 0.45em;
 }
+.jewel.textinput.truncate input {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
 j|TextInput {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel");
