@@ -124,7 +124,7 @@ package org.apache.royale.jewel
             //attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
             goog.events.listen(input, 'input', textChangeHandler);
-            goog.events.listen(element, 'keypress', enterEventHandler);
+            goog.events.listen(input, 'keypress', enterEventHandler, true);
             
             positioner = document.createElement('div') as WrappedHTMLElement;
             
