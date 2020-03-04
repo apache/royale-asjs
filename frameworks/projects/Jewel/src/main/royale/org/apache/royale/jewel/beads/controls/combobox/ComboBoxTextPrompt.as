@@ -60,8 +60,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		COMPILE::JS
 		override protected function updatePromptText():void
 		{
-			var e:HTMLInputElement = (host.view as IComboBoxView).textinput.element as HTMLInputElement;
-			e.placeholder = prompt;
+			(host.view as IComboBoxView).textinput.input.placeholder = prompt;
 		}
 	}
 }

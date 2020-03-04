@@ -60,8 +60,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 		COMPILE::JS
 		override protected function updatePromptText():void
 		{
-			var e:HTMLInputElement = (host.view as DateFieldView).textInput.element as HTMLInputElement;
-			e.placeholder = prompt;
+			(host.view as DateFieldView).textInput.input.placeholder = prompt;
 		}
 	}
 }

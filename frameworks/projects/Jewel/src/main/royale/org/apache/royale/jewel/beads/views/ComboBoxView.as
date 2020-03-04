@@ -143,6 +143,14 @@ package org.apache.royale.jewel.beads.views
 			parent.addElement(_textinput);
 			parent.addElement(_button);
 
+
+			listenOnStrand("sizeChanged", handleSizeChange);
+			listenOnStrand("initComplete", initCompleteHandler);
+		}
+
+		protected function initCompleteHandler(event:Event):void
+		{
+			IEventDispatcher(_strand).removeEventListener("initComplete",initCompleteHandler);
 			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			_presentationModel = (_strand as ComboBox).presentationModel;
 
@@ -150,15 +158,10 @@ package org.apache.royale.jewel.beads.views
 				//do this here as well as in the controller,
 				//to cover possible variation in the order of bead instantiation
 				//this avoids the need to redispatch new event clones at the component level in the controller
-                IJewelSelectionModel(model).dispatcher = IEventDispatcher(value);
+                IJewelSelectionModel(model).dispatcher = IEventDispatcher(_strand);
 			}
-			if(model)
-			{
-				model.addEventListener("selectionChanged", handleItemChange);
-				model.addEventListener("dataProviderChanged", itemChangeAction);
-			}
-
-			listenOnStrand("sizeChanged", handleSizeChange);
+			model.addEventListener("selectionChanged", handleItemChange);
+			model.addEventListener("dataProviderChanged", itemChangeAction);
 		}
 
 		private var model:IComboBoxModel;
