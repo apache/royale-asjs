@@ -33,10 +33,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IComboBoxModel;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.ComboBox;
@@ -45,7 +43,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
-	import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
 	import org.apache.royale.utils.UIUtils;
 
 	/**
@@ -125,8 +122,6 @@ package org.apache.royale.jewel.beads.views
 		{
 			super.strand = value;
 
-			var parent:IParent = _strand as StyledUIBase;
-
 			_textinput = new TextInput();
             /*COMPILE::JS {
                 _textinput.element.addEventListener('blur', handleFocusOut);
@@ -140,32 +135,25 @@ package org.apache.royale.jewel.beads.views
 
 			initSize();
 
+			var parent:IParent = host as ComboBox;
 			parent.addElement(_textinput);
 			parent.addElement(_button);
-
-
-			listenOnStrand("sizeChanged", handleSizeChange);
-			listenOnStrand("initComplete", initCompleteHandler);
-		}
-
-		protected function initCompleteHandler(event:Event):void
-		{
-			IEventDispatcher(_strand).removeEventListener("initComplete",initCompleteHandler);
-			model = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
-			_presentationModel = (_strand as ComboBox).presentationModel;
+			
+			model = host.getBeadByType(IComboBoxModel) as IComboBoxModel;
 
 			if (model is IJewelSelectionModel) {
 				//do this here as well as in the controller,
 				//to cover possible variation in the order of bead instantiation
 				//this avoids the need to redispatch new event clones at the component level in the controller
-                IJewelSelectionModel(model).dispatcher = IEventDispatcher(_strand);
+                IJewelSelectionModel(model).dispatcher = host;
 			}
 			model.addEventListener("selectionChanged", handleItemChange);
 			model.addEventListener("dataProviderChanged", itemChangeAction);
+			
+			listenOnStrand("sizeChanged", handleSizeChange);
 		}
 
 		private var model:IComboBoxModel;
-		private var _presentationModel:IComboBoxPresentationModel;
 
 		private var _popUpClass:Class;
 		/**
@@ -192,20 +180,20 @@ package org.apache.royale.jewel.beads.views
 				if (_comboPopUp == null) {
                     if(!_popUpClass)
                     {
-                        _popUpClass = ValuesManager.valuesImpl.getValue(_strand, "iPopUp") as Class;
+                        _popUpClass = ValuesManager.valuesImpl.getValue(host, "iPopUp") as Class;
                     }
 
                     _comboPopUp = new _popUpClass() as ComboBoxPopUp;
-					_comboPopUp.addBead(_presentationModel);
+					_comboPopUp.addBead((host as ComboBox).presentationModel);
 					_comboPopUp.model = model;
 					
 					// if  user defines item render for combo must be pased to popup list
-					var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(_strand, "iItemRenderer") as Class;
+					var itemRendererClass:Class = ValuesManager.valuesImpl.getValue(host, "iItemRenderer") as Class;
 					if(itemRendererClass != null)
 						_comboPopUp.itemRendererClass = itemRendererClass;
 					
 					UIUtils.addPopUp(_comboPopUp, host);
-                    // var popupHost:IPopUpHost = UIUtils.findPopUpHost(_strand as IUIBase);
+                    // var popupHost:IPopUpHost = UIUtils.findPopUpHost(host);
                     // popupHost.popUpParent.addElement(_comboPopUp);
 
                     // popup is ComboBoxPopUp that fills 100% of browser window-> We want the internal List inside its view to adjust height
@@ -280,7 +268,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function itemChangeAction(event:Event = null):void
 		{
-			var model:IComboBoxModel = _strand.getBeadByType(IComboBoxModel) as IComboBoxModel;
+			var model:IComboBoxModel = host.getBeadByType(IComboBoxModel) as IComboBoxModel;
 			_textinput.text = getLabelFromData(model, model.selectedItem);
 		}
 
@@ -337,8 +325,8 @@ package org.apache.royale.jewel.beads.views
 				if(outerWidth >= ResponsiveSizes.TABLET_BREAKPOINT)
 				{
 					var origin:Point = new Point(0, button.y + button.height - top);
-					var relocated:Point = positionInsideBoundingClientRect(_strand, _list, origin);
-					var point:Point = PointUtils.localToGlobal(origin, _strand);
+					var relocated:Point = positionInsideBoundingClientRect(host, _list, origin);
+					var point:Point = PointUtils.localToGlobal(origin, host);
 					
 					// by default list appear below textinput
 
@@ -346,7 +334,7 @@ package org.apache.royale.jewel.beads.views
 					if(relocated.y < point.y)
 					{
 						var origin2:Point = new Point(0, button.y - _list.height - top);
-						var relocated2:Point = positionInsideBoundingClientRect(_strand, _list, origin2);
+						var relocated2:Point = positionInsideBoundingClientRect(host, _list, origin2);
 						_list.y = relocated2.y;
 					
 						//if start to cover input...
