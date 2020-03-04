@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	COMPILE::SWF
 	{
 		import flash.text.TextFieldType;
+
 		import org.apache.royale.core.CSSTextField;
 	}
 	
@@ -28,7 +29,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
@@ -55,7 +55,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 		
 		private var _prompt:String;
-		
 		/**
 		 *  The string to use as the placeholder prompt.
 		 *
@@ -64,16 +63,25 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable("promptChanged")]
 		public function get prompt():String
 		{
 			return _prompt;
 		}
 		public function set prompt(value:String):void
 		{
-			_prompt = value;
+			if(value != _prompt)
+			{
+				_prompt = value;
+				if(host)
+				{
+					updatePromptText();
+					host.dispatchEvent(new Event("promptChanged"));
+				}	
+			}
 		}
 		
-		private var _strand:IStrand;
+		protected var host:UIBase;
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -87,12 +95,12 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 */
 		public function set strand(value:IStrand):void
 		{
-			_strand = value;
+			host = value as UIBase;
 			
 			COMPILE::SWF
 			{
 				// listen for changes in text to hide or show the prompt
-				var model:Object = UIBase(_strand).model;
+				var model:Object = host.model;
 				if (!model.hasOwnProperty("text")) {
 					throw new Error("Model requires a text property when used with TextPrompt");
 				}
@@ -113,10 +121,23 @@ package org.apache.royale.jewel.beads.controls.textinput
 			}
 			COMPILE::JS
 			{
-				var host:UIBase = value as UIBase;
-				var e:HTMLInputElement = host.element as HTMLInputElement;
-				e.placeholder = prompt;
+				updatePromptText();
 			}
+		}
+
+		/**
+         *  Update the internal element placeholder with the prompt property
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		COMPILE::JS
+		protected function updatePromptText():void
+		{
+			var e:HTMLInputElement = host.element as HTMLInputElement;
+			e.placeholder = prompt;
 		}
 		
 		COMPILE::SWF
@@ -133,21 +154,20 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{	
 			// see what the model currently has to determine if the prompt should be
 			// displayed or not.
-			var model:Object = UIBase(_strand).model;
+			var model:Object = host.model;
 			
 			if (model.text != null && model.text.length > 0 ) {
-				if (promptAdded) UIBase(_strand).removeChild(promptField);
+				if (promptAdded) host.removeChild(promptField);
 				promptAdded = false;
 			}
 			else {
-				if (!promptAdded) UIBase(_strand).addChild(promptField);
+				if (!promptAdded) host.addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
                 promptField.x = 2;
                 promptField.y = 2;
-                promptField.width = UIBase(_strand).width-5;
-                promptField.height = UIBase(_strand).height-4;
-
+                promptField.width = host.width-5;
+                promptField.height = host.height-4;
 			}
 		}
 	}

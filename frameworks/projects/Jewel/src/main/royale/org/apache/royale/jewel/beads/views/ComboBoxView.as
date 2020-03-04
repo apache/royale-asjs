@@ -152,8 +152,11 @@ package org.apache.royale.jewel.beads.views
 				//this avoids the need to redispatch new event clones at the component level in the controller
                 IJewelSelectionModel(model).dispatcher = IEventDispatcher(value);
 			}
-			model.addEventListener("selectionChanged", handleItemChange);
-			model.addEventListener("dataProviderChanged", itemChangeAction);
+			if(model)
+			{
+				model.addEventListener("selectionChanged", handleItemChange);
+				model.addEventListener("dataProviderChanged", itemChangeAction);
+			}
 
 			listenOnStrand("sizeChanged", handleSizeChange);
 		}
