@@ -20,15 +20,17 @@ package org.apache.royale.jewel.beads.controls.textinput
 {
 	COMPILE::SWF
 	{
-		import flash.text.TextFieldType;
+	import flash.text.TextFieldType;
 
-		import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.CSSTextField;
+	import org.apache.royale.core.UIBase;
 	}
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
@@ -104,7 +106,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 			COMPILE::SWF
 			{
 				// listen for changes in text to hide or show the prompt
-				var model:Object = _strand.model;
+				var model:Object = UIBase(_strand).model;
 				if (!model.hasOwnProperty("text")) {
 					throw new Error("Model requires a text property when used with TextPrompt");
 				}
