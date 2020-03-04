@@ -396,15 +396,10 @@ j|ControlBar {
 .jewel.combobox .jewel.button::before {
   margin: 0;
   padding: 0;
-  line-height: 22px;
 }
 .jewel.combobox .jewel.button::after {
   content: " ";
   position: absolute;
-  width: 22px;
-  height: 22px;
-  left: calc(50% - 11px);
-  top: calc(50% - 11px);
 }
 
 j|ComboBox {
