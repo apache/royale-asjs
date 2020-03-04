@@ -23,6 +23,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		import flash.text.TextFieldType;
 
 		import org.apache.royale.core.CSSTextField;
+		import org.apache.royale.events.IEventDispatcher;
 	}
 	
 	import org.apache.royale.core.Bead;
@@ -75,7 +76,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 				_prompt = value;
 				if(host)
 				{
+					COMPILE::JS
+					{
 					updatePromptText();
+					}
 					host.dispatchEvent(new Event("promptChanged"));
 				}	
 			}
