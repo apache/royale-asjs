@@ -48,6 +48,8 @@ limitations under the License.
 			return intro + evaluated;
 		}
 
+		[Bindable]
+		public var promptText:String = "Select Watchmen...";
 		]]>
 	</fx:Script>
 
@@ -114,7 +116,7 @@ limitations under the License.
 					<j:HGroup gap="3">
 						<j:DropDownList localId="watchmenDropDownList" dataProvider="{listModel.watchmen}">
 							<j:beads>
-								<j:DropDownListTextPrompt prompt="Select Watchmen..."/>
+								<j:DropDownListTextPrompt prompt="{promptText}"/>
 							</j:beads>
 						</j:DropDownList>
 						<j:Button text="deselect" click="watchmenDropDownList.selectedIndex = -1" emphasis="primary"/>
@@ -124,6 +126,7 @@ limitations under the License.
 						<j:NumericStepper valueChange="watchmenDropDownList.selectedIndex = event.target.value" minimum="0" maximum="5"/>
 					</j:HGroup>
 					<j:Label multiline="true"localId="watchmenDropDownListResult" html="{describeItem(watchmenDropDownList.selectedItem)}"/>
+					<j:Button text="Change Prompt" emphasis="secondary" click="promptText = 'Other prompt'"/>
 				</j:VGroup>
 			</j:Card>
 		</j:GridCell>
@@ -220,17 +223,15 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DropDownList Disabled"/>
 
-				<j:VGroup gap="3">
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-						<j:DropDownList labelField="label" dataProvider="{listModel.avengers}">
-							<j:beads>
-								<j:Disabled disabled="{disable_ddl.selected}"/>
-								<j:DropDownListTextPrompt prompt="Disabled..."/>
-							</j:beads>
-						</j:DropDownList>
-						<j:CheckBox localId="disable_ddl" text="Disable ComboBox?" selected="true"/>
-					</j:HGroup>
-				</j:VGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:DropDownList labelField="label" dataProvider="{listModel.avengers}">
+						<j:beads>
+							<j:Disabled disabled="{disable_ddl.selected}"/>
+							<j:DropDownListTextPrompt prompt="Disabled..."/>
+						</j:beads>
+					</j:DropDownList>
+					<j:CheckBox localId="disable_ddl" text="Disable ComboBox?" selected="true"/>
+				</j:HGroup>
 			</j:Card>
 		</j:GridCell>
 		
@@ -238,18 +239,17 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DropDownList requireSelection"/>
 
-				<j:VGroup gap="3">
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
-						<j:DropDownList localId="rqddl" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2">
-							<j:beads>
-								<j:DropDownListTextPrompt prompt="Required Selection..."/>
-								<j:RequireSelection requireSelection="{requiredSelecion_ddl.selected}"/>
-							</j:beads>
-						</j:DropDownList>
-						<j:CheckBox localId="requiredSelecion_ddl" text="Require Selection?"/>
-					</j:HGroup>
-					<j:Button text="deselect" click="rqddl.selectedIndex = -1" emphasis="primary"/>
-				</j:VGroup>
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:DropDownList localId="rqddl" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2">
+						<j:beads>
+							<j:DropDownListTextPrompt prompt="Required Selection..."/>
+							<j:RequireSelection requireSelection="{requiredSelecion_ddl.selected}"/>
+						</j:beads>
+					</j:DropDownList>
+					<j:CheckBox localId="requiredSelecion_ddl" text="Require Selection?"/>
+				</j:HGroup>
+				<j:Button text="deselect" click="rqddl.selectedIndex = -1" emphasis="primary"/>
+				
 			</j:Card>
 		</j:GridCell>
 						
