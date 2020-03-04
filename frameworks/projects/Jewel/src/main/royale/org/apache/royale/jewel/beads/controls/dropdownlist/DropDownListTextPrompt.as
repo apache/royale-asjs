@@ -18,7 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.dropdownlist
 {
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
+	import org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView;
 	import org.apache.royale.jewel.beads.views.DropDownListView;
 	
 	/**
@@ -55,7 +58,8 @@ package org.apache.royale.jewel.beads.controls.dropdownlist
 		COMPILE::JS
 		override protected function updatePromptText():void
 		{
-			(host.view as DropDownListView).prompt = prompt;
+			((_strand as UIBase).view as DropDownListView).prompt = prompt;
+			(_strand.getBeadByType(IDataProviderItemRendererMapper) as DropDownListItemRendererFactoryForCollectionView).updatePromptRender();
 		}
 	}
 }

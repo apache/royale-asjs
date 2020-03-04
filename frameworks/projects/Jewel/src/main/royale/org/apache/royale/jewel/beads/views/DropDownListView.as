@@ -25,7 +25,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.jewel.DropDownList;
@@ -62,32 +61,6 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public var prompt:String = "";
 
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @royaleignorecoercion HTMLLabelElement
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-
-			COMPILE::JS
-			{
-				dropDownList = value as DropDownList;
-				dropDownList.dropDown = new Select();
-
-				var name:String = "dropDownList" + Math.random();
-				dropDownList.dropDown.element.name = name;
-
-				dropDownList.addElement(dropDownList.dropDown);
-			}
-		}
-
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
 			super.dataProviderChangeHandler(event);
@@ -101,12 +74,22 @@ package org.apache.royale.jewel.beads.views
 		 */
 		override protected function handleInitComplete(event:Event):void
 		{
+			COMPILE::JS
+			{
+				dropDownList = _strand as DropDownList;
+				dropDownList.dropDown = new Select();
+
+				var name:String = "dropDownList" + Math.random();
+				dropDownList.dropDown.element.name = name;
+
+				dropDownList.addElement(dropDownList.dropDown);
+			}
+
 			model = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			model.addEventListener("selectionChanged", selectionChangeHandler);
 
 			super.handleInitComplete(event);
 		}
-
 
 		protected var lastSelectedIndex:int = -1;
 		/**
@@ -158,11 +141,11 @@ package org.apache.royale.jewel.beads.views
 			model = dataModel as ISelectionModel;
 			//var selectedIndex:int = dropDownList.selectedIndex;
 
-		  /*  if (model.selectedIndex > -1 && model.dataProvider)
+		/*  if (model.selectedIndex > -1 && model.dataProvider)
 			{*/
-				dropDownList.selectedIndex = model.selectedIndex;
-				dropDownList.selectedItem = model.selectedItem;
-		   /* }*/
+			dropDownList.selectedIndex = model.selectedIndex;
+			dropDownList.selectedItem = model.selectedItem;
+		/*  }*/
 		}
 	}
 }
