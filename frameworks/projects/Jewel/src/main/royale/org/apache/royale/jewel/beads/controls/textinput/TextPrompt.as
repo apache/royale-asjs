@@ -104,7 +104,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 			COMPILE::SWF
 			{
 				// listen for changes in text to hide or show the prompt
-				var model:Object = host.model;
+				var model:Object = _strand.model;
 				if (!model.hasOwnProperty("text")) {
 					throw new Error("Model requires a text property when used with TextPrompt");
 				}
@@ -161,20 +161,20 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{	
 			// see what the model currently has to determine if the prompt should be
 			// displayed or not.
-			var model:Object = host.model;
+			var model:Object = _strand.model;
 			
 			if (model.text != null && model.text.length > 0 ) {
-				if (promptAdded) host.removeChild(promptField);
+				if (promptAdded) _strand.removeChild(promptField);
 				promptAdded = false;
 			}
 			else {
-				if (!promptAdded) host.addChild(promptField);
+				if (!promptAdded) _strand.addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
                 promptField.x = 2;
                 promptField.y = 2;
-                promptField.width = host.width-5;
-                promptField.height = host.height-4;
+                promptField.width = _strand.width-5;
+                promptField.height = _strand.height-4;
 			}
 		}
 	}
