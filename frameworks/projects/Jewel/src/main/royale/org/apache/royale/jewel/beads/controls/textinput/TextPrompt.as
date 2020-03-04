@@ -25,7 +25,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 		import org.apache.royale.core.CSSTextField;
 	}
 	
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.events.Event;
@@ -40,7 +40,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TextPrompt implements IBead
+	public class TextPrompt extends Bead
 	{
 		/**
 		 *  constructor.
@@ -93,9 +93,11 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
-			host = value as UIBase;
+			_strand = value;
+			host = _strand as UIBase;
+			listenOnStrand("beadsAdded", beadsAddedHandler);
 			
 			COMPILE::SWF
 			{
@@ -119,11 +121,17 @@ package org.apache.royale.jewel.beads.controls.textinput
 				// trigger the event handler to display if needed
 				handleTextChange(null);					
 			}
+		}
+
+		private function beadsAddedHandler(event:Event):void
+		{
+			host.removeEventListener("beadsAdded", beadsAddedHandler);
 			COMPILE::JS
 			{
-				updatePromptText();
+			updatePromptText();
 			}
 		}
+
 
 		/**
          *  Update the internal element placeholder with the prompt property
@@ -137,7 +145,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 		protected function updatePromptText():void
 		{
 			var e:HTMLInputElement = host.element as HTMLInputElement;
-			e.placeholder = prompt;
+			if(e)
+				e.placeholder = prompt;
 		}
 		
 		COMPILE::SWF
