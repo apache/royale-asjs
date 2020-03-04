@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 	{
 		import flash.utils.setTimeout;
     }
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
 	
@@ -60,7 +61,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		COMPILE::JS
 		override protected function updatePromptText():void
 		{
-			(host.view as IComboBoxView).textinput.input.placeholder = prompt;
+			((_strand as UIBase).view as IComboBoxView).textinput.input.placeholder = prompt;
 		}
 	}
 }

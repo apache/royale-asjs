@@ -22,6 +22,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 	{
 		import flash.utils.setTimeout;
     }
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
 	
@@ -60,7 +61,7 @@ package org.apache.royale.jewel.beads.controls.datefield
 		COMPILE::JS
 		override protected function updatePromptText():void
 		{
-			(host.view as DateFieldView).textInput.input.placeholder = prompt;
+			((_strand as UIBase).view as DateFieldView).textInput.input.placeholder = prompt;
 		}
 	}
 }
