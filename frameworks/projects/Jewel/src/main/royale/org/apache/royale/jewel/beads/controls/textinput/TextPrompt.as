@@ -161,20 +161,20 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{	
 			// see what the model currently has to determine if the prompt should be
 			// displayed or not.
-			var model:Object = _strand.model;
+			var model:Object = UIBase(_strand).model;
 			
 			if (model.text != null && model.text.length > 0 ) {
-				if (promptAdded) _strand.removeChild(promptField);
+				if (promptAdded) UIBase(_strand).removeChild(promptField);
 				promptAdded = false;
 			}
 			else {
-				if (!promptAdded) _strand.addChild(promptField);
+				if (!promptAdded) UIBase(_strand).addChild(promptField);
 				promptField.text = prompt;
 				promptAdded = true;
                 promptField.x = 2;
                 promptField.y = 2;
-                promptField.width = _strand.width-5;
-                promptField.height = _strand.height-4;
+                promptField.width = UIBase(_strand).width-5;
+                promptField.height = UIBase(_strand).height-4;
 			}
 		}
 	}
