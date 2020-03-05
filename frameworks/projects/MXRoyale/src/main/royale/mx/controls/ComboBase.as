@@ -809,6 +809,18 @@ public class ComboBase extends UIComponent implements /*IIMESupport,*/ IFocusMan
         return _textInputStyleFilters;
     }
     
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        textInput.addEventListener(Event.CHANGE, textInput_changeHandler);
+    }
+
+    protected function textInput_changeHandler(event:Event):void
+    {
+        // override this
+    }
+
+    
     private static var _textInputStyleFilters:Object =
     {
         "backgroundAlpha" : "backgroundAlpha",
