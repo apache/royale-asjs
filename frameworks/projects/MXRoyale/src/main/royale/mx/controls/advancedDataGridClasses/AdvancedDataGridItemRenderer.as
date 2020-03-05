@@ -131,6 +131,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
         var owner:AdvancedDataGrid = treeListData.owner as AdvancedDataGrid;
         var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_DOUBLE_CLICK);
         newEvent.rowIndex = index;
+		newEvent.columnIndex = treeListData.columnIndex;
         owner.dispatchEvent(newEvent);        
     }
     //--------------------------------------------------------------------------
