@@ -21,7 +21,7 @@ package org.apache.royale.core
     import org.apache.royale.core.IItemRendererOwnerView;
 
     /**
-     *  The IItemRendererInitializer interface is the basic interface for beads
+     *  The IIndexedItemRendererInitializer interface is the basic interface for beads
      *  that initialize properties on an IItemRenderer.  Simple implementations
      *  only assign the data and itemRendererOwnerView property, but others will 
      *  assign other properties if needed. 
