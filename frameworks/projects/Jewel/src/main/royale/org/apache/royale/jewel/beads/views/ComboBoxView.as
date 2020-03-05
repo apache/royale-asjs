@@ -31,6 +31,7 @@ package org.apache.royale.jewel.beads.views
 	}
 	import org.apache.royale.core.BeadViewBase;
 	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.ValuesManager;
@@ -149,8 +150,6 @@ package org.apache.royale.jewel.beads.views
 			}
 			model.addEventListener("selectionChanged", handleItemChange);
 			model.addEventListener("dataProviderChanged", itemChangeAction);
-			
-			listenOnStrand("sizeChanged", handleSizeChange);
 		}
 
 		private var model:IComboBoxModel;
@@ -246,14 +245,6 @@ package org.apache.royale.jewel.beads.views
 			}
 		}
 
-        /**
-		 * @private
-		 */
-		protected function handleSizeChange(event:Event):void
-		{
-			sizeChangeAction();
-		}
-
 		/**
 		 * @private
 		 */
@@ -272,36 +263,24 @@ package org.apache.royale.jewel.beads.views
 			_textinput.text = getLabelFromData(model, model.selectedItem);
 		}
 
+		public static const DEFAULT_BUTTON_WIDTH:Number = 38;
+
 		/**
 		 * Size the component at start up
 		 *
 		 * @private
 		 */
 		protected function initSize():void
-		{
-			_button.width = 39;
+		{ 
+			_button.width = DEFAULT_BUTTON_WIDTH;
 
-			if(host.width == 0 || host.width < 89)
-			{
-				var w:Number = host.width == 0 ? 200 : 89;
-				_textinput.width = w - _button.width;
-				host.width = _textinput.width + _button.width;
-			} else
-			{
-				_textinput.width = host.width - _button.width;
-			}
+			var cmb:ILayoutChild = host as ILayoutChild;
 
+			// if no width (neither px or %), set default width
+			if(cmb.isWidthSizedToContent())
+				cmb.width = 200;
+			
 			_textinput.percentWidth = 100;
-		}
-
-		/**
-		 * Manages the resize of the component
-		 *
-		 * @private
-		 */
-		protected function sizeChangeAction():void
-		{
-			host.width = _textinput.width + _button.width;
 		}
 
 		/**
