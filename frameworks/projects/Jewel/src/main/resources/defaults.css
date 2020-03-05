@@ -396,15 +396,10 @@ j|ControlBar {
 .jewel.combobox .jewel.button::before {
   margin: 0;
   padding: 0;
-  line-height: 22px;
 }
 .jewel.combobox .jewel.button::after {
   content: " ";
   position: absolute;
-  width: 22px;
-  height: 22px;
-  left: calc(50% - 11px);
-  top: calc(50% - 11px);
 }
 
 j|ComboBox {
@@ -3881,7 +3876,7 @@ j|TableRow {
   -ms-appearance: none;
   appearance: none;
   margin: 0;
-  padding: 0.68em 1.12em;
+  padding: 0.679em 1.12em;
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -3913,6 +3908,10 @@ j|TableRow {
 .jewel.textinput.icon.right i.fonticon {
   left: auto;
   right: 0.45em;
+}
+.jewel.textinput.truncate input {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 j|TextInput {

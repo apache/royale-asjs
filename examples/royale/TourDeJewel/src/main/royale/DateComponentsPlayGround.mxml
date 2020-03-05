@@ -83,6 +83,9 @@ limitations under the License.
 
 			[Bindable]
 			public var someDate:Date = new Date (1973,3,5);
+
+			[Bindable]
+			public var promptText:String = "DD/MM/YYYY";
 		]]>
 	</fx:Script>
 
@@ -141,12 +144,13 @@ limitations under the License.
 				<j:HGroup gap="3">
 					<j:DateField id="dateFieldES" change="dateFieldESChanged()" beadsAdded="configDateFieldToES()">
 						<j:beads>
-							<j:DateFieldTextPrompt prompt="DD/MM/YYYY"/>
+							<j:DateFieldTextPrompt prompt="{promptText}"/>
 						</j:beads>
 					</j:DateField>
 					<j:Button text="Selecciona Hoy" click="dateFieldESToToday()" emphasis="primary"/>
 				</j:HGroup>
 				<j:Label id="dateFieldESSelectedDate" multiline="true" html="&lt;strong>DateField fecha seleccionada:&lt;/strong> "/>
+				<j:Button text="Change Prompt" emphasis="secondary" click="promptText = 'Other prompt'"/>
 			</j:Card>
 		</j:GridCell>
 		

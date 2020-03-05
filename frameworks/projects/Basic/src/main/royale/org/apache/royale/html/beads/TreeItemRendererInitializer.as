@@ -65,7 +65,7 @@ package org.apache.royale.html.beads
             if (!dataProviderModel)
                 return;
             
-            super.initializeItemRenderer(ir, data, index);
+            super.initializeIndexedItemRenderer(ir, data, index);
             
             var treeData:TreeData = dataProviderModel.dataProvider as TreeData;
             var depth:int = treeData.getDepth(data);

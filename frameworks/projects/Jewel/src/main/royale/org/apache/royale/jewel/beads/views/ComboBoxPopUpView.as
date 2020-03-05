@@ -20,15 +20,15 @@ package org.apache.royale.jewel.beads.views
 {
     import org.apache.royale.core.BeadViewBase;
     import org.apache.royale.core.ClassFactory;
-    import org.apache.royale.core.IBeadModel;
+    import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IItemRendererClassFactory;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.ItemRendererClassFactory;
+    import org.apache.royale.events.Event;
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
     import org.apache.royale.jewel.supportClasses.combobox.IComboBoxPresentationModel;
-    import org.apache.royale.events.Event;
     
     /**
 	 * The ComboBoxPopUpView class is a view bead for the ComboBoxPopUp.
@@ -70,7 +70,7 @@ package org.apache.royale.jewel.beads.views
             _strand = value;
 
             // set model
-            var model:IBeadModel = _strand.getBeadByType(IBeadModel) as IBeadModel;
+            var model:IDataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
             list.model = model;
 
             // set rowHeight
@@ -79,6 +79,17 @@ package org.apache.royale.jewel.beads.views
 
             // set height based on rowCount
             var rowCount:int = _presentationModel.rowCount;
+            var len:int;
+
+            // if num records in dp is less than rowCount height should adapt the height
+            if(list.dataProvider)
+            {
+                len = list.dataProvider.length;
+
+                if(len < rowCount)
+                    rowCount = len;
+            }
+            
             list.height = rowCount * list.rowHeight;
 
             IParent(_strand).addElement(list);

@@ -21,7 +21,7 @@
 
 // TextInput variables
 $textinput-margin: 0 !default
-$textinput-padding-vertical: .68em !default
+$textinput-padding-vertical: .679em !default
 $textinput-padding-horizontal: 1.12em !default
 
 .jewel
@@ -73,6 +73,10 @@ $textinput-padding-horizontal: 1.12em !default
 						left: auto
 						right: .45em
 
+		&.truncate
+			input
+				overflow: hidden
+				text-overflow: ellipsis
 
 j|TextInput
 	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")

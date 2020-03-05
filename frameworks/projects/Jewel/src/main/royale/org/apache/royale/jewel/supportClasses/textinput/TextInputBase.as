@@ -105,7 +105,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            return (element as HTMLInputElement).value;
+            return input.value;
             }
 		}
         /**
@@ -122,7 +122,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            (element as HTMLInputElement).value = value;
+            input.value = value;
             dispatchEvent(new Event('textChange'));
             }
 		}
@@ -145,7 +145,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            return (element as HTMLInputElement).value;
+            return input.value;
             }
 		}
         /**
@@ -160,7 +160,7 @@ package org.apache.royale.jewel.supportClasses.textinput
             }
             COMPILE::JS
             {
-            (element as HTMLInputElement).value = value;
+            input.value = value;
             dispatchEvent(new Event('textChange'));
             }
 		}
@@ -245,7 +245,7 @@ package org.apache.royale.jewel.supportClasses.textinput
 		{
 			_positioner = value;
             _positioner.royale_wrapper = this;
-			_positioner.appendChild(element);
+			_positioner.appendChild(input);
 		}
 
         /**
@@ -260,7 +260,7 @@ package org.apache.royale.jewel.supportClasses.textinput
 		{
             COMPILE::JS
             {
-                element.focus();
+                input.focus();
             }
         }
 	}

@@ -22,6 +22,9 @@
 // ComboBox variables
 // $combobox-input-width: 8em
 $combobox-border-radius: $border-radius
+$combobox-button-size: 22px
+$combobox-button-xoffset: calc(50% - 8px)
+$combobox-button-yoffset: calc(50% - 11px)
 
 .jewel.combobox
     .jewel.textinput
@@ -36,10 +39,16 @@ $combobox-border-radius: $border-radius
         border-left: 0px
         
         &::before
+            line-height: $combobox-button-size
                 
         &::after
             background-size: 66%
             background: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>") no-repeat center center
+            width: ($combobox-button-size - 8)
+            height: $combobox-button-size
+
+            left: $combobox-button-xoffset
+            top: $combobox-button-yoffset
         
         &[disabled]
             border-left: 0px !important

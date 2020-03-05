@@ -64,9 +64,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 
 			if(offset == 1)
 			{
-				ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+				promptRender = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
 				item = DropDownListItemRenderer.OPTION_DISABLED;
-				fillRenderer(0, item, ir, presentationModel);
+				fillRenderer(0, item, promptRender, presentationModel);
 			}
 
 			var n:int = dp.length;
@@ -78,6 +78,19 @@ package org.apache.royale.jewel.beads.itemRenderers
 			}
 			
 			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+		}
+
+		public var promptRender:IIndexedItemRenderer;
+
+		/**
+		 * used when need to update prompt at runtime
+		 */
+		public function updatePromptRender():void
+		{
+			if(promptRender)
+			{
+				setData(promptRender, DropDownListItemRenderer.OPTION_DISABLED, 0);
+			}
 		}
 	}
 }

@@ -16,27 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.controls.datefield
+package org.apache.royale.jewel.beads.controls.combobox
 {
-	COMPILE::SWF
-	{
-		import flash.utils.setTimeout;
-    }
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
-	import org.apache.royale.jewel.beads.views.DateFieldView;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStyledUIBase;
+	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.jewel.beads.controls.textinput.TruncateText;
 	
 	/**
-	 *  The DateFieldTextPrompt class is a specialty bead that can be used with
-	 *  any DateField control. The bead places a string into the sub TextInput component
-	 *  when there is no value associated with the text property.
+	 *  The ComboBoxTruncateText class is a specialty bead that can be used with
+	 *  a Jewel ComboBox control. The bead truncate the text when no space is available
+	 *  using "..."
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
+	 *  @productversion Royale 0.9.7
 	 */
-	public class DateFieldTextPrompt extends TextPrompt
+	public class ComboBoxTruncateText implements IBead
 	{
 		/**
 		 *  constructor.
@@ -44,24 +42,23 @@ package org.apache.royale.jewel.beads.controls.datefield
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
+		 *  @productversion Royale 0.9.7
 		 */
-		public function DateFieldTextPrompt()
+		public function ComboBoxTruncateText()
 		{
 		}
 
 		/**
-         *  @copy org.apache.royale.jewel.beads.controls.textinput.TextPrompt#updatePromptText()
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-		COMPILE::JS
-		override protected function updatePromptText():void
+		 *  @copy org.apache.royale.core.IBead#strand
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function set strand(value:IStrand):void
 		{
-			((_strand as UIBase).view as DateFieldView).textInput.input.placeholder = prompt;
+			(((value as StyledUIBase).view as IComboBoxView).textinput as IStyledUIBase).addBead(new TruncateText());
 		}
 	}
 }

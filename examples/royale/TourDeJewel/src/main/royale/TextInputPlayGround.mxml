@@ -41,6 +41,9 @@ limitations under the License.
 			{
 				trace("enter pressed");
 			}
+
+			[Bindable]
+			public var promptText:String = "With prompt...";
 		]]>
 	</fx:Script>
 
@@ -77,10 +80,10 @@ limitations under the License.
 					</j:beads>
 					<j:TextInput id="textToChange">
 						<j:beads>
-							<j:TextPrompt prompt="With prompt..."/>
+							<j:TextPrompt prompt="{promptText}"/>
 						</j:beads>
 					</j:TextInput>
-					<j:Button text="Send" emphasis="secondary"/>
+					<j:Button text="Change Prompt" emphasis="secondary" click="promptText = 'Other text'"/>
 				</j:Group>
 
 				<j:TextInput text="Disabled with text...">
@@ -192,7 +195,7 @@ limitations under the License.
 						<j:TextPrompt prompt="With prompt..."/>
 					</j:beads>
 				</j:TextArea>
-
+				
 				<j:TextArea text="A TextArea">
 					<j:beads>
 						<j:TextPrompt prompt="with prompt..."/>
@@ -249,6 +252,18 @@ limitations under the License.
 						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
 					</j:icon>
 				</j:IconTextInput>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell wideScreenNumerator="1" wideScreenDenominator="2" desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel TextInput TruncatedText"/>
+
+				<j:TextInput text="A TextInput with many text to get trucated" change="textInputChange(event)" enter="enterPress(event)">
+					<j:beads>
+						<j:TruncateText/>
+					</j:beads>
+				</j:TextInput>
 			</j:Card>
 		</j:GridCell>
 		

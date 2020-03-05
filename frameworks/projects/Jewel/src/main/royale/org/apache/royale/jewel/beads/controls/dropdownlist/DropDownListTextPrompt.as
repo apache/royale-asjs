@@ -18,10 +18,10 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.dropdownlist
 {
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.controls.textinput.TextPrompt;
+	import org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView;
 	import org.apache.royale.jewel.beads.views.DropDownListView;
 	
 	/**
@@ -46,40 +46,20 @@ package org.apache.royale.jewel.beads.controls.dropdownlist
 		public function DropDownListTextPrompt()
 		{
 		}
-		
-		private var _strand:IStrand;
-		
+
 		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 */
-		override public function set strand(value:IStrand):void
+         *  @copy org.apache.royale.jewel.beads.controls.textinput.TextPrompt#updatePromptText()
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		COMPILE::JS
+		override protected function updatePromptText():void
 		{
-			_strand = value;
-			IEventDispatcher(_strand).addEventListener("beadsAdded", addPrompt);
-		}	
-
-		/**
-		 *  add prompt when beads are added and we can access the view to retrieve the textinput
-		 *   
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
-		 *  @royaleignorecoercion org.apache.royale.jewel.beads.controls.dropdownlist.DropDownListView
-		 */
-		private function addPrompt(event:Event):void
-        {
-			IEventDispatcher(_strand).removeEventListener("beadsAdded", addPrompt);
-
-			var viewBead:DropDownListView = _strand.getBeadByType(DropDownListView) as DropDownListView;
-			viewBead.prompt = prompt;
+			((_strand as UIBase).view as DropDownListView).prompt = prompt;
+			(_strand.getBeadByType(IDataProviderItemRendererMapper) as DropDownListItemRendererFactoryForCollectionView).updatePromptRender();
 		}
 	}
 }

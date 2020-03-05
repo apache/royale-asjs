@@ -19,7 +19,8 @@
 package mx.controls.advancedDataGridClasses
 {
 	import mx.controls.AdvancedDataGrid;
-	import mx.events.ItemClickEvent;
+	import mx.controls.beads.AdvancedDataGridView;
+	import mx.events.ListEvent;
 	
 	import org.apache.royale.collections.ITreeData;
 	import org.apache.royale.core.ISelectionModel;
@@ -88,8 +89,12 @@ package mx.controls.advancedDataGridClasses
             ((_strand as AdvancedDataGridColumnList).model as ISelectionModel).selectedItem = node;
             IEventDispatcher(_strand).dispatchEvent(new Event("change"));
 	    
-	    var newEvent:ItemClickEvent = new ItemClickEvent(ItemClickEvent.ITEM_CLICK);
-            newEvent.index = event.index;
+	    var newEvent:ListEvent = new ListEvent(ListEvent.ITEM_CLICK);
+            newEvent.rowIndex = event.index;
+			var lists:Array = (adg.view as AdvancedDataGridView).columnLists;
+			for (var i:int = 0; i < lists.length; i++)
+				if (lists[i] == _strand) break;
+			newEvent.columnIndex = i;
             IEventDispatcher(_strand).dispatchEvent(newEvent);
 		}
 	}

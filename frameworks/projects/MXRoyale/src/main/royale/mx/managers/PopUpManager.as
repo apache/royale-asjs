@@ -206,6 +206,15 @@ public class PopUpManager
         }
         if (popUpHost is UIComponent)
             (window as UIComponent).systemManager = (popUpHost as UIComponent).systemManager;
+        if (window is IFocusManagerContainer)
+        {
+            if (!IFocusManagerContainer(window).focusManager)
+			{
+                // Popups get their own focus loop
+                IFocusManagerContainer(window).focusManager =
+                    new FocusManager(IFocusManagerContainer(window), true);
+			}
+        }
         popUpHost.popUpParent.addElement(window as IUIComponent);
     }
 	

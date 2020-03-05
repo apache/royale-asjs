@@ -20,15 +20,17 @@ package org.apache.royale.jewel.beads.controls.textinput
 {
 	COMPILE::SWF
 	{
-		import flash.text.TextFieldType;
-		import org.apache.royale.core.CSSTextField;
-	}
-	
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IStrand;
+	import flash.text.TextFieldType;
+
+	import org.apache.royale.core.CSSTextField;
 	import org.apache.royale.core.UIBase;
+	}
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	
 	
 	/**
 	 *  The TextPrompt class is a specialty bead that can be used with
@@ -40,7 +42,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TextPrompt implements IBead
+	public class TextPrompt extends Bead
 	{
 		/**
 		 *  constructor.
@@ -55,7 +57,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 		
 		private var _prompt:String;
-		
 		/**
 		 *  The string to use as the placeholder prompt.
 		 *
@@ -64,17 +65,27 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable("promptChanged")]
 		public function get prompt():String
 		{
 			return _prompt;
 		}
 		public function set prompt(value:String):void
 		{
-			_prompt = value;
+			if(value != _prompt)
+			{
+				_prompt = value;
+				if(_strand)
+				{
+					COMPILE::JS
+					{
+					updatePromptText();
+					}
+					IEventDispatcher(_strand).dispatchEvent(new Event("promptChanged"));
+				}	
+			}
 		}
-		
-		private var _strand:IStrand;
-		
+
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -85,10 +96,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
+			COMPILE::JS
+			{
+			listenOnStrand("beadsAdded", beadsAddedHandler);
+			}
 			COMPILE::SWF
 			{
 				// listen for changes in text to hide or show the prompt
@@ -111,12 +125,28 @@ package org.apache.royale.jewel.beads.controls.textinput
 				// trigger the event handler to display if needed
 				handleTextChange(null);					
 			}
-			COMPILE::JS
-			{
-				var host:UIBase = value as UIBase;
-				var e:HTMLInputElement = host.element as HTMLInputElement;
-				e.placeholder = prompt;
-			}
+		}
+
+		COMPILE::JS
+		private function beadsAddedHandler(event:Event):void
+		{
+			IEventDispatcher(_strand).removeEventListener("beadsAdded", beadsAddedHandler);
+			updatePromptText();
+		}
+
+		/**
+         *  Update the internal element placeholder with the prompt property.
+		 *  This method is intended to be overriden in subclasses
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		COMPILE::JS
+		protected function updatePromptText():void
+		{
+			(_strand as TextInputBase).input.placeholder = prompt;
 		}
 		
 		COMPILE::SWF
@@ -147,7 +177,6 @@ package org.apache.royale.jewel.beads.controls.textinput
                 promptField.y = 2;
                 promptField.width = UIBase(_strand).width-5;
                 promptField.height = UIBase(_strand).height-4;
-
 			}
 		}
 	}
