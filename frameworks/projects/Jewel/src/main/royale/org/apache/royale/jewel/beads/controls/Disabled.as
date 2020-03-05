@@ -17,10 +17,15 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls
-{	
-	import org.apache.royale.core.IBead;
+{
+	COMPILE::JS
+	{
+	import org.apache.royale.core.HTMLElementWrapper;
+	}
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.events.ValueEvent;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 *  The Disabled bead class is a specialty bead that can be used to disable a Jewel control.
@@ -30,7 +35,7 @@ package org.apache.royale.jewel.beads.controls
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Disabled implements IBead
+	public class Disabled extends Bead
 	{
 		/**
 		 *  constructor.
@@ -44,6 +49,9 @@ package org.apache.royale.jewel.beads.controls
 		{
 		}
 
+		COMPILE::JS
+		private var _lastTabVal:String;
+
 		private var _disabled:Boolean = true;
         /**
 		 *  A boolean flag to enable or disable the host control.
@@ -53,22 +61,29 @@ package org.apache.royale.jewel.beads.controls
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.4
 		 */
+		[Bindable]
         public function get disabled():Boolean
         {
             return _disabled;
         }
         public function set disabled(value:Boolean):void
         {
-            _disabled = value;
-
-			COMPILE::JS
-            {
-                updateHost();
-            }
+			if(value != _disabled)
+			{
+				COMPILE::JS
+				{
+				if(value && _strand)
+					_lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+				}
+				_disabled = value;
+				if(_strand)
+				{
+					updateHost();
+					sendStrandEvent(_strand, new ValueEvent("disabledChange", disabled));
+				}	
+			}
         }
 
-		protected var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -79,27 +94,35 @@ package org.apache.royale.jewel.beads.controls
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-
 			COMPILE::JS
-			{
-				updateHost();
-			}
+            {
+            _lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+            }
+			updateHost();
 		}
 
-		COMPILE::JS
 		protected function updateHost():void
 		{
-			var host:UIBase = _strand as UIBase;
-
-			if (host)
-            {
-                _disabled ?
-				host.element.setAttribute('disabled', '') :
-				host.element.removeAttribute('disabled');
-            }
+			COMPILE::JS
+			{
+			var elem:HTMLElement = (_strand as HTMLElementWrapper).element;
+			
+			if(_disabled)
+			{
+				elem.setAttribute('disabled', '');
+				// elem.setAttribute("tabindex", "-1");
+			} else
+			{
+				elem.removeAttribute('disabled');
+				
+				// _lastTabVal ?
+				// 	elem.setAttribute("tabindex", _lastTabVal) :
+				// 	elem.removeAttribute("tabindex");
+			}
+			}
 		}
 	}
 }
