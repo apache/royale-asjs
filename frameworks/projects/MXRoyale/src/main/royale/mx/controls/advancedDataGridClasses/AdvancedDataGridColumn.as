@@ -376,17 +376,6 @@ public class AdvancedDataGridColumn extends DataGridColumn
      *  @productversion Royale 0.9.3
      */
    // public var sortDescending:Boolean = false;
-    public function get textAlign():Object
-    {
-        trace("textAlign not implemented");
-        return 0;
-    }
-    public function set textAlign(value:Object):void
-    {
-        trace("textAlign not implemented");
-    }
-
-
     //----------------------------------
     //  dataTipField
     //----------------------------------

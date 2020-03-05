@@ -440,6 +440,17 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     }
 
 
+    public function get textAlign():Object
+    {
+        trace("textAlign not implemented");
+        return 0;
+    }
+    public function set textAlign(value:Object):void
+    {
+        trace("textAlign not implemented");
+    }
+
+
     public var sortDescending:Boolean = false;
     
     mx_internal var owner:UIComponent;
