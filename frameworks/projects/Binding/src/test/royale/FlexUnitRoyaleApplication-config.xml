@@ -19,6 +19,16 @@
 <royale-config>
 
     <compiler>
+        <!-- these tests are designed to also work in Flex 4 with flexunit for comparisons/validation -->
+        <define append="true">
+            <name>COMPILE::Flex</name>
+            <value>false</value>
+        </define>
+        <define append="true">
+            <name>COMPILE::Royale</name>
+            <value>true</value>
+        </define>
+
         <accessible>false</accessible>
         
         <targets>

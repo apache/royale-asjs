@@ -18,23 +18,59 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.binding.support.bindings.bindables
 {
+	[Bindable]
+	public class TaskVO implements ITaskVO
+	{
+		public function TaskVO(label:String = null, data:String = null, tooltip:String = null)
+		{
 
-[Bindable]
-public class OneLayerBindable
-{
-    public var bindableString:String;
+			this.label = label;
+			this.data = data;
+			this.tooltip = tooltip;
+		}
+		
+		private var _label:String;
+		
+		public function get label():String
+		{
+			return _label;
+		}
+		
+		public function set label(value:String):void
+		{
+			_label = value;
+		}
 
-    public var bindableNumber:Number;
+		private var _data:String;
 
-    public var bindableBoolean:Boolean;
+		public function get data():String
+		{
+			return _data;
+		}
+		
+		public function set data(value:String):void
+		{
+			_data = value;
+		}
+		
+		private var _tooltip:String;
 
-    public function getSomething():String{
-        return bindableBoolean ? 'Internally true' : 'Internally false';
-    }
+		public function get tooltip():String
+		{
+			return _tooltip;
+		}
+		
+		public function set tooltip(value:String):void
+		{
+			_tooltip = value;
+		}
 
-    public function getSomethingBasedOn(something:Boolean):String{
-        return bindableBoolean && something ? "Both are true" : (bindableBoolean ? "Local only" : "Inbound only");
-    }
-
-}
+		private var _selected:Boolean
+		public function get selected():Boolean{
+			return _selected;
+		}
+		public function set selected(value:Boolean):void{
+			_selected = value;
+		}
+	}
 }

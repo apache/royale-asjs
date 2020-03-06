@@ -18,12 +18,63 @@
 ////////////////////////////////////////////////////////////////////////////////
 package flexUnitTests.binding.support.bindings.bindables
 {
+	public class TaskVO_on_top_of_property implements ITaskVO
+	{
+		public function DominoPartitionTaskVO(label:String = null, data:String = null, tooltip:String = null)
+		{
+			
+			this.label = label;
+			this.data = data;
+			this.tooltip = tooltip;
+		}
+		
+		private var _label:String;
+		
+		[Bindable]
+		public function get label():String
+		{
+			return _label;
+		}
+		
+		public function set label(value:String):void
+		{
+			_label = value;
+		}
 
-[Bindable]
-public class TwoLayerBindable
-{
-    public var bindableOne:OneLayerBindable;
+		private var _data:String;
 
-    public var toggle:Boolean;
-}
+		[Bindable]
+		public function get data():String
+		{
+			return _data;
+		}
+		
+		public function set data(value:String):void
+		{
+			_data = value;
+		}
+		
+		private var _tooltip:String;
+
+		[Bindable]
+		public function get tooltip():String
+		{
+			return _tooltip;
+		}
+		
+		public function set tooltip(value:String):void
+		{
+			_tooltip = value;
+		}
+
+
+		private var _selected:Boolean;
+		[Bindable]
+		public function get selected():Boolean{
+			return _selected;
+		}
+		public function set selected(value:Boolean):void{
+			_selected = value;
+		}
+	}
 }

@@ -16,31 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
-{
+package flexUnitTests.binding.support.bindings.bindables  {
 
-	
-	[Bindable]
-	public class BindableWithConstructorInit
-	{
-	
-		public static const STATIC_INIT:BindableWithConstructorInit 	= new BindableWithConstructorInit( "STATIC_INIT"	,-1 );
-		
-		public var ordinal:int;
-		public var value:String;
-		
-		public function BindableWithConstructorInit (value:String, ordinal:int )
-		{
-			this.value = value;
-			this.ordinal = ordinal;
-		}
+    public interface ITaskVO {
+        
+        
+        function get label():String;
+        function set label(value:String):void;
+        
 
-	
-		
-		public function equals( other:BindableWithConstructorInit ):Boolean
-		{
-			return ( this.ordinal == other.ordinal && this.value == other.value );
-		}
-	}
+        function get data():String;
+        function set data(value:String):void;
+        
+
+        function get tooltip():String;
+        function set tooltip(value:String):void;
+
+        function get selected():Boolean;
+        function set selected(value:Boolean):void;
+    }
 
 }
+

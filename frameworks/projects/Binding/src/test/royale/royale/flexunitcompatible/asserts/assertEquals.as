@@ -16,16 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
+package royale.flexunitcompatible.asserts
 {
+	import org.flexunit.Assert;
 
-	public class UnbindableIntermediateVO extends BaseWithBindableVar
+	/**
+	 * Flexunit for Flex4 support for running the same tests in Flex
+	 * Alias for org.apache.royale.test.Assert assertEquals method
+	 */
+	public function assertEquals(actual:*, expected:*, message:String = null):void
 	{
-			
-
-			
-			public var fieldOfUnbindableIntermediateVO:String = "fieldOfUnbindableIntermediateVO_value";
-			
-
+		if (message) {
+			Assert.assertEquals(message, actual, expected);
+		}
+		else Assert.assertEquals(actual, expected);
 	}
 }

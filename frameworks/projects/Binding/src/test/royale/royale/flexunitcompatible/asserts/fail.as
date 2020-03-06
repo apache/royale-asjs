@@ -16,13 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
+package royale.flexunitcompatible.asserts
 {
+	import org.flexunit.Assert;
 
-	public class BaseWithBindableVar
+	/**
+	 * Flexunit for Flex4 support for running the same tests in Flex
+	 * Alias for org.apache.royale.test.Assert fail method
+	 */
+	public function fail(message:String = null):void
 	{
-			[Bindable]
-			public var bindableVarOfBaseWithBindableVar:String = "bindableVarOfBaseWithBindableVar_value";
-
+		Assert.fail(message);
 	}
 }

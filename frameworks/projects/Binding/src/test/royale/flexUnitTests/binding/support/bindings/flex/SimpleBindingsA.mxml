@@ -17,15 +17,16 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
 -->
-<js:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
-           implements="flexUnitTests.binding.support.IBindingTest"
-          xmlns:js="library://ns.apache.org/royale/basic"
-          initComplete="initCompleteHandler()">
+<s:HGroup xmlns:fx="http://ns.adobe.com/mxml/2009"
+          xmlns:s="library://ns.adobe.com/flex/spark"
+          xmlns:mx="library://ns.adobe.com/flex/mx"
+          implements="flexUnitTests.binding.support.IBindingTest"
+          initialize="initCompleteHandler()">
 
     <fx:Script>
         <![CDATA[
 
-        import org.apache.royale.reflection.getQualifiedClassName;
+        import flash.utils.getQualifiedClassName;
         //IBindingTest methods
         public function get testName():String {
 
@@ -73,10 +74,8 @@ limitations under the License.
         ]]>
     </fx:Script>
 
-    <js:beads>
-        <js:ContainerDataBinding/>
-    </js:beads>
 
-    <js:Label localId="testLabel" text="{labelText}" />
 
-</js:HGroup>
+    <mx:Label id="testLabel" text="{labelText}" />
+
+</s:HGroup>

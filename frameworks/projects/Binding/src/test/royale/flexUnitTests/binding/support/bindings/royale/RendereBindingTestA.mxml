@@ -27,13 +27,14 @@ limitations under the License.
 
     <fx:Script>
         <![CDATA[
-        import org.apache.royale.reflection.getQualifiedClassName;
 
+
+        import org.apache.royale.reflection.getQualifiedClassName;
         //IBindingTest methods
         public function get testName():String {
+
             return getQualifiedClassName(this);
         }
-
 
         public function get internalTestCount():uint {
             return getTests().length;

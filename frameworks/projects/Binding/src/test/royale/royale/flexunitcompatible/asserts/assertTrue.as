@@ -16,16 +16,19 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
+package royale.flexunitcompatible.asserts
 {
+import org.flexunit.Assert;
 
-	public class UnbindableBase
+	/**
+	 * Flexunit for Flex4 support for running the same tests in Flex
+	 * Alias for org.apache.royale.test.Assert assertTrue method
+	 */
+	public function assertTrue(condition:*, message:String = null):void
 	{
-			
-
-			
-			public var fieldOfUnbindableBaseVO:String = "fieldOfUnbindableBaseVO_value";
-			
-
+		if (message) {
+			Assert.assertTrue(message,condition);
+		}
+		else Assert.assertTrue(condition);
 	}
 }

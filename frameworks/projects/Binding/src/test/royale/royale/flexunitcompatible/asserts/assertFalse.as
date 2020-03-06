@@ -16,13 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support {
-    public interface IBindingTest {
+package royale.flexunitcompatible.asserts
+{
+	import org.flexunit.Assert;
 
-        function get testName():String;
-        function get internalTestCount():uint;
-        function setInboundValue(value:*, internalTestNum:uint=0):void
-        function getBindingResultValue(internalTestNum:uint=0):*;
-
-    }
+	/**
+	 * Flexunit for Flex4 support for running the same tests in Flex
+	 * Alias for org.apache.royale.test.Assert assertFalse method
+	 */
+	public function assertFalse(condition:*, message:String = null):void
+	{
+		if (message)
+			Assert.assertFalse(message, condition );
+		else Assert.assertFalse( condition );
+	}
 }

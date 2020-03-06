@@ -1,4 +1,4 @@
-0.////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +16,20 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
+package royale.flexunitcompatible.asserts
 {
+	import org.flexunit.Assert;
 
-	public class BindableSubVO2 extends UnbindableBase
+	/**
+	 * Flexunit for Flex4 support for running the same tests in Flex
+	 * Alias for org.apache.royale.test.Assert assertStrictlyEquals method
+	 */
+	public function assertStrictlyEquals(actual:*, expected:*, message:String = null):void
 	{
-			
-
-			
-			[Bindable]
-			public var fieldofBindableSubVO2:String = "fieldofBindableSubVO2_value";
-			
-
+		if (message) {
+			Assert.assertStrictlyEquals(message, actual, expected);
+		}
+		else Assert.assertStrictlyEquals(actual, expected);
 
 	}
 }

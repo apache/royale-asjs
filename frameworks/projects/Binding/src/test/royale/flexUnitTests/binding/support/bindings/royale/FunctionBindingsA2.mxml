@@ -26,17 +26,22 @@ limitations under the License.
 
     <fx:Declarations>
         <bindables:OneLayerBindable id="bindable1" />
+        <bindables:TwoLayerBindable id="bindable2" >
+            <bindables:bindableOne>
+                <bindables:OneLayerBindable bindableString="deepBindable"/>
+            </bindables:bindableOne>
+        </bindables:TwoLayerBindable>
         <fx:Object id="destinationObject"
                    something="true"
-                   destString="{bindable1.bindableString}"
-                   destNumber="{bindable1.bindableNumber}"
-                   destBoolean="{bindable1.bindableBoolean}">
-            <fx:sub>
-                <fx:Object test="test" somelongname="test"  lowerLevelNumDest="{bindable1.bindableNumber}"/>
-            </fx:sub>
-            <fx:other>
-                <bindables:OneLayerBindable bindableString="test"/>
-            </fx:other>
+
+
+                   >
+            <!--<fx:sub>
+                <fx:Object  deepLowerLevelString0="{bindable1.getSomething()}"
+                            deepLowerLevelString1="{bindable2.bindableOne.getSomething()}"
+
+                />
+            </fx:sub>-->
         </fx:Object>
 
 
@@ -44,11 +49,20 @@ limitations under the License.
     <fx:Script>
         <![CDATA[
 
-        import org.apache.royale.reflection.getQualifiedClassName;
+
+
         //IBindingTest methods
         public function get testName():String {
-
-            return getQualifiedClassName(this);
+            //import org.apache.royale.reflection.getQualifiedClassName;
+            //return getQualifiedClassName(this);
+            COMPILE::SWF{
+                import flash.utils.qetQualifiedClassName;
+                return qetQualifiedClassName(this).split("::").join(".");
+            }
+            COMPILE::JS{
+                import flash.utils.qetQualifiedClassName;
+                return this.ROYALE_CLASS_INFO.names[0].qName;
+            }
         }
 
 
@@ -81,23 +95,76 @@ limitations under the License.
         private function getTests():Array {
             if (!_tests) {
                 _tests = [
+                        //check start values
                     { //test 0 String
                         'setVal': function (value:*):void {
-                            bindable1.bindableString = value
+                            //do nothing
+                        },
+                        'getVal': function ():* {
+                            return destinationObject.destString;
+                        }
+                    },
+                    { //test 1 String
+                        'setVal': function (value:*):void {
+                            //do nothing
                         },
                         'getVal': function ():* {
                             return testLabel1.text;
                         }
                     },
-                    { //test 1 String
+                    { //test 2 String
                         'setVal': function (value:*):void {
-                            bindable1.bindableString = value
+                            //do nothing
                         },
                         'getVal': function ():* {
-                            return destinationObject.destString;
+                            return destinationObject.altString;
+                        }
+                    },
+                    { //test 3 String
+                        'setVal': function (value:*):void {
+                            //do nothing
+                        },
+                        'getVal': function ():* {
+                            return testLabel2.text;
                         }
                     }
                     ,
+                    { //test 4 String
+                        'setVal': function (value:*):void {
+                            //do nothing
+                        },
+                        'getVal': function ():* {
+                            return destinationObject.sub.deepLowerLevelString0;
+                        }
+                    },
+                    { //test 5 String
+                        'setVal': function (value:*):void {
+                            //do nothing
+                        },
+                        'getVal': function ():* {
+                            return destinationObject.sub.deepLowerLevelString1
+                        }
+                    },
+                    { //test 6 String
+                        'setVal': function (value:*):void {
+                            //do nothing
+                        },
+                        'getVal': function ():* {
+                            return destinationObject.sub.deepLowerLevelString2
+                        }
+                    },
+                    { //test 7 String
+                        'setVal': function (value:*):void {
+                            bindable1.bindableBoolean = true;
+                        },
+                        'getVal': function ():* {
+                            return destinationObject.sub.deepLowerLevelString2
+                        }
+                    }
+
+
+
+                   /* ,
                     { //test 2 Codegen test only. Testing a compiler-jx fix for fx:Object output for the above definition (also release mode fixes)
                         'setVal': function (value:*):void {
                             destinationObject.sub.somelongname = value
@@ -131,7 +198,7 @@ limitations under the License.
                         }
                     }
                     ,
-                    { //test 6 Binding test
+                    { //test 5 Binding test
                         'setVal': function (value:*):void {
                             bindable1.bindableNumber = value
                         },
@@ -139,14 +206,14 @@ limitations under the License.
                             return destinationObject.destNumber;
                         }
                     },
-                    { //test 7 Binding test
+                    { //test 6 Binding test
                         'setVal': function (value:*):void {
                             bindable1.bindableNumber = value
                         },
                         'getVal': function ():* {
                             return destinationObject.sub.lowerLevelNumDest;
                         }
-                    }
+                    }*/
                 ]
             }
             return _tests;
@@ -166,8 +233,8 @@ limitations under the License.
         <js:ContainerDataBinding/>
     </js:beads>
 
-    <js:Label localId="testLabel1" text="{bindable1.bindableString}" />
-    <js:Label localId="testLabel2" text="{bindable1.bindableNumber}" />
-    <js:Label localId="testLabel3" text="{bindable1.bindableBoolean}" />
-
+    <js:Label localId="testLabel1" text="" />
+    <js:Label localId="testLabel2" text="" />
+    <!--<js:Label localId="testLabel3" text="{bindable2.bindableOne.getSomething()}" />
+    <js:Label localId="testLabel4" text="{bindable2.bindableOne.getSomething()}" />-->
 </js:HGroup>

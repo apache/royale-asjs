@@ -995,7 +995,7 @@ global
 	
 	Label
 	{
-		IBeadModel: ClassReference("org.apache.royale.html.beads.models.TextModel");
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.NonNullTextModel");
 		IBeadView: ClassReference("org.apache.royale.html.beads.TextFieldView");
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead");
 	}

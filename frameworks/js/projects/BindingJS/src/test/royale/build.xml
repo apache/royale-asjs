@@ -135,7 +135,7 @@
             into the file bundles.properties in this directory.
         -->
         <mxmlc fork="true"
-               file="${basedir}/../../../../../../projects/Collections/src/test/royale/FlexUnitRoyaleApplication.mxml">
+               file="${basedir}/../../../../../../projects/Binding/src/test/royale/FlexUnitRoyaleApplication.mxml">
             <jvmarg line="${mxmlc.jvm.args}"/>
             <!--
             <jvmarg value="-Xdebug" />

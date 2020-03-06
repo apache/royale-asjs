@@ -16,27 +16,61 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
+package flexUnitTests.binding.support.bindings.bindables
 {
-import flexUnitTests.binding.utils.BindableTestUtil;
-
 	[Bindable]
-	public class BaseWithGetterBindableClass
+	public class TaskVO_on_top_of_class implements ITaskVO
 	{
-		private var _accessorOfBaseWithGetterBindableClass:String = "accessorOfBaseWithGetterBindableClass_value";
-		
-
-		public function get accessorOfBaseWithGetterBindableClass():String
+		public function DominoPartitionTaskVO(label:String = null, data:String = null, tooltip:String = null)
 		{
-			BindableTestUtil.instance.addHistoryItem('accessing value from original getter', _accessorOfBaseWithGetterBindableClass);
-			return _accessorOfBaseWithGetterBindableClass;
+			
+			this.label = label;
+			this.data = data;
+			this.tooltip = tooltip;
 		}
 		
-		public function set accessorOfBaseWithGetterBindableClass(value:String):void
+		private var _label:String;
+		
+		public function get label():String
 		{
-			BindableTestUtil.instance.addHistoryItem('assigning value in original setter', value);
-			_accessorOfBaseWithGetterBindableClass = value;
+			return _label;
+		}
+		
+		public function set label(value:String):void
+		{
+			_label = value;
 		}
 
+		private var _data:String;
+
+		public function get data():String
+		{
+			return _data;
+		}
+		
+		public function set data(value:String):void
+		{
+			_data = value;
+		}
+		
+		private var _tooltip:String;
+
+		public function get tooltip():String
+		{
+			return _tooltip;
+		}
+		
+		public function set tooltip(value:String):void
+		{
+			_tooltip = value;
+		}
+
+		private var _selected:Boolean
+		public function get selected():Boolean{
+			return _selected;
+		}
+		public function set selected(value:Boolean):void{
+			_selected = value;
+		}
 	}
 }

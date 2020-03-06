@@ -1,4 +1,4 @@
-0.////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -16,18 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
+package royale.flexunitcompatible.asserts
 {
+	import org.flexunit.Assert;
 
-	public class BindableSubVO3 extends UnbindableIntermediateVO
+	/**
+	 * Flexunit for Flex4 support for running the same tests in Flex
+	 * Alias for org.apache.royale.test.Assert assertNull method
+	 */
+	public function assertNull(value:*, message:String = null):void
 	{
-			
-
-			
-			[Bindable]
-			public var fieldofBindableSubVO3:String = "fieldofBindableSubVO3_value";
-
-			[Bindable]
-			public var rangeEnd:Object;
+		if (message)
+			Assert.assertNull(message, value );
+		else Assert.assertNull( value );
 	}
 }

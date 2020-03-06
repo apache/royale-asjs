@@ -16,12 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests.binding.support.bindables
+package royale.flexunitcompatible.asserts
 {
+	import org.flexunit.Assert;
 
-	[Bindable]
-	public class BaseWithBindableClass
+	/**
+	 * Flexunit for Flex4 support for running the same tests in Flex
+	 * Alias for org.apache.royale.test.Assert assertNotNull method
+	 */
+	public function assertNotNull(value:*, message:String = null):void
 	{
-		public var varOfBaseWithBindableClass:String = "varOfBaseWithBindableClass_value";
+		if (message)
+			Assert.assertNotNull(message, value );
+		else Assert.assertNotNull( value );
 	}
 }
