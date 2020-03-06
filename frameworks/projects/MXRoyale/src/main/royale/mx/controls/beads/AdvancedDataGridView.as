@@ -27,6 +27,7 @@ package mx.controls.beads
     import mx.events.AdvancedDataGridEvent;
     import mx.events.CollectionEvent;
     import mx.events.ItemClickEvent;
+    import mx.events.ListEvent;
     
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
@@ -137,7 +138,7 @@ package mx.controls.beads
             (header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
         }
         
-        private function itemClickHandler(event:ItemClickEvent):void
+        private function itemClickHandler(event:ListEvent):void
         {
             var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
 			var target:AdvancedDataGridColumnList = event.target as AdvancedDataGridColumnList;
@@ -155,7 +156,7 @@ package mx.controls.beads
 	                    // ITEM_EDIT events are cancelable
 	                    advancedDataGridEvent.columnIndex = i;
 	                    advancedDataGridEvent.dataField = visibleColumns[i].dataField;
-	                    advancedDataGridEvent.rowIndex = event.index;
+	                    advancedDataGridEvent.rowIndex = event.rowIndex;
 	                    host.dispatchEvent(advancedDataGridEvent);
 						break;
 					}
