@@ -562,6 +562,16 @@ public class RadioButtonGroup extends EventDispatcher
         dispatchEvent(new Event("numRadioButtonsChanged"));
     }
 
+	private var _id:String;
+	public function get id():String
+	{
+		return _id;
+	}
+	public function set id(value:String):void
+	{
+		_id = value;
+	}
+
     /**
      *  @private
      *  Remove a radio button from the group.  This can be called by

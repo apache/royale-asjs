@@ -484,15 +484,22 @@ public class RadioButton extends ToggleButtonBase
             return;
 
         // If the button was in another group, remove it.
-        //removeFromGroup();    
+        removeFromGroup();    
 
         _group = value;  
 
         // If the group is set then the groupName is the generated name of
         // the rbg.  If it's set to null, then set the groupName back to the
         // default group so this button will move back to that group.
-       // _groupName = value ? group.name : "radioGroup";    
+        _groupName = value ? group.id : "radioGroup";    
         
+        COMPILE::JS
+        {
+            (rbicon.element as HTMLInputElement).name = _groupName;        
+        }
+
+		if (value)
+			addToGroup();
         // Make sure this gets added to it's RadioButtonGroup
         //groupChanged = true;
         
@@ -734,10 +741,10 @@ public class RadioButton extends ToggleButtonBase
     /**
      *  @private
      */
-    /* private function removeFromGroup():void
+    private function removeFromGroup():void
     {        
         // If the radio button was in a group, remove it.
-        this.dispatchEvent(new Event(Event.REMOVED));
+        //this.dispatchEvent(new Event(Event.REMOVED));
           
         // It's possible that the radio button was in the auto group.  If so,
         // delete the group if there are no other radio buttons still in it.
@@ -746,15 +753,15 @@ public class RadioButton extends ToggleButtonBase
         // specified by groupName.
         try
         {
-            if (document.automaticRadioButtonGroups[autoGroupIndex].numRadioButtons == 0)
+            if (mxmlDocument.automaticRadioButtonGroups[autoGroupIndex].numRadioButtons == 0)
             {
-                delete document.automaticRadioButtonGroups[autoGroupIndex];
+                delete mxmlDocument.automaticRadioButtonGroups[autoGroupIndex];
             }
         }
         catch(e:Error)
         {
         }
-    } */
+    }
 
     /**
      *  @private
