@@ -135,6 +135,9 @@ package org.apache.royale.jewel.beads.layouts
 				if(model.dataProvider && isNaN(datagrid.percentHeight) && (model.dataProvider.length * presentationModel.rowHeight) > listArea.height)
 				{
 					columnList.height = NaN;
+				} else 
+				{
+					columnList.percentHeight = 100;
 				}
 
 				//temporal- if only one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
