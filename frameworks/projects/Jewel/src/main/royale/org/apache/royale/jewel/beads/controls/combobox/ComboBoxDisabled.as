@@ -18,11 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.combobox
 {
-COMPILE::JS
-{
+	COMPILE::JS
+	{
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.beads.views.ComboBoxView;
-}
+	}
 	import org.apache.royale.jewel.beads.controls.Disabled;
 	
 	/**
@@ -47,22 +47,45 @@ COMPILE::JS
 		{
 		}
 
-		COMPILE::JS
 		override protected function updateHost():void
 		{
 			super.updateHost();
-
+			
+			COMPILE::JS
+			{
 			var view:ComboBoxView = (_strand as UIBase).view as ComboBoxView;
 
 			if (view) {
                 if(disabled) {
 					view.textinput.element.setAttribute('disabled', '');
+					view.textinput.positioner.setAttribute('disabled', '');
 					view.button.element.setAttribute('disabled', '');
+					view.button.positioner.setAttribute('disabled', '');
+					
+					view.textinput.element.setAttribute('tabindex', '-1');
+					view.textinput.positioner.setAttribute('tabindex', '-1');
+					view.button.element.setAttribute('tabindex', '-1');
+					view.button.positioner.setAttribute('tabindex', '-1');
 				} else {
 					view.textinput.element.removeAttribute('disabled');
+					view.textinput.positioner.removeAttribute('disabled');
 					view.button.element.removeAttribute('disabled');
+					view.button.positioner.removeAttribute('disabled');
+
+					if(lastTabVal) {
+						view.textinput.element.setAttribute('tabindex', lastTabVal);
+						view.textinput.positioner.setAttribute('tabindex', lastTabVal);
+						view.button.element.setAttribute('tabindex', lastTabVal);
+						view.button.positioner.setAttribute('tabindex', lastTabVal);
+					} else {
+						view.textinput.element.removeAttribute('tabindex');
+						view.textinput.positioner.removeAttribute('tabindex');
+						view.button.element.removeAttribute('tabindex');
+						view.button.positioner.removeAttribute('tabindex');
+					}
 				}
             }
+			}
 		}
 	}
 }

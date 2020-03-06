@@ -20,7 +20,6 @@ package org.apache.royale.jewel.beads.controls.datefield
 {
 	COMPILE::JS
 	{
-	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.jewel.DateField;
 	import org.apache.royale.jewel.beads.views.DateFieldView;
 	}
@@ -49,25 +48,34 @@ package org.apache.royale.jewel.beads.controls.datefield
 		{
 		}
 
-		COMPILE::JS
 		override protected function updateHost():void
 		{
 			super.updateHost();
 
-			var host :DateField = _strand as DateField;
+			COMPILE::JS
+			{
+			var view:DateFieldView = (_strand as DateField).view as DateFieldView;
 
-			if (host) {
-				var view:DateFieldView = (_strand as DateField).view as DateFieldView;
+			if (view) {
+				if (disabled) {
+					view.textInput.element.setAttribute('disabled', '');
+					view.menuButton.element.setAttribute('disabled', '');
 
-				if (view) {
-					if (disabled) {
-						view.textInput.element.setAttribute('disabled', '');
-						view.menuButton.element.setAttribute('disabled', '');
+					view.textInput.element.setAttribute('tabindex', '-1');
+					view.menuButton.element.setAttribute('tabindex', '-1');
+				} else {
+					view.textInput.element.removeAttribute('disabled');
+					view.menuButton.element.removeAttribute('disabled');
+
+					if(lastTabVal) {
+						view.textInput.element.setAttribute('tabindex', lastTabVal);
+						view.menuButton.element.setAttribute('tabindex', lastTabVal);
 					} else {
-						view.textInput.element.removeAttribute('disabled');
-						view.menuButton.element.removeAttribute('disabled');
+						view.textInput.element.removeAttribute('tabindex');
+						view.menuButton.element.removeAttribute('tabindex');
 					}
 				}
+			}
 			}
 		}
 	}

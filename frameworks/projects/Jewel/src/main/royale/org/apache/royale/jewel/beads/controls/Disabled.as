@@ -21,6 +21,7 @@ package org.apache.royale.jewel.beads.controls
 	COMPILE::JS
 	{
 	import org.apache.royale.core.HTMLElementWrapper;
+	import org.apache.royale.core.IUIBase;
 	}
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
@@ -50,7 +51,7 @@ package org.apache.royale.jewel.beads.controls
 		}
 
 		COMPILE::JS
-		private var _lastTabVal:String;
+		protected var lastTabVal:String;
 
 		private var _disabled:Boolean = true;
         /**
@@ -73,7 +74,7 @@ package org.apache.royale.jewel.beads.controls
 				COMPILE::JS
 				{
 				if(value && _strand)
-					_lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+					lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
 				}
 				_disabled = value;
 				if(_strand)
@@ -99,7 +100,7 @@ package org.apache.royale.jewel.beads.controls
 			_strand = value;
 			COMPILE::JS
             {
-            _lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
+            lastTabVal = (_strand as HTMLElementWrapper).element.getAttribute("tabindex");
             }
 			updateHost();
 		}
@@ -109,20 +110,33 @@ package org.apache.royale.jewel.beads.controls
 			COMPILE::JS
 			{
 			var elem:HTMLElement = (_strand as HTMLElementWrapper).element;
+			var pos:HTMLElement = (_strand as IUIBase).positioner;
 			
-			if(_disabled)
-			{
-				elem.setAttribute('disabled', '');
-				// elem.setAttribute("tabindex", "-1");
-			} else
-			{
-				elem.removeAttribute('disabled');
+			if(_disabled) {
+				setDisableAndTabIndex(elem);
+				setDisableAndTabIndex(pos);
+			} else {
+				removeDisableAndTabIndex(elem);
+				removeDisableAndTabIndex(pos);
+			}
+			}
+		}
+
+		COMPILE::JS
+		protected function setDisableAndTabIndex(o:HTMLElement):void
+		{
+			o.setAttribute("disabled", "");
+			o.tabIndex = -1;
+		}
+
+		COMPILE::JS
+		protected function removeDisableAndTabIndex(o:*):void
+		{
+			o.removeAttribute("disabled");
 				
-				// _lastTabVal ?
-				// 	elem.setAttribute("tabindex", _lastTabVal) :
-				// 	elem.removeAttribute("tabindex");
-			}
-			}
+			lastTabVal ?
+				o.tabIndex = lastTabVal :
+				o.tabIndex = null;
 		}
 	}
 }
