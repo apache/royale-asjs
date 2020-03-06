@@ -123,10 +123,6 @@ package org.apache.royale.jewel.beads.views
             // columns
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
             _listArea = new listAreaClass() as IUIBase;
-            (_listArea as ILayoutChild).percentWidth = 100;
-            COMPILE::JS {	
-            _listArea.positioner.style.height = "calc(100% - " + header.height + "px)";
-            }
             _dg.strandChildren.addElement(_listArea as IChild);
 
             if (_sharedModel.columns)

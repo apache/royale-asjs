@@ -506,14 +506,15 @@ j|VirtualComboBoxPopUp {
 
 .jewel.datagrid {
   display: flex;
+  flex-direction: column;
   position: relative;
 }
 .jewel.datagrid .jewel.buttonbar.header {
   width: 100%;
 }
 .jewel.datagrid .listarea {
-  position: absolute;
-  width: auto;
+  width: 100%;
+  height: 100%;
 }
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid {
   width: 100%;

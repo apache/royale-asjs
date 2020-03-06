@@ -123,9 +123,6 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			var columnWidths:Array = [];
 
-			if(listArea.y != header.height)
-				listArea.y = header.height;
-            
 			for(var i:int=0; i < bbmodel.dataProvider.length; i++)
 			{
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
