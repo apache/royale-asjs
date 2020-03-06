@@ -21,7 +21,6 @@ package org.apache.royale.jewel.beads.layouts
     import org.apache.royale.collections.ArrayList;
     import org.apache.royale.core.IBeadLayout;
     import org.apache.royale.core.IDataGridModel;
-    import org.apache.royale.core.ILayoutChild;
     import org.apache.royale.core.IScrollingViewport;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
@@ -42,7 +41,7 @@ package org.apache.royale.jewel.beads.layouts
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9
+	 *  @productversion Royale 0.9.7
 	 */
 	public class DataGridLayout implements IBeadLayout
 	{
@@ -52,7 +51,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 */
 		public function DataGridLayout()
 		{
@@ -66,13 +65,12 @@ package org.apache.royale.jewel.beads.layouts
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 		}
 		
@@ -127,30 +125,16 @@ package org.apache.royale.jewel.beads.layouts
 
 			if(listArea.y != header.height)
 				listArea.y = header.height;
-			
-			(listArea as ILayoutChild).percentWidth = 100;
-			// (listArea as ILayoutChild).percentHeight = 100;
-			
-			COMPILE::JS {	
-			if(datagrid.height == 0)
-				listArea.positioner.style.height = "calc(100% - " + header.height + "px)";
-			else
-				listArea.height = datagrid.height - header.height;
-			}
             
-			for(var i:int=0; i < bbmodel.dataProvider.length; i++) {
+			for(var i:int=0; i < bbmodel.dataProvider.length; i++)
+			{
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
 
-				if(model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > listArea.height)
+				//remove columns height if rows not surround datagrid height (and this one is set to pixels)
+				if(model.dataProvider && isNaN(datagrid.percentHeight) && (model.dataProvider.length * presentationModel.rowHeight) > listArea.height)
 				{
 					columnList.height = NaN;
-				} else
-				{
-					if(datagrid.height == 0)
-						columnList.percentHeight = 100;
-					else
-						columnList.height = listArea.height;
 				}
 
 				//temporal- if only one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS

@@ -160,8 +160,7 @@ limitations under the License.
 
 					<j:DataGrid localId="datagrid" height="100%"
 						change="dataGridProductChange(event.target as DataGrid, datagrid_lb)"
-						>
-						<!-- dataProvider="{productModel.fewProductList}" -->
+						dataProvider="{productModel.fewProductList}">
 						<j:beads>
 							<j:DataGridColumnLabelsChange/>
 						</j:beads>

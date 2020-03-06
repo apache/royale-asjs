@@ -88,8 +88,6 @@ package org.apache.royale.jewel.beads.views
 
             _dg = _strand as IDataGrid;
             _presentationModel = _dg.presentationModel as IDataGridPresentationModel;
-            // _dg.addEventListener("widthChanged", handleSizeChanges);
-            // _dg.addEventListener("heightChanged", handleSizeChanges);
             
             // see if there is a presentation model already in place. if not, add one.
             _sharedModel = _dg.model as IDataGridModel;
@@ -125,16 +123,21 @@ package org.apache.royale.jewel.beads.views
             // columns
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
             _listArea = new listAreaClass() as IUIBase;
+            (_listArea as ILayoutChild).percentWidth = 100;
+            COMPILE::JS {	
+            _listArea.positioner.style.height = "calc(100% - " + header.height + "px)";
+            }
+            
             _dg.strandChildren.addElement(_listArea as IChild);
+
+            // set default width and height
+            if(!_dg.width && (_dg as ILayoutChild).isWidthSizedToContent())
+                _dg.width = 220; // if width not set make it default to 220px
+            if(!_dg.height && (_dg as ILayoutChild).isHeightSizedToContent())
+                _dg.height = 240; // if height not set make it default to 240px
 
             if (_sharedModel.columns)
                 createLists();
-
-            // set default width and height
-            if(!_dg.width && !(_dg as ILayoutChild).percentWidth)
-                _dg.width = 220; // if width not set make it default to 220px
-            if(!_dg.height && isNaN((_dg as ILayoutChild).percentHeight))
-                _dg.height = 240; // if height not set make it default to 240px
         }
 
         /**
@@ -170,6 +173,7 @@ package org.apache.royale.jewel.beads.views
                 
                 // by default make columns get the 1/n of the maximun space available
                 (list as ILayoutChild).percentWidth = 100 / _sharedModel.columns.length;
+                (list as ILayoutChild).percentHeight = 100;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
@@ -199,7 +203,6 @@ package org.apache.royale.jewel.beads.views
 		{
             IEventDispatcher(_strand).removeEventListener("initComplete", initCompleteHandler);
             handleDataProviderChanged(null);
-            // host.dispatchEvent(new Event("layoutNeeded"));
         }
 
         /**
