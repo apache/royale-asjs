@@ -61,8 +61,13 @@ package org.apache.royale.jewel
 		public function DataGrid()
 		{
 			super();
-			
 			typeNames = "jewel datagrid";
+
+			// set default width and height
+            if(isWidthSizedToContent())
+            	width = 220; // if width not set make it default to 220px
+            if(isHeightSizedToContent())
+            	height = 240; // if height not set make it default to 240px
 		}
 		
 		[Bindable("columnsChanged")]

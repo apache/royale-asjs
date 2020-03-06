@@ -127,14 +127,7 @@ package org.apache.royale.jewel.beads.views
             COMPILE::JS {	
             _listArea.positioner.style.height = "calc(100% - " + header.height + "px)";
             }
-            
             _dg.strandChildren.addElement(_listArea as IChild);
-
-            // set default width and height
-            if(!_dg.width && (_dg as ILayoutChild).isWidthSizedToContent())
-                _dg.width = 220; // if width not set make it default to 220px
-            if(!_dg.height && (_dg as ILayoutChild).isHeightSizedToContent())
-                _dg.height = 240; // if height not set make it default to 240px
 
             if (_sharedModel.columns)
                 createLists();
