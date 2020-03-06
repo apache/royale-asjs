@@ -36,6 +36,7 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendStrandEvent;
 	
 	/**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
@@ -159,8 +160,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if (!dataProviderModel)
 				return;
 			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
-			if (!dp)
-				return;
 			
 			// remove this and better add beads when needed
 			// listen for individual items being added in the future.
@@ -170,6 +169,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 			// dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 			
 			dataGroup.removeAllItemRenderers();
+
+			if (!dp)
+				return;
 			
 			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
 			labelField = dataProviderModel.labelField;
@@ -182,7 +184,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 				fillRenderer(i, item, ir, presentationModel);
 			}
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			sendStrandEvent(_strand,"itemsCreated");
 		}
 		
 		/**
