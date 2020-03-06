@@ -28,6 +28,10 @@ html, body {
   border: 0;
 }
 
+input:focus, textarea:focus, select:focus, div:focus, label:focus {
+  outline: none;
+}
+
 select::-ms-expand {
   display: none;
 }
