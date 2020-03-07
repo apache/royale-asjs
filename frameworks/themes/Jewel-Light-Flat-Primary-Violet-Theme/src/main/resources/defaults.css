@@ -167,6 +167,9 @@ hr {
   color: silver;
   text-shadow: unset;
 }
+.jewel.button[disabled]:hover, .jewel.button[disabled]:hover:focus {
+  color: silver;
+}
 .jewel.button[disabled] {
   font-weight: 400;
 }
@@ -218,6 +221,9 @@ hr {
   color: silver;
   text-shadow: unset;
 }
+.jewel.button.primary[disabled]:hover, .jewel.button.primary[disabled]:hover:focus {
+  color: silver;
+}
 
 .jewel.button.outlined {
   background: rgba(179, 179, 179, 0.05);
@@ -248,6 +254,9 @@ hr {
   color: silver;
   text-shadow: unset;
 }
+.jewel.button.outlined[disabled]:hover, .jewel.button.outlined[disabled]:hover:focus {
+  color: silver;
+}
 
 .jewel.button.primary.outlined {
   background: rgba(102, 44, 144, 0.05);
@@ -277,6 +286,9 @@ hr {
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
+}
+.jewel.button.primary.outlined[disabled]:hover, .jewel.button.primary.outlined[disabled]:hover:focus {
+  color: silver;
 }
 
 .jewel.button.unboxed {
@@ -309,6 +321,9 @@ hr {
   color: silver;
   text-shadow: unset;
 }
+.jewel.button.unboxed[disabled]:hover, .jewel.button.unboxed[disabled]:hover:focus {
+  color: silver;
+}
 
 .jewel.button.primary.unboxed {
   background: rgba(102, 44, 144, 0);
@@ -339,6 +354,9 @@ hr {
   border: 1px solid transparent !important;
   color: silver;
   text-shadow: unset;
+}
+.jewel.button.primary.unboxed[disabled]:hover, .jewel.button.primary.unboxed[disabled]:hover:focus {
+  color: silver;
 }
 
 .jewel.card {

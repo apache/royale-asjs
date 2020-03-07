@@ -52,6 +52,9 @@
   color: silver;
   text-shadow: unset;
 }
+.jewel.button.emphasized[disabled]:hover, .jewel.button.emphasized[disabled]:hover:focus {
+  color: silver;
+}
 
 .jewel.button.emphasized.outlined {
   background: rgba(44, 116, 190, 0.05);
@@ -81,6 +84,9 @@
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
+}
+.jewel.button.emphasized.outlined[disabled]:hover, .jewel.button.emphasized.outlined[disabled]:hover:focus {
+  color: silver;
 }
 
 .jewel.button.emphasized.unboxed {
@@ -112,6 +118,9 @@
   border: 1px solid transparent !important;
   color: silver;
   text-shadow: unset;
+}
+.jewel.button.emphasized.unboxed[disabled]:hover, .jewel.button.emphasized.unboxed[disabled]:hover:focus {
+  color: silver;
 }
 
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.emphasized.hovered {

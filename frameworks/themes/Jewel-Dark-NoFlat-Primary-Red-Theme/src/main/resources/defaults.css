@@ -166,6 +166,9 @@ hr {
   color: #737373;
   text-shadow: unset;
 }
+.jewel.button[disabled]:hover, .jewel.button[disabled]:hover:focus {
+  color: #737373;
+}
 .jewel.button[disabled] {
   font-weight: 400;
 }
@@ -216,6 +219,9 @@ hr {
   color: #737373;
   text-shadow: unset;
 }
+.jewel.button.primary[disabled]:hover, .jewel.button.primary[disabled]:hover:focus {
+  color: #737373;
+}
 
 .jewel.button.outlined {
   background: rgba(51, 51, 51, 0.05);
@@ -246,6 +252,9 @@ hr {
   color: #737373;
   text-shadow: unset;
 }
+.jewel.button.outlined[disabled]:hover, .jewel.button.outlined[disabled]:hover:focus {
+  color: #737373;
+}
 
 .jewel.button.primary.outlined {
   background: rgba(236, 28, 36, 0.05);
@@ -275,6 +284,9 @@ hr {
   border: 1px solid #0d0d0d !important;
   color: #737373;
   text-shadow: unset;
+}
+.jewel.button.primary.outlined[disabled]:hover, .jewel.button.primary.outlined[disabled]:hover:focus {
+  color: #737373;
 }
 
 .jewel.button.unboxed {
@@ -307,6 +319,9 @@ hr {
   color: #737373;
   text-shadow: unset;
 }
+.jewel.button.unboxed[disabled]:hover, .jewel.button.unboxed[disabled]:hover:focus {
+  color: #737373;
+}
 
 .jewel.button.primary.unboxed {
   background: rgba(236, 28, 36, 0);
@@ -337,6 +352,9 @@ hr {
   border: 1px solid transparent !important;
   color: #737373;
   text-shadow: unset;
+}
+.jewel.button.primary.unboxed[disabled]:hover, .jewel.button.primary.unboxed[disabled]:hover:focus {
+  color: #737373;
 }
 
 .jewel.card {

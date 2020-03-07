@@ -52,6 +52,9 @@
   color: silver;
   text-shadow: unset;
 }
+.jewel.button.secondary[disabled]:hover, .jewel.button.secondary[disabled]:hover:focus {
+  color: silver;
+}
 
 .jewel.button.secondary.outlined {
   background: rgba(226, 215, 11, 0.05);
@@ -81,6 +84,9 @@
   border: 1px solid #d9d9d9 !important;
   color: silver;
   text-shadow: unset;
+}
+.jewel.button.secondary.outlined[disabled]:hover, .jewel.button.secondary.outlined[disabled]:hover:focus {
+  color: silver;
 }
 
 .jewel.button.secondary.unboxed {
@@ -112,6 +118,9 @@
   border: 1px solid transparent !important;
   color: silver;
   text-shadow: unset;
+}
+.jewel.button.secondary.unboxed[disabled]:hover, .jewel.button.secondary.unboxed[disabled]:hover:focus {
+  color: silver;
 }
 
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid.secondary.hovered {
@@ -277,6 +286,9 @@ a:active {
   border: 1px solid transparent !important;
   color: silver;
   text-shadow: unset;
+}
+.jewel.togglebutton.secondary.unboxed[disabled]:hover, .jewel.togglebutton.secondary.unboxed[disabled]:hover:focus {
+  color: silver;
 }
 
 /*# sourceMappingURL=defaults.css.map */
