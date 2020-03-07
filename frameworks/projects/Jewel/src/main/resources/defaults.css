@@ -508,6 +508,7 @@ j|VirtualComboBoxPopUp {
   display: flex;
   flex-direction: column;
   position: relative;
+  overflow: auto;
 }
 .jewel.datagrid .jewel.buttonbar.header {
   width: 100%;

@@ -109,10 +109,12 @@ package org.apache.royale.jewel.beads.layouts
             var bblayout:ButtonBarLayout = header.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
 			// (header as ButtonBar).widthType = ButtonBarModel.PROPORTIONAL_WIDTHS;
 			var listArea:IUIBase = view.listArea;
+			var scrollbead:ScrollingViewport = listArea.getBeadByType(IScrollingViewport) as ScrollingViewport;
 			
 			var displayedColumns:Array = view.columnLists;
 			var model:IDataGridModel = datagrid.model as IDataGridModel;
 			
+			// Width
 			var defaultColumnWidth:Number;
 			if(!datagrid.percentWidth)
 			{
@@ -129,12 +131,14 @@ package org.apache.royale.jewel.beads.layouts
 				var columnList:UIBase = displayedColumns[i] as UIBase;
 
 				//remove columns height if rows not surround datagrid height (and this one is set to pixels)
-				if(model.dataProvider && isNaN(datagrid.percentHeight) && (model.dataProvider.length * presentationModel.rowHeight) > listArea.height)
+				if(model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > (datagrid.height - header.height))
 				{
 					columnList.height = NaN;
+					scrollbead.scroll = true;
 				} else 
 				{
 					columnList.percentHeight = 100;
+					scrollbead.scroll = false;
 				}
 
 				//temporal- if only one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
@@ -153,9 +157,6 @@ package org.apache.royale.jewel.beads.layouts
 				columnWidths.push(columnWidth);
 			}
 
-			var scrollbead:ScrollingViewport = listArea.getBeadByType(IScrollingViewport) as ScrollingViewport;
-            scrollbead.scroll = model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > listArea.height;
-			
 			bbmodel.buttonWidths = columnWidths;
 			if(pixelflag)
 			{
