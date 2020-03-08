@@ -47,6 +47,8 @@ package flexUnitTests
         public var xmlQNameTest:XMLQNameTest;
     
         public var xmlNamespaceQueries:XMLTesterNamespaceQueries;
+
+        public var xmllistInterationTests:XMLListTesterIterationlTest;
         
     }
 }
