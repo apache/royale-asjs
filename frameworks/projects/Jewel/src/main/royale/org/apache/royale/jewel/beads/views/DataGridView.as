@@ -162,7 +162,7 @@ package org.apache.royale.jewel.beads.views
                 
                 // by default make columns get the 1/n of the maximun space available
                 (list as ILayoutChild).percentWidth = 100 / _sharedModel.columns.length;
-                (list as ILayoutChild).percentHeight = 100;
+                // (list as ILayoutChild).percentHeight = 100;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
@@ -250,7 +250,7 @@ package org.apache.royale.jewel.beads.views
             if(!layout) {
                 // Load the layout bead if it hasn't already been loaded (init time)
 			    layout = loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", _strand) as IBeadLayout;
-            } 
+            }
             host.dispatchEvent(new Event("layoutNeeded"));
         }
 
