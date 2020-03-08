@@ -27,14 +27,20 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	}
+	COMPILE::JS
+	{
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.WrappedHTMLElement;
+	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
-
+	
     /**
-     *  The HorizontalLayout class is a simple layout
-     *  bead.  It takes the set of children and lays them out
-     *  horizontally in one row, separating them according to
-     *  CSS layout rules for margin and vertical-align styles.
+     *  The SimpleHorizontalLayout class is a simple layout
+     *  bead that takes the set of children and lays them out
+     *  horizontally in one row. In JS we make use of the CSS flex layout rules.
+	 * 
+	 *  Note:SWF comes from basic layouts and are not tested
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -87,7 +93,7 @@ package org.apache.royale.jewel.beads.layouts
 		}
 
         /**
-		 *  Layout children vertically
+		 *  Layout children horizontally
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -186,7 +192,33 @@ package org.apache.royale.jewel.beads.layouts
 				 *		flex-flow: row nowrap;
 				 *      align-items: flex-start
 				 *	}
+				 *  
+				 *  .layout.horizontal > * {
+				 *    flex: 0 0 auto
+				 *  }
 				 */
+
+				// We just need to make chids resize themselves (through `sizeChanged` event)
+				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				try
+				{
+					var children:Array = contentView.internalChildren();
+					var i:int;
+					var n:int = children.length;
+					var child:WrappedHTMLElement
+					for (i = 0; i < n; i++)
+					{
+						child = children[i];
+						if(child && child.royale_wrapper)			
+							child.royale_wrapper.dispatchEvent('sizeChanged');
+						else
+							trace("child ? ", child)
+					}
+				}
+				catch (error:Error)
+				{
+					trace("layout couldn't notify 'sizeChanged' event for child:", _strand);	
+				}
 
                 return true;
             }

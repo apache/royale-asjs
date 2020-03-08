@@ -27,20 +27,26 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	}
+	COMPILE::JS
+	{
+	import org.apache.royale.core.IParentIUIBase;
+	import org.apache.royale.core.WrappedHTMLElement;
+	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
 
 	/**
-	 *  The VerticalLayout class is a simple layout
-	 *  bead.  It takes the set of children and lays them out
-	 *  vertically in one column, separating them according to
-	 *  CSS layout rules for margin and horizontal-align styles.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
-	 */
+     *  The SimpleVerticalLayout class is a simple layout
+     *  bead that takes the set of children and lays them out
+     *  horizontally in one row. In JS we make use of the CSS flex layout rules.
+	 * 
+	 *  Note:SWF comes from basic layouts and are not tested
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.4
+     */
 	public class SimpleVerticalLayout extends StyledLayoutBase
 	{
 		/**
@@ -175,29 +181,35 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				// var children:Array = contentView.internalChildren();
-				// var i:int;
-				// var n:int = children.length;
-				// for (i = 0; i < n; i++)
-				// {
-				// 	var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
-				// 	if (child == null) continue;
-					
-				// 	child.royale_wrapper.dispatchEvent('sizeChanged');
-				// }
-
 				/**
-				 * This Layout uses the following CSS rules
-				 * no code needed in JS for layout
+				 *  This Layout uses the following CSS rules
+				 *  no code needed in JS for layout
 				 * 
-				 * .layout {
+				 *  .layout {
 				 *		display: flex:
 				 *	}
+				 *  
 				 *	.layout.vertical {
 				 *		flex-flow: column nowrap;
 				 *      align-items: flex-start;
 				 *	}
+				 *  
+				 *  .layout.vertical > * {
+				 *    flex: 0 1 auto
+				 *  }
 				 */
+
+				// We just need to make chids resize themselves (through `sizeChanged` event)
+				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
+				var children:Array = contentView.internalChildren();
+				var i:int;
+				var n:int = children.length;
+				var child:WrappedHTMLElement
+				for (i = 0; i < n; i++)
+				{
+					child = children[i];					
+					child.royale_wrapper.dispatchEvent('sizeChanged');
+				}
 
 				return true;
 			}

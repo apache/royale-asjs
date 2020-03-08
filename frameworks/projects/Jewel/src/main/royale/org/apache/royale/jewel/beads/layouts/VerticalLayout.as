@@ -18,32 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::SWF {
+	COMPILE::SWF
+	{
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.layout.EdgeData;
 	}
-	// COMPILE::JS
-	// {
-	// import org.apache.royale.core.UIBase;
-	// import org.apache.royale.core.WrappedHTMLElement;
-	// }
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
 
 	/**
-	 *  The VerticalLayout class is a simple layout
-	 *  bead similar to VerticalLayout, but it adds support for
-	 *  padding and gap values.
-	 *
-	 *  @langversion 3.0
-	 *  @playerversion Flash 10.2
-	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.4
-	 */
+	 *  The VerticalLayout class is a vertical layout
+	 *  bead similar to SimpleVerticalLayout, but add support for gap values.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.4
+     */
 	public class VerticalLayout extends SimpleVerticalLayout implements ILayoutStyleProperties
 	{
 		/**
@@ -301,41 +296,7 @@ package org.apache.royale.jewel.beads.layouts
 			}
 			COMPILE::JS
 			{
-				// var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				// var c:UIBase = (contentView as UIBase);
-				// c.element.classList.add("layout");
-				// c.element.classList.add("vertical");
-
-				//applyStyleToLayout(c, "gap");
-				
-				// var children:Array = contentView.internalChildren();
-				// var i:int;
-				// var n:int = children.length;
-				// for (i = 0; i < n; i++)
-				// {
-				// 	var child:WrappedHTMLElement = children[i];
-
-				// 	if(i == 0)
-				// 	{
-				// 		child.style.marginTop = _paddingTop + 'px';
-				// 	}
-				// 	else
-				// 	{
-				// 		child.style.marginTop = _gap + 'px';
-				// 	}
-				// 	child.style.marginRight = _paddingRight + 'px';
-				// 	if(i === (n - 1))
-				// 	{
-				// 		child.style.marginBottom = _paddingBottom + 'px';
-				// 	}
-				// 	else
-				// 	{
-				// 		child.style.marginBottom = '0px';
-				// 	}
-				// 	child.style.marginLeft = _paddingLeft + 'px';
-					
-				// 	child.royale_wrapper.dispatchEvent('sizeChanged');
-				// }
+				super.layout();
 
 				return true;
 			}

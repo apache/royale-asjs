@@ -18,24 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.layouts
 {
-	COMPILE::SWF {
+	COMPILE::SWF
+	{
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.layout.EdgeData;
 	}
-	// COMPILE::JS {
-	// import org.apache.royale.core.WrappedHTMLElement;
-    // }
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	import org.apache.royale.events.Event;
 
     /**
-	 *  The HorizontalLayout class is a simple layout
-	 *  bead similar to HorizontalLayout, but it adds support for
-	 *  padding and gap values.
+	 *  The HorizontalLayout class is a horizontal layout
+	 *  bead similar to SimpleHorizontalLayout, but add support for gap values.
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -218,10 +215,12 @@ package org.apache.royale.jewel.beads.layouts
 		}
 		
         /**
-         * @copy org.apache.royale.core.IBeadLayout#layout
-         * @royaleignorecoercion org.apache.royale.core.ILayoutHost
-         * @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
-         * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
+		 *  Layout children horizontally
+		 * 
+         *  @copy org.apache.royale.core.IBeadLayout#layout
+         *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+         *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+         *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          */
 		override public function layout():Boolean
 		{
@@ -303,34 +302,7 @@ package org.apache.royale.jewel.beads.layouts
             }
             COMPILE::JS
             {
-				//applyStyleToLayout(c, "gap");
-
-				/*var children:Array = contentView.internalChildren();
-				var i:int;
-				var n:int = children.length;
-				for (i = 0; i < n; i++)
-                {
-                    var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
-					if (child == null) continue;
-					child.style.marginTop = _paddingTop + 'px';
-					if(i === (n - 1))
-					{
-						child.style.marginRight = _paddingRight + 'px';
-					}
-					else
-					{
-						child.style.marginRight = '0px';
-					}
-					child.style.marginBottom = _paddingBottom + 'px';
-					if(i == 0)
-					{
-						child.style.marginLeft = _paddingLeft + 'px';
-					}
-					else
-					{
-						child.style.marginLeft = _gap + 'px';
-					}					
-				}*/
+				super.layout();
 
                 return true;
             }
