@@ -120,7 +120,7 @@ adg|AdvancedDataGridColumnList {
 	IBeadView:  ClassReference("mx.containers.beads.AdvancedDataGridListVirtualListView");			
 	IBeadController: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridSingleSelectionMouseController");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout");
-	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
+	IItemRendererClassFactory: ClassReference("mx.controls.beads.AdvancedDataGridSelectableItemRendererClassFactory");
 	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer");
 	IItemRendererInitializer: ClassReference("mx.controls.beads.AdvancedDataGridItemRendererInitializer");
 	ISelectableItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridSelectableItemRendererBead");

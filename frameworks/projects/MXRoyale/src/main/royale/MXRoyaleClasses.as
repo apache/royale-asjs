@@ -248,6 +248,7 @@ internal class MXRoyaleClasses
     import mx.controls.beads.ListItemRendererInitializer; ListItemRendererInitializer;
     import mx.controls.beads.TreeItemRendererInitializer; TreeItemRendererInitializer;
     import mx.controls.beads.AdvancedDataGridItemRendererInitializer; AdvancedDataGridItemRendererInitializer;
+    import mx.controls.beads.AdvancedDataGridSelectableItemRendererClassFactory; AdvancedDataGridSelectableItemRendererClassFactory;
     
     import mx.containers.PanelTitleBar; PanelTitleBar;
     import mx.containers.beads.PanelView; PanelView;

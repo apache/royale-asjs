@@ -96,8 +96,7 @@ package mx.controls.beads
 			
 			(ir as IListDataItemRenderer).listData = treeListData;
             if (firstColumn && adgColumnList.adg.groupLabelField)
-                (ir as ILabelFieldItemRenderer).labelField = adgColumnList.adg.groupLabelField;
-			            
+                (ir as ILabelFieldItemRenderer).labelField = adgColumnList.adg.groupLabelField;			            
         }
 
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
