@@ -85,7 +85,7 @@ package org.apache.royale.jewel
 			outer.appendChild(value);
 			
 			var clip:WrappedHTMLElement = document.createElement('div') as WrappedHTMLElement;
-			outer.royale_wrapper = this;
+			clip.royale_wrapper = this;
 			clip.appendChild(outer);
 			
 			_positioner = clip;
