@@ -5237,8 +5237,10 @@ COMPILE::JS
      */
     public function owns(child:IUIBase):Boolean
     {
-        trace("owns not implemented");
-        return true;
+		if (!(child is IUIComponent))
+			return false;
+			
+        return contains(child as IUIComponent);
     }
     
     /**
