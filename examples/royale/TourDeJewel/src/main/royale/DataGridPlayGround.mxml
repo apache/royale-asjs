@@ -36,6 +36,9 @@ limitations under the License.
         import vos.Product;
         import org.apache.royale.jewel.DataGrid;
 
+		[Bindable]
+		public var listModel:ListsModel = new ListsModel();
+
         private function dataGridProductChange(grid:DataGrid, output:Label) : void
 		{
 			output.text = "Clicked on row " + grid.selectedIndex + " (Title: " + (grid.selectedItem as Product).title + ")";
@@ -80,29 +83,6 @@ limitations under the License.
 			// productModel.productList.removeAll();
 		}
 
-		private function describeItem(item:*):String {
-			const intro:String = "<strong>DataGrid selectedItem:</strong> ";
-			var evaluated:String;
-			if (item is String) {
-				evaluated = "String value: '" + item + "'";
-			} else {
-				if (item === null || item === undefined) {
-					evaluated = "Nothing Selected";
-				}
-				else {
-					if (item is IconListVO) {
-						evaluated = "Object's label field: '" + IconListVO(item).label + "'";
-					} else {
-						evaluated = "Object : " + item;
-					}
-				}
-			}
-			return intro + evaluated;
-		}
-
-		[Bindable]
-		public var listModel:ListsModel = new ListsModel();
-
 		/**
 		 * DataGridColumnLabelsChange nead needed
 		 */
@@ -132,6 +112,26 @@ limitations under the License.
 		private function clearDataProvider(datagrid:DataGrid):void
 		{
 			datagrid.dataProvider = null;
+		}
+		
+		private function describeItem(item:*):String {
+			const intro:String = "<strong>DataGrid selectedItem:</strong> ";
+			var evaluated:String;
+			if (item is String) {
+				evaluated = "String value: '" + item + "'";
+			} else {
+				if (item === null || item === undefined) {
+					evaluated = "Nothing Selected";
+				}
+				else {
+					if (item is IconListVO) {
+						evaluated = "Object's label field: '" + IconListVO(item).label + "'";
+					} else {
+						evaluated = "Object : " + item;
+					}
+				}
+			}
+			return intro + evaluated;
 		}
 		
 		private function loadDataProvider(datagrid:DataGrid):void
@@ -249,6 +249,7 @@ limitations under the License.
 				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
+					<!-- <j:IconButton click="dg2.dataProvider = productModel.productList;" emphasis="primary" outlined="true"> -->
 
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
@@ -380,7 +381,7 @@ limitations under the License.
 				<j:Label text="Basic configuration, width = 100%, no column widths, rowHeight=42 and emphasis='secondary', middle column has center alignment. Clicking on row icon, remove the entire row."
 					multiline="true"/>
 
-				<j:DataGrid width="100%" emphasis="secondary" rowHeight="42"
+				<j:DataGrid width="100%" height="240" emphasis="secondary" rowHeight="42"
 					change="dataGridIconListChange(event.target as DataGrid, datagrid3_lb)">
 					<j:beads>
 						<js:ConstantBinding

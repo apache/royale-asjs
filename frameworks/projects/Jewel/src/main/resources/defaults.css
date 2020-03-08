@@ -515,7 +515,7 @@ j|VirtualComboBoxPopUp {
 }
 .jewel.datagrid .listarea {
   width: 100%;
-  height: 100%;
+  flex: 1 1 0%;
 }
 .jewel.datagrid .jewel.list.column .jewel.item.datagrid {
   width: 100%;
@@ -543,6 +543,7 @@ j|DataGridColumnList {
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DataGridItemRenderer");
   ISelectableItemRenderer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead");
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
 }
 
 .jewel.datechooser .jewel.table {
