@@ -69,6 +69,7 @@ package org.apache.royale.jewel.beads.layouts
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			(_strand as IEventDispatcher).addEventListener("sizeChanged", handleLayoutNeeded);
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
 		}
 		
