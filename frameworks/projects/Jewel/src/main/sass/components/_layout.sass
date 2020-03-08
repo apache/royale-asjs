@@ -44,7 +44,6 @@ $gap-size: 10px !default
 
 .layout
 	display: flex
-	//position: relative
 
 	// Horizontal
 	&.horizontal
@@ -53,7 +52,7 @@ $gap-size: 10px !default
 		align-items: flex-start
 	
 		> *
-			flex: 0 0 auto
+			flex: 0 1 auto
 
 		&.flow
 			flex-wrap: wrap
@@ -114,6 +113,9 @@ $gap-size: 10px !default
 			align-content: center
 			flex-direction: column
 			height: 100%
+
+			> *
+				flex: 0 0 auto
 
 		// FormLayout (consider for now Forms are always vertical)
 		&.form

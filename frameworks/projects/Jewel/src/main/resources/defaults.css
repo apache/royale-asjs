@@ -1023,7 +1023,7 @@ j|Label {
   align-items: flex-start;
 }
 .layout.horizontal > * {
-  flex: 0 0 auto;
+  flex: 0 1 auto;
 }
 .layout.horizontal.flow {
   flex-wrap: wrap;
@@ -1133,6 +1133,9 @@ j|Label {
   align-content: center;
   flex-direction: column;
   height: 100%;
+}
+.layout.vertical.centered > * {
+  flex: 0 0 auto;
 }
 .layout.vertical.form {
   width: 100%;
@@ -3558,6 +3561,7 @@ j|ScrollableSectionContent {
 j|HSlider {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.SliderRangeModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.SliderView");
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.SliderMouseController");
 }
 
