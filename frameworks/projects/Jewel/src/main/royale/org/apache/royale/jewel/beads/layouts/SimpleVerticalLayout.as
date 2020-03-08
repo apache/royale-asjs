@@ -29,8 +29,8 @@ package org.apache.royale.jewel.beads.layouts
 	}
 	COMPILE::JS
 	{
-	import org.apache.royale.core.IParentIUIBase;
-	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.UIBase;
 	}
 	import org.apache.royale.events.Event;
 	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
@@ -200,20 +200,21 @@ package org.apache.royale.jewel.beads.layouts
 				 */
 
 				// We just need to make chids resize themselves (through `sizeChanged` event)
-				var contentView:IParentIUIBase = layoutView as IParentIUIBase;
-				var children:Array = contentView.internalChildren();
-				var i:int;
-				var n:int = children.length;
-				var child:WrappedHTMLElement
-				for (i = 0; i < n; i++)
-				{
-					child = children[i];					
-					child.royale_wrapper.dispatchEvent('sizeChanged');
+				var contentView:ILayoutView = layoutView;
+				var n:int = contentView.numElements;
+				var child:UIBase;
+
+				if (n == 0) return false;
+				
+				for(var i:int=0; i < n; i++) {
+					child = contentView.getElementAt(i) as UIBase;
+					if (!child)
+						continue;
+					child.dispatchEvent('sizeChanged');
 				}
 
 				return true;
 			}
 		}
-
 	}
 }
