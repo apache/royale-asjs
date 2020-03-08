@@ -34,6 +34,10 @@ import spark.components.supportClasses.ItemRenderer;
 
 use namespace mx_internal;
 
+import org.apache.royale.binding.ItemRendererDataBinding;
+import org.apache.royale.events.Event;
+
+
 /**
  *  The MXAdvancedDataGridItemRenderer class defines the Spark item renderer class 
  *  for use with the MX AdvancedDataGrid control.
@@ -78,6 +82,8 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
     {
         super();
        // focusEnabled = false;
+		addBead(new ItemRendererDataBinding());
+		dispatchEvent(new Event("initBindings"));
     }
     
     //----------------------------------
@@ -120,6 +126,16 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
         invalidateProperties();
     }
     
+    /**
+     *  @private
+     */
+    override public function set data(value:Object):void
+    {
+		addBead(new ItemRendererDataBinding());
+        super.data = value;        
+		dispatchEvent(new Event("initBindings"));
+    }
+
     //----------------------------------
     //  editor
     //----------------------------------

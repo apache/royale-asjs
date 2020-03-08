@@ -49,6 +49,8 @@ COMPILE::JS
     import org.apache.royale.core.WrappedHTMLElement;
 }
 import org.apache.royale.core.ITextModel;
+import org.apache.royale.events.Event;
+import org.apache.royale.binding.ItemRendererDataBinding;
 
 //--------------------------------------
 //  Events
@@ -283,6 +285,8 @@ public class Label extends UIComponent
         typeNames = "Label";
     }
 
+	private var textSet:Boolean;
+	
     //----------------------------------
     //  enabled
     //----------------------------------
@@ -419,6 +423,10 @@ public class Label extends UIComponent
     {
         var newText:*;
 
+		_data = value;
+		addBead(new ItemRendererDataBinding());
+		dispatchEvent(new Event("initBindings"));
+		
         if (_listData)
         {
             newText = (_listData as BaseListData).label;
@@ -431,12 +439,12 @@ public class Label extends UIComponent
                 newText = _data.toString();
         }
 
-        if (newText !== undefined/* && !textSet*/)
+        if (newText !== undefined && !textSet)
         {
             text = newText;
-            /*textSet = false;*/
+            textSet = false;
         }
-
+		
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
     }
 
@@ -733,6 +741,8 @@ public class Label extends UIComponent
 				this.dispatchEvent('textChange');
 			}
 		}
+		
+		textSet = true;
 		
 		invalidateSize();
 
