@@ -131,24 +131,29 @@ package org.apache.royale.jewel.beads.layouts
 			var displayedColumns:Array = view.columnLists;
 			
 			// Width
-			var defaultColumnWidth:Number;
+			var defaultColumnWidth:Number = 0;
 
-			if(datagrid.percentWidth)
-				defaultColumnWidth = datagrid.percentWidth / bbmodel.dataProvider.length;
-			else
-				defaultColumnWidth = datagrid.width / bbmodel.dataProvider.length;
-			
-			// special case when no width is set at all, defaultColumnWidth will be 0
-			if(defaultColumnWidth == 0 && datagrid.isWidthSizedToContent())
-				defaultColumnWidth = 80;
+			// When still don't have header buttonWidths, we need a defaultColumnWidth
+			if(!bbmodel.buttonWidths)
+			{
+				if(datagrid.percentWidth)
+					defaultColumnWidth = datagrid.percentWidth / bbmodel.dataProvider.length;
+				else 
+					defaultColumnWidth = datagrid.width / bbmodel.dataProvider.length;
+				
+				// special case when no width is set at all, defaultColumnWidth will be 0
+				if(defaultColumnWidth == 0 && datagrid.isWidthSizedToContent())
+					defaultColumnWidth = 80;
+			}
 			
 			var columnWidths:Array = [];
+			var totalWidth:Number = 0;
 
 			for(var i:int=0; i < bbmodel.dataProvider.length; i++)
 			{
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
-				var columnWidth:Number = defaultColumnWidth;
+				var columnWidth:Number = defaultColumnWidth != 0 ? defaultColumnWidth : bbmodel.buttonWidths[i];
 				
 				// Column's Width
 				// if just one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
@@ -161,7 +166,8 @@ package org.apache.royale.jewel.beads.layouts
 					columnList.percentWidth = columnWidth;
 				else
 					columnList.width = columnWidth;
-
+				
+				totalWidth += columnWidth;
 				columnWidths.push(columnWidth);
 				
 				// Column's Height - remove columns height if rows not surround datagrid height (and this one is set to pixels)
@@ -172,6 +178,9 @@ package org.apache.royale.jewel.beads.layouts
 			}
 
 			bbmodel.buttonWidths = columnWidths;
+			
+			if(isNaN(datagrid.percentWidth))
+				datagrid.width = totalWidth;
 			
 			header.dispatchEvent(new Event("layoutNeeded"));
 			listArea.dispatchEvent(new Event("layoutNeeded"));
