@@ -34,7 +34,6 @@ limitations under the License.
 
         import vos.IconListVO;
         import vos.Product;
-        import org.apache.royale.jewel.DataGrid;
 
 		[Bindable]
 		public var listModel:ListsModel = new ListsModel();
@@ -55,58 +54,15 @@ limitations under the License.
 			grid.dataProvider = data;
 		}
 
-		private function addRow():void
-		{
-			var product:Product = new Product("xx100","New Item", 44, Math.floor(Math.random()*1000), "assets/smallbluerect.jpg");
-			(datagrid2.dataProvider as ArrayList).addItem(product);
-			// productModel.productList.addItem(product);
-		}
 		
-		private function removeFirstRow():void
-		{
-			(datagrid2.dataProvider as ArrayList).removeItemAt(0);
-			// productModel.productList.removeItemAt(0);
-		}
-		
-		private function updateFirstRow():void
-		{
-			var product:Product = productModel.productList.getItemAt(0) as Product;
-			product.title = "What??";
-			product.sales = Math.floor(Math.random()*100);
-			(datagrid2.dataProvider as ArrayList).itemUpdated(product);
-			// productModel.productList.itemUpdated(product);
-		}
-
-		public function removeAllRows():void
-		{
-			(datagrid2.dataProvider as ArrayList).removeAll();
-			// productModel.productList.removeAll();
-		}
 
 		/**
 		 * DataGridColumnLabelsChange nead needed
 		 */
-		public function changeColumnNames():void
+		public function changeColumnNames(datagrid:DataGrid):void
 		{
 			var pm:IDataGridPresentationModel = datagrid.presentationModel as IDataGridPresentationModel;
 			pm.columnLabels = ["Imgs", "Names", "Cost"];
-		}
-
-		private function loadSmallData():void
-		{
-			productModel.fewProductList = new ArrayList([
-				new Product("rz302","New",80,105,"assets/smallyellowrect.jpg"),
-				new Product("dh442","Records",10,340,"assets/smallredrect.jpg"),
-				new Product("ps222","to show!",35,190,"assets/smallorangerect.jpg"),
-				new Product("ps102",":-)",44,200,"assets/smallbluerect.jpg"),
-			]);
-			datagrid.dataProvider = productModel.fewProductList;
-		}
-
-		private function clearData():void
-		{
-			productModel.fewProductList = new ArrayList();
-			datagrid.dataProvider = productModel.fewProductList;
 		}
 		
 		private function clearDataProvider(datagrid:DataGrid):void
@@ -142,6 +98,51 @@ limitations under the License.
 				new Product("ps222","to show!",35,190,"assets/smallorangerect.jpg"),
 				new Product("ps102",":-)",44,200,"assets/smallbluerect.jpg"),
 			]);
+		}
+
+		private function clearBindedDataProvider(datagrid:DataGrid):void
+		{
+			productModel.fewProductList = null;
+		}
+
+		private function loadBindedDataProvider(datagrid:DataGrid):void
+		{
+			productModel.fewProductList = new ArrayList([
+				new Product("rz302","New",80,105,"assets/smallyellowrect.jpg"),
+				new Product("dh442","Records",10,340,"assets/smallredrect.jpg"),
+				new Product("ps222","to show!",35,190,"assets/smallorangerect.jpg"),
+				new Product("ps102",":-)",44,200,"assets/smallbluerect.jpg"),
+			]);
+			datagrid.dataProvider = productModel.fewProductList;
+		}
+
+
+		private function addRow(datagrid:DataGrid):void
+		{
+			var product:Product = new Product("xx100","New Item", 44, Math.floor(Math.random()*1000), "assets/smallbluerect.jpg");
+			(datagrid.dataProvider as ArrayList).addItem(product);
+			// productModel.productList.addItem(product);
+		}
+		
+		private function removeFirstRow(datagrid:DataGrid):void
+		{
+			(datagrid.dataProvider as ArrayList).removeItemAt(0);
+			// productModel.productList.removeItemAt(0);
+		}
+		
+		private function updateFirstRow(datagrid:DataGrid):void
+		{
+			var product:Product = productModel.productList.getItemAt(0) as Product;
+			product.title = "What??";
+			product.sales = Math.floor(Math.random()*100);
+			(datagrid.dataProvider as ArrayList).itemUpdated(product);
+			// productModel.productList.itemUpdated(product);
+		}
+
+		public function removeAllRows(datagrid:DataGrid):void
+		{
+			(datagrid.dataProvider as ArrayList).removeAll();
+			// productModel.productList.removeAll();
 		}
 		]]>
 	</fx:Script>
@@ -256,20 +257,19 @@ limitations under the License.
 				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
-					<!-- <j:IconButton click="dg2.dataProvider = productModel.productList;" emphasis="primary" outlined="true"> -->
-
+		
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
-			<j:Card height="600">
+			<j:Card height="500">
 				<j:CardHeader>
-					<html:H3 text="Jewel DataGrid" className="primary-normal"/>
+					<html:H3 text="Custom Renderers" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label multiline="true">
-						<j:html><![CDATA[<p>Basic configuration, default width, no column widths, no rowHeight. First column uses a custom renderer.</p>]]></j:html>
+						<j:html><![CDATA[<p>First column uses a custom renderer to show an image. <i>dataProvider</i> is set using <i>dataBinding</i>. <i>height</i> is 100%, default <i>width</i>.</p>]]></j:html>
 					</j:Label>
 
-					<j:DataGrid localId="datagrid" height="100%"
+					<j:DataGrid localId="dg3" height="100%"
 						change="dataGridProductChange(event.target as DataGrid, lb3)"
 						dataProvider="{productModel.fewProductList}">
 						<j:beads>
@@ -286,7 +286,7 @@ limitations under the License.
 					<j:Label localId="lb3" text="DataGrid selection will be shown here"/>
 				</j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign="itemsRight">
-					<j:IconButton click="changeColumnNames()" outlined="true">
+					<j:IconButton click="changeColumnNames(dg3)" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Change Column Labels"/>
 						</j:beads>
@@ -294,7 +294,7 @@ limitations under the License.
 							<js:FontIcon text="{MaterialIconType.RESTORE_PAGE}" material="true"/>
 						</j:icon>
 					</j:IconButton>
-					<j:IconButton click="clearData()" outlined="true">
+					<j:IconButton click="clearBindedDataProvider(dg3)" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Clear Data"/>
 						</j:beads>
@@ -302,7 +302,7 @@ limitations under the License.
 							<js:FontIcon text="{MaterialIconType.CLEAR_ALL}" material="true"/>
 						</j:icon>
 					</j:IconButton>
-					<j:IconButton click="loadSmallData()" emphasis="primary" outlined="true">
+					<j:IconButton click="loadBindedDataProvider(dg3)" emphasis="primary" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Load Data"/>
 						</j:beads>
@@ -317,13 +317,13 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel DataGrid" className="primary-normal"/>
+					<html:H3 text="columnWidth set to pixels" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					<j:Label text="Using specific column widths, rowHeight=54 and height=220, first column uses a custom renderer and last column has right alignment"
 						multiline="true"/>
 
-					<j:DataGrid localId="datagrid2" height="205"
+					<j:DataGrid localId="dg4" height="205"
 						rowHeight="54" emphasis="primary" 
 						change="dataGridProductChange(event.target as DataGrid, datagrid2_lb)"
 						dataProvider="{productModel.productList}">
@@ -341,11 +341,11 @@ limitations under the License.
 						</j:beads>
 					</j:DataGrid>
 					<j:Label localId="datagrid2_lb" text="DataGrid selection will be shown here"/>
-					<j:Label html="{'Selected Index: ' + datagrid2.selectedIndex}"/>
-					<j:Label localId="selected" html="{describeItem(datagrid2.selectedItem)}"/>
+					<j:Label html="{'Selected Index: ' + dg4.selectedIndex}"/>
+					<j:Label localId="selected" html="{describeItem(dg4.selectedItem)}"/>
 					</j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign="itemsRight">
-					<j:IconButton click="addRow()" outlined="true">
+					<j:IconButton click="addRow(dg4)" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Add Row"/>
 						</j:beads>
@@ -353,7 +353,7 @@ limitations under the License.
 							<js:FontIcon text="{MaterialIconType.ADD}" material="true"/>
 						</j:icon>
 					</j:IconButton>
-					<j:IconButton click="removeFirstRow()" outlined="true">
+					<j:IconButton click="removeFirstRow(dg4)" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Remove First Row"/>
 						</j:beads>
@@ -361,7 +361,7 @@ limitations under the License.
 							<js:FontIcon text="{MaterialIconType.REMOVE}" material="true"/>
 						</j:icon>
 					</j:IconButton>
-					<j:IconButton click="updateFirstRow()" emphasis="primary" outlined="true">
+					<j:IconButton click="updateFirstRow(dg4)" emphasis="primary" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Update First Row"/>
 						</j:beads>
@@ -369,7 +369,7 @@ limitations under the License.
 							<js:FontIcon text="{MaterialIconType.UPDATE}" material="true"/>
 						</j:icon>
 					</j:IconButton>
-					<j:IconButton click="removeAllRows()" emphasis="primary" outlined="true">
+					<j:IconButton click="removeAllRows(dg4)" emphasis="primary" outlined="true">
 						<j:beads>
 							<j:ToolTip toolTip="Remove all rows"/>
 						</j:beads>
