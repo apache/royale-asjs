@@ -162,7 +162,6 @@ package org.apache.royale.jewel.beads.views
                 
                 // by default make columns get the 1/n of the maximun space available
                 (list as ILayoutChild).percentWidth = 100 / _sharedModel.columns.length;
-                // (list as ILayoutChild).percentHeight = 100;
                 list.itemRenderer = dataGridColumn.itemRenderer;
                 list.labelField = dataGridColumn.dataField;
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);

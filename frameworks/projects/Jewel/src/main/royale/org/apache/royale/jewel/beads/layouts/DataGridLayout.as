@@ -126,60 +126,52 @@ package org.apache.royale.jewel.beads.layouts
             // of columns that may contain invisible columns
             var bbmodel:ButtonBarModel = header.getBeadByType(ButtonBarModel) as ButtonBarModel;
             var bblayout:ButtonBarLayout = header.getBeadByType(ButtonBarLayout) as ButtonBarLayout;
-			// (header as ButtonBar).widthType = ButtonBarModel.PROPORTIONAL_WIDTHS;
 			var listArea:IUIBase = view.listArea;
 			
 			var displayedColumns:Array = view.columnLists;
 			
-			
 			// Width
 			var defaultColumnWidth:Number;
-			if(!datagrid.percentWidth)
-			{
-				defaultColumnWidth = (datagrid.width) / bbmodel.dataProvider.length;
-			} else
-			{
-				defaultColumnWidth = (datagrid.percentWidth) / bbmodel.dataProvider.length;
-			}
+
+			if(datagrid.percentWidth)
+				defaultColumnWidth = datagrid.percentWidth / bbmodel.dataProvider.length;
+			else
+				defaultColumnWidth = datagrid.width / bbmodel.dataProvider.length;
+			
+			// special case when no width is set at all, defaultColumnWidth will be 0
+			if(defaultColumnWidth == 0 && datagrid.isWidthSizedToContent())
+				defaultColumnWidth = 80;
+			
 			var columnWidths:Array = [];
 
 			for(var i:int=0; i < bbmodel.dataProvider.length; i++)
 			{
 				var columnDef:IDataGridColumn = (bbmodel.dataProvider as ArrayList).getItemAt(i) as IDataGridColumn;
 				var columnList:UIBase = displayedColumns[i] as UIBase;
-				
-				//remove columns height if rows not surround datagrid height (and this one is set to pixels)
-				if(model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > (datagrid.height - header.height))
-				{
-					columnList.height = NaN;
-				} else 
-				{
-					columnList.percentHeight = 100;
-				}
-
-				//temporal- if only one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
-				var pixelflag:Boolean = false;
 				var columnWidth:Number = defaultColumnWidth;
+				
+				// Column's Width
+				// if just one isNaN(columnDef.columnWidth) make it true so widthType = ButtonBarModel.PIXEL_WIDTHS
 				if (!isNaN(columnDef.columnWidth)) {
 					columnWidth = columnDef.columnWidth;
-					pixelflag = true;
+					bblayout.widthType = ButtonBarModel.PIXEL_WIDTHS;
 				}
 				
-				if(!datagrid.percentWidth)
-					columnList.width = columnWidth;
-				else
+				if(datagrid.percentWidth)
 					columnList.percentWidth = columnWidth;
+				else
+					columnList.width = columnWidth;
 
 				columnWidths.push(columnWidth);
+				
+				// Column's Height - remove columns height if rows not surround datagrid height (and this one is set to pixels)
+				if(model.dataProvider && (model.dataProvider.length * presentationModel.rowHeight) > (datagrid.height - header.height))
+					columnList.height = NaN;
+				else 
+					columnList.percentHeight = 100;
 			}
 
 			bbmodel.buttonWidths = columnWidths;
-			if(pixelflag)
-			{
-				bblayout.widthType = ButtonBarModel.PIXEL_WIDTHS;
-				datagrid.width = NaN;
-				listArea.width = NaN;
-			}
 			
 			header.dispatchEvent(new Event("layoutNeeded"));
 			listArea.dispatchEvent(new Event("layoutNeeded"));
