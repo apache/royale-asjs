@@ -56,6 +56,9 @@ package org.apache.royale.jewel
 			//TabBar is always selected, so selectedIndex can't be -1, at least it will default to 0
 			ISelectionModel(model).selectedIndex = 0;
 
+			// rowHeight is not set byt default, so set it to NaN
+			rowHeight = NaN;
+
 			addEventListener(MouseEvent.CLICK, internalMouseHandler);
 		}
 

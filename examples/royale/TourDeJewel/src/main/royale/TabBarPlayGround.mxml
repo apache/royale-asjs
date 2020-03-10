@@ -180,10 +180,13 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
-					<html:H3 text="Jewel TabBar"/>
+					<html:H3 text="rowHeight"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
-					<j:TabBar>
+					<j:Label multiline="true">
+						<j:html><![CDATA[By default <b>TabBar</b> doesn't set <i>rowHeight</i>. This one set it to 60, so all renders has that height.]]></j:html>
+					</j:Label>
+					<j:TabBar rowHeight="60">
 						<j:beads>
 							<js:ConstantBinding sourcePropertyName="tabBarDataSample"
 												destinationPropertyName="dataProvider"/>

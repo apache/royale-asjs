@@ -133,7 +133,9 @@ package
         
         import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListSelectableItemRendererBead; ClassSelectorListSelectableItemRendererBead;
         import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead; ClassSelectorListHoverOnlySelectableItemRendererBead;
+        
         import org.apache.royale.jewel.beads.itemRenderers.JewelListItemRendererInitializer; JewelListItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer; TabBarItemRendererInitializer;
 
     }
 }
