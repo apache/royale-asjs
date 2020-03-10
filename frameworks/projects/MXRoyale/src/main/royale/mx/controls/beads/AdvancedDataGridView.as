@@ -149,7 +149,7 @@ package mx.controls.beads
 	            for (var i:int = 0; i < columnLists.length; i++)
 	            {
 	                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
-	                if (target == list)
+	                if (target == list && visibleColumns[i].editable)
 					{
 	                    var advancedDataGridEvent:AdvancedDataGridEvent =
 	                        new AdvancedDataGridEvent(AdvancedDataGridEvent.ITEM_EDIT_BEGINNING, false, true);
