@@ -311,6 +311,67 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     //  labelFunction
     //----------------------------------
 
+    public function itemToLabel(data:Object):String
+    {
+        if (data == null)
+            return " ";
+        
+        /*
+        if (labelFunction != null)
+            return labelFunction(data);
+        */
+        
+        if (data is XML)
+        {
+            try
+            {
+                if ((data as XML)[labelField].length() != 0)
+                    data = (data as XML)[labelField];
+                //by popular demand, this is a default XML labelField
+                //else if (data.@label.length() != 0)
+                //  data = data.@label;
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        else if (data is Object)
+        {
+            try
+            {
+                if (data[labelField] != null)
+                    data = data[labelField];
+            }
+            catch(e:Error)
+            {
+            }
+        }
+        
+        if (data is String)
+            return String(data);
+        
+        try
+        {
+            return data.toString();
+        }
+        catch(e:Error)
+        {
+        }
+        
+        return " ";
+    }
+
+    private var _labelField:String;
+    public function get labelField():String
+    {
+        return _labelField;
+    }
+
+    public function set labelField(value:String):void
+    {
+        _labelField = value;
+    }
+
     /**
      *  @private
      *  Storage for the labelFunction property.
