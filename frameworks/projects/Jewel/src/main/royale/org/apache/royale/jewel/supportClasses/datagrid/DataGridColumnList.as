@@ -59,6 +59,8 @@ package org.apache.royale.jewel.supportClasses.datagrid
 		{
 			super();
 			typeNames = "jewel list column";
+            // rowHeight need to be set to a default value to avoid potential different column heights
+			rowHeight = 34;
 		}
 		
         /**
