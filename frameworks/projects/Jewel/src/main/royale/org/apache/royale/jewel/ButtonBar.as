@@ -62,6 +62,9 @@ package org.apache.royale.jewel
 			super();
 
             typeNames = "jewel buttonbar";
+
+			// default height and rowHeight
+			height = rowHeight = 38;
 		}
 		
 		/**

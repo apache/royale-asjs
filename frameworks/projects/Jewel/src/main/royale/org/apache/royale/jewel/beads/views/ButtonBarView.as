@@ -56,27 +56,11 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function get buttonBar():ButtonBar
 		{
-			return _buttonBar;
+			return _strand as ButtonBar;
 		}
-
 		public function set buttonBar(value:ButtonBar):void
 		{
-			_buttonBar = value;
-		}
-
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-			buttonBar = value as ButtonBar;
-			buttonBar.height = buttonBar.rowHeight = 38;
+			_strand = value as ButtonBar;
 		}
 	}
 }
