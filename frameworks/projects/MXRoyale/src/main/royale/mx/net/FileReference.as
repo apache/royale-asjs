@@ -28,6 +28,7 @@ package mx.net
  import org.apache.royale.file.beads.FileLoaderAndUploader;
  import org.apache.royale.events.Event;
  import org.apache.royale.net.URLRequest;
+ import org.apache.royale.file.beads.FileUploader;
 
    public class FileReference extends FileProxy
    {
@@ -45,6 +46,8 @@ package mx.net
 		  addBead(_model);
 		  addBead(_browser);
 		  addBead(_uploader);
+		  var uploadBead:FileUploader = getBeadByType(FileUploader) as FileUploader;
+		  uploadBead.contentType = "multipart/form-data";
 		  addEventListener("modelChanged", modelChangedHandler);
 	  }
   
