@@ -51,12 +51,17 @@ package org.apache.royale.html.beads
 		{
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
 		 * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_UPDATED, handleItemUpdated);
+			}
+			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			

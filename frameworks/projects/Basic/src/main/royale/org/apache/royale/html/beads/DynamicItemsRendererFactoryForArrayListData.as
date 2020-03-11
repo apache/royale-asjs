@@ -19,27 +19,14 @@
 package org.apache.royale.html.beads
 {
     import org.apache.royale.collections.IArrayList;
-    import org.apache.royale.core.IBead;
-    import org.apache.royale.core.IDataProviderItemRendererMapper;
-    import org.apache.royale.core.IDataProviderModel;
-    import org.apache.royale.core.IItemRendererClassFactory;
-    import org.apache.royale.core.IItemRendererOwnerView;
-    import org.apache.royale.core.IIndexedItemRendererInitializer;
-    import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.IIndexedItemRenderer;
-    import org.apache.royale.core.ISelectionModel;
-    import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IIndexedItemRendererInitializer;
+    import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IStrandWithModelView;
-    import org.apache.royale.core.SimpleCSSStyles;
-    import org.apache.royale.core.UIBase;
-    import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.CollectionEvent;
     import org.apache.royale.events.Event;
-    import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IListView;
-    import org.apache.royale.utils.loadBeadFromValuesManager;
-    import org.apache.royale.core.DispatcherBead;
     import org.apache.royale.utils.sendStrandEvent;
 
     /**
@@ -60,7 +47,6 @@ package org.apache.royale.html.beads
         }
 
         private var dp:IArrayList;
-        
 		/**
 		 * @private
          * @royaleignorecoercion org.apache.royale.core.IListPresentationModel
@@ -68,6 +54,10 @@ package org.apache.royale.html.beads
 		 */
         override protected function dataProviderChangeHandler(event:Event):void
         {
+            if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			}
             dp = dataProviderModel.dataProvider as IArrayList;
             if (!dp)
                 return;
