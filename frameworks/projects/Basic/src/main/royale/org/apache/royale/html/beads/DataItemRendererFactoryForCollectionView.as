@@ -28,7 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.sendStrandEvent;
-
+ 
 	
 	/**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
