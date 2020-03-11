@@ -10900,7 +10900,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
     private function editorMouseDownHandler(event:Event):void
     {
-        if(event is MouseEvent && owns(event.target as IUIComponent))
+        if(event is MouseEvent && owns(event.target as IUIBase))
             return;
             
         endEdit(AdvancedDataGridEventReason.OTHER);

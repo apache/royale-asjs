@@ -53,6 +53,7 @@ import mx.collections.IHierarchicalData;
 import mx.events.ListEvent;
 import org.apache.royale.core.ISelectableItemRenderer;
 import org.apache.royale.core.IListDataItemRenderer;
+import org.apache.royale.core.IUIBase;
 import org.apache.royale.geom.Point;
 import org.apache.royale.utils.getSelectionRenderBead;
 import org.apache.royale.utils.PointUtils;
@@ -983,7 +984,7 @@ public class AdvancedDataGridItemRenderer extends StringItemRenderer
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
     COMPILE::SWF 
     { override }
-    public function contains(child:IUIComponent):Boolean
+    public function contains(child:IUIBase):Boolean
     {
 		return child == this;
     }

@@ -63,6 +63,7 @@ package mx.charts
     import mx.styles.IStyleClient;
 //    import mx.styles.StyleProtoChain;
     
+    import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.Event;
     import mx.events.KeyboardEvent;
     import org.apache.royale.events.MouseEvent;
@@ -3178,7 +3179,7 @@ package mx.charts
          *  @private
          */
         [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
-        override public function contains(child:IUIComponent):Boolean
+        override public function contains(child:IUIBase):Boolean
         {
             if (contentPane)
                 return contentPane.contains(child);
@@ -5016,7 +5017,7 @@ package mx.charts
          *  so in order to implement the rawChildren property we need
          *  a parallel method that deals with all children.
          */
-        mx_internal function rawChildren_contains(child:IUIComponent):Boolean
+        mx_internal function rawChildren_contains(child:IUIBase):Boolean
         {
             return super.contains(child);
         }
@@ -6576,6 +6577,7 @@ package mx.charts
 
 
 import mx.core.IUIComponent;
+import org.apache.royale.core.IUIBase;
 import org.apache.royale.geom.Point;
 
 import mx.charts.Legend;
@@ -6774,7 +6776,7 @@ class LegendRawChildrenList implements IChildList
     /**
      *  @private
      */
-    public function contains(child:IUIComponent):Boolean
+    public function contains(child:IUIBase):Boolean
     {
         return owner.rawChildren_contains(child);
     }   

@@ -3549,7 +3549,7 @@ COMPILE::JS
     [SWFOverride(params="flash.display.DisplayObject", altparams="mx.core.UIComponent"))]
     COMPILE::SWF 
     { override }
-    public function contains(child:IUIComponent):Boolean
+    public function contains(child:IUIBase):Boolean
     {
         COMPILE::SWF
         {
@@ -5237,10 +5237,10 @@ COMPILE::JS
      */
     public function owns(child:IUIBase):Boolean
     {
-		if (!(child is IUIComponent))
+		if (!(child is IUIBase))
 			return false;
 			
-        return contains(child as IUIComponent);
+        return contains(child as IUIBase);
     }
     
     /**
