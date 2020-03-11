@@ -511,6 +511,48 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
         trace("textAlign not implemented");
     }
 
+    //----------------------------------
+    //  wordWrap
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the wordWrap property.
+     */
+    private var _wordWrap:*;
+
+    [Inspectable(category="Advanced")]
+
+    /**
+     *  Set to <code>false</code> to wrap the text in a row of this column
+     *  because it does not fit on one line
+     *  If <code>undefined</code>, the AdvancedDataGrid control's <code>wordWrap</code> property 
+     *  is used.
+     *
+     *  @default undefined
+     *  
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get wordWrap():*
+    {
+        return _wordWrap;
+    }
+
+    /**
+     *  @private
+     */
+    public function set wordWrap(value:*):void
+    {
+        _wordWrap = value;
+
+       /*  if (owner)
+        {
+            owner.invalidateList();
+        } */
+    }
 
     public var sortDescending:Boolean = false;
     
