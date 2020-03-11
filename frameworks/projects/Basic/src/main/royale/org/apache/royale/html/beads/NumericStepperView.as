@@ -155,7 +155,7 @@ package org.apache.royale.html.beads
 		private function sizeChangeHandler(event:Event) : void
 		{
 			// first reads
-			var widthToContent:Boolean = (_strand as UIBase).isWidthSizedToContent();
+			var widthToContent:Boolean = (event == null) && (_strand as UIBase).isWidthSizedToContent();
 			var inputWidth:Number = input.width;
 			var inputHeight:Number = input.height;
 			var strandWidth:Number;
