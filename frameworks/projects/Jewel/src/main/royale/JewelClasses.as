@@ -135,6 +135,7 @@ package
         import org.apache.royale.jewel.beads.itemRenderers.ClassSelectorListHoverOnlySelectableItemRendererBead; ClassSelectorListHoverOnlySelectableItemRendererBead;
         
         import org.apache.royale.jewel.beads.itemRenderers.JewelListItemRendererInitializer; JewelListItemRendererInitializer;
+        import org.apache.royale.jewel.beads.itemRenderers.DataContainerItemRendererInitializer; DataContainerItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.ButtonBarItemRendererInitializer; ButtonBarItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer; TabBarItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.NavigationItemRendererInitializer; NavigationItemRendererInitializer;
