@@ -53,6 +53,9 @@ package org.apache.royale.html.beads
 			if (!dataProviderModel)
 				return;
 			dp = dataProviderModel.dataProvider as ICollectionView;
+			
+			super.dataProviderChangeHandler(event);
+			
 			if (!dp)
 				return;
 			
@@ -61,8 +64,6 @@ package org.apache.royale.html.beads
 			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-			
-			super.dataProviderChangeHandler(event);
 		}
 		
 		/**
