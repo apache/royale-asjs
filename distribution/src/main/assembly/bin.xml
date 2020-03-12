@@ -26,5 +26,6 @@ under the License.
   </formats>
   <componentDescriptors>
     <componentDescriptor>src/main/assembly/component-royale.xml</componentDescriptor>
+    <componentDescriptor>src/main/assembly/component-royale-without-swf.xml</componentDescriptor>
   </componentDescriptors>
 </assembly>

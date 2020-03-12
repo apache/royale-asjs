@@ -16,15 +16,16 @@ KIND, either express or implied.  See the License for the
 specific language governing permissions and limitations
 under the License.
 -->
-
-<assembly>
-  <id>dir</id>
-  <formats>
-    <format>dir</format>
-  </formats>
-  <includeBaseDirectory>false</includeBaseDirectory>
-  <componentDescriptors>
-    <componentDescriptor>src/main/assembly/component-royale.xml</componentDescriptor>
-    <componentDescriptor>src/main/assembly/component-royale-without-swf.xml</componentDescriptor>
-  </componentDescriptors>
-</assembly>
+<component xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.3" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.3 http://maven.apache.org/xsd/component-1.1.3.xsd">
+  <fileSets>
+    <fileSet>
+      <directory>src/main/resources-without-swf</directory>
+      <outputDirectory></outputDirectory>
+      <includes>
+        <include>**</include>
+      </includes>
+      <filtered>true</filtered>
+    </fileSet>
+  </fileSets>
+</component>

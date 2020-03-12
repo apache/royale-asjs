@@ -304,6 +304,9 @@
             <!-- Moonshine generate this files -->
             <exclude>obj/*.xml</exclude>
             <exclude>*.as3proj</exclude>
+
+            <!-- Exclude node_modules -->
+            <exclude>node_modules/**</exclude>
           </excludes>
         </configuration>
       </plugin>
