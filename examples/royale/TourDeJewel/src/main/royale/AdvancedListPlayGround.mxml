@@ -167,9 +167,6 @@ limitations under the License.
 								labelField="label">
 							<j:beads>
 								<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconDetailListData" destinationPropertyName="dataProvider" />
-								<j:AddListItemRendererForArrayListData/>
-								<j:RemoveListItemRendererForArrayListData/>
-								<j:UpdateListItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
 						</j:List>
@@ -200,9 +197,6 @@ limitations under the License.
 								dataProvider="{getFilteredALV(advancedIconList.dataProvider,'jewelFiltered', isJewel)}"
 								change="onChange(event)">
 							<j:beads>
-								<j:AddListItemRendererForArrayListData/>
-								<j:RemoveListItemRendererForArrayListData/>
-								<j:UpdateListItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 								<j:CollectionChangeUpdateForArrayListData/>
 							</j:beads>
@@ -216,9 +210,6 @@ limitations under the License.
 								dataProvider="{getFilteredALV(advancedIconList.dataProvider,'basicFiltered', isBasic)}"
 								change="onChange(event)">
 							<j:beads>
-								<j:AddListItemRendererForArrayListData/>
-								<j:RemoveListItemRendererForArrayListData/>
-								<j:UpdateListItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 								<j:CollectionChangeUpdateForArrayListData/>
 							</j:beads>
@@ -232,9 +223,6 @@ limitations under the License.
 								dataProvider="{getFilteredALV(advancedIconList.dataProvider,'jewelFilteredSorted', isJewel, reverseAlphaSort())}"
 								change="onChange(event)">
 							<j:beads>
-								<j:AddListItemRendererForArrayListData/>
-								<j:RemoveListItemRendererForArrayListData/>
-								<j:UpdateListItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 								<j:CollectionChangeUpdateForArrayListData/>
 							</j:beads>

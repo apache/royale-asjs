@@ -172,20 +172,18 @@ package org.apache.royale.core
         }
 
         private var _itemRendererOwnerView:IItemRendererOwnerView;
-        
         /**
-         *  The text of the renderer
+         *  The parent container for the itemRenderer instance.
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
+         *  @productversion Royale 0.9.7
          */
         public function get itemRendererOwnerView():IItemRendererOwnerView
         {
             return _itemRendererOwnerView;
         }
-        
         public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
         {
             _itemRendererOwnerView = value;

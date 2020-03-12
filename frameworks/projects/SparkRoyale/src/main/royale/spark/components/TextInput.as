@@ -406,7 +406,10 @@ public class TextInput extends SkinnableTextBase
 	public function textChangeHandler(event:Event):void
 	{
         if (!inSetter)
+		{
             dispatchEvent(new Event(Event.CHANGE));
+            dispatchEvent(new Event(FlexEvent.VALUE_COMMIT));
+		}
 	}
 
     //--------------------------------------------------------------------------

@@ -28,7 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.utils.sendStrandEvent;
-
+ 
 	
 	/**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
@@ -40,7 +40,7 @@ package org.apache.royale.html.beads
 			super(target);
 		}
 		
-		
+		private var dped:IEventDispatcher;
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
@@ -53,16 +53,23 @@ package org.apache.royale.html.beads
 			if (!dataProviderModel)
 				return;
 			dp = dataProviderModel.dataProvider as ICollectionView;
+			
+			super.dataProviderChangeHandler(event);
+			
 			if (!dp)
 				return;
 			
+			if(dped)
+			{
+				dped.removeEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+				dped.removeEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+				dped.removeEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+			}
 			// listen for individual items being added in the future.
-			var dped:IEventDispatcher = dp as IEventDispatcher;
+			dped = dp as IEventDispatcher;
 			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
-			
-			super.dataProviderChangeHandler(event);
 		}
 		
 		/**

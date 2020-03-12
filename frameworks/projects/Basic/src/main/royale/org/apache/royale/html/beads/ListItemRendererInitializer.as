@@ -18,18 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {	
-	import org.apache.royale.core.IItemRendererOwnerView;
-	
-	import org.apache.royale.core.Bead;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
-	import org.apache.royale.core.IItemRenderer;
-	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.html.IListPresentationModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithPresentationModel;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.SimpleCSSStyles;
 	import org.apache.royale.core.UIBase;
 
@@ -40,7 +33,7 @@ package org.apache.royale.html.beads
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.7
 	 */
 	public class ListItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
 	{
@@ -50,9 +43,9 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 */
-		public function ListItemRendererInitializer()
+		public function ListItemRendererInitializer() 
 		{
 		}
 		
@@ -64,7 +57,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.IStrandWithPresentationModel
 		 */

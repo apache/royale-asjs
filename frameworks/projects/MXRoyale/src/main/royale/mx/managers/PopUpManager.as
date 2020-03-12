@@ -254,13 +254,16 @@ public class PopUpManager
      */
     public static function removePopUp(popUp:IFlexDisplayObject):void
     {
-        var popUpHost:IUIBase = (popUp.parent as IPopUpHostParent).popUpHost as IUIBase;
-		UIUtils.removePopUp(popUp as IChild);
-        if (modalWindows.length > 0 && modalWindows[modalWindows.length - 1] == popUp)
-        {
-            PopUpManagerModal.remove(popUpHost);
-            modalWindows.pop();
-        }
+		if (popUp && popUp.parent)
+		{
+	        var popUpHost:IUIBase = (popUp.parent as IPopUpHostParent).popUpHost as IUIBase;
+			UIUtils.removePopUp(popUp as IChild);
+	        if (modalWindows.length > 0 && modalWindows[modalWindows.length - 1] == popUp)
+	        {
+	            PopUpManagerModal.remove(popUpHost);
+	            modalWindows.pop();
+	        }
+		}
     }
 } // class
 } // package

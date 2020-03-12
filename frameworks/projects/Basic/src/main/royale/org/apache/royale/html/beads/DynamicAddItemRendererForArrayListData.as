@@ -29,8 +29,8 @@ package org.apache.royale.html.beads
 	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
-	 * Handles the adding of an itemRenderer once the corresponding datum has been added
-	 * from the IDataProviderModel.
+	 *  Handles the adding of an itemRenderer once the corresponding datum has been added
+	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -52,13 +52,16 @@ package org.apache.royale.html.beads
 		}
 
 		private var dp:IArrayList;
-		
 		/**
 		 *  @private
 		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_ADDED, handleItemAdded);
+			}
 			dp = dataProviderModel.dataProvider as IArrayList;
 			if (!dp)
 				return;

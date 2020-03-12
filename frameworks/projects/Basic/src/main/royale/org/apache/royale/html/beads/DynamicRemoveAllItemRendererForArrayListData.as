@@ -23,15 +23,15 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.IListView;
 
 	/**
-	 * Handles the removal of all itemRenderers once the all items has been removed
-	 * from the IDataProviderModel.
+	 *  Handles the removal of all itemRenderers once the all items has been removed
+	 *  from the IDataProviderModel.
 	 *
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -89,13 +89,18 @@ package org.apache.royale.html.beads
 			dataProviderChangeHandler(null);
 		}
 		
+		private var dp:IEventDispatcher;
 		/**
 		 * @private
 		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ALL_ITEMS_REMOVED, handleAllItemsRemoved);
+			}
+			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			
@@ -104,7 +109,7 @@ package org.apache.royale.html.beads
 		}
 
 		/**
-		 * Handles the itemRemoved event by removing the item.
+		 *  Handles the allItemsRemoved event by removing the item.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

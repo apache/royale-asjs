@@ -16,21 +16,21 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.views
-{
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.jewel.ButtonBar;
-	
+package org.apache.royale.jewel.beads.itemRenderers
+{	
 	/**
-	 *  The ButtonBarView class creates the visual elements of the org.apache.royale.jewel.ButtonBar 
-	 *  component. A ButtonBar is a type of List and ButtonBarView extends the ListView bead.
+	 *  The NavigationItemRendererInitializer class initializes item renderers
+     *  in Navigation component.
+	 *  
+	 *  By Default this works the same as ListItemRendererInitializer, but create a placeholder
+	 *  for it.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBarView extends ListView
+	public class NavigationItemRendererInitializer extends ListItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -40,27 +40,13 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function ButtonBarView()
+		public function NavigationItemRendererInitializer()
 		{
-			super();
 		}
 		
-		private var _buttonBar:ButtonBar;
-		/**
-		 *  the ButtonBar associated to this view
-		 *  
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function get buttonBar():ButtonBar
-		{
-			return _strand as ButtonBar;
-		}
-		public function set buttonBar(value:ButtonBar):void
-		{
-			_strand = value as ButtonBar;
-		}
+        // override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        // {
+		// 	super.setupVisualsForItemRenderer(ir);
+		// }
 	}
 }

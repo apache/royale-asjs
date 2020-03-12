@@ -18,30 +18,27 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {	
-	import org.apache.royale.core.Bead;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
-	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 *  The ListItemRendererInitializer class initializes item renderers
-     *  in list classes.
+     *  in list classes and use the base class of many other initializers based on lists
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.7
 	 */
-	public class JewelListItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
+	public class ListItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -49,16 +46,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 */
-		public function JewelListItemRendererInitializer()
+		public function ListItemRendererInitializer()
 		{
 		}
 		
         protected var presentationModel:IListPresentationModel;
-        protected var dataProviderModel:IDataProviderModel;
-        protected var labelField:String;
-        private var ownerView:IItemRendererOwnerView;
+        protected var ownerView:IItemRendererOwnerView;
         
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -66,43 +61,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion HTMLInputElement
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
 		override public function set strand(value:IStrand):void
 		{	
-			_strand = value;
+			super.strand = value;
             ownerView = (value as IStrandWithModelView).view as IItemRendererOwnerView;
             presentationModel = (_strand as IStrandWithPresentationModel).presentationModel as IListPresentationModel;            
-            dataProviderModel = _strand.getBeadByType(IDataProviderModel) as IDataProviderModel;
-            labelField = dataProviderModel.labelField;            
 		}
-		
-		/**
-		 *  @private
-		 *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
-		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 */
-		public function initializeItemRenderer(ir:IItemRenderer, data:Object):void
-		{
-            if (ir is ILabelFieldItemRenderer)
-                (ir as ILabelFieldItemRenderer).labelField = labelField;
-            
-            setupVisualsForItemRenderer(ir as IIndexedItemRenderer);
-        }
         
-        /**
-         *  @private
-         *  @royaleignorecoercion org.apache.royale.core.HTMLElementWrapper
-         */
-        public function initializeIndexedItemRenderer(ir:IIndexedItemRenderer, data:Object, index:int):void
-        {
-            ir.index = index;
-            initializeItemRenderer(ir, data);
-        }
-        
-        protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
             if (presentationModel) {
                 UIBase(ir).height = presentationModel.rowHeight;
@@ -115,6 +85,5 @@ package org.apache.royale.jewel.beads.itemRenderers
             if (ir is StyledMXMLItemRenderer && ownerView)
                 (ir as StyledMXMLItemRenderer).itemRendererOwnerView = ownerView;
 		}
-
 	}
 }

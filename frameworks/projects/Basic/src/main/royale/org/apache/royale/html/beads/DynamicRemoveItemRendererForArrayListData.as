@@ -18,13 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
-	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IParent;
-	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
@@ -54,14 +49,18 @@ package org.apache.royale.html.beads
 		{
 		}
 
-		
+		private var dp:IEventDispatcher;
 		/**
 		 * @private
 		 *  @royaleemitcoercion org.apache.royale.events.IEventDispatcher
 		 */
 		override protected function dataProviderChangeHandler(event:Event):void
 		{
-			var dp:IEventDispatcher = dataProviderModel.dataProvider as IEventDispatcher;
+			if(dp)
+			{
+				dp.removeEventListener(CollectionEvent.ITEM_REMOVED, handleItemRemoved);
+			}
+			dp = dataProviderModel.dataProvider as IEventDispatcher;
 			if (!dp)
 				return;
 			

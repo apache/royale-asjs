@@ -44,6 +44,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumn;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
 	import org.apache.royale.jewel.supportClasses.datagrid.IDataGridPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.IEmphasis;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
     
@@ -147,6 +148,11 @@ package org.apache.royale.jewel.beads.views
                 var dataGridColumn:IDataGridColumn = _sharedModel.columns[i] as IDataGridColumn;
 
                 var list:IDataGridColumnList = new columnClass();
+                
+                var pm:ListPresentationModel = list.getBeadByType(IListPresentationModel) as ListPresentationModel;
+                pm.rowHeight = _presentationModel.rowHeight;
+                pm.align = dataGridColumn.align;
+                
                 list.datagrid = _dg as DataGrid;
                 list.emphasis = (_dg as IEmphasis).emphasis;
                 
@@ -167,10 +173,6 @@ package org.apache.royale.jewel.beads.views
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
                 list.addEventListener('selectionChanged', handleColumnListSelectionChange);
 
-                var pm:ListPresentationModel = new ListPresentationModel();
-                pm.rowHeight = _presentationModel.rowHeight;
-                pm.align = dataGridColumn.align;
-                list.addBead(pm as IBead);
 
                 (_listArea as IParent).addElement(list as IChild);
                 _lists.push(list);

@@ -30,7 +30,6 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.jewel.IconButton;
 	import org.apache.royale.jewel.IconButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
-	import org.apache.royale.utils.IEmphasis;
 
 	/**
 	 *  The IconButtonBarItemRenderer class extends IconButton and turns it into an itemRenderer
@@ -99,7 +98,7 @@ package org.apache.royale.jewel.itemRenderers
 		 */
 		private var _itemRendererOwnerView:IItemRendererOwnerView;
 		/**
-		 * The parent container for the itemRenderer instance.
+		 *  The parent container for the itemRenderer instance.
 		 *
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -113,12 +112,6 @@ package org.apache.royale.jewel.itemRenderers
 		public function set itemRendererOwnerView(value:IItemRendererOwnerView):void
 		{
 			_itemRendererOwnerView = value;
-
-			var buttonBar:IEmphasis = (itemRendererOwnerView as ButtonBarView).buttonBar;
-			if(buttonBar.emphasis != null)
-			{
-				emphasis = buttonBar.emphasis;
-			}
 		}
 
 		private var _labelField:String = null;
@@ -180,20 +173,6 @@ package org.apache.royale.jewel.itemRenderers
 		public function set index(value:int):void
 		{
 			_index = value;
-
-			if(_index == 0)
-			{
-				addClass("first");
-			} 
-			else if( _index == (itemRendererOwnerView as ButtonBarView).buttonBar.dataProvider.length - 1 )
-			{
-				addClass("last");
-			}
-			else
-			{
-				addClass("middle");
-			}
 		}
-
 	}
 }

@@ -66,15 +66,15 @@ package org.apache.royale.html.beads
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRendererInitializer
 		 */		
 		override protected function dataProviderChangeHandler(event:Event):void
-		{
-			var dp:Object = dataProviderModel.dataProvider;
-			if (!dp)
-				return;
-						
+		{			
 			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
 			removeAllItemRenderers(dataGroup);
+			
+			var dp:Object = dataProviderModel.dataProvider;
+			if (!dp)
+				return;
 			
 			var n:int = dataProviderLength; 
 			for (var i:int = 0; i < n; i++)

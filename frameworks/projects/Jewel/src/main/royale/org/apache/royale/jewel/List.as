@@ -79,6 +79,8 @@ package org.apache.royale.jewel
 		{
 			super();
             typeNames = "jewel list";
+			// rowHeight is not set by default, so set it to NaN
+			rowHeight = NaN;
 		}
 
         [Bindable("labelFieldChanged")]

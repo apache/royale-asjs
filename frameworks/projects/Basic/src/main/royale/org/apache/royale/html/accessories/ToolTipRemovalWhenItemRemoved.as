@@ -18,12 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.accessories
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IOwnerViewItemRenderer;
-	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IToolTipBead;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IToolTipBead;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRemovedEvent;
 
@@ -36,7 +36,7 @@ package org.apache.royale.html.accessories
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public class ToolTipRemovalWhenItemRemoved implements IBead
+	public class ToolTipRemovalWhenItemRemoved extends Bead
 	{
         /**
          *  Constructor.
@@ -46,9 +46,9 @@ package org.apache.royale.html.accessories
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-		public function ToolTipRemovalWhenItemRemoved()
-		{
-		}
+        public function ToolTipRemovalWhenItemRemoved()
+        {
+        }
 
         /**
          *  listen to "itemRemoved" event dispatched from the List
@@ -60,22 +60,27 @@ package org.apache.royale.html.accessories
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-		public function set strand(value:IStrand):void
-		{
-            var eventDispatcher:IEventDispatcher = ((value as IOwnerViewItemRenderer).itemRendererOwnerView as IBeadView).host as IEventDispatcher;
-            eventDispatcher.addEventListener("itemRemoved", handleItemRemoved);
+        override public function set strand(value:IStrand):void
+        {
+			super.strand = value;
+			listenOnStrand("rendererInitizalized", rendererInitizalizedHandler);
 		}
 
+		protected function rendererInitizalizedHandler(event:Event):void
+		{
+			var eventDispatcher:IEventDispatcher = ((_strand as IOwnerViewItemRenderer).itemRendererOwnerView as IBeadView).host as IEventDispatcher;
+			eventDispatcher.addEventListener("itemRemoved", handleItemRemoved);
+        }
+		
         protected function handleItemRemoved(event:ItemRemovedEvent):void
         {
-                _tooltip.removeTip();
+            _tooltip.removeTip();
         }
 
         private var _tooltip:IToolTipBead;
         public function set tooltip(value:IToolTipBead):void
-            {
-                    _tooltip = value;
-            }
-		
+		{
+			_tooltip = value;
+		}
 	}
 }

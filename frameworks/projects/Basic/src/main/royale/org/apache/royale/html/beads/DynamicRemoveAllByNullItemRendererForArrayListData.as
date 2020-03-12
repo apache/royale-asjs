@@ -23,11 +23,10 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.events.CollectionEvent;
+	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
-    import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.html.beads.IListView;
 
 	/**
 	 * Handles the removal of all itemRenderers once data source is being set to null.

@@ -16,21 +16,26 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.jewel.beads.views
-{
+package org.apache.royale.jewel.beads.itemRenderers
+{	
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.jewel.ButtonBar;
-	
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
+	import org.apache.royale.jewel.itemRenderers.StringItemRenderer;
+
 	/**
-	 *  The ButtonBarView class creates the visual elements of the org.apache.royale.jewel.ButtonBar 
-	 *  component. A ButtonBar is a type of List and ButtonBarView extends the ListView bead.
+	 *  The DataContainerItemRendererInitializer class initializes item renderers
+     *  in DataContainer classes.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBarView extends ListView
+	public class DataContainerItemRendererInitializer extends IndexedItemRendererInitializer implements IIndexedItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -40,27 +45,32 @@ package org.apache.royale.jewel.beads.views
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function ButtonBarView()
+		public function DataContainerItemRendererInitializer()
 		{
-			super();
 		}
-		
-		private var _buttonBar:ButtonBar;
+
+        protected var ownerView:IItemRendererOwnerView;
+        
 		/**
-		 *  the ButtonBar associated to this view
+		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
+		 *  @royaleignorecoercion HTMLInputElement
+		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
 		 */
-		public function get buttonBar():ButtonBar
-		{
-			return _strand as ButtonBar;
+		override public function set strand(value:IStrand):void
+		{	
+			super.strand = value;
+            ownerView = (value as IStrandWithModelView).view as IItemRendererOwnerView;
 		}
-		public function set buttonBar(value:ButtonBar):void
-		{
-			_strand = value as ButtonBar;
+		
+        override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
+        {
+            if (ir is StringItemRenderer && ownerView)
+                (ir as StringItemRenderer).itemRendererOwnerView = ownerView;
 		}
 	}
 }

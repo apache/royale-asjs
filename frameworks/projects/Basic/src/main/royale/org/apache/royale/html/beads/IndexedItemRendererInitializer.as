@@ -25,15 +25,17 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.ILabelFieldItemRenderer;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.utils.sendEvent;
+	import org.apache.royale.events.IEventDispatcher;
 
 	/**
-	 *  The ListItemRendererInitializer class initializes item renderers
+	 *  The IndexedItemRendererInitializer class initializes item renderers
 	 *  in list classes.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.0
+	 *  @productversion Royale 0.9.7
 	 */
 	public class IndexedItemRendererInitializer extends Bead implements IIndexedItemRendererInitializer
 	{
@@ -43,7 +45,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 */
 		public function IndexedItemRendererInitializer()
 		{
@@ -58,7 +60,7 @@ package org.apache.royale.html.beads
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.0
+		 *  @productversion Royale 0.9.7
 		 * @royaleignorecoercion org.apache.royale.core.IDataProviderModel
 		 */
 		override public function set strand(value:IStrand):void
@@ -89,6 +91,7 @@ package org.apache.royale.html.beads
 		{
 			ir.index = index;
 			initializeItemRenderer(ir, data);
+			sendEvent(_strand as IEventDispatcher, "rendererInitizalized");
 		}
 		
 		protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
