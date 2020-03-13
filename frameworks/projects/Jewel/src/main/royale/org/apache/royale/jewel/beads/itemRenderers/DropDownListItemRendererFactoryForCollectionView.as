@@ -20,8 +20,14 @@ package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.collections.ICollectionView;
 	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IStrandWithModelView;
+	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.html.beads.DataItemRendererFactoryForCollectionView;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.models.IDropDownListModel;
 	import org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
@@ -47,37 +53,49 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			if (!dataProviderModel)
 				return;
-			var dp:ICollectionView = dataProviderModel.dataProvider as ICollectionView;
+
+			var view:IListView = (_strand as IStrandWithModelView).view as IListView;
+			var dataGroup:IItemRendererOwnerView = view.dataGroup;
+			
+			removeAllItemRenderers(dataGroup);
+
+			dp = dataProviderModel.dataProvider;
 			if (!dp)
 				return;
 			
-			dataGroup.removeAllItemRenderers();
-			
-			var presentationModel:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
-			labelField = dataProviderModel.labelField;
-			
-			var ir:IIndexedItemRenderer;
-			var item:Object;
-			
-			var model:IDropDownListModel = _strand.getBeadByType(IDropDownListModel) as IDropDownListModel;
-			var offset:int = model.offset;
-
-			if(offset == 1)
-			{
+			var offset:int = (dataProviderModel as IDropDownListModel).offset;
+			if(offset == 1) {
 				promptRender = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-				item = DropDownListItemRenderer.OPTION_DISABLED;
-				fillRenderer(0, item, promptRender, presentationModel);
-			}
-
-			var n:int = dp.length;
-			for (var i:int = 0; i < n; i++)
-			{
-				ir = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-				item = dp.getItemAt(i);
-				fillRenderer(i + offset, item, ir, presentationModel);
+				data = DropDownListItemRenderer.OPTION_DISABLED;
+				(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(promptRender, data, 0);
+				promptRender.data = data;				
+				dataGroup.addItemRenderer(promptRender, false);
 			}
 			
-			IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
+			var n:int = dataProviderLength; 
+			for (var i:int = 0; i < n; i++)
+			{				
+				var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
+
+				var data:Object = getItemAt(i);
+				(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, i + offset);
+				ir.data = data;				
+				dataGroup.addItemRenderer(ir, false);
+			}
+			
+			dispatchItemCreatedEvent();
+			
+			if(dped)
+			{
+				dped.removeEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+				dped.removeEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+				dped.removeEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
+			}
+			// listen for individual items being added in the future.
+			dped = dp as IEventDispatcher;
+			dped.addEventListener(CollectionEvent.ITEM_ADDED, itemAddedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_REMOVED, itemRemovedHandler);
+			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 		}
 
 		public var promptRender:IIndexedItemRenderer;
@@ -89,7 +107,8 @@ package org.apache.royale.jewel.beads.itemRenderers
 		{
 			if(promptRender)
 			{
-				setData(promptRender, DropDownListItemRenderer.OPTION_DISABLED, 0);
+				promptRender.index = 0;
+				promptRender.data = DropDownListItemRenderer.OPTION_DISABLED;
 			}
 		}
 	}

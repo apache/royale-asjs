@@ -844,6 +844,7 @@ j|DropDownList {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DropDownListModel");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView");
   IItemRendererClassFactory: ClassReference("org.apache.royale.core.ItemRendererClassFactory");
+  IItemRendererInitializer: ClassReference("org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererInitializer");
   IItemRenderer: ClassReference("org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer");
   IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.DropDownListController");
 }
