@@ -18,6 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.itemRenderers
 {
+	import org.apache.royale.collections.ICollectionView;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
@@ -29,6 +30,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.models.IDropDownListModel;
 	import org.apache.royale.jewel.itemRenderers.DropDownListItemRenderer;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
 	/**
 	 * This class creates itemRenderer instances from the data contained within an ICollectionView
