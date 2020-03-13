@@ -74,7 +74,6 @@ package org.apache.royale.jewel
         {
             return layout.gap;
         }
-
         public function set gap(value:Number):void
         {
 			typeNames = StringUtil.removeWord(typeNames, " gap-" + layout.gap + "x" + VerticalLayout.GAP_STEP + "px");
@@ -88,6 +87,33 @@ package org.apache.royale.jewel
 			}
 
 			layout.gap = value;
+        }
+        
+        /**
+		 *  
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+        public function get variableRowHeight():Boolean
+        {
+            return layout.variableRowHeight;
+        }
+        public function set variableRowHeight(value:Boolean):void
+        {
+			typeNames = StringUtil.removeWord(typeNames, " variableRowHeight");
+			if(value)
+				typeNames += " variableRowHeight";
+            
+			COMPILE::JS
+            {
+				if (parent)
+                	setClassName(computeFinalClassNames()); 
+			}
+
+			layout.variableRowHeight = value;
         }
 	}
 }

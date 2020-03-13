@@ -1026,6 +1026,9 @@ j|Label {
 .layout.horizontal > * {
   flex: 0 1 auto;
 }
+.layout.horizontal.variableRowHeight > * {
+  flex: 0 0 auto;
+}
 .layout.horizontal.flow {
   flex-wrap: wrap;
   max-width: 100%;
@@ -1124,6 +1127,9 @@ j|Label {
 }
 .layout.vertical > * {
   flex: 0 1 auto;
+}
+.layout.vertical.variableRowHeight > * {
+  flex: 0 0 auto;
 }
 .layout.vertical.flow {
   flex-wrap: wrap;

@@ -77,10 +77,11 @@ package org.apache.royale.jewel.beads.layouts
 			{
 				applyStyleToLayout(hostComponent, "gap");
 				setGap(_gap);
+				applyStyleToLayout(hostComponent, "variableRowHeight");
+				setVariableRowHeight(_variableRowHeight);
 			}
 		}
 
-		private var gapInitialized:Boolean;
 		// private var _gap:Boolean;
 		/**
 		 *  Assigns variable gap to grid from 1 to 20
@@ -137,6 +138,7 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.4
  		 */
+		COMPILE::JS
 		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
 			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
@@ -156,6 +158,10 @@ package org.apache.royale.jewel.beads.layouts
 						if(!itemsHorizontalAlignInitialized)
 							itemsHorizontalAlign = cssValue;
 						break;
+					case "variableRowHeight":
+						if(!variableRowHeightInitialized)
+							variableRowHeight = Boolean(cssValue);
+						break;
 					default:
 						break;
 				}	
@@ -167,6 +173,7 @@ package org.apache.royale.jewel.beads.layouts
 		// gap step size in each gap style rule in CSS @see $gap-step variable in _layout.sass
 		public static const GAP_STEP:Number = 3;
 
+		private var gapInitialized:Boolean;
 		protected var _gap:Number = 0;
 		/**
 		 *  Assigns variable gap in steps of GAP_STEP. You have available GAPS*GAP_STEP gap styles
@@ -212,6 +219,45 @@ package org.apache.royale.jewel.beads.layouts
 					hostClassList.add("gap-" + value + "x" + GAP_STEP + "px");
 			} else
 				throw new Error("Gap needs to be between 0 and " + GAPS*GAP_STEP);
+		}
+
+		private var variableRowHeightInitialized:Boolean;
+		private var _variableRowHeight:Boolean = false;
+		/**
+		 *  Specifies whether layout elements are allocated their preferred height.
+		 *  Setting this property to false specifies fixed height rows.
+		 *  
+		 *  If false, the actual height of each layout element is the value of rowHeight.
+		 *  The default value is true. 
+		 *  
+		 *  Note: From Flex but we should see what to do in Royale -> Setting this property to false causes the layout to ignore the layout elements' percentHeight property.
+		 */
+		public function get variableRowHeight():Boolean
+		{
+			return _variableRowHeight;
+		}
+		public function set variableRowHeight(value:Boolean):void
+		{
+			if(_variableRowHeight != value)
+			{
+				COMPILE::JS
+				{
+					if(hostComponent)
+						setVariableRowHeight(value);
+					
+					_variableRowHeight = value;
+					variableRowHeightInitialized = true;
+				}
+			}
+		}
+
+		COMPILE::JS
+		private function setVariableRowHeight(value:Boolean):void
+		{
+			if (value)
+				hostClassList.add("variableRowHeight");
+			else
+				hostClassList.remove("variableRowHeight");
 		}
 		
         /**
