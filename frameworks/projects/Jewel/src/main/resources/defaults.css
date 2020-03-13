@@ -313,7 +313,7 @@ j|ToggleButtonBar {
   color: inherit;
   text-decoration: none;
   overflow: hidden;
-  flex: 1 1 auto;
+  flex: 1 1 0%;
 }
 .jewel.card .cardActions {
   width: 100%;
