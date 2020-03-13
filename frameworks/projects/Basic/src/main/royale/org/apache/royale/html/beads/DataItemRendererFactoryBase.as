@@ -50,6 +50,11 @@ package org.apache.royale.html.beads
 		{
 			super(target);
 		}
+
+		/**
+		 * the dataProvider
+		 */
+		protected var dp:Object;
 						
 		/**
 		 *  This Factory deletes all renderers, and generates a renderer
@@ -72,7 +77,7 @@ package org.apache.royale.html.beads
 			
 			removeAllItemRenderers(dataGroup);
 			
-			var dp:Object = dataProviderModel.dataProvider;
+			dp = dataProviderModel.dataProvider;
 			if (!dp)
 				return;
 			

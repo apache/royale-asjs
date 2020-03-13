@@ -40,7 +40,11 @@ package org.apache.royale.html.beads
 			super(target);
 		}
 		
-		private var dped:IEventDispatcher;
+		/**
+		 * the dataProvider as a dispatcher
+		 */
+		protected var dped:IEventDispatcher;
+
 		/**
 		 * @private
 		 * @royaleignorecoercion org.apache.royale.collections.ICollectionView
@@ -52,7 +56,6 @@ package org.apache.royale.html.beads
 		{
 			if (!dataProviderModel)
 				return;
-			dp = dataProviderModel.dataProvider as ICollectionView;
 			
 			super.dataProviderChangeHandler(event);
 			
@@ -90,11 +93,12 @@ package org.apache.royale.html.beads
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
 			var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-			dataGroup.addItemRendererAt(ir, event.index);
 
 			var data:Object = event.item;
 			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-			ir.data = data;				
+			ir.data = data;
+							
+			dataGroup.addItemRendererAt(ir, event.index);
 			
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = dataGroup.numItemRenderers;
@@ -112,8 +116,6 @@ package org.apache.royale.html.beads
 			sendStrandEvent(_strand,"itemsCreated");
 			sendStrandEvent(_strand,"layoutNeeded");
 		}
-		
-		private var dp:ICollectionView;
 		
 		/**
 		 * @private
