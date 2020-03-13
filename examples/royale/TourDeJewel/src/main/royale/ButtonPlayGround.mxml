@@ -313,7 +313,7 @@ limitations under the License.
 							<j:TableRow>
 								<j:TableCell/>
 								<j:TableCell align="center">
-									<j:HSlider id="slider_w" width="250" value="140" minimum="120" maximum="250" valueChange="onValueChange(event)"/>
+									<j:HSlider id="slider_w" value="140" minimum="120" maximum="250" valueChange="onValueChange(event)"/>
 								</j:TableCell>
 							</j:TableRow>
 							<j:TableRow>

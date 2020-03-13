@@ -106,7 +106,7 @@ limitations under the License.
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel VSlider"/>
-				<j:HGroup gap="3" width="300">
+				<j:HGroup gap="3" width="100%">
 					<j:VSlider localId="vslider_w" height="250" value="250" minimum="100" maximum="420" change="onChange(event)" valueChange="onValueChange(event)"/>
 					<j:VSlider localId="vslider_h" height="250" value="80" minimum="40" maximum="300" change="onChange(event)" valueChange="onValueChange(event)"/>
 					
