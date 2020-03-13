@@ -52,7 +52,7 @@ $vslider-container-min-height: 150px
 			left: 0
 			right: 0
 			top: 0
-			height: $slider-container-height
+			// height: $slider-container-height
 			position: absolute
 			
 			input
@@ -64,3 +64,14 @@ $vslider-container-min-height: 150px
 		width: 100%
 		padding-left: 5px
 		padding-right: 5px
+
+// weird issues with table cells and margins:
+// maybe this could be investigated more to see a better solution
+$vslider-margin-left-tablecell: calc(50% - #{$vslider-half-width}*2)
+.jewel.tablecell
+	.vslider
+		.transform-container
+			margin-left: $vslider-margin-left-tablecell
+		// .jewel
+		// 	&.slider
+

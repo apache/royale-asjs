@@ -3592,7 +3592,6 @@ j|HSlider {
   left: 0;
   right: 0;
   top: 0;
-  height: 27px;
   position: absolute;
 }
 .vslider .jewel.slider input {
@@ -3605,6 +3604,10 @@ j|HSlider {
   width: 100%;
   padding-left: 5px;
   padding-right: 5px;
+}
+
+.jewel.tablecell .vslider .transform-container {
+  margin-left: calc(50% - 27px/2*2);
 }
 
 .jewel.snackbar {
