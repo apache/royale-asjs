@@ -96,10 +96,8 @@ package org.apache.royale.html.beads
 
 			var data:Object = event.item;
 			(itemRendererInitializer as IIndexedItemRendererInitializer).initializeIndexedItemRenderer(ir, data, event.index);
-			ir.data = data;
-							
 			dataGroup.addItemRendererAt(ir, event.index);
-			
+			ir.data = data;
 			// update the index values in the itemRenderers to correspond to their shifted positions.
 			var n:int = dataGroup.numItemRenderers;
 			for (var i:int = event.index; i < n; i++)
