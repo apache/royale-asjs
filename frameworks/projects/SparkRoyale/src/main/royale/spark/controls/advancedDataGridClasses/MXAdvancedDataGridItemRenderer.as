@@ -82,10 +82,14 @@ public class MXAdvancedDataGridItemRenderer extends ItemRenderer implements ILis
     {
         super();
        // focusEnabled = false;
-		addBead(new ItemRendererDataBinding());
-		dispatchEvent(new Event("initBindings"));
     }
     
+	override protected function createChildren():void
+	{
+		addBead(new ItemRendererDataBinding());
+		super.createChildren();
+	}
+	
     //----------------------------------
     //  listData
     //----------------------------------

@@ -429,6 +429,9 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		return _data;
 	}
 	
+	private var bindingAdded:Boolean;
+	
+	
 	/**
 	 *  @private
 	 */
@@ -437,7 +440,11 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
         var newSelected:*;
         var newLabel:*;
 
-		addBead(new ItemRendererDataBinding());
+		if (!bindingAdded)
+		{
+			addBead(new ItemRendererDataBinding());
+			bindingAdded = true;
+		}
 		dispatchEvent(new Event("initBindings"));
 		
         _data = value;

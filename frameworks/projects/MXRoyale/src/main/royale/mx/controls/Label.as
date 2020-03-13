@@ -416,6 +416,8 @@ public class Label extends UIComponent
         return _data;
     }
 
+	private var bindingAdded:Boolean;
+	
     /**
      *  @private
      */
@@ -424,7 +426,11 @@ public class Label extends UIComponent
         var newText:*;
 
 		_data = value;
-		addBead(new ItemRendererDataBinding());
+		if (!bindingAdded)
+		{
+			addBead(new ItemRendererDataBinding());
+			bindingAdded = true;
+		}
 		dispatchEvent(new Event("initBindings"));
 		
         if (_listData)

@@ -1219,7 +1219,7 @@ public class GroupBase extends UIComponent implements ILayoutParent, IContainer,
         
         super.createChildren();
         
-        if (getBeadByType(DataBindingBase) == null)
+        if (getBeadByType(DataBindingBase) == null && mxmlDocument == this)
             addBead(new ContainerDataBinding());
         
         dispatchEvent(new Event("initBindings"));

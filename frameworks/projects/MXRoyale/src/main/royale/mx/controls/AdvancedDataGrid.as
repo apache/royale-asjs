@@ -86,6 +86,7 @@ package mx.controls
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IDataGridPresentationModel;
+	import org.apache.royale.core.IItemRenderer;
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IUIBase;
@@ -2415,8 +2416,13 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      *  @private
      *
      */
-    /* override protected function mouseEventToItemRenderer(event:MouseEvent):IListItemRenderer
+    override protected function mouseEventToItemRenderer(event:MouseEvent):IItemRenderer
     {
+		if (itemEditorInstance && itemEditorInstance.owns(event.target as IUIBase))
+			return null;
+			
+		return super.mouseEventToItemRenderer(event);
+		/*
         if(!columnGrouping)
         {
             return super.mouseEventToItemRenderer(event);
@@ -2447,8 +2453,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 
             return r == itemEditorInstance ? null : r;
 
-        }
-    } */
+        }*/
+    }
 
     /**
      *  @private
@@ -10397,7 +10403,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
 
         // get the actual references for the column, row, and item
         var item:IListItemRenderer;
-        if (columns[actualRowIndex] && getListItem(actualRowIndex,actualColIndex))
+        if (columns[actualColIndex] && getListItem(actualRowIndex, actualColIndex))
             item = getListItem(actualRowIndex,actualColIndex);
         if (!item)
         {
