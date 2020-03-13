@@ -839,6 +839,10 @@ j|FormItem {
   background: #cccccc !important;
 }
 
+j|List {
+  variableRowHeight: true;
+}
+
 .jewel.navigation {
   background-color: #ffffff;
 }
