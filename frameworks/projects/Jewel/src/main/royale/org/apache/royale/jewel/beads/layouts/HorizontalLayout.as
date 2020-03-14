@@ -138,7 +138,6 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.4
  		 */
-		COMPILE::JS
 		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
 			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
