@@ -42,13 +42,6 @@ package mx.controls.advancedDataGridClasses
 
         }
         
-        override public function addedToParent():void
-        {
-            var layout:AdvancedDataGridHeaderLayout = new AdvancedDataGridHeaderLayout();
-            addBead(layout);
-            super.addedToParent();
-        }
-
     }
 
 }

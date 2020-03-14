@@ -51,6 +51,7 @@ internal class MXRoyaleClasses
 	import mx.events.MoveEvent; MoveEvent;
 	import mx.events.ValidationResultEvent; ValidationResultEvent;
     import mx.containers.beads.AdvancedDataGridListVirtualListView; AdvancedDataGridListVirtualListView;
+	import mx.containers.beads.AdvancedDataGridHeaderLayout; AdvancedDataGridHeaderLayout;
 	import mx.containers.beads.ApplicationLayout; ApplicationLayout;
 	import mx.containers.beads.BoxLayout; BoxLayout;
     import mx.containers.beads.DividedBoxLayout; DividedBoxLayout;
