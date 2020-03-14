@@ -43,13 +43,15 @@ package org.apache.royale.core
 		
 		/**
 		 * Invoked prior to performing the layout.
+		 * 
+		 *  @returns false if it isn't worth laying out
          * 
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.8
 		 */
-		function beforeLayout():void;
+		function beforeLayout():Boolean;
 		
 		/**
 		 * Invoked after performing the layout.

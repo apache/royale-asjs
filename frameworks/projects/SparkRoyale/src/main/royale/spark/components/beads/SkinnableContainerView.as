@@ -80,7 +80,7 @@ public class SkinnableContainerView extends SparkContainerView
      *  @productversion Royale 0.0
      *  @royaleignorecoercion org.apache.royale.core.UIBase
      */
-    override public function beforeLayout():void
+    override public function beforeLayout():Boolean
     {
         var host:SkinnableContainer = _strand as SkinnableContainer;
         if (host.isWidthSizedToContent() || host.isHeightSizedToContent())
@@ -110,6 +110,7 @@ public class SkinnableContainerView extends SparkContainerView
             }
                 
         }
+		return true;
     }
     
     override protected function addViewport():void

@@ -181,9 +181,9 @@ package org.apache.royale.html
 		/**
 		 * @private
 		 */
-		public function beforeLayout():void
+		public function beforeLayout():Boolean
 		{
-			// does nothing
+			return true;
 		}
 		
 		/**

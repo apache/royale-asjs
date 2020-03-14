@@ -327,9 +327,11 @@ package org.apache.royale.core
 			
 			var viewBead:ILayoutHost = (host as ILayoutParent).getLayoutHost();
 			
-			viewBead.beforeLayout();
-			if (layout()) {
-				viewBead.afterLayout();
+			if (viewBead.beforeLayout())
+			{
+				if (layout()) {
+					viewBead.afterLayout();
+				}
 			}
 			
 			isLayoutRunning = false;

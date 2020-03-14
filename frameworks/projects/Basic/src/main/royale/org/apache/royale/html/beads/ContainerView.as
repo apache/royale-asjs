@@ -209,7 +209,7 @@ package org.apache.royale.html.beads
 		 *  @productversion Royale 0.8
          *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */
-		override public function beforeLayout():void
+		override public function beforeLayout():Boolean
 		{
             var host:ILayoutChild = this.host as ILayoutChild;
             var vm:IViewportModel = viewportModel;
@@ -246,6 +246,8 @@ package org.apache.royale.html.beads
 			viewport.layoutViewportBeforeContentLayout(
 				hostWidth - vm.borderMetrics.left - vm.borderMetrics.right,
 				hostHeight - vm.borderMetrics.top - vm.borderMetrics.bottom);
+				
+			return true;
 		}
 
 		/**

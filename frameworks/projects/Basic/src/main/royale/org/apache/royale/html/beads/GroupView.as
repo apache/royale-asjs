@@ -202,9 +202,10 @@ package org.apache.royale.html.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.8
 		 */
-		public function beforeLayout():void
+		public function beforeLayout():Boolean
 		{
 			// This has no use for Group but is here so a subclass can override it.
+			return true;
 		}
 
 		/**

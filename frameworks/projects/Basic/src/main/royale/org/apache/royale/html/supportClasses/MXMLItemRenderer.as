@@ -78,9 +78,9 @@ package org.apache.royale.html.supportClasses
 			}
 		}
 		
-		public function beforeLayout():void
+		public function beforeLayout():Boolean
 		{
-			
+			return true;
 		}
 		
 		public function afterLayout():void
