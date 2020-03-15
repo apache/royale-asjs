@@ -104,7 +104,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var dayNamesLongOverride:Array; /* of String */
+    private static var dayNamesLongOverride:Array /* of String */ = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
     /**
      *  Long format of day names.
@@ -209,7 +209,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var monthNamesLongOverride:Array; /* of String */
+    private static var monthNamesLongOverride:Array /* of String */ = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     /**
      *  Long format of month names.
@@ -338,7 +338,7 @@ public class DateBase
     /**
      *  @private
      */
-    private static var timeOfDayOverride:Array; /* of String */
+    private static var timeOfDayOverride:Array = /* of String */["AM", "PM"];
 
     /**
      *  Time of day names.
