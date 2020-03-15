@@ -74,18 +74,10 @@
 
     <fx:Style>
         @namespace "http://www.w3.org/1999/xhtml";
-        @namespace svg "library://ns.apache.org/royale/svg";
         
         .bgshape
         {
             background: #15CF12;
-        }
-
-        svg|Image
-        {
-            vertical-align: top;
-            IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
-            IBeadView:  ClassReference("org.apache.royale.svg.beads.ImageView");
         }
     </fx:Style>
 
