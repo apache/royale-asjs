@@ -70,6 +70,7 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			_strand = value;
 			(_strand as IEventDispatcher).addEventListener("layoutNeeded", handleLayoutNeeded);
+			(_strand as IEventDispatcher).addEventListener("sizeChanged", sizeChangedNeeded);
 		}
 		
 		/**
@@ -80,6 +81,21 @@ package org.apache.royale.jewel.beads.layouts
 			return _strand as UIBase;
 		}
 		
+		/**
+		 *  sizeChangedNeeded
+		 * 
+		 *  @param event 
+		 */
+		private function sizeChangedNeeded(event:Event):void
+		{
+			layout();
+		}
+
+		/**
+		 *  handleLayoutNeeded
+		 * 
+		 *  @param event 
+		 */
 		private function handleLayoutNeeded(event:Event):void
 		{
 			layout();
