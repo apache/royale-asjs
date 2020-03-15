@@ -310,27 +310,30 @@ package org.apache.royale.core
          */
         override public function setWidthAndHeight(newWidth:Number, newHeight:Number, noEvent:Boolean = false):void
         {
-            if (_width !== newWidth)
+            var widthChanged:Boolean = _width !== newWidth;
+			var heightChanged:Boolean = _height !== newHeight;
+            if (widthChanged)
             {
                 _width = newWidth;
                 COMPILE::JS
                 {
                     this.positioner.style.width = isNaN(newWidth) ? null : newWidth.toString() + 'px';        
                 }
-                if (!noEvent) 
-                    sendEvent(this,"widthChanged");
+                if (!noEvent && !heightChanged) 
+                    sendEvent(this, "widthChanged");
             }
-            if (_height !== newHeight)
+            if (heightChanged)
             {
                 _height = newHeight;
                 COMPILE::JS
                 {
                     this.positioner.style.height = isNaN(newHeight) ? null : newHeight.toString() + 'px';        
                 }
-                if (!noEvent)
-                    sendEvent(this,"heightChanged");
-            }            
-            sendEvent(this,"sizeChanged");
+                if (!noEvent && !widthChanged)
+                    sendEvent(this, "heightChanged");
+            }
+            if (widthChanged && heightChanged)            
+                sendEvent(this, "sizeChanged");
         }
 
         /**
