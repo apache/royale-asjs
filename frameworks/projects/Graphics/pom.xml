@@ -56,7 +56,6 @@
       <plugin>
         <groupId>com.googlecode.maven-download-plugin</groupId>
         <artifactId>download-maven-plugin</artifactId>
-        <version>1.2.1</version>
         <executions>
           <execution>
             <id>get-pixelbender-artifacts</id>
@@ -109,6 +108,13 @@
           <includeClasses>
             <includeClass>GraphicsClasses</includeClass>
           </includeClasses>
+          <includeFiles>
+            <include-file>
+              <name>defaults.css</name>
+              <path>../src/main/resources/defaults.css</path>
+            </include-file>
+          </includeFiles>
+          <includeLookupOnly>true</includeLookupOnly>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
           <additionalCompilerOptions>${project.compiler.options};-compiler.byte-array-embed-class=org.apache.royale.core.ByteArrayAsset</additionalCompilerOptions>
