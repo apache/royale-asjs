@@ -18,11 +18,12 @@ limitations under the License.
 
 -->
 <c:ExampleAndSourceCodeTabbedSectionContent xmlns:fx="http://ns.adobe.com/mxml/2009" 
-	xmlns:j="library://ns.apache.org/royale/jewel" 
-	xmlns:html="library://ns.apache.org/royale/html" 
-	xmlns:js="library://ns.apache.org/royale/basic"
-	xmlns:models="models.*" 
-	xmlns:c="components.*" sourceCodeUrl="DataGridPlayGround.mxml">
+											xmlns:j="library://ns.apache.org/royale/jewel" 
+											xmlns:html="library://ns.apache.org/royale/html" 
+											xmlns:js="library://ns.apache.org/royale/basic"
+											xmlns:models="models.*" 
+											xmlns:c="components.*" sourceCodeUrl="DataGridPlayGround.mxml"
+											initComplete="onDataGridPlayGroundInitComplete(event)">
 	
 	<fx:Script>
 		<![CDATA[
@@ -53,8 +54,6 @@ limitations under the License.
 			grid.dataProvider = null;
 			grid.dataProvider = data;
 		}
-
-		
 
 		/**
 		 * DataGridColumnLabelsChange nead needed
@@ -143,6 +142,11 @@ limitations under the License.
 		{
 			(datagrid.dataProvider as ArrayList).removeAll();
 			// productModel.productList.removeAll();
+		}
+		
+		private function onDataGridPlayGroundInitComplete(event:Event):void
+		{
+			this.dgFixedWidth.width = 500;
 		}
 		]]>
 	</fx:Script>
@@ -441,6 +445,31 @@ limitations under the License.
 
 				<j:DataGrid width="100%" height="240" emphasis="secondary" rowHeight="42"
 					change="dataGridIconListChange(event.target as DataGrid, datagrid3_lb)">
+					<j:beads>
+						<js:ConstantBinding
+							sourceID="listModel"
+							sourcePropertyName="iconDetailListData"
+							destinationPropertyName="dataProvider"/>
+						<j:RemoveDataGridItemRendererForArrayListData/>
+					</j:beads>
+					<j:columns>
+						<j:DataGridColumn label="Icon" 
+										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+						<j:DataGridColumn label="Label" dataField="label" align="center"/>
+						<j:DataGridColumn label="Is Jewel?" columnWidth="40"
+										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
+					</j:columns>
+				</j:DataGrid>
+			</j:Card>
+		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DataGrid"/>
+				
+				<j:Label text="Setup fixed size of DataGrid to 500px after initComplete. Last column has columnWidth=40."
+					multiline="true"/>
+
+				<j:DataGrid localId="dgFixedWidth" height="240" emphasis="secondary" rowHeight="42">
 					<j:beads>
 						<js:ConstantBinding
 							sourceID="listModel"
