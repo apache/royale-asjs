@@ -1197,4 +1197,18 @@ global
 		iMeasurementBead: ClassReference("org.apache.royale.html.beads.TextButtonMeasurementBead");
 	}
 
+	svg|Image
+	{
+		vertical-align: top;
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
+		IBeadView:  ClassReference("org.apache.royale.svg.beads.ImageView");
+	}
+
+	svg|BinaryImage
+	{
+		IBeadModel: ClassReference("org.apache.royale.html.beads.models.BinaryImageModel");
+		IBeadView:  ClassReference("org.apache.royale.svg.beads.ImageView");
+		IBinaryImageLoader: ClassReference("org.apache.royale.html.beads.BinaryImageLoader");
+	}
+
 }
