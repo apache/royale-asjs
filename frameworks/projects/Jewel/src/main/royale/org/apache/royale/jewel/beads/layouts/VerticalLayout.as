@@ -138,8 +138,10 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.4
  		 */
-		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		override public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
+			super.applyStyleToLayout(component, cssProperty);
+			
 			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
 			if (cssValue !== undefined)
 			{
@@ -148,14 +150,6 @@ package org.apache.royale.jewel.beads.layouts
 					case "gap":
 						if(!gapInitialized)
 							gap = Number(cssValue);
-						break;
-					case "itemsVerticalAlign":
-						if(!itemsVerticalAlignInitialized)
-							itemsVerticalAlign = cssValue;
-						break;
-					case "itemsHorizontalAlign":
-						if(!itemsHorizontalAlignInitialized)
-							itemsHorizontalAlign = cssValue;
 						break;
 					case "variableRowHeight":
 						if(!variableRowHeightInitialized)
