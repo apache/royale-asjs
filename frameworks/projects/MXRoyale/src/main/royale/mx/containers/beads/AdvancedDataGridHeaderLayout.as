@@ -30,7 +30,9 @@ package mx.containers.beads
     import org.apache.royale.core.ILayoutView;
     import org.apache.royale.core.IStyleableObject;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.core.IStrandWithModel;
     import org.apache.royale.html.beads.models.ButtonBarModel;
+	import org.apache.royale.events.Event;
 
 /*
 import mx.core.mx_internal;
@@ -78,11 +80,21 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
 	
 	private var _strand:IStrand;
 	
+    /**
+     *  @royaleignorecoercion org.apache.royale.core.IStrandWithModel
+     */
 	override public function set strand(value:IStrand):void
 	{
 		_strand = value;
 		super.strand = value;
-		
+		(host as IStrandWithModel).model.addEventListener("dataProviderChanged", dataProviderChangedHandler);
+	}
+	
+	private var sawDPChanged:Boolean;
+	
+	private function dataProviderChangedHandler(event:Event):void
+	{
+		sawDPChanged = true;
 	}
 	
     private var _buttonWidths:Array = null;
@@ -114,6 +126,10 @@ public class AdvancedDataGridHeaderLayout extends LayoutBase
 
 	override public function layout():Boolean
 	{
+		// ignore other lifecycle layouts until the DP is set
+		if (!sawDPChanged) 
+			return true;
+		
         var contentView:ILayoutView = layoutView;
         
         var model:ButtonBarModel = (host as IStrand).getBeadByType(ButtonBarModel) as ButtonBarModel;

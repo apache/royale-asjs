@@ -23,6 +23,7 @@ package org.apache.royale.html.beads.layouts
     import org.apache.royale.core.IBeadView;
     import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
     import org.apache.royale.core.IDataGridModel;
+    import org.apache.royale.core.ILayoutHost;
     import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.UIBase;
@@ -91,12 +92,16 @@ package org.apache.royale.html.beads.layouts
 		
 		private function handleSizeChanges(event:Event):void
 		{
-			layout();
+			var viewBead:ILayoutHost = uiHost.view as ILayoutHost;
+			if (viewBead.beforeLayout())
+				layout();
 		}
 		
 		private function handleLayoutNeeded(event:Event):void
 		{
-			layout();
+			var viewBead:ILayoutHost = uiHost.view as ILayoutHost;
+			if (viewBead.beforeLayout())
+				layout();
 		}
 		
         protected function getColumnsForLayout():Array
@@ -123,6 +128,7 @@ package org.apache.royale.html.beads.layouts
 		 * @copy org.apache.royale.core.IBeadLayout#layout
          * @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
          * @royaleignorecoercion org.apache.royale.core.IDataGridModel
+         * @royaleignorecoercion org.apache.royale.core.ILayoutHost
          * @royaleignorecoercion org.apache.royale.core.IUIBase
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
 		 * @royaleignorecoercion org.apache.royale.html.beads.IDataGridView

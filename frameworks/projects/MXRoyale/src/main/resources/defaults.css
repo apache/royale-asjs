@@ -262,6 +262,11 @@ containerBeads|FormItemContainer
 	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
 }
 
+containerBeads|PanelInternalContainer
+{
+	IBeadView: ClassReference("mx.containers.beads.PanelInternalContainerView");
+}
+
 Image
 {
 	IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageModel");
@@ -372,7 +377,7 @@ Panel
 	IBeadModel: ClassReference("mx.containers.beads.models.PanelModel");
 	IBeadView: ClassReference("mx.containers.beads.PanelView");
 	IPanelLayout: ClassReference("mx.containers.beads.BoxLayout");
-	IPanelContentArea: ClassReference("mx.core.Container");	
+	IPanelContentArea: ClassReference("mx.containers.beads.PanelInternalContainer");	
 	background-color: #FFFFFF;
 	border-width: 1px;
 	border: 1px solid #333333;

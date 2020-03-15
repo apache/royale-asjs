@@ -57,6 +57,8 @@ internal class MXRoyaleClasses
     import mx.containers.beads.DividedBoxLayout; DividedBoxLayout;
 	import mx.containers.beads.CanvasLayout; CanvasLayout;
     import mx.containers.beads.layouts.BasicLayout; BasicLayout;
+	import mx.containers.beads.PanelInternalContainer; PanelInternalContainer;
+	import mx.containers.beads.PanelInternalContainerView; PanelInternalContainerView;
 	import mx.controls.beads.AlertView; AlertView;
     import mx.controls.beads.controllers.AlertMouseController; AlertMouseController;
     import mx.containers.errors.ConstraintError; ConstraintError;

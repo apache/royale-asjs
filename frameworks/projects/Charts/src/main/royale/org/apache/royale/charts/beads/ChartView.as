@@ -172,7 +172,7 @@ package org.apache.royale.charts.beads
 		 *  @productversion Royale 0.0
          *  @royaleignorecoercion org.apache.royale.core.IBorderPaddingMarginValuesImpl
 		 */		
-		override public function beforeLayout():void
+		override public function beforeLayout():Boolean
 		{			
 			var metrics:EdgeData = (ValuesManager.valuesImpl as IBorderPaddingMarginValuesImpl).getBorderAndPaddingMetrics(_strand as IUIBase);
 			
@@ -216,6 +216,7 @@ package org.apache.royale.charts.beads
 				UIBase(horizontalAxisGroup).width = strandWidth - widthAdjustment - metrics.left - metrics.right;
 				UIBase(horizontalAxisGroup).height = heightAdjustment;
 			}
+			return true;
 		}
 		
 		/**

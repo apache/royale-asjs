@@ -16,32 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package org.apache.royale.utils
+
+package mx.containers.beads
 {
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.ILayoutView;
 
-	public class MockLayoutHost implements ILayoutHost
+import mx.core.Container;
+
+/**
+ *  @private
+ *  The PanelInternalContainer is used to apply a custom view to Panel's internal container.
+ */
+public class PanelInternalContainer extends Container
+{
+	//--------------------------------------------------------------------------
+	//
+	//  Constructor
+	//
+	//--------------------------------------------------------------------------
+
+	/**
+	 *  Constructor.
+	 *  
+	 *  @langversion 3.0
+	 *  @playerversion Flash 9
+	 *  @playerversion AIR 1.1
+	 *  @productversion Flex 3
+	 */
+	public function PanelInternalContainer()
 	{
-		private var _contentView:ILayoutView;
-		public function MockLayoutHost(source:ILayoutHost)
-		{
-			_contentView = new MockContentView(source.contentView);
-		}
-
-		public function get contentView():ILayoutView
-		{
-			return _contentView;
-		}
-		
-		public function beforeLayout():Boolean
-		{
-			return true;
-		}
-		
-		public function afterLayout():void
-		{
-			
-		}
+		super();
 	}
+}
+
 }

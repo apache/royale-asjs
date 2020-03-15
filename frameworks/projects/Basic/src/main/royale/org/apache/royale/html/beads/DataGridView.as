@@ -28,6 +28,7 @@ package org.apache.royale.html.beads
 	import org.apache.royale.core.IDataGridModel;
 	import org.apache.royale.core.IDataGridPresentationModel;
 	import org.apache.royale.core.IParent;
+	import org.apache.royale.core.IStrand;
     import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.debugging.assert;
@@ -67,6 +68,17 @@ package org.apache.royale.html.beads
 				super();
 			}
 
+		    /**
+		     * @royaleignorecoercion org.apache.royale.events.IEventDispatcher
+		     */
+		    override public function set strand(value:IStrand):void
+		    {
+		        super.strand = value;
+				host.addEventListener("widthChanged", handleSizeChanges);
+				host.addEventListener("heightChanged", handleSizeChanges);
+				host.addEventListener("sizeChanged", handleSizeChanges);
+			}
+
 			private var _header:DataGridButtonBar;
 			private var _listArea:IUIBase;
 
@@ -102,6 +114,8 @@ package org.apache.royale.html.beads
                 handleInitComplete(null);
             }
 
+			private var sawInitComplete:Boolean;
+			
 			/**
 			 * @private
 			 * @royaleignorecoercion org.apache.royale.core.IDataGridModel
@@ -115,6 +129,8 @@ package org.apache.royale.html.beads
 			 */
 			override protected function handleInitComplete(event:Event):void
 			{
+				sawInitComplete = event != null;
+				
 				var host:IDataGrid = _strand as IDataGrid;
 
 				// see if there is a presentation model already in place. if not, add one.
@@ -150,18 +166,21 @@ package org.apache.royale.html.beads
 
 				handleDataProviderChanged(event);
 
-				host.addEventListener("widthChanged", handleSizeChanges);
-				host.addEventListener("heightChanged", handleSizeChanges);
 				sendStrandEvent(_strand,"dataGridViewCreated");
 			}
 
+			private var sawSizeChanged:Boolean;
+			
 			/**
 			 * @private
 			 */
 			private function handleSizeChanges(event:Event):void
 			{
-				sendEvent(_header,"layoutChanged");
-				sendEvent(_listArea,"layoutChanged");
+				sawSizeChanged = true;
+				if (_header)
+					sendEvent(_header,"layoutChanged");
+				if (_listArea)
+					sendEvent(_listArea,"layoutChanged");
 			}
 
 			/**
@@ -273,6 +292,24 @@ package org.apache.royale.html.beads
 
 				sendStrandEvent(_strand,"layoutNeeded");
 			}
+			
+			/**
+			 * Provides a place for pre-layout actions.
+			 *
+			 *  @langversion 3.0
+			 *  @playerversion Flash 10.2
+			 *  @playerversion AIR 2.6
+			 *  @productversion Royale 0.8
+			 */
+			override public function beforeLayout():Boolean
+			{
+				var host:ILayoutChild = _strand as ILayoutChild;
+				if (host.isWidthSizedToContent() && host.isHeightSizedToContent())
+					return sawInitComplete;
+				return sawSizeChanged;
+			}
+
+
 		}
 }
 
