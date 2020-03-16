@@ -307,6 +307,9 @@
 
             <!-- Exclude node_modules -->
             <exclude>node_modules/**</exclude>
+            
+            <!-- Exclude Affinity Design -->
+            <exclude>**/*.afdesign</exclude>
           </excludes>
         </configuration>
       </plugin>
