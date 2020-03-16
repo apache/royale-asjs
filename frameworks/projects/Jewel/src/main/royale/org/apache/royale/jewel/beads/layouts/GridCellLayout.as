@@ -615,6 +615,8 @@ package org.apache.royale.jewel.beads.layouts
 
             COMPILE::JS
             {
+				super.layout();
+				
                 return true;
             }
 		}

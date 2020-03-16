@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.core.layout.ILayoutStyleProperties;
 	
     /**
      *  The StyledLayoutBase class is an extension of LayoutBase
@@ -36,7 +37,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class StyledLayoutBase extends LayoutBase
+	public class StyledLayoutBase extends LayoutBase implements ILayoutStyleProperties
 	{
         /**
          *  Constructor.
@@ -99,13 +100,13 @@ package org.apache.royale.jewel.beads.layouts
 		{
 			COMPILE::JS
 			{
-				initStyleToLayout(hostComponent, "itemsExpand");
+				applyStyleToLayout(hostComponent, "itemsExpand");
 				setHostClassList("itemsExpand", _itemsExpand ? "itemsExpand":"");
 
-				initStyleToLayout(hostComponent, "itemsHorizontalAlign");
+				applyStyleToLayout(hostComponent, "itemsHorizontalAlign");
 				setHostClassList(_itemsHorizontalAlign, _itemsHorizontalAlign);
 
-				initStyleToLayout(hostComponent, "itemsVerticalAlign");
+				applyStyleToLayout(hostComponent, "itemsVerticalAlign");
 				setHostClassList(_itemsVerticalAlign, _itemsVerticalAlign);
 			}
 		}
@@ -121,15 +122,8 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.4
  		 */
-		protected function initStyleToLayout(component:IUIBase, cssProperty:String):void
+		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
 		{	
-			///-----------------------------------------
-			/// This function works as the same as 
-			/// org.apache.royale.core.layout.ILayoutStyleProperties#applyStyleToLayout(component:IUIBase, cssProperty:String):void
-			/// Because StyledLayoutBase does not implement ILayoutStyleProperties
-			/// To avoid conflict with subclass like HorizontalLayout.applyStyleToLayout
-			/// Names this function - initStyleToLayout
-			///-----------------------------------------
 			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
 			if (cssValue !== undefined)
 			{

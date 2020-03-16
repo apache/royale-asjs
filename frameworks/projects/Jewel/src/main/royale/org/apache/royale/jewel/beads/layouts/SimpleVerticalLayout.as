@@ -210,7 +210,7 @@ package org.apache.royale.jewel.beads.layouts
 					child = contentView.getElementAt(i) as UIBase;
 					if (!child)
 						continue;
-					child.dispatchEvent('layoutNeeded');
+					child.dispatchEvent('sizeChanged');
 				}
 
 				return true;

@@ -311,6 +311,7 @@ internal class CoreClasses
 	import org.apache.royale.utils.HSV; HSV;
 	import org.apache.royale.utils.rgbToHsv; rgbToHsv;
 	import org.apache.royale.utils.hsvToHex; hsvToHex;
+	import org.apache.royale.utils.transformValueFromRange; transformValueFromRange;
 
 	import org.apache.royale.utils.array.rangeCheck; rangeCheck;
 

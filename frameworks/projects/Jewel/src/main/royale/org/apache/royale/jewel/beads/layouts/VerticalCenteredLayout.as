@@ -145,8 +145,10 @@ package org.apache.royale.jewel.beads.layouts
  		 *  @playerversion AIR 2.6
  		 *  @productversion Royale 0.9.4
  		 */
-		public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
-		{	
+		override public function applyStyleToLayout(component:IUIBase, cssProperty:String):void
+		{
+			super.applyStyleToLayout(component, cssProperty);
+				
 			var cssValue:* = ValuesManager.valuesImpl.getValue(component, cssProperty);
 			if (cssValue !== undefined)
 			{
@@ -300,34 +302,7 @@ package org.apache.royale.jewel.beads.layouts
             }
             COMPILE::JS
             {
-				//applyStyleToLayout(c, "gap");
-
-				/*var children:Array = contentView.internalChildren();
-				var i:int;
-				var n:int = children.length;
-				for (i = 0; i < n; i++)
-                {
-                    var child:WrappedHTMLElement = children[i] as WrappedHTMLElement;
-					if (child == null) continue;
-					child.style.marginTop = _paddingTop + 'px';
-					if(i === (n - 1))
-					{
-						child.style.marginRight = _paddingRight + 'px';
-					}
-					else
-					{
-						child.style.marginRight = '0px';
-					}
-					child.style.marginBottom = _paddingBottom + 'px';
-					if(i == 0)
-					{
-						child.style.marginLeft = _paddingLeft + 'px';
-					}
-					else
-					{
-						child.style.marginLeft = _gap + 'px';
-					}					
-				}*/
+				super.layout();
 
                 return true;
             }
