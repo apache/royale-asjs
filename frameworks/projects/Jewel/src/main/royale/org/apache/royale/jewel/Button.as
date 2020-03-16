@@ -80,7 +80,7 @@ package org.apache.royale.jewel
                   }
                   COMPILE::JS
                   {
-                  return (element as HTMLButtonElement).innerHTML;
+                  return (element as HTMLButtonElement).textContent;
                   }
             }
             /**
@@ -94,7 +94,7 @@ package org.apache.royale.jewel
                   }
                   COMPILE::JS
                   {
-                  (element as HTMLButtonElement).innerHTML = value;
+                  (element as HTMLButtonElement).textContent = value;
                   dispatchEvent(new Event('textChange'));
                   }
             }

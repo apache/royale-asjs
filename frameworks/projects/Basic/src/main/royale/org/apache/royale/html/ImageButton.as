@@ -90,13 +90,18 @@ package org.apache.royale.html
 
             COMPILE::JS
             {
-                var inner:String = '';
-                if (url)
-                    inner = "<img src='" + url + "'/>";
-                element.innerHTML = inner;
+                if(!_imageElement)
+                {
+                    _imageElement = new HTMLImageElement();
+                    element.appendChild(_imageElement);
+                }
+                _imageElement.src = url;
             }
 
 			dispatchEvent(new Event("srcChanged"));
         }
+
+        COMPILE::JS
+        private var _imageElement:HTMLImageElement;
 	}
 }

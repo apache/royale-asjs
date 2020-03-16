@@ -57,7 +57,10 @@ package org.apache.royale.html
             element.style.lineHeight = "0";
             element.style.padding = "0";
 			var data:String = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MCA2MCI+PHBvbHlnb24gcG9pbnRzPSI2MCA2LjIyIDUzLjc4IDAgMzAgMjMuNzcgNi4yMiAwIDAgNi4yMiAyMy43OCAzMCAwIDUzLjc4IDYuMjIgNjAgMzAgMzYuMjMgNTMuNzggNjAgNjAgNTMuNzggMzYuMjIgMzAgNjAgNi4yMiIvPjwvc3ZnPg==';
-            element.innerHTML = "<img style='height:60%;width:60%' src='" + data + "'/>";
+            var img:HTMLImageElement = new HTMLImageElement();
+            image.style.cssText = 'height:60%;width:60%';
+            image.src = data;
+            element.appendChild(img);
             return element;
         }
 	}
