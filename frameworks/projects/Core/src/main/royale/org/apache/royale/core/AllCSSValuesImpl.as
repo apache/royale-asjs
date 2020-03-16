@@ -84,6 +84,8 @@ package org.apache.royale.core
         protected var lengthProps:Array = [
             "width",
             "height",
+            "top",
+            "bottom",
             "margin",
             "padding",
             "borderWidth",
