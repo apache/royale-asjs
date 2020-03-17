@@ -77,6 +77,7 @@ package org.apache.royale.html
         }
         /**
          * @royaleignorecoercion org.apache.royale.html.beads.models.ImageModel
+         * @royaleignorecoercion HTMLImageElement
          */
         public function set src(url:String):void
         {
@@ -92,7 +93,7 @@ package org.apache.royale.html
             {
                 if(!_imageElement)
                 {
-                    _imageElement = new HTMLImageElement();
+                    _imageElement = document.createElement("img") as HTMLImageElement;
                     element.appendChild(_imageElement);
                 }
                 _imageElement.src = url;
