@@ -487,6 +487,31 @@ limitations under the License.
 				</j:DataGrid>
 			</j:Card>
 		</j:GridCell>
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel DataGrid"/>
+				
+				<j:Label text="Setup fixed width of DataGrid to 700px and height to 100% after initComplete. Last column has columnWidth=40, rowHeight=42."
+					multiline="true"/>
+
+				<j:DataGrid width="700" height="100%" emphasis="secondary" rowHeight="42">
+					<j:beads>
+						<js:ConstantBinding
+							sourceID="listModel"
+							sourcePropertyName="iconDetailListData"
+							destinationPropertyName="dataProvider"/>
+						<j:RemoveDataGridItemRendererForArrayListData/>
+					</j:beads>
+					<j:columns>
+						<j:DataGridColumn label="Icon" 
+										itemRenderer="itemRenderers.IconDataGridItemRenderer"/>
+						<j:DataGridColumn label="Label" dataField="label" align="center"/>
+						<j:DataGridColumn label="Is Jewel?" columnWidth="40"
+										itemRenderer="itemRenderers.CheckBoxDataGridItemRenderer"/>
+					</j:columns>
+				</j:DataGrid>
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
