@@ -89,6 +89,8 @@ public class PanelInternalContainerView extends org.apache.royale.html.beads.Con
     {
 		var container:Container = host as Container;
 		var panel:Container = container.parent as Container;
+		if (!isNaN(panel.explicitWidth) && !isNaN(panel.explicitHeight))
+			return true;
 		if (!panel.isWidthSizedToContent() || !panel.isHeightSizedToContent())
 		{
 			return sawSizeChanged;

@@ -154,6 +154,8 @@ public class PanelView extends org.apache.royale.html.beads.PanelView
     override public function beforeLayout():Boolean
     {
 		var panel:Container = host as Container;
+		if (!isNaN(panel.explicitWidth) && !isNaN(panel.explicitHeight))
+			return true;
 		if (!panel.isWidthSizedToContent() || !panel.isHeightSizedToContent())
 		{
 			return sawSizeChanged;
