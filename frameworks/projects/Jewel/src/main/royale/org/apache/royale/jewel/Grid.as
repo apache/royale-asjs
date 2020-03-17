@@ -45,7 +45,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-			typeNames = "jewel " + GridLayout.LAYOUT_TYPE_NAMES;
+			typeNames += " " + GridLayout.LAYOUT_TYPE_NAMES;
 
 			layout = new GridLayout();
 			addBead(layout);

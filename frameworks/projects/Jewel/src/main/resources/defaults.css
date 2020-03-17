@@ -74,6 +74,10 @@ j|Group {
   IBeadView: ClassReference("org.apache.royale.html.beads.GroupView");
 }
 
+.jewel.group {
+  overflow: hidden;
+}
+
 j|HGroup {
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
 }
