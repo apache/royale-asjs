@@ -3227,7 +3227,7 @@ j|List {
 }
 
 j|ListItemRenderer {
-  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
 @media -royale-swf {
@@ -3260,7 +3260,7 @@ j|Navigation {
 }
 
 j|NavigationLinkItemRenderer {
-  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
 .jewel.numericstepper .jewel.textinput {
@@ -3736,7 +3736,7 @@ j|TabBar {
 }
 
 j|TabBarButtonItemRenderer {
-  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
 j|TabBarContent {
@@ -3854,7 +3854,7 @@ j|Table {
 }
 
 j|TableItemRenderer {
-  IBeadController: ClassReference("org.apache.royale.jewel.beads.controllers.ItemRendererMouseController");
+  IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 
 j|TBody {

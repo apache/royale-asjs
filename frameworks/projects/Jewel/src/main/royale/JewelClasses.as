@@ -51,7 +51,6 @@ package
         import org.apache.royale.jewel.beads.controllers.DateChooserMouseController; DateChooserMouseController;
         import org.apache.royale.jewel.beads.controllers.DateFieldMouseController; DateFieldMouseController;
         import org.apache.royale.jewel.beads.controllers.AlertController; AlertController;
-        import org.apache.royale.jewel.beads.controllers.ItemRendererMouseController; ItemRendererMouseController;
         import org.apache.royale.jewel.beads.controllers.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.TableCellSelectionMouseController; TableCellSelectionMouseController;
         import org.apache.royale.jewel.beads.controllers.ComboBoxController; ComboBoxController;
