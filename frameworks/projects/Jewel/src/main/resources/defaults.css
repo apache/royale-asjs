@@ -344,8 +344,8 @@ j|ToggleButtonBar {
   display: inline-flex;
   margin: 0;
   padding: 0;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   opacity: 0;
 }
 .jewel.checkbox input + span::before {
@@ -353,14 +353,14 @@ j|ToggleButtonBar {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
 }
 .jewel.checkbox input + span::after {
   content: " ";
   position: absolute;
-  width: 22px;
-  height: 22px;
+  width: 24px;
+  height: 24px;
   left: 0px;
   top: 0px;
   opacity: 0;

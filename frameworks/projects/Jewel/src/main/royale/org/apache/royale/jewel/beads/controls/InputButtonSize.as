@@ -37,7 +37,7 @@ package org.apache.royale.jewel.beads.controls
      */
 	public class InputButtonSize implements IBead
 	{
-		public static const INPUTBUTTON_DEFAULT_SIZE:Number = 22;
+		public static const INPUTBUTTON_DEFAULT_SIZE:Number = 24;
 
         /**
          *  Constructor.
