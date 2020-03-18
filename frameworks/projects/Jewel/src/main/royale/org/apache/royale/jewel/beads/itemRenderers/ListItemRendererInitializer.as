@@ -86,7 +86,10 @@ package org.apache.royale.jewel.beads.itemRenderers
             if (ir is StyledMXMLItemRenderer && ownerView)
 			{
                 (ir as StyledMXMLItemRenderer).itemRendererOwnerView = ownerView;
-				(ir as StyledMXMLItemRenderer).emphasis = StyledUIBase(_strand).emphasis;
+				if(StyledUIBase(_strand).emphasis != null)
+				{
+					(ir as StyledMXMLItemRenderer).emphasis = StyledUIBase(_strand).emphasis;
+				}
 			}
 		}
 	}
