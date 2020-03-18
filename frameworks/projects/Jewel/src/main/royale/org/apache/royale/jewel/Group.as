@@ -68,7 +68,7 @@ package org.apache.royale.jewel
 		public function Group()
 		{
 			super();
-            typeNames = "";
+            typeNames = "jewel group";
 		}
 
         private var _mxmlDescriptor:Array;

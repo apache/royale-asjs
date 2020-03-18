@@ -45,7 +45,7 @@ package org.apache.royale.jewel
 		{
 			super();
 
-			typeNames = "jewel " + VerticalLayout.LAYOUT_TYPE_NAMES;
+			typeNames += " " + VerticalLayout.LAYOUT_TYPE_NAMES;
 
 			layout = new VerticalLayout();
 			addBead(layout);
