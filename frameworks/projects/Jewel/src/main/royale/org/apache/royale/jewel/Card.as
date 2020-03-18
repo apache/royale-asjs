@@ -49,9 +49,6 @@ package org.apache.royale.jewel
 			// Add basic card styles by default when use Card alone
 			// if Card composes CardPrimaryContent, then remove it for more complex structure and styles
 			className = "simple";
-
-			percentWidth = 100;
-			percentHeight = 100;
 		}
 	}
 }
