@@ -949,10 +949,10 @@ j|ImageButton {
   line-height: normal !important;
   overflow: hidden;
   cursor: auto;
-  align-items: center;
 }
 .jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent {
   flex: 0 0 auto;
+  align-items: center;
 }
 .jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;

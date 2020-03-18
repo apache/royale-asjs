@@ -30,14 +30,13 @@ $item-min-height: 34px
     line-height: normal !important
     overflow: hidden
     cursor: auto
-    align-items: center
+    // align-items: center -> this need to be in mxmlContent to not modify basic list renders
     // pointer-events: none
 
     // used when the renderer is extended, so we change to flex display
     &.mxmlContent
         flex: 0 0 auto
-        // display: flex
-        // align-items: center
+        align-items: center
 
     &.selectable
         cursor: pointer
