@@ -25,6 +25,7 @@ package spark.components.supportClasses
     import org.apache.royale.core.IChild;
     import org.apache.royale.core.IParent;
     import org.apache.royale.core.IStrand;
+    import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.MouseEvent;
     import org.apache.royale.html.util.getLabelFromData;
@@ -247,9 +248,17 @@ package spark.components.supportClasses
         public function set data(value:Object):void
         {
             _data = value;
+			if (_data is IEventDispatcher)
+				(_data as IEventDispatcher).addEventListener("labelChanged", labelChangedHandler);
+				
             text = dataToString(value);
         }
 
+		private function labelChangedHandler(event:Event):void
+		{
+            text = dataToString(data);
+		}
+		
         public function get nestLevel():int
         {
             throw new Error("Method not implemented.");
