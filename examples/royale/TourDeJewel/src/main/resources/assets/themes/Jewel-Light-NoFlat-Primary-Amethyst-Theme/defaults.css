@@ -509,6 +509,7 @@ j|CardActions {
   box-shadow: none;
 }
 .jewel.datechooser .jewel.table .jewel.tableheadercell {
+  padding: 12px 0px;
   background: white;
   box-shadow: none;
   border-left: 0px;
@@ -527,25 +528,32 @@ j|CardActions {
   background: #e6e6e6;
 }
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
-  background-size: 54%;
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
-  background-size: 40%;
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
+  width: 14px;
+  height: 8px;
+  padding-right: 8px;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23C92CC6' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
   background-position: right 0 center;
   background-repeat: no-repeat;
 }
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  width: 14px;
+  height: 14px;
+  top: calc(50% - 7px);
+}
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after {
+  left: calc(50% - 9px);
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23C92CC6' fill-rule='nonzero'%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
+  left: calc(50% - 5px);
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23C92CC6' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
 .jewel.datechooser .jewel.table .jewel.tablecell {
   border-top: 0px;
   border-left: 0px;
+  padding: 4px;
+}
+.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
   padding: 4px;
 }
 .jewel.datechooser[disabled] {
@@ -579,11 +587,15 @@ j|CardActions {
 .jewel.datechooser[disabled] .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(-7.000000, -5.000000)'%3E%3Crect x='0' y='0' width='22' height='22'%3E%3C/rect%3E%3Cpath d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='%23cccccc' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '%3E%3C/path%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
 }
+.jewel.datechooser[disabled] .jewel.tableitem {
+  height: 38px;
+}
 .jewel.datechooser[disabled] .jewel.tableitem.selected, .jewel.datechooser[disabled] .jewel.tableitem.selectable:active {
   background: #cccccc;
 }
 
 .calendar.item {
+  padding: 10px;
   font-size: 1em;
 }
 .calendar.item.dayName {
