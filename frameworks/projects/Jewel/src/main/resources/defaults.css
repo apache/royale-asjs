@@ -554,9 +554,6 @@ j|DataGridColumnList {
   min-width: 324px;
   min-height: 364px;
 }
-.jewel.datechooser .jewel.table .jewel.tableheadercell {
-  padding: 12px 0px;
-}
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow > .layout.horizontal {
   float: right;
 }
@@ -566,31 +563,6 @@ j|DataGridColumnList {
 .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
   content: " ";
   position: absolute;
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .viewSelector::after {
-  width: 22px;
-  height: 16px;
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after, .jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
-  width: 22px;
-  height: 22px;
-  top: calc(50% - 11px);
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .previousButton::after {
-  left: calc(50% - 13px);
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow .nextButton::after {
-  left: calc(50% - 9px);
-}
-.jewel.datechooser .jewel.table .jewel.tableheadercell.buttonsRow {
-  padding: 4px;
-}
-.jewel.datechooser .jewel.table .jewel.tableitem {
-  height: 38px;
-}
-
-.calendar.item {
-  padding: 10px;
 }
 
 j|DateChooser {

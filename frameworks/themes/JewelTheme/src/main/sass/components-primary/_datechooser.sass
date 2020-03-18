@@ -20,6 +20,8 @@
 // Jewel DateChooser
 
 // DateChooser variables
+$datechooser-button-size: 14px
+$datechooser-tableitem-size: 38px
 $datechooser-border-radius: $border-radius
 $datechooser-buttons-border-radius: 50%
 
@@ -39,6 +41,8 @@ $datechooser-buttons-border-radius: 50%
             box-shadow: none
 
         .jewel.tableheadercell
+            padding: 12px 0px
+
             @if $flat
                 background: lighten($default-color, 20%)
             @else
@@ -58,22 +62,31 @@ $datechooser-buttons-border-radius: 50%
                         background: lighten($default-color, 5%)
 
                 .viewSelector::after
-                    background-size: 54%
-                .previousButton::after, .nextButton::after
-                    background-size: 40%
-
-                .viewSelector::after
+                    // background-size: 54%
+                    width: $datechooser-button-size
+                    height: $datechooser-button-size - 6px
+                    padding-right: 8px
                     background-image: encodeSVG("<svg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(0.000000, -1.000000)' fill='#{$primary-color}' fill-rule='nonzero'><g transform='translate(-2.000000, 0.000000)'><polygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'></polygon></g></g></g></svg>")
                     background-position: right 0 center
                     background-repeat: no-repeat
+                .previousButton::after, .nextButton::after
+                    // background-size: 40%
+                    width: $datechooser-button-size
+                    height: $datechooser-button-size
+                    top: calc(50% - #{$datechooser-button-size/2})
                 .previousButton::after
+                    left: calc(50% - #{$datechooser-button-size/2 + 2px})
                     background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero'></path></g></g></svg>") no-repeat center center
                 .nextButton::after
+                    left: calc(50% - #{$datechooser-button-size/2 - 2px})
                     background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{$primary-color}' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '></path></g></g></svg>") no-repeat center center
 
         .jewel.tablecell
             border-top: 0px
             border-left: 0px
+            padding: 4px
+
+        .jewel.tableheadercell.buttonsRow
             padding: 4px
 
     &[disabled]
@@ -110,11 +123,16 @@ $datechooser-buttons-border-radius: 50%
                         background: encodeSVG("<svg viewBox='0 0 8 12' version='1.1' xmlns='http://www.w3.org/2000/svg'><g stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'><g transform='translate(-7.000000, -5.000000)'><rect x='0' y='0' width='22' height='22'></rect><path d='M14.9911518,6.4116803 C14.9876664,5.88503401 14.7746504,5.53560917 14.5762939,5.35284424 C14.3779375,5.17007931 14.0808684,5.04951371 13.4608967,5.00170898 L7.01066011,11.0034834 L13.4822102,17.0014648 C14.1196233,16.9113382 14.3962441,16.8099967 14.5762939,16.6435547 C14.7563438,16.4771126 14.9881385,16.1084637 15.0074566,15.5914935 L10.0769967,11.0034834 L14.9911518,6.4116803 Z' fill='#{darken($disabled-color, 15%)}' fill-rule='nonzero' transform='translate(11.009058, 11.001587) scale(-1, 1) translate(-11.009058, -11.001587) '></path></g></g></svg>") no-repeat center center
         
         .jewel.tableitem
+            // width: $datechooser-tableitem-size
+            height: $datechooser-tableitem-size
+
             &.selected, &.selectable:active
                 background: darken($disabled-color, 15%)
 
 .calendar
     &.item
+        padding: 10px
+
         font:
             size: 1em
         &.dayName
