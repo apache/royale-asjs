@@ -353,14 +353,14 @@ j|ToggleButtonBar {
   position: absolute;
   left: 0px;
   top: 0px;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
 }
 .jewel.checkbox input + span::after {
   content: " ";
   position: absolute;
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   left: 0px;
   top: 0px;
   opacity: 0;
