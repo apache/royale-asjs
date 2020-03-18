@@ -128,6 +128,7 @@ package org.apache.royale.jewel.beads.views
 			getHost().addElement(_textInput);
 
 			_button = new Button();
+			_button.width = 38;
 			COMPILE::JS {
                 _button.element.setAttribute('tabindex', -1);
 			}
