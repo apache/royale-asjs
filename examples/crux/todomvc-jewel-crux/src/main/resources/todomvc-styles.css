@@ -56,6 +56,7 @@
 	-webkit-text-rendering: optimizeLegibility;
 	-moz-text-rendering: optimizeLegibility;
 	text-rendering: optimizeLegibility;
+	margin: 0.83em 0;
 }
 
 /* Button */
