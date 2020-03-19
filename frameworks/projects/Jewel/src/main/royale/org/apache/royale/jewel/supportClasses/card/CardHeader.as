@@ -18,8 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.card
 {
-	import org.apache.royale.jewel.HGroup;
-
+	import org.apache.royale.jewel.HContainer;
+	
 	/**
 	 *  The CardHeader class is a header for Cards where Title and actions (i.e: buttons, icons)
 	 *  can be located.
@@ -29,7 +29,7 @@ package org.apache.royale.jewel.supportClasses.card
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class CardHeader extends HGroup
+	public class CardHeader extends HContainer
 	{
 		/**
 		 *  constructor.

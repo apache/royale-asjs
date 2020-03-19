@@ -311,7 +311,6 @@ j|ToggleButtonBar {
 .jewel.card {
   min-width: 240px;
   min-height: 52px;
-  overflow: hidden;
   position: relative;
 }
 .jewel.card .cardHeader {
@@ -324,7 +323,6 @@ j|ToggleButtonBar {
   outline: none;
   color: inherit;
   text-decoration: none;
-  overflow: hidden;
   flex: 1 1 0%;
 }
 .jewel.card .cardActions {
@@ -333,7 +331,26 @@ j|ToggleButtonBar {
   outline: none;
   color: inherit;
   text-decoration: none;
-  overflow: hidden;
+}
+
+j|Card {
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+j|CardHeader {
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+j|CardPrimaryContent {
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+}
+
+j|CardActions {
+  IViewport: ClassReference("org.apache.royale.jewel.supportClasses.Viewport");
+  IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
 .jewel.checkbox {

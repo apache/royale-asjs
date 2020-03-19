@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.supportClasses.card
 {
-	import org.apache.royale.jewel.HGroup;
+	import org.apache.royale.jewel.HContainer;
 
 	/**
 	 *  The CardActions class is a footer for Cards where actions (i.e: buttons, icons)
@@ -29,7 +29,7 @@ package org.apache.royale.jewel.supportClasses.card
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class CardActions extends HGroup
+	public class CardActions extends HContainer
 	{
 		/**
 		 *  constructor.
@@ -45,7 +45,5 @@ package org.apache.royale.jewel.supportClasses.card
 
 			typeNames = "cardActions";
 		}
-
-        
 	}
 }

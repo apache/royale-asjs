@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel
 {
-	import org.apache.royale.jewel.VGroup;
-
 	/**
 	 *  The Card class is a container that surronds other components.
 	 *  Card has a default "panel" style and can compose other containers like
@@ -30,7 +28,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Card extends VGroup
+	public class Card extends VContainer
 	{
 		/**
 		 *  constructor.

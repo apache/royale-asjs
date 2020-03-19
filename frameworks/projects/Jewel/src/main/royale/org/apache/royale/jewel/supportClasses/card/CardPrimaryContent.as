@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.supportClasses.card
 {
 	import org.apache.royale.jewel.Card;
-	import org.apache.royale.jewel.VGroup;
+	import org.apache.royale.jewel.VContainer;
 
 	/**
 	 *  The CardPrimaryContent class is a the main container for Cards.
@@ -30,7 +30,7 @@ package org.apache.royale.jewel.supportClasses.card
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class CardPrimaryContent extends VGroup
+	public class CardPrimaryContent extends VContainer
 	{
 		/**
 		 *  constructor.
