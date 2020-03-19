@@ -75,7 +75,7 @@ j|Group {
 }
 
 .jewel.group {
-  overflow: hidden;
+  overflow: visible;
 }
 
 j|HGroup {
