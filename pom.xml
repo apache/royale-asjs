@@ -487,36 +487,6 @@
       </build>
     </profile>
 
-    <!--
-      This profile enables the changes required to do releases on the Royale CI server.
-      It should not be used otherwise.
-    -->
-    <profile>
-      <id>royale-release</id>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <!-- We require the release manager to manually login an sign using his credentials -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-gpg-plugin</artifactId>
-              <configuration>
-                <skip>true</skip>
-              </configuration>
-            </plugin>
-            <!-- We require the release manager to login and push the changes using his credentials -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-release-plugin</artifactId>
-              <configuration>
-                <pushChanges>false</pushChanges>
-              </configuration>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
-
     <!-- Make the release-plugin use the new reproducible build plugin extension -->
     <profile>
       <id>apache-release</id>
@@ -563,7 +533,7 @@
                 <fileSet>
                   <directory>${project.build.directory}</directory>
                   <includes>
-                    <include>royale-typedefs-parent-${project.version}-source-release.zip</include>
+                    <include>royale-framework-parent-${project.version}-source-release.zip</include>
                   </includes>
                 </fileSet>
               </fileSets>
