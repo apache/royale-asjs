@@ -151,7 +151,7 @@ package org.apache.royale.jewel.beads.controls
 			} 
 			else {
 				inputButton.style.width = INPUTBUTTON_DEFAULT_SIZE + "px";
-				beforeSelector += "width: "+ INPUTBUTTON_DEFAULT_SIZE +"px;";
+				beforeSelector += "width: "+ (INPUTBUTTON_DEFAULT_SIZE - 2) +"px;";
 			}
 
 			if(height) {
@@ -160,7 +160,7 @@ package org.apache.royale.jewel.beads.controls
 			} 
 			else {
 				inputButton.style.height = INPUTBUTTON_DEFAULT_SIZE + "px";
-				beforeSelector += "height: "+ INPUTBUTTON_DEFAULT_SIZE +"px;";
+				beforeSelector += "height: "+ (INPUTBUTTON_DEFAULT_SIZE - 2) +"px;";
 			}
 
 			if(width || height) {

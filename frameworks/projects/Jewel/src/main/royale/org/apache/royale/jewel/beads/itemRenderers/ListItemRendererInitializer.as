@@ -25,6 +25,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IStrandWithModelView;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
@@ -83,7 +84,13 @@ package org.apache.royale.jewel.beads.itemRenderers
                 }
             }
             if (ir is StyledMXMLItemRenderer && ownerView)
+			{
                 (ir as StyledMXMLItemRenderer).itemRendererOwnerView = ownerView;
+				if(StyledUIBase(_strand).emphasis != null)
+				{
+					(ir as StyledMXMLItemRenderer).emphasis = StyledUIBase(_strand).emphasis;
+				}
+			}
 		}
 	}
 }

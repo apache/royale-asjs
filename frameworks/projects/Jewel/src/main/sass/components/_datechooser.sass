@@ -20,7 +20,7 @@
 // Jewel DateChooser
 
 // DateChooser variables
-$datechooser-button-size: 22px
+// $datechooser-button-size: 22px
 $datechooser-tableitem-size: 38px
 
 .jewel.datechooser
@@ -30,8 +30,7 @@ $datechooser-tableitem-size: 38px
         min-height: 364px
 
         .jewel.tableheadercell
-            padding: 12px 0px
-            
+
         .jewel.tableheadercell.buttonsRow
             
             & > .layout.horizontal //makes the HGroup that holds prev and next btns align to right
@@ -43,29 +42,23 @@ $datechooser-tableitem-size: 38px
                 content: ' '
                 position: absolute
             .viewSelector::after
-                width: $datechooser-button-size
-                height: $datechooser-button-size - 6px
+                
             .previousButton::after, .nextButton::after
-                width: $datechooser-button-size
-                height: $datechooser-button-size
-
-                top: calc(50% - #{$datechooser-button-size/2})
+                
             .previousButton::after
-                left: calc(50% - #{$datechooser-button-size/2 + 2px})
+                
             .nextButton::after
-                left: calc(50% - #{$datechooser-button-size/2 - 2px})
-        
+            
         .jewel.tableheadercell.buttonsRow
-            padding: 4px
 
         // td
         .jewel.tableitem
             // width: $datechooser-tableitem-size
-            height: $datechooser-tableitem-size
+            // height: $datechooser-tableitem-size
 
 .calendar
     &.item
-        padding: 10px
+        
         
 j|DateChooser
     IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.DateChooserModel")			
