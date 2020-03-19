@@ -28,9 +28,9 @@ package org.apache.royale.jewel.supportClasses.table
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.ItemAddedEvent;
     import org.apache.royale.events.ItemRemovedEvent;
-    import org.apache.royale.html.supportClasses.ContainerContentArea;
-    import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
     import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
+    import org.apache.royale.jewel.supportClasses.container.StyledContainerContentArea;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
 
 
@@ -47,7 +47,7 @@ package org.apache.royale.jewel.supportClasses.table
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class TBodyContentArea extends ContainerContentArea implements IItemRendererOwnerView
+	public class TBodyContentArea extends StyledContainerContentArea implements IItemRendererOwnerView
 	{
 		/**
 		 *  constructor.
