@@ -106,6 +106,14 @@ j|Container {
   IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
 }
 
+j|HContainer {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.HorizontalLayout");
+}
+
+j|VContainer {
+  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VerticalLayout");
+}
+
 j|Image {
   IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.ImageModel");
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ImageView");

@@ -82,7 +82,7 @@ package org.apache.royale.jewel
 		public function Container()
 		{
 			super();
-			typeNames = "";
+			typeNames = "jewel container";
 		}
 		
         protected var _layout:StyledLayoutBase;
