@@ -94,19 +94,15 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		override public function set strand(value:IStrand):void
 		{
 			super.strand = value;
-			var component:UIBase;
-			if (contentView == null) {
-				component = value as UIBase;
-			} else {
-				component = contentView as UIBase;
-			}
 			updateScroll();
 		}
 
 		private var _scroll:Boolean = true;
 		/**
-		 * enable or disable scrolling on the strand
-		 * @return true for scroll, false for no scroll
+		 *  enable or disable scrolling on the strand
+		 *  
+		 *  @return true for scroll, false for no scroll
+		 *  
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
@@ -126,7 +122,7 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		}
 
 		/**
-		 * adds or remove the scroll
+		 *  adds or remove the scroll
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -136,8 +132,8 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		public function updateScroll():void
 		{
 			_scroll ?
-				contentArea.positioner.classList.add("scroll") :
-				contentArea.positioner.classList.remove("scroll");
+				styledContentArea.addClass("scroll") :
+				styledContentArea.removeClass("scroll");
 		}
 		
 		/**

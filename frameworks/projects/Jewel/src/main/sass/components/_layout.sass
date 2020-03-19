@@ -28,13 +28,13 @@ $grid-columns: 12 !default
 $gap-size: 10px !default
 
 .viewport
-	overflow: hidden
+	overflow: visible
+
+	&.clipped
+		overflow: hidden
 	
 	&.scroll
 		overflow: auto
-
-	&.visible
-		overflow: visible
 
 // Basic
 .layout.basic

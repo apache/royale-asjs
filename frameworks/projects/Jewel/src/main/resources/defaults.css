@@ -1000,13 +1000,13 @@ j|Label {
 }
 
 .viewport {
+  overflow: visible;
+}
+.viewport.clipped {
   overflow: hidden;
 }
 .viewport.scroll {
   overflow: auto;
-}
-.viewport.visible {
-  overflow: visible;
 }
 
 .layout.basic {
