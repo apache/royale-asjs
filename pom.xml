@@ -25,7 +25,7 @@
   <parent>
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
-    <version>22</version>
+    <version>23</version>
     <relativePath/>
   </parent>
 
@@ -47,7 +47,6 @@
     <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
     <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
     <url>scm:git:https://github.com/apache/royale-asjs.git</url>
-    <tag>release/0.9.6</tag>
   </scm>
 
   <properties>
@@ -79,6 +78,8 @@
     <webdriver.gecko.driver/>
     <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
+
+    <release-profiles>apache-release,with-distribution,option-with-swf</release-profiles>
   </properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
@@ -194,19 +195,25 @@
         </plugin>
 
         <plugin>
+          <groupId>com.theoryinpractise</groupId>
+          <artifactId>reproducible-maven-plugin</artifactId>
+          <version>1.0.1</version>
+        </plugin>
+
+        <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-release-plugin</artifactId>
-          <version>2.5.3</version>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+          <!-- If deploying fails due to repo or network problems, retry the given number of times (1-10) -->
           <configuration>
-            <!-- In case of a maven release, we want to build the distribution as well as the swfs -->
-            <arguments>-Papache-release,with-distribution,option-with-swf ${arguments}</arguments>
+            <retryFailedDeploymentCount>6</retryFailedDeploymentCount>
           </configuration>
         </plugin>
 
         <plugin>
-          <groupId>com.theoryinpractise</groupId>
-          <artifactId>reproducible-maven-plugin</artifactId>
-          <version>1.0.1</version>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-release-plugin</artifactId>
+          <version>3.0.0-M1</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -237,6 +244,29 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-release-plugin</artifactId>
+        <configuration>
+          <providerImplementations>
+            <git>jgit</git>
+          </providerImplementations>
+          <arguments combine.self="override">-P${release-profiles}</arguments>
+        </configuration>
+        <dependencies>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-provider-jgit</artifactId>
+            <version>1.11.2</version>
+          </dependency>
+          <dependency>
+            <groupId>org.apache.maven.scm</groupId>
+            <artifactId>maven-scm-api</artifactId>
+            <version>1.11.2</version>
+          </dependency>
+        </dependencies>
       </plugin>
 
       <!-- Check if all source files have the required apache license headers -->
@@ -387,6 +417,76 @@
       </build>
     </profile>
 
+    <!--
+      This profile enables the changes required to do releases on the Royale CI server.
+      It should not be used otherwise.
+    -->
+    <profile>
+      <id>royale-release</id>
+      <properties>
+        <!-- Ensure the royale-release plugin is enabled when running release:perform -->
+        <release-profiles>apache-release,royale-release,with-distribution,option-with-swf</release-profiles>
+      </properties>
+
+      <!-- Redirect the deployment to a local directory -->
+      <!-- Note: using the 'altReleaseDeploymentRepository' and alike were ignored in the release:perform phase -->
+      <distributionManagement>
+        <repository>
+          <id>apache.releases.https</id>
+          <name>Apache Release Distribution Repository</name>
+          <!--
+            'maven.multiModuleProjectDirectory' is a property introduced with maven 3.3.1 ...
+            don't worry if your IDE is complaining.
+            Also this will be set to the 'target/checkout' directory the output will be in
+            'target/local-release-dir'.
+          -->
+          <url>file://${maven.multiModuleProjectDirectory}/../local-release-dir</url>
+        </repository>
+      </distributionManagement>
+
+      <build>
+        <plugins>
+          <!-- Generate the effective poms for this build -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-help-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-effective-pom</id>
+                <phase>compile</phase>
+                <goals>
+                  <goal>effective-pom</goal>
+                </goals>
+                <configuration>
+                  <output>${project.build.directory}/effective.pom</output>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+        <pluginManagement>
+          <plugins>
+            <!-- We require the release manager to manually login an sign using his credentials -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-gpg-plugin</artifactId>
+              <configuration>
+                <skip>true</skip>
+              </configuration>
+            </plugin>
+            <!-- We require the release manager to login and push the changes using his credentials -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-release-plugin</artifactId>
+              <configuration>
+                <pushChanges>false</pushChanges>
+              </configuration>
+            </plugin>
+          </plugins>
+        </pluginManagement>
+      </build>
+    </profile>
+
     <!-- Make the release-plugin use the new reproducible build plugin extension -->
     <profile>
       <id>apache-release</id>
@@ -400,6 +500,7 @@
             <groupId>com.theoryinpractise</groupId>
             <artifactId>reproducible-maven-plugin</artifactId>
           </plugin>
+
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-release-plugin</artifactId>
@@ -407,6 +508,35 @@
               <preparationGoals>clean com.theoryinpractise:reproducible-maven-plugin:apply install</preparationGoals>
               <completionGoals>com.theoryinpractise:reproducible-maven-plugin:clear</completionGoals>
               <goals>deploy</goals>
+            </configuration>
+          </plugin>
+
+          <!--
+            Create MD5 and SHA512 checksum files for the release artifacts.
+          -->
+          <plugin>
+            <groupId>net.nicoulaj.maven.plugins</groupId>
+            <artifactId>checksum-maven-plugin</artifactId>
+            <version>1.8</version>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>files</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <algorithms>
+                <algorithm>SHA-512</algorithm>
+              </algorithms>
+              <fileSets>
+                <fileSet>
+                  <directory>${project.build.directory}</directory>
+                  <includes>
+                    <include>royale-framework-parent-${project.version}-source-release.zip</include>
+                  </includes>
+                </fileSet>
+              </fileSets>
             </configuration>
           </plugin>
         </plugins>
