@@ -207,14 +207,14 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setGap(value:Number):void
 		{
-			if (value >= 0 && value <= GAPS*GAP_STEP)
+			if (value >= 0 && value <= GAPS)
 			{
 				if (hostClassList.contains("gap-" + _gap + "x" + GAP_STEP + "px"))
 					hostClassList.remove("gap-" + _gap + "x" + GAP_STEP + "px");
 				if(value != 0)
 					hostClassList.add("gap-" + value + "x" + GAP_STEP + "px");
 			} else
-				throw new Error("Gap needs to be between 0 and " + GAPS*GAP_STEP);
+				throw new Error("Gap needs to be between 0 and " + GAPS);
 		}
 		
         /**
