@@ -18,25 +18,26 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.controllers
 {
+	COMPILE::SWF {
+	import org.apache.royale.events.Event;
+	import org.apache.royale.events.MouseEvent;
+	}
+	COMPILE::JS {
+	import goog.events;
+	import goog.events.Event;
+	import goog.events.EventType;
+
+	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.WrappedHTMLElement;
+	import org.apache.royale.events.BrowserEvent;
+	}
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.IStrand;
-COMPILE::SWF {
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.MouseEvent;
-}
-COMPILE::JS {
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.WrappedHTMLElement;
-	import org.apache.royale.events.BrowserEvent;
-	import goog.events.Event;
-	import goog.events.EventType;
-	import goog.events;
-}
 	import org.apache.royale.events.ItemClickedEvent;
-	import org.apache.royale.utils.sendEvent;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The ItemRendererMouseController class can mouse events in itemRenderers. This
@@ -89,13 +90,13 @@ COMPILE::JS {
 			}
 				
 			COMPILE::JS {
-				var element:WrappedHTMLElement = (_strand as UIBase).element;
+				var positioner:WrappedHTMLElement = (_strand as UIBase).positioner;
 				
-				goog.events.listen(element, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
-				goog.events.listen(element, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
-				goog.events.listen(element, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
-				goog.events.listen(element, goog.events.EventType.CLICK, this.handleMouseClick);
-				goog.events.listen(element, goog.events.EventType.MOUSEUP, this.handleMouseUp);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEOVER, this.handleMouseOver);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEOUT, this.handleMouseOut);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEDOWN, this.handleMouseDown);
+				goog.events.listen(positioner, goog.events.EventType.CLICK, this.handleMouseClick);
+				goog.events.listen(positioner, goog.events.EventType.MOUSEUP, this.handleMouseUp);
 			}
 		}
 		
