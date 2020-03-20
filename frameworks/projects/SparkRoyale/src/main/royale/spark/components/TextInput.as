@@ -36,6 +36,7 @@ import org.apache.royale.events.Event;
 import org.apache.royale.html.accessories.RestrictTextInputBead;
 import mx.core.mx_internal;
 import mx.events.FlexEvent;
+import mx.events.FocusEvent;
     
 import spark.components.supportClasses.SkinnableTextBase;
 import spark.components.supportClasses.SkinnableComponent;
@@ -408,8 +409,13 @@ public class TextInput extends SkinnableTextBase
         if (!inSetter)
 		{
             dispatchEvent(new Event(Event.CHANGE));
-            dispatchEvent(new Event(FlexEvent.VALUE_COMMIT));
 		}
+	}
+	
+	override protected function focusOutHandler(event:FocusEvent):void
+	{
+		super.focusOutHandler(event);
+        dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
 	}
 
     //--------------------------------------------------------------------------
