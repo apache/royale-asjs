@@ -62,7 +62,7 @@
             </include-file>
           </includeFiles>
           <includeLookupOnly>true</includeLookupOnly>
-          <!--<allowSubclassOverrides>true</allowSubclassOverrides>-->
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
         </configuration>

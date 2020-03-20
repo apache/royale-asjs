@@ -37,6 +37,7 @@
   <name>Apache Royale: Framework: Libs</name>
 
   <modules>
+    <!-- Disabled because it requires an ACE typedef and that isn't available in the Maven build yet -->
     <!--module>Ace</module-->
     <module>Basic</module>
     <module>Binding</module>

@@ -42,6 +42,7 @@
         <extensions>true</extensions>
         <configuration>
           <includeSources>true</includeSources>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>
         </configuration>
