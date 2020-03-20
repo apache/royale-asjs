@@ -159,6 +159,21 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VerticalCenteredLayout (width200, height:200px)"/>
+
+				<j:Group width="300" height="200" className="wrapper">
+					<j:beads>
+						<j:VerticalCenteredLayout/>
+					</j:beads>
+					<j:Card width="50%" height="100">
+						<j:Label text="Card Min Width is 240px"/>
+					</j:Card>
+				</j:Group>
+			</j:Card>
+		</j:GridCell>
+
 		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H4 text="Jewel HGroup"/>
