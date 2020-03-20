@@ -67,8 +67,10 @@ $gap-size: 10px !default
 			align-items: center
 			align-content: center
 			// height: 100%
+
+			// for centered layouts we need priority
 			> *
-				flex: 0 0 auto
+				flex: 0 0 auto !important
 
 		// FormItemLayout
 		&.formitem
@@ -122,8 +124,9 @@ $gap-size: 10px !default
 			flex-direction: column
 			height: 100%
 
-			> *
-				flex: 0 0 auto
+			// for centered layouts we need priority
+			> * 
+				flex: 0 0 auto !important
 
 		// FormLayout (consider for now Forms are always vertical)
 		&.form

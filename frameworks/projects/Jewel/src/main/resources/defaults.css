@@ -1040,7 +1040,7 @@ j|Label {
   align-content: center;
 }
 .layout.horizontal.centered > * {
-  flex: 0 0 auto;
+  flex: 0 0 auto !important;
 }
 .layout.horizontal.formitem {
   width: 100%;
@@ -1143,7 +1143,7 @@ j|Label {
   height: 100%;
 }
 .layout.vertical.centered > * {
-  flex: 0 0 auto;
+  flex: 0 0 auto !important;
 }
 .layout.vertical.form {
   width: 100%;
