@@ -26,7 +26,7 @@
     <version>0.9.7-SNAPSHOT</version>
   </parent>
 
-  <artifactId>ColorPicker</artifactId>
+  <artifactId>ColorPickerExample</artifactId>
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
@@ -40,6 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>ColorPicker.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <additionalCompilerOptions>
             -js-complex-implicit-coercions=false;
             -js-vector-index-checks=false;

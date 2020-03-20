@@ -34,11 +34,15 @@
 
   <modules>
     <module>AccordionExample</module>
+    <!-- Ace is currently not being built with maven -->
+    <!--module>Ace</module-->
     <module>AlertExample</module>
     <module>ASDoc</module>
     <module>ChartExample</module>
+    <module>ColorPickerExample</module>
     <module>CordovaCameraExample</module>
     <module>CreateJSExample</module>
+    <module>CreditCardValidatorExample</module>
     <module>DataBindingExample</module>
     <module>DataBindingExample_as</module><!-- Flash error -->
     <module>DataBindingExample_Flat</module>
@@ -49,6 +53,8 @@
     <module>DesktopMap</module>
     <module>DividedContainerExample</module>
     <module>DragAndDropExample</module>
+    <!-- Causing a compile error -->
+    <!--module>FileProxy</module-->
     <module>Flex2Royale</module>
     <module>HelloWorld</module>
     <module>HTMLElements</module>
@@ -63,7 +69,10 @@
     <module>MobileStocks</module>
     <module>MobileTrader</module>
     <module>ModuleExample</module>
+    <module>MultiDragDropExample</module>
     <module>RemoteObjectAMFTest</module>
+    <!-- Causing a compile error -->
+    <!--module>RemoteObjectAMFTestBasic</module-->
     <module>RoyaleStore</module>
     <module>RoyaleStore_jquery</module>
     <module>RoyaleTeamPage_MDL</module>

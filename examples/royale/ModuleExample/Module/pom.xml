@@ -40,6 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>Module.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <debug>false</debug>
           <additionalCompilerOptions>-js-compiler-option=--variable_map_input_file ../../../../../MainApp/target/javascript/bin/js-release/gccvars.txt;-js-compiler-option+=--property_map_input_file ../../../../../MainApp/target/javascript/bin/js-release/gccprops.txt</additionalCompilerOptions>

@@ -40,6 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>FileProxy.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <debug>false</debug>
           <removeCirculars>true</removeCirculars>

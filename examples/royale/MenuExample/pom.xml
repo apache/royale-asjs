@@ -41,6 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>MenuExample.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
         </configuration>
       </plugin>
@@ -51,13 +52,6 @@
    <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.7-SNAPSHOT</version>
-      <type>swc</type>
-       <classifier>js</classifier>
-    </dependency>
-	<dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>Language</artifactId>
       <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
        <classifier>js</classifier>

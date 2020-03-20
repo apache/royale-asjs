@@ -30,7 +30,7 @@
     <version>0.9.7-SNAPSHOT</version>
   </parent>
 
-  <artifactId>MultiDragAndDropExample</artifactId>
+  <artifactId>MultiDragDropExample</artifactId>
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 

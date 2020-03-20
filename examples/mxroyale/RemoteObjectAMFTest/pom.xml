@@ -49,6 +49,7 @@
         <configuration>
           <mainClass>App.mxml</mainClass>
           <!-- <mainClass>App_Jewel.mxml</mainClass> -->
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <debug>true</debug>
           <!-- <additionalCompilerOptions>-source-map=true;-js-dynamic-access-unknown-members=true</additionalCompilerOptions> -->

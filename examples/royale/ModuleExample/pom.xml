@@ -26,7 +26,7 @@
     <version>0.9.7-SNAPSHOT</version>
   </parent>
 
-  <artifactId>examples-royale-ModuleExample</artifactId>
+  <artifactId>ModuleExample</artifactId>
   <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
