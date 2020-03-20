@@ -46,6 +46,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>JSON2ASVO.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>

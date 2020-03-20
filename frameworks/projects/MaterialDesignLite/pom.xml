@@ -61,6 +61,7 @@
               <path>../src/main/resources/defaults.css</path>
             </include-file>
           </includeFiles>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <includeLookupOnly>true</includeLookupOnly>
           <skipExtern>true</skipExtern>
           <skipAS>${royale.skipAS}</skipAS>

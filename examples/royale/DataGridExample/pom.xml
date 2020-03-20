@@ -44,6 +44,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataGridExample.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <debug>false</debug>
           <additionalCompilerOptions>-source-map=true;</additionalCompilerOptions>

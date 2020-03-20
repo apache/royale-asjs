@@ -41,6 +41,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>ASDoc.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>

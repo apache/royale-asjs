@@ -40,6 +40,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>TeamPage.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
           <!-- Not a config option of royale-maven-plugin -->

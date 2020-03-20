@@ -54,6 +54,7 @@
         <extensions>true</extensions>
         <configuration>
           <mainClass>DataBindingExample.mxml</mainClass>
+          <allowSubclassOverrides>true</allowSubclassOverrides>
           <targets>${royale.targets}</targets>
           <removeCirculars>true</removeCirculars>
         </configuration>

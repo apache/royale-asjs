@@ -35,6 +35,8 @@
 
   <modules>
     <module>ControlsExample</module>
+    <!-- Causing compile errors -->
+    <!--module>FileReference</module-->
     <module>HelloWorld</module>
     <module>SparkHelloWorld</module>
     <module>RemoteObjectAMFTest</module>
