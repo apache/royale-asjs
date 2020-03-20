@@ -23,7 +23,6 @@ package org.apache.royale.jewel
     import org.apache.royale.events.Event;
     import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
     import org.apache.royale.jewel.supportClasses.container.ContainerBase;
-    import org.apache.royale.utils.IClassSelectorListSupport;
     import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.StringUtil;
 	
@@ -69,7 +68,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */    
-	public class Container extends ContainerBase implements IMXMLDocument, IClassSelectorListSupport
+	public class Container extends ContainerBase implements IMXMLDocument
 	{
         /**
          *  Constructor.
