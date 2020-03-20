@@ -528,6 +528,8 @@ public class Panel extends SkinnableContainer
     public function set title(value:String):void
     {
         (model as PanelModel).title = value;
+		if (titleDisplay)
+			titleDisplay.text = value;
     }
     
     //--------------------------------------------------------------------------
