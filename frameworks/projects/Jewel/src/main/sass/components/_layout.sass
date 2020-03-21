@@ -186,14 +186,23 @@ $gap-size: 10px !default
 						@for $j from 1 through $i
 							.#{$size}-col-#{$j}-#{$i}
 								width: calc(#{percentage($j / $i)} - #{$gap-size})
-
 	&.horizontal, &.vertical, &.grid
-		// Vertical Items Align
+		&.itemsSpaceBetween
+			justify-content: space-between
+		&.itemsSpaceAround
+			justify-content: space-around
 		&.itemsSameHeight
 			//align-items: stretch  --> this doen't seems to work as expected
 			> *
 				> *
 					min-height: 100%
+		&.itemsExpand
+			width: 100%
+			> *
+				flex: 1 0 auto
+
+	&.horizontal, &.grid
+		// Vertical Items Align
 		&.itemsCentered
 			align-items: center
 		&.itemsTop
@@ -208,16 +217,24 @@ $gap-size: 10px !default
 			justify-content: center
 		&.itemsRight
 			justify-content: flex-end
-		&.itemsSpaceBetween
-			justify-content: space-between
-		&.itemsSpaceAround
-			justify-content: space-around
-			
-		&.itemsExpand
-			width: 100%
-			> *
-				flex: 1 0 auto
+		
+	&.vertical
+		// Vertical Items Align
+		&.itemsCentered
+			justify-content: center
+		&.itemsTop
+			justify-content: flex-start
+		&.itemsBottom
+			justify-content: flex-end
 
+		// Horizontal Items Align
+		&.itemsLeft
+			align-items: flex-start
+		&.itemsCenter
+			align-items: center
+		&.itemsRight
+			align-items: flex-end
+		
 	&.table
 		display: table
 

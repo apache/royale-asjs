@@ -3112,38 +3112,56 @@ j|Label {
     width: calc(100% - 10px);
   }
 }
-.layout.horizontal.itemsSameHeight > * > *, .layout.vertical.itemsSameHeight > * > *, .layout.grid.itemsSameHeight > * > * {
-  min-height: 100%;
-}
-.layout.horizontal.itemsCentered, .layout.vertical.itemsCentered, .layout.grid.itemsCentered {
-  align-items: center;
-}
-.layout.horizontal.itemsTop, .layout.vertical.itemsTop, .layout.grid.itemsTop {
-  align-items: flex-start;
-}
-.layout.horizontal.itemsBottom, .layout.vertical.itemsBottom, .layout.grid.itemsBottom {
-  align-items: flex-end;
-}
-.layout.horizontal.itemsLeft, .layout.vertical.itemsLeft, .layout.grid.itemsLeft {
-  justify-content: flex-start;
-}
-.layout.horizontal.itemsCenter, .layout.vertical.itemsCenter, .layout.grid.itemsCenter {
-  justify-content: center;
-}
-.layout.horizontal.itemsRight, .layout.vertical.itemsRight, .layout.grid.itemsRight {
-  justify-content: flex-end;
-}
 .layout.horizontal.itemsSpaceBetween, .layout.vertical.itemsSpaceBetween, .layout.grid.itemsSpaceBetween {
   justify-content: space-between;
 }
 .layout.horizontal.itemsSpaceAround, .layout.vertical.itemsSpaceAround, .layout.grid.itemsSpaceAround {
   justify-content: space-around;
 }
+.layout.horizontal.itemsSameHeight > * > *, .layout.vertical.itemsSameHeight > * > *, .layout.grid.itemsSameHeight > * > * {
+  min-height: 100%;
+}
 .layout.horizontal.itemsExpand, .layout.vertical.itemsExpand, .layout.grid.itemsExpand {
   width: 100%;
 }
 .layout.horizontal.itemsExpand > *, .layout.vertical.itemsExpand > *, .layout.grid.itemsExpand > * {
   flex: 1 0 auto;
+}
+.layout.horizontal.itemsCentered, .layout.grid.itemsCentered {
+  align-items: center;
+}
+.layout.horizontal.itemsTop, .layout.grid.itemsTop {
+  align-items: flex-start;
+}
+.layout.horizontal.itemsBottom, .layout.grid.itemsBottom {
+  align-items: flex-end;
+}
+.layout.horizontal.itemsLeft, .layout.grid.itemsLeft {
+  justify-content: flex-start;
+}
+.layout.horizontal.itemsCenter, .layout.grid.itemsCenter {
+  justify-content: center;
+}
+.layout.horizontal.itemsRight, .layout.grid.itemsRight {
+  justify-content: flex-end;
+}
+.layout.vertical.itemsCentered {
+  justify-content: center;
+}
+.layout.vertical.itemsTop {
+  justify-content: flex-start;
+}
+.layout.vertical.itemsBottom {
+  justify-content: flex-end;
+}
+.layout.vertical.itemsLeft {
+  align-items: flex-start;
+}
+.layout.vertical.itemsCenter {
+  align-items: center;
+}
+.layout.vertical.itemsRight {
+  align-items: flex-end;
 }
 .layout.table {
   display: table;
