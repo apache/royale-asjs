@@ -142,6 +142,8 @@ under the License.
       <includes>
         <include>**</include>
       </includes>
+      <!-- Make all scripts in here executable -->
+      <fileMode>0755</fileMode>
     </fileSet>
 
     <!-- Copy the js scripts -->
@@ -151,6 +153,8 @@ under the License.
       <includes>
         <include>**</include>
       </includes>
+      <!-- Make all scripts in here executable -->
+      <fileMode>0755</fileMode>
     </fileSet>
 
     <!-- Copy the configurations -->
