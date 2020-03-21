@@ -368,7 +368,6 @@ hr {
 }
 .jewel.card.simple {
   padding: 20px;
-  flex: 1 1 0%;
 }
 .jewel.card .cardHeader {
   border-bottom: 1px solid transparent;
