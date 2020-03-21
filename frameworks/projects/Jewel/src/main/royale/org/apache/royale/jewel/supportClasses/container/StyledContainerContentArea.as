@@ -21,7 +21,7 @@ package org.apache.royale.jewel.supportClasses.container
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
@@ -51,15 +51,15 @@ package org.apache.royale.jewel.supportClasses.container
             addEventListener("layoutNeeded", forwardEventHandler);
 		}
 		
-        private var _host:IUIBase;
-		public function get host():IUIBase
+        private var _host:StyledUIBase;
+		public function get host():StyledUIBase
         {
             return _host;
         }
 		
 		public function set strand(value:IStrand):void
 		{
-			_host = value as IUIBase;
+			_host = value as StyledUIBase;
 		}
 
         private function forwardEventHandler(event:Event):void
