@@ -309,7 +309,7 @@ j|ToggleButtonBar {
 }
 
 .jewel.card {
-  min-width: 240px;
+  min-width: 120px;
   min-height: 52px;
   position: relative;
 }
@@ -323,7 +323,7 @@ j|ToggleButtonBar {
   outline: none;
   color: inherit;
   text-decoration: none;
-  flex: 1 1 0%;
+  flex: 1 1 auto;
 }
 .jewel.card .cardActions {
   width: 100%;
