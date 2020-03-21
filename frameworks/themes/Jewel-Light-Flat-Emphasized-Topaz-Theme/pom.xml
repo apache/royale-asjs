@@ -53,43 +53,6 @@
           </includeFiles>
         </configuration>
       </plugin>
-
-      <plugin>
-        <groupId>nl.geodienstencentrum.maven</groupId>
-        <artifactId>sass-maven-plugin</artifactId>
-        <configuration>
-          <resources>
-            <!-- Depends on JewelTheme SASS framework files-->
-            <resource>
-                <source>
-                    <directory>${basedir}/src/main/sass</directory>
-                    <includes>
-                        <include>defaults.sass</include>
-                    </includes>
-                </source>
-                <destination>${basedir}/src/main/resources</destination>
-            </resource>
-            <!-- Create a copy for TourDeJewel so we can change themes dinamicaly -->
-            <resource>
-                <source>
-                    <directory>${basedir}/src/main/sass</directory>
-                    <includes>
-                        <include>defaults.sass</include>
-                    </includes>
-                </source>
-                <destination>${basedir}/../../../examples/royale/TourDeJewel/src/main/resources/assets/themes/Jewel-Light-Flat-Emphasized-Topaz-Theme</destination>
-            </resource>
-          </resources>
-        </configuration>
-        <executions>
-          <execution>
-              <id>generate-css-using-sass</id>
-              <goals>
-                  <goal>update-stylesheets</goal>
-              </goals>
-          </execution>
-        </executions>
-      </plugin>
     </plugins>
   </build>
 
