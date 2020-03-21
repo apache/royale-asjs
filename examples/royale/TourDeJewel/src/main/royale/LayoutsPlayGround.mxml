@@ -168,41 +168,131 @@ limitations under the License.
 						<j:VerticalCenteredLayout/>
 					</j:beads>
 					<j:Card width="50%" height="100">
-						<j:Label text="Card Min Width is 240px"/>
+						<j:Label text="Hello!"/>
 					</j:Card>
 				</j:Group>
 			</j:Card>
 		</j:GridCell>
-
-		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
-				<html:H4 text="Jewel HGroup"/>
-
-				<j:HGroup id="hg" gap="3">
-					<j:Button text="X" emphasis="primary"/>
-					<j:Button text="Y" emphasis="secondary"/>
-					<j:Button text="Z" emphasis="emphasized"/>
-					<j:Button text="0" />
-				</j:HGroup>
-				
-				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="hg.gap = event.target.value"/>
-			</j:Card>
-		</j:GridCell> -->
-
-		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
-			<j:Card>
-				<html:H4 text="Jewel VGroup"/>
 		
-				<j:VGroup id="vg" gap="3">
-					<j:Button text="X" emphasis="primary"/>
-					<j:Button text="Y" emphasis="secondary"/>
-					<j:Button text="Z" emphasis="emphasized"/>
-					<j:Button text="0"/>
-				</j:VGroup>
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VContainer itemsHorizontalAlign='itemsCenter'"/>
 
-				<j:HSlider width="200" value="3" minimum="0" maximum="10" valueChange="vg.gap = event.target.value"/>
+				<j:VContainer width="300" height="300" gap="3" itemsHorizontalAlign="itemsCenter" className="wrapper">
+					<j:Card width="50%" height="100">
+						<j:Label text="horz center"/>
+					</j:Card>
+					<j:Card width="50%" height="100">
+						<j:Label text="horz center"/>
+					</j:Card>
+				</j:VContainer>
 			</j:Card>
-		</j:GridCell> -->
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VContainer itemsHorizontalAlign='itemsRight'"/>
+
+				<j:VContainer width="300" height="300" gap="3" itemsHorizontalAlign="itemsRight" className="wrapper">
+					<j:Card width="50%" height="100">
+						<j:Label text="horz right"/>
+					</j:Card>
+					<j:Card width="50%" height="100">
+						<j:Label text="horz right"/>
+					</j:Card>
+				</j:VContainer>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VContainer itemsVerticalAlign='itemsBottom'"/>
+
+				<j:VContainer width="300" height="300" gap="3" itemsVerticalAlign="itemsBottom" className="wrapper">
+					<j:Card width="50%" height="100">
+						<j:Label text="vert bottom"/>
+					</j:Card>
+					<j:Card width="50%" height="100">
+						<j:Label text="vert bottom"/>
+					</j:Card>
+				</j:VContainer>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel VContainer itemsVerticalAlign='itemsCentered'"/>
+
+				<j:VContainer width="300" height="300" gap="3" itemsVerticalAlign="itemsCentered" className="wrapper">
+					<j:Card width="50%" height="100">
+						<j:Label text="vert center"/>
+					</j:Card>
+					<j:Card width="50%" height="100">
+						<j:Label text="vert center"/>
+					</j:Card>
+				</j:VContainer>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HContainer itemsHorizontalAlign='itemsCenter'"/>
+
+				<j:HContainer width="300" height="300" gap="3" itemsHorizontalAlign="itemsCenter" className="wrapper">
+					<j:Card width="100" height="50%">
+						<j:Label text="horz center"/>
+					</j:Card>
+					<j:Card width="100" height="50%">
+						<j:Label text="horz center"/>
+					</j:Card>
+				</j:HContainer>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HContainer itemsHorizontalAlign='itemsRight'"/>
+
+				<j:HContainer width="300" height="300" gap="3" itemsHorizontalAlign="itemsRight" className="wrapper">
+					<j:Card width="100" height="50%">
+						<j:Label text="horz right"/>
+					</j:Card>
+					<j:Card width="100" height="50%">
+						<j:Label text="horz right"/>
+					</j:Card>
+				</j:HContainer>
+			</j:Card>
+		</j:GridCell>
+
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HContainer itemsVerticalAlign='itemsBottom'"/>
+
+				<j:HContainer width="300" height="300" gap="3" itemsVerticalAlign="itemsBottom" className="wrapper">
+					<j:Card width="100" height="50%">
+						<j:Label text="vert bottom"/>
+					</j:Card>
+					<j:Card width="100" height="50%">
+						<j:Label text="vert bottom"/>
+					</j:Card>
+				</j:HContainer>
+			</j:Card>
+		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<html:H3 text="Jewel HContainer itemsVerticalAlign='itemsCentered'"/>
+
+				<j:HContainer width="300" height="300" gap="3" itemsVerticalAlign="itemsCentered" className="wrapper">
+					<j:Card width="100" height="50%">
+						<j:Label text="vert centered"/>
+					</j:Card>
+					<j:Card width="100" height="50%">
+						<j:Label text="vert centered"/>
+					</j:Card>
+				</j:HContainer>
+			</j:Card>
+		</j:GridCell>
 	</j:Grid>
 
 </c:ExampleAndSourceCodeTabbedSectionContent>
