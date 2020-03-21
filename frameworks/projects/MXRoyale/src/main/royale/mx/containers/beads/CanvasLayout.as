@@ -212,7 +212,23 @@ public class CanvasLayout extends LayoutBase
 			for (i=0; i < n; i++) {
 				var child:IUIComponent = target.getLayoutChildAt(i);
 				child.positioner.style.position = "absolute";
-                child.dispatchEvent(new Event("layoutNeeded"));
+				var layoutNeeded:Boolean = true;
+				var hh:Number = child.height;
+				if (!isNaN(child.percentHeight))
+				{
+					hh = target.height * child.percentHeight / 100;
+					layoutNeeded = false;
+				}
+				var ww:Number = child.width;
+				if (!isNaN(child.percentWidth))
+				{
+					ww = target.width * child.percentWidth / 100;
+					layoutNeeded = false;
+				}
+				if (layoutNeeded)
+	                child.dispatchEvent(new Event("layoutNeeded"));
+				else
+					child.setActualSize(ww, hh);
 			}
 			
 			return true;
