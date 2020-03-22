@@ -58,6 +58,7 @@ under the License.
       <includes>
         <include>org.apache.royale.typedefs:*</include>
       </includes>
+      <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}</outputFileNameMapping>
     </dependencySet>
     <!-- Put the framework js-swcs into the frameworks/libs directory -->
     <dependencySet>
@@ -88,6 +89,7 @@ under the License.
       <includes>
         <include>org.apache.royale.typedefs:*:swc</include>
       </includes>
+      <outputFileNameMapping>${artifact.artifactId}-${artifact.baseVersion}.${artifact.extension}</outputFileNameMapping>
     </dependencySet>
 
     <!-- Put the framework swcs into the frameworks/libs directory (needed for IDEs) -->
