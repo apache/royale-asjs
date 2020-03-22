@@ -262,18 +262,18 @@ public class HGroup extends Group
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get paddingTop():Number
+    override public function get paddingTop():Number
     {
         return horizontalLayout.paddingTop;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set paddingTop(value:Number):void
+    override public function set paddingTop(value:Number):void
     {
         horizontalLayout.paddingTop = value;
-    }   */  
+    }
     
     //----------------------------------
     //  paddingBottom
@@ -291,18 +291,18 @@ public class HGroup extends Group
      *  @playerversion AIR 1.5
      *  @productversion Royale 0.9.4
      */
-   /*  public function get paddingBottom():Number
+    override public function get paddingBottom():Number
     {
         return horizontalLayout.paddingBottom;
-    } */
+    }
 
     /**
      *  @private
      */
-    /* public function set paddingBottom(value:Number):void
+    override public function set paddingBottom(value:Number):void
     {
         horizontalLayout.paddingBottom = value;
-    } */
+    }
     
     
     //----------------------------------
