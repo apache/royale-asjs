@@ -39,12 +39,13 @@
     <module>AlertExample</module>
     <module>ASDoc</module>
     <module>ChartExample</module>
-    <module>ColorPickerExample</module>
+    <!-- Causing a compile error -->
+    <!--module>ColorPickerExample</module-->
     <module>CordovaCameraExample</module>
     <module>CreateJSExample</module>
     <module>CreditCardValidatorExample</module>
     <module>DataBindingExample</module>
-    <module>DataBindingExample_as</module><!-- Flash error -->
+    <module>DataBindingExample_as</module>
     <module>DataBindingExample_Flat</module>
     <module>DataBindingExampleWithFlexLayout</module>
     <module>DataGridExample</module>
@@ -84,7 +85,6 @@
     <module>TeamPage</module>
     <module>TodoListSampleApp</module>
     <module>TreeExample</module>
-
   </modules>
 
   <build>
