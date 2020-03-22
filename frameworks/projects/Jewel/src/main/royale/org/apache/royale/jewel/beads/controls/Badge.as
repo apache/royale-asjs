@@ -20,7 +20,7 @@ package org.apache.royale.jewel.beads.controls
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.jewel.Label;
 	import org.apache.royale.utils.IEmphasis;
 	
@@ -68,7 +68,7 @@ package org.apache.royale.jewel.beads.controls
 			return badge;
 		}
 
-		private var host:UIBase;
+		private var host:StyledUIBase;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -79,11 +79,11 @@ package org.apache.royale.jewel.beads.controls
 		 */
 		public function set strand(value:IStrand):void
 		{
-			host = value as UIBase;
+			host = value as StyledUIBase;
 			COMPILE::JS
 			{
-				host.element.classList.add("visible");
-				host.element.classList.add("viewport");
+			host.addClass("viewport");
+			host.addClass("visible");
 			}
 			badge.toggleClass("preindex", _preindex);
 			badge.toggleClass("subindex", _subindex);
