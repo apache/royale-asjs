@@ -22,7 +22,7 @@
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
-    <artifactId>examples-royale</artifactId>
+    <artifactId>examples-jewel</artifactId>
     <version>0.9.7-SNAPSHOT</version>
   </parent>
 

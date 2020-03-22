@@ -34,6 +34,7 @@
 
   <modules>
     <module>todomvc</module>
+    <module>TourDeJewel</module>
   </modules>
 
   <build>
