@@ -214,6 +214,7 @@
           <plugin>
             <groupId>nl.geodienstencentrum.maven</groupId>
             <artifactId>sass-maven-plugin</artifactId>
+            <version>3.7.2</version>
             <configuration>
               <resources>
                 <!-- Depends on JewelTheme SASS framework files-->
@@ -236,6 +237,29 @@
                 </goals>
               </execution>
             </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!--
+      This is a self-activating profile that causes the sass plugin
+      to not be executed if there is no src/main/sass directory.
+    -->
+    <profile>
+      <id>_skip-sass-compilation</id>
+      <activation>
+        <file>
+          <missing>src/main/sass</missing>
+        </file>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>nl.geodienstencentrum.maven</groupId>
+            <artifactId>sass-maven-plugin</artifactId>
+            <configuration>
+              <skip>true</skip>
+            </configuration>
           </plugin>
         </plugins>
       </build>
