@@ -29,7 +29,7 @@
   <artifactId>examples-tests</artifactId>
   <version>0.9.7-SNAPSHOT</version>
 
-  <name>Apache Royale: Examples: Example-Tests</name>
+  <name>Apache Royale: Examples: Example-Tests ---------------------------</name>
 
   <build>
     <sourceDirectory>src/main/java</sourceDirectory>

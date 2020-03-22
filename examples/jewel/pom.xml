@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: Jewel</name>
+  <name>Apache Royale: Examples: Jewel -----------------------------------</name>
 
   <modules>
     <module>todomvc</module>

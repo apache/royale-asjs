@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: Royale</name>
+  <name>Apache Royale: Examples: Royale ----------------------------------</name>
 
   <modules>
     <module>AccordionExample</module>

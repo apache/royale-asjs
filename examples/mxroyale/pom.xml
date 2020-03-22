@@ -31,7 +31,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: MXRoyale</name>
+  <name>Apache Royale: Examples: MXRoyale --------------------------------</name>
 
   <modules>
     <module>ControlsExample</module>

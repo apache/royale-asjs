@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: NodeJS</name>
+  <name>Apache Royale: Examples: NodeJS ----------------------------------</name>
 
   <modules>
     <module>HelloWorld</module>

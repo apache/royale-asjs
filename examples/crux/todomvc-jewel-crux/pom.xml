@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: TodoMVC-Jewel-Crux</name>
+  <name>Apache Royale: Examples: Crux: TodoMVC-Jewel-Crux</name>
 
   <build>
     <plugins>

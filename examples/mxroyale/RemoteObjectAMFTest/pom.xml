@@ -31,7 +31,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: RemoteObjectAMFTest-MXRoyale</name>
+  <name>Apache Royale: Examples: MXRoyale: RemoteObjectAMFTest-MXRoyale</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>

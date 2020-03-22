@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Royale: TourDeJewel</name>
+  <name>Apache Royale: Examples: Jewel: TourDeJewel</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>

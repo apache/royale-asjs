@@ -31,7 +31,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: Express</name>
+  <name>Apache Royale: Examples: Express ---------------------------------</name>
 
   <modules>
     <module>DataBindingExample</module>

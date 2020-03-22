@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: TodoMVC</name>
+  <name>Apache Royale: Examples: Jewel: TodoMVC</name>
 
   <build>
     <plugins>

@@ -30,7 +30,7 @@
   <version>0.9.7-SNAPSHOT</version>
   <packaging>pom</packaging>
 
-  <name>Apache Royale: Examples: Blog</name>
+  <name>Apache Royale: Examples: Blog ------------------------------------</name>
 
   <modules>
     <module>BE0001_Hello_World</module>
