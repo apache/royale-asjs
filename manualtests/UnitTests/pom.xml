@@ -53,6 +53,7 @@
 				<extensions>true</extensions>
 				<configuration>
 					<targets>SWF,JSRoyale</targets>
+					<allowSubclassOverrides>true</allowSubclassOverrides>
 					<mainClass>${project.artifactId}.mxml</mainClass>
                     <removeCirculars>true</removeCirculars>
 					<debug>false</debug>
