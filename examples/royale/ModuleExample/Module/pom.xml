@@ -22,7 +22,7 @@
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
-    <artifactId>examples-royale-ModuleExample</artifactId>
+    <artifactId>ModuleExample</artifactId>
     <version>0.9.7-SNAPSHOT</version>
   </parent>
 
@@ -115,19 +115,7 @@
           </execution>
         </executions>
       </plugin>
-
     </plugins>
   </build>
-
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.royale.framework</groupId>
-      <artifactId>BasicTheme</artifactId>
-      <version>0.9.7-SNAPSHOT</version>
-      <type>swc</type>
-      <scope>theme</scope>
-      <classifier>js</classifier>
-    </dependency>
-  </dependencies>
 
 </project>
