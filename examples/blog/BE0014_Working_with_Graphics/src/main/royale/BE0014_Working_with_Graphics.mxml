@@ -21,17 +21,47 @@
                xmlns:j="library://ns.apache.org/royale/jewel"
                xmlns:js="library://ns.apache.org/royale/basic"
                xmlns:html="library://ns.apache.org/royale/html"
-               xmlns:svg="library://ns.apache.org/royale/svg">
-
+               xmlns:svg="library://ns.apache.org/royale/svg" 
+               xmlns:graphics="org.apache.royale.graphics.*">
     <fx:Script>
 		<![CDATA[
+        import org.apache.royale.display.Graphics;
+        import org.apache.royale.utils.transformValueFromRange;
+
+        /**
+         * The color of the liquid
+         */
+        private var liquidColor:Number = 0x15CF12;
+
+        /**
+         * Fill the bottle
+         */
 		private function changeFill(event:ValueChangeEvent):void {
-            if(slider.value <= 400)
-            {
-                bgShape.height = slider.value;
-			    bgShape.y = fgShape.height - slider.value;
-            }
+            var g:Graphics = Graphics.getInstanceFor(bgShape);
+            var newHeight:Number = transformValueFromRange(slider.value, slider.minimum, slider.maximum, 0, 350);
+            var newY:Number = fgShape.height - newHeight;
+            
+            g.clear();
+            drawLiquid(g, liquidColor, .5, 0, newY, 400, 500, -15);
+            drawLiquid(g, liquidColor, 1,  0, newY, 400, 500, 30);
 		}
+
+        /**
+         * Draw the liquid to fill the bottle
+         */
+        private function drawLiquid(g:Graphics, color:Number, alpha:Number, x:int, y:int, width:int, height:int, wave:int):void {
+            if(y > height)
+                y = height;
+            g.beginFill(color, alpha);
+            g.moveTo(x, height);
+            g.lineTo(x, y);
+            g.curveTo(width / 4, y - wave, width / 2, y);
+            g.lineTo(width / 2, y)
+            g.curveTo(width * 3 / 4, y + wave, width, y);
+            g.lineTo(width, height);
+            g.lineTo(x, height);
+            g.endFill();
+        }
 		]]>
 	</fx:Script>
     
@@ -51,18 +81,19 @@
 					<html:H3 text="Working with Graphics" className="primary-normal"/>
 				</j:CardHeader>
                 <j:CardPrimaryContent itemsHorizontalAlign="itemsCentered">
-                    <j:Group width="400" height="500">
-                        <j:Group localId="bgShape" width="400" height="0" className="bgshape"/>
+                    <j:Container localId="fgShape" width="400" height="500">
+                        
+                        <!-- liquid -->    
+                        <js:UIGraphicsBase localId="bgShape" width="400" height="500"/>
+                        
                         <!-- fill mask -->
-                        <svg:Image localId="fgShape" src="assets/bottle-mask.svg" width="400" height="500"/>
-
+                        <svg:Image src="assets/bottle-mask.svg" width="400" height="500"/>
                         <!-- inner shade -->
                         <svg:Image src="assets/bottle-shade.svg" width="400" height="500"/>
-
                         <!-- main shape -->
                         <svg:Image src="assets/bottle-main.svg" width="400" height="500"/>
-                    </j:Group>
-
+                        
+                    </j:Container>
                 </j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCentered">
                     <j:Label text="Slide to fill"/>
@@ -71,14 +102,5 @@
              </j:Card>
         </j:View>
     </j:initialView>
-
-    <fx:Style>
-        @namespace "http://www.w3.org/1999/xhtml";
-        
-        .bgshape
-        {
-            background: #15CF12;
-        }
-    </fx:Style>
 
 </j:Application>
