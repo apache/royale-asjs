@@ -16,27 +16,24 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests
 {
-	//test groups
-	import flexUnitTests.*;
+    import flexUnitTests.binding.*
+    
+    [Suite]
+   
+    /**
+     *  @royalesuppresspublicvarwarning
+     */
+    public class BindingTester
+    {
+        public function BindingTester()
+        {
+        }
 
+        public var bindableCoreTest:BindableCoreTests;
+    
+        public var bindingCoreTest:BindingCoreTests;
 
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
-	}
+    }
 }

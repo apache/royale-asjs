@@ -16,27 +16,16 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindables
 {
-	//test groups
-	import flexUnitTests.*;
 
-
-	public class TestClasses
+	public class UnbindableBase
 	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
+			
+
+			
+			public var fieldOfUnbindableBaseVO:String = "fieldOfUnbindableBaseVO_value";
+			
+
 	}
 }

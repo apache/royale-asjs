@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
 <!--
-
   Licensed to the Apache Software Foundation (ASF) under one or more
   contributor license agreements.  See the NOTICE file distributed with
   this work for additional information regarding copyright ownership.
@@ -15,10 +14,7 @@
   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
   See the License for the specific language governing permissions and
   limitations under the License.
-
 -->
-
-
 <project name="UnitTests" default="main" basedir=".">
     <property name="ROYALE_HOME" location="../.."/>
     <property name="example" value="UnitTests" />
@@ -39,7 +35,7 @@
     <!--<property name="swf.version" value="30" />
     <property name="playerglobal.version" value="19" />-->
     <property name="destDir" value="${basedir}/target/swf"/>
-    <property name="html_template_base" value="${basedir}/src/main/resources" />
+    <property name="html_template_base" value="${basedir}/swf-html-template" />
     <include file="${basedir}/../build_example.xml" />
 
     <target name="main" depends="clean" description="Clean build of ${example}">

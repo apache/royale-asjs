@@ -16,27 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.network.support
 {
-	//test groups
-	import flexUnitTests.*;
-
-
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
-	}
+   
+    import flexUnitTests.network.support.testnamespace;
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass7b extends TestClass7a
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing reflection into it
+        
+        public function TestClass7b()
+        {
+        
+        }
+        
+        //private var _something:String;
+        [Bindable]
+        override public function get something():String{
+            return _something;
+        }
+        override public function set something(value:String):void{
+            _something = value;
+        }
+        
+    }
+    
+    
 }

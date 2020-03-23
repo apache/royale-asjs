@@ -16,27 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindables
 {
-	//test groups
-	import flexUnitTests.*;
 
-
-	public class TestClasses
+	public class BaseWithBindableAndUnbindableVars
 	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
+			[Bindable]
+			public var bindableVarOfBaseWithBindableAndUnbindableVars:String = "bindableVarOfBaseWithBindableAndUnbindableVars_value";
+
+			public var unbindableVarOfBaseWithBindableAndUnbindableVars:String = "unbindableVarOfBaseWithBindableAndUnbindableVars_value";
 	}
 }

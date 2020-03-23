@@ -16,27 +16,36 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.network.support
 {
-	//test groups
-	import flexUnitTests.*;
+   
+    import flexUnitTests.network.support.testnamespace;
+    
+    /**
+     * @royalesuppresspublicvarwarning
+     */
+    public class TestClass7a
+    {
+        //Note: do not change this test class unless you change the related tests to
+        //support any changes that might appear when testing reflection into it
+        
+        public function TestClass7a()
+        {
+        
+        }
 
-
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
-	}
+        public var test:String = 'test';
+        
+        protected var _something:String;
+        [Transient]
+        public function get something():String{
+            return _something;
+        }
+        public function set something(value:String):void{
+            _something = value;
+        }
+        
+    }
+    
+    
 }

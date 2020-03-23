@@ -40,18 +40,19 @@ package flexUnitTests.language
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-
+            arrayList= new ArrayList(['dog', 'cat','mouse','gerbil']);
         }
         
         [AfterClass]
         public static function tearDownAfterClass():void
         {
+            arrayList = null;
         }
         
         [Before]
         public function setUp():void
         {
-            arrayList= new ArrayList(['dog', 'cat','mouse','gerbil']);
+
         }
         
         [After]
@@ -62,7 +63,7 @@ package flexUnitTests.language
         
 
     
-        public var arrayList:ArrayList;
+        public static var arrayList:ArrayList;
     
         [Test]
         public function testImpl():void

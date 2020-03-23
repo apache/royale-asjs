@@ -1,4 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
+0.////////////////////////////////////////////////////////////////////////////////
 //
 //  Licensed to the Apache Software Foundation (ASF) under one or more
 //  contributor license agreements.  See the NOTICE file distributed with
@@ -16,27 +16,18 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindables
 {
-	//test groups
-	import flexUnitTests.*;
 
-
-	public class TestClasses
+	public class BindableSubVO3 extends UnbindableIntermediateVO
 	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
+			
+
+			
+			[Bindable]
+			public var fieldofBindableSubVO3:String = "fieldofBindableSubVO3_value";
+
+			[Bindable]
+			public var rangeEnd:Object;
 	}
 }

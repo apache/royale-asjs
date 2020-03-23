@@ -51,25 +51,28 @@ package flexUnitTests.reflection
                 js = true;
             }
             isJS = js;
-        }
-        
-        [AfterClass]
-        public static function tearDownAfterClass():void
-        {
-        }
-        
-        [Before]
-        public function setUp():void
-        {
+
             TypeDefinition.useCache = true;
             TestClass2.testStaticVar = "testStaticVar_val";
             TestClass2.testStaticWriteOnly = "staticAccessor_initial_value";
         }
         
+        [AfterClass]
+        public static function tearDownAfterClass():void
+        {
+            TypeDefinition.useCache = false;
+        }
+        
+        [Before]
+        public function setUp():void
+        {
+
+        }
+        
         [After]
         public function tearDown():void
         {
-            TypeDefinition.useCache = false;
+
         }
         
         private static function retrieveItemWithName(collection:Array, name:String):DefinitionBase

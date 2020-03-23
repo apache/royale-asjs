@@ -192,21 +192,22 @@ package testshim
         {
             begin();
             var testInstance:Object = new testerClass();
-            if (setupFunc != null)
-            {
-                testInstance[setupFunc.name]();
-            }
+
             var i:uint = 0, l:uint = testMethods.length;
             
             for (; i < l; i++)
             {
+                if (setupFunc != null)
+                {
+                    testInstance[setupFunc.name]();
+                }
                 runRoyaleTest(_testingName, testInstance, testMethods[i] as MethodDefinition, callback);
+                if (tearDownFunc != null)
+                {
+                    testInstance[tearDownFunc.name]();
+                }
             }
-            
-            if (tearDownFunc != null)
-            {
-                testInstance[tearDownFunc.name]();
-            }
+
             end();
         }
         

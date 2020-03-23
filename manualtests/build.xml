@@ -75,7 +75,7 @@
     
     <target name="compile" description="Compile Examples" >
 		<ant dir="${basedir}/BubbleTest"/>
-        <ant dir="${basedir}/ContainerTest"/>
+        <!-- @todo needs fixing or removal: <ant dir="${basedir}/ContainerTest"/>-->
 		<ant dir="${basedir}/CursorTest"/>
 		<ant dir="${basedir}/DateChooserExample"/>
         <ant dir="${basedir}/EffectsExample"/>
@@ -88,7 +88,7 @@
         <ant dir="${basedir}/FormExample"/>
         <ant dir="${basedir}/ImageTest"/>
         <ant dir="${basedir}/LanguageTests"/>
-        <ant dir="${basedir}/ListsTest"/>
+       <!-- @todo needs fixing or removal: <ant dir="${basedir}/ListsTest"/>-->
 		<ant dir="${basedir}/ProxyTest"/>
 		<ant dir="${basedir}/ReflectionTest"/>
         <ant dir="${basedir}/RollEventsTest"/>

@@ -16,27 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindings.bindables
 {
-	//test groups
-	import flexUnitTests.*;
 
+[Bindable]
+public class OneLayerBindable
+{
+    public var bindableString:String;
 
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
-	}
+    public var bindableNumber:Number;
+
+    public var bindableBoolean:Boolean;
+
+    public function getSomething():String{
+        return bindableBoolean ? 'Internally true' : 'Internally false';
+    }
+
+    public function getSomethingBasedOn(something:Boolean):String{
+        return bindableBoolean && something ? "Both are true" : (bindableBoolean ? "Local only" : "Inbound only");
+    }
+
+}
 }

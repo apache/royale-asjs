@@ -16,27 +16,31 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindables
 {
-	//test groups
-	import flexUnitTests.*;
 
-
-	public class TestClasses
+	
+	[Bindable]
+	public class BindableWithConstructorInit
 	{
+	
+		public static const STATIC_INIT:BindableWithConstructorInit 	= new BindableWithConstructorInit( "STATIC_INIT"	,-1 );
 		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
+		public var ordinal:int;
+		public var value:String;
+		
+		public function BindableWithConstructorInit (value:String, ordinal:int )
+		{
+			this.value = value;
+			this.ordinal = ordinal;
+		}
+
+	
+		
+		public function equals( other:BindableWithConstructorInit ):Boolean
+		{
+			return ( this.ordinal == other.ordinal && this.value == other.value );
 		}
 	}
+
 }

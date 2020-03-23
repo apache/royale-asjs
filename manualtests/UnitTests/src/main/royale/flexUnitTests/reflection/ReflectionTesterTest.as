@@ -30,27 +30,13 @@ package flexUnitTests.reflection
     public class ReflectionTesterTest
     {
         
-        public static var isJS:Boolean;
+        public static var isJS:Boolean = COMPILE::JS;
         
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
-            var js:Boolean = false;
-            try
-            {
-                var check:* = getDefinitionByName("flash.system.Capabilities");
-            } catch (e:Error)
-            {
-                js = true;
-            }
-            //if this next reference to 'check' is not included, then the above try/catch code
-            //appears to be optimized away in js-release mode
-            //a separate test has been created for this
-            if (check == null)
-            {
-                js = true;
-            }
-            isJS = js;
+            TestClass2.testStaticVar = "testStaticVar_val";
+            TestClass2.testStaticWriteOnly = "staticAccessor_initial_value";
         }
         
         [AfterClass]
@@ -61,8 +47,7 @@ package flexUnitTests.reflection
         [Before]
         public function setUp():void
         {
-            TestClass2.testStaticVar = "testStaticVar_val";
-            TestClass2.testStaticWriteOnly = "staticAccessor_initial_value";
+
         }
         
         [After]
@@ -159,7 +144,7 @@ package flexUnitTests.reflection
             assertEquals( 3, variables.length, "unexpected instance variables length");
             
             //there is a difference based on the EventDispatcher inheritance chain differences between js and swf:
-            expected = isJS ? 5 : 7;
+            expected = isJS ? 6 : 7;
             var methods:Array = def.methods;
             assertEquals( expected, methods.length, "unexpected instance methods length");
             
@@ -192,7 +177,7 @@ package flexUnitTests.reflection
             assertEquals( 3, variables.length, "unexpected instance variables length");
             
             //there is a difference based on the EventDispatcher inheritance chain differences between js and swf:
-            expected = isJS ? 5 : 7;
+            expected = isJS ? 6 : 7;
             var methods:Array = def.methods;
             assertEquals( expected, methods.length, "unexpected instance methods length");
             

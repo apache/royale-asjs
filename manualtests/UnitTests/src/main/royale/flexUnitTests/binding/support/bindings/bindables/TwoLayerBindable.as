@@ -16,27 +16,14 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindings.bindables
 {
-	//test groups
-	import flexUnitTests.*;
 
+[Bindable]
+public class TwoLayerBindable
+{
+    public var bindableOne:OneLayerBindable;
 
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
-	}
+    public var toggle:Boolean;
+}
 }

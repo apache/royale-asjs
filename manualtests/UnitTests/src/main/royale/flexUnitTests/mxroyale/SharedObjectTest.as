@@ -42,7 +42,7 @@ package flexUnitTests.mxroyale
         [Before]
         public function setUp():void
         {
-            registerClassAlias('TestClass5', TestClass5);
+
         }
         
         [After]
@@ -54,6 +54,7 @@ package flexUnitTests.mxroyale
         [BeforeClass]
         public static function setUpBeforeClass():void
         {
+            registerClassAlias('TestClass5', TestClass5);
         }
         
         [AfterClass]

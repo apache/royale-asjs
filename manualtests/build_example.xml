@@ -204,7 +204,7 @@
             </fileset>
         </copy>
 		
-		<antcall target="build_example.compile-js-release"/>
+		<!--<antcall target="build_example.compile-js-release"/>-->
 		<antcall target="build_example.copy-app-xml" />
     </target>
     
@@ -337,8 +337,8 @@
             <arg line="${optional_arg}" />
 			<arg value="${theme_arg}" />
 			<arg value="${extlib_arg}" />
-			<arg value="-define=COMPILE::SWF,false" />
-            <arg value="-define=COMPILE::JS,true" />
+			<arg value="-define+=COMPILE::SWF,false" />
+            <arg value="-define+=COMPILE::JS,true" />
 			<arg value="-targets=${js.release.target}" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
 			<arg value="-js-output=${jsDir}" />

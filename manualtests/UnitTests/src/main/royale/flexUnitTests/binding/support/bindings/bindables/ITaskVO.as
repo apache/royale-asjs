@@ -16,27 +16,25 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
-{
-	//test groups
-	import flexUnitTests.*;
+package flexUnitTests.binding.support.bindings.bindables  {
+[Bindable]
+    public interface ITaskVO {
+        
+        
+        function get label():String;
+        function set label(value:String):void;
+        
 
+        function get data():String;
+        function set data(value:String):void;
+        
 
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
-	}
+        function get tooltip():String;
+        function set tooltip(value:String):void;
+
+        function get selected():Boolean;
+        function set selected(value:Boolean):void;
+    }
+
 }
+

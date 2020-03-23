@@ -16,27 +16,13 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
-{
-	//test groups
-	import flexUnitTests.*;
+package flexUnitTests.binding.support {
+    public interface IBindingTest {
 
+        function get testName():String;
+        function get internalTestCount():uint;
+        function setInboundValue(value:*, internalTestNum:uint=0):void
+        function getBindingResultValue(internalTestNum:uint=0):*;
 
-	public class TestClasses
-	{
-		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
-		}
-	}
+    }
 }

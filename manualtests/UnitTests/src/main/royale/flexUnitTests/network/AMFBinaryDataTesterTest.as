@@ -28,8 +28,10 @@ package flexUnitTests.network
     import flexUnitTests.network.support.TestClass4;
     import flexUnitTests.network.support.DynamicTestClass;
     import flexUnitTests.network.support.TestClass6;
-    
-    import org.apache.royale.test.asserts.*;
+import flexUnitTests.network.support.TestClass7a;
+import flexUnitTests.network.support.TestClass7b;
+
+import org.apache.royale.test.asserts.*;
     
     import org.apache.royale.net.remoting.amf.AMFBinaryData;
     import org.apache.royale.reflection.*;
@@ -544,7 +546,7 @@ package flexUnitTests.network
             var test:TestClass6 = new TestClass6();
             ba.writeObject(test);
             ba.position = 0;
-            assertEquals(ba.length, 50, 'unexpected serialized content with custom namespaces')
+            assertEquals(ba.length, 50, 'unexpected serialized content with custom namespaces');
             //cover variation in order
             const validOptions:Array = [
                     '0a23010b6d79566172156d794163636573736f7206177075626c69634d79566172061f7075626c6963206163636573736f72',
@@ -557,6 +559,36 @@ package flexUnitTests.network
             
             var json:String = JSON.stringify(restored)
             //order may be different... need json object check here for: {"myAccessor":"public accessor","myVar":"publicMyVar"}
+        }
+
+        [Test]
+        public function testTransientAndBindable():void{
+            var ba:AMFBinaryData = new AMFBinaryData();
+            registerClassAlias('TestClass7a', TestClass7a);
+            registerClassAlias('TestClass7b', TestClass7b);
+            var test1:TestClass7a = new TestClass7a();
+            test1.something = 'whatever';
+            ba.writeObject(test1);
+            RoyaleUnitTestRunner.consoleOut(getBytesOut(ba));
+            ba.position = 0;
+
+            var retrieved:Object = ba.readObject();
+            RoyaleUnitTestRunner.consoleOut(retrieved.something)
+
+            assertTrue(retrieved is TestClass7a, 'unexpected deserialization');
+
+            var test2:TestClass7b = new TestClass7b();
+            test1.something = 'whatever';
+            ba.length = 0;
+            ba.writeObject(test2);
+            RoyaleUnitTestRunner.consoleOut(getBytesOut(ba));
+            ba.position = 0;
+
+            retrieved = ba.readObject();
+            RoyaleUnitTestRunner.consoleOut(retrieved.something)
+
+            assertTrue(retrieved is TestClass7b, 'unexpected deserialization');
+
         }
         
         

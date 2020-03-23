@@ -38,12 +38,24 @@ package flexUnitTests.xml
         
         public static var isJS:Boolean = COMPILE::JS;
     
-        private var settings:Object;
+        private static var settings:Object;
         
-        private var source:String;
+        private static var source:String;
         
         [Before]
         public function setUp():void
+        {
+
+        }
+        
+        [After]
+        public function tearDown():void
+        {
+
+        }
+        
+        [BeforeClass]
+        public static function setUpBeforeClass():void
         {
             settings = XML.settings();
             source = '<xml><?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?>\n' +
@@ -73,21 +85,11 @@ package flexUnitTests.xml
                     '</rss></xml>';
         }
         
-        [After]
-        public function tearDown():void
-        {
-            source=null;
-            XML.setSettings(settings);
-        }
-        
-        [BeforeClass]
-        public static function setUpBeforeClass():void
-        {
-        }
-        
         [AfterClass]
         public static function tearDownAfterClass():void
         {
+            source=null;
+            XML.setSettings(settings);
         }
     
         public function getPlayerVersion():Number{

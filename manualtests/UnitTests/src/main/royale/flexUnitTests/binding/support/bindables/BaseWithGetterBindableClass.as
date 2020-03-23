@@ -16,27 +16,27 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindables
 {
-	//test groups
-	import flexUnitTests.*;
+import flexUnitTests.binding.utils.BindableTestUtil;
 
-
-	public class TestClasses
+[Bindable]
+	public class BaseWithGetterBindableClass
 	{
+		private var _accessorOfBaseWithGetterBindableClass:String = "accessorOfBaseWithGetterBindableClass_value";
 		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
+
+		public function get accessorOfBaseWithGetterBindableClass():String
+		{
+			BindableTestUtil.instance.addHistoryItem('accessing value from original getter', _accessorOfBaseWithGetterBindableClass);
+			return _accessorOfBaseWithGetterBindableClass;
 		}
+		
+		public function set accessorOfBaseWithGetterBindableClass(value:String):void
+		{
+			BindableTestUtil.instance.addHistoryItem('assigning value in original setter', value);
+			_accessorOfBaseWithGetterBindableClass = value;
+		}
+
 	}
 }

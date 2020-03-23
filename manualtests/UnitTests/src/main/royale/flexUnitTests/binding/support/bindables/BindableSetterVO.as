@@ -16,27 +16,23 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindables
 {
-	//test groups
-	import flexUnitTests.*;
 
-
-	public class TestClasses
+	public class BindableSetterVO
 	{
+		private var _fieldOfBindableSetterVO:String = "fieldOfBindableSetterVO_value";
 		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
+		public function get fieldOfBindableSetterVO():String
+		{
+			return _fieldOfBindableSetterVO;
 		}
+		
+		[Bindable]
+		public function set fieldOfBindableSetterVO(value:String):void
+		{
+			_fieldOfBindableSetterVO = value;
+		}
+
 	}
 }

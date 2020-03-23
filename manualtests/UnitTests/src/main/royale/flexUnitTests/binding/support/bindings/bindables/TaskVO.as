@@ -16,27 +16,61 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package
+package flexUnitTests.binding.support.bindings.bindables
 {
-	//test groups
-	import flexUnitTests.*;
-
-
-	public class TestClasses
+	[Bindable]
+	public class TaskVO implements ITaskVO
 	{
+		public function TaskVO(label:String = null, data:String = null, tooltip:String = null)
+		{
+
+			this.label = label;
+			this.data = data;
+			this.tooltip = tooltip;
+		}
 		
-		public static function get testClasses():Array {
-			return [
-				  LanguageTester
-					,CoreTester
-					,ReflectionTester
-					,ObservedBugsTester
-					,GithubIssuesTester
-					,NetworkTester
-					,XMLTester
-					,MXRoyaleTester
-					,BindingTester
-					];
+		private var _label:String;
+		
+		public function get label():String
+		{
+			return _label;
+		}
+		
+		public function set label(value:String):void
+		{
+			_label = value;
+		}
+
+		private var _data:String;
+
+		public function get data():String
+		{
+			return _data;
+		}
+		
+		public function set data(value:String):void
+		{
+			_data = value;
+		}
+		
+		private var _tooltip:String;
+
+		public function get tooltip():String
+		{
+			return _tooltip;
+		}
+		
+		public function set tooltip(value:String):void
+		{
+			_tooltip = value;
+		}
+
+		private var _selected:Boolean;
+		public function get selected():Boolean{
+			return _selected;
+		}
+		public function set selected(value:Boolean):void{
+			_selected = value;
 		}
 	}
 }
