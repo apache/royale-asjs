@@ -166,7 +166,10 @@
 									<includeEmptyDirs>true</includeEmptyDirs>
 									<resources>
 										<resource>
-											<directory>${basedir}/swf-html-template/swfobject</directory>
+											<directory>${basedir}/../../templates/swfobject</directory>
+										</resource>
+										<resource>
+											<directory>${basedir}/swf-html-template</directory>
 											<filtering>true</filtering>
 										</resource>
 									</resources>
