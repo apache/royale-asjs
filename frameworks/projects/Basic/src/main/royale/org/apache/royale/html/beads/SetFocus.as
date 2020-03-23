@@ -48,7 +48,6 @@ package org.apache.royale.html.beads
 		}
 
 		private var _strand:IStrand;
-		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *  
@@ -71,7 +70,8 @@ package org.apache.royale.html.beads
 		{
 			COMPILE::JS
 			{
-			UIBase(_strand).element.focus();
+			if(_strand)
+				UIBase(_strand).element.focus();
 			}
 		}
 
