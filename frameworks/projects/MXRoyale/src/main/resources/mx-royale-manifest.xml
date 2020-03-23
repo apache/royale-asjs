@@ -130,6 +130,7 @@
 	<component id="GridItem" class="mx.containers.GridItem"/>
 	<component id="GridRow" class="mx.containers.GridRow"/>
 	<component id="Parallel" class="mx.effects.Parallel"/>
+	<component id="Fade" class="mx.effects.Fade"/>
 	<component id="AdvancedDataGridItemRenderer" class="mx.controls.advancedDataGridClasses.AdvancedDataGridItemRenderer" />
 	<component id="Tree" class="mx.controls.Tree"/>
 	<component id="LinkBar" class="mx.controls.LinkBar"/>

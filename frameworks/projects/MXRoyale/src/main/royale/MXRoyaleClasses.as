@@ -76,6 +76,9 @@ internal class MXRoyaleClasses
 	import mx.charts.ChartItem; ChartItem;
 	import mx.core.ClassFactory; ClassFactory;
 	import mx.effects.Tween; Tween;
+	import mx.effects.Fade; Fade;
+	import mx.core.Container;Container;
+
 	import mx.system.ApplicationDomain; ApplicationDomain;
 	import mx.rpc.http.HTTPService; mx.rpc.http.HTTPService;
 	import mx.rpc.remoting.RemoteObject; mx.rpc.remoting.RemoteObject;

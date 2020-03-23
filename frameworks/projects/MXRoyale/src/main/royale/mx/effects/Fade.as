@@ -17,47 +17,45 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-// Jewel Button
+package mx.effects
+{
+import org.apache.royale.effects.Fade;
+import org.apache.royale.core.IUIBase;
 
-// Button variables
+/**
+ *  The Resize effect animates a UI component's width or height.
+ * 
+ *  @langversion 3.0
+ *  @playerversion Flash 10.2
+ *  @playerversion AIR 2.6
+ *  @productversion Royale 0.0
+ */
+public class Fade extends org.apache.royale.effects.Fade
+{
 
-.jewel.button
-    cursor: pointer
-    user-select: none
+    //--------------------------------------------------------------------------
+    //
+    //  Constructor
+    //
+    //--------------------------------------------------------------------------
 
-    display: inline-flex
-    position: relative
-    align-items: center
-    justify-content: center
-    zoom: 1
-    vertical-align: middle
-    overflow: hidden
-    outline: none
+    /**
+     *  Constructor.
+     *
+     *  @param target Object ID or reference to an object that will
+	 *  have its x and/or y property animated.
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 1.0.0
+     */
+    public function Fade(target:IUIBase = null)
+    {
+        super(IUIBase);
 
-    // -- BUTTON LABEL
-    white-space: nowrap
-    line-height: normal !important
+    }
+   
+}
 
-    text:
-        align: center
-        decoration: none
-
-    // &:focus
-
-    &[disabled]
-        cursor: default
-
-    &.multiline
-        white-space: pre-wrap
-
-    .fonticon
-        cursor: inherit
-
-    // temporal for badges (we need to refactor it)
-    &.viewport
-        overflow: visible
-
-@media -royale-swf
-    j|Button
-        IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-        IBeadView: ClassReference("org.apache.royale.jewel.beads.views.ButtonView")
+}

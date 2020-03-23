@@ -75,10 +75,7 @@ package mx.net
 			return false;
 		}
         
-        public function close():void
-        {
-            
-        }
+
 	}
 	
 }

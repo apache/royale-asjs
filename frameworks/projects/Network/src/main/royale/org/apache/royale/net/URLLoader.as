@@ -331,6 +331,19 @@ package org.apache.royale.net
                 return element.responseText;
             }
         }
+
+
+        public function close():void{
+            COMPILE::SWF{
+                urlLoader.close();
+            }
+            COMPILE::JS{
+                if (element.readyState ==0 || element.readyState ==4) {
+                    throw new Error('Error #2029: This URLStream object does not have a stream opened.');
+                }
+                element.abort();
+            }
+        }
         
     }
 }
