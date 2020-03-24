@@ -188,7 +188,7 @@ package org.apache.royale.jewel.beads.layouts
 		 *  Distribute all items vertically
 		 *  Possible values are:
 		 *  - itemsSameHeight
-		 *  - itemsCentered
+		 *  - itemsCenter
 		 *  - itemsTop
 		 *  - itemsBottom
 		 *
@@ -202,9 +202,10 @@ package org.apache.royale.jewel.beads.layouts
             return _itemsVerticalAlign;
         }
 
-        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCentered,itemsTop,itemsBottom")]
+        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCenter,itemsTop,itemsBottom")]
         public function set itemsVerticalAlign(value:String):void
         {
+			if(value == "itemsCenter") value += "ed";
 			if (_itemsVerticalAlign != value)
             {
                 COMPILE::JS

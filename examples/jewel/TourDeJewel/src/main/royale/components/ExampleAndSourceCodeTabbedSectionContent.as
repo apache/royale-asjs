@@ -58,7 +58,7 @@ package components
         private var sourceCodeMXMLText:Code;
 
         private var sourceCodeUrlPrefix:String = "https://api.github.com/repos/apache/royale-asjs/contents/examples/royale/TourDeJewel/src/main/royale/";
-        private var sourceCodeUrlWebPrefix:String = "https://github.com/apache/royale-asjs/blob/develop/examples/royale/TourDeJewel/src/main/royale/";
+        private var sourceCodeUrlWebPrefix:String = "https://github.com/apache/royale-asjs/blob/develop/examples/jewel/TourDeJewel/src/main/royale/";
         
         private var _sourceCodeUrl:String;
         /**

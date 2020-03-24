@@ -98,7 +98,7 @@
         <ant dir="${basedir}/royale/DragAndDropExample"/>
         <ant dir="${basedir}/royale/Flex2Royale"/>
         <ant dir="${basedir}/royale/JSON2ASVO"/>
-        <ant dir="${basedir}/royale/TourDeJewel"/>
+        <ant dir="${basedir}/jewel/TourDeJewel"/>
 		<ant dir="${basedir}/royale/CreditCardValidatorExample"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL"/>
         <ant dir="${basedir}/royale/RoyaleWebsite"/>
@@ -160,7 +160,7 @@
         <ant dir="${basedir}/royale/DragAndDropExample" target="clean"/>
         <ant dir="${basedir}/royale/Flex2Royale" target="clean"/>
         <ant dir="${basedir}/royale/JSON2ASVO" target="clean"/>
-        <ant dir="${basedir}/royale/TourDeJewel" target="clean"/>
+        <ant dir="${basedir}/jewel/TourDeJewel" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleTeamPage_MDL" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleWebsite" target="clean"/>
         <ant dir="${basedir}/royale/RoyaleWebsiteStatsViewer" target="clean"/>

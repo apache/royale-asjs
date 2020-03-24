@@ -265,6 +265,9 @@ j|Alert {
 .jewel.button .fonticon {
   cursor: inherit;
 }
+.jewel.button.viewport {
+  overflow: visible;
+}
 
 @media -royale-swf {
   j|Button {

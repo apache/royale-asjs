@@ -123,7 +123,7 @@ package org.apache.royale.jewel
 		 *  Distribute all items vertically
 		 *  Possible values are:
 		 *  - itemsSameHeight
-		 *  - itemsCentered
+		 *  - itemsCenter
 		 *  - itemsTop
 		 *  - itemsBottom
 		 *
@@ -137,9 +137,10 @@ package org.apache.royale.jewel
             return _layout.itemsVerticalAlign;
         }
 
-        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCentered,itemsTop,itemsBottom")]
+        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCenter,itemsTop,itemsBottom")]
         public function set itemsVerticalAlign(value:String):void
         {
+			if(value == "itemsCenter") value += "ed";
 			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsVerticalAlign);
 			_layout.itemsVerticalAlign = value;
 			typeNames += " " + _layout.itemsVerticalAlign;

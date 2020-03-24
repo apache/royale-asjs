@@ -99,7 +99,7 @@ limitations under the License.
 
     <j:FormItem label="Verification code: {randomCode}" required="true">
         <j:beads>
-            <j:HorizontalLayout gap="2" itemsVerticalAlign="itemsCentered"/>
+            <j:HorizontalLayout gap="2" itemsVerticalAlign="itemsCenter"/>
         </j:beads>
         <j:TextInput>
             <j:beads>

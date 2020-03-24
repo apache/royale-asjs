@@ -214,11 +214,11 @@ limitations under the License.
 						<j:Button text="Remove first row (item)" click="removeItemAt()"/>
 						<j:Button text="Update first row (item)" click="updateFirstItem()"/>
 						<j:Button text="Remove all data" click="removeAllData()"/>
-						<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+						<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 							<j:Label text="Select table cell by index: "/>
 							<j:NumericStepper valueChange="table.selectedIndex = event.target.value" minimum="0"/>
 						</j:HGroup>
-						<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+						<!-- <j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 							<j:Label text="Select table by item: "/>
 							<j:NumericStepper valueChange="table.selectedItemProperty = table.dataProvider.getItemAt(event.target.value)" minimum="0"/>
 						</j:HGroup> -->

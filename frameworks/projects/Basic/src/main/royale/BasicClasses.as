@@ -37,8 +37,7 @@ internal class BasicClasses
     import org.apache.royale.html.ToolTip; ToolTip;
 	import org.apache.royale.html.accessories.NumericOnlyTextInputBead; NumericOnlyTextInputBead;
     import org.apache.royale.html.accessories.RestrictTextInputBead; RestrictTextInputBead;
-    import org.apache.royale.html.beads.DispatchInputFinishedBead; DispatchInputFinishedBead;
-	import org.apache.royale.html.accessories.PasswordInputBead; PasswordInputBead;
+    import org.apache.royale.html.accessories.PasswordInputBead; PasswordInputBead;
 	import org.apache.royale.html.accessories.PasswordInputRemovableBead; PasswordInputRemovableBead;
 	import org.apache.royale.html.accessories.TextPromptBead; TextPromptBead;
 	import org.apache.royale.html.beads.AbsolutePositioningViewBeadBase; AbsolutePositioningViewBeadBase;

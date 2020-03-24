@@ -158,11 +158,11 @@ limitations under the License.
 					</j:beads>
 				</j:TextInput>
 				<j:Label localId="selected" html="{describeItem(list.selectedItem)}"/>
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:Label text="Select list by index: "/>
 					<j:NumericStepper valueChange="list.selectedIndex = event.target.value" minimum="0" maximum="11"/>
 				</j:HGroup>
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:Label text="Select list by item: "/>
 					<j:NumericStepper valueChange="list.selectedItem = list.dataProvider.getItemAt(event.target.value)" minimum="0" maximum="11"/>
 				</j:HGroup>

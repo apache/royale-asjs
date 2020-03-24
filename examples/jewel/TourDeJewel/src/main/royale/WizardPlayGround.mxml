@@ -189,7 +189,7 @@ limitations under the License.
 							<j:ScrollingViewport/>
 						</j:beads>
 
-						<j:VGroup itemsVerticalAlign="itemsCentered" width="250">
+						<j:VGroup itemsVerticalAlign="itemsCenter" width="250">
 							<html:H3 innerHTML="&lt;strong>This Content is centered and has scroll. The scroll bar apears near the right border.&lt;/strong>&lt;br>&lt;br>"/>
 							<j:Label multiline="true" html="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris finibus blandit risus sed elementum. Nulla consectetur vestibulum fringilla. Pellentesque id facilisis tortor. Fusce neque velit, placerat sit amet nibh at, interdum fringilla lectus. Pellentesque eget porta nulla. Aenean eu nisi eros. Sed consequat convallis neque vel iaculis. Aliquam ut varius nunc. Fusce sit amet mattis nisl. Nunc nibh diam, dictum sit amet lacus nec, mollis aliquam velit. Duis volutpat ipsum at velit mattis, convallis porttitor massa molestie. Aliquam et sollicitudin ligula. Nulla tincidunt ligula libero, rutrum volutpat urna viverra auctor. Fusce interdum id elit ut vehicula. Sed consequat cursus faucibus. Nam vitae lectus lobortis, vehicula metus id, luctus lorem.&lt;br>&lt;br>"/>
 							<j:Button text="Hi!" emphasis="primary" width="180"/>

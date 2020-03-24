@@ -81,7 +81,7 @@ limitations under the License.
 						<j:DropDownList localId="watchmenDropDownList_noPrompt" dataProvider="{listModel.watchmen}"/>
 						<j:Button text="deselect" click="watchmenDropDownList_noPrompt.selectedIndex = -1" emphasis="primary"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="watchmenDropDownList_noPrompt.selectedIndex = event.target.value" minimum="0" maximum="5"/>
 					</j:HGroup>
@@ -99,7 +99,7 @@ limitations under the License.
 						<j:DropDownList localId="avengersDropDownList_noPrompt" labelField="label" dataProvider="{listModel.avengers}" />
 						<j:Button text="deselect" click="avengersDropDownList_noPrompt.selectedIndex = -1" emphasis="primary"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="avengersDropDownList_noPrompt.selectedIndex = event.target.value" minimum="0" maximum="8"/>
 					</j:HGroup>
@@ -121,7 +121,7 @@ limitations under the License.
 						</j:DropDownList>
 						<j:Button text="deselect" click="watchmenDropDownList.selectedIndex = -1" emphasis="primary"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="watchmenDropDownList.selectedIndex = event.target.value" minimum="0" maximum="5"/>
 					</j:HGroup>
@@ -144,7 +144,7 @@ limitations under the License.
 						</j:DropDownList>
 						<j:Button text="deselect" click="avengersDropDownList.selectedIndex = -1" emphasis="primary"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select Index: "/>
 							<j:NumericStepper valueChange="avengersDropDownList.selectedIndex = event.target.value" minimum="0" maximum="8"/>
 					</j:HGroup>
@@ -166,7 +166,7 @@ limitations under the License.
 						</j:DropDownList>
 						<j:Button text="deselect" click="watchmenDropDownList_withSelectedIndex.selectedIndex = -1" emphasis="primary"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="watchmenDropDownList_withSelectedIndex.selectedIndex = event.target.value" value="3" minimum="0" maximum="5"/>
 					</j:HGroup>
@@ -188,7 +188,7 @@ limitations under the License.
 						</j:DropDownList>
 						<j:Button text="deselect" click="avengersDropDownList_withSelectedIndex.selectedIndex = -1" emphasis="primary"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="avengersDropDownList_withSelectedIndex.selectedIndex = event.target.value" value="4" minimum="0" maximum="8"/>
 					</j:HGroup>
@@ -210,7 +210,7 @@ limitations under the License.
 						</j:DropDownList>
 						<j:Button text="deselect" click="avengersDropDownList_withSelectedItem.selectedIndex = -1" emphasis="primary"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select Index: "/>
 						<j:NumericStepper valueChange="avengersDropDownList_withSelectedItem.selectedIndex = event.target.value" minimum="0" maximum="8"/>
 					</j:HGroup>
@@ -223,7 +223,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DropDownList Disabled"/>
 
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:DropDownList labelField="label" dataProvider="{listModel.avengers}">
 						<j:beads>
 							<j:Disabled disabled="{disable_ddl.selected}"/>
@@ -239,7 +239,7 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel DropDownList requireSelection"/>
 
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:DropDownList localId="rqddl" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2">
 						<j:beads>
 							<j:DropDownListTextPrompt prompt="Required Selection..."/>

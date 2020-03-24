@@ -367,10 +367,10 @@ limitations under the License.
 			</j:Grid>
 
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-				<html:H4 text="itemsCentered"/>
+				<html:H4 text="itemsCenter"/>
 			</j:GridCell>
 
-			<j:Grid gap="true" itemsVerticalAlign="itemsCentered">
+			<j:Grid gap="true" itemsVerticalAlign="itemsCenter">
 				<j:GridCell desktopNumerator="1" desktopDenominator="3" tabletNumerator="1" tabletDenominator="3" phoneNumerator="1" phoneDenominator="3">
 					<html:Div className="box" text="height: 100px" height="100"/>
 				</j:GridCell>
