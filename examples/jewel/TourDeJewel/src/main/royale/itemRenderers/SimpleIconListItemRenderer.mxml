@@ -38,7 +38,7 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
 
-    <j:HGroup gap="6" itemsVerticalAlign="itemsCentered">
+    <j:HGroup gap="6" itemsVerticalAlign="itemsCenter">
         <js:FontIcon text="{iconList.icon}" material="true" visible="{iconList.icon != null}"/>
         <j:Label html="{text}"/>
     </j:HGroup>

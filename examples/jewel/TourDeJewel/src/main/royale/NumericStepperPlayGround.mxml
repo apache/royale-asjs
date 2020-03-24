@@ -46,22 +46,22 @@ limitations under the License.
             <j:Card>
 				<html:H3 text="Jewel NumericStepper"/>
 
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:NumericStepper id="numericStepper" valueChange="valueChangeHandler(event)"/>
 					<j:Label id="result" text="Default NumericStepper: "/>
 				</j:HGroup>
 
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:NumericStepper value="30"/>
 					<j:Label text="NumericStepper value='30'"/>
 				</j:HGroup>
 
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:NumericStepper minimum="10" maximum="100"/>
 					<j:Label text="NumericStepper minimum='10' and maximum='100'" multiline="true" width="300"/>
 				</j:HGroup>
 
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:NumericStepper stepSize="2"/>
 					<j:Label text="NumericStepper stepSize='2'"/>
 				</j:HGroup>

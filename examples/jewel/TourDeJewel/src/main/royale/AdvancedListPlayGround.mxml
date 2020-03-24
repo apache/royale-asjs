@@ -189,7 +189,7 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 					<j:VGroup gap="3">
 						<html:H3 text="Jewel filter"/>
 						<j:List localId="list1" width="200" height="300"

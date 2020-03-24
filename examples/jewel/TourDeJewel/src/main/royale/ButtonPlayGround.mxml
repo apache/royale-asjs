@@ -222,7 +222,7 @@ limitations under the License.
 						</j:icon>
 					</j:IconButton>
 
-					<j:HGroup gap="3" itemsHorizontalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:IconButton localId="ib_lor" text="Do not disturb">
 							<j:icon>
 								<js:FontIcon text="{MaterialIconType.DO_NOT_DISTURB}" material="true"/>
@@ -256,7 +256,7 @@ limitations under the License.
 						</j:icon>
 					</j:IconButton>
 					
-					<j:HGroup gap="3" itemsHorizontalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:IconButton localId="ib_lor2" text="Do not disturb" outlined="true">
 							<j:icon>
 								<js:FontIcon text="{MaterialIconType.DO_NOT_DISTURB}" material="true"/>
@@ -290,7 +290,7 @@ limitations under the License.
 						</j:icon>
 					</j:IconButton>
 					
-					<j:HGroup gap="3" itemsHorizontalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:IconButton localId="ib_lor3" text="Do not disturb" unboxed="true">
 							<j:icon>
 								<js:FontIcon text="{MaterialIconType.DO_NOT_DISTURB}" material="true"/>
@@ -371,7 +371,7 @@ limitations under the License.
 							<j:ToolTip toolTip="show/hide FooterBar"/>
 						</j:beads>
 					</j:ToggleButton>
-					<j:HGroup gap="3" itemsHorizontalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:ToggleButton localId="tb_lor" text="No Print" selectedText="Print">
 							<j:icon>
 								<js:ToggleFontIcon text="{MaterialIconType.PRINT_DISABLED}" selectedText="{MaterialIconType.PRINT}" material="true"/>

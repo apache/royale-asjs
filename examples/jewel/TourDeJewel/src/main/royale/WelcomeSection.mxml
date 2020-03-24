@@ -75,7 +75,7 @@ limitations under the License.
             </html:beads>
         </html:H1>
 
-        <j:VGroup gap="3" itemsHorizontalAlign="itemsCentered">
+        <j:VGroup gap="3" itemsVerticalAlign="itemsCenter">
             <j:Label text="Choose your Jewel Theme:"/>
             
             <j:Form>

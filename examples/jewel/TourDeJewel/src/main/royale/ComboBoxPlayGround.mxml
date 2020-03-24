@@ -110,7 +110,7 @@ limitations under the License.
 					</j:ComboBox>
 
 				</j:CardPrimaryContent>
-				<j:CardActions itemsVerticalAlign="itemsCentered">
+				<j:CardActions itemsVerticalAlign="itemsCenter">
 					<j:BarSection>
 						<j:Label localId="watchmenComboBoxResult" html="{describeItem(watchmenComboBox.selectedItem)}"/>
 					</j:BarSection>
@@ -151,7 +151,7 @@ limitations under the License.
 					</j:ComboBox>
 
 				</j:CardPrimaryContent>
-				<j:CardActions itemsVerticalAlign="itemsCentered">
+				<j:CardActions itemsVerticalAlign="itemsCenter">
 					<j:BarSection>
 						<j:Label localId="avengersComboBoxResult" html="{describeItem(avengersComboBox.selectedItem)}"/>
 					</j:BarSection>
@@ -177,7 +177,7 @@ limitations under the License.
 					<j:ComboBox localId="cmb1" labelField="label" dataProvider="{listModel.avengers}" selectedIndex="2"/>
 
 				</j:CardPrimaryContent>
-				<j:CardActions itemsVerticalAlign="itemsCentered">
+				<j:CardActions itemsVerticalAlign="itemsCenter">
 					<j:BarSection>
 						<j:Label text="selectedIndex: {cmb1.selectedIndex}"/>
 					</j:BarSection>
@@ -201,7 +201,7 @@ limitations under the License.
 					<j:ComboBox localId="cmb2" labelField="label" dataProvider="{listModel.avengers}" selectedItem="{listModel.avengers.getItemAt(3)}" />
 
 				</j:CardPrimaryContent>
-				<j:CardActions itemsVerticalAlign="itemsCentered">
+				<j:CardActions itemsVerticalAlign="itemsCenter">
 					<j:BarSection>
 						<j:Label text="selectedItem: {describeItem(cmb2.selectedItem)}"/>
 					</j:BarSection>
@@ -262,19 +262,19 @@ limitations under the License.
 					<j:ComboBox localId="cmb3" labelField="label" dataProvider="{listModel.avengers}"/>
 					
 				</j:CardPrimaryContent>
-				<j:CardActions itemsVerticalAlign="itemsCentered">
+				<j:CardActions itemsVerticalAlign="itemsCenter">
 					<j:beads>
 						<j:VerticalLayout gap="3"/>
 					</j:beads>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="width: {cmb3.width}px"/>
 						<j:HSlider width="250" value="200" minimum="100" maximum="400" valueChange="cmb3.width = event.target.value;"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="rowHeight: {cmb3.rowHeight}"/>
 						<j:HSlider width="150" value="34" minimum="34" maximum="52" valueChange="cmb3.rowHeight = event.target.value;"/>
 					</j:HGroup>
-					<j:HGroup gap="3" itemsVerticalAlign="itemsCentered">
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="rowCount: {cmb3.rowCount}"/>
 						<j:HSlider width="150" value="5" minimum="3" maximum="8" valueChange="cmb3.rowCount = event.target.value;"/>
 					</j:HGroup>

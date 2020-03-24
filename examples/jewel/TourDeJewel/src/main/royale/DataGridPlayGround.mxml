@@ -214,7 +214,7 @@ limitations under the License.
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card localId="card2" height="400">
-				<j:CardHeader itemsVerticalAlign="itemsCentered">
+				<j:CardHeader itemsVerticalAlign="itemsCenter">
 					<j:BarSection>
 						<html:H3 text="Percentage Width and Height" className="primary-normal"/>
 					</j:BarSection>
