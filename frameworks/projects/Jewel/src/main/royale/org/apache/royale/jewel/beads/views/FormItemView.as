@@ -172,7 +172,7 @@ package org.apache.royale.jewel.beads.views
 			if (labelGroup == null) {
 				labelGroup = new HGroup();
 				labelGroup.gap = 2;
-				labelGroup.itemsHorizontalAlign = "itemsCentered";
+				labelGroup.itemsVerticalAlign = "itemsCenter";
 				labelGroup.className = "labelGroup";
 			}
 			if (labelGroup != null && labelGroup.parent == null) {
@@ -253,7 +253,7 @@ package org.apache.royale.jewel.beads.views
 
             // Now give the FormItem its own layout
 			//var layoutBead:IBeadLayout = new VerticalLayout();
-			//layoutBead.itemsVerticalAlign = "itemsCentered";
+			//layoutBead.itemsVerticalAlign = "itemsCenter";
 			//_strand.addBead(layoutBead);
 		}
 

@@ -219,7 +219,7 @@ package org.apache.royale.jewel.beads.views
 			var g:HGroup = new HGroup();
 			g.className = "precontent";
 			g.gap = 3;
-			g.itemsHorizontalAlign = "itemsCentered";
+			g.itemsVerticalAlign = "itemsCenter";
 			// add the group that holds buttons and content
             if (g.parent == null) {
 				vg.addElement(g);
@@ -356,7 +356,7 @@ package org.apache.royale.jewel.beads.views
             
 			// Now give the Wizard its own layout
 			// var layoutBead:WizardLayout = new WizardLayout();
-			// layoutBead.itemsVerticalAlign = "itemsCentered";
+			// layoutBead.itemsVerticalAlign = "itemsCenter";
 			// _strand.addBead(layoutBead);
 		}
 
