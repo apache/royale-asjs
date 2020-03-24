@@ -299,7 +299,17 @@ package org.apache.royale.jewel.beads.views
         {
             var list:IDataGridColumnList = event.target as IDataGridColumnList;
             _sharedModel.selectedIndex = list.selectedIndex;
-            host.dispatchEvent(new Event('change'));
+            trackColumns ++;
+            proxyDispatchChange();   
+        }
+
+        private var trackColumns:int = 0;
+        public function proxyDispatchChange():void
+        {
+            if(columnLists.length == trackColumns){
+                host.dispatchEvent(new Event('change'));
+                trackColumns = 0;
+            }
         }
 
         /**
