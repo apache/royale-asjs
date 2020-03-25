@@ -71,6 +71,14 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
         super();
     }
 
+	private var sawSizeChanged:Boolean;
+	
+	override	 protected function handleSizeChange(event:Event):void
+	{
+		sawSizeChanged = true;
+		super.handleSizeChange(event);
+	}
+
     override public function layout():Boolean
     {
         var n:int = target.numChildren;
@@ -89,6 +97,10 @@ public class SparkLayoutBead extends org.apache.royale.core.LayoutBase
                 target.setActualSize(tlc.width, tlc.height);
         }
         
+		if ((!isNaN(target.percentWidth)) || (!isNaN(target.percentHeight)))
+			if (!sawSizeChanged)
+				return false;
+				
         var w:Number = target.width;
         var h:Number = target.height;
         if (target.layout.isHeightSizedToContent())
