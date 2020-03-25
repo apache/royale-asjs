@@ -39,7 +39,7 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
 
-    <j:VGroup itemsVerticalAlign="itemsCenter">
+    <j:VGroup itemsHorizontalAlign="itemsCenter">
         <js:FontIcon text="{tabButton ? tabButton.icon : ''}" material="true" 
                     visible="{tabButton ? tabButton.icon != null : false}"/>
         <html:Span text="{tabButton ? tabButton.label : ''}"/>
