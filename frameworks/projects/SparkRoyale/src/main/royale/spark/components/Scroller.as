@@ -3890,16 +3890,22 @@ public class Scroller extends SkinnableComponent
     override public function addedToParent():void
     {
         super.addedToParent();
-        (_viewport as UIComponent).width = width;
-        (_viewport as UIComponent).height = height;
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp.isWidthSizedToContent())
+        		vp.setWidth(width);
+		if (vp.isHeightSizedToContent())
+        		vp.setHeight(height);
         installViewport();
     }
     
     override public function setActualSize(w:Number, h:Number):void
     {
         super.setActualSize(w, h);
-        (_viewport as UIComponent).width = width;
-        (_viewport as UIComponent).height = height;        
+		var vp:UIComponent = _viewport as UIComponent;
+		if (vp.isWidthSizedToContent())
+        		vp.setWidth(width);
+		if (vp.isHeightSizedToContent())
+        		vp.setHeight(height);
     }
 }
 
