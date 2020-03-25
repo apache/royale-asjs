@@ -5265,7 +5265,7 @@ COMPILE::JS
                 } 
                 else 
                 {
-                    positioner.style.visibility = 'visible';
+                    positioner.style.visibility = null;
                 }
             }
         }
@@ -6094,7 +6094,7 @@ COMPILE::JS
     {
         if (!positioner.style.visibility) return true;
         
-        return positioner.style.visibility == 'visible';
+        return positioner.style.visibility != 'hidden';
     }
     
     COMPILE::JS
@@ -6111,7 +6111,7 @@ COMPILE::JS
             } 
             else 
             {
-                positioner.style.visibility = 'visible';
+                positioner.style.visibility = null;
                 dispatchEvent(new Event('show'));
             }
             dispatchEvent(new Event('visibleChanged'));
