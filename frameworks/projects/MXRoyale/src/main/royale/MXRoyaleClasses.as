@@ -138,6 +138,7 @@ internal class MXRoyaleClasses
 	import mx.styles.StyleManagerImpl; StyleManagerImpl;
 	import mx.modules.IModuleInfo; IModuleInfo;
 	import mx.formatters.SwitchSymbolFormatter; SwitchSymbolFormatter;
+	import mx.formatters.ZipCodeFormatter; ZipCodeFormatter;
 	import mx.printing.FlexPrintJob; FlexPrintJob; 
 	import mx.utils.URLUtil; URLUtil;
 	import mx.core.UITextField; UITextField;

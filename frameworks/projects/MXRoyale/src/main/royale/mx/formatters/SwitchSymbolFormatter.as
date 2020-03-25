@@ -87,8 +87,7 @@ public class SwitchSymbolFormatter
     {
         super();
 
-        //this.numberSymbol = numberSymbol;
-        //isValid = true;
+        this.numberSymbol = numberSymbol;
     }
 
     //--------------------------------------------------------------------------
@@ -100,12 +99,12 @@ public class SwitchSymbolFormatter
     /**
      *  @private
      */
-   // private var numberSymbol:String;
+    private var numberSymbol:String;
     
     /**
      *  @private
      */
-   // private var isValid:Boolean;
+    private var isValid:Boolean = true;
 
     //--------------------------------------------------------------------------
     //
@@ -129,7 +128,7 @@ public class SwitchSymbolFormatter
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.3
      */
-   /*  public function formatValue(format:String, source:Object):String
+     public function formatValue(format:String, source:Object):String
     {
         var numStr:String = "";
 
@@ -146,7 +145,7 @@ public class SwitchSymbolFormatter
         }
         
         return numStr;
-    } */
+    }
 }
 
 }
