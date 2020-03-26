@@ -19,7 +19,7 @@
             "args": [
                 "clean",
                 "install",
-                "-P option-with-swf",
+                "-P option-with-swf,option-with-sass-compile",
                 "-DskipTests"
             ],
             "group": "build",
