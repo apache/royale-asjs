@@ -22,7 +22,8 @@ limitations under the License.
 	xmlns:html="library://ns.apache.org/royale/html" 
 	xmlns:js="library://ns.apache.org/royale/basic" 
 	xmlns:c="components.*" 
-	xmlns:models="models.*" sourceCodeUrl="VirtualListsPlayGround.mxml">
+	xmlns:models="models.*" sourceCodeUrl="VirtualListsPlayGround.mxml"
+	initComplete="listModel.createBigIconListVOData()">
 	
 	<fx:Script>
 		<![CDATA[
@@ -124,8 +125,8 @@ limitations under the License.
 						<!-- <j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/> -->
 					</j:VGroup>
 					<j:VGroup gap="3">
-						<!-- <j:Button text="change data" emphasis="{StyledUIBase.PRIMARY}" click="listModel.resetBigIconListVOData()"/>
-						<j:Button text="Add item" click="addItemToVirtual()"/>
+						<j:Button text="change all data" emphasis="{StyledUIBase.PRIMARY}" click="listModel.createBigIconListVOData()"/>
+						<!-- <j:Button text="Add item" click="addItemToVirtual()"/>
 						<j:Button text="Remove first item" click="removeItemAtToVirtual()"/>
 						<j:Button text="Update first item" click="updateFirstItemOfVirtual()"/>
 						<j:Button text="Remove all data" click="removeAllDataOfVirtual()"/>

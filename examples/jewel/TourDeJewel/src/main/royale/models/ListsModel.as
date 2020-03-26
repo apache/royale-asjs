@@ -170,37 +170,44 @@ package models
 		/**
 		 * Used in the Virtual List example example.
 		 */
-		public var _bigIconListVOData:Array;
+		public var _bigIconListVOData:ArrayList;
         
         public function get bigIconListVOData():ArrayList
         {
+			return _bigIconListVOData;
+		}
+        public function set bigIconListVOData(value:ArrayList):void
+        {
+			_bigIconListVOData = value;
+		}
+
+		public function createBigIconListVOData():void
+        {
 			var item:IconListVO;
-            if (!_bigIconListVOData)
-            {
-                _bigIconListVOData = [];
-				var icons:Array = [
-					MaterialIconType.ACCESSIBILITY,
-					MaterialIconType.BATTERY_ALERT,
-					MaterialIconType.CAKE,
-					MaterialIconType.DASHBOARD,
-					MaterialIconType.EMAIL,
-					MaterialIconType.EQUALIZER,
-					MaterialIconType.FACE,
-					MaterialIconType.GAMEPAD,
-					MaterialIconType.HEADSET_MIC,
-					MaterialIconType.KEYBOARD,
-					MaterialIconType.LAPTOP_MAC,
-					MaterialIconType.MEMORY,
-					MaterialIconType.ADD_CIRCLE_OUTLINE,
-					MaterialIconType.PAGES
-				];
-                for (var i:int = 0; i < 2000; i++)
-                {
-					item = new IconListVO("Icon - " + i, getRandomArrayIcon(icons)),
-                    _bigIconListVOData.push(item);//"row " + i.toString());
-                }
-            }
-            return new ArrayList(_bigIconListVOData);
+            var dp:Array = [];
+			var icons:Array = [
+				MaterialIconType.ACCESSIBILITY,
+				MaterialIconType.BATTERY_ALERT,
+				MaterialIconType.CAKE,
+				MaterialIconType.DASHBOARD,
+				MaterialIconType.EMAIL,
+				MaterialIconType.EQUALIZER,
+				MaterialIconType.FACE,
+				MaterialIconType.GAMEPAD,
+				MaterialIconType.HEADSET_MIC,
+				MaterialIconType.KEYBOARD,
+				MaterialIconType.LAPTOP_MAC,
+				MaterialIconType.MEMORY,
+				MaterialIconType.ADD_CIRCLE_OUTLINE,
+				MaterialIconType.PAGES
+			];
+			for (var i:int = 0; i < 2000; i++)
+			{
+				item = new IconListVO("Icon - " + i, getRandomArrayIcon(icons)),
+				dp.push(item);//"row " + i.toString());
+			}
+            
+            bigIconListVOData = new ArrayList(dp);
         }
 
 		public function getRandomArrayIcon(array:Array):String {
