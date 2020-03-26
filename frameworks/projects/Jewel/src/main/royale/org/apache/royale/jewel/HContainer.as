@@ -19,7 +19,7 @@
 package org.apache.royale.jewel
 {
     import org.apache.royale.jewel.beads.layouts.HorizontalLayout;
-    import org.apache.royale.utils.StringUtil;
+    import org.apache.royale.jewel.supportClasses.container.AlignmentItemsContainerWithGap;
 
     /**
      *  This Container subclass uses HorizontalLayout as its default layout.
@@ -31,7 +31,7 @@ package org.apache.royale.jewel
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public class HContainer extends Container
+	public class HContainer extends AlignmentItemsContainerWithGap
 	{
         /**
          *  Constructor.
@@ -59,35 +59,6 @@ package org.apache.royale.jewel
         {
             _layout = value;
         }
-        
-        /**
-		 *  Assigns variable gap in steps of GAP_STEP. You have available GAPS*GAP_STEP gap styles
-		 *  Activate "gap-{X}x{GAP_STEP}px" effect selector to set a numeric gap between elements.
-		 *  i.e: gap-2x3px will result in a gap of 6px
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        public function get gap():Number
-        {
-            return layout.gap;
-        }
 
-        public function set gap(value:Number):void
-        {
-			typeNames = StringUtil.removeWord(typeNames, " gap-" + layout.gap + "x" + HorizontalLayout.GAP_STEP + "px");
-			if(value != 0)
-				typeNames += " gap-" + value + "x" + HorizontalLayout.GAP_STEP + "px";
-
-			COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-
-			layout.gap = value;
-        }
 	}
 }

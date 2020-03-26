@@ -19,6 +19,8 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.jewel.beads.layouts.GridLayout;
+	import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
+	import org.apache.royale.jewel.supportClasses.container.AlignmentItemsContainer;
 	import org.apache.royale.utils.StringUtil;
 
 	/**
@@ -31,7 +33,7 @@ package org.apache.royale.jewel
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class Grid extends Container
+	public class Grid extends AlignmentItemsContainer
 	{
 		/**
 		 *  constructor.
@@ -59,6 +61,7 @@ package org.apache.royale.jewel
         {
             _layout = value;
         }
+		
 
         /**
 		 *  Assigns variable gap to grid from 1 to 20

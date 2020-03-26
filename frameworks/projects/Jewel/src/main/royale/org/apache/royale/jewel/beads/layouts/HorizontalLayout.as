@@ -39,7 +39,7 @@ package org.apache.royale.jewel.beads.layouts
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.4
      */
-	public class HorizontalLayout extends SimpleHorizontalLayout implements ILayoutStyleProperties
+	public class HorizontalLayout extends SimpleHorizontalLayout implements ILayoutStyleProperties, IGap, IVariableRowHeight
 	{
         /**
          *  Constructor.
@@ -160,12 +160,7 @@ package org.apache.royale.jewel.beads.layouts
 				}	
 			}
 		}
-
-		// number of gap styles available in CSS @see $gaps variable in _layout.sass
-		public static const GAPS:Number = 10;
-		// gap step size in each gap style rule in CSS @see $gap-step variable in _layout.sass
-		public static const GAP_STEP:Number = 3;
-
+		
 		private var gapInitialized:Boolean;
 		protected var _gap:Number = 0;
 		/**
@@ -204,14 +199,14 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setGap(value:Number):void
 		{
-			if (value >= 0 && value <= GAPS)
+			if (value >= 0 && value <= GapConstants.GAPS)
 			{
-				if (hostClassList.contains("gap-" + _gap + "x" + GAP_STEP + "px"))
-					hostClassList.remove("gap-" + _gap + "x" + GAP_STEP + "px");
+				if (hostClassList.contains("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px"))
+					hostClassList.remove("gap-" + _gap + "x" + GapConstants.GAP_STEP + "px");
 				if(value != 0)
-					hostClassList.add("gap-" + value + "x" + GAP_STEP + "px");
+					hostClassList.add("gap-" + value + "x" + GapConstants.GAP_STEP + "px");
 			} else
-				throw new Error("Gap needs to be between 0 and " + GAPS);
+				throw new Error("Gap needs to be between 0 and " + GapConstants.GAPS);
 		}
 
 		private var variableRowHeightInitialized:Boolean;

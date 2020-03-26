@@ -21,10 +21,8 @@ package org.apache.royale.jewel
     import org.apache.royale.core.IMXMLDocument;
     import org.apache.royale.core.ValuesManager;
     import org.apache.royale.events.Event;
-    import org.apache.royale.jewel.beads.layouts.StyledLayoutBase;
     import org.apache.royale.jewel.supportClasses.group.GroupBase;
     import org.apache.royale.utils.MXMLDataInterpreter;
-    import org.apache.royale.utils.StringUtil;
 
     /**
 	 *  Indicates that the children of the container is have been added.
@@ -146,103 +144,5 @@ package org.apache.royale.jewel
          *  @royalesuppresspublicvarwarning
 		 */
 		public var mxmlContent:Array;
-
-        protected var _layout:StyledLayoutBase;
-        
-        /**
-		 *  Distribute all items horizontally
-		 *  Possible values are:
-		 *  - itemsLeft
-		 *  - itemsCenter
-		 *  - itemsRight
-		 *  - itemsSpaceBetween
-		 *  - itemsSpaceAround
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get itemsHorizontalAlign():String
-        {
-            return _layout.itemsHorizontalAlign;
-        }
-
-        [Inspectable(category="General", enumeration="itemsLeft,itemsCenter,itemsRight,itemsSpaceBetween,itemsSpaceAround")]
-        public function set itemsHorizontalAlign(value:String):void
-        {
-			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsHorizontalAlign);
-			_layout.itemsHorizontalAlign = value;
-			typeNames += " " + _layout.itemsHorizontalAlign;
-
-			COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-        }
-
-		/**
-		 *  Distribute all items vertically
-		 *  Possible values are:
-		 *  - itemsSameHeight
-		 *  - itemsCenter
-		 *  - itemsTop
-		 *  - itemsBottom
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get itemsVerticalAlign():String
-        {
-            return _layout.itemsVerticalAlign;
-        }
-
-        [Inspectable(category="General", enumeration="itemsSameHeight,itemsCenter,itemsTop,itemsBottom")]
-        public function set itemsVerticalAlign(value:String):void
-        {
-			if(value == "itemsCenter") value += "ed";
-			typeNames = StringUtil.removeWord(typeNames, " " + _layout.itemsVerticalAlign);
-			_layout.itemsVerticalAlign = value;
-			typeNames += " " + _layout.itemsVerticalAlign;
-
-			COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-        }
-
-        /**
-		 *  A boolean flag to activate "itemsExpand" effect selector.
-		 *  Make items resize to the fill all container space
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-        public function get itemsExpand():Boolean
-        {
-            return _layout.itemsExpand;
-        }
-
-        public function set itemsExpand(value:Boolean):void
-        {
-            typeNames = StringUtil.removeWord(typeNames, " itemsExpand");
-            _layout.itemsExpand = value;
-            if(_layout.itemsExpand)
-            {
-                typeNames += " itemsExpand";
-            }
-
-            COMPILE::JS
-            {
-				if (parent)
-                	setClassName(computeFinalClassNames()); 
-			}
-        }
 	}
 }
