@@ -102,14 +102,23 @@
                         <svg:Image src="assets/bottle-shade.svg" width="400" height="500"/>
                         <!-- main shape -->
                         <svg:Image src="assets/bottle-main.svg" width="400" height="500"/>
-                        
 
                     </j:Container>
                 </j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCentered">
-                    <j:CheckBox localId="ruleVisibility" text="Show Rule" selected="true"/>
-                    <j:Label text="Slide to fill"/>
-                    <j:HSlider localId="slider" width="200" value="0" minimum="0" maximum="500" valueChange="changeFill(event)"/>
+                    <j:BarSection width="50%">
+                        <j:ToggleButton localId="ruleVisibility" 
+                            outlined="true" emphasis="emphasized"
+                            text="Hide Rule" selectedText="Show Rule" selected="true">
+                            <j:icon>
+                                <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" material="true"/>
+                            </j:icon>
+                        </j:ToggleButton>
+					</j:BarSection>
+                    <j:BarSection width="50%" itemsHorizontalAlign="itemsRight">
+                        <j:Label text="Slide to fill"/>
+                        <j:HSlider localId="slider" value="0" minimum="0" maximum="500" valueChange="changeFill(event)"/>
+					</j:BarSection>
                 </j:CardActions>
              </j:Card>
         </j:View>
