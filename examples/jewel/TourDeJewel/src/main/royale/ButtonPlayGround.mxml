@@ -371,6 +371,18 @@ limitations under the License.
 							<j:ToolTip toolTip="show/hide FooterBar"/>
 						</j:beads>
 					</j:ToggleButton>
+					<j:ToggleButton outlined="true" emphasis="secondary"
+                            text="Show it" selected="true">
+                            <j:icon>
+                                <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" material="true"/>
+                            </j:icon>
+                        </j:ToggleButton>
+					<j:ToggleButton unboxed="true" emphasis="primary"
+                            text="Show it" selected="true">
+                            <j:icon>
+                                <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" material="true"/>
+                            </j:icon>
+                        </j:ToggleButton>
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:ToggleButton localId="tb_lor" text="No Print" selectedText="Print">
 							<j:icon>
