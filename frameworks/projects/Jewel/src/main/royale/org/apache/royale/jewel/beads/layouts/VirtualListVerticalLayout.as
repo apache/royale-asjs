@@ -33,8 +33,8 @@ package org.apache.royale.jewel.beads.layouts
 	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
-	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.events.Event;
@@ -71,17 +71,21 @@ package org.apache.royale.jewel.beads.layouts
         {
             super.strand = value;
             dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
-            
+            dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
+
             COMPILE::JS
             {
                 host.element.addEventListener("scroll", scrollHandler);
             }
         }
 
-        // override public function set strand(value:IStrand):void
-        // {
-        //     super.strand = value;
-        //     // dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
+        protected function dataProviderChangeHandler(event:Event):void
+		{
+            visibleIndexes = [];
+        }
+
+        
+            // dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
         //     listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
 
         //     //if the list is composed as part of another component, with a shared model (e.g. ComboBox) then it should not be the primary dispatcher

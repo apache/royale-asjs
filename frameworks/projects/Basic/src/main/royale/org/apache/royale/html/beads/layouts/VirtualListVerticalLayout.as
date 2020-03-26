@@ -18,38 +18,31 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads.layouts
 {
-	import org.apache.royale.core.IBeadLayout;
-	import org.apache.royale.core.IBeadModel;
+    COMPILE::SWF
+    {
 	import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
-	import org.apache.royale.core.IDataProviderModel;
-	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.ILayoutChild;
 	import org.apache.royale.core.ILayoutHost;
 	import org.apache.royale.core.ILayoutParent;
-	import org.apache.royale.core.ILayoutView;
-	import org.apache.royale.core.IListPresentationModel;
 	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
-	COMPILE::JS
-	{
-		import org.apache.royale.core.WrappedHTMLElement;
-	}
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.geom.Rectangle;
-    import org.apache.royale.html.beads.VirtualDataContainerView;
-	import org.apache.royale.utils.CSSUtils;
-
-    COMPILE::SWF {
-        import org.apache.royale.geom.Size;
+	import org.apache.royale.geom.Size;
+	import org.apache.royale.html.beads.VirtualDataContainerView;
     }
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.IDataProviderModel;
+	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
+	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.ILayoutView;
+	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.IStrand;
+	import org.apache.royale.core.IStrandWithPresentationModel;
+	import org.apache.royale.core.LayoutBase;
+	import org.apache.royale.events.Event;
+
         
 	/**
 	 *  The VerticalLayout class is a simple layout
@@ -86,7 +79,7 @@ package org.apache.royale.html.beads.layouts
             dataProviderModel = host.getBeadByType(IDataProviderModel) as IDataProviderModel;
             COMPILE::JS
             {
-                host.element.addEventListener("scroll", scrollHandler);
+            host.element.addEventListener("scroll", scrollHandler);
             }
         }
         

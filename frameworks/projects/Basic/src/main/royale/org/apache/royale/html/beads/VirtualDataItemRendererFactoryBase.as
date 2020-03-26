@@ -19,32 +19,22 @@
 package org.apache.royale.html.beads
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IChild;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IDataProviderVirtualItemRendererMapper;
 	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererClassFactory;
 	import org.apache.royale.core.IItemRendererInitializer;
-    import org.apache.royale.core.IIndexedItemRendererInitializer;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.ILabelFieldItemRenderer;
-	import org.apache.royale.core.ILayoutHost;
-	import org.apache.royale.core.IListPresentationModel;
-	import org.apache.royale.core.IParentIUIBase;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IStrandWithModelView;
-	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.SimpleCSSStyles;
-	import org.apache.royale.core.UIBase;
-	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
-	import org.apache.royale.html.List;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
+	import org.apache.royale.utils.sendStrandEvent;
 
     [Event(name="itemRendererCreated",type="org.apache.royale.events.ItemRendererEvent")]
 	
@@ -81,6 +71,8 @@ package org.apache.royale.html.beads
 		protected var labelField:String;
         protected var dataField:String;
 
+        protected var rendererMap:Object;
+        
 		protected var _strand:IStrand;
 		
         /**
@@ -164,6 +156,9 @@ package org.apache.royale.html.beads
 			var dataGroup:IItemRendererOwnerView = view.dataGroup;
 			
 			dataGroup.removeAllItemRenderers();
+            rendererMap = {};
+
+            sendStrandEvent(_strand, "layoutNeeded");
         }
         
         private var _itemRendererInitializer:IItemRendererInitializer;
@@ -212,8 +207,6 @@ package org.apache.royale.html.beads
             dataGroup.removeItemRenderer(ir);
             delete rendererMap[index];
         }
-        
-        protected var rendererMap:Object = {};
         
         /**
          *  Get an item renderer for a given index.

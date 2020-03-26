@@ -19,8 +19,8 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IIndexedItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.UIBase;

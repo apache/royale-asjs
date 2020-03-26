@@ -18,9 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IRollOverModel;
-	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
