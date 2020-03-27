@@ -1384,6 +1384,7 @@ div {
   background: linear-gradient(silver, #a6a6a6);
   border: 1px solid #8d8d8d;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #808080;
 }
 .jewel.togglebutton[disabled] {
   font-weight: 400;
@@ -1439,6 +1440,7 @@ div {
   background: linear-gradient(#b1a909, #817a06);
   border: 1px solid #504c04;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
 }
 
 .jewel.togglebutton.outlined {
@@ -1471,9 +1473,10 @@ div {
   text-shadow: unset;
 }
 .jewel.togglebutton.outlined.selected {
-  background: linear-gradient(#999999, gray);
-  border: 1px solid #666666;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid #858585;
+  box-shadow: none;
+  color: #737373;
 }
 
 .jewel.togglebutton.primary.outlined {
@@ -1506,9 +1509,10 @@ div {
   text-shadow: unset;
 }
 .jewel.togglebutton.primary.outlined.selected {
-  background: linear-gradient(#b1a909, #817a06);
-  border: 1px solid #504c04;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  background: rgba(226, 215, 11, 0.25);
+  border: 1px solid #8a8407;
+  box-shadow: none;
+  color: #686305;
 }
 
 .jewel.togglebutton.unboxed {
@@ -1542,9 +1546,10 @@ div {
   text-shadow: unset;
 }
 .jewel.togglebutton.unboxed.selected {
-  background: linear-gradient(#999999, gray);
-  border: 1px solid #666666;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  background: rgba(179, 179, 179, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #737373;
 }
 
 .jewel.togglebutton.primary.unboxed {
@@ -1578,9 +1583,10 @@ div {
   text-shadow: unset;
 }
 .jewel.togglebutton.primary.unboxed.selected {
-  background: linear-gradient(#b1a909, #817a06);
-  border: 1px solid #504c04;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  background: rgba(226, 215, 11, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #686305;
 }
 
 .jewel.tooltip {

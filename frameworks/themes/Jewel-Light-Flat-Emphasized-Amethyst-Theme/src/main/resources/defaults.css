@@ -210,6 +210,7 @@
   background: #8a1e88;
   border: 1px solid #a825a5;
   box-shadow: none;
+  color: #FFFFFF;
 }
 
 .jewel.togglebutton.emphasized.outlined {
@@ -242,9 +243,10 @@
   text-shadow: unset;
 }
 .jewel.togglebutton.emphasized.outlined.selected {
-  background: #8a1e88;
-  border: 1px solid #a825a5;
+  background: rgba(201, 44, 198, 0.25);
+  border: 1px solid #7e1c7c;
   box-shadow: none;
+  color: #60155f;
 }
 
 .jewel.togglebutton.emphasized.unboxed {
@@ -278,9 +280,10 @@
   text-shadow: unset;
 }
 .jewel.togglebutton.emphasized.unboxed.selected {
-  background: #8a1e88;
-  border: 1px solid #a825a5;
+  background: rgba(201, 44, 198, 0.25);
+  border: 1px solid transparent;
   box-shadow: none;
+  color: #60155f;
 }
 
 /*# sourceMappingURL=defaults.css.map */

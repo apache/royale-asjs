@@ -222,6 +222,7 @@ a:active {
   background: #1e4e80;
   border: 1px solid #24609d;
   box-shadow: none;
+  color: #FFFFFF;
 }
 
 .jewel.togglebutton.secondary.outlined {
@@ -254,9 +255,10 @@ a:active {
   text-shadow: unset;
 }
 .jewel.togglebutton.secondary.outlined.selected {
-  background: #1e4e80;
-  border: 1px solid #24609d;
+  background: rgba(44, 116, 190, 0.25);
+  border: 1px solid #1b4673;
   box-shadow: none;
+  color: #143556;
 }
 
 .jewel.togglebutton.secondary.unboxed {

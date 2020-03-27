@@ -208,6 +208,7 @@
   background: linear-gradient(#d97a08, #a85e06);
   border: 1px solid #774304;
   box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  color: #FFFFFF;
 }
 
 .jewel.togglebutton.emphasized.outlined {
@@ -240,9 +241,10 @@
   text-shadow: unset;
 }
 .jewel.togglebutton.emphasized.outlined.selected {
-  background: linear-gradient(#d97a08, #a85e06);
-  border: 1px solid #774304;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  background: rgba(247, 148, 29, 0.25);
+  border: 1px solid #b26406;
+  box-shadow: none;
+  color: #8f5105;
 }
 
 .jewel.togglebutton.emphasized.unboxed {
@@ -276,9 +278,10 @@
   text-shadow: unset;
 }
 .jewel.togglebutton.emphasized.unboxed.selected {
-  background: linear-gradient(#d97a08, #a85e06);
-  border: 1px solid #774304;
-  box-shadow: inset 0px 1px 3px 0px rgba(50, 50, 50, 0.5);
+  background: rgba(247, 148, 29, 0.25);
+  border: 1px solid transparent;
+  box-shadow: none;
+  color: #8f5105;
 }
 
 /*# sourceMappingURL=defaults.css.map */
