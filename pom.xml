@@ -43,9 +43,9 @@
   -->
 
   <scm>
-    <connection>scm:git:ssh://git@github.com/chrisdutz/royale-compiler.git</connection>
-    <developerConnection>scm:git:ssh://git@github.com/chrisdutz/royale-compiler.git</developerConnection>
-    <url>http://github.com/chrisdutz/royale-compiler</url>
+    <connection>scm:git:ssh://git@github.com/chrisdutz/royale-asjs.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/chrisdutz/royale-asjs.git</developerConnection>
+    <url>http://github.com/chrisdutz/royale-asjs</url>
     <tag>HEAD</tag>
   </scm>
 
