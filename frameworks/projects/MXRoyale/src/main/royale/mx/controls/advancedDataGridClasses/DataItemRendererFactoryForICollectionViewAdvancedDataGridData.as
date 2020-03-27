@@ -109,6 +109,7 @@ package mx.controls.advancedDataGridClasses
             
             //dataGroup.removeAllItemRenderers();
                         
+            rendererMap = {};
             IEventDispatcher(_strand).dispatchEvent(new Event("itemsCreated"));
             IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
         }
