@@ -31,7 +31,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.7-SNAPSHOT</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -44,9 +44,9 @@
   -->
 
   <scm>
-    <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
-    <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
-    <url>scm:git:https://github.com/apache/royale-asjs.git</url>
+    <connection>scm:git:https://github.com/chrisdutz/royale-asjs.git</connection>
+    <developerConnection>scm:git:https://github.com/chrisdutz/royale-asjs.git</developerConnection>
+    <url>scm:git:https://github.com/chrisdutz/royale-asjs.git</url>
   </scm>
 
   <properties>
@@ -81,6 +81,16 @@
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
+    <repository>
+      <id>C-Ware IT-Service Artifactory</id>
+      <name>C-Ware IT-Service Artifactory-releases</name>
+      <url>https://dev.c-ware.de/artifactory/libs-releases-local</url>
+    </repository>
+    <snapshotRepository>
+      <id>C-Ware IT-Service Artifactory</id>
+      <name>C-Ware IT-Service Artifactory-releases</name>
+      <url>https://dev.c-ware.de/artifactory/libs-snapshot-local</url>
+    </snapshotRepository>
     <site>
       <id>apache.website</id>
       <url>scm:git:https://git-wip-us.apache.org/repos/asf/royale-asjs.git</url>
