@@ -17,8 +17,7 @@
   limitations under the License.
 
 -->
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -26,7 +25,7 @@
     <groupId>org.apache</groupId>
     <artifactId>apache</artifactId>
     <version>23</version>
-    <relativePath/>
+    <relativePath />
   </parent>
 
   <groupId>org.apache.royale.framework</groupId>
@@ -47,6 +46,7 @@
     <connection>scm:git:https://github.com/chrisdutz/royale-asjs.git</connection>
     <developerConnection>scm:git:https://github.com/chrisdutz/royale-asjs.git</developerConnection>
     <url>scm:git:https://github.com/chrisdutz/royale-asjs.git</url>
+    <tag>release-test/0.9.8</tag>
   </scm>
 
   <properties>
@@ -62,7 +62,7 @@
     <royale.targets>JSRoyale</royale.targets>
     <royale.skipAS>true</royale.skipAS>
     <royale.debug>true</royale.debug>
-    <repo.compiler.options/>
+    <repo.compiler.options />
 
     <flex.version>4.15.0</flex.version>
     <flash.version>20.0</flash.version>
@@ -72,7 +72,7 @@
     <source.map>true</source.map>
 
     <!-- This parameter has to be provided from the outside -->
-    <webdriver.gecko.driver/>
+    <webdriver.gecko.driver />
     <selenium.version>3.4.0</selenium.version>
     <junit.version>4.12</junit.version>
 
