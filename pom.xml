@@ -16,8 +16,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -30,7 +29,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.8</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -46,7 +45,7 @@
     <connection>scm:git:ssh://git@github.com/chrisdutz/royale-asjs.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/chrisdutz/royale-asjs.git</developerConnection>
     <url>http://github.com/chrisdutz/royale-asjs</url>
-    <tag>release-test/0.9.8</tag>
+    <tag>org.apache.royale.asjs-0.9.8-rc1</tag>
   </scm>
 
   <properties>
@@ -77,7 +76,7 @@
     <junit.version>4.12</junit.version>
 
     <release-profiles>apache-release,with-distribution,option-with-swf</release-profiles>
-  </properties>
+  <project.build.outputTimestamp>2020-03-27T08:32:05Z</project.build.outputTimestamp></properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
