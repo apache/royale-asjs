@@ -43,10 +43,10 @@
   -->
 
   <scm>
-    <connection>scm:git:https://github.com/chrisdutz/royale-asjs.git</connection>
-    <developerConnection>scm:git:https://github.com/chrisdutz/royale-asjs.git</developerConnection>
-    <url>scm:git:https://github.com/chrisdutz/royale-asjs.git</url>
-    <tag>release-test/0.9.8</tag>
+    <connection>scm:git:ssh://git@github.com/chrisdutz/royale-compiler.git</connection>
+    <developerConnection>scm:git:ssh://git@github.com/chrisdutz/royale-compiler.git</developerConnection>
+    <url>http://github.com/chrisdutz/royale-compiler</url>
+    <tag>HEAD</tag>
   </scm>
 
   <properties>
