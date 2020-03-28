@@ -25,6 +25,7 @@ import mx.controls.listClasses.BaseListData;
 import mx.events.FlexEvent;
 
 import org.apache.royale.html.beads.IComboBoxView;
+import org.apache.royale.core.ISelectionModel;
 
 COMPILE::SWF
 {
@@ -656,6 +657,8 @@ public class ComboBox extends ComboBase
     public function ComboBox()
     {
         super();
+        if((model as ISelectionModel).labelField == null) 
+			labelField =  "label";
 
         // It it better to start out with an empty data provider rather than
         // an undefined one. Otherwise, code in getDropdown() sets it to []
@@ -672,10 +675,15 @@ public class ComboBox extends ComboBase
     //
     //--------------------------------------------------------------------------
 
-    /**
-     * @royalesuppresspublicvarwarning
-     */
-    public var labelField:String = "label";
+    public function get labelField():String
+    {
+        return (model as ISelectionModel).labelField;
+    }
+
+    public function set labelField(value:String):void
+    {
+        (model as ISelectionModel).labelField = value;
+    }
     
     //--------------------------------------------------------------------------
     //
