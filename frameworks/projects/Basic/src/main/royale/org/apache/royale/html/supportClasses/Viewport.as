@@ -18,22 +18,21 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.supportClasses
 {
+	COMPILE::SWF
+	{
+	import flash.geom.Rectangle;
+	import org.apache.royale.geom.Rectangle;
+	}
 	import org.apache.royale.core.IBead;
-	import org.apache.royale.core.IContentView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
-	import org.apache.royale.core.IViewport;
 	import org.apache.royale.core.UIBase;
+	import org.apache.royale.core.IViewport;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
-	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.geom.Size;
 
-	COMPILE::SWF
-	{
-		import flash.geom.Rectangle;
-	}
 
     /**
      * A Viewport is the area of a Container set aside for displaying

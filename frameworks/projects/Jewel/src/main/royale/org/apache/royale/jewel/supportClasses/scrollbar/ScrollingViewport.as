@@ -26,19 +26,15 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 	import org.apache.royale.core.IContainer;
 	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.core.IViewportScroller;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.core.layout.EdgeData;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.jewel.beads.models.ScrollBarModel;
     }
-	COMPILE::JS
-    {
-	import org.apache.royale.core.IStrand;
-	}
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IScrollingViewport;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.geom.Size;
 	import org.apache.royale.jewel.supportClasses.Viewport;
 
@@ -86,16 +82,6 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		{
 			this.contentView.positioner.scrollLeft = value;
 		}
-		
-		/**
-		 * @royaleignorecoercion HTMLElement
-		 * @royaleignorecoercion org.apache.royale.core.UIBase
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
-			updateScroll();
-		}
 
 		private var _scroll:Boolean = true;
 		/**
@@ -117,23 +103,26 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 			if(value != _scroll)
 			{
 				_scroll = value;
-				updateScroll();
+				if(contentArea)
+					setScrollStyle();
 			}
 		}
 
 		/**
-		 *  adds or remove the scroll
+		 * Subclasses override this method to change scrolling behavior
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function updateScroll():void
+		override protected function setScrollStyle():void
 		{
+			super.setScrollStyle();
+
 			_scroll ?
-				styledContentArea.addClass("scroll") :
-				styledContentArea.removeClass("scroll");
+				contentArea.positioner.classList.add("scroll") :
+				contentArea.positioner.classList.remove("scroll");
 		}
 		
 		/**
@@ -402,21 +391,8 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 			if(value != _scroll)
 			{
 				_scroll = value;
-				updateScroll();
+				// implement setScrollStyle() in SWF
 			}
-		}
-
-		/**
-		 * adds or remove the scroll
-		 * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-		public function updateScroll():void
-		{
-			// todo 
 		}
 	}
 }
