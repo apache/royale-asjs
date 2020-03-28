@@ -364,6 +364,7 @@ public class RadioButton extends Button
     public function set group(value:RadioButtonGroup):void
     {
         _group = value;
+        groupChanged = true;
     }
 
     //----------------------------------
