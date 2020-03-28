@@ -340,6 +340,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	//  label
 	//----------------------------------
 	
+    private var labelSet:Boolean;
 	public function get label():String
 	{
 		return ITextModel(model).text;
@@ -350,6 +351,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	 */
 	public function set label(value:String):void
 	{
+		labelSet = true;
 		ITextModel(model).text = value;
 		COMPILE::JS {
 			setInnerHTML();
@@ -473,10 +475,10 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
             selected = newSelected as Boolean;
             //selectedSet = false;
         }
-        if (newLabel !== undefined/* && !labelSet*/)
+        if (newLabel !== undefined && !labelSet)
         {
             label = newLabel;
-            //labelSet = false;
+            labelSet = false;
         }
 
         dispatchEvent(new FlexEvent(FlexEvent.DATA_CHANGE));
