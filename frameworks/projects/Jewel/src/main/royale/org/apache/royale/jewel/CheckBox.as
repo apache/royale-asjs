@@ -181,8 +181,10 @@ package org.apache.royale.jewel
 
         COMPILE::JS
         /**
-         * the org.apache.royale.core.HTMLElementWrapper#element for this component
-         * added to the positioner. Is a HTMLInputElement.
+         *  the org.apache.royale.core.HTMLElementWrapper#element for this component
+         *  added to the positioner. Is a HTMLInputElement.
+         * 
+         *  @royalesuppresspublicvarwarning
          */
         public var input:HTMLInputElement;
 

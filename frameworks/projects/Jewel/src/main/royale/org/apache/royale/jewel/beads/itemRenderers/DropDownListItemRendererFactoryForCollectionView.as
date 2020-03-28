@@ -97,6 +97,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 			dped.addEventListener(CollectionEvent.ITEM_UPDATED, itemUpdatedHandler);
 		}
 
+		/**
+		 *  @royalesuppresspublicvarwarning
+		 */
 		public var promptRender:IIndexedItemRenderer;
 
 		/**
