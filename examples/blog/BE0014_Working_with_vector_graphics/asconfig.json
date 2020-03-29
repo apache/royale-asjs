@@ -29,6 +29,6 @@
     "additionalOptions": "-remove-circulars -js-output-optimization=skipAsCoercions",
     "files":
     [
-        "src/main/royale/BE0014_Working_with_Graphics.mxml"
+        "src/main/royale/BE0014_Working_with_vector_graphics.mxml"
     ]
 }

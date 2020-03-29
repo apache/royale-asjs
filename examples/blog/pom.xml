@@ -46,7 +46,7 @@
     <module>BE0011_Loading_external_data_through_HTTPService</module>
     <module>BE0012_Using_external_javascript_libraries_in_Apache_Royale</module>
     <module>BE0013_Dividing_an_Apache_Royale_application_with_modules</module>
-    <module>BE0014_Working_with_Graphics</module>
+    <module>BE0014_Working_with_vector_graphics</module>
   </modules>
 
   <build>

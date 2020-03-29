@@ -26,11 +26,11 @@
     <version>0.9.7-SNAPSHOT</version>
   </parent>
 
-  <artifactId>BE0014_Working_with_Graphics</artifactId>
+  <artifactId>BE0014_Working_with_vector_graphics</artifactId>
   <version>0.9.7-SNAPSHOT</version>
   <packaging>swf</packaging>
 
-  <name>Apache Royale: Examples: Blog: 0014: Working with Graphics</name>
+  <name>Apache Royale: Examples: Blog: 0014: Working with vector graphics</name>
 
   <build>
     <sourceDirectory>src/main/royale</sourceDirectory>
@@ -40,7 +40,7 @@
         <artifactId>royale-maven-plugin</artifactId>
         <extensions>true</extensions>
         <configuration>
-          <mainClass>BE0014_Working_with_Graphics.mxml</mainClass>
+          <mainClass>BE0014_Working_with_vector_graphics.mxml</mainClass>
           <targets>${royale.targets}</targets>
           <debug>false</debug>
           <htmlTemplate>${basedir}/target/javascript/bin/js-debug/jewel-example-index-template.html</htmlTemplate>
