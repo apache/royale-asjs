@@ -44,9 +44,9 @@
   -->
 
   <scm>
-    <connection>scm:git:https://github.com/apache/royale-asjs.git</connection>
-    <developerConnection>scm:git:https://github.com/apache/royale-asjs.git</developerConnection>
-    <url>scm:git:https://github.com/apache/royale-asjs.git</url>
+    <connection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</connection>
+    <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</developerConnection>
+    <url>https://github.com/apache/royale-asjs</url>
   </scm>
 
   <properties>
@@ -83,7 +83,7 @@
   <distributionManagement>
     <site>
       <id>apache.website</id>
-      <url>scm:git:https://git-wip-us.apache.org/repos/asf/royale-asjs.git</url>
+      <url>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</url>
     </site>
   </distributionManagement>
 
