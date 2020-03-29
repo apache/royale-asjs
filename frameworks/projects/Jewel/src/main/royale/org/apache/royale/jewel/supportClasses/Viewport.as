@@ -22,10 +22,9 @@ package org.apache.royale.jewel.supportClasses
 	{
 	import org.apache.royale.core.IContentView;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.core.IUIBase;
 	import org.apache.royale.utils.loadBeadFromValuesManager;
 	}
-	import org.apache.royale.core.StyledUIBase;
+	import org.apache.royale.core.UIBase;
 	import org.apache.royale.html.supportClasses.Viewport;
 
     /**
@@ -53,14 +52,6 @@ package org.apache.royale.jewel.supportClasses
             super();
 		}
 		
-		protected var styledContentArea:StyledUIBase;
-
-		COMPILE::JS
-		override public function get contentView():IUIBase
-        {
-            return styledContentArea as IUIBase;
-        }
-		
         /**
 		 * @royaleignorecoercion Class
 		 * @royaleignorecoercion org.apache.royale.core.UIBase
@@ -70,21 +61,28 @@ package org.apache.royale.jewel.supportClasses
 		{
 			_strand = value;
 			
-			styledContentArea = loadBeadFromValuesManager(IContentView, "iContentView", _strand) as StyledUIBase;
+			contentArea = loadBeadFromValuesManager(IContentView, "iContentView", _strand) as UIBase;
 
-			if (!styledContentArea)
-				styledContentArea = value as StyledUIBase;
+			if (!contentArea)
+				contentArea = value as UIBase;
 			
 			setScrollStyle();
 		}
 		
 		/**
-		 * Subclasses override this method to change scrolling behavior
+		 *  Subclasses override this method to change scrolling behavior
+		 *  We use classList, since we can affect UIBase components (not only StyledUIBase)
+		 *  like for example and html:Div or html:Pre
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
 		 */
 		COMPILE::JS
 		override protected function setScrollStyle():void
 		{
-			styledContentArea.addClass("viewport");
+			contentArea.element.classList.add("viewport");
 			clipContent = true;
 		}
 
@@ -105,17 +103,19 @@ package org.apache.royale.jewel.supportClasses
 		{
 			return _clipContent;
 		}
-
     	public function set clipContent(value:Boolean):void
 		{
 			if(_clipContent != value)
 			{
 				_clipContent = value;
 
+				COMPILE::JS
+				{
 				if(_clipContent)
-					styledContentArea.addClass("clipped");
+					contentArea.element.classList.add("clipped");
 				else
-					styledContentArea.removeClass("clipped");
+					contentArea.element.classList.remove("clipped");
+				}
 			}
 		}
     }

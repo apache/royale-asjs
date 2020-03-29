@@ -25,7 +25,6 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by christoferdutz on 13.01.17.
  */
 public abstract class AbstractIT {
 

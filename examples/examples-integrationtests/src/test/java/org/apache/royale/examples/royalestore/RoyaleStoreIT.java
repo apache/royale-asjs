@@ -27,7 +27,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
 /**
- * Created by christoferdutz on 13.01.17.
  */
 public class RoyaleStoreIT extends AbstractIT {
 
