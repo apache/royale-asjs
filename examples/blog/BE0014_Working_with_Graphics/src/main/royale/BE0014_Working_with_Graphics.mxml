@@ -25,7 +25,7 @@
                xmlns:graphics="org.apache.royale.graphics.*">
 
     <fx:Script>
-		<![CDATA[
+    <![CDATA[
         import org.apache.royale.display.Graphics;
         import org.apache.royale.utils.transformValueFromRange;
 
@@ -34,11 +34,10 @@
          */
         private var liquidColor:Number = 0x15CF12;
         
-
         /**
          * Fill the bottle
          */
-		private function changeFill(event:ValueChangeEvent):void {
+        private function changeFill(event:ValueChangeEvent):void {
             var g:Graphics = Graphics.getInstanceFor(bgShape);
             var newHeight:Number = transformValueFromRange(slider.value, slider.minimum, slider.maximum, 0, rule.height);
             var newY:Number = fgShape.height - newHeight;
@@ -46,7 +45,7 @@
             g.clear();
             drawLiquid(g, liquidColor, .5, 0, newY, 400, 500, -15);
             drawLiquid(g, liquidColor, 1,  0, newY, 400, 500, 30);
-		}
+        }
 
         /**
          * Draw the liquid to fill the bottle
@@ -64,9 +63,9 @@
             g.lineTo(x, height);
             g.endFill();
         }
-		]]>
-	</fx:Script>
-    
+    ]]>
+    </fx:Script>
+
     <j:beads>
         <js:ApplicationDataBinding/>
     </j:beads>
@@ -80,8 +79,8 @@
 
             <j:Card width="460" height="680">
                 <j:CardHeader>
-					<html:H3 text="Working with Graphics" className="primary-normal"/>
-				</j:CardHeader>
+                    <html:H3 text="Working with vector graphics" className="primary-normal"/>
+                </j:CardHeader>
                 <j:CardPrimaryContent itemsHorizontalAlign="itemsCentered">
                     <j:Container localId="fgShape" width="400" height="500">
                         
@@ -90,7 +89,7 @@
                         
                         <!-- rule -->
                         <j:Group visible="{ruleVisibility.selected}">
-                            <svg:Rect localId="rule" x="180" y="{bgShape.height - rule.height}" width="6" height="350">
+                            <svg:Rect localId="rule" x="200" y="{bgShape.height - rule.height}" width="6" height="350">
                                 <svg:fill>
                                     <js:SolidColor color="#ff0000" alpha=".5"/>
                                 </svg:fill>
@@ -105,7 +104,7 @@
 
                     </j:Container>
                 </j:CardPrimaryContent>
-				<j:CardActions itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCentered">
+                <j:CardActions itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCentered">
                     <j:BarSection width="50%">
                         <j:ToggleButton localId="ruleVisibility" 
                             outlined="true" emphasis="emphasized"
@@ -114,13 +113,13 @@
                                 <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" material="true"/>
                             </j:icon>
                         </j:ToggleButton>
-					</j:BarSection>
+                    </j:BarSection>
                     <j:BarSection width="50%" itemsHorizontalAlign="itemsRight">
                         <j:Label text="Slide to fill"/>
                         <j:HSlider localId="slider" value="0" minimum="0" maximum="500" valueChange="changeFill(event)"/>
-					</j:BarSection>
+                    </j:BarSection>
                 </j:CardActions>
-             </j:Card>
+            </j:Card>
         </j:View>
     </j:initialView>
 
