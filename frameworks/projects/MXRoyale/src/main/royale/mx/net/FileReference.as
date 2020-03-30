@@ -29,6 +29,7 @@ package mx.net
  import org.apache.royale.events.Event;
  import org.apache.royale.net.URLRequest;
  import org.apache.royale.file.beads.FileUploader;
+ import mx.net.beads.FileUploaderUsingFormData;
 
    public class FileReference extends FileProxy
    {
@@ -43,6 +44,7 @@ package mx.net
 		  _model = new FileModel();
 		  _browser = new FileBrowserWithFilter();
 		  _uploader = new FileLoaderAndUploader();
+		  addBead(new FileUploaderUsingFormData());
 		  addBead(_model);
 		  addBead(_browser);
 		  addBead(_uploader);
