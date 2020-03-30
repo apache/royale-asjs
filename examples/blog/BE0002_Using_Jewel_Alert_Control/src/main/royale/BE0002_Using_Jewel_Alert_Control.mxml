@@ -46,6 +46,9 @@
 
     <j:initialView>
         <j:View>
+            <j:beads>
+                <j:VerticalCenteredLayout/>
+            </j:beads>
             <j:Button id="button" text="Click Me" emphasis="primary" click="clickHandler(event)"/>
         </j:View>
     </j:initialView>

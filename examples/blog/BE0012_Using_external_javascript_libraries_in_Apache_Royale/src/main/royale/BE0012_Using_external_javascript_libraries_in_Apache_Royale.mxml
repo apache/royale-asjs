@@ -46,22 +46,28 @@
     <j:initialView>
         <j:View>
             <j:beads>
-                <j:HorizontalCenteredLayout/>
+                <j:VerticalCenteredLayout/>
             </j:beads>
 
             <j:Card percentWidth="90">
-                <html:H3 text="Using external Javascript Libraries"/>
-                
-                <j:Label html="This example uses hljs library to highligh a piece of code"/>
+                <j:CardHeader>
+                    <html:H3 text="Using external Javascript Libraries" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
 
-                <html:Pre height="300" percentWidth="100" style="background-color: white">
-                    <html:beads>
-                        <j:ScrollingViewport/>
-                    </html:beads>
-                    <html:Code id="sourceCodeMXMLText" text="{code_txt}"/>
-                </html:Pre>
-                
-                <j:Button text="highlight Block" emphasis="primary" click="highLightContent()"/>
+                    <j:Label html="This example uses hljs library to highligh a piece of code"/>
+
+                    <html:Pre height="300" percentWidth="100" style="background-color: white">
+                        <html:beads>
+                            <j:ScrollingViewport/>
+                        </html:beads>
+                        <html:Code id="sourceCodeMXMLText" text="{code_txt}"/>
+                    </html:Pre>
+
+                </j:CardPrimaryContent>
+                <j:CardActions itemsHorizontalAlign="itemsRight">
+                    <j:Button text="highlight Block" emphasis="primary" click="highLightContent()"/>
+                </j:CardActions>
              </j:Card>
         </j:View>
     </j:initialView>

@@ -38,18 +38,24 @@
     <j:initialView>
         <j:View>
             <j:beads>
-                <j:HorizontalCenteredLayout/>
+                <j:VerticalCenteredLayout/>
             </j:beads>
 
-            <j:Card percentWidth="90">
-                <html:H3 text="Dividing an Apache Royale application with modules"/>
+            <j:Card width="90%">
+                <j:CardHeader>
+                    <html:H3 text="Dividing an Apache Royale application with modules" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
                 
-                <j:Label html="This example uses Modules to load other application parts"/>
+                    <j:Label html="This example uses Modules to load other application parts"/>
 
-                <j:ModuleLoader localId="moduleLoader" autoLoad="false"
-                                modulePath="modules" moduleName="JewelModule"/>
+                    <j:ModuleLoader localId="moduleLoader" autoLoad="false"
+                                    modulePath="modules" moduleName="JewelModule"/>
 
-                <j:Button text="Load a Module" emphasis="primary" click="loadModule()"/>
+                </j:CardPrimaryContent>
+                <j:CardActions itemsHorizontalAlign="itemsRight">
+                    <j:Button text="Load a Module" emphasis="primary" click="loadModule()"/>
+                </j:CardActions>
              </j:Card>
         </j:View>
     </j:initialView>

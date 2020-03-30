@@ -104,7 +104,7 @@
 
                     </j:Container>
                 </j:CardPrimaryContent>
-                <j:CardActions itemsHorizontalAlign="itemsRight" itemsVerticalAlign="itemsCentered">
+                <j:CardActions itemsVerticalAlign="itemsCentered">
                     <j:BarSection width="50%">
                         <j:ToggleButton localId="ruleVisibility" 
                             outlined="true" emphasis="emphasized"
