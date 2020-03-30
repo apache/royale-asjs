@@ -116,13 +116,14 @@ package org.apache.royale.jewel.supportClasses.scrollbar
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
+		COMPILE::JS
 		override protected function setScrollStyle():void
 		{
 			super.setScrollStyle();
 
 			_scroll ?
-				contentArea.positioner.classList.add("scroll") :
-				contentArea.positioner.classList.remove("scroll");
+				contentArea.element.classList.add("scroll"):
+				contentArea.element.classList.remove("scroll");
 		}
 		
 		/**

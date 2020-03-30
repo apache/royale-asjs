@@ -66,13 +66,16 @@ package org.apache.royale.jewel.supportClasses
 			if (!contentArea)
 				contentArea = value as UIBase;
 			
-			setScrollStyle();
+			contentArea.addEventListener("initComplete", setScrollStyle);
 		}
 		
 		/**
-		 *  Subclasses override this method to change scrolling behavior
-		 *  We use classList, since we can affect UIBase components (not only StyledUIBase)
-		 *  like for example and html:Div or html:Pre
+		 *  Subclasses override this method to change scrolling behavior.
+		 *  
+		 *  Since we can affect UIBase components (not only StyledUIBase)
+		 *  (for example and html:Div or html:Pre)
+		 *  we use className to set (we need to run computeFinalClassNames)
+		 *  and classList to remove.
 		 * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
@@ -83,10 +86,14 @@ package org.apache.royale.jewel.supportClasses
 		override protected function setScrollStyle():void
 		{
 			contentArea.element.classList.add("viewport");
-			clipContent = true;
+
+			if(_clipContent)
+				contentArea.element.classList.add("clipped");
+			else
+				contentArea.element.classList.remove("clipped");
 		}
 
-		private var _clipContent:Boolean;
+		private var _clipContent:Boolean = true;
 		/**
 		 *  Whether to apply a clip mask if the positions and/or sizes of this container's children extend outside the borders of this container.
 		 *  
@@ -108,13 +115,10 @@ package org.apache.royale.jewel.supportClasses
 			if(_clipContent != value)
 			{
 				_clipContent = value;
-
 				COMPILE::JS
 				{
-				if(_clipContent)
-					contentArea.element.classList.add("clipped");
-				else
-					contentArea.element.classList.remove("clipped");
+				if(contentArea)
+					setScrollStyle();
 				}
 			}
 		}
