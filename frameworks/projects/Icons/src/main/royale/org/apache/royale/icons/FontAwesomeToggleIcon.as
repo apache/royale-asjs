@@ -68,7 +68,7 @@ package org.apache.royale.icons
             internalSelected();
         }
 
-        private var _selectedText:String = "";
+        private var _selectedType:String = "";
         /**
          *  The selectedText of the icon
          *  
@@ -77,41 +77,25 @@ package org.apache.royale.icons
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-		public function get selectedText():String
+		public function get selectedType():String
 		{
-            return _selectedText;            
+            return _selectedType;            
 		}
-        public function set selectedText(value:String):void
+        public function set selectedType(value:String):void
 		{
-            _selectedText = value;
-            internalSelected();
-		}
-
-        override public function set text(value:String):void
-		{
-            _text = value;
+            _selectedType = value;
             internalSelected();
 		}
 
         private function internalSelected():void
         {
-            COMPILE::JS
-			{
-            textNode.textContent = _selected ? _selectedText : _text;	
-			}
-        }
-        
-        /**
-         *  The icon text
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-        override protected function get iconText():String
-        {
-            return selected ? selectedText : text;
+            removeClass('fa-' + _type);
+            removeClass('fa-' + _selectedType);
+
+            if(selected)
+                addClass('fa-' + _selectedType);
+            else
+                addClass('fa-' + _type);
         }
     }
 }
