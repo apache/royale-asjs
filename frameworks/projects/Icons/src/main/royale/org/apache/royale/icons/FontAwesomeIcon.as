@@ -18,8 +18,6 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
-    import org.apache.royale.utils.StringUtil;
-
     /**
      *  Icons can be used alone or in buttons and other controls 
      * 

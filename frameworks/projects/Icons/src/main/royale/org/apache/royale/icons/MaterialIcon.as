@@ -19,16 +19,8 @@
 package org.apache.royale.icons
 {
     /**
-     *  Icons can be used alone or in buttons and other controls 
-     * 
-     *  This class could be used with any icon family out there and with
-     *  its text property
-     * 
-     *  add class name "material-icons" since in IE11 this font only
-     *  works with that class name strangely. it seems we can avoid this 
-     *  self-hosting the fonts @see https://google.github.io/material-design-icons/
-     *  but we must think if this is or not the right way.
-     * 
+     *  A Material based icon can be used alone or in buttons and other controls 
+     *  
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
@@ -54,6 +46,9 @@ package org.apache.royale.icons
         {
             super();
 
+            // Since in IE11 this font only works with that class name strangely.
+            // It seems we can avoid this self-hosting the fonts @see https://google.github.io/material-design-icons/ 
+            // but we must think if this is or not the right way.
             typeNames = "fonticon material-icons";
         }
 
@@ -73,19 +68,6 @@ package org.apache.royale.icons
 			{
             textNode.textContent = _text;	
 			}
-		}
-
-        /**
-         *  The icon text
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-        // override protected function get iconText():String
-        // {
-        //     return text;
-        // }   
+		}  
     }
 }

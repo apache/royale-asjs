@@ -21,7 +21,7 @@ package org.apache.royale.icons
     import org.apache.royale.core.ISelectable;
 
     /**
-     *  A Material based toggle icon can be used alone or in buttons and other controls.
+     *  A FontAwesome based toggle icon can be used alone or in buttons and other controls.
      *  This icons has two states, selected and unselected showing different icons in each one.
      *
      *  @langversion 3.0
@@ -29,7 +29,7 @@ package org.apache.royale.icons
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-    public class MaterialToggleIcon extends MaterialIcon implements ISelectable
+    public class FontAwesomeToggleIcon extends FontAwesomeIcon implements ISelectable
     {
         /**
          *  constructor.
@@ -39,7 +39,7 @@ package org.apache.royale.icons
          *  @playerversion AIR 2.6
          *  @productversion Royale 0.9.7
          */
-        public function MaterialToggleIcon()
+        public function FontAwesomeToggleIcon()
         {
             super();
         }
