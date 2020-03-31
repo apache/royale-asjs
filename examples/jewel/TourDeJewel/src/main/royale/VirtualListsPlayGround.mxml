@@ -114,12 +114,12 @@ limitations under the License.
 										dataProvider="{listModel.bigIconListVOData}"
 										selectedIndex="4"
 										>
-							<j:beads>
+							<!-- <j:beads>
 								<j:AddListItemRendererForArrayListData/>
 								<j:RemoveListItemRendererForArrayListData/>
 								<j:UpdateListItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
-							</j:beads>
+							</j:beads> -->
 						</j:VirtualList>
 								<!-- change="onChange(event)" -->
 						<!-- <j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/> -->
