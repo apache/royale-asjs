@@ -120,7 +120,7 @@ limitations under the License.
                             <j:Label text="fixed width"/>
                         </j:VGroup>
                         
-                        <j:VGroup gap="3" className="primary-normal">
+                        <j:VGroup gap="3">
                             <html:H3 text="Rotations" className="secondary-normal"/>
 
                             <js:FontAwesomeIcon className="primary-normal" type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" rotation="90"/>
