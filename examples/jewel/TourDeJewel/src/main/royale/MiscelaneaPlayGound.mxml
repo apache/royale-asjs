@@ -40,31 +40,162 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-                <html:H3 text="Jewel Icons Sizes"/>
+                <j:CardHeader>
+                    <html:H3 text="Material Icon Sizes" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="18"/>
+                    <j:Label text="18px"/>
+                
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="24"/>
+                    <j:Label text="24px (default)"/>
 
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="18"/>
-                <j:Label text="18px"/>
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="24"/>
-                <j:Label text="24px (default)"/>
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="36"/>
-                <j:Label text="36px"/>
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="48"/>
-                <j:Label text="48px"/>
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="36"/>
+                    <j:Label text="36px"/>
+                
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  size="48"/>
+                    <j:Label text="48px"/>             
+                </j:CardPrimaryContent>
             </j:Card>
         </j:GridCell>
 
         <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
             <j:Card>
-                <html:H3 text="Jewel Icons Dark / Light"/>
+                <j:CardHeader>
+                    <html:H3 text="Material Icon Dark / Light" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
 
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true"/>
-                <j:Label text="dark"/>
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true" inactive="true"/>
-                <j:Label text="dark - inactive"/>
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true"/>
-                <j:Label text="light"/>
-                <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true" inactive="true"/>
-                <j:Label text="light - inactive"/>
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true"/>
+                    <j:Label text="dark"/>
+                    
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true" inactive="true"/>
+                    <j:Label text="dark - inactive"/>
+                    
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true"/>
+                    <j:Label text="light"/>
+                    
+                    <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true" inactive="true"/>
+                    <j:Label text="light - inactive"/>
+                </j:CardPrimaryContent>
+            </j:Card>
+        </j:GridCell>
+        
+        <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+            <j:Card>
+                <j:CardHeader>
+                    <html:H3 text="FontAwesome Icons" className="primary-normal"/>
+                </j:CardHeader>
+                <j:CardPrimaryContent>
+                    <j:beads>
+                        <j:HorizontalFlowLayout gap="6"/>
+                    </j:beads>
+
+                    <j:HGroup gap="3">
+                        <j:VGroup gap="3" className="primary-normal">
+                            <html:H3 text="Sizes" className="secondary-normal"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}"/>
+                            <j:Label text="normal"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="lg"/>
+                            <j:Label text="lg"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="2x"/>
+                            <j:Label text="2x"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x"/>
+                            <j:Label text="3x"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="4x"/>
+                            <j:Label text="4x"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="5x"/>
+                            <j:Label text="5x"/>
+
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" size="48"/>
+                            <j:Label text="size=48"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" fixedWidth="true"/>
+                            <j:Label text="fixed width"/>
+                        </j:VGroup>
+                        
+                        <j:VGroup gap="3" className="primary-normal">
+                            <html:H3 text="Rotations" className="secondary-normal"/>
+
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" rotation="90"/>
+                            <j:Label text="rotation 90º"/>
+
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" rotation="180"/>
+                            <j:Label text="rotation 180º"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" rotation="270"/>
+                            <j:Label text="rotation 270º"/>
+                            
+                            <html:H3 text="Flips" className="secondary-normal"/>
+
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" flipHorizontal="true"/>
+                            <j:Label text="flipHorizontal"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" flipVertical="true"/>
+                            <j:Label text="flipVertical"/>
+                            
+                            <html:H3 text="Animations" className="secondary-normal"/>
+
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" spin="true"/>
+                            <j:Label text="spin"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" pulse="true"/>
+                            <j:Label text="pulse"/>
+                            
+                        </j:VGroup>
+
+                        <j:VGroup gap="3" className="primary-normal">
+                            <html:H3 text="Borders" className="secondary-normal"/>
+                            
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" border="true"/>
+                            <j:Label text="with border"/>
+                            
+                            <j:Label text="with border + pull right"/>
+                            <html:Div width="250">
+                                <html:text>
+                                <![CDATA[…tomorrow we will run faster, stretch out our arms farther… And then one fine morning— So we beat on, boats against the current, borne back ceaselessly into the past.
+                                ]]>
+                                </html:text>
+                                <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" border="true" pullRight="true"/>
+                            </html:Div>
+                            
+                            <j:Label text="no border + pull right"/>
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" pullRight="true"/>
+                            <j:Label multiline="true" width="250">
+                                <j:html>
+                                <![CDATA[…tomorrow we will run faster, stretch out our arms farther… And then one fine morning— So we beat on, boats against the current, borne back ceaselessly into the past.
+                                ]]>
+                                </j:html>
+                            </j:Label>
+
+                            <j:Label text="with border + pull left"/>
+                            <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" border="true" pullLeft="true"/>
+                            <j:Label multiline="true" width="250">
+                                <j:html>
+                                <![CDATA[…tomorrow we will run faster, stretch out our arms farther… And then one fine morning— So we beat on, boats against the current, borne back ceaselessly into the past.
+                                ]]>
+                                </j:html>
+                            </j:Label>
+                            
+                        </j:VGroup>
+                    </j:HGroup>
+                </j:CardPrimaryContent>
+                
+                <!-- <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" dark="true"/>
+                <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" light="true"/>
+                <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}" relativeSize="3x" inactive="true"/>
+
+                <j:IconButton emphasis="secondary" unboxed="true">
+                    <j:icon>
+                        <js:FontAwesomeIcon type="{FontAwesomeIconType.TWITTER}"/>
+                    </j:icon>
+                </j:IconButton> -->
             </j:Card>
         </j:GridCell>
 	</j:Grid>
