@@ -197,7 +197,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Clear Data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.CLEAR}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.CLEAR}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="loadDataProvider(dg1)" emphasis="primary" outlined="true">
@@ -205,7 +205,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Load Data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.VIEW_HEADLINE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.VIEW_HEADLINE}" />
 						</j:icon>
 					</j:IconButton>
 				</j:CardActions>
@@ -247,7 +247,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Clear Data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.CLEAR}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.CLEAR}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="loadDataProvider(dg2)" emphasis="primary" outlined="true">
@@ -255,7 +255,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Load Data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.VIEW_HEADLINE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.VIEW_HEADLINE}" />
 						</j:icon>
 					</j:IconButton>
 				</j:CardActions>
@@ -295,7 +295,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Change Column Labels"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.RESTORE_PAGE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.RESTORE_PAGE}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="clearBindedDataProvider(dg3)" outlined="true">
@@ -303,7 +303,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Clear Data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.CLEAR_ALL}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.CLEAR_ALL}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="loadBindedDataProvider(dg3)" emphasis="primary" outlined="true">
@@ -311,7 +311,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Load Data"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.AUTORENEW}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.AUTORENEW}" />
 						</j:icon>
 					</j:IconButton>
 				</j:CardActions>
@@ -351,7 +351,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Add Row"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.ADD}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.ADD}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="removeFirstRow(dg4)" outlined="true">
@@ -359,7 +359,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Remove First Row"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.REMOVE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.REMOVE}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="updateFirstRow(dg4)" emphasis="primary" outlined="true">
@@ -367,7 +367,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Update First Row"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.UPDATE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.UPDATE}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton click="removeAllRows(dg4)" emphasis="primary" outlined="true">
@@ -375,7 +375,7 @@ limitations under the License.
 							<j:ToolTip toolTip="Remove all rows"/>
 						</j:beads>
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.DELETE_FOREVER}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.DELETE_FOREVER}" />
 						</j:icon>
 					</j:IconButton>
 				</j:CardActions>

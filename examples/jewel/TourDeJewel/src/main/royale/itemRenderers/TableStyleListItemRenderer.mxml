@@ -27,7 +27,7 @@ limitations under the License.
         <j:HorizontalLayout/>
     </ir:beads>
 
-    <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()" width="100"/>
+    <js:MaterialIcon text="{iconList ? iconList.icon : ''}"  visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()" width="100"/>
     <j:Label html="{text}" multiline="true" width="300"/>
     <j:Label html="Third field" multiline="true" width="100"/>
     <j:Label html="Fourth field" multiline="true" width="200"/>

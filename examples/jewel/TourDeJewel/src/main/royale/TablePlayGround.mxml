@@ -71,7 +71,7 @@ limitations under the License.
 					<j:TBody>
 						<j:TableRow>
 							<j:TableCell>
-								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" />
 							</j:TableCell>
 							<j:TableCell expandRows="2">
 								<j:Label text="Some text in two rows" multiline="true"/>
@@ -93,7 +93,7 @@ limitations under the License.
 						</j:TableRow>
 						<j:TableRow>
 							<j:TableCell>
-								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" />
 							</j:TableCell>
 
 							<j:TableCell>
@@ -113,7 +113,7 @@ limitations under the License.
 						</j:TableRow>
 						<j:TableRow>
 							<j:TableCell>
-								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" />
 							</j:TableCell>
 							<j:TableCell>
 								<j:Label text="More text 2" />
@@ -135,7 +135,7 @@ limitations under the License.
 						</j:TableRow>
 						<j:TableRow>
 							<j:TableCell>
-								<js:FontIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.INSERT_DRIVE_FILE}" />
 							</j:TableCell>
 							<j:TableCell>
 								<!-- By using a Group within a cell you have better control of the
@@ -173,7 +173,7 @@ limitations under the License.
 											<j:TextPrompt prompt="Search..."/>
 										</j:beads>
 										<j:icon>
-											<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+											<js:MaterialIcon text="{MaterialIconType.SEARCH}" />
 										</j:icon>
 									</j:IconTextInput>
 									<j:Button text="SEARCH" emphasis="{StyledUIBase.PRIMARY}"/>

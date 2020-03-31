@@ -90,7 +90,7 @@ limitations under the License.
 					<j:BarSection itemsHorizontalAlign="itemsRight">
 						<j:IconButton unboxed="true" click="assignNewData(watchmenComboBox)">
 							<j:icon>
-								<js:FontIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" />
 							</j:icon>
 							<j:beads>
 								<j:ToolTip toolTip="Assign new data"/>
@@ -131,7 +131,7 @@ limitations under the License.
 					<j:BarSection itemsHorizontalAlign="itemsRight">
 						<j:IconButton unboxed="true" click="assignNewData(avengersComboBox)">
 							<j:icon>
-								<js:FontIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.SETTINGS_BACKUP_RESTORE}" />
 							</j:icon>
 							<j:beads>
 								<j:ToolTip toolTip="Assign new data"/>

@@ -214,7 +214,7 @@ limitations under the License.
                 <j:BarSection>
                     <j:IconButton>
                         <j:icon>
-                            <js:FontIcon text="{MaterialIconType.FEEDBACK}" material="true"/>
+                            <js:MaterialIcon text="{MaterialIconType.FEEDBACK}" />
                         </j:icon>
                     </j:IconButton>
                 </j:BarSection>
@@ -231,7 +231,7 @@ limitations under the License.
                         <j:Badge localId="badge" overlap="true"/>
                     </j:beads>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.ACCOUNT_BALANCE}" material="true"/>
+                        <js:MaterialIcon text="{MaterialIconType.ACCOUNT_BALANCE}" />
                     </j:icon>
                 </j:IconButton>
                 <j:IconButton click="popup.open = !popup.open">
@@ -239,7 +239,7 @@ limitations under the License.
                         <j:Badge text="5" emphasis="secondary" subindex="true" overlap="true"/>
                     </j:beads>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.DATA_USAGE}" material="true"/>
+                        <js:MaterialIcon text="{MaterialIconType.DATA_USAGE}" />
                     </j:icon>
                 </j:IconButton>
                 <j:PopUp localId="popup" closePopUp="popupFormContent.formValidator.removeAllErrorTips()">
@@ -255,7 +255,7 @@ limitations under the License.
                         <j:Badge text="27" emphasis="primary" preindex="true" overlap="true"/>
                     </j:beads>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.ADD_ALARM}" material="true"/>
+                        <js:MaterialIcon text="{MaterialIconType.ADD_ALARM}" />
                     </j:icon>
                 </j:IconButton>
                 <j:IconButton>
@@ -263,7 +263,7 @@ limitations under the License.
                         <j:Badge text="209" emphasis="emphasized" subindex="true" preindex="true" overlap="true"/>
                     </j:beads>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.ANNOUNCEMENT}" material="true"/>
+                        <js:MaterialIcon text="{MaterialIconType.ANNOUNCEMENT}" />
                     </j:icon>
                 </j:IconButton>
             </j:BarSection>
@@ -278,7 +278,7 @@ limitations under the License.
                         <j:ResponsiveVisibility desktopVisible="false" wideScreenVisible="false" />
                     </j:beads>
                     <j:icon>
-                        <js:FontIcon text="{MaterialIconType.MENU}" material="true"/>
+                        <js:MaterialIcon text="{MaterialIconType.MENU}" />
                     </j:icon>
                 </j:IconButton>
                 <j:BarTitle text="Apache Royale Tour de Jewel"/>
@@ -289,7 +289,7 @@ limitations under the License.
                         <j:ToolTip toolTip="Detect Orientation"/>
                     </j:beads>
                     <j:icon>
-                        <js:ToggleFontIcon text="{MaterialIconType.SCREEN_LOCK_ROTATION}" selectedText="{MaterialIconType.SCREEN_ROTATION}" material="true"/>
+                        <js:MaterialToggleIcon text="{MaterialIconType.SCREEN_LOCK_ROTATION}" selectedText="{MaterialIconType.SCREEN_ROTATION}" />
                     </j:icon>
                 </j:ToggleButton>
                 <j:ToggleButton click="footerbar.visible = !footerbar.visible">
@@ -297,7 +297,7 @@ limitations under the License.
                         <j:ToolTip toolTip="show/hide FooterBar"/>
                     </j:beads>
                     <j:icon>
-                        <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" material="true"/>
+                        <js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" />
                     </j:icon>
                 </j:ToggleButton>
                 <j:ToggleButton click="toggleTopAppBarFixed()">
@@ -305,7 +305,7 @@ limitations under the License.
                         <j:ToolTip toolTip="Lock(fix) or Unlock the TopBar"/>
                     </j:beads>
                     <j:icon>
-                        <js:ToggleFontIcon text="{MaterialIconType.LOCK}" selectedText="{MaterialIconType.LOCK_OPEN}" material="true"/>
+                        <js:MaterialToggleIcon text="{MaterialIconType.LOCK}" selectedText="{MaterialIconType.LOCK_OPEN}" />
                     </j:icon>
                 </j:ToggleButton>
             </j:BarSection>

@@ -85,8 +85,8 @@ limitations under the License.
         <js:ItemRendererDataBinding/>
     </j:beads>
 
-    <js:FontIcon text="{iconListItem ? iconListItem.icon : ''}"
-                material="true"
+    <js:MaterialIcon text="{iconListItem ? iconListItem.icon : ''}"
+                
                 visible="{iconListItem ? iconListItem.icon != null : false}"
                 className="{colorClass}"
                 click="clickCloseButton()"/>

@@ -208,24 +208,24 @@ limitations under the License.
 				<j:CardPrimaryContent>
 					<j:IconButton text="print" emphasis="primary">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.PRINT}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton emphasis="secondary">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.FACE}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton text="wifi" emphasis="emphasized">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.WIFI}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.WIFI}" />
 						</j:icon>
 					</j:IconButton>
 
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:IconButton localId="ib_lor" text="Do not disturb">
 							<j:icon>
-								<js:FontIcon text="{MaterialIconType.DO_NOT_DISTURB}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.DO_NOT_DISTURB}" />
 							</j:icon>
 						</j:IconButton>
 						<j:CheckBox text="rightPosition" change="ib_lor.rightPosition = !ib_lor.rightPosition"/>
@@ -242,24 +242,24 @@ limitations under the License.
 				<j:CardPrimaryContent>
 					<j:IconButton text="print" emphasis="primary" outlined="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.PRINT}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton emphasis="secondary" outlined="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.FACE}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton text="wifi" emphasis="emphasized" outlined="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.WIFI}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.WIFI}" />
 						</j:icon>
 					</j:IconButton>
 					
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:IconButton localId="ib_lor2" text="Do not disturb" outlined="true">
 							<j:icon>
-								<js:FontIcon text="{MaterialIconType.DO_NOT_DISTURB}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.DO_NOT_DISTURB}" />
 							</j:icon>
 						</j:IconButton>
 						<j:CheckBox text="rightPosition" change="ib_lor2.rightPosition = !ib_lor2.rightPosition"/>
@@ -276,24 +276,24 @@ limitations under the License.
 				<j:CardPrimaryContent>
 					<j:IconButton text="print" emphasis="primary" unboxed="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.PRINT}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.PRINT}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton emphasis="secondary" unboxed="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.FACE}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.FACE}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton text="wifi" emphasis="emphasized" unboxed="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.WIFI}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.WIFI}"/>
 						</j:icon>
 					</j:IconButton>
 					
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:IconButton localId="ib_lor3" text="Do not disturb" unboxed="true">
 							<j:icon>
-								<js:FontIcon text="{MaterialIconType.DO_NOT_DISTURB}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.DO_NOT_DISTURB}" />
 							</j:icon>
 						</j:IconButton>
 						<j:CheckBox text="rightPosition" change="ib_lor3.rightPosition = !ib_lor3.rightPosition"/>
@@ -357,7 +357,7 @@ limitations under the License.
 					</j:ToggleButton>
 					<j:ToggleButton>
 						<j:icon>
-							<js:ToggleFontIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" material="true"/>
+							<js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" />
 						</j:icon>
 						<j:beads>
 							<j:ToolTip toolTip="show/hide FooterBar"/>
@@ -365,7 +365,7 @@ limitations under the License.
 					</j:ToggleButton>
 					<j:ToggleButton text="Icon and Text" selectedText="Icon and Text" emphasis="{StyledUIBase.SECONDARY}">
 						<j:icon>
-							<js:ToggleFontIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}" material="true"/>
+							<js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY}" selectedText="{MaterialIconType.VISIBILITY_OFF}"/>
 						</j:icon>
 						<j:beads>
 							<j:ToolTip toolTip="show/hide FooterBar"/>
@@ -374,19 +374,19 @@ limitations under the License.
 					<j:ToggleButton outlined="true" emphasis="secondary"
                             text="Show it" selected="true">
                             <j:icon>
-                                <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" material="true"/>
+                                <js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" />
                             </j:icon>
                         </j:ToggleButton>
 					<j:ToggleButton unboxed="true" emphasis="primary"
                             text="Show it" selected="true">
                             <j:icon>
-                                <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" material="true"/>
+                                <js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}" />
                             </j:icon>
                         </j:ToggleButton>
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:ToggleButton localId="tb_lor" text="No Print" selectedText="Print">
 							<j:icon>
-								<js:ToggleFontIcon text="{MaterialIconType.PRINT_DISABLED}" selectedText="{MaterialIconType.PRINT}" material="true"/>
+								<js:MaterialToggleIcon text="{MaterialIconType.PRINT_DISABLED}" selectedText="{MaterialIconType.PRINT}" />
 							</j:icon>
 						</j:ToggleButton>
 						<j:CheckBox selected="true" text="rightPosition" change="tb_lor.rightPosition = !tb_lor.rightPosition"/>

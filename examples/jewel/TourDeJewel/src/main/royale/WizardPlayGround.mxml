@@ -72,7 +72,7 @@ limitations under the License.
 						<j:Group>
 							<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
 								<j:icon>
-									<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}" material="true" size="48"/>
+									<js:MaterialIcon text="{MaterialIconType.KEYBOARD_ARROW_LEFT}"  size="48"/>
 								</j:icon>
 							</j:IconButton>
 						</j:Group>
@@ -82,7 +82,7 @@ limitations under the License.
 						<j:Group>
 							<j:IconButton emphasis="{StyledUIBase.SECONDARY}">
 								<j:icon>
-									<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}" material="true" size="48"/>
+									<js:MaterialIcon text="{MaterialIconType.KEYBOARD_ARROW_RIGHT}"  size="48"/>
 								</j:icon>
 							</j:IconButton>
 						</j:Group>

@@ -122,19 +122,19 @@ limitations under the License.
 			<j:Card>
 				<html:H3 text="Jewel IconButtonBar"/>
 
-				<j:Label html="Is a ButtonBar with IconButtons as item renderers. At Application level CSS you need to specify the icon class with a declaration for &lt;strong>j|IconButtonBar&lt;/strong> like this: &lt;strong>iconClass: ClassReference('org.apache.royale.icons.FontIcon')&lt;/strong>"
+				<j:Label html="Is a ButtonBar with IconButtons as item renderers. At Application level CSS you need to specify the icon class with a declaration for &lt;strong>j|IconButtonBar&lt;/strong> like this: &lt;strong>iconClass: ClassReference('org.apache.royale.icons.MaterialIcon')&lt;/strong>"
 				 		multiline="true"/>
 
 				<html:H4 text="Width 100% and emphasized color"/>
 
 				<j:IconButtonBar localId="ibb" change="ibb_label.text = ibb.selectedItem.label + ' (icon: ' + ibb.selectedItem.icon + ')'"
-					emphasis="primary" width="100%" material="true"
+					emphasis="primary" width="100%" 
 					dataProvider="{listModel.iconButtonData}"/>
 				
 				<html:H4 text="No Width and icons to the right"/>
 
 				<j:IconButtonBar localId="ibb2" change="ibb_label.text = ibb2.selectedItem.label + ' (icon: ' + ibb2.selectedItem.icon + ')'"
-					emphasis="secondary" rightPosition="true" material="true" iconField="icon"
+					emphasis="secondary" rightPosition="true"  iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				
 				<j:Label localId="ibb_label"/>
@@ -152,7 +152,7 @@ limitations under the License.
 				<j:ToggleButtonBar localId="tbb" 
 					change="tbbChangeHandler(event)"
 					selectedIndex="2"
-					emphasis="primary" width="100%" material="true"
+					emphasis="primary" width="100%" 
 					dataProvider="{listModel.iconButtonData}"/>
 				
 				<html:H4 text="No Width and icons to the right, selectedIndex is 0"/>
@@ -160,7 +160,7 @@ limitations under the License.
 				<j:ToggleButtonBar localId="tbb2" 
 					change="tbbChangeHandler(event)"
 					selectedIndex="0"
-					emphasis="emphasized" rightPosition="true" material="true" iconField="icon"
+					emphasis="emphasized" rightPosition="true"  iconField="icon"
 					dataProvider="{listModel.iconButtonData}"/>
 				
 				<j:Label localId="tbb_label"/> 

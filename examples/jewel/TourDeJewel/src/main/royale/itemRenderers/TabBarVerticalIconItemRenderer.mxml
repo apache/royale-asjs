@@ -40,7 +40,7 @@ limitations under the License.
     </j:beads>
 
     <j:VGroup itemsHorizontalAlign="itemsCenter">
-        <js:FontIcon text="{tabButton ? tabButton.icon : ''}" material="true" 
+        <js:MaterialIcon text="{tabButton ? tabButton.icon : ''}"  
                     visible="{tabButton ? tabButton.icon != null : false}"/>
         <html:Span text="{tabButton ? tabButton.label : ''}"/>
     </j:VGroup>

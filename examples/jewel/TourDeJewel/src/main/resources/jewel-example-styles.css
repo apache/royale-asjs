@@ -24,7 +24,7 @@
 
 j|IconButtonBar 
 {
-    iconClass: ClassReference("org.apache.royale.icons.FontIcon")
+    iconClass: ClassReference("org.apache.royale.icons.MaterialIcon")
 }
 
 .tableStyle

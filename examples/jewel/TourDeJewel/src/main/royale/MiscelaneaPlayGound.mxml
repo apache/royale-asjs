@@ -42,13 +42,13 @@ limitations under the License.
             <j:Card>
                 <html:H3 text="Jewel Icons Sizes"/>
 
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="18"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="18"/>
                 <j:Label text="18px"/>
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="24"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="24"/>
                 <j:Label text="24px (default)"/>
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="36"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="36"/>
                 <j:Label text="36px"/>
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" size="48"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  size="48"/>
                 <j:Label text="48px"/>
             </j:Card>
         </j:GridCell>
@@ -57,13 +57,13 @@ limitations under the License.
             <j:Card>
                 <html:H3 text="Jewel Icons Dark / Light"/>
 
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" dark="true"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true"/>
                 <j:Label text="dark"/>
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" dark="true" inactive="true"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  dark="true" inactive="true"/>
                 <j:Label text="dark - inactive"/>
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" light="true"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true"/>
                 <j:Label text="light"/>
-                <js:FontIcon text="{MaterialIconType.FACE}" material="true" light="true" inactive="true"/>
+                <js:MaterialIcon text="{MaterialIconType.FACE}"  light="true" inactive="true"/>
                 <j:Label text="light - inactive"/>
             </j:Card>
         </j:GridCell>

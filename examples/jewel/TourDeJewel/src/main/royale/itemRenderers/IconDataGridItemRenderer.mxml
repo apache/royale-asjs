@@ -50,7 +50,7 @@ limitations under the License.
         <j:HorizontalCenteredLayout/>
     </j:beads>
 
-    <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true"
+    <js:MaterialIcon text="{iconList ? iconList.icon : ''}" 
         visible="{iconList ? iconList.icon != null : false}"
         click="clickCloseButton(event)"/>
 

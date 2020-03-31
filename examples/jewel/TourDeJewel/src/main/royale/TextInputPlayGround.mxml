@@ -211,7 +211,7 @@ limitations under the License.
 
 				<j:IconTextInput text="Searching something">
 					<j:icon>
-						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+						<js:MaterialIcon text="{MaterialIconType.SEARCH}" />
 					</j:icon>
 				</j:IconTextInput>
 
@@ -220,7 +220,7 @@ limitations under the License.
 						<j:TextPrompt prompt="Search..."/>
 					</j:beads>
 					<j:icon>
-						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+						<js:MaterialIcon text="{MaterialIconType.SEARCH}" />
 					</j:icon>
 				</j:IconTextInput>
 
@@ -230,7 +230,7 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 					<j:icon>
-						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+						<js:MaterialIcon text="{MaterialIconType.SEARCH}" />
 					</j:icon>
 				</j:IconTextInput>
 
@@ -240,7 +240,7 @@ limitations under the License.
 						<j:Disabled/>
 					</j:beads>
 					<j:icon>
-						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+						<js:MaterialIcon text="{MaterialIconType.SEARCH}" />
 					</j:icon>
 				</j:IconTextInput>
 
@@ -249,7 +249,7 @@ limitations under the License.
 						<j:SizeControl size="xlarge"/>
 					</j:beads>
 					<j:icon>
-						<js:FontIcon text="{MaterialIconType.SEARCH}" material="true"/>
+						<js:MaterialIcon text="{MaterialIconType.SEARCH}" />
 					</j:icon>
 				</j:IconTextInput>
 			</j:Card>

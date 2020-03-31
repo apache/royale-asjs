@@ -111,12 +111,12 @@ limitations under the License.
 				<j:CardActions itemsHorizontalAlign="itemsRight">
 					<j:IconButton text="Reply" emphasis="primary" outlined="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.REPLY}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.REPLY}" />
 						</j:icon>
 					</j:IconButton>
 					<j:IconButton text="Cancel" outlined="true">
 						<j:icon>
-							<js:FontIcon text="{MaterialIconType.CANCEL}" material="true"/>
+							<js:MaterialIcon text="{MaterialIconType.CANCEL}" />
 						</j:icon>
 					</j:IconButton>
 				</j:CardActions>
@@ -132,12 +132,12 @@ limitations under the License.
 					<j:BarSection itemsHorizontalAlign="itemsRight">
 						<j:IconButton emphasis="primary" unboxed="true">
 							<j:icon>
-								<js:FontIcon text="{MaterialIconType.SHARE}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.SHARE}" />
 							</j:icon>
 						</j:IconButton>
 						<j:IconButton unboxed="true">
 							<j:icon>
-								<js:FontIcon text="{MaterialIconType.MORE_VERT}" material="true"/>
+								<js:MaterialIcon text="{MaterialIconType.MORE_VERT}" />
 							</j:icon>
 						</j:IconButton>
 					</j:BarSection>

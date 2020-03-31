@@ -60,7 +60,7 @@ limitations under the License.
         <js:ToolTipRemovalWhenItemRemoved tooltip="{tt}"/>
     </j:beads>
 
-    <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>
+    <js:MaterialIcon text="{iconList ? iconList.icon : ''}"  visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()"/>
 
     <j:Label html="{text}" multiline="true"/>
 
