@@ -38,16 +38,5 @@ package org.apache.royale.core
          */
 		function get text():String;
         function set text(value:String):void;
-
-        /**
-         *  Use the Material Icons
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.7
-         */
-        function get material():Boolean;
-        function set material(value:Boolean):void;
     }
 }
