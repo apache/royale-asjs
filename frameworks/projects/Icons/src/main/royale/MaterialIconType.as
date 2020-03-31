@@ -32,10 +32,6 @@ package
     {
         /**
 		 *  constructor.
-		 *
-         *  <inject_html>
-         *  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-         *  </inject_html>
          * 
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2

@@ -18,45 +18,52 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
-    import org.apache.royale.utils.StringUtil;
-
     /**
      *  Icons can be used alone or in buttons and other controls 
      * 
      *  This class could be used with any icon family out there and with
      *  its text property
+     * 
+     *  add class name "material-icons" since in IE11 this font only
+     *  works with that class name strangely. it seems we can avoid this 
+     *  self-hosting the fonts @see https://google.github.io/material-design-icons/
+     *  but we must think if this is or not the right way.
+     * 
      *
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
-     * 
-     *  @deprecated this class will be removed soon
+     *  @productversion Royale 0.9.7
+     *  
      */
-    public class FontIcon extends FontIconBase
+    public class MaterialIcon extends FontIconBase
     {
         /**
          *  constructor.
+         * 
+         *  <inject_html>
+         *  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+         *  </inject_html>
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.7
          */
-        public function FontIcon()
+        public function MaterialIcon()
         {
             super();
 
-            typeNames = "fonticon";
+            typeNames = "fonticon material-icons";
         }
-        
+
         /**
          *  The text of the icon
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.7
          */
         override public function set text(value:String):void
 		{
@@ -64,7 +71,7 @@ package org.apache.royale.icons
 
 			COMPILE::JS
 			{
-                textNode.nodeValue = _text;	
+            textNode.textContent = _text;	
 			}
 		}
 
@@ -74,44 +81,11 @@ package org.apache.royale.icons
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.7
          */
-        override protected function get iconText():String
-        {
-            return text;
-        }
-
-        private var _material:Boolean;
-        /**
-         *  add class name "material-icons" since in IE11 this font only
-         *  works with that class name strangely. it seems we can avoid this 
-         *  self-hosting the fonts @see https://google.github.io/material-design-icons/
-         *  but we must think if this is or not the right way.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        public function get material():Boolean
-        {
-            return _material;
-        }
-        public function set material(value:Boolean):void
-        {
-            if (_material != value)
-            {
-                _material = value;
-
-                typeNames = StringUtil.removeWord(typeNames, " material-icons");
-                typeNames += " material-icons";
-
-                COMPILE::JS
-                {
-                    if (parent)
-                        setClassName(computeFinalClassNames()); 
-                }
-            }
-        }
+        // override protected function get iconText():String
+        // {
+        //     return text;
+        // }   
     }
 }

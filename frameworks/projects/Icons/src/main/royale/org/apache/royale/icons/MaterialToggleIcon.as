@@ -18,7 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.icons
 {
-    import org.apache.royale.utils.StringUtil;
+    import org.apache.royale.core.ISelectable;
 
     /**
      *  Icons can be used alone or in buttons and other controls 
@@ -29,11 +29,9 @@ package org.apache.royale.icons
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.3
-     * 
-     *  @deprecated this class will be removed soon
+     *  @productversion Royale 0.9.7
      */
-    public class FontIcon extends FontIconBase
+    public class MaterialToggleIcon extends MaterialIcon implements ISelectable
     {
         /**
          *  constructor.
@@ -41,77 +39,81 @@ package org.apache.royale.icons
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.7
          */
-        public function FontIcon()
+        public function MaterialToggleIcon()
         {
             super();
-
-            typeNames = "fonticon";
         }
+
+        private var _selected:Boolean = false;
         
         /**
-         *  The text of the icon
+         *  <code>true</code> if the Button is selected.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get selected():Boolean
+        {
+            return _selected;
+        }
+
+        /**
+         *  @private
+         */
+        public function set selected(value:Boolean):void
+        {
+            _selected = value;
+            internalSelected();
+        }
+
+        private var _selectedText:String = "";
+        /**
+         *  The selectedText of the icon
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.7
          */
-        override public function set text(value:String):void
+		public function get selectedText():String
 		{
-            super.text = value;
-
-			COMPILE::JS
-			{
-                textNode.nodeValue = _text;	
-			}
+            return _selectedText;            
+		}
+        public function set selectedText(value:String):void
+		{
+            _selectedText = value;
+            internalSelected();
 		}
 
+        override public function set text(value:String):void
+		{
+            _text = value;
+            internalSelected();
+		}
+
+        private function internalSelected():void
+        {
+            COMPILE::JS
+			{
+            textNode.textContent = _selected ? _selectedText : _text;	
+			}
+        }
+        
         /**
          *  The icon text
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
+         *  @productversion Royale 0.9.7
          */
         override protected function get iconText():String
         {
-            return text;
-        }
-
-        private var _material:Boolean;
-        /**
-         *  add class name "material-icons" since in IE11 this font only
-         *  works with that class name strangely. it seems we can avoid this 
-         *  self-hosting the fonts @see https://google.github.io/material-design-icons/
-         *  but we must think if this is or not the right way.
-         *
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.3
-         */
-        public function get material():Boolean
-        {
-            return _material;
-        }
-        public function set material(value:Boolean):void
-        {
-            if (_material != value)
-            {
-                _material = value;
-
-                typeNames = StringUtil.removeWord(typeNames, " material-icons");
-                typeNames += " material-icons";
-
-                COMPILE::JS
-                {
-                    if (parent)
-                        setClassName(computeFinalClassNames()); 
-                }
-            }
+            return selected ? selectedText : text;
         }
     }
 }

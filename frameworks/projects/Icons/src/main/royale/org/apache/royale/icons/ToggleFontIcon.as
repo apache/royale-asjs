@@ -30,6 +30,8 @@ package org.apache.royale.icons
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
+     * 
+     *  @deprecated this class will be removed soon
      */
     public class ToggleFontIcon extends FontIcon implements ISelectable
     {
