@@ -157,7 +157,7 @@ limitations under the License.
     <j:IconButton localId="destroy_btn" visible="false" className="destroy"
         click="removeItemClickHandler(event)">
         <j:icon>
-            <js:FontIcon text="{MaterialIconType.CLOSE}" material="true"/>
+            <js:MaterialIcon text="{MaterialIconType.CLOSE}"/>
         </j:icon>
     </j:IconButton>
 
