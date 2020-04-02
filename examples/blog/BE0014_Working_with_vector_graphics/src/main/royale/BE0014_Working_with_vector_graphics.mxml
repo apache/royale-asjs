@@ -110,7 +110,7 @@
                             outlined="true" emphasis="emphasized"
                             text="Hide Rule" selectedText="Show Rule" selected="true">
                             <j:icon>
-                                <js:ToggleFontIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}"/>
+                                <js:MaterialToggleIcon text="{MaterialIconType.VISIBILITY_OFF}" selectedText="{MaterialIconType.VISIBILITY}"/>
                             </j:icon>
                         </j:ToggleButton>
                     </j:BarSection>
