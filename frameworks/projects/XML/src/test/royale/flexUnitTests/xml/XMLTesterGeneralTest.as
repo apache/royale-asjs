@@ -31,13 +31,13 @@ package flexUnitTests.xml
     {
         public static var isJS:Boolean = COMPILE::JS;
         
-        private var xmlStr:String;
+        private static var xmlStr:String;
         
-        private var quotedXML:XML;
+        private static var quotedXML:XML;
         
-        private var xml:XML;
-        private var text:String;
-        private var xml2:XML;
+        private static var xml:XML;
+        private static var text:String;
+        private static var xml2:XML;
         
         private var settings:Object;
         
@@ -56,6 +56,20 @@ package flexUnitTests.xml
         {
             settings = XML.settings();
             
+
+        }
+        
+        [After]
+        public function tearDown():void
+        {
+
+            
+            XML.setSettings(settings);
+        }
+        
+        [BeforeClass]
+        public static function setUpBeforeClass():void
+        {
             xmlStr ='<?xml version="1.0" encoding="UTF-8" ?>' +
                     '<catalog xmlns:fx="http://ns.adobe.com/mxml/2009"' +
                     '              xmlns:dac="com.printui.view.components.DesignAreaComponents.*">' +
@@ -100,34 +114,22 @@ package flexUnitTests.xml
                     '      </catalog_item>' +
                     '   </product>' +
                     '</catalog>';
-            
+
             quotedXML = <root title="That's Entertainment"/>;
             xml = new XML(xmlStr);
             text = "hi";
             xml2 = new XML('<root xmlns:fz="http://ns.adobe.com/mxml/2009"><a><b/></a><a name="fred"/><a>hi<b>yeah!</b></a><a name="frank"/><c/></root>');
-            
+
         }
         
-        [After]
-        public function tearDown():void
+        [AfterClass]
+        public static function tearDownAfterClass():void
         {
             xmlStr = null;
             quotedXML = null;
             xml = null;
             text = null;
             xml2 = null;
-            
-            XML.setSettings(settings);
-        }
-        
-        [BeforeClass]
-        public static function setUpBeforeClass():void
-        {
-        }
-        
-        [AfterClass]
-        public static function tearDownAfterClass():void
-        {
         }
         
         
@@ -1136,5 +1138,29 @@ package flexUnitTests.xml
             assertEquals(xml.toXMLString(),'<root name="foo"/>',"the first baz element should have been removed.");
             XML.setSettings(XML.defaultSettings());
         }
+
+        [Test]
+        public function testDynamicAttributes():void{
+            var xml:XML = <xml myAtt1="test1" myAtt2="test2"/>;
+
+            assertEquals(xml.attributes().length(),2, 'unexpected attributes count');
+            const MYAtt:String = 'myAtt1';
+            const MYAttTestVal:String = 'myAttTestVal';
+            delete xml.@[MYAtt];
+            assertEquals(xml.attributes().length(),1, 'unexpected attributes count');
+
+            xml.@[MYAtt] = MYAttTestVal;
+            assertEquals(xml.attributes().length(),2, 'unexpected attributes count');
+
+            assertEquals(xml.@myAtt1,'myAttTestVal', 'unexpected attributes value');
+
+        }
+        
+        //@todo - Passes in Swf, fails in browser:
+        /*[Test]
+        public function checkNumericAttributeSupported():void{
+            var xml:XML = XML('<test 1="23"/>');
+            assertEquals(xml.toXMLString(), '<test 1="23"/>', 'roundtripping with numeric attributes did not work');
+        }*/
     }
 }

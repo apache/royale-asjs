@@ -38,12 +38,24 @@ package flexUnitTests.xml
         
         public static var isJS:Boolean = COMPILE::JS;
     
-        private var settings:Object;
+        private static var settings:Object;
         
-        private var source:String;
+        private static var source:String;
         
         [Before]
         public function setUp():void
+        {
+
+        }
+        
+        [After]
+        public function tearDown():void
+        {
+
+        }
+        
+        [BeforeClass]
+        public static function setUpBeforeClass():void
         {
             settings = XML.settings();
             source = '<xml><?xml-stylesheet type="text/xsl" media="screen" href="/~d/styles/rss2full.xsl"?>\n' +
@@ -73,23 +85,12 @@ package flexUnitTests.xml
                     '</rss></xml>';
         }
         
-        [After]
-        public function tearDown():void
+        [AfterClass]
+        public static function tearDownAfterClass():void
         {
             source=null;
             XML.setSettings(settings);
         }
-        
-        [BeforeClass]
-        public static function setUpBeforeClass():void
-        {
-        }
-        
-        [AfterClass]
-        public static function tearDownAfterClass():void
-        {
-        }
-    
     
         public function getPlayerVersion():Number{
             COMPILE::SWF{
@@ -179,13 +180,10 @@ package flexUnitTests.xml
             var atomLinks:XMLList = xml.rss.channel.atom::link;
             assertEquals(atomLinks.length(),2, 'unexpected results from namespace based child query');
             //account for browser DOMParser variation to order of 'attrributes' - use length comparison
-          //  RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
+            
             assertEquals(atomLinks.toString().length, 459, 'unexpected list content length');
             
-            /*RoyaleUnitTestRunner.consoleOut('atomLinks');
-            RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
-            RoyaleUnitTestRunner.consoleOut(atomLinks.toString().length+'');*/
-            
+
         }
     
     
@@ -196,13 +194,10 @@ package flexUnitTests.xml
             var atomLinks:XMLList = xml..atom::link;
             assertEquals(atomLinks.length(),2, 'unexpected results from namespace based child query');
             //account for browser DOMParser variation to order of 'attributes' - use length comparison
-           // RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
+
             assertEquals(atomLinks.toString().length, 459, 'unexpected list content length');
       
-            /*RoyaleUnitTestRunner.consoleOut('descendants atomLinks');
-            RoyaleUnitTestRunner.consoleOut(atomLinks.toString());
-            RoyaleUnitTestRunner.consoleOut(atomLinks.toString().length+'');*/
-            
+
         }
     
         [Test]
@@ -225,10 +220,7 @@ package flexUnitTests.xml
             assertEquals(inscopes.length, 2, 'unexpected namespace count');
             //account for browser DOMParser variation to order of 'attributes' - use length comparison
             assertEquals(inscopes.toString().length, 'http://www.w3.org/2005/Atom,nothing'.length, 'unexpected namespace content');
-           /* RoyaleUnitTestRunner.consoleOut(inscopes.length+":"+inscopes.toString());
-            for each(var ns:Namespace in inscopes) {
-                RoyaleUnitTestRunner.consoleOut('prefix:\''+ns.prefix+'\', '+ns.uri);
-            }*/
+
             
             var links:XMLList = feed.atom::link;
             var link1:XML = links[0];
@@ -238,10 +230,7 @@ package flexUnitTests.xml
             assertEquals(inscopes.length, 3, 'unexpected namespace count');
             //account for browser DOMParser variation to order of 'attributes' - use length comparison
             assertEquals(inscopes.toString().length, 'blah,http://www.w3.org/2005/Atom,nothing'.length, 'unexpected namespace content');
-           /* RoyaleUnitTestRunner.consoleOut(inscopes.length+":"+inscopes.toString());
-            for each(var ns:Namespace in inscopes) {
-                RoyaleUnitTestRunner.consoleOut('prefix:\''+ns.prefix+'\', '+ns.uri);
-            }*/
+
         }
     
         [Test]
@@ -322,20 +311,14 @@ package flexUnitTests.xml
             
 
             list = testInstance.test2();
-           /* RoyaleUnitTestRunner.consoleOut(list);
-            RoyaleUnitTestRunner.consoleOut('2 end -----------------'+list.length());
-            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
-    
+
             assertEquals(list.length(), 5, 'unexpected list length');
             //account for browser DOMParser variation to order of 'attrributes' - use length comparison
             assertEquals(list.toXMLString().length, 572, 'unexpected list content');
             
             
             list = testInstance.test3();
-           /* RoyaleUnitTestRunner.consoleOut(list);
-            RoyaleUnitTestRunner.consoleOut('3 end -----------------'+list.length());
-            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
-    
+
             assertEquals(list.length(), 4, 'unexpected list length');
             //account for browser DOMParser variation to order of 'attrributes' - use length comparison
             assertEquals(list.toXMLString().length, 466, 'unexpected list content');
@@ -343,10 +326,7 @@ package flexUnitTests.xml
     
           
             list = testInstance.test4();
-            /*RoyaleUnitTestRunner.consoleOut(list);
-            RoyaleUnitTestRunner.consoleOut('4 end -----------------'+list.length());
-            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
-    
+
             assertEquals(list.length(), 4, 'unexpected list length');
             //account for browser DOMParser variation to order of 'attrributes' - use length comparison
             assertEquals(list.toXMLString().length, 466, 'unexpected list content');
@@ -357,33 +337,22 @@ package flexUnitTests.xml
             //account for browser DOMParser variation to order of 'attrributes' - use length comparison
             assertEquals(list.toXMLString().length, 618, 'unexpected list content');
             
-           /* RoyaleUnitTestRunner.consoleOut(list);
-            RoyaleUnitTestRunner.consoleOut('11 end -----------------'+list.length());
-            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
-            
-            
+
             list = testInstance.test12();
             assertEquals(list.length(), 6, 'unexpected list length');
             //account for browser DOMParser variation to order of 'attrributes' - use length comparison
             assertEquals(list.toXMLString().length, 729, 'unexpected list content');
-           /* RoyaleUnitTestRunner.consoleOut(list);
-            RoyaleUnitTestRunner.consoleOut('12 end -----------------'+list.length());
-            RoyaleUnitTestRunner.consoleOut(String(list.toXMLString().length));*/
-            
+
             
             list = testInstance.test13();
             assertEquals(list.length(), 4, 'unexpected list length');
             assertEquals(list.toXMLString().length, 506, 'unexpected list content');
-         //   RoyaleUnitTestRunner.consoleOut(list);
-         //   RoyaleUnitTestRunner.consoleOut('13 end -----------------'+list.length()+","+list.toXMLString().length);
+
             list = testInstance.test14();
             assertEquals(list.length(), 5, 'unexpected list length');
             assertEquals(list.toXMLString().length, 618, 'unexpected list content');
             
-           /*
-            RoyaleUnitTestRunner.consoleOut(list);
-            RoyaleUnitTestRunner.consoleOut('14 end -----------------'+list.length()+","+list.toXMLString().length);
-      */
+
         
         }
     
@@ -407,14 +376,12 @@ package flexUnitTests.xml
         
             var url:String = feed.link.(@rel=="self").@href;
         
-          //  RoyaleUnitTestRunner.consoleOut('testUseNamespace::'+feed.link.(@rel=="self").@href);
-          //  RoyaleUnitTestRunner.consoleOut('testUseNamespace::'+url);
+
             assertEquals(url, 'config/blahblah/user/123123customer/443512501473324764966/domain/', 'unexpected query result');
         
             var links:XMLList = feed.link;
             assertEquals(links.toString().length, 581, 'unexpected query result');
-    
-            //RoyaleUnitTestRunner.consoleOut('testUseNamespace::'+links);
+            
             //IE11/Edge failure because of order
             /*assertEquals(links.toString(), '<link rel="self" type="application/atom+xml" href="config/blahblah/user/123123" xmlns="http://www.w3.org/2005/Atom" xmlns:royale="https://royale.apache.org"/>\n' +
                     '<link rel="customer" href="customer/999973324764966" xmlns="http://www.w3.org/2005/Atom" xmlns:royale="https://royale.apache.org"/>\n' +
@@ -429,8 +396,7 @@ package flexUnitTests.xml
         
             var anyLinks:XMLList = xml..*::link;
             assertEquals(anyLinks.length(),5, 'unexpected results from *any* namespace based descendants query');
-            /* RoyaleUnitTestRunner.consoleOut('descendants any * Links');
-             RoyaleUnitTestRunner.consoleOut(anyLinks.toString());*/
+
         }
     
     
@@ -441,29 +407,61 @@ package flexUnitTests.xml
             //public: (seems to behave like 'default')
             var unusualLinks:XMLList = xml..public::link;
             assertEquals(unusualLinks.length(),3, 'unexpected results from public namespace based descendants query');
-            /*   RoyaleUnitTestRunner.consoleOut('descendants public Links');
-               RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
+
         
             //protected: (seems to behave like 'default')
             unusualLinks = xml..protected::link;
         
             assertEquals(unusualLinks.length(),3, 'unexpected results from protected namespace based descendants query');
-            /*RoyaleUnitTestRunner.consoleOut('descendants protected Links');
-            RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
-        
+
             unusualLinks = xml..internal::link;
         
             assertEquals(unusualLinks.length(),0, 'unexpected results from internal namespace based descendants query');
-            /* RoyaleUnitTestRunner.consoleOut('descendants internal Links');
-             RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
-        
+
         
             unusualLinks = xml..private::link;
         
             assertEquals(unusualLinks.length(),0, 'unexpected results from private namespace based descendants query');
-            /* RoyaleUnitTestRunner.consoleOut('descendants private Links');
-             RoyaleUnitTestRunner.consoleOut(unusualLinks.toString());*/
+
             
         }
+        
+        [Test]
+        public function testAddingWithNamespace():void{
+            var data:XML =<xml/>;
+            var NS_DEF:Namespace = new Namespace("myNS");
+
+            var param:XML = <param>something</param>;
+
+            var parameters:XML = data.NS_DEF::parameters[0];
+            if (parameters == null) //which it should be
+            {
+                data.NS_DEF::parameters = ""; //<- bad codegen fix
+                parameters = data.NS_DEF::parameters[0];
+            }
+            parameters.appendChild(param);
+
+            assertEquals(data.toXMLString(), '<xml>\n' +
+                    '  <parameters xmlns="myNS">\n' +
+                    '    <param>something</param>\n' +
+                    '  </parameters>\n' +
+                    '</xml>', 'unexpected xml content');
+
+
+
+            var somethingElse:String = 'anything';
+
+            var properties:XML = data.NS_DEF::parameters[0];
+            properties[new QName(NS_DEF.uri, somethingElse)] = 'anythingValue';
+            
+            assertEquals(data.toXMLString(), '<xml>\n' +
+                    '  <parameters xmlns="myNS">\n' +
+                    '    <param>something</param>\n' +
+                    '    <anything>anythingValue</anything>\n' +
+                    '  </parameters>\n' +
+                    '</xml>', 'unexpected xml content');
+        }
     }
+
+
 }

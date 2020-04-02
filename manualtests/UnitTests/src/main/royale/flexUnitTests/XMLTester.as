@@ -34,19 +34,19 @@ package flexUnitTests
         }
         
         
-        public var xmlTesterGeneralTest:XMLTesterGeneralTest;
+      //  public var xmlTesterGeneralTest:XMLTesterGeneralTest;
         
-        public var xmlTesterStringifyTest:XMLTesterStringifyTest;
+        //public var xmlTesterStringifyTest:XMLTesterStringifyTest;
     
-        public var xmlListTesterGeneralTest:XMLListTesterGeneralTest;
+        //public var xmlListTesterGeneralTest:XMLListTesterGeneralTest;
         
-        public var xmlNamespaceTest:XMLNamespaceTest;
+       // public var xmlNamespaceTest:XMLNamespaceTest;
     
-        public var xmlNamespaceClassTest:XMLNamespaceClassTest;
+        //public var xmlNamespaceClassTest:XMLNamespaceClassTest;
     
         public var xmlQNameTest:XMLQNameTest;
     
-        public var xmlNamespaceQueries:XMLTesterNamespaceQueries;
+       // public var xmlNamespaceQueries:XMLTesterNamespaceQueries;
 
     }
 }
