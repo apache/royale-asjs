@@ -313,15 +313,15 @@ limitations under the License.
 							<j:TableRow>
 								<j:TableCell/>
 								<j:TableCell align="center">
-									<j:HSlider id="slider_w" value="140" minimum="120" maximum="250" valueChange="onValueChange(event)"/>
+									<j:HSlider localId="slider_w" value="140" minimum="120" maximum="250" valueChange="onValueChange(event)"/>
 								</j:TableCell>
 							</j:TableRow>
 							<j:TableRow>
 								<j:TableCell align="center">
-									<j:VSlider id="slider_h" value="50" minimum="40" maximum="250" valueChange="onValueChange(event)"/>
+									<j:VSlider localId="slider_h" value="50" minimum="40" maximum="250" valueChange="onValueChange(event)"/>
 								</j:TableCell>
 								<j:TableCell width="270" height="270" align="center">
-									<j:Button id="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{StyledUIBase.PRIMARY}" width="140" height="50"/>
+									<j:Button localId="reizableButton" text="Resize {slider_w.value}x{slider_h.value}" emphasis="{StyledUIBase.PRIMARY}" width="140" height="50"/>
 								</j:TableCell>
 							</j:TableRow>
 						</j:TBody>

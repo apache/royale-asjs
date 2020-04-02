@@ -25,7 +25,7 @@ limitations under the License.
 	xmlns:models="models.*" sourceCodeUrl="TablePlayGround.mxml">
 	
 	<c:model>
-		<models:TablesModel id="tablesModel"/>
+		<models:TablesModel localId="tablesModel"/>
 	</c:model>
 
 	<c:beads>
@@ -192,7 +192,7 @@ limitations under the License.
 				<html:H3 text="Jewel Table"/>
 				<j:HGroup gap="3">
 					<j:VGroup gap="3">
-						<j:Table id="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
+						<j:Table localId="table" change="onChange(event)" dataProvider="{tablesModel.guitarrists}">
 							<j:TableColumn dataField="icon" label="" align="center" itemRenderer="itemRenderers.TableCellCloseIconItemRenderer"/>
 							<j:TableColumn dataField="guitarrist" label="Guitarrist"/>
 							<j:TableColumn dataField="album" label="Album" align="center" columnLabelAlign="center"/>
@@ -206,7 +206,7 @@ limitations under the License.
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads>
 						</j:Table>
-						<j:Label id="selected"/>
+						<j:Label localId="selected"/>
 					</j:VGroup>
 					<j:VGroup gap="3">
 						<j:Button click="changeTableData()" text="Change Data" emphasis="primary"/>

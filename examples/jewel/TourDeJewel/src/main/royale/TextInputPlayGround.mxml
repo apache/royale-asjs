@@ -78,7 +78,7 @@ limitations under the License.
 					<j:beads>
 						<j:HorizontalLayout gap="3"/>
 					</j:beads>
-					<j:TextInput id="textToChange">
+					<j:TextInput localId="textToChange">
 						<j:beads>
 							<j:TextPrompt prompt="{promptText}"/>
 						</j:beads>
@@ -101,7 +101,7 @@ limitations under the License.
 				</j:TextInput>
 
 				<j:HGroup gap="3" itemsVerticalAlign="itemsSameHeight">
-					<j:TextInput id="textinput">
+					<j:TextInput localId="textinput">
 						<j:beads>
 							<j:TextPrompt prompt="HSlider resize..."/>
 						</j:beads>
@@ -109,7 +109,7 @@ limitations under the License.
 					<j:Label text="A label to check layout"/>
 				</j:HGroup>
 
-				<j:HSlider id="slider_w" width="350" value="211" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
+				<j:HSlider localId="slider_w" width="350" value="211" minimum="10" maximum="350" valueChange="onValueChange(event)"/>
 				<j:Label text="textinput.width='{textinput.width}'"/>
 
 				<j:VGroup gap="3">

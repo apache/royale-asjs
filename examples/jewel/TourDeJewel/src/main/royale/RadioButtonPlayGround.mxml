@@ -73,7 +73,7 @@ limitations under the License.
 				</j:RadioButton>
 				<j:RadioButton groupName="radios_sizes" text="Only height to 35 and disabled" selected="true">
 					<j:beads>
-						<j:Disabled id="opt3disable" disabled="true"/>
+						<j:Disabled localId="opt3disable" disabled="true"/>
 						<j:InputButtonSize height="35"/>
 					</j:beads>
 				</j:RadioButton>

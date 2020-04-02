@@ -27,7 +27,7 @@ limitations under the License.
 	</j:beads>
     
     <j:model>
-		<models:ListsModel id="listModel"/>
+		<models:ListsModel localId="listModel"/>
 	</j:model>
 
     <j:ComboBox labelField="label" dataProvider="{listModel.avengers}" style="top: 0; left: 50%">

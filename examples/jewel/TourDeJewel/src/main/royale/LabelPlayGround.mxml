@@ -56,7 +56,7 @@ limitations under the License.
             <j:Card width="350">
 				<html:H3 text="Jewel Label"/>
 
-				<j:Label id="label" text="This is a Label" click="labelClick(event)" className="cursor-pointer">
+				<j:Label localId="label" text="This is a Label" click="labelClick(event)" className="cursor-pointer">
 					<j:beads>
 						<j:ToolTip toolTip="This Label is clickable!"/>
 					</j:beads>

@@ -73,7 +73,7 @@ limitations under the License.
 				<j:Label text="Click the button below to display an Snackbar and capture the action pressed by the user." multiline="true"/>
 				<j:Button text="Click Me" click="clickHandler(event)"/>
 
-				<j:Label id="status"/>
+				<j:Label localId="status"/>
 
 				<!-- Alert 3 (Long Message)-->
 				<j:Label text="This is long message example just for demonstration. Do not use long message and 'DISMISS' action in Snackbar, because it automatically disappear after a timeout." multiline="true"/>
@@ -85,7 +85,7 @@ limitations under the License.
 				<html:H3 text="Snackbar with emphasis"/>
 				<j:Label text="Click the button below to display Snackbar with different emphasis" multiline="true"/>
 				<j:VGroup gap="8">
-					<j:Button text="Default" id="button" click="Snackbar.show('This is Default')"/>
+					<j:Button text="Default" localId="button" click="Snackbar.show('This is Default')"/>
 					<j:Button text="Primary" emphasis="{StyledUIBase.PRIMARY}" click="{Snackbar.show('This is Primary').emphasis = StyledUIBase.PRIMARY}"/>
 					<j:Button text="Secondary" emphasis="{StyledUIBase.SECONDARY}" click="{Snackbar.show('Secondary with ACTION',4000,'ACTION').emphasis = StyledUIBase.SECONDARY}"/>
 					<j:Button text="Emphasized" emphasis="{StyledUIBase.EMPHASIZED}" click="{Snackbar.show('This is Emphasized with some message').emphasis = StyledUIBase.EMPHASIZED}"/>

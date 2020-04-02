@@ -137,7 +137,7 @@ limitations under the License.
 						<j:TextInput>
 							<j:beads>
 								<j:TextPrompt prompt="filter list..."/>
-								<j:SearchFilterForList id="filter" list="{virtualIconList}"/>
+								<j:SearchFilterForList localId="filter" list="{virtualIconList}"/>
 							</j:beads>
 						</j:TextInput> -->
 						<!-- <j:Button text="Trace Collection Labels" click="traceCollectionLabels()"/> -->
