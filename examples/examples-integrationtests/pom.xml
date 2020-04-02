@@ -103,6 +103,13 @@
             </properties>
           </configuration>
           <deployables>
+            <!-- Jewel-->
+            <deployable>
+              <groupId>org.apache.royale.examples</groupId>
+              <artifactId>TourDeJewel</artifactId>
+              <type>war</type>
+            </deployable>
+
             <deployable>
               <groupId>org.apache.royale.examples</groupId>
               <artifactId>ASDoc</artifactId>
@@ -231,6 +238,13 @@
 
   <dependencies>
     <!-- Applications we want to deploy -->
+    <dependency>
+      <groupId>org.apache.royale.examples</groupId>
+      <artifactId>TourDeJewel</artifactId>
+      <version>0.9.7-SNAPSHOT</version>
+      <type>war</type>
+    </dependency>
+
     <dependency>
       <groupId>org.apache.royale.examples</groupId>
       <artifactId>ASDoc</artifactId>
