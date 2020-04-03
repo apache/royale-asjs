@@ -170,7 +170,7 @@ limitations under the License.
     </j:model>
 
     <j:beads>
-        <js:Router id="router" stateChange="hashChanged()" /> 
+        <js:Router localId="router" stateChange="hashChanged()" /> 
         <js:ContainerDataBinding/>
         <js:BrowserOrientation localId="bo"/>
 		<j:CleanValidationErrors/>

@@ -50,12 +50,12 @@ limitations under the License.
     </fx:Script>
 
     <j:beads>
-        <j:FormValidator id="formValidator" trigger="{btn}" triggerEvent="click" requiredFieldError="There are invalid data, please check it."/>
+        <j:FormValidator localId="formValidator" trigger="{btn}" triggerEvent="click" requiredFieldError="There are invalid data, please check it."/>
         <js:ContainerDataBinding/>
     </j:beads>
 
     <j:model>
-        <models:ListsModel id="listModel"/>
+        <models:ListsModel localId="listModel"/>
     </j:model>
 
     <j:FormHeading initComplete="event.target.label = label"/>

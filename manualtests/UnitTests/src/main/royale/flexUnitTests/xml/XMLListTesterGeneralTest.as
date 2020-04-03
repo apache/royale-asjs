@@ -189,15 +189,32 @@ package flexUnitTests.xml
             //use length here to account for variation in attribute/namespace sequence outputs
             assertTrue( xmllist.toXMLString().length == 1431, 'XMLList length was unexpected');
         }
-        
+
         [Test]
         public function testWithDecl():void{
-            
+
             var list:XMLList = new XMLList('<?xml version="1.0" encoding="utf-8"?><success>false</success><retryable>false</retryable><localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>');
             assertEquals(list.length(), 3, 'unexpected parsing result for list content');
-            
+
         }
-        
-        
+
+        [Test]
+        public function testAssignmentRange():void{
+
+            var list:XMLList = new XMLList('<?xml version="1.0" encoding="utf-8"?><success>false</success><retryable>false</retryable><localStatus>SESSION_NO_SUCH_CUSTOMER</localStatus>');
+            assertEquals(list.length(), 3, 'unexpected parsing result for list content');
+            //out of range index assignment
+            list[10] = <message>You cannot login, please check with tech support</message>;
+
+            assertEquals(list.length(), 4, 'unexpected length result for list content');
+            assertEquals(list[3].toXMLString(),'<message>You cannot login, please check with tech support</message>', 'unexpected list content' );
+            var hadError:Boolean;
+            try{
+                list.@attr = 'testAtt'
+            } catch (e:Error) {
+                hadError = true;
+            }
+            assertTrue(hadError, 'expected an error');
+        }
     }
 }

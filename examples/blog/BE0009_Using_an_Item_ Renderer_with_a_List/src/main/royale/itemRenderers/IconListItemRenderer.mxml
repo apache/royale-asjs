@@ -39,7 +39,7 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
     
-    <js:FontIcon text="{iconList ? iconList.icon : ''}" material="true" visible="{iconList ? iconList.icon != null : false}"/>
+    <js:MaterialIcon text="{iconList ? iconList.icon : ''}" visible="{iconList ? iconList.icon != null : false}"/>
 
     <html:Span text="{iconList ? iconList.label : ''}"/>
     

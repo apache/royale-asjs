@@ -47,8 +47,8 @@ limitations under the License.
 				<html:H3 text="Jewel NumericStepper"/>
 
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
-					<j:NumericStepper id="numericStepper" valueChange="valueChangeHandler(event)"/>
-					<j:Label id="result" text="Default NumericStepper: "/>
+					<j:NumericStepper localId="numericStepper" valueChange="valueChangeHandler(event)"/>
+					<j:Label localId="result" text="Default NumericStepper: "/>
 				</j:HGroup>
 
 				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">

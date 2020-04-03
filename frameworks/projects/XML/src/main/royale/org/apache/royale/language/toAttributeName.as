@@ -16,37 +16,40 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package flexUnitTests
+package org.apache.royale.language
 {
-    import flexUnitTests.xml.*
-    
-    [Suite]
-    [RunWith("org.flexunit.runners.Suite")]
-    /**
-     * @royalesuppresspublicvarwarning
-     */
-    public class XMLTester
-    {
-        public function XMLTester()
-        {
-            // for JS, force-link these classes in the output
-//            var arr:Array = [XMLTesterGeneralTest, XMLTesterStringifyTest, XMLListTesterGeneralTest, XMLNamespaceTest];
-        }
-        
-        
-      //  public var xmlTesterGeneralTest:XMLTesterGeneralTest;
-        
-        //public var xmlTesterStringifyTest:XMLTesterStringifyTest;
-    
-        //public var xmlListTesterGeneralTest:XMLListTesterGeneralTest;
-        
-       // public var xmlNamespaceTest:XMLNamespaceTest;
-    
-        //public var xmlNamespaceClassTest:XMLNamespaceClassTest;
-    
-        public var xmlQNameTest:XMLQNameTest;
-    
-       // public var xmlNamespaceQueries:XMLTesterNamespaceQueries;
 
+   
+    COMPILE::JS
+     /**
+     *
+     * @royaleignorecoercion QName
+     * @royalesuppressexport
+     */
+    [Exclude]
+    public function toAttributeName(name:*):QName
+    {
+        const typeName:String = typeof name;
+        if (name == null || typeName == 'number'|| typeName == 'boolean') {
+            throw new TypeError('invalid xml name');
+        }
+
+        var qname:QName;
+        //@todo: typeName == 'object' && ... className=='QName' etc here (avoid Language.is)
+        if (name is QName) {
+            if (QName(name).isAttribute) qname = name as QName;
+            else {
+                qname = new QName(name);
+                qname.setIsAttribute(true);
+            }
+        } else {
+            var str:String = name.toString();
+            //normalize
+            var idx:int = str.indexOf('@');
+            if (idx != -1) str = str.slice(idx+1);
+            qname = new QName(str);
+            qname.setIsAttribute(true);
+        }
+        return qname;
     }
 }

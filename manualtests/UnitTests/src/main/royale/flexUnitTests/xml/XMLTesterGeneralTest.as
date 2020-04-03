@@ -21,8 +21,10 @@ package flexUnitTests.xml
     
     
     import org.apache.royale.test.asserts.*;
-    
-    //import testshim.RoyaleUnitTestRunner;
+
+import testshim.RoyaleUnitTestRunner;
+
+//import testshim.RoyaleUnitTestRunner;
     
     /**
      * @royalesuppresspublicvarwarning
@@ -1124,7 +1126,39 @@ package flexUnitTests.xml
     
             XML.setSettings(XML.defaultSettings());
         }
-        
+
+        [Test]
+        public function testDelete():void{
+            XML.setSettings(XML.defaultSettings());
+            XML.prettyPrinting = false;
+            var xml:XML = <root name="foo"><baz name="baz1"/><baz name="baz2"/></root>;
+            delete xml.@name;
+            assertEquals(xml.toString(),'<root><baz name="baz1"/><baz name="baz2"/></root>',"name attribute should have been removed.");
+            delete xml.baz[0];
+            assertEquals(xml.toString(),'<root><baz name="baz2"/></root>',"the first baz element should have been removed.");
+            xml = <root name="foo"><baz name="baz1"/><baz name="baz2"/></root>;
+            delete xml.baz;
+            // delete xml.baz[0];
+            assertEquals(xml.toXMLString(),'<root name="foo"/>',"the first baz element should have been removed.");
+            XML.setSettings(XML.defaultSettings());
+        }
+
+        [Test]
+        public function testDynamicAttributes():void{
+            var xml:XML = <xml myAtt1="test1" myAtt2="test2"/>;
+
+            assertEquals(xml.attributes().length(),2, 'unexpected attributes count');
+            const MYAtt:String = 'myAtt1';
+            const MYAttTestVal:String = 'myAttTestVal';
+            delete xml.@[MYAtt];
+            assertEquals(xml.attributes().length(),1, 'unexpected attributes count');
+
+            xml.@[MYAtt] = MYAttTestVal;
+            assertEquals(xml.attributes().length(),2, 'unexpected attributes count');
+
+            assertEquals(xml.@myAtt1,'myAttTestVal', 'unexpected attributes value');
+
+        }
         
         //@todo - Passes in Swf, fails in browser:
         /*[Test]

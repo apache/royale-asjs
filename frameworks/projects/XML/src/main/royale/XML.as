@@ -26,6 +26,7 @@ package
 	{
 		import org.apache.royale.debugging.assert;
 		import org.apache.royale.debugging.assertType;
+		import org.apache.royale.language.toAttributeName;
 		
 		/**
 		 * Memory optimization.
@@ -809,6 +810,8 @@ package
 		 * @param ns
 		 * @return
 		 *
+		 *
+		 * @royaleignorecoercion QName
 		 */
 		public function addNamespace(ns:Namespace):XML
 		{
@@ -868,7 +871,7 @@ package
 				var att:XML = _attributes[i];
 				if(att.name().prefix == ns.prefix)  {
 					
-					att._name = getQName(att._name.localName,null,att._name.uri,true);
+					att._name = getQName(QName(att._name).localName,null,QName(att._name).uri,true);
 				}
 			}
 			return this;
@@ -2035,7 +2038,7 @@ package
 		}
 		
 		/**
-		 * Removes the given chid for this object and returns the removed child.
+		 * Removes the given child for this object and returns the removed child.
 		 *
 		 * @param child
 		 * @return
@@ -2153,7 +2156,7 @@ package
 			normalize(); // <-- check this is correct
 			return removedItem;
 		}
-		public function removeChildAt(index:int):void
+		public function removeChildAt(index:int):Boolean
 		{
 			/*
 				When the [[DeleteByIndex]] method of an XML object x is called with property name P, the following steps are taken:
@@ -2170,7 +2173,14 @@ package
 				3. Else throw a TypeError exception
 			*/
 			//Do nothing for XML objects?
-			throw new Error("Cannot call delete on XML");
+			if (index < childrenLength()) {
+				var removed:XML = _children[index];
+				removed.setParent(null);
+				_children.splice(index,1);
+				return true;
+			}
+
+			throw new TypeError("Cannot call delete on XML at index "+index);
 		}
 		
 		/**
@@ -2250,8 +2260,9 @@ package
 		 */
 		public function replace(propertyName:Object, value:*):*
 		{
+			//@todo this is not finished - needs work, review and testing. Reference to [[Replace]] below should call 'replaceChildAt'
 			/*
-				Semantics
+				Semantics (x refers to 'this')
 				When the replace method is called on an XML object x with parameters propertyName and value, the following steps are taken:
 				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return x
 				2. If Type(value) ∉ {XML, XMLList}, let c = ToString(value)
@@ -2292,6 +2303,7 @@ package
 		public function replaceChildAt(idx:int,v:*):void
 		{
 			/*
+				**this is the [[Replace]] method in the spec**
 				When the [[Replace]] method of an XML object x is called with property name P and value V, the following steps are taken:
 				1. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return
 				2. Let i = ToUint32(P)
@@ -2354,7 +2366,12 @@ package
 			}
 			else
 			{
-				//7. attribute?
+				//7. this is a text node
+				chld = new XML();
+				chld.setValue(v + '');//7.a, 7.b
+				chld.setParent(this);
+				if (_children[idx] != null) (_children[idx] as XML).setParent(null);
+				_children[idx] = chld;
 			}
 		}
 		
@@ -2400,7 +2417,7 @@ package
 				return value;
 				
 			}
-			if(attr.indexOf("xmlns") == 0)
+			if(typeof attr == 'string' && attr.indexOf("xmlns") == 0)
 			{
 				//it's a namespace declaration
 				var ns:Namespace;
@@ -2437,12 +2454,14 @@ package
 		 * @param value
 		 * @return
 		 *
+		 * @royaleignorecoercion QName
+		 * @royaleignorecoercion XML
 		 */
 		public function setChild(elementName:*, elements:Object):Object
 		{
 			
 			/*
-			 *
+			 *  [[Put]]
 			1. If ToString(ToUint32(P)) == P, throw a TypeError exception NOTE this operation is reserved for future versions of E4X.
 			2. If x.[[Class]] ∈ {"text", "comment", "processing-instruction", "attribute"}, return
 			3. If (Type(V) ∉ {XML, XMLList}) or (V.[[Class]] ∈ {"text", "attribute"})
@@ -2506,84 +2525,83 @@ package
 			15. Return
 			*/
 			var i:int;
-			var len:int;
+		/*	var len:int;
 			var chld:XML;
 			var retVal:Object = elements;
 			var chldrn:XMLList;
-			var childIdx:int;
-			
-			// I'm not sure that this a strict interpretation of the spec but I think this does the "right thing".
-			var childType:String = typeof elements;
-			if(childType != "object")
-			{
-				var stringable:XML = xmlFromStringable(elements);
-				chldrn = this.child(elementName);
-				childIdx = children().length() -1;
-				if(chldrn.length())
-					childIdx = chldrn[0].childIndex()-1;
-				else
-				{
-					chld = new XML("<" + elementName + "/>");
-					chld.appendChild(stringable);
-					prependChild(chld);
-					return chld;
-				}
-				len = chldrn.length() -1;
-				for (i= len; i > 0;  i--)
-				{
-					removeChild(chldrn[i]);
-				}
-				chld = chldrn[i];
-				chld.setChildren(stringable);
-				return chld;
+			var childIdx:int;*/
+			if (uint(elementName).toString() == elementName) throw new TypeError('not permitted');
+			var ref:String = getNodeRef();
+			if(ref == TEXT || ref == COMMENT || ref == PROCESSING_INSTRUCTION || ref == ATTRIBUTE)
+				return this;
+			var n:QName = toXMLName(elementName); //5.
+
+			if (n.isAttribute) {
+				//@todo
+				return setAttribute(n, elements+'');
 			}
-			
-			if(elements is XML)
-			{
-				var list:XMLList = new XMLList();
-				list[0] = elements;
-				elements = list;
-			}
-			if(elements is XMLList)
-			{
-				chldrn = this.child(elementName);
-				childIdx = children().length() -1;
-				if(chldrn.length())
-					childIdx = chldrn[0].childIndex()-1;
-				
-				len = chldrn.length() -1;
-				for (i= len; i >= 0;  i--)
+
+			//7.0
+			//8.0
+
+
+
+		   //	elements = elements + ''; //13.b
+			i = -1;// undefined;
+			var wild:Boolean = n.localName == '*';
+			var primitiveAssign:Boolean = !wild && !(elements is XML || elements is XMLList);//primitiveAssign step 10.
+			var k:int = childrenLength() - 1; //11
+
+			while (k > -1) { //11
+				if (
+						( wild  || ((_children[k] as XML).getNodeRef() == ELEMENT &&  (_children[k] as XML).localName() == n.localName) )
+						&& (n.uri == null || ((_children[k] as XML).getNodeRef() == ELEMENT &&  QName((_children[k] as XML)._name).uri == n.uri)))
 				{
-					removeChild(chldrn[i]);
-					// remove the nodes
-					// remove the children
-					// adjust the childIndexes
-				}
-				if(chldrn.length()){
-					var curChild:XML = getChildren()[childIdx];
-				}
-				// Now add them in.
-				len = elements.length();
-				for(i=0;i<len;i++)
-				{
-					chld = elements[i];
-					if(!curChild)
-					{
-						curChild = chld
-						if(childIdx < 0)
-							prependChild(chld);
-						else
-							appendChild(chld);
+					if (i !== -1) {
+						removeChildAt(i); //11.a.i
 					}
-					else {
-						insertChildAfter(curChild, chld);
-						curChild = chld;
-					}
+					i = k; //11.a.ii
+				}
+				k--;
+			}
+			if (i == -1) { //12.
+				i = childrenLength(); //12.a
+				if (primitiveAssign) { //12.b
+					//skipping 12.b.i and 12.b.ii for now...@todo review
+					/*if (n.uri == null) {
+
+                    } else {
+
+                    }*/
+					_internal = true;
+					var y:XML = new XML();
+					_internal = false;
+					y._name = getQName(n.localName,n.prefix,n.uri,false);
+					y.setParent(this); //end of 12.n.iii
+					var ns:Namespace = new Namespace('', n);
+					replaceChildAt(i,y);
+					y.setNamespace(ns);//@todo check this for 12.b.iv and 12.b.vi
 				}
 			}
-			//what to do if it's not XML or XMLList? Throw an error? Ignore?
-			
-			return retVal;
+
+			if (primitiveAssign) { //13 @todo review guess at conditional
+				//13.a. Delete all the properties of the XML object x[i]
+				y = _children[i];
+				k = y.childrenLength() - 1;
+				while(k>-1) {
+					y.removeChildAt(k); //13.a
+					k--;
+				}
+				elements = elements + ''; //13.b
+				if (elements) {
+					y.replaceChildAt(0, elements); //13.c
+				}
+			} else {
+				//elements = (elements as XML).copy(); //@todo check... might need attention here
+				replaceChildAt(i, elements); //14.a
+			}
+
+			return elements;
 		}
 		
 		/**
@@ -2685,8 +2703,12 @@ package
 				nameRef = name;
 			else
 				nameRef = new QName(name);
-			
-			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,ref == ATTRIBUTE);
+			var asAtttribute:Boolean = nameRef.isAttribute;
+			_name = getQName(nameRef.localName,nameRef.prefix,nameRef.uri,asAtttribute);
+			if (asAtttribute) {
+				//optimization, the name alone is sufficient to get the nodeKind() externally (see : getNodeRef())
+				delete this._nodeKind;
+			}
 		}
 		
 		/**
@@ -2833,7 +2855,7 @@ package
 		 *
 		 * @royaleignorecoercion QName
 		 */
-		private function toAttributeName(name:*):QName
+		/*private function toAttributeName(name:*):QName
 		{
 			const typeName:String = typeof name;
 			if (name == null || typeName == 'number'|| typeName == 'boolean') {
@@ -2857,7 +2879,8 @@ package
 				qname.setIsAttribute(true);
 			}
 			return qname;
-		}
+		}*/
+		
 		private function toXMLName(name:*):QName
 		{
 			/*

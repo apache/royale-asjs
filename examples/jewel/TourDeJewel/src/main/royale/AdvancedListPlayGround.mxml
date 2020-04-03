@@ -138,7 +138,7 @@ limitations under the License.
 	</fx:Script>
 
 	<c:model>
-		<models:ListsModel id="listModel"/>
+		<models:ListsModel localId="listModel"/>
 	</c:model>
 
 	<c:beads>

@@ -112,7 +112,7 @@ limitations under the License.
             <j:Card>
                 <j:CardPrimaryContent>
                     <j:Label text="Click the button below to display an Alert window and capture the button pressed by the user." multiline="true"/>
-                <j:Label id="status"/>
+                <j:Label localId="status"/>
                 </j:CardPrimaryContent>
                 <j:CardActions>
                     <j:Button text="Click Me" click="clickHandler(event)"/>

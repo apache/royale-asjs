@@ -79,7 +79,7 @@ limitations under the License.
 				<!-- PopUp 1-->
 				<j:Label text="Click the button below to display a Modal PopUp"/>
 				<j:CheckBox localId="check1" selected="{popup1.open}" text="open/close the popup: {popup1.open}" />
-				<j:PopUp id="popup1" className="somePopUpContent" modal="true"
+				<j:PopUp localId="popup1" className="somePopUpContent" modal="true"
 							open="{check1.selected}"
 							openPopUp="openPopUpHandler(event)"
 							closePopUp="closePopUpHandler(event)" />
@@ -92,7 +92,7 @@ limitations under the License.
 				<!-- PopUp 2-->
 				<j:Label text="Click the button below to display a non modal PopUp"/>
 				<j:Button text="show popup: {popup2.open}" emphasis="primary" click="popup2.open = !popup2.open;"/>
-				<j:PopUp id="popup2"
+				<j:PopUp localId="popup2"
 						 closePopUp="popupFormContent.formValidator.removeAllErrorTips()">
 					<c:FormExample localId="popupFormContent" label="Form example in a PopUp" width="490" height="392"/>
 				</j:PopUp>

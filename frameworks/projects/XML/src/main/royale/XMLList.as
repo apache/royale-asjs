@@ -22,6 +22,7 @@ package
 	public class XMLList
 	{
 		import org.apache.royale.debugging.throwError;
+		import org.apache.royale.language.toAttributeName;
 		
 		/**
 		 * regex to match the xml declaration
@@ -107,6 +108,26 @@ package
                         throw e;
                 }
             }
+		}
+
+		/**
+		 * [[ResolveValue]] from the e4x spec
+		 *  @royaleignorecoercion QName
+		 *  @royaleignorecoercion XMLList
+		 */
+		private function resolveValue():*{
+			if (_xmlArray.length > 0) return this;
+			if ((_targetObject == null || _targetProperty == null)
+					|| (_targetProperty is QName && (QName(_targetProperty).isAttribute || QName(_targetProperty).localName == '*'))) return null; //2,a
+			var base:* = (!_targetObject || _targetObject is XML) ? _targetObject : (_targetObject as XMLList).resolveValue();
+			if (base==null) return null;
+			var target:XMLList = base.child(_targetProperty);
+			if (target.length() == 0) {
+				if (base is XMLList && (base.length() > 1)) return null;
+				base.setChild(_targetProperty, '');
+				target = base.child(_targetProperty);
+			}
+			return target;
 		}
         
 		private var _xmlArray:Array = [];
@@ -208,6 +229,54 @@ package
 				}
 			);
 		}
+
+
+		/*
+		[[Append]] from the e4x spec
+		When the [[Append]] method of an XMLList object x is called with value V, the following steps are taken:
+		1. Let i = x.[[Length]]
+		2. Let n = 1
+		3. If Type(V) is XMLList,
+		a. Let x.[[TargetObject]] = V.[[TargetObject]]
+		b. Let x.[[TargetProperty]] = V.[[TargetProperty]]
+		c. Let n = V.[[Length]]
+		d. If n == 0, Return
+		e. For j = 0 to V.[[Length]]-1, let x[i + j] = V[j]
+		f.
+		4. Let x.[[Length]] = x.[[Length]] + n
+		5. Return
+		 */
+		/**
+		 *
+		 * @royaleignorecoercion XMLList
+		 * @royaleignorecoercion XML
+		 */
+		private function Append(content:Object):void{
+			var i:uint = _xmlArray.length;
+			var n:uint = 1;
+			if (content is XMLList) {
+				var l:XMLList = content as XMLList;
+				_targetObject = l._targetObject;//3.a
+				_targetProperty = l._targetProperty;//3.b
+				n = l.length();//3.c
+				if (n == 0) return;//3.d
+				for (var j:uint =0; j < n; j++){
+					//[[Put]]
+					_xmlArray[i+j] = l._xmlArray[j]; //3.e
+					addIndex(i+j);
+					//setChild( i+j, l._xmlArray[j]);
+				}
+
+			} else {
+				if (content is XML) {
+					//[[Put]]
+					//setChild( i, content as XML); //3.e
+					_xmlArray[i] = content; //3.e
+					addIndex(i);
+				}
+			}
+		}
+
 		
 		public function append(child:XML):void
 		{
@@ -883,34 +952,50 @@ package
 		{
 			return _targetProperty;
 		}
-		private function xmlFromProperty():XML
+		private function xmlFromProperty(r:XML):XML
 		{
-			var xmlStr:String = "<";
-			if(_targetProperty is QName)
-			{
-				if(_targetProperty.prefix)
-					xmlStr += _targetProperty.prefix + "::";
+			if (_targetProperty == null || _targetProperty == '*' ||  (_targetProperty is QName && QName(_targetProperty).localName == '*')) {
+				return new XML(); //text node
+			}
+			var ret:XML;
+			var str:String = _targetProperty as String;
+			ret = new XML();
+			ret.setParent(r);
+			if (str && str.charAt(0)=='@' ||  (_targetProperty is QName && QName(_targetProperty).isAttribute)) {
+				if (r.child(_targetProperty).length()) return null; //2.c.iv,2
+				ret.setName(_targetProperty);
+				// not needed, derived from the QName ret.setNodeKind('attribute');
+			} else {
+				var xmlStr:String = "<";
+				if(_targetProperty is QName)
+				{
+					if(_targetProperty.prefix)
+						xmlStr += _targetProperty.prefix + "::";
 
-				xmlStr += _targetProperty.localName + "/>";
+					xmlStr += _targetProperty.localName + "/>";
+				}
+				else
+				{
+					xmlStr += _targetProperty + "/>";
+				}
+				ret = new XML(xmlStr);
 			}
-			else
-			{
-				xmlStr += _targetProperty + "/>";
-			}
-			return new XML(xmlStr);
+			
+			return ret;
 		}
 		public function setAttribute(attr:*,value:String):String
 		{
-			if(isEmpty() && targetObject)//walk up the tree and create nodes.
-				_xmlArray[0] = targetObject.setChild(_targetProperty,xmlFromProperty());
+			/*if(isEmpty() && targetObject)//walk up the tree and create nodes.
+				_xmlArray[0] = targetObject.setChild(_targetProperty,xmlFromProperty(targetObject));
 
 			var len:int = _xmlArray.length;
 			for (var i:int=0;i<len;i++)
-				_xmlArray[i].setAttribute(attr,value);
+				_xmlArray[i].setAttribute(attr,value);*/
+			setChild(toAttributeName(attr), value);
 			
 			return value;
-
 		}
+
 		public function hasAncestor(obj:*):Boolean
 		{
 			if(isSingle())
@@ -960,14 +1045,134 @@ package
 			if(isSingle())
 				return _xmlArray[0].replace(propertyName,value);
 		}
+
+		/**
+		 *
+		 * @royaleignorecoercion XMLList
+		 * [[Put]] from the e4X spec
+		 */
 		public function setChild(elementName:*, elements:Object):Object
 		{
-			if(isEmpty() && targetObject)//walk up the tree and create nodes.
-				_xmlArray[0] = targetObject.setChild(_targetProperty,xmlFromProperty());
+			var r:Object;
+			var idx:uint =uint(elementName);
+			if (idx + '' == elementName + '') { //[[PUT]] 2.0
+				if (_targetObject) { //2.a
+					if (_targetObject is XMLList)
+						r= (targetObject as XMLList).resolveValue(); //2.a.i
+					else r = _targetObject;
+					if (r == null) return null; //2.a.ii
+				} else {
+					r = null; //2.b
+				}
 
-			if(isSingle())
-				_xmlArray[0].setChild(elementName,elements);
-			
+				if (idx >= _xmlArray.length) { //2.c
+					var xmlR:XML = r as XML;
+					if (!r && r is XMLList) { //2.c.i
+						if (!(r as XMLList).isSingle()) return null; //2.c.i.1
+						xmlR = r[0]; //2.c.i.2
+					}
+					if (xmlR && xmlR.nodeKind() != 'element') return null; //2.c.ii
+					var y:XML = xmlFromProperty(xmlR);
+
+					idx = _xmlArray.length;
+					if (y.nodeKind() != 'attribute') {//2.c.vii
+						if (xmlR)  { //2.c.viii.1
+							if (idx > 0) { //2.c.viii.1.a
+								var j:uint = 0;
+								while (j < xmlR.getChildrenArray().length-1 && xmlR.getChildrenArray()[j] !==  _xmlArray[idx-1]) {
+									j++;
+								}
+							} else {
+								j = xmlR.getChildrenArray().length -1; //2.c.viii.1.b
+							}
+							xmlR.insertChildAfter(xmlR.getChildrenArray()[j], y); //2.c.viii.1.c
+						}
+						if (elements is XML) y.setName((elements as XML).name());//2.c.viii.2
+						else if (elements is XMLList) y.setName(new QName((elements as XMLList)._targetProperty)); //2.c.viii.3
+					}
+					//append(y);
+					Append(y);
+				}
+				if ( !(elements is XML || elements is XMLList)
+						|| (elements is XML && ((elements as XML).nodeKind() == 'text' || (elements as XML).nodeKind() == 'attribute')))  { //2.d
+					elements = elements + '';
+				}
+				if ((_xmlArray[idx] as XML).nodeKind() == 'attribute') {
+					var z:QName = (_xmlArray[idx] as XML).name();
+					(_xmlArray[idx] as XML).parent().setAttribute(z, elements);
+					var attr:XMLList = (_xmlArray[idx] as XML).parent().attribute(z);
+					_xmlArray[idx] = attr[0];
+					addIndex(idx);
+				} else if (elements is XMLList) {
+					var c:XMLList = new XMLList(elements); // 2.f.i (shallow copy)
+					var parent:XML = (_xmlArray[idx] as XML).parent();
+					if (parent) {
+						//1. Let q be the property of parent, such that parent[q] is the same object as x[i]  @todo verify what this actually means
+						var q:int = parent.getChildrenArray().indexOf(_xmlArray[idx]);
+						//2. Call the [[Replace]] method of parent with arguments q and c
+						parent.replaceChildAt(q, c);
+						for (j =0; j<c._xmlArray.length -1; j++) {
+							c.setChild(j, parent.getChildrenArray()[q+j])
+						}
+
+					}
+					if (c.length() == 0) {
+						_xmlArray.splice(idx, 1);
+						for (j = idx; j< length() -1; j++) {//variation of 2.f.iv.1
+							addIndex(j);
+						}
+					} else {
+						var l:uint = _xmlArray.length;
+						var cl:uint = c.length()-1;
+						for (j = l-1; j> idx; j--) {
+							_xmlArray[j+cl] = _xmlArray[j];
+							addIndex(j+cl);
+						}
+						for (j = 0; j< cl; j++) {
+							_xmlArray[idx+j] = c[j];
+							addIndex(idx+j);
+
+						}
+					}
+				} else if (elements is XML
+						|| (_xmlArray[idx] as XML).nodeKind() == 'text'
+						|| (_xmlArray[idx] as XML).nodeKind() == 'comment'
+						|| (_xmlArray[idx] as XML).nodeKind() == 'processing-instruction') {
+					parent = (_xmlArray[idx] as XML).parent();
+					if (parent) {
+						//1. Let q be the property of parent, such that parent[q] is the same object as x[i]  @todo verify what this actually means
+						q = parent.getChildrenArray().indexOf(_xmlArray[idx]);
+						//2. Call the [[Replace]] method of parent with arguments q and c
+						parent.replaceChildAt(q, elements);
+						elements = parent.getChildrenArray()[q];
+					}
+					if (typeof elements == 'string') {
+						var t:XML = new XML();
+						t.setParent(this as XML); //this is not XML... but we can cheat
+						t.setValue(elements+'');
+						_xmlArray[idx] = t;
+
+					} else {
+						_xmlArray[idx] = elements;
+					}
+					addIndex(idx);
+				} else {
+					(_xmlArray[idx] as XML).setChild('*', elements);
+				}
+			} else {
+				//3
+				if (_xmlArray.length <= 1) { //3.a
+				   if (isEmpty()) {
+					   r = resolveValue();
+					   if (r == null || r.length() != 1) return null;
+					   Append(r)
+				   }
+				   (_xmlArray[0] as XML).setChild(elementName, elements);
+				} else {
+					//match AVM, this is not covered in spec which says nothing, avm does this:
+					throw new TypeError('Error #1089: Assignment to lists with more than one item is not supported.')
+				}
+			}
 			return elements;
 		}
 

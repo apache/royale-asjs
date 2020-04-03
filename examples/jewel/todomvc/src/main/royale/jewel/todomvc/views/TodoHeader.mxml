@@ -67,7 +67,7 @@ limitations under the License.
 		width="50" height="61" className="toggleAll" selected="{todoModel.toggleAllToCompletedState}"
 		click="toggleAllComplete(event)">
 		<j:icon>
-			<js:FontIcon text="{MaterialIconType.KEYBOARD_ARROW_DOWN}" material="true"/>
+			<js:MaterialIcon text="{MaterialIconType.KEYBOARD_ARROW_DOWN}"/>
 		</j:icon>
 	</j:ToggleButton>
 

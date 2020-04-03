@@ -56,7 +56,7 @@ limitations under the License.
 					<html:H3 text="Jewel HorizontalLayout"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
-					<j:HGroup id="hg" gap="3" className="wrapper">
+					<j:HGroup localId="hg" gap="3" className="wrapper">
 						<j:Button text="X" emphasis="primary"/>
 						<j:Button text="Y" emphasis="secondary"/>
 						<j:Button text="Z" emphasis="emphasized"/>
@@ -72,7 +72,7 @@ limitations under the License.
 			<j:Card>
 				<html:H4 text="Jewel VerticalLayout"/>
 
-				<j:VGroup id="vg" gap="3" className="wrapper">
+				<j:VGroup localId="vg" gap="3" className="wrapper">
 					<j:Button text="X" emphasis="primary"/>
 					<j:Button text="Y" emphasis="secondary"/>
 					<j:Button text="Z" emphasis="emphasized"/>
@@ -89,7 +89,7 @@ limitations under the License.
 
 				<j:Group width="200" height="200" className="wrapper">
 					<j:beads>
-						<j:HorizontalCenteredLayout id="hcl" gap="3"/>
+						<j:HorizontalCenteredLayout localId="hcl" gap="3"/>
 					</j:beads>
 					<j:Button text="X" emphasis="primary"/>
 					<j:Button text="Y" emphasis="secondary"/>
@@ -108,7 +108,7 @@ limitations under the License.
 
 				<j:Group width="200" height="200" className="wrapper">
 					<j:beads>
-						<j:VerticalCenteredLayout id="vcl" gap="3"/>
+						<j:VerticalCenteredLayout localId="vcl" gap="3"/>
 					</j:beads>
 					<j:Button text="X" emphasis="primary"/>
 					<j:Button text="Y" emphasis="secondary"/>
@@ -127,7 +127,7 @@ limitations under the License.
 
 				<j:Group className="wrapper">
 					<j:beads>
-						<j:HorizontalFlowLayout id="hfl" gap="3"/>
+						<j:HorizontalFlowLayout localId="hfl" gap="3"/>
 					</j:beads>
 					<j:Button text="X" emphasis="primary" width="60"/>
 					<j:Button text="Y" emphasis="secondary" width="60"/>
@@ -146,7 +146,7 @@ limitations under the License.
 
 				<j:Group className="wrapper" height="200">
 					<j:beads>
-						<j:VerticalFlowLayout id="vfl" gap="3"/>
+						<j:VerticalFlowLayout localId="vfl" gap="3"/>
 					</j:beads>
 					<j:Button text="X" emphasis="primary" width="60"/>
 					<j:Button text="Y" emphasis="secondary" width="60"/>
