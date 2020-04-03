@@ -360,7 +360,7 @@ public class RadioButtonGroup extends EventDispatcher
          {
              var radioButton:RadioButton = getRadioButtonAt(i);
              if (radioButton.value == value ||
-                 radioButton.label == value)
+                 value != "" && radioButton.label == value)
              {
                  changeSelection(i, false);
                  break;
