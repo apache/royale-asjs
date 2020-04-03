@@ -26,6 +26,8 @@ COMPILE::JS
     import org.apache.royale.html.supportClasses.RadioButtonIcon;
     import org.apache.royale.html.util.addElementToWrapper;
 }
+import org.apache.royale.core.ILayoutChild;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.events.Event;
 /*
 import flash.events.Event;
@@ -306,6 +308,10 @@ public class RadioButton extends Button
     override public function set label(value:String):void
     {
         textNode.innerText = value;
+        if (this.parent is ILayoutChild && (this.parent as ILayoutChild).isWidthSizedToContent())
+        {
+            (this.parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
+        }
     }
     
     /**
@@ -523,8 +529,7 @@ public class RadioButton extends Button
     {
 		COMPILE::JS
 		{
-			// Safari seems to like 6
-			var ww:Number = rbicon.element.offsetWidth + textNode.offsetWidth + 6;
+			var ww:Number = rbicon.element.offsetWidth + textNode.offsetWidth + 8;
 			return ww;
 		}
         // on Safari, we seem to come up one pixel short sometimes
