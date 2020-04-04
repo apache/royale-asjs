@@ -699,7 +699,7 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 	private function handleImageLoaded2(event:BrowserEvent):void
 	{
 		var img:HTMLImageElement = event.target as HTMLImageElement;
-		element.style["text-indent"] = "4px";
+		element.style["text-indent"] = String(img.naturalWidth+4)+"px";
 		
 		this.height = Math.max(img.naturalHeight, element.offsetHeight);
 		
