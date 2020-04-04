@@ -99,6 +99,11 @@ public class CurrencyFormatter extends Formatter
 	public function CurrencyFormatter()
 	{
 		super();
+		// this is needed to ensure there's default rounding until resourceManager is implemented
+		if (!rounding)
+		{
+			rounding = null; 
+		}
 	}
 
 	//--------------------------------------------------------------------------
