@@ -95,7 +95,7 @@
           <name>Suite</name>
           <name>RunWith</name>
         </keep-as3-metadata>
-    
+
         <locale/>
         
         <library-path/>
@@ -111,5 +111,6 @@
     </compiler>
     
     <target-player>${playerglobal.version}</target-player>
-
+    <js-default-initializers>false</js-default-initializers>
+    <js-dynamic-access-unknown-members>true</js-dynamic-access-unknown-members>
 </royale-config>

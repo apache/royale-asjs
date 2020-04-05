@@ -37,6 +37,7 @@ limitations under the License.
             
             import org.apache.royale.events.Event;
             import org.apache.royale.test.listeners.CIListener;
+            import org.apache.royale.test.listeners.BrowserConsoleListener;
             import org.apache.royale.test.Runtime;
 
             //account for swf version variance in some test results due to fixed player bugs etc
@@ -46,6 +47,17 @@ limitations under the License.
 
                 }
                 return 0;
+            }
+
+            public function runLocal():Boolean{
+                var ret:Boolean = false;
+                COMPILE::JS{
+                    ret = window.location.search.indexOf('local')!= -1;
+                    if (!ret) {
+                        console.log('For javascript you can run this locally with console output for debugging purposes, using "?local" appended to the url.\nIt may not work for all browsers with file:// protocol (works with Chrome), in which case you need a local http server')
+                    }
+                }
+                return ret
             }
 
             public function getPlayerVersion():String{
@@ -59,7 +71,11 @@ limitations under the License.
             public function runTests():void
             {
                 Runtime.swfVersion = getSwfVersion();
-                core.addListener(new CIListener());
+                if (runLocal()) {
+                    core.addListener(new BrowserConsoleListener());
+                } else{
+                    core.addListener(new CIListener());
+                }
                 core.addEventListener(Event.COMPLETE, core_completeHandler);
                 core.runClasses(MXRoyaleTester);
             }
