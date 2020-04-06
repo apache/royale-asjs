@@ -121,6 +121,7 @@ package
 		public static const BOMB:String = "bomb";
 		public static const BOOK:String = "book";
 		public static const BOOKMARK:String = "bookmark";
+		public static const BOX_TISSUE:String = "box-tissue";
 		public static const BRAILLE:String = "braille";
 		public static const BRIEFCASE:String = "briefcase";
 		public static const BTC:String = "btc";
@@ -303,6 +304,7 @@ package
 		public static const GITHUB_SQUARE:String = "github-square";
 		public static const GITHUB:String = "github";
 		public static const GITLAB:String = "gitlab";
+		public static const GLASS:String = "glass";
 		public static const GLIDE_G:String = "glide-g";
 		public static const GLIDE:String = "glide";
 		public static const GLOBE:String = "globe";
@@ -647,6 +649,7 @@ package
 		public static const VINE:String = "vine";
 		public static const VIRUS_SLASH:String = "virus-slash";
 		public static const VIRUS:String = "virus";
+		public static const VIRUSES:String = "viruses";
 		public static const VK:String = "vk";
 		public static const VOLUME_CONTROL_PHONE:String = "volume-control-phone";
 		public static const VOLUME_DOWN:String = "volume-down";
@@ -678,7 +681,29 @@ package
 		public static const YOUTUBE_PLAY:String = "youtube-play";
 		public static const YOUTUBE_SQUARE:String = "youtube-square";
 		public static const YOUTUBE:String = "youtube";
-       
-        public static const GLASS:String = "glass";
+        public static const HAND_HOLDING_MEDICAL:String = "hand-holding-medical";
+        public static const HAND_SPARKLES:String = "hand-sparkles";
+        public static const HANDS_WASH:String = "hands-wash";
+        public static const HANDSHAKE_ALT_SLASH:String = "handshake-alt-slash";
+        public static const HANDSHAKE_SLASH:String = "handshake-slash";
+        public static const HEAD_SIDE_COUGH_SLASH:String = "head-side-cough-slash";
+        public static const HEAD_SIDE_COUGH:String = "head-side-cough";
+        public static const HEAD_SIDE_MASK:String = "head-side-mask";
+        public static const HEAD_SIDE_VIRUS:String = "head-side-virus";
+        public static const HOUSE_USER:String = "house-user";
+        public static const LAPTOP_HOUSE:String = "laptop-house";
+        public static const LUNGS_VIRUS:String = "lungs-virus";
+        public static const PEOPLE_VIRUS:String = "people-arrows";
+        public static const PLANE_SLASH:String = "plane-slash";
+        public static const PUMP_MEDICAL:String = "pump-medical";
+        public static const SHIELD_VIRUS:String = "shield-virus";
+        public static const SHINK:String = "shink";
+        public static const SOAP:String = "soap";
+        public static const STOPWATCH_20:String = "stopwatch-20";
+        public static const STORE_ALT_SLASH:String = "store-alt-slash";
+        public static const STORE_SLASH:String = "store-slash";
+        public static const TOILET_PAPEL_SLASH:String = "toilet-paper-slash";
+        public static const USERS_SLASH:String = "users-slash";
+
     }
 }
