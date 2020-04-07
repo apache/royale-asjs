@@ -115,9 +115,6 @@ limitations under the License.
 										selectedIndex="4"
 										>
 							<!-- <j:beads>
-								<j:AddListItemRendererForArrayListData/>
-								<j:RemoveListItemRendererForArrayListData/>
-								<j:UpdateListItemRendererForArrayListData/>
 								<j:RemoveAllItemRendererForArrayListData/>
 							</j:beads> -->
 						</j:VirtualList>
