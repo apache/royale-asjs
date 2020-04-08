@@ -21,7 +21,6 @@ package org.apache.royale.html.beads
     import org.apache.royale.core.IBead;
     import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.IStrand;
-    import org.apache.royale.core.IUIBase;
     import org.apache.royale.events.Event;
     import org.apache.royale.events.IEventDispatcher;
 
