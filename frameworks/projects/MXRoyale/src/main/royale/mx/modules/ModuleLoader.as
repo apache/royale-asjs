@@ -346,11 +346,11 @@ public class ModuleLoader extends VBox
             }
         }
           */
-        var c:int = value.lastIndexOf("/");
+        var c:int = value ? value.lastIndexOf("/") : -1;
         if (c == -1)
         {
             utils.modulePath = "";
-            utils.moduleName = value.replace(".swf", "");
+            utils.moduleName = value ? value.replace(".swf", "") : "";
         }
         else
         {
@@ -360,7 +360,9 @@ public class ModuleLoader extends VBox
 
         dispatchEvent(new FlexEvent(FlexEvent.URL_CHANGED));
 
-        utils.loadModule(this);
+        
+        if (url != null && url != "" && loadRequested)
+            utils.loadModule(this);
     }
  
 }
