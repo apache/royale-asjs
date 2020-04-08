@@ -27,6 +27,7 @@ package components
     import org.apache.royale.jewel.ScrollableSectionContent;
     import org.apache.royale.jewel.TabBar;
     import org.apache.royale.jewel.TabBarContent;
+    import org.apache.royale.jewel.beads.layouts.Paddings;
 
     import services.GitHubService;
 
@@ -93,16 +94,23 @@ package components
             
             sourceCodeTab = new ScrollableSectionContent();
             sourceCodeTab.name = "sourceCodeTab";
+            
+            var paddings:Paddings = new Paddings();
+            paddings.padding = 20;
+            sourceCodeTab.addBead(paddings);
+            
             var link:A = new A();
             link.href = sourceCodeUrlWebPrefix + sourceCodeUrl;
-            link.text = "Source code in GitHub";
+            link.text = "Watch the source code for this page in GitHub";
             link.target = "_blank";
             link.rel = "noreferrer noopener"
             sourceCodeTab.addElement(link);
+            
             var pre:Pre = new Pre();
             sourceCodeMXMLText = new Code();
             sourceCodeMXMLText.className = "xml codeExample";
             pre.addElement(sourceCodeMXMLText);
+            
             sourceCodeTab.addElement(pre);
 
             tabcontent.addElement(sourceCodeTab);
