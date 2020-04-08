@@ -79,13 +79,7 @@ limitations under the License.
         <html:Section localId="main">
             <j:List localId="todolist" width="100%"
                 labelField="label" className="todo-list" 
-                dataProvider="{todoModel.listItems}">
-                <j:beads>
-                    <j:AddListItemRendererForArrayListData/>
-                    <j:RemoveListItemRendererForArrayListData/>
-                    <j:UpdateListItemRendererForArrayListData/>
-                </j:beads>
-            </j:List>
+                dataProvider="{todoModel.listItems}"/>
         </html:Section>
         
         <html:Footer className="footer" visible="{todoModel.footerVisibility}">

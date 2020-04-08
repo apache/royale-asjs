@@ -29,7 +29,8 @@ package
     {
         import org.apache.royale.icons.FontIconBase; FontIconBase;
         MaterialIconType;
-        FontAwesomeIconType;
+        FontAwesome4IconType;
+        FontAwesome5IconType;
     }
 
 }

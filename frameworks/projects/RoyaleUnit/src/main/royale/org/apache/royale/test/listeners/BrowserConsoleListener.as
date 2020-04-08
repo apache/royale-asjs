@@ -167,10 +167,11 @@ package org.apache.royale.test.listeners
 		{
 			var message:String = failure.description;
 			var exception:Error = failure.exception;
-			var errorMessage:String = exception.message;
 			if(exception.stack)
 			{
-				message += " " + exception.stack;
+				//message may be duplicated in some browsers, but it needs to be
+				//included because Firefox omits it
+				message += " " + exception.message + "\n" + exception.stack;
 			}
 			else if(exception.message)
 			{

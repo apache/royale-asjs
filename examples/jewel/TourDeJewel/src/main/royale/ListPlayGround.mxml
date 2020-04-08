@@ -32,7 +32,7 @@ limitations under the License.
 			import vos.IconListVO;
 
 			private function onChange(event:Event):void {
-                selected.text = "Selected: " + list.selectedItem;
+                selected.text = "Selected: " + list1.selectedItem;
             }
 
             private var _simple:ArrayList = new ArrayList(["Blueberries", "Bananas", "Lemons", "Oranges", "This is a long item render to try long texts", "This should let you try filtering", "Watermelons", "Apples", "Cherries", "Coconuts", "Figs", "Grapes", "Kiwis", "Mangos"]);
@@ -48,14 +48,19 @@ limitations under the License.
 				_simple = value;
 			}
 
-			public function assignNewData():void
+			public function assignNewData(list:List):void
 			{
 				list.dataProvider = new ArrayList(["blue", "red", "yellow", "green"]);
 			}
 
-			private function changeListData():void
+			private function clearDataProvider(list:List):void
 			{
-				iconList.dataProvider = new ArrayList([
+				list.dataProvider = null;
+			}
+
+			private function changeListData(list:List):void
+			{
+				list.dataProvider = new ArrayList([
 					new IconListVO("CheckBox", "check_box"),
 					new IconListVO("Label", "label"),
 					new IconListVO("RadioButton", "radio_button_checked"),
@@ -64,32 +69,30 @@ limitations under the License.
 				]);
 			}
 
-			private function addItem():void
-			{
+			private function addItem(list:List):void {
 				var iconListVO:IconListVO = new IconListVO("New Item", MaterialIconType.CLOSE);
 
-				(iconList.dataProvider as ArrayList).addItem(iconListVO);
+				(list.dataProvider as ArrayList).addItemAt(iconListVO, 4);
 				// listModel.iconListData.addItem(iconListVO); // to test things are adding to right place
 			}
 
-			public function removeItemAt():void
-			{
-				(iconList.dataProvider as ArrayList).removeItemAt(0);
+			public function removeItemAt(list:List):void {
+				(list.dataProvider as ArrayList).removeItemAt(0);
 				// listModel.iconListData.removeItemAt(0);
 			}
 
-			public function updateFirstItem():void
+			public function updateFirstItem(list:List):void
 			{
-				var item:IconListVO = (iconList.dataProvider as ArrayList).getItemAt(0) as IconListVO;
+				var item:IconListVO = (list.dataProvider as ArrayList).getItemAt(0) as IconListVO;
 				item.label = "What??";
 				item.icon = MaterialIconType.ACCESSIBILITY;
-				(iconList.dataProvider as ArrayList).itemUpdated(item);
+				(list.dataProvider as ArrayList).itemUpdated(item);
 				// listModel.iconListData.itemUpdated(item);
 			}
 
-			public function removeAllData():void
+			public function removeAllData(list:List):void
 			{
-				(iconList.dataProvider as ArrayList).removeAll();
+				(list.dataProvider as ArrayList).removeAll();
 				// listModel.iconListData.removeAll();
 			}
 
@@ -149,115 +152,211 @@ limitations under the License.
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel List"/>
-				<j:List localId="list" width="200" height="300" dataProvider="{simple}" change="onChange(event)"/>
-				<j:TextInput width="200">
-					<j:beads>
-						<j:TextPrompt prompt="filter list..."/>
-						<j:SearchFilterForList list="{list}"/>
-					</j:beads>
-				</j:TextInput>
-				<j:Label localId="selected" html="{describeItem(list.selectedItem)}"/>
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
-					<j:Label text="Select list by index: "/>
-					<j:NumericStepper valueChange="list.selectedIndex = event.target.value" minimum="0" maximum="11"/>
-				</j:HGroup>
-				<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
-					<j:Label text="Select list by item: "/>
-					<j:NumericStepper valueChange="list.selectedItem = list.dataProvider.getItemAt(event.target.value)" minimum="0" maximum="11"/>
-				</j:HGroup>
-				<j:Button text="Assign new data" click="assignNewData()"/>
-				<j:Button text="Deselect" click="list.selectedIndex = -1"/>
+				<j:CardHeader>
+					<html:H3 text="Default" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					
+					<j:List localId="list1" width="200" height="300" 
+							dataProvider="{simple}" change="onChange(event)"/>
+					
+					<j:TextInput width="200">
+						<j:beads>
+							<j:TextPrompt prompt="Filter list..."/>
+							<j:SearchFilterForList list="{list1}"/>
+						</j:beads>
+					</j:TextInput>
+
+					<j:Label localId="selected" html="{describeItem(list1.selectedItem)}"/>
+					
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="Select list by index: "/>
+						<j:NumericStepper valueChange="list1.selectedIndex = event.target.value" minimum="0" maximum="{(list1.dataProvider as ArrayList).length - 1}"/>
+					</j:HGroup>
+					
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="Select list by item: "/>
+						<j:NumericStepper valueChange="list1.selectedItem = list1.dataProvider.getItemAt(event.target.value)" minimum="0" maximum="{(list1.dataProvider as ArrayList).length - 1}"/>
+					</j:HGroup>
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:IconButton click="list1.selectedIndex = -1" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Deselect"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.CLEAR}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="clearDataProvider(list1)" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Clear Data"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.CLEAR_ALL}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="assignNewData(list1)" emphasis="primary" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Load Data"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.VIEW_HEADLINE}" />
+						</j:icon>
+					</j:IconButton>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel List With ItemRenderer and rowHeight=52"/>
-				<j:HGroup gap="3">
-					<j:VGroup gap="3">
-						<j:List localId="iconList" width="200" height="300"
-							className="iconListItemRenderer" labelField="label"
-							emphasis="secondary" rowHeight="52">
-							<j:beads>
-								<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider"/>
-								<j:RemoveAllItemRendererForArrayListData/>
-							</j:beads>
-						</j:List>
-						<j:Label text="Click on render's icon will remove that renderer" multiline="true" width="200"/>
-					</j:VGroup>
-					<j:VGroup gap="3">
-						<j:Button text="change data" emphasis="{StyledUIBase.PRIMARY}" click="changeListData()"/>
-						<j:Button text="Add item" click="addItem()"/>
-						<j:Button text="Remove first item" click="removeItemAt()"/>
-						<j:Button text="Update first item" click="updateFirstItem()"/>
-						<j:Button text="Remove all data" click="removeAllData()"/>
-						<j:Label html="{'Selected Index: ' + iconList.selectedIndex}"/>
-						<j:Label html="Selected Item description:"/>
-						<j:Label html="{describeIconItem(iconList.selectedItem)}"/>
-						<j:Label html="{'list filtered length: ' + filter.length}"/>
-						<j:TextInput>
-							<j:beads>
-								<j:TextPrompt prompt="filter list..."/>
-								<j:SearchFilterForList localId="filter" list="{iconList}"/>
-							</j:beads>
-						</j:TextInput>
-						<!-- <j:Button text="Trace Collection Labels" click="traceCollectionLabels()"/> -->
-						
-						<!-- example below for dataProvider binding -->
-						<!--<j:List labelField="label" dataProvider="{iconList.dataProvider}" selectedIndex="3" width="120" height="200" />-->
-					</j:VGroup>
-				</j:HGroup>
+				<j:CardHeader>
+					<html:H3 text="ItemRenderer and rowHeight=52" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+					<j:Label text="Click on render's icon will remove that renderer" multiline="true"/>
+					
+					<j:List localId="list2" width="200" height="300"
+						className="iconListItemRenderer" labelField="label"
+						emphasis="secondary" rowHeight="52">
+						<j:beads>
+							<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider"/>
+							<j:RemoveAllItemRendererForArrayListData/>
+						</j:beads>
+					</j:List>
+					
+					<j:TextInput width="200">
+						<j:beads>
+							<j:TextPrompt prompt="Filter list..."/>
+							<j:SearchFilterForList localId="filter" list="{list2}"/>
+						</j:beads>
+					</j:TextInput>
+					
+					<j:Label html="{'Selected Index: ' + list2.selectedIndex}"/>
+					<j:Label html="Selected Item description:"/>
+					<j:Label html="{describeIconItem(list2.selectedItem)}"/>
+					<j:Label html="{'list filtered length: ' + filter.length}"/>
+					<!-- <j:Button text="Trace Collection Labels" click="traceCollectionLabels()"/> -->
+					
+					<!-- example below for dataProvider binding -->
+					<!--<j:List labelField="label" dataProvider="{iconList.dataProvider}" selectedIndex="3" width="120" height="200" />-->
+				</j:CardPrimaryContent>
+				<j:CardActions itemsHorizontalAlign="itemsRight">
+					<j:IconButton click="addItem(list2)" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Add Item"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.ADD}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="removeItemAt(list2)" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Remove First Item"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.REMOVE}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="updateFirstItem(list2)" emphasis="primary" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Update First Item"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.UPDATE}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="removeAllData(list2)" emphasis="primary" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Remove All Items"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.DELETE_FOREVER}" />
+						</j:icon>
+					</j:IconButton>
+					<j:IconButton click="changeListData(list2)" emphasis="primary" outlined="true">
+						<j:beads>
+							<j:ToolTip toolTip="Change Data"/>
+						</j:beads>
+						<j:icon>
+							<js:MaterialIcon text="{MaterialIconType.VIEW_HEADLINE}" />
+						</j:icon>
+					</j:IconButton>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel DataContainer (with Flow Layout)"/>
-				<j:DataContainer>
-					<j:beads>
-						<j:HorizontalFlowLayout gap="3"/>
-						<js:ConstantBinding sourcePropertyName="simple" destinationPropertyName="dataProvider" />
-					</j:beads>
-				</j:DataContainer>
+				<j:CardHeader>
+					<html:H3 text="Jewel DataContainer with Flow Layout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:DataContainer>
+						<j:beads>
+							<j:HorizontalFlowLayout gap="3"/>
+							<js:ConstantBinding sourcePropertyName="simple" destinationPropertyName="dataProvider" />
+						</j:beads>
+					</j:DataContainer>
+
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel List (Horizontal)"/>
-				<j:List localId="alist" percentWidth="100" height="100">
-					<j:beads>
-						<j:HorizontalLayout itemsExpand="true" />
-					</j:beads>
-					<j:dataProvider>
-						<js:ArrayList localId="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Hawkeye]" />
-					</j:dataProvider>
-				</j:List>
+				<j:CardHeader>
+					<html:H3 text="Horizontal Layout" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:List localId="alist" width="100%" height="100">
+						<j:beads>
+							<j:HorizontalLayout itemsExpand="true" />
+						</j:beads>
+						<j:dataProvider>
+							<js:ArrayList localId="avengersCharacters" source="[Iron Man, Hulk, Thor, Captain America, Hawkeye]" />
+						</j:dataProvider>
+					</j:List>
+				
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 		
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel List with Horizontal Scroll"/>
-				<j:List width="450" height="300" className="tableStyle" 
-						labelField="label" selectedIndex="1"
-						dataProvider="{listModel.iconListData}">
-					<j:beads>
-						<j:HorizontalListScroll/>
-					</j:beads>
-				</j:List>
+				<j:CardHeader>
+					<html:H3 text="Horizontal Scroll" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:List width="100%" height="300" className="tableStyle" 
+							labelField="label" selectedIndex="1"
+							dataProvider="{listModel.iconListData}">
+						<j:beads>
+							<j:HorizontalListScroll/>
+						</j:beads>
+					</j:List>
+
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 
 		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
-				<html:H3 text="Jewel List Disabled"/>
-				<j:List width="200" height="300" className="iconListItemRenderer" labelField="label" selectedIndex="1">
-					<j:beads>
-						<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
-						<j:Disabled/>
-					</j:beads>
-				</j:List>
+				<j:CardHeader>
+					<html:H3 text="Disabled" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+
+					<j:List width="200" height="300" className="iconListItemRenderer" labelField="label" selectedIndex="1">
+						<j:beads>
+							<js:ConstantBinding sourceID="listModel" sourcePropertyName="iconListData" destinationPropertyName="dataProvider" />
+							<j:Disabled/>
+						</j:beads>
+					</j:List>
+
+				</j:CardPrimaryContent>
 			</j:Card>
 		</j:GridCell>
 	</j:Grid>

@@ -198,7 +198,7 @@ limitations under the License.
 								change="onChange(event)">
 							<j:beads>
 								<j:RemoveAllItemRendererForArrayListData/>
-								<j:CollectionChangeUpdateForArrayListData/>
+								<js:CollectionChangeUpdateForArrayListData/>
 							</j:beads>
 						</j:List>
 						<j:Label text="item count: {ArrayListView(list1.dataProvider).length}"/>
@@ -211,7 +211,7 @@ limitations under the License.
 								change="onChange(event)">
 							<j:beads>
 								<j:RemoveAllItemRendererForArrayListData/>
-								<j:CollectionChangeUpdateForArrayListData/>
+								<js:CollectionChangeUpdateForArrayListData/>
 							</j:beads>
 						</j:List>
 						<j:Label text="item count: {ArrayListView(list2.dataProvider).length}"/>
@@ -224,7 +224,7 @@ limitations under the License.
 								change="onChange(event)">
 							<j:beads>
 								<j:RemoveAllItemRendererForArrayListData/>
-								<j:CollectionChangeUpdateForArrayListData/>
+								<js:CollectionChangeUpdateForArrayListData/>
 							</j:beads>
 						</j:List>
 						<j:Label text="item count: {ArrayListView(list3.dataProvider).length}"/>

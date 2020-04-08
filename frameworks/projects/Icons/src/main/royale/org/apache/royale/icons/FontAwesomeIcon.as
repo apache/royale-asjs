@@ -32,10 +32,27 @@ package org.apache.royale.icons
     public class FontAwesomeIcon extends FontIconBase
     {
         /**
+         *  FontAwesome version (4,5,...)
+         *  Warning: Creators of FontAwesome not recommend using Font Awesome 4 and 5 side-by-side on the smae project
+         */
+        public var v:Number = 5;
+        
+        /**
+         * Icon Styles for Font Awesome 5.
+         * Free version has Brands and Solid
+         * Pro version adds Regular, light and Duotone
+         */
+        public static const BRANDS:String = "b";
+        public static const SOLID:String = "s";
+        public static const REGULAR:String = "r";
+        public static const LIGHT:String = "l";
+        public static const DUOTONE:String = "d";
+        
+        /**
          *  constructor.
          * 
          *  <inject_html>
-	     *   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+         *   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css" crossorigin="anonymous"/>
 	     *  </inject_html>
          *
          *  @langversion 3.0
@@ -47,12 +64,70 @@ package org.apache.royale.icons
         {
             super();
 
-            typeNames = "fonticon fa";
+            typeNames = "fonticon";
         }
 
-        protected var _type:String;
         /**
-         *  the icon. in 
+		 *  The method called when added to a parent.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.6
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+			
+            setUpClassName();
+		}
+
+        /**
+         * update font awesome style.
+         */
+        public function setUpClassName():void
+        {
+            removeClass('fa' + _oldFaStyle);
+
+            if(v == 5)
+                addClass('fa' + _faStyle);
+            else
+                addClass('fa');
+        }
+
+        protected var _faStyle:String = REGULAR;
+        protected var _oldFaStyle:String;
+        /**
+         *  the font awesome 5 style.
+         *  Can be one of the following constants defined in this class:
+         *   - BRANDS (b);
+         *   - SOLID (s);
+         *   - REGULAR (r) - this is the default;
+         *   - LIGHT (l);
+         *   - DUOTONE (d);
+         *  Only available for v (version) = 5
+         *  
+         *  For version 4, style is always the same and you must different type values.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get faStyle():String
+        {
+            return _faStyle;
+        }
+		public function set faStyle(value:String):void
+		{
+            _oldFaStyle = _faStyle;
+            _faStyle = value;
+            setUpClassName();
+		}
+        
+        protected var _type:String = "";
+        /**
+         *  the icon type. This field is required.
          *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -127,6 +202,12 @@ package org.apache.royale.icons
             toggleClass('fa-border', _border);          
         }
 
+        public static const SIZE_LG:String = 'lg';
+        public static const SIZE_X2:String = '2x';
+        public static const SIZE_X3:String = '3x';
+        public static const SIZE_X4:String = '4x';
+        public static const SIZE_X5:String = '5x';
+        
         protected var _relativeSize:String;
         /**
          *  Increase icon sizes relative to their container,
@@ -206,6 +287,10 @@ package org.apache.royale.icons
             _flipVertical = value;
             toggleClass('fa-flip-vertical', _flipVertical);
         }
+
+        public static const ROTATE_90:String = "90";
+		public static const ROTATE_180:String = "180";
+		public static const ROTATE_270:String = "270";
 
         COMPILE::JS
         protected var _rotation:String;

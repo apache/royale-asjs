@@ -142,7 +142,7 @@
             <jvmarg value="-Xnoagent" />
             <jvmarg value="-Xrunjdwp:transport=dt_socket,address=8763,server=y,suspend=y" />
              -->
-            <arg value="-debug" />
+            <!--<arg value="-debug" />-->
             <arg value="-compiler.targets=JSRoyale" />
             <arg value="-js-output=target" />
             <arg value="+playerglobal.version=${playerglobal.version}" />
@@ -165,22 +165,67 @@
         <fail unless="royaleunit.browser.exists" message="Invalid royaleunit.browser path: &quot;${royaleunit.browser}&quot;. To skip RoyaleUnit tests, use -Dskip-tests." />
     </target>
 
-    <target name="test" depends="check-royaleunit-browser" if="royaleunit.browser.exists" unless="skip-tests">
+    <target name="test" depends="check-royaleunit-browser"
+            if="royaleunit.browser.exists" unless="skip-tests"
+            xmlns:if="ant:if" xmlns:unless="ant:unless">
+
+        <macrodef name="debug.test">
+            <attribute name="is.needed" default="false"/>
+            <sequential>
+                <echo if:true="@{is.needed}">JS-RELEASE TESTS FAILED</echo>
+                <echo if:true="@{is.needed}">Running backup tests in js-debug build, because release build tests failed</echo>
+                <royaleunit if:true="@{is.needed}"
+                            player="html"
+                            swf="${basedir}/target/bin/js-debug/index.html"
+                            command="${royaleunit.browser}"
+                            workingDir="${basedir}"
+                            toDir="${report.dir}"
+                            haltonfailure="false"
+                            failureProperty="debugBuildFail"
+                            verbose="true"
+                            localTrusted="true"
+                            timeout="90000" />
+                <condition if:true="@{is.needed}" property="debugTestResult" value="PASSED" else="FAILED">
+                    <not>
+                        <isset property="debugBuildFail"/>
+                    </not>
+                </condition>
+            </sequential>
+        </macrodef>
+
         <!-- Load the <royaleunit> task. We can't do this at the <project> level -->
         <!-- because targets that run before royaleUnitTasks.jar gets built would fail. -->
         <taskdef resource="royaleUnitTasks.tasks" classpathref="lib.path"/>
+
 		<mkdir dir="${report.dir}" />
 		<royaleunit
             player="html"
-            swf="${basedir}/target/bin/js-debug/index.html"
+            swf="${basedir}/target/bin/js-release/index.html"
             command="${royaleunit.browser}"
 		    workingDir="${basedir}"
 		    toDir="${report.dir}"
-			haltonfailure="true"
+			haltonfailure="false"
+            failureProperty="releaseBuildFail"
 			verbose="true"
 			localTrusted="true"
 			timeout="90000" />
-        
+
+        <condition property="releaseTestResult" value="PASSED" else="FAILED">
+            <not>
+                <isset property="releaseBuildFail"/>
+            </not>
+        </condition>
+
+        <!-- the above runs a test in release build. If it fails, try again in debug-build -->
+        <debug.test is.needed="${releaseBuildFail}"/>
+        <!-- if the debug test ran, it will had already set 'debugTestResult', otherwise set it to 'Not tested' below -->
+        <property name="debugTestResult" value="Not tested" />
+
+        <property name="testResult">
+${ant.project.name} RoyaleUnit Release build tests: ${releaseTestResult}
+${ant.project.name} RoyaleUnit Debug build tests: ${debugTestResult}
+        </property>
+
 		<!-- Generate readable JUnit-style reports -->
 		<junitreport todir="${report.dir}">
 			<fileset dir="${report.dir}">
@@ -188,6 +233,10 @@
 			</fileset>
 			<report format="frames" todir="${report.dir}/html" />
 		</junitreport>
-        
+
+        <!-- fail now if release tests are broken (with debug test info as well) -->
+        <fail if="releaseBuildFail" message="Test Failure ${line.separator}RoyaleUnit Release Build Tests must pass: ${line.separator} ${testResult}" />
+        <!-- otherwise just show test result -->
+        <echo>${testResult}</echo>
     </target>
 </project>

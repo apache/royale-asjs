@@ -44,6 +44,48 @@ package org.apache.royale.icons
             super();
         }
 
+        /**
+         * update font awesome style.
+         */
+        override public function setUpClassName():void
+        {
+            removeClass('fa' + _oldFaStyle);
+            removeClass('fa' + _faStyle);
+            removeClass('fa' + _oldFaSelectedStyle);
+            removeClass('fa' + _faSelectedStyle);
+            
+            if(v == 5)
+            {
+                var cls:String = selected ? _faSelectedStyle : _faStyle;
+                if(cls != "")
+                    addClass('fa' + cls);
+            }
+            else
+                addClass('fa');
+        }
+
+        protected var _faSelectedStyle:String = SOLID;
+        protected var _oldFaSelectedStyle:String;
+        /**
+         *  the font awesome 5 style for selected state.
+         *  Only available for VERSION = 5
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get faSelectedStyle():String
+        {
+            return _faSelectedStyle;
+        }
+		public function set faSelectedStyle(value:String):void
+		{
+            _oldFaSelectedStyle = _faSelectedStyle;
+            _faSelectedStyle = value;
+            setUpClassName();
+		}
+
         private var _selected:Boolean = false;
         
         /**
@@ -70,7 +112,8 @@ package org.apache.royale.icons
 
         private var _selectedType:String = "";
         /**
-         *  The selectedText of the icon
+         *  The icon selectedType. This is optional.
+         *  If not set, defaults to type
          *  
          *  @langversion 3.0
          *  @playerversion Flash 10.2
@@ -92,10 +135,14 @@ package org.apache.royale.icons
             removeClass('fa-' + _type);
             removeClass('fa-' + _selectedType);
 
-            if(selected)
-                addClass('fa-' + _selectedType);
-            else
-                addClass('fa-' + _type);
+            if(_selectedType == "")
+                _selectedType = _type;
+
+            var cls:String = selected ? _selectedType : _type;
+            if(cls != "")
+                addClass('fa-' + cls);
+
+            setUpClassName();
         }
     }
 }
