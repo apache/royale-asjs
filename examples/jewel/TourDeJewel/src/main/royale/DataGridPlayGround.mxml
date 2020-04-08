@@ -396,7 +396,6 @@ limitations under the License.
 							sourceID="listModel"
 							sourcePropertyName="iconDetailListData"
 							destinationPropertyName="dataProvider"/>
-						<j:RemoveDataGridItemRendererForArrayListData/>
 					</j:beads>
 					<j:columns>
 						<j:DataGridColumn label="Icon" 
@@ -447,7 +446,6 @@ limitations under the License.
 							sourceID="listModel"
 							sourcePropertyName="iconDetailListData"
 							destinationPropertyName="dataProvider"/>
-						<j:RemoveDataGridItemRendererForArrayListData/>
 					</j:beads>
 					<j:columns>
 						<j:DataGridColumn label="Icon" 
@@ -472,7 +470,7 @@ limitations under the License.
 							sourceID="listModel"
 							sourcePropertyName="iconDetailListData"
 							destinationPropertyName="dataProvider"/>
-						<j:RemoveDataGridItemRendererForArrayListData/>
+						
 					</j:beads>
 					<j:columns>
 						<j:DataGridColumn label="Icon" 
@@ -498,7 +496,6 @@ limitations under the License.
 								sourceID="listModel"
 								sourcePropertyName="iconDetailListData"
 								destinationPropertyName="dataProvider"/>
-							<j:RemoveDataGridItemRendererForArrayListData/>
 						</j:beads>
 						<j:columns>
 							<j:DataGridColumn label="Icon" 

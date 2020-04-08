@@ -18,12 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package services
 {
-	import org.apache.royale.net.HTTPService;
-	import org.apache.royale.net.HTTPHeader;
-	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.Event;
-    import org.apache.royale.utils.string.Base64;
-    import org.apache.royale.net.HTTPConstants;
+	import org.apache.royale.events.EventDispatcher;
+	import org.apache.royale.net.HTTPConstants;
+	import org.apache.royale.net.HTTPService;
+	import org.apache.royale.utils.string.Base64;
 
     [Event(name="dataReady", type="org.apache.royale.events.Event")]
     /**

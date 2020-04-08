@@ -27,7 +27,6 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
-			import org.apache.royale.core.StyledUIBase;
 
 			import vos.IconListVO;
 
@@ -157,7 +156,7 @@ limitations under the License.
 				</j:CardHeader>
 				<j:CardPrimaryContent>
 					
-					<j:List localId="list1" width="200" height="300" 
+					<j:List localId="list1" width="200" height="300" selectedIndex="2"
 							dataProvider="{simple}" change="onChange(event)"/>
 					
 					<j:TextInput width="200">
