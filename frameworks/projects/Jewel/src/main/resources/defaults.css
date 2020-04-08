@@ -405,6 +405,7 @@ j|CardActions {
 .jewel.checkbox span {
   cursor: pointer;
   margin: auto;
+  width: inherit;
 }
 
 .jewel.controlbar {
@@ -3471,6 +3472,7 @@ j|PopUp {
 .jewel.radiobutton span {
   cursor: pointer;
   margin: 0;
+  width: inherit;
 }
 
 @media -royale-swf {
