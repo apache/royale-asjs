@@ -45,6 +45,8 @@ limitations under the License.
 			</c:description>
 		</c:ExampleHeader>
 
+		<j:CheckBox selected="{useGap}" text="Turn Gap on/off" change="useGap = event.target.selected"/>
+
 		<j:Grid gap="{useGap}">
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
 				<html:Div className="box" text="1"/>
@@ -294,7 +296,7 @@ limitations under the License.
 		
 			
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-				<html:H3 text="Grids Responsive Visibility"/>
+				<html:H3 text="Grids Responsive Visibility" className="secondary-normal"/>
 			</j:GridCell>
 
 			
@@ -330,11 +332,11 @@ limitations under the License.
 			
 
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-				<html:H3 text="Grids Horizontal Align"/>
+				<html:H3 text="Grids Horizontal Align" className="secondary-normal"/>
 			</j:GridCell>
 
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-				<html:H4 text="itemsTop"/>
+				<html:H4 text="itemsTop" className="secondary-darkest"/>
 			</j:GridCell>
 
 
@@ -351,7 +353,7 @@ limitations under the License.
 			</j:Grid>
 
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-				<html:H4 text="itemsBottom"/>
+				<html:H4 text="itemsBottom" className="secondary-darkest"/>
 			</j:GridCell>
 
 			<j:Grid gap="true" itemsVerticalAlign="itemsBottom">
@@ -367,7 +369,7 @@ limitations under the License.
 			</j:Grid>
 
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-				<html:H4 text="itemsCenter"/>
+				<html:H4 text="itemsCenter" className="secondary-darkest"/>
 			</j:GridCell>
 
 			<j:Grid gap="true" itemsVerticalAlign="itemsCenter">
@@ -383,7 +385,7 @@ limitations under the License.
 			</j:Grid>
 
 			<j:GridCell desktopNumerator="1" desktopDenominator="1" tabletNumerator="1" tabletDenominator="1" phoneNumerator="1" phoneDenominator="1">
-				<html:H4 text=" itemsSameHeight"/>
+				<html:H4 text=" itemsSameHeight" className="secondary-darkest"/>
 			</j:GridCell>
 
 			<j:Grid gap="true" itemsVerticalAlign="itemsSameHeight" height="200">
