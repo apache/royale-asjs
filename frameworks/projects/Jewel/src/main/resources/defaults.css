@@ -3287,14 +3287,9 @@ j|NavigationLinkItemRenderer {
 }
 
 @media (max-width: 992px) {
-  .jewel.numericstepper {
-    width: 190px;
-    height: 39px;
-  }
   .jewel.numericstepper .jewel.textinput {
     z-index: 1;
     position: relative;
-    left: 38px;
   }
 }
 j|NumericStepper {
@@ -3310,39 +3305,15 @@ j|NumericStepper {
 .jewel.spinner .jewel.button {
   display: flex;
 }
-.jewel.spinner .jewel.button.up::after {
+.jewel.spinner .jewel.button.up::after, .jewel.spinner .jewel.button.down::after {
   content: " ";
   position: absolute;
-  width: 22px;
-  height: 10px;
-  left: calc(50% - 11px);
-  top: calc(50% - 5px);
-}
-.jewel.spinner .jewel.button.down::after {
-  content: " ";
-  position: absolute;
-  width: 22px;
-  height: 10px;
-  left: calc(50% - 11px);
-  top: calc(50% - 5px);
 }
 
 @media (max-width: 992px) {
   .jewel.spinner {
     position: relative;
-    left: -112px;
     flex-direction: row;
-    width: auto;
-  }
-  .jewel.spinner .jewel.button {
-    width: 39px;
-    height: 38px;
-  }
-  .jewel.spinner .jewel.button.up {
-    left: 149px;
-  }
-  .jewel.spinner .jewel.button.down {
-    left: -39px;
   }
 }
 j|Spinner {
