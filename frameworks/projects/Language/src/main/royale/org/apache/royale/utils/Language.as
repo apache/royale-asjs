@@ -271,6 +271,21 @@ package org.apache.royale.utils
         }
         
         /**
+         * Checks for null before returning a closure
+         *
+         * @param fn The method on the instance.
+         * @param object The instance.
+         * @return The closure, or null.
+         *
+         */
+        static public function conditionalBind(fn:Function, object:Object):Function
+        {
+            if (fn == null)
+                return null;
+            return goog.bind(fn, object);
+        }
+        
+        /**
          * caches closures and returns the one closure
          *
          * @param fn The method on the instance.
