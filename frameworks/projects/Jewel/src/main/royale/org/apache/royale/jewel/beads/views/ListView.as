@@ -18,13 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.views
 {
+	COMPILE::SWF
+	{
+	import org.apache.royale.core.IStrand;
+	}
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.utils.getSelectionRenderBead;
@@ -46,19 +49,6 @@ package org.apache.royale.jewel.beads.views
 		public function ListView()
 		{
 			super();
-		}
-
-		/**
-		 *  @copy org.apache.royale.core.IBead#strand
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.4
-		 */
-		override public function set strand(value:IStrand):void
-		{
-			super.strand = value;
 		}
 		
 		private var _dataGroup:IItemRendererOwnerView;
@@ -92,8 +82,7 @@ package org.apache.royale.jewel.beads.views
 			listModel = _strand.getBeadByType(ISelectionModel) as ISelectionModel;
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
-			listenOnStrand("itemsCreated", itemsCreatedHandler);
-
+			
 			super.handleInitComplete(event);
 		}
 
@@ -104,12 +93,14 @@ package org.apache.royale.jewel.beads.views
 		override protected function itemsCreatedHandler(event:Event):void
 		{
 			super.itemsCreatedHandler(event);
+			
 			if(listModel.selectedIndex != -1)
 				selectionChangeHandler(null);
 		}
-
+		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{

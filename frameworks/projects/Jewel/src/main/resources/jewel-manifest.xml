@@ -226,14 +226,7 @@
     <component id="DropDownListItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererFactoryForCollectionView"/>
     <component id="TableItemRendererFactoryForCollectionView" class="org.apache.royale.jewel.beads.itemRenderers.TableItemRendererFactoryForCollectionView"/>
     <component id="NoClassSelectorListSelectableItemRendererBead" class="org.apache.royale.jewel.beads.itemRenderers.NoClassSelectorListSelectableItemRendererBead"/>
-
-    <component id="AddListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddListItemRendererForArrayListData" />
-    <component id="RemoveListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveListItemRendererForArrayListData" />
-    <component id="UpdateListItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateListItemRendererForArrayListData" />
     
-    <component id="AddDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddDataGridItemRendererForArrayListData" />
-    <component id="RemoveDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveDataGridItemRendererForArrayListData" />
-    <component id="UpdateDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.UpdateDataGridItemRendererForArrayListData" />
     <component id="RemoveAllDataGridItemRendererForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.RemoveAllDataGridItemRendererForArrayListData" />
 
     <component id="AddTableRowForArrayListData" class="org.apache.royale.jewel.beads.itemRenderers.AddTableRowForArrayListData" />

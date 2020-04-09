@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
 	import org.apache.royale.core.IOwnerViewItemRenderer;
+	import org.apache.royale.core.ISelectable;
 	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.Button;
@@ -84,6 +85,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 			else
 			{
 				StyledUIBase(ir).addClass("middle");
+			}
+
+			if (ir is ISelectable && buttonBar.selectedIndex == ir.index)
+			{
+				ISelectable(ir).selected = true;
 			}
 		}
 	}

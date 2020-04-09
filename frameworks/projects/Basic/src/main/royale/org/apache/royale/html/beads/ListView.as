@@ -18,13 +18,16 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.html.beads
 {
+	COMPILE::SWF
+	{
+	import org.apache.royale.core.IStrand;
+	}
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.utils.getSelectionRenderBead;
-	import org.apache.royale.core.IStrand;
 
 	/**
 	 *  The List class creates the visual elements of the org.apache.royale.html.List
@@ -64,6 +67,7 @@ package org.apache.royale.html.beads
 
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IItemRenderer
+		 * @royaleignorecoercion org.apache.royale.core.ISelectableItemRenderer
 		 */
 		protected function selectionChangeHandler(event:Event):void
 		{

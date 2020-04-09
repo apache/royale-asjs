@@ -810,6 +810,7 @@ j|FormItem {
 
 .jewel.item {
   padding: 8px;
+  background: transparent;
 }
 .jewel.item.hovered {
   color: #FFFFFF;
@@ -890,6 +891,13 @@ j|List {
 }
 
 @media (max-width: 992px) {
+  .jewel.numericstepper {
+    width: 190px;
+    height: 39px;
+  }
+  .jewel.numericstepper .jewel.textinput {
+    left: 38px;
+  }
   .jewel.numericstepper .jewel.textinput input {
     border-radius: 0;
   }
@@ -900,32 +908,50 @@ j|List {
 .jewel.spinner .jewel.button {
   padding: 0px;
   height: 19px;
-  color: transparent;
   border-radius: 0 0.25rem 0.25rem 0;
   border-left: 0px;
+}
+.jewel.spinner .jewel.button, .jewel.spinner .jewel.button:hover, .jewel.spinner .jewel.button:hover:focus, .jewel.spinner .jewel.button:active, .jewel.spinner .jewel.button:active:focus {
+  color: transparent;
 }
 .jewel.spinner .jewel.button.up {
   border-bottom-right-radius: 0px;
 }
 .jewel.spinner .jewel.button.up::after {
-  background-size: 46%;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23F8B13F' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  width: 12px;
+  height: 7px;
+  left: calc(50% - 6px);
+  top: calc(50% - 3.5px);
 }
 .jewel.spinner .jewel.button.down {
   border-top-right-radius: 0px;
   border-top-style: groove;
 }
 .jewel.spinner .jewel.button.down::after {
-  background-size: 46%;
   background: url("data:image/svg+xml,%3Csvg viewBox='0 0 12 8' version='1.1' xmlns='http://www.w3.org/2000/svg'%3E%3Cg stroke='none' stroke-width='1' fill='none' fill-rule='evenodd'%3E%3Cg transform='translate(0.000000, -1.000000)' fill='%23F8B13F' fill-rule='nonzero'%3E%3Cg transform='translate(-2.000000, 0.000000)'%3E%3Cpolygon transform='translate(8.000000, 4.705000) scale(1, -1) translate(-8.000000, -4.705000) ' points='3.41 8.41 8 3.83 12.59 8.41 14 7 8 1 2 7'%3E%3C/polygon%3E%3C/g%3E%3C/g%3E%3C/g%3E%3C/svg%3E") no-repeat center center;
+  width: 12px;
+  height: 7px;
+  left: calc(50% - 6px);
+  top: calc(50% - 3.5px);
 }
 
 @media (max-width: 992px) {
+  .jewel.spinner {
+    left: -112px;
+    width: auto;
+  }
+  .jewel.spinner .jewel.button {
+    width: 39px;
+    height: 38px;
+  }
   .jewel.spinner .jewel.button.up {
+    left: 149px;
     border: 1px solid #333333;
     border-radius: 0 0.25rem 0.25rem 0;
   }
   .jewel.spinner .jewel.button.down {
+    left: -39px;
     border: 1px solid #333333;
     border-radius: 0.25rem 0 0 0.25rem;
     border-top-style: solid;
