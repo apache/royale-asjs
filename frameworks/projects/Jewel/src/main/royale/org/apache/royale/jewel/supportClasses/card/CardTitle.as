@@ -16,20 +16,34 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
+package org.apache.royale.jewel.supportClasses.card
+{
+	import org.apache.royale.jewel.Label;
+	
+	/**
+	 *  The CardTitle class is a header for Cards where Title and actions (i.e: buttons, icons)
+	 *  can be located.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.7
+	 */
+	public class CardTitle extends Label
+	{
+		/**
+		 *  constructor.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function CardTitle()
+		{
+			super();
 
-.jewel
-
-	&.label
-		-webkit-font-smoothing: antialiased
-		cursor: default
-		white-space: nowrap
-
-		&.multiline
-			white-space: pre-wrap
-			word-wrap: break-word
-
-j|Label
-	IBeadModel: ClassReference("org.apache.royale.jewel.beads.models.TextModel")
-	//IMeasurementBead: ClassReference("org.apache.royale.html.beads.TextFieldLabelMeasurementBead")
-	//IBeadView: ClassReference("org.apache.royale.jewel.beads.views.JewelLabelViewBead")
-
+			typeNames = "jewel label card-title";
+		}
+	}
+}

@@ -43,7 +43,7 @@ package org.apache.royale.jewel.supportClasses.card
 		{
 			super();
 
-			typeNames = "cardActions";
+			typeNames = "card-actions";
 		}
 	}
 }

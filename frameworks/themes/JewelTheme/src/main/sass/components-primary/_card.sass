@@ -39,17 +39,22 @@
     &.simple
         padding: 20px
 
-    .cardHeader
+    .card-header
         @if $flat
             border-bottom: 1px solid transparent
         @else
             border-bottom: 1px solid desaturate(lighten($primary-color, 26%), 70%)
         padding: 12px 20px
 
-    .cardPrimaryContent
+        .card-title
+            font-size: 1.5em
+            margin: 0.408rem 0rem
+            letter-spacing: 0.0125em
+
+    .card-primary-content
         padding: 20px
 
-    .cardActions
+    .card-actions
         @if $flat
             border-top: 1px solid transparent
         @else

@@ -37,10 +37,19 @@ $card-primary-content-minheight: 152px !default
     &.simple
         // flex: 1 1 0%
 
-    .cardHeader
+    .card-header
         width: 100%
 
-    .cardPrimaryContent
+        .card-title
+            flex: 1 1 auto
+            overflow: hidden
+
+            text-decoration: inherit
+            text-overflow: ellipsis
+            text-transform: inherit
+            z-index: 1
+
+    .card-primary-content
         width: 100%
         min-height: $card-primary-content-minheight
 
@@ -51,7 +60,7 @@ $card-primary-content-minheight: 152px !default
 
         flex: 1 1 auto
 
-    .cardActions
+    .card-actions
         width: 100%
         position: relative
         outline: none

@@ -316,10 +316,18 @@ j|ToggleButtonBar {
   min-height: 52px;
   position: relative;
 }
-.jewel.card .cardHeader {
+.jewel.card .card-header {
   width: 100%;
 }
-.jewel.card .cardPrimaryContent {
+.jewel.card .card-header .card-title {
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-decoration: inherit;
+  text-overflow: ellipsis;
+  text-transform: inherit;
+  z-index: 1;
+}
+.jewel.card .card-primary-content {
   width: 100%;
   min-height: 152px;
   position: relative;
@@ -328,7 +336,7 @@ j|ToggleButtonBar {
   text-decoration: none;
   flex: 1 1 auto;
 }
-.jewel.card .cardActions {
+.jewel.card .card-actions {
   width: 100%;
   position: relative;
   outline: none;
@@ -991,6 +999,7 @@ j|ImageButton {
 }
 
 .jewel.label {
+  -webkit-font-smoothing: antialiased;
   cursor: default;
   white-space: nowrap;
 }
