@@ -480,11 +480,11 @@ package org.apache.royale.test.runners
 					{
 						expected = expectedArgs[0].value;
 					}
-				}
-				var ignoreMetadata:Array = method.retrieveMetaDataByName(TestMetadata.IGNORE);
-				if(ignoreMetadata.length > 0)
-				{
-					ignore = true;
+					var ignoreMetadata:Array = method.retrieveMetaDataByName(TestMetadata.IGNORE);
+					if(ignoreMetadata.length > 0)
+					{
+						ignore = true;
+					}
 				}
 				if(testName !== null)
 				{
