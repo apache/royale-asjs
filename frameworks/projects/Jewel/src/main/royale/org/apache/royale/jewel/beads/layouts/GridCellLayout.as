@@ -76,8 +76,8 @@ package org.apache.royale.jewel.beads.layouts
 
 			COMPILE::JS
 			{
-				setFractionForScreen(DESKTOP, _wideScreenNumerator, _wideScreenDenominator);
-				setFractionForScreen(WIDESCREEN, _desktopNumerator, _desktopDenominator);
+				setFractionForScreen(WIDESCREEN, _wideScreenNumerator, _wideScreenDenominator);
+				setFractionForScreen(DESKTOP, _desktopNumerator, _desktopDenominator);
 				setFractionForScreen(TABLET, _tabletNumerator, _tabletDenominator);
 				setFractionForScreen(PHONE, _phoneNumerator, _phoneDenominator);
 			}
