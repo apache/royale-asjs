@@ -30,7 +30,7 @@ package org.apache.royale.jewel
     }
 
     COMPILE::JS {
-    import org.apache.royale.core.UIBase;
+    import org.apache.royale.core.StyledUIBase;
     }
     import org.apache.royale.core.AllCSSValuesImpl;
     import org.apache.royale.core.ApplicationBase;
@@ -700,7 +700,7 @@ package org.apache.royale.jewel
 		
 		/**
 		 * @royaleignorecoercion org.apache.royale.core.IBead
-         * @royaleignorecoercion org.apache.royale.core.UIBase
+         * @royaleignorecoercion org.apache.royale.core.StyledUIBase
 		 */
 		COMPILE::JS
 		protected function initialize():void
@@ -714,7 +714,7 @@ package org.apache.royale.jewel
                 initialView.applicationModel = model;
                 addElement(initialView);
                 
-				var baseView:UIBase = initialView as UIBase;
+				var baseView:StyledUIBase = initialView as StyledUIBase;
 				if (!isNaN(baseView.percentWidth) || !isNaN(baseView.percentHeight)) {
 					this.element.style.height = window.innerHeight.toString() + 'px';
 					this.element.style.width = window.innerWidth.toString() + 'px';
