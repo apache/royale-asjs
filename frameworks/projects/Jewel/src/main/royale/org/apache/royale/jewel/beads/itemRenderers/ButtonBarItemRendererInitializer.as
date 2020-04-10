@@ -22,7 +22,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.core.ISelectable;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.jewel.Button;
 	import org.apache.royale.jewel.ButtonBar;
 	import org.apache.royale.jewel.beads.views.ButtonBarView;
@@ -53,7 +52,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
 			if (presentationModel) {
-                UIBase(ir).height = presentationModel.rowHeight;
+                StyledUIBase(ir).minHeight = presentationModel.rowHeight;
                 
                 if(ir is IAlignItemRenderer)
                 {

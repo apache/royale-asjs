@@ -26,7 +26,6 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.core.UIBase;
 	import org.apache.royale.html.beads.IndexedItemRendererInitializer;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 
@@ -64,7 +63,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 *  @royaleignorecoercion HTMLInputElement
-		 *  @royaleignorecoercion org.apache.royale.core.UIBase;
+		 *  @royaleignorecoercion org.apache.royale.core.StyledUIBase;
 		 */
 		override public function set strand(value:IStrand):void
 		{	
@@ -76,7 +75,7 @@ package org.apache.royale.jewel.beads.itemRenderers
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
             if (presentationModel) {
-                UIBase(ir).height = presentationModel.rowHeight;
+                StyledUIBase(ir).minHeight = presentationModel.rowHeight;
                 
                 if(ir is IAlignItemRenderer)
                 {
