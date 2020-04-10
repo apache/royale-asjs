@@ -33,7 +33,7 @@ package org.apache.royale.jewel.beads.itemRenderers
     import org.apache.royale.events.EventDispatcher;
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.html.beads.IListView;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.jewel.Label;
     import org.apache.royale.jewel.Table;
     import org.apache.royale.jewel.beads.controls.TextAlign;
@@ -203,9 +203,9 @@ package org.apache.royale.jewel.beads.itemRenderers
 					labelField =  column.dataField;
                     var item:Object = dp.getItemAt(i);
 
-                    (ir as DataItemRenderer).dataField = labelField;
-					(ir as DataItemRenderer).rowIndex = i;
-					(ir as DataItemRenderer).columnIndex = j;
+                    (ir as StyledDataItemRenderer).dataField = labelField;
+					(ir as StyledDataItemRenderer).rowIndex = i;
+					(ir as StyledDataItemRenderer).columnIndex = j;
                     fillRenderer(index++, item, (ir as IIndexedItemRenderer), presentationModel);
 			        
                     if(column.align != "")

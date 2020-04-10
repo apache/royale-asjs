@@ -22,8 +22,7 @@ limitations under the License.
 											xmlns:html="library://ns.apache.org/royale/html" 
 											xmlns:js="library://ns.apache.org/royale/basic"
 											xmlns:models="models.*" 
-											xmlns:c="components.*" sourceCodeUrl="DataGridPlayGround.mxml"
-											>
+											xmlns:c="components.*" sourceCodeUrl="DataGridPlayGround.mxml">
 											<!-- initComplete="onDataGridPlayGroundInitComplete(event)" -->
 	
 	<fx:Script>
@@ -456,7 +455,28 @@ limitations under the License.
 				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
+		
+		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+			<j:Card>
+				<j:CardHeader>
+					<html:H3 text="No rowHeight" className="primary-normal"/>
+				</j:CardHeader>
+				<j:CardPrimaryContent>
+				
+					<j:Label text="Row height is not setupe and there are different amount of data in cells"
+						multiline="true"/>
 
+					<j:DataGrid id="biggerData" width="350" emphasis="emphasized" 
+								dataProvider="{listModel.dgBiggerRowData}">
+						<j:columns>
+							<j:DataGridColumn label="Name" dataField="name" columnWidth="90" />
+							<j:DataGridColumn label="Description" dataField="description" columnWidth="200"/>
+						</j:columns>
+					</j:DataGrid>
+				</j:CardPrimaryContent>
+			</j:Card>
+		</j:GridCell>
+		
 		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<html:H3 text="Jewel DataGrid"/>

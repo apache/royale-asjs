@@ -19,23 +19,19 @@
 package org.apache.royale.jewel.beads.itemRenderers
 {	
 	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.core.IOwnerViewItemRenderer;
-	import org.apache.royale.core.ISelectable;
+	import org.apache.royale.core.StyledMXMLItemRenderer;
 	import org.apache.royale.core.StyledUIBase;
-	import org.apache.royale.jewel.Button;
-	import org.apache.royale.jewel.ButtonBar;
-	import org.apache.royale.jewel.beads.views.ButtonBarView;
 
 	/**
-	 *  The ButtonBarItemRendererInitializer class initializes item renderers
-     *  in ButtonBar component.
+	 *  The DataGridColumnListItemRendererInitializer class initializes item renderers
+     *  in list classes and use the base class of many other initializers based on lists
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.7
 	 */
-	public class ButtonBarItemRendererInitializer extends ListItemRendererInitializer
+	public class DataGridColumnListItemRendererInitializer extends ListItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -45,50 +41,28 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.9.7
 		 */
-		public function ButtonBarItemRendererInitializer()
+		public function DataGridColumnListItemRendererInitializer()
 		{
 		}
-        
+		
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
-			if (presentationModel) {
-                StyledUIBase(ir).minHeight = presentationModel.rowHeight;
+            if (presentationModel) {
+				// temp
+                StyledUIBase(ir).height = presentationModel.rowHeight;
                 
                 if(ir is IAlignItemRenderer)
                 {
                     (ir as IAlignItemRenderer).align = presentationModel.align;
                 }
             }
-			if (ir is IOwnerViewItemRenderer && ownerView)
-                (ir as IOwnerViewItemRenderer).itemRendererOwnerView = ownerView;
-			if (ir is Button && ownerView)
-				styleBasedOnIndex(ir);
-		}
-
-		public function styleBasedOnIndex(ir:IIndexedItemRenderer):void
-		{
-			var buttonBar:ButtonBar = ((ir as IOwnerViewItemRenderer).itemRendererOwnerView as ButtonBarView).buttonBar;
-			if(buttonBar.emphasis != null)
+            if (ir is StyledMXMLItemRenderer && ownerView)
 			{
-				StyledUIBase(ir).emphasis = buttonBar.emphasis;
-			}
-
-			if(ir.index == 0)
-			{
-				StyledUIBase(ir).addClass("first");
-			} 
-			else if(ir.index == buttonBar.dataProvider.length - 1 )
-			{
-				StyledUIBase(ir).addClass("last");
-			}
-			else
-			{
-				StyledUIBase(ir).addClass("middle");
-			}
-
-			if (ir is ISelectable && buttonBar.selectedIndex == ir.index)
-			{
-				ISelectable(ir).selected = true;
+                (ir as StyledMXMLItemRenderer).itemRendererOwnerView = ownerView;
+				if(StyledUIBase(_strand).emphasis != null)
+				{
+					(ir as StyledMXMLItemRenderer).emphasis = StyledUIBase(_strand).emphasis;
+				}
 			}
 		}
 	}

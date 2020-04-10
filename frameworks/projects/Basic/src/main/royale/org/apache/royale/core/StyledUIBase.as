@@ -23,9 +23,7 @@ package org.apache.royale.core
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
-    import org.apache.royale.events.Event;
     import org.apache.royale.utils.ClassSelectorList;
-    import org.apache.royale.utils.IClassSelectorListSupport;
     import org.apache.royale.utils.sendEvent;
 
     /**
@@ -356,8 +354,7 @@ package org.apache.royale.core
 			}
 			COMPILE::JS
 			{
-				//positioner.style.position = 'absolute';
-                if(!isNaN(value))
+				if(!isNaN(value))
                 {
                     if (positioner.parentNode != positioner.offsetParent)
                         value += (positioner.parentNode as HTMLElement).offsetLeft;
@@ -389,8 +386,7 @@ package org.apache.royale.core
 			}
 			COMPILE::JS
 			{
-				//positioner.style.position = 'absolute';
-                if(!isNaN(value))
+				if(!isNaN(value))
                 {
                     if (positioner.parentNode != positioner.offsetParent)
                         value += (positioner.parentNode as HTMLElement).offsetTop;
@@ -400,6 +396,106 @@ package org.apache.royale.core
                     positioner.style.top = null;
                 }
 			}
+        }
+
+        protected var _minWidth:Number;
+        /**
+         *  the minimun width for this component
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get minWidth():Number
+        {
+            return _minWidth;
+        }
+        public function set minWidth(value:Number):void
+        {
+            if (_minWidth !== value)
+            {
+                _minWidth = value;
+                COMPILE::JS
+			    {
+                this.positioner.style.minWidth = _minWidth.toString() + 'px';
+                }
+            }   
+        }
+
+        protected var _minHeight:Number;
+        /**
+         *  the minimun height for this component
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get minHeight():Number
+        {
+            return _minHeight;
+        }
+        public function set minHeight(value:Number):void
+        {
+            if (_minHeight !== value)
+            {
+                _minHeight = value;
+                COMPILE::JS
+			    {
+                this.positioner.style.minHeight = _minHeight.toString() + 'px';
+                }
+            }   
+        }
+        
+        protected var _maxWidth:Number;
+        /**
+         *  the maximun width for this component
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get maxWidth():Number
+        {
+            return _maxWidth;
+        }
+        public function set maxWidth(value:Number):void
+        {
+            if (_maxWidth !== value)
+            {
+                _maxWidth = value;
+                COMPILE::JS
+			    {
+                this.positioner.style.maxWidth = _maxWidth.toString() + 'px';
+                }
+            }   
+        }
+        
+        protected var _maxHeight:Number;
+        /**
+         *  the maximun height for this component
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function get maxHeight():Number
+        {
+            return _maxHeight;
+        }
+        public function set maxHeight(value:Number):void
+        {
+            if (_maxHeight !== value)
+            {
+                _maxHeight = value;
+                COMPILE::JS
+			    {
+                this.positioner.style.maxHeight = _maxHeight.toString() + 'px';
+                }
+            }   
         }
     }
 }

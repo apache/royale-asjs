@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    import org.apache.royale.html.supportClasses.MXMLStatesItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledMXMLStatesItemRenderer;
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IOwnerViewItemRenderer;
-    import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.IClassSelectorListSupport;
     import org.apache.royale.utils.IEmphasis;
 	
@@ -34,7 +33,7 @@ package org.apache.royale.core
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.3
 	 */
-	public class StyledMXMLItemRenderer extends MXMLStatesItemRenderer implements IClassSelectorListSupport, IEmphasis, IOwnerViewItemRenderer
+	public class StyledMXMLItemRenderer extends StyledMXMLStatesItemRenderer implements IClassSelectorListSupport, IEmphasis, IOwnerViewItemRenderer
 	{
 		/**
 		 *  constructor.
@@ -48,128 +47,7 @@ package org.apache.royale.core
 		{
 			super();
             typeNames = "";
-            classSelectorList = new ClassSelectorList(this);
 		}
-
-        protected var classSelectorList:ClassSelectorList;
-
-        COMPILE::JS
-        override protected function setClassName(value:String):void
-        {
-            classSelectorList.addNames(value);
-        }
-
-        /**
-         * Add a class selector to the list.
-         * 
-         * @param name Name of selector to add.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
-         */
-        public function addClass(name:String):void
-        {
-            COMPILE::JS
-            {
-            classSelectorList.add(name);
-            }
-        }
-
-        /**
-         * Removes a class selector from the list.
-         * 
-         * @param name Name of selector to remove.
-         *
-         * @royaleignorecoercion HTMLElement
-         * @royaleignorecoercion DOMTokenList
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
-         */
-        public function removeClass(name:String):void
-        {
-            COMPILE::JS
-            {
-            classSelectorList.remove(name);
-            }
-        }
-
-        /**
-         * Add or remove a class selector to/from the list.
-         * 
-         * @param name Name of selector to add or remove.
-         * @param value True to add, False to remove.
-         * 
-         * @langversion 3.0
-         * @playerversion Flash 10.2
-         * @playerversion AIR 2.6
-         * @productversion Royale 0.9.3
-         */
-        public function toggleClass(name:String, value:Boolean):void
-        {
-            COMPILE::JS
-            {
-            classSelectorList.toggle(name, value);
-            }
-        }
-
-        /**
-		 *  Search for the name in the element class list 
-		 *
-         *  @param name Name of selector to find.
-         *  @return return true if the name is found or false otherwise.
-         * 
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.3
-		 */
-		public function containsClass(name:String):Boolean
-        {
-            COMPILE::JS
-            {
-            return classSelectorList.contains(name);
-            }
-            COMPILE::SWF
-            {//not implemented
-            return false;
-            }
-        }
-
-        private var _emphasis:String;
-        /**
-		 *  Applies emphasis color display. Possible constant values are: PRIMARY, SECONDARY, EMPHASIZED.
-         *  Colors are defined in royale jewel theme CSS.
-         * 
-         *  Left without value to get the default look (light or dark).
-         *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 */
-        public function get emphasis():String
-        {
-            return _emphasis;
-        }
-        [Inspectable(category="General", enumeration="primary,secondary,emphasized")]
-        public function set emphasis(value:String):void
-        {
-            if (_emphasis != value)
-            {
-                if(_emphasis)
-                {
-					toggleClass(_emphasis, false);
-                }
-                _emphasis = value;
-
-                toggleClass(_emphasis, value);
-            }
-        }
 
         private var _itemRendererOwnerView:IItemRendererOwnerView;
         /**
@@ -208,7 +86,7 @@ package org.apache.royale.core
 				emphasis = (itemRendererOwnerView.host as IEmphasis).emphasis;
 			} else
 			{
-				emphasis = "primary";
+				emphasis = StyledUIBase.PRIMARY;
 			}
 		}
 	}
