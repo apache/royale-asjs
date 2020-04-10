@@ -271,23 +271,6 @@ package org.apache.royale.utils
         }
         
         /**
-         * Checks for null before returning a closure
-         *
-         * @param fn The method on the instance.
-         * @param object The instance.
-         * @param boundMethodName The name to use to cache the closure.
-         * @return The closure, or null.
-         *
-         * @royaleignorecoercion Function
-         */
-        static public function conditionalClosure(fn:Function, object:Object, boundMethodName:String):Function
-        {
-            if (fn == null)
-                return null;
-            return Language.closure(fn, object, boundMethodName);
-        }
-        
-        /**
          * caches closures and returns the one closure
          *
          * @param fn The method on the instance.
