@@ -219,5 +219,21 @@ package models
 		{
 			_bigIconListVOData = null;
 		}
+		
+		private var _dgBiggerRowData:ArrayList = new ArrayList([
+			{name: "Piotr", description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. "
+									   + "Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book."},
+			{name: "Alice", description: "Lorem Ipsum is simply dummy text of the printing and typesetting industry."}								   
+		]);
+		
+		public function get dgBiggerRowData():ArrayList
+		{
+			return _dgBiggerRowData;
+		}
+		
+		public function set dgBiggerRowData(value:ArrayList):void
+		{
+			_dgBiggerRowData = value;
+		}
 	}
 }
