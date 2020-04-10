@@ -32,7 +32,7 @@ package org.apache.royale.jewel.itemRenderers
     }
     import org.apache.royale.core.IItemRendererOwnerView;
     import org.apache.royale.core.IOwnerViewItemRenderer;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.html.util.getLabelFromData;
     import org.apache.royale.jewel.beads.controls.TextAlign;
     import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
@@ -47,7 +47,7 @@ package org.apache.royale.jewel.itemRenderers
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.4
 	 */
-	public class StringItemRenderer extends DataItemRenderer implements IOwnerViewItemRenderer, ITextItemRenderer, IAlignItemRenderer
+	public class StringItemRenderer extends StyledDataItemRenderer implements IOwnerViewItemRenderer, ITextItemRenderer, IAlignItemRenderer
 	{
 		/**
 		 *  constructor.

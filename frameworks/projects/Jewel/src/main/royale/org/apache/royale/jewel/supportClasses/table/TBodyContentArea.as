@@ -28,7 +28,7 @@ package org.apache.royale.jewel.supportClasses.table
     import org.apache.royale.events.IEventDispatcher;
     import org.apache.royale.events.ItemAddedEvent;
     import org.apache.royale.events.ItemRemovedEvent;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
     import org.apache.royale.jewel.supportClasses.container.StyledContainerContentArea;
     import org.apache.royale.jewel.supportClasses.table.TableRow;
@@ -243,7 +243,7 @@ package org.apache.royale.jewel.supportClasses.table
 			var n:Number = numElements;
 			for (var i:Number = 0; i < n; i++)
 			{
-				var renderer:DataItemRenderer = getItemRendererAt(i) as DataItemRenderer;
+				var renderer:StyledDataItemRenderer = getItemRendererAt(i) as StyledDataItemRenderer;
 				if (renderer) {
 					renderer.setWidth(this.width,true);
 					renderer.adjustSize();

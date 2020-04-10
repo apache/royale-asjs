@@ -27,7 +27,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
 	import org.apache.royale.jewel.beads.models.TableModel;
 	import org.apache.royale.jewel.supportClasses.table.TableCell;
 	import org.apache.royale.jewel.supportClasses.table.TableRow;
@@ -123,12 +123,12 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 */
 		protected function handleItemRemoved(event:CollectionEvent):void
 		{
-			var ir:DataItemRenderer;
+			var ir:StyledDataItemRenderer;
 			var cell:TableCell;
 			var processedRow:TableRow = (itemRendererOwnerView as UIBase).getElementAt(event.index) as TableRow;
 			while (processedRow.numElements > 0) {
 				cell = processedRow.getElementAt(0) as TableCell;
-				ir = cell.getElementAt(0) as DataItemRenderer;
+				ir = cell.getElementAt(0) as StyledDataItemRenderer;
 				itemRendererOwnerView.removeItemRenderer(ir);
 				cell.removeElement(ir);
 				processedRow.removeElement(cell);
@@ -139,7 +139,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			var len:int = itemRendererOwnerView.numItemRenderers;
 			for (var i:int = event.index; i < len; i++)
 			{
-				ir = itemRendererOwnerView.getItemRendererAt(i) as DataItemRenderer;
+				ir = itemRendererOwnerView.getItemRendererAt(i) as StyledDataItemRenderer;
 				ir.index = i;
 				ir.rowIndex = i;
 			}

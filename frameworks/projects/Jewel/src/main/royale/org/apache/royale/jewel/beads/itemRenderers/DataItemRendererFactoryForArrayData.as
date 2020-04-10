@@ -32,7 +32,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.ItemRendererEvent;
 	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.html.supportClasses.DataItemRenderer;
+	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import org.apache.royale.core.IOwnerViewItemRenderer;
 	import org.apache.royale.jewel.beads.itemRenderers.DataFieldProviderBead;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
@@ -156,7 +156,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 		 *  @royaleignorecoercion org.apache.royale.core.IListView
 		 *  @royaleignorecoercion org.apache.royale.core.UIBase
 		 *  @royaleignorecoercion org.apache.royale.core.IIndexedItemRenderer
-		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.DataItemRenderer
+		 *  @royaleignorecoercion org.apache.royale.html.supportClasses.StyledDataItemRenderer
 		 *  @royaleignorecoercion org.apache.royale.jewel.supportClasses.list.IListPresentationModel
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 *  @royaleignorecoercion org.apache.royale.core.ILabelFieldItemRenderer
@@ -178,7 +178,7 @@ package org.apache.royale.jewel.beads.itemRenderers
 			for (var i:int = 0; i < n; i++)
 			{
 				var ir:IIndexedItemRenderer = itemRendererFactory.createItemRenderer() as IIndexedItemRenderer;
-                var dataItemRenderer:DataItemRenderer = ir as DataItemRenderer;
+                var dataItemRenderer:StyledDataItemRenderer = ir as StyledDataItemRenderer;
 
 				
 				ir.index = i;

@@ -31,7 +31,7 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.events.ItemClickedEvent;
 	import org.apache.royale.events.ItemRemovedEvent;
 	import org.apache.royale.jewel.beads.views.TableView;
-    import org.apache.royale.html.supportClasses.DataItemRenderer;
+    import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
     import  org.apache.royale.jewel.beads.models.TableModel;
 
     /**
@@ -137,7 +137,7 @@ package org.apache.royale.jewel.beads.controllers
 		
 		protected function selectedHandler(event:ItemClickedEvent):void
         {
-            var renderer:DataItemRenderer = event.currentTarget as DataItemRenderer;
+            var renderer:StyledDataItemRenderer = event.currentTarget as StyledDataItemRenderer;
 			
             model.labelField = renderer.labelField;
 			model.selectedItem = event.data;
