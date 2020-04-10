@@ -137,8 +137,10 @@
     <component id="Slider" class="org.apache.royale.html.Slider"/>
     <component id="NumericStepper" class="org.apache.royale.html.NumericStepper" />
     <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
+    <component id="StyledDataItemRenderer" class="org.apache.royale.html.supportClasses.StyledDataItemRenderer"/>
     <component id="MXMLBeadView" class="org.apache.royale.html.MXMLBeadView"/>
     <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
+    <component id="StyledMXMLItemRenderer" class="org.apache.royale.core.StyledMXMLItemRenderer"/>
     <component id="MXMLStatesItemRenderer" class="org.apache.royale.html.supportClasses.MXMLStatesItemRenderer"/>
     <component id="AlternatingBackgroundColorStringItemRenderer" class="org.apache.royale.html.supportClasses.AlternatingBackgroundColorStringItemRenderer"/>
     <component id="StringItemRenderer" class="org.apache.royale.html.supportClasses.StringItemRenderer"/>
@@ -150,8 +152,6 @@
     <component id="DispatchKeyboardEventBead" class="org.apache.royale.html.beads.DispatchKeyboardEventBead"/>
     <component id="TreeItemRenderer" class="org.apache.royale.html.supportClasses.TreeItemRenderer"/>
     <component id="TreeXMLItemRenderer" class="org.apache.royale.html.supportClasses.TreeXMLItemRenderer"/>
-    <component id="DataItemRenderer" class="org.apache.royale.html.supportClasses.DataItemRenderer"/>
-    <component id="MXMLItemRenderer" class="org.apache.royale.html.supportClasses.MXMLItemRenderer"/>
     <component id="DateItemRenderer" class="org.apache.royale.html.supportClasses.DateItemRenderer"/>
     <component id="DayNameItemRenderer" class="org.apache.royale.html.supportClasses.DayNameItemRenderer"/>
     <component id="TextButtonItemRenderer" class="org.apache.royale.html.supportClasses.TextButtonItemRenderer"/>
