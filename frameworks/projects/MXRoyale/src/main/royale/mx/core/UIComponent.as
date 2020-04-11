@@ -4311,8 +4311,8 @@ COMPILE::JS
 			return new Rectangle(0, 0, stage.stageWidth, stage.stageHeight);
 		}
 		COMPILE::JS {
-			var body:HTMLBodyElement = document.getElementsByTagName('body')[0] as HTMLBodyElement;
-			return new Rectangle(0, 0, body.clientWidth, body.clientHeight);
+            var topLevelApplication:IUIBase = FlexGlobals.topLevelApplication as IUIBase;
+			return new Rectangle(0, 0, topLevelApplication.width, topLevelApplication.height);
 		}
 	}
 
