@@ -345,6 +345,8 @@ public class RadioButtonGroup extends EventDispatcher
      */
     public function set selectedValue(value:Object):void
     {
+		 if (_selectedValue == value) return;
+		
          _selectedValue = value;
 
          // Clear the exisiting selecton if there is one.
