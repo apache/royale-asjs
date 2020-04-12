@@ -18,10 +18,12 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.models
 {
+	import org.apache.royale.core.IBeadLayout;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.EventDispatcher;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.jewel.beads.layouts.IVariableRowHeight;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	
 	/**
@@ -47,6 +49,7 @@ package org.apache.royale.jewel.beads.models
 		{
 			super();
 		}
+
 		
 		private var _rowHeight:Number = 34;
 		/**
@@ -92,6 +95,37 @@ package org.apache.royale.jewel.beads.models
 			}
 		}
 		
+		private var _variableRowHeight:Boolean = true;
+		/**
+		 *  variableRowHeight
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		public function get variableRowHeight():Boolean
+		{
+			return _variableRowHeight;
+		}
+		public function set variableRowHeight(value:Boolean):void
+		{
+			if (value != _variableRowHeight) {
+				_variableRowHeight = value;
+				if(_strand)
+				{
+					updateVariableRowHeight();
+					(_strand as IEventDispatcher).dispatchEvent(new Event("variableRowHeightChanged"));
+				}
+			}
+		}
+
+		public function updateVariableRowHeight():void
+		{
+			if(layout)
+				layout.variableRowHeight = _variableRowHeight;
+		}
+		
 		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -104,6 +138,15 @@ package org.apache.royale.jewel.beads.models
 		public function set strand(value:IStrand):void
 		{
 			_strand = value;
+			(_strand as IEventDispatcher).addEventListener('initComplete', initCompleteHandler);
 		}
+		protected function initCompleteHandler(e:Event):void
+		{
+			(_strand as IEventDispatcher).removeEventListener('initComplete', initCompleteHandler);
+			layout = _strand.getBeadByType(IBeadLayout) as IVariableRowHeight;
+			updateVariableRowHeight();
+		}
+
+		private var layout:IVariableRowHeight;
 	}
 }

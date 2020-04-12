@@ -80,25 +80,6 @@ package org.apache.royale.jewel.supportClasses.container
 		}
 		
 		/*
-		 * IList
-		 */
-		
-		/**
-		 * Returns the sub-component that parents all of the item renderers.
-		 *
-		 *  @langversion 3.0
-		 *  @playerversion Flash 10.2
-		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
-		 * 	@royaleignorecoercion org.apache.royale.html.beads.IListView
-		public function get dataGroup():IItemRendererOwnerView
-		{
-			// The JS-side's view.dataGroup is actually this instance of DataContainerBase
-			return (view as IListView).dataGroup;
-		}
-		 */
-		
-		/*
 		* IItemRendererProvider
 		*/
 		

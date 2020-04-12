@@ -242,10 +242,7 @@ package org.apache.royale.jewel.beads.layouts
 		COMPILE::JS
 		private function setVariableRowHeight(value:Boolean):void
 		{
-			if (value)
-				hostClassList.add("variableRowHeight");
-			else
-				hostClassList.remove("variableRowHeight");
+			hostClassList.toggle("variableRowHeight", value);
 		}
 		
         /**
