@@ -313,7 +313,7 @@ public class ModuleLoader extends VBox
 	{
 		return null;
 	}
-        return utils.modulePath + "/" + utils.moduleName + ".swf";
+        return utils.modulePath ? utils.modulePath + "/" + utils.moduleName + ".swf" : utils.moduleName + ".swf";
     }
 
     /**
