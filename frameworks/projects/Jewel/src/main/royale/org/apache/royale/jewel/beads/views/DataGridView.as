@@ -151,6 +151,7 @@ package org.apache.royale.jewel.beads.views
                 
                 var pm:ListPresentationModel = list.getBeadByType(IListPresentationModel) as ListPresentationModel;
                 pm.rowHeight = _presentationModel.rowHeight;
+                pm.variableRowHeight = false;
                 pm.align = dataGridColumn.align;
                 
                 list.datagrid = _dg as DataGrid;

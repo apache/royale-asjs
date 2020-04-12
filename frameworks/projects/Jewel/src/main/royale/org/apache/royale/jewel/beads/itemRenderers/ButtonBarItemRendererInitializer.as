@@ -52,7 +52,9 @@ package org.apache.royale.jewel.beads.itemRenderers
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void
         {
 			if (presentationModel) {
-                StyledUIBase(ir).minHeight = presentationModel.rowHeight;
+                if(!presentationModel.variableRowHeight)
+                	StyledUIBase(ir).height = presentationModel.rowHeight;
+				//StyledUIBase(ir).minHeight = presentationModel.rowHeight;
                 
                 if(ir is IAlignItemRenderer)
                 {
