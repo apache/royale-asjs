@@ -18,13 +18,7 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.core
 {
-    
-    import org.apache.royale.core.ClassFactory;
-    import org.apache.royale.core.IFactory;
-    import org.apache.royale.core.IItemRendererProvider;
     import org.apache.royale.core.ISelectableItemRenderer;
-    
-    import org.apache.royale.utils.MXMLDataInterpreter;
     import org.apache.royale.utils.getSelectionRenderBead;
 
 	[DefaultProperty("mxmlContent")]
@@ -38,7 +32,7 @@ package org.apache.royale.core
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @productversion Royale 0.9.7
      */
 	public class OverridableSelectableItemRendererClassFactory extends ItemRendererClassFactory
 	{
@@ -48,7 +42,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.7
          */
 		public function OverridableSelectableItemRendererClassFactory()
 		{
@@ -61,7 +55,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.7
          *  @royaleignorecoercion Class
          */
         override public function set strand(value:IStrand):void
@@ -78,7 +72,7 @@ package org.apache.royale.core
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
+         *  @productversion Royale 0.9.7
          */
         override public function createItemRenderer():IItemRenderer
         {
@@ -89,7 +83,7 @@ package org.apache.royale.core
                 selectionBead = new selectableBeadClass();
                 COMPILE::JS
                 {
-                    ir["_selectionBead_"] = selectionBead;
+                ir["_selectionBead_"] = selectionBead;
                 }
 	            ir.addBead(selectionBead);
             }
