@@ -27,6 +27,7 @@ limitations under the License.
 	<fx:Script>
 		<![CDATA[
 			import org.apache.royale.collections.ArrayList;
+			import org.apache.royale.jewel.beads.controls.list.scrollToIndex;
 
 			import vos.IconListVO;
 
@@ -176,6 +177,11 @@ limitations under the License.
 					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
 						<j:Label text="Select list by item: "/>
 						<j:NumericStepper valueChange="list1.selectedItem = list1.dataProvider.getItemAt(event.target.value)" minimum="0" maximum="{(list1.dataProvider as ArrayList).length - 1}"/>
+					</j:HGroup>
+					
+					<j:HGroup gap="3" itemsVerticalAlign="itemsCenter">
+						<j:Label text="Scroll to index: "/>
+						<j:NumericStepper valueChange="scrollToIndex(list1, event.target.value)" minimum="0" maximum="{(list1.dataProvider as ArrayList).length - 1}"/>
 					</j:HGroup>
 				</j:CardPrimaryContent>
 				<j:CardActions itemsHorizontalAlign="itemsRight">
