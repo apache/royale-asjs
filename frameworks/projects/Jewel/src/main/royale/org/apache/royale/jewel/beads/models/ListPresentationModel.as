@@ -37,6 +37,7 @@ package org.apache.royale.jewel.beads.models
 	 */
 	public class ListPresentationModel extends EventDispatcher implements IListPresentationModel
 	{
+		public static const DEFAULT_ROW_HEIGHT:Number = 34;
 		/**
 		 *  constructor.
 		 *
@@ -51,7 +52,7 @@ package org.apache.royale.jewel.beads.models
 		}
 
 		
-		private var _rowHeight:Number = 34;
+		private var _rowHeight:Number = DEFAULT_ROW_HEIGHT;
 		/**
 		 *  The height of each row.
 		 *

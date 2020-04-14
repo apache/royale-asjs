@@ -21,6 +21,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
     import org.apache.royale.jewel.DataGrid;
     import org.apache.royale.jewel.List;
     import org.apache.royale.jewel.supportClasses.datagrid.IDataGridColumnList;
+    import org.apache.royale.jewel.beads.models.ListPresentationModel;
     
     //--------------------------------------
     //  Events
@@ -60,7 +61,7 @@ package org.apache.royale.jewel.supportClasses.datagrid
 			super();
 			typeNames = "jewel list column";
             // rowHeight need to be set to a default value to avoid potential different column heights
-			rowHeight = 34;
+			rowHeight = ListPresentationModel.DEFAULT_ROW_HEIGHT;
 		}
 		
         /**

@@ -20,9 +20,6 @@ package org.apache.royale.jewel.beads.controls.list
 {
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.jewel.DropDownList;
-	import org.apache.royale.jewel.beads.models.IDropDownListModel;
 	import org.apache.royale.jewel.List;
 	
 	/**
