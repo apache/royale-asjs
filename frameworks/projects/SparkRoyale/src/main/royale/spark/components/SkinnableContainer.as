@@ -982,6 +982,7 @@ public class SkinnableContainer extends SkinnableContainerBase implements IConta
         // Load the layout bead if it hasn't already been loaded.
         loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
         
+        dispatchEvent(new Event("beadsAdded"));
         dispatchEvent(new Event("initComplete"));
         if ((isHeightSizedToContent() || !isNaN(explicitHeight)) &&
             (isWidthSizedToContent() || !isNaN(explicitWidth)))
