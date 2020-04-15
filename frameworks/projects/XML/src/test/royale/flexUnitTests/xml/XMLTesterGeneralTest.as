@@ -1155,6 +1155,125 @@ package flexUnitTests.xml
             assertEquals(xml.@myAtt1,'myAttTestVal', 'unexpected attributes value');
 
         }
+
+
+        [Test]
+        public function testAppendChildContentTransfer():void{
+            var source:XML = <source att='attribute'><dog/><cat/><rat/><pig/><cow/><hen/></source>;
+            var sourceChildren:XMLList = source.children();
+            var attList:XMLList = source.@att;
+            var att:XML = attList[0];
+            var orig1:XML = sourceChildren[0];
+            var dest:XML = <dest/>;
+
+            assertTrue(orig1.parent() === source, 'unexpected parent');
+            assertTrue(att.parent() === source, 'unexpected parent');
+            dest.appendChild(sourceChildren);
+            //element was re-parented:
+            assertFalse(orig1.parent() === source, 'unexpected parent');
+            //attribute was not moved:
+            assertTrue(att.parent() === source, 'unexpected parent');
+            assertTrue(orig1.parent() === dest, 'unexpected parent');
+
+            //at this point the actual nodes are present in both xml trees when iterating downwards,
+            //but the 'parent()' evaluation only resolves to the latest parent
+            //this is the swf behavior, but may not conform to standard
+
+            assertEquals(source.toXMLString(),
+                    '<source att="attribute">\n' +
+                    '  <dog/>\n' +
+                    '  <cat/>\n' +
+                    '  <rat/>\n' +
+                    '  <pig/>\n' +
+                    '  <cow/>\n' +
+                    '  <hen/>\n' +
+                    '</source>', 'unexpected source toXMLString')
+
+            assertEquals(dest.toXMLString(),
+                    '<dest>\n' +
+                    '  <dog/>\n' +
+                    '  <cat/>\n' +
+                    '  <rat/>\n' +
+                    '  <pig/>\n' +
+                    '  <cow/>\n' +
+                    '  <hen/>\n' +
+                    '</dest>', 'unexpected dest toXMLString')
+
+            dest.appendChild(attList);
+            //swf has a strange variation here:
+            var appendedAtt1:String = isJS ? '  <att>attribute</att>\n' : '  <att xmlns="flexUnitTests.xml:XMLTesterGeneralTest">attribute</att>\n'
+
+            assertEquals(dest.toXMLString(),
+                    '<dest>\n' +
+                    '  <dog/>\n' +
+                    '  <cat/>\n' +
+                    '  <rat/>\n' +
+                    '  <pig/>\n' +
+                    '  <cow/>\n' +
+                    '  <hen/>\n' +
+                    appendedAtt1 +
+                    '</dest>', 'unexpected dest toXMLString');
+
+            dest.appendChild(att);
+
+            assertEquals(dest.toXMLString(),
+                    '<dest>\n' +
+                    '  <dog/>\n' +
+                    '  <cat/>\n' +
+                    '  <rat/>\n' +
+                    '  <pig/>\n' +
+                    '  <cow/>\n' +
+                    '  <hen/>\n' +
+                    appendedAtt1 +
+                    '  attribute\n' +
+                    '</dest>', 'unexpected dest toXMLString');
+
+
+            dest.appendChild(orig1);
+
+
+            //the source remains unchanged
+            assertEquals(source.toXMLString(),
+                    '<source att="attribute">\n' +
+                    '  <dog/>\n' +
+                    '  <cat/>\n' +
+                    '  <rat/>\n' +
+                    '  <pig/>\n' +
+                    '  <cow/>\n' +
+                    '  <hen/>\n' +
+                    '</source>', 'unexpected source toXMLString');
+
+            //this is effectively a re-ordering inside dest
+            var expected1:String =     '<dest>\n' +
+                    '  <cat/>\n' +
+                    '  <rat/>\n' +
+                    '  <pig/>\n' +
+                    '  <cow/>\n' +
+                    '  <hen/>\n' +
+                    appendedAtt1 +
+                    '  attribute\n' +
+                    '  <dog/>\n' +
+                    '</dest>'
+
+            var expected2:String = '<dest>\n' +
+                    '  <dog/>\n' + //this seems to be the case in standalone debug player
+                    '  <cat/>\n' +
+                    '  <rat/>\n' +
+                    '  <pig/>\n' +
+                    '  <cow/>\n' +
+                    '  <hen/>\n' +
+                    appendedAtt1 +
+                    '  attribute\n' +
+                    '  <dog/>\n' +
+                    '</dest>'
+
+
+            var actual:String = dest.toXMLString();
+
+            assertTrue(actual==expected1 || actual==expected2
+                   , 'unexpected dest toXMLString');
+
+        }
         
         //@todo - Passes in Swf, fails in browser:
         /*[Test]

@@ -23,6 +23,10 @@ package flexUnitTests.xml
     import flexUnitTests.xml.support.NamespaceTest;
     
     import org.apache.royale.test.asserts.*;
+
+    COMPILE::SWF{
+        import flash.system.Capabilities;
+    }
     
    // import testshim.RoyaleUnitTestRunner;
     
@@ -101,6 +105,15 @@ package flexUnitTests.xml
             //something for js, indicating javascript 'playerversion' is consistent with more recent flash player versions:
             return 30;
         }
+
+        public function getPlayerType():String{
+            COMPILE::SWF{
+                return Capabilities.playerType;
+            }
+            COMPILE::JS{
+                return 'Browser';
+            }
+        }
         
     
         [Test]
@@ -114,12 +127,12 @@ package flexUnitTests.xml
             //account for what appears to be a player bug in a range of player versions (not verified on Mac)
             // Javascript conforms to the latest swf behavior
             
-            var permitEmptyString:Boolean  = /*playerVersion >= 11.2 &&*/ playerVersion <= 20.0;
+            var permitEmptyString:Boolean  = /*playerVersion >= 11.2 &&*/ playerVersion <= 20.0 || getPlayerType() == 'StandAlone';
             var prefix:* = ns.prefix;
             var testIsOK:Boolean = permitEmptyString ? prefix === '' || prefix === undefined : prefix === undefined;
             
             //assertStrictlyEquals(ns.prefix, undefined, 'unexpected prefix value ');
-            assertTrue(testIsOK, 'unexpected prefix value ');
+            assertTrue(testIsOK, playerVersion+' unexpected prefix value :'+prefix);
             
             var uri:String = ns.uri;
             testIsOK = permitEmptyString ? uri == '' || uri == 'test' : uri == 'test';

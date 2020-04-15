@@ -918,22 +918,48 @@ package
 			//normalize();
 			return this;
 		}
-		
+
+		/**
+		 *
+		 * @royaleignorecoercion XML
+		 */
 		private function appendChildInternal(child:*):void
 		{
+			var kind:String;
+			var alreadyPresent:int
+			var children:Array = getChildren();
 			if(child is XMLList)
 			{
 				var len:int = child.length();
 				for(var i:int=0; i<len; i++)
 				{
-					appendChildInternal(child[0]);
+					//reproduce swf behavior... leaves a phantom child in the source
+					var childItem:XML = child[i] as XML;
+					kind = childItem.getNodeRef();
+					if (kind == ATTRIBUTE) {
+						var name:String = childItem.localName();
+						var content:String = '<'+name+'>'+childItem.toString()+'</'+name+'>';
+						childItem = new XML(content)
+					} else {
+						alreadyPresent = children.indexOf(childItem);
+						if (alreadyPresent != -1) children.splice(alreadyPresent, 1);
+					}
+					childItem.setParent(this, true);
+					children.push(childItem);
 				}
 			}
 			else
 			{
 				assertType(child,XML,"Type must be XML");
-				child.setParent(this);
-				getChildren().push(child);
+				kind = child.getNodeRef();
+				if (kind == ATTRIBUTE) {
+					child = new XML(child.toString());
+				} else {
+					alreadyPresent = children.indexOf(child);
+					if (alreadyPresent != -1) children.splice(alreadyPresent, 1);
+				}
+				(child as XML).setParent(this);
+				children.push(child);
 			}
 		}
 		
@@ -2754,13 +2780,17 @@ package
 			}
 			
 		}
-		
-		public function setParent(parent:XML):void
+
+		/**
+		 * @private
+		 * @royalesuppressexport
+		 */
+		public function setParent(parent:XML, keep:Boolean=false):void
 		{
 			if(parent == _parent)
 				return;
 			var oldParent:XML = _parent;
-			if(oldParent)
+			if(oldParent && !keep)
 				oldParent.removeChild(this);
 			_parent = parent;
 		}
@@ -2909,7 +2939,7 @@ package
 			
 			if(str.indexOf("@") == 0)
 				return toAttributeName(name);
-			
+
 			return new QName(str);
 		}
 		
