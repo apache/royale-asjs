@@ -120,6 +120,8 @@ package mx.controls.listClasses
             var dataGroup:IItemRendererOwnerView = view.dataGroup;
             
             dataGroup.removeAllItemRenderers();
+			IEventDispatcher(_strand).dispatchEvent(new Event("layoutNeeded"));
+			
         }
         
 
