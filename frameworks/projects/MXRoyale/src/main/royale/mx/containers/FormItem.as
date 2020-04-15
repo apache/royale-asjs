@@ -339,6 +339,8 @@ public class FormItem extends Container
      */
     override public function set label(value:String):void
     {
+		if (_label == value) return;
+		
         _label = value;
         labelChanged = true;
 
@@ -352,6 +354,7 @@ public class FormItem extends Container
        {
             Form(parent).invalidateLabelWidth();
             commitProperties();
+			Form(parent).dispatchEvent(new Event("layoutNeeded"));
        }
 
         dispatchEvent(new Event("labelChanged"));
