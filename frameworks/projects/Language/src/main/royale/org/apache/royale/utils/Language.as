@@ -544,7 +544,7 @@ package org.apache.royale.utils
                             return typeof v == 'function'
                                     && v.prototype
                                     && v.prototype['constructor'] == v
-                                    && (v.prototype.ROYALE_CLASS_INFO || v.constructor == _synthType || Object.getOwnPropertyNames(v).join().replace(excludeName,'') != isFunc )
+                                    && (v.prototype.ROYALE_CLASS_INFO || v.constructor == _synthType || v == Boolean || Object.getOwnPropertyNames(v).join().replace(excludeName,'') != isFunc )
                         };
                         snythTypeInst = typeStore['Class'] = new _synthType('Class',
                                 function():void{throw new TypeError('Error #1115: Class is not a constructor.')},
