@@ -64,6 +64,7 @@ import mx.events.utils.KeyboardEventConverter;
 import mx.events.utils.MouseEventConverter;
 import mx.managers.FocusManager;
 import mx.managers.ISystemManager;
+import mx.events.FlexEvent;
 
 COMPILE::JS {
     import org.apache.royale.core.ElementWrapper;
@@ -371,7 +372,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 		FocusEventConverter.setupAllConverters(stage);
 		KeyboardEventConverter.setupAllConverters(stage);
 		
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 			this.initializeApplication();
 		else
 			addEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
@@ -381,7 +382,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::SWF
 	private function enterFrameHandler(event:flash.events.Event):void
 	{
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
 		{
 			removeEventListener(flash.events.Event.ENTER_FRAME, enterFrameHandler);
 			this.initializeApplication();
@@ -456,7 +457,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
         
 		this.initManagers();
 
-        dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+        dispatchEvent(new FlexEvent("applicationComplete"));
     }
 	
 	//--------------------------------------------------------------------------
@@ -606,7 +607,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	public function start():void
 	{
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new FlexEvent("preinitialize", false, true)))
 			initializeApplication();
 		else {			
 			startupTimer = new Timer(34, 0);
@@ -621,7 +622,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 	COMPILE::JS
 	protected function handleStartupTimer(event:Event):void
 	{
-		if (dispatchEvent(new org.apache.royale.events.Event("preinitialize", false, true)))
+		if (initialized || dispatchEvent(new FlexEvent("preinitialize", false, true)))
 		{
 			startupTimer.stop();
 			initializeApplication();
@@ -655,7 +656,7 @@ public class Application extends Container implements IStrand, IParent, IEventDi
 //			
 //			dispatchEvent(new org.apache.royale.events.Event("viewChanged"));
 //		}
-		dispatchEvent(new org.apache.royale.events.Event("applicationComplete"));
+		dispatchEvent(new FlexEvent("applicationComplete"));
 	}
 	
     COMPILE::JS
