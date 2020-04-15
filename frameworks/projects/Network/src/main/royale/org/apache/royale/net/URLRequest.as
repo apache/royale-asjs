@@ -89,7 +89,7 @@ package org.apache.royale.net
             {
                 this.url = url;
             }
-            this.requestHeaders = [];
+            this._requestHeaders = [];
         }
 
 		/**

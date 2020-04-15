@@ -218,14 +218,13 @@ package org.apache.royale.net
                         element.setRequestHeader(header.name, header.value);
                     }
                 }
-                
-                /*
-                if (request.method != HTTPConstants.GET &&
+
+                if (request.contentType && request.method != HTTPConstants.GET &&
                     !sawContentType && contentData) {
                     element.setRequestHeader(
-                        HTTPHeader.CONTENT_TYPE, _contentType);
+                        HTTPHeader.CONTENT_TYPE, request.contentType);
                 }
-                */
+
                 if (_corsCredentialsChecker != null) {
                     element.withCredentials = _corsCredentialsChecker(url);
                 }
