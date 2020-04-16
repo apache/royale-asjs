@@ -20,13 +20,12 @@ package org.apache.royale.events
 {
     COMPILE::JS
     {
-        import goog.events.BrowserEvent;
-        import org.apache.royale.core.ElementWrapper;
-		import org.apache.royale.events.Event;
-        import org.apache.royale.events.utils.KeyboardEventConverter;
+    import goog.events.BrowserEvent;
+    import org.apache.royale.core.ElementWrapper;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.events.utils.KeyboardEventConverter;
     }
     import org.apache.royale.events.IBrowserEvent;
-    import org.apache.royale.utils.OSUtils;
 
     /**
      *  Keyboard events
@@ -49,6 +48,10 @@ package org.apache.royale.events
         public static const KEY_DOWN:String = "keydown";
         COMPILE::JS
         public static const KEY_UP:String = "keyup";
+
+        public static const KEYCODE__UP:String = "ArrowUp";
+        public static const KEYCODE__DOWN:String = "ArrowDown";
+        public static const KEYCODE__ENTER:String = "Enter";
 
         public static const KEYCODE_UP:uint = 38;
         public static const KEYCODE_DOWN:uint = 40;

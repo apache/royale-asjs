@@ -195,7 +195,7 @@ package org.apache.royale.jewel.supportClasses.textinput
         {
             COMPILE::JS
             {
-            if (event['key'] === 'Enter') {
+            if (event.key === KeyboardEvent.KEYCODE__ENTER) {
                 // Cancel the default action, if needed
                 event.preventDefault();
                 dispatchEvent(new Event("enter"));
