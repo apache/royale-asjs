@@ -69,14 +69,14 @@ package org.apache.royale.jewel.beads.controls.list
             //each item render can have its own height
             var n:int = list.dataProvider.length;
             var irHeights:Array = [];
-            for (var i:int = 0; i < n; i++)
+            for (var i:int = 0; i <= index; i++)
             {
                 var ir:IItemRenderer = dataGroup.getItemRendererForIndex(i) as IItemRenderer;
-                irHeights.push(totalHeight + ir.element.clientHeight);
                 totalHeight += ir.element.clientHeight;
+                irHeights.push(totalHeight + ir.element.clientHeight - scrollArea.clientHeight);
             }
 
-            scrollArea.scrollTop = irHeights[index-1];
+            scrollArea.scrollTop = Math.min(irHeights[index], totalHeight);
 
         } else 
         {
