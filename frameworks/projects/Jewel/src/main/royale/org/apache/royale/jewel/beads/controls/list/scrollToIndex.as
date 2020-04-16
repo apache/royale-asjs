@@ -18,13 +18,11 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.list
 {
-	import org.apache.royale.jewel.List;
-	import org.apache.royale.html.beads.IListView;
-	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.jewel.beads.models.ListPresentationModel;
-	import org.apache.royale.core.IIndexedItemRenderer;
-	import org.apache.royale.html.supportClasses.StyledDataItemRenderer;
 	import org.apache.royale.core.IItemRenderer;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.jewel.List;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	
 	/**
      *  Ensures that the data provider item at the given index is visible.
