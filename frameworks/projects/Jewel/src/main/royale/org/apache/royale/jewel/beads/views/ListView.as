@@ -22,6 +22,13 @@ package org.apache.royale.jewel.beads.views
 	{
 	import org.apache.royale.core.IStrand;
 	}
+	COMPILE::JS
+    {
+    import goog.events;
+
+    import org.apache.royale.core.IRenderedObject;
+    import org.apache.royale.jewel.List;
+	}
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.ILayoutView;
@@ -29,7 +36,9 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.jewel.beads.controls.list.scrollToIndex;
 	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
@@ -83,7 +92,36 @@ package org.apache.royale.jewel.beads.views
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
+			goog.events.listen((_strand as IRenderedObject).element, 'keydown', keyEventHandler);
+			
 			super.handleInitComplete(event);
+		}
+
+		/**
+		 * @private
+		 */
+		COMPILE::JS
+		protected function keyEventHandler(event:KeyboardEvent):void
+		{
+			event.preventDefault();
+
+			var prevIndex:int = listModel.selectedIndex;
+
+			if(event.key === KeyboardEvent.KEYCODE__UP)
+			{
+				if(prevIndex > 0)
+					listModel.selectedIndex -=1;
+			} 
+			else if(event.key === KeyboardEvent.KEYCODE__DOWN)
+			{
+				listModel.selectedIndex +=1;
+			}
+
+			if(prevIndex != listModel.selectedIndex)
+			{
+				selectionChangeHandler(null);
+				scrollToIndex(_strand as List, listModel.selectedIndex);
+			}
 		}
 
 		/**
