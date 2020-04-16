@@ -20,6 +20,7 @@ package org.apache.royale.jewel.beads.controls.list
 {
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IStrand;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.List;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
@@ -45,8 +46,10 @@ package org.apache.royale.jewel.beads.controls.list
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.7
      */
-    public function scrollToIndex(list:List, index:int):Boolean
+    public function scrollToIndex(list:IStrand, index:int):Boolean
     {
+        var _list:List = list as List;
+        
         COMPILE::SWF
         {
             // to implement
@@ -56,18 +59,18 @@ package org.apache.royale.jewel.beads.controls.list
 
 		COMPILE::JS
 		{
-        var scrollArea:HTMLElement = list.element;
+        var scrollArea:HTMLElement = _list.element;
         var oldScroll:Number = scrollArea.scrollTop;
 
         var totalHeight:Number = 0;
         
-        if(list.variableRowHeight)
+        if(_list.variableRowHeight)
         {
             var listView:IListView = list.getBeadByType(IListView) as IListView;
             var dataGroup:IItemRendererOwnerView = listView.dataGroup;
 
             //each item render can have its own height
-            var n:int = list.dataProvider.length;
+            var n:int = _list.dataProvider.length;
             var irHeights:Array = [];
             for (var i:int = 0; i <= index; i++)
             {
@@ -82,8 +85,8 @@ package org.apache.royale.jewel.beads.controls.list
         {
             var rowHeight:Number;
             // all items renderers with same height
-            rowHeight = isNaN(list.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : list.rowHeight;
-            totalHeight = list.dataProvider.length * rowHeight - scrollArea.clientHeight;
+            rowHeight = isNaN(_list.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : _list.rowHeight;
+            totalHeight = _list.dataProvider.length * rowHeight - scrollArea.clientHeight;
             
             scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
         }

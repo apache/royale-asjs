@@ -27,7 +27,6 @@ package org.apache.royale.jewel.beads.views
     import goog.events;
 
     import org.apache.royale.core.IRenderedObject;
-    import org.apache.royale.jewel.List;
 	}
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
@@ -120,7 +119,7 @@ package org.apache.royale.jewel.beads.views
 			if(prevIndex != listModel.selectedIndex)
 			{
 				selectionChangeHandler(null);
-				scrollToIndex(_strand as List, listModel.selectedIndex);
+				scrollToIndex(_strand, listModel.selectedIndex);
 			}
 		}
 
