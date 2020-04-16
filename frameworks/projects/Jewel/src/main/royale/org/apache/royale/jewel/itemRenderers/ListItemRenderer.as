@@ -22,13 +22,13 @@ package org.apache.royale.jewel.itemRenderers
     {
 	import org.apache.royale.core.WrappedHTMLElement;
 	import org.apache.royale.html.util.addElementToWrapper;
-    }
+	}
     import org.apache.royale.core.StyledMXMLItemRenderer;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.html.util.getLabelFromData;
-	import org.apache.royale.jewel.beads.controls.TextAlign;
-	import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
-	import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
+    import org.apache.royale.events.Event;
+    import org.apache.royale.html.util.getLabelFromData;
+    import org.apache.royale.jewel.beads.controls.TextAlign;
+    import org.apache.royale.jewel.beads.itemRenderers.IAlignItemRenderer;
+    import org.apache.royale.jewel.beads.itemRenderers.ITextItemRenderer;
 	
 	/**
 	 *  The ListItemRenderer defines the basic Item Renderer for a Jewel List Component.
@@ -140,8 +140,8 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this, 'li');
+			element.tabIndex = 0;
             return element;
         }
-        
 	}
 }
