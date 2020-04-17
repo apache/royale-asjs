@@ -464,7 +464,17 @@
               <artifactId>maven-gpg-plugin</artifactId>
               <configuration>
                 <skip>true</skip>
+                <providerImplementations>
+                  <git>jgit</git>
+                </providerImplementations>
               </configuration>
+              <dependencies>
+                <dependency>
+                  <groupId>org.apache.maven.scm</groupId>
+                  <artifactId>maven-scm-provider-jgit</artifactId>
+                  <version>1.11.3-SNAPSHOT</version>
+                </dependency>
+              </dependencies>
             </plugin>
             <!-- We require the release manager to login and push the changes using his credentials -->
             <plugin>
