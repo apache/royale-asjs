@@ -140,8 +140,5 @@ package
         import org.apache.royale.jewel.beads.itemRenderers.TabBarItemRendererInitializer; TabBarItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.NavigationItemRendererInitializer; NavigationItemRendererInitializer;
         import org.apache.royale.jewel.beads.itemRenderers.DropDownListItemRendererInitializer; DropDownListItemRendererInitializer;
-
-        import org.apache.royale.jewel.beads.controls.list.scrollToIndex; scrollToIndex;
-
     }
 }
