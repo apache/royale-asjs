@@ -464,6 +464,14 @@
               <artifactId>maven-gpg-plugin</artifactId>
               <configuration>
                 <skip>true</skip>
+              </configuration>
+            </plugin>
+            <!-- We require the release manager to login and push the changes using his credentials -->
+            <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-release-plugin</artifactId>
+              <configuration>
+                <pushChanges>false</pushChanges>
                 <providerImplementations>
                   <git>jgit</git>
                 </providerImplementations>
@@ -475,14 +483,6 @@
                   <version>1.11.3-SNAPSHOT</version>
                 </dependency>
               </dependencies>
-            </plugin>
-            <!-- We require the release manager to login and push the changes using his credentials -->
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-release-plugin</artifactId>
-              <configuration>
-                <pushChanges>false</pushChanges>
-              </configuration>
             </plugin>
           </plugins>
         </pluginManagement>
