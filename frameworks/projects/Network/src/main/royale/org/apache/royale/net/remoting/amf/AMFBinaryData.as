@@ -1111,7 +1111,7 @@ class SerializationContext extends BinaryData  implements IDataInput, IDataOutpu
 						} else {
 							//@todo add debug-only logging for error checks (e.g. ReferenceError: Error #1074: Illegal write to read-only property)
 							if (goog.DEBUG) {
-								trace('ReferenceError: Error #1056: Cannot create property ' + prop + ' on ' + decodedTraits.alias);
+								trace('ReferenceError: Error #1056: Cannot create property ' + prop + ' on ' + localTraits.qName);
 							}
 						}
 					}
