@@ -1,0 +1,70 @@
+/*
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Licensed to the Apache Software Foundation (ASF) under one or more
+//  contributor license agreements.  See the NOTICE file distributed with
+//  this work for additional information regarding copyright ownership.
+//  The ASF licenses this file to You under the Apache License, Version 2.0
+//  (the "License"); you may not use this file except in compliance with
+//  the License.  You may obtain a copy of the License at
+//
+//      http://www.apache.org/licenses/LICENSE-2.0
+//
+//  Unless required by applicable law or agreed to in writing, software
+//  distributed under the License is distributed on an "AS IS" BASIS,
+//  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//  See the License for the specific language governing permissions and
+//  limitations under the License.
+//
+////////////////////////////////////////////////////////////////////////////////
+*/
+
+@namespace "http://www.w3.org/1999/xhtml";
+@namespace j "library://ns.apache.org/royale/jewel";
+
+j|IconButtonBar 
+{
+    iconClass: ClassReference("org.apache.royale.icons.MaterialIcon")
+}
+
+.jewel.item.selected .basicItem, .jewel.item.selectable:active .basicItem, .jewel.item.hovered .basicItem {
+    color: #ffffff;
+}
+
+
+.jewel.drawerheader::before
+{
+    /*padding-top: 9 / 16 * 100%;*/
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+}
+
+.wrapper {
+    outline: 1px dashed navy;
+}
+
+.box {
+    background: #666;
+    border-radius: 3px;
+    padding: 12px;
+    color: white;
+}
+
+.jewel.item.string
+{
+    background: #dedede;
+    border: 1px dashed #cccccc;
+    border-radius: 3px;
+    padding: 14px;
+}
+
+.codeExample
+{
+    border-radius: 10px;
+    border: 0px solid;
+}
+
+.navSectionItemRenderer .fonticon
+{
+    margin-right: 24px;
+}
+
