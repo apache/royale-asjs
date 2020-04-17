@@ -37,7 +37,8 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.beads.DataContainerView;
-	import org.apache.royale.jewel.beads.controls.list.scrollToIndex;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
 
 	/**
@@ -52,7 +53,7 @@ package org.apache.royale.jewel.beads.views
 	 *  @productversion Royale 0.9.4
 	 */
 	COMPILE::JS
-	public class ListView extends DataContainerView
+	public class ListView extends DataContainerView implements IScrollToIndexView
 	{
 		public function ListView()
 		{
@@ -119,7 +120,7 @@ package org.apache.royale.jewel.beads.views
 			if(prevIndex != listModel.selectedIndex)
 			{
 				selectionChangeHandler(null);
-				scrollToIndex(_strand, listModel.selectedIndex);
+				scrollToIndex(listModel.selectedIndex);
 			}
 		}
 
@@ -183,10 +184,66 @@ package org.apache.royale.jewel.beads.views
 			}
 			lastRollOverIndex = (listModel as IRollOverModel).rollOverIndex;
 		}
+
+		/**
+		 *  Ensures that the data provider item at the given index is visible.
+		 *  
+		 *  If the item is visible, the <code>verticalScrollPosition</code>
+		 *  property is left unchanged even if the item is not the first visible
+		 *  item. If the item is not currently visible, the 
+		 *  <code>verticalScrollPosition</code>
+		 *  property is changed make the item the first visible item, unless there
+		 *  aren't enough rows to do so because the 
+		 *  <code>verticalScrollPosition</code> value is limited by the 
+		 *  <code>maxVerticalScrollPosition</code> property.
+		 *
+		 *  @param index The index of the item in the data provider.
+		 *
+		 *  @return <code>true</code> if <code>verticalScrollPosition</code> changed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.7
+		 */
+		public function scrollToIndex(index:int):Boolean
+		{
+			var scrollArea:HTMLElement = (_strand as IRenderedObject).element;
+			var oldScroll:Number = scrollArea.scrollTop;
+
+			var totalHeight:Number = 0;
+			var pm:IListPresentationModel = _strand.getBeadByType(IListPresentationModel) as IListPresentationModel;
+			
+			if(pm.variableRowHeight)
+			{
+				//each item render can have its own height
+				var n:int = listModel.dataProvider.length;
+				var irHeights:Array = [];
+				for (var i:int = 0; i <= index; i++)
+				{
+					var ir:IItemRenderer = dataGroup.getItemRendererForIndex(i) as IItemRenderer;
+					totalHeight += ir.element.clientHeight;
+					irHeights.push(totalHeight + ir.element.clientHeight - scrollArea.clientHeight);
+				}
+
+				scrollArea.scrollTop = Math.min(irHeights[index], totalHeight);
+
+			} else 
+			{
+				var rowHeight:Number;
+				// all items renderers with same height
+				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : rowHeight;
+				totalHeight = listModel.dataProvider.length * rowHeight - scrollArea.clientHeight;
+				
+				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
+			}
+
+			return oldScroll != scrollArea.scrollTop;
+		}
 	}
 
 	COMPILE::SWF
-	public class ListView extends DataContainerView
+	public class ListView extends DataContainerView implements IScrollToIndexView
 	{
 		public function ListView()
 		{
@@ -280,6 +337,32 @@ package org.apache.royale.jewel.beads.views
 					selectionBead.hovered = true;
 			}
 			lastRollOverIndex = IRollOverModel(listModel).rollOverIndex;
+		}
+
+		/**
+		 *  Ensures that the data provider item at the given index is visible.
+		 *  
+		 *  If the item is visible, the <code>verticalScrollPosition</code>
+		 *  property is left unchanged even if the item is not the first visible
+		 *  item. If the item is not currently visible, the 
+		 *  <code>verticalScrollPosition</code>
+		 *  property is changed make the item the first visible item, unless there
+		 *  aren't enough rows to do so because the 
+		 *  <code>verticalScrollPosition</code> value is limited by the 
+		 *  <code>maxVerticalScrollPosition</code> property.
+		 *
+		 *  @param index The index of the item in the data provider.
+		 *
+		 *  @return <code>true</code> if <code>verticalScrollPosition</code> changed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.7
+		 */
+		public function scrollToIndex(index:int):Boolean
+		{
+			return false;
 		}
 	}
 }

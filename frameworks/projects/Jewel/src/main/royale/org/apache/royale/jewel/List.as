@@ -27,6 +27,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
+	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -257,6 +258,23 @@ package org.apache.royale.jewel
 				addBead(presModel);
 			}
 			return presModel;
+		}
+
+		/**
+		 *  Ensures that the data provider item at the given index is visible.
+		 *  
+		 *  @param index The index of the item in the data provider.
+		 *
+		 *  @return <code>true</code> if the scroll changed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.7
+		 */
+		public function scrollToIndex(index:int):Boolean
+		{
+			return (view as IScrollToIndexView).scrollToIndex(index);
 		}
    	}
 }

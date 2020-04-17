@@ -20,8 +20,7 @@ package org.apache.royale.html.beads
 {	
 	import org.apache.royale.core.IBeadView;
 	import org.apache.royale.core.IItemRendererOwnerView;
-	import org.apache.royale.core.IStrand;
-
+	
 	/**
 	 *  The IListView interface provides the protocol for any bead that
 	 *  creates the visual parts for a org.apache.royale.html.List control.
