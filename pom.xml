@@ -29,7 +29,7 @@
 
   <groupId>org.apache.royale.framework</groupId>
   <artifactId>royale-framework-parent</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Apache Royale: Framework: Parent</name>
@@ -45,7 +45,7 @@
     <connection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</connection>
     <developerConnection>scm:git:https://gitbox.apache.org/repos/asf/royale-asjs.git</developerConnection>
     <url>https://github.com/apache/royale-asjs</url>
-    <tag>org.apache.royale.framework-0.9.7-rc2</tag>
+    <tag>release/0.9.7</tag>
   </scm>
 
   <properties>
@@ -76,7 +76,7 @@
     <junit.version>4.12</junit.version>
 
     <release-profiles>apache-release,with-distribution,option-with-swf</release-profiles>
-  <project.build.outputTimestamp>2020-04-18T06:13:17Z</project.build.outputTimestamp></properties>
+  </properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
   <distributionManagement>
