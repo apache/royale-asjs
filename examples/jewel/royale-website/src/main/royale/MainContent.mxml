@@ -35,24 +35,31 @@ limitations under the License.
 
             public function initComplete(event:Event):void
             {
-                md = new markdownit('commonmark', {
-                    html:true, 
+                md = new markdownit('commonmark'
+                , {
+                    html:false, 
                     xhtmlOut: true,
                     breaks: true,
                     linkify: true,
                     typographer: true,
-                    highlight: myHighlight
-                });
-                
+                    injected: true,
+                    highlight: hljs_highlight
+                }
+                );
+
                 service = new GitHubService();
                 service.addEventListener("dataReady", dataReadyHandler);
+
+                loadGithubMarkDown();
             }
 
-            public function myHighlight(str:String, lang:String):String { 
+            public function hljs_highlight(str:String, lang:String):String { 
                 if (lang && hljs.getLanguage(lang))
                 {
                     try {
+                        trace(lang, str, hljs.getLanguage(lang))
                         return '<pre class="hljs"><code>' + hljs.highlight(lang, str, true).value + '</code></pre>';
+                        // return '<pre class="hljs language-' + lang + '><code class="language-' + lang + ' ' + lang + '">' + hljs.highlightAuto(lang, str, true).value + '</code></pre>';
                         // return hljs.highlight(lang, str).value;
                     } catch (error:Error) 
                     {
@@ -65,13 +72,17 @@ limitations under the License.
 
             public function loadGithubMarkDown():void
             {
-                service.sourceCodeUrl = "https://raw.githubusercontent.com/apache/royale-docs/master/features/as3.md";
+                service.sourceCodeUrl = "https://api.github.com/repos/apache/royale-docs/contents/features/as3.md";
                 service.getContent();
             }
 
             public function dataReadyHandler(event:Event):void
             {
-                placeholder.html = md.render(event.target.jsonToString);
+                var content:String = event.target.sourceCode;
+                content = content.substring(content.indexOf("---", 2) + 4);
+                content = content.replace("```as3", "```actionscript");
+                content = content.replace("```mxml", "```xml");
+                placeholder.html = md.render(content);
             }
         ]]>
     </fx:Script>
@@ -81,7 +92,7 @@ limitations under the License.
     </j:beads>
 
     <j:ScrollableSectionContent width="100%" height="100%" isSelected="true">
-        <j:Button text="Load MarkDown from Github" click="loadGithubMarkDown()"/>
+        <!-- <j:Button text="Load MarkDown from Github" click=""/> -->
         <j:Label localId="placeholder" multiline="true"/>
     </j:ScrollableSectionContent>
 

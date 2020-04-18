@@ -30,16 +30,65 @@ package
 		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/markdown-it/10.0.0/markdown-it.min.js"></script>
 		 * </inject_html>
 		 * 
-		 * presetName: 'commonmark', 'default', 'zero'
+		 * @param presetName String, MarkdownIt provides named presets as a convenience to quickly enable/disable active syntax rules and options for common use cases.
+		 * 
+		 * Available preset names:
+		 *  - "commonmark" - configures parser to strict CommonMark mode.
+		 *	- "default" - similar to GFM, used when no preset name given. Enables all available rules, but still without html, typographer & autolinker.
+		 *  - "zero" - all rules disabled. Useful to quickly setup your config via .enable(). For example, when you need only bold and italic markup and nothing else.
+		 * @param options Object, the options to configure
+		 * 
+		 * Available options:
+		 * 	- html - false. Set true to enable HTML tags in source. Be careful! That's not safe! You may need external sanitizer to protect output from XSS. It's better to extend features via plugins, instead of enabling HTML.
+		 *	- xhtmlOut - false. Set true to add '/' when closing single tags (<br />). This is needed only for full CommonMark compatibility. In real world you will need HTML output.
+		 *	- breaks - false. Set true to convert \n in paragraphs into <br>.
+		 *	- langPrefix - language-. CSS language class prefix for fenced blocks. Can be useful for external highlighters.
+		 *	- linkify - false. Set true to autoconvert URL-like text to links.
+		 *	- typographer - false. Set true to enable some language-neutral replacement + quotes beautification (smartquotes).
+		 *	- quotes - “”‘’, String or Array. Double + single quotes replacement pairs, when typographer enabled and smartquotes on. For example, you can use '«»„“' for Russian, '„“‚‘' for German, and ['«\xA0', '\xA0»', '‹\xA0', '\xA0›'] for French (including nbsp).
+		 *	- highlight - null. Highlighter function for fenced code blocks. Highlighter function (str, lang) should return escaped HTML. It can also return empty string if the source was not changed and should be escaped externaly. If result starts with <pre... internal wrapper is skipped.
+		 *
 		 */
 		public function markdownit(presetName:Object = 'default', options:Object = null) {}
 
-		public function render(s:String):String
+		/**
+		 * Render markdown string into html. It does all magic for you :).
+		 * 
+		 * @param s String, the markdown
+		 * @param env Object, the environment sandbox
+		 */
+		public function render(s:String, env:Object = null):String
+        {	
+			return null;
+        }
+
+		/**
+		 * Similar to MarkdownIt.render but for single paragraph content. Result will NOT be wrapped into <p> tags.
+		 * 
+		 * @param s String, the markdown
+		 * @param env Object, the environment sandbox
+		 */
+		public function renderInline(s:String, env:Object = null):String
+        {	
+			return null;
+        }
+
+		/**
+		 * Set parser options (in the same format as in constructor). Probably, you will never need it, but you can change options after constructor call.
+		 * 
+		 * @param options Object, the options to configure
+		 */
+		public function use(attrs:Object):Object
         {	
 			return null;
         }
 		
-		public function renderInline(s:String):String
+		/**
+		 * Set parser options (in the same format as in constructor). Probably, you will never need it, but you can change options after constructor call.
+		 * 
+		 * @param options Object, the options to configure
+		 */
+		public function set(options:Object):Object
         {	
 			return null;
         }

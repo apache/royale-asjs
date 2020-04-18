@@ -26,7 +26,9 @@ package
 	{
 		/** 
          * <inject_html>
-		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/actionscript.min.js"></script>
+		 * <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/languages/xml.min.js"></script>
          * <link rel="stylesheet" title="Atom One Dark" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/atom-one-dark.min.css">
 		 * </inject_html>
 		 */
@@ -55,6 +57,10 @@ package
 		 * @property {boolean} illegal - indicates whether any illegal matches were found
 		 */
 		public static function highlight(languageName:String, code:String, ignore_illegals:Boolean = false, continuation:Array = null):Object {
+			return null;
+		}
+		
+		public static function highlightAuto(languageName:String, code:String, ignore_illegals:Boolean = false, continuation:Array = null):Object {
 			return null;
 		}
 	}
