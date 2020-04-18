@@ -1,13 +1,44 @@
 Apache Royale 0.9.7
 ===================
 
-- Added 'URLVariables' emulation to Network library
-- Reflection support improved (supports access to custom namespaces)
+- Reflection support improved (supports access to custom namespaces) including improved utility methods
 - Added a 'getTimer' emulation to Core library, similar to 'flash.utils.getTimer'
-- Added support for using Command pattern to Crux
-- added [RoyaleArrayLike] implementation support added to Royale Collections, and BinaryData
-- improvements to XML/E4X conformance, and memory footprint (tbc @harbs)
-- [add support for legacy HttpService decoding format](https://github.com/apache/royale-asjs/issues/466)
+- added [RoyaleArrayLike] implementation support to Royale Collections, and BinaryData
+- improvements to XML/E4X conformance, and memory footprint
+- General improvements in Bindings, including function bindings
+- Crux:
+  - Improved:
+    - Crux can now be used in MXRoyale and SparkRoyale applications
+  - New:
+    - Added support for using Command pattern to Crux
+- Graphics:
+  - New:
+    - Added new high-parity swf graphics emulation.
+- Jewel:
+  - Improved:
+    - @todo Carlos
+  - New:
+    - Added VSlider. The original Slider is now HSlider. 
+    - @todo Carlos
+- Network:
+  - Improved:
+    - URLLoader now respects contentType passed in via URLRequest.
+  - New:
+    - Added URLVariables emulation
+- MXRoyale: 
+  - Improved: 
+    - mx.utils.ObjectUtil - improved parity
+    - mx.net.SharedObject - improved parity
+    - [add support for legacy HttpService decoding format](https://github.com/apache/royale-asjs/issues/466)
+    - Fixes in mx.messaging for polling support, mx.external.ExternalInterface
+  - New:
+    - mx.net.SharedObjectJSON - new alternative
+- Dozens of bugs reported, investigated, and squashed. For details of
+  closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed).
+
+Updates to the RELEASE_NOTES made after this file was packaged into the release artifacts can be found here:
+
+https://github.com/apache/royale-asjs/wiki/Release-Notes-0.9.7
 
 Apache Royale 0.9.6
 ===================
@@ -39,7 +70,7 @@ Apache Royale 0.9.6
 - int, uint, Class are now represented as simple, distinct types (Class is now not an 'Object', int is now not a 'Number', for example), and these support indirect 'as' or 'is' type checking and instantiation, matching swf behavior.
 - General improvements and additions to the Reflection library.
 - New Apache Royale Crux MVC/DI/IOC application architecture library (based on Swiz Framework) was added, with some simple examples.
-- Added and updated documentation in many areaas of [ASDocs reference](https://royale.apache.org/asdoc/).
+- Added and updated documentation in many areas of [ASDocs reference](https://royale.apache.org/asdoc/).
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed).
 
