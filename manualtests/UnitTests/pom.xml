@@ -61,7 +61,7 @@
 						-swf-version=30;
 						-js-default-initializers;
 						-source-map=true;
-						-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css;
+						-compiler.exclude-defaults-css-files=MXRoyale-0.9.8-SNAPSHOT-js.swc:defaults.css;
 						-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta,Transient;
 						-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta,Transient;
 					</additionalCompilerOptions>
@@ -131,8 +131,8 @@
 								-swf-version=30;
 								-js-default-initializers;
 								-source-map=true;
-								-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-js.swc:defaults.css;
-								-compiler.exclude-defaults-css-files=MXRoyale-0.9.7-SNAPSHOT-swf.swc:defaults.css;
+								-compiler.exclude-defaults-css-files=MXRoyale-0.9.8-SNAPSHOT-js.swc:defaults.css;
+								-compiler.exclude-defaults-css-files=MXRoyale-0.9.8-SNAPSHOT-swf.swc:defaults.css;
 								-keep-as3-metadata+=Test,BeforeClass,AfterClass,Before,After,TestVariance,Event,Bindable,TestMeta,Transient;
 								-keep-code-with-metadata=Test,BeforeClass,AfterClass,Before,After,TestVariance,TestMeta,Transient;
 							</additionalCompilerOptions>
