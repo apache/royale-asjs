@@ -6,20 +6,58 @@ Apache Royale 0.9.7
 - added [RoyaleArrayLike] implementation support to Royale Collections, and BinaryData
 - improvements to XML/E4X conformance, and memory footprint
 - General improvements in Bindings, including function bindings
+- Added new Router classes
+- Added AMFLocalStorage, a javascript version of the Flash runtime LSO (Local Shared Object)
+- Added new ItemRendererInitializer bead infrastructure to decouple better item renderers functionality
+- Added ToolTipRemovalWhenItemRemoved for renderers that use tooltips.
 - Crux:
   - Improved:
     - Crux can now be used in MXRoyale and SparkRoyale applications
   - New:
     - Added support for using Command pattern to Crux
+    - Added Documentation in royale-docs site
 - Graphics:
   - New:
-    - Added new high-parity swf graphics emulation.
+    - Added new high-parity swf graphics emulation (UIGraphicBase)
 - Jewel:
   - Improved:
-    - @todo Carlos
+    - Massive refactors and improvments
+    - Hierachy improved in many Jewel framework branches to make StyleUIBase the base of all components and unify APIs.
+    - StyleUIBase now improve width and height so we can use NaN values to unset values. For JS this means return to default values.
+    - Card: Added new subcomponents (CardHeader, CardTitle, CardPrimaryContent and CardActions)
+    - Button: Added new unboxed and outlined styles (also to IconButton and ToggleButton)
+    - CheckBox and RadioButton now can size the icon part
+    - ComboBox can now confifure custom renders and supports rowCount, and fixed percent width. also popup adapts to data provider length.
+    - List supports now variableRowHeight, scrollToIndex and can be navigated with arrow cursors (up/down)
+    - Item Renderer: Use the new Initializer infrastructure
+    - Remove mappers to rely on basic ones, also remove CRUD beads (Add, Remove and Update item beads)
+    - Layouts, Group and Container supports variableRowHeight
+    - Layouts many fixes and improvements in alignment, and now dispatch childs dispatch a "sizeChanged"
+    - Viewport and ScrollingViewport refactor. Viewport has now clipContent so Container can activate/deactivate
+    - added tabindex in many components and to Disabled bead (=-1)
+    - Prompt beads now support changes at runtime
+    - TabBar: fix AssignTabContent bead when change dataprovider 
+    - Jewel Themes was updated to show many visual improvements in colors and styles. Flat and Light themes are almost finished. Still Dark themes are work in progress.
+    - [Tour De Jewel](https://royale.apache.org/tourdejewel/) was updated to show all the latest updates
   - New:
-    - Added VSlider. The original Slider is now HSlider. 
-    - @todo Carlos
+    - Runtime Theme Switch. Can be seen working in Tour De Jewel
+    - StyledUIBase now adds min and max width and height properties.
+    - Added VSlider. The original Slider is now HSlider.
+    - Added Paddings bead
+    - Added VContainer and HContainer for clipped content
+    - Added DataGrid
+    - Added ButtonBar
+    - Added ComboBoxTrucatedText
+    - Added DrawerFooter
+    - Added VirtualList and VirtualComboBox to load huge amounts of data in a performant way
+    - New colors for text and icons (lightest, light, normal, dark and darkest)
+    - Added Jewel TodoMVC and TodoMVC with Crux examples following the [TodoMVC](http://todomvc.com/) website guidelines. Also added more blog examples. 
+- Icons
+    - Refactored classes IIcon classes to support more icons sets
+    - Added FontAwesome v5 support (also v4)
+    - Icons now support Material and FontAwesome (more sets can be added)
+- SVG:
+    - Fixed SVGImage when using Maven
 - Network:
   - Improved:
     - URLLoader now respects contentType passed in via URLRequest.
@@ -33,6 +71,11 @@ Apache Royale 0.9.7
     - Fixes in mx.messaging for polling support, mx.external.ExternalInterface
   - New:
     - mx.net.SharedObjectJSON - new alternative
+- Maven:
+  - Massive improvements (thanks to Chris Dutz)
+  - Now Maven can generate a valid distribution (SDK) to use in any IDE (tested on VSCode and Moonshine)
+  - distribution can be JS only
+  - SASS generation is now separated from main build to a profile to save lots of time when no need to build themes
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed).
 
