@@ -60,7 +60,18 @@ package
 			return null;
 		}
 		
-		public static function highlightAuto(languageName:String, code:String, ignore_illegals:Boolean = false, continuation:Array = null):Object {
+		/*
+		Highlighting with language detection. Accepts a string with the code to
+		highlight. Returns an object with the following properties:
+
+		- language (detected language)
+		- relevance (int)
+		- value (an HTML string with highlighting markup)
+		- second_best (object with the same structure for second-best heuristically
+			detected language, may be absent)
+
+		*/
+		public static function highlightAuto(code:String, languageSubset:String):Object {
 			return null;
 		}
 	}
