@@ -18,6 +18,8 @@
 ////////////////////////////////////////////////////////////////////////////////
 package
 {
+	import markdownit.Renderer;
+
 	/**
 	 * @externs
 	 */
@@ -49,7 +51,12 @@ package
 		 *	- highlight - null. Highlighter function for fenced code blocks. Highlighter function (str, lang) should return escaped HTML. It can also return empty string if the source was not changed and should be escaped externaly. If result starts with <pre... internal wrapper is skipped.
 		 *
 		 */
-		public function markdownit(presetName:Object = 'default', options:Object = null) {}
+		public function markdownit(presetName:Object = 'default', options:Object = null):void {}
+
+		public var core:Object;
+		public var utils:Object;
+		public var tokens:Array;
+		public var renderer:Renderer;
 
 		/**
 		 * Render markdown string into html. It does all magic for you :).
@@ -89,6 +96,28 @@ package
 		 * @param options Object, the options to configure
 		 */
 		public function set(options:Object):Object
+        {	
+			return null;
+        }
+		
+		/**
+		 * Enable list or rules. It will automatically find appropriate components, containing rules with given names. If rule not found, and ignoreInvalid not set - throws exception.
+		 * 
+		 * @param list String or Array. rule name or list of rule names to enable.
+		 * @param ignoreInvalid Boolean. set true to ignore errors when rule not found.
+		 */
+		public function enable(options:Object):Object
+        {	
+			return null;
+        }
+
+		/**
+		 * The same as MarkdownIt.enable, but turn specified rules off.
+		 * 
+		 * @param list String or Array. rule name or list of rule names to disable.
+		 * @param ignoreInvalid Boolean. set true to ignore errors when rule not found.
+		 */
+		public function disable(options:Object):Object
         {	
 			return null;
         }
