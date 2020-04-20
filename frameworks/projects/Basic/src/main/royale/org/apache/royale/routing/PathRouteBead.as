@@ -38,16 +38,17 @@ package org.apache.royale.routing
     override public function set strand(value:IStrand):void
     {
       _strand = value;
-      listenOnStrand("hashNeeded",hashNeeded);
-      listenOnStrand("hashReceived",hashReceived);
+      listenOnStrand("urlNeeded",urlNeeded);
+      listenOnStrand("urlReceived",urlReceived);
     }
 
-    protected function hashReceived(ev:ValueEvent):void
+    protected function urlReceived(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       // if we have parameters, we don't care if we also have an anchor
       var delim:String = ""
-      var index:int = hash.indexOf("?")
+      var index:int = hash.indexOf("?");
+      // if not found then we need to check for an anchor
       if(index == -1)
         index = hash.indexOf("#");
       
@@ -57,7 +58,7 @@ package org.apache.royale.routing
       host.routeState.path = hash;
     }
 
-    protected function hashNeeded(ev:ValueEvent):void
+    protected function urlNeeded(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       var trailing:String = "";

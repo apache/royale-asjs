@@ -38,11 +38,11 @@ package org.apache.royale.routing
     override public function set strand(value:IStrand):void
     {
       _strand = value;
-      listenOnStrand("hashNeeded",hashNeeded);
-      listenOnStrand("hashReceived",hashReceived);
+      listenOnStrand("urlNeeded",urlNeeded);
+      listenOnStrand("urlReceived",urlReceived);
       listenOnStrand("stateChange",stateChanged)
     }
-    private function hashNeeded(ev:ValueEvent):void
+    private function urlNeeded(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       var paramStr:String = buildParameterString();
@@ -57,7 +57,7 @@ package org.apache.royale.routing
 
     }
 
-    private function hashReceived(ev:ValueEvent):void
+    private function urlReceived(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       var index:int = hash.indexOf("?");

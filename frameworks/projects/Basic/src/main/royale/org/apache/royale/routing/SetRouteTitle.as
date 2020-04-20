@@ -43,9 +43,9 @@ package org.apache.royale.routing
         initialTitle = document.title;
       }
       listenOnStrand("stateSet",handleStateSet);
-      listenOnStrand("hashReceived",hashReceived);
+      listenOnStrand("urlReceived",urlReceived);
     }
-    private function hashReceived(ev:ValueEvent):void
+    private function urlReceived(ev:ValueEvent):void
     {
       setTitle();
     }

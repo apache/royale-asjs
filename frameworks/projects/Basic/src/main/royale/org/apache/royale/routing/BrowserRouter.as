@@ -37,7 +37,7 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.9.8
 	 */
 	[Event(name="stateChange", type="org.apache.royale.events.Event")]
 
@@ -47,29 +47,54 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.9.8
 	 */
 	[Event(name="initBindings", type="org.apache.royale.events.Event")]
 
 	/**
-	 * Router is deprecated. Please use HashRouter or BrowserRouter instead.
-   * Router is a bead which automatically handles browsing history.
+	 * Router is a bead which automatically handles browsing history.
 	 * It could be attached to any strand, but typically it would be attached to Application or View
 	 * Listen to stateChange events to handle changes to browsing history and use setState and renderState for modifying the history.
 	 * The state of the router can be modified before committing the state changes.
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
-   *  @deprecated
+	 *  @productversion Royale 0.9.8
 	 */
-  public class Router extends Strand implements IBead, IMXMLDocument
+  public class BrowserRouter extends Strand implements IBead, IMXMLDocument
   {
-		public function Router()
+		public function BrowserRouter()
 		{
 
 		}
 
+		private var _basePath:String = "/"
+
+		/**
+	 *  The base path of the application.
+	 *  If the appllication is being loaded from somewhere other than the domain root, this must be specified.
+	 *
+	 *  @langversion 3.0
+	 *  @playerversion Flash 10.2
+	 *  @playerversion AIR 2.6
+	 *  @productversion Royale 0.9.8
+		 */
+		public function get basePath():String
+		{
+			return _basePath;
+		}
+
+		public function set basePath(value:String):void
+		{
+			// the basePath must always start and end with a slash
+			if(value.indexOf("/") != 0){
+				value = "/" + value;
+			}
+			if(value.charAt(value.length -1) != "/"){
+				value += "/";
+			}
+			_basePath = value;
+		}
 		public function get host():IStrand
 		{
 		  return _strand;
@@ -80,10 +105,6 @@ package org.apache.royale.routing
 		{	
 			_strand = value;
 			loadBeadFromValuesManager(IPathRouteBead, "iPathRouteBead", this);
-			COMPILE::JS
-			{
-				window.addEventListener("hashchange", hashChangeHandler);
-			}
 
 			// wait until the app is initialized. Calling onInit async soves this problem
 			callLater(onInit);
@@ -110,35 +131,24 @@ package org.apache.royale.routing
 
 		  COMPILE::JS
 		  {
-			if(location.hash)
-			{
-			  hashChangeHandler();
-			}
-			else// if there's no hash we should still dispatch a stateChange event so the beads can set defaults
-			{
-			  dispatchEvent(new Event("stateChange"));
-			}
+			  locationChangeHandler();
 		  }
 		}
 
-		private function hashChangeHandler():void
+		private function locationChangeHandler():void
 		{
-			parseHash();
+			parseLocation();
 			dispatchEvent(new Event("stateChange"));
 		}
 
-		private function parseHash():void
+		private function parseLocation():void
 		{
 		  //TODO SWF implementation
 		  COMPILE::JS
 		  {
-			var hash:String = location.hash;
-			var index:int = 0;
-			if(hash.indexOf("!")==1){
-			  index = 1;
-			}
-			hash = hash.slice(index+1);
-			var ev:ValueEvent = new ValueEvent("urlReceived",hash);
+			var host:String = location.host;
+			var path:String = location.href.slice(host.length+1);// slice off the host and the leading slash
+			var ev:ValueEvent = new ValueEvent("urlReceived",path);
 			dispatchEvent(ev);
 		  }
 		}
@@ -162,21 +172,21 @@ package org.apache.royale.routing
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
 		public function setState():void
 		{
 		  COMPILE::JS
 		  {
-			var hash:String = "#!";
+			var path:String = basePath;
 			var ev:ValueEvent = new ValueEvent("urlNeeded","");
 			dispatchEvent(ev);
 			var stateEv:ValueEvent = new ValueEvent("stateNeeded",{});
 			dispatchEvent(stateEv);
 			if(!ev.defaultPrevented)
 			{
-			  hash += ev.value;
-			  window.history.pushState(stateEv.value,_routeState.title,hash);
+			  path += ev.value;
+			  window.history.pushState(stateEv.value,_routeState.title,path);
 			  sendStrandEvent(this,"stateSet");
 			}
 		  }
@@ -186,7 +196,7 @@ package org.apache.royale.routing
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
 		public function renderState():void
 		{
