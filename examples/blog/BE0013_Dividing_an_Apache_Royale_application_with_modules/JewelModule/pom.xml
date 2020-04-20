@@ -16,18 +16,17 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>BE0013_Dividing_an_Apache_Royale_application_with_modules</artifactId>
-    <version>0.9.7-SNAPSHOT</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>JewelModule</artifactId>
-  <version>0.9.7-SNAPSHOT</version>
+  <version>0.9.7</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0013:  - JewelModule</name>
@@ -118,6 +117,4 @@
     </plugins>
   </build>
   
-</project>
-
-
+<properties><project.build.outputTimestamp>2020-04-20T06:42:06Z</project.build.outputTimestamp></properties></project>
