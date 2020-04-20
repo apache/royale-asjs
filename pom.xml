@@ -386,6 +386,10 @@
 
     <profile>
       <id>_reproducible-build</id>
+      <properties>
+          <repo.compiler.options>
+          -metadata.date=${project.build.outputTimestamp};-metadata.dateFormat=yyyy-MM-dd'T'HH:mm:ss'Z'</repo.compiler.options>
+      </properties>
       <activation>
         <property>
           <name>project.build.outputTimestamp</name>
@@ -399,9 +403,7 @@
             <version>${royale.compiler.version}</version>
             <extensions>true</extensions>
             <configuration>
-              <additionalCompilerOptions>
-                -metadata.date=${project.build.outputTimestamp};-metadata.dateFormat=yyyy-MM-dd'T'HH:mm:ss'Z'
-              </additionalCompilerOptions>
+              <additionalCompilerOptions>{$repo.compiler.options}</additionalCompilerOptions>
             </configuration>
           </plugin>
         </plugins>
@@ -535,7 +537,6 @@
             <configuration>
               <preparationGoals>clean com.theoryinpractise:reproducible-maven-plugin:apply install</preparationGoals>
               <completionGoals>com.theoryinpractise:reproducible-maven-plugin:clear</completionGoals>
-              <goals>deploy</goals>
             </configuration>
           </plugin>
 
