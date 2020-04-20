@@ -24,9 +24,7 @@ package org.apache.royale.jewel.beads.views
 	}
 	COMPILE::JS
     {
-    import goog.events;
-
-    import org.apache.royale.core.IRenderedObject;
+	import org.apache.royale.core.IStyledUIBase;
 	}
 	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
@@ -35,6 +33,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
@@ -92,7 +91,7 @@ package org.apache.royale.jewel.beads.views
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
-			goog.events.listen((_strand as IRenderedObject).element, 'keydown', keyEventHandler);
+			IEventDispatcher(_strand).addEventListener('keydown', keyEventHandler);
 			
 			super.handleInitComplete(event);
 		}
@@ -100,7 +99,6 @@ package org.apache.royale.jewel.beads.views
 		/**
 		 * @private
 		 */
-		COMPILE::JS
 		protected function keyEventHandler(event:KeyboardEvent):void
 		{
 			event.preventDefault();
@@ -208,7 +206,7 @@ package org.apache.royale.jewel.beads.views
 		 */
 		public function scrollToIndex(index:int):Boolean
 		{
-			var scrollArea:HTMLElement = (_strand as IRenderedObject).element;
+			var scrollArea:HTMLElement = (_strand as IStyledUIBase).element;
 			var oldScroll:Number = scrollArea.scrollTop;
 
 			var totalHeight:Number = 0;
