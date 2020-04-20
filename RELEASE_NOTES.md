@@ -10,6 +10,7 @@ Apache Royale 0.9.7
 - Added AMFLocalStorage, a javascript version of the Flash runtime LSO (Local Shared Object)
 - Added new ItemRendererInitializer bead infrastructure to decouple better item renderers functionality
 - Added ToolTipRemovalWhenItemRemoved for renderers that use tooltips.
+- Fix bin/mxmlc and bin/compc scripts that did not understand certain default compiler options in royale-config.xml
 - Crux:
   - Improved:
     - Crux can now be used in MXRoyale and SparkRoyale applications
@@ -76,6 +77,12 @@ Apache Royale 0.9.7
   - Now Maven can generate a valid distribution (SDK) to use in any IDE (tested on VSCode and Moonshine)
   - distribution can be JS only
   - SASS generation is now separated from main build to a profile to save lots of time when no need to build themes
+- RoyaleUnit:
+  - [Test(async)] may be used to define asynchronous tests
+  - [BeforeClass] and [AfterClass] metadata must be added to static methods
+  - [Test] metadata supports an 'expected' attribute to expect a thrown exception
+  - Fixed incorrect order of expected and actual values in assert messages
+- RoyaleUnitUI: An optional UI to display the results of RoyaleUnit tests
 - Dozens of bugs reported, investigated, and squashed. For details of
   closed bug reports see [GitHub Issues list](https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed).
 
