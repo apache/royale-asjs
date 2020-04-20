@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-blog</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8-SNAPSHOT</version>
   </parent>
 
   <artifactId>BE0009_Using_an_Item_Renderer_with_a_List</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Blog: 0009: Using an Item Renderer with a List</name>
@@ -53,28 +53,28 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Icons</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Jewel-Light-NoFlat-Primary-Green-Theme</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -88,21 +88,21 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Jewel</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Icons</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>HTML</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -110,4 +110,4 @@
     </profile>
   </profiles>
 
-<properties><project.build.outputTimestamp>2020-04-20T06:42:06Z</project.build.outputTimestamp></properties></project>
+<properties /></project>
