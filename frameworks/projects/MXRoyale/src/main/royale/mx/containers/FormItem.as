@@ -347,13 +347,16 @@ public class FormItem extends Container
         invalidateProperties();
         invalidateSize();
         invalidateDisplayList();
+
+		if (labelObj)
+			labelObj.invalidateSize();
         
         // Changing the label could affect the overall form label width
         // so we need to invalidate our parent's size here too
        if (parent is Form)
        {
-            Form(parent).invalidateLabelWidth();
             commitProperties();
+            Form(parent).invalidateLabelWidth();
 			Form(parent).dispatchEvent(new Event("layoutNeeded"));
        }
 
@@ -641,6 +644,19 @@ public class FormItem extends Container
         else
             measureHorizontal();
     }
+
+	private var inMeasure:Boolean = false;
+	
+	override public function get measuredWidth():Number
+	{
+		if (!inMeasure)
+		{
+			inMeasure = true;
+			measure();
+			inMeasure = false;
+		}
+		return super.measuredWidth;
+	}
     
     /**
      * @private
