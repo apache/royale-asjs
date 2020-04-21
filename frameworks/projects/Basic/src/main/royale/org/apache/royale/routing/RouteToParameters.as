@@ -42,7 +42,8 @@ package org.apache.royale.routing
       listenOnStrand("urlReceived",urlReceived);
       listenOnStrand("stateChange",stateChanged)
     }
-    private function urlNeeded(ev:ValueEvent):void
+
+    protected function urlNeeded(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       var paramStr:String = buildParameterString();
@@ -57,7 +58,7 @@ package org.apache.royale.routing
 
     }
 
-    private function urlReceived(ev:ValueEvent):void
+    protected function urlReceived(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       var index:int = hash.indexOf("?");
@@ -71,7 +72,8 @@ package org.apache.royale.routing
       }
       host.routeState.parameters = parseParameters(hash);
     }
-    private function stateChanged():void
+
+    protected function stateChanged():void
     {
       var params:Object = host.routeState.parameters;
       // apply routes
