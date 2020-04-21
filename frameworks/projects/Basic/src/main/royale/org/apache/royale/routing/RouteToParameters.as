@@ -22,7 +22,7 @@ package org.apache.royale.routing
   import org.apache.royale.events.ValueEvent;
   import org.apache.royale.core.IStrand;
   import org.apache.royale.events.Event;
-  
+
   [DefaultProperty("routes")]
   public class RouteToParameters extends Bead
   {
@@ -55,7 +55,7 @@ package org.apache.royale.routing
         trailing = hash.slice(index);
         hash = hash.slice(0,index);
       }
-      ev.value = hash + paramStr + trailing;
+      event.value = hash + paramStr + trailing;
 
     }
 
