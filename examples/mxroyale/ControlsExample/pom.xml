@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-mxroyale</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>ControlsExample</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.7</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: MXRoyale: ControlsExample</name>
@@ -51,11 +51,11 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
     </dependency>
   </dependencies>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2020-04-21T04:57:18Z</project.build.outputTimestamp></properties></project>
