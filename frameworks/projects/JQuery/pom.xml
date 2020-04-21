@@ -16,17 +16,18 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
---><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+-->
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.7-SNAPSHOT</version>
   </parent>
 
   <artifactId>JQuery</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.7-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: JQuery</name>
@@ -66,14 +67,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.7-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -95,14 +96,14 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.7-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.7-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -110,4 +111,4 @@
     </profile>
   </profiles>
 
-<properties><project.build.outputTimestamp>2020-04-21T04:57:18Z</project.build.outputTimestamp></properties></project>
+</project>
