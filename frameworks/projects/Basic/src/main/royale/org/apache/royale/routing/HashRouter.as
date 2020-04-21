@@ -58,12 +58,13 @@ package org.apache.royale.routing
 	 * The state of the router can be modified before committing the state changes.
 	 * The difference between HashRouter and BrowserRouter is that HashRouter uses the location hash which is only the section from "#" and on.
 	 * BrowserRouter uses path routes which are indistinguishable from normal urls.
+	 * Both Router implementations can use a hash for scroll positioning beads.
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.8
 	 */
-  public class HashRouter extends Strand implements IBead, IMXMLDocument
+  public class HashRouter extends Strand implements IRouter, IBead, IMXMLDocument
   {
 		public function HashRouter()
 		{

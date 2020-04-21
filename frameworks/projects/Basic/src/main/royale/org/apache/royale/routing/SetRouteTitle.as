@@ -29,10 +29,10 @@ package org.apache.royale.routing
       
     }
     /**
-     * @royaleignorecoercion org.apache.royale.routing.Router
+     * @royaleignorecoercion org.apache.royale.routing.IRouter
      */
-    protected function get host():Router{
-      return _strand as Router
+    protected function get host():IRouter{
+      return _strand as IRouter
     }
 
     override public function set strand(value:IStrand):void

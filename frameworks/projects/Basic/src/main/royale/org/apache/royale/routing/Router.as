@@ -63,7 +63,7 @@ package org.apache.royale.routing
 	 *  @productversion Royale 0.9.7
    *  @deprecated
 	 */
-  public class Router extends Strand implements IBead, IMXMLDocument
+  public class Router extends Strand implements IRouter, IBead, IMXMLDocument
   {
 		public function Router()
 		{
