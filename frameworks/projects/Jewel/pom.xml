@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>Jewel</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.7</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: Jewel</name>
@@ -98,49 +98,49 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Binding</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Graphics</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Collections</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>HTML</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Formatters</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -153,49 +153,49 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Binding</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Graphics</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Collections</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>HTML</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Formatters</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -203,4 +203,4 @@
     </profile>
   </profiles>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2020-04-20T06:42:06Z</project.build.outputTimestamp></properties></project>
