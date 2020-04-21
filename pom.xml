@@ -403,7 +403,7 @@
             <version>${royale.compiler.version}</version>
             <extensions>true</extensions>
             <configuration>
-              <additionalCompilerOptions>{$repo.compiler.options}</additionalCompilerOptions>
+              <additionalCompilerOptions>${repo.compiler.options}</additionalCompilerOptions>
             </configuration>
           </plugin>
         </plugins>
