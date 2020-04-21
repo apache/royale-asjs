@@ -21,7 +21,8 @@ package org.apache.royale.routing
   import org.apache.royale.core.Bead;
   import org.apache.royale.events.ValueEvent;
   import org.apache.royale.core.IStrand;
-
+  import org.apache.royale.events.Event;
+  
   [DefaultProperty("routes")]
   public class RouteToParameters extends Bead
   {
@@ -43,9 +44,9 @@ package org.apache.royale.routing
       listenOnStrand("stateChange",stateChanged)
     }
 
-    protected function urlNeeded(ev:ValueEvent):void
+    protected function urlNeeded(event:ValueEvent):void
     {
-      var hash:String = ev.value;
+      var hash:String = event.value;
       var paramStr:String = buildParameterString();
       var trailing:String = "";
       var index:int = hash.indexOf("#");
@@ -58,9 +59,9 @@ package org.apache.royale.routing
 
     }
 
-    protected function urlReceived(ev:ValueEvent):void
+    protected function urlReceived(event:ValueEvent):void
     {
-      var hash:String = ev.value;
+      var hash:String = event.value;
       var index:int = hash.indexOf("?");
       if(index == -1)//no params
         return;
@@ -73,7 +74,7 @@ package org.apache.royale.routing
       host.routeState.parameters = parseParameters(hash);
     }
 
-    protected function stateChanged():void
+    protected function stateChanged(event:Event):void
     {
       var params:Object = host.routeState.parameters;
       // apply routes
