@@ -497,5 +497,41 @@ package org.apache.royale.core
                 }
             }   
         }
+
+
+        /**
+		 *  perform the set focus on the element
+		 *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        public function setFocus(preventScroll:Boolean = false):void
+		{
+			COMPILE::JS
+			{
+			element.focus({preventScroll: preventScroll});
+			}
+		}
+        
+        /**
+		 *  the tabIndex of the element
+		 *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+        COMPILE::JS
+		public function get tabIndex():int
+		{
+			return element.tabIndex;
+		}
+        COMPILE::JS
+		public function set tabIndex(value:int):void
+		{
+			element.tabIndex = value;
+		}
     }
 }
