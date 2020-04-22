@@ -123,7 +123,7 @@ package org.apache.royale.jewel.beads.controllers
 			COMPILE::JS {
 			//put focus in the textinput
 			if (event.target == viewBead.button)
-				viewBead.textinput.element.focus();
+				viewBead.textinput.setFocus();
 			}
 
 			// viewBead.popup is ComboBoxPopUp that fills 100% of browser window-> We want List inside its view
@@ -171,7 +171,7 @@ package org.apache.royale.jewel.beads.controllers
 					list.element.classList.remove("scroll");
 					setTimeout(restoreScroll, 300);
 				}
-				list.element.focus({preventScroll:true});
+				list.setFocus(true);
 				list.selectedIndex = goToIndex;
 				}
 			}
