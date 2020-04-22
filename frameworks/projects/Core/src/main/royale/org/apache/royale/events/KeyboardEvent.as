@@ -49,10 +49,15 @@ package org.apache.royale.events
         COMPILE::JS
         public static const KEY_UP:String = "keyup";
 
+        // these are the ones reported by browsers directly
         public static const KEYCODE__UP:String = "ArrowUp";
         public static const KEYCODE__DOWN:String = "ArrowDown";
+        public static const KEYCODE__LEFT:String = "ArrowLeft";
+        public static const KEYCODE__RIGHT:String = "ArrowRight";
         public static const KEYCODE__ENTER:String = "Enter";
+        public static const KEYCODE__TAB:String = "Tab";
 
+        // these ones only exists on nativeEvent object
         public static const KEYCODE_UP:uint = 38;
         public static const KEYCODE_DOWN:uint = 40;
         public static const KEYCODE_LEFT:uint = 37;
