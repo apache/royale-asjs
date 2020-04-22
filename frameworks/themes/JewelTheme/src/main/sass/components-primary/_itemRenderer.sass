@@ -24,7 +24,13 @@ $itemrenderer-padding: 8px
 .jewel.item
     padding: $itemrenderer-padding
     background: transparent
-    
+
+    // &:focus
+    //     @if $flat
+    //         border: 1px solid $primary-color
+    //     @else
+    //         border: 1px solid darken($primary-color, 15%)
+
     &.hovered
         color: $font-theme-color
     &.selected, &.selectable:active
