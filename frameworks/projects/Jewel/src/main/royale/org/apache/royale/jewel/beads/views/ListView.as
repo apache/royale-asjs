@@ -32,6 +32,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
@@ -39,7 +40,6 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
-	import org.apache.royale.core.StyledUIBase;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List

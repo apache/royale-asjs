@@ -129,9 +129,8 @@ package org.apache.royale.jewel.beads.views
             }*/
 
 			_button = new Button();
-			COMPILE::JS {
-                _button.element.setAttribute('tabindex', -1);
-			}
+        	_button.tabIndex = -1;
+			
 			_button.text = '\u25BC';
 
 			initSize();
@@ -200,6 +199,7 @@ package org.apache.royale.jewel.beads.views
 					
 					//popup width needs to be set before position inside bounding client to work ok
 					_list.width = host.width;
+					_list.scrollToIndex(_list.selectedIndex);
                     
                     COMPILE::JS
                     {
