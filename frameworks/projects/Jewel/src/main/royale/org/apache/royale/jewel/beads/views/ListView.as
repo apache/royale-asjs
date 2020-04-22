@@ -32,10 +32,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectableItemRenderer;
 	import org.apache.royale.core.ISelectionModel;
-	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.beads.DataContainerView;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
@@ -92,42 +89,7 @@ package org.apache.royale.jewel.beads.views
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
-			IEventDispatcher(_strand).addEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler);
-			
 			super.handleInitComplete(event);
-		}
-
-		/**
-		 * @private
-		 */
-		protected function keyEventHandler(event:KeyboardEvent):void
-		{
-			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
-				return;
-			
-			event.preventDefault();
-
-			var prevIndex:int = listModel.selectedIndex;
-
-			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
-			{
-				if(prevIndex > 0)
-					listModel.selectedIndex -=1;
-			} 
-			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
-			{
-				listModel.selectedIndex +=1;
-			}
-
-			if(prevIndex != listModel.selectedIndex)
-			{
-				selectionChangeHandler(null);
-				scrollToIndex(listModel.selectedIndex);
-
-				var ir:StyledUIBase = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as StyledUIBase;
-				ir.setFocus();
-			}
 		}
 
 		/**

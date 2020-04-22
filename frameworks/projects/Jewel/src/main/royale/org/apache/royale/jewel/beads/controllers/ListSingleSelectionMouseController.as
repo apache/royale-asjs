@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
+	import org.apache.royale.core.IFocusable;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.IEventDispatcher;
+	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
+	import org.apache.royale.utils.sendEvent;
 
     /**
      *  The Jewel ListSingleSelectionMouseController class is a controller for
@@ -72,6 +76,8 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			super.strand = value;
 
+            IEventDispatcher(_strand).addEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler);
+
             //if the list is composed as part of another component, with a shared model (e.g. ComboBox) then it should not be the primary dispatcher
 			if (listModel is IJewelSelectionModel && !(IJewelSelectionModel(listModel).hasDispatcher)) {
                  IJewelSelectionModel(listModel).dispatcher = IEventDispatcher(value);
@@ -90,5 +96,47 @@ package org.apache.royale.jewel.beads.controllers
         protected function modelChangeHandler(event:Event):void{
             IEventDispatcher(_strand).dispatchEvent(new Event(event.type));
         }
+
+        /**
+		 * @private
+		 */
+		protected function keyEventHandler(event:KeyboardEvent):void
+		{
+			
+			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
+			if(event.key === KeyboardEvent.KEYCODE__TAB)
+				return;
+			
+			event.preventDefault();
+
+			// if(event.key === KeyboardEvent.KEYCODE__ENTER)
+			// {
+			// 	return;
+			// }
+
+			var prevIndex:int = listModel.selectedIndex;
+
+			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
+			{
+				if(prevIndex > 0)
+					listModel.selectedIndex -=1;
+			} 
+			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
+			{
+				listModel.selectedIndex +=1;
+			}
+
+			if(prevIndex != listModel.selectedIndex)
+			{
+                sendEvent(listView.host, 'selectionChanged');
+				(listView as IScrollToIndexView).scrollToIndex(listModel.selectedIndex);
+                
+				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
+				ir.setFocus();
+
+				// do this?
+				//sendEvent(listView.host, 'change');
+			}
+		}
 	}
 }
