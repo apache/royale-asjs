@@ -843,6 +843,9 @@ j|FormItem {
   box-shadow: none;
   border-radius: 3px;
 }
+.jewel.list:focus {
+  border: 1px solid #EF5A2A;
+}
 .jewel.list[disabled] {
   pointer-events: none;
   color: silver;
