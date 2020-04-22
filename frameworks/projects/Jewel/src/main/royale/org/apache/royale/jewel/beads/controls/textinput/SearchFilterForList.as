@@ -123,6 +123,9 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		protected function keyUpHandler(event:KeyboardEvent):void
 		{
+			if(event.key === KeyboardEvent.KEYCODE__TAB)
+				return;
+				
 			const inputBase:TextInputBase = event.target as TextInputBase;
 			//keyup can include other things like tab navigation
 
