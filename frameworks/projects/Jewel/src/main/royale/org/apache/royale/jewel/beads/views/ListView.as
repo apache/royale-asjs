@@ -91,7 +91,7 @@ package org.apache.royale.jewel.beads.views
 			listModel.addEventListener("selectionChanged", selectionChangeHandler);
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
-			IEventDispatcher(_strand).addEventListener('keydown', keyEventHandler);
+			IEventDispatcher(_strand).addEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler);
 			
 			super.handleInitComplete(event);
 		}
