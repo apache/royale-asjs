@@ -25,6 +25,7 @@ package mx.containers.beads
 	import mx.core.IUIComponent;
 	
 	import org.apache.royale.core.IStrand;
+	import mx.core.ILayoutElement;
 	import org.apache.royale.core.LayoutBase;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.geom.Rectangle;
@@ -211,6 +212,7 @@ public class CanvasLayout extends LayoutBase
 			// each child must have position:absolute for BasicLayout to work
 			for (i=0; i < n; i++) {
 				var child:IUIComponent = target.getLayoutChildAt(i);
+				var hCenter:Number = Number((child as ILayoutElement).horizontalCenter);
 				child.positioner.style.position = "absolute";
 				var layoutNeeded:Boolean = true;
 				var hh:Number = child.height;
@@ -224,6 +226,11 @@ public class CanvasLayout extends LayoutBase
 				{
 					ww = target.width * child.percentWidth / 100;
 					layoutNeeded = false;
+				}
+				if (!isNaN(hCenter))
+				{
+					// TODO consider how this affects measurement of target
+					child.x = Math.round((target.width - ww) / 2 + hCenter);
 				}
 				if (layoutNeeded)
 	                child.dispatchEvent(new Event("layoutNeeded"));
