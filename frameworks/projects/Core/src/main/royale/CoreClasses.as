@@ -26,6 +26,7 @@ package {
  */
 internal class CoreClasses
 {
+	import org.apache.royale.core.IFocusable; IFocusable;
 	import org.apache.royale.core.IId; IId;
 	import org.apache.royale.core.HTMLElementWrapper; HTMLElementWrapper;
 	import org.apache.royale.core.LayoutBase; LayoutBase;

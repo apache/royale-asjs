@@ -23,6 +23,7 @@ package org.apache.royale.core
     import org.apache.royale.core.WrappedHTMLElement;
     import org.apache.royale.html.util.addElementToWrapper;
     }
+    import org.apache.royale.core.IFocusable;
     import org.apache.royale.utils.ClassSelectorList;
     import org.apache.royale.utils.sendEvent;
 
@@ -39,7 +40,7 @@ package org.apache.royale.core
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.3
      */
-    public class StyledUIBase extends UIBase implements IStyledUIBase
+    public class StyledUIBase extends UIBase implements IStyledUIBase, IFocusable
     {
         public static const PRIMARY:String = "primary";
         public static const SECONDARY:String = "secondary";
@@ -500,7 +501,7 @@ package org.apache.royale.core
 
 
         /**
-		 *  perform the set focus on the element
+		 *  Make the component get the focus on the element
 		 *
          *  @langversion 3.0
          *  @playerversion Flash 10.2
