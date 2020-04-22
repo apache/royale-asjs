@@ -7,7 +7,13 @@ Apache Royale 0.9.7
 - Added support for using Command pattern to Crux
 - added [RoyaleArrayLike] implementation support added to Royale Collections, and BinaryData
 - improvements to XML/E4X conformance, and memory footprint (tbc @harbs)
+- Fix bin/mxmlc and bin/compc scripts that did not understand certain default compiler options in royale-config.xml
 - [add support for legacy HttpService decoding format](https://github.com/apache/royale-asjs/issues/466)
+- RoyaleUnit: [Test(async)] may be used to define asynchronous tests
+- RoyaleUnit: [BeforeClass] and [AfterClass] metadata must be added to static methods
+- RoyaleUnit: [Test] metadata supports an 'expected' attribute to expect a thrown exception
+- RoyaleUnit: Fixed incorrect order of expected and actual values in assert messages
+- RoyaleUnitUI: An optional UI to display the results of RoyaleUnit tests
 
 Apache Royale 0.9.6
 ===================

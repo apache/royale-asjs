@@ -55,7 +55,7 @@ package org.apache.royale.routing
       host.routeState.path = getStateComponent().currentState;
       host.setState();
     }
-    override protected function hashNeeded(ev:ValueEvent):void
+    override protected function urlNeeded(ev:ValueEvent):void
     {
       var hash:String = ev.value;
       // don't overwrite path, parameters and anchor

@@ -29,10 +29,10 @@ package org.apache.royale.routing
       
     }
     /**
-     * @royaleignorecoercion org.apache.royale.routing.Router
+     * @royaleignorecoercion org.apache.royale.routing.IRouter
      */
-    protected function get host():Router{
-      return _strand as Router
+    protected function get host():IRouter{
+      return _strand as IRouter
     }
 
     override public function set strand(value:IStrand):void
@@ -43,9 +43,9 @@ package org.apache.royale.routing
         initialTitle = document.title;
       }
       listenOnStrand("stateSet",handleStateSet);
-      listenOnStrand("hashReceived",hashReceived);
+      listenOnStrand("urlReceived",urlReceived);
     }
-    private function hashReceived(ev:ValueEvent):void
+    private function urlReceived(ev:ValueEvent):void
     {
       setTitle();
     }

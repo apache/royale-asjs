@@ -289,6 +289,8 @@
     <component id="SetRouteTitle" class="org.apache.royale.routing.SetRouteTitle"/>
     <component id="RouteTitleLookup" class="org.apache.royale.routing.RouteTitleLookup"/>
     <component id="Router" class="org.apache.royale.routing.Router"/>
+    <component id="HashRouter" class="org.apache.royale.routing.HashRouter"/>
+    <component id="BrowserRouter" class="org.apache.royale.routing.BrowserRouter"/>
 
     <component id="UIGraphicsBase" class="org.apache.royale.display.UIGraphicsBase"/>
 

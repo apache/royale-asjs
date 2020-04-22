@@ -37,7 +37,7 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.9.8
 	 */
 	[Event(name="stateChange", type="org.apache.royale.events.Event")]
 
@@ -47,27 +47,48 @@ package org.apache.royale.routing
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
+	 *  @productversion Royale 0.9.8
 	 */
 	[Event(name="initBindings", type="org.apache.royale.events.Event")]
 
 	/**
-	 * Router is deprecated. Please use HashRouter or BrowserRouter instead.
-   * Router is a bead which automatically handles browsing history.
+	 * HashRouter is a bead which automatically handles browsing history.
 	 * It could be attached to any strand, but typically it would be attached to Application or View
 	 * Listen to stateChange events to handle changes to browsing history and use setState and renderState for modifying the history.
 	 * The state of the router can be modified before committing the state changes.
+	 * The difference between HashRouter and BrowserRouter is that HashRouter uses the location hash which is only the section from "#" and on.
+	 * BrowserRouter uses path routes which are indistinguishable from normal urls.
+	 * Both Router implementations can use a hash for scroll positioning beads.
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
-	 *  @productversion Royale 0.9.7
-   *  @deprecated
+	 *  @productversion Royale 0.9.8
 	 */
-  public class Router extends Strand implements IRouter, IBead, IMXMLDocument
+  public class HashRouter extends Strand implements IRouter, IBead, IMXMLDocument
   {
-		public function Router()
+		public function HashRouter()
 		{
 
+		}
+
+		private var _useHashBang:Boolean = true;
+
+		/**
+		 *  Using a hashbang (<code>!#</code>) lets the application be indexed by search engines.
+		 * 
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		public function get useHashBang():Boolean
+		{
+			return _useHashBang;
+		}
+
+		public function set useHashBang(value:Boolean):void
+		{
+			_useHashBang = value;
 		}
 
 		public function get host():IStrand
@@ -162,13 +183,13 @@ package org.apache.royale.routing
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
 		public function setState():void
 		{
 		  COMPILE::JS
 		  {
-			var hash:String = "#!";
+			var hash:String = useHashBang ? "#!" : "#";
 			var ev:ValueEvent = new ValueEvent("urlNeeded","");
 			dispatchEvent(ev);
 			var stateEv:ValueEvent = new ValueEvent("stateNeeded",{});
@@ -186,7 +207,7 @@ package org.apache.royale.routing
 		 *  @langversion 3.0
 		 *  @playerversion Flash 10.2
 		 *  @playerversion AIR 2.6
-		 *  @productversion Royale 0.9.7
+		 *  @productversion Royale 0.9.8
 		 */
 		public function renderState():void
 		{

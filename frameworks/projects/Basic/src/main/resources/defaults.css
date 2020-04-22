@@ -763,6 +763,16 @@ Router
 	IPathRouteBead: ClassReference("org.apache.royale.routing.PathRouteBead");
 }
 
+HashRouter
+{
+	IPathRouteBead: ClassReference("org.apache.royale.routing.PathRouteBead");
+}
+
+BrowserRouter
+{
+	IPathRouteBead: ClassReference("org.apache.royale.routing.PathRouteBead");
+}
+
 TextInput
 {
 	border: 1px solid #808080;
