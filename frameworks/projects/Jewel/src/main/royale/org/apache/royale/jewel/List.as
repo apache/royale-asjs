@@ -28,6 +28,7 @@ package org.apache.royale.jewel
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
+	import org.apache.royale.events.Event;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -83,6 +84,8 @@ package org.apache.royale.jewel
             typeNames = "jewel list";
 			// rowHeight is not set by default, so set it to NaN
 			rowHeight = NaN;
+
+			tabIndex = 0;
 		}
 
         [Bindable("labelFieldChanged")]

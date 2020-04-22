@@ -39,6 +39,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	import org.apache.royale.core.StyledUIBase;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -101,16 +102,20 @@ package org.apache.royale.jewel.beads.views
 		 */
 		protected function keyEventHandler(event:KeyboardEvent):void
 		{
+			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
+			if(event.key === KeyboardEvent.KEYCODE__TAB)
+				return;
+			
 			event.preventDefault();
 
 			var prevIndex:int = listModel.selectedIndex;
 
-			if(event.key === KeyboardEvent.KEYCODE__UP)
+			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
 			{
 				if(prevIndex > 0)
 					listModel.selectedIndex -=1;
 			} 
-			else if(event.key === KeyboardEvent.KEYCODE__DOWN)
+			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
 			{
 				listModel.selectedIndex +=1;
 			}
@@ -119,6 +124,9 @@ package org.apache.royale.jewel.beads.views
 			{
 				selectionChangeHandler(null);
 				scrollToIndex(listModel.selectedIndex);
+
+				var ir:StyledUIBase = dataGroup.getItemRendererForIndex(listModel.selectedIndex) as StyledUIBase;
+				ir.setFocus();
 			}
 		}
 

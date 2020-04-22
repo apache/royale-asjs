@@ -140,7 +140,7 @@ package org.apache.royale.jewel.itemRenderers
         override protected function createElement():WrappedHTMLElement
         {
 			addElementToWrapper(this, 'li');
-			element.tabIndex = 0;
+			// tabIndex = -1;
             return element;
         }
 	}
