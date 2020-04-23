@@ -134,6 +134,7 @@ package org.apache.royale.jewel.beads.controllers
 			list.addEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 			list.addEventListener(KeyboardEvent.KEY_DOWN, listKeyEventHandler);
 			list.addEventListener(Event.CHANGE, changeHandler);
+			list.addEventListener(MouseEvent.CLICK, listClickHandler);
             if (model is IJewelSelectionModel) {
 				//don't let the pop-up's list take over as primary dispatcher
 				//it needs to stay with the ComboBox (for selection bindings to work)
@@ -157,7 +158,7 @@ package org.apache.royale.jewel.beads.controllers
 
 			if(event.key === KeyboardEvent.KEYCODE__DOWN)
 			{
-				keyPressed = true
+				keyPressed = true;
 				var view:IListView = list.view as IListView;
 				var dataGroup:IItemRendererOwnerView = view.dataGroup;
 				var goToIndex:int = list.selectedIndex == -1 ? 0 : list.selectedIndex; 
@@ -231,6 +232,8 @@ package org.apache.royale.jewel.beads.controllers
 		}
 
 		/**
+		 *  ComboBox dispatch CHANGE event
+		 *  
          *  @royaleignorecoercion org.apache.royale.core.UIBase
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
 		 */
@@ -239,6 +242,14 @@ package org.apache.royale.jewel.beads.controllers
 			event.stopImmediatePropagation();
 			model.selectedItem = IComboBoxModel(list.getBeadByType(IComboBoxModel)).selectedItem;
 			IEventDispatcher(_strand).dispatchEvent(new Event(Event.CHANGE));
+		}
+		
+		/**
+		 * when click on the list close popup
+		 * @param event 
+		 */
+		private function listClickHandler(event:Event):void
+		{
 			dismissPopUp();
 		}
 
@@ -256,6 +267,7 @@ package org.apache.royale.jewel.beads.controllers
 				list.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				list.removeEventListener(Event.CHANGE, changeHandler);
 				list.removeEventListener(KeyboardEvent.KEY_DOWN, listKeyEventHandler);
+				list.removeEventListener(MouseEvent.CLICK, listClickHandler);
 				viewBead.popUpVisible = false;
 			}
 			keyPressed = false;

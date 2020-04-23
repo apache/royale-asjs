@@ -114,28 +114,29 @@ package org.apache.royale.jewel.beads.controllers
 			// 	return;
 			// }
 
-			var prevIndex:int = listModel.selectedIndex;
+			var index:int = listModel.selectedIndex;
 
 			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
 			{
-				if(prevIndex > 0)
-					listModel.selectedIndex -=1;
+				if(index > 0)
+					index--;
 			} 
 			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
 			{
-				listModel.selectedIndex +=1;
+				index++;
 			}
 
-			if(prevIndex != listModel.selectedIndex)
+			if(index != listModel.selectedIndex)
 			{
-                sendEvent(listView.host, 'selectionChanged');
-				(listView as IScrollToIndexView).scrollToIndex(listModel.selectedIndex);
+				listModel.selectedIndex = index;
+				listModel.selectedItem = listModel.dataProvider.getItemAt(index);
                 
-				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
+				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(index) as IFocusable;
 				ir.setFocus();
 
-				// do this?
-				//sendEvent(listView.host, 'change');
+                (listView as IScrollToIndexView).scrollToIndex(index);
+				
+				sendEvent(listView.host, 'change');
 			}
 		}
 	}
