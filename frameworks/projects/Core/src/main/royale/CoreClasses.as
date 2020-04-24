@@ -26,6 +26,7 @@ package {
  */
 internal class CoreClasses
 {
+	import org.apache.royale.core.IRemovableBead; IRemovableBead;
 	import org.apache.royale.core.IBeadKeyController; IBeadKeyController;
 	import org.apache.royale.core.IFocusable; IFocusable;
 	import org.apache.royale.core.IId; IId;
