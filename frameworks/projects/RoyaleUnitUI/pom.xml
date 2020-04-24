@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>projects</artifactId>
-    <version>0.9.8-SNAPSHOT</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>RoyaleUnitUI</artifactId>
-  <version>0.9.8-SNAPSHOT</version>
+  <version>0.9.7</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Libs: RoyaleUnitUI</name>
@@ -53,28 +53,28 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Core</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Reflection</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>RoyaleUnit</artifactId>
-      <version>0.9.8-SNAPSHOT</version>
+      <version>0.9.7</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
@@ -87,28 +87,28 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Core</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Reflection</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>RoyaleUnit</artifactId>
-          <version>0.9.8-SNAPSHOT</version>
+          <version>0.9.7</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -116,4 +116,4 @@
     </profile>
   </profiles>
 
-<properties /></project>
+<properties><project.build.outputTimestamp>2020-04-21T08:58:25Z</project.build.outputTimestamp></properties></project>
