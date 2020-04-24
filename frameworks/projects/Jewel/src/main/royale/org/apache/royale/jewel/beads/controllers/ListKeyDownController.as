@@ -117,20 +117,22 @@ package org.apache.royale.jewel.beads.controllers
 			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
 			{
 				if(index > 0)
-					index--;
+					listModel.selectedIndex--;
 			} 
 			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
 			{
-				index++;
+				listModel.selectedIndex++;
 			}
 
 			if(index != listModel.selectedIndex)
 			{
-				listModel.selectedIndex = index;
-				listModel.selectedItem = listModel.dataProvider.getItemAt(index);
+				listModel.selectedItem = listModel.dataProvider.getItemAt(listModel.selectedIndex);
 
-				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(index) as IFocusable;
-				ir.setFocus();
+				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
+				if(ir)
+					ir.setFocus();
+				else
+					trace("!! " + listModel.selectedIndex);
 
                 (listView as IScrollToIndexView).scrollToIndex(index);
 				
