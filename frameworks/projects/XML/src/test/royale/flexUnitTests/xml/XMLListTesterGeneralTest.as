@@ -216,5 +216,32 @@ package flexUnitTests.xml
             }
             assertTrue(hadError, 'expected an error');
         }
+
+
+
+        [Test]
+        public function testCoercion():void{
+            var source:XML = <data>
+                <row>
+                    <Item someattribute="item1Att">item1</Item>
+                </row>
+                <row>
+                    <Item someattribute="item2Att">item2</Item>
+                </row>
+            </data>;
+
+            var list:XMLList = XMLList(source);
+            assertEquals(list.length(), 1, 'unexpected XMLList length');
+            assertEquals(source.row.length(), 2, 'unexpected XMLList length');
+
+            assertEquals(list.row.length(), 2, 'unexpected XMLList length');
+            var alt:XMLList = XMLList(list)
+            assertEquals(alt.length(), 1, 'unexpected XMLList length');
+            assertEquals(alt.row.length(), 2, 'unexpected XMLList length');
+            assertEquals(alt, list, 'unexpected XMLList equality');
+            assertStrictlyEquals(alt, list, 'unexpected XMLList strict equality');
+            assertStrictlyEquals(alt[0], source, 'unexpected XMLList content strict equality');
+
+        }
     }
 }
