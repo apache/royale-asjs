@@ -19,13 +19,20 @@
 package org.apache.royale.jewel.beads.controls.textinput
 {
 	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IBeadKeyController;
+	import org.apache.royale.core.IFocusable;
+	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IRemovableBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.List;
+	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
 	import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
+	import org.apache.royale.utils.sendEvent;
 
 	/**
 	 *  The SearchFilterForList bead class is a specialty bead that can be used with
@@ -66,11 +73,56 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		public function set list(value:List):void
 		{
+			if(_list)
+			{
+				list.removeEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler, true);
+			}
+
 			_list = value;
 
-			if(_list != null)
+			if(_list)
 			{
-				length = list.numElements;
+				var keyBead:IRemovableBead = _list.getBeadByType(IBeadKeyController) as IRemovableBead;
+				if(keyBead)
+				{
+					keyBead.tearDown();
+					_list.removeBead(keyBead);
+				}
+				list.addEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler, true);
+			}
+		}
+
+		protected function keyEventHandler(event:KeyboardEvent):void
+		{
+			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
+			if(event.key === KeyboardEvent.KEYCODE__TAB)
+				return;
+			
+			event.preventDefault();
+
+			var index:int = visibleIndexes.indexOf(list.selectedIndex);
+			currentIndex = index;
+
+			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
+			{
+				if(index > 0)
+					currentIndex = prevIndex;
+			} 
+			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
+			{
+				currentIndex = nextIndex;
+			}
+
+			if(index != currentIndex)
+			{
+				list.selectedItem = list.dataProvider.getItemAt(currentIndex);
+
+				var fir:IFocusable = (list.view as IListView).dataGroup.getItemRendererForIndex(currentIndex) as IFocusable;
+				fir.setFocus();
+				
+                (list.view as IScrollToIndexView).scrollToIndex(index);
+				
+				sendEvent(list, 'change');
 			}
 		}
 
@@ -95,12 +147,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 			return _length;
 		}
-
-		public function set length(value:int):void
-		{
-			_length = value;
-		}
-
 		
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -148,7 +194,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 			var input:TextInputBase = TextInputBase(_strand);
             COMPILE::JS
 			{
-                input.element.addEventListener('focus', onInputFocus);
+            input.element.addEventListener('focus', onInputFocus);
             }
 		}
 
@@ -186,17 +232,18 @@ package org.apache.royale.jewel.beads.controls.textinput
 
         protected function applyFilter(filterText:String):void
 		{
-            var ir:ListItemRenderer;
+			var ir:ListItemRenderer;
             var numElements:int = list.numElements;
 			var item:Object = null;
-			length = numElements;
+			_visibleIndexes = [];
             while (numElements--)
             {
                 ir = list.getElementAt(numElements) as ListItemRenderer;
 				var textData:String = getLabelFromData(ir, ir.data);
-                if (filterFunction(textData, filterText))
-                {
-                    ir.visible = true;
+				if (filterFunction(textData, filterText))
+				{
+					ir.visible = true;
+					visibleIndexes.push(ir.index);
 					
 					//stores the item if text is the same
 					if(textData.toUpperCase() == filterText.toUpperCase())
@@ -207,19 +254,62 @@ package org.apache.royale.jewel.beads.controls.textinput
 					{
 						ir.text = "<span>" + (filterText != "" ?  decorateText(textData, textData.toUpperCase().indexOf(filterText.toUpperCase()), filterText.length) : textData ) + "</span>";
 					}
-                } else {
-                    ir.visible = false;
-					length--;
-                }
+				} else {
+					ir.visible = false;
+				}
             }
+
+			_visibleIndexes = _visibleIndexes.sort(numberSort);
 
 			// Select the item in the list if text is the same 
 			// we do at the end to avoid multiple selection (if there's more than one matches)
 			// in that case, select the first one in the list
 			if(item != null)
-			{
 				list.selectedItem = item;
+		}
+
+		private var _visibleIndexes: Array;
+        /**
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9.7
+         */
+		public function get visibleIndexes():Array
+		{
+			if(!_visibleIndexes)
+			{
+				_visibleIndexes = [];
+				var view:IListView = list.view as IListView;
+				var dataGroup:IItemRendererOwnerView = view.dataGroup;
+				var len:int = list.numElements;
+				var ir:ListItemRenderer;
+				for(var i:int = 0; i < len; i++)
+				{
+					ir = dataGroup.getItemRendererForIndex(i) as ListItemRenderer;
+					if(ir.visible)
+						_visibleIndexes.push(ir.index);
+				}
 			}
+			return _visibleIndexes;
+		}
+
+		protected function numberSort(a:int, b:int):int
+        {
+            return a - b;
+        }
+
+		protected var currentIndex:int = 0;
+
+		protected function get prevIndex():int
+		{
+			return currentIndex > 0 ? _visibleIndexes[--currentIndex] : 0;
+		}
+
+		protected function get nextIndex():int
+		{
+			return currentIndex < _visibleIndexes.length - 1 ? _visibleIndexes[++currentIndex] : _visibleIndexes.length - 1;
 		}
 	}
 }
