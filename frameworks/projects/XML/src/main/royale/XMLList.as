@@ -34,9 +34,11 @@ package
 		 *  mimics the top-level XMLList function (supports 'this' correctly)
 		 *
 		 *  @royalesuppressexport
+		 *  @royaleignorecoercion XMLList
 		 */
 		public static function conversion(val:* = null):XMLList{
-			return new XMLList(val);
+			if (val && val.constructor == XMLList) return val as XMLList;
+			else return new XMLList(val);
 		}
 		
 		public function XMLList(expression:Object = null)
