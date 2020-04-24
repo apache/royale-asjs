@@ -18,10 +18,9 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controls.textinput
 {
-	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.List;
@@ -41,7 +40,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.9.6
 	 */
-	public class SearchFilterForList implements IBead
+	public class SearchFilterForList extends Bead
 	{
 		/**
 		 *  constructor.
@@ -88,7 +87,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		public var useDecoration:Boolean = true;
 
 		private var _length:int;
-
 		/**
 		 * enables label decoration when filter
 		 */
@@ -104,7 +102,6 @@ package org.apache.royale.jewel.beads.controls.textinput
 		}
 
 		
-		protected var _strand:IStrand;
 		/**
 		 *  @copy org.apache.royale.core.IBead#strand
 		 *
@@ -114,11 +111,11 @@ package org.apache.royale.jewel.beads.controls.textinput
 		 *  @productversion Royale 0.9.6
 		 *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher;
 		 */
-		public function set strand(value:IStrand):void
+		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			IEventDispatcher(_strand).addEventListener(KeyboardEvent.KEY_UP, keyUpHandler);
-            IEventDispatcher(_strand).addEventListener('beadsAdded', onBeadsAdded);
+			listenOnStrand(KeyboardEvent.KEY_UP, keyUpHandler);
+            listenOnStrand('beadsAdded', onBeadsAdded);
 		}
 
 		protected function keyUpHandler(event:KeyboardEvent):void
@@ -141,10 +138,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 			// first remove a previous selection
 			if(list.selectedIndex != -1)
-			{
 				list.selectedItem = null;
-			}
-
+			
 			applyFilter(input.text);
 		}
 
@@ -205,9 +200,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 					
 					//stores the item if text is the same
 					if(textData.toUpperCase() == filterText.toUpperCase())
-					{
 						item = ir.data;
-					}
 
 					//decorate text
 					if(useDecoration)
