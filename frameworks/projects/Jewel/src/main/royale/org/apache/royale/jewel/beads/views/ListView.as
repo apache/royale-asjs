@@ -34,6 +34,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.beads.DataContainerView;
+	import org.apache.royale.jewel.beads.controllers.ListKeyDownController;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
@@ -91,6 +92,8 @@ package org.apache.royale.jewel.beads.views
 			listModel.addEventListener("rollOverIndexChanged", rollOverIndexChangeHandler);
 			
 			super.handleInitComplete(event);
+
+			_strand.addBead(new ListKeyDownController());
 		}
 
 		/**

@@ -18,11 +18,15 @@
 ////////////////////////////////////////////////////////////////////////////////
 package org.apache.royale.jewel.beads.controllers
 {
+	import org.apache.royale.core.Bead;
+	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IFocusable;
+	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
-	import org.apache.royale.events.Event;
-	import org.apache.royale.events.IEventDispatcher;
-	import org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController;
-	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
+	import org.apache.royale.events.KeyboardEvent;
+	import org.apache.royale.html.beads.IListView;
+	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
+	import org.apache.royale.utils.sendEvent;
 
     /**
      *  The Jewel ListSingleSelectionMouseController class is a controller for
@@ -40,9 +44,9 @@ package org.apache.royale.jewel.beads.controllers
      *  @langversion 3.0
      *  @playerversion Flash 10.2
      *  @playerversion AIR 2.6
-     *  @productversion Royale 0.9.4
+     *  @productversion Royale 0.9.7
      */
-	public class ListSingleSelectionMouseController extends org.apache.royale.html.beads.controllers.ListSingleSelectionMouseController
+	public class ListKeyDownController extends Bead implements IBeadController
 	{
         /**
          *  Constructor.
@@ -50,11 +54,31 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
+         *  @productversion Royale 0.9.7
          */
-		public function ListSingleSelectionMouseController()
+		public function ListKeyDownController()
 		{
 		}
+
+		/**
+		 *  The model.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		protected var listModel:ISelectionModel;
+
+		/**
+		 *  The view.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.7
+		 */
+		protected var listView:IListView;
 
         /**
          *  @copy org.apache.royale.core.IBead#strand
@@ -62,7 +86,7 @@ package org.apache.royale.jewel.beads.controllers
          *  @langversion 3.0
          *  @playerversion Flash 10.2
          *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.4
+         *  @productversion Royale 0.9.7
          *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
 		 *  @royaleignorecoercion org.apache.royale.jewel.beads.models.IJewelSelectionModel
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -70,25 +94,48 @@ package org.apache.royale.jewel.beads.controllers
          */
 		override public function set strand(value:IStrand):void
 		{
-			super.strand = value;
+			_strand = value;
+			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
+			listView = value.getBeadByType(IListView) as IListView;
 
-            //if the list is composed as part of another component, with a shared model (e.g. ComboBox) then it should not be the primary dispatcher
-			if (listModel is IJewelSelectionModel && !(IJewelSelectionModel(listModel).hasDispatcher)) {
-                 IJewelSelectionModel(listModel).dispatcher = IEventDispatcher(value);
-			}
-            else {
-				IEventDispatcher(listModel).addEventListener('rollOverIndexChanged', modelChangeHandler);
-				IEventDispatcher(listModel).addEventListener('selectionChanged', modelChangeHandler);
-                IEventDispatcher(listModel).addEventListener('dataProviderChanged', modelChangeHandler);
-            }
+            listenOnStrand(KeyboardEvent.KEY_DOWN, keyEventHandler);
 		}
 
         /**
-         * 
-         * @param event 
-         */
-        protected function modelChangeHandler(event:Event):void{
-            IEventDispatcher(_strand).dispatchEvent(new Event(event.type));
-        }
+		 * @private
+		 */
+		protected function keyEventHandler(event:KeyboardEvent):void
+		{
+			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
+			if(event.key === KeyboardEvent.KEYCODE__TAB)
+				return;
+			
+			event.preventDefault();
+
+			var index:int = listModel.selectedIndex;
+
+			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
+			{
+				if(index > 0)
+					index--;
+			} 
+			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
+			{
+				index++;
+			}
+
+			if(index != listModel.selectedIndex)
+			{
+				listModel.selectedIndex = index;
+				listModel.selectedItem = listModel.dataProvider.getItemAt(index);
+
+				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(index) as IFocusable;
+				ir.setFocus();
+
+                (listView as IScrollToIndexView).scrollToIndex(index);
+				
+				sendEvent(listView.host, 'change');
+			}
+		}
 	}
 }
