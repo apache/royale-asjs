@@ -1303,8 +1303,7 @@ package org.apache.royale.core
             }
             COMPILE::JS
             {
-                var children:Array = internalChildren();
-                return children.length;
+                return internalChildren().length;
             }
         }
         
