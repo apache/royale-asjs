@@ -37,6 +37,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.utils.getSelectionRenderBead;
+	// import org.apache.royale.core.IFocusable;
 
 	/**
 	 *  The ListView class creates the visual elements of the org.apache.royale.jewel.List
@@ -208,6 +209,16 @@ package org.apache.royale.jewel.beads.views
 
 			return oldScroll != scrollArea.scrollTop;
 		}
+
+		/**
+		 * 
+		 * @param index 
+		 */
+		// public function setFocusOnItem(index:int):void
+		// {
+		// 	var ir:IFocusable = dataGroup.getItemRendererForIndex(index) as IFocusable;
+		// 	ir.setFocus();
+		// }
 	}
 
 	COMPILE::SWF
