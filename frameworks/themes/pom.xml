@@ -33,7 +33,7 @@
   <name>Apache Royale: Framework: Themes</name>
 
   <properties>
-    <project.compiler.options>${repo.compiler.options}-js-default-initializers=false;-source-map=${source.map};-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false</project.compiler.options>
+    <project.compiler.options>${repo.compiler.options};-js-default-initializers=false;-source-map=${source.map};-js-complex-implicit-coercions=false;-js-vector-index-checks=false;-js-resolve-uncertain=false</project.compiler.options>
   </properties>
 
   <modules>
