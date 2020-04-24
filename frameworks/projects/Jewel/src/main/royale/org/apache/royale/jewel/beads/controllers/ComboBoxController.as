@@ -24,6 +24,7 @@ package org.apache.royale.jewel.beads.controllers
     }
 	import org.apache.royale.core.IBeadController;
 	import org.apache.royale.core.IComboBoxModel;
+	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IItemRendererOwnerView;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -250,7 +251,8 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		private function listClickHandler(event:Event):void
 		{
-			dismissPopUp();
+			if(event.target is IItemRenderer)
+				dismissPopUp();
 		}
 
         protected function modelChangeHandler(event:Event):void{
