@@ -21,8 +21,10 @@ package org.apache.royale.jewel.beads.controllers
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.IFocusable;
+	import org.apache.royale.core.IRemovableBead;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.KeyboardEvent;
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
@@ -46,7 +48,7 @@ package org.apache.royale.jewel.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public class ListKeyDownController extends Bead implements IBeadKeyController
+	public class ListKeyDownController extends Bead implements IBeadKeyController, IRemovableBead
 	{
         /**
          *  Constructor.
@@ -101,6 +103,19 @@ package org.apache.royale.jewel.beads.controllers
             listenOnStrand(KeyboardEvent.KEY_DOWN, keyEventHandler);
 		}
 
+		/**
+		 *  The actions needed before the removal
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9.8
+		 */
+		public function tearDown():void
+		{
+			IEventDispatcher(_strand).removeEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler);
+		}
+
         /**
 		 * @private
 		 */
@@ -129,11 +144,8 @@ package org.apache.royale.jewel.beads.controllers
 				listModel.selectedItem = listModel.dataProvider.getItemAt(listModel.selectedIndex);
 
 				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
-				if(ir)
-					ir.setFocus();
-				else
-					trace("!! " + listModel.selectedIndex);
-
+				ir.setFocus();
+				
                 (listView as IScrollToIndexView).scrollToIndex(index);
 				
 				sendEvent(listView.host, 'change');
