@@ -19,7 +19,7 @@
 package org.apache.royale.jewel.beads.controllers
 {
 	import org.apache.royale.core.Bead;
-	import org.apache.royale.core.IBeadController;
+	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.IFocusable;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrand;
@@ -46,7 +46,7 @@ package org.apache.royale.jewel.beads.controllers
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.9.7
      */
-	public class ListKeyDownController extends Bead implements IBeadController
+	public class ListKeyDownController extends Bead implements IBeadKeyController
 	{
         /**
          *  Constructor.

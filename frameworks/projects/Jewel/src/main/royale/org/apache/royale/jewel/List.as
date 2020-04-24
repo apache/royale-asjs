@@ -19,16 +19,17 @@
 package org.apache.royale.jewel
 {
 	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.IDataProviderModel;
 	import org.apache.royale.core.IRollOverModel;
 	import org.apache.royale.core.ISelectionModel;
 	import org.apache.royale.core.IStrandWithPresentationModel;
 	import org.apache.royale.jewel.beads.layouts.IVariableRowHeight;
 	import org.apache.royale.jewel.beads.models.ListPresentationModel;
+	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
 	import org.apache.royale.jewel.supportClasses.container.DataContainerBase;
 	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
-	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
-	import org.apache.royale.events.Event;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
 
 	/**
 	 *  Indicates that the initialization of the list is complete.
@@ -278,6 +279,16 @@ package org.apache.royale.jewel
 		public function scrollToIndex(index:int):Boolean
 		{
 			return (view as IScrollToIndexView).scrollToIndex(index);
+		}
+
+		/**
+		 * @private
+		 */
+		override public function addedToParent():void
+		{
+			super.addedToParent();
+
+			loadBeadFromValuesManager(IBeadKeyController, "iBeadKeyController", this);
 		}
    	}
 }
