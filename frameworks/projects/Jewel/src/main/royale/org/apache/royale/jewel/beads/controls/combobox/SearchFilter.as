@@ -59,11 +59,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 			var popUpVisible:Boolean = input.parent.view.popUpVisible;
             if (!popUpVisible) {
-                //force popup ?:
                 input.parent.view.popUpVisible = true;
-                
-				//or avoid ?:
-                //return;
             }
 			
 			// fill "list" with the internal list in the combobox popup
