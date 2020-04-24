@@ -73,7 +73,7 @@ Apache Royale 0.9.7
   - New:
     - mx.net.SharedObjectJSON - new alternative
 - Maven:
-  - Massive improvements (thanks to Chris Dutz)
+  - Massive improvements
   - Now Maven can generate a valid distribution (SDK) to use in any IDE (tested on VSCode and Moonshine)
   - distribution can be JS only
   - SASS generation is now separated from main build to a profile to save lots of time when no need to build themes
