@@ -218,8 +218,15 @@ public class BindabilityInfo
 					//if there is no arg, then it is valueChange
 					for each(var metaItem:MetaDataDefinition in metaItems) {
 						if (metaItem.args.length) {
-							//assume first arg is the eventName
-							eventListObj[MetaDataArgDefinition(metaItem.args[0]).value] = true;
+							//check for no key
+							var eventTypeArgs:Array = metaItem.getArgsByKey('');
+							if (!eventTypeArgs.length) {
+								//check for 'event' key
+								eventTypeArgs = metaItem.getArgsByKey('event');
+							}
+							if (eventTypeArgs.length) {
+								eventListObj[MetaDataArgDefinition(eventTypeArgs[0]).value] = true;
+							}
 						} else {
 							if (meta == BINDABLE) {
 								eventListObj[ValueChangeEvent.VALUE_CHANGE] = true;
