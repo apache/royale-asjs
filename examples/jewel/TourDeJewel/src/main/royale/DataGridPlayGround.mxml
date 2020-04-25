@@ -456,7 +456,7 @@ limitations under the License.
 			</j:Card>
 		</j:GridCell>
 		
-		<j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
+		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
 				<j:CardHeader>
 					<html:H3 text="No rowHeight" className="primary-normal"/>
@@ -475,7 +475,7 @@ limitations under the License.
 					</j:DataGrid>
 				</j:CardPrimaryContent>
 			</j:Card>
-		</j:GridCell>
+		</j:GridCell> -->
 		
 		<!-- <j:GridCell desktopNumerator="1" desktopDenominator="2" tabletNumerator="1" tabletDenominator="2" phoneNumerator="1" phoneDenominator="1">
 			<j:Card>
