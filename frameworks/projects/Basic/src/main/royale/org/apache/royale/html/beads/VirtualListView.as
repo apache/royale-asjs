@@ -102,7 +102,7 @@ package org.apache.royale.html.beads
 		protected function selectionChangeHandler(event:Event):void
 		{
 			var selectionBead:ISelectableItemRenderer;
-			var ir:IIndexedItemRenderer = dataGroup.getItemRendererForIndex(lastSelectedIndex) as IIndexedItemRenderer;
+			var ir:IIndexedItemRenderer = (lastSelectedIndex == -1) ? null : dataGroup.getItemRendererForIndex(lastSelectedIndex) as IIndexedItemRenderer;
 			if(ir)
 			{
 				selectionBead = getSelectionRenderBead(ir);
