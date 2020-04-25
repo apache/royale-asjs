@@ -26,7 +26,7 @@
  * Alina Kazi (https://github.com/alinakazi)
  * Omprakash Muppirala (https://github.com/bigosmallm)
  * Carlos Rovira (https://github.com/carlosrovira)
- * Christopher Dutz (https://github.com/chrisdutz)
+ * Christofer Dutz (https://github.com/chrisdutz)
  * Andrew Wetmore (https://github.com/cottage14)
  * Cristallium (https://github.com/cristallium)
  * Frédéric Thomas (https://github.com/doublefx)
