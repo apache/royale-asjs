@@ -780,9 +780,11 @@
     </target>
     
     <target name="sign-theme-artifacts" depends="sign-swc-artifacts">
+        <!-- just in case we need these in the future
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/${swcname}/${release.version}/${swcname}-${release.version}-typedefs.swc" />
         </antcall>
+        -->
     </target>
     
     <target name="sign-swc-artifacts">
