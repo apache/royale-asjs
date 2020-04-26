@@ -254,7 +254,7 @@ FormItem
 {
 	IBeadView: ClassReference("mx.containers.beads.FormItemView");
 	IContentView: ClassReference("mx.containers.beads.FormItemContainer");
-	indicatorGap: 0px;
+	indicatorGap: 14px;
 }
 
 containerBeads|FormItemContainer

@@ -639,13 +639,20 @@ public class FormItem extends Container
     {
         super.measure();
         
+		// this flag is set to get the natural measurements of the children
+		// in the form item, instead of adding the label widths
+		if (inMeasureWithLabel) return;
+		
+		inMeasureWithLabel = true;
         if (direction == FormItemDirection.VERTICAL)
             measureVertical();
         else
             measureHorizontal();
+		inMeasureWithLabel = false;
     }
 
 	private var inMeasure:Boolean = false;
+	private var inMeasureWithLabel:Boolean = false;
 	
 	override public function get measuredWidth():Number
 	{
@@ -829,6 +836,8 @@ public class FormItem extends Container
         measuredHeight = preferredHeight;
     }
 
+	private var inUpdateDisplayList:Boolean = false;	
+	
     /**
      *  Responds to size changes by setting the positions and sizes
      *  of this container's children.
@@ -876,7 +885,9 @@ public class FormItem extends Container
                                                   unscaledHeight:Number):void
     {
         super.updateDisplayList(unscaledWidth, unscaledHeight);
-
+		if (inUpdateDisplayList) return;
+		
+		inUpdateDisplayList = true;
         if (direction == FormItemDirection.VERTICAL)
         {
             updateDisplayListVerticalChildren(unscaledWidth, unscaledHeight);
@@ -885,6 +896,7 @@ public class FormItem extends Container
         {
             updateDisplayListHorizontalChildren(unscaledWidth, unscaledHeight);
         }
+		inUpdateDisplayList = false;
                 
         // Position our label now that our children have been positioned.
         // Moving our children can affect the baselinePosition. (Bug 86725)
@@ -1514,7 +1526,10 @@ public class FormItem extends Container
     override public function setActualSize(w:Number, h:Number):void
     {
         super.setActualSize(w, h);
-        updateDisplayList(w, h);
+		if (verticalLayoutObject)
+			verticalLayoutObject.updateDisplayList(w, h);
+		else
+	        updateDisplayList(w, h);
     }
 
     /**
