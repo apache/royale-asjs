@@ -209,6 +209,10 @@
 	background: none;
 }
 
+.jewel.list:focus {
+	border: 0px solid transparent;
+}
+
 /* ItemRenderer */
 .jewel.item {
 	padding: 0px;
