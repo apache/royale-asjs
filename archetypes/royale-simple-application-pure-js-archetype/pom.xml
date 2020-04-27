@@ -16,21 +16,20 @@
   See the License for the specific language governing permissions and
   limitations under the License.
 
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+--><project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-maven-archetypes</artifactId>
-    <version>0.9.7-SNAPSHOT</version>
+    <version>0.9.7</version>
   </parent>
 
   <artifactId>royale-simple-application-pure-js-archetype</artifactId>
-  <version>0.9.7-SNAPSHOT</version>
+  <version>0.9.7</version>
   <packaging>jar</packaging>
 
   <name>Apache Royale: Framework: Archetypes: Simple Royale Pure-JS Application</name>
   <description>Maven archetype for creating Royale Maven project for building a simple Royale application with only JavaScript output.</description>
 
-</project>
+<properties><project.build.outputTimestamp>2020-04-27T10:20:27Z</project.build.outputTimestamp></properties></project>
