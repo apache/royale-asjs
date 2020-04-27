@@ -21,7 +21,7 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.core.Bead;
 	import org.apache.royale.core.IBeadKeyController;
 	import org.apache.royale.core.IFocusable;
-	import org.apache.royale.core.IItemRendererOwnerView;
+	import org.apache.royale.core.IItemRenderer;
 	import org.apache.royale.core.IRemovableBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.Event;
@@ -29,8 +29,9 @@ package org.apache.royale.jewel.beads.controls.textinput
 	import org.apache.royale.html.beads.IListView;
 	import org.apache.royale.html.util.getLabelFromData;
 	import org.apache.royale.jewel.List;
-	import org.apache.royale.jewel.beads.views.IScrollToIndexView;
+	import org.apache.royale.jewel.beads.models.ListPresentationModel;
 	import org.apache.royale.jewel.itemRenderers.ListItemRenderer;
+	import org.apache.royale.jewel.supportClasses.list.IListPresentationModel;
 	import org.apache.royale.jewel.supportClasses.textinput.TextInputBase;
 	import org.apache.royale.utils.sendEvent;
 
@@ -75,24 +76,30 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 			if(_list)
 			{
-				list.removeEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler, true);
+				list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
 			}
 
 			_list = value;
 
 			if(_list)
 			{
+				// remove the ListKeyDownController since we need cutom handling of keys based on visible items
 				var keyBead:IRemovableBead = _list.getBeadByType(IBeadKeyController) as IRemovableBead;
 				if(keyBead)
 				{
 					keyBead.tearDown();
 					_list.removeBead(keyBead);
 				}
-				list.addEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler, true);
+				list.addEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
 			}
 		}
 
-		protected function keyEventHandler(event:KeyboardEvent):void
+		/**
+		 * 
+		 * 
+		 * @param event 
+		 */
+		protected function keyDownEventHandler(event:KeyboardEvent):void
 		{
 			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
 			if(event.key === KeyboardEvent.KEYCODE__TAB)
@@ -101,29 +108,78 @@ package org.apache.royale.jewel.beads.controls.textinput
 			event.preventDefault();
 
 			var index:int = visibleIndexes.indexOf(list.selectedIndex);
-			currentIndex = index;
-
+			
 			if(event.key === KeyboardEvent.KEYCODE__UP || event.key === KeyboardEvent.KEYCODE__LEFT)
 			{
 				if(index > 0)
-					currentIndex = prevIndex;
+					list.selectedIndex = visibleIndexes[index - 1];
 			} 
 			else if(event.key === KeyboardEvent.KEYCODE__DOWN || event.key === KeyboardEvent.KEYCODE__RIGHT)
 			{
-				currentIndex = nextIndex;
+				if(index < visibleIndexes.length - 1)
+					list.selectedIndex = visibleIndexes[index + 1];
 			}
 
-			if(index != currentIndex)
+			if(visibleIndexes[index] != list.selectedIndex)
 			{
-				list.selectedItem = list.dataProvider.getItemAt(currentIndex);
+				list.selectedItem = list.dataProvider.getItemAt(list.selectedIndex);
 
-				var fir:IFocusable = (list.view as IListView).dataGroup.getItemRendererForIndex(currentIndex) as IFocusable;
-				fir.setFocus();
+				var ir:IFocusable = (list.view as IListView).dataGroup.getItemRendererForIndex(list.selectedIndex) as IFocusable;
+				ir.setFocus();
 				
-                (list.view as IScrollToIndexView).scrollToIndex(index);
+				COMPILE::JS
+				{
+                scrollToIndex(list.selectedIndex);
+				}
 				
 				sendEvent(list, 'change');
 			}
+		}
+		
+		/**
+		 *  Ensures that the data provider item at the given index is visible.
+		 *  
+		 *  This implementation consider only visible items 
+		 *
+		 *  @param index The index of the item in the data provider.
+		 *
+		 *  @return <code>true</code> if <code>verticalScrollPosition</code> changed.
+		 *  
+		 *  @langversion 3.0
+		 *  @playerversion Flash 9
+		 *  @playerversion AIR 1.1
+		 *  @productversion Royale 0.9.7
+		 */
+		COMPILE::JS
+		public function scrollToIndex(index:int):Boolean
+		{
+			var scrollArea:HTMLElement = list.element;
+			var oldScroll:Number = scrollArea.scrollTop;
+
+			var totalHeight:Number = 0;
+			var pm:IListPresentationModel = list.getBeadByType(IListPresentationModel) as IListPresentationModel;
+			
+			if(pm.variableRowHeight)
+			{
+				//each item render can have its own height
+				var n:int = _visibleIndexes.length;
+				for (var i:int = 0; i <= index; i++)
+				{
+					var ir:IItemRenderer = (list.view as IListView).dataGroup.getItemRendererForIndex(_visibleIndexes[i]) as IItemRenderer;
+					totalHeight += ir.element.clientHeight;
+				}
+				scrollArea.scrollTop = Math.min(totalHeight + ir.element.clientHeight - scrollArea.clientHeight, totalHeight);
+			} else 
+			{
+				var rowHeight:Number;
+				// all items renderers with same height
+				rowHeight = isNaN(pm.rowHeight) ? ListPresentationModel.DEFAULT_ROW_HEIGHT : rowHeight;
+				totalHeight = _visibleIndexes.length * rowHeight - scrollArea.clientHeight;
+				
+				scrollArea.scrollTop = Math.min(index * rowHeight, totalHeight);
+			}
+
+			return oldScroll != scrollArea.scrollTop;
 		}
 
 		/**
@@ -138,14 +194,13 @@ package org.apache.royale.jewel.beads.controls.textinput
 		[Bindable]
 		public var useDecoration:Boolean = true;
 
-		private var _length:int;
 		/**
 		 * enables label decoration when filter
 		 */
 		[Bindable]
 		public function get length():int
 		{
-			return _length;
+			return _visibleIndexes.length;
 		}
 		
 		/**
@@ -160,33 +215,8 @@ package org.apache.royale.jewel.beads.controls.textinput
 		override public function set strand(value:IStrand):void
 		{
 			_strand = value;
-			listenOnStrand(KeyboardEvent.KEY_UP, keyUpHandler);
+			listenOnStrand(KeyboardEvent.KEY_UP, textInputKeyUpHandler);
             listenOnStrand('beadsAdded', onBeadsAdded);
-		}
-
-		protected function keyUpHandler(event:KeyboardEvent):void
-		{
-			if(event.key === KeyboardEvent.KEYCODE__TAB)
-				return;
-				
-			const inputBase:TextInputBase = event.target as TextInputBase;
-			//keyup can include other things like tab navigation
-
-			if (!inputBase) {
-				//if (popUpVisible)  event.target.parent.view.popUpVisible = false;
-				return;
-			}
-            
-			keyUpLogic(inputBase);
-        }
-
-		protected function keyUpLogic(input:Object):void
-		{
-			// first remove a previous selection
-			if(list.selectedIndex != -1)
-				list.selectedItem = null;
-			
-			applyFilter(input.text);
 		}
 
 		protected function onBeadsAdded(event:Event):void
@@ -201,6 +231,29 @@ package org.apache.royale.jewel.beads.controls.textinput
 		protected function onInputFocus(event:Event):void
 		{
 			applyFilter(TextInputBase(_strand).text);
+		}
+
+		protected function textInputKeyUpHandler(event:KeyboardEvent):void
+		{
+			if(event.key === KeyboardEvent.KEYCODE__TAB)
+				return;
+				
+			const inputBase:TextInputBase = event.target as TextInputBase;
+			//keyup can include other things like tab navigation
+
+			if (!inputBase)
+				return;
+            
+			textInputKeyUpLogic(inputBase);
+        }
+
+		protected function textInputKeyUpLogic(input:Object):void
+		{
+			// first remove a previous selection
+			if(list.selectedIndex != -1)
+				list.selectedItem = null;
+			
+			applyFilter(input.text);
 		}
 
 		/**
@@ -281,13 +334,11 @@ package org.apache.royale.jewel.beads.controls.textinput
 			if(!_visibleIndexes)
 			{
 				_visibleIndexes = [];
-				var view:IListView = list.view as IListView;
-				var dataGroup:IItemRendererOwnerView = view.dataGroup;
 				var len:int = list.numElements;
 				var ir:ListItemRenderer;
 				for(var i:int = 0; i < len; i++)
 				{
-					ir = dataGroup.getItemRendererForIndex(i) as ListItemRenderer;
+					ir = (list.view as IListView).dataGroup.getItemRendererForIndex(i) as ListItemRenderer;
 					if(ir.visible)
 						_visibleIndexes.push(ir.index);
 				}
@@ -295,21 +346,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 			return _visibleIndexes;
 		}
 
+		// order the indexes asc in array
 		protected function numberSort(a:int, b:int):int
         {
             return a - b;
         }
-
-		protected var currentIndex:int = 0;
-
-		protected function get prevIndex():int
-		{
-			return currentIndex > 0 ? _visibleIndexes[--currentIndex] : 0;
-		}
-
-		protected function get nextIndex():int
-		{
-			return currentIndex < _visibleIndexes.length - 1 ? _visibleIndexes[++currentIndex] : _visibleIndexes.length - 1;
-		}
 	}
 }

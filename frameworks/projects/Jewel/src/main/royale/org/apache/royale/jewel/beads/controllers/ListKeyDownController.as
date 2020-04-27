@@ -100,7 +100,7 @@ package org.apache.royale.jewel.beads.controllers
 			listModel = value.getBeadByType(ISelectionModel) as ISelectionModel;
 			listView = value.getBeadByType(IListView) as IListView;
 
-            listenOnStrand(KeyboardEvent.KEY_DOWN, keyEventHandler);
+            listenOnStrand(KeyboardEvent.KEY_DOWN, keyDownEventHandler);
 		}
 
 		/**
@@ -113,13 +113,13 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		public function tearDown():void
 		{
-			IEventDispatcher(_strand).removeEventListener(KeyboardEvent.KEY_DOWN, keyEventHandler);
+			IEventDispatcher(_strand).removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler);
 		}
 
         /**
 		 * @private
 		 */
-		protected function keyEventHandler(event:KeyboardEvent):void
+		protected function keyDownEventHandler(event:KeyboardEvent):void
 		{
 			// avoid Tab loose the normal behaviour, for navigation we don't want build int scrolling support in browsers
 			if(event.key === KeyboardEvent.KEYCODE__TAB)
@@ -146,7 +146,7 @@ package org.apache.royale.jewel.beads.controllers
 				var ir:IFocusable = listView.dataGroup.getItemRendererForIndex(listModel.selectedIndex) as IFocusable;
 				ir.setFocus();
 				
-                (listView as IScrollToIndexView).scrollToIndex(index);
+                (listView as IScrollToIndexView).scrollToIndex(listModel.selectedIndex);
 				
 				sendEvent(listView.host, 'change');
 			}
