@@ -47,7 +47,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 		}
 
-		override protected function keyUpLogic(input:Object):void
+		override protected function textInputKeyUpLogic(input:Object):void
 		{
 			// first remove a previous selection
 			if(list.selectedIndex != -1)
