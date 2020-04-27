@@ -72,11 +72,15 @@ package org.apache.royale.jewel.beads.controls.textinput
 			return _list;
 		}
 
+		protected function removeKeyDownEventListener():void {
+			list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+		}
+
 		public function set list(value:List):void
 		{
 			if(_list)
 			{
-				list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+				removeKeyDownEventListener();
 			}
 
 			_list = value;

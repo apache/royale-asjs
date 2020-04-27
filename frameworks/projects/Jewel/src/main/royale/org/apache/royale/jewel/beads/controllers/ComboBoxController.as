@@ -214,15 +214,10 @@ package org.apache.royale.jewel.beads.controllers
 				//the popup as the possible reason for loss of focus
 				//(event.relatedObject seems null, so cannot check here)
 				//this should be less than 300
-                setTimeout(hidePopup, 280);
+                setTimeout(dismissPopUp, 280);
             }
         }
-
-        protected function hidePopup():void{
-			if(!keyPressed)
-            	viewBead.popUpVisible = false;
-			keyPressed = false;
-        }
+		
 		/**
          *  @royaleignorecoercion org.apache.royale.core.UIBase
          *  @royaleignorecoercion org.apache.royale.events.IEventDispatcher
@@ -265,6 +260,7 @@ package org.apache.royale.jewel.beads.controllers
 		{
 			if(!keyPressed)
 			{
+				IEventDispatcher(_strand).dispatchEvent(new Event('dismissPopUp'));
 				popup.removeEventListener(MouseEvent.MOUSE_DOWN, removePopUpWhenClickOutside);
 				list.removeEventListener(MouseEvent.MOUSE_DOWN, handleControlMouseDown);
 				list.removeEventListener(Event.CHANGE, changeHandler);

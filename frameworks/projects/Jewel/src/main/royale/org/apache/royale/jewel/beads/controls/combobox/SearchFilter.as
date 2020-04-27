@@ -19,6 +19,7 @@
 package org.apache.royale.jewel.beads.controls.combobox
 {
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.jewel.beads.controls.combobox.IComboBoxView;
 	import org.apache.royale.jewel.beads.controls.textinput.SearchFilterForList;
 	import org.apache.royale.jewel.beads.views.ComboBoxView;
@@ -47,6 +48,8 @@ package org.apache.royale.jewel.beads.controls.combobox
 		{
 		}
 
+		private var comboView:IComboBoxView;
+
 		override protected function textInputKeyUpLogic(input:Object):void
 		{
 			// first remove a previous selection
@@ -57,22 +60,24 @@ package org.apache.royale.jewel.beads.controls.combobox
 				input.text = tmp;
 			}
 
-			var popUpVisible:Boolean = input.parent.view.popUpVisible;
-            if (!popUpVisible) {
-                input.parent.view.popUpVisible = true;
-            }
+            if (!comboView.popUpVisible)
+                comboView.popUpVisible = true;
 			
 			// fill "list" with the internal list in the combobox popup
-			list = input.parent.view.popup.view.list;
+			list = comboView.popup.view.list;
 			
-			applyFilter(input.parent.view.textinput.text.toUpperCase());
+			applyFilter(comboView.textinput.text.toUpperCase());
 
 			ComboBoxView(_strand['view']).autoResizeHandler(); //as we filter the popup list will be smaller, and we want to reposition
 		}
 
 		override protected function onBeadsAdded(event:Event):void{
-            if ('view' in _strand && _strand['view'] is IComboBoxView) {
-                var _textInput:TextInputBase = IComboBoxView(_strand['view']).textinput as TextInputBase;
+			IEventDispatcher(_strand).addEventListener('dismissPopUp', removeKeyDownEventListener);
+			
+			comboView = event.target.view as IComboBoxView;
+            if (comboView)
+			{
+                var _textInput:TextInputBase = comboView.textinput as TextInputBase;
                 if (_textInput) {
 					COMPILE::JS {
                         _textInput.element.addEventListener('focus', onInputFocus);
@@ -82,19 +87,11 @@ package org.apache.royale.jewel.beads.controls.combobox
 		}
 
 		override protected function onInputFocus(event:Event):void{
-            var popUpVisible:Boolean =  IComboBoxView(_strand['view']).popUpVisible;
-            if (!popUpVisible) {
-                //force popup ?:
-                IComboBoxView(_strand['view']).popUpVisible = true;
-
-                //or avoid ?:
-                //return;
-            }
+            if (!comboView.popUpVisible)
+                comboView.popUpVisible = true;
 			
 			// fill "list" with the internal list in the combobox popup
-			list = event.target.royale_wrapper.parent.view.popup.view.list;
-
-			//applyFilter(IComboBoxView(_strand['view']).textinput.text.toUpperCase());
+			list = comboView.popup.view.list;
 		}
 	}
 }
