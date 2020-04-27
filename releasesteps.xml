@@ -836,6 +836,23 @@
             <arg value="_releasesteps-upload-release-to-staging" />
         </exec>
     </target>
+    <target name="retryUploadSWCs" depends="get-artifact-folder" description="upload all SWCs except Jewel Themes">
+        <fail message="release.version not specified"
+        unless="release.version"/>
+        <fail message="rf_arg not specified"
+        unless="rf_arg"/>
+        <exec executable="${mvn}" dir="${artifactfolder}/sources" failonerror="true" >
+            <arg value="wagon:upload" />
+            <arg value="-X" />
+            <arg value="-rf" />
+            <arg value="${rf_arg}" />
+            <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
+            <!--arg value="-Dwagon.includes=**" />
+            <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->
+            <arg value="-P" />
+            <arg value="_releasesteps-upload-release-to-staging" />
+        </exec>
+    </target>
     <target name="uploadJewelDark" depends="get-artifact-folder" description="upload Jewel Dark Themes">
         <fail message="release.version not specified"
         unless="release.version"/>
