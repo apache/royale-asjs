@@ -77,6 +77,7 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
+import org.apache.royale.core.WrappedHTMLElement;
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.styles.BorderStyles;
 import org.apache.royale.effects.IEffect;
@@ -3508,6 +3509,36 @@ COMPILE::JS
     {
         return numElements;
     }
+
+    /**
+     *  @copy org.apache.royale.core.IParent#numElements
+     * 
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.0
+     *  @royaleignorecoercion org.apache.royale.core.WrappedHTMLElement
+     */
+    override public function get numElements():int
+    {
+        COMPILE::SWF
+        {
+            return super.numElements;
+        }
+        COMPILE::JS
+        {
+            var arr:Array = internalChildren();
+			var n:int = arr.length;
+			var num:int = 0;
+			for (var i:int = 0; i < n; i++)
+			{
+				if ((arr[i] as WrappedHTMLElement).royale_wrapper)
+					num++;
+			}
+			return num;
+        }
+    }
+
     
     /**
      *  @private
