@@ -336,11 +336,19 @@ package org.apache.royale.test.runners
 			if(beforeClassDefinition != null)
 			{
 				_beforeClass = _testClass[beforeClassDefinition.name];
+				if(!_beforeClass)
+				{
+					_notifier.fireTestFailure(new Failure(description + ".initializationError", new Error("Reflection failed to locate static method <" + beforeClassDefinition.name + "> defined on type <" + beforeClassDefinition.declaredBy.qualifiedName + "> with [BeforeClass] metadata.")));
+				}
 			}
 			var afterClassDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.AFTER_CLASS, true);
 			if(afterClassDefinition != null)
 			{
 				_afterClass = _testClass[afterClassDefinition.name];
+				if(!_afterClass)
+				{
+					_notifier.fireTestFailure(new Failure(description + ".initializationError", new Error("Reflection failed to locate static method <" + afterClassDefinition.name + "> defined on type <" + afterClassDefinition.declaredBy.qualifiedName + "> with [AfterClass] metadata.")));
+				}
 			}
 			var beforeDefinition:MethodDefinition = collectMethodWithMetadataTag(TestMetadata.BEFORE, true);
 			if(beforeDefinition != null)
