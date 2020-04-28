@@ -58,6 +58,7 @@ package spark.components.supportClasses
         COMPILE::JS
         private function updateSkin(w:Number, h:Number):void
         {
+			if (h < 4) return;
             element.innerHTML = '<svg width="' + w + 'px" height="' +
                 h + 'px" xmlns="http://www.w3.org/2000/svg"><text y="3px">' +
                 label + '</text><style><![CDATA[' +
