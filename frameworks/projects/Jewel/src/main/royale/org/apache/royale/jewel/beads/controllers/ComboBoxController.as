@@ -185,7 +185,7 @@ package org.apache.royale.jewel.beads.controllers
 		 */
 		protected function listKeyEventHandler(event:KeyboardEvent):void
 		{
-			if(event.key === KeyboardEvent.KEYCODE__ENTER)
+			if(event.key === KeyboardEvent.KEYCODE__ENTER || event.key === KeyboardEvent.KEYCODE__TAB)
 			{
 				dismissPopUp();
 			}
