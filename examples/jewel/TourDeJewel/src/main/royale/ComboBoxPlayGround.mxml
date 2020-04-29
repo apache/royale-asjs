@@ -293,7 +293,7 @@ limitations under the License.
 						<j:html><![CDATA[<p>This <b>ComboBox</b> uses a <b>SearchFilter</b> bead to perform a local search in the <i>dataProvider</i>. The filter is decorated, and can be configured.</p>]]></j:html>
 					</j:Label>
 
-					<j:ComboBox labelField="label" dataProvider="{listModel.avengers}">
+					<j:ComboBox localId="cmb4" labelField="label" dataProvider="{listModel.avengers}">
 						<j:beads>
 							<j:ComboBoxTextPrompt prompt="Type to search..."/>
 							<j:SearchFilter/>
@@ -301,6 +301,9 @@ limitations under the License.
 					</j:ComboBox>
 
 				</j:CardPrimaryContent>
+				<j:CardActions>
+					<j:Label text="selectedItem: {describeItem(cmb4.selectedItem)}"/>
+				</j:CardActions>
 			</j:Card>
 		</j:GridCell>
 		
