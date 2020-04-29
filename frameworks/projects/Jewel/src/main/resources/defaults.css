@@ -3268,6 +3268,7 @@ j|VirtualList {
   IBeadView: ClassReference("org.apache.royale.jewel.beads.views.VirtualListView");
   IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.VirtualListVerticalLayout");
   IDataProviderItemRendererMapper: ClassReference("org.apache.royale.jewel.beads.itemRenderers.VirtualDataItemRendererFactoryForCollectionView");
+  IBeadKeyController: ClassReference("org.apache.royale.jewel.beads.controllers.VirtualListKeyDownController");
 }
 
 j|Navigation {
