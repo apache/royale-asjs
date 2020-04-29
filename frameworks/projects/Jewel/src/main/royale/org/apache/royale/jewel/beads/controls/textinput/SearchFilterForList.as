@@ -71,16 +71,11 @@ package org.apache.royale.jewel.beads.controls.textinput
 		{
 			return _list;
 		}
-
-		protected function removeKeyDownEventListener():void {
-			list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
-		}
-
 		public function set list(value:List):void
 		{
 			if(_list)
 			{
-				removeKeyDownEventListener();
+				removeListListeners();
 			}
 
 			_list = value;
@@ -94,8 +89,17 @@ package org.apache.royale.jewel.beads.controls.textinput
 					keyBead.tearDown();
 					_list.removeBead(keyBead);
 				}
-				list.addEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+				
+				addListListeners();
 			}
+		}
+
+		protected function addListListeners():void {
+			list.addEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
+		}
+
+		protected function removeListListeners():void {
+			list.removeEventListener(KeyboardEvent.KEY_DOWN, keyDownEventHandler, true);
 		}
 
 		/**

@@ -81,7 +81,7 @@ package org.apache.royale.jewel.beads.controls.combobox
 		}
 
 		override protected function onBeadsAdded(event:Event):void{
-			IEventDispatcher(_strand).addEventListener('dismissPopUp', removeKeyDownEventListener);
+			IEventDispatcher(_strand).addEventListener('dismissPopUp', removeListListeners);
 			
 			comboView = event.target.view as IComboBoxView;
             if (comboView)
