@@ -64,11 +64,20 @@ package org.apache.royale.jewel.beads.controls.combobox
                 comboView.popUpVisible = true;
 			
 			// fill "list" with the internal list in the combobox popup
-			list = comboView.popup.view.list;
+			//list = comboView.popup.view.list;
 			
 			applyFilter(comboView.textinput.text.toUpperCase());
 
-			ComboBoxView(_strand['view']).autoResizeHandler(); //as we filter the popup list will be smaller, and we want to reposition
+			ComboBoxView(comboView).autoResizeHandler(); //as we filter the popup list will be smaller, and we want to reposition
+		}
+
+		override protected function selectItem(item:Object):void
+		{
+			// Select the item in the list if text is the same 
+			// we do at the end to avoid multiple selection (if there's more than one matches)
+			// in that case, select the first one in the list
+			// if(item != null)
+			// 	list.selectedItem = item;
 		}
 
 		override protected function onBeadsAdded(event:Event):void{
@@ -79,8 +88,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 			{
                 var _textInput:TextInputBase = comboView.textinput as TextInputBase;
                 if (_textInput) {
-					COMPILE::JS {
-                        _textInput.element.addEventListener('focus', onInputFocus);
+					COMPILE::JS
+					{
+                    _textInput.element.addEventListener('focus', onInputFocus);
                     }
             	}
             }

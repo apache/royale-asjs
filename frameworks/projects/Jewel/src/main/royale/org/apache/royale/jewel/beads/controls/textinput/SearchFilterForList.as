@@ -318,6 +318,11 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 			_visibleIndexes = _visibleIndexes.sort(numberSort);
 
+			selectItem(item);
+		}
+
+		protected function selectItem(item:Object):void
+		{
 			// Select the item in the list if text is the same 
 			// we do at the end to avoid multiple selection (if there's more than one matches)
 			// in that case, select the first one in the list
