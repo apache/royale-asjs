@@ -247,7 +247,6 @@ j|Alert {
   position: relative;
   align-items: center;
   justify-content: center;
-  zoom: 1;
   vertical-align: middle;
   overflow: hidden;
   outline: none;
@@ -3998,7 +3997,6 @@ j|TitleBar {
   position: relative;
   align-items: center;
   justify-content: center;
-  zoom: 1;
   vertical-align: middle;
   overflow: hidden;
   outline: none;
