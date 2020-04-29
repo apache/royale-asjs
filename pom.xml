@@ -77,6 +77,15 @@
     <junit.version>4.12</junit.version>
 
     <release-profiles>apache-release,with-distribution,option-with-swf</release-profiles>
+
+    <!-- Dont't open multiple connections to one service to upload multiple artifacts at the same time -->
+    <maven.wagon.httpconnectionManager.maxPerRoute>1</maven.wagon.httpconnectionManager.maxPerRoute>
+    <!-- Dont't open multiple connections in total to upload multiple artifacts at the same time -->
+    <maven.wagon.httpconnectionManager.maxTotal>1</maven.wagon.httpconnectionManager.maxTotal>
+    <!-- Change the retry handler to a version that supports retries -->
+    <maven.wagon.http.retryHandler.class>standard</maven.wagon.http.retryHandler.class>
+    <!-- Try at most 6 times to deploy every artifact -->
+    <maven.wagon.http.retryHandler.count>6</maven.wagon.http.retryHandler.count>
   </properties>
 
   <!-- Only configure the site distribution as the rest is handled by the apache parent -->
@@ -115,6 +124,14 @@
   </modules>
 
   <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-http</artifactId>
+        <version>3.4.0</version>
+      </extension>
+    </extensions>
+
     <pluginManagement>
       <plugins>
         <plugin>
