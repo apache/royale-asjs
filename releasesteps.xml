@@ -18,7 +18,8 @@
 
 -->
 
-<project name="CreateFrameworkReleaseCandidate" default="main" basedir=".">
+<project name="CreateFrameworkReleaseCandidate" default="main" basedir="."
+	xmlns:if="ant:if">
 
     <!-- use -Dtag=<tag or commit hash> to build from other than the head -->
 
@@ -816,6 +817,14 @@
     </target>
     
     <target name="Release_Step_011_Upload" depends="get-artifact-folder">
+	    <fail message="release.version not specified"
+		    unless="release.version"/>
+	    <antcall target="uploadSWCs" />
+	    <antcall target="uploadJewelDark" />
+	    <antcall target="uploadJewelLight" />
+    </target>
+
+    <target name="Release_Step_011_Upload_Get_Credentials" depends="get-artifact-folder,get-username,get-password">
         <fail message="release.version not specified"
             unless="release.version"/>
         <antcall target="uploadSWCs" />
@@ -832,6 +841,8 @@
             <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
             <!--arg value="-Dwagon.includes=**" />
             <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->
+	    <arg value="-Drm.username=${apache.username}" if:set="${apache.username}"/>
+	    <arg value="-Drm.password=${apache.password}" if:set="${apache.password}"/>
             <arg value="-P" />
             <arg value="_releasesteps-upload-release-to-staging" />
         </exec>
@@ -1644,7 +1655,9 @@
     <target name="get-password" unless="apache.password" >
         <input
         message="Enter Apache account password:"
-        addproperty="apache.password"/>
+        addproperty="apache.password">
+           <handler classname="org.apache.tools.ant.input.SecureInputHandler" />
+	</input>
         <condition property="have.password">
             <not>
                 <equals trim="true" arg1="" arg2="${apache.password}"/>
