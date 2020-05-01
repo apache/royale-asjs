@@ -820,16 +820,12 @@
 	    <fail message="release.version not specified"
 		    unless="release.version"/>
 	    <antcall target="uploadSWCs" />
-	    <antcall target="uploadJewelDark" />
-	    <antcall target="uploadJewelLight" />
     </target>
 
     <target name="Release_Step_011_Upload_Get_Credentials" depends="get-artifact-folder,get-username,get-password">
         <fail message="release.version not specified"
             unless="release.version"/>
         <antcall target="uploadSWCs" />
-        <antcall target="uploadJewelDark" />
-        <antcall target="uploadJewelLight" />
     </target>
     
     <target name="uploadSWCs" depends="get-artifact-folder" description="upload all SWCs except Jewel Themes">
@@ -845,6 +841,7 @@
 	    <arg value="-Drm.password=${apache.password}" if:set="${apache.password}"/>
             <arg value="-P" />
             <arg value="_releasesteps-upload-release-to-staging" />
+	    <arg value="-N"/>
         </exec>
     </target>
     <target name="retryUploadSWCs" depends="get-artifact-folder" description="upload all SWCs except Jewel Themes">
