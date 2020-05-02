@@ -36,6 +36,7 @@ import mx.events.FlexEvent;
 import org.apache.royale.binding.ItemRendererDataBinding;
 import org.apache.royale.core.ITextModel;
 import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import org.apache.royale.html.accessories.ToolTipBead;
 import org.apache.royale.html.beads.models.ImageAndTextModel;
 
@@ -356,6 +357,8 @@ public class Button extends UIComponent implements IDataRenderer, IListItemRende
 		COMPILE::JS {
 			setInnerHTML();
 		}
+		if (parent)
+			(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));
 	}
 	
 	//----------------------------------

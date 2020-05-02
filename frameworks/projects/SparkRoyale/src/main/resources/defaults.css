@@ -39,6 +39,7 @@ global {
 Button
 {
     IBeadModel: ClassReference("org.apache.royale.html.beads.models.ImageAndTextModel");
+	white-space: nowrap;
 }
 CheckBox
 {

@@ -48,6 +48,8 @@ import spark.primitives.BitmapImage;
 use namespace mx_internal;
 */
 import org.apache.royale.core.ITextModel;
+import org.apache.royale.events.Event;
+import org.apache.royale.events.IEventDispatcher;
 import mx.managers.IFocusManagerComponent;
 
 //--------------------------------------
@@ -414,6 +416,8 @@ public class ButtonBase extends SkinnableComponent implements IFocusManagerCompo
         COMPILE::JS {
             setInnerHTML();
         }
+		if (parent)
+			(parent as IEventDispatcher).dispatchEvent(new Event("layoutNeeded"));			
     }
 
     /**
