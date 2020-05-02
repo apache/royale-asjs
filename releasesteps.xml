@@ -859,6 +859,7 @@
             <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->
             <arg value="-P" />
             <arg value="_releasesteps-upload-release-to-staging" />
+	    <arg value="-N"/>
         </exec>
     </target>
     <target name="uploadJewelDark" depends="get-artifact-folder" description="upload Jewel Dark Themes">
@@ -871,6 +872,7 @@
             <arg value="-Dwagon.includes=**/Jewel-Dark*/**" />
             <arg value="-P" />
             <arg value="-main,upload-release-to-staging" />
+	    <arg value="-N"/>
         </exec>
     </target>
     <target name="uploadJewelLight" depends="get-artifact-folder" description="upload Jewel Light Themes">
@@ -883,6 +885,7 @@
             <arg value="-Dwagon.includes=**/Jewel-Light*/**" />
             <arg value="-P" />
             <arg value="-main,upload-release-to-staging" />
+	    <arg value="-N"/>
         </exec>
     </target>
     
