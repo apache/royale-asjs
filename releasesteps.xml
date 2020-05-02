@@ -376,6 +376,102 @@
     <target name="Release_Step_011_Sign" depends="get-artifact-folder">
         <fail message="release.version not specified"
             unless="release.version"/>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-swfdump/${release.version}/compiler-swfdump-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-optimizer/${release.version}/compiler-optimizer-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-optimizer/${release.version}/compiler-optimizer-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-optimizer/${release.version}/compiler-optimizer-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compc/${release.version}/compc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compc/${release.version}/compc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compc/${release.version}/compc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compc/${release.version}/compiler-compc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compc/${release.version}/compiler-compc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compc/${release.version}/compiler-compc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/mxmlc/${release.version}/mxmlc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/mxmlc/${release.version}/mxmlc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/mxmlc/${release.version}/mxmlc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmljsc/${release.version}/compiler-mxmljsc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmljsc/${release.version}/compiler-mxmljsc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmljsc/${release.version}/compiler-mxmljsc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-asc/${release.version}/compiler-asc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-asc/${release.version}/compiler-asc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-asc/${release.version}/compiler-asc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-src.zip" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-bin.zip" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-src.tar.gz" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/${release.version}/distribution-${release.version}-bin.tar.gz" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmlc/${release.version}/compiler-mxmlc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmlc/${release.version}/compiler-mxmlc-${release.version}.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-mxmlc/${release.version}/compiler-mxmlc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compjsc/${release.version}/compiler-compjsc-${release.version}.pom" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compjsc/${release.version}/compiler-compjsc-${release.version}-sources.jar" />
+	</antcall>
+	<antcall target="sign-file" >
+		<param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/distribution/compiler-compjsc/${release.version}/compiler-compjsc-${release.version}.jar" />
+	</antcall>
         <antcall target="sign-file" >
             <param name="file" value="${artifactfolder}/artifacts/archive/target/local-release-dir/org/apache/royale/framework/royale-framework-parent/${release.version}/royale-framework-parent-${release.version}-source-release.zip" />
         </antcall>
@@ -556,6 +652,114 @@
         <antcall target="sign-theme-artifacts" >
             <param name="swcname" value="JewelTheme" />
         </antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Turquoise-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Sapphire-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Red-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Sunflower-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Violet-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Violet-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Blue-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Turquoise-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Turquoise-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Blue-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Red-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Red-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Amethyst-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Sapphire-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Emerald-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Green-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Orange-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Amethyst-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Sunflower-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Violet-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Orange-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Topaz-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Sapphire-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Emerald-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Yellow-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Topaz-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Orange-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Secondary-Green-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Yellow-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Green-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Amethyst-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Topaz-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Emerald-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Emphasized-Yellow-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Blue-Theme" />
+	</antcall>
+	<antcall target="sign-theme-artifacts" >
+		<param name="swcname" value="Jewel-Light-Flat-Primary-Sunflower-Theme" />
+	</antcall>
         <antcall target="sign-theme-artifacts" >
             <param name="swcname" value="Jewel-Dark-NoFlat-Emphasized-Amethyst-Theme" />
         </antcall>
@@ -807,6 +1011,7 @@
     </target>
     
     <target name="sign-file">
+	<echo>${file}</echo>
         <exec executable="gpg" failonerror="true">
             <arg value="--armor" />
             <arg value="--output" />
@@ -837,6 +1042,7 @@
             <arg value="-Dwagon.fromDir=${artifactfolder}/artifacts/archive/target/local-release-dir" />
             <!--arg value="-Dwagon.includes=**" />
             <arg value="-Dwagon.excludes=**/Jewel-Dark*/**,**/Jewel-Light*/**" /-->
+	    <arg value="-Dwagon.excludes=**/apache/royale/manualtests/**,**/apache/royale/examples/**"/>
 	    <arg value="-Drm.username=${apache.username}" if:set="${apache.username}"/>
 	    <arg value="-Drm.password=${apache.password}" if:set="${apache.password}"/>
             <arg value="-P" />
