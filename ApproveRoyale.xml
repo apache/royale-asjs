@@ -531,9 +531,7 @@
                 <exclude name="royale-asjs/frameworks/themes/JewelTheme/target/JewelTheme.swc"/>
                 
                 <exclude name="royale-asjs/frameworks/projects/Graphics/src/main/royale/org/apache/royale/graphics/utils/shaderClasses/*.pbj"/>
-                <exclude name="royale-asjs/frameworks/projects/Basic/src/test/royale/FlexUnitRoyaleApplication.swf"/>
-                <exclude name="royale-asjs/frameworks/projects/Core/src/test/royale/FlexUnitRoyaleApplication.swf"/>
-                
+                <exclude name="royale-asjs/frameworks/projects/**/src/test/royale/FlexUnitRoyaleApplication.swf"/>                
                 <exclude name="royale-asjs/frameworks/localfonts.ser"/>
                 <exclude name="royale-asjs/frameworks/macfonts.ser"/>
                 <exclude name="royale-asjs/frameworks/winfonts.ser"/>
@@ -553,13 +551,17 @@
                 <exclude name="royale-asjs/js/lib/commons-io.jar"/>
                 <exclude name="royale-asjs/js/lib/compc.jar"/>
                 <exclude name="royale-asjs/js/lib/compiler-royaleTasks.jar"/>
+                <exclude name="royale-asjs/js/lib/royaleUnitTasks.jar"/>
                 <exclude name="royale-asjs/js/lib/externc.jar"/>
                 <exclude name="royale-asjs/js/lib/flex-tool-api.jar"/>
                 <exclude name="royale-asjs/js/lib/guava.jar"/>
                 <exclude name="royale-asjs/js/lib/jsc.jar"/>
                 <exclude name="royale-asjs/js/lib/junit-4.10.jar"/>
                 <exclude name="royale-asjs/js/lib/mxmlc.jar"/>
+                <exclude name="royale-asjs/js/lib/java-websocket.jar"/>
+                <exclude name="royale-asjs/js/lib/dom4j.jar"/>
                 <exclude name="royale-asjs/js/lib/dom4j-LICENSE.txt"/>
+                <exclude name="royale-asjs/js/lib/slf4j-api.jar"/>
                 <exclude name="royale-asjs/lib/adt.jar"/>
                 <exclude name="royale-asjs/lib/compc.jar"/>
                 <exclude name="royale-asjs/lib/compiler-asc.jar"/>
