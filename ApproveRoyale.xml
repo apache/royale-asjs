@@ -122,7 +122,7 @@
     unless="release.version"/>
 
     <condition property="package.url.path"
-        value="http://apacheflexbuild.cloudapp.net:8080/job/royale-asjs/lastSuccessfulBuild/artifact/out">
+        value="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/royale-asjs/lastSuccessfulBuild/artifact/out">
         <not>
             <isset property="rc" />
         </not>
@@ -877,9 +877,9 @@
     <target name="get.compiler.nightly" if="compiler.nightly">
         <property name="kit.jx.prefix" value="apache.royale-compilerjx-${release.version}"/>
         <property name="binary.jx.kit" value="${kit.jx.prefix}-bin"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
+        <get src="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip"
              dest="${basedir}/${binary.jx.kit}.zip" verbose="true" skipexisting="true"/>
-        <get src="http://apacheflexbuild.cloudapp.net:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.sha512"
+        <get src="http://apacheroyaleci2.westus2.cloudapp.azure.com:8080/job/royale-compiler%20release%20branch/lastSuccessfulBuild/artifact/out/${binary.jx.kit}.zip.sha512"
              dest="${basedir}/${binary.jx.kit}.zip.sha512" verbose="true" skipexisting="true"/>
         <checksum file="${basedir}/${binary.jx.kit}.zip" algorithm="SHA-512" verifyproperty="compiler.SHA-512.ok" fileext=".sha512"/>
         <condition property="CompilerSHA-512Invalid">
