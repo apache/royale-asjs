@@ -864,7 +864,7 @@ limitations under the License.
                 <exclude name="manualtests/**"/>
                 <exclude name="marmotinni/**"/>
                 <exclude name="mustella/**"/>
-                <exclude name="src/**"/>
+                <exclude name="src/site/**"/>
                 <exclude name="testsuite/**"/>
                 <exclude name="fxg2svg/**"/>
                 <exclude name="temp/**"/>
