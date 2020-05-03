@@ -781,28 +781,17 @@
     </target>
 
     <target name="build_maven">
-        <condition property="compiler_mvn_profiles" value="test-using-swf,main"
-            else="main">
-            <isset property="env.AIR_HOME" />
-        </condition>
-        <condition property="asjs_mvn_profiles" value="generate-swcs-for-swf,generate-swf,main"
-            else="main">
-            <isset property="env.AIR_HOME" />
-        </condition>
-        <condition property="asjs_mvn_defines" value="-Dgenerate.swf.swcs=true"
+        <condition property="compiler_mvn_profiles" value="-Poption-with-swf"
             else="-Ddummy=true">
             <isset property="env.AIR_HOME" />
         </condition>
+        <condition property="asjs_mvn_profiles" value="-Pwith-examples,with-distribution,option-with-swf"
+            else="-Pwith-examples,with-distribution">
+            <isset property="env.AIR_HOME" />
+        </condition>
         <echo>Path is ${env.Path}</echo>
-        <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" >
-            <arg value="-P" />
-            <arg value="-main,utils" />
-            <arg value="clean" />
-            <arg value="install" />
-        </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-compiler" failonerror="true" inputstring="Yes">
             <arg value="clean" />
-            <arg value="-P" />
             <arg value="${compiler_mvn_profiles}" />
             <arg value="install" />
         </exec>
@@ -811,9 +800,7 @@
             <arg value="install" />
         </exec>
         <exec executable="${mvn}" dir="${basedir}/${maven.package.url.name}/royale-asjs" failonerror="true" inputstring="Yes">
-            <arg value="${asjs_mvn_defines}" />
             <arg value="clean" />
-            <arg value="-P" />
             <arg value="${asjs_mvn_profiles}" />
             <arg value="install" />
         </exec>
