@@ -66,7 +66,6 @@ Royale requires Maven 3.3.9 or greater to be installed on your computer.
 
 To build Royale with Apache Maven, run Maven in the 3 folders as follows:
 
-royale-compiler:  mvn clean install -P -main,utils
 royale-compiler:  mvn clean install
 royale-typedefs:  mvn clean install
 royale-asjs:      mvn clean install
