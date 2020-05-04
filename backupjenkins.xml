@@ -30,7 +30,7 @@
         <mkdir dir="${basedir}/jenkinsjobs" />
         <copy todir="${basedir}/jenkinsjobs">
             <fileset dir="C:\jenkins\jobs">
-                <includes name="**/config.xml" />
+                <include name="**/config.xml" />
             </fileset>
         </copy>
 	</target>
