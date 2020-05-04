@@ -248,7 +248,7 @@ package
 		public static const F500PX:String = "500px";
 		public static const FACEBOOK_SQUARE:String = "facebook-square";
 		public static const FACEBOOK:String = "facebook";
-		public static const FACEBOOKFFICIAL:String = "facebookfficial";
+		public static const FACEBOOKOFFICIAL:String = "facebookofficial";
 		public static const FAST_BACKWARD:String = "fast-backward";
 		public static const FAST_FORWARD:String = "fast-forward";
 		public static const FAX:String = "fax";
@@ -310,7 +310,7 @@ package
 		public static const GLOBE:String = "globe";
 		public static const GOOGLE_PLUS_SQUARE:String = "google-plus-square";
 		public static const GOOGLE_PLUS:String = "google-plus";
-		public static const GOOGLE_PLUSFFICIAL:String = "google-plusfficial";
+		public static const GOOGLE_PLUSOFFICIAL:String = "google-plusofficial";
 		public static const GOOGLE_WALLET:String = "google-wallet";
 		public static const GOOGLE:String = "google";
 		public static const GRADUATION_CAP:String = "graduation-cap";
@@ -468,7 +468,7 @@ package
 		public static const PLUS_SQUARE:String = "plus-square";
 		public static const PLUS:String = "plus";
 		public static const PODCAST:String = "podcast";
-		public static const POWERFF:String = "powerff";
+		public static const POWER_OFF:String = "power-off";
 		public static const PRINT:String = "print";
 		public static const PRODUCT_HUNT:String = "product-hunt";
 		public static const PUMP_SOAP:String = "pump-soap";
@@ -600,8 +600,8 @@ package
 		public static const TIMES_CIRCLE:String = "times-circle";
 		public static const TIMES:String = "times";
 		public static const TINT:String = "tint";
-		public static const TOGGLEFF:String = "toggleff";
-		public static const TOGGLEN:String = "togglen";
+		public static const TOGGLE_OFF:String = "toggle-off";
+		public static const TOGGLE_ON:String = "toggle-on";
 		public static const TRADEMARK:String = "trademark";
 		public static const TRAIN:String = "train";
 		public static const TRANSGENDER_ALT:String = "transgender-alt";
@@ -654,7 +654,7 @@ package
 		public static const VOLUME_CONTROL_PHONE:String = "volume-control-phone";
 		public static const VOLUME_DOWN:String = "volume-down";
 		public static const VOLUME_UP:String = "volume-up";
-		public static const VOLUMEFF:String = "volumeff";
+		public static const VOLUME_OFF:String = "volume-off";
 		public static const WEIBO:String = "weibo";
 		public static const WEIXIN:String = "weixin";
 		public static const WHATSAPP:String = "whatsapp";
