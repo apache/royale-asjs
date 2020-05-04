@@ -20,8 +20,10 @@ package mx.controls.beads
 {
     import mx.containers.beads.AdvancedDataGridListVirtualListView;
     import mx.controls.AdvancedDataGrid;
+    import mx.controls.DataGrid;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
     import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
+    import mx.controls.listClasses.ListBase;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;
     import mx.core.mx_internal;
     import mx.events.AdvancedDataGridEvent;
@@ -32,7 +34,7 @@ package mx.controls.beads
     import org.apache.royale.core.IDataGrid;
     import org.apache.royale.core.IDataGridModel;
     import org.apache.royale.core.IItemRenderer;
-    import org.apache.royale.core.IListPresentationModel;
+  //  import org.apache.royale.core.IListPresentationModel;
     import org.apache.royale.core.ISelectableItemRenderer;
     import org.apache.royale.core.UIBase;
     import org.apache.royale.events.Event;
@@ -67,16 +69,14 @@ package mx.controls.beads
 
         override protected function handleInitComplete(event:Event):void
         {
-            super.handleInitComplete(event);
-            
-            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
+
+/*            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
             if (!isNaN(host.rowHeight))
                 header.height = host.rowHeight;
             else
-                header.height = (host.presentationModel as IListPresentationModel).rowHeight;
-            
-            IEventDispatcher(host).addEventListener("columnsInvalid", handleColumnsInvalid);
-            handleColumnsInvalid(null);
+                header.height = (host.presentationModel as IListPresentationModel).rowHeight;*/
+
+            super.handleInitComplete(event);
         }		
         
         override protected function handleCollectionChanged(event:Event):void
@@ -86,64 +86,44 @@ package mx.controls.beads
             for (var i:int=0; i < columnLists.length; i++)
             {
                 var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
-                list.adg = _strand as AdvancedDataGrid;
+                list.grid = _strand as AdvancedDataGrid;
                 list.model.dispatchEvent(new Event("dataProviderChanged"));
             }
             host.dispatchEvent(new Event("layoutNeeded"));
             
         }
 
-        private function handleColumnsInvalid(event:Event):void
-        {
-            if (!columnLists) return;
-            
-            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
-            var sharedModel:IDataGridModel = (host.model as IDataGridModel);
-            
-            columnLists.length = 0;
-            visibleColumns.length = 0;
-            for (var i:int=0; i < sharedModel.columns.length; i++)
-            {
-                var col:AdvancedDataGridColumn = sharedModel.columns[i] as AdvancedDataGridColumn;
-                col.addEventListener("headerTextChanged", updateHeader);
-                var list:AdvancedDataGridColumnList = col.list as AdvancedDataGridColumnList;
-                var adgColumnListModel:DataGridColumnICollectionViewModel = list.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
-                adgColumnListModel.columnIndex = i;
-                list.visible = col.visible;
-                list.addEventListener(ItemClickEvent.ITEM_CLICK, itemClickHandler);
-                if (list.visible)
-                {
-                    visibleColumns.push(sharedModel.columns[i]);
-                    columnLists.push(list);
-                }
-            }
+
+
+        /**
+         *
+         * @royaleignorecoercion mx.controls.AdvancedDataGrid
+         */
+        override protected function refreshButtonBarDataProvider(dataGrid:ListBase):void{
+            var host:AdvancedDataGrid = dataGrid as AdvancedDataGrid;
             if (host.groupedColumns != null)
             {
                 var groupedColumns:Array = [];
-                for (i = 0; i < host.groupedColumns.length; i++)
+                for (var i:uint = 0; i < host.groupedColumns.length; i++)
                 {
                     if ((host.groupedColumns[i] as AdvancedDataGridColumn).visible)
                         groupedColumns.push(host.groupedColumns[i]);
                 }
                 (header as DataGridButtonBar).dataProvider = groupedColumns;
-            }
-            else
-                (header as DataGridButtonBar).dataProvider = visibleColumns.slice();
-            
-            host.dispatchEvent(new Event("layoutNeeded"));
+            } else super.refreshButtonBarDataProvider(dataGrid)
         }
+
         
-        private function updateHeader(event:Event):void
+       /* private function updateHeader(event:Event):void
         {
             (header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
-        }
+        }*/
         
-        private function itemClickHandler(event:ListEvent):void
+        override protected function itemClickHandler(event:ListEvent):void
         {
-            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
 			var target:AdvancedDataGridColumnList = event.target as AdvancedDataGridColumnList;
-			
-            host.dispatchEvent(event); // currently this doesn't clone and overwrites event.target
+            super.itemClickHandler(event);
+            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
 			if (host.editable)
 			{
 	            for (var i:int = 0; i < columnLists.length; i++)
@@ -163,33 +143,9 @@ package mx.controls.beads
 				}
 			}
         }
-        
-        override protected function createLists():void
-        {
-            var host:AdvancedDataGrid = _strand as AdvancedDataGrid;
-            var sharedModel:IDataGridModel = (host.model as IDataGridModel);
-            if (host.itemRenderer != null)
-            {
-                for (var i:int=0; i < sharedModel.columns.length; i++)
-                {
-                    if ((sharedModel.columns[i] as AdvancedDataGridColumn).itemRenderer == null)
-                        (sharedModel.columns[i] as AdvancedDataGridColumn).itemRenderer = host.itemRenderer;
-                }
-            }        
-            super.createLists();
-            for (i =0; i < columnLists.length; i++)
-            {
-                var list:AdvancedDataGridColumnList = columnLists[i] as AdvancedDataGridColumnList;
-                list.adg = _strand as AdvancedDataGrid;
-			}
 
-            for (i=0; i < sharedModel.columns.length; i++)
-            {
-                (sharedModel.columns[i] as AdvancedDataGridColumn).list = columnLists[i];
-            }
-        }
         
-        public function drawItem(index:int, selected:Boolean = false,
+        override public function drawItem(index:int, selected:Boolean = false,
                                     highlighted:Boolean = false,
                                     caret:Boolean = false):void
         {

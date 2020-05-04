@@ -40,9 +40,13 @@ import mx.utils.StringUtil;
 */
 import mx.core.UIComponent;
 import mx.core.mx_internal;
+import mx.controls.TextInput;
+import mx.core.IFactory;
+import mx.core.ClassFactory;
 use namespace mx_internal;
 
 import org.apache.royale.events.Event;
+import org.apache.royale.core.UIBase;
 import org.apache.royale.html.supportClasses.DataGridColumn;
     
 //--------------------------------------
@@ -202,6 +206,16 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     //
     //--------------------------------------------------------------------------
 
+
+    private static var _defaultItemEditorFactory:IFactory;
+
+    mx_internal static function get defaultItemEditorFactory():IFactory
+    {
+        if (!_defaultItemEditorFactory)
+            _defaultItemEditorFactory = new ClassFactory(TextInput);
+        return _defaultItemEditorFactory;
+    }
+
     /**
      *  Constructor.
      *
@@ -231,6 +245,36 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
     //  Variables
     //
     //--------------------------------------------------------------------------
+
+    /**
+     *  @private
+     *  The DataGrid that owns this column.
+     */
+    mx_internal var owner:UIComponent;
+
+    /**
+     *  @private
+     */
+    mx_internal var list:UIBase; //BaseEx;
+    /**
+     *  @private
+     */
+    mx_internal var explicitWidth:Number;
+
+    /**
+     *  @private
+     *
+     * Columns has complex data field named.
+     */
+  //  protected var hasComplexFieldName:Boolean = false;
+
+    /**
+     *  @private
+     *
+     * Array of split complex field name derived when set so that it is not derived each time.
+     */
+   // protected var complexFieldNameComponents:Array;
+
 
     //--------------------------------------------------------------------------
     //
@@ -553,11 +597,19 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
             owner.invalidateList();
         } */
     }
+    //----------------------------------
+    //  sortDescending
+    //----------------------------------
+    private var _sortDescending:Boolean = false;
 
-    public var sortDescending:Boolean = false;
-    
-    mx_internal var owner:UIComponent;
-    
+    [Inspectable(category="General")]
+    public function get sortDescending():Boolean{
+        return _sortDescending
+    }
+    public function set sortDescending(value:Boolean):void{
+        _sortDescending = value;
+    }
+
     /**
      *  @private
      *  The zero-based index of this column as it is displayed in the grid.
@@ -566,8 +618,243 @@ public class DataGridColumn extends org.apache.royale.html.supportClasses.DataGr
      *  <code>mx:DataGridColumn</code> tags.
      */
     mx_internal var colNum:Number;
-    
 
+
+
+    //----------------------------------
+    //  resizable
+    //----------------------------------
+
+    /**
+     *  Set to <code>true</code> if the user is allowed to resize
+     *  the width of the column.
+     *  If <code>true</code>, the user can drag the grid lines between
+     *  the column headers to resize the column.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    private var _resizable:Boolean = true;
+
+    [Inspectable(category="General")]
+    public function get resizable():Boolean {
+        return _resizable;
+    }
+    public function set resizable(value:Boolean):void {
+        _resizable  = value;
+    }
+
+    //----------------------------------
+    //  showDataTips
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the showDataTips property.
+     */
+    private var _showDataTips:*;
+
+    [Inspectable(category="Advanced")]
+
+    /**
+     *  Set to <code>true</code> to show data tips in the column.
+     *  If <code>true</code>, datatips are displayed for text in the rows. Datatips
+     *  are tooltips designed to show the text that is too long for the row.
+     *
+     *  @default false
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get showDataTips():*
+    {
+        return _showDataTips;
+    }
+
+    /**
+     *  @private
+     */
+    public function set showDataTips(value:*):void
+    {
+        _showDataTips = value;
+
+        /*  if (owner)
+         {
+             owner.invalidateList();
+         } */
+    }
+
+    //----------------------------------
+    //  sortable
+    //----------------------------------
+
+
+
+    /**
+     *  Set to <code>true</code> to indicate that the user can click on the
+     *  header of this column to sort the data provider.
+     *  If this property and the AdvancedDataGrid <code>sortableColumns</code> property
+     *  are both <code>true</code>, the AdvancedDataGrid control dispatches a
+     *  <code>headerRelease</code> event when a user releases the mouse button
+     *  on this column's header.
+     *  If no other handler calls the <code>preventDefault()</code> method on
+     *  the <code>headerRelease</code> event, the <code>dataField</code>
+     *  property or <code>sortCompareFunction</code> in the column is used
+     *  to reorder the items in the data provider.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    private var _sortable:Boolean = true;
+
+    [Inspectable(category="General")]
+    public function get sortable():Boolean{
+        return _sortable;
+    }
+
+    public function set sortable(value:Boolean):void{
+        _sortable = value;
+    }
+
+    //----------------------------------
+    //  sortCompareFunction
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the sortCompareFunction property.
+     */
+    private var _sortCompareFunction:Function;
+
+    [Bindable("sortCompareFunctionChanged")]
+    [Inspectable(category="Advanced")]
+
+    /**
+     *
+     *  A callback function that gets called when sorting the data in
+     *  the column.  If this property is not specified, the sort tries
+     *  to use a basic string or number sort on the data.
+     *  If the data is not a string or number or if the <code>dataField</code>
+     *  property is not a valid property of the data provider, the sort does
+     *  not work or will generate an exception.
+     *  If you specify a value of the <code>labelFunction</code> property,
+     *  you typically also provide a function to the <code>sortCompareFunction</code> property,
+     *  unless sorting is not allowed on this column.
+     *  That means you specify a function when the value from the column's <code>dataField</code>
+     *  does not sort in the same way as the computed value from the <code>labelFunction</code> property.
+     *
+     *  <p>The AdvancedDataGrid control uses this function to sort the elements of the data
+     *  provider collection. The function signature of
+     *  the callback function takes two parameters and has the following form:</p>
+     *
+     *  <pre>mySortCompareFunction(obj1:Object, obj2:Object):int </pre>
+     *
+     *  <p><code>obj1</code> &#x2014; A data element to compare.</p>
+     *
+     *  <p><code>obj2</code> &#x2014; Another data element to compare with <code>obj1</code>.</p>
+     *
+     *  <p>The function should return a value based on the comparison
+     *  of the objects: </p>
+     *  <ul>
+     *    <li>-1 if obj1 should appear before obj2 in ascending order. </li>
+     *    <li>0 if obj1 = obj2. </li>
+     *    <li>1 if obj1 should appear after obj2 in ascending order.</li>
+     *  </ul>
+     *
+     *  <p><strong>Note:</strong> The <code>obj1</code> and
+     *  <code>obj2</code> parameters are entire data provider elements and not
+     *  just the data for the item.</p>
+     *
+     *  @default null
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get sortCompareFunction():Function
+    {
+        return _sortCompareFunction;
+    }
+
+    /**
+     *  @private
+     */
+    public function set sortCompareFunction(value:Function):void
+    {
+        _sortCompareFunction = value;
+
+        //  dispatchEvent(new Event("sortCompareFunctionChanged"));
+    }
+
+
+
+
+    //----------------------------------
+    //  visible
+    //----------------------------------
+
+    /**
+     *  @private
+     *  Storage for the visible property.
+     */
+    private var _visible:Boolean = true;
+
+    [Inspectable(category="General", defaultValue="true")]
+
+    /**
+     *  If <code>true</code>, the column is visible.
+     *  Set to <code>false</code> to hide the column.
+     *
+     *  @default true
+     *
+     *  @langversion 3.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.3
+     */
+    public function get visible():Boolean
+    {
+        return _visible;
+    }
+
+    /**
+     *  @private
+     */
+    public function set visible(value:Boolean):void
+    {
+        if (_visible != value)
+        {
+            _visible = value;
+
+            if (owner)
+            {
+               // (owner as AdvancedDataGrid).columnsInvalid();
+                owner.dispatchEvent(new Event("columnsInvalid"));
+                // columns invisible at init don't get a dataprovider so
+                // force assignment by faking a dp change
+               // (owner as AdvancedDataGrid).model.dispatchEvent(new Event("dataProviderChanged"));
+                owner.model.dispatchEvent(new Event("dataProviderChanged"));
+
+                //owner.invalidateProperties();
+                //owner.invalidateSize();
+                //owner.invalidateList();
+
+
+
+            }
+        }
+    }
 }
 
 }

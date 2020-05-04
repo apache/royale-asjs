@@ -1198,13 +1198,12 @@ package org.apache.royale.core
             {
                 var children:Array = internalChildren();
                 if (index >= children.length)
-                    addElement(c);
+					element.appendChild(c.positioner);
                 else
-                {
                     element.insertBefore(c.positioner,
                         children[index]);
-                    (c as IUIBase).addedToParent();
-                }
+				(c as IUIBase).addedToParent();
+
             }
         }
         

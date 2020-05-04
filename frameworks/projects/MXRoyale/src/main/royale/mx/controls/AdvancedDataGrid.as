@@ -4128,11 +4128,11 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
                 clearSelectedCells();
         }
     } */
-    
-    public function columnsInvalid():void
+    //the following is being dispatched instead of being called from its call site, to avoid strong typing to ADG or a new interface
+   /* public function columnsInvalid():void
     {
         dispatchEvent(new Event("columnsInvalid"));
-    }
+    }*/
     
     /**
      *  @private
@@ -9597,12 +9597,12 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
     public function set columns(value:Array):void
     {
         var index:int = 0;
-        IDataGridModel(model).columns = value;
         for each (var col:AdvancedDataGridColumn in value)
         {
             col.owner = this;
             col.colNum = index++;
         }
+        IDataGridModel(model).columns = value;
     }
 
 	//----------------------------------

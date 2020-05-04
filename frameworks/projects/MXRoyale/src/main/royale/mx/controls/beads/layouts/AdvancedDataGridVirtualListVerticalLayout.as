@@ -36,7 +36,8 @@ package mx.controls.beads.layouts
     import org.apache.royale.html.beads.models.ButtonBarModel;
     import org.apache.royale.html.beads.VirtualDataContainerView;
 
-	
+    import mx.controls.beads.models.DataGridPresentationModel;
+
     COMPILE::SWF {
         import org.apache.royale.geom.Size;
     }
@@ -69,6 +70,7 @@ package mx.controls.beads.layouts
         override public function set strand(value:IStrand):void
         {
             super.strand = value;
+            (IStrandWithPresentationModel(value).presentationModel as DataGridPresentationModel).virtualized = true;
             dataProviderModel.addEventListener("dataProviderChanged", dataProviderChangeHandler);
         }
         

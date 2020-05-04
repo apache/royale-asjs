@@ -19,14 +19,14 @@
 
 package mx.controls.buttonBarClasses
 {
-import mx.core.UIComponent;
-import mx.core.mx_internal;
-use namespace mx_internal;
-import org.apache.royale.html.beads.DataGridView;
-import mx.controls.dataGridClasses.DataGridColumn;
+    import mx.core.UIComponent;
+    import mx.core.mx_internal;
+    use namespace mx_internal;
+    import org.apache.royale.html.beads.DataGridView;
+    import mx.controls.dataGridClasses.DataGridColumn;
 
-import org.apache.royale.html.DataGridButtonBar;
-import org.apache.royale.html.supportClasses.TextButtonItemRenderer;
+    import org.apache.royale.html.DataGridButtonBar;
+    import org.apache.royale.html.supportClasses.TextButtonItemRenderer;
 
 /**
  *  The TextButtonDataGridColumnItemRenderer is the default renderer for mx.controls.DataGrid's columns
@@ -46,7 +46,7 @@ public class TextButtonDataGridColumnItemRenderer extends TextButtonItemRenderer
         {
             var column:DataGridColumn = data as DataGridColumn;
             var dg:UIComponent = column.owner;
-            if (index == ((dg.view as DataGridView).header as DataGridButtonBar).selectedIndex)
+            if (column.sortable && index == ((dg.view as DataGridView).header as DataGridButtonBar).selectedIndex)
             {
                 s += " " + (column.sortDescending ? "▼" : "▲");
             }

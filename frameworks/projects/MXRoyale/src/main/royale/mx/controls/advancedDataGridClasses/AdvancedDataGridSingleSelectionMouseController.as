@@ -74,7 +74,7 @@ package mx.controls.advancedDataGridClasses
 		{
 			var node:Object = event.data;
 			
-            var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).adg;
+            var adg:AdvancedDataGrid =  (_strand as AdvancedDataGridColumnList).grid as AdvancedDataGrid;
             var hasChildren:Boolean = adg.hasChildren(node);
             if (hasChildren)
             {

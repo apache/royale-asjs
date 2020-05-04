@@ -20,9 +20,11 @@
 package mx.controls.dataGridClasses
 {
     import mx.controls.List;
+    import mx.controls.listClasses.ListBase;
     import org.apache.royale.html.supportClasses.IDataGridColumnList;
-    
-    //--------------------------------------
+    import org.apache.royale.html.supportClasses.DataGridColumnList;
+
+//--------------------------------------
     //  Events
     //--------------------------------------
     
@@ -34,7 +36,7 @@ package mx.controls.dataGridClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    [Event(name="change", type="org.apache.royale.events.Event")]
+  //  [Event(name="change", type="org.apache.royale.events.Event")]
     
     /**
      *  The DataGridColumnList class is the List class used internally
@@ -45,7 +47,7 @@ package mx.controls.dataGridClasses
      *  @playerversion AIR 2.6
      *  @productversion Royale 0.0
      */
-    public class DataGridColumnList extends List implements IDataGridColumnList
+    public class DataGridColumnList extends  org.apache.royale.html.supportClasses.DataGridColumnList // List implements IDataGridColumnList
     {
         /**
          *  Constructor.
@@ -73,7 +75,12 @@ package mx.controls.dataGridClasses
          * 
          *  @royalesuppresspublicvarwarning
          */
-        public var columnInfo: DataGridColumn;
+   //     public var columnInfo: DataGridColumn;
+
+        /**
+         * @royalesuppresspublicvarwarning
+         */
+        public var grid:ListBase;
     }
 
 }

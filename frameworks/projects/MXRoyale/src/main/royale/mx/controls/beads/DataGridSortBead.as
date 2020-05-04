@@ -18,25 +18,30 @@
 ////////////////////////////////////////////////////////////////////////////////
 package mx.controls.beads
 {
-	import mx.controls.AdvancedDataGrid;
+	import mx.controls.DataGrid;
 	import mx.controls.beads.DataGridView;
 	import mx.controls.dataGridClasses.DataGridColumn;
-	import mx.events.AdvancedDataGridEvent;
-	
+	import mx.events.DataGridEvent;
+	import mx.collections.ICollectionView;
+	import mx.collections.ISort;
+	import mx.collections.Sort;
+	import mx.collections.SortField;
+
 	import org.apache.royale.core.IBead;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.events.MouseEvent;
+	import org.apache.royale.events.Event;
 	import org.apache.royale.html.DataGridButtonBar;
     
-	public class AdvancedDataGridSortBead implements IBead
+	public class DataGridSortBead implements IBead
 	{
-		public function AdvancedDataGridSortBead()
+		public function DataGridSortBead()
 		{
 			super();
 		}
 		
-        private var adg:AdvancedDataGrid;
+        private var dg:DataGrid;
         
 		/**                         	
 		 *  @copy org.apache.royale.core.IBead#strand
@@ -48,8 +53,8 @@ package mx.controls.beads
 		 */
 		public function set strand(value:IStrand):void
 		{
-            adg = value as AdvancedDataGrid;
-			(adg.view as DataGridView).header.addEventListener(MouseEvent.CLICK, mouseClickHandler, false);
+            dg = value as DataGrid;
+			(dg.view as DataGridView).header.addEventListener(MouseEvent.CLICK, mouseClickHandler, false);
 		}
 		
 		/**
@@ -57,7 +62,8 @@ package mx.controls.beads
 		 */
 		private function mouseClickHandler(event:MouseEvent):void
 		{
-            var buttonBar:DataGridButtonBar = ((adg.view as DataGridView).header as DataGridButtonBar);
+			var dgView:DataGridView = dg.view as DataGridView;
+            var buttonBar:DataGridButtonBar = (dgView.header as DataGridButtonBar);
             // probably down on one button and up on another button
             // so the ButtonBar won't change selection
             if (event.target == buttonBar) return;
@@ -66,10 +72,25 @@ package mx.controls.beads
 				//ignore clicks on headers of columns that are not sortable
 				return;
 			}
-            var adgEvent:AdvancedDataGridEvent = new AdvancedDataGridEvent(AdvancedDataGridEvent.SORT);
-            adgEvent.columnIndex = buttonBar.selectedIndex;
-            adgEvent.dataField = adg.columns[adgEvent.columnIndex].dataField;
-            adg.dispatchEvent(adgEvent);
+			var collection:ICollectionView = dg.dataProvider as ICollectionView;
+			if (collection && collection.length) {
+
+				var oldSort:ISort = collection.sort;
+				var sort:Sort = new Sort();
+				var sortField:SortField = new SortField();
+				sortField.name = column.dataField;
+
+				if (oldSort && oldSort.fields[0].name == sortField.name)
+					column.sortDescending = !column.sortDescending;
+				sortField.descending = column.sortDescending;
+
+				sort.fields = [ sortField ];
+				collection.sort = sort;
+				collection.refresh();
+				// force redraw of column headers
+				(dgView.header as DataGridButtonBar).model.dispatchEvent(new Event("dataProviderChanged"));
+			}
 		}
+
 	}
 }

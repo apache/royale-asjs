@@ -189,7 +189,8 @@ package org.apache.royale.html.beads
 			protected function handleDataProviderChanged(event:Event):void
 			{
                 var sharedModel:IDataGridModel = _strand.getBeadByType(IBeadModel) as IDataGridModel;
-                for (var i:int=0; i < _lists.length; i++)
+				var l:uint = _lists ?  _lists.length : 0;
+                for (var i:int=0; i < l; i++)
                 {
                     var list:IDataGridColumnList = _lists[i] as IDataGridColumnList;
                     list.dataProvider = sharedModel.dataProvider;
@@ -285,12 +286,21 @@ package org.apache.royale.html.beads
 					list.labelField = dataGridColumn.dataField;
 					list.addEventListener('change',handleColumnListChange);
 					list.addBead(presentationModel as IBead);
+					onCreatedList(list, dataGridColumn);
 
 					(_listArea as IParent).addElement(list as IChild);
 					_lists.push(list);
 				}
 
 				sendStrandEvent(_strand,"layoutNeeded");
+			}
+
+			/**
+			 * provides a way for subclasses to perform any creation activity manipulation on lists
+			 * before they are added to the listArea
+			 */
+			protected function onCreatedList(list:IDataGridColumnList, forColumn:IDataGridColumn):void{
+
 			}
 			
 			/**

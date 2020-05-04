@@ -22,6 +22,7 @@
 @namespace core "mx.core.*";
 @namespace containerBeads "mx.containers.beads.*";
 @namespace adg "mx.controls.advancedDataGridClasses.*";
+@namespace dg "mx.controls.dataGridClasses.*";
 @namespace pop "mx.managers.*";
 @namespace menu "mx.controls.menuClasses.*";
 
@@ -79,13 +80,24 @@ Basic|DataGridColumnList {
 	IItemRenderer: ClassReference("mx.controls.listClasses.ListItemRenderer");
 }
 
-Basic|DataGridButtonBar {
-	IItemRenderer: ClassReference("mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer");
+dg|DataGridButtonBar {
+	IItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridHeaderRenderer");
+	position: absolute;
 }
 
 adg|AdvancedDataGridButtonBar {
 	IItemRenderer: ClassReference("mx.controls.advancedDataGridClasses.AdvancedDataGridHeaderRenderer");
 	position: absolute;
+}
+
+dg|DataGridHeaderRenderer{
+	horizontalAlign: center;
+	vertical-align: middle;
+	border-top: 1px solid #222222;
+	border-bottom: 1px solid #222222;
+	border-right: 1px solid #222222;
+	border-left: none;
+	font-weight: bold;
 }
 
 adg|AdvancedDataGridHeaderRenderer {
@@ -136,6 +148,10 @@ adg|AdvancedDataGridColumnList {
 
 adg|AdvancedDataGridItemRenderer {
     padding-left: 5px;
+}
+
+dg|DataGridItemRenderer {
+	padding-left: 5px;
 }
 
 Alert
@@ -206,14 +222,15 @@ Container
 
 DataGrid
 {
+	alternatingItemColors: #F7F7F7, #FFFFFF;
 	IChangePropagator: ClassReference("org.apache.royale.html.beads.DataGridColumnChangePropagator");
-	IDataGridPresentationModel: ClassReference("org.apache.royale.html.beads.models.DataGridPresentationModel");
+	IDataGridPresentationModel: ClassReference("mx.controls.beads.models.DataGridPresentationModel");
 	IBeadView: ClassReference("mx.controls.beads.DataGridView");
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.DataGridICollectionViewModel");
 	IBeadLayout: ClassReference("mx.controls.beads.layouts.DataGridLayout");
 	columnClass: ClassReference("mx.controls.dataGridClasses.DataGridColumnList");
-	columnContainerClass: ClassReference("org.apache.royale.html.DataGridButtonBar");
-	columnLayoutClass: ClassReference("org.apache.royale.html.beads.layouts.ButtonBarLayout");
+	columnContainerClass: ClassReference("mx.controls.dataGridClasses.DataGridButtonBar");
+	columnLayoutClass: ClassReference("mx.controls.beads.layouts.DataGridHeaderLayout");
 	listAreaClass: ClassReference("mx.controls.dataGridClasses.DataGridListArea");
 	
 	background-color: #FFFFFF;
@@ -223,7 +240,14 @@ DataGrid
 }
 
 DataGridColumnList {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.DataGridModel");
+	IBeadModel: ClassReference("mx.controls.beads.models.DataGridColumnICollectionViewModel");
+	IViewport: ClassReference("org.apache.royale.html.supportClasses.Viewport");
+	IViewportModel: ClassReference("org.apache.royale.html.beads.models.ViewportModel");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IItemRendererClassFactory: ClassReference("mx.controls.beads.DataGridSelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.DataGridItemRendererInitializer");
+	IItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridItemRenderer");
+	ISelectableItemRenderer: ClassReference("mx.controls.dataGridClasses.DataGridSelectableItemRendererBead");
 	border-style: none;
 	background-color: #FFFFFF;
 }

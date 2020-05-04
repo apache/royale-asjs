@@ -36,6 +36,12 @@ import flash.utils.setInterval;
 
 import mx.collections.ArrayCollection;
 */
+COMPILE::SWF{
+import flash.display.DisplayObject;
+}
+COMPILE::JS{
+    import DisplayObject = org.apache.royale.core.UIBase;;
+}
 import mx.collections.CursorBookmark;
 import mx.collections.ICollectionView;
 import mx.collections.IViewCursor;
@@ -44,6 +50,7 @@ import mx.collections.SortField;
 import mx.controls.beads.AdvancedDataGridView;
 import mx.controls.beads.layouts.AdvancedDataGridLayout;
 import mx.controls.dataGridClasses.DataGridColumn;
+import mx.controls.dataGridClasses.DataGridListArea;
 import mx.core.IFactory;
 import mx.core.Keyboard;
 import mx.core.ScrollControlBase;
@@ -64,6 +71,7 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
 import org.apache.royale.utils.loadBeadFromValuesManager;
+import org.apache.royale.html.beads.IDataGridView;
 
 use namespace mx_internal;
 
@@ -8980,6 +8988,11 @@ public class AdvancedListBase extends ListBase /* extends UIComponent
         if (!enabled || !selectable)
             return;
 
+        //if it was a click elsewhere (e.g. on the header), then ignore it:
+        var listArea:DataGridListArea = IDataGridView(this.view).listArea as DataGridListArea;
+        if (listArea && !listArea.contains(event.target as DisplayObject)) {
+            return;
+        }
         // trace("mouseDown");
         isPressed = true;
 

@@ -20,7 +20,7 @@ package mx.controls.beads
 {	
     import org.apache.royale.core.IItemRenderer;   
     import org.apache.royale.core.SelectableItemRendererClassFactory;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
+    import mx.controls.dataGridClasses.DataGridColumnList;
 
 	/**
 	 *  The AdvancedDataGridItemRendererInitializer class initializes item renderers
@@ -31,7 +31,7 @@ package mx.controls.beads
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class AdvancedDataGridSelectableItemRendererClassFactory extends SelectableItemRendererClassFactory
+	public class DataGridSelectableItemRendererClassFactory extends SelectableItemRendererClassFactory
 	{
 		/**
 		 *  constructor.
@@ -41,14 +41,14 @@ package mx.controls.beads
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function AdvancedDataGridSelectableItemRendererClassFactory()
+		public function DataGridSelectableItemRendererClassFactory()
 		{
 		}
 				
         override public function createItemRenderer():IItemRenderer
         {
             var ir:IItemRenderer = super.createItemRenderer();
-			ir["outerDocument"] = (_strand as AdvancedDataGridColumnList).grid.mxmlDocument;
+			ir["outerDocument"] = (_strand as DataGridColumnList).grid.mxmlDocument;
 			return ir;
         }		        
 	}

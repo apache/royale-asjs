@@ -16,41 +16,30 @@
 //  limitations under the License.
 //
 ////////////////////////////////////////////////////////////////////////////////
-package mx.controls.beads.models
+
+package mx.controls.dataGridClasses
 {
-    import org.apache.royale.html.beads.models.DataGridPresentationModel;
+
+    import mx.containers.beads.AdvancedDataGridHeaderLayout;
+    
+    import org.apache.royale.html.DataGridButtonBar;
 
     /**
-     *  DataGrid Presentation Model
-     *  
+     *  The mx DataGridButtonBar class extends DataGridButtonBar to allow some specialized css
+     *
      *  @langversion 3.0
-     *  @playerversion Flash 10.2
-     *  @playerversion AIR 2.6
-     *  @productversion Royale 0.0
+     *  @playerversion Flash 9
+     *  @playerversion AIR 1.1
+     *  @productversion Royale 0.9.7
+     *  @royalesuppresspublicvarwarning
      */
-	public class DataGridPresentationModel extends org.apache.royale.html.beads.models.DataGridPresentationModel
-	{
-        /**
-         *  Constructor.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.0
-         */
-		public function DataGridPresentationModel()
-		{
+    public class DataGridButtonBar extends org.apache.royale.html.DataGridButtonBar
+    {
+        public function DataGridButtonBar()
+        {
             super();
-            separatorThickness = 0;
-		}
-
-        private var _virtualized:Boolean;
-
-        public function get virtualized():Boolean{
-            return _virtualized;
         }
-        public function set virtualized(value:Boolean):void{
-            _virtualized = value;
-        }
+
     }
+
 }

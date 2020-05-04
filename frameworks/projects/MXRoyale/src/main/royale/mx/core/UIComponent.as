@@ -44,6 +44,9 @@ COMPILE::SWF
 import flash.display.DisplayObject;
 import flash.display.Graphics;
 }
+COMPILE::JS{
+    import org.apache.royale.core.WrappedHTMLElement;
+}
 import mx.display.Graphics;
 import mx.events.EffectEvent;
 import mx.events.FlexEvent;
@@ -77,7 +80,7 @@ import org.apache.royale.core.IUIBase;
 import org.apache.royale.core.TextLineMetrics;
 import org.apache.royale.core.UIBase;
 import org.apache.royale.core.ValuesManager;
-import org.apache.royale.core.WrappedHTMLElement;
+
 import org.apache.royale.core.IBorderPaddingMarginValuesImpl;
 import org.apache.royale.core.styles.BorderStyles;
 import org.apache.royale.effects.IEffect;

@@ -19,9 +19,10 @@
 package mx.controls.beads
 {
 
-import mx.controls.AdvancedDataGrid;
 
-	import org.apache.royale.collections.TreeData;
+	import mx.controls.DataGrid;
+	import mx.controls.dataGridClasses.DataGridListArea;
+
     import org.apache.royale.core.Bead;
     import org.apache.royale.core.IDataProviderModel;
     import org.apache.royale.core.IIndexedItemRenderer;
@@ -33,21 +34,21 @@ import mx.controls.AdvancedDataGrid;
     import org.apache.royale.core.IUIBase;
     import org.apache.royale.core.SimpleCSSStyles;
     import org.apache.royale.core.UIBase;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridListData;
-	import mx.controls.advancedDataGridClasses.AdvancedDataGridColumnList;
+    import mx.controls.dataGridClasses.DataGridListData;
+	import mx.controls.dataGridClasses.DataGridColumnList;
     import mx.controls.beads.models.DataGridColumnICollectionViewModel;
 	import mx.core.UIComponent;
     
 	/**
-	 *  The AdvancedDataGridItemRendererInitializer class initializes item renderers
-     *  in tree classes.
+	 *  The DataGridItemRendererInitializer class initializes item renderers
+     *  in mx DataGrid classes.
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
 	 *  @playerversion AIR 2.6
 	 *  @productversion Royale 0.0
 	 */
-	public class AdvancedDataGridItemRendererInitializer extends ListItemRendererInitializer
+	public class DataGridItemRendererInitializer extends ListItemRendererInitializer
 	{
 		/**
 		 *  constructor.
@@ -57,7 +58,7 @@ import mx.controls.AdvancedDataGrid;
 		 *  @playerversion AIR 2.6
 		 *  @productversion Royale 0.0
 		 */
-		public function AdvancedDataGridItemRendererInitializer()
+		public function DataGridItemRendererInitializer()
 		{
 		}
 				
@@ -71,19 +72,15 @@ import mx.controls.AdvancedDataGrid;
                 return;
             
             super.initializeIndexedItemRenderer(ir, data, index);
-            
-            var adgColumnList:AdvancedDataGridColumnList = _strand as AdvancedDataGridColumnList;
 
-            if (!adgColumnList.grid) return;
+            var dgColumnList:DataGridColumnList = _strand as DataGridColumnList;
 
-            var adgColumnListModel:DataGridColumnICollectionViewModel = adgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
-			var adg:AdvancedDataGrid = (adgColumnList.grid as AdvancedDataGrid);
-			var depth:int = adg.getDepth(data);
-			var isOpen:Boolean = adg.isItemOpen(data);
-			var hasChildren:Boolean = adg.hasChildren(data);
-            var firstColumn:Boolean =  adgColumnListModel.columnIndex == 0;
+            if (!dgColumnList.grid) return;
 
-			var dataField:String = adg.columns[adgColumnListModel.columnIndex].dataField;
+            var dgColumnListModel:DataGridColumnICollectionViewModel = dgColumnList.getBeadByType(DataGridColumnICollectionViewModel) as DataGridColumnICollectionViewModel;
+			var dg:DataGrid = (dgColumnList.grid as DataGrid);
+
+			var dataField:String = dg.columns[dgColumnListModel.columnIndex].dataField;
 			var text:String = "";
 			try {
 				text = data[dataField];
@@ -91,14 +88,9 @@ import mx.controls.AdvancedDataGrid;
 			{
 			}
 			// Set the listData with the depth of this item
-			var treeListData:AdvancedDataGridListData = new AdvancedDataGridListData(text, dataField, adgColumnListModel.columnIndex, "", (adgColumnList.grid as AdvancedDataGrid), index);
-			treeListData.depth = depth;
-			treeListData.open = isOpen;
-			treeListData.hasChildren = hasChildren;
-			
-			(ir as IListDataItemRenderer).listData = treeListData;
-            if (firstColumn && adg.groupLabelField)
-                (ir as ILabelFieldItemRenderer).labelField = adg.groupLabelField;
+			var listData:DataGridListData = new DataGridListData(text, dataField, dgColumnListModel.columnIndex, "", (dgColumnList.grid as DataGrid), index);
+
+			(ir as IListDataItemRenderer).listData = listData;
         }
 
         override protected function setupVisualsForItemRenderer(ir:IIndexedItemRenderer):void

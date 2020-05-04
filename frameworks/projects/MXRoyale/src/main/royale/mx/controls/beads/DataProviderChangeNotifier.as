@@ -65,11 +65,11 @@ package mx.controls.beads
 
 		protected function dataProviderChangedHandler(event:Event):void
 		{
-			dataProvider = model.dataProvider as IEventDispatcher;
 			if (dataProvider)
 			{
 				detachEventListeners();
 			}
+			dataProvider = model.dataProvider as IEventDispatcher;
 			attachEventListeners();
 		}
 

@@ -145,6 +145,8 @@ internal class MXRoyaleClasses
 	import mx.effects.Parallel; Parallel; 
 	import mx.rpc.events.FaultEvent; FaultEvent;
 	import mx.events.AdvancedDataGridEvent; AdvancedDataGridEvent;
+	import mx.events.DataGridEvent; DataGridEvent;
+	import mx.events.DataGridEventReason; DataGridEventReason;
 	import mx.skins.ProgrammaticSkin; ProgrammaticSkin;
 	import mx.rpc.soap.WebService; WebService;
 	import mx.collections.ISort; ISort;
@@ -186,7 +188,8 @@ internal class MXRoyaleClasses
     import mx.controls.beads.layouts.AdvancedDataGridLayout; AdvancedDataGridLayout;
     import mx.controls.beads.layouts.DataGridLayout; DataGridLayout;
     import mx.controls.beads.layouts.AdvancedDataGridVirtualListVerticalLayout; AdvancedDataGridVirtualListVerticalLayout;
-    import mx.controls.listClasses.VirtualListVerticalLayout; VirtualListVerticalLayout;
+	import  mx.controls.beads.layouts.DataGridHeaderLayout; DataGridHeaderLayout;
+	import mx.controls.listClasses.VirtualListVerticalLayout; VirtualListVerticalLayout;
     import mx.controls.listClasses.ListSingleSelectionMouseController; ListSingleSelectionMouseController;
     import mx.controls.treeClasses.TreeSingleSelectionMouseController; TreeSingleSelectionMouseController;
     import mx.controls.beads.TreeItemRendererMouseController; TreeItemRendererMouseController;
@@ -271,6 +274,11 @@ internal class MXRoyaleClasses
     import mx.controls.beads.models.ListPresentationModel; ListPresentationModel;
     import mx.controls.beads.models.SingleSelectionIListModel; SingleSelectionIListModel;
     import mx.controls.buttonBarClasses.TextButtonDataGridColumnItemRenderer; TextButtonDataGridColumnItemRenderer;
+	import mx.controls.beads.DataGridItemRendererInitializer; DataGridItemRendererInitializer;
+	import mx.controls.beads.DataGridSelectableItemRendererClassFactory; DataGridSelectableItemRendererClassFactory;
+	import mx.controls.dataGridClasses.DataGridButtonBar; DataGridButtonBar;
+	import mx.controls.dataGridClasses.DataGridItemRenderer; DataGridItemRenderer;
+	import mx.controls.dataGridClasses.DataGridSelectableItemRendererBead; DataGridSelectableItemRendererBead;
     
     import mx.controls.menuClasses.MenuBarItemRenderer; MenuBarItemRenderer;
     import mx.controls.menuClasses.CascadingMenuItemRenderer; CascadingMenuItemRenderer;

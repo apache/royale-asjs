@@ -91,9 +91,16 @@ import mx.utils.StringUtil;
 
 use namespace mx_internal;
 */
-    
+
+import mx.controls.beads.DataGridSortBead;
 import mx.controls.dataGridClasses.DataGridColumn;
 import mx.controls.listClasses.ListBase;
+import mx.controls.listClasses.AdvancedListBase;
+import mx.controls.listClasses.DataGridListBase;
+import mx.controls.beads.DataGridColumnResizeBead;
+import mx.controls.beads.DataGridLinesBeadForICollectionView;
+
+
 import mx.core.mx_internal;
 use namespace mx_internal;
 
@@ -709,7 +716,7 @@ import org.apache.royale.core.ValuesManager;
  *  @playerversion AIR 1.1
  *  @productversion Flex 3
  */
-public class DataGrid extends ListBase implements IDataGrid// implements IIMESupport
+public class DataGrid extends DataGridListBase/*ListBase*/ implements IDataGrid// implements IIMESupport
 {
 
     //--------------------------------------------------------------------------
@@ -730,6 +737,8 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     {
         super();
         typeNames = "DataGrid";
+        addBead(new DataGridLinesBeadForICollectionView());
+        addBead(new DataGridColumnResizeBead());
     }
 
     //--------------------------------------------------------------------------
@@ -789,11 +798,13 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
      */
     public function set columns(value:Array):void
     {
-        IDataGridModel(model).columns = value;
+        var index:int = 0;
         for each (var col:DataGridColumn in value)
         {
             col.owner = this;
+            col.colNum = index++;
         }
+        IDataGridModel(model).columns = value;
     }
 	
     /**
@@ -830,6 +841,27 @@ public class DataGrid extends ListBase implements IDataGrid// implements IIMESup
     public function set presentationModel(value:IBead):void
     {
         _presentationModel = value as IDataGridPresentationModel;
+    }
+
+
+    override public function addedToParent():void
+    {
+        super.addedToParent();
+        addBead(new DataGridSortBead())
+
+       /* addBead(new AdvancedDataGridSortBead());
+        addEventListener(AdvancedDataGridEvent.SORT, sortHandler);
+        // Register default handlers for item editing.
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_BEGINNING,
+                itemEditorItemEditBeginningHandler);
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_BEGIN,
+                itemEditorItemEditBeginHandler);
+
+        addEventListener(AdvancedDataGridEvent.ITEM_EDIT_END,
+                itemEditorItemEditEndHandler);*/
+
     }
 }
 

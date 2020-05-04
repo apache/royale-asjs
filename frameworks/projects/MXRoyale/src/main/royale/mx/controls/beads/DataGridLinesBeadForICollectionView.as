@@ -19,7 +19,7 @@
 package mx.controls.beads
 {
     import mx.collections.ICollectionView;
-    import mx.controls.advancedDataGridClasses.AdvancedDataGridColumn;
+    import mx.controls.dataGridClasses.DataGridColumn;
     import mx.core.UIComponent;
     
     import org.apache.royale.core.IBeadModel;
@@ -93,7 +93,7 @@ package mx.controls.beads
             }
             
             var i:int;
-            var column:AdvancedDataGridColumn;
+            var column:DataGridColumn;
             var xpos:Number = 0;
             
             _overlay.clear();
@@ -103,7 +103,7 @@ package mx.controls.beads
             {
                 var ww:Number = 0;
                 for (i=0; i < columns.length; i++) {
-                    column = columns[i] as AdvancedDataGridColumn;
+                    column = columns[i] as DataGridColumn;
                     if (column.visible)
                     {
                         ww += column.columnWidth;
@@ -126,11 +126,16 @@ package mx.controls.beads
             _overlay.fill = lineFill;            
             // draw the verticals
             for (i=0; i < columns.length - 1; i++) {
-                column = columns[i] as AdvancedDataGridColumn;
+                column = columns[i] as DataGridColumn;
                 if (column.visible)
                 {
-                    xpos += column.columnWidth;
-                    _overlay.drawRect(xpos - 1, 0, weight, totalHeight);
+                    var delta:Number = column.columnWidth;
+                    if (!(delta>0)) delta = column.width;
+                    if (delta>0) {
+                        xpos += delta;
+                        _overlay.drawRect(xpos - 1, 0, weight, totalHeight);
+                    }
+
                 }
             }
             

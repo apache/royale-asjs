@@ -25,7 +25,8 @@ package mx.controls.advancedDataGridClasses
      */
     import mx.controls.AdvancedDataGrid;
 
-    import org.apache.royale.html.supportClasses.DataGridColumnList;
+    import mx.controls.dataGridClasses.DataGridColumnList;
+
 
 
     /**
@@ -45,10 +46,8 @@ package mx.controls.advancedDataGridClasses
         {
             super();
             typeNames += " AdvancedDataGridColumnList";
-
         }
 
-        public var adg:AdvancedDataGrid;
     }
 
 }
