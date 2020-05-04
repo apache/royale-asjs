@@ -1,3 +1,12 @@
+Apache Royale 0.9.7
+===================
+
+- Many additional components available.
+- Emulations of many existing Apache Flex components are operational.
+- Improvements to the Maven builds.
+- Dozens of bugs reported, investigated, and squashed. For details of
+  closed bug reports see https://github.com/apache/royale-asjs/issues?q=is%3Aissue+is%3Aclosed
+
 Apache Royale 0.9.6
 ===================
 
