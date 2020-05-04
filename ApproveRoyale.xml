@@ -218,7 +218,7 @@
         <delete file="jars.txt" />
         <!-- this is a comma-delimited, no spaces, no-line-breaks list used to decide which jars
          to skip in the rat-check of the binaries and which jars to examine before approval -->
-        <property name="jars-list" value="lib/compc.jar,lib/compiler.jar,lib/compiler-asc.jar,lib/compiler-common.jar,lib/compiler-compc.jar,lib/compiler-mxmlc.jar,lib/compiler-optimizer.jar,lib/compiler-swfdump.jar,lib/swfutils.jar,lib/fdb.jar,lib/flex-compiler-oem.jar,js/lib/asdoc.jar,js/lib/compiler-royaleTasks.jar,js/lib/compc.jar,js/lib/externc.jar,js/lib/jsc.jar,js/lib/mxmlc.jar"/>
+        <property name="jars-list" value="lib/compc.jar,lib/compiler.jar,lib/compiler-asc.jar,lib/compiler-common.jar,lib/compiler-compc.jar,lib/compiler-mxmlc.jar,lib/compiler-optimizer.jar,lib/compiler-swfdump.jar,lib/swfutils.jar,lib/fdb.jar,lib/flex-compiler-oem.jar,js/lib/asdoc.jar,js/lib/compiler-royaleTasks.jar,js/lib/royaleUnitTasks.jar,js/lib/compc.jar,js/lib/externc.jar,js/lib/jsc.jar,js/lib/mxmlc.jar"/>
         <echo file="${basedir}/jars.txt" message="${jars-list}"/>
         <echo file="${basedir}/jarexcludes.txt" message="${jars-list}"/>
         <replaceregexp file="${basedir}/jarexcludes.txt" match="," flags="g" replace="${line.separator}" />
