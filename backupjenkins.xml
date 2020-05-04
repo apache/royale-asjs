@@ -28,10 +28,10 @@
 	<target name="main" description="copy the jenkins config.xml files">
         <delete dir="${basedir}/jenkinsjobs" failonerror="false" />
         <mkdir dir="${basedir}/jenkinsjobs" />
-        <copy todir="${basedir}/jenkinsjobs" />
+        <copy todir="${basedir}/jenkinsjobs">
             <fileset dir="C:\jenkins\jobs">
                 <includes name="**/config.xml" />
             </fileset>
         </copy>
-	</target>	
+	</target>
 </project>
