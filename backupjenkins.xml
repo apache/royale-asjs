@@ -29,7 +29,7 @@
         <delete dir="${basedir}/jenkinsjobs" failonerror="false" />
         <mkdir dir="${basedir}/jenkinsjobs" />
         <copy todir="${basedir}/jenkinsjobs">
-            <fileset dir="C:\jenkins\jobs">
+            <fileset dir="C:\Program FIles (x86)\jenkins\jobs">
                 <include name="**/config.xml" />
             </fileset>
         </copy>
