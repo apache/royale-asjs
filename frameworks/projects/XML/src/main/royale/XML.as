@@ -2325,6 +2325,7 @@ package
 		/**
 		 *
 		 * @royaleignorecoercion XML
+		 * @royaleignorecoercion XMLList
 		 */
 		public function replaceChildAt(idx:int,v:*):void
 		{
@@ -2374,11 +2375,12 @@ package
 			}
 			else if(v is XMLList)
 			{
+				len = (v as XMLList).length();
+				if (!len) return;
 				//6.
 				if(_children[idx])
 					_children[idx]._parent = null;
-				
-				len = v.length();
+
 				v[0].setParent(this);
 				_children[idx] = v[0];
 				var listIdx:int = 1;
