@@ -1274,6 +1274,25 @@ package flexUnitTests.xml
                    , 'unexpected dest toXMLString');
 
         }
+
+
+        [Test]
+        public function testAssignXMLListVariants():void{
+            var xmlList:XMLList = new XMLList()
+            var xml:XML = <root><foo/></root>;
+            xml.foobaz = xmlList;
+            assertEquals(xml.toXMLString(), '<root>\n' +
+                    '  <foo/>\n' +
+                    '</root>', 'unexpected empty XMLList assignment')
+            xmlList = new XMLList('<foobazzer/><foobazzer/>')
+            xml.foobaz = xmlList;
+            assertEquals(xml.toXMLString(), '<root>\n' +
+                    '  <foo/>\n' +
+                    '  <foobazzer/>\n' +
+                    '  <foobazzer/>\n' +
+                    '</root>', 'unexpected  XMLList assignment')
+
+        }
         
         //@todo - Passes in Swf, fails in browser:
         /*[Test]
