@@ -1308,6 +1308,17 @@ package flexUnitTests.xml
                     '  <foobazzer/>\n' +
                     '  <foo/>\n' +
                     '</root>', 'unexpected  XMLList assignment');
+
+
+            xml =<root><foo/><foobaz/><foo/><foobaz/><foo/></root>;
+            xml.foobaz = xmlList;
+            assertEquals(xml.toXMLString(), '<root>\n' +
+                    '  <foo/>\n' +
+                    '  <foobazzer/>\n' +
+                    '  <foobazzer/>\n' +
+                    '  <foo/>\n' +
+                    '  <foo/>\n' +
+                    '</root>', 'unexpected  XMLList assignment');
         }
         
         //@todo - Passes in Swf, fails in browser:
