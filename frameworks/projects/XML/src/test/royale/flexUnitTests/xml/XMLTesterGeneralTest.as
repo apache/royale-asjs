@@ -1278,20 +1278,36 @@ package flexUnitTests.xml
 
         [Test]
         public function testAssignXMLListVariants():void{
-            var xmlList:XMLList = new XMLList()
+            var xmlList:XMLList = new XMLList();
             var xml:XML = <root><foo/></root>;
             xml.foobaz = xmlList;
             assertEquals(xml.toXMLString(), '<root>\n' +
                     '  <foo/>\n' +
-                    '</root>', 'unexpected empty XMLList assignment')
-            xmlList = new XMLList('<foobazzer/><foobazzer/>')
+                    '</root>', 'unexpected empty XMLList assignment');
+            xmlList = new XMLList('<foobazzer/><foobazzer/>');
             xml.foobaz = xmlList;
             assertEquals(xml.toXMLString(), '<root>\n' +
                     '  <foo/>\n' +
                     '  <foobazzer/>\n' +
                     '  <foobazzer/>\n' +
-                    '</root>', 'unexpected  XMLList assignment')
+                    '</root>', 'unexpected  XMLList assignment');
 
+            xml = <root><foo/><foobaz/><foobaz/></root>;
+            xml.foobaz = xmlList;
+            assertEquals(xml.toXMLString(), '<root>\n' +
+                    '  <foo/>\n' +
+                    '  <foobazzer/>\n' +
+                    '  <foobazzer/>\n' +
+                    '</root>', 'unexpected  XMLList assignment');
+
+            xml = <root><foobaz/><foobaz/><foo/></root>;
+
+            xml.foobaz = xmlList;
+            assertEquals(xml.toXMLString(), '<root>\n' +
+                    '  <foobazzer/>\n' +
+                    '  <foobazzer/>\n' +
+                    '  <foo/>\n' +
+                    '</root>', 'unexpected  XMLList assignment');
         }
         
         //@todo - Passes in Swf, fails in browser:

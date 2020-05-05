@@ -2201,8 +2201,13 @@ package
 			//Do nothing for XML objects?
 			if (index < childrenLength()) {
 				var removed:XML = _children[index];
-				removed.setParent(null);
-				_children.splice(index,1);
+				if (removed) {
+					removed.setParent(null);
+					index =_children.indexOf(removed);
+					if (index != -1){
+						_children.splice(index,1);
+					}
+				}
 				return true;
 			}
 
@@ -2583,7 +2588,7 @@ package
 			while (k > -1) { //11
 				if (
 						( wild  || ((_children[k] as XML).getNodeRef() == ELEMENT &&  (_children[k] as XML).localName() == n.localName) )
-						&& (n.uri == null || ((_children[k] as XML).getNodeRef() == ELEMENT &&  QName((_children[k] as XML)._name).uri == n.uri)))
+						&& (n.uri == null /* maybe: !n.uri ? */ || ((_children[k] as XML).getNodeRef() == ELEMENT &&  QName((_children[k] as XML)._name).uri == n.uri)))
 				{
 					if (i !== -1) {
 						removeChildAt(i); //11.a.i
