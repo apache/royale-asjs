@@ -30,6 +30,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.core.IParent;
 	import org.apache.royale.core.IStrand;
 	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.StyledUIBase;
 	import org.apache.royale.core.ValuesManager;
 	import org.apache.royale.events.CollectionEvent;
 	import org.apache.royale.events.Event;
@@ -124,6 +125,7 @@ package org.apache.royale.jewel.beads.views
             // columns
             var listAreaClass:Class = ValuesManager.valuesImpl.getValue(host, "listAreaClass") as Class;
             _listArea = new listAreaClass() as IUIBase;
+            (_listArea as StyledUIBase).tabIndex = 0;
             _dg.strandChildren.addElement(_listArea as IChild);
 
             if (_sharedModel.columns)
@@ -173,7 +175,7 @@ package org.apache.royale.jewel.beads.views
                 list.labelField = dataGridColumn.dataField;
                 list.addEventListener('rollOverIndexChanged', handleColumnListRollOverChange);
                 list.addEventListener('selectionChanged', handleColumnListSelectionChange);
-
+                (list as StyledUIBase).tabIndex = -1;
 
                 (_listArea as IParent).addElement(list as IChild);
                 _lists.push(list);
