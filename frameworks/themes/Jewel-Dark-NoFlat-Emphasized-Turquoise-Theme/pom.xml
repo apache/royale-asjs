@@ -22,12 +22,12 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>themes</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8-SNAPSHOT</version>
   </parent>
 
   <!-- copied from light version which compiles just fine -->
   <artifactId>Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>swc</packaging>
 
   <name>Apache Royale: Framework: Themes: Jewel-Dark-NoFlat-Emphasized-Turquoise-Theme</name>
@@ -56,4 +56,4 @@
     </plugins>
   </build>
 
-<properties><project.build.outputTimestamp>2020-05-05T16:16:59Z</project.build.outputTimestamp></properties></project>
+<properties /></project>

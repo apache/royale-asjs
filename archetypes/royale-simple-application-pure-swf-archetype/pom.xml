@@ -22,11 +22,11 @@
   <parent>
     <groupId>org.apache.royale.framework</groupId>
     <artifactId>royale-maven-archetypes</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8-SNAPSHOT</version>
   </parent>
 
   <artifactId>royale-simple-application-pure-swf-archetype</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>Apache Royale: Framework: Archetypes: Simple Royale Pure-SWF Application</name>
@@ -38,4 +38,4 @@
   mvn archetype:generate -DarchetypeGroupId=org.apache.royale.framework -DarchetypeArtifactId=royale-simple-pure-swf-application-archetype -DarchetypeVersion=x.x.x
   -->
 
-<properties><project.build.outputTimestamp>2020-05-05T16:16:59Z</project.build.outputTimestamp></properties></project>
+<properties /></project>
