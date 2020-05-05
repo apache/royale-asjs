@@ -82,7 +82,9 @@ package org.apache.royale.jewel.beads.controls.combobox
 
 		override protected function onBeadsAdded(event:Event):void{
 			IEventDispatcher(_strand).addEventListener('dismissPopUp', removeListListeners);
-			
+			IEventDispatcher(_strand).addEventListener('popUpOpened', popUpOpenedHandler);
+			IEventDispatcher(_strand).addEventListener('popUpClosed', popUpClosedHandler);
+
 			comboView = event.target.view as IComboBoxView;
             if (comboView)
 			{
@@ -99,9 +101,15 @@ package org.apache.royale.jewel.beads.controls.combobox
 		override protected function onInputFocus(event:Event):void{
             if (!comboView.popUpVisible)
                 comboView.popUpVisible = true;
-			
+		}
+
+		protected function popUpOpenedHandler():void {
 			// fill "list" with the internal list in the combobox popup
 			list = comboView.popup.view.list;
+		}
+
+		protected function popUpClosedHandler():void {
+			list = null;
 		}
 	}
 }

@@ -45,6 +45,7 @@ package org.apache.royale.jewel.beads.views
 	import org.apache.royale.jewel.beads.models.IJewelSelectionModel;
 	import org.apache.royale.jewel.supportClasses.combobox.ComboBoxPopUp;
 	import org.apache.royale.utils.UIUtils;
+	import org.apache.royale.utils.sendStrandEvent;
 
 	/**
 	 *  The ComboBoxView class creates the visual elements of the org.apache.royale.jewel.ComboBox
@@ -218,6 +219,8 @@ package org.apache.royale.jewel.beads.views
                     }
                     setTimeout(prepareForPopUp,  300);
 
+					sendStrandEvent(_strand, "popUpOpened");
+
                     autoResizeHandler();
 				}
 			}
@@ -229,6 +232,7 @@ package org.apache.royale.jewel.beads.views
 				window.removeEventListener('resize', autoResizeHandler, false);
 				}
 				_comboPopUp = null;
+				sendStrandEvent(_strand, "popUpClosed");
 			}
 		}
 
@@ -236,12 +240,12 @@ package org.apache.royale.jewel.beads.views
         {
 			COMPILE::JS
 			{
-				//check here for non-null in case popUpVisible was toggled off before timeout runs
-				if (_comboPopUp != null) {
-                    _comboPopUp.element.classList.add("open");
-                    //avoid scroll in html
-                    document.body.classList.add("viewport");
-				}
+			//check here for non-null in case popUpVisible was toggled off before timeout runs
+			if (_comboPopUp != null) {
+				_comboPopUp.element.classList.add("open");
+				//avoid scroll in html
+				document.body.classList.add("viewport");
+			}
 			}
 		}
 

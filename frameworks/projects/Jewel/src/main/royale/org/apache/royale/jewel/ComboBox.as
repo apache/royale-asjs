@@ -38,6 +38,28 @@ package org.apache.royale.jewel
      *  @productversion Royale 0.9.4
      */
 	[Event(name="change", type="org.apache.royale.events.Event")]
+    
+	/**
+     *  Dispatched when the popup is opened.
+     *
+     *  @toplevel
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     */
+	[Event(name="popUpOpened", type="org.apache.royale.events.Event")]
+	
+	/**
+     *  Dispatched when the popup is closed.
+     *
+     *  @toplevel
+     *  @langversion 3.0
+     *  @playerversion Flash 10.2
+     *  @playerversion AIR 2.6
+     *  @productversion Royale 0.9.8
+     */
+	[Event(name="popUpClosed", type="org.apache.royale.events.Event")]
 
 	/**
 	 *  The ComboBox class is a component that displays an input field and
