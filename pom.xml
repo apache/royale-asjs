@@ -347,8 +347,8 @@
             <!-- Exclude node_modules -->
             <exclude>node_modules/**</exclude>
             
-            <!-- Exclude Affinity Design -->
-            <exclude>**/*.afdesign</exclude>
+            <!-- Exclude serc/assets like *.afdesign or other files that generate other project source files like SVGs -->
+            <exclude>src/assets/**</exclude>
           </excludes>
         </configuration>
       </plugin>
