@@ -2381,20 +2381,22 @@ package
 			else if(v is XMLList)
 			{
 				len = (v as XMLList).length();
-				if (!len) return;
 				//6.
 				if(_children[idx])
 					_children[idx]._parent = null;
-
-				v[0].setParent(this);
-				_children[idx] = v[0];
-				var listIdx:int = 1;
-				var chld:XML = v[0];
-				while(listIdx < len)
-				{
-					chld = v[listIdx];
-					insertChildAt(chld,idx+listIdx);
-					listIdx++;
+				if (len)  {
+					v[0].setParent(this);
+					_children[idx] = v[0];
+					var listIdx:int = 1;
+					var chld:XML = v[0];
+					while(listIdx < len)
+					{
+						chld = v[listIdx];
+						insertChildAt(chld,idx+listIdx);
+						listIdx++;
+					}
+				} else {
+					_children.splice(idx,1);
 				}
 			}
 			else
