@@ -301,7 +301,7 @@ package org.apache.royale.jewel.beads.controls.textinput
             {
                 ir = list.getElementAt(numElements) as ListItemRenderer;
 				var textData:String = getLabelFromData(ir, ir.data);
-				if (filterFunction(textData, filterText))
+				if (filterFunction(filterFunction === defaultFilterFunction ? textData : ir.data, filterText))
 				{
 					ir.visible = true;
 					visibleIndexes.push(ir.index);
