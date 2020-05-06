@@ -481,6 +481,12 @@ j|CardActions {
   border-style: solid;
   border-color: #d9d9d9;
 }
+.jewel.datagrid .listarea:focus {
+  border: 1px solid #662C90;
+}
+.jewel.datagrid .jewel.list:focus {
+  border-color: inherit;
+}
 .jewel.datagrid .jewel.list.column {
   border-radius: 0px;
   border-bottom-width: 0px;
