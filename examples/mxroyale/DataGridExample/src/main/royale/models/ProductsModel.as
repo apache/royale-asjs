@@ -41,15 +41,20 @@ package models
 			return _productList;
 		}
 		
-		private var _productArray:Array = [
+		private var _productArray:ArrayCollection = new ArrayCollection([
 			new Product("ps100","Blueberries",44,200,"assets/smallbluerect.jpg"),
 			new Product("tx200","Kiwis",5,285,"assets/smallgreenrect.jpg"),
 			new Product("rz300","Bananas",80,105,"assets/smallyellowrect.jpg"),
 			new Product("dh440","Strawberries",10,340,"assets/smallredrect.jpg"),
-			new Product("ps220","Oranges",35,190,"assets/smallorangerect.jpg")
-		];
+			new Product("ps220","Oranges",35,190,"assets/smallorangerect.jpg"),
+			new Product("ps111","Mandarins",414,202,"assets/smallorangerect.jpg"),
+			new Product("tx220","Loquats",51,185,"assets/smallyellowrect.jpg"),
+			new Product("rz303","Guavas",810,1205,"assets/smallredrect.jpg"),
+			new Product("dh490","Pears",120,3420,"assets/smallgreenrect.jpg"),
+			new Product("ps222","Apples",315,1190,"assets/smallredrect.jpg")
+		]);
 		
-		public function get productArray():Array
+		public function get alternateProductList():ArrayCollection
 		{
 			return _productArray;
 		}
