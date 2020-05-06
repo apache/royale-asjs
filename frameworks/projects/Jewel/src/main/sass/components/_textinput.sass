@@ -20,19 +20,29 @@
 // Jewel TextInput
 
 // TextInput variables
-$textinput-margin: 0 !default
-$textinput-padding-vertical: .679em !default
-$textinput-padding-horizontal: 1.12em !default
 
 .jewel
 	&.textinput
 		position: relative
 		display: inline-flex
+		overflow: hidden
+
+		&::before
+			top: calc(50% - 100%)
+			left: calc(50% - 100%)
+			width: 200%
+			height: 200%
+			z-index: 1
+
+		&::after
+
+		&::before, &::after
+			position: absolute
+			pointer-events: none
+			content: ""
 
 		input
 			+appear(none)
-			margin: $textinput-margin
-			padding: $textinput-padding-vertical $textinput-padding-horizontal
 
 			width: 100%
 			height: 100%
@@ -50,28 +60,23 @@ $textinput-padding-horizontal: 1.12em !default
 
 		&.icon
 			input
-				padding-left: $textinput-padding-horizontal + 1
 
 			i
 				&.fonticon
 					cursor: default
 					pointer-events: none
 					top: 50%
-					left: .45em
-					right: auto
+					right: initial
 					position: absolute
 					text-align: center
 					margin-top: -.5em
 
 			&.right
 				input
-					padding-right: $textinput-padding-horizontal + 1
-					padding-left: $textinput-padding-horizontal
 
 				i
 					&.fonticon
-						left: auto
-						right: .45em
+						left: initial
 
 		&.truncate
 			input
@@ -92,8 +97,6 @@ j|TextInput
 // Jewel TextArea
 
 // TextArea variables
-$textarea-margin: 0 !default
-$textarea-padding: .72em 1.12em !default
 
 .jewel
 	&.textarea
@@ -102,8 +105,6 @@ $textarea-padding: .72em 1.12em !default
 
 		textarea
 			+appear(none)
-			margin: $textarea-margin
-			padding: $textarea-padding
 			resize: none
 
 			max-width: 100%

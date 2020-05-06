@@ -21,6 +21,10 @@
 
 // TextInput variables
 $textinput-border-radius: $border-radius
+$textinput-margin: 0 !default
+$textinput-padding-vertical: .679em !default
+$textinput-padding-horizontal: 16px !default
+$textinput-padding-icon-offset: 20px !default
 
 =textinput-theme($textinput-text-color)
 	
@@ -74,20 +78,45 @@ $textinput-border-radius: $border-radius
 		font:
 			weight: $font-weight-normal
 
-		input
-			// font:
-			// 	family: $font-stack
 
 		@if $dark
 			+textinput-theme($font-dark-color)
 		@else
 			+textinput-theme($font-light-color)
 
+		input
+			margin: $textinput-margin
+			padding: $textinput-padding-vertical $textinput-padding-horizontal
+			// font:
+			// 	family: $font-stack
+		&.icon
+			input
+				padding-left: $textinput-padding-horizontal + $textinput-padding-icon-offset
+				padding-right: $textinput-padding-horizontal
+
+			i
+				&.fonticon
+					left: 8px
+
+			&.right
+				input
+					padding-left: $textinput-padding-horizontal
+					padding-right: $textinput-padding-horizontal + $textinput-padding-icon-offset
+
+				i
+					&.fonticon
+						right: 8px
+
+			&.truncate
+			input
+				
 		&.errorBorder
 			input
 				border: 1px $error-color solid
 
 // Jewel TextArea
+$textarea-margin: 0 !default
+$textarea-padding: .72em 1.12em !default
 
 // TextArea variables
 $textarea-border-radius: $border-radius
@@ -96,7 +125,10 @@ $textarea-border-radius: $border-radius
 	
 	color: $textarea-text-color
 
-	textarea	
+	textarea
+		margin: $textarea-margin
+		padding: $textarea-padding
+
 		@if $flat
 			background: lighten($default-color, 15%)
 			border: 1px solid $default-color

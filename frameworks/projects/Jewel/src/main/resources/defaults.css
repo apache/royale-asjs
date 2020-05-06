@@ -3894,6 +3894,19 @@ j|TableRow {
 .jewel.textinput {
   position: relative;
   display: inline-flex;
+  overflow: hidden;
+}
+.jewel.textinput::before {
+  top: calc(50% - 100%);
+  left: calc(50% - 100%);
+  width: 200%;
+  height: 200%;
+  z-index: 1;
+}
+.jewel.textinput::before, .jewel.textinput::after {
+  position: absolute;
+  pointer-events: none;
+  content: "";
 }
 .jewel.textinput input {
   -webkit-appearance: none;
@@ -3901,8 +3914,6 @@ j|TableRow {
   -o-appearance: none;
   -ms-appearance: none;
   appearance: none;
-  margin: 0;
-  padding: 0.679em 1.12em;
   width: 100%;
   height: 100%;
   max-width: 100%;
@@ -3914,26 +3925,17 @@ j|TableRow {
 .jewel.textinput input[disabled] {
   cursor: unset;
 }
-.jewel.textinput.icon input {
-  padding-left: 2.12em;
-}
 .jewel.textinput.icon i.fonticon {
   cursor: default;
   pointer-events: none;
   top: 50%;
-  left: 0.45em;
-  right: auto;
+  right: initial;
   position: absolute;
   text-align: center;
   margin-top: -0.5em;
 }
-.jewel.textinput.icon.right input {
-  padding-right: 2.12em;
-  padding-left: 1.12em;
-}
 .jewel.textinput.icon.right i.fonticon {
-  left: auto;
-  right: 0.45em;
+  left: initial;
 }
 .jewel.textinput.truncate input {
   overflow: hidden;
@@ -3962,8 +3964,6 @@ j|TextInput {
   -o-appearance: none;
   -ms-appearance: none;
   appearance: none;
-  margin: 0;
-  padding: 0.72em 1.12em;
   resize: none;
   max-width: 100%;
   flex: 1 0 auto;
