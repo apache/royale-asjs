@@ -1320,7 +1320,7 @@ package flexUnitTests.xml
                     '  <foo/>\n' +
                     '</root>', 'unexpected  XMLList assignment');
             xmlList = new XMLList();
-            xml.foobazer = xmlList;
+            xml.foobazzer = xmlList;
             assertEquals(xml.toXMLString(), '<root>\n' +
                     '  <foo/>\n' +
                     '  <foo/>\n' +
