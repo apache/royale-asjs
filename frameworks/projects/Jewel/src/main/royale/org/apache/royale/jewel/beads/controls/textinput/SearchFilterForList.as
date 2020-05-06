@@ -192,6 +192,10 @@ package org.apache.royale.jewel.beads.controls.textinput
 
 		/**
 		 * the filter function to use to filter entries in the list
+		 * 
+		 * Notice that defaultFilterFunction receive a text string, while a custom filter 
+		 * function can receive the whole data object from the renderer so the user can make
+		 * an kind of process over the data object and its subfields
 		 */
 		[Bindable]
 		public var filterFunction:Function = defaultFilterFunction;
@@ -267,6 +271,9 @@ package org.apache.royale.jewel.beads.controls.textinput
 		/**
 		 * default filter function just filters substrings
 		 * you can use other advanced methods like levenshtein distance
+		 * 
+		 * notice that defaultFilterFunction receive a text string, while a custom filter 
+		 * function can receive the whole data object from the renderer.
 		 *
 		 * @param text, the text where perform the seach
 		 * @param filterText, the text to use as Filter
