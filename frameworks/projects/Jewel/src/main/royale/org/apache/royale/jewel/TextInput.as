@@ -63,6 +63,9 @@ package org.apache.royale.jewel
         {
             input = addElementToWrapper(this,'input') as HTMLInputElement;
             input.setAttribute('type', 'text');
+            input.setAttribute('autocorrect', 'off');
+            input.setAttribute('autocomplete', 'off');
+            input.setAttribute('spellcheck', 'false');
             
             //attach input handler to dispatch royale change event when user write in textinput
             //goog.events.listen(element, 'change', killChangeHandler);
