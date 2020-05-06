@@ -1319,6 +1319,14 @@ package flexUnitTests.xml
                     '  <foo/>\n' +
                     '  <foo/>\n' +
                     '</root>', 'unexpected  XMLList assignment');
+            xmlList = new XMLList();
+            xml.foobazer = xmlList;
+            assertEquals(xml.toXMLString(), '<root>\n' +
+                    '  <foo/>\n' +
+                    '  <foo/>\n' +
+                    '  <foo/>\n' +
+                    '</root>', 'unexpected  XMLList assignment');
+
         }
         
         //@todo - Passes in Swf, fails in browser:
