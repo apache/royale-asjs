@@ -1349,6 +1349,24 @@ div {
 .jewel.textinput input[disabled] + i {
   color: silver;
 }
+.jewel.textinput input {
+  margin: 0;
+  padding: 0.679em 16px;
+}
+.jewel.textinput.icon input {
+  padding-left: 36px;
+  padding-right: 16px;
+}
+.jewel.textinput.icon i.fonticon {
+  left: 8px;
+}
+.jewel.textinput.icon.right input {
+  padding-left: 16px;
+  padding-right: 36px;
+}
+.jewel.textinput.icon.right i.fonticon {
+  right: 8px;
+}
 .jewel.textinput.errorBorder input {
   border: 1px #EC1C24 solid;
 }
@@ -1358,6 +1376,8 @@ div {
   color: #808080;
 }
 .jewel.textarea textarea {
+  margin: 0;
+  padding: 0.72em 1.12em;
   background: white;
   border: 1px solid #d9d9d9;
   border-radius: 0.25rem;
