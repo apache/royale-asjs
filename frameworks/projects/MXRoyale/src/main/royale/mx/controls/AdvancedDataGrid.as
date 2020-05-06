@@ -9589,7 +9589,8 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
      */
     public function get columns():Array
     {
-        return IDataGridModel(model).columns;
+        var arr:Array = IDataGridModel(model).columns;
+        return arr ? arr.slice() : [];
     }
     /**
      * @royaleignorecoercion org.apache.royale.core.IDataGridModel
@@ -9602,6 +9603,7 @@ public class AdvancedDataGrid extends AdvancedListBase implements IDataGrid
             col.owner = this;
             col.colNum = index++;
         }
+        value = value? value.slice() : value;
         IDataGridModel(model).columns = value;
     }
 
