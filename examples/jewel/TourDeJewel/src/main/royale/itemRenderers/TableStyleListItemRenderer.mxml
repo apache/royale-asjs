@@ -20,17 +20,20 @@ limitations under the License.
 <ir:IconListItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic"
-    xmlns:ir="itemRenderers.*">
+    xmlns:ir="itemRenderers.*"
+    width="100%">
 
     <ir:beads>
         <js:ItemRendererDataBinding />
         <j:HorizontalLayout/>
     </ir:beads>
 
-    <js:MaterialIcon text="{iconList ? iconList.icon : ''}"  visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()" width="100"/>
-    <j:Label html="{text}" multiline="true" width="300"/>
-    <j:Label html="Third field" multiline="true" width="100"/>
-    <j:Label html="Fourth field" multiline="true" width="200"/>
-
+    <!-- <j:HGroup itemsVerticalAlign="itemsCenter"> -->
+        <js:MaterialIcon text="{iconList ? iconList.icon : ''}"  visible="{iconList ? iconList.icon != null : false}" click="clickCloseButton()" width="100"/>
+        <j:Label html="{text}" multiline="true" width="300"/>
+        <j:Label html="Third field" multiline="true" width="100"/>
+        <j:Label html="Fourth field" multiline="true" width="200"/>
+    <!-- </j:HGroup> -->
+    
 </ir:IconListItemRenderer>
 
