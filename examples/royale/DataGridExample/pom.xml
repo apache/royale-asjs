@@ -26,11 +26,11 @@
   <parent>
     <groupId>org.apache.royale.examples</groupId>
     <artifactId>examples-royale</artifactId>
-    <version>0.9.7</version>
+    <version>0.9.8-SNAPSHOT</version>
   </parent>
 
   <artifactId>DataGridExample</artifactId>
-  <version>0.9.7</version>
+  <version>0.9.8-SNAPSHOT</version>
   <packaging>swf</packaging>
 
   <name>Apache Royale: Examples: Royale: DataGridExample</name>
@@ -56,14 +56,14 @@
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>Basic</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <classifier>js</classifier>
     </dependency>
     <dependency>
       <groupId>org.apache.royale.framework</groupId>
       <artifactId>BasicTheme</artifactId>
-      <version>0.9.7</version>
+      <version>0.9.8-SNAPSHOT</version>
       <type>swc</type>
       <scope>theme</scope>
       <classifier>js</classifier>
@@ -77,7 +77,7 @@
         <dependency>
           <groupId>org.apache.royale.framework</groupId>
           <artifactId>Basic</artifactId>
-          <version>0.9.7</version>
+          <version>0.9.8-SNAPSHOT</version>
           <type>swc</type>
           <classifier>swf</classifier>
         </dependency>
@@ -85,4 +85,4 @@
     </profile>
   </profiles>
 
-<properties><project.build.outputTimestamp>2020-05-07T16:32:23Z</project.build.outputTimestamp></properties></project>
+<properties /></project>
