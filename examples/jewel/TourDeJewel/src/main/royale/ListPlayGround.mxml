@@ -218,9 +218,9 @@ limitations under the License.
 					<html:H3 text="ItemRenderer and rowHeight=52" className="primary-normal"/>
 				</j:CardHeader>
 				<j:CardPrimaryContent>
-					<j:Label text="Click on render's icon will remove that renderer" multiline="true"/>
+					<j:Label text="Notice variableRowHeight should be false to use rowHeight. Click on render's icon will remove that renderer" multiline="true"/>
 					
-					<j:List localId="list2" width="200" height="300"
+					<j:List localId="list2" width="200" height="300" variableRowHeight="false"
 						className="iconListItemRenderer" labelField="label"
 						emphasis="secondary" rowHeight="52">
 						<j:beads>
