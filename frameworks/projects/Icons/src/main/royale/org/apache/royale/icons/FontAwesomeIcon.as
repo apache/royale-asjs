@@ -125,7 +125,7 @@ package org.apache.royale.icons
             setUpClassName();
 		}
         
-        protected var _type:String = "";
+        protected var _type:String;
         /**
          *  the icon type. This field is required.
          *
@@ -140,9 +140,10 @@ package org.apache.royale.icons
         }
 		public function set type(value:String):void
 		{
-            removeClass('fa-' + value);
+            removeClass('fa-' + _type);
             _type = value;
-            addClass('fa-' + _type);
+            if(_type)
+                addClass('fa-' + _type);
 		}
 
         protected var _pullRight:Boolean;
