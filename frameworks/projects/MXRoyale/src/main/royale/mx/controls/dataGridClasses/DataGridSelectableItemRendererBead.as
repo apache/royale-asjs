@@ -73,6 +73,9 @@ public class DataGridSelectableItemRendererBead extends SelectableItemRendererBe
     
     public var textSelectedColor:String = "#000000";
     public var textRollOverColor:String = "#000000";
+
+    //@todo check defaults are correct here
+    private static var defaultAlternatingItemColors:Array = [0xF7F7F7, 0xFFFFFF];
     
     /**
      * @private
@@ -83,6 +86,9 @@ public class DataGridSelectableItemRendererBead extends SelectableItemRendererBe
         var listData:DataGridListData = ir.listData as DataGridListData;
         var owner:DataGrid = listData.owner as DataGrid;
         var bgColors:Array = owner.getStyle("alternatingItemColors");
+        if (bgColors.length<2) {
+            bgColors = defaultAlternatingItemColors;
+        }
         textSelectedColor = owner.getStyle("textSelectedColor");
         textRollOverColor = owner.getStyle("textRollOverColor");
         backgroundColor = ((listData.rowIndex % 2) == 1) ? bgColors[1] : bgColors[0];

@@ -20,6 +20,7 @@
 
 package mx.controls.listClasses
 {
+import mx.controls.dataGridClasses.DataGridColumnList;
 
 /* import flash.display.DisplayObject;
 import flash.display.Graphics;
@@ -71,8 +72,11 @@ import org.apache.royale.core.ISelectionModel;
 import org.apache.royale.core.IUIBase;
 import org.apache.royale.events.Event;
 import org.apache.royale.events.MouseEvent;
+import org.apache.royale.geom.Point;
 import org.apache.royale.utils.loadBeadFromValuesManager;
 import org.apache.royale.html.beads.IDataGridView;
+import org.apache.royale.core.IDataGrid;
+import org.apache.royale.core.IDataGridModel;
 
 use namespace mx_internal;
 
@@ -3671,9 +3675,24 @@ public class DataGridListBase extends ListBase /* extends UIComponent
      *  @playerversion AIR 1.1
      *  @productversion Royale 0.9.4
      */
-    /* protected function itemRendererToIndices(item:IListItemRenderer):Point
+     protected function itemRendererToIndices(item:IListItemRenderer):Point
     {
-        if (!item || !(item.name in rowMap))
+        //inr royale, the renderer is IIndexedItemRenderer
+        if (!item) return null;
+        var index:int = item.index;
+
+
+        var list:DataGridColumnList = item.parent as DataGridColumnList;
+        if (!list) return null;
+        var column:DataGridColumn = list.columnInfo as DataGridColumn;
+
+        if (column) {
+            var colIndex:int = IDataGridModel(IDataGrid(list.grid).model).columns.indexOf(column);
+            return new Point(colIndex, index);
+        }
+
+        return null;
+       /* if (!item || !(item.name in rowMap))
             return null;
             
         var index:int = rowMap[item.name].rowIndex;
@@ -3689,8 +3708,8 @@ public class DataGridListBase extends ListBase /* extends UIComponent
                          i + horizontalScrollPosition,
                          index < lockedRowCount ?
                          index :
-                         index + verticalScrollPosition + offscreenExtraRowsTop);
-    } */
+                         index + verticalScrollPosition + offscreenExtraRowsTop);*/
+    }
 
     /**
      *  Get an item renderer for the index of an item in the data provider,
