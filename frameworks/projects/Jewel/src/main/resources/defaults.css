@@ -988,8 +988,12 @@ j|ImageButton {
   cursor: auto;
 }
 .jewel.item.mxmlContent, .jewel.navigationlink.mxmlContent, .jewel.tabbarbutton.mxmlContent {
+  position: relative;
   flex: 0 0 auto;
   align-items: center;
+}
+.jewel.item.mxmlContent > *, .jewel.navigationlink.mxmlContent > *, .jewel.tabbarbutton.mxmlContent > * {
+  position: absolute !important;
 }
 .jewel.item.selectable, .jewel.navigationlink.selectable, .jewel.tabbarbutton.selectable {
   cursor: pointer;

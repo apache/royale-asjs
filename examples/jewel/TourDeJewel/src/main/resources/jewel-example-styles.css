@@ -48,10 +48,6 @@ j|IconButtonBar
 {
     IItemRenderer: ClassReference("itemRenderers.IconListItemRenderer");
 }
-.iconListItemRenderer .fonticon
-{
-    margin-right: 24px;
-}
 
 .advancedIconListItemRenderer
 {
@@ -81,11 +77,6 @@ j|IconButtonBar
 .navIconLinkItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.NavigationIconLinkItemRenderer");
-}
-
-.navIconLinkItemRenderer .fonticon
-{
-    margin-right: 24px;
 }
 
 .tabBarVerticalIconItemRenderer
@@ -140,9 +131,5 @@ j|IconButtonBar
 
 .navSectionItemRenderer{
     IItemRenderer: ClassReference("itemRenderers.NavigationGroupExampleItemRenderer");
-}
-.navSectionItemRenderer .fonticon
-{
-    margin-right: 24px;
 }
 
