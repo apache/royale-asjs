@@ -39,9 +39,10 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
 
-    <js:MaterialIcon text="{navlink ? navlink.icon : ''}"  visible="{navlink ? navlink.icon != null : false}"/>
-
-    <html:Span text="{navlink ? navlink.label : ''}"/>
+    <j:HGroup gap="8" itemsVerticalAlign="itemsCenter">
+        <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
+        <html:Span text="{navlink.label}"/>
+    </j:HGroup>
 
 </j:NavigationLinkItemRenderer>
 

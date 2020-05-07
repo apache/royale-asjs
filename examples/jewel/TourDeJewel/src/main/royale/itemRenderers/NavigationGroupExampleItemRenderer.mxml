@@ -81,12 +81,14 @@ limitations under the License.
         <js:ItemRendererDataBinding />
     </j:beads>
 
-    <js:MaterialIcon text="{navlink ? navlink.icon : ''}"  visible="{navlink ? navlink.icon != null : false}"/>
+    <j:HGroup gap="8" itemsVerticalAlign="itemsCenter">
+        <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
 
-    <html:Span className="navigation-section-title" text="{text}"/>
-    
-    <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
-                visible="{navlink.subMenu != null}" />
+        <html:Span className="navigation-section-title" text="{text}"/>
+        
+        <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
+                        visible="{navlink.subMenu != null}" />
+    </j:HGroup>
 
 </j:CollapsibleNavigationSectionRenderer>
 
