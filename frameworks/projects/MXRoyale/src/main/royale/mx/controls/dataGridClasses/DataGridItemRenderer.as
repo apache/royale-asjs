@@ -233,6 +233,14 @@ public class DataGridItemRenderer extends StringItemRenderer
     //  styleName
     //----------------------------------
 
+    COMPILE::JS
+    override protected function computeFinalClassNames():String
+    {
+        var computed:String = super.computeFinalClassNames();
+        if (typeof _styleName == 'string') computed += ' ' + _styleName;
+        return  computed;
+    }
+
     /**
      *  @private
      *  Storage for the styleName property.
@@ -261,6 +269,20 @@ public class DataGridItemRenderer extends StringItemRenderer
             return;
 
         _styleName = value;
+        if (typeof value == 'string' || !value) {
+            COMPILE::JS{
+                if (_styleName) element.classList.remove(_styleName);
+                _styleName = value;
+                if (value) element.classList.add(value)
+            }
+            COMPILE::SWF{
+                trace("styleName not yet implemented for string assignments");
+            }
+        } else {
+            // TODO
+            trace("styleName not implemented for non-string assignments");
+        }
+
 
 		/*
         if (parent)

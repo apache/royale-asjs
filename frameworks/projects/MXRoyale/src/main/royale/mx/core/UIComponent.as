@@ -104,6 +104,8 @@ import org.apache.royale.utils.MXMLDataInterpreter;
 import mx.managers.IFocusManagerComponent;
 import mx.events.FocusEvent;
 
+import org.apache.royale.utils.ClassSelectorList;
+
 /**
  *  Set a different class for click events so that
  *  there aren't dependencies on the flash classes
@@ -3262,11 +3264,22 @@ COMPILE::JS
     //  styleName
     //----------------------------------
 
+
+    //
+    COMPILE::JS
+    override protected function computeFinalClassNames():String
+    {
+        var computed:String = super.computeFinalClassNames();
+        if (typeof _styleName == 'string') computed += ' ' + _styleName;
+        return  computed;
+    }
+
     /**
      *  @private
      *  Storage for the styleName property.
      */
     private var _styleName:Object /* String, CSSStyleDeclaration, or UIComponent */;
+    private var _classSelectorList:ClassSelectorList; //implementation support for styleName string values
 
     [Inspectable(category="General")]
 
@@ -3301,11 +3314,20 @@ COMPILE::JS
     {
         if (_styleName === value)
             return;
+        if (typeof value == 'string' || !value) {
+            COMPILE::JS{
+                if (_styleName) element.classList.remove(_styleName);
+                _styleName = value;
+                if (value) element.classList.add(value)
+            }
+            COMPILE::SWF{
+                trace("styleName not yet implemented for string assignments");
+            }
+        } else {
+            // TODO
+            trace("styleName not implemented for non-string assignments");
+        }
 
-        _styleName = value;
-
-        // TODO
-        trace("styleName not implemented");
     }
 
     //----------------------------------
