@@ -210,7 +210,7 @@ package org.apache.royale.binding
                         {
                             parentWatcher.addChild(pw);
                         }
-                        if (!hasWatcherChildren)
+                        if (!hasWatcherChildren || watcherChildIsXML(watcher))
                         {
                             pw.addBinding(gb);
                         }
@@ -237,6 +237,11 @@ package org.apache.royale.binding
                 }
             }
         }
+
+		private function watcherChildIsXML(watcher:Object):Boolean
+		{	
+			return (watcher.children.watchers.length == 1 && watcher.children.watchers[0].type == "xml");
+		}
 
         protected function decodeWatcher(bindingData:Array):Object
         {

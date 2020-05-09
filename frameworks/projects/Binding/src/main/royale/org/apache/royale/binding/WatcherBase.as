@@ -156,7 +156,7 @@ package org.apache.royale.binding
             else
                 listeners.push(binding);
             
-            binding.valueChanged(value, false);
+            binding.valueChanged(value, typeof binding.source === "function");
         }
                 
         /**
@@ -333,7 +333,8 @@ package org.apache.royale.binding
                 
                 for (var i:int = 0; i < n; i++)
                 {
-                    listeners[i].valueChanged(value, false);
+                    var gb:GenericBinding = listeners[i] as GenericBinding;
+                    gb.valueChanged(value, typeof gb.source === "function");
                 }
             }
         }
