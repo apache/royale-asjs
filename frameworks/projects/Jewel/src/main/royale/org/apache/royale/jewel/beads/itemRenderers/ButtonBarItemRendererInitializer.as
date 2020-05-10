@@ -78,6 +78,11 @@ package org.apache.royale.jewel.beads.itemRenderers
 			if(ir.index == 0)
 			{
 				StyledUIBase(ir).addClass("first");
+
+                if(ir.index == buttonBar.dataProvider.length - 1 )
+				{
+                    StyledUIBase(ir).addClass("last");
+				}
 			} 
 			else if(ir.index == buttonBar.dataProvider.length - 1 )
 			{
