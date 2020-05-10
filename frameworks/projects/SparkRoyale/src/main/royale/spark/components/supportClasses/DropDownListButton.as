@@ -60,7 +60,8 @@ package spark.components.supportClasses
         {
 			if (h < 4) return;
             element.innerHTML = '<svg width="' + w + 'px" height="' +
-                h + 'px" xmlns="http://www.w3.org/2000/svg"><text y="3px">' +
+                h + 'px" xmlns="http://www.w3.org/2000/svg"><clipPath id="txtclip"><rect x="0" y="0" height="' + h + 
+				'px" width="' + (w - 29) + 'px"/></clipPath><text y="3px" clip-path="url(#txtclip)">' +
                 label + '</text><style><![CDATA[' +
                 'text{ dominant-baseline: hanging;' +
                 /*    font: 12px Verdana, Helvetica, Arial, sans-serif;*/
