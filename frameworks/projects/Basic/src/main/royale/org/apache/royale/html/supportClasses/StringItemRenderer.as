@@ -81,7 +81,7 @@ package org.apache.royale.html.supportClasses
 		{
 			super.addedToParent();
 
-			addChild(textField);
+			super.addChild(textField);
 
 			adjustSize();
 		}

@@ -593,7 +593,7 @@ public class DataGridItemRenderer extends StringItemRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function owns(child:IUIComponent):Boolean
+    public function owns(child:IUIBase):Boolean
     {
         return child == this;
     }

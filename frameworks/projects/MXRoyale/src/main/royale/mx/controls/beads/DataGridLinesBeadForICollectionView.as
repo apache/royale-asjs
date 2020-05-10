@@ -109,7 +109,8 @@ package mx.controls.beads
                         ww += column.columnWidth;
                     }
                 }
-                
+                if (isNaN(ww))
+					ww = 0;
                 var bgColors:Array = (_strand as UIComponent).getStyle("alternatingItemColors");
                 var yy:Number = n * rowHeight;
                 

@@ -2009,10 +2009,16 @@ COMPILE::JS
             initialized = true;
         }
 
-        if (!mxmlDocument && parent is UIComponent)
-            mxmlDocument = UIComponent(parent).mxmlDocument;
-        else if (!mxmlDocument && parent is ContainerContentArea)
-            mxmlDocument = UIComponent(ContainerContentArea(parent).parent).mxmlDocument;
+        if (!mxmlDocument)
+		{
+			var p:IChild = parent as IChild;
+			while (p && !(p is UIComponent))
+			{
+				p = p.parent as IChild;
+			}
+			if (p)
+				mxmlDocument = UIComponent(p).mxmlDocument;
+		}
     }
     
     //----------------------------------
@@ -5118,7 +5124,7 @@ COMPILE::JS
     {//            trace("getStyle not implemented");
 //        return 0;
 		var value:* = ValuesManager.valuesImpl.getValue(this,styleProp);
-        if (value === undefined && typeof(_styleName) === "object")
+        if (value === undefined && _styleName != null && typeof(_styleName) === "object")
             value = styleName.getStyle(styleProp);
             
 //		if (!value) value = 0;

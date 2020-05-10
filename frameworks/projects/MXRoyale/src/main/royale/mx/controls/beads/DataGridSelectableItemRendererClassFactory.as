@@ -48,7 +48,10 @@ package mx.controls.beads
         override public function createItemRenderer():IItemRenderer
         {
             var ir:IItemRenderer = super.createItemRenderer();
+			COMPILE::JS 
+			{
 			ir["outerDocument"] = (_strand as DataGridColumnList).grid.mxmlDocument;
+			}
 			return ir;
         }		        
 	}

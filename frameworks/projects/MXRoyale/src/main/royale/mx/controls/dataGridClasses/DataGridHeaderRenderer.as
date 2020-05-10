@@ -409,7 +409,7 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
      *  @private
      *  Storage for the listData property.
      */
-    private var _listData:DataGridListData;
+    private var _listData:Object;
 
     [Bindable("dataChange")] 
 
@@ -424,7 +424,7 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
      *  @playerversion AIR 1.1
      *  @productversion Flex 3
      */
-    public function get listData():BaseListData
+    public function get listData():Object
     {
         return _listData;
     } 
@@ -432,10 +432,10 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
     /**
      *  @private
      */
-    public function set listData(value:BaseListData):void
+    public function set listData(value:Object):void
     {
-        _listData = DataGridListData(value);
-        grid      = ListBase(_listData.owner);
+        _listData = value;
+        grid = ListBase(DataGridListData(_listData).owner);
 
         invalidateProperties();
     } 
@@ -975,8 +975,11 @@ public class DataGridHeaderRenderer extends UIComponent implements IDataRenderer
         var sm:ISystemManager = super.systemManager;
         if (!sm)
         {
+			var p:IChild = parent as IChild;
+			while (p && !(p is IUIComponent))
+				p = p.parent as IChild;
             // skip a layer because parent ButtonBar is not IUIComponent
-            systemManager = ((parent as IChild).parent as IUIComponent).systemManager;
+            systemManager = (p as IUIComponent).systemManager;
         }
         return sm;
     }
