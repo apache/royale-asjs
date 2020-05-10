@@ -17,50 +17,26 @@
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-package mx.utils
+package mx.net.supportClasses
 {
-COMPILE::SWF{
-	import flash.utils.ByteArray;
-}
-COMPILE::JS{
-import org.apache.royale.utils.BinaryData;
-import org.apache.royale.utils.net.IDataInput;
-import org.apache.royale.utils.net.IDataOutput;
 
-}
+ import mx.utils.ByteArray;
+ import org.apache.royale.file.beads.FileLoader;
+ import org.apache.royale.file.beads.FileModel;
+ import org.apache.royale.events.Event;
 
-COMPILE::SWF{
-	public class ByteArray extends flash.utils.ByteArray
-	{	
-	  public function ByteArray()
-	  {
-	  super();
-	  }
-	}													
-}
+   public class ByteArrayFileLoader extends FileLoader
+   {
+      	COMPILE::JS 
+		override protected function fileLoadHandler(event:Event):void
+		{
+			fileModel.fileContent = new ByteArray(event.target.result);
+			dispatchEvent(new Event(Event.COMPLETE));
+		}
+		
 
-COMPILE::JS{
-	public class ByteArray extends org.apache.royale.utils.BinaryData implements IDataInput, IDataOutput
-	{	
-		public function ByteArray(bytes:Object = null)
-		{
-			super(bytes);
-		}
-		public function readMultiByte(length:uint, charSet:String):String
-		{
-		return "";
-		}
-		public function writeMultiByte(value:String, charSet:String):void
-		{
-		}
-		public function readObject():*
-        {
-           return null;
-        }
-        public function writeObject(object:*):void
-        {
-		}
-	}
-}
+   }
+
+            
 
 }

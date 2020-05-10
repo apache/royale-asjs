@@ -30,6 +30,7 @@ package mx.net
  import org.apache.royale.net.URLRequest;
  import org.apache.royale.file.beads.FileUploader;
  import mx.net.beads.FileUploaderUsingFormData;
+ import mx.net.supportClasses.ByteArrayFileLoader;
 
    public class FileReference extends FileProxy
    {
@@ -76,9 +77,20 @@ package mx.net
 		  if (!_loader)
 		  {
 			  // FileLoaderAndUploader has injected this
-			  _loader = getBeadByType(FileLoader) as FileLoader;
+			  _loader = getBeadByType(ByteArrayFileLoader) as FileLoader;
+			  if (!_loader)
+			  {
+				   _loader = new ByteArrayFileLoader();
+				   addBead(_loader);
+			  }
 		  }
+		  _loader.addEventListener(Event.COMPLETE, loaderCompleteHandler);
 		  _loader.load();
+	  }
+	
+	  public function loaderCompleteHandler(event:Event):void
+	  {
+		  dispatchEvent(new Event(Event.COMPLETE));
 	  }
 	  
 	  public function get data():ByteArray
