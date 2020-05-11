@@ -21,7 +21,7 @@ Getting Royale
 Official Apache Royale releases are in the form of a source package, which needs to
 be built by Apache Ant or Apache Maven before it can be used to build applications
 that produce JS or SWF output. Royale also provides pre-built packages (often referred
-to as "binary convenience packages") for users who choose not to compile Royale from sourc.
+to as "binary convenience packages") for users who choose not to compile Royale from source.
 
 Royale compiled binaries are available as Maven artifacts and through Node Package Manager (NPM).  If you want to use NPM, see "Getting Royale with NPM" below.
 
