@@ -57,14 +57,11 @@ package org.apache.royale.jewel.itemRenderers
 		{
 			super();
 			typeNames = "jewel navigationgroup";
+			
 			navLinkClassSelector = new ClassSelectorList(sectionNavItem);
 			navLinkClassSelector.addNames("jewel navigationlink");
 			navLinkClassSelector.add("selectable");
- 
-			if(MXMLDescriptor != null)
-			{
-				navLinkClassSelector.add("mxmlContent");
-			}
+
 			open = false;
 			addEventListener('click', onSectionNav);
 		}
