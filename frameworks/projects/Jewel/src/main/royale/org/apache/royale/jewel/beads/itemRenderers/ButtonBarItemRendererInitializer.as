@@ -74,21 +74,18 @@ package org.apache.royale.jewel.beads.itemRenderers
 			{
 				StyledUIBase(ir).emphasis = buttonBar.emphasis;
 			}
-
+			
 			if(ir.index == 0)
 			{
 				StyledUIBase(ir).addClass("first");
-
-                if(ir.index == buttonBar.dataProvider.length - 1 )
-				{
-                    StyledUIBase(ir).addClass("last");
-				}
-			} 
-			else if(ir.index == buttonBar.dataProvider.length - 1 )
+			}
+			
+			if(ir.index == buttonBar.dataProvider.length - 1 )
 			{
 				StyledUIBase(ir).addClass("last");
 			}
-			else
+			
+			if(ir.index != 0 && ir.index != buttonBar.dataProvider.length - 1 )
 			{
 				StyledUIBase(ir).addClass("middle");
 			}
