@@ -21,7 +21,8 @@ limitations under the License.
     xmlns:j="library://ns.apache.org/royale/jewel" 
     xmlns:js="library://ns.apache.org/royale/basic" 
     xmlns:html="library://ns.apache.org/royale/html" 
-    xmlns="http://www.w3.org/1999/xhtml">
+    xmlns="http://www.w3.org/1999/xhtml"
+    height="48">
 
     <fx:Script>
         <![CDATA[
@@ -37,12 +38,12 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding />
+        <j:HorizontalLayout gap="8" itemsVerticalAlign="itemsCenter"/>
     </j:beads>
 
-    <j:HGroup gap="8" itemsVerticalAlign="itemsCenter">
-        <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
-        <html:Span text="{navlink.label}"/>
-    </j:HGroup>
+    <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
+    
+    <html:Span text="{navlink.label}"/>
 
 </j:NavigationLinkItemRenderer>
 

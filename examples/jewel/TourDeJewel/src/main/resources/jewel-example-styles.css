@@ -42,8 +42,6 @@ j|IconButtonBar
     IItemRenderer: ClassReference("itemRenderers.SimpleIconListItemRenderer");
 }
 
-
-
 .iconListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.IconListItemRenderer");
@@ -52,10 +50,6 @@ j|IconButtonBar
 .advancedIconListItemRenderer
 {
     IItemRenderer: ClassReference("itemRenderers.AdvancedIconListItemRenderer");
-}
-.advancedIconListItemRenderer .fonticon
-{
-    margin-right: 24px;
 }
 
 .jewel.item .jewelItem {
