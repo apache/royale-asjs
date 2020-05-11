@@ -36,12 +36,12 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding />
+        <j:HorizontalLayout gap="6" itemsVerticalAlign="itemsCenter"/>
     </j:beads>
 
-    <j:HGroup gap="6" itemsVerticalAlign="itemsCenter">
-        <js:MaterialIcon text="{iconList.icon}"  visible="{iconList.icon != null}"/>
-        <j:Label html="{text}"/>
-    </j:HGroup>
+    <js:MaterialIcon text="{iconList.icon}"  visible="{iconList.icon != null}"/>
+   
+    <j:Label html="{text}"/>
 
 </j:ListItemRenderer>
 
