@@ -9,7 +9,7 @@ For detailed information about using Royale, visit:
 
 For more information about the Apache Royale project, visit:
 
-<http://royale.apache.org>
+<https://royale.apache.org>
 
 # Getting Royale
 
@@ -203,4 +203,4 @@ npm install @apache-royale/royale-js-swf -g
 
 In order to get started using Royale, you are invited to follow along with the [Quick Start Guide](https://github.com/apache/royale-asjs/wiki/Quick-Start).
 
-### Thanks for using [Apache Royale](http://royale.apache.org). Enjoy!
+### Thanks for using [Apache Royale](https://royale.apache.org). Enjoy!

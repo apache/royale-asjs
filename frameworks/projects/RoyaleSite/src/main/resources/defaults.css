@@ -118,7 +118,7 @@ rs|BigButton {
 rs|MainPage {
 	width: 100%;
 	background-color: #cccccc;
-	background-image: url('http://royale.codeoscopic.com/wp-content/uploads/2017/10/isometric-devices-light-curve-1920x1025.png');
+	background-image: url('https://royale.apache.org/wp-content/uploads/2017/10/isometric-devices-light-curve-1920x1025.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	margin-top: 0px;
@@ -126,7 +126,7 @@ rs|MainPage {
 
 rs|DocPage {
 	width: 100%;
-	background-image: url('http://royale.codeoscopic.com/wp-content/uploads/2017/10/page-bg-1-1920x300.png');
+	background-image: url('https://royale.apache.org/wp-content/uploads/2017/10/page-bg-1-1920x300.png');
 	background-size: 100%;
 	background-repeat: no-repeat;
 	margin-top: 0px;

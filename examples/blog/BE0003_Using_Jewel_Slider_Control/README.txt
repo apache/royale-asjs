@@ -25,4 +25,4 @@ See the basic use of the Jewel HSlider control in a Royale application.
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-http://royale.apache.org/using-the-jewel-slider-control/
+https://royale.apache.org/using-the-jewel-slider-control/

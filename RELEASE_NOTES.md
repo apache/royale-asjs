@@ -128,4 +128,4 @@ Please report new issues to our bugbase at:
     https://github.com/apache/royale-asjs/issues
 
                                           The Apache Royale Project
-                                          <http://royale.apache.org/>
+                                          <https://royale.apache.org/>

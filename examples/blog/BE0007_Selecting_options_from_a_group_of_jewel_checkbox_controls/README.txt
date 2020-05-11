@@ -25,4 +25,4 @@ Learn how to set up a group of Jewel Checkbox controls to select one or more opt
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-http://royale.apache.org/selecting-options-from-a-group-of-jewel-checkbox-controls/
+https://royale.apache.org/selecting-options-from-a-group-of-jewel-checkbox-controls/

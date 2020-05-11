@@ -37,7 +37,7 @@ package models
 
         protected function loadMembers():void {
             var httpService:HTTPService = new HTTPService();
-            httpService.url = 'http://royale.apache.org/team/team.json';
+            httpService.url = 'https://royale.apache.org/team/team.json';
             httpService.addEventListener("complete", handleLoadComplete);
             httpService.addEventListener("ioError", handleError);
             httpService.send();
@@ -54,7 +54,7 @@ package models
 
         protected function handleError(event:Event):void
         {
-            trace('Error loading team.json from http://royale.apache.org/team/team.json');
+            trace('Error loading team.json from https://royale.apache.org/team/team.json');
         }
 
         protected function createMemberVOs(membersArr:Array):void {

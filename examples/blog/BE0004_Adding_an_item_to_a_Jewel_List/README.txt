@@ -25,4 +25,4 @@ In this example we'll cover how to set up a Jewel List control that shows a list
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-http://royale.apache.org/adding-an-item-to-a-jewel-list
+https://royale.apache.org/adding-an-item-to-a-jewel-list

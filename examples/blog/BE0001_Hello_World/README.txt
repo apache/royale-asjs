@@ -25,4 +25,4 @@ This is the classical Hello World code snippet done in Apache Royale with just M
 
 Source code of the code exposed in the following Apache Royale Blog Example post:
 
-http://royale.apache.org/creating-a-hello-world-in-apache-royale/
+https://royale.apache.org/creating-a-hello-world-in-apache-royale/

@@ -9,7 +9,7 @@ For detailed information about using Royale, visit:
 
 For more information about the Apache Royale project, visit:
 
-<http://royale.apache.org>
+<https://royale.apache.org>
 
 This README file applies to the top-level source and binary packages.  The 
 individual folders (royale-compiler, royale-typedefs, royale-asjs) each have their own
@@ -203,10 +203,10 @@ or for both JS and SWF output:
 Using Royale
 ============
 
-To get started using Royale, follow along with the Quick Start Guide at https://github.com/apache/royale-asjs/wiki/Quick-Start, and the tutorials at the <a href="https://royale.codeoscopic.com/" target="_blank">Royale website</a>.
+To get started using Royale, follow along with the Quick Start Guide at https://github.com/apache/royale-asjs/wiki/Quick-Start, and the tutorials at the <a href="https://royale.apache.org/" target="_blank">Royale website</a>.
 
 Thanks for using Apache Royale.  Enjoy!
 
 
                   The Apache Royale Project
-                  <http://royale.apache.org>
+                  <https://royale.apache.org>
