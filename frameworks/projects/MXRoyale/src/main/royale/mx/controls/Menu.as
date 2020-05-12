@@ -21,8 +21,25 @@ package mx.controls
 {
 	
 	import org.apache.royale.events.Event;
+	import org.apache.royale.events.IEventDispatcher;
 	import org.apache.royale.geom.Rectangle;
 	import org.apache.royale.geom.Point;
+	import org.apache.royale.core.IListPresentationModel;
+	import org.apache.royale.core.ISelectionModel;
+	import org.apache.royale.core.ValuesManager;
+	import org.apache.royale.core.IFactory;
+	import org.apache.royale.core.IBead;
+	import org.apache.royale.core.IBeadLayout;
+	import org.apache.royale.core.ILayoutHost;
+	import org.apache.royale.core.IMenu;
+	import org.apache.royale.core.IUIBase;
+	import org.apache.royale.core.IDataProviderItemRendererMapper;
+	import org.apache.royale.core.IItemRendererClassFactory;
+	import org.apache.royale.core.IItemRendererProvider;
+	import org.apache.royale.html.beads.models.CascadingMenuModel;
+	import org.apache.royale.html.beads.models.MenuModel;
+	import org.apache.royale.utils.loadBeadFromValuesManager;
+	
 	import mx.core.UIComponent;
 	import mx.events.MouseEvent;
 	
@@ -571,7 +588,7 @@ package mx.controls
 	 *  @playerversion AIR 1.1
 	 *  @productversion Flex 3
 	 */
-	public class Menu extends List implements IFocusManagerContainer
+	public class Menu extends UIComponent implements IFocusManagerContainer, IMenu
 	{
 		// include "../core/Version.as";
 		
@@ -697,6 +714,7 @@ package mx.controls
 			/*itemRenderer = new ClassFactory(MenuItemRenderer);
 			setRowHeight(19);
 			iconField = "icon";*/
+			typeNames = "Menu";
 			
 			visible = false;
 		}
@@ -906,13 +924,13 @@ package mx.controls
 		 *  @see mx.controls.List
 		 *  @see mx.controls.Tree
 		 */
-		/*override public function set dataProvider(value:Object):void
+		public function set dataProvider(value:Object):void
 		{
 			// handle strings and xml
 			if (typeof(value)=="string")
 				value = new XML(value);
-			else if (value is XMLNode)
-				value = new XML(XMLNode(value).toString());
+			//else if (value is XMLNode)
+			//	value = new XML(XMLNode(value).toString());
 			else if (value is XMLList)
 				value = new XMLListCollection(value as XMLList);
 			
@@ -948,29 +966,18 @@ package mx.controls
 				_rootModel = new ArrayCollection();
 			}
 			
+			(model as ISelectionModel).dataProvider = _rootModel;
 			//flag for processing in commitProps
 			dataProviderChanged = true;
 			invalidateProperties();
-		}*/
+		}
 		
 		/**
 		 *  @private
 		 */
-		override public function get dataProvider():Object
+		public function get dataProvider():Object
 		{
-			var model:* = super.dataProvider;
-			if (model == null)
-			{
-				if (_rootModel != null )
-				{
-					return _rootModel;
-				}
-			}
-			else
-			{ 
-				return model;
-			}
-			return null;
+			return (model as ISelectionModel).dataProvider;
 		}
 		
 		//--------------------------------------------------------------------------
@@ -1137,48 +1144,6 @@ package mx.controls
 			itemRenderer = parentMenu.itemRenderer;
 		}
 		
-		// -------------------------------------------------------------------------
-		// horizontalScrollPolicy
-		// -------------------------------------------------------------------------
-		
-		[Inspectable(environment="none")]
-		
-		/**
-		 *  @private
-		 */
-		override public function get horizontalScrollPolicy():String
-		{
-			return ScrollPolicy.OFF;
-		}
-		
-		/**
-		 *  @private
-		 */
-		override public function set horizontalScrollPolicy(value:String):void
-		{
-		}
-		
-		// -------------------------------------------------------------------------
-		// verticalScrollPolicy
-		// -------------------------------------------------------------------------
-		
-		[Inspectable(environment="none")]
-		
-		/**
-		 *  @private
-		 */
-		override public function get verticalScrollPolicy():String
-		{
-			return ScrollPolicy.OFF;
-		}
-		
-		/**
-		 *  @private
-		 */
-		override public function set verticalScrollPolicy(value:String):void
-		{
-		}
-		
 		//--------------------------------------------------------------------------
 		//
 		//  Overridden methods
@@ -1252,7 +1217,7 @@ package mx.controls
 				else
 				{
 					_listDataProvider = null;
-					super.dataProvider = null;
+					vider = null;
 				}
 			}
 			
@@ -1649,11 +1614,14 @@ package mx.controls
 		 *  @playerversion AIR 1.1
 		 *  @productversion Flex 3
 		 */
-		public function show(xShow:Object = null, yShow:Object = null):void
+		public function show(parent:IUIBase, xShow:Number = 0, yShow:Number = 0):void
 		{
-			/*//this could be an empty menu so we'll return if it is
-			if (collection && collection.length == 0)
-				return;
+			if (parent is UIComponent)
+				parentDisplayObject = (parent as UIComponent);
+				
+			//this could be an empty menu so we'll return if it is
+			//if (collection && collection.length == 0)
+			//	return;
 			
 			// If parent is closed, then don't show this submenu
 			if (parentMenu && !parentMenu.visible)
@@ -1663,12 +1631,13 @@ package mx.controls
 			if (visible)
 				return;
 			
-			if (parentDisplayObject && (!parent || !parent.contains(parentDisplayObject)))
+			if (parentDisplayObject && (!parent /* || !parent.contains(parentDisplayObject)*/))
 			{
 				PopUpManager.addPopUp(this, parentDisplayObject, false);
-				addEventListener(MenuEvent.MENU_HIDE, menuHideHandler, false, EventPriority.DEFAULT_HANDLER);
+				//addEventListener(MenuEvent.MENU_HIDE, menuHideHandler, false, EventPriority.DEFAULT_HANDLER);
+				MenuModel.menuList.push(this);
 			}
-			
+			/*
 			// Fire an event
 			var menuEvent:MenuEvent = new MenuEvent(MenuEvent.MENU_SHOW);
 			menuEvent.menu = this;
@@ -1680,12 +1649,13 @@ package mx.controls
 				IActiveWindowManager(systemManager.getImplementation("mx.managers::IActiveWindowManager"));
 			awm.activate(this);
 			
+			*/
 			// Position it
-			if (xShow !== null && !isNaN(Number(xShow)))
+			if (/*xShow !== null && */!isNaN(Number(xShow)))
 				x = Number(xShow);
-			if (yShow !== null && !isNaN(Number(yShow)))
+			if (/*yShow !== null && */!isNaN(Number(yShow)))
 				y = Number(yShow);
-			
+			/*
 			// Adjust for menus that extend out of bounds
 			var sm:ISystemManager = systemManager.topLevelSystemManager;
 			var sbRoot:UIComponent = sm.getSandboxRoot();
@@ -1711,8 +1681,9 @@ package mx.controls
 			// Make sure the Menu's width and height has been determined
 			// before we try to set the size for its mask
 			UIComponentGlobals.layoutManager.validateClient(this, true);
+			*/
 			setActualSize(getExplicitOrMeasuredWidth(), getExplicitOrMeasuredHeight());
-			
+			/*
 			cacheAsBitmap = true;
 			
 			var duration:Number = getStyle("openDuration");
@@ -1720,9 +1691,10 @@ package mx.controls
 			{
 				scrollRect = new Rectangle(0, 0, unscaledWidth, 0);
 				
+				*/
 				// Make it visible
 				visible = true;
-				
+				/*
 				UIComponentGlobals.layoutManager.validateNow();
 				
 				// Block all layout, responses from web service, and other background
@@ -2638,6 +2610,371 @@ package mx.controls
 			return arr;
 		}
 		
+        //--------------------------------------------------------------------------
+        //
+        //  Methods: Item fields
+        //
+        //--------------------------------------------------------------------------
+        
+        /**
+         *  Returns the string the renderer would display for the given data object
+         *  based on the labelField and labelFunction properties.
+         *  If the method cannot convert the parameter to a string, it returns a
+         *  single space.
+         *
+         *  @param data Object to be rendered.
+         *
+         *  @return The string to be displayed based on the data.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function itemToLabel(data:Object):String
+        {
+            if (data == null)
+                return " ";
+            
+            /*
+            if (labelFunction != null)
+                return labelFunction(data);
+            */
+            
+            if (data is XML)
+            {
+                try
+                {
+                    if ((data as XML)[labelField].length() != 0)
+                        data = (data as XML)[labelField];
+                    //by popular demand, this is a default XML labelField
+                    //else if (data.@label.length() != 0)
+                    //  data = data.@label;
+                }
+                catch(e:Error)
+                {
+                }
+            }
+            else if (data is Object)
+            {
+                try
+                {
+                    if (data[labelField] != null)
+                        data = data[labelField];
+                }
+                catch(e:Error)
+                {
+                }
+            }
+            
+            if (data is String)
+                return String(data);
+            
+            try
+            {
+                return data.toString();
+            }
+            catch(e:Error)
+            {
+            }
+            
+            return " ";
+        }
+
+        /*
+        * IItemRendererProvider
+        */
+        
+        private var _itemRenderer:IFactory;
+        
+        /**
+         *  The class or factory used to display each item.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.0
+         */
+        public function get itemRenderer():IFactory
+        {
+            return _itemRenderer;
+        }
+        public function set itemRenderer(value:IFactory):void
+        {
+            _itemRenderer = value;
+        }
+
+        //----------------------------------
+        //  labelField
+        //----------------------------------
+                
+        [Bindable("labelFieldChanged")]
+        [Inspectable(category="Data", defaultValue="label")]
+        
+        /**
+         *  The name of the field in the data provider items to display as the label. 
+         *  By default the list looks for a property named <code>label</code> 
+         *  on each item and displays it.
+         *  However, if the data objects do not contain a <code>label</code> 
+         *  property, you can set the <code>labelField</code> property to
+         *  use a different property in the data object. An example would be 
+         *  "FullName" when viewing a set of people names fetched from a database.
+         *
+         *  @default "label"
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
+        public function get labelField():String
+        {
+            return (model as ISelectionModel).labelField;
+        }
+        
+        /**
+         *  @private
+         *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+         */
+        public function set labelField(value:String):void
+        {
+            (model as ISelectionModel).labelField = value;
+        }
+        
+		        //----------------------------------
+        //  rowHeight
+        //----------------------------------
+        
+        /**
+         *  @private
+         *  Storage for the rowHeight property.
+         */
+        private var _rowHeight:Number;
+        
+        /**
+         *  @private
+         */
+        private var rowHeightChanged:Boolean = false;
+        
+        [Inspectable(category="General")]
+        
+        /**
+         *  The height of the rows in pixels.
+         *  Unless the <code>variableRowHeight</code> property is
+         *  <code>true</code>, all rows are the same height.  
+         *  If not specified, the row height is based on
+         *  the font size and other properties of the renderer.
+         *  
+         *  @langversion 3.0
+         *  @playerversion Flash 9
+         *  @playerversion AIR 1.1
+         *  @productversion Flex 3
+         */
+        public function get rowHeight():Number
+        {
+            return _rowHeight;
+        }
+        
+        /**
+         *  @private
+         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         */
+        public function set rowHeight(value:Number):void
+        {
+            //explicitRowHeight = value;
+            
+            if (_rowHeight != value)
+            {
+                _rowHeight = value;
+                
+                (presentationModel as IListPresentationModel).rowHeight = value;
+                /*
+                invalidateSize();
+                itemsSizeChanged = true;
+                invalidateDisplayList();
+                
+                dispatchEvent(new Event("rowHeightChanged"));
+                */
+            }
+        }
+
+        /**
+         * @private
+         */
+        private var _presentationModel:IListPresentationModel;
+        
+        /**
+         *  The DataGrid's presentation model
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.9
+         *  @royaleignorecoercion org.apache.royale.core.IListPresentationModel
+         *  @royaleignorecoercion org.apache.royale.core.IBead
+         */
+        public function get presentationModel():IBead
+        {
+            if (_presentationModel == null) {
+                var bead:IBead = getBeadByType(IListPresentationModel);
+                if (bead)
+                    _presentationModel = bead as IListPresentationModel;
+                else
+                {
+                    var c:Class = ValuesManager.valuesImpl.getValue(this, "iListPresentationModel");
+                    if (c) {
+                        _presentationModel = new c() as IListPresentationModel;
+                        addBead(_presentationModel as IBead);
+                    }
+                }
+            }
+            
+            return _presentationModel;
+        }
+
+		override public function addedToParent():void
+		{
+			super.addedToParent();		
+			
+            // Load the layout bead if it hasn't already been loaded.
+            loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
+
+            // Even though super.addedToParent dispatched "beadsAdded", DataContainer still needs its data mapper
+            // and item factory beads. These beads are added after super.addedToParent is called in case substitutions
+            // were made; these are just defaults extracted from CSS.
+            loadBeadFromValuesManager(IDataProviderItemRendererMapper, "iDataProviderItemRendererMapper", this);
+            loadBeadFromValuesManager(IItemRendererClassFactory, "iItemRendererClassFactory", this);
+
+	        dispatchEvent(new Event("initComplete"));
+		}
+		
+		/**
+         * Returns the ILayoutHost which is its view. From ILayoutParent.
+         *
+         *  @langversion 3.0
+         *  @playerversion Flash 10.2
+         *  @playerversion AIR 2.6
+         *  @productversion Royale 0.8
+         *  @royaleignorecoercion org.apache.royale.core.ILayoutHost
+         */
+        public function getLayoutHost():ILayoutHost
+        {
+            return view as ILayoutHost;
+        }
+
+	    //----------------------------------
+	    //  selectedIndex
+	    //----------------------------------
+	
+	    [Bindable("change")]
+	    [Bindable("valueCommit")]
+	    [Inspectable(category="General", defaultValue="-1")]
+	
+	    /**
+	     *  The index in the data provider of the selected item.
+	     * 
+	     *  <p>The default value is -1 (no selected item).</p>
+	     *
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 9
+	     *  @playerversion AIR 1.1
+	     *  @productversion Flex 3
+	     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+	     */
+	    public function get selectedIndex():int
+	    {
+	        return (model as ISelectionModel).selectedIndex;
+	    }
+	
+	    /**
+	     *  @private
+	     *  @royaleignorecoercion org.apache.royale.core.ISelectionModel
+	     */
+	    public function set selectedIndex(value:int):void
+	    {
+	       // if (!collection || collection.length == 0)
+	       // {
+	        (model as ISelectionModel).selectedIndex = value;
+	         //   bSelectionChanged = true;
+	         //   bSelectedIndexChanged = true;
+	          //  invalidateDisplayList();
+	            return;
+	       // }
+	        //commitSelectedIndex(value);
+	    }
+
+	    //----------------------------------
+	    //  selectedItem
+	    //----------------------------------
+	    
+	    [Bindable("change")]
+	    [Bindable("valueCommit")]
+	    
+	    /**
+	     *  The selected item in the data provider.
+	     *  
+	     *  @langversion 3.0
+	     *  @playerversion Flash 9
+	     *  @playerversion AIR 1.1
+	     *  @productversion Flex 3
+	     */
+	    public function get selectedItem():Object
+	    {
+	        return (model as ISelectionModel).selectedItem;
+	    }
+	    
+	    /**
+	     *  @private
+	     */
+	    public function set selectedItem(item:Object):void
+	    {
+	        (model as ISelectionModel).selectedItem = item;
+	    }
+	    
+		private var _parentMenuBar:IEventDispatcher;
+		
+		/**
+		 * @private
+		 * 
+		 * If this menu is used as part of a menu bar system, this property should reference
+		 * that menu bar. If this property is set, the "change" event is dispatched against this
+		 * object rather than the Menu itself.
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function get parentMenuBar():IEventDispatcher
+		{
+			return _parentMenuBar;
+		}
+		public function set parentMenuBar(value:IEventDispatcher):void
+		{
+			_parentMenuBar = value;
+		}
+		
+		/**
+		 * The name of the field to use in the data that indicates a sub-menu. The
+		 * default value is "menu".
+		 *
+		 *  @langversion 3.0
+		 *  @playerversion Flash 10.2
+		 *  @playerversion AIR 2.6
+		 *  @productversion Royale 0.9
+		 */
+		public function get submenuField():String
+		{
+			return (model as CascadingMenuModel).submenuField;
+		}
+		
+		public function set submenuField(value:String):void
+		{
+			(model as CascadingMenuModel).submenuField = value;
+		}
+		        
 	}
 	
 }

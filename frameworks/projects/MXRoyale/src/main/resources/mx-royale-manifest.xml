@@ -118,6 +118,7 @@
 	<component id="Validator" class="mx.validators.Validator"/>
 	<component id="DateFormatter" class="mx.formatters.DateFormatter"/>
 	<component id="MenuBar" class="mx.controls.MenuBar"/>
+    <component id="Menu" class="mx.controls.Menu"/>
 	<component id="Glow" class="mx.effects.Glow"/>
 	<component id="StringValidator" class="mx.validators.StringValidator"/>
 	<component id="RegExpValidator" class="mx.validators.RegExpValidator"/>

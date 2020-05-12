@@ -356,11 +356,20 @@ menu|MenuBarItemRenderer {
 	margin-right: 10px;
 	cursor: pointer;
 }
-/*
+
 Menu {
-	IBeadModel: ClassReference("org.apache.royale.html.beads.models.CascadingMenuModel");
-	IBeadController: ClassReference("org.apache.royale.html.beads.controllers.CascadingMenuSelectionMouseController");
-	IItemRenderer: ClassReference("org.apache.royale.html.supportClasses.CascadingMenuItemRenderer");
+	IMenu: ClassReference("org.apache.royale.html.CascadingMenu");
+	IBeadModel: ClassReference("mx.controls.beads.models.CascadingMenuModel");
+	IBeadController: ClassReference("mx.controls.beads.controllers.CascadingMenuSelectionMouseController");
+	IItemRenderer: ClassReference("mx.controls.menuClasses.CascadingMenuItemRenderer");
+	IBeadView:  ClassReference("org.apache.royale.html.beads.ListView");			
+	IBeadLayout: ClassReference("org.apache.royale.html.beads.layouts.VerticalLayout");
+	IDataProviderItemRendererMapper: ClassReference("mx.controls.listClasses.DataItemRendererFactoryForICollectionViewData");
+	IItemRendererClassFactory: ClassReference("org.apache.royale.core.SelectableItemRendererClassFactory");
+	IItemRendererInitializer: ClassReference("mx.controls.beads.ListItemRendererInitializer");
+	ISelectableItemRenderer: ClassReference("org.apache.royale.html.beads.SolidBackgroundSelectableItemRendererBead");
+	IListPresentationModel: ClassReference("org.apache.royale.html.beads.models.ListPresentationModel");
+	
 	position: absolute;
 	background-color: white;
 	border-width: 1px;
@@ -368,7 +377,7 @@ Menu {
 	border-color: #222222;
 	box-shadow: 2px 2px 5px gray;
 }
-
+/*
 MenuItemRenderer {
 	margin-top: 4px;
 	margin-left: 2px;
