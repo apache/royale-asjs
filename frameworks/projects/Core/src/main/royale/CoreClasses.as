@@ -155,6 +155,8 @@ internal class CoreClasses
 	import org.apache.royale.core.IStrandWithModel; IStrandWithModel;
 	import org.apache.royale.core.IStrandWithModelView; IStrandWithModelView;
 	import org.apache.royale.core.ITextModel; ITextModel;
+	import org.apache.royale.core.IMenuModel; IMenuModel;
+	import org.apache.royale.core.ICascadingMenuModel; ICascadingMenuModel;
 	import org.apache.royale.core.IColorModel; IColorModel;
 	import org.apache.royale.core.IColorSpectrumModel; IColorSpectrumModel;
 	import org.apache.royale.core.ITitleBarModel; ITitleBarModel;
