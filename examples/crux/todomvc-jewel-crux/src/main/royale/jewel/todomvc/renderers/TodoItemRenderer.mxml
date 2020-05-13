@@ -134,6 +134,7 @@ limitations under the License.
     <j:beads>
         <js:SimpleStatesImpl/>
         <js:ItemRendererDataBinding />
+        <j:HorizontalLayout itemsVerticalAlign="itemsCenter"/>
     </j:beads>
     
     <j:CheckBox selected="{item ? item.done : false}"
