@@ -81,39 +81,14 @@ package org.apache.royale.jewel.itemRenderers
 			}
 		}
 		
-		public function getSelectedSubmenuItem():Object{
+		public function getSelectedSubmenuItem():Object {
 			if (childNavigation && open) return childNavigation.selectedItem;
 			return null;
 		}
-		
 
 		private var navLinkClassSelector:ClassSelectorList;
-		
-		// private var _href:String = "#";
-        /**
-         *  the navigation link url
-		 *  while the parent is primarily for hiding or showing its
-		 *  children, it is still an active link, and will dispatch events,
-		 *  so that other external view state changes may (or may not) be reflected
-		 *  So it has the same capabilities for navigation as its children, if that
-		 *  is needed.
-         *  
-         *  @langversion 3.0
-         *  @playerversion Flash 10.2
-         *  @playerversion AIR 2.6
-         *  @productversion Royale 0.9.6
-         */
-		// public function get href():String
-		// {
-        //     return _href;   
-		// }
-		// public function set href(value:String):void
-		// {
-        //     _href = value;
-		// }
 
 		private var _text:String = "";
-
         /**
          *  The text of the navigation link
          *  
@@ -127,7 +102,6 @@ package org.apache.royale.jewel.itemRenderers
 		{
             return _text;
 		}
-
 		public function set text(value:String):void
 		{
              _text = value;
@@ -195,15 +169,14 @@ package org.apache.royale.jewel.itemRenderers
 				super.addElement(childNavigation);
 				if (!_open) 
 				{
-					COMPILE::JS
-					{
-					childNavigation.element.style.height = 0;
-					}
+				COMPILE::JS
+				{
+				childNavigation.element.style.height = 0;
+				}
 				}
 			}
 			childNavigation.dataProvider = children;
 		}
-		
 		
 		private var sectionNavItem:A;
 		
@@ -225,7 +198,6 @@ package org.apache.royale.jewel.itemRenderers
 		override public function set data(value:Object):void
 		{
 			if(value == null) {
-				// _href = "#";
 				_text = null;
 				open = false;
 				//super.data setter will dispatch dataChange
@@ -246,19 +218,13 @@ package org.apache.royale.jewel.itemRenderers
 				_text = String(value);
 			}
 			// text = getLabelFromData(this, value);
-			
-            // if(value.href !== undefined)
-			// {
-            //     href = String(value.href);
-			// }
 
 			COMPILE::JS
 			{
-				if(textNode != null)
-				{
-					textNode.nodeValue = text;
-					// (element as HTMLElement).setAttribute('href', href);
-				}	
+			if(textNode != null)
+			{
+				textNode.nodeValue = text;
+			}	
 			}
 			
 			if (submenuField in value && value[submenuField] is IArrayList){
@@ -269,14 +235,11 @@ package org.apache.royale.jewel.itemRenderers
 				processChildren();
 			}
 			
-			
 			//super.data dispatches the dataChange
-			_inData=true;
-			super.data=value;
-			_inData=false;
+			_inData = true;
+			super.data = value;
+			_inData = false;
 		}
-		
-		
 		
 		private var _mxmlProperties:Array ;
 		
@@ -299,7 +262,6 @@ package org.apache.royale.jewel.itemRenderers
 			MXMLDataInterpreter.generateMXMLInstances(this, sectionNavItem, MXMLDescriptor);
 			MXMLDescriptor.length = 0;
 			super.addedToParent();
-			
 		}
 		
 		/**
@@ -309,7 +271,6 @@ package org.apache.royale.jewel.itemRenderers
         COMPILE::JS
         override protected function createElement():WrappedHTMLElement
         {
-
 			var nav:WrappedHTMLElement = addElementToWrapper(this, 'nav');
 			sectionNavItem = new A();
 			// sectionNavItem.href = href;

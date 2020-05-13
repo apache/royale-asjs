@@ -21,6 +21,7 @@ limitations under the License.
                                         xmlns:j="library://ns.apache.org/royale/jewel"
                                         xmlns:js="library://ns.apache.org/royale/basic"
                                         xmlns:html="library://ns.apache.org/royale/html"
+                                        className="layout vertical"
                                         sectionClick="handleNavToggle(event)"
                                         height="48">
 
@@ -64,7 +65,7 @@ limitations under the License.
 
         override public function onChange(selectedItem:Object):void{
             trace('selectedItem',selectedItem)
-            var parentNav:Navigation =   this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
+            var parentNav:Navigation =  this.itemRendererOwnerView ? this.itemRendererOwnerView.host as Navigation : null;
             if (parentNav) {
                 //this hierarchy support is a bit kooky, and probably there will be something better later with Hierarchical data setup
                 navlink.selectedChild =selectedItem as NavigationLinkVO;
@@ -79,15 +80,15 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding />
-        <j:HorizontalLayout gap="8" itemsVerticalAlign="itemsCenter"/>
     </j:beads>
 
-    <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
+    <!-- <j:HGroup gap="8" itemsVerticalAlign="itemsCenter"> -->
+        <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
 
-    <html:Span className="navigation-section-title" text="{text}"/>
-    
-    <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
-                    visible="{navlink.subMenu != null}" />
-
+        <html:Span className="navigation-section-title" text="{text}"/>
+        
+        <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
+                        visible="{navlink.subMenu != null}" />
+    <!-- </j:HGroup> -->
 </j:CollapsibleNavigationSectionRenderer>
 
