@@ -3286,7 +3286,6 @@ j|NavigationLinkItemRenderer {
 }
 
 j|CollapsibleNavigationSectionRenderer {
-  IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout");
   IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController");
 }
 

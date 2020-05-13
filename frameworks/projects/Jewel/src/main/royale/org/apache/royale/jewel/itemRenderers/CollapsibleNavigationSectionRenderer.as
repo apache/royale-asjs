@@ -28,6 +28,7 @@ package org.apache.royale.jewel.itemRenderers
 	import org.apache.royale.events.Event;
 	import org.apache.royale.html.elements.A;
 	import org.apache.royale.jewel.Navigation;
+	import org.apache.royale.jewel.beads.layouts.VerticalLayout;
 	import org.apache.royale.jewel.supportClasses.INavigationRenderer;
 	import org.apache.royale.utils.ClassSelectorList;
 	import org.apache.royale.utils.MXMLDataInterpreter;
@@ -37,6 +38,9 @@ package org.apache.royale.jewel.itemRenderers
 	 *  The NavigationLinkItemRenderer defines the basic Item Renderer for a Jewel 
      *  Navigation List Component. It handles Objects with "label" and "href" data.
 	 *  Extend this (you can do it in MXML) to support more data like for example: icon data.
+	 * 
+	 *  Note: This render creates a sub list, so we add in this class a concrete layout (VerticalLayout). So don't try
+	 *  to change layout (adding via CSS, mxml beads, etc...). For layout the renderer parts, use a container (i.e: HGroup, VGroup,...)
 	 *  
 	 *  @langversion 3.0
 	 *  @playerversion Flash 10.2
@@ -68,7 +72,9 @@ package org.apache.royale.jewel.itemRenderers
 		
 		private function onSectionNav(event:Event):void{
 			var navTarget:Object = event.target;
-			if (event.target == sectionNavItem || event.target.parent == sectionNavItem) {
+
+			// this check should be smarter, check sectionNavItem and its childs
+			if (event.target == sectionNavItem || event.target.parent == sectionNavItem || event.target.parent.parent == sectionNavItem) {
 				event.stopImmediatePropagation();
 				navTarget = this;
 				//make 'this' the event.target
@@ -262,6 +268,13 @@ package org.apache.royale.jewel.itemRenderers
 			MXMLDataInterpreter.generateMXMLInstances(this, sectionNavItem, MXMLDescriptor);
 			MXMLDescriptor.length = 0;
 			super.addedToParent();
+			addLayoutBead();
+		}
+
+		public function addLayoutBead():void {
+			var parentLayout:VerticalLayout = new VerticalLayout();
+			parentLayout.itemsVerticalAlign = "itemsCentered";
+			addBead(parentLayout);
 		}
 		
 		/**

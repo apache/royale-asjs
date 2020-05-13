@@ -153,6 +153,10 @@ package org.apache.royale.jewel.itemRenderers
 		override public function addedToParent():void
 		{
 			super.addedToParent();
+			addLayoutBead();
+		}
+
+		public function addLayoutBead():void {
 			loadBeadFromValuesManager(IBeadLayout, "iBeadLayout", this);
 		}
 	}

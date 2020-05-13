@@ -51,6 +51,5 @@ j|NavigationLinkItemRenderer
 .jewel.navigationgroup
 
 j|CollapsibleNavigationSectionRenderer
-    IBeadLayout: ClassReference("org.apache.royale.jewel.beads.layouts.NullLayout")
     IBeadController: ClassReference("org.apache.royale.html.beads.controllers.ItemRendererMouseController")
-    // itemsVerticalAlign: itemsCenter
+    // don't add IBeadLayout. We add one in code since this render creates additional elements

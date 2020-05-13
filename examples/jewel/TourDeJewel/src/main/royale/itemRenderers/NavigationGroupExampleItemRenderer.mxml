@@ -21,9 +21,10 @@ limitations under the License.
                                         xmlns:j="library://ns.apache.org/royale/jewel"
                                         xmlns:js="library://ns.apache.org/royale/basic"
                                         xmlns:html="library://ns.apache.org/royale/html"
-                                        className="layout vertical"
+                                        
                                         sectionClick="handleNavToggle(event)"
-                                        height="48">
+                                        minHeight="48">
+                                        <!-- using 'minHeight' instead of 'height' here since collapsible changes heigth of the renderer -->
 
     <fx:Script>
 		<![CDATA[
@@ -80,15 +81,18 @@ limitations under the License.
 
     <j:beads>
         <js:ItemRendererDataBinding />
+        <!-- We can't add layout here since this renderer has its own needed to work -->
     </j:beads>
 
-    <!-- <j:HGroup gap="8" itemsVerticalAlign="itemsCenter"> -->
+    <!-- if we need to layout items in the render introduce a container like the following -->
+    <j:HGroup gap="8" itemsVerticalAlign="itemsCenter" height="48">
         <js:MaterialIcon text="{navlink.icon}"  visible="{navlink.icon != null}"/>
 
         <html:Span className="navigation-section-title" text="{text}"/>
         
         <js:MaterialIcon text="{open? MaterialIconType.EXPAND_LESS: MaterialIconType.EXPAND_MORE}"  className="hint" 
-                        visible="{navlink.subMenu != null}" />
-    <!-- </j:HGroup> -->
+                        visible="{navlink.subMenu != null}"/>
+    </j:HGroup>
+
 </j:CollapsibleNavigationSectionRenderer>
 
